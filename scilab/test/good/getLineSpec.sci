@@ -1,7 +1,10 @@
-//
-//Author : F.Leray
-//Copyright INRIA
-//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(str,current_figure,cur_draw_mode) 
 
@@ -69,7 +72,7 @@ while length(str) > 1
   k=find(part(Table,1)==c1);
 
   if (k == [] | (size(k,'*') > 1 & c1 <> 'b'))
-    warning("Error in LineSpec property : bad argument specified");
+    error(msprintf(gettext("%s: Wrong type for input argument.\n"), "getLineSpec"));
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end

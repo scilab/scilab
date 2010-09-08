@@ -1,8 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Farid BELAHCENE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function y=flipdim(x,dim)
-// Copyright INRIA
+
 // FLIPDIM function
 // Given x, a scalar/vector/matix of reals and an integer dim, this function flips the x components  along the dimension number dim (x and y have the same size). 
-// -Inputs : 
+// -Inputs :
 //  x : a scalar/vector/array of reals
 //  dim : a positive integer
 // -Output :
@@ -10,17 +19,21 @@ function y=flipdim(x,dim)
 //
 // F.Belahcene
 
-if or(size(dim)<>[1 1]) | type(dim)<>8 & (type(dim)<>1 | dim<1) then
-	error("second input argument must be a positive scalar")
+if size(dim,"*")<>1 then
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: A positive integer expected.\n"),"flipdim",2));
+elseif type(dim)<>8 & (type(dim)<>1 | dim<1) then
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive integer expected.\n"),"flipdim",2));
 end
+
 
 if ndims(x)==2 & type(x)<>1 then
-	error("first input argument must be a scalar/vector/array of reals")
+	error(msprintf(gettext("%s: Wrong value for input argument #%d: Real matrix expected.\n"),"flipdim",1));
 elseif ndims(x)>2 & type(x.entries)<>1
-	error("first input argument must be a scalar/vector/array of reals")
+	error(msprintf(gettext("%s: Wrong value for input argument #%d: Real matrix expected.\n"),"flipdim",1));
 end
 
-dim=floor(dim)
+dim=floor(dim);
+
 if dim>ndims(x)
 	y=x
 	return

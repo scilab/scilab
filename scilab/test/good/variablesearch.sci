@@ -1,42 +1,49 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function  variablename=variablesearch(instr,variablename)
-//  Copyright INRIA
-//
 //  VARIABLESEARCH recursive function (used by "translatepaths" function)
 //  Searches names of declared variables for each instruction of mtlbtree
-//  Ouput
+//  Output 
 //  -variablename : a vector which contains the names of declared variables
 //  -instr : mtlbtree instruction
 
 // case : ifthenelse instruction
 if typeof(instr) == "ifthenelse" then
-  for i=1:size(instr._then)
-    [variablename]=variablesearch((instr._then(i)),variablename)
+  for i=1:size(instr.then)
+    [variablename]=variablesearch((instr.then(i)),variablename)
   end
-  for i=1:size(instr._elseifs)
-    for k=1:size(instr._elseifs(i)._then)
-      [variablename]=variablesearch((instr._elseifs(i)._then(k)),variablename)
+  for i=1:size(instr.elseifs)
+    for k=1:size(instr.elseifs(i).then)
+      [variablename]=variablesearch((instr.elseifs(i).then(k)),variablename) 
     end
+  end  
+  for i=1:size(instr.else)
+    [variablename]=variablesearch((instr.else(i)),variablename)
   end
-  for i=1:size(instr._else)
-    [variablename]=variablesearch((instr._else(i)),variablename)
-  end
-// case : selectcase instruction
+// case : selectcase instruction 
 elseif typeof(instr) == "selectcase" then
   for i=1:size(instr.cases)
   [variablename]=variablesearch(instr.cases(i).expression,variablename)
-    for j=1:size(instr.cases(i)._then)
-      [variablename]=variablesearch((instr.cases(i)._then(j)),variablename)
-    end
+    for j=1:size(instr.cases(i).then)
+      [variablename]=variablesearch((instr.cases(i).then(j)),variablename)
+    end   
   end
-  for i=1:size(instr._else)
-    [variablename]=variablesearch(instr._else(i),variablename)
+  for i=1:size(instr.else)
+    [variablename]=variablesearch(instr.else(i),variablename)
   end
-// case : while instruction
+// case : while instruction   
 elseif typeof(instr) == "while" then
   for i=1:size(instr.statements)
     [variablename]=variablesearch(instr.statements(i),variablename)
   end
-// case : for instruction
+// case : for instruction 
 elseif typeof(instr) == "for" then
     [variablename]=variablesearch(instr.expression,variablename)
 for i=1:size(instr.statements)
@@ -54,11 +61,11 @@ elseif typeof(instr) == "operation" then
       variablename($+1)=instr.operands(1).name
     end
   end
-// case : variable instruction
+// case : variable instruction 
 elseif typeof(instr) == "variable" then
   if find(instr.name==variablename)==[] & instr.name<>"ans" then
     variablename($+1)=instr.name
   end
 end
 
-endfunction
+endfunction 

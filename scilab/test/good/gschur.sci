@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [As,Es,Z,dim]= gschur(A,E,extern)
 
   if argn(2)<=2 then
@@ -9,32 +19,30 @@ function [As,Es,Z,dim]= gschur(A,E,extern)
     end
   elseif type(extern)==10 then
     if convstr(extern)=='c'|convstr(extern)=='d' then
-      warning('Obsolete function gschur. Please, replace gschur by schur')
+      warning(msprintf(gettext('%s: Obsolete function. Please, replaces ''%s'' by ''%s''.'),'gschur','gschur','schur'));
       if argn(1)==4 then
-	[As,Es,Z,dim]= schur(A,E,extern)
+	[As,Es,Z,dim]= schur(A,E,extern) 
       elseif argn(1)==2 then
-	[As,Es,Z,dim]= schur(A,E,extern)
+	[As,Es,Z,dim]= schur(A,E,extern) 
 	Es=dim;As=Z;
       end
     else // hard coded
-      error('Obsolete function gschur, the old external cannot be used. See help')
-
+      warning(msprintf(gettext('%s: Obsolete function. Old external cannot be used.'),'gschur'));
       //impossible to redefine
     end
   else //coded by a scilab function
        //---- old------------------
-       //flag=extern(x)
+       //flag=extern(x) 
        //x(1) ==1 ==> x(2:3)=[al,be]
        //x(1) ==2 ==> x(2:3)=[s,p]
-       warning('Obsolete function. Please, replace gschur by schur and adapt'+...
-	       ' the external')
+       warning(msprintf(gettext('%s: Obsolete function. Please, replaces ''%s'' by ''%s''.'),'gschur','gschur','schur'));
        deff('t=%_rule(Alpha,Beta)',['if imag(Alpha)==0 then'
 		    '  t=extern([1,real(Alpha),Beta])==1'
 		    'else		    '
 		    '  c=Alpha/Beta'
 		    '  t=extern([2,real(c+c''),real(c*c'')])==1'
                     'end;'])
-       [As,Es,Z,dim]= schur(A,E,%_rule)
+       [As,Es,Z,dim]= schur(A,E,%_rule) 
   end
 endfunction
 

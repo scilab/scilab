@@ -1,8 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function tree=default_trad(tree)
-// Copyright INRIA
 // M2SCI function
 // Create a default translation function
-// V.C.
 
 global("mtlbref_fun") //contains the matlab reference functions which not yet converted 
 global("mtlbtool_fun")//contains the matlab  toolboxes functions  
@@ -31,24 +38,24 @@ end
 [mtlbpath,ismtlbtoolfun]=mtlbtoolfun(name)
 //Matlab reference functions
 if or(name==not_yet_converted()) then
-  set_infos("Matlab function "+name+" not yet converted, original calling sequence used",2)
+  set_infos(msprintf(gettext("Matlab function %s not yet converted, original calling sequence used."),name),2)
   if ~or(name==mtlbref_fun(:,1)) then
     mtlbref_fun($+1,1)=name
     if ispriminame then
-      mtlbref_fun($,2)=" (Warning name conflict: function name changed from "+name+" to "+name1+")"
+      mtlbref_fun($,2)=msprintf(gettext("(Warning name conflict: function name changed from %s to %s)."),name,name1);
     else
       mtlbref_fun($,2)=""
     end
   end   
   //Matlab toolboxes functions 
 elseif ismtlbtoolfun then
-  set_infos("Matlab toolbox(es) function "+name+" not converted, original calling sequence used",2)
+  set_infos(msprintf(gettext("Matlab toolbox(es) function %s not converted, original calling sequence used"),name),2)
   if ~or(name==mtlbtool_fun(:,1)) then
     mtlbtool_fun($+1,1)=name
     if ispriminame then
-      mtlbtool_fun($,2)="(Warning Name conflict: function name changed from "+name+" to "+name1+", find this function in matlab/"+mtlbpath+")" 
+      mtlbtool_fun($,2)=msprintf(gettext("Matlab toolbox(es) function %s not converted, original calling sequence used."),name,name1,mtlbpath)
     else
-      mtlbtool_fun($,2)="(Find this function in "+"matlab/"+ mtlbpath+")"  
+      mtlbtool_fun($,2)=msprintf(gettext("(Find this function in matlab/%s)."),mtlbpath)
     end
   end 
 elseif isdefinedvar(Variable(tree.name,Infer())) then
@@ -62,18 +69,18 @@ elseif isdefinedvar(Variable(tree.name,Infer())) then
 
   //Not matlbb function
 else 
-  set_infos("Unknown function "+name+" not converted, original calling sequence used",2)  
+  set_infos(msprintf(gettext("Unknown function %s not converted, original calling sequence used."),name),2)  
   if ~or(name==not_mtlb_fun(:,1)) then
     not_mtlb_fun($+1,1)=name
     if ispriminame then 
-      not_mtlb_fun($,2)="(Warning Name conflict: function name changed from "+name+" to "+name1+")"
+      not_mtlb_fun($,2)=msprintf(gettext("(Warning name conflict: function name changed from %s to %s)."),name,name1);
     else
       not_mtlb_fun($,2)=""
     end
   end
 end
 if ispriminame then
-  set_infos("Name conflict: function name changed from "+name+" to "+name1,0)
+  set_infos(msprintf(gettext("(Warning name conflict: function name changed from %s to %s)."),name,name1),0)
 end
 [tree]=sci_generic(tree)
 endfunction

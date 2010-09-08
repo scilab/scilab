@@ -1,5 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function txt=sd2sci(sd,zoom,orig)
-// Copyright INRIA
+[lhs,rhs]=argn(0);
+if rhs<1 then
+   error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "sd2sci", 1));
+end
 [l,mac]=where()
 scsmode=find(mac=='scicos')<>[]
 [lhs,rhs]=argn(0)
@@ -8,7 +19,9 @@ thick=1
 fnt=[2 1]
 dash=33
 symb=[0 0]
-if sd(1)<>'sd' then error('first argument has incorrect data type'),end
+if sd(1)<>'sd' then
+   error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "sd2sci", 1));
+end
 if rhs<3 then orig=['0';'0'],end
 if type(orig)==1 then orig=string(orig),end
 if rhs<2 then zoom=['1';'1'],end
@@ -18,7 +31,7 @@ rect=sd(2)
 xmx=rect(3);ymx=rect(4)
 dx=abs(rect(3)-rect(1));dx=10^(-log(dx/100)/log(10))*10
 dy=abs(rect(4)-rect(2));dy=10^(-log(dy/100)/log(10))*10
-dxy=maxi(dx,dy)
+dxy=max(dx,dy)
 txt=[]
 txt='xsetech([0 0 1 1],'+sci2exp(sd(2))+')'
 for k=3:size(sd)
@@ -31,7 +44,7 @@ for k=3:size(sd)
       x2=round(dx*x2)/dx
       y1=round(dy*y1)/dy
       y2=round(dy*y2)/dy
-      xi=string(mini(x1,x2));
+      xi=string(min(x1,x2));
       w=string(abs(x1-x2));
       yi=string(max(y1,y2));
       h=string(abs(y1-y2));
@@ -42,7 +55,7 @@ for k=3:size(sd)
       x2=round(dx*x2)/dx
       y1=round(dy*y1)/dy
       y2=round(dy*y2)/dy
-      xi=string(mini(x1,x2));
+      xi=string(min(x1,x2));
       w=string(abs(x1-x2));
       yi=string(max(y1,y2));
       h=string(abs(y1-y2));
@@ -111,9 +124,9 @@ for k=3:size(sd)
       txt=[txt;
 	  'xpoly('+x+','+y+',""marks"")'];
     case "clipon" then
-      txt=[txt;'xclip(''clipgrf'')']
+      txt=[txt;"axes = gca()"; "axes.clip_state = ''clipgrf''"]
     case "clipoff" then
-      txt=[txt;'xclip()']     
+      txt=[txt;"axes = gca()"; "axes.clip_state = ''off''"]     
     else
 
     end

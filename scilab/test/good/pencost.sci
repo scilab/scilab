@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
 function [fpen,gpen,ind]=pencost(x,ind,fncts,ne,nc,cpen);
 // pencost=template of external function for penalized problem:
 //
@@ -42,7 +51,7 @@ function [fpen,gpen,ind]=pencost(x,ind,fncts,ne,nc,cpen);
 //              1,0,x(2)]')
 //
 // 2-call scilab's optim function (after loading pencost.sci (this file));
-// getf('pencost.sci','c') 
+// exec('pencost.sci','c') 
 // ne=0;nc=2;x0=[4;7];
 // penalizing constant cpen=100;
 // [f,x]=optim(list(pencost,myproblem,ne,nc,cpen),x0)
@@ -50,7 +59,6 @@ function [fpen,gpen,ind]=pencost(x,ind,fncts,ne,nc,cpen);
 // or (passing myproblem,ne,nc,cpen by context)
 // fncts=myproblem;[f,x]=optim(pencost,x0)
 //
-// Copyright INRIA
 [f,gradf,indic]=fncts(x,ind);
 if indic < 0 then ind=indic, return, end;
 if nc >ne then

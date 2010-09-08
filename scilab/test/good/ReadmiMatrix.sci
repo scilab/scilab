@@ -1,15 +1,24 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// Copyright (C) ???? - INRIA - Serge STEER 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [value,ArrayName]=ReadmiMatrix(fd)
 // Read a variable in a Matlab binary file
 // This function has been developped following the 'MAT-File Format' description:
-// www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf
+// www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
 // Copyright INRIA
 // Authors: SS, VC
 
   [DataType,NumberOfBytes,Compressed]=ReadTag(fd);
   if meof(fd) then value=[],ArrayName="",return,end
-  if DataType<>miMatrix then
-    error('Found Datatype='+string(DataType)+', expecting '+ ...
-	  string(miMatrix))
+  if DataType<>miMatrix then 
+    error(msprintf(gettext("Found Datatype=%d, expecting %d."),DataType,miMatrix));
   end
   if NumberOfBytes==0 then value=[],return,end
   [Flags,Class,NnzMax]=ReadArrayFlags(fd);
@@ -18,64 +27,64 @@ function [value,ArrayName]=ReadmiMatrix(fd)
   select Class
   case DoubleClass
     value=double(ReadSimpleElement(fd,prod(DimensionArray),Class))
-    if Flags(1) then
+    if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
   case SingleClass
     value=ReadSimpleElement(fd,prod(DimensionArray),Class)
-    if Flags(1) then
+    if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
   case Int8Class
     value=int8(ReadSimpleElement(fd,prod(DimensionArray),Class))
-    if Flags(1) then
+    if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
   case Uint8Class
     value=uint8(ReadSimpleElement(fd,prod(DimensionArray),Class))
-    if Flags(1) then
+    if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
   case Int16Class
     value=int16(ReadSimpleElement(fd,prod(DimensionArray),Class))
-    if Flags(1) then
+    if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
   case Uint16Class
     value=uint16(ReadSimpleElement(fd,prod(DimensionArray),Class))
-    if Flags(1) then
+    if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
   case Int32Class
     value=int32(ReadSimpleElement(fd,prod(DimensionArray),Class))
-    if Flags(1) then
+    if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
   case Uint32Class
     value=uint32(ReadSimpleElement(fd,prod(DimensionArray),Class))
-    if Flags(1) then
+    if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
-  case CellClass
-
+  case CellClass 
+   
     entries=list()
     for k=1:prod(DimensionArray)
       entries(k)=ReadmiMatrix(fd)
     end
     value=mlist(['ce','dims','entries'],int32(DimensionArray),entries)
-  case CharClass
+  case CharClass 
     value=matrix(ReadSimpleElement(fd,prod(DimensionArray)),DimensionArray(1),-1)
     t=[];for v=value',t=[t;stripblanks(ascii(double(v)))];end
     value=t
-  case StructClass
+  case StructClass 
     FieldNameLength=double(ReadSimpleElement(fd,1))
     FieldNames=matrix(ReadSimpleElement(fd),FieldNameLength,-1)
     NumberOfFields=size(FieldNames,2)
@@ -101,7 +110,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     end
     //Form Scilab representation
     value=mlist(['st' 'dims' Fnams],int32(DimensionArray),Fields(:))
-  case ObjectClass
+  case ObjectClass 
     ClassName=stripblanks(ascii(double(ReadSimpleElement(fd))))
     FieldNameLength=double(ReadSimpleElement(fd,1))
     FieldNames=matrix(ReadSimpleElement(fd),FieldNameLength,-1)
@@ -126,10 +135,10 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     RowIndex=double(ReadSimpleElement(fd,NnzMax))
     ColumnIndex=double(ReadSimpleElement(fd,DimensionArray(2)+1))
     value=double(ReadSimpleElement(fd))
-    if Flags(1) then
+    if Flags(1) then 
       value=value+%i*double(ReadSimpleElement(fd))
     end
-
+ 
     //Form Scilab representation
     ptr=ColumnIndex(2:$)-ColumnIndex(1:$-1);
     col=[];cc=1;
@@ -142,15 +151,15 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     if RowIndex<>[] then RowIndex=RowIndex(:)+1,end
     value=sparse([col(:),RowIndex],value(:),DimensionArray([2 1])).'
   else
-    error('Unknown Class')
+    error(gettext("Unknown Class."));
   end
 endfunction
 
 function [DataType,NumberOfBytes,Compressed]=ReadTag(fd)
  //--TAG
-//Copyright INRIA
-//Author Serge Steer
-p1=mtell(fd)
+//Copyright INRIA   
+//Author Serge Steer  
+p1=mtell(fd) 
 
 t=mget(2,md_s,fd);
 if t==[] then //EOF
@@ -165,7 +174,7 @@ else
     mseek(p1,fd)
     DataType=mget(1,md_i,fd);
     NumberOfBytes=mget(1,md_i,fd);
-  end
+  end 
 end
 endfunction
 
@@ -173,8 +182,8 @@ endfunction
 
 function [Flags,Class,NnzMax]=ReadArrayFlags(fd)
 //Copyright INRIA
-//Author Serge Steer
-  [DataType,NumberOfBytes,Compressed]=ReadTag(fd)
+//Author Serge Steer    
+  [DataType,NumberOfBytes,Compressed]=ReadTag(fd) 
   B=mget(4,'uc',fd);
   if endian=='l' then B=B([4 3 2 1]),end
   Class=B(4)
@@ -183,22 +192,22 @@ function [Flags,Class,NnzMax]=ReadArrayFlags(fd)
 endfunction
 
 function dims=ReadDimensionArray(fd)
-//Copyright INRIA
-//Author Serge Steer
+//Copyright INRIA  
+//Author Serge Steer    
   dims=double(ReadSimpleElement(fd))
 endfunction
 
 function ArrayName=ReadArrayName(fd)
 //Copyright INRIA
-//Author Serge Steer
+//Author Serge Steer    
   ArrayName=ascii(double(ReadSimpleElement(fd)))
 endfunction
 
 function value=ReadSimpleElement(fd,NumberOfValues,Class)
-//Copyright INRIA
-//Author Serge Steer
+//Copyright INRIA  
+//Author Serge Steer  
   pse=mtell(fd)
-  [DataType,NumberOfBytes,Compressed]=ReadTag(fd)
+  [DataType,NumberOfBytes,Compressed]=ReadTag(fd) 
   select DataType
   case miDOUBLE
     if argn(2)==1 then NumberOfValues=NumberOfBytes/8,end
@@ -234,21 +243,20 @@ function value=ReadSimpleElement(fd,NumberOfValues,Class)
     mseek(pse,fd)
     [value,ArrayName]=ReadmiMatrix(fd)
   else
-    disp("Not implemented DataType: "+string(DataType));
-    pause
+    error(msprintf(gettext("Not implemented DataType: %d."),DataType));
   end
   padding()
 
 endfunction
-
+  
 
 function padding()
-// skip padding data
+// skip padding data 
 //----------------------------------------------
 //Copyright INRIA
-//Author Serge Steer
-
-//data fields are aligned on double words
+//Author Serge Steer  
+  
+//data fields are aligned on double words 
 np=modulo(8-modulo(mtell(fd),8),8)
 if np>0 then mget(np,'uc',fd),end
 endfunction
@@ -257,8 +265,8 @@ function showbin(n,pi)
 //for debugging purpose
 //----------------------------------------------
 //Copyright INRIA
-//Author Serge Steer
-
+//Author Serge Steer  
+  
 p=mtell(fd)
 if argn(2)==2 then mseek(pi,fd),end
 x=string(matrix(mgeti(8*n,'uc',fd),8,-1)')
@@ -279,8 +287,8 @@ endfunction
 function [head,version,swap]=matfile_header(fd)
 //get the mat file header informations
 //Copyright INRIA
-//Author Serge Steer
-
+//Author Serge Steer  
+  
   head=ascii(mget(124,'uc',fd))
   version=mget(2,'uc',fd)
   //Magic number endian coding
@@ -292,15 +300,15 @@ function [head,version,swap]=matfile_header(fd)
   else
     mclose(fd);
     // This line has to be mofified according to message in 'loadmatfile' function
-    error('Invalid level 5 binary MAT-file!')
+    error(gettext("Invalid level 5 binary MAT-file!.")); 
   end
 endfunction
 
 function LoadMatConstants()
 //set constants. This function should be exec'ed
 //Copyright INRIA
-//Author Serge Steer
-
+//Author Serge Steer  
+  
   miINT8=1
   miUINT8=2
   miINT16=3
@@ -329,7 +337,7 @@ function LoadMatConstants()
   Uint16Class=11
   Int32Class=12
   Uint32Class=13
-
+  
   //--set various reading format
   md_i='i'+endian;md_d='d'+endian;md_s='s'+endian;md_l='l'+endian;md_f='f'+endian;
 
@@ -338,11 +346,11 @@ endfunction
 function value=Object2Inline(value)
 //convert inline object to scilab function
 //Copyright INRIA
-//Author Serge Steer
-
+//Author Serge Steer  
+  
   deff('ans=value('+strcat(stripblanks(value.args),',')+')',value.expr,'n')
   comp(value,1);code=macr2lst(value)
-  load "SCI/macros/m2sci/lib"
+  load SCI/modules/m2sci/macros/lib
   killed=[];quote='''';dquote="""";batch=%f
   [value,trad]=m2sci(code,'value',%f,%f)
   value($)='endfunction'
@@ -351,9 +359,9 @@ function value=Object2Inline(value)
 endfunction
 
 function res=Object2SS(res)
-//convert ss object to scilab 'lss'
+//convert ss object to scilab 'lss' 
 //Copyright INRIA
-//Author Serge Steer
+//Author Serge Steer  
   A=res.a;if type(A)==17 then A=A.entries(1),end
   B=res.b;if type(B)==17 then B=B.entries(1),end
   C=res.c;if type(C)==17 then C=C.entries(1),end
@@ -368,9 +376,9 @@ function res=Object2SS(res)
 endfunction
 
 function res=Object2tf(res)
-//convert tf object to scilab 'r'
-//Copyright INRIA
-//Author Serge Steer
+//convert tf object to scilab 'r' 
+//Copyright INRIA 
+//Author Serge Steer  
   v=res.Variable
   dims=double(res.num.dims) //res.num.dims may be an integer array
   props=res.lti
@@ -388,15 +396,15 @@ function res=Object2tf(res)
 endfunction
 
 function fd=open_matfile(fil)
-//Copyright INRIA
-//Author Serge Steer
+//Copyright INRIA   
+//Author Serge Steer  
   fil=stripblanks(fil)
   fd=mopen(fil,'rb',0)
 endfunction
 
 function b=int2bytes(i)
-//Copyright INRIA
-//Author Serge Steer
+//Copyright INRIA   
+//Author Serge Steer  
   it=inttype(i);it1=modulo(it,10)
   if it1==1 then
     b=i(:)
@@ -410,8 +418,8 @@ function b=int2bytes(i)
 endfunction
 
 function b=byte2bits(i)
-//Copyright INRIA
-//Author Serge Steer
+//Copyright INRIA  
+//Author Serge Steer  
   b=(iconvert(i,11)&iconvert(2^(0:3),11))<>uint8(0)
 endfunction
 

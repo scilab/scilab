@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) Bruno Pincon
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
 function [y] = detrend(x, flag, bp)
    //
    // this function removes the constant or linear or
@@ -17,12 +26,10 @@ function [y] = detrend(x, flag, bp)
    // (m = length(x) if x is a vector and m = size(x,1) in case
    // x is a matrix). So bp must be reals in [0 m-1].
    //
-   // AUTHOR
-   //   Bruno Pincon
-   //
+
    rhs = argn(2)
    if rhs < 1 | rhs > 3 then
-      error("detrend: bad number of arguments")
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),'detrend',1,3));
    elseif rhs == 1
       flag = "linear"; bp = []
    elseif rhs == 2
@@ -30,13 +37,13 @@ function [y] = detrend(x, flag, bp)
    end
    
    if type(x)~=1 then
-      error("detrend: x must be a vector or matrix of numbers")
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'detrend',1));
    end
    if type(flag)~=10 then
-      error("detrend: flag must be a string")
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'detrend',2));
    end
    if ~(type(bp)==1 & isreal(bp)) then
-      error("detrend: breakpoints must be a vector of real numbers")
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'detrend',3));
    end
    
    [mx,nx] = size(x)
@@ -79,7 +86,8 @@ function [y] = detrend(x, flag, bp)
       // piecewise linear func off the signal
       y = x - A*(A\x)
    else
-      error("detrend: unknown flag specifier")
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n") ,..
+			     'detrend',2,'''constant'',''c'',''linear'',''l'''));
    end
 
    if x_is_vector then

@@ -1,3 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [Q,Z,Ec,Ac,Qd,Zd,numbeps]=quaskro(E,A,tol)
 // quasi- Kronecker form: s*Ec - Ac = Q*(sE-A)*Z
 //
@@ -16,7 +27,6 @@ function [Q,Z,Ec,Ac,Qd,Zd,numbeps]=quaskro(E,A,tol)
 // interface  from Slicot-fstair (F.D.) 
 // T. Beelen's routines
 //!
-// Copyright INRIA
   [LHS,RHS]=argn(0);
   if RHS==1 then [E,A]=pen2ea(E);tol=1.d-10;end
   if RHS==2 then
@@ -30,7 +40,7 @@ function [Q,Z,Ec,Ac,Qd,Zd,numbeps]=quaskro(E,A,tol)
   A=Q*A*Z;
 
   if A~=[] then
-    tol=tol*maxi([norm(A,'fro'),norm(E,'fro')])+10*tol;
+    tol=tol*max([norm(A,'fro'),norm(E,'fro')])+10*tol;
   else
     tol=0
   end

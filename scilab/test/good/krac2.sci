@@ -1,24 +1,39 @@
-function kp=krac2(n)
-// Copyright INRIA
-if type(n)<>16 then error(97,1),end;
-flag=n(1)
-select flag(1)
-case 'r' then [n,d,dom]=n(2:4)
-case 'lss' then n=ss2tf(n);[n,d,dom]=n(['num','den','dt'])
-else error(97,1),
-end;
-if dom<>'c' then error('System must be continuous'),end
-if size(n,'*')<>1 then error(95,1),end
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Serge Steer
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-x=[];
-q1=derivat(n/d);s=roots(q1(2));
-//
-for a=s',
-  if abs(imag(a))<=10*%eps then 
-    x=[x;a],
-  end,
-end
-//x(x==0)=[]
-if x==[] then;return,end
-kp=sort(-real(freq(d,n,real(x))))
+function [kp,s]=krac2(sys)
+//The denominator of the closed loop system is den(s)+K*num(s). So the
+//  the closed loops poles verify K(s)=-den(s)/num(s)
+//The real axis breakaway points occurs at the extrema of the K(s)
+// so at the point where K'=dK/ds = 0
+// K'=-(den'*num-den*num')/num^2
+// K'= 0 --> den'*num-den*num'=0
+//  http://www.scribd.com/doc/21374148/An-Introduction-to-Control-Systems
+  select typeof(sys)
+  case 'rational' then
+  case 'state-space' then
+    sys=ss2tf(sys);
+  else
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"krac2",1))
+  end
+  if size(sys,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"krac2",1))
+  end
+  num=sys.num
+  den=sys.den
+  s=roots(derivat(num)*den-derivat(den)*num,'e')
+  //collect the real roots only
+  i=find(abs(imag(s))<=10*%eps)
+  if i==[] then kp=[],s=[];return,end
+  s=s(i)'
+  kp=-real(freq(den,num,real(s)))
+  i=find(kp>=0)
+  kp=kp(i)
+  s=s(i)
 endfunction

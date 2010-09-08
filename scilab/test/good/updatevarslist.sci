@@ -1,5 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function []=updatevarslist(instr_lhs)
-// Copyright INRIA (2 functions in this file: merge_vars() at the end)
+// (2 functions in this file: merge_vars() at the end)
 // Update list of M2SCI variables with converted instruction lhs
 // Input:
 // - instr_lhs: list of lhs of current instruction
@@ -7,7 +16,7 @@ function []=updatevarslist(instr_lhs)
 //   Set to 1 if instruction is in a clause
 //   In this case, type and dimensions are set to unknown if differ from those already stored in varslist
 //   (Default value is %F)
-// V.C.
+
 // Global variable for M2SCI
 global("varslist")
 // level is declared in m2sci.sci and modified in clause2sci.sci
@@ -162,13 +171,11 @@ end
 endfunction
 
 function []=merge_vars(oldvarindex,newvar)
-// Copyright INRIA
 // M2SCI function
 // Merge two variables inference properties, if different then set to Unknown
 // Input:
 // - oldvarindex: index of old variable in varslist
 // - newvar: new variable to take in account to update oldvar properties
-// V.C.
 
 // Global variable for M2SCI
 global("varslist")

@@ -1,31 +1,35 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
-  
-	rhs=argn(2);
-	if rhs == 0 then   // demo
 	
-		title_demo = [
-			'';
-			'Demo of contour()';
-			'========================================';
-			''];
+	rhs=argn(2);
+	
+	if rhs == 0 then   // demo
 		
-		s_mat=[
-			'deff(''[z]=Surf1(x,y)'',''z=x^2+y^3'');';
-			'x=-1:0.1:1; y=x;'
-			'subplot(211);contour(x,y,Surf1,10);'
-			'deff(''[z]=Surf2(x,y)'',''z=x^2+y^2'');';
-			'z=eval3d(Surf2,x,y)'
-			'subplot(212);plot3d(x,y,z);contour(x,y,z+0.1,10,flag=[0 2 4]);'];
+		deff('[z]=Surf1(x,y)','z=x^2+y^3');
+		deff('[z]=Surf2(x,y)','z=x^2+y^2');
 		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		x = -1:0.1:1;
+		y = x;
+		z = eval3d(Surf2,x,y)
+		
+		subplot(211);
+		contour(x,y,Surf1,10);
+		subplot(212);
+		plot3d(x,y,z);
+		contour(x,y,z+0.1,10,flag=[0 2 4]);
 		return
 	end
-
-  
-  if rhs<4, error('contour requires at least 4 arguments'),end;
+	
+  if rhs<4
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "contour", 4));
+  end
   levels=[]
 
   opts=[]
@@ -47,12 +51,6 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
     contour2d(x,y,z,nz);
     return,
   end
-  
-  if  get('figure_style')=='old' then 
-    opts=strcat([opts,"flag=flag"],',')
-    execstr('oldcontour(x,y,z,nz,'+opts+')')
-    return,
-  end
     
   if size(nz,'*')==1 then
     style=1:nz,
@@ -67,7 +65,7 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
 
   fig=gcf();
   autoc=fig.auto_clear;
-  if autoc=="on" then, xbasc(),end
+  if autoc=="on" then, clf(),end
   a=gca();
   fg=a.foreground
   v=fig.immediate_drawing;
@@ -90,8 +88,10 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
     
     cnt = cnt+1
     if stripblanks(fpf)<>'' then
+	  // don't clip as in contour2d since we are in 3D here
+	  // and stringbox gives data in 2D
       xstring(xc(k+1+n/2),yc(k+1+n/2)," "+msprintf(fpf,level))
-      e=gce();e.data(3)=zz
+      e=gce();e.data(3)=zz;e.clip_state = "off"
       cnt=cnt+1
     end
     k=k+n+1;

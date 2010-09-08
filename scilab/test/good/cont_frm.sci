@@ -1,7 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function sl=cont_frm(num,den)
 //Controllable state-space form of the transfer num/den
 //!
-// Copyright INRIA
 [lhs,rhs]=argn(0)
 if size(den,'*')<>1 then  error(54,2);end
 [ns,ne]=size(num);
@@ -23,7 +32,7 @@ for l=1:ns,
    num(l,k)=nl,d(l,k)=dl,
  end,
 end
-if maxi(degree(d))==0 then d=coeff(d),end
+if max(degree(d))==0 then d=coeff(d),end
 //matrices a b and c
 if nd<>0 then
  den=coeff(den);c=coeff(num,0:nd-1)

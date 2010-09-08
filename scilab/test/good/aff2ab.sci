@@ -1,9 +1,18 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [A,b]=aff2ab(lme,dimX,D,flag)
 //Y,X,D are lists of matrices. 
 //Y=lme(X,D)= affine fct of Xi's; 
 //[A,b]=matrix representation of lme in canonical basis.
 // if flag=='sp' A matrix is return in sparse storage.
-// Copyright INRIA
   [LHS,RHS]=argn(0)
   if RHS==3 then flag='f';end
 

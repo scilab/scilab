@@ -1,149 +1,113 @@
-function []=gainplot(sl,fmin,fmax,pas,comments)
-//!
-// Copyright INRIA
-[lhs,rhs]=argn(0);
-dom='c';
-//---------------------
-pas_def='auto' // default
-//
-noxtitle=%f;
-ilf=0
-flag=type(sl);
-if flag==15 then flag=16;end
-select flag
-case 16 then  // sl,fmin,fmax [,pas] [,comments]
-  typ=sl(1);typ=typ(1);
-  if typ<>'lss'&typ<>'r' then
-    error(97,1)
-  end
-  sl1=sl(1);
-  if sl1(1)=='r' then dom=sl(4),else dom=sl(7),end
-  if dom==[] then error(96,1),end
-  if dom=='d' then dom=1;end
-  select rhs
-  case 1 then //sl
-   comments=' '
-   fmin_default=1.d-3;
-   fmax_default=1.d3;
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - INRIA - Serge Steer
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-   if dom=='c' then fmax_default=1.d3; else fmax_default=1/(2*dom),end
-   [frq,repf]=repfreq(sl,fmin_default,fmax_default);sl=[] 
-   [d,phi]=dbphi(repf);
-  case 2 then // sl,frq
-   comments=' '
-   if min(fmin)<=0 then
-     error('bode: requires strictly positive frequency vector')
-   end   
-   [frq,repf]=repfreq(sl,fmin);fmin=[];sl=[]
-   [d,phi]=dbphi(repf);
-  case 3 , //sl,frq,comments ou sl,fmin,fmax
-   if type(fmax)==1 then
-      comments=' '
-      if fmin<=0 then
-         error('bode: requires strictly positive frequency range')
-       end      
-      [frq,repf]=repfreq(sl,fmin,fmax,pas_def),sl=[]
-      [d,phi]=dbphi(repf);
-   else
-      comments=fmax
-      if min(fmin)<=0 then
-	error('bode: requires strictly positive frequency vector')
-      end      
-      if type(dom)==1 then nyq_frq=1/2/dom;end
-      if find(fmin>nyq_frq)~=[] then 
-	warning('There are frequencies beyond Nyquist f!');
-      end      
-      [frq,repf]=repfreq(sl,fmin);fmin=[];sl=[]
-      [d,phi]=dbphi(repf);
-   end
-  case 4 ,
-    if type(pas)==1 then 
-      comments=' ',
-    else 
-      comments=pas;pas=pas_def
-    end,
-    if min(fmin)<=0 then
-      error('bode: requires strictly positive frequency vector')
-    end    
-    [frq,repf]=repfreq(sl,fmin,fmax,pas)
-    [d,phi]=dbphi(repf);
-  case 5 then,
-    if min(fmin)<=0 then
-      error('bode: requires strictly positive frequency vector')
-    end    
-    [frq,repf]=repfreq(sl,fmin,fmax,pas)
-    [d,phi]=dbphi(repf);
-  else 
-    error('Invalid call: sys,fmin,fmax [,pas] [,com]')
+function []=gainplot(varargin)
+  rhs=size(varargin)
+  if type(varargin($))==10 then
+    comments=varargin($);
+    rhs=rhs-1;
+  else
+    comments=[];
+  end
+  fname="gainplot";//for error messages
+
+  fmax=[];
+  if or(typeof(varargin(1))==["state-space" "rational"]) then
+    //sys,fmin,fmax [,pas] or sys,frq
+    refdim=1 //for error message
+    if rhs==1 then
+      [frq,repf]=repfreq(varargin(1),1d-3,1d3);
+    elseif rhs==2 then //sys,frq
+      if size(varargin(2),2)<2 then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A row vector with length>%d expected.\n"),..
+                       fname,2,1));
+      end
+      [frq,repf]=repfreq(varargin(1:rhs));
+    elseif or(rhs==(3:4)) then //sys,fmin,fmax [,pas]
+      [frq,repf]=repfreq(varargin(1:rhs));
+    else
+      error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,1,5))
+    end
+    [phi,d]=phasemag(repf);
+  elseif  type(varargin(1))==1 then
+    //frq,db,phi [,comments] or frq, repf [,comments]
+    refdim=2
+    select rhs
+    case 2 then //frq,repf
+      frq=varargin(1);
+      if size(frq,2)<2 then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A row vector with length>%d expected.\n"),..
+                       fname,1,1))
+      end
+      if size(frq,2)<>size(varargin(2),2) then
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+                       fname,1,2))
+      end
+
+      [phi,d]=phasemag(varargin(2))
+    case 3 then  //frq,db,phi
+      [frq,d]=varargin(1:rhs-1)
+      if size(frq,2)<>size(d,2) then
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+                       fname,1,2))
+      end
+    else
+      error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,2,4))
+    end
+  else
+    error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
   end;
 
-case 1 then //frq,db,phi [,comments] ou frq, repf [,comments]
-noxtitle=%t;
-  select rhs
-  case 2 , //frq,repf
-    comments=' '
-    [phi,d]=phasemag(fmin),fmin=[]
-  case 3 then
-    if type(fmax)==1 then
-      comments=' '//frq db phi
-      d=fmin,fmin=[]
-      phi=fmax,fmax=[]
-    else
-      [phi,d]=phasemag(fmin);fmin=[]
-      comments=fmax
-     end;
-   case 4 then 
-     comments=pas;d=fmin;fmin=[];phi=fmax;fmax=[]
-   else 
-     error('inputs:frq,db,phi,[com] or frq,repf,[com]')
-   end;
-   frq=sl;sl=[];[mn,n]=size(frq);
-   if min(frq)<=0 then
-     error('bode: requires strictly positive frequencies')
-   end   
-   if mn<>1 then
-      ilf=1;//un vecteur de frequences par reponse
-   else
-      ilf=0;//un seul vecteur de frequence
-   end;
-else 
-   error('gainplot: invalid plot')
-end;
-[mn,n]=size(phi)
-//
-//Captions
-if comments==' ' then
-   comments(mn)=' ';
-   mnc=0
-  strf='051'
-else
-   mnc=mn
-  strf='151'
-end;
+  frq=frq';
+  d=d';
+  [n,mn]=size(d);
+  if and(size(comments,"*")<>[0 mn]) then
+    error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same number of elements expected.\n"),...
+                   fname,refdim,rhs+1))
+  end
 
-isNewStyle = ( get("figure_style") == "new") ;
+  //
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
 
-rect=[mini(frq),mini(d),maxi(frq),maxi(d)]
-if ~isNewStyle then
-  plot2d1("oln",mini(frq),mini(d),0,'051',' ',rect);
-end
-
-
-xgrid(4)
-if ilf==0 then
-  plot2d1("oln",frq',d',[1,3:mn+1],strf,strcat(comments,'@'),rect);
-else
-  plot2d1("gln",frq',d',[1,3:mn+1],strf,strcat(comments,'@'),rect);
-end
-
-if isNewStyle then
   axes = gca() ;
-  rect=[mini(frq),mini(d);maxi(frq),maxi(d)]
-  axes.data_bounds = rect ;
-  a.log_flags = "lnn" ;
-end
+  if size(axes.children,"*")==0 then
+    axes.data_bounds=[min(frq),min(d);max(frq),max(d)]
+    axes.x_label.text=_("Frequency (Hz)")
+    axes.y_label.text=_("Magnitude (dB)")
 
-if ~noxtitle then
-xtitle(' ','Hz','db');
-end
+  else
+    axes.data_bounds=[min([min(frq),min(d)],axes.data_bounds(1,:));
+                      max([max(frq),max(d)],axes.data_bounds(2,:))];
+  end
+  axes.axes_visible="on";
+  axes.log_flags = "lnn" ;
+  axes.grid=color("lightgrey")*ones(1,3);
+
+  if size(d,2)>1&size(frq,2)==1 then
+    xpolys(frq(:,ones(1,mn)),d,1:mn)
+    e=gce();
+  else
+    xpolys(frq,d,1:mn)
+    e=gce();
+  end
+  for i=1:size(e.children,"*")
+    datatipInitStruct(e.children(i),"formatfunction","formatGainplotTip")
+  end
+  if comments<>[] then
+    legend(comments)
+  end
+  fig.immediate_drawing=immediate_drawing;
+endfunction
+
+function str=formatGainplotTip(curve,pt,index)
+//this function is called by the datatips mechanism to format the tip
+//string for the magnitude bode curves
+  str=msprintf("%.4g"+_("Hz")+"\n%.4g"+_("dB"), pt(1),pt(2))
 endfunction

@@ -1,10 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_cell(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab cell()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
-// V.C.
 
 if rhs==0 then
   tree.lhs(1).dims=list(0,0)
@@ -19,7 +26,7 @@ if rhs==1 then
     n=Funcall("real",1,list(n),list(Variable("",n.infer)))
   elseif ~is_real(n) then
     newn=Funcall("real",1,list(n),list(Variable("",n.infer)))
-    repl_poss(newn,n,n,"is Real");
+    repl_poss(newn,n,n,gettext("is Real."));
     n=newn
   end
   if is_a_scalar(n) then 
@@ -52,7 +59,7 @@ else
       tree.rhs(k)=Funcall("real",1,list(tree.rhs(k)),list()) 
     elseif ~is_real(tree.rhs(k)) then
       newn=Funcall("real",1,list(tree.rhs(k)),list())
-      repl_poss(newn,tree.rhs(k),tree.rhs(k),"is Real");
+      repl_poss(newn,tree.rhs(k),tree.rhs(k),gettext("is Real."));
       tree.rhs(k)=newn
     end
   end

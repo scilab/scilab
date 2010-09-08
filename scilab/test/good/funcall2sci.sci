@@ -1,12 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [sci_equiv]=funcall2sci(mtlb_expr)
-// Copyright INRIA
 // M2SCI function
 // Convert a function call in an instruction or in an expression from Matlab to Scilab
 // Input:
 // - mtlb_instr: Matlab instr or expression to convert
 // Output:
 // - sci_instr: Scilab equivalent for mtlb_instr
-// V.C.
 
 rhslist=mtlb_expr.rhs
 if rhslist==[] then // Function called as a command
@@ -43,9 +50,9 @@ elseif res_path==[] then
   sci_equiv=default_trad(mtlb_expr)  
 else
   sci_tmpfile =pathconvert(TMPDIR)+pathconvert(fnam)+"sci_"+funname+".sci"
-  tmpierr=execstr("getf(sci_tmpfile)","errcatch");errclear();
+  tmpierr=execstr("exec(sci_tmpfile,-1)","errcatch");errclear();
   sci_file=res_path+"sci_"+funname+".sci"
-  ierr=execstr("getf(sci_file)","errcatch");errclear(); 
+  ierr=execstr("exec(sci_file,-1)","errcatch");errclear(); 
   if tmpierr==0 then 
     execstr("[sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)");  
   // If a translation function exists
@@ -69,10 +76,10 @@ else
         res=mfile2sci(path,res_path,%F,%T)
       end
       if res==1 then
-        getf(sci_file)
+        exec(sci_file, -1)
 	ierr=execstr("[sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)","errcatch");
 	if ierr<>0 then
-	  error("funcall2sci: Error while executing : [sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)");
+	  error(msprintf(gettext("Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."),mtlb_expr.name));
 	end
      else
 	sci_equiv=default_trad(mtlb_expr)

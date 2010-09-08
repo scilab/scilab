@@ -1,36 +1,55 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [ek,ef] = elemoper(x1,x2,n,nl,xi,w,operi,a6)
-// Copyright INRIA
-// développé par EADS-CCR
 //  la fonction elem evalue la matrice gk et le second memebre gf     //
 //  Sorties :                                                         //
-//    - ek (Double) : matrice élémentaire                             //
-//    - ef (Double) : vecteur élémentaire du scond membre             //
-//  Entrées :                                                         //     
-//    - x1,x2 (Doubles): cordonnées x1 et x2 des limites de l'element //                                                
+//    - ek (Double) : matrice ï¿½lï¿½mentaire                             //
+//    - ef (Double) : vecteur ï¿½lï¿½mentaire du scond membre             //
+//  Entrï¿½es :                                                         //     
+//    - x1,x2 (Doubles): cordonnï¿½es x1 et x2 des limites de l'element //                                                
 //    - n (Entier) : Nombre des points nodals (et la fonction test)   //
 //      dans l'element                                                // 
 //    - nl (Entier) : ordre d'integration Gaussian, 1,2,3,4           //  
-//    - xi(l) (Double) : la valeur de la cordonnée globale en         //
+//    - xi(l) (Double) : la valeur de la cordonnï¿½e globale en         //
 //      un point d'integration.                                       //
 //    - w(l) (Double) : le poids d'integration.                       //                                  
-//    - a6 (String) : coefficient a(x) de l'opérateur pour lequel     //
+//    - a6 (String) : coefficient a(x) de l'opï¿½rateur pour lequel     //
 //      nous calculons ca forme variationelle.                        //
-//    - operi (Entier) : l'opérateur concerné                         //
-//  Fonction appellée: shape(xi(l),n)                                 //
+//    - operi (Entier) : l'opï¿½rateur concernï¿½                         //
+//  Fonction appellï¿½e: shape(xi(l),n)                                 //
 //  Reference: Finite element. An introduction by E.Becker, G.Carey,  //
 //  and J.Oden, Vol.1., pp. 97-99.                                    //                             
 //--------------------------------------------------------------------// 
 
    dx = (x2-x1)/2;
    
-// Initialisation des matrices élémentaires
+// Initialisation des matrices ï¿½lï¿½mentaires
    ef = zeros(n,1);
    ek = zeros(n,n);
-// Evaluation des coefficients des opérateurs   
+// Evaluation des coefficients des opï¿½rateurs   
    a6_x=strindex(a6,'x');
    if (operi ==2) then
       if (a6_x ~=[]) then
-          // cas où a6 depend de x, on calcul A=a(j)*dpsj+a(j+1)*dps(j+1) 
+          // cas oï¿½ a6 depend de x, on calcul A=a(j)*dpsj+a(j+1)*dps(j+1) 
           [psi1,dpsi1] = shape(x1,n);          
           for i=1:n
             x=x1;
@@ -48,12 +67,12 @@ function [ek,ef] = elemoper(x1,x2,n,nl,xi,w,operi,a6)
       end
    end
 
-// Début de la boucle d'itégration
+// Dï¿½but de la boucle d'itï¿½gration
   for l=1:nl
     x = x1 + (1.0 + xi(l))*dx;
     [psi,dpsi] = shape(xi(l),n);
     ev_a6=evstr(a6);
-// Assemblage de la matrice élémentaire et le vecteur charge.
+// Assemblage de la matrice ï¿½lï¿½mentaire et le vecteur charge.
     for i=1:n,
        if (operi == 7) then
           ef(i) = ef(i) + psi(i)*ev_a6*w(l)*dx;
@@ -71,10 +90,10 @@ function [ek,ef] = elemoper(x1,x2,n,nl,xi,w,operi,a6)
           elseif (operi == 2) then
             // dpsi*dpsi (oper =2)
             if (a6_x ==[]) then
-              // cas où a6 ne depend pas de x 
+              // cas oï¿½ a6 ne depend pas de x 
               ek(i,j)=ek(i,j)+(ev_a6*dpsi(i)*dpsi(j) )*w(l)/dx;
             else
-              // cas où a6 depend de x, on calcul A=a(j)*dpsj+a(j+1)*dps(j+1) 
+              // cas oï¿½ a6 depend de x, on calcul A=a(j)*dpsj+a(j+1)*dps(j+1) 
               ek(i,j)=ek(i,j)+(ev_a6*dpsi(i)*dpsi(j)/dx + ax*dpsi(i)*psi(j))*w(l);
             end
           end

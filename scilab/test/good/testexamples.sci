@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function r=load_ref(name)
 	if exists(name)==0 then r=%f;return,end
 	v=evstr(name)
@@ -5,7 +14,7 @@ function r=load_ref(name)
 	if type(v) == 128 then v=128,end //lu handle
 	load(%U,name+'_ref');
 	if exists(name+'_ref')==0 then
-		disp('no variable '+name+'_ref in reference file')
+		disp(msprintf(gettext("No variable %s_ref in reference file"),name))
 		r=%t
 		return
 	end
@@ -20,7 +29,7 @@ function r=load_ref_nocheck(name)
 	if type(v) == 128 then v=128,end //lu handle
 	load(%U,name+'_ref');
 	if exists(name+'_ref')==0 then
-		disp('no variable '+name+'_ref in reference file')
+		disp(msprintf(gettext("No variable %s_ref in reference file"),name))
 		r=%t
 		return
 	end
@@ -52,7 +61,7 @@ endfunction
 function r=xdel_run(w,opt)
 
 	//Author : Serge Steer, april 2005, Copyright INRIA
-	//  
+	//
 	//Compare the graphic windows to be cleared with the reference given in a Scilab  binary file. 
 	// This function must mirror the  xdel_build one.
 	
@@ -93,7 +102,7 @@ endfunction
 function r=clf_run(w,opt)
 
 	//Author : Serge Steer, april 2005, Copyright INRIA
-	//  
+	//
 	//Compare the graphic windows to be cleared with the reference given in  a Scilab  binary file. 
 	// This function must mirror the  clf_build one.
 	
@@ -139,9 +148,9 @@ endfunction
 
 
 function r=xbasc_run(w)
-  
+
 //Author : Serge Steer, april 2005, Copyright INRIA
-//  
+//
 //Compare the graphic windows to be cleared with the reference given in  a Scilab  binary file. 
 // This function must mirror the  xbasc_build one.
   r=%f
@@ -162,8 +171,8 @@ function r=xbasc_run(w)
       %wins_ref.figure_position=%wins_.figure_position
       if %CMP(%wins_, %wins_ref) then r=%t,return,end
     end
-    
-    xbasc(w)
+
+    clf(w)
   else
     if get('figure_style')=='old' then return,end
     ids_=xget('window');
@@ -173,7 +182,7 @@ function r=xbasc_run(w)
     load(%U,'%wins_ref');
     %wins_ref.figure_position=%wins_.figure_position
     if %CMP(%wins_, %wins_ref) then r=%t,return,end
-    xbasc()
+    clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
   
@@ -182,12 +191,12 @@ endfunction
 
 
 function r=%CMP(%A,%B)
-  
+
 //Author : Serge Steer, april 2005, Copyright INRIA
-//  
+//
 // this function compares two variables, floating points data are
 // compared using a relative tolerance
-  
+
   r=%f
   tol=0.00001
   if type(%A)<>type(%B) then r=%t,return,end
@@ -228,7 +237,7 @@ function r=%CMP(%A,%B)
   case 13 then //compiled function
     if %A<>%B then  r=%t,return,end
   case 14 then //library
-    if or(sort(string(%A))<>sort(string(%B))) then  r=%t,return,end
+    if or(gsort(string(%A))<>gsort(string(%B))) then  r=%t,return,end
   case 15 then //list
     if or(lstsize(%A)<>lstsize(%B)) then  r=%t,return,end
     if or(definedfields(%A)<>definedfields(%B)) then r=%t,return,end

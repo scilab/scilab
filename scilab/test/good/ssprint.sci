@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) XXXX-2008 INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function []=ssprint(sl,out)
 //ssprint(sl [,out])  pretty print of a linear system in state-space form
 // sl=(A,B,C,D) syslin list.
@@ -9,9 +19,7 @@ function []=ssprint(sl,out)
 // ssprint(syslin('d',a,b,c,d))
 //!
 
-// Copyright INRIA
 [lhs,rhs]=argn(0)
-mess='system cannot be displayed in this page'
 fil=%f
 if rhs==1 then 
   out=%io(2),
@@ -23,7 +31,7 @@ else
 end
 deff('[ta]=%cv(x)',['[m,n]=size(x);';
                     'if m*n==0 then ta='' '',return,end';
-                    'frmt=format();frmt=10**frmt(2)/maxi([1,norm(coeff(x))]);';
+                    'frmt=format();frmt=10**frmt(2)/max([1,norm(coeff(x))]);';
                     'x=round(frmt*x)/frmt;';
                     't=[];for k=1:m,t=[t;''|''],end;';
                     'ta=t;for k=1:n,';
@@ -33,7 +41,7 @@ deff('[ta]=%cv(x)',['[m,n]=size(x);';
                     '               aa(l)='' ''+aa(l),';
                     '           end,';
                     '        end,';
-                    '        n=maxi(length(aa)),';
+                    '        n=max(length(aa)),';
                     '        aa=part(aa+blank,1:n),';
                     '        ta=ta+aa+part(blank,1),';
                     'end;ta=ta+t;'])
@@ -68,9 +76,9 @@ if na>0 then
       t(na/2+1)=t(na/2+1)+'u   '
     end
   end
-  n1=maxi(length(t))+1
+  n1=max(length(t))+1
   //
-  n2=maxi(length(t))
+  n2=max(length(t))
   if n2<ll then
     write(out,t)
   else
@@ -80,10 +88,10 @@ if na>0 then
 	write(out,' ')
 	write(out,part(t,n1+1:n2),'(3x,a)')
       else          
-	error(mess)
+	error(msprintf(gettext("%s: system cannot be displayed in this page.\n"),"ssprint"));
       end;
     else 
-      error(mess)
+      error(msprintf(gettext("%s: system cannot be displayed in this page.\n"),"ssprint"));
     end;
   end;
 end
@@ -102,7 +110,7 @@ if na==0 then
     t=blank+td
     t(nc/2+1)=t(nc/2+1)+'u   '
   end
-  n1=maxi(length(t))+1
+  n1=max(length(t))+1
 else
   tc=%cv(c);td=%cv(d)
   blank=part(blank,1:4);
@@ -122,7 +130,7 @@ else
       t=t+blank+td
       t(nc/2+1)=t(nc/2+1)+'u   '
     end
-    n1=maxi(length(t))+1
+    n1=max(length(t))+1
   else
     if nc==1 then 
       t=t+'x   '
@@ -131,7 +139,7 @@ else
     end  
   end;
 end
-n2=maxi(length(t))
+n2=max(length(t))
 if n2<ll then
   write(out,t)
 else
@@ -141,10 +149,10 @@ else
       write(out,' ')
       write(out,part(t,n1+1:n2),'(3x,a)')
     else 
-      error(mess)
+      error(msprintf(gettext("%s: system cannot be displayed in this page.\n"),"ssprint"));
     end
   else 
-    error(mess)
+    error(msprintf(gettext("%s: system cannot be displayed in this page.\n"),"ssprint"));
   end
 end
 if fil then file('close',out),end

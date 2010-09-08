@@ -1,7 +1,14 @@
-function []=mtlb_format(type,prec)
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function []=mtlb_format(_type,prec)
 // Emulation function for format() Matlab function
-// V.C.
 
 rhs1=rhs
 if rhs==2 then
@@ -21,7 +28,7 @@ symb=%f;
 unk=%f
 
 if rhs==1 then
-  select type
+  select _type
   case "''short''" then
     d=5
   case "''long''" then
@@ -47,9 +54,9 @@ end
 
 
 if unk then
-  error("Unknown type in mtlb_format() !");
+  error(msprintf(gettext("%s: Unknown type.\n"),"mtlb_format"))
 elseif ratf|loose|compact|bank|hex then
-  warning("Unknown type "+type+" in mtlb_format(): INGNORED !")
+  warning(msprintf(gettext("%s: Unknown type ''%s'': IGNORED.\n"),"mtlb_format",_type));
 else
   if rhs1==1 then
     format(d+1)

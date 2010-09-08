@@ -1,28 +1,47 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [gk,gf]=formkf(nelem,kind,nint,nodes,x,xi,w,nnode,a6,operi,kbc,vbc)
-// Copyright INRIA
-// développé par EADS-CCR
-//   la fonction formkf, construit le système discret de l'element        //
+//   la fonction formkf, construit le systï¿½me discret de l'element        //
 //   finis en appelant la fonction elem pour avoir la matrices locales    //
-//   ek, ef et la fonction assemb pour les  ajoutées aux matrices          //
+//   ek, ef et la fonction assemb pour les  ajoutï¿½es aux matrices          //
 //   globales gk et le second membre gf.                                  //
 //   Sorties :                                                            //
 //      - gk (Double) : matrice globale                                   //
 //      - gf (Double) : vecteur qui correspond au scond membre            //
-//   Entrées :                                                            //
-//      - nelem (Entier) : est le nombre d'éléments                       //
+//   Entrï¿½es :                                                            //
+//      - nelem (Entier) : est le nombre d'ï¿½lï¿½ments                       //
 //      - kind(i) (Entier) : ordre des fonctions de test                  //
 //      - ninit(i) (Entier) :ordre d'integration Gaussian                 //
-//      - x (Double):  vecteur des cordonnées des points nodales          //
+//      - x (Double):  vecteur des cordonnï¿½es des points nodales          //
 //      - xi, w (Doubles) : les points Gausse et leurs poids obtenu       //
 //        de setint()                                                     //
-//      - a6 (String) : coefficient a(x) de l'opérateur pour lequel nous  //
+//      - a6 (String) : coefficient a(x) de l'opï¿½rateur pour lequel nous  //
 //        calculons ca forme variationelle.                               //
-//      - operi (Entier) : l'opérateur concerné                           //
+//      - operi (Entier) : l'opï¿½rateur concernï¿½                           //
 //      - kbc (Entier) : vecteur types des conditions au limites          //
 //      - vbc (String) : vecteur des conditions aux limites en a et b     //
 //------------------------------------------------------------------------//
 
-// système discrétisé
+// systï¿½me discrï¿½tisï¿½
   
   gk = spzeros(nnode,nnode);
   gf = zeros(nnode,1);
@@ -33,7 +52,7 @@ function [gk,gf]=formkf(nelem,kind,nint,nodes,x,xi,w,nnode,a6,operi,kbc,vbc)
     i2 = nodes(n,nel);
     i3 = nint(nel);
 
-//  Prendre le i3-éme ordre de la quadrature Gaussienne: 1, ordre 1; 2, ordre 2, ...
+//  Prendre le i3-ï¿½me ordre de la quadrature Gaussienne: 1, ordre 1; 2, ordre 2, ...
 
        xic = xi(:,i3);      wc = w(:,i3);
        [ek,ef] = elemoper(x(i1),x(i2),n,i3,xic,wc,operi,a6);

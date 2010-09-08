@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function plotout(zoom)
   global count
   if count==[] then count=0,end
@@ -14,7 +23,8 @@ function plotout(zoom)
 
   xs2ps(win,output) 
 
-  unix_s(SCI+'/bin/BEpsf -portrait '+output)
+  // not needed any more
+  //unix_s(SCI+'/bin/BEpsf -portrait '+output)
 
   //[DATA_BEGIN]scheme:(postscript "/tmp/foo.eps" "*1/2" "*1/2" "" "" "" "")[DATA_END]
 

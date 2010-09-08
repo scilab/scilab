@@ -1,80 +1,78 @@
-function res=edit(macroname,ueditor)
-// macroname : character string giving a macroname
-// ueditor : external command for a text editor, unless ueditor="scipad"
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2008 - INRIA - Allan CORNET
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
-// Copyright INRIA
-  default_editor="emacs -i -geometry 80x50+427+143  -font 9x15 "
-  [lhs,rhs]=argn(0)
-  //
-  finded=%f;tmp=%f
-  // tmpdir will have trailing / or \
-  tmpdir= pathconvert(TMPDIR);
-  if MSDOS then 
-    default_editor="emacs ";
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+function edit(macroname,ueditor)
+// macroname : character string giving a macroname
+// ueditor : external command : no more supported
+//
+
+  if (~isdef("editor") & (funptr("editor")==0))  then
+    warning(sprintf(gettext("%s: Requires scilab editor.\n"), "edit"));
+    return
   end
 
-  if rhs>=1 then // macroname is given
-    tmpfile= tmpdir+macroname+'.sci';
-    if funptr(macroname)<>0 then
-      error(macroname+' is a uneditable hard coded function')
-    end
-    libr=whereis(macroname)
-    if libr<>[] then // macroname is the name of a defined function
-      path=string(evstr(libr));
-      path=path(1)
-      // convert path according to MSDOS value and expand SCI
-      path=pathconvert(path);
-      fname= path+macroname+'.sci';
-      // check if writable 
-      // if MSDOS is true we assume here that file is writable
-      if ~MSDOS then 
-        rep=unix_g("if [ -w "+ fname +" ]; then echo ok ;else echo nok; fi")
-        if part(rep,1:3)=='nok' then
-          //if file is not writable create a copy in TMPDIR
-          //unix_s("cp "+ fname + " " + tmpfile ); fname=tmpfile;
-          txt = mgetl(fname,-1);fname=tmpfile; mputl(txt,fname);
-          tmp=%t
+  [lhs,rhs] = argn(0);
+  if (rhs > 1) then
+    error(sprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "edit", 1));
+  end
+
+  finded = %f;
+  tmp = %f;
+  // tmpdir will have trailing / or \
+  tmpdir= pathconvert(TMPDIR);
+
+  if rhs == 1 then // macroname or filename is given
+    if regexp(macroname, "/^([a-zA-Z%_#!$?][0-9a-zA-Z_#!$?]*)$/") == [] then
+      fname = macroname;
+      finded = %t;
+    else
+      tmpfile = tmpdir + macroname + ".sci";
+      if funptr(macroname)<>0 then
+        error(msprintf(gettext("%s: %s is a uneditable hard coded function.\n"), "edit", macroname));
+      end
+      libr = whereis(macroname);
+      if libr <> [] then // macroname is the name of a defined function
+        if size(libr, "*") > 1 then
+          // we take last definition
+          libr = libr(1);
+        end
+        [macrolist, path] = libraryinfo(libr);
+        clear macrolist;
+        // convert path according to getos() == "Windows" value and expand SCI
+        fname = pathconvert(path) + macroname + ".sci";
+        finded = isfile(fname);
+      elseif isdef(macroname)
+        if typeof(evstr(macroname)) == "function" then
+          // tour de force to keep the original function name
+          execstr("txt = tree2code(macr2tree(" + macroname + "), %t)");
+          fname = tmpfile;
+          mputl(txt, fname);
+          finded = %t;
         end
       end
-      finded=%t
-    elseif isdef(macroname) 
-       if typeof(evstr(macroname))=='function' then 
-      // tour de force to keep the original function name
-        execstr("txt=tree2code(macr2tree("+macroname+"),%t)")
-        fname=tmpfile
-        mputl(txt,fname);
-        tmp=%t
-        finded=%t
-       end
     end
   else //no macroname specified
-    macroname='untitled', 
-    tmpfile= tmpdir+macroname+'.sci';
-    finded=%f
+    macroname = "untitled";
+    tmpfile = tmpdir + macroname + ".sci";
+    finded = %f;
   end
 
   if ~finded then // macroname is the name of an undefined function
-    fname=tmpfile
-    txt=['function []='+macroname+'()';'endfunction'];
-    mputl(txt,fname);
-    tmp=%t
+    fname = tmpfile;
+    txt = ["function [] = " + macroname + "()"; "endfunction"];
+    mputl(txt, fname);
   end
 
   // call the editor with the filename
-  if rhs<=1, ueditor =default_editor ;end
-  if ueditor=="scipad"
-    scipad(fname)
-  else
-    if MSDOS then
-       // white spaces in path
-       unix_s(ueditor+' ""'+fname+'""');
-    else
-       unix_s(ueditor+' '+fname);
-    end
-  end
-  //load the macro in scilab
-  if tmp then write(%io(2),'modified file may be found in '+fname),end 
-  getf(fname,'c')
-  //return the loaded variable
-  res=evstr(macroname);
+  editor(fname);
+
 endfunction

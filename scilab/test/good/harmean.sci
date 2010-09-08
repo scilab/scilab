@@ -1,3 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1999 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function [hm]=harmean(x,orien)
 //This function computes the harmonic mean of a vector or matrix x.
 //
@@ -16,13 +27,10 @@ function [hm]=harmean(x,orien)
 //References:  Wonacott, T.H. & Wonacott, R.J.; Introductory
 //Statistics, J.Wiley & Sons, 1990.
 //
-//author: carlos klimann
-//
-//date: 1999-06-11
 //
   if x==[] then hm=%nan, return, end
   [lhs,rhs]=argn(0)
-  if rhs==0 then error('harmean requires at least one input.'), end
+  if rhs==0 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"harmean",1,2)), end
   if rhs==1 then
     hm=1/(sum(1 ./x(x<>0))/sum(x<>0))
     return
@@ -31,10 +39,10 @@ function [hm]=harmean(x,orien)
       le=ones(1,size(x,1))*bool2s(x<>0)
     elseif orien=='c'|orien==2 then
       le=bool2s(x<>0)*ones(size(x,2),1)
-    else error('Second parameter must be ''r'', ''c'', 1 or 2'), end
+    else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"harmean",2,"r","c",1,2)), end
       x(x==0)=%inf
       hm=sum(1 ./x,orien) ./le
   else 
-    error('The number of input parameters must be one or two.'),
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"harmean",1,2)),
   end
 endfunction

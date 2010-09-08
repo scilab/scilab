@@ -1,27 +1,46 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [equations,flag_type,impl_type]=gen_code_FVM(a1,b1,a2,b2,a3,b3,a4,b4,..
           a5,b5,a6,b6,a7,b7,N,oper,vbc,xn,xw)
-// Copyright INRIA
-// développé par EADS-CCR
-// Cette fonction est pour la génération des équations ODE ou DAE du bloc    //
+// Cette fonction est pour la gï¿½nï¿½ration des ï¿½quations ODE ou DAE du bloc    //
 // sorties :                                                                 //
-//    - equations (String) : vecteur qui contient le code C des équations    //
+//    - equations (String) : vecteur qui contient le code C des ï¿½quations    //
 //      d'etat (DAE)                                                         //
-//    - impl_type (Entier) : indique si le type des états                    //
-//      (différentiels 1 ou algébrique -1)                                   //
+//    - impl_type (Entier) : indique si le type des ï¿½tats                    //
+//      (diffï¿½rentiels 1 ou algï¿½brique -1)                                   //
 //    - flag_type (Entier) : 1 : explicie, 2 : implicite                     //
-// entrées :                                                                 //
-//    - ai, bi (String) : les differents coeficients des opérateurs          //
+// entrï¿½es :                                                                 //
+//    - ai, bi (String) : les differents coeficients des opï¿½rateurs          //
 //      (ai(x) et bi(t))                                                     //
 //    - a, b (Double) : limites du domaine [a b]                             //
 //    - N (Entier) : est le nombre de noeuds                                 //
-//    - oper (Entier) : vecteur des opérateurs selectionnes de 1 à 7         //   
+//    - oper (Entier) : vecteur des opï¿½rateurs selectionnes de 1 ï¿½ 7         //   
 //    - vbc (String) : vecteur des conditions aux limites en a et b          //
 //    - xn (Double) : vecteur colonne representant les noeuds                //
 //    - xw (Double) : vecteur colonne representant les cellules              //
 //----------------------------------------------------------------------- ---//  
 
   flag_type=1; // 1 : explicie, 2 : implicite
-  impl_type=1; // 1 pour système d'état, -1 pour le système algébrique 
+  impl_type=1; // 1 pour systï¿½me d'ï¿½tat, -1 pour le systï¿½me algï¿½brique 
   sep=[',','*','/']; 
   coef51=[];coef52=[];coef1=[];coef2=[];cla=[];clb=[];clua=[];club=[];
   
@@ -79,7 +98,7 @@ function [equations,flag_type,impl_type]=gen_code_FVM(a1,b1,a2,b2,a3,b3,a4,b4,..
         equations(i)='   xd['+string(i+N-1)+']=('+subfv(F,C)+')/'+B+';';
       end 
     else
-      // cas algébrique ==> implicite 
+      // cas algï¿½brique ==> implicite 
       flag_type=2;
       impl_type=-1;
       equations=emptystr(N,1);
@@ -170,7 +189,7 @@ function [equations,flag_type,impl_type]=gen_code_FVM(a1,b1,a2,b2,a3,b3,a4,b4,..
         end
       end 
     else
-      // cas algébrique ==> implicite 
+      // cas algï¿½brique ==> implicite 
       flag_type=2;
       impl_type=-1;
       equations=emptystr(2*N,1);

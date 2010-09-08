@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [S]=tf2des(G,flag)
 //[S]=tf2des(G) 
 // Transfer function to descriptor form: S=list('d',A,B,C,D,E)
@@ -5,10 +14,10 @@ function [S]=tf2des(G,flag)
 //  y=C*x+D*u
 //  with flag="withD" a maximal rank D matrix is returned
 //!
-// Copyright INRIA
+
 [LHS,RHS]=argn(0);
 if RHS==1 then flag=[];end
-if RHS==2&flag<>"withD" then warning("tf2des: unknown flag");end
+if RHS==2&flag<>"withD" then warning(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"tf2des",2,"withD"));end
 Num=G(2);Den=G(3);
 %s=poly(0,varn(Den));
 [n,m]=size(Num);

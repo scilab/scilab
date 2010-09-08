@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function h=mtlb_axes(varargin)
 global AXES_T
 if AXES_T==[] then AXES_T=list([]),end
@@ -21,8 +30,8 @@ elseif varargin(1)=='position'
 elseif type(varargin(1))==1 then
   xsetech(AXES_T(k)(varargin(1),:))
 else
-  error('mtlb_axes: This case is not yet implemented')
+  error(msprintf(gettext("%s: This feature has not been implemented.\n"),"mtlb_axes"));
 end
-  
+
   
 endfunction

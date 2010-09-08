@@ -1,7 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function varargout=mtlb_sortrows(varargin)
-// Copyright INRIA
 // Emulation function for sortrows() Matlab function
-// F.B.
+
 [lhs,rhs]=argn()
 
 if rhs==1 then
@@ -17,7 +25,7 @@ elseif rhs==2 then
 	indexlist=list((1:size(A,1))');
 	
 	if size(cls,2)>1 then
-		error("second input argument must be a column vector")
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"mtlb_sortrows",2))
 	end
 
 	if type(A)==10 then

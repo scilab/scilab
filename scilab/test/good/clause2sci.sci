@@ -1,7 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [sci_clause,nblines]=clause2sci(mtlb_clause,nblines,leveltemp)
-// Copyright INRIA
 // M2SCI function
-// V.C.
 
 // Global variables for M2SCI
 global("m2sci_to_insert_b")
@@ -15,18 +22,18 @@ to_insert=list()
 select typeof(mtlb_clause)
   // --- TRYCATCH ---
 case "trycatch"
-  level=[level;0]
-
+  level=[level;0]  
+  
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
     to_insert=m2sci_to_insert_b
     m2sci_to_insert_b=list()
   end
-
+  
   // Convert try
   sci_try=list()
   level($)=level($)+1
- for k=1:size(mtlb_clause.trystat)
+ for k=1:size(mtlb_clause.trystat)   
     if typeof(mtlb_clause.trystat(k))=="sup_equal" then
       sci_try_temp=list()
       for i=1:size(mtlb_clause.trystat(k).sup_instr)
@@ -39,11 +46,11 @@ case "trycatch"
       sci_try=update_instr_list(sci_try,instr)
     end
   end
-
+    
   // Convert catch
   sci_catch=list()
   level($)=level($)+1
- for k=1:size(mtlb_clause.catchstat)
+ for k=1:size(mtlb_clause.catchstat)   
     if typeof(mtlb_clause.catchstat(k))=="sup_equal" then
       sci_catch_temp=list()
       for i=1:size(mtlb_clause.catchstat(k).sup_instr)
@@ -56,68 +63,68 @@ case "trycatch"
       sci_catch=update_instr_list(sci_catch,instr)
     end
   end
-
+  
 // Create Scilab trycatch
 sci_clause=tlist(["trycatch","trystat","catchstat"],sci_try,sci_catch)
-level($)=level($)+1
+level($)=level($)+1 
 updatevarslist("END OF CLAUSE")
 
   // --- IF ---
 case "ifthenelse"
-  level=[level;0]
-
+  level=[level;0]  
+  
   // Convert expression
   [sci_expr]=expression2sci(mtlb_clause.expression)
-
+  
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
     to_insert=m2sci_to_insert_b
     m2sci_to_insert_b=list()
   end
-
+  
   // Convert then statements
   sci_then=list()
   level($)=level($)+1
- for k=1:size(mtlb_clause.then_clause)
-    if typeof(mtlb_clause.then_clause(k))=="sup_equal" then
+ for k=1:size(mtlb_clause.then)   
+    if typeof(mtlb_clause.then(k))=="sup_equal" then
       sci_then_temp=list()
-      for i=1:size(mtlb_clause.then_clause(k).sup_instr)
-	[instr,nblines]=instruction2sci(mtlb_clause.then_clause(k).sup_instr(i),nblines)
+      for i=1:size(mtlb_clause.then(k).sup_instr)
+	[instr,nblines]=instruction2sci(mtlb_clause.then(k).sup_instr(i),nblines)
 	sci_then_temp=update_instr_list(sci_then_temp,instr)
       end
-      sci_then($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_then_temp,mtlb_clause.then_clause(k).nb_opr)
+      sci_then($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_then_temp,mtlb_clause.then(k).nb_opr)
     else
-      [instr,nblines]=instruction2sci(mtlb_clause.then_clause(k),nblines)
+      [instr,nblines]=instruction2sci(mtlb_clause.then(k),nblines)
       sci_then=update_instr_list(sci_then,instr)
     end
   end
-
+  
   // Convert elseifs
 sci_elseifs=list()
   for k=1:size(mtlb_clause.elseifs)
   level($)=level($)+1
-
+  
   // Convert expression
 [sci_exprn]=expression2sci(mtlb_clause.elseifs(k).expression)
-
+  
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
     to_insert=m2sci_to_insert_b
     m2sci_to_insert_b=list()
   end
-
+  
   // Convert statements
   sci_stat=list()
-  for l=1:size(mtlb_clause.elseifs(k).then_clause)
-  if typeof(mtlb_clause.elseifs(k).then_clause(l))=="sup_equal" then
+  for l=1:size(mtlb_clause.elseifs(k).then)
+  if typeof(mtlb_clause.elseifs(k).then(l))=="sup_equal" then
   sci_stat_temp=list()
-  for i=1:size(mtlb_clause.elseifs(k).then_clause(l).sup_instr)
-[instr,nblines]=instruction2sci(mtlb_clause.elseifs(k).then_clause(l).sup_instr(i),nblines)
+  for i=1:size(mtlb_clause.elseifs(k).then(l).sup_instr)
+[instr,nblines]=instruction2sci(mtlb_clause.elseifs(k).then(l).sup_instr(i),nblines)
   sci_stat_temp=update_instr_list(sci_stat_temp,instr)
 end
-sci_stat($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat_temp,mtlb_clause.elseifs(k).then_clause(l).nb_opr)
+sci_stat($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat_temp,mtlb_clause.elseifs(k).then(l).nb_opr)
 else
-[instr,nblines]=instruction2sci(mtlb_clause.elseifs(k).then_clause(l),nblines)
+[instr,nblines]=instruction2sci(mtlb_clause.elseifs(k).then(l),nblines)
   sci_stat=update_instr_list(sci_stat,instr)
 end
 end
@@ -126,44 +133,44 @@ end
 
 // Convert else
 sci_else=list()
-  if size(mtlb_clause.else_clause)<>0 then
-  level($)=level($)+1
-end
-for k=1:size(mtlb_clause.else_clause)
-if typeof(mtlb_clause.else_clause(k))=="sup_equal" then
+  if size(mtlb_clause.else)<>0 then
+  level($)=level($)+1 
+end 
+for k=1:size(mtlb_clause.else)
+if typeof(mtlb_clause.else(k))=="sup_equal" then
 sci_else_temp=list()
-  for i=1:size(mtlb_clause.else_clause(k).sup_instr)
-[instr,nblines]=instruction2sci(mtlb_clause.else_clause(k).sup_instr(i),nblines)
+  for i=1:size(mtlb_clause.else(k).sup_instr)
+[instr,nblines]=instruction2sci(mtlb_clause.else(k).sup_instr(i),nblines)
   sci_else_temp=update_instr_list(sci_else_temp,instr)
 end
-sci_else($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_else_temp,mtlb_clause.else_clause(k).nb_opr)
+sci_else($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_else_temp,mtlb_clause.else(k).nb_opr)
 else
-[instr,nblines]=instruction2sci(mtlb_clause.else_clause(k),nblines)
+[instr,nblines]=instruction2sci(mtlb_clause.else(k),nblines)
   sci_else=update_instr_list(sci_else,instr)
 end
 end
 
 // Create Scilab ifthenelse
 sci_clause=tlist(["ifthenelse","expression","then","elseifs","else"],sci_expr,sci_then,sci_elseifs,sci_else)
-level($)=level($)+1
+level($)=level($)+1 
 updatevarslist("END OF CLAUSE")
 
 // --- SELECT ---
 case "selectcase"
-  level=[level;0]
+  level=[level;0] 
   // Convert expression
   sci_expr=list()
   [sci_expr(1)]=expression2sci(mtlb_clause.expression(1))
   for i=2:size(mtlb_clause.expression)
     sci_expr(i)=mtlb_clause.expression(i) // EOL or comment
-  end
-
+  end  
+  
   // Get instructions to insert if there are
   if m2sci_to_insert_b<>list() then
     to_insert=m2sci_to_insert_b
     m2sci_to_insert_b=list()
   end
-
+  
   // Convert cases
   sci_cases=list()
   k=0
@@ -178,7 +185,7 @@ case "selectcase"
 	  mtlb_clause.cases(nbcas+size(mtlb_clause.cases(k).expression.rhs))=mtlb_clause.cases(nbcas)
 	end
 	for nbrhs=1:size(mtlb_clause.cases(k).expression.rhs)
-	  mtlb_clause.cases(nbrhs+k)=tlist(["case","expression","then"],mtlb_clause.cases(k).expression.rhs(nbrhs),mtlb_clause.cases(k).then_clause)
+	  mtlb_clause.cases(nbrhs+k)=tlist(["case","expression","then"],mtlb_clause.cases(k).expression.rhs(nbrhs),mtlb_clause.cases(k).then)
 	end
 	mtlb_clause.cases(k)=null()
       end
@@ -189,51 +196,51 @@ case "selectcase"
       to_insert=m2sci_to_insert_b
       m2sci_to_insert_b=list()
     end
-
+    
     // Convert statements
     sci_stat=list()
-    for l=1:size(mtlb_clause.cases(k).then_clause)
-      if typeof(mtlb_clause.cases(k).then_clause(l))=="sup_equal" then
+    for l=1:size(mtlb_clause.cases(k).then)
+      if typeof(mtlb_clause.cases(k).then(l))=="sup_equal" then
 	sci_stat_temp=list()
-	for i=1:size(mtlb_clause.cases(k).then_clause(l).sup_instr)
-	  [instr,nblines]=instruction2sci(mtlb_clause.cases(k).then_clause(l).sup_instr(i),nblines)
+	for i=1:size(mtlb_clause.cases(k).then(l).sup_instr)
+	  [instr,nblines]=instruction2sci(mtlb_clause.cases(k).then(l).sup_instr(i),nblines)
 	  sci_stat_temp=update_instr_list(sci_stat_temp,instr)
 	end
-	sci_stat($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat_temp,mtlb_clause.cases(k).then_clause(l).nb_opr)
+	sci_stat($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat_temp,mtlb_clause.cases(k).then(l).nb_opr)
       else
-	[instr,nblines]=instruction2sci(mtlb_clause.cases(k).then_clause(l),nblines)
+	[instr,nblines]=instruction2sci(mtlb_clause.cases(k).then(l),nblines)
 	sci_stat=update_instr_list(sci_stat,instr)
       end
     end
     sci_cases($+1)=tlist(["case","expression","then"],sci_exprn,sci_stat)
   end
-
+  
   // Convert else
 sci_else=list()
-  if size(mtlb_clause.else_clause)<>0 then
-  level($)=level($)+1
-end
-for k=1:size(mtlb_clause.else_clause)
-if typeof(mtlb_clause.else_clause(k))=="sup_equal" then
+  if size(mtlb_clause.else)<>0 then
+  level($)=level($)+1 
+end 
+for k=1:size(mtlb_clause.else)
+if typeof(mtlb_clause.else(k))=="sup_equal" then
 sci_else_temp=list();
-  for i=1:size(mtlb_clause.else_clause(k).sup_instr)
-[instr,nblines]=instruction2sci(mtlb_clause.else_clause(k).sup_instr(i),nblines)
+  for i=1:size(mtlb_clause.else(k).sup_instr)
+[instr,nblines]=instruction2sci(mtlb_clause.else(k).sup_instr(i),nblines)
   sci_else_temp=update_instr_list(sci_else_temp,instr)
 end
-sci_else($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_else_temp,mtlb_clause.else_clause(k).nb_opr)
+sci_else($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_else_temp,mtlb_clause.else(k).nb_opr)
 else
-[instr,nblines]=instruction2sci(mtlb_clause.else_clause(k),nblines)
+[instr,nblines]=instruction2sci(mtlb_clause.else(k),nblines)
   sci_else=update_instr_list(sci_else,instr)
 end
 end
 // Create Scilab selectcase
 sci_clause=tlist(["selectcase","expression","cases","else"],sci_expr,sci_cases,sci_else)
-level($)=level($)+1
+level($)=level($)+1 
 updatevarslist("END OF CLAUSE")
 
 // --- WHILE ---
 case "while"
-  level=[level;0]
+  level=[level;0] 
   sci_do=list()
   // Convert expression
   [sci_expr]=expression2sci(mtlb_clause.expression)
@@ -298,12 +305,12 @@ end
 
 // Create Scilab while
 sci_clause=tlist(["while","expression","statements"],sci_expr,sci_do)
-level($)=level($)+1
+level($)=level($)+1 
 updatevarslist("END OF CLAUSE")
 
 // --- FOR ---
 case "for"
-  //level=[level;1]
+  //level=[level;1]  
   // Convert expression
   [sci_expr,nblines]=instruction2sci(mtlb_clause.expression,nblines)
   if typeof(sci_expr)=="equal" then
@@ -364,12 +371,12 @@ case "for"
     end
   end
   sci_instr=update_instr_list(sci_instr,instr)
-end
+end   
 end
 // Create Scilab while
 sci_clause=tlist(["for","expression","statements"],sci_expr,sci_instr)
 else
-  error("clause2sci(): unknown clause type: "+typeof(mtlb_clause))
+  error(msprintf(gettext("unknown clause type: %s."),typeof(mtlb_clause)))
 end
 m2sci_to_insert_b=to_insert
 if m2sci_to_insert_b<>list() then

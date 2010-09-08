@@ -1,23 +1,42 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [N,a1_ev,a2_ev,a3_ev,a4_ev,a5_ev,a6_ev,a7_ev]=nombre_etats(N,...
           DF_type,kbc,a,b,h,a1,a2,a3,a4,a5,a6,a7)
-  // Copyright INRIA
-  // développé par EADS-CCR
   // cette fonction teste selon le type de discretisation differences       //
   // finies et le type des conditions aux limites, elle renvoie la nouvelle //
-  // taille du systèmes (nombre d'etats) avec les noeuds fictifs.           //
+  // taille du systï¿½mes (nombre d'etats) avec les noeuds fictifs.           //
   // sortie :                                                               //
   //    - N (Entier) : le nombre de noeuds total avec les noeuds fictifs    //
-  //      correspodent à l'implémentation de la condition Neumann           //
+  //      correspodent ï¿½ l'implï¿½mentation de la condition Neumann           //
   //    - ai_ev (Entiers) i=1:7 : vecteurs des valeurs des coefficients ai  //
   //      a chaque noeud.                                                   //    
-  // entrées :                                                              //
+  // entrï¿½es :                                                              //
   //    - N (Entier) : est le nombre de noeuds                              //
   //    - DF_type (Entier) : 0 pour les differences finies centrees,        //
-  //      1 pour les decentrees a gauche et 2 pour les decentrees à droite  // 
+  //      1 pour les decentrees a gauche et 2 pour les decentrees ï¿½ droite  // 
   //    - kbc (Entier) : vecteur types des conditions au limites            //
   //    - a, b (Double) : limites du domaine [a b]                          //
   //    - h (Double) : le pas de discretisation h=(b-a)/N (i.e x(i)= i* h)  //
-  //    - ai (String) : les coeficient (ai(x)) des opérateurs               //
+  //    - ai (String) : les coeficient (ai(x)) des opï¿½rateurs               //
   //------------------------------------------------------------------------//  
   x=a;
   for i=1:N

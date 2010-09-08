@@ -1,6 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function C=expression2code(e)
-// Copyright INRIA
-// Scilab Project - V. Couvert
 // Translate an expression tree to macro code (called by tree2code)
 // Input:
 // - e: expression 'tree'
@@ -28,6 +36,9 @@ case "operation" then
   nb_op=size(e.operands)
   if and(operator<>["cc","cceol"]) then
     for i=1:nb_op
+      if e.operands(i)==list("EOL") then
+	continue
+      end
       operands=[operands;expression2code(e.operands(i))]
     end
   end
@@ -38,7 +49,7 @@ case "operation" then
       if typeof(e.operands(i))=="operation" then
 	if e.operands(i).operator=="rc" then
 	  operands(i)=part(operands(i),2:length(operands(i))-1)
-	  elseif or(e.operands(i).operator==["cceol"]) then
+	elseif or(e.operands(i).operator==["cceol"]) then
 	  operands(1)=part(operands(1),2:length(operands(1)))
 	  operands($)=part(operands($),1:length(operands($))-1)
 	end
@@ -93,6 +104,8 @@ case "operation" then
       if i==1 then
 	if size(opi,"*")>1 then
 	  C = [C+opi(1);opi(2:$)]
+	elseif opi=="(EOL)" then
+	  C = [C;""];
 	else
 	  C = C+opi
 	end
@@ -100,6 +113,8 @@ case "operation" then
       else
 	if size(opi,"*")>1 then
 	  C = [C(1:$-1);C($)+opi(1);opi(2:$)]
+	elseif opi=="(EOL)" then
+	  C = [C;""]
 	else
 	  C = [C(1:$-1);C($)+opi]
 	end
@@ -230,7 +245,7 @@ else
       end
     end
   end
-  if part(operator,1)=="." & part(operator,length(operator))=="." then
+  if part(operator,1)=="." & part(operator,length(operator))=="." | or(operator==["&","|"]) then
     C=strcat(operands," "+operator+" ")
   elseif part(operator,1)=="." then
     C=strcat(operands," "+operator)
@@ -277,7 +292,12 @@ case "funcall" then
       C=C+"()"
     end
   else
-    C=e.name+"("+rhs2code(e.rhs)+")"
+    rhscode = rhs2code(e.rhs);
+    if size(rhscode,"*")==1 then
+      C=[e.name+"("+rhscode+")"]
+    else
+      C=[e.name+"("+rhscode(1);rhscode(2:($-1));rhscode($)+")"]
+    end  
   end
   // ----
   // LIST
@@ -289,8 +309,12 @@ case "list"
     ind=expression2code(e(k))
     if type(e(k))==15 then // Recursive extraction in recursive extraction
       ind=strsubst(ind,")(",",")
-      //ind=strsubst(ind,"(","")
-      //ind=strsubst(ind,")","")
+      if part(ind, 1)=="(" then
+		ind = part(ind, 2:length(ind))
+      end
+      if part(ind, length(ind))==")" then
+		ind = part(ind, 1:(length(ind)-1))
+      end
     end
     if ind==""":""" then
       ind=":"
@@ -312,8 +336,13 @@ case "list"
   // -----
 case "equal"
   C=instruction2code(e)
+  // -------
+  // COMMENT (inside a matrix declaration for example)
+  // -------
+case "comment"
+  C=instruction2code(e)
 else
-  error("expression2code(): "+typeof(e)+" is not yet implemented !");
+  error(msprintf(gettext("%s: This feature has not been implemented: %s.\n"),"expression2code",typeof(e)));
 end
 
 // Restore format

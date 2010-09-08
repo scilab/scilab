@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function []=fplot2d(xr,f,style,strf,leg,rect,nax,void)
 	// 2D plot of function f : a Scilab function or the name (as a string)
 	//  of a dynamically linked function.
@@ -5,32 +13,18 @@ function []=fplot2d(xr,f,style,strf,leg,rect,nax,void)
 	// deff('<y>=f(x)','y=sin(x)+cos(x)');
 	// fplot2d(f,0:0.1:%pi);
 	//!
-	// Copyright INRIA
 	
 	[lhs,rhs]=argn(0)
 	if rhs <= 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of fplot2d()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'deff(''[y]=f(x)'',''y=sin(x)+cos(x)'');';
-			'fplot2d(0:0.1:%pi,f);'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		deff("[y]=f(x)","y=sin(x)+cos(x)");
+		fplot2d(0:0.1:%pi,f);
 		return
 	end
 	
 	if type(xr)=='10' then // logflag passed first
-		error('First argument must be the discretization of x')
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A vector expected.\n"), "fplot2d", 1));
 	elseif rhs < 2 then 
-		error('at least 2 input arguments required')
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fplot2d", 2));
 	end
 	//handling optionnal arguments
 	

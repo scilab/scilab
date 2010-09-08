@@ -1,22 +1,37 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function y= cell2mat(c)
-// Copyright INRIA
+
 // This function returns a matrix which is the result of concatenation of all components of the cell c
 // Input : c, a cell. All components of c must have the same data type (strings or doubles or integers or booleans)
 // Moreover all components of c must be scalar, vector or matrix 
 // Output : y, a matrix or a hypermatrix
 // F.B
 
+  rhs = argn(2);
+
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cell2mat",1));
+  end
+
 if isempty(c) then
   y=[]
   return
 else
   if typeof(c) <> "ce" then //input argument must be a cell
-    error('input argument must be a cell')
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Cell expected.\n"),"cell2mat",1));
   end
   cecomptype=typeof(c(1).entries) //cecomptype is the type of the first component of the cell
   for i=1:prod(size(c))
     if typeof(c(i).entries) <> cecomptype then //all components of input cell must have the same type
-      error("all components of input cell must have the same type")
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Same type expected for all cell contents"),"cell2mat",1));
     end
   end
   if  0 < size(size(c),"*") & size(size(c),"*") <= 2 then //size of cell is least or equal to 2

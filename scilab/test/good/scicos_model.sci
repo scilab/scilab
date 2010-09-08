@@ -1,6 +1,27 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function model=scicos_model(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v16,...
-                            v17,v18,v19,v20,v21)
-  //disp('scicos_model');
+                            v17,v18,v19,v20,v21,v22,v23,v24,v25,v26)
+
   //initialisation de model mlist
   if exists('sim','local')==0 then sim='',end
   if exists('in','local')==0 then in=[],end
@@ -13,6 +34,8 @@ function model=scicos_model(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v
   if exists('evtout','local')==0 then evtout=[],end
   if exists('state','local')==0 then state=[],end
   if exists('dstate','local')==0 then dstate=[],end
+  if exists('odstate','local')==0 then odstate=list(),end
+  if exists('opar','local')==0 then opar=list(),end
   if exists('rpar','local')==0 then rpar=[],end
   if exists('ipar','local')==0 then ipar=[],end
   if exists('blocktype','local')==0 then blocktype='c',end
@@ -24,9 +47,9 @@ function model=scicos_model(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v
   if exists('equations','local')==0 then equations=list(),end
 
   model=mlist(['model','sim','in','in2','intyp','out','out2','outtyp',...
-               'evtin','evtout','state','dstate','rpar','ipar',...
+               'evtin','evtout','state','dstate','odstate','rpar','ipar','opar',...
                'blocktype','firing','dep_ut','label','nzcross',..
                'nmode','equations'],..
-               sim,in,in2,intyp,out,out2,outtyp,evtin,evtout,state,dstate,..
-               rpar,ipar,blocktype,firing,dep_ut,label,nzcross,nmode,equations)
+               sim,in,in2,intyp,out,out2,outtyp,evtin,evtout,state,dstate,odstate,..
+               rpar,ipar,opar,blocktype,firing,dep_ut,label,nzcross,nmode,equations)
 endfunction

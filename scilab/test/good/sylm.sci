@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [s]=sylm(a,b)
 //[s]=sylm(a,b) gives the Sylvester matrix associated to polynomials
 //a and b, i.e. the matrix s such that:
@@ -11,7 +21,6 @@ function [s]=sylm(a,b)
 //compute Bezout factors x et y of minimal degree de degre minimal
 //such that a*x+b*y=1
 //!
-// Copyright INRIA
 na=degree(a);a=coeff(a)';
 nb=degree(b);b=coeff(b)';
 s(na+nb,na+nb)=0;

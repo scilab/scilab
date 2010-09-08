@@ -1,5 +1,17 @@
-function r=%s_a_i(a,b)
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if a==[] then r=[],return,end
-r=iconvert(a,inttype(b))+b
+
+function r=%s_a_i(a,b)
+if a==[] then 
+  if mtlb_mode() then r=[],else r=b,end
+else
+  r=iconvert(a,inttype(b))+b
+end
 endfunction

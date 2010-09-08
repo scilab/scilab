@@ -1,11 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=%e2sci(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab extraction
 // Input: tree = Matlab operation tree
 // Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_e()
-// V.C.
 
 // Global variable for M2SCI
 global("varslist")
@@ -66,9 +73,9 @@ if rhs==1 then
 	end
       end
     end
-    error("%e2sci: recursive extraction from a variable "+var.name+" of type "+string(var.vtype))
+    error(msprintf(gettext("recursive extraction from a variable %s of type %s."),var.name,string(var.vtype)))
   elseif var.vtype==String then // Character string extraction
-    tree=Funcall("part",1,Rhs(var,ind),tree.out)
+    tree=Funcall("part",1,Rhs_tlist(var,ind),tree.out)
     if is_a_scalar(ind) then
       tree.lhs(1).dims=list(1,1)
     else
@@ -77,7 +84,7 @@ if rhs==1 then
     tree.lhs(1).type=var.type
   else // Extraction x(i)
     if var.vtype==Unknown then // Unknown type -> can be String
-      tree=Funcall("mtlb_e",1,Rhs(var,ind),tree.out)
+      tree=Funcall("mtlb_e",1,Rhs_tlist(var,ind),tree.out)
       tree.lhs(1).dims=list(Unknown,Unknown)
       tree.lhs(1).type=var.type
     else
@@ -114,7 +121,7 @@ if rhs==1 then
 	tree.out(1).dims=list(Unknown,1)
 	tree.out(1).type=var.type
       else // at leat one dimension unknown
-	tree=Funcall("mtlb_e",1,Rhs(var,ind),tree.out)
+	tree=Funcall("mtlb_e",1,Rhs_tlist(var,ind),tree.out)
 	tree.lhs(1).dims=list(Unknown,Unknown)
 	tree.lhs(1).type=var.type
       end
@@ -127,11 +134,14 @@ elseif rhs==0 then
 else 
   dims=list()
   for k=2:rhs+1
-    dimsum=0
+    dimprod=1
     for l=1:size(tree.operands(k).dims)
-      dimsum=dimsum+tree.operands(k).dims(l)
+      dimprod=dimprod*tree.operands(k).dims(l)
+      if dimprod<0 then // Last dimension not known exactly
+	break
+      end
     end
-    if dimsum==size(tree.operands(k).dims) // All dims are 1
+    if is_a_scalar(tree.operands(k)) // All dims are 1
       dims(k-1)=1
       if typeof(tree.operands(k))=="cste" then
 	if tree.operands(k).value==":" then
@@ -142,6 +152,8 @@ else
 	  end
 	end
       end
+    elseif dimprod>=0 then
+      dims(k-1)=dimprod
     else
       dims(k-1)=Unknown
     end
@@ -150,11 +162,11 @@ else
   if var.vtype==String then // extraction in strings
     if rhs==2 then
       rhsarg=Operation("ext",list(var,tree.operands(2)),list())
-      tree=Funcall("part",1,Rhs(rhsarg,tree.operands(3)),tree.out)
+      tree=Funcall("part",1,Rhs_tlist(rhsarg,tree.operands(3)),tree.out)
       tree.lhs(1).dims=list(dims(1:2))
       tree.lhs(1).type=var.type
     else
-      error("%e2sci(): Extraction from strings with more than two indexes not implemented!")
+      error(gettext("Extraction from strings with more than two indexes not implemented."))
     end
   else
     tree.out(1).dims=dims

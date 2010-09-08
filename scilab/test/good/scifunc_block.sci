@@ -1,3 +1,24 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=scifunc_block(job,arg1,arg2)
 //%Description
 // job=='plot' :      block drawing
@@ -45,7 +66,6 @@ function [x,y,typ]=scifunc_block(job,arg1,arg2)
 //                        'z' if zero-crossing.
 //          firing      - vector of initial ouput event firing times
 //
-// Copyright INRIA
 x=[];y=[];typ=[];
 select job
 case 'plot' then
@@ -64,7 +84,7 @@ case 'set' then
 
   if size(exprs(1),'*')==8 then exprs(1)(9)='0';end
   while %t do
-    [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=getvalue(..
+    [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue(..
 	['Set scifunc_block parameters';'only regular blocks supported'],..
 	  ['input ports sizes';
 	  'output port sizes';
@@ -96,8 +116,12 @@ case 'set' then
       model.state=xx
       model.dstate=z
       model.rpar=rpar
-      if or(model.ipar<>tt) then needcompile=4,end
-      model.ipar=tt
+      if model.ipar <> 0 then
+        model.opar=model.ipar;
+        model.ipar=0;
+      end
+      if or(model.opar<>tt) then needcompile=4,end
+      model.opar=tt
       model.firing=auto
       model.dep_ut=dep_ut
       x.model=model
@@ -129,6 +153,7 @@ case 'define' then
   model.dstate=z0
   model.rpar=rpar
   model.ipar=0
+  model.opar=list()
   model.blocktype=typ
   model.firing=auto
   model.dep_ut=[%t %f]

@@ -1,6 +1,13 @@
-function bval=multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprint)
-// Copyright INRIA
-// Scilab Project - V. Couvert
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function bval=multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
 // This function converts M-Files containing more than one functio
 // Inputs are the same as mfile2sci()
 // Outputs :
@@ -55,18 +62,15 @@ else
   end
 
   // Verify if the directory exists
-  if MSDOS then
-    dirnam=unix_g('dir /b '+pathconvert(TMPDIR)+base_name)
-    sep='\'  
-  else
-    dirnam=unix_g('ls ' + pathconvert(TMPDIR)+base_name)
-    sep='/'
-  end
+	dirnam = ls(pathconvert(TMPDIR)+base_name);
+  
+  sep = filesep();
+  
   if or(dirnam<>'') then
     rmdir(pathconvert(TMPDIR)+base_name,'s')
   end
   mkdir(pathconvert(TMPDIR),base_name)
-  write(%io(2)," -- File "+fil+" contains more than one function -- ");
+  write(%io(2),msprintf(gettext(" -- File %s contains more than one function -- "),fil));
      
   bval= %t
   
@@ -88,26 +92,30 @@ else
       funcname=stripblanks(part(funcname,keq+1:length(funcname)))
     end
     tmpfiles=[tmpfiles;funcname]
-    mputl(functxt,pathconvert(TMPDIR)+base_name+sep+tmpfiles($)+".m")
+    mputl(functxt,pathconvert(TMPDIR)+base_name+sep+tmpfiles($)+".m");
   end
   
-  write(%io(2)," -- Each function converted separately: "+strcat(tmpfiles," ")+" -- ");
-  write(%io(2)," -- Temporary files put in: "+pathconvert(TMPDIR));
+  write(%io(2),msprintf(gettext(" -- Each function converted separately: %s -- "),strcat(tmpfiles," ")));
+  write(%io(2),msprintf(gettext(" -- Temporary files put in: %s -- "),pathconvert(TMPDIR)));
 
   // Conversion of each file
 
   for k=1:size(tmpfiles,"*")
     txt=mgetl(pathconvert(TMPDIR)+base_name+sep+tmpfiles(k)+".m")
-    //mfile2sci(pathconvert(TMPDIR)+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprint)
+    //mfile2sci(pathconvert(TMPDIR)+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
   end
   
   translatepaths(pathconvert(TMPDIR)+base_name,pathconvert(TMPDIR)+base_name)
   
     txt=[]
-    txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'log')
-    mputl(txt,res_path+'log') 
-    txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'resumelog')
-    mputl(txt,res_path+'resumelog') 
+    if isfile(pathconvert(TMPDIR)+base_name+sep+'log') then
+      txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'log')
+    end
+    mputl(txt,res_path+'log'); 
+    if isfile(pathconvert(TMPDIR)+base_name+sep+'resumelog') then
+      txt=mgetl(pathconvert(TMPDIR)+base_name+sep+'resumelog')
+    end
+    mputl(txt,res_path+'resumelog'); 
   
   // Catenation of all .sci files to have only one output file
   txt=[]
@@ -120,7 +128,7 @@ else
     //mdelete(res_path+tmpfiles(k)+".sci")
   //end
    
-  mputl(txt,res_path+base_name+".sci")
+  mputl(txt,res_path+base_name+".sci");
 
   // Catenation of all .log files to have only one output file
   //if exists("logfile")==0 then
@@ -134,7 +142,7 @@ else
       //mdelete(pathconvert(TMPDIR)+base_name+sep+"m2sci_"+tmpfiles(k)+".log")
     //end
   
-    //mputl(txt,res_path+"m2sci_"+base_name+".log")
+    //mputl(txt,res_path+"m2sci_"+base_name+".log");
   //end
   
   // Catenation of all resume.log files to have only one output file
@@ -149,7 +157,7 @@ else
       //mdelete(res_path+"m2sci_"+tmpfiles(k)+"_resume.log")
     //end
   
-    //mputl(txt,res_path+"m2sci_"+base_name+"_resume.log")
+    //mputl(txt,res_path+"m2sci_"+base_name+"_resume.log");
   //end
   
   // Delete useless .m files

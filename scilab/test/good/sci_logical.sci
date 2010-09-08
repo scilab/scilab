@@ -1,11 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_logical(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab logical()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 // Emulation function: mtlb_logical()
-// V.C.
 
 X = getrhs(tree)
 // Conversion to double is made to have the same results for strings
@@ -15,7 +22,7 @@ if or(X.vtype==[String,Unknown]) then
 end
 
 if is_empty(X) then
-  set_infos(expression2code(X)+" is an empty matrix, so result is set to []",0);
+  set_infos(msprintf(gettext("%s is an empty matrix, so result is set to []."),expression2code(X)),0);
   tree=Cste([])
 elseif not_empty(X) then
   if X.vtype==Boolean then

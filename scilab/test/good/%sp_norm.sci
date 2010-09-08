@@ -1,5 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function res=%sp_norm(S,flag)
-// Copyright INRIA
+
 [lhs,rhs]=argn(0)
 if rhs==1 then flag=2;end //norm(S)=norm(S,2)
 [m,n]=size(S)
@@ -12,7 +21,7 @@ end
 
 select flag
 case 1 then
-  res=maxi(ones(1,m)*abs(S))
+  res=max(ones(1,m)*abs(S))
 case 2 then
   if m<n then
     S=S*S'
@@ -31,9 +40,9 @@ case 2 then
   end
   if m<>n then res=sqrt(res),end
 case %inf then
-  res=maxi(abs(S)*ones(n,1))
+  res=max(abs(S)*ones(n,1))
 case 'inf' then
-  res=maxi(abs(S)*ones(n,1))
+  res=max(abs(S)*ones(n,1))
 case 'fro' then
   [ij,v]=spget(S);
   res=sqrt(sum(abs(v.*v)))

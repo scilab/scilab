@@ -1,5 +1,25 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=Ground(job,arg1,arg2)
-// Copyright INRIA
 // exemple d'un bloc implicit, 
 //   -  sans entree ni sortie de conditionnement
 //   -  avec une entree et une sortie de type implicit et de dimension 1
@@ -38,7 +58,7 @@ case 'define' then
       'xsegs(orig(1)+sz(1)*[0 1],orig(2)+sz(2)*[1/2 1/2],0);';
       'xsegs(orig(1)+sz(1)*[2/8 6/8],orig(2)+sz(2)*[1/4 1/4],0);';
       'xsegs(orig(1)+sz(1)*[3/8 5/8],orig(2)+sz(2)*[0 0],0);']
-  x=standard_define([2 2],model,exprs,list(gr_i,0))
+  x=standard_define([1 1],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I']
 end

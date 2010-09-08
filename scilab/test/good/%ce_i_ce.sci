@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque, S. Steer, V. Couvert
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function M=%ce_i_ce(varargin)
-// Authors: F. Delebecque, S. Steer, V. Couvert, Copyright INRIA 
 //insert the cell varargin($-1) into the cell varargin($)
 //at position varargin(1), varargin(2),varargin(3),...
 //insert the cell varargin($-1) as the field varargin(1)

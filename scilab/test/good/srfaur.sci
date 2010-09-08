@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function [p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)
 //square-root algorithm for the algebraic Riccati equation.
 //
@@ -13,7 +21,7 @@ function [p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)
 //          : p,s,t,l may be given as input if more than one recursion
 //          : is desired (evaluation of intermediate values of p, e.g.).
 //!
-// Copyright INRIA
+
 [lhs,rhs]=argn(0);
 [d,m]=size(h);
 if rhs==5,
@@ -24,8 +32,9 @@ if rhs==5,
   l=-%i*t;
   p=l'*l;
 else,
-  if rhs<>9,
-  error('wrong number of arguments');end;
+  if rhs<>9 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),'srfaur',9));
+  end;
 end;
 //recursion
 for j=1:n,

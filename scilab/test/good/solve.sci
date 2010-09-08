@@ -1,10 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque , Serge STEER
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function x=solve(a,b)
 // x=solve(A,b) solves A*x = b when A is an upper triagular matrix
 // made of character strings.
 //!
-//origin F Delebecque S. Steer INRIA 1987
-//
-// Copyright INRIA
+
 [na,ma]=size(a),[mb,nb]=size(b)
 pivot=a(na,na);
 if pivot<>'1' then

@@ -1,26 +1,45 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [xvec,nelem,nodes,kind,nint]=maillage_FE1D(a,b,inf_ele,nnode,CLa_type,..
-          CLa_exp,CLb_type,CLb_exp)   
-// Copyright INRIA
-// développé par EADS-CCR
-// rentre les données des partitions (les elements)                               //
+          CLa_exp,CLb_type,CLb_exp)
+// rentre les donnï¿½es des partitions (les elements)                               //
 // sorties :                                                                      //
-//   - xvec (Double) : vecteur des cordonnées de tout les noeuds de 1:nnode       //
-//   - nelem (Entier) = (nnode-1)/inf_ele; c'est le nombre d'élément.             //
+//   - xvec (Double) : vecteur des cordonnï¿½es de tout les noeuds de 1:nnode       //
+//   - nelem (Entier) = (nnode-1)/inf_ele; c'est le nombre d'ï¿½lï¿½ment.             //
 //   - nodes(j,i) (Entier): Matrice de connection des element, nodes(nnode,nelem),//
 //     nodes(j,i) est le jeme indice du noeud dans le ieme element. Pour le       //
-//     linéaire j=1,2 (deuxnoeuds dans chaque element). Pour le quadratique,      //
+//     linï¿½aire j=1,2 (deuxnoeuds dans chaque element). Pour le quadratique,      //
 //     j=1,2,3 (deux noeuds et un point auxiliare.                                //
 //   - kind(i) (Entier), i=1, ..., nelem, = 1, ou 2, ou 3. les fonctions de base  //
 //     dans le i-eme element. Pour la triangulation uniforme, kind(i) = inf_ele.  //
 //   - nint(i) (Entier), i=1, ..., nelem = 1, ou 2, ou 3, ou 4. Pour l'ordre du   //
 //     Gaussian quadratique dans le i-eme element.                                //
-// entrées :                                                                      //
+// entrï¿½es :                                                                      //
 //   - a, b (Doubles) :correspondent aux deux points limites (segment [a,b])      //
-//   - inf_ele (Entier) : 1, 2 ou 3. Les fonctions de base : linéaires,           //
+//   - inf_ele (Entier) : 1, 2 ou 3. Les fonctions de base : linï¿½aires,           //
 //     quadratique ou cubique                                                     //
 //   - nnode (Entier) : nombre de noeuds. Si inf_ele=1, nnode est un nombre >= 2. //
-//     Si inf_ele=2, nnode doit être 2k+1, k>=1. Si inf_ele = 3,                  //
-//     nnode doit être 3k+1.                                                      //
+//     Si inf_ele=2, nnode doit ï¿½tre 2k+1, k>=1. Si inf_ele = 3,                  //
+//     nnode doit ï¿½tre 3k+1.                                                      //
 //   - CLa_type, CLb_type(Entiers):types des conditions aux limites (0:Dirichlet, //
 //     1 : Neumann)                                                               //
 //   - CLb_exp,CLa_exp(String):expressions des conditions aux limites en a et b   // 
@@ -41,7 +60,7 @@ function [xvec,nelem,nodes,kind,nint]=maillage_FE1D(a,b,inf_ele,nnode,CLa_type,.
      dn = n2 - n1;
      dx = (x2-x1)/dn;
      xx = x1 - dx;
-     // debut de la boucle de définition des cordonnées des points nodales.
+     // debut de la boucle de dï¿½finition des cordonnï¿½es des points nodales.
      for i=n1:n2
        xx = xx + dx;
        xvec(i) = xx;
@@ -52,7 +71,7 @@ function [xvec,nelem,nodes,kind,nint]=maillage_FE1D(a,b,inf_ele,nnode,CLa_type,.
   // Definition du type de la fonction de base.
   for i=1:nelem
      kind(i) = inf_ele;	   // on utilise les elements lineaires
-     nint(i) = 4;        // l'ordre d'intégration
+     nint(i) = 4;        // l'ordre d'intï¿½gration
      // connection des ddls: 
      for j=1:kind(i)+1
        nodes(j,i) = j + kind(i)*(i-1);   // nodal point numbers of nodes
@@ -63,18 +82,17 @@ endfunction
 
 
 function [data] = datain(a,b,nnode,nelem)
-// Copyright INRIA
-// développé par EADS-CCR
+// dï¿½veloppï¿½ par EADS-CCR
 //   La fonction datain fournit les information des partitions  pour  //
-//   la méthode des elements finis 1D. On choisissant les données     //
-//   sohaitées, nous pouvons généré les noeuds avec un espacement     //
-//   uniforme dans les différentes sections du maillage.              //
+//   la mï¿½thode des elements finis 1D. On choisissant les donnï¿½es     //
+//   sohaitï¿½es, nous pouvons gï¿½nï¿½rï¿½ les noeuds avec un espacement     //
+//   uniforme dans les diffï¿½rentes sections du maillage.              //
 // sorties :                                                          //
-//   - data (Double) : Matrice de données                             //
-// entrées :                                                          //
+//   - data (Double) : Matrice de donnï¿½es                             //
+// entrï¿½es :                                                          //
 //   - a, b (Doubles) :correspondent aux deux points limites          //
 //   - nnode (Entier) : nombre de noeuds.                             // 
-//   - nelem (Entier) = (nnode-1)/inf_ele; c'est le nombre d'élément. //
+//   - nelem (Entier) = (nnode-1)/inf_ele; c'est le nombre d'ï¿½lï¿½ment. //
 //   Reference: Finite element. An introduction by E.Becker, G.Carey, //
 //   and J.Oden, Vol.1., pp. 101-102.                                 //
 //--------------------------------------------------------------------//

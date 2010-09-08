@@ -1,41 +1,37 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function contourf(x,y,z,nv,style,strf,leg,rect,nax)
 	
 	[nout,nin]=argn(0);
 	
-	newstyle = get('figure_style')=='new'
-	
 	if nin == 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of contourf()';
-			'========================================';
-			''];
-		
-		s_mat=['t=-%pi:0.1:%pi;m=sin(t)''*cos(t);contourf(t,t,m);'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
-		return
-	end
+		t = -%pi:0.1:%pi;
+		m = sin(t)'*cos(t);
+		contourf(t,t,m);
+		return;
+  end
 
-if nin <= 8 then nax=[1,10,1,10];end 
+if nin <= 0 then x=1:10;end
+if nin <= 1 then y=1:10;end
+if nin <= 2 then z=rand(size(x,'*'),size(y,'*'));end
+if nin <= 3 then zmin=min(z);zmax=max(z);nv = zmin + (1:10)*(zmax-zmin)/(11);end
+if nin <= 5 then strf="121";end
+if nin <= 6 then leg=" ";end
 if nin <= 7 then rect=[0,0,1,1];end
-if nin <= 6 then leg=" ";end 
-if nin <= 5 then strf="121";end 
-if nin <= 3 then zmin=mini(z);zmax=maxi(z);nv = zmin + (1:10)*(zmax-zmin)/(11);end 
-if nin <= 2 then z=rand(size(x,'*'),size(y,'*'));end 
-if nin <= 1 then y=1:10;end 
-if nin <= 0 then x=1:10;end 
+if nin <= 8 then nax=[1,10,1,10];end
 if x==[] then x=1:size(z,'r');end 
 if y==[] then y=1:size(z,'c');end 
 
 nvs=size(nv,'*') ;
-if nvs==1 then nvs=nv;zmin=mini(z);zmax=maxi(z);nv = zmin + (1:nvs)*(zmax-zmin)/(nvs+1);end;
+if nvs==1 then nvs=nv;zmin=min(z);zmax=max(z);nv = zmin + (1:nvs)*(zmax-zmin)/(nvs+1);end;
 if nin <= 4 then style = -1*ones(1,nvs);end
-if nin <= 7 then rect=[mini(x),mini(y),maxi(x),maxi(y)]; end 
+if nin <= 7 then rect=[min(x),min(y),max(x),max(y)]; end 
 nv1=nv
 [mz,nz] = size(z);
 minz = min(z);
@@ -77,10 +73,10 @@ else
   if nv > lp ; write(%io(2),'Colormap too small');return ;end 
 end
 
-min_nv=mini(nv);
-max_nv=maxi(nv);
+min_nv=min(nv);
+max_nv=max(nv);
 
-plot2d([mini(xx);maxi(xx)],[mini(yy);maxi(yy)],0,strf,leg,rect,nax);
+plot2d([min(xx);max(xx)],[min(yy);max(yy)],0,strf,leg,rect,nax);
 
 // Plot patches in order of decreasing size. This makes sure that
 // all the lev1es get drawn, not matter if we are going up a hill or
@@ -92,9 +88,8 @@ plot2d([mini(xx);maxi(xx)],[mini(yy);maxi(yy)],0,strf,leg,rect,nax);
 
 draw_min=1;
 H=[];
-[FA,IA]=sort(abs(Area));
+[FA,IA]=gsort(abs(Area));
 
-if newstyle then
   drawlater(); // postpon the drawing here
   a=gca();
   old_foreground = a.foreground;
@@ -116,24 +111,6 @@ if newstyle then
   end
   a.foreground = old_foreground;
   drawnow(); // draw all now!
-else
-  pat=xget('pattern');
-  for jj=IA',
-    nl=CS(2,I(jj));
-    lev1=CS(1,I(jj));
-    if (lev1 ~= minz | draw_min),
-      xp=CS(1,I(jj)+(1:nl));  
-      yp=CS(2,I(jj)+(1:nl)); 
-      pat=size(find( nv <= lev1),'*');
-      xset("pattern",pat);
-      xfpoly(xp,yp)
-    end;
-  end
-  
-  xset('pattern',pat);
-  if style(1)<>-1 then 
-    contour2d(xx,yy,zz,nv,style,"000",leg,rect,nax);
-  end
-end
 
 endfunction
+

@@ -1,31 +1,56 @@
-function scs_m = do_doc(scs_m,%pt)
-// Copyright INRIA
-  xc=%pt(1);yc=%pt(2);
-  k=getobj(scs_m,[xc;yc])
-  if k==[] then return,end
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
 
-  numero_objet=k
-  scs_m_save=scs_m
+function [scs_m,ok] = do_doc(scs_m,%pt)
+  K=find(Select(:,2)==curwin);
+  if size(K,'*')>1 then
+    messagebox("Only one block can be selected in current window for this operation.","modal")
+    Cmenu=[];ok=%f;return
+  end
+  if K==[] then
+    K  = getblock(scs_m,%pt(:))
+    if K==[] then Cmenu=[];ok=%f;return,end
+  else
+    K=Select(K,1)
+  end
 
-  objet = scs_m.objs(numero_objet)
+  objet = scs_m.objs(K)
   type_objet = typeof(objet)
-
   //
   if type_objet == 'Block' then
     documentation = objet.doc
     if documentation == []|documentation == list() then
-      rep=x_message(['No documentation function specified'
-		     'would you like to use standard_doc ?'],['yes','no'])
+      rep=messagebox(['No documentation function specified'
+		     'would you like to use standard_doc ?'],"modal","question",['yes','no'])
       funname='standard_doc'
       if rep==2 then
-	[ok, funname] = getvalue('Enter the name of the documentation function',..
+	[ok, funname] = scicos_getvalue('Enter the name of the documentation function',..
 				 'fun name',list('str', 1),'standard_doc')
 	if ~ok then return,end
       end
       doc=[]
       ierr=execstr('docfun='+funname,'errcatch')
       if ierr<>0 then
-	x_message('function '+funname+' not found')
+	messagebox('function '+funname+' not found',"modal","error");
+	ok=%f
 	return
       end
       documentation=list(docfun,doc)
@@ -34,7 +59,7 @@ function scs_m = do_doc(scs_m,%pt)
     if type(funname)==10 then 
       ierr=execstr('docfun='+funname,'errcatch')
       if ierr<>0 then
-	x_message('function '+funname+' not found')
+	messagebox('function '+funname+' not found',"modal","error");
 	return
       end
     else
@@ -46,15 +71,14 @@ function scs_m = do_doc(scs_m,%pt)
     if ok then
       documentation(2)=doc
       objet.doc = documentation
-      scs_m.objs(numero_objet) = objet
+      scs_m.objs(K) = objet
     else
-      x_message(documentation(1)+'(''set'',...) failed')
+      messagebox(documentation(1)+'(''set'',...) failed',"modal","error");
     end
   else
-    x_message('It is impossible to set Documentation for this type of object')
+    messagebox('It is impossible to set Documentation for this type of object',"modal","error");
   end
   //
-  if ok then [scs_m_save,enable_undo,edited]=resume(scs_m_save,%t,%t),end
 
 endfunction
 function doc=standard_doc(job,doc)

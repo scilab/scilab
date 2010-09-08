@@ -1,3 +1,4 @@
+
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //Test du cas 'define' des fonctions gui des blocs
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8,40 +9,6 @@ function r=checkdefine()
     ierr=execstr('x=gui(''define'')','errcatch')
     if ierr<>0 then
       mprintf('define failed for block '+Blocs(i));
-      r=%t
-      return; 
-    end
-    clear gui
-  end
-endfunction
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//Test du cas 'plot' des fonctions gui des blocs
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function r=checkdraw()
-   r=%f
-  sep=30
-  xbasc();
-  set("figure_style","old")
-  xset('wresize',0)
-  xset('wpdim',400,300)
-  //xset('alufunction',6)
-  xset('wdim',700,80*ceil(nb/9))
-  xsetech(frect=[0 0 700 80*ceil(nb/9)]);
-  i=0
-  X=0
-  Y=0
-  yy=0
-  for i=1:nb
-    execstr('gui='+Blocs(i))
-    x=gui('define')
-    x.graphics.sz=20*x.graphics.sz;
-    x.graphics.orig=[X Y]
-    X=X+x.graphics.sz(1)+sep
-    yy=max(yy,x.graphics.sz(2))
-    if X>700 then X=0,Y=Y+yy+sep,yy=0,end
-    ierr=execstr('gui(''plot'',x)','errcatch')
-    if ierr<>0 then
-      mprintf('plot failed for block '+Blocs(i));
       r=%t
       return; 
     end
@@ -106,38 +73,6 @@ function r=checkorigin()
     clear gui
   end
 endfunction
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-//Test de coherence entre la definition des cas 'set' et 'define'
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function r=checkset()
-  r=%f
-  funcprot(0)
-  getf('SCI/modules/scicos/macros/scicos/setvalue.sci')
-  getvalue=setvalue;
-  alreadyran=%f;
-  %scicos_prob=%f
-  for i=1:nb
-    if and(Blocs(i)~=["SUPER_f" "func_block" "scifunc_block" "GENERAL_f" ...
-		      "SOM_f" "CURV_f" "LOOKUP_f" "AFFICH_f" "TEXT_f"]) then 
-      if Blocs(i)=='fortran_block'|Blocs(i)=='c_block' then
-	getf('SCI/macros/scicos/'+Blocs(i)+'.sci')
-      else
-	getf('SCI/modules/scicos/macros/scicos_blocks/'+Blocs(i)+'.sci')
-      end
-      
-      execstr('gui='+Blocs(i))
-      o=gui('define');
-      o_n=gui('set',o);
-      if or(o_n<>o) then 
-	mprintf('set failed for block '+Blocs(i)); 
-	r=%t
-	pause;      
-      end
-      clear gui
-    end
-  end
-endfunction
-
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //Test de la taille du vecteur dep_ut
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -209,15 +144,15 @@ endfunction
 function r=check_set_ports()
   r=%f
   funcprot(0)
-  getf('SCI/modules/scicos/macros/scicos/setvalue.sci')
-  getvalue=setvalue;
+  exec('SCI/modules/scicos/macros/scicos_scicos/setvalue.sci')
+  scicos_getvalue=setvalue;
   alreadyran=%f;  %scicos_prob=%f
   for i=1:nb
     if and(Blocs(i)~=["SUPER_f" "func_block" "scifunc_block" "GENERAL_f" "SOM_f" "CURV_f" "LOOKUP_f"]) then 
       if Blocs(i)=='fortran_block'|Blocs(i)=='c_block' then
-	getf('SCI/macros/scicos/'+Blocs(i)+'.sci')
+	exec('SCI/modules/scicos_blocks/macros/'+Blocs(i)+'.sci')
       else
-	getf('SCI/macros/scicos_blocks/'+Blocs(i)+'.sci')
+	exec('SCI/modules/scicos_blocks/macros/'+Blocs(i)+'.sci')
       end
       execstr('gui='+Blocs(i))
       o=gui('define');

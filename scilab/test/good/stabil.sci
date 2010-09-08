@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function F=stabil(A,B,alfa)
 //
 //returns F such that A+B*F is stable if (A,B) is stabilizable.
@@ -22,13 +31,13 @@ function F=stabil(A,B,alfa)
 //spec(A+B*F) 
 //the two controllable modes are set to -1.
 //
-// Copyright INRIA
+
 [LHS,RHS]=argn(0)
 if typeof(A)~='state-space' then
 [ns,nc,U,sl]=st_ility(syslin('c',A,B,[]));
 [nx,nx]=size(A);[nn,nu]=size(B);
 if ns<nx then 
-warning('system not stabilizable (or detectable)=>stabilizing the stabilizable part');
+  warning(msprintf(gettext("%s: System not stabilizable (or detectable) => Stabilizing the stabilizable part.\n"),"stabil"));
 end
 if RHS==2 then 
   alfa=-ones(1,nx);

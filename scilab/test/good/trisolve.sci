@@ -1,12 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque , Serge STEER
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [b,sexp]=trisolve(a,b,sexp)
 //[x [,sexp]] = trisolve(A,b [,sexp])  symbolically solves A*x =b 
 // when A and b are matrices of character strings, A being assumed to be
 // upper triangular.  
 //sexp : vector of common subexpressions in A, b and x.
 //!
-//origine F. D. S. Steer INRIA 1989
-//
-// Copyright INRIA
+
 [lhs,rhs]=argn(0)
 [n0,m]=size(b)
 if rhs==2 then

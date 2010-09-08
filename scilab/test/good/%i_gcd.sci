@@ -1,9 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [x,uu]=%i_gcd(p)
 //Given a polynomial vector p, [pgcd,u]=gcd(p) computes the gcd 
 //of components and a unimodular matrix (with polynomial inverse) u, 
 //with minimal degree such that [p1 p2]*u=[0 ... 0 pgcd]
 //!
-// Copyright INRIA
+
   [lhs,rhs]=argn(0)
   [m,n]=size(p);it=inttype(p)
   mn=m*n

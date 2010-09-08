@@ -1,12 +1,31 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [xc,x]=unimesh1D(N,a,b)
-// Copyright INRIA
-// développé par EADS-CCR
 // maillage pour les volumes finis 1D en incluant les noeuds    //
 // aux limites.                                                 //
 // sorties :                                                    //
 //    - x (Double) : vecteur colonne representant les noeuds   //
 //    - xc (Double) : vecteur colonne representant les cellules //
-//      (les volumes de contrôle).                              //
+//      (les volumes de contrï¿½le).                              //
 //    - N (Entier) : est le nombre de noeuds                    //
 //    - a, b (Doubles) :correspondent aux deux points limites   //
 //--------------------------------------------------------------//

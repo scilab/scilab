@@ -1,5 +1,25 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=BIGSOM_f(job,arg1,arg2)
-// Copyright INRIA
 x=[];y=[];typ=[];
 select job
 case 'plot' then
@@ -17,15 +37,24 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,sgn,exprs]=getvalue('Set sum block parameters',..
+    [ok,sgn,exprs]=scicos_getvalue('Set sum block parameters',..
     			   'Inputs ports signs/gain',list('vec',-1),exprs)
-    if ~ok then break,end
-    in=-ones(size(sgn,'*'),1)
-    [model,graphics,ok]=check_io(model,graphics,in,-1,[],[])
-    model.rpar=sgn(:)
-    graphics.exprs=exprs
-    x.graphics=graphics;x.model=model
-    break
+    if ~ok then
+      break
+    end
+    
+    in = -ones(size(sgn,'*'),1)
+    
+    //** Patch: check added 
+    [model,graphics,ok] = check_io(model,graphics,in,-1,[],[]);
+    if ok then
+      model.rpar = sgn(:)    ;
+      graphics.exprs = exprs ;
+      x.graphics = graphics;
+      x.model = model ;
+      break
+    end
+       
   end
 case 'define' then
   sgn=[1;1]

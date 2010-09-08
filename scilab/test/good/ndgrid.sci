@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) Bruno Pincon
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [varargout] = ndgrid(varargin)
    //
    //  CALLING SEQUENCES
@@ -28,12 +37,12 @@ function [varargout] = ndgrid(varargin)
    //
    nbdim = length(varargin)
    if nbdim < 2 then
-      error(" ndgrid must have at least 2 args")
+      error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"ndgrid",2));
    end
    dim = zeros(1,nbdim)
    for k = 1:nbdim
       if type(varargin(k)) ~= 1 then  
-	 error(" ndgrid : bad "+string(k)+" th arg")
+	      error(msprintf(gettext("%s: Wrong type for argument #%d: Real expected.\n"),"ndgrid",k));
       end
       dim(k) = length(varargin(k))
       varargin(k) = matrix(varargin(k),1,dim(k)) // force row form

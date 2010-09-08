@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid Belahcene
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function  bar(varargin)
-// Copyright INRIA
 // bar(x,y,width,style,color)
 // This function  ...
 // 
@@ -8,8 +16,10 @@ function  bar(varargin)
 // y : a real sclar, or a vector
 // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8)
 // style : a string 'grouped' or 'stacked' (default: style='grouped')
-// F.B
 
+if size(varargin)<1 | size(varargin)>5  then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "bar", 1, 5));
+end
 
 styletab=["grouped","stacked"]
 COLORBOOL=%f
@@ -138,7 +148,10 @@ for i=1:size(argstr,"*")
   end
 end
 
-drawlater();
+// drawlater
+curFig = gcf();
+immediate_drawing = curFig.immediate_drawing;
+curFig.immediate_drawing = "off";
 
 if COLORBOOL
   plot(X,Y,COLOR)
@@ -211,6 +224,7 @@ for i=bar_number:-1:1
   ei.line_mode='off';
 end
 
-drawnow();
+// drawnow
+curFig.immediate_drawing = immediate_drawing;
 
 endfunction

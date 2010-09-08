@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function  y=num2cell(x,dimens)
-// Copyright INRIA
 //
 // NUM2CELL function converts an array of double or string or boolean into a cell array
 // if there is just one input argument x, then it returns a cell which has the same size and the same components than x.
@@ -22,7 +30,7 @@ end
 xsize=size(x)
 // check the number of input arguments
 if argn(2)<1 then
-  error("wrong number of input arguments")
+  error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"num2cell",1));
 elseif argn(2)==1 then
     for i=1:size(x,"*")
       y(i).entries=x(i)
@@ -32,7 +40,7 @@ elseif argn(2)==1 then
 // check the second input argument is a scalar (or a vector) of positive integers
 else
   if type(dimens)<>1 | or(dimens<=0) | or(dimens-floor(dimens)<>0) | ndims(dimens)>2 then
-    error("second argument must be a positive integer")
+    error(msprintf(gettext("%s: Wrong argument #%d: Positive integer expected.\n"),"num2cell",2));
   end
   dimens=matrix(dimens,1,-1)
 end

@@ -1,10 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [N,D]=lcmdiag(H,flag)
 //returns N and diagonal D
-//such that: 
+//such that:
 //  flag='row' => H=D^(-1)*N  and D(k,k)=lcm of kth row of H('den')
 //  flag='col' => H=N*D^(-1)  and D(k,k)=lcm of kth col of H('den')
 // default flag = 'col'
-// Copyright INRIA
 Num=H('num');
 Den=H('den');
 [m,n]=size(H);
@@ -22,7 +31,7 @@ end
 for k=1:n
 [pgcd,fact]=lcm(Den(:,k));  //
 D=diag([diag(D);pgcd]);
-N=[N,Num(:,k).*fact];  
+N=[N,Num(:,k).*fact];
 end
 end
 endfunction

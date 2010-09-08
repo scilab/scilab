@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F. Delebecque 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function Aclosed=h_cl(P,r,K)
 //[Aclosed]=h_cl(P,r,K)
 //Given the standard plant P (with r=size(P22)) and the controller
@@ -6,8 +14,7 @@ function Aclosed=h_cl(P,r,K)
 //of the closed loop system.
 //Aclosed is the A matrix of [I -P22;-K I]^-1;
 //!
-//FD.
-// Copyright INRIA
+
 P1=P(1);
 if P1(1)=='r' then P=tf2ss(P);end
 [LHS,RHS]=argn(0);

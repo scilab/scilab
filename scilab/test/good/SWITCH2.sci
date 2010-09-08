@@ -1,3 +1,24 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=SWITCH2(job,arg1,arg2)
   x=[];y=[];typ=[]
   select job
@@ -14,7 +35,7 @@ function [x,y,typ]=SWITCH2(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,rule,thra,nzz,exprs]=getvalue('Set parameters',..
+      [ok,rule,thra,nzz,exprs]=scicos_getvalue('Set parameters',..
 		['pass first input if: u2>=a (0), u2>a (1), u2~=a (2)';..
 		    'threshold a';'use zero crossing: yes (1), no (0)'],..
 		    list('vec',1,'vec',1,'vec',1),exprs)

@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [X1,X2,zero]=ric_desc(H,E)
 //[X1,X2,zero]=ric_desc(H [,E])  Descriptor Riccati solver with
 // hamiltonian matrices as inputs.
@@ -29,7 +38,7 @@ function [X1,X2,zero]=ric_desc(H,E)
 //   
 //  (solution X is also given by X=riccati(A,G,C,'d')  with G=B/R*B')
 //!
-// Copyright INRIA
+
 [LHS,RHS]=argn(0);
 if RHS==1 then
    [n2,n2]=size(H);
@@ -44,7 +53,7 @@ if RHS==1 then
    if cond(W1) > 1.d+10*norm(H,1) then Hb=H,W1=eye(W1);end
  
    [W2,n]=schur(Hb,'c');Hb=[]
-   if n<>n1 then write(%io(2),'Stationary Riccati solver fails!!!!');end
+   if n<>n1 then mprintf(gettext("%s: Stationary Riccati solver failed.\n"),"ric_desc");end
    W1=W1*W2;W2=[]
    UV=W1(:,1:n1);W1=[]
    X2=UV(1:n1,:);X1=UV(n1+1:n2,:);UV=[];

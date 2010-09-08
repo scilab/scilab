@@ -15,36 +15,28 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
 
 	[lhs,rhs]=argn()
 	if rhs == 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of Sfgrayplot()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'deff(''[z]=Surf(x,y)'',''z=x.^3+y'');';
-			'xbasc()';
-			'xset(""colormap"",jetcolormap(64))';
-			'colorbar(-2,2)';
-			'Sfgrayplot(-1:0.1:1,-1:0.1:1,Surf,strf=""031"",rect=[-1,-1,1,1]);';
-			'xtitle(''Sfgrayplot demo: f(x,y)=x^3+y'')'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		deff("[z]=Surf(x,y)","z=x.^3+y");
+		f=gcf();
+		f.color_map = jetcolormap(64);
+		f.immediate_drawing = "off";
+		colorbar(-2,2);
+		Sfgrayplot(-1:0.1:1,-1:0.1:1,Surf,strf="031",rect=[-1,-1,1,1]);
+		xtitle("Sfgrayplot demo: f(x,y)=x^3+y");
+		f.immediate_drawing = "on";
 		return
-	elseif rhs < 3 then
-		error("bad number of input arguments");
+        elseif rhs < 3 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "Sfgrayplot", 3, 10));
 	end
   
 	// some checks
-	if ~(type(x)==1 & isreal(x) & type(y)==1 & isreal(y)) then
-		error("two first arguments must be real");
+	if ~(type(x)==1 & isreal(x)) then
+	  error(msprintf(gettext("%s: Input argument #%d must be real.\n"), "Sfgrayplot", 1))
+	end
+	if ~(type(y)==1 & isreal(y)) then
+	  error(msprintf(gettext("%s: Input argument #%d must be real.\n"), "Sfgrayplot", 2))
 	end
 	if type(f)~=11 & type(f)~=13 then 
-		error("third argument must be a scilab function");
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: function expected.\n"), "Sfgrayplot", 3));
 	end
 	
 	p = length(x); q = length(y);

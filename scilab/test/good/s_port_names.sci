@@ -1,5 +1,25 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function s_port_names(sbloc)
-// Copyright INRIA
 
   scs_m=sbloc.model.rpar;
   
@@ -48,20 +68,20 @@ function s_port_names(sbloc)
     end
   end
   if inp<>[] then
-    [tmp,n_in]=sort(-inp)
+    [tmp,n_in]=gsort(-inp)
     standard_etiquette(sbloc, etiquettes_in(n_in), 'in')
   end
 
   if outp<>[] then
-    [tmp,n_out]=sort(-outp)
+    [tmp,n_out]=gsort(-outp)
     standard_etiquette(sbloc, etiquettes_out(n_out), 'out')
   end
   if cinp<>[] then
-    [tmp,n_cin]=sort(-cinp)
+    [tmp,n_cin]=gsort(-cinp)
     standard_etiquette(sbloc, etiquettes_clkin(n_cin), 'clkin')
   end
   if coutp<>[] then
-    [tmp,n_cout]=sort(-coutp)
+    [tmp,n_cout]=gsort(-coutp)
     standard_etiquette(sbloc, etiquettes_clkout(n_cout), 'clkout')
   end
   xset('font',font(1),font(2))

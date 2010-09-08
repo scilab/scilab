@@ -1,17 +1,24 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_fft2(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab fft2()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
-// F.B
 
 // Y = fft2(X)
 if rhs == 1 then
   X = getrhs(tree)
   // %c_fft2 and %b_fft2 are not defined
   X = convert2double(X)
-  tree.rhs=Rhs(X)
+  tree.rhs=Rhs_tlist(X)
   
   tree.lhs(1).dims=X.dims
   tree.lhs(1).type=Type(Double,Unknown)
@@ -22,7 +29,7 @@ elseif rhs == 3 then
   X = convert2double(X)
   m = convert2double(m)
   n = convert2double(n)
-  tree.rhs=Rhs(X,m,n)
+  tree.rhs=Rhs_tlist(X,m,n)
   
   tree.lhs(1).type=Type(Double,Unknown)
   

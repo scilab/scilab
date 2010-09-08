@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function s=%st_e(varargin)
 //extraction from struct
   w=varargin($);
@@ -10,7 +19,7 @@ function s=%st_e(varargin)
       // I<->ijk
       all_fields=getfield(1,w);all_fields=all_fields(3:$);
       fieldnum=find(f==all_fields);
-      if fieldnum==[] then error("invalid field name");end
+      if fieldnum==[] then error(gettext("Invalid field name.")); end
       good_list=getfield(2+fieldnum,w);
       if size(I,'*')==1 then
 	s=good_list(I)  //list(good_list(I)) ?
@@ -33,7 +42,7 @@ function s=%st_e(varargin)
     //field  x.f
     fields=getfield(1,w);nu=find(fields(3:$)==varargin(1));
     if nu==[] then
-      error(' '+varargin(1)+' is not a valid field name');return;
+      error(msprintf(gettext("%s is not a valid field name."),varargin(1)));return;
     end
     s=getfield(nu+2,w);
     if prod(getfield(2,w))==1 then s=s(1);end

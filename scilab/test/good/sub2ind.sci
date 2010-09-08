@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Serge STEER
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function I=sub2ind(dims,varargin)
 //sub2ind is used to determine the equivalent single index
 //corresponding to a given set of subscript values.
@@ -9,7 +18,7 @@ function I=sub2ind(dims,varargin)
 //I = sub2ind(dims,Mi) returns the linear index
 //equivalent to the n subscripts in the columns of the matrix Mi for a matrix
 //of size dims.
-//Author Serge Steer, Copyright INRIA  
+ 
   d=[1;cumprod(matrix(dims(1:$-1),-1,1))]
   for i=1:size(varargin)
     if varargin(i)==[] then I=[],return,end

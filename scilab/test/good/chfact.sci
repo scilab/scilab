@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function spcho=chfact(A)
 //cholesky factors, returned in a tlist
 //spcho  = {xlnz, nnzl, xsuper, xlindx, lindx, snode,
@@ -42,16 +51,16 @@ function [spcho]= blkfc1(spcho,level)
   [lnz,iflag]=blkfc1i(neqns,nsuper,xsuper,snode,spcho('split'),spcho('xlindx'),spcho('lindx'),spcho('xlnz'),lnz,iwsiz,iwork,tmpsiz,tmpvec,iflag,level);
   //
   if max(abs(lnz)) > 5d63 then
-    warning('  Possible matrix is not positive definite');
+    warning(gettext('  Possible matrix is not positive definite.'));
   end;
 
   select iflag
   case -1 then, 
-    error('nonpositive diag. encountered, matrix is not positive def'),
+    error(gettext('Nonpositive diag. encountered, matrix is not positive def.')),
   case -2 then, 
-    error('Insufficient working storage in blkfct, temp(*)'),
+    error(gettext('Insufficient working storage in blkfct, temp(*)')),
   case -3 then, 
-    error('Insufficient working storage in blkfct, iwork(*)'),
+    error(gettext('Insufficient working storage in blkfct, iwork(*)')),
   end;
   //
   spcho('lnz')=lnz;
@@ -92,17 +101,17 @@ function [spcho] = symfct(xadj,adjncy,perm,invp,cachsz,neqns)
   iwsiz  = 7*neqns+4;
   iwork=zeros(iwsiz,1);
   ///
-  if size(perm)~= [neqns,1] then, error(' SYMFCT requires PERM to be neqns x 1'),
+  if size(perm)~= [neqns,1] then, error(gettext(' SYMFCT requires PERM to be neqns x 1')),
   end;
-  if size(invp)~= [neqns,1] then, error(' SYMFCT requires INVN to be neqns x 1'),
+  if size(invp)~= [neqns,1] then, error(gettext(' SYMFCT requires INVN to be neqns x 1')),
   end;
-  if size(cachsz)~= [1,1] then, error(' SYMFCT requires CACHSZ  to be 1 x 1'),
+  if size(cachsz)~= [1,1] then, error(gettext(' SYMFCT requires CACHSZ  to be 1 x 1')),
   end;
   //
   [perm,invp,colcnt,nnzl,nsub,nsuper,snode,xsuper,iflag]=...
       sfinit(neqns,nnza,xadj,adjncy,perm,invp,iwsiz,iwork);
   //
-  if iflag == -1 then error(' Insufficient working storage in sfinit'),end;
+  if iflag == -1 then error(gettext(' Insufficient working storage in sfinit')),end;
   //
   bb=xsuper(1:nsuper+1,1);
   xsuper=bb

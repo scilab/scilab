@@ -1,17 +1,28 @@
 function scicos_play(fil)
 // Copyright INRIA
 funcprot(0)
-load "SCI/modules/scicos/macros/lib"
+
+if exists('scicos_scicoslib')==0 then
+  load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+end
+
+if exists('scicos_autolib')==0 then
+  load("SCI/modules/scicos/macros/scicos_auto/lib") ;
+end
+
+if exists('scicos_utilslib')==0 then
+  load("SCI/modules/scicos/macros/scicos_utils/lib") ;
+end
 
 global LineCount
 
-x_mess=funptr('x_message');clearfun('x_message')
+//x_mess=funptr('x_message');clearfun('x_message')
 x_dia=funptr('x_dialog');clearfun('x_dialog')
 x_mdia=funptr('x_mdialog');clearfun('x_mdialog')
 c_cho=funptr('x_choose');clearfun('x_choose')
 xcli=funptr('xclick');clearfun('xclick')
 xgetm=funptr('xgetmouse');clearfun('xgetmouse')
-xgetf=funptr('xgetfile');clearfun('xgetfile')
+//xgetf=funptr('xgetfile');clearfun('xgetfile')
 
 
 //reload the functions using the redefined primitive functions
@@ -41,11 +52,11 @@ names=[
     'SaveasInterfFunc_'
     'do_addnew'
     'do_export'
-    'do_load'
+    'do_load' 
     'do_exit'
     'x_matrix']
 for k=1:size(names,'r')
-  getf(get_function_path(names(k)))
+  exec(get_function_path(names(k)))
 end
 
 
@@ -79,67 +90,25 @@ global %fig_counter
 
 
 deff('Snapshot_()',..
-     ['global %fig_counter'
-      '%fig_counter=%fig_counter+1;'
-      'scs_m1=scs_m;scs_m1.props.title(1)='' '' '
-      'do_export(scs_m1,''fig''+string(%fig_counter));'
-      'rect_=dig_bound(scs_m)'
-      'rect_=min((rect_(3)-rect_(1))*12/400,12)'
-      'txti=[''\begin{center}'';''\includegraphics[angle=270,width=''+string(rect_)+''cm]{fig''+string(%fig_counter)+''.eps}'';''\end{center}'']'
-      'txti=[''  '';txti;''  '']'
-      '//mputl(txti,%J)'
-      'Cmenu=''Replot'''])
-
+     ['Cmenu=''Replot'''])
+      
 deff('GrabPalette_()',..
      ['global %fig_counter'
       '[c_i,c_x,c_y,c_w]=xclick()'
-      '%fig_counter=%fig_counter+1;'
-      'dr=driver();driver(''Pos'');'
-      'fname=''fig''+string(%fig_counter)'
-      'xinit(fname)';
-      'xtape(''replay'',c_w);xend();driver(dr)'
-      'if MSDOS then'
-      '  comm=pathconvert(SCI+''\tools\printer\BEpsf'',%f,%f,''w'')'
-      '  rep=unix_g('''''"''+comm+'''''" ''+fname)'
-      'else'
-      '  rep=unix_g(SCI+''/tools/printer/BEpsf ''+fname)'
-      'end'
-      'txt2=x_dialog([''Enter caption''],'''');'
-      'txti=[''\begin{figure}\begin{center}'';''\fbox{\includegraphics[angle=0,width=12cm]{fig''+string(%fig_counter)+''.eps}}'';''\end{center}\caption{\label{labyy''+string(%fig_counter)+''}''+txt2+''}'';''\end{figure}'']'
-      'txti=[''  '';txti;''  '']'
-      '//mputl(txti,%J)'
-      'Cmenu=''Replot'''])
+      'Cmenu=''Replot'''])      
 
 deff('GrabScope_()',..
      ['global %fig_counter'
       '[c_i,c_x,c_y,c_w]=xclick()'
-      'xset(''default'')'
-      '%fig_counter=%fig_counter+1;'
-      'dr=driver();driver(''Pos'');'
-      'fname=''fig''+string(%fig_counter)'
-      'xinit(fname)';
-      'xtape(''replay'',c_w);xend();driver(dr)'
-      'if MSDOS then'
-      '  comm=pathconvert(SCI+''\tools\printer\BEpsf'',%f,%f,''w'')'
-      '  rep=unix_g('''''"''+comm+'''''" ''+fname)'
-      'else'
-      '  rep=unix_g(SCI+''/tools/printer/BEpsf ''+fname)'
-      'end'
-      'txt2=x_dialog([''Enter caption''],'''');'
-      'txti=[''\begin{figure}\begin{center}'';''\includegraphics[angle=0,width=12cm]{fig''+string(%fig_counter)+''.eps}'';''\end{center}\caption{\label{labyy''+string(%fig_counter)+''}''+txt2+''}'';''\end{figure}'']'
-      'txti=[''  '';txti;''  '']'
-      '//mputl(txti,%J)'
       'Cmenu=''Replot'''])
-
 
 deff('Comment_()',..
      ['txt=x_dialog([''Comments''],'''');'
-      '//mputl(txt,%J)'
       'Cmenu=''Open/Set'''])
 
 
 
-getf('SCI/modules/scicos/demos/dialogs_play.sci')
+exec('SCI/demos/scicos/dialogs_play.sci')
 execstr('tk_getfile=xgetfile')
 execstr('tk_savefile=xgetfile')
 tk_getcolor=getcolor
@@ -159,14 +128,14 @@ end
 
 
 //retore the primitives
-newfun('x_message',x_mess)
+//newfun('x_message',x_mess)
 newfun('x_dialog',x_dia)
 newfun('x_mdialog',x_mdia)
 newfun('x_choose',c_cho)
 newfun('xclick',xcli)
 newfun('xgetmouse',xgetm)
-newfun('xgetfile',xgetf)
-if ierr<>0 then
+//newfun('xgetfile',xgetf)
+if ierr<>0 then 
  write(%io(2),'Error had occurred at line '+string(LineCount)+' of file '+fil)
 end
 endfunction

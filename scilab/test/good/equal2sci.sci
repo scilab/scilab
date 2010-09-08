@@ -1,11 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [sci_instr]=equal2sci(mtlb_instr)
-// Copyright INRIA
 // Convertion of a Matlab instruction or expression to Scilab
 // Input:
 // - mtlb_instr: Matlab instr or expression to convert
 // Output:
 // - sci_instr: Scilab equivalent for mtlb_instr
-// V.C.
 
 // Trees to insert in converted function tree
 global("m2sci_to_insert_b")
@@ -32,7 +39,7 @@ for k=1:size(mtlb_instr.lhs)
     lhslist($+1)=Variable(mtlb_instr.lhs(k).name,INFER)
   elseif typeof(mtlb_instr.lhs(k))=="operation" then
     if mtlb_instr.lhs(k).operator<>"ins" then
-      error("equal2sci(): lhs cannot be a "+mtlb_instr.lhs(k).operator+" operation")
+      error(msprintf(gettext("lhs cannot be a %s operation."),mtlb_instr.lhs(k).operator))
     end
     
     [bval,index]=isdefinedvar(mtlb_instr.lhs(k).operands(1))
@@ -46,7 +53,7 @@ for k=1:size(mtlb_instr.lhs)
 	mtlb_instr.lhs(k).operands,..
 	list(Variable(mtlb_instr.lhs(k).operands(1).name,INFER)))
   else
-    error("equal2sci(): lhs cannot be a "+typeof(mtlb_instr.lhs(k)))
+    error(msprintf(gettext("lhs cannot be a %s."),typeof(mtlb_instr.lhs(k))))
   end
 end
 
@@ -78,7 +85,7 @@ else
     sci_instr.lhs(1).dims=sci_expr.dims;
     sci_instr.lhs(1).type=sci_expr.type;
   else
-    error("equal2sci: "+typeof(sci_instr.expression)+" is not implemented !");
+    error(msprintf(gettext("%s is not yet implemented."),typeof(sci_instr.expression)));
   end
  
   // If lhs are insertion operation, they also have to be converted

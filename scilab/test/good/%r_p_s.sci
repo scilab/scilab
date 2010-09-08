@@ -1,7 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function f=%r_p_s(f,s)
 // %r_p_s(p,n) computes f^s for f a rational matrix s scalar or vector
 //!
-// Copyright INRIA
+
 if s==[] then f=[],return,end
 if or(imag(s)<>0)|or(int(s)<>s) then error(30),end
 
@@ -11,7 +20,7 @@ if ms==1&ns==1 then
   if m==1|n==1 then //Element wise exponentiation f.^s with f vector
     if s<0 then 
       num=f('num')
-      if or(abs(coeff(num(:)))*ones(maxi(degree(num))+1,1)==0) then
+      if or(abs(coeff(num(:)))*ones(max(degree(num))+1,1)==0) then
 	error(27)
       end
       s=-s

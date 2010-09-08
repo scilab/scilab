@@ -1,7 +1,11 @@
-//
-//Author : F.Leray
-//Copyright INRIA
-//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+// Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function plot(varargin)
 // Try to build a new better parser that could manage things like:
@@ -10,33 +14,13 @@ function plot(varargin)
 
 [lhs,rhs]=argn(0);
 
-isold=get('figure_style')=='old'
-
-if isold
-  T = varargin
-  oldplot(T(:));
-  return;
-end
-
-
 if ~rhs
 	//LineSpec and PropertySpec examples:
-	title_demo = [
-		'';
-		'Demo of plot()';
-		'========================================';
-		''];
-	
-	s_mat=["t=0:%pi/20:2*%pi;";
-	"subplot(211)";
-	"plot(t,sin(t),''ro-.'',t,cos(t),''cya+'',t,abs(sin(t)),''--mo'')";
-	"subplot(212)";
-	"plot([t ;t],[sin(t) ;cos(t)],''xdat'',[1:2])"];
-	
-	write(%io(2),title_demo);
-	write(%io(2),s_mat);
-	write(%io(2),' ');
-	execstr(s_mat);
+	t = 0:%pi/20:2*%pi;
+	subplot(211);
+	plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo');
+	subplot(212);
+	plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2]);
 	return;
 end
 
@@ -44,6 +28,7 @@ end
 
 CurColor = 0; // current color used if no color specified via LineSpec
 // nor PropertyName
+
 
 
 ListArg = varargin;
@@ -64,49 +49,43 @@ end
 nv = size(ListArg)
 
 
-T=[];
-d=[];
+argTypes=[];
+couple=[];
 
 typeOfPlot = 'plot';
 provided_data = 2;
 
-for k=1:nv
-  T(k,1) = type(ListArg(k))
+for curArgIndex=1:nv
+  argTypes(curArgIndex,1) = type(ListArg(curArgIndex))
 end
 
-Ttmp=T;
+Ttmp=argTypes;
 
 for i=1:nv-1
-  e=[];
-  e=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130])) // to accept double, macro function or primitive as second argument
+  acceptedTypes=[];
+  acceptedTypes=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130])) // to accept double, macro function or primitive as second argument
 
-  if (e<>[]) then
-    d=[d i];
+  if (acceptedTypes<>[]) then
+    couple=[couple i];
     Ttmp(i,1)  = 99; // Replace a known type by 99 (no meaning) to count it once only!
-    Ttmp(i+1,1)= 99; // to avoid having (x1,y1,x2,y2) ->d=[1,2,3]
-    // With this trick, d=[1,3];
+    Ttmp(i+1,1)= 99; // to avoid having (x1,y1,x2,y2) ->couple=[1,2,3]
+    // With this trick, couple=[1,3];
   end
 
-  //  disp("i=");
-  //  disp(i);
-  //  disp("d vaut:");
-  //  disp(d)
 end
 
 
-if (d==[]) // No data couple found
+if (couple==[]) // No data couple found
   // Search for at least a single data , i.e.: plot(y)
-  //  disp(T)
-  //  disp(type(T(1,1)))
 
-  if (T(1,1)==1 & ListArg(1)<>[]) then // case plot(SINGLE y,...)
-    d = 1; 
+  if (argTypes(1,1)==1 & ListArg(1)<>[]) then // case plot(SINGLE y,...)
+    couple = 1; 
     provided_data = 1;
     
-    if (modulo(nv-d,2)<>0) then
-      P1 = d+2 // Position of the first PropertyName field
+    if (modulo(nv-couple,2)<>0) then
+      P1 = couple+2 // Position of the first PropertyName field
     else
-      P1 = d+1
+      P1 = couple+1
     end
     
   else
@@ -114,29 +93,23 @@ if (d==[]) // No data couple found
     return;
   end
   
-  //  disp("ICII--------------------")
-  //  disp("d vaut:")
-  //  disp(d);
-  //  disp("P1=")
-  //  disp(P1)
-  
 else
   
   // Some test to check wrong inputs
   //
   // 1. Test if 2 data couples (first : type==1, second : type=[1,13,130]) 
   // are at least separated by 2 indices
-  if (d(2:$)-d(1:$-1)<2)
+  if (couple(2:$)-couple(1:$-1)<2)
     warning("Error inside input argument !");
     return;
   end
 
   // 2. Test if no string couples happen before P1 (see below for P1 definition)
-  for i=1:d($)
-    e=[];
-    e=find(Ttmp(i,1)==10 & Ttmp(i+1,1)==10)
+  for index=1:couple($)
+    acceptedTypes=[];
+    acceptedTypes=find(Ttmp(index,1)==10 & Ttmp(index+1,1)==10)
     
-    if (e<>[]) then
+    if (acceptedTypes<>[]) then
       warning("Error inside input argument : String argument is an unknown option.");
       return;
     end
@@ -144,53 +117,46 @@ else
 
 
   
-  if (modulo(nv-(d($)+1),2)<>0) then
-    P1 = d($)+3 // Position of the first PropertyName field
+  if (modulo(nv-(couple($)+1),2)<>0) then
+    P1 = couple($)+3 // Position of the first PropertyName field
   else
-    P1 = d($)+2
+    P1 = couple($)+2
   end
   
 end
 
-numplot = size(d,'*');
+numplot = size(couple,'*');
 
-P = zeros(numplot,3); 
-// P is a matrix storing the index of x, y and linespec
+xyIndexLineSpec = zeros(numplot,3); 
+// xyIndexLineSpec is a matrix storing the index of x, y and linespec
 // if one of these indices is 0 => it does not exist
 // (which is possible for x and linepsec, not for y)
 
-//disp("T vaut:");
-//disp(T)
-
 if (provided_data == 2) then
 
-  for k=1:size(d,'*')
-    P(k,1:2) = d(k) +[0,1] // x,y index storage
+  for curCouple=1:size(couple,'*')
+    xyIndexLineSpec(curCouple,1:2) = couple(curCouple) +[0,1] // x,y index storage
 
-    if (d(k)+2 < P1)
-      if (T(d(k)+2,1)==10) then // LineSpec treatment
-	P(k,3) = d(k)+2;
+    if (couple(curCouple)+2 < P1)
+      if (argTypes(couple(curCouple)+2,1)==10) then // LineSpec treatment
+	xyIndexLineSpec(curCouple,3) = couple(curCouple)+2;
       end
     end
-    //    disp(P);
   end
 else
   // we are in the case where: plot(SINGLE y,... x not specified
   // or plot(handle,SINGLE y,...
-  P(1,1) = 0; // no x specified
-P(1,2) = d;
+  xyIndexLineSpec(1,1) = 0; // no x specified
+  xyIndexLineSpec(1,2) = couple;
 
 //pause;
 
-if (d+1 < P1)
-  if (T(d+1,1)==10) then // LineSpec treatment
-    P(1,3) = d+1;
+if (couple+1 < P1)
+  if (argTypes(couple+1,1)==10) then // LineSpec treatment
+    xyIndexLineSpec(1,3) = couple+1;
   end
 end
 end
-
-//disp("P1 vaut:");
-//disp(P1);
 
 
 
@@ -200,20 +166,25 @@ current_figure=gcf();
 cur_draw_mode = current_figure.immediate_drawing;
 current_figure.immediate_drawing = 'off';
 
+// check wether this is the first plot for the axes in which we will draw
+curAxes = gca();
+// save auto_clear state.
+OldAutoClear = curAxes.auto_clear;
+
+isFirstPlot = (curAxes.children == [])
 
 //Now, we plot the decomposed plots one by one with their own linespec
 // provided_data = 2 : x and y are provided
-
-//disp("P=")
-//disp(P)
-
-//disp("ListArg=")
-//disp(ListArg)
 
 FinalAgreg=[]; // Final Compound containing all the new created plots.
 
 //for i=numplot:-1:1
 for i=1:numplot
+  // Set off auto_clear for allowing multiple graphics entity
+  // will be restored behond
+  if i>1 then
+    curAxes.auto_clear='off';
+  end
   
   //default values
   Marker=[];
@@ -225,28 +196,57 @@ for i=1:numplot
 
   if (provided_data == 2) then
     
-    if (type(ListArg(P(i,2))) == 13 | type(ListArg(P(i,2))) == 130)
+    if (type(ListArg(xyIndexLineSpec(i,2))) == 13 | type(ListArg(xyIndexLineSpec(i,2))) == 130)
       // A function (macro or primitive) is given. We need to build the vector or matrix.
-      sizefirstarg = size(ListArg(P(i,1)));
-      fonction = ListArg(P(i,2));
-      firstarg = ListArg(P(i,1));
+      sizefirstarg = size(ListArg(xyIndexLineSpec(i,1)));
+      buildFunc = ListArg(xyIndexLineSpec(i,2));
+      firstarg = ListArg(xyIndexLineSpec(i,1));
       tmp = [];
-      for ii=1:sizefirstarg(1,2)
-	for jj=1:sizefirstarg(1,1)
-	  tmp(jj,ii) = fonction(firstarg(jj,ii));
-	end
-      end
-      ListArg(P(i,2)) = tmp;
-    end
 
-    [X,Y] = checkXYPair(typeOfPlot,ListArg(P(i,1)),ListArg(P(i,2)),current_figure,cur_draw_mode)
-  else
-    if or(size(ListArg(P(1,2)))==1)  // If this is a vector
-      X=1:length(ListArg(P(1,2))); // insert an abcsissa vector of same length,
-    else                                  // if this is a matrix,
-      X=1:size(ListArg(P(1,2)),1); // insert an abcsissa vector with 
+      for ii=1:sizefirstarg(1,2)
+        for jj=1:sizefirstarg(1,1)
+ 	  
+          // function evaluation may fail
+          // try/cacth is buggy for now
+          // so use execstr until the bug is fixed
+          err = execstr('tmp(jj,ii) = buildFunc(firstarg(jj,ii))','errcatch','n');
+
+          if (err <> 0) then
+            // reset data
+            ResetFigureDDM(current_figure, cur_draw_mode);
+
+            // get error
+            [err_message, err_number, err_line, err_func] = lasterror(%t);
+
+			clear buildFunc;
+            // print it
+            if (err_func <> "") then
+			// ascii(10) = \n
+             error(msprintf(gettext("%s: Error : unable to evaluate input function ''%s''.") + ascii(10) + gettext("Error %d at line %d of the function: ''%s''"), "plot", err_func,err_number, err_line, err_message));
+            else
+             error(msprintf(gettext("%s: Error : unable to evaluate input function.") + ascii(10) + gettext("Error %d at line %d of the function: ''%s''"), "plot", err_number, err_line, err_message));
+            end
+            // exit function
+            return;
+          end
+
+        end
+      end
+
+      
+      ListArg(xyIndexLineSpec(i,2)) = tmp;
+      // if there is an other iteration, we will have error message redefining function.
+      // we need to clear here and not before, because user must see the warning if needed.
+      clear buildFunc;
     end
-    [X,Y] = checkXYPair(typeOfPlot,X,ListArg(P(1,2)),current_figure,cur_draw_mode)
+    [X,Y] = checkXYPair(typeOfPlot,ListArg(xyIndexLineSpec(i,1)),ListArg(xyIndexLineSpec(i,2)),current_figure,cur_draw_mode)
+  else
+    if or(size(ListArg(xyIndexLineSpec(1,2)))==1)  // If this is a vector
+      X=1:length(ListArg(xyIndexLineSpec(1,2))); // insert an abcsissa vector of same length,
+    else                                  // if this is a matrix,
+      X=1:size(ListArg(xyIndexLineSpec(1,2)),1); // insert an abcsissa vector with 
+    end
+    [X,Y] = checkXYPair(typeOfPlot,X,ListArg(xyIndexLineSpec(1,2)),current_figure,cur_draw_mode)
   end
 
   // Case if 'Xdata', 'Ydata' or 'Zdata' have been set in (PropertyName,Propertyvalue) couples
@@ -319,7 +319,7 @@ for i=1:numplot
   
 
   
-  //Now we have an array P [numplot x 3] containing indices pointing on T for :
+  //Now we have an array xyIndexLineSpec [numplot x 3] containing indices pointing on T for :
   // - x (<>0 if existing)
   // - y
   // - linespec (<>0 if existing)
@@ -333,14 +333,11 @@ for i=1:numplot
   
   
   
-  if (P(i,3)<>0) then // if we have a line spec <=> index <> 0
-    [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(P(i,3)),current_figure,cur_draw_mode); 
+  if (xyIndexLineSpec(i,3)<>0) then // if we have a line spec <=> index <> 0
+    [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(xyIndexLineSpec(i,3)),current_figure,cur_draw_mode); 
   end
 
-  
   // The plot is made now :
-  
-  //  pause;
   err = execstr('plot2d(X,Y)','errcatch','m');
   
   if err <> 0
@@ -360,7 +357,7 @@ for i=1:numplot
   end
 
   for ii=size(agreg.children,'*'):-1:1
-    e=agreg.children(ii); // we apply linespec to the lines
+    curPolyline=agreg.children(ii); // we apply linespec to the lines
 
     // Color treatment : if no color specified by LineSpec nor PropertyName
     // Set the default color to the curve
@@ -368,42 +365,35 @@ for i=1:numplot
       [Color,CurColor] = setDefaultColor(CurColor);
     end
 
-
-    //    disp('CurColor=')
-    //    disp(CurColor);
-    //    disp('Color=')
-    //    disp(Color)
-
-    //    disp('Line=');
-    //    disp(Line);
-
     if (Marker == %T)
-      e.mark_style=MarkerStyle;
-      e.mark_mode ='on';
-      e.mark_foreground = Color;
-      e.mark_style=MarkerStyle;
-      e.mark_size=MarkerSize;
+      curPolyline.mark_style=MarkerStyle;
+      curPolyline.mark_mode ='on';
+      curPolyline.mark_foreground = Color;
+      curPolyline.mark_style=MarkerStyle;
+      curPolyline.mark_size=MarkerSize;
     else
-      e.mark_mode ='off'
+      curPolyline.mark_mode ='off'
     end
 
     if (Line == %T)
-      e.line_mode='on';
-      e.foreground = Color;
-      e.line_style = LineStyle;
+      curPolyline.line_mode='on';
+      curPolyline.foreground = Color;
+      curPolyline.line_style = LineStyle;
     else
-      e.line_mode='off'
+      curPolyline.line_mode='off'
     end
 
     if (Line == %F & Marker ==%F) // no linespec nor PropertyName set
-      e.line_mode='on';
-      e.foreground = Color;
-      e.line_style = LineStyle;
+      curPolyline.line_mode='on';
+      curPolyline.foreground = Color;
+      curPolyline.line_style = LineStyle;
     end
 
   end
 end
 
+//Reset auto_clear Property
+curAxes.auto_clear = OldAutoClear;
 
 ///////////////////////////////////
 //Global Property treatment      //
@@ -411,28 +401,22 @@ end
 ///////////////////////////////////
 
 
-//disp("Start Global Property treatment")
 
 // Those properties will be applied to Agreg children
 Agreg = glue(FinalAgreg(1:$))
 
-k=find(Agreg.children.type=="Compound")
+nbCompound = find(Agreg.children.type=="Compound")
 
-while (k<>[])
-  k=k(1);
-  unglue(Agreg.children(k));
-  k=find(Agreg.children.type=="Compound")
+while (nbCompound<>[])
+  nbCompound=nbCompound(1);
+  unglue(Agreg.children(nbCompound));
+  nbCompound=find(Agreg.children.type=="Compound")
 end
 
-
-//disp("Agreg=")
-//disp(Agreg);
 
 
 // P1 is the position of the first PropertyName field.
 Property = P1;
-
-//disp("JE SUIS LA...");
 
 Curves = Agreg.children
 //Curves(:,1) = Curves(:,$:-1:1);
@@ -446,14 +430,13 @@ while (Property <= nv-1)
   Property = Property+2;
 end
 
-
-
-
-
-//disp("PUIS LA...");
-
-
-//disp("End Global Property treatment")
+// force drawing of box like in matlab
+// for a first plot
+// unless we are using centered axes
+// to keep compatibility with Scilab 4
+if  isFirstPlot & curAxes.x_location <> "origin" & curAxes.y_location <> "origin" then
+  curAxes.box = "on";
+end
 
 
 
@@ -464,19 +447,3 @@ ResetFigureDDM(current_figure, cur_draw_mode)
 endfunction
 
 
-
-
-// Reset the Default Drawing Mode (DDM) of the figure
-// immediate_drawing is set to its input value.
-function ResetFigureDDM(cur_figure, cur_draw_mode)
-
-if type(cur_figure) == 9
-  if cur_figure.type == "Figure"
-    cur_figure.immediate_drawing = cur_draw_mode;
-  else
-    warning("Error in ResetFigureDDM : input argument must be a figure graphic handle");
-    return;
-  end
-end
-
-endfunction

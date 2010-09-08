@@ -1,11 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_size(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab size()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 // Emulation function: mtlb_size()
-// V.C.
 
 // In Matlab : size('str1') = [1 4] but in Scilab : size('str1') = [1 1]
 // so we convert expr to ascii code matrix which have good size
@@ -17,13 +24,12 @@ if rhs==2 then
   if or(X.vtype==[String,Unknown]) then
     X = convert2double(X)
   end
-  tree.rhs=Rhs(X,dim)
+  tree.rhs=Rhs_tlist(X,dim)
   
   // Matlab can work with dim > size(size(X),2) but not Scilab
   if typeof(dim)=="cste" then
     if dim.value>size(X.dims) then
-      set_infos(["M2SCI found: "+expression2code(dim)+" > size(size("+expression2code(X)+"),2)";
-	  "So result is set to 1"],0)
+      set_infos(msprintf(gettext("M2SCI found: %s > size(size(%s),2),\nSo result is set to 1."),expression2code(dim),expression2code(X)),0)
       tree=Cste(1)
     else
       tree.lhs(1).dims=list(1,1)
@@ -41,7 +47,7 @@ else
   if or(X.vtype==[String,Unknown]) then
     X = convert2double(X)
   end
-  tree.rhs=Rhs(X)
+  tree.rhs=Rhs_tlist(X)
   
   // d1 = size(X)
   if lhs==1 then

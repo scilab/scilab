@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function hz=iir(n,ftype,fdesign,frq,delta)
 // hz=iir(n,ftype,fdesign,frq,delta)
 //macro which designs an iir digital filter
@@ -25,17 +34,41 @@ function hz=iir(n,ftype,fdesign,frq,delta)
 //           :                    0<ripple<delta(2)   in stopband
 //
 //!
-// author: C. Bunks  date: 9 Sept 1988
-// Copyright INRIA
 
 //select analog filter design for low-pass filter with fc=.25
+  if type(n)<>1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'iir',1))
+  end
+  if  size(n,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"),'iir',1))
+  end
+  if  n<0|n<>round(n) then
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Non-negative integers expected.\n"),'iir',1))
+  end
 
-if maxi(abs(frq))>0.5 then error('iir:frq components must be less than 0.5'),end
-if delta(1)<0|delta(2)>1 then error('iir: delta components must be in [0 1]'),end
+  if and(ftype<>['lp','hp','bp','sb']) then
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"iir",2,"''lp'',''hp'',''bp'',''sb''"))
+  end
+  if and(fdesign<>['butt','cheb1','cheb2','ellip']) then
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"iir",2,"''butt'',''cheb1'',''cheb2'',''ellip''"))
+  end
+  if type(frq)<>1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'iir',4))
+  end
+  if type(delta)<>1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'iir',5))
+  end
 
-[hs,pc,zc,gc]=analpf(n,fdesign,delta,2);
-//make digital low-pass filter from analog low-pass filter
-z=poly(0,'z');[pd,zd,gd]=bilt(pc,zc,gc,2*(z-1),(z+1));
-//do change of variables to obtain general digital filter
-hz=trans(pd,zd,gd,ftype,frq);
+  if max(abs(frq))>0.5 then 
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be in the interval [%s, %s].\n"),'iir',4,"0","0.5"));
+  end
+  if delta(1)<0|delta(2)>1 then 
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be in the interval [%s, %s].\n"),'iir',4,"0","1"));
+  end
+
+  [hs,pc,zc,gc]=analpf(n,fdesign,delta,2);
+  //make digital low-pass filter from analog low-pass filter
+  z=poly(0,'z');[pd,zd,gd]=bilt(pc,zc,gc,2*(z-1),(z+1));
+  //do change of variables to obtain general digital filter
+  hz=trans(pd,zd,gd,ftype,frq);
 endfunction

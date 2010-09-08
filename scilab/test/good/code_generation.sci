@@ -1,23 +1,42 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a,..
                               N,Ninitiale,impl_type,type_meth,oper)
-// Copyright INRIA
-// développé par EADS-CCR
-// Cette fonction conserne la génération du code de la la fonction de calcul du bloc EDP //
-// entrées :                                                                             //
-//           - equations : vecteurs de chaine de caractères corespond aux équation ODE   //
-//                         ou DAE générées selon les différentes methodes de             //
-//                         discrètisation.                                               //
-//           - impl_type : entier correspond au type des équation DAE (implicites)       //
-//                         ( -1 pour les systèmes algébriques, 1 pour les systèmes       //
-//                         algébro-différentiels).                                       //
+// Cette fonction conserne la gÃ©nÃ©ration du code de la la fonction de calcul du bloc EDP //
+// entrÃ©es :                                                                             //
+//           - equations : vecteurs de chaine de caractÃ¨res corespond aux Ã©quation ODE   //
+//                         ou DAE gÃ©nÃ©rÃ©es selon les diffÃ©rentes mÃ©thodes de             //
+//                         discrÃ©tisation.                                               //
+//           - impl_type : entier correspond au type des Ã©quations DAE (implicites)       //
+//                         ( -1 pour les systÃ¨mes algÃ©briques, 1 pour les systÃ¨mes       //
+//                         algÃ©bro-diffÃ©rentiels).                                       //
 // sortie :                                                                              //
-//           - Code : vecteur de chaine de caratères qui renvoi le code du bloc à        //
+//           - Code : vecteur de chaine de caratÃ¨res qui renvoi le code du bloc Ã         //
 //                    imprimer par la suite dans le fichier .c                           //
 // pour plus d'information voir les fonctions de calcul des blocs Scicos de type 4       //
 // (explicite) et de type 10004 (implicite).                                             //
 //---------------------------------------------------------------------------------------//
 
-  Code=['#include '"'+SCI+'/modules/scicos/includes/scicos_block.h'"'
+  Code=['#include <scicos_block.h>'
         '#include <math.h>'
         ' '       
         'void  '+rdnom+'(scicos_block *block,int flag)'
@@ -56,28 +75,28 @@ function Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a,..
         equations
         ' }else if (flag == 1){'];
   if (type_meth == 3 & (find(oper == 2) ~= [] | find(oper == 4) ~= [])) then      
-    sorties1=['   /* la première sortie */ '
+    sorties1=['   /* la premiÃ¨re sortie */ '
               '   for (i=0;i<'+string(N)+';i++){'
               '     outptr[0][i]=x[i+'+string(N)+'];'
               '   }']; 
-    sorties2=['   /* la deuxième sortie */ '];
+    sorties2=['   /* la deuxiÃ¨me sortie */ '];
     for i=1:size(eq_pts_mes,'*')
       sorties2=[sorties2
                '   outptr[1]['+string(i-1)+']='+eq_pts_mes(i)+';'];
     end
   else
     if (kbc(1) == 1) & (DF_type == 0 | DF_type == 1) then
-    sorties1=['   /* la première sortie */ '
+    sorties1=['   /* la premiÃ¨re sortie */ '
               '   for (i=1;i<'+string(Ninitiale)+';i++){'
              '     outptr[0][i]=x[i];'
              '   }']; 
     else
-      sorties1=['   /* la première sortie */ '
+      sorties1=['   /* la premiÃ¨re sortie */ '
                 '   for (i=0;i<'+string(Ninitiale)+';i++){'
                 '     outptr[0][i]=x[i];'
                 '   }']; 
     end
-    sorties2=['   /* la deuxième sortie */ '];
+    sorties2=['   /* la deuxiÃ¨me sortie */ '];
     for i=1:size(eq_pts_mes,'*')
       sorties2=[sorties2
                '   outptr[1]['+string(i-1)+']='+eq_pts_mes(i)+';'];

@@ -1,24 +1,43 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [coef1,coef2,coef21,coef22]=Disc2_5_FVM1d(h,kbc,operi,N,xn,xw,a1)
-// Copyright INRIA
-// développé par EADS-CCR
-// Cette fonction renvoie les différentes matrices de discrétisation     //
-// des opérateurs du/dx et dq/dx (q pour le changement de variable dans  //
-// le cas de l'opérateur d2u/dx2)                                        //
+// Cette fonction renvoie les diffï¿½rentes matrices de discrï¿½tisation     //
+// des opï¿½rateurs du/dx et dq/dx (q pour le changement de variable dans  //
+// le cas de l'opï¿½rateur d2u/dx2)                                        //
 // sorties :                                                             //
 //    - coef1 (Double) : matrice de l'integrale de du/dx sur une cellule //
-//    - coef2 (Double) : vecteur correspond à l'implémentation des       //
+//    - coef2 (Double) : vecteur correspond ï¿½ l'implï¿½mentation des       //
 //      conditions aux limites                                           //
 //    - coef21 (Double) : matrice d'integrale de dq/dx sur une cellule   //
-// entrées :                                                             //
+// entrï¿½es :                                                             //
 //    - h (Double) : est le pas de discretisation                        //
 //    - kbc (Entier) : vecteur de types des conditions au limites        //
-//    - operi (Entier) : l'opérateur concerné 2 ou 5                     //
+//    - operi (Entier) : l'opï¿½rateur concernï¿½ 2 ou 5                     //
 //    - N (Entier) : est le nombre de noeuds                             //
 //    - xn (Double) : vecteur colonne representant les noeuds            //
 //    - xw (Double) : vecteur colonne representant les cellules          //
-//      (les volumes de contrôle)                                        //
-//    - a1 (String) : coefficient a(x) de l'opérateur pour lequel nous   //
-//      calculons l'intégrale.                                           //
+//      (les volumes de contrï¿½le)                                        //
+//    - a1 (String) : coefficient a(x) de l'opï¿½rateur pour lequel nous   //
+//      calculons l'intï¿½grale.                                           //
 //-----------------------------------------------------------------------//
   
   coef1=[]; coef2=[]; coef21=[]; coef22=[];

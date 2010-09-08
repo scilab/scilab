@@ -1,3 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2000 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function [s]=variancef(x,fre,orien)
 //
 //This function  computes  the variance  of the values  of   a vector or
@@ -19,38 +30,33 @@ function [s]=variancef(x,fre,orien)
 //each row of  x, each value counted with  the multiplicity indicated by
 //the corresponding value of fre.
 //
-//author: carlos klimann
-//
-//date: 2000-01-20
-//
-//Fixed by ck 2001-03-28: verify if sum(fre)> 1
 //
   if x==[] then s=%nan, return, end
   [lhs,rhs]=argn(0)
   if rhs<2|rhs>3 then
-    error('variancef requires two or three inputs.'),
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"variancef",2,3)),
   end
   if x==[]|fre==[]|fre==0, s=%nan;return,end
   if rhs==2 then
     sumfre=sum(fre)
-    if sumfre <= 1 then error('Frequencies must be greater than 1'), end
+    if sumfre <= 1 then error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"),"variancef", 2, 1)), end
     s=(sum(((x-meanf(x,fre)).^2).*fre))/(sumfre-1),
     return,
   end
   if orien=='*',
     sumfre=sum(fre)
-    if sumfre <= 1 then error('Frequencies must be greater than 1'),end
+    if sumfre <= 1 then error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"),"variancef", 2, 1)),end
     s=(sum(((x-meanf(x,fre)).^2).*fre))/(sumfre-1),
   elseif orien=='r'|orien==1,
     sumfre=sum(fre,'r')
-    if or(sumfre==0) then error('Frequencies must be greater than 1'),end
+    if or(sumfre==0) then error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"),"variancef",2,1)),end
     s=(sum(((x-ones(size(x,'r'),1)*meanf(x,fre,'r')).^2).*fre))./ ..
       (sumfre-1)
   elseif orien=='c'|orien==2,
     sumfre=sum(fre,'c')
-    if or(sumfre==0) then error('Frequencies must be greater than 1'),end
-    s=(sum((x-(meanf(x,fre,'c')*ones(1,size(x,'c')))).^2,'c'))./ ..
+    if or(sumfre==0) then error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"),"variancef",2,1)),end
+    s=(sum((x-(meanf(x,fre,'c')*ones(1,size(x,'c')))).^2,'c'))./..
       (sumfre-1)
-  else error('3rd argument of variancef must be equal to *, c, r, 1 or 2'),
+  else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"variancef",3,"*","c","r",1,2))
   end
 endfunction

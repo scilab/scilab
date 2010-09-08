@@ -1,39 +1,47 @@
-function scs_show(scs_m,win)
-// Copyright INRIA
-  oldwin=xget('window')
-  xset('window',win);xbasc()
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
+function scs_show(scs_m, win)
+//**
+//** 24 Nov 2006: Super simplified version
+//**
+
+  if %scicos_debug_gr then
+    disp(_("scs_show active..."))
+  end
+
+  gh_curwin = scf(win) ;
+  
   if ~set_cmap(scs_m.props.options('Cmap')) then // add colors if required
     scs_m.props.options('3D')(1)=%f //disable 3D block shape
   end
-  wsiz=scs_m.props.wpar
-  options=scs_m.props.options
-  set_background()
 
-  xset('wdim',wsiz(1),wsiz(2))
-  rect=dig_bound(scs_m)
+  options = scs_m.props.options ; //** not used 
 
-  wa=(rect(3)-rect(1))
-  ha=(rect(4)-rect(2))
-  aa=wa/ha
-  rr=wsiz(1)/wsiz(2)
+  set_background(gh_curwin)     ;
+  pwindow_set_size(gh_curwin)   ;
+  window_set_size(gh_curwin)    ;
 
-  if aa<rr then 
-    wa2=wa*rr/aa;rect(1)=rect(1)-(wa2-wa)/2;rect(3)=rect(1)+wa2
-  else
-    ha2=ha*aa/rr;rect(2)=rect(2)-(ha2-ha)/2;rect(4)=rect(2)+ha2
-  end
+  scs_m.props.title(1) = msprintf(_("Scilab Graphics of %s"),scs_m.props.title(1))
 
+  drawobjs(scs_m, gh_curwin)
 
-  dxx=(rect(3)-rect(1))/20;
-  dyy=(rect(4)-rect(2))/20;
-  rect(1)=rect(1)-dxx;rect(3)=rect(3)+dxx;
-  rect(2)=rect(2)-dyy;rect(4)=rect(4)+dyy;
-  xsetech([-1 -1 8 8]/6,rect)
-
-  xset('alufunction',3)
-  scs_m.props.title(1)='Scilab Graphics of '+scs_m.props.title(1)
-  drawobjs(scs_m),
-  //***********************************************************
-
-  if pixmap then xset('wshow'),end
 endfunction

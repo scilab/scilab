@@ -1,6 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [helppart,txt,batch]=m2sci_syntax(txt)
-// Copyright INRIA
-// Scilab Project - V. Couvert
 // Make minor changes on M-file data syntax to have it readable by Scilab
 // Input arguments:
 //  - txt: the contents of an M-file
@@ -134,85 +142,6 @@ for k=1:n
     end
   end  
   
-
-  // Parenthesize expressions like 1+-2, 1*-2... which becomes 1+(-2), 1*(-2)...
-  // Parentheses are deleted by comp() and will be added one more time by %?2sci function
-kop=strindex(tk,["+","-","*","/","\","^"])
-kcom=isacomment(tk)
-if kcom<>0 then
-  kop=kop(kop<kcom)
-end
-offset=1
-l=1
-
-while l<=size(kop,"*")
-  if ~isinstring(tk,kop(l)) then
-    ksym=kop(l)+offset
-    while part(tk,ksym)==" "
-      ksym=ksym+1
-      if ksym>length(tk) then
-	break
-      end
-    end
-    if part(tk,ksym)=="-" then
-      l=l+1
-    endoftk=part(tk,ksym+1:length(tk))
-  m=min(strindex(endoftk,[ops(:,1)',";"]))
-  p=min(strindex(endoftk,["(","["]))
-
-    if p<>[] then
-      if m==[] | (m<>[] & p<m) then
-	openpar=1
-	p=p+1
-	while openpar<>0
-	  if or(part(endoftk,p)==["(","["]) then
-	      openpar=openpar+1
-	      elseif or(part(endoftk,p)==[")","]"]) then
-	  openpar=openpar-1
-	end
-	p=p+1 
-      end
-      tk=part(tk,1:ksym-1)+"("+part(tk,ksym:ksym+p-1)+")"+part(tk,ksym+p:length(tk))	    
-      if strindex(part(tk,ksym+2:ksym+p-1),["+","-","*","/","\","^"])==[] then
-	offset=offset+2
-      else
-	offset=offset+1
-      end
-    elseif m<p then 
-      tk=part(tk,1:ksym-1)+"("+part(tk,ksym:ksym+m-1)+")"+part(tk,ksym+m:length(tk))
-      offset=offset+2
-    end
-  elseif p==[] then
-    if m<>[] then
-      tk=part(tk,1:ksym-1)+"("+part(tk,ksym:ksym+m-1)+")"+part(tk,ksym+m:length(tk))
-      offset=offset+2
-    else
-      tk=part(tk,1:ksym-1)+"("+part(tk,ksym:length(tk))+")"
-      offset=offset+2 
-    end
-  end
-end
-end
-l=l+1
-end
-
-// Modify expressions like 1++2, 1*+2... which become 1+2, 1*2...
-kop=strindex(tk,["+","-","*","/","\","^"])
-offset=0
-for l=1:size(kop,"*")
-  ksym=kop(l)+offset+1
-  while part(tk,ksym)==" "
-    ksym=ksym+1
-    if ksym>length(tk) then
-      break
-    end
-  end
-  if part(tk,ksym)=="+" then
-    tk=part(tk,1:ksym-1)+part(tk,ksym+1:length(tk))
-    offset=offset-1
-  end
-end
-
 // Insert a blank when a digit is followed by a dotted operator
 // So that point is associated to operator and not to digit
 // Because if it is associated to digit, dot is suppressed by comp()
@@ -293,7 +222,7 @@ if kc<>0 then // Current line has or is a comment
   com=strsubst(com,dquote,dquote+dquote)
   if part(com,1:12)=="m2sciassume " | part(com,1:13)=="m2scideclare " then // User has given a clue to help translation
     if part(com,1:12)=="m2sciassume " then
-      warning("m2sciassume is obsolete, used m2scideclare instead");
+      warning(gettext("m2sciassume is obsolete, used m2scideclare instead."));
     end
     com=";m2scideclare("+quote+part(com,13:length(com))+quote+")"
   else
@@ -494,6 +423,33 @@ else
     end
     txt=[txt(first_ncl);txt(1:first_ncl(1)-1);txt(first_ncl($)+1:$)]
   end
+  // Beginning of BUG 2341 fix: function prototype with no comma between output parameters names
+  begb=strindex(txt(1),"[");
+  endb=strindex(txt(1),"]");
+  if ~isempty(begb) & ~isempty(endb)
+    outputparams = stripblanks(part(txt(1),(begb+1):(endb-1)))+"   ";
+    k=0;
+    while k<length(outputparams)
+      k=k+1;
+      while (and(part(outputparams,k)<>[","," "])) & (k<length(outputparams)) // skip identifier
+	k=k+1;
+      end
+      while (part(outputparams,k)==" ") & (k<length(outputparams)) // skip spaces before comma (or next identifier)
+	k=k+1;
+      end
+      if (part(outputparams,k)<>",") & (k<length(outputparams))
+	outputparams=part(outputparams,1:(k-1))+","+part(outputparams,k:length(outputparams));
+	k=k+1;
+      else
+	k=k+1;
+	while (part(outputparams,k)==" ") & (k<length(outputparams)) // skip spaces after comma
+	  k=k+1;
+	end
+      end
+    end
+    txt(1)=stripblanks(part(txt(1),1:begb)+outputparams+part(txt(1),endb:length(txt(1))));
+  end
+  // END of BUG 2341 fix: function prototype with no comma between output parameters names
 end
 
 endfunction

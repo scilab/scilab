@@ -1,95 +1,219 @@
-//-----------------------------------------------------------------------------
-function libn=ilib_compile(lib_name,makename,files)
-// Copyright ENPC/INRIA
-// Updated by Allan CORNET INRIA 2006
-// call make for target files or objects depending
-// on OS and compilers
-// very similar to G_make
-// if files is given the make is performed on each 
-// target contained in files then a whole make is performed 
-//-----------------------------------------------------------------------------
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// Copyright (C) ENPC
+// Copyright (C) DIGITEO - 2009
+// Copyright (C) DIGITEO - 2010 - Allan CORNET
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+//=============================================================================
+function libn = ilib_compile(lib_name, ..
+                             makename, ..
+                             files, ..
+                             ldflags, ..
+                             cflags, ..
+                             fflags, ..
+                             cc)
+
+  [lhs,rhs] = argn(0);
+  if rhs < 2 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_compile"));
+    return
+  end
+
+  libn=""; //** init variable
+
+  if ~haveacompiler() then
+    error(_("A Fortran or C compiler is required."))
+    return;
+  end
+
   [lhs,rhs]=argn(0);
-  if rhs < 3 then files=[]; end 
+
+  if rhs < 3 then files = []; end
+
   if typeof(lib_name)<>'string' then
-    error('ilib_compile: first argument must be a string');
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"ilib_compile",1));
     return ;
   end
-  oldpath=getcwd();
-  files=files(:)';
-  files1=strsubst(strsubst(files,'.obj','') ,'.o','');
-  [make_command,lib_name_make,lib_name,path,makename,files]= ...
-      ilib_compile_get_names(lib_name,makename,files)  
-  if path<> '';  chdir(path);  end 
-  // first try to build each file step by step 
-  nf = size(files,'*');
-  for i=1:nf 
-    write(%io(2),'   compilation of '+files1(i));
-    unix_s(make_command+makename + ' '+ files(i)); 
-  end
-  // then the shared library 
-  write(%io(2),'   building shared library (be patient)');
-  unix_s(make_command+makename + ' '+ lib_name); 
-  // a revoir 
-  libn=path+lib_name_make ; 
-  chdir(oldpath)
-endfunction
-//-----------------------------------------------------------------------------
-function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_get_names(lib_name,makename,files) 
-// return is res the correct name for 
-// makefile, libname, files 
-  files=strsubst(strsubst(files,'.obj','') ,'.o',''); //compat
-  k=strindex(makename,['/','\'])
-  if k~=[] then
-    path=part(makename,1:k($))
-    makename=part(makename,k($)+1:length(makename))
-  else
-     path=''
-  end
-  comp_target = COMPILER;
-  if with_lcc()==%T then
-  	lib_name=lib_name+'.dll'
-    	lib_name_make=lib_name;
-    	makename = makename + '.lcc' ; 
-      	make_command = 'make -f '
-      	if files<>[] then files = files + '.obj' ;
-      	end
-  else if getenv('WIN32','NO')=='OK' then
-    lib_name=lib_name+'.dll'
-    lib_name_make=lib_name;
-    select comp_target
-     case 'VC++' then 
-      makename = makename + '.mak' ; 
-      vcvompilerversion=findmsvccompiler();
-      if (vcvompilerversion=='msvc80express') | (vcvompilerversion=='msvc80pro') | (vcvompilerversion=='msvc80std') then
-        make_command = 'nmake /Y /nologo /f '
-      else
-        make_command = 'nmake /nologo /f '
-      end  
-      if files<>[] then 
-	files = files + '.obj' ;
-      end
-     case 'gcc' then 
-       makename = makename;
-       make_command = 'make -f '
-       if files<>[] then 
-	 files = files + '.o' ;
-       end
-    else // like gnuwin32 
-       makename = makename;
-       make_command = 'make -f '
-       if files<>[] then 
-	 files = files + '.o' ;
-       end
+
+  oldpath = pwd();
+  files = files(:)';
+
+  managed_ext = ['.obj','.o'];
+  for i=1:size(files,'*') // compatibility scilab 4.x
+    [path_f, file_f, ext_f] = fileparts(files(i));
+    if or(managed_ext == ext_f) then
+      files1(i) = path_f + file_f;
+    else
+      files1(i) = path_f + file_f + ext_f;
     end
+  end
+
+  [make_command, lib_name_make, lib_name, path, makename, files]= ...
+      ilib_compile_get_names(lib_name, makename, files);
+
+  if isdir(path) then
+    chdir(path);
+  end
+
+  if getos() == 'Windows' then
+    //** ----------- Windows section  -----------------
+    msgs_make = '';
+    nf = size(files,'*');
+
+    for i=1:nf
+      if ( ilib_verbose() <> 0 ) then
+        mprintf(_("   Compilation of ") + string(files1(i)) +'\n');
+      end
+    end
+
+    // then the shared library
+    if ( ilib_verbose() <> 0 ) then
+      mprintf(_("   Building shared library (be patient)\n"));
+    end
+
+    if ilib_verbose() > 1 then
+      msg = unix_g(make_command + makename + ' all');
+      disp(msg);
+    else
+      unix_s(make_command + makename + ' all');
+    end
+
   else
-     if files <> [] then 
-       files = files + '.o';
-     end
-     lib_name_make=lib_name+'.'+ilib_unix_soname();
-     lib_name = lib_name+'.la'; 
-     make_command = 'make -f ';
+    //** ---------- Linux/MacOS/Unix section ---------------------
+
+    ScilabTreeFound=%f;
+
+    // Source tree version
+    // Headers are dispatched in the source tree
+    if isdir(SCI+"/modules/core/includes/") then
+      defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
+      defaultModulesFHeader=[ "core" ];
+      ScilabTreeFound=%t
+
+      for x = defaultModulesCHeader(:)'
+          cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
+      end
+      cflags=" -I"+SCI+"/libs/MALLOC/includes/ " + cflags;
+
+      for x = defaultModulesFHeader(:)'
+          fflags=" -I"+SCI+"/modules/"+x+"/includes/ " + fflags;
+          end
+    end
+
+    // Binary version
+    if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
+      cflags="-I"+SCI+"/../../include/scilab/ " + cflags
+      fflags="-I"+SCI+"/../../include/scilab/ " + fflags
+      ScilabTreeFound=%t
+    end
+
+    // System version (ie: /usr/include/scilab/)
+    if isdir("/usr/include/scilab/") & ~ScilabTreeFound then
+       cflags="-I/usr/include/scilab/ "+cflags
+       fflags="-I/usr/include/scilab/ "+fflags
+       ScilabTreeFound=%t
+    end
+
+    if ( ilib_verbose() <> 0 & ScilabTreeFound <> %t) then
+       mprintf(gettext("%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on http://bugzilla.scilab.org/\n"),"ilib_compile");
+    end
+
+    oldPath = pwd();
+
+    // Switch back to the TMPDIR where the mandatory files are
+    chdir(TMPDIR);
+    cmd = "make "
+
+    cmd = cmd + gencompilationflags_unix(ldflags, cflags, fflags, cc, "build")
+
+    //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
+    //**          environment where the Makefile are created from a "./configure"
+    [msg, ierr, stderr] = unix_g(cmd) ;
+
+    if ( ilib_verbose() == 2 ) then
+      mprintf(gettext("%s: Build command: %s\n"),"ilib_compile",cmd);
+      mprintf(gettext("Output: %s\n"),msg);
+      mprintf(gettext("stderr: %s\n"),stderr);
+    end
+    
+    if ierr <> 0 then
+      mprintf(gettext("%s: An error occurred during the compilation:\n"),"ilib_compile");
+      lines(0);
+      disp(stderr);
+      mprintf("\n");
+      mprintf(gettext("%s: The command was:\n"),"ilib_compile");
+      mprintf(cmd);
+      mprintf("\n");
+      chdir(oldPath); // Go back to the working dir
+      return ;
+    end
+    
+    if stderr <> "" then
+      if ( ilib_verbose() <> 0 ) then
+        mprintf(gettext("%s: Warning: No error code returned by the compilation but the error output is not empty:\n"),"ilib_compile");
+        mprintf(stderr);
+      end
+      return ;
+    end
+
+    // Copy the produce lib to the working path
+    copyfile(".libs/" + lib_name, oldPath);
   end
+
+  libn = path + lib_name_make ;
+  chdir(oldpath);
+
+endfunction
+//=============================================================================
+// function only defined in ilib_compile
+//=============================================================================
+function [make_command,lib_name_make,lib_name,path,makename,files] = ..
+             ilib_compile_get_names(lib_name, makename, files)
+
+  if getos() <> 'Windows' then
+    managed_ext = '.o';
+    for i=1:size(files,'*') // compatibility scilab 4.x
+      [path_f, file_f, ext_f] = fileparts(files(i));
+      if or(managed_ext == ext_f) then
+        files(i) = path_f + file_f;
+      else
+        files(i) = path_f + file_f + ext_f;
+      end
+    end
+
+    k = strindex(makename,['/','\']);
+
+    if k~=[] then
+      path = part(makename,1:k($));
+      makename = part(makename,k($)+1:length(makename));
+    else
+      path = '';
+    end
+
+    lib_name = lib_name + getdynlibext();
+    lib_name_make = lib_name;
+
+    make_command = 'make ';
+    if files <> [] then
+      files = files + '.o';
+    end
+
+  else // Windows
+    // Load dynamic_link Internal lib if it's not already loaded
+    if ~ exists("dynamic_linkwindowslib") then
+      load("SCI/modules/dynamic_link/macros/windows/lib");
+    end
+
+    [make_command, lib_name_make, lib_name, path, makename, files] = ..
+         dlwGetParamsIlibCompil(lib_name, makename, files);
   end
-  
-endfunction 
-//-----------------------------------------------------------------------------
+
+endfunction
+//=============================================================================
+

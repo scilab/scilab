@@ -1,6 +1,15 @@
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function [y]=x_matrix(mes,x)
-// Copyright INRIA
-if type(x)<>1 then error(52," x must be a real matrix");end
+
+if type(x)<>1 then 
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "x_matrix", 2));
+end
 [n1,n2]=size(x);
 z=string(x);
 y=[];

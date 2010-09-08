@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function fcontour(xr,yr,f,nz,teta,alpha,leg,flag,ebox,zlev)
 //fcontour(xr,yr,f,nz,[teta,alpha,leg,flag,ebox,zlev])
 // Trace des courbes de niveau de la surface
@@ -28,30 +36,17 @@ function fcontour(xr,yr,f,nz,teta,alpha,leg,flag,ebox,zlev)
 // fcontour(Surf,-1:0.1:1,-1:0.1:1,10);
 //
 //!
-// Copyright INRIA
 
 	[lhs,rhs]=argn(0)
+	
 	if rhs == 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of fcontour()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'deff(''[z]=Surf(x,y)'',''z=x**2+y**2'');';
-			'fcontour(-1:0.1:1,-1:0.1:1,Surf,10);'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		deff("[z]=Surf(x,y)","z=x**2+y**2");
+		fcontour(-1:0.1:1,-1:0.1:1,Surf,10);
 		return
 	end
 
 if rhs<3,
-  error(' I need at least 3 arguments')
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fcontour", 3));
 end
 opts=[]
 if rhs<4,
@@ -63,7 +58,6 @@ else
   if exists('flag' ,'local')==1 then opts=[opts,'flag=flag']  ,end
   if exists('ebox' ,'local')==1 then opts=[opts,'ebox=ebox']  ,end
   if exists('zlev' ,'local')==1 then opts=[opts,'zlev=zlev']  ,end
-  if size(opts,2)<rhs-4 then  error('invalid named arguments'),end
 end;
 
 if type(f)==11 then comp(f),end;

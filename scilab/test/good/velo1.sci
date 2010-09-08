@@ -1,64 +1,73 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=velo1()
 // "full wheel" version
-// Copyright INRIA
-  ct=-cos(t);cp=cos(p);st=-sin(t);sp=sin(p);
+  function h=poly3d(x,y,z)
+    xpoly(x,y);h=gce();h.data(:,3)=z
+  endfunction
+
   xe=[xmin;xmax;xmax;xmin;xmin]
   ye=[ymin;ymin;ymax;ymax;ymin]
   ze=[zmin;zmin;zmin;zmin;zmin];
-  xer=ct*xe-st*ye;
-  yer=cp*(st*xe+ct*ye)+sp*ze;
+  drawlater()
+  curAxe                 = gca();
+  curAxe.margins         = [0 0 0.1 0];
+  curAxe.axes_visible    = 'off'
+  curaxe.tight_limits    = 'on';
+  curaxe.isoview         = 'on';
+  curAxe.data_bounds     = [xmin ymin zmin;xmax ymax min(xmax-xmin, ymax-ymin)/2];
+  curAxe.rotation_angles = [82,-3];
+  curAxe.title.text      = _("bike simulation, stable trajectory")
+  curAxe.title.font_size = 3;
+  
+  // The floor
+  xfpoly([xmin xmax xmax xmin xmin],[ymin ymin ymax ymax ymin])
+  e=gce();
+  e.background    = color('lightgray');
+
 
   [n1,n2]=size(xfrontar);
-  deff('[]=velod(i)',['xnr=ct*xfrontar(:,i)-st*yfrontar(:,i);';
-		      'ynr=cp*(st*xfrontar(:,i)+ct*yfrontar(:,i))+sp*zfrontar(:,i);';
-		      'xnt=ct*xf(:,i)-st*yf(:,i);';
-		      'ynt=cp*(st*xf(:,i)+ct*yf(:,i))+sp*zf(:,i);';
-		      'xnf=ct*xrearar(:,i)-st*yrearar(:,i),';
-		      'ynf=cp*(st*xrearar(:,i)+ct*yrearar(:,i))+sp*zrearar(:,i);';
-		      'xpoly(xnt,ynt,''lines'')';
-		      'xfpoly(xnr,ynr)';
-		      'xfpoly(xnf,ynf)']);
 
-  xset('thickness',1); 
-  if driver()<>'Pos' then
-    isoview(mini(xer),maxi(xer),mini(yer),maxi(yer));
-    if ~isdef('velo_rti') then   velo_rti=0.03;end 
-    realtimeinit(velo_rti);
-    realtime(0)
-    xset("alufunction",6)
-    xpoly(xer,yer,'lines')
-    for i=1:n2-1,
-      velod(i);
-      ww=i:i+1;
-      plot2d((ct*xprear(1,ww)-st*xprear(2,ww))',...
-	     (cp*(st*xprear(1,ww)+ct*xprear(2,ww))+sp*xprear(3,ww))',...
-	     [1,-1],"000");
-      realtime(i);
-      velod(i);
-    end
-    velod(n2-1);
-    xset("alufunction",3);
-    xset('thickness',1);
-  else
-    pix=xget('pixmap')
-    xset('pixmap',1)
-    if ~isdef('velo_rti') then   velo_rti=0.03;end 
-    realtimeinit(velo_rti);
-    realtime(0)
-    for i=1:4:n2-1,
-      xset('wwpc')
-      ww=1:i+1;
-      xpoly(xer,yer,'lines')
-      plot2d((ct*xprear(1,ww)-st*xprear(2,ww))',...
-	     (cp*(st*xprear(1,ww)+ct*xprear(2,ww))+sp*xprear(3,ww))',...
-	     [1,-1],"000");
-      velod(i);
-      xset('wshow')
-      pause
-      realtime(i);
-    end
-    xset('pixmap',pix)
+  // Build the bicycle graphical objects
+  e3=poly3d(xf(:,1),yf(:,1),zf(:,1))
+  //rear wheel
+  e2=poly3d(xrearar(:,1),yrearar(:,1),zrearar(:,1))
+  // front wheel
+  e1=poly3d(xfrontar(:,1),yfrontar(:,1),zfrontar(:,1))
+  // rear trace
+  erear  = poly3d(xprear(1,1),xprear(2,1),xprear(3,1))
+  // front trace
+//  efront = poly3d(xpfront(1,1),xpfront(2,1),xpfront(3,1))
+  drawnow()
+
+  // animation
+  if ~isdef('velo_rti') then   velo_rti=0.05;end 
+  realtimeinit(velo_rti);
+  realtime(0)
+
+  curAxe = gca();
+  show_pixmap();
+
+  for i=2:1:n2
+    
+    realtime(i);
+    drawlater();
+    e1.data     = [xfrontar(:,i) yfrontar(:,i) zfrontar(:,i)];
+    e2.data     = [xrearar(:,i)  yrearar(:,i)  zrearar(:,i) ];
+    e3.data     = [xf(:,i) yf(:,i) zf(:,i)];
+    erear.data  = [erear.data;
+		   xprear(1,i),xprear(2,i),xprear(3,i)];
+//    efront.data = [efront.data;
+//		   xpfront(1,i),xpfront(2,i),xpfront(3,i)];
+    drawnow();
+
   end
-endfunction
+
+  endfunction
 
 

@@ -1,49 +1,57 @@
-function   [funcallname,variablename]=funcallsearch(instr,funcallname,fnamvect,variablename)
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function   [funcallname,variablename]=funcallsearch(instr,funcallname,fnamvect,variablename) 
 //
 //  FUNCALLSEARCH recursive function (used by "translatepaths" function)
-//  Searches the functions names in each instruction of mtlbtree
+//  Searches the functions names in each instruction of mtlbtree 
 //  Input-Output
 //  -funcallname : a vector which contains the names of called functions if it exists a M-file having the same name in the Paths
 //  -variablename : a vector which contains the names of declared variables
-//  Input
+//  Input 
 //  -instr : mtlbtree instruction
 //  -fnamvect : vector which contains all M-files names found in the Paths
 
 // case : ifthenelse instruction
 if typeof(instr) == "ifthenelse" then
   [funcallname,variablename]=funcallsearch(instr.expression,funcallname,fnamvect,variablename)
-  for i=1:size(instr._then)
-    [funcallname,variablename]=funcallsearch((instr._then(i)),funcallname,fnamvect,variablename)
+  for i=1:size(instr.then)
+    [funcallname,variablename]=funcallsearch((instr.then(i)),funcallname,fnamvect,variablename)
   end
-  for i=1:size(instr._elseifs)
-    for k=1:size(instr._elseifs(i)._then)
-      [funcallname,variablename]=funcallsearch((instr._elseifs(i)._then(k)),funcallname,fnamvect,variablename)
+  for i=1:size(instr.elseifs)
+    for k=1:size(instr.elseifs(i).then)
+      [funcallname,variablename]=funcallsearch((instr.elseifs(i).then(k)),funcallname,fnamvect,variablename) 
     end
+  end  
+  for i=1:size(instr.else)
+    [funcallname,variablename]=funcallsearch((instr.else(i)),funcallname,fnamvect,variablename)
   end
-  for i=1:size(instr._else)
-    [funcallname,variablename]=funcallsearch((instr._else(i)),funcallname,fnamvect,variablename)
-  end
-// case : selectcase instruction
+// case : selectcase instruction 
 elseif typeof(instr) == "selectcase" then
   [funcallname,variablename]=funcallsearch(instr.expression,funcallname,fnamvect,variablename)
-
+  
   for i=1:size(instr.cases)
   [funcallname,variablename]=funcallsearch((instr.cases(i).expression),funcallname,fnamvect,variablename)
-    for j=1:size(instr.cases(i)._then)
-      [funcallname,variablename]=funcallsearch((instr.cases(i)._then(j)),funcallname,fnamvect,variablename)
-    end
+    for j=1:size(instr.cases(i).then)
+      [funcallname,variablename]=funcallsearch((instr.cases(i).then(j)),funcallname,fnamvect,variablename)
+    end   
   end
-  for i=1:size(instr._else)
-    [funcallname,variablename]=funcallsearch(instr._else(i),funcallname,fnamvect,variablename)
+  for i=1:size(instr.else)
+    [funcallname,variablename]=funcallsearch(instr.else(i),funcallname,fnamvect,variablename)
   end
-// case : while instruction
+// case : while instruction   
 elseif typeof(instr) == "while" then
   [funcallname,variablename]=funcallsearch(instr.expression,funcallname,fnamvect,variablename)
   for i=1:size(instr.statements)
     [funcallname,variablename]=funcallsearch(instr.statements(i),funcallname,fnamvect,variablename)
   end
-// case : for instruction
+// case : for instruction    
 elseif typeof(instr) == "for" then
     [funcallname,variablename]=funcallsearch(instr.expression,funcallname,fnamvect,variablename)
 for i=1:size(instr.statements)
@@ -53,7 +61,7 @@ end
 elseif  typeof(instr)== "cste" then
 return
 // case : variable instruction
-elseif typeof(instr)=="variable"
+elseif typeof(instr)=="variable" 
   if find(instr.name==variablename)==[] & find(instr.name==stripblanks(part(fnamvect,1:24)))<>[] & find(instr.name==funcallname)==[] then
     funcallname=[funcallname;fnamvect(find(instr.name==stripblanks(part(fnamvect,1:24))))]
   else
@@ -63,20 +71,20 @@ elseif typeof(instr)=="variable"
 elseif typeof(instr) == "equal" then
   [funcallname,variablename]=funcallsearch(instr.expression,funcallname,fnamvect,variablename)
 // case : expression is a funcall
-elseif typeof(instr) == "funcall" then
+elseif typeof(instr) == "funcall" then 
   if find(funcallname==instr.name) == [] & find(instr.name==stripblanks(part(fnamvect,1:24)))<>[]  then
     if size(find(instr.name==stripblanks(part(fnamvect,1:24))),2)==1 then
       funcallname=[funcallname;fnamvect(find(instr.name==stripblanks(part(fnamvect,1:24))))]
     else
       findvect=find(instr.name==stripblanks(part(fnamvect,1:24)))
       funcallname=[funcallname;fnamvect(findvect(2))]
-      st = " " + mtlbtree.name + " : " + fnamvect(findvect(1))
-      for i=2:size(findvect,2)
-        st = st+ " <-> " + fnamvect(findvect(i))
+      st = " " + mtlbtree.name + ": " + fnamvect(findvect(1))
+      for i=2:size(findvect,2)  
+        st = st+ " <-> " + fnamvect(findvect(i)) 
       end
-        st = st + " : The 24 first characters of the files names  are equal : "
+        st = st + gettext(": The 24 first characters of the files names are equal: ");
         warning(st)
-    end
+    end  
   end
   // case : expression is cste
   if typeof(instr.rhs)== "constant" then

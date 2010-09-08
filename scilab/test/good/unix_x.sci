@@ -1,3 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) XXXX-2008 - INRIA
+// Copyright (C) XXXX-2008 - INRIA - Allan CORNET
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function unix_x(cmd)
 //unix_x - shell command execution, results redirected in a window
 //%Syntax
@@ -12,18 +23,28 @@ function unix_x(cmd)
 //%See also
 // host unix_g unix_s
 //!
-// Copyright INRIA
-// Modified by Allan CORNET
 
-if prod(size(cmd))<>1 then   error(55,1),end
+	[lhs,rhs] = argn(0);
+	
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"unix_x",1));
+	end
+	
+	if type(cmd) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"unix_x",1));
+	end
+	
+	if size(cmd,"*") <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"unix_x",1));
+	end
 
-if MSDOS then
+if getos() == 'Windows' then
    [rep,stat]=dos(cmd);
     if (stat) then
-      x_message_modeless(rep);
+      messagebox(rep);
     else
       for i=1:size(rep,'*') do write(%io(2),'   '+rep(i));end
-      error('unix_x: error during ``'+cmd+''''' execution')
+      error(msprintf(gettext("%s: error during ""%s"" execution"),"unix_x",cmd));
     end 
 else 
   tmp=TMPDIR+'/unix.out';
@@ -35,9 +56,9 @@ else
        if (size(rep,'*')==0) | (length(rep)==0) then
     	 rep=[]
        end
-       x_message_modeless(rep)
+       messagebox(rep);
     case -1 then // host failed
-      error(85)
+      error(msprintf(gettext("%s: The system interpreter does not answer..."),"unix_x"));
     else //sh failed
       msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
      error('unix_x: '+msg(1))

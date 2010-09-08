@@ -1,3 +1,15 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 200 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
+
 function [s,index] = nanmax(x,orient)
 //
 //This function gives for a  real or a  numerical matrix x a his largest
@@ -21,9 +33,6 @@ function [s,index] = nanmax(x,orient)
 //matrix index are  the  indexes of the  largest  elements (ignoring the
 //NANs) of each row of x in the corresponding row.
 //
-//author: carlos klimann
-//
-//date: 2000-01-14
 //
 // correction of bug 1239 (Bruno)
     

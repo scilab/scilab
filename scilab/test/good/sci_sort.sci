@@ -1,11 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_sort(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab sort()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 // Emulation function: mtlb_sort()
-// V.C.
 
 // B = sort(A) or [B,IND] = sort(A) 
 if rhs==1 then
@@ -19,20 +26,20 @@ if rhs==1 then
   elseif A.vtype==Boolean then
     tree.name="gsort"
     if is_a_vector(A) then
-      A = Funcall("bool2s",1,Rhs(A),list())
-      tree.rhs=Rhs(A,"g","i")
+      A = Funcall("bool2s",1,Rhs_tlist(A),list())
+      tree.rhs=Rhs_tlist(A,"g","i")
     elseif not_a_vector(A) then
-      A = Funcall("bool2s",1,Rhs(A),list())
-      tree.rhs=Rhs(A,"r","i")
+      A = Funcall("bool2s",1,Rhs_tlist(A),list())
+      tree.rhs=Rhs_tlist(A,"r","i")
     else
       tree.name="mtlb_sort"
     end
   else
     tree.name="gsort"
     if is_a_vector(A) then
-      tree.rhs=Rhs(A,"g","i")
+      tree.rhs=Rhs_tlist(A,"g","i")
     elseif not_a_vector(A) then
-      tree.rhs=Rhs(A,"r","i")
+      tree.rhs=Rhs_tlist(A,"r","i")
     else
       tree.name="mtlb_sort"
     end
@@ -46,13 +53,13 @@ if rhs==1 then
 elseif rhs==2
   [A,dim] = getrhs(tree)
   dim = convert2double(dim)
-  tree.rhs=Rhs(A,dim)
+  tree.rhs=Rhs_tlist(A,dim)
   
   tree.lhs(1).dims=A.dims
   tree.lhs(1).type=A.type
   
   if size(A.dims)>2 then
-    set_infos("Scilab sort() and gsort() do not work with multidimensional arrays !")
+    set_infos(gettext("Scilab sort() and gsort() do not work with multidimensional arrays"))
   else
   name="gsort"
     if typeof(dim)=="cste" then
@@ -70,10 +77,10 @@ elseif rhs==2
     if or(A.vtype==[String,Unknown]) then
       name="mtlb_sort"
     elseif A.vtype==Boolean then
-      A = Funcall("bool2s",1,Rhs(A),list())
-      tree.rhs=Rhs(A,dim,"i")
+      A = Funcall("bool2s",1,Rhs_tlist(A),list())
+      tree.rhs=Rhs_tlist(A,dim,"i")
     else
-      tree.rhs=Rhs(A,dim,"i")
+      tree.rhs=Rhs_tlist(A,dim,"i")
     end
     tree.name=name
     
@@ -85,13 +92,13 @@ elseif rhs==2
 elseif rhs==3 
   [A,dim,txt] = getrhs(tree)
   dim = convert2double(dim)
-  tree.rhs=Rhs(A,dim,txt)
+  tree.rhs=Rhs_tlist(A,dim,txt)
 
   tree.lhs(1).dims=A.dims
   tree.lhs(1).type=A.type
 
   if size(A.dims)>2 then
-    set_infos("Scilab sort() and gsort() do not work with multidimensional arrays !")
+    set_infos(gettext("Scilab sort() and gsort() do not work with multidimensional arrays"))
   else
     name="gsort"
     if typeof(dim)=="cste" then
@@ -108,14 +115,14 @@ elseif rhs==3
     if or(A.vtype==[String,Unknown]) then
       name="mtlb_sort"
     elseif A.vtype==Boolean then
-      A = Funcall("bool2s",1,Rhs(A),list())
+      A = Funcall("bool2s",1,Rhs_tlist(A),list())
       tree.rhs(1)=A
     end
     
     if txt.vtype==String & txt.value=="ascend"
-      tree.rhs=Rhs(A,dim,"i")
+      tree.rhs=Rhs_tlist(A,dim,"i")
     elseif txt.vtype==String & txt.value=="descend"
-      tree.rhs=Rhs(A,dim,"d")
+      tree.rhs=Rhs_tlist(A,dim,"d")
     else
       name="mtlb_sort" 
     end	

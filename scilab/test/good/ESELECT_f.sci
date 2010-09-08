@@ -1,5 +1,25 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=ESELECT_f(job,arg1,arg2)
-// Copyright INRIA
 x=[];y=[];typ=[]
 select job
 case 'plot' then
@@ -17,7 +37,7 @@ case 'set' then
   if size(exprs,'*')==2 then exprs(3)=string(0);end
   model=arg1.model;
   while %t do
-    [ok,out,inh,nmod,exprs]=getvalue('Set ESELECT block parameters',..
+    [ok,out,inh,nmod,exprs]=scicos_getvalue('Set ESELECT block parameters',..
 	['number of output event ports';'Inherit (1: no, 0: yes)';
 	 'zero-crossing (0: no, 1: yes)'],..
 				 list('vec',1,'vec',1,'vec',1),exprs)
@@ -44,6 +64,8 @@ case 'define' then
   model=scicos_model()
   model.sim=list('eselect',-2)
   model.in=1
+  model.in2=1
+  model.intyp=-1
   model.evtin=1
   model.evtout=ones(out,1);
   model.blocktype='l'

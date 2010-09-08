@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2003 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function s=samplef(n,X,f,orient)
 // 
 //This function gives s, a  vector of lenght n.  It contains
@@ -27,11 +37,8 @@ function s=samplef(n,X,f,orient)
 //with replacement, from the columns  of X.  The lenght of f
 //must be equal to the number of columns of X.
 //
-//author: carlos klimann
-//
-//date: 2003-08-28
   [lhs,rhs]=argn(0)
-  if rhs<3 | rhs>4 then error('samplef requires three or four inputs.'), end
+  if rhs<3 | rhs>4 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"samplef",3,4)), end
   if X==[]| (or(f==0)) then s=[]; return;end
   sizx=size(X)
   val=cumsum([0;f(:)])
@@ -42,25 +49,25 @@ function s=samplef(n,X,f,orient)
   end
   if orient=='*' then
     if size(f,'*')<>prod(sizx) then
-      error('In this case dimensions of second and third parameters must be equal'), 
+      error(msprintf(gettext("%s: Wrong size for input argument #%d and #%d: Same size expected.\n"), "samplef",2,3)),
     end
     s=X(ind)
     return
   end
   if orient=='r'|orient==1 then
     if size(f,'*')<>sizx(1) then
-      error('Third parameter must be equal to number of rows of second parameter'), 
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same number of rows of the second input argument expected.\n"), "samplef",3)),
     end
     s=X(ind,:)
     return
   end
   if orient=='c'|orient==2 then
     if size(f,'*')<>sizx(2) then
-      error('Third parameter must be equal to number of columns of second parameter'), 
+	  	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same number of columns of the second input argument expected.\n"), "samplef",3)),
     end
     s=X(:,ind)
     return
   end
-  error('Fourth parameter must be *, r, c, 1 or 2')
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"orient",4,"*","r","c",1,2))
 endfunction
 

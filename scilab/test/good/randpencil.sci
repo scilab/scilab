@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function F=randpencil(eps,infi,fin,eta)
 //returns a random pencil with given kronecker structure 
 //eps=[eps1,...,epsk]; epsilon blocks (size eps1x(eps1+1),....)
@@ -15,9 +25,9 @@ function F=randpencil(eps,infi,fin,eta)
 // this should be a empty matrix with coldim(eta) rows and 0 columns.
 // (bad behavior of the empty matrix!!!!!)
 
-// Copyright INRIA
   [LHS,RHS]=argn(0);
-  if RHS<>4 then error('randpencil requires 4 (possibly []) input parameters!');
+  if RHS<>4 then 
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),'randpencil',4));
   end
   select type(fin)
   case 1
@@ -37,7 +47,7 @@ function F=randpencil(eps,infi,fin,eta)
 
   flageps=%f;
   Eps=[];
-  seps=sort(eps);
+  seps=gsort(eps);
   if seps(1)==0 then flageps=%t;end
   if ~flageps then
     for k=seps;
@@ -48,7 +58,7 @@ function F=randpencil(eps,infi,fin,eta)
 
   flageta=%f;
   Eta=[];
-  seta=sort(eta);
+  seta=gsort(eta);
   if seta(1)==0 then flageta=%t;end
   if ~flageta then
     for k=seta;

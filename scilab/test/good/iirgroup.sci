@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [lt,grad]=iirgroup(p,r,theta,omega,wt,td)
 //    p===> Lp
 //    r=magnitude of poles and zeros of filters
@@ -5,8 +14,6 @@ function [lt,grad]=iirgroup(p,r,theta,omega,wt,td)
 //omega=frequencies corresponding to filters specs.
 //wt=weighting function for group delay
 //!
-//
-// Copyright INRIA
 [m,n]=size(td);if m>n,td=td';end;
 [m,n]=size(omega);if m>n,omega=omega';end;
 [m,n]=size(r);if n>m,r=r';m=n;end;

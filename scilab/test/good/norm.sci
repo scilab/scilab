@@ -1,5 +1,24 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2009 - INRIA Michael Baudin
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+//
+// norm --
+//   Returns the norm of the given vector/matrix A.
+//   Uses scaling to improve accuracy for Pythagorean sums.
+// References
+//   Moler C, Morrison D. 
+//   Replacing square roots by pythagorean sums. 
+//   IBM Journal of Research and Development 1983; 27(6):577-581. 
+//
 function y=norm(A,flag)
-// Copyright INRIA  
 //compute various matrix norms
 if argn(2)==1 then flag=2,end
 
@@ -12,7 +31,17 @@ if type(A)==1 then
 	y=max(abs(A))
       case 'f' then //'fro'
 	A=A(:)
-	y=sqrt(A'*A)
+        //
+        // Scaling for better floating point accuracy.
+        //
+	//
+        s = max(abs(A));
+        if s==0.0 then
+          y=sqrt(A'*A);
+        else
+          sA = A/s;
+          y = s * sqrt(sA'*sA);
+        end
       else
 	error("invalid value for flag")
       end
@@ -32,7 +61,16 @@ if type(A)==1 then
       elseif p==0 then
 	y=%inf
       else
-	y=sum(abs(A).^p)^(1/p)
+        //
+        // Scaling for better floating point accuracy.
+        //
+        s = max(abs(A));
+        if s==0.0 then
+          y=sum(abs(A).^p)^(1/p);
+        else
+          sA = A/s;
+          y = s * sum(abs(sA).^p)^(1/p);
+        end
       end
     else
       error("invalid value for flag")
@@ -43,11 +81,24 @@ if type(A)==1 then
       case 'i' then //'inf'
 	y=max(sum(abs(A),2))  
 	case 'f' then //'fro'
-	if size(A,1)>size(A,2) then
-	  y=sqrt(sum(diag(A'*A))) 
-	else
-	  y=sqrt(sum(diag(A*A'))) 
-	end
+        //
+        // Scaling for better floating point accuracy.
+        //
+        s = max(abs(A));
+        if s==0.0 then
+	  if size(A,1)>size(A,2) then
+	    y=sqrt(sum(diag(A'*A))) 
+	  else
+	    y=sqrt(sum(diag(A*A'))) 
+	  end
+        else
+          sA = A/s;
+	  if size(A,1)>size(A,2) then
+            y = s * sqrt(sum(diag(sA'*sA)))
+	  else
+            y = s * sqrt(sum(diag(sA*sA')))
+          end
+        end
       else
 	error("invalid value for flag")
       end

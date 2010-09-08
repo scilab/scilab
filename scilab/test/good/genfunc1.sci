@@ -1,8 +1,28 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
 // manages dialog to get  definition (with scilab instruction) of a new scicos 
 // block
 //!
-// Copyright INRIA
 ni=size(inp,'*')
 no=size(out,'*')
 
@@ -53,7 +73,7 @@ if no>0 then
       if ~and(w) then 
 	k1=find(~w)
 	w=[];for k=1:size(k1,'*'),w=[w;'y'+string(k)+' (size: '+string(out(k))+')'],end
-	message('You did not define '+strcat(w,',')+' !')
+	messagebox('You did not define '+strcat(w,',')+' !','modal')
       else
 	break
       end
@@ -83,7 +103,7 @@ if nx>0 then
       if or(vars(5)=='xd') then
 	break,
       else
-	message('You did not define xd !')
+	messagebox('You did not define xd !','modal')
       end
     end
   end
@@ -130,7 +150,8 @@ if nci>0&nco>0 then
 	'at event time. '],txt3)
     if txt3==[] then return,end	
     mac=null();deff('[]=mac()',txt3,'n')
-    ok1=check_mac(mac)	
+//   alan.layec 
+   ok1=check_mac(mac)	
     if ok1 then
       vars=macrovar(mac)
       if ~or(vars(5)=='t_evo') then txt3=[txt3;'t_evo=[]'];end

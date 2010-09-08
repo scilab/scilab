@@ -1,71 +1,55 @@
-function help(key)
-	
-	//for compatibility with toolboxes making use of old cat files
-	if (fileinfo('SCI/modules/helptools/help') <> []) then
-		global %browsehelp
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Vincent COUVERT
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function help(varargin)
+
+[lhs,rhs]=argn(0);
+
+if rhs >= 1 then
+  key = varargin(1);
+else
+  key = '';
+end
+
+if (findfiles('SCI/modules/helptools/jar','*_help.jar') <> []) then
   
-    nwniarg=find(sciargs()=="-nwni");
-    texmacsarg=find(sciargs()=="--texmacs");
-    noguiarg=find(sciargs()=="-nogui");
+  if getscilabmode() <> "NWNI" then
     
-    if (%browsehelp<>[])&(nwniarg == [])&(texmacsarg == [])&(noguiarg == []) then
+    // No input argument: launch help browser
+    if argn(2)==0 then
+      global %helps
+      helpbrowser(%helps(:,1), getlanguage());
+      return
+    end
     
-		 change_old_man()
-		 INDEX=make_help_index()
-		
-		 if argn(2)==0 then
-			 browsehelp(INDEX,"index");
-			 return
-		 end
-		
-		 key=stripblanks(key)
-		
-		 if or(part(key,1)==['(',')','[',']','{','}','%','''','""',':','*','/', ...
-			 '\','.','<','>','&','^','|','~','+','-']) then
-			 key="symbols";
-		 end
-		
-		 path=gethelpfile(key)
-		
-		 if path<>[] then
-			 browsehelp(path,key)
-		 else
-			 apropos(key)
-		 end
-		else
-		  if (%browsehelp == []) then 
-       warning('%browsehelp not correctly defined. help browser disabled. ');
-       return;
-      end
-   
-      errmsg='help browser disabled in this mode : ';
-      if ( nwniarg <> []) then
-       errmsg=errmsg+'-nwni';
-       warning(errmsg);
-       return;
-      end
-      if ( texmacsarg <> []) then
-       errmsg=errmsg+ '--texmacs';
-       warning(errmsg);
-       return;
-      end
-      if ( noguiarg <> [] ) then
-       errmsg=errmsg+ '-nogui';
-       warning(errmsg);
-       return;
-      end
-		end
-	else
-		warning('Help not installed');
-	end
-	
+    if type(key) <> 10 then 
+      error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),'help',1));
+    end 
+    
+    // Search a function name
+    key=stripblanks(key)
+    
+    if or(part(key,1)==['(',')','[',']','{','}','%','''','""',':','*','/', ...
+	    '\','.','<','>','&','^','|','~','+','-']) then
+      key="symbols";
+    end
+  
+    global %helps
+    helpbrowser(%helps(:,1), key, getlanguage(), %f);
+    
+    // If the function name does not exists then full-text search is done (See Java code)
+    
+  else
+    error(msprintf(gettext("%s: The help browser is disabled in %s mode.\n"), "help", getscilabmode()));
+  end
+else
+  error(msprintf(gettext("%s: help file(.jar) is not installed.\n"), "help"));
+end
+
 endfunction
-
-
-
-
-
-
-
-
-

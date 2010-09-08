@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [X,Y]=checkXYPair(typeOfPlot,x,y,current_figure,cur_draw_mode)
 
   ok=%F;
@@ -5,8 +14,9 @@ function [X,Y]=checkXYPair(typeOfPlot,x,y,current_figure,cur_draw_mode)
   if type(y)==13 // If y is a function
     f=y;
     if and(size(x)~=1)  // then x *must* be a vector
-      warning(sprintf('%s : x must be a vector',typeOfPlot));
-      ResetFigureDDM(current_figure, cur_draw_mode);
+	  ResetFigureDDM(current_figure, cur_draw_mode)
+      error(msprintf(gettext("%s: Wrong size for input argument ''%s'': A vector expected.\n"),typeOfPlot,"X"));
+
       return;
     end
 
@@ -33,7 +43,7 @@ function [X,Y]=checkXYPair(typeOfPlot,x,y,current_figure,cur_draw_mode)
 	for i=1:length(t)
 
 	  // CANNOT DO THE SAME WITH X(i) and Y(i)
-	  // instead of xt and yt (scilab parser sees the stuff 
+	  // instead of xt and yt (scilab parser sees the stuff
 	  // as a comparison)
 
 	  [xt,yt]=f(t(i));
@@ -49,89 +59,82 @@ function [X,Y]=checkXYPair(typeOfPlot,x,y,current_figure,cur_draw_mode)
 
     if size(X,1)==1, X=X', end;  // si l'un des vecteurs est une ligne
     if size(Y,1)==1, Y=Y', end;  // on le transpose.
-    
-    if size(X)==[0 0] | size(Y)==[0 0]
+
+    if (size(X)==[0 0])
       ok=%F
-      str='plot error : empty input data';
-      warning(str);
-      ResetFigureDDM(current_figure, cur_draw_mode)
+	  ResetFigureDDM(current_figure, cur_draw_mode)
+      error(msprintf(gettext("%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"),typeOfPlot,"X"));
       return;
     end
-    
-    if and(size(X)==size(Y))  // si les tailles sont egales
-      ok=%T;
-      //    disp("I.)")
-      return
+
+	if (size(Y)==[0 0])
+      ok=%F
+	  ResetFigureDDM(current_figure, cur_draw_mode)
+      error(msprintf(gettext("%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"),typeOfPlot,"Y"));
+      return;
     end
+
+    if and(size(X)==size(Y)) then
+	  // same size for X and Y
+      ok=%T;
+
+      return;
+	end
 
     if (size(X,2)==1) & (size(Y,1)==size(X,1))
+	  // X is a vector
       ok=%T;
-      //    pause;
-      //    disp("II.)")
+
       return;
     end
-
     if (size(X,2)==1) & (size(Y,2)==size(X,1))
+	  // X is a vector
       Y=Y';
       ok=%T;
-      //    disp("III.)")
-      //    return;
+
+	  return;
     end
-    
+
+    if (size(X,2) == 1) & (size(Y,2) == 1) & (size(Y,1) <> size(X,1)) ...
+					      & (size(Y,1) ~= 1)  then
+ 	  // X and Y are vectors but not of same size
+ 	  ResetFigureDDM(current_figure, cur_draw_mode)
+       error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible dimensions.\n"),typeOfPlot,"X","Y"));
+       return;
+ 	end
 
     // new case : plot(MAT4x4,[1 2 3 4]) HERE Y is a vector and X a matrix
+	// Here Y is always a column vector
     // extend y to be a 4x4 matrix defined as [1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4]
-    if or(size(Y) == 1)
-      if size(X,1) == size(Y,1)
-	//      disp("ENTRE 1!")
-	//      pause;
-	y=Y;
-	Y=[];
-	for i=1:size(X,2)
-	  Y = [Y y]; 
-	end
-	//      disp("FINI")
-	//      pause;
-      elseif size(X,1) == size(Y,2)
-	//      disp("ENTRE 2!")
-	//      pause;
-	y=Y(:);
-	Y=[];
-	for i=1:size(X,2)
-	  Y = [Y y]; 
-	end
-      elseif size(X,2) == size(Y,1)
-	//      disp("ENTRE 3!")
-	//      pause;
-	X=X';
-	y=Y(:);
-	Y=[];
-	for i=1:size(X,2)
-	  Y = [Y y]; 
-	end
-	//      disp("FIN...!")
-	//      pause;
-      elseif size(X,2) == size(Y,2)
-	//      disp("ENTRE 4!")
-	//      pause;
-	y=Y;
-	Y=[];
-	for i=1:size(X,1)
-	  Y = [Y y]; 
-	end
-      end
-      
-      //    disp("IV.)")
+    if or(size(Y) == 1) then
+      if size(X,1) == size(Y,1) then
+	    y=Y;
+      elseif size(X,1) == size(Y,2) then
+        y=Y(:);
+      elseif size(X,2) == size(Y,1) then
+	    X=X';
+	    y=Y(:);
+      elseif size(X,2) == size(Y,2) then
+	    y=Y;
+      else
+	    ResetFigureDDM(current_figure, cur_draw_mode)
+        error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible dimensions.\n"),typeOfPlot,"X","Y"));
+        return;
+	  end
+
+	  // concatenante y in columns
+	  Y=y(:,ones(1,size(X,2)));
+
       ok=%T;
       return;
     end
-    
-    
+
     if ~ok
-      str='plot : incompatible dimensions of data arguments';
-      warning(str);
       ResetFigureDDM(current_figure, cur_draw_mode)
+      error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible dimensions.\n"),typeOfPlot,"X","Y"));
+      return;
     end
+
 
   end
 

@@ -1,8 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004 - Jaime Urzua 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function hout=winlist()
 // Return a list
 // This file is part of sciGUI toolbox
-// Copyright (C) 2004 Jaime Urzua Grez
-// mailto:jaime_urzua@yahoo.com
 // rev. 0.1
 //
 // This program is free software; you can redistribute it and/or modify

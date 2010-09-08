@@ -1,3 +1,24 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_implicit,out_implicit)
 // check_io first check if given number of ports agree with block connection
 // and then changes block structure
@@ -15,7 +36,6 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 //                    attempt to add/delete ports when some are connected
 //           ok==%t  : changes of block structure has been performed
 //!
-// Copyright INRIA
   if argn(2)<=6 then in_implicit=[],out_implicit=[],end
 // check_io first check if given number of ports agree with block connection
   in=int(in(:));nin=size(in,1)
@@ -24,7 +44,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   clkin=int(clkin(:));nclkin=size(clkin,1);
   if nclkin>0 then
-    if mini(clkin)<1 then
+    if min(clkin)<1 then
       message('Event input ports sizes must be positive')
       ok=%f
       return
@@ -34,7 +54,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   clkout=int(clkout(:));nclkout=size(clkout,1);
   if nclkout>0 then
-    if mini(clkout)<1 then
+    if min(clkout)<1 then
       message('Event output ports sizes must be positive')
       ok=%f
       return
@@ -49,11 +69,6 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   n1=size(in1(:,1),'*');n=size(in(:,1),'*')
   if n1>n then
-    if or(ip1(n+1:$)>0) then
-      message('Connected ports cannot be suppressed')
-      ok=%f
-      return
-    end
     ip1=ip1(1:n)
   else
     ip1=[ip1;zeros(n-n1,1)]
@@ -61,11 +76,6 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   n1=size(out1,'*');n=size(out,'*')
   if n1>n then
-    if or(op1(n+1:$)>0) then
-      message('Connected ports cannot be suppressed')
-      ok=%f
-      return
-    end
     op1=op1(1:n)
   else
     op1=[op1;zeros(n-n1,1)]
@@ -73,11 +83,6 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   n1=size(clkin1,'*');n=size(clkin,'*')
   if n1>n then
-    if or(cip1(n+1:$)>0) then
-      message('Connected ports cannot be suppressed')
-      ok=%f
-      return
-    end
     cip1=cip1(1:n)
   else
     cip1=[cip1;zeros(n-n1,1)];
@@ -85,11 +90,6 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   n1=size(clkout1,'*');n=size(clkout,'*')
   if n1>n then
-    if or(cop1(n+1:$)>0) then
-      message('Connected ports cannot be suppressed')
-      ok=%f
-      return
-    end
     cop1=cop1(1:n);
   else
     cop1=[cop1;zeros(n-n1,1)];
@@ -100,14 +100,6 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   if ip1<>[] then
     in_impl=I(ones(ip1)); in_impl(in_implicit)='I';
-    kk=size(graphics.in_implicit,'*')
-    k=find(ip1<>0) //connected links
-    k=k(find(k<=kk));
-    if or(graphics.in_implicit(k)<>in_impl(k)) then
-      message('Connected ports types cannot be changed')
-      ok=%f
-      return
-    end
   else
     in_impl=[]
   end
@@ -115,14 +107,6 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
 
   if op1<>[] then
     out_impl=I(ones(op1));  out_impl(out_implicit)='I';
-    kk=size(graphics.out_implicit,'*')
-    k=find(op1<>0) //connected links
-    k=k(find(k<=kk));
-    if or(graphics.out_implicit(k)<>out_impl(k)) then
-      message('Connected ports types cannot be changed')
-      ok=%f
-      return
-    end
   else
     out_impl=[]
   end

@@ -1,59 +1,67 @@
-function [%pt,scs_m]=do_tild(%pt,scs_m)
-// Copyright INRIA
-//** 29 June 2006 : waiting for the random access to the graphics datastructure
-//**                I force a Replot after the 
-   
-  win = %win;
-  
-  gh_curwin = gh_current_window ; //** acquire the current window handler 
-  gh_curwin.pixmap ='on';         //** force pixmap mode
-  
-  o_size = size(gh_curwin.children.children) ; //** o_size(1) is the number of compound object
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
 
-  xc = %pt(1) ; yc = %pt(2)   ;
-  
-  k = getblock(scs_m,[xc;yc]) ;
-  
-  if k==[] then return , end ; //** if you click in the void ... return back 
+function [%pt, scs_m] = do_tild(%pt, scs_m)
+//** 16/07/2009, S. Steer, make it work with multiple selection
+//** Alan 02/12/06 : use of objects swap in gh_curwin.children.children()
+//**
+//**  8 Aug 2007   : extended version  
+//**
+//**  August 2007 : first version with connected blocks
+//** 
+//*
+//**  BEWARE: this version has some residual graphical bug with some 
+//**          Modelica electrical connected blocks
+//* 
 
-  if get_connected(scs_m,k)<>[] then //** see message 
-     message('Connected block can''t be tilded')
-     return
-  end
-  
-  //**--------- scs_m object manipolation -------------------
-  o = scs_m.objs(k) ; //** scs_m
-  geom = o.graphics ; geom.flip = ~geom.flip ; o.graphics = geom;
-  
-  //**---------------------------------------------------------
-  //gr_k = o_size(1) - k + 1 ; //** graphic 
-  //
-  //drawlater();
-  //
-  //  gh_blk = drawobj(o) ; //** draw the object "flipped" 
-  //
-  //  pause
-  //   !--error 144 
-  //     Undefined operation for the given operands
-  //      check or define function %h_i_h for overloading
-  ///     at line      37 of function do_tild called by :  
-  //      line     6 of function Flip_ called by :  
-  //      exec(Flip_,-1)
-  //
-  //  gh_curwin.children.children(gr_k) = gh_blk ; //** update the object in the old position
-  //  
-  //  delete(gh_blk) ; //** delete the previous object 
-  //
-  // drawnow(); show_pixmap() ;  
+    ks=Select(find(Select(:,2)==%win),1) //look for selected blocks in the current window
+    if ks==[] then
+       ks = getblock(scs_m, %pt(:))
+    end
     
-  //**------------------------------------------------------------
-  
-  scs_m_save = scs_m ; //** ... for undo ...
-  
-  scs_m.objs(k)=o
 
-  [scs_m_save,enable_undo,edited]=resume(scs_m_save,%t,%t)
+    if ks==[] then return;end
+    scs_m_save = scs_m ; //** save the diagram for "Undo" ...
+
+    for k=ks'
+     
+      //**--------- scs_m object manipulation -------------------
   
-  //** ... force a Replot() in the calling function 
+      path = list('objs',k)      ; //** acquire the index in the "global" diagram
   
+      //** I need to flip the old object before the new one - in order to export 
+      //** the right I/O ports  geometric coordinates - because the new one
+      //** hinerit its geometric proprieties 
+      o = scs_m.objs(k)    ; //** the old object 
+      if and(typeof(o)<>["Link","Text"]) then
+	o_geom = o.graphics  ; //** isolate the geometric proprieties 
+	o_geom.flip = ~o_geom.flip ; //** flip the object 
+	o.graphics = o_geom; //** update the old object
+	scs_m.objs(k) = o ;  //** update the diagram 
+       
+	o_n  = o ; //** "o" is already flipped  
+    
+	scs_m = changeports(scs_m, path, o_n); 
+      end
+    end
+  
+    [scs_m_save, enable_undo, edited] = resume(scs_m_save, %t, %t)
 endfunction

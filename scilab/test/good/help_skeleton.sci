@@ -1,249 +1,185 @@
-function txt=help_skeleton(funname,path,language)
-	
-	global LANGUAGE
-	
-	// Vérification des paramètres
-	// -----------------------------------------------------------------------------------------
-	
-	[lhs,rhs]=argn(0);
-	
-	if rhs > 3 | rhs < 1 then error(39); end
-	if type(funname)<>10 then error('argument should be a function name'); end
-	
-	if rhs > 1 then
-		if type(path) <> 10 then error(55,2); end
-	end
-	
-	if rhs == 3 then
-		if type(language) <> 10 then error(55,3); end
-	else
-		language = LANGUAGE;
-	end
-	
-	txt=[];
-	vars=macrovar(evstr(funname));
-	inputs=vars(1);
-	outputs=vars(2);
-	context=vars(3);
-	Call='';
-	
-	if size(outputs,'*')==1 then
-		Call=outputs+' = '
-	elseif size(outputs,'*')>1 then
-		Call='['+strcat(outputs,',')+'] = '
-	end
-	
-	Call=Call+funname
-	
-	if size(inputs,'*')>=1 then
-		Call=Call+'('+strcat(inputs,',')+')'
-	end
-	
-	args=[inputs(:);outputs(:)]
-	
-	// Gestion de la date
-	// -----------------------------------------------------------------------------------------
-	w = getdate();
-	xml_date = msprintf("%02d-%02d-%04d",w(6),w(2),w(1));
-	
-	select language
-	
-	// -----------------------------------------------------------------------------------------
-	// FRENCH
-	// -----------------------------------------------------------------------------------------
-	
-	case 'fr' then
-		
-		txt=[
-			"<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?>" 
-			"<!DOCTYPE MAN SYSTEM ""file://"+pathconvert(SCI,%f,%f)+"/modules/helptools/help.dtd"">"
-			"<MAN>"
-			"  <LANGUAGE>fr</LANGUAGE>"
-			"  <TITLE>"+funname+"</TITLE>"
-			"  <TYPE>Fonction Scilab</TYPE>"
-			"  <DATE>"+xml_date+"</DATE>"
-			"  <SHORT_DESCRIPTION name="""+funname+""">Ajouter ici une description rapide de la fonction</SHORT_DESCRIPTION>"
-			""
-			"  <CALLING_SEQUENCE>"
-			"    <CALLING_SEQUENCE_ITEM>"+Call+"</CALLING_SEQUENCE_ITEM>"
-			"  </CALLING_SEQUENCE>"
-			""];
-		
-		if size(args,'*') >0 then
-			
-			txt=[txt;
-				"  <PARAM>"
-				"    <PARAM_INDENT>"];
-				
-			for a=args'
-				txt=[txt;
-					"";
-					"      <PARAM_ITEM>"
-					"        <PARAM_NAME>"+a+"</PARAM_NAME>"
-					"        <PARAM_DESCRIPTION>"
-					"          <SP>"
-					"            Ajouter ici la description du paramètre"
-					"         </SP>"
-					"       </PARAM_DESCRIPTION>"
-					"      </PARAM_ITEM>"];
-			end
-			
-			txt=[txt;
-				"    </PARAM_INDENT>"
-				"  </PARAM>"
-				""];
-			
-		end
-		
-		txt=[txt;
-			"  <DESCRIPTION>"
-			"    <DESCRIPTION_INDENT>"
-			"      <DESCRIPTION_ITEM>"
-			"        <P>"
-			"          Ajouter ici un paragraphe sur la description détaillée de la fonction."
-			"          D''autres paragraphes peuvent être ajoutés"
-			"        </P>"
-			"      </DESCRIPTION_ITEM>"
-			"      <DESCRIPTION_ITEM>"
-			"        <P>"
-			"          Ajouter ici un paragraphe sur la description détaillée de la fonction."
-			"        </P>"
-			"      </DESCRIPTION_ITEM>"
-			"    </DESCRIPTION_INDENT>"
-			"  </DESCRIPTION>"
-			""
-			"  <EXAMPLE>"
-			"    <![CDATA["
-			"      Ajouter ici les instructions et commentaires scilab"
-			"    ]]>"
-			"  </EXAMPLE>"
-			""
-			"  <SEE_ALSO>"
-			"    <SEE_ALSO_ITEM><LINK>Ajouter ici un lien</LINK></SEE_ALSO_ITEM>"
-			"    <SEE_ALSO_ITEM><LINK>Ajouter ici un lien</LINK></SEE_ALSO_ITEM>"
-			"  </SEE_ALSO>"
-			""
-			"  <AUTHORS>"
-			"    <AUTHORS_ITEM label=""Entrer ici le nom de l''auteur"">"
-			"      Ajouter ici les références de l''auteur"
-			"    </AUTHORS_ITEM>"
-			"  </AUTHORS>"
-			""
-			"  <BIBLIO>"
-			"    <SP>"  
-			"      S''il elle existe, ajouter ici la bibiographie de l''auteur"
-			"    </SP>"
-			"  </BIBLIO>"
-			""
-			"  <USED_FUNCTIONS>"
-			"    <SP>"
-			"      Ajouter ici les fonctions utilisées ainsi que leurs références"
-			"    </SP>"
-			"  </USED_FUNCTIONS>"
-			"</MAN>"
-		];
-		
-		
-	// -----------------------------------------------------------------------------------------
-	// ENGLISH (par défaut)
-	// -----------------------------------------------------------------------------------------
-	
-	else
-		
-		txt=[
-			"<?xml version=""1.0"" encoding=""UTF-8""?>" 
-			"<!DOCTYPE MAN SYSTEM ""file://"+pathconvert(SCI,%f,%f)+"/modules/helptools/help.dtd"">"
-			"<MAN>"
-			"  <LANGUAGE>eng</LANGUAGE>"
-			"  <TITLE>"+funname+"</TITLE>"
-			"  <TYPE>Scilab Function</TYPE>"
-			"  <DATE>"+xml_date+"</DATE>"
-			"  <SHORT_DESCRIPTION name="""+funname+""">Add short description here</SHORT_DESCRIPTION>"
-			""
-			"  <CALLING_SEQUENCE>"
-			"    <CALLING_SEQUENCE_ITEM>"+Call+"</CALLING_SEQUENCE_ITEM>"
-			"  </CALLING_SEQUENCE>"
-			""];
-		
-		if size(args,'*') >0 then
-			
-			txt=[txt;
-				"  <PARAM>"
-				"    <PARAM_INDENT>"];
-				
-			for a=args'
-				txt=[txt;
-					"";
-					"      <PARAM_ITEM>"
-					"        <PARAM_NAME>"+a+"</PARAM_NAME>"
-					"        <PARAM_DESCRIPTION>"
-					"          <SP>"     
-					"            Add here the parameter description"
-					"         </SP>"         
-					"       </PARAM_DESCRIPTION>"
-					"      </PARAM_ITEM>"];
-			end
-			
-			txt=[txt;
-				"    </PARAM_INDENT>"
-				"  </PARAM>"
-				""];
-			
-		end
-		
-		txt=[txt;
-			"  <DESCRIPTION>"
-			"    <DESCRIPTION_INDENT>"
-			"      <DESCRIPTION_ITEM>"
-			"        <P>"     
-			"          Add here a paragraph of the function description. "
-			"          Other paragraph can be added "
-			"        </P>"
-			"      </DESCRIPTION_ITEM>"
-			"      <DESCRIPTION_ITEM>"
-			"        <P>"     
-			"          Add here a paragraph of the function description "
-			"        </P>"
-			"      </DESCRIPTION_ITEM>"
-			"    </DESCRIPTION_INDENT>"      
-			"  </DESCRIPTION>"
-			""
-			"  <EXAMPLE>"
-			"    <![CDATA["
-			"      Add here scilab instructions and comments"
-			"    ]]>"
-			"  </EXAMPLE>"
-			""
-			"  <SEE_ALSO>"
-			"    <SEE_ALSO_ITEM><LINK>Add a key here</LINK></SEE_ALSO_ITEM>"
-			"    <SEE_ALSO_ITEM><LINK>Add a key here</LINK></SEE_ALSO_ITEM>"
-			"  </SEE_ALSO>"
-			""
-			"  <AUTHORS>"
-			"    <AUTHORS_ITEM label=""enter here the author name"">"
-			"      Add here the author references"
-			"    </AUTHORS_ITEM>"
-			"  </AUTHORS>"
-			""
-			"  <BIBLIO>"
-			"    <SP>"  
-			"      Add here the function bibliography if any"
-			"    </SP>"
-			"  </BIBLIO>"
-			""
-			"  <USED_FUNCTIONS>"
-			"    <SP>"
-			"      Add here the used function name and  references"
-			"    </SP>"  
-			"  </USED_FUNCTIONS>"     
-			"</MAN>"
-		];
-		
-	end
-	
-	if rhs >= 2 then
-		mputl(txt,pathconvert(path,%t,%f)+funname+'.xml')
-		txt=pathconvert(path,%t,%f)+funname+'.xml'
-	end
-	
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function txt = help_skeleton(funname, path, language)
+  
+  [lhs,rhs] = argn(0);
+  
+  if rhs > 3 | rhs < 1 then 
+    error(39);
+  end
+  
+  if type(funname) <> 10 then
+    error(999,msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),'help_skeleton',1));
+  end
+  
+  if size(funname, '*') <> 1 then
+    error(999,msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),'help_skeleton',1));
+  end
+  
+  if rhs > 1 then
+    if type(path) <> 10 then
+      error(55,2); 
+    end
+  end
+
+  previouslangage = getlanguage();
+
+  if rhs == 3 then
+    if type(language) <> 10 then 
+      error(55,3); 
+    end
+    setlanguage(language);
+  else 
+    language = getlanguage();
+  end
+
+  txt = [];
+  vars = macrovar(evstr(funname));
+  inputs = vars(1);
+  outputs = vars(2);
+  context = vars(3);
+  Call = '';
+
+  if size(outputs,'*') == 1 then
+    Call = outputs + ' = '
+  elseif size(outputs,'*') > 1 then
+    Call = '['+strcat(outputs,',')+'] = ';
+  end
+
+  Call = Call + funname;
+
+  if size(inputs,'*') >= 1 then
+    Call = Call+'('+strcat(inputs,',')+')';
+  end
+
+  args = [inputs(:);outputs(:)];
+
+  // date management
+  // --------------------------------------------------------------------------------
+  w = getdate();
+  xml_date = msprintf(_("%02d-%02d-%04d"),w(6),w(2),w(1));
+  
+  //header
+  // --------------------------------------------------------------------------------
+  xmlns = 'xmlns=""http://docbook.org/ns/docbook""'
+  xlink = 'xmlns:xlink=""http://www.w3.org/1999/xlink""'
+  svg = 'xmlns:svg=""http://www.w3.org/2000/svg""'
+  mml = ' xmlns:mml=""http://www.w3.org/1998/Math/MathML""'
+  db = 'xmlns:db=""http://docbook.org/ns/docbook""'
+  vers = 'version=""5.0-subset Scilab""'
+  refs = strcat([xmlns xlink svg mml db vers],' ')
+
+  txt=['<?xml version=""1.0"" encoding='"UTF-8""?>'
+   '<!--'
+ _(' * Add some comments about XML file');
+   '-->'
+   '<refentry ' + refs + ' xml:lang=""'+ language + '"" xml:id=""' + funname + '"">'
+   '  <info>'
+   '    <pubdate>$LastChangedDate: ' + xml_date + ' $</pubdate>'
+   '  </info>'
+   '  <refnamediv>'
+   '    <refname>'+ funname + '</refname>'
+   '    <refpurpose>' + _('Add short description here.') + ' </refpurpose>'
+   '  </refnamediv>'
+   '  <refsynopsisdiv>'
+   '    <title>' + _('Calling Sequence') + '</title>'
+   '    <synopsis>' + Call + '</synopsis>'
+   '  </refsynopsisdiv>'];
+    //Arguments
+    if size(args,'*') >0 then
+      txt=[txt;
+     '  <refsection>'
+     '    <title>' + _('Parameters') + '</title>'
+     '    <variablelist>']
+      for a=args'
+       txt=[txt;
+       '      <varlistentry>'
+       '        <term>' + a + '</term>'
+       '        <listitem>'
+       '          <para>'
+     _('            Add here the parameter description.')
+       '          </para>'
+       '        </listitem>'
+       '      </varlistentry>']
+      end
+      txt=[txt;
+     '    </variablelist>'
+     '  </refsection>'];
+    end
+    //Description
+    txt=[txt;
+   '  <refsection>'
+   '    <title>' + _('Description') + '</title>'
+   '    <para>'
+ _('          Add here a paragraph of the function description. ')
+ _('          Other paragraph can be added ')
+   '    </para>'
+   '  </refsection>'];
+    //Example
+   txt=[txt;
+   '  <refsection>'
+   '    <title>' + _('Examples') + '</title>'
+   '    <programlisting role=""example""><![CDATA['
+ _('        Add here scilab instructions and comments')
+   '    ]]></programlisting>'
+   '  </refsection>'];
+    //See Also
+    txt=[txt;
+   '  <refsection>'
+   '    <title>' + _('See Also') + '</title>'
+   '    <simplelist type=""inline"">'
+   '      <member>'
+   '        <link linkend=""' + _('add a reference name') + '"" >' + _('add a reference') + '</link>'
+   '      </member>'
+   '      <member>'
+   '        <link linkend=""' + _('add a reference name') + '"">' + _('add a reference') + '</link>'
+   '      </member>'
+   '    </simplelist>'
+   '  </refsection>'];
+    //Authors
+    txt=[txt;
+   '  <refsection>'
+   '    <title>' + _('Authors') + '</title>'
+   '    <simplelist type=""vert"">'
+   '      <member>' + _('add the author name and author reference') + '</member>'
+   '      <member>' + _('add another author name and it''s reference') + '</member>'
+   '    </simplelist>'
+   '  </refsection>'];
+
+    //Bibliography
+   txt = [txt;
+   '  <refsection>'
+   '     <title>' + _('Bibliography') + '</title>'
+   '       <para>'
+ _('         Add here the function bibliography')
+   '       </para>'
+   '     </refsection>'];
+    //Used functions
+    txt=[txt;
+   '  <refsection>'
+   '     <title>' + _('Used Functions') + '</title>'
+   '       <para>'
+ _('         Add here the Scilab, C,... used code references')
+   '       </para>'
+   '     </refsection>'];
+
+    //footer
+    txt=[txt;
+   '</refentry>'];
+
+  setlanguage(previouslangage);
+
+  if rhs >= 2 then
+    mputl(txt, pathconvert(path,%t,%f) + funname + '.xml');
+    txt = pathconvert(path,%t,%f) + funname + '.xml';
+  end
+
 endfunction

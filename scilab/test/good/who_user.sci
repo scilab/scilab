@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function who_user()
 //get user variables
 [nams,mem]=who('get'); //get all variables
@@ -6,7 +15,7 @@ st=stacksize()
 nams=nams(1:$-p+1);mem=mem(1:$-p+1);
 //modifiable system variables
 excluded=['demolist','scicos_pal','%scicos_menu',..
-	'%scicos_short','%helps','MSDOS','who_user','%scicos_display_mode', ...
+	'%scicos_short','%helps','%helps_modules','MSDOS','who_user','%scicos_display_mode', ...
 	  '%scicos_help'];
 ke=grep(nams,excluded)
 nams(ke)=[];mem(ke)=[];
@@ -33,10 +42,10 @@ while k<=n
   txt=[txt;strcat(nams(k:k-1+m))];
   k=k+m;
 end
-txt=['User variables are:';
+txt=[gettext("User variables are:");
     '';
     txt;
     '';
-    'using '+string(sum(mem))+' elements out of '+string(st(1)-(st(2)-sum(mem)))]
+    msprintf(gettext("Using %s elements ouf of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
 write(%io(2),txt,'(1x,a)')
 endfunction

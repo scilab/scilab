@@ -1,12 +1,32 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=BOUNCEXY(job,arg1,arg2)
 //Scicos 2D animated visualization block
-// Copyright INRIA
 x=[];y=[];typ=[]
 select job
 case 'plot' then
   standard_draw(arg1)
 case 'getinputs' then
-  [x,y,typ]=standard_inputs(o)
+  [x,y,typ]=standard_inputs(arg1)
 case 'getoutputs' then
   x=[];y=[];typ=[];
 case 'getorigin' then
@@ -14,13 +34,14 @@ case 'getorigin' then
 case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
-  model=arg1.model;dstate=model.dstate
+  model=arg1.model;
+  dstate=model.dstate
   while %t do
-    [ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=getvalue(..
+    [ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['colors';
 	 'radii';
-	 'window number';
+	 'window number (-1 for automatic)';
 	 'animation mode (0,1)';
 	'Xmin';
 	'Xmax';
@@ -35,8 +56,8 @@ case 'set' then
       mess=[mess;'colors and radii must have equal size (number of balls)';' ']
       ok=%f
     end
-    if win<0 then
-      mess=[mess;'Window number cannot be negative';' ']
+    if win<-1 then
+      mess=[mess;'Window number cannot be inferior than -1';' ']
       ok=%f
     end
     if ymin>=ymax then
@@ -61,20 +82,23 @@ case 'set' then
 	z(6*(i-1)+5)=0.000
 	z(6*(i-1)+6)=64.0*360.000;
       end
-      model.dstate=z;model.rpar=rpar;model.ipar=ipar
+      model.dstate=z;
+      model.rpar=rpar;model.ipar=ipar
       graphics.exprs=exprs;
       x.graphics=graphics;x.model=model
       break
     end
   end
 case 'define' then
-  win=1; imode=1;clrs=[1;2];
+  win=-1; imode=1;clrs=[1;2];
   siz=[1;1]
   xmin=-5;xmax=5;ymin=0;ymax=15
 
   model=scicos_model()
   model.sim=list('bouncexy',4)
   model.in=[-1;-1]
+  model.in2=[1;1]
+  model.intyp = [1;1]
   model.evtin=1
   z=[]
   for i=1:size(clrs,'*')

@@ -1,3 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2001 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
+
 function [r]=mvcorrel(x)
 //
 //This function  computes r, the matrix  of correlation of
@@ -12,13 +23,10 @@ function [r]=mvcorrel(x)
 //References: Saporta, Gilbert, Probabilites,  Analyse des
 //Donnees et Statistique, Editions Technip, Paris, 1990.
 //
-//author: carlos klimann
-//
-//date: 2001-09-27
 //
   if x==[] then s=%nan; return, end
   [lhs,rhs]=argn(0)
-  if rhs <> 1 then error('mvcorrel requires only one argument.'), end
+  if rhs <> 1 then error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"mvcorrel",1)), end
   [lx cx]=size(x)
   if lx==1 then r=zeros(lx,cx), return, end
   xbar=sum(x,'r')/lx

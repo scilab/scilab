@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [archap,la,lb,sig,resid]=armax(r,s,y,u,b0f,prf)
 //[la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])
 // Identification ARX
@@ -32,7 +41,7 @@ function [archap,la,lb,sig,resid]=armax(r,s,y,u,b0f,prf)
 //     lb est la liste list(b,b+etb,b-etb);(etb : ecart type estime)
 //        b=[b0,.....,b_s] bi(nu,nu)
 //     sig est l'ecart type estime du bruit
-//     et resid=[ sig*e(t0),....]; t0=maxi(maxi(r,s)+1,1));
+//     et resid=[ sig*e(t0),....]; t0=max(max(r,s)+1,1));
 //
 // Exemple :
 //     taper [a,b,sig,resid]=armax(); pour voir un exemple
@@ -58,9 +67,8 @@ if rhs<=4,b0f=0;end
 // calul de la matrice zz telle que
 // zz(:,j)=[ y(t-1),...,y(t-r),u(t),...,u(t-s)]', avec  t=t0-1+j
 // on peut calcule zz a partir de t=t0;
- t0=maxi(maxi(r,s)+1,1);
- if r==0;if s==-1;write(%io(2),"if  r==0 and s==-1 there''s nothing to identify");
- return
+ t0=max(max(r,s)+1,1);
+ if r==0;if s==-1;error(msprintf(gettext("%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"),"armax","r==0","s==-1"))
  end;end
  z=[];
  if r>=1;for i=1:r,z=[z ; y(:,t0-i:(n2-(i)))];end;end
@@ -71,7 +79,7 @@ if rhs<=4,b0f=0;end
  [nzl,nzc]=size(zz);
  k=rank(zz);
 if k<>nzl then
-  write(%io(2),"Warning: z.z'' is numerically singular");
+  warning(msprintf(gettext("%s: %s is numerically singular.\n"),"armax","z*z''"));
 end;
  pv=pinv(zz);
  coef=(pv*zy)';
@@ -106,11 +114,11 @@ archap=armac(a,b,eye(ny,ny),ny,nu,sig);
 if prf==1;
    if ny==1,
      [nla,nca]=size(la(2));
-     write(%io(2),"  Standard deviation of the estimator a :");
+     mprintf(gettext("%s: Standard deviation of the estimator %s:\n"),"armax","a");
      form_a='(5x,'+string(nca)+'(f7.5,1x))';
-     write(%io(2),la(2)-a,form_a);
+	 write(%io(2),la(2)-a,form_a);
      if nu<>0 then 
-       write(%io(2),"  Standard deviation of the estimator b :");
+       mprintf(gettext("%s: Standard deviation of the estimator %s:\n"),"armax","b");
        [nlb,ncb]=size(lb(2));
        write(%io(2),lb(2)-b,'(5x,'+string(ncb)+'(f7.5,1x))');
      end 

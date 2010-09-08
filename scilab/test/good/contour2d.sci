@@ -1,4 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function levels=contour2d(x,y,z,nz,style,strf,leg,rect,nax,void)
+
+[lhs,rhs]=argn(0)
+if rhs<4 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "contour2d", 4));
+end
+
 opts=[]
 levels=[]
 if ~exists('style','local')==1 then 
@@ -43,17 +57,16 @@ end
 [xc,yc]=contour2di(x,y,z,nz);
 fpf=xget("fpf");if fpf=='' then fpf='%.3g',end
 
-newstyle = get('figure_style')=='new'
-if newstyle then
-  fig=gcf();
-  autoc=fig.auto_clear;
-  if autoc=="on" then, xbasc(),end
-  a=gca();
-  v=fig.immediate_drawing;
-  fig.immediate_drawing="off"
-  fig.auto_clear="off"
-  cnt=0
-end
+
+fig=gcf();
+autoc=fig.auto_clear;
+if autoc=="on" then, clf(),end
+a=gca();
+v=fig.immediate_drawing;
+fig.immediate_drawing="off"
+fig.auto_clear="off"
+cnt=0
+
 
 // we draw the contour with call to plot2d for each level line
 // however the data_bounds will be always reset after each plot
@@ -69,6 +82,9 @@ if ( frameflag == 2 | frameflag == 4 | frameflag == 6 | frameflag == 8 )
   end
   // the rect will be taken into account
   frameflag = frameflag - 1 ;
+elseif (~rectSpecified) then
+  // get rect any way for clipping
+  rect = [min(x),min(y),max(x),max(y)];
 end
 
 k=1;n=yc(k); c=0; level = %inf;
@@ -76,9 +92,9 @@ while k < length(xc)
    n = yc(k)
    if xc(k) ~= level then 
      c = c+1; level = xc(k),levels=[level levels];
-     if newstyle then 
-       if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
-     end
+
+     if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
+
    end
    err = execstr('plot2d(xc(k+(1:n)),yc(k+(1:n)),'+opts+')','errcatch','m');
    frameflag = 0 ;
@@ -87,29 +103,36 @@ while k < length(xc)
    // and, if not, restore good figure property values before exiting
    if err <> 0
      mprintf("Error %d : in plot2d called by contour2d",err);
-     if newstyle then
-       fig.immediate_drawing=v;
-       fig.auto_clear=autoc;
-     end
+     fig.immediate_drawing=v;
+     fig.auto_clear=autoc;
      return;
    end
    
-   if newstyle then 
-      unglue(a.children(1))
-      cnt = cnt+1
-   end
+
+    unglue(a.children(1))
+    cnt = cnt+1
+
    if stripblanks(fpf)<>'' then
-      xstring(xc(k+1+n/2),yc(k+1+n/2)," "+msprintf(fpf,level))
-      if newstyle then cnt=cnt+1,end
+      labelText = " " + msprintf(fpf,level);
+	  labelPos = [xc(k+1+n/2),yc(k+1+n/2)];
+	  labelBox = stringbox(labelText, labelPos(1), labelPos(2));
+	  // check that the text is not outside the box
+	  // better than clipping to avoid half cut strings
+      if labelBox(1,1) > rect(1) & labelBox(2,1) > rect(2) & ...
+         labelBox(1,3) < rect(3) & labelBox(2,3) < rect(4) then
+        xstring(labelPos(1),labelPos(2),labelText)
+		e = gce();e.clip_state = "off";
+        cnt=cnt+1;
+      end
    end
    k=k+n+1;
 end
 
-if newstyle then 
-   if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
-   set('current_obj',a);
-   fig.immediate_drawing=v;
-   fig.auto_clear=autoc;
-end
+
+ if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
+ set('current_obj',a);
+ fig.immediate_drawing=v;
+ fig.auto_clear=autoc;
+ draw(fig)
 
 endfunction

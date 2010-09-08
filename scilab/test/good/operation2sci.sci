@@ -1,12 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [sci_equiv]=operation2sci(mtlb_expr)
-// Copyright INRIA
 // M2SCI function
 // Convert a function call in an instruction or in an expression from Matlab to Scilab
 // Input:
 // - mtlb_instr: Matlab instr or expression to convert
 // Output:
 // - sci_instr: Scilab equivalent for mtlb_instr
-// V.C.
 
 sci_equiv=mtlb_expr
 
@@ -52,7 +59,7 @@ for kop=1:size(ops,1)
   end
 end
 if ind==-1 then
-  error("operation2sci(): operator "+mtlb_expr.operator+" not found !")
+  error(msprintf(gettext("operator %s not found."),mtlb_expr.operator))
 end
 rhs=size(mtlb_expr.operands)
 execstr("[sci_equiv]=%"+ops(ind,2)+"2sci(mtlb_expr)");

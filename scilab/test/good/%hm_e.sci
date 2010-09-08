@@ -1,6 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [M] = %hm_e(varargin)
 
-   // Copyright INRIA (version modified by Bruno)
+   // version modified by Bruno
    // extract an sub_hypermatrix
    [lhs,rhs]=argn(0)
    M=varargin(rhs)
@@ -22,7 +31,7 @@ function [M] = %hm_e(varargin)
       ik=varargin(k)
       type_ik = type(ik)
       if type_ik==1 then                    // usual subscript
-	 if mini(size(ik))<0 then
+	 if min(size(ik))<0 then
 	    if rhs==2 then // subscript is : in fact
 	       M=matrix(M.entries,-1,1)
 	       return

@@ -1,17 +1,24 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_find(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab find()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 // Emulation function: mtlb_find()
-// V.C.
 
 x = getrhs(tree)
 
 // Because %c_find is not defined
 x = convert2double(x)
-tree.rhs=Rhs(x)
+tree.rhs=Rhs_tlist(x)
 
 // k = find(x)
 if lhs==1 then
@@ -19,13 +26,13 @@ if lhs==1 then
     x = Funcall("abs",1,list(x),list(Variable("",x.infer)))
   elseif ~is_real(x) then
     newx = Funcall("abs",1,list(x),list(Variable("",x.infer)))
-    repl_poss(newx,x,x,"is real");
+    repl_poss(newx,x,x,gettext("is Real."));
     x=newx
   end
-  tree.rhs=Rhs(x)
+  tree.rhs=Rhs_tlist(x)
     
   tree1=Operation("''",list(tree),tree.lhs)
-  tree2=Funcall("matrix",1,Rhs(tree,-1,1),tree.lhs)
+  tree2=Funcall("matrix",1,Rhs_tlist(tree,-1,1),tree.lhs)
   
   tree.lhs(1).type=Type(Double,Real)
 
@@ -48,10 +55,10 @@ elseif lhs==2 then
     x = Funcall("abs",1,list(x),list(Variable("",x.infer)))
   elseif ~is_real(x) then
     newx = Funcall("abs",1,list(x),list(Variable("",x.infer)))
-    repl_poss(newx,x,x,"is real");
+    repl_poss(newx,x,x,gettext("is Real."));
     x=newx
   end
-  tree.rhs=Rhs(x)
+  tree.rhs=Rhs_tlist(x)
 
   tree.lhs(1).type=Type(Double,Real)
   tree.lhs(2).type=Type(Double,Real)

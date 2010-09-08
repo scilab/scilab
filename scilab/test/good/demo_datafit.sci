@@ -1,25 +1,32 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function demo_datafit()
   //demo_help demo_datafit
-
+  
   //create the experimental data
   X=[];Y=[];
   a=34;b=12;c=14;
   for x=0:.1:3, Y=[Y,FF(x)+100*(rand()-.5)];X=[X,x];end
   Z=[Y;X];
   //show the data points
-  xbasc();
-  fs = get('figure_style');
-  set figure_style old;
-  xset("wpos",600,16);
-  xset("wdim",600*0.9,400*0.9);
-  xselect();
-  plot2d(X',Y',style=-1,leg='Experimental data');
+  my_handle             = scf(100001);
+  clf(my_handle,"reset");
+  plot(X,Y,'+')
+  l=legend('Experimental data',2)
   realtimeinit(0.1);for k=1:20,realtime(k),end
   // solve the non linear data fitting
   [p,err]=datafit(G,Z,[3;5;10])
   // show the fitting curve
-  plot2d(X',FF(X)',[5,2],'002','Fitting function')
-
+  drawlater()
+  plot(X,FF(X),'r');
+  delete(l)
+  l=legend(['Experimental data';'Fitting function'],2)
+  drawnow()
   realtimeinit(0.1);for k=1:30,realtime(k),end
 endfunction
 

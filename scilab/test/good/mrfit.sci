@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [num,den]=mrfit(w,mod,r)
 //Calling sequence:
 //[num,den]=mrfit(w,mod,r)
@@ -13,7 +22,6 @@ function [num,den]=mrfit(w,mod,r)
 //
 //  abs(freq(num,den,%i*w)) should be close to mod
 //
-// Copyright INRIA
 w=w(:);mod=mod(:);
 [LHS,RHS]=argn(0);
 if w(1)==0 then w(1)=%eps;end
@@ -50,7 +58,8 @@ log10is=log(10);
 w=[w ; exp(lwnew'*log10is)];
 mod=[mod ; exp(modnew'*log10is)];
 
-[w,ind]=sort(-w);w=-w; mod=mod(ind); weight=weight(ind);
+[w,ind] = gsort(-w);
+w=-w; mod=mod(ind); weight=weight(ind);
 ind=find(diff(w)>0); ind=[ind(:);length(w)];
 w=w(ind); mod=mod(ind); weight=weight(ind);
 

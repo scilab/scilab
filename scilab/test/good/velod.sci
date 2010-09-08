@@ -1,6 +1,13 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function []=velod(i)
 //------------ generation of the rear wheel
-// Copyright INRIA
+
   nnn=24
   i1=(i-1)*nstep+1
   ang=xx(6,i1)*i1/n2

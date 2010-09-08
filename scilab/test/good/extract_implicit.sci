@@ -1,4 +1,26 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [blklstr,cmatr,ccmat,cor,corinv,ok]=extract_implicit(blklst,cmat,ccmat)
+
   imp=[];blklstr=[];cmatr=[];ok=%t
 
   nb=size(blklst);
@@ -11,12 +33,12 @@ function [blklstr,cmatr,ccmat,cor,corinv,ok]=extract_implicit(blklst,cmat,ccmat)
   
   if size(ccmat,1)>0 then
     if or(dsearch(ccmat(:,1),imp,'d')<>0) then
-      x_message('An implicit block has an event input')
+      messagebox('An implicit block has an event input',"modal","error");
       ok=%f
       return
     end
     if  or(dsearch(ccmat(:,3),imp,'d')<>0) then
-      x_message('An implicit block has an event output')
+      messagebox('An implicit block has an event output',"modal","error");
       ok=%f
       return
     end

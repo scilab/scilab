@@ -1,24 +1,23 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Farid Belahcene
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function TitleLabel(varargin)
-// Copyright INRIA
 // TITLELABEL function
 // is used by the functions title, xlabel, ylabel, zlabel
-// F.Belahcene
 
 [lhs,rhs]=argn(0);
-
-isold=get('figure_style')=='old'
-
-if isold
-  disp("Not supported under old graphic style");
-  return;
-end
 
 //CurColor = 0; // current color used if no color specified via LineSpec
 // nor PropertyName
 
 ListArg = varargin;
 titlelabel = ListArg(1);
-ListArg(1) = null();
+ListArg(1) = null(); // remove this parameter from the list
 
 //detect and set the current axes now:
 if type(ListArg(1)) == 9
@@ -72,13 +71,6 @@ current_figure=gcf();
 cur_draw_mode = current_figure.immediate_drawing;
 current_figure.immediate_drawing = 'off';
 
-
-// set some defaults here
-// current_figure=gcf(); // already init. before
-// current_figure.color_map=jetcolormap(64); // bad choice -> init must be done somewhere else.
-
-colormap_size = size(current_figure.color_map,1);
-
 ///////////////////////////////////
 //Global Property treatment      //
 //PropertyName and PropertyValue //
@@ -87,11 +79,7 @@ colormap_size = size(current_figure.color_map,1);
 // P1 is the position of the first PropertyName field.
 Property = P1;
 
-current_surface = gce(); // get the newly created fac3d
-
 current_titlelabel=get(monaxe,titlelabel)
-monaxe.axes_visible = ["on","on","on"]
-//current_surface.mark_size_unit='point';
 
 while ((Property <> 0) & (Property <= nv-1))
   setTitleLabelProperty(ListArg(Property),ListArg(Property+1),current_titlelabel,current_figure,cur_draw_mode)
@@ -103,21 +91,6 @@ end
 // smart drawnow
 ResetFigureDDM(current_figure, cur_draw_mode);
 
-
-endfunction
-
-// Reset the Default Drawing Mode (DDM) of the figure
-// immediate_drawing is set to its input value.
-function ResetFigureDDM(cur_figure, cur_draw_mode)
-
-if type(cur_figure == 9)
-  if cur_figure.type == "Figure"
-    cur_figure.immediate_drawing = cur_draw_mode;
-  else
-    disp("Error in ResetFigureDDM : input argument must be a figure graphic handle");
-    return;
-  end
-end
 
 endfunction
 

@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
 function [p,err]=fit_dat(G,p0,Z,W,pmin,pmax,DG)
 //
 //         [p,err]=fit_dat(G,p0,Z [,W] [,pmin,pmax] [,DG])
@@ -25,7 +34,7 @@ function [p,err]=fit_dat(G,p0,Z,W,pmin,pmax,DG)
 //deff('e=G(p,z)','a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),e=y-FF(x)')
 //[p,err]=fit_dat(G,[3;5;10],Z)
 //xset('window',0)
-//xbasc();
+//clf();
 //plot2d(X',Y',-1) 
 //plot2d(X',FF(X)',5,'002')
 //a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
@@ -34,13 +43,12 @@ function [p,err]=fit_dat(G,p0,Z,W,pmin,pmax,DG)
 //deff('s=DG(p,z)','y=z(1),x=z(2),s=-[x-p(2),-p(1),x*x]')
 //[p,err]=fit_dat(G,[3;5;10],Z,DG)
 //xset('window',1)
-//xbasc();
+//clf();
 //plot2d(X',Y',-1) 
 //plot2d(X',FF(X)',5,'002')
 //a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
 //
 //
-// Copyright INRIA
 [lhs,rhs]=argn(0)
 boun=%f
 if rhs==3 then 
@@ -67,9 +75,11 @@ elseif rhs==6 then
 elseif    rhs==7 then
   GR=%t;
 else
-  error('wrong number of arguments')
+  error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"fit_dat"));
 end
-if size(W,1)~=size(W,2) then error('Weighting matrix must be square');end
+if size(W,1)~=size(W,2) then
+  error(msprintf(gettext("%s: Weighting matrix must be square.\n"),"fit_dat"));
+end
 nz=size(Z,2);mz=size(p0,'*');
 deff('e=GG(p,Z)','e=0;for i=1:nz,e=e+G(p,Z(:,i))''*W*G(p,Z(:,i)),end')
 if ~GR then
@@ -87,7 +97,7 @@ if ~boun then
   [err,p]=optim(costf,p0)
 else
   if or(p0<pmin)|or(p0>pmax) then 
-    error('initial guess not feasible')
+    error(msprintf(gettext("%s: Initial guess not feasible.\n"),"fit_dat"));
   end
   [err,p]=optim(costf,'b',pmin,pmax,p0)
 end

@@ -1,27 +1,46 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [equations,impl_type]=gen_code_FEM(A,B1,B2,C1,C2,C3,F3,oper,N,..
           a,b,b1,b2,b3,b4,b5,b6,b7,vbc,kbc)
-// Copyright INRIA
-// développé par EADS-CCR
-// Cette fonction est pour la génération des équations DAE du bloc        //
+// Cette fonction est pour la gï¿½nï¿½ration des ï¿½quations DAE du bloc        //
 // sorties :                                                              //
-//    - equations (String) : vecteur qui contient le code C des équations //
+//    - equations (String) : vecteur qui contient le code C des ï¿½quations //
 //      d'etat (DAE)                                                      //
-//    - impl_type (Entier) : indique si le type des états                 //
-//      (différentiels 1 ou algébrique -1)                                //       
-// entrées :                                                              //
+//    - impl_type (Entier) : indique si le type des ï¿½tats                 //
+//      (diffï¿½rentiels 1 ou algï¿½brique -1)                                //       
+// entrï¿½es :                                                              //
 //    - Ai, Bi (Doubles) : matrices d'assemblage A, B (B1 (oper 3) et     //
 //      B2(oper 4), C (C1 pour oper 2, C2 pour oper 5 et C3 pour oper 6)  //
-//      et F3 pour oper 7) pour le système: A*d2u/dt2 + B*du/dt + C*u = F // 
-//    - oper (Entier) : vecteur des opérateurs selectionnes de 1 à 7      //   
+//      et F3 pour oper 7) pour le systï¿½me: A*d2u/dt2 + B*du/dt + C*u = F // 
+//    - oper (Entier) : vecteur des opï¿½rateurs selectionnes de 1 ï¿½ 7      //   
 //    - N (Entier) : est le nombre de noeuds                              //
 //    - a, b (Double) : limites du domaine [a b]                          //
-//    - ai, bi (String) : les differents coeficients des opérateurs       //
+//    - ai, bi (String) : les differents coeficients des opï¿½rateurs       //
 //      (ai(x) et bi(t))                                                  //
 //    - vbc (String) : vecteur des conditions aux limites en a et b       //
 //    - kbc (Entier) : vecteur types des conditions au limites            //
 //------------------------------------------------------------------------//  
   Cla2=[];Clb2=[];Cla4=[];Clb4=[];lambda=spzeros(N,N);
-  impl_type=1; // 1 pour système d'état, -1 pour le système algébrique 
+  impl_type=1; // 1 pour systï¿½me d'ï¿½tat, -1 pour le systï¿½me algï¿½brique 
   sep=[',','*','/'];
  
   // prise en compte des conditions aux limites par dualisation
@@ -118,7 +137,7 @@ function [equations,impl_type]=gen_code_FEM(A,B1,B2,C1,C2,C3,F3,oper,N,..
       equations(i)='   res['+string(i-1)+']='+subfv(subfv(F,B),C)+';';
      end 
   else
-    // cas algébrique ==> implicite 
+    // cas algï¿½brique ==> implicite 
     impl_type=-1;
     equations=emptystr(N,1);
     vec2=equations;

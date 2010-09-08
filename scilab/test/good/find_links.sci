@@ -1,7 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 // =============================================================================================
 // find_links
-// Copyright INRIA
-// 
+//
 // Private function !!!
 // =============================================================================================
 
@@ -17,29 +25,25 @@ function flag = find_links(filein,fileout)
 	
 	if rhs<>2 then error(39), end
 	
-	if MSDOS then
-		sep='\';
-	else 
-		sep='/';
-	end
+	sep=filesep();
 	
 	txt=mgetl(filein);
 	
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	// Gestion de la DTD
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	
 	dtd_line = grep(convstr(txt,'u'),"<!DOCTYPE MAN SYSTEM");
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		txt(dtd_line) = "<!DOCTYPE MAN SYSTEM ""file://"+SCI+"\modules\helptools\help.dtd"">";
 	else
 		txt(dtd_line) = "<!DOCTYPE MAN SYSTEM """+SCI+"/modules/helptools/help.dtd"">";
 	end
 	
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	// Gestion de la date (<DATE>$LastChangedDate: 2006-07-27 10:51:33 +0200 (jeu, 27 jui 2006) $</DATE>)
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	
 	date_line =  grep(convstr(txt,'u'),"<DATE>");
 	start_date = strindex(txt(date_line(1)),"$LastChangedDate");
@@ -50,9 +54,9 @@ function flag = find_links(filein,fileout)
 		txt(date_line) = "    <DATE>"+part(txt(date_line),start_date:end_date)+"</DATE>";
 	end
 	
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	// Gestion des liens
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	
 	d=grep(txt,"<LINK>");
 	
@@ -92,68 +96,106 @@ endfunction
 
 function t=getlink(name,absolute_path,path)
 	
-	global %helps
+	global %helps;
+	global %helps_modules;
+	if %helps_modules == [] then
+	  moduleslist = getmodules();
+	  for i = 1:size(moduleslist,'*')
+	    add_module_help_chapter(moduleslist(i));
+	  end
+	end
+	%HELPS=[%helps_modules;%helps];
 	
 	name=stripblanks(name)
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		sep='\';
-	else 
+	else
 		sep='/';
 	end
 	
 	man_found = [];
 	
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	// On commmence par chercher dans le répertoire "name" ( cas le plus fréquent ).
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	
 	if fileinfo(absolute_path+'.list_htm') <> [] then
+		
 		whatis=mgetl(absolute_path+'.list_htm');
-		f=grep(whatis,'- '+name+'==>');
+		// 1er test ( avec le contenu de la balise title )
+		f = grep(whatis,'- '+name+'==>');
 		if f<>[] then
-			for k1=f 
+			for k1=f
 				w = whatis(k1);
 				w = strsubst(w,'- '+name+'==>','');
 				man_found = absolute_path + w;
 			end
+		else
+			// 2nd test ( avec le nom du fichier )
+			f = grep(whatis,'==>'+name+'.htm');
+			if f<>[] then
+				for k1=f
+					w = whatis(k1);
+					w = strsubst(w,'- '+name+'==>','');
+					man_found = absolute_path + name + '.htm';
+				end
+			end
 		end
+		
 	end
 	
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	// On recherche maintenant dans les répertoires désignés dans %helps
-	//------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------
 	
 	if man_found == [] then
-					
-		for k=1:size(%helps,1)
+		
+		for k=1:size(%HELPS,1)
 			
-			current_help_path = %helps(k,1)+sep;
+			current_help_path = %HELPS(k,1)+sep;
 			
 			if fileinfo(current_help_path+'.list_htm') <> [] then
 				
 				whatis=mgetl(current_help_path+'.list_htm');
-				f=grep(whatis,'- '+name+'==>');
+				// 1er test ( avec le contenu de la balise title )
+				f = grep(whatis,'- '+name+'==>');
 				if f<>[] then
-					for k1=f 
+					for k1=f
 						w = whatis(k1);
 						w = strsubst(w,'- '+name+'==>','');
 						man_found = current_help_path + w;
 					end
+				else
+					// 2nd test ( avec le nom du fichier )
+					f = grep(whatis,'==>'+name+'.htm');
+					if f<>[] then
+						for k1=f
+							w = whatis(k1);
+							w = strsubst(w,'- '+name+'==>','');
+							man_found = current_help_path + name + '.htm';
+						end
+					end
 				end
+				
 				if man_found<>[] then break; end
-		
+				
 			else
 				
-				whatis=mgetl(%helps(k,1)+sep+'whatis.htm')
-				f=grep(whatis,name)
+				if fileinfo(%HELPS(k,1)+sep+'whatis.htm') <> [] then
+					whatis = mgetl(%HELPS(k,1)+sep+'whatis.htm');
+					f      = grep(whatis,name);
+				else
+					f      = [];
+				end
+				
 				if f<>[] then
 					for k1=f
 						w=whatis(k1)
 						i=strindex(w,">"); j=strindex(w,"</A>")
-						if j<>[] then 
+						if j<>[] then
 							lname=part(w,i(2)+1:j-1)
-							lnames=getwords(lname) 
+							lnames=getwords(lname)
 							// transforms "toto titi tata" into ["toto" "titi" "tata"]
 							for ii=lnames
 								ok=%F
@@ -167,11 +209,12 @@ function t=getlink(name,absolute_path,path)
 						end
 					end
 				end
+				
 				if man_found<>[] then break; end
 			
 			end // if fileinfo ....
 		
-		end // for k=1:size(%helps,1)
+		end // for k=1:size(%HELPS,1)
 	
 	end // if  man_found == []
 	

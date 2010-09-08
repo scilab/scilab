@@ -1,3 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2001 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function [s]=center(x,orient)
 //
 //This function  computes s,  the centered version  of the
@@ -18,13 +29,10 @@ function [s]=center(x,orient)
 //returns in the  entry s(i,j) the value (x(i,j)-xbarh(i))
 //with xbarh(i) the mean of the values of the i row.
 //
-//author: carlos klimann
-//
-//date: 2001-10-05
-//
+
   if x==[] then s=%nan, return, end
   [lhs,rhs]=argn(0)
-  if (rhs<1)|(rhs>2) then error('center requires one or two inputs.'), end
+  if (rhs<1)|(rhs>2) then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"center",1,2)), end
   [m n]=size(x);
   if rhs==1
     xbar=(sum(x)/(m*n))
@@ -35,6 +43,6 @@ function [s]=center(x,orient)
   elseif orient=='r'|orient==1 then
     xbar=sum(x,'r')/m
     s=x-(ones(m,1)*xbar)
-  else error('Second center parameter must be r, c, 1 or 2'),
+  else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"center",2,"r","c",1,2)), 
   end
 endfunction

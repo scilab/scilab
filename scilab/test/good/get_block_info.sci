@@ -1,14 +1,40 @@
-function txt=get_block_info(scs_m,k,ksave)
-// Copyright INRIA
-  if argn(2)>2 then super_path;super_path($+1)=ksave,end
-txt=[]
-o=scs_m.objs(k)
-ksave=k //pour creer super_path
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
+function txt = get_block_info(scs_m, k, ksave)
+//**
+//**   
+if argn(2)>2 then
+    super_path;
+    super_path($+1) = ksave
+end
+txt = [] ;
+o = scs_m.objs(k)
+ksave = k // pour creer super_path
 //select o(1)
+
 select typeof(o)
-case 'Block' then
+case "Block" then
   txt = standard_document(o,k)
-  txt=[txt;' ']
+  txt = [txt;' ']
   
   if o.model.sim=='super'|o.model.sim=='csuper' then
     objet=o.model.rpar
@@ -31,7 +57,7 @@ case 'Block' then
     ligne_5 = list('Super Blocks', 2, boutons)
     //
     titre = ['This is a super block, Select additional '
-	'informations you want to get on it''s'
+	'information you want to get on its'
 	'components']
     reponse = x_choices(titre, list(ligne_1, ligne_2, ligne_3, ligne_4, ligne_5))
     if reponse <>[] then
@@ -69,11 +95,11 @@ case 'Block' then
 	' '
 	texte_2]
   end
-case 'Link' then
+case "Link" then
   txt = standard_document(o,k)
-case 'Text' then
+case "Text" then
   txt = standard_document(o,k)
-case 'Deleted' then
+case "Deleted" then
   txt=[]
 end
 endfunction

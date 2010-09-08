@@ -1,8 +1,27 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,..
           CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,..
-          a6,b6,a7,b7,k,mesures,params_pde]=setvalue_IHM_EDP(params_pde) 
-   // Copyright INRIA
-   // développé par EADS-CCR
+          a6,b6,a7,b7,k,mesures,params_pde]=setvalue_IHM_EDP(params_pde)
    // Cette fonction permet d'evaluer les parametres de l'IHM suite au l'evaluation du context           //
    // Entree :                                                                                           //
    //    - params_pde (tlist) : rajouter a la list exprs du bloc EDP afin de sauvegarder les             //
@@ -12,7 +31,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
    //    - a_domaine et b_domaine (Entiers) : sont les bords du domaine [a b]                            //
    //    - discr (Entier) : renvoi le type du disciminant (0: consatnt ou 1: non constant)               //
    //    - signe (Entier) : renvoi le signe du discriminant dans les cas non constant                    //
-   //              (1: positif, 2: négatif, 3: nul )                                                     //
+   //              (1: positif, 2: nï¿½gatif, 3: nul )                                                     //
    //    - choix (Entier) : renvoi le choix entre le mode manuel et le mode automatique (systeme expert) //
    //              (0 : Automatique, 1 : Manuel)                                                         //
    //    - type_meth (Entier) : renvoi le type de la methode de discretisation dans le cas manuel        //

@@ -1,7 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [sci_expr]=expression2sci(mtlb_expr,lhslist)
-// Copyright INRIA
 // M2SCI function
-// V.C.
 
 // Global variable for M2SCI
 global("varslist")
@@ -83,6 +90,10 @@ case "variable"
   end
 // --- operand is a list (only for operations) ---
 case "list"
+  if lstsize(mtlb_expr)==1 & mtlb_expr==list("EOL") then
+    sci_expr=mtlb_expr
+    return
+  end
   for k=1:size(mtlb_expr)
     if typeof(mtlb_expr(k))=="cste" then
       mtlb_expr(k)=Cste(mtlb_expr(k).value)
@@ -100,14 +111,16 @@ case "list"
     elseif typeof(mtlb_expr(k))=="funcall" then
       [mtlb_expr(k)]=expression2sci(mtlb_expr(k),lhslist)
     else
-      error("expression2sci: recursive extraction with one index of type "+..
-	  typeof(mtlb_expr(k))+" is not yet implemented!")
+      error(msprintf(gettext("recursive extraction with one index of type %s is not yet implemented."),typeof(mtlb_expr(k))))
     end
   end
   sci_expr=mtlb_expr
+// --- operand is a comment ---
+case "comment"
+  sci_expr=mtlb_expr
 // --- Expression is a not tolerated tlist ---
 else
-  error("expression2sci: "+typeof(mtlb_expr)+" is not yet implemented !")
+  error(msprintf(gettext("%s is not yet implemented."),typeof(mtlb_expr)))
 end
 
 // Verify if flag for translation improvements has to be set

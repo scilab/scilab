@@ -1,46 +1,49 @@
-function [y,R]=kpure(n)
-//!
-// Copyright INRIA
-y=[],R=[]
-if type(n)<>16 then error(92,1),end;
-flag=n(1);
-if flag(1)=='lss' then n=ss2tf(n),end
-if flag(1)<>'r' then  error(90,1),end;
-if n('dt')<>'c' then error('System must be continuous'),end
-if size(n('num'),'*') > 1 then error(95,1),end
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Serge Steer
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-r=routh_t(n,poly(0,'k')),
-[n,d]=n(['num','den'])
-[s,t]=size(r);
-for i=1:s,
-  coe=coeff(r(i,:)),
-  if coe==0*ones(1,t) then error('---> infinite solution'),end
-end,
+function [K,R]=kpure(sl,eps)
+//if sl is a transfert function N(S)/D(s) kpure looks for K producing
+//pure  imaginary roots for
+//  P(s)=D(s)+K*N(s)
+//There is a pair of pure imaginary poles if and only if
+//  P(%i*q)=0  (1)
+// and
+//  P(-%i*q)=0 (2)
+// because N and D are polynomials with real coefficients.
 
-z=0;u=0;eps=1e-7;
-
-for i=1:s,
-  t=prod(size(r(i,:)));
-  gd=r(i,1);
-  for j=2:t, 
-    [gd,u]=bezout(gd,r(i,j)), 
+//Author: Serge Steer, INRIA
+  y=[];R=[];
+  msg=_("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n")
+  if argn(2)==1 then eps=1e-6,end
+  if size(eps,'*')==2 then  eps=eps(2),end //compatibility
+  select typeof(sl)
+  case 'rational' then
+    if size(sl.num,'*') <> 1 then
+      error(msprintf(msg,"kpure",1))
+    end
+  case 'state-space' then
+    if size(sl.D,'*') <> 1 then
+      error(msprintf(msg,"kpure",1))
+    end
+    sl=ss2tf(sl)
+  else
+    error(msprintf(msg,"kpure",1))
   end
-  k=roots(gd)
-  h=prod(size(k)),
-  if h>0 then
-    for j=1:h,
-      if and(real(k(j))<>y) then
-	wr=roots(k(j)*n+d)
-	[w,ki]=mini(abs(real(wr)))
-	if w<eps then 
-	  y=[y real(k(j))],
-	  R=[R wr(ki)]
-	end
-      end
-    end,
-  end;
-end;
 
-[y,k]=sort(y)
-R=R(k)
+  //(1) give K(s)=-D(s)/N(s)
+  s=poly(0,varn(sl.den))
+  K=-sl.den/sl.num;
+  // replace K by the previous value in (2) and find the roots
+  s=roots(numer(horner(sl.den,-s)+K*horner(sl.num,-s)),'e');
+  //retain pure imaginary roots
+  s=imag(s(abs(real(s))<eps));
+  R=(s(s>0).'*%i);
+  //find the K(s) values K(s)=-D(s)/N(s)
+  K=-real(freq(sl.den,sl.num,R))
 endfunction

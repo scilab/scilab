@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Sl]=markp2ss(markpar,n,nout,nin)
 // Given a set of n (matrix) Markov parameters stacked in the (row)-matrix 
 // markpar of size nout x (n*nin) markp2ss
@@ -7,8 +16,8 @@ function [Sl]=markp2ss(markpar,n,nout,nin)
 // C*A*B =marpar(1:nout,nin+1:2*nin),....
 // See also: pol2des
 //!
-// Copyright INRIA
-nmax=maxi(size(markpar));
+
+nmax=max(size(markpar));
 H=[];H(n*nout,n*nin)=0;
 p=markpar;
 l1=1:nout;k1=1;

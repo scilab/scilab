@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Q,M,rk]=fullrf(A,tol)
 //[Q,M,rk]=fullrf(A)
 //Full rank factorization : A=Q.M
@@ -6,7 +16,6 @@ function [Q,M,rk]=fullrf(A,tol)
 // rk = rank(A) = #columns(Q) = #rows(M)
 //F.D.
 //!
-// Copyright INRIA
   [lhs,rhs]=argn(0)
   na1=norm(A,1);
   if rhs==1 then tol=sqrt(%eps);end

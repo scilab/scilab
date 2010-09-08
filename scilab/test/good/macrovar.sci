@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1992-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function vars=macrovar(macro)
 // Returns in a list the set of varibles used by a macro
 //    mac  : macro
@@ -8,10 +17,10 @@ function vars=macrovar(macro)
 //           called : macros called
 //           locals : local variables
 //!
-//origin S Steer inria 1992
-// Copyright INRIA
 if type(macro)==11 then comp(macro),end
-if type(macro)<>13 then error('Argument to macrovars must be a macro!'),end
+if type(macro)<>13 then 
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Scilab function expected.\n"),"macrovar",1)),
+end
 lst=macr2lst(macro);
 out=lst(2)',if prod(size(out))==0 then out =[],end
 in=lst(3)'
@@ -22,7 +31,7 @@ ng=prod(size(getted))
 globals=[],called=[]
 for k=1:ng
   if (find(getted(k)==vars)==[])&(find(getted(k)==in)==[]) then 
-    clear w //to avoid redefinition warning
+    clear w //to avoid redefinition warning (bug 1774)
     ierr=execstr('w='+getted(k),'errcatch')
     if ierr==0 then //the variable exists
       if or(type(w)==[13 130 11]) then
@@ -32,6 +41,7 @@ for k=1:ng
       end
     else
       globals=[globals;getted(k)]
+      lasterror(%t)  // clear the error (bug 2393)
     end
   end
 end

@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [x,but]=locate(n,flag)
 //[x]=locate(n,flag)
 //fonction permettant d'obtenir les coordonnees  d'un ou plusieurs
@@ -15,29 +23,17 @@ function [x,but]=locate(n,flag)
 //en cliquant sur un des boutons, la fin de saisie pour  n<=0  est
 //indiquee en cliquant sur le bouton de gauche.
 //!
-// Copyright INRIA
+
   [lhs,rhs]=argn(0)
   but=[]
-  xselect();
-  st=get('figure_style')=='new'
+  show_window();
   if rhs<=1,flag=0;end
   if rhs==0;n=-1;end
 
-  if ~st then //old graphic mode
-    xxx=xget('mark');
-    xset('mark',2,xxx(2));
-
-    deff('[]=clearmode(flag)',[
-	'modek=xget(''alufunction'')';
-	'xset(''alufunction'',6)';
-	'if flag==1,xpoly(x(1,:),x(2,:),''marks'',0);end';
-	'xset(''alufunction'',modek);';
-	'xset(''mark'',xxx(1),xxx(2))']);
-  else
-    ax=gca()
-    mark_style=ax.mark_style;mark_size=ax.mark_size;mark_size_unit=ax.mark_size_unit;
-    ax.mark_style=2;ax.mark_size=0;ax.mark_size_unit = "tabulated"
-    deff('[]=clearmode(flag)',[
+  ax=gca()
+  mark_style=ax.mark_style;mark_size=ax.mark_size;mark_size_unit=ax.mark_size_unit;
+  ax.mark_style=2;ax.mark_size=0;ax.mark_size_unit = "tabulated"
+  deff( '[]=clearmode(flag)',[
 	'npt=size(x,2);'
 	'if npt>0&flag==1 then'
 	'  delete(ax.children(1:npt))'
@@ -45,7 +41,6 @@ function [x,but]=locate(n,flag)
 	'ax.mark_size_unit=mark_size_unit;'
 	'ax.mark_style=mark_style;'
 	'ax.mark_size=mark_size;']);
-  end
   x=[];
   if n >= 0 then 
     for i=1:n,

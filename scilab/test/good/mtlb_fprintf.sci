@@ -1,7 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// Copyright (C) ???? - INRIA - Serge STEER
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function count = mtlb_fprintf(varargin)
-// Copyright INRIA
 // Emulation function for fprintf() Matlab function
-// S.S. V.C.
 
 [lhs,rhs]=argn()
 
@@ -32,7 +40,7 @@ elseif type(varargin(1))==10 then
     mprintf(fmt,l(:))
     count=size(a,"*")
   elseif nv==0 then
-    error("In mtlb_fprintf: mprintf("+fmt+") is not implemented")
+    error(msprintf(gettext("%s: %s is not implemented.\n"),"mtlb_fprintf","mprintf("+fmt+")"));
   else
     sz=[]
     for k=1:nv
@@ -46,7 +54,7 @@ elseif type(varargin(1))==10 then
       mprintf(fmt,varargin(2:$))
       count=size(sz,"*")
     else
-      error("In mtlb_fprintf: mprintf Scilab function does not work with more than one row variables !")
+      error(msprintf(gettext("%s: %s Scilab function does not work with more than one row variables.\n"),"mtlb_fprintf","mprintf"))
     end
   end  
 // mtlb_fprintf(fid,fmt,...)
@@ -81,9 +89,9 @@ else
     count=length(varargin(2))
   elseif nv==0 then
     if or(fid==[1 2]) then
-      error("In mtlb_fprintf: mprintf(format) is not implemented")
+      error(msprintf(gettext("%s: %s is not implemented.\n"),"mtlb_fprintf", "mprintf(format)"))
     else
-      error("In mtlb_fprintf: mfprintf(fid,format) is not implemented")
+      error(msprintf(gettext("%s: %s is not implemented.\n"),"mtlb_fprintf","mfprintf(fid,format)"))
     end 
   else
     sz=[]
@@ -103,9 +111,9 @@ else
       end
     else
       if or(fid==[1 2]) then
-	error("In mtlb_fprintf: mprintf Scilab function does not work with more than one row variables !")
+	error(msprintf(gettext("%s: %s Scilab function does not work with more than one row variables.\n"),"mtlb_fprintf", "mprintf"))
       else
-	mfprintfMat(fid,varargin(3:$),fmt)
+	fprintfMat(fid,varargin(3:$),fmt)
 	for k=1:nv
 	  count=count+size(varargin(k+2),"*")
 	end

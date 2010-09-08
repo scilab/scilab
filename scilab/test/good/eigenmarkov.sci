@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [M,Q]=eigenmarkov(P)
 //Returns normalized left and right eigenvectors
 //for the eigenvalue 1 of the Markov transition matrix P.
@@ -10,7 +20,7 @@ function [M,Q]=eigenmarkov(P)
 //from x. 
   [perm,rec1,tr1,indsRec,indsT]=classmarkov(P)
   Mn=P(perm,perm);
-  [junk,perminv]=-sort(-perm);perminv=-perminv;
+  [junk,perminv]=-gsort(-perm);perminv=-perminv;
   nr=sum(rec1);
   T=Mn(nr+1:$,nr+1:$);L=Mn(nr+1:$,1:nr);
   p=0;V=[];

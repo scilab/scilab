@@ -1,6 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [a,nvars,errmsg,nextindex] = mtlb_sscanf(s,fmt,sz)
 [lhs,rhs]=argn()
-if lhs==4 then error('mtlb_sscanf: nextindex not implemented'),end
+if lhs==4 then error(msprintf(gettext("%s: ''%s'' not implemented.\n"),"mtlb_sscanf","nextindex")),end
 if rhs<3 then sz=%inf,end
 nmx=prod(sz)
 nvars=0
@@ -13,7 +22,7 @@ lvars=msscanf(s,fmt);
 if lvars==-1 then
   a=''
   return
-  errmsg='End of string reached before a datun has been read'
+  errmsg=msprintf(gettext("%s: End of string reached before data has been read.\n"),"mtlb_sscanf");
 else
   nvars=size(lvars)
   nv=min(nvars,nmx)

@@ -1,5 +1,25 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=CLR(job,arg1,arg2)
-// Copyright INRIA
 x=[];y=[];typ=[]
 select job
 case 'plot' then
@@ -17,9 +37,10 @@ case 'set' then
   x0=model.state
   rpar=model.rpar
   ns=prod(size(x0));nin=1;nout=1
-  s=poly(0,'s');z=poly(0,'s')
+  %scicos_context=%scicos_context; //copy the semi-global variable locally
+  %scicos_context.s=%s //add s definition to the context
   while %t do
-    [ok,num,den,exprs]=getvalue('Set continuous SISO transfer parameters',..
+    [ok,num,den,exprs]=scicos_getvalue('Set continuous SISO transfer parameters',..
 	['Numerator (s)';
 	 'Denominator (s)'],..
 	list('pol',1,'pol',1),exprs)

@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [P,r]=augment(G,SRT,flag)
 // Augmented plants P
 // flag='output' (default) :
@@ -17,7 +27,7 @@ function [P,r]=augment(G,SRT,flag)
 //       [-------]
 //       [ G | -G]      
 //!
-// Copyright INRIA
+
 [LHS,RHS]=argn(0);
 if RHS <= 2 then flag='output';end
 select part(flag,1)
@@ -34,8 +44,8 @@ case 'o'
   select long
   case 3 then
     // 'SRT'
-    if SRT<>"SRT" then error("option ''"+string(SRT)+"'' not allowed, use ''SRT'' ",9999);
-      return
+    if SRT<>"SRT" then 
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"), 'augment',2,'SRT'),9999);
     end
     if ssSRT==0 then
       W1=[Iy,Oyu,Oyy;
@@ -106,7 +116,8 @@ case 'o'
       end
       return  
     end 
-    error("option ''"+string(SRT)+"'' not allowed use ''SR'', ''ST'' or ''RT'' ",9999);
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
+		   'augment',2, '''SR'',''ST'',''RT'''),9999);
   case 1 then
     if SRT=='S' then
       if ssSRT==0 then
@@ -167,8 +178,8 @@ case 'i'
   select long
   case 3 then
     // 'SRT'
-    if SRT<>"SRT" then error("option ''"+string(SRT)+"'' not allowed, use ''SRT'' ",9999);
-      return;
+    if SRT<>"SRT" then 
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"), 'augment',2,'SRT'),9999);
     end;
     if ssSRT==0 then
       W1=[Iu,-Iu;
@@ -235,7 +246,10 @@ case 'i'
       end
       return  
     end 
-    error("option ''"+string(SRT)+"'' not allowed use ''SR'', ''ST'' or ''RT'' ",9999);
+    
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
+		   'augment',2, '''SR'',''ST'',''RT'''),9999);
+
   case 1 then
     if SRT=='S' then
       if ssSRT==0 then

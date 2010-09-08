@@ -1,5 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function ged_insert(k,win)
 //xset, xget used because ged should handle both old and new style
+
+	[lhs,rhs]=argn(0);
+
+  if rhs<2,
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "ged_insert", 2));
+  end
   
   global active men  
   
@@ -9,13 +23,7 @@ function ged_insert(k,win)
   
   ged_current_figure=xget('window')
   xset('window',win) 
-  isold=get('figure_style')=='old'
-  if isold then 
-    message('this menu does not apply to old style graphics')
-    xset('window',ged_current_figure)
-    return
-  end
-
+  
   scf(win);
   ged_cur_fig_handle=gcf();
   
@@ -149,7 +157,7 @@ function ged_insert(k,win)
     xinfo(mess2)
     while rep(3)==-1 do
       rep=xgetmouse(0,[%t %t])
-      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
+      r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
       show_pixmap()
       xinfo(mess2)
     end    
@@ -165,7 +173,7 @@ function ged_insert(k,win)
     xinfo(mess2)
     while rep(3)==-1 do
       rep=xgetmouse(0,[%t %t])
-      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
+      r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
       show_pixmap()
       xinfo(mess2)
     end 

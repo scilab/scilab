@@ -100,7 +100,7 @@ endfunction
 function [btn,xc,yc,win,Cmenu]=xclick();
 // Copyright INRIA
   global %PT
-  xselect()
+  show_window()
   str=readline()
 //  disp(str)
   rep=evstr('list('+str+')')
@@ -240,7 +240,7 @@ function  txt=create_txt4(comment,default)
        'wm iconname $w '"scicos'"'
        'label $w.msg  -wraplength 4i -justify left -text '"'+sci2tcl(comment)+''"'
        'pack $w.msg -side top'
-       'text $w.mess  -background white -font  {-*-helvetica-normal-r-*-*-12} -relief sunken -bd 2 -setgrid true -width '+string(lw)+' -height '+string(ln)
+       'text $w.mess -font  {-*-helvetica-normal-r-*-*-12} -relief sunken -bd 2 -setgrid true -width '+string(lw)+' -height '+string(ln)
        'frame $w.buttons'
        'pack $w.buttons -side bottom -fill x -pady 2m'
        'button $w.buttons.dismiss -text Dismiss'
@@ -248,7 +248,6 @@ function  txt=create_txt4(comment,default)
        'pack $w.buttons.dismiss $w.buttons.code -side left -expand 1'
        'pack $w.mess  -expand yes -fill both -side top'
       ]
-endfunction
 
 function txt=create_txt1(title,items,init)
   global %PT
@@ -325,24 +324,24 @@ end
 endfunction
 
 function tk_mpop(ll,but,pos)
-  if MSDOS then return,end
+  if getos() == 'Windows' then return,end
   [lhs,rhs]=argn(0)
   if rhs<3 then pos=-1;end
   if length(ll)==0 then return;end
   for i=1:50,xpause(5000),end
   for bb=1:but-1
   [txt,MM]=create_pop(ll,bb,pos)
-  ierr=execstr('TCL_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','errcatch')
   for i=1:50,xpause(5000),end
    txt='catch {destroy .scicoslhb}'
-  ierr=execstr('TCL_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','errcatch')
   end
   [txt,MM]=create_pop(ll,but,pos)
-  ierr=execstr('TCL_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','errcatch')
 
   xpause(1000000)
   txt='catch {destroy .scicoslhb}'
-  ierr=execstr('TCL_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','errcatch')
 endfunction
 
 function [txt,MM]=create_pop(ll,but,pos)

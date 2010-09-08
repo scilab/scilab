@@ -1,7 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function h=mtlb_plot(varargin)
-// Copyright INRIA
 // Emulation function for Matlab plot()
-// V.C.
 
 // Default for Matlab graphics
 mtlbColorOrder=[..
@@ -118,7 +125,7 @@ else
 	linespec2sci(varargin(k+1),curh)
 	k=k+2
       elseif ~isempty(strindex("markeredgecolor",opt)) then
-	warning("MarkerEdgeColor option ignored");
+	warning(msprintf(gettext("%s: ''%s'' option ignored.\n"),"mtlb_plot","MarkerEdgeColor"));
 	k=k+2
       elseif ~isempty(strindex("markerfacecolor",opt)) then
 	curh=markplot.children(1)
@@ -145,6 +152,11 @@ else
 end
 a=gca()
 a.auto_clear="on"
+// Log axis ?
+global mtlb_log_mod
+if ~isempty(mtlb_log_mod)
+  a.log_flags = mtlb_log_mod;
+end
 h=a.children
 endfunction
 
@@ -182,7 +194,7 @@ styl=scilinestyles(ind)
 if styl>=0 then
   cur_handle.line_style=styl
 elseif ~isempty(ind) then
-  warning("Unknown line style found in ''"+linespec+"'' -> set to 6");
+  warning(msprintf(gettext("%s: Unknown line style found in ''%s'' -> set to 6.\n"),"mtlb_plot",linespec));
   cur_handle.line_style=6
 end
 
@@ -200,7 +212,7 @@ if ~isempty(clr) then
   cur_handle.foreground=color(clr)
   mtlbColor=name2rgb(clr)
 elseif ~isempty(ind) then
-  warning("Unknown color found in ''"+linespec+"'' -> set to black");
+  warning(msprintf(gettext("%s: Unknown color found in ''%s'' -> set to black.\n"),"mtlb_plot",linespec));
   cur_handle.foreground=color("black")
   mtlbColor=name2rgb("black")
 end

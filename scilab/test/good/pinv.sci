@@ -1,5 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function X=pinv(A,tol)
-// Copyright INRIA
 //Pseudo inverse
 if type(A)==1 then
   if A==[] then X=[],return,end
@@ -26,8 +35,7 @@ else
       execstr('X='+fun+'(A,tol)')
     end
   else
-    error('pinv not defined for type ""'+n+'"" .'+..
-	  'Check argument or define function '+fun)
+   error(msprintf(gettext('%s: Type not defined for %s. Check argument or define function %s.'),'pinv',n,fun));
   end
 end
 endfunction

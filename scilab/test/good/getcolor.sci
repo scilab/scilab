@@ -1,46 +1,63 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [c] = getcolor(Title,cini)
-// Copyright INRIA
+
 [lhs,rhs] = argn(0)
+
 if rhs==0 then
   Title = "";
   cini = 1;
 elseif rhs==1 then
   if type(Title)~=10 then
-    error("getcolor: argument must be a string")
-  end;
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n")), "getcolor", 1);
+  end
+  if size(Title, "*")~=1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")), "getcolor", 1);
+  end
   cini = 1;
 elseif rhs==2 then
-  if type(Title)~=10|type(cini)~=1|size(cini,"*")~=1 then
-    error("getcolor: arguments must be a string and an integer")
-  end;
+  if type(Title)~=10 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n")), "getcolor", 1);
+  end
+  if size(Title, "*")~=1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")), "getcolor", 1);
+  end
+  if type(cini)~=1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n")), "getcolor", 2);
+  end
+  if size(cini, "*")~=1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n")), "getcolor", 2);
+  end
 else
-  error("function ""color"" must have 1 or 3 arguments")
-end;
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n")), "getcolor", 2, 0, 2);
+end
 
 if winsid()~=[] then
-  if get("figure_style")=="old" then
-    cmap = xget("colormap");
-  else
-    cmap = get(gcf(),"color_map");
-  end;
-  curwin = xget("window");
+  curFig = gcf();
+  cmap = curFig.color_map;
+  curwin = curFig.figure_id;
 else
   cmap = []
   curwin = []
 end;
-win = max(winsid()+1);
-xset("window",win);
 
-if get("figure_style")=="old" then
-  set("figure_style","new");
-end;
+// create the window for getcolor
+win = max(winsid()) + 1;
+scf(win);
+
 sdf;
 sda;
-f = gcf();
+fig = gcf();
 if cmap~=[] then
-  f.color_map = cmap;
+  fig.color_map = cmap;
 else
-  cmap = f.color_map;
+  cmap = fig.color_map;
 end;
 
 N = size(cmap,1);
@@ -48,30 +65,16 @@ wdim = [1,1];
 r = wdim(1)/wdim(2);
 n = round(sqrt(N/r));
 m = int(n*r);
-H = m*30;
-W = n*30;
-f.figure_size = [H,W];
+H = m*45; // These numbers set the size of the getcolor window
+W = n*45;
+fig.figure_size = [H,W];
 
-if ~MSDOS then
-  delmenu(win,"3D Rot.")
-  delmenu(win,"UnZoom")
-  delmenu(win,"Zoom")
-  delmenu(win,"Edit")
-  delmenu(win,"File")
-  delmenu(win,"Insert")
-else
-  hidetoolbar(win)
-  // French
-  delmenu(win,"&Fichier")
-  delmenu(win,"&Editer")
-  delmenu(win,"&Outils")
-  delmenu(win,"&Inserer")
-  // English
-  delmenu(win,"&File")
-  delmenu(win,"&Edit")
-  delmenu(win,"&Tools")
-  delmenu(win,"&Insert")
-end;
+toolbar(win, "off")
+
+delmenu(win,gettext("&File"))
+delmenu(win,gettext("&Tools"))
+delmenu(win,gettext("&Edit"))
+delmenu(win,gettext("&?"))
 
 dx = wdim(1)/m;
 dy = wdim(2)/n;
@@ -122,23 +125,31 @@ rector.foreground = color(255*(1-cmap(k1,1)),255*(1-cmap(k1,2)),255*(1-cmap(k1,3
 
 //add a menu and its callback
 done = %f;
-addmenu(win,"File",["Ok","Cancel"]);
-execstr("File_"+string(win)+"=[""done=%t;k=k1;"";""done=%t;k=[]""]")
-cmdok = "execstr(File_"+string(win)+"(1))";
-cmdcancel = "execstr(File_"+string(win)+"(2))";
+Ok = "execstr("+gettext("Ok")+"_"+string(win)+"(1))";
+Cancel = "execstr("+gettext("Cancel")+"_"+string(win)+"(1))";
+
+addmenu(win, gettext("Ok"));
+addmenu(win, gettext("Cancel"));
 
 c_i = 0;
 c = cini;
+windowCloseButton = -1000;
 while %t
+  str = '';
   [c_i,cx,cy,cw,str] = xclick();
-  if c_i==(-2) then
-    if str==cmdok then k = k1; c = k; break;end;
-    if str==cmdcancel then k = []; c = []; break;end;
+  if (c_i == windowCloseButton) then
+    // window has been closed
+    k = [];
+    c = [];
+    break;
+  elseif (c_i== -2) then
+    if str==Ok then k = k1; c = k; break;end;
+    if str==Cancel then k = []; c = []; break;end;
   end;
-  if c_i==(-100) then k = []; break;end;
+
   mc = int(cx/dx)+1;
   nc = n-int(cy/dy);
-  k = (mc-1)*n+nc;
+  k = (mc-1)*n+nc; 
   if or(c_i==[0,3])&k<=N&k>0 then
     if k1~=0 then
       move(rector,[rects(1,k)-rects(1,k1),rects(2,k)-rects(2,k1)]);
@@ -146,15 +157,19 @@ while %t
     end;
     k1 = k;
     name = rgb2name(cmap(k,eye())*255);
-    xinfo("Color number "+string(k)+": R="+string(floor(cmap(k,1)*255))+" G="+string(floor(cmap(k,2)*255))+" B="+string(floor(cmap(k,3)*255))+" Name="""+name(1)+"""");
+    fig.info_message = ..
+      gettext("Color number")+" "+string(k)+": R="+string(floor(cmap(k,1)*255))+" G="+string(floor(cmap(k,2)*255))+" B="+string(floor(cmap(k,3)*255))+" "+gettext("Name")+"="""+name(1)+"""";
   
   
   end;
 end;
 
-xdel(win);
+if (c_i <> windowCloseButton) then
+  delete(fig);
+end
+
 if curwin~=[] then
-  xset("window",curwin);
+  scf(curwin);
 end;
 
 

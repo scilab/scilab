@@ -1,33 +1,27 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function fcontour2d(xr,yr,f,nz,style,strf,leg,rect,nax,void)
 	
 	// deff('[z]=Surf(x,y)','z=x**2+y**2');
 	// fcontour(Surf,-1:0.1:1,-1:0.1:1,10);
 	
-	// Copyright INRIA
 	
 	[lhs,rhs]=argn(0);
 	
 	if rhs == 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of fcontour2d()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'deff(''[z]=Surf(x,y)'',''z=x**3+y'');';
-			'fcontour2d(-1:0.1:1,-1:0.1:1,Surf,10,style=1:10,rect=[-1,-1,1,1]*1.5,strf='"011"');'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		deff("[z]=Surf(x,y)","z=x**3+y");
+		fcontour2d(-1:0.1:1,-1:0.1:1,Surf,10,style=1:10,rect=[-1,-1,1,1]*1.5,strf="011");
 		return
 	end
 
 if rhs<3,
-  error(' I need at least 3 arguments or zero to have a demo');
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fcontour2d", 3));
 end
 
 opts=[]
@@ -39,8 +33,6 @@ if exists('rect','local')==1 then opts=[opts,'rect=rect'],end
 if exists('nax','local')==1 then opts=[opts,'nax=nax'],end
 if exists('frameflag','local')==1 then opts=[opts,'frameflag=frameflag'],end
 if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
-
-if size(opts,2)<rhs-4 then  error('invalid named arguments'),end
 
 if type(f)==11 then comp(f),end;
 execstr('contour2d(xr,yr,feval(xr,yr,f),nz,'+strcat(opts,',')+')')

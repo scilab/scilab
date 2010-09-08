@@ -1,10 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_char(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab char()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
-// F.B
 
 if rhs==1 then // char(A)
   A = getrhs(tree)
@@ -30,7 +37,7 @@ end
 elseif A.vtype==Unknown then
   tree.lhs(1).dims=list(-1,-1);
 else
-  error ("sci_char :" + string(A.vtype)  +" is not implemented"  )
+  error(msprintf(gettext("%s is not implemented."),string(A.vtype)))
 end
 elseif rhs>1 //char(t1,t2,t3,...)
   lhs_dims1=0;

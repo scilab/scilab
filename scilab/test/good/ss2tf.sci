@@ -1,3 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+
 function [h,num,den]=ss2tf(sl,rmax)
 // State-space to transfer function.
 // Syntax:
@@ -16,14 +27,14 @@ function [h,num,den]=ss2tf(sl,rmax)
 //   this gives a less accurate result).
 //
 //!
-// Copyright INRIA
+
   if type(sl)==1|type(sl)==2 then
     h=sl
     return
   end
   flag=sl(1);
-  if (type(sl)<>16)|flag(1)<>'lss' then
-    error('First argument must be in state-space form')
+  if typeof(sl)<>'state-space' then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: State-space form expected.\n"),"ss2tf",1));
   end
   if sl(3)==[] then h=sl(5);num=sl(5);den=eye(sl(5));return;end
   if sl(4)==[] then h=sl(5);num=sl(5);den=eye(sl(5));return;end
@@ -46,6 +57,7 @@ function [h,num,den]=ss2tf(sl,rmax)
   if rhs==2 then
     if type(rmax)==10 then  
       meth=part(rmax,1),
+      rhs=1
     else 
       meth='b'
     end
@@ -90,7 +102,7 @@ function [h,num,den]=ss2tf(sl,rmax)
     [m,n]=size(sl(5))
     c=sl(4)
     for l=1:m
-      [m,i]=maxi(abs(c(l,:)));
+      [m,i]=max(abs(c(l,:)));
       if m<>0 then
 	ci=c(l,i)
 	t=eye(na,na)*ci;t(i,:)=[-c(l,1:i-1), 1, -c(l,i+1:na)]

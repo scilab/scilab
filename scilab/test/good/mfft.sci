@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [xk]=mfft(x,flag,dim)
 //<xk>=mfft(x,flag,dim)
 //macro which calculates the fft for a multi-dimensional signal
@@ -26,12 +35,10 @@ function [xk]=mfft(x,flag,dim)
 //      dim=<3,2,3>
 //
 //!
-//author: C. Bunks  date: 30 Sept 1988
-// Copyright INRIA
 
    xk=x;
-   dims=[1 matrix(dim,1,maxi(size(dim)))];
-   for k=1:maxi(size(dim)),
+   dims=[1 matrix(dim,1,max(size(dim)))];
+   for k=1:max(size(dim)),
       xk=fft(xk,flag,dim(k),prod(dims(1:k)));
    end,
 endfunction

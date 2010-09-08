@@ -1,3 +1,24 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function o=mark_prt(o,prt_number,inout,typ,v)
 //mark a port of a block free or used
 // o           : block data structure
@@ -9,8 +30,6 @@ function o=mark_prt(o,prt_number,inout,typ,v)
 // v           : value to assign
 //               k>0 : port is connected to link #k
 //               0 : port is free
-
-// Copyright INRIA
 
   if inout=='out' then //set an output port
     if typ==1 | typ==2 then  //standard (regular or implicit) port

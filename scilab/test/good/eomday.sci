@@ -1,51 +1,49 @@
-//---------------------------------------------------------------------------------------------------------------------
-// Author : Pierre MARECHAL
-// Scilab team
-// Copyright INRIA 
-// Date : 29 Dec 2005
+//------------------------------------------------------------------------------------------------------------
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Pierre MARECHAL
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 //
 // Returns the last day of the year and month by corresponding element of Matrix Y and M
-//---------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------
 
 function E=eomday(Y,M)
 
 	rhs=argn(2);
 	
-	normal_year = [31,28,31,30,31,30,31,31,30,31,30,31];
-	leap_year = [31,29,31,30,31,30,31,31,30,31,30,31];
+	common_year = [31,28,31,30,31,30,31,31,30,31,30,31];
+	leap_year   = [31,29,31,30,31,30,31,31,30,31,30,31];
 	
 	if size(Y) <> size(M) then
-		error("Both parameters must have the same size.");
+		error(msprintf(gettext("%s: Wrong size for input argument: Same size expected.\n"),"eomday"));
 	end
 	
 	if rhs <> 2 then
-		error("Number of parameters incorrect.");
-	end
-	
-	[nr,nc] = size(Y);
-	E = ones(nr,nc);
-	
-	for i=1:nr
-		for j=1:nc
-			
-			if (type(Y(i,j)) <> 1) | (type(M(i,j)) <> 1) then
-				error("Parameters must be integers");
-			end
-			
-			if (floor(Y(i,j))<>Y(i,j)) | (floor(M(i,j))<>M(i,j)) then
-				error("Parameters must be integers");
-			end
-			
-			if (M(i,j) < 1) | (M(i,j) > 12) then
-				error("The second parameter must be between 1 and 12");
-			end
-			
-			if isLeapYear(Y(i,j)) then
-				E(i,j) = leap_year(M(i,j));
-			else
-				E(i,j) = normal_year(M(i,j));
-			end
-		end
+		error(msprintf(gettext("%s: Wrong number of input arguments.\n"),"eomday"));
 	end
 
+	if (type(Y) <> 1) | (type(M) <> 1) then
+		error(msprintf(gettext("%s: Wrong type for input arguments: Integer expected.\n"),"eomday"));
+	end
+	
+	if (int(Y)<>Y) | (int(M)<>M) then
+		error(msprintf(gettext("%s: Wrong type for input arguments: Integer expected.\n"),"eomday"));
+	end
+	
+	if (min(M) < 1) | (max(M) > 12) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"eomday",2,1,12));
+	end
+	
+	[nr,nc] = size(M);
+	
+	E(  isLeapYear(Y) ) = leap_year(   M( isLeapYear(Y)) );
+	E( ~isLeapYear(Y) ) = common_year( M(~isLeapYear(Y)) );
+	
+	E = matrix(E,nr,nc);
+	
 endfunction

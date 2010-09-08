@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function dim=firstnonsingleton(in,opt)
-// Copyright INRIA
 // opt="str" then return "r" or "c" if possible
 // opt="num" then return numerical values
 rhs=argn(2)
@@ -24,15 +32,15 @@ for k=1:size(sz,"*")
   elseif sz(k)>1 then
     if k==1 then
       if opt=="num" then
-	dim=1
+      	dim=1
       else
-	dim="r"
+      	dim="r"
       end
     elseif k==2 then
       if opt=="num" then
-	dim=2
+      	dim=2
       else
-	dim="c"
+      	dim="c"
       end
     else
       dim=sz(k)

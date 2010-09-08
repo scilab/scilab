@@ -2,7 +2,18 @@ function scicos_learn(fil)
 // Copyright INRIA
 funcprot(0);
 comm='//'
-load "SCI/modules/scicos/macros/lib"
+
+if exists('scicos_scicoslib')==0 then
+  load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+end
+
+if exists('scicos_autolib')==0 then
+  load("SCI/modules/scicos/macros/scicos_auto/lib") ;
+end
+
+if exists('scicos_utilslib')==0 then
+  load("SCI/modules/scicos/macros/scicos_utils/lib") ;
+end
 
 
 
@@ -12,10 +23,10 @@ x_dia=funptr('x_dialog');clearfun('x_dialog');newfun('x_dialog1',x_dia);
 xcli=funptr('xclick');clearfun('xclick');newfun('xclick1',xcli);
 xgetm=funptr('xgetmouse');clearfun('xgetmouse');newfun('xgetmouse1',xgetm)
 x_mdia=funptr('x_mdialog');clearfun('x_mdialog');newfun('x_mdialog1',x_mdia);
-c_cho=funptr('tk_choose');clearfun('tk_choose');newfun('tk_choose1',c_cho);
-xgetf=funptr('xgetfile');clearfun('xgetfile');newfun('xgetfile1',xgetf);
+c_cho=funptr('x_choose');clearfun('x_choose');newfun('tk_choose1',c_cho);
+//xgetf=funptr('xgetfile');clearfun('xgetfile');newfun('xgetfile1',xgetf);
 //these function are redefined below
-getf "SCI/modules/scicos/demos/dialogs_learn.sci"
+exec('SCI/demos/scicos/dialogs_learn.sci')
 tk_getfile=xgetfile
 tk_savefile=xgetfile
 tk_getcolor=getcolor
@@ -46,12 +57,12 @@ names=[
     'SaveasInterfFunc_'
     'do_addnew'
     'do_export'
-    'do_load'
+    'do_load' 
     'do_exit'
     'x_matrix']
 
 for k=1:size(names,'r')
-  getf(get_function_path(names(k)))
+  exec(get_function_path(names(k)))
 end
 
 global %fig_counter
@@ -101,10 +112,6 @@ deff('GrabScope_()',..
       'Cmenu=''Replot'''])
 
 
-//deff('Comment_()',..
-//     ['txt=x_dialog([''Enter comments''],'''');'
-//      'Cmenu=''Replot'''])
-
 deff('Comment_()',..
      ['txt=x_dialog([''Enter comments''],'''');'
       'Cmenu=''Open/Set'''])
@@ -129,14 +136,14 @@ end
 // kill the added primitives
 clearfun('x_message1');clearfun('x_dialog1');clearfun('xclick1')
 clearfun('xgetmouse1');clearfun('x_mdialog1');clearfun('tk_choose1');
-clearfun('xgetfile1');
+//clearfun('xgetfile1');
 //retore the primitives
 newfun('x_message',x_mess)
 newfun('x_dialog',x_dia)
 newfun('x_mdialog',x_mdia)
-newfun('tk_choose',c_cho)
+newfun('x_choose',c_cho)
 newfun('xclick',xcli)
 newfun('xgetmouse',xgetm)
-newfun('xgetfile',xgetf)
+//newfun('xgetfile',xgetf)
 endfunction
 

@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [s,errmsg] = mtlb_sprintf(fmt,varargin)
 [lhs,rhs]=argn()
 count=0
@@ -27,7 +36,7 @@ else
     fmt=strcat(fmt(ones(1,mult))) // duplicate format 
     s=msprintf(fmt,varargin(:))
   else
-    error('mtlb_printf this particular case is not implemented')
+    error(msprintf(gettext("%s: This particular case is not implemented.\n"), "mtlb_printf"))
   end
 end
 K=strindex(s,'\n')

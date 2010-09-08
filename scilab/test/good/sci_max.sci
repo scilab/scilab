@@ -1,12 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_max(tree)
 // File generated from sci_PROTO1.g: PLEASE DO NOT EDIT !
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab max()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_max()
-// V.C.
 
 // C = max(A) or [C,I] = max(A)
 if rhs==1 then
@@ -16,27 +23,38 @@ if rhs==1 then
     vtype=Unknown // If A is a scalar then Matlab return Double type value else a Boolean type value
   end
   A = convert2double(A)
-  tree.rhs = Rhs(A)
+  tree.rhs = Rhs_tlist(A)
   dim = first_non_singleton(A)
-  tree.rhs=Rhs(A,'m') 
+
   if dim==-1 then
     // All output dims are unknown
     tree.lhs(1).dims=allunknown(A.dims)
-    //tmp=gettempvar() F.B: 9/11/2005//
-    //insert(Equal(list(tmp),A)) F.B: 9/11/2005//
+    tmp=gettempvar()
+    insert(Equal(list(tmp),A))
     // First non singleton dimension will be computed at execution
-    //tree.rhs=Rhs(tmp,Funcall("firstnonsingleton",1,list(tmp),list())) F.B: 9/11/2005//
+    tree.rhs=Rhs_tlist(tmp,Funcall("firstnonsingleton",1,list(tmp),list()))
   else
     tree.lhs(1).dims=A.dims
     if dim==0 then
-      tree.rhs=Rhs(A)
-      tree.lhs(1).dims=list(1,1)
+      tree.rhs=Rhs_tlist(A)
+      if is_empty(A) then
+        tree.lhs(1).dims=A.dims
+      else
+        tree.lhs(1).dims=list(1,1)
+      end
+    elseif dim==1 then
+      tree.rhs=Rhs_tlist(A,"r")
+      tree.lhs(1).dims(dim)=1
+    elseif dim==2 then
+      tree.rhs=Rhs_tlist(A,"c")
+      tree.lhs(1).dims(dim)=1
     else
+      tree.rhs=Rhs_tlist(A,dim)
       tree.lhs(1).dims(dim)=1
     end
   end
   
-  // C = max(A) or [C,I] = max(A)
+  // C = max(A) or [C,I] = max(A) 
   if is_real(A) then
     tree.lhs(1).type=Type(vtype,Real)
   elseif is_complex(A) then
@@ -64,7 +82,7 @@ elseif rhs==2 then
   end
   A=convert2double(A)
   B=convert2double(B)
-  tree.rhs=Rhs(A,B)
+  tree.rhs=Rhs_tlist(A,B)
 
   if is_real(A) & is_real(B) then 
     if not_empty(A) & not_empty(B) then
@@ -90,19 +108,19 @@ else
     vtype=Unknown
   end
   A=convert2double(A)
-  tree.rhs=Rhs(A)
+  tree.rhs=Rhs_tlist(A)
 
   // C = max(A,[],dim) or [C,I] = max(A,[],dim)
   if or(lhs==[1,2]) then
     if is_real(A) then
-      tree.lhs(1).type=Type(Double,Real)
+      tree.lhs(1).type=Type(vtype,Real)
       if typeof(dim)=="cste" then
 	if dim.value==1 then
-	  tree.rhs=Rhs(A,"r")
+	  tree.rhs=Rhs_tlist(A,"r")
 	  tree.lhs(1).dims=A.dims
 	  tree.lhs(1).dims(1)=Unknown // 0 or 1
 	elseif dim.value==2 then
-	  tree.rhs=Rhs(A,"c")
+	  tree.rhs=Rhs_tlist(A,"c")
 	  tree.lhs(1).dims=A.dims
 	  tree.lhs(1).dims(2)=Unknown // 0 or 1
 	elseif dim.value<=size(A.dims) then
@@ -111,22 +129,22 @@ else
 	else
 	  // Scilab max() does not work when dim  is greater than number of dims of A
 	  tree.name="mtlb_max"
-	  tree.rhs=Rhs(A,tmp,dim)
+	  tree.rhs=Rhs_tlist(A,tmp,dim)
 	  tree.lhs(1).dims=A.dims
 	end
       else
 	// If dim is 1 it can be replaced by 'r'
 	// If dim is 2 it can be replaced by 'c'
 	tree.name="mtlb_max"
-	tree.rhs=Rhs(A,tmp,dim)
+	tree.rhs=Rhs_tlist(A,tmp,dim)
 	tree.lhs(1).dims=allunknown(A.dims)
       end
     else
       // A can be complex....
       tree.name="mtlb_max"
-      tree.rhs=Rhs(A,tmp,dim)
+      tree.rhs=Rhs_tlist(A,tmp,dim)
       tree.lhs(1).dims=allunknown(A.dims)
-      tree.lhs(1).type=Type(Double,Unknown)
+      tree.lhs(1).type=Type(vtype,Unknown)
     end
   end
   

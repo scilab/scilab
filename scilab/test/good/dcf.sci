@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [n,m,x,y,nt,mt,xt,yt]=dcf(g,polf,polc,tol)
 //[n,m,x,y,nt,mt,xt,yt]=dcf(g,[polf,polc,[tol]]) returns eight
 //stable systems (n,m,x,y,nt,mt,xt,yt) for the doubly coprime factorization
@@ -8,7 +18,7 @@ function [n,m,x,y,nt,mt,xt,yt]=dcf(g,polf,polc,tol)
 // G must be stabilizable and detectable.
 // See copfac for a description of parameters.
 //!
-// Copyright INRIA
+
 [lhs,rhs]=argn(0),
        n1=contr(g(2),g(3)),n2=contr(g(2)',g(4)'),
        select rhs,

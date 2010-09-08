@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [a,b,c,d]=lin(sim,x0,u0)
 //Syntaxes : sl=lin(sim,x0,u0)    or
 //           [a,b,c,d]=lin(sim,x0,u0)
@@ -19,7 +28,7 @@ function [a,b,c,d]=lin(sim,x0,u0)
 //               [a,b,c,d]=lin(simula,z,u)
 //                sl = syslin('c',a,b,c,d,x0)
 //!
-// Copyright INRIA
+
 [lhs,rhs]=argn(0)
 [n,w]=size(x0);[m,w]=size(u0);mpn=m+n
 nrm=norm([x0;u0]);if nrm<1 then nrm=1,end;

@@ -1,16 +1,33 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function txt_xml=lecture_xml(nom)
-// Copyright INRIA
-// développé par EADS-CCR
   txt_xml=[];
-  vect=mgetl('SCI/macros/scicos_blocks/PDE/'+nom); //lecture du code xml
+  vect=mgetl('SCI/modules/scicos_blocks/macros/PDE/'+nom); //lecture du code xml
   for i=1:size(vect,1)
     txt_xml=txt_xml+vect(i)+'$';
   end
 endfunction
 
 function decision=interpret(txt_xml,delta,order)
-// Copyright INRIA
-// développé par EADS-CCR
   suite = [];
   
   //Indice du premier noeud ouvert
@@ -18,7 +35,7 @@ function decision=interpret(txt_xml,delta,order)
     //SI il reste un noeud ouvert dans txt_xml
     if ind ~=[] then
     
-      //On récupère la définition du noeud
+      //On rï¿½cupï¿½re la dï¿½finition du noeud
       balise_fin=strindex(txt_xml,'$');
       ind_balise_fin=find(balise_fin>ind(1));
       node_attr=part(txt_xml,ind(1):balise_fin(ind_balise_fin(1))-1);
@@ -75,15 +92,13 @@ function decision=interpret(txt_xml,delta,order)
 endfunction
 
 function  suite= extraire_bloc_fils(txt_xml)
-// Copyright INRIA
-// développé par EADS-CCR
   profondeur = 0;
   ind_dollar=strindex(txt_xml,'$');
   debut_ligne=1;
   ind_fin=-1;
   i=1;
   
-  //Tant qu'il reste des lignes à lire
+  //Tant qu'il reste des lignes ï¿½ lire
   //et qu'on a pas trouve la fin des fils du noeud courant
   while (i<size(ind_dollar,'*') & ind_fin ==-1) then
      ligne=part(txt_xml,debut_ligne:ind_dollar(i));
@@ -95,14 +110,14 @@ function  suite= extraire_bloc_fils(txt_xml)
         if profondeur == 0 then
           ind_fin=debut_ligne-1;
         //Sinon on ferme un noeud pere interne
-        //on décrémente la profondeur
+        //on dï¿½crï¿½mente la profondeur
         else
           profondeur = profondeur -1;
         end
       else
-      //Sinon il ne reste qu'une possibilité c'est que la ligne 
-      //se termine par >$, c'est à dire qu'on a trouve un noeud pere interne
-      //donc on incrémente la profondeur
+      //Sinon il ne reste qu'une possibilitï¿½ c'est que la ligne 
+      //se termine par >$, c'est ï¿½ dire qu'on a trouve un noeud pere interne
+      //donc on incrï¿½mente la profondeur
         profondeur = profondeur +1;
       end
     
@@ -119,15 +134,13 @@ function  suite= extraire_bloc_fils(txt_xml)
 endfunction
 
 function  suite= extraire_reste(txt_xml)
-// Copyright INRIA
-// développé par EADS-CCR
   profondeur = 0;
   ind_dollar=strindex(txt_xml,'$');
   debut_ligne=1;
   ind_fin=-1;
   i=1;
   
-  //Tant qu'il reste des lignes à lire
+  //Tant qu'il reste des lignes ï¿½ lire
   //et qu'on a pas trouve la fin des fils du noeud courant
   while (i<size(ind_dollar,'*') & ind_fin ==-1) then
     ligne=part(txt_xml,debut_ligne:ind_dollar(i));
@@ -139,14 +152,14 @@ function  suite= extraire_reste(txt_xml)
         if profondeur == 0 then
           ind_fin=ind_dollar(i)+1;
         //Sinon on ferme un noeud pere interne
-        //on décrémente la profondeur
+        //on dï¿½crï¿½mente la profondeur
         else
           profondeur = profondeur -1;
         end
       else
-      //Sinon il ne reste qu'une possibilité c'est que la ligne 
-      //se termine par >$, c'est à dire qu'on a trouve un noeud pere interne
-      //donc on incrémente la profondeur
+      //Sinon il ne reste qu'une possibilitï¿½ c'est que la ligne 
+      //se termine par >$, c'est ï¿½ dire qu'on a trouve un noeud pere interne
+      //donc on incrï¿½mente la profondeur
         profondeur = profondeur +1;
       end
     else

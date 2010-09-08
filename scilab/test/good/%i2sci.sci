@@ -1,11 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=%i2sci(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab insertion
 // Input: tree = Matlab operation tree
 // Output: tree = Scilab equivalent for tree
 // Emulation functions: mtlb_i() and mtlb_is()
-// V.C.
 
 // Global variable for M2SCI
 global("varslist")
@@ -57,7 +64,7 @@ if rhs==1 then
     if bval then
       varslist(index).infer.dims=allunknown(to.dims)
     end
-    insert(Equal(list(to),Funcall("mtlb_is",1,Rhs(to,from,ind),list(to))),1)
+    insert(Equal(list(to),Funcall("mtlb_is",1,Rhs_tlist(to,from,ind),list(to))),1)
   // --- Insertion with just one index ---
   elseif type(ind)<>15 then
     if ind.vtype==String then
@@ -135,7 +142,7 @@ if rhs==1 then
       tree=%i_st2sci(tree)
       return
     end
-    error("%i2sci: recursive insertion in a variable which is not a Cell nor a Struct: "+to.name)
+    error(msprintf(gettext("recursive insertion in a variable which is not a Cell nor a Struct: %s."),to.name))
   end
 // Two indexes: to(ind1,ind2,...)=from or more
 else
@@ -146,7 +153,7 @@ else
     if bval then
       varslist(index).infer.dims=allunknown(to.dims)
     end
-    insert(Equal(list(to),Funcall("mtlb_is",1,Rhs(to,from,tree.operands(2),tree.operands(3)),list(to))),1)
+    insert(Equal(list(to),Funcall("mtlb_is",1,Rhs_tlist(to,from,tree.operands(2),tree.operands(3)),list(to))),1)
   else
     tree.out(1).dims=list()
     for k=1:lstsize(tree.operands)-2
@@ -167,12 +174,12 @@ else
    if is_empty(to) then
       // a(k,:)=b with a==[] is converted by a(1,1:length(b))=b
       if lstsize(tree.operands)-2 == 2 & typeof(tree.operands($-1))=="cste" & tree.operands($-1).value==":" then
-	length_funcall=Funcall("length",1,Rhs(tree.operands($)),list())
+	length_funcall=Funcall("length",1,Rhs_tlist(tree.operands($)),list())
 	tree.operands($-1)=Operation(":",list(Cste(1),length_funcall),list())
       end
       // a(:,k)=b with a==[] is converted by a(1:length(b),1)=b
       if lstsize(tree.operands)-2 == 2 & typeof(tree.operands($-2))=="cste" & tree.operands($-2).value==":" then
-	length_funcall=Funcall("length",1,Rhs(tree.operands($)),list())
+	length_funcall=Funcall("length",1,Rhs_tlist(tree.operands($)),list())
 	tree.operands($-2)=Operation(":",list(Cste(1),length_funcall),list())
       end
     end

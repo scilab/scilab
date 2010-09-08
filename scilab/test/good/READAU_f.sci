@@ -1,13 +1,33 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=READAU_f(job,arg1,arg2)
-// Copyright INRIA
 x=[];y=[];typ=[]
 select job
 case 'plot' then
   standard_draw(arg1)
 case 'getinputs' then
-  [x,y,typ]=standard_inputs(o)
+  [x,y,typ]=standard_inputs(arg1)
 case 'getoutputs' then
-  [x,y,typ]=standard_outputs(o)
+  [x,y,typ]=standard_outputs(arg1)
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
@@ -24,7 +44,7 @@ case 'set' then
   fname=exprs(1)
 
   while %t do
-    [ok,fname1,N,swap,exprs]=getvalue(..
+    [ok,fname1,N,swap,exprs]=scicos_getvalue(..
 	['Set READAU block parameters';
 	 'Read is done on a binary .au file'],..
 	['Input file name';

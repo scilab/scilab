@@ -1,10 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=%i_ce2sci(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab insertion in cells
 // Input: tree = Matlab operation tree
 // Output: tree = Scilab equivalent for tree
-// V.C.
 
 from=tree.operands($)
 to=tree.operands(1)
@@ -28,7 +35,7 @@ if to.vtype<>Struct then
       [bval,index]=isdefinedvar(to)
       varslist(index).infer.type.vtype=Cell
     else
-      error("%i_ce2sci: destination variable is not a cell: "+to.name+" is of type "+string(to.vtype))
+      error(msprintf(gettext("destination variable is not a cell: %s is of type %s."),to.name,string(to.vtype)))
     end
   elseif to.vtype==Unknown then
     insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
@@ -55,7 +62,7 @@ if rhs==1 then
 	  tree.out(1).contents.index($+1)=list(tree.operands(2),Cste("entries"))
 	  tree.out(1).contents.data($+1)=from.contents.data(1)
 	else
-	  error("Not yet implemented");
+	  error(gettext("Not yet implemented."))
 	end
       else
 	tree.out(1).infer=from.infer
@@ -158,7 +165,7 @@ if lstsize(from.contents.index)==1 then
 elseif lstsize(from.contents.index)==0 then
   tree.out(1).contents=Contents()
 else
-  error("Not yet implemented")
+  error(gettext("Not yet implemented."))
 end
 end
 endfunction

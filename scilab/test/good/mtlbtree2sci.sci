@@ -1,10 +1,17 @@
-function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprint)
-// Copyright INRIA
-// Scilab Project - V. Couvert
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
 // Conversion of a Matlab function tree to Scilab (and code generation)
 // Input arguments:
 //  - mtlbtree: tree (returned by macr2tree) representing Matlab function compiled code
-//  - prettyprint: boolean flag for pretty printed output file if TRUE
+//  - prettyprintoutput: boolean flag for pretty printed output file if TRUE
 // Output arguments:
 //  - scitree: Scilab equivalent for mtlbtree
 //  - crp: Scilab equivalent function code (function body)
@@ -18,7 +25,7 @@ m2sci_to_insert_a=list()
 tmpvarnb=0
 
 if typeof(mtlbtree)<>"program" then
-  error("mtlbtree2sci(): wrong type of input !")
+  error(gettext("wrong type of input."))
 end
 
 // Init Scilab tree
@@ -31,12 +38,12 @@ else
   nblines=1 // Number of converted lines
 end
 
-m2sci_info("Conversion of M-tree...",-1);
+m2sci_info(gettext("Conversion of M-tree..."),-1);
 
 // Default value
 rhs = argn(2);
 if rhs<2 then
-  prettyprint=%F
+  prettyprintoutput=%F
 end
 
 crp=""
@@ -84,22 +91,22 @@ while ninstr<=size(mtlbtree.statements)-3
   end    
   for k=1:size(scitree.statements)
     if k<size(scitree.statements)
-      crp = cat_code(crp,instruction2code(scitree.statements(k),prettyprint));  
-      crp = format_txt(crp,scitree.statements(k),prettyprint,scitree.statements(k+1));
+      crp = cat_code(crp,instruction2code(scitree.statements(k),prettyprintoutput));  
+      crp = format_txt(crp,scitree.statements(k),prettyprintoutput,scitree.statements(k+1));
     end
   end
   
   scitree.statements=list(scitree.statements($))
   
   // Disp percentage of conversion done
-  mprintf(margin+"Line "+string(nblines)+" out of "+string(mtlbtree.nblines)+"...\r")
+  msprintf(gettext("%s line %s out of %s..."),margin, string(nblines), string(mtlbtree.nblines))
   ninstr=ninstr+1
   tmpvarnb=0
 end
 
 if scitree.statements(1)<>list("EOL") then
-  crp = cat_code(crp,instruction2code(scitree.statements(1),prettyprint));
-  crp = format_txt(crp,scitree.statements(1),prettyprint,list("EOL"));
+  crp = cat_code(crp,instruction2code(scitree.statements(1),prettyprintoutput));
+  crp = format_txt(crp,scitree.statements(1),prettyprintoutput,list("EOL"));
 end
 
 if scitree.name<>"" then // Not a batch file
@@ -108,7 +115,7 @@ if scitree.name<>"" then // Not a batch file
   crp=cat_code(crp,"");
 end
 
-m2sci_info("Conversion of M-tree: Done",-1);
+m2sci_info(gettext("Conversion of M-tree: Done"),-1);
 
 
 clearglobal("m2sci_to_insert_b")

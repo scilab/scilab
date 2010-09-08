@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F.D
+// Copyright (C) INRIA - 1996 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [zers,pols,gain]=zpch2(n,A,omegar)
 //[zers,pols,gain]=zpch2(n,A,omegar)
 //Poles and zeros of a type 2 Chebyshev analog filter
@@ -11,9 +21,6 @@ function [zers,pols,gain]=zpch2(n,A,omegar)
 //  gain   :Resulting filter gain
 //
 //!
-//Author F.D.
-//Revised by C. Bunks Oct. 24, 1996  
-// Copyright INRIA
 un=ones(1,n);
 v=%pi/(2*n)*(1:2:2*n-1);
 w=exp(%i*v);

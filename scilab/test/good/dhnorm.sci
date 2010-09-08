@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function gama=dhnorm(Sl,tol,gamamax)
 //discrete-time case
 // included in h_norm!
@@ -8,7 +18,7 @@ gamamin=sqrt(%eps);
 n=0;
 while %T
 gama=(gamamin+gamamax)/2;n=n+1;
-if n>1000 then warning('dhnorm: more than 1000 iterations!');return;end
+if n>1000 then warning(msprintf(gettext("%s: More than %d iterations.\n"),"dhnorm",1000));return;end
  if dhtest(Sl,gama) then
   gamamax=gama; else gamamin=gama
  end
@@ -38,7 +48,7 @@ phi12=ws(n+1:2*n,:);
 if rcond(x12) > 1.d-6 then
 X=phi12/x12;
 z=eye()-B'*X*B
-ok= mini(real(spec(z))) > -%eps
+ok= min(real(spec(z))) > -%eps
 else
 ok=%t;end
 endfunction

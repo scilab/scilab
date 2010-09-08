@@ -1,77 +1,206 @@
-function [x,y,typ]=TEXT_f(job,arg1,arg2)
-// Copyright INRIA
-x=[];y=[];typ=[];
-select job
-case 'plot' then //normal  position
-  graphics=arg1.graphics; 
-  model=arg1.model;
-  if model.rpar==[] then model.rpar=graphics.exprs(1),end //compatibility
-  ppat=xget('pattern')
-  oldfont=xget('font');  xset('font',model.ipar(1),model.ipar(2))
-  if MSDOS then
-    xset('pattern',scs_m.props.options.Background(1))
-    xstring(graphics.orig(1),graphics.orig(2),model.rpar)
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//                      - Alan Layec <alan.layec@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
+function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,typ)
+// alert for badly connected blocks
+// path_out : Path of the "from block" in scs_m
+// path_in  : Path of the "to block" in scs_m
+// Alan, 28/12/06 : added rhs parameter : outtyp/intyp and typ flag.
+// typ : a flag. If not present or equal to zero then
+//               display a message concerning size.
+//               Else if equal to 1 then display a message
+//               concerning type.
+//!
+
+  if %scicos_debug_gr then
+    disp("bad_connection...")
   end
-  xset('pattern',default_color(1))
-  xstring(graphics.orig(1),graphics.orig(2),model.rpar)
-  xset('font',oldfont(1),oldfont(2))
-  xset('pattern',ppat)
-case 'getinputs' then
-case 'getoutputs' then
-case 'getorigin' then
-  [x,y]=standard_origin(arg1)
-case 'set' then
-  x=arg1;
-  graphics=arg1.graphics;
-  orig=graphics.orig
-  exprs=graphics.exprs
-  model=arg1.model
-  if size(exprs,'*')==1 then exprs=[exprs;'3';'1'],end // compatibility
-  while %t do
-    [ok,txt,font,siz,exprs]=getvalue('Set Text block parameters',..
-	['Text';'Font number';'Font size'],list('str',-1,'vec',1,'vec',1),exprs)
-    if ~ok then break,end
-    if font<=0|font>6 then
-      message('Font number must be greater than 0 and less than 7')
-      ok=%f
+
+  rhs = argn(2) ;
+  if (rhs == 8) then typ=0, end
+
+  if type(path_out)==15 then //set of modelica blocks
+    // look for modelica bloc associated with prt_out
+    outports=list()
+    for b=path_out,
+      path=list();
+      for l=b(1:$-1),
+	path($+1)=l;path($+1)='model';path($+1)='rpar';path($+1)='objs';
+      end
+      path($+1)=b($);
+      if size(path)==1 then path=path(1),end
+      mb=scs_m.objs(path)
+      k=find(mb.graphics.out_implicit=='E')
+      for kk=k,outports($+1)=path,end
     end
-    if siz<0 then
-      message('Font size must be positive')
-      ok=%f
+    path_out=outports(prt_out)
+  end
+  if type(path_in)==15 then //set of modelica blocks
+    // look for modelica bloc associated with prt_in
+    inports=list()
+    for b=path_in,
+      path=list();
+      for l=b(1:$-1),
+	path($+1)=l;path($+1)='model';path($+1)='rpar';path($+1)='objs';
+      end
+      path($+1)=b($);
+      if size(path)==1 then path=path(1),end
+      mb=scs_m.objs(path)
+      k=find(mb.graphics.in_implicit=='E')
+      for kk=k,inports($+1)=path,end
     end
-    if ok then
-      graphics.exprs=exprs
-      oldfont=xget('font')
-      xset('font',font,siz)
-      r=xstringl(0,0,exprs(1))
-      xset('font',oldfont(1),oldfont(2))
-      sz=r(3:4)
-      graphics.sz=sz
-      x.graphics=graphics;
-      ipar=[font;siz]
-      model.rpar=txt
-      model.ipar=ipar;
-      x.model=model
-      break
+    path_in=inports(prt_in)
+  end
+
+  //** save the current figure handle
+  gh_wins = gcf();
+
+  if path_in==-1 then
+    //** hilite_obj(scs_m.objs(path_out)); //**
+    hilite_obj(path_out); //** new
+    if typ==0 then
+      messagebox(['Hilited block has connected ports ';'with  incompatible sizes'],"modal")
+    else
+      messagebox(['Hilited block has connected ports ';'with  incompatible types'],"modal")
+    end
+    unhilite_obj(path_out); //** new
+    return;
+  end
+
+  //[lhs,rhs]=argn(0)
+  if prt_in <> -1 then  //two connected blocks
+    lp=min(size(path_out,'*'),size(path_in,'*'))
+    k=find(path_out(1:lp)<>path_in(1:lp))
+    path=path_out(1:k(1)-1) // common superbloc path
+    path_out=path_out(k(1)) // "from" block number
+    path_in=path_in(k(1))   // "to" block number
+
+    if path==[] then
+      //** hilite_obj(scs_m.objs(path_out)) //** set
+      hilite_obj(path_out); //**
+      if or(path_in<>path_out) then
+          //** hilite_obj(scs_m.objs(path_in))
+          hilite_obj(path_in)
+      end
+
+      if typ==0 then
+        messagebox(['Hilited block(s) have connected ports ';
+                 'with  incompatible sizes';
+                 ' output port '+string(prt_out)+' size is :'+sci2exp(nout);
+                 ' input port '+string(prt_in)+' size is  :'+sci2exp(nin)],"modal");
+      else
+        messagebox(['Hilited block(s) have connected ports ';
+                 'with  incompatible type';
+                 ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
+                 ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");
+
+      end
+      unhilite_obj(path_out);
+      if or(path_in<>path_out) then unhilite_obj(path_in),end
+      //** hilite_obj(scs_m.objs(path_out))
+      //** if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
+    else
+      mxwin=max(winsid())
+//*****************************************
+      for k=1:size(path,'*')
+	//** hilite_obj(scs_m.objs(path(k))) //**
+	hilite_obj(path(k)) ; //**
+	scs_m=scs_m.objs(path(k)).model.rpar;
+	scs_show(scs_m,mxwin+k)  //** WARNING !
+      end
+      //** hilite_obj(scs_m.objs(path_out)) //**
+      hilite_obj(path_out) ; //**
+      if or(path_in<>path_out) then
+        //** hilite_obj(scs_m.objs(path_in))
+        hilite_obj(path_in)
+      end
+//*****************************************
+      if typ==0 then
+        messagebox(['Hilited block(s) have connected ports ';
+                 'with  incompatible sizes';
+                 string(prt_out)+' output port size is :'+sci2exp(nout);
+                 string(prt_in)+' input port size is  :'+sci2exp(nin)],"modal");
+      else
+        messagebox(['Hilited block(s) have connected ports ';
+                 'with  incompatible type';
+                 ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
+                 ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");
+      end
+      for k=size(path,'*'):-1:1
+        //** select the mxwin+k window and get the handle
+        gh_del = scf(mxwin+k);
+        //** delete the window
+        delete(gh_del)
+        //xdel(mxwin+k) //** WARNING !
+      end
+
+      //** restore the active window
+      scf(gh_wins);
+
+      //scs_m=null()
+      //** unhilite_obj(scs_m.objs(path(1))) //** WARNING
+      unhilite_obj(path(1))
+    end
+  else // connected links do not verify block contraints
+    mess=prt_out;
+    if type(path_out)==15 then //problem with implicit block
+      messagebox('Problem with the block generated from modelica blocks','modal')
+    else
+      path=path_out(1:$-1) // superbloc path
+      path_out=path_out($) //  block number
+      if path==[] then
+	//** hilite_obj(scs_m.objs(path_out)) ;//** set
+	hilite_obj(path_out) ;//** set
+	messagebox(mess,'modal')
+	//** hilite_obj(scs_m.objs(path_out)) //** clear
+        unhilite_obj(path_out) ;
+      else
+	mxwin=max(winsid())
+	for k=1:size(path,'*')
+	  //** hilite_obj(scs_m.objs(path(k))) //**
+	  hilite_obj(path(k)) ; //**
+	  scs_m=scs_m.objs(path(k)).model.rpar;
+	  scs_show(scs_m,mxwin+k) //**
+	end
+	//** hilite_obj(scs_m.objs(path_out)) //**
+	hilite_obj(path_out) ; //**
+	messagebox(mess,'modal')
+	for k=size(path,'*'):-1:1
+          //**WARNING: xdel(mxwin+k) //** delete (mxwin+k) graphic window
+          //** select the mxwin+k window and get the handle
+          gh_del = scf(mxwin+k);
+          //** delete the window
+          delete(gh_del)
+        end
+
+        //** restore the active window
+        scf(gh_wins);
+
+        //scs_m=null()
+        //** unhilite_obj(scs_m.objs(path(1))) //**
+        unhilite_obj(path(1))
+      end
     end
   end
-case 'define' then
-  font=2
-  siz=1
 
-  model=scicos_model()
-  model.sim='text'
-  model.rpar='Text'
-  model.ipar=[font;siz]
-
-  exprs=['Text';string(font);string(siz)]
-  graphics=scicos_graphics()
-  graphics.orig=[0,0];
-  graphics.sz=[2 1];
-  graphics.exprs=exprs
-
-
-  x=mlist(['Text','graphics','model','void','gui'],graphics,model,' ','TEXT_f')
-
-end
+  
 endfunction

@@ -1,7 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [a, count]=mtlb_fread(fid,sz,prec)
-// Copyright INRIA
 // Emulation function for fread() Matlab function
-// V.C.
 
 prectbl=["c"  "char"    "char"          
          "?"  "schar"   "signed char"   
@@ -34,11 +41,11 @@ case 2 then
 end
 [l,k]=find(prec==prectbl)
 if l==[] then
-  error("The format: "+prec+" is unknown")
-  end
+  error(msprintf(gettext("%s: The format ''%s'' is unknown.\n"), "mtlb_fread", prec))
+end
 Prec=prectbl(l,1)
 if Prec=="?" then 
-  error("The format: "+prec+" is not yet handled")
+  error(msprintf(gettext("%s: The format ''%s'' is not yet handled.\n"), "mtlb_fread", prec))
 end
 if isinf(sz) then
   a=[]
@@ -56,7 +63,7 @@ else
 
   if meof(fid)<>0 then
     mclearerr(fid)
-    error("End of file reached before all matrix is read")
+    error(msprintf(gettext("%s: End of file reached before all matrix is read.\n"), "mtlb_fread"))
   end
   if size(sz,"*")==1 then
     a=a(:)

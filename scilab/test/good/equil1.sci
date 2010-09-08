@@ -1,6 +1,16 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [t,siz]=equil1(p,q,tol)
 //
-// Copyright INRIA
+
 [n,n]=size(p);
 [lhs,rhs]=argn(0);
 // t1
@@ -27,7 +37,7 @@ q=t2*q*t2';t3=eye(n,n);
 if np<>n then
   x=diag(ones(nq,1)./(sigma1.*sigma1))*q(1:nq,np+1:n)
   t3(1:nq,np+1:n)=-x;
-  q=t3'*q*t3;// ici t3 vaut en fait t3**-1
+  q=t3'*q*t3;// here t3 value is in reality t3**-1
   t3(1:nq,np+1:n)=x;
 end;
 //

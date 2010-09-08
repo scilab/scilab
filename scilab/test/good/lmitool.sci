@@ -1,33 +1,41 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
 function [txtdo]=lmitool(PROBNAME,XNAME,DNAME) 
-// Copyright INRIA
 [LHS,RHS]=argn(0);
 txtdo=[]
 
 if RHS ~=3 then
-x_message(['Welcome to LMITOOL';'      ';'   ';
-    'LMITOOL is a Scilab package for LMI optimization';
+messagebox([gettext('Welcome to LMITOOL');'      ';'   ';
+    gettext('LMITOOL is a Scilab package for LMI optimization');
       '            ';
       '           ';
-      'It can solve the following problem';
+      gettext('It can solve the following problem');
       '                 ';
-      '   minimize  f(X1,...,XM)  ';
-      'subject to the LME constraints: ';
-      '   Gi(X1,...,XM)=0,  i=1,2,...,p,';
-      'and the LMI constraints:  ';
-      '   Hj(X1,...,XM)>=0,  j=1,2,...,q.';
+      gettext('   minimize  f(X1,...,XM)  ');
+      gettext('subject to the LME constraints: ');
+      gettext('   Gi(X1,...,XM)=0,  i=1,2,...,p,');
+      gettext('and the LMI constraints:  ');
+      gettext('   Hj(X1,...,XM)>=0,  j=1,2,...,q.');
       '              ';
-      'where';
-      'X1,...,XM are unknown real matrices, referred to as the unknown matrices,';
-      'f is the objective function, a linear scalar function of the entries of the X''s,';
-      'Gi''s are affine matrix functions of the entries of the X''s,';
-      'Hj''s are affine symmetric matrix functions of the entries of the X''s.';
+      gettext('where');
+      gettext('X1,...,XM are unknown real matrices, referred to as the unknown matrices,');
+      gettext('f is the objective function, a linear scalar function of the entries of the X''s,');
+      gettext('Gi''s are affine matrix functions of the entries of the X''s,');
+      gettext('Hj''s are affine symmetric matrix functions of the entries of the X''s.');
       '            ';
-      'These functions are parameterized by the entries of known data matrices D1,...,DN.';
+      gettext('These functions are parameterized by the entries of known data matrices D1,...,DN.');
       '        ';
-      'For a detailed description and examples consult: ';
-      '          ''LMITOOL: a Package for LMI Optimization in Scilab, User''s Guide'' ';
+      gettext('For a detailed description and examples consult: ');
+      gettext('          ''LMITOOL: a Package for LMI Optimization in Scilab, User''s Guide'' ');
       '          ';
-      'LMITOOL uses Semidefinite Programming package SP developed by L. Vandenberghe and S. Boyd.'])
+      gettext('LMITOOL uses Semidefinite Programming package SP developed by L. Vandenberghe and S. Boyd.')],"modal","scilab");
 
 
 
@@ -53,18 +61,18 @@ x_message(['Welcome to LMITOOL';'      ';'   ';
     PROBNAME1=strcat(PROBNAME1);
   end
 
-  labels=['LMI problem name: ';'Names of unknown matrices: ';...
-          'Names of data matrices: '];
-  [ok,PROBNAME,XNAME,DNAME]=getvalue(['Problem definition';
-      'LMITOOL will generate for you a skeleton of the functions needed';
-        ' (see User''s Guide for details). For that, you need to specify:';
-          '1- Name of you problem which will be given to the solver function,';
-          '2- Names of unknown matrices or list of unknown matrices,';
-          '3- Names of data matrices or list of data matrices.'],labels,...
+  labels=[gettext('LMI problem name: ');gettext('Names of unknown matrices: ');...
+          gettext('Names of data matrices: ')];
+  [ok,PROBNAME,XNAME,DNAME]=getvalue([gettext('Problem definition');
+      gettext('LMITOOL will generate for you a skeleton of the functions needed');
+        gettext(' (see User''s Guide for details). For that, you need to specify:');
+          gettext('1- Name of you problem which will be given to the solver function,');
+          gettext('2- Names of unknown matrices or list of unknown matrices,');
+          gettext('3- Names of data matrices or list of data matrices.')],labels,...
           list('str',1,'str',1,'str',1),...
           [PROBNAME1+'            ',XNAME1+'           ',DNAME1+'         ']);
       if ok==%f then 
-        txtdo='Try again';return;
+        txtdo=gettext('Try again');return;
       end
     end      
     PROBNAME=stripblanks(PROBNAME);
@@ -72,12 +80,9 @@ x_message(['Welcome to LMITOOL';'      ';'   ';
     DNAME=stripblanks(DNAME);
 
 
-      pathname=getcwd();
-      if MSDOS then
-          fname = pathname+'\'+PROBNAME+'.sci';
-      else
-          fname = pathname+'/'+PROBNAME+'.sci';
-      end
+      pathname=pwd();
+
+      fname = pathname+filesep()+PROBNAME+'.sci';
           
  
       txt0='function ['+XNAME+']='+PROBNAME+'('+DNAME+')'
@@ -125,7 +130,7 @@ x_message(['Welcome to LMITOOL';'      ';'   ';
           end
         end
         if size(ind,'*')<>4 then 
-          error('File not generated by lmitool or badly modified');
+          error(gettext('File not generated by lmitool or badly modified.'));
         end
         txt1=[];
         for i=ind(1)+1:ind(2)-1
@@ -151,29 +156,25 @@ x_message(['Welcome to LMITOOL';'      ';'   ';
               sep2;' ';txts1;' ';sep13;txts2];
 
       if RHS==0|RHS==1 then
-        [txt4]=x_dialog(['Function definitions';
-            'Here is a skeleton of the functions which you shoud edit';
-            'You can do the editing in this window or click on ''ok'', save';
-              'the skeleton and edit later using your favorite editor'],[txt4]);
+        [txt4]=x_dialog([gettext('Function definitions');
+            gettext('Here is a skeleton of the functions which you shoud edit');
+            gettext('You can do the editing in this window or click on ''ok'', save');
+              gettext('the skeleton and edit later using your favorite editor')],[txt4]);
         end
       if txt4==[] then txtdo='Try again';return;end
         txt=[txt4];
         n=1;
         if RHS<>3 then
 
-          fname=x_dialog(['Name of file in which you want the solver function';
-              'and the evaluation function be saved (overwrites if a';
-              'file with the same name exists already)'],[fname+'                '])
+          fname=x_dialog([gettext('Name of file in which you want the solver function');
+              gettext('and the evaluation function be saved (overwrites if a');
+              gettext('file with the same name exists already)')],[fname+'                '])
           fname=stripblanks(fname);
         else
-          x_message('functions saved in '+fname');
+          messagebox(gettext('functions saved in ')+fname',"modal","info");
         end
         if fname<>[] then
-	  if MSDOS then
-	    unix_s('del ""'+fname+'""');
-	  else
-	    unix_s('\rm -f '+fname);
-	  end
+        deletefile(fname)
           write(fname,txt)
         else
           return
@@ -183,22 +184,22 @@ x_message(['Welcome to LMITOOL';'      ';'   ';
         if RHS==0|RHS==1 then
           txtdo = ['    To solve your problem, you need to ';
               '1- load your functions using the command:';
-              '   getf('''+fname'+''')';
+              '   exec('''+fname'+''')';
               '2- Define '+DNAME+' and call function '+PROBNAME+' as follows:';
               '  '+'['+XNAME+']='+PROBNAME+'('+DNAME+')';
               '           Good luck! ';
               'To check the result, use [LME,LMI,OBJ]='+PROBNAME+'_eval(list('+XNAME+'))']
           
-          x_message(txtdo);return
+          messagebox(txtdo,"modal","info");return
         end
         if RHS==3 then
-          txtdo = ['    To solve your problem, you need to ';
-              '1- edit file '+fname
-              '2- load (and compile) your functions:';
-              '   getf('''+fname'+''')';
-              '3- Define '+DNAME+' and call '+PROBNAME+' function:';
+          txtdo = [gettext('    To solve your problem, you need to ');
+              gettext('1- edit file ')+fname
+              gettext('2- load (and compile) your functions:');
+              '   exec('''+fname'+''')';
+              gettext('3- Define ')+DNAME+gettext(' and call ')+PROBNAME+gettext(' function:');
               '  '+'['+XNAME+']='+PROBNAME+'('+DNAME+')';
-              'To check the result, use [LME,LMI,OBJ]='+PROBNAME+'_eval(list('+XNAME+'))']
+              gettext('To check the result, use [LME,LMI,OBJ]=')+PROBNAME+'_eval(list('+XNAME+'))']
         end
 
 endfunction

@@ -1,13 +1,34 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function extract_help_examples(dirpaths)
+
 // given a vector of strings giving help  chapter paths, or nothinf for
 // the default scilab help chapter paths,
 // this function build in SCI/tests/Examples the files required for
 // testing the examples given in all  xml help files available in the
 // given paths.
+
+  global %helps
+  global %helps_modules
+  if %helps_modules == [] then
+    moduleslist = getmodules();
+    for i = 1:size(moduleslist,'*')
+      add_module_help_chapter(moduleslist(i));
+    end
+  end
+  %HELPS=[%helps_modules;%helps];
+
   logfile=mopen('extract_help_examples.log','w')
   lsave=lines();lines(0)
   if argn(2)<1 then
-    dirpaths=%helps(:,1)';
+    dirpaths=%HELPS(:,1)';
   end
   for d=dirpaths
     helppaths=listfiles(pathconvert(d+'/*.xml',%f,%t))';
@@ -15,44 +36,57 @@ function extract_help_examples(dirpaths)
     mprintf('\n-- Extracting examples from '+d+'\n');
     count=0
     for h=helppaths
+      mprintf(h+"\n")
       build_example_test(h,logfile)
-      mprintf(".")
     end
     mfprintf(logfile,'\n')
     mprintf('\n')
   end
   lines(lsave(2))
   mclose(logfile)
+  
 endfunction
-      
+
+
+
 function build_example_test(xml_path,logfile)
+  
 // given the path of an xml help file
 // this function build in SCI/tests/Examples the files required for
 // testing the examples given in the xml help file
+  
   name=basename(xml_path)
   if argn(2)<2 then logfile=mopen(name+'.log','w'),end
-
+  
   T=extract_help_example(xml_path); //look for examples
+  
   if T<>[] then //an example is given
-    t=gettesttype(T) //check if it includes interactive or garphic functions
+    t=gettesttype(T) //check if it includes interactive or graphic functions
     gen_test_files(T,name,t);
   end
+  
 endfunction
 
+
+
+
 function t=gettesttype(T)
+  
   interactive=['%io(1)','mscanf','dialog','tk','message','getcolor', ...
 	       'xset()','xclick','xgetmouse', 'locate','edit', ...
 	       'x_choices','x_matrix','show_graph','addmenu','delmenu',..
-	      'uicontrol','uimenu','showprofile','scipad','emacs','setbpt',..
-	      'eventhandler','dragrect','rubber','getfile','demoplay','getvalue',...
-	      'portrait','plotprofile','getfont','getmark','getlinestyle']
-  graphics=['plot','xrect','xstring','xarc','xfarc','xpoly','xfpoly','xarrow', ...
+	       'uicontrol','uimenu','showprofile','editor','emacs','setbpt',..
+	       'eventhandler','dragrect','rubber','getfile','getvalue',...
+	       'portrait','plotprofile','getfont','getmark','getlinestyle']
+  
+  graphics=['plot','pie','bar','mesh','barh','xrect','xstring','xarc','xfarc','xpoly','xfpoly','xarrow', ...
 	    'xset(', 'xget(','contour','bode','black','nyquist','evans', ...
 	    'param3d','champ(','surf','gcf(','gca(', 'gce(', 'champ1', 'drawaxis',..
-	   'xgraduate','glue','polar','mapsound']
+	    'xgraduate','glue','polar','mapsound']
+  
   //deff('foo',T)
   //T=primitives('foo')
-
+  
   if grep(T,interactive)<>[] then 
     t='i'
   elseif grep(T,graphics)<>[] then 
@@ -60,10 +94,16 @@ function t=gettesttype(T)
   else
     t=''
   end
+  
 endfunction
 
+
+
+
 function T=extract_help_example(h)
-  //extract the example out of an xml help file
+  
+//extract the example out of an xml help file
+  
   if name=='man' then T=[],return,end
   T=mgetl(h);
   [row,which]=grep(T,['<EXAMPLE>','</EXAMPLE>']);
@@ -83,27 +123,31 @@ function T=extract_help_example(h)
   else
     T=[]
   end
+  
 endfunction
 
 
 
 function gen_test_files(instructions,name,t)
-  //set output directory
+  
+//set output directory
+  
   select t
   case 'i' then 
-    test_path='SCI/tests/Examples_eng/interactive/'
+    test_path='SCI/tests/interactive_tests/'
   case 'g'
-    test_path='SCI/tests/Examples_eng/graphic/'
+    test_path='SCI/tests/graphical_tests/'
   else
-    test_path='SCI/tests/Examples_eng/other/'
+    test_path='SCI/tests/automatic_tests/'
   end
+  
   //set file names
   tst=pathconvert(test_path+name+'.tst',%f,%f)
   ref=pathconvert(test_path+name+'_data.ref',%f,%f)
   dia=strsubst(tst,'.tst','.dia')
- 
+  
   interactive=t=='i'
- 
+  
   info=fileinfo(tst)//to check if the .tst file exists
   
   generate_dataref=%f;generate_tst=%f;
@@ -114,7 +158,8 @@ function gen_test_files(instructions,name,t)
       generate_dataref=%t
       T=instrument_instruction('cmp',instructions,ref);
     end
-  else // a tst file exists, check for validity
+  else 
+    // a tst file exists, check for validity
     //compare it with instructions
     T=instrument_instruction('cmp',instructions,ref);
     if newest(tst,xml_path)==1 then 
@@ -134,27 +179,36 @@ function gen_test_files(instructions,name,t)
       end
     end
   end
+  
   if generate_dataref&(~interactive) then
+    
     //build the reference data
+    
     Tb=instrument_instruction('build',instructions,ref);
     build_reference_data(Tb)
     
     [x,ierr]=fileinfo(ref) 
     if x(1)==0 then mfprintf(logfile,'generated file: '+name+'_data.ref is Empty '),end
   end
+  
   if generate_tst then
     // write down the test script
     mputl(T,tst),
     //remove the <name>.dia file
-    if fileinfo(dia)<>[] then unix('rm -f '+pathconvert(dia,%f,%t)); end
+    if fileinfo(dia)<>[] then deletefile(pathconvert(dia,%f,%t)); end
     dia=dia+'.ref'
     //remove the <name>.dia.ref file
-    if fileinfo(dia)<>[] then unix('rm -f '+pathconvert(dia,%f,%t)); end
+    if fileinfo(dia)<>[] then deletefile(pathconvert(dia,%f,%t)); end
   end
+  
 endfunction
 
+
+
 function build_reference_data(instructions)
+  
   mputl(instructions,TMPDIR+'/temp.tst')
+  
   // Execute the temporary file to generate the data reference file
   if execstr('exec(TMPDIR+''/temp.tst'',-1)','errcatch')<>0 then
     mclose(%U)
@@ -162,7 +216,10 @@ function build_reference_data(instructions)
 
 endfunction
 
+
+
 function instructions=instrument_instruction(job,instructions,refpath)
+  
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Executes the given instructions saving all the intermediate 
@@ -173,11 +230,12 @@ function instructions=instrument_instruction(job,instructions,refpath)
   // Form a function with the given instructions
   mputl(['function %test()';instructions;'xdel(winsid());';'endfunction'],TMPDIR+'/test.sci')
   // Compile and load it
-  exec(TMPDIR+'/test.sci',-1);//use exec instead of getf to handle inline
-                              //functions definition
+  //use exec instead of getf to handle inline functions definition
+  exec(TMPDIR+'/test.sci',-1);
   // Get the pseudo-code image
-  l1=macr2lst(%test)
 
+  l1=macr2lst(%test)
+  
   // Adapt the  pseudo-code to add build or run tools
   if job=='build' then
     l=add_ref_code(list(l1(5:$)));
@@ -185,30 +243,33 @@ function instructions=instrument_instruction(job,instructions,refpath)
     l=add_cmp_code(list(l1(5:$)));
   end
   l=list(l(1:$-2));
-
+  
   // Generate the Scilab instructions from the modified pseudo-code
   txt=pseudocode2text(l)
-
+  
   // Add opening and closing instructions
   instructions=[]
   if job<>'build' then instructions='getf SCI/util/testexamples.sci',end
   instructions=[instructions;'reinit_for_test()'];
   if job=='build' then 
-    instructions=[instructions;'%U=mopen('''+refpath+''',''w'');']
+    instructions=[instructions;'%U=mopen('''+refpath+''',''wb'');']
   else
-    instructions=[instructions;'%U=mopen('''+refpath+''',''r'');']
+    instructions=[instructions;'%U=mopen('''+refpath+''',''rb'');']
   end
-  instructions=[instructions;
-		txt;
-		'mclose(%U);'];
+  instructions=[instructions; txt;'mclose(%U);'];
+  
 endfunction
 
+
+
 function p=primitives(mac_name,p)
-  
+
 //search for the  primitives called by a given macro, the second arg is
 //for recursive calls only
+  
   funcprot(0)
   global scanned_macros
+  
   if argn(2)==1  then p=[],scanned_macros=[];end
   ierr=execstr('vars=macrovar('+mac_name+')','errcatch')
   if ierr<>0 then return,end
@@ -234,14 +295,18 @@ function p=primitives(mac_name,p)
       p=primitives(called(k),p)
     end
   end
+  
 endfunction
 
 
 function txt=pseudocode2text(p)
+  
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Generate Scilab instructions corresponding to the pseudo-code  
-  prot=funcprot();funcprot(0);fun2string=fun2string;funcprot(prot);//make ins2sci known
+  
+//make ins2sci known
+  prot=funcprot();funcprot(0);fun2string=fun2string;funcprot(prot);
   //initialize variables for it
   lcount=1;level=[0,0];
   quote=''''
@@ -252,19 +317,24 @@ function txt=pseudocode2text(p)
 endfunction
 
 
+
 function ln=add_ref_code(l)
+  
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Given a  pseudo-code  this function add code after each affectation
 //operation (29) to save lhs variables into a binary file
- 
+  
   ln=list()// initialize result pseudo-code image
   for k=1:size(l) //loop on pseudo-codes
     lk=l(k);
     if type(lk)==10 then //regular pseudo-code
+      
       if lk(1)=='29' then //affectation operation
 	if and(lk(2)<>['52' '43' '99']) then lk(2)='52',end
+	
 	if or(lk(2)==['52'  '99']) then 
+	  
 	  //display required build reference
 	  lk(2)='43' //disable display
 	  if lk(3)=="ans" then 
@@ -278,12 +348,16 @@ function ln=add_ref_code(l)
 		  lk(3)="%ans";
 		end
 	      end
+	    elseif and(l(k-1)==['20','deff','2','1']) then 
+	      ln($+1)=lk
+	      continue
 	    else
 	      lk(3)="%ans";
 	    end
 	  end 
+	  
 	  ln($+1)=lk
-	
+	  
 	  for i=3:2:size(lk,'*')
 	    ln($+1)="15" //newline
 	    name=lk(i);ref=name+"_ref"
@@ -294,17 +368,21 @@ function ln=add_ref_code(l)
 	    ln($+1)=["5","25","2","1"];
 	    ln($+1)=["29","43","ans","0"];
 	  end
+	  
 	  ln($+1)="15";
 	else
 	  ln($+1)=lk
 	end
-      elseif  lk(1)=='2'&or(lk(2)==['xbasc','xdel','clf']) then 
+	
+      elseif  lk(1)=='2'&or(lk(2)==['xdel','clf']) then 
 	//change some function names to allow overloading
 	lk(2)=lk(2)+'_build'
 	ln($+1)=lk
+	
       else //other operations, just copy them
 	ln($+1)=lk
       end
+      
     elseif type(lk)==15 then //control structure starts
       lt=lk(1)
       //call the add_ref_code function recursively for imbedded instructions
@@ -312,7 +390,7 @@ function ln=add_ref_code(l)
 	lnk=list(lk(1),lk(2))
 	for i=3:size(lk), lnk($+1)=add_ref_code(lk(i));end
 	ln($+1)=lnk
-      elseif lt(1)=='for' then	
+      elseif lt(1)=='for' then
 	ln($+1)=list(lk(1),lk(2),add_ref_code(lk(3)))
       elseif lt(1)=='select' then
 	lnk=list(lk(1),lk(2))
@@ -331,11 +409,13 @@ endfunction
 
 
 function ln=add_cmp_code(l)
+  
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Given a  pseudo-code  this function add code after each affectation
 //operation (29) to compare lhs variables with references given in  a binary file
 // This function must mirror the  add_ref_code one
+  
   ln=list() // initialize result pseudo-code image
   for k=1:size(l) //loop on pseudo-codes
     lk=l(k);
@@ -356,11 +436,16 @@ function ln=add_cmp_code(l)
 		  lk(3)="%ans";
 		end
 	      end
+	    elseif and(l(k-1)==['20','deff','2','1']) then 
+	      ln($+1)=lk
+	      continue
 	    else
 	      lk(3)="%ans";
 	    end
 	  end 
+	  
 	  ln($+1)=lk
+	  
 	  for i=3:2:size(lk,'*')
 	    ln($+1)="15"//newline
 	    name=lk(i);ref=name+"_ref";
@@ -368,11 +453,12 @@ function ln=add_cmp_code(l)
 	    ln($+1)=list("if",list(["3",name],["2","load_ref","-2","1"],["5","25","2","1"]),..
 			 list("12"),list())
 	  end
+	  
 	  ln($+1)="15"
 	else
 	  ln($+1)=lk
 	end
-      elseif  lk(1)=='2'&or(lk(2)==['xbasc','xdel','clf']) then
+      elseif  lk(1)=='2'&or(lk(2)==['xdel','clf']) then
 	//change some function names to allow overloading
 	lk(2)=lk(2)+'_run'
 	ln($+1)=lk
@@ -400,46 +486,58 @@ function ln=add_cmp_code(l)
       end
     end
   end
+  
 endfunction
 
 
 
 function r=xbasc_build(w)
+  
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Save the graphic windows to be cleared in  a Scilab  binary file. 
 // This function must mirror the  xbasc_run one.
+  
   r=%f
   if winsid()==[] then return,end
   cur=xget('window')
-//
+  //
   if argn(2)==1 then
     ids_ref=[]
+    
     for k=1:size(w,'*')
       xset('window',w(k))
       if get('figure_style')=='new' then ids_ref=[ids_ref,w(k)],end
     end
+    
     save(%U,ids_ref)
+    
     for k=ids_ref
       %wins_ref=ghdl2tree(scf(k));save(%U,%wins_ref);
     end
-    xbasc(w)
+    
+    clf(w)
   else
-   if get('figure_style')=='old' then return,end
-   ids_ref=xget('window');
-   save(%U,ids_ref)
-   %wins_ref=ghdl2tree(gcf());
-   save(%U,%wins_ref)
-   xbasc()
+    if get('figure_style')=='old' then return,end
+    ids_ref=xget('window');
+    save(%U,ids_ref)
+    %wins_ref=ghdl2tree(gcf());
+    save(%U,%wins_ref)
+    clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
+  
 endfunction
 
+
+
 function r=xbasc_run(w)
+
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Compare the graphic windows to be cleared with the reference givenin  a Scilab  binary file. 
 // This function must mirror the  xbasc_build one.
+  
   r=%f
   if winsid()==[] then return,end
   cur=xget('window')
@@ -456,9 +554,8 @@ function r=xbasc_run(w)
       %wins_=ghdl2tree(scf(k));
       load(%U,'%wins_ref');
       if %CMP(%wins_, %wins_ref) then r=%t,return,end
-      
     end
-    xbasc(w)
+    clf(w)
   else
     if get('figure_style')=='old' then return,end
     ids_=xget('window');
@@ -467,19 +564,23 @@ function r=xbasc_run(w)
     %wins_=ghdl2tree(gcf());
     load(%U,'%wins_ref');
     if %CMP(%wins_, %wins_ref) then r=%t,return,end
-    xbasc()
+    clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
+  
 endfunction
 
+
+
 function r=clf_build(w,opt)
+  
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Save the graphic windows to be cleared in  a Scilab  binary file. 
 // This function must mirror the  clf_run one.
- 
+  
   r=%f
-   if winsid()==[] then return,end
+  if winsid()==[] then return,end
   cur=xget('window')
   rhs=argn(2)
   if rhs==1&type(w)==10 then opt=w;rhs=0,end
@@ -499,22 +600,26 @@ function r=clf_build(w,opt)
     for k=ids_ref,%wins_ref=ghdl2tree(scf(k));save(%U,%wins_ref);end
     if rhs==1 then clf(w),else clf(w,opt),end
   else
-   if get('figure_style')=='old' then return,end
-   ids_ref=xget('window');
-   save(%U,ids_ref)
-   %wins_ref=ghdl2tree(gcf());
-   save(%U,%wins_ref)
-   clf()
+    if get('figure_style')=='old' then return,end
+    ids_ref=xget('window');
+    save(%U,ids_ref)
+    %wins_ref=ghdl2tree(gcf());
+    save(%U,%wins_ref)
+    clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
+  
 endfunction
 
+
+
 function r=clf_run(w,opt)
+  
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Compare the graphic windows to be cleared with the reference givenin  a Scilab  binary file. 
 // This function must mirror the  clf_build one.
-
+  
   r=%f
   if winsid()==[] then return,end
   cur=xget('window')
@@ -551,14 +656,18 @@ function r=clf_run(w,opt)
     clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
+  
 endfunction
 
 
+
 function r=xdel_build(w)
+
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Save the graphic windows to be cleared in  a Scilab  binary file. 
 // This function must mirror the  xdel_run one.
+  
   r=%f  
   if winsid()==[] then return,end
   cur=xget('window')
@@ -573,25 +682,30 @@ function r=xdel_build(w)
     for k=ids_ref,%wins_ref=ghdl2tree(scf(k));save(%U,%wins_ref);end
     xdel(w);
   else
-   if get('figure_style')=='old' then return,end
-   ids_ref=xget('window');
-   save(%U,ids_ref)
-   %wins_ref=ghdl2tree(gcf());
-   save(%U,%wins_ref)
-   xdel()
+    if get('figure_style')=='old' then return,end
+    ids_ref=xget('window');
+    save(%U,ids_ref)
+    %wins_ref=ghdl2tree(gcf());
+    save(%U,%wins_ref)
+    xdel()
   end
   if or(winsid()==cur) then xset('window',cur),end
+  
 endfunction
 
+
+
 function r=xdel_run(w,opt)
+  
 //Author : Serge Steer, april 2005, Copyright INRIA
 //  
 //Compare the graphic windows to be cleared with the reference givenin  a Scilab  binary file. 
 // This function must mirror the  xdel_build one.
+  
   r=%f
   if winsid()==[] then return,end
-   cur=xget('window')
- //  
+  cur=xget('window')
+  //  
   if argn(2)==1 then
     ids_=[]
     for k=1:size(w,'*')
@@ -617,16 +731,21 @@ function r=xdel_run(w,opt)
     xdel()
   end
   if or(winsid()==cur) then xset('window',cur),end
+  
 endfunction
+
 
 
 function save_ref(name)
+
   if exists(name)==0 then return,end
   v=evstr(name)
   if type(v) == 9 then   v = ghdl2tree(v);end,
-   if type(v) == 128 then   v = 128;end,// lu handle
+  if type(v) == 128 then   v = 128;end,// lu handle
   execstr(name+'_ref=v;save(%U,'+name+'_ref'+')')
+  
 endfunction
+
 
 
 function r=load_ref(name)
@@ -636,8 +755,12 @@ function r=load_ref(name)
   execstr(name+'_ref=v;load(%U,'+name+'_ref'+');r=%CMP(v,'+name+'_ref);')
 endfunction
 
+
+
 function reinit_for_test()
-  //reinitialize some Scilab state to be able to reproduce the same tests
+  
+//reinitialize some Scilab state to be able to reproduce the same tests
+  
   sdf();sda()
   xdel(winsid())
   grand('setgen','clcg4');grand('setall',11111111,22222222,33333333,44444444);
@@ -647,7 +770,8 @@ function reinit_for_test()
   grand('setgen','fsultra');grand('setsd',1234567,7654321);
   grand('setgen','mt');grand('setsd',5489);
   rand('seed',0);
-
+  
   clearglobal() 
   format('v',10)
+  
 endfunction

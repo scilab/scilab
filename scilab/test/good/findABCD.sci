@@ -81,7 +81,7 @@ function [sys,K,Q,Ry,S,rcnd]=findABCD(s,n,l,R,meth,nsmpl,tol,printw)
   if meth==[] then meth = 3;end
 
   if nin<4 then
-    error('Wrong number of input arguments');
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"findABCD",4,8));
   end
   // 
   // Compute all system matrices.
@@ -103,10 +103,10 @@ function [sys,K,Q,Ry,S,rcnd]=findABCD(s,n,l,R,meth,nsmpl,tol,printw)
     elseif nout==6 then
       [A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,job,s,n,l,R,tol,nsmpl,[],[],printw);
     else
-      error('Wrong number of output arguments');
+      error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"),"findABCD",1,6));
     end
   else
-    error('Wrong number of output arguments');
+    error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"),"findABCD",1,6));
   end
   // 
   sys = syslin(1,A,B,C,D);

@@ -1,3 +1,15 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2000 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
+
 function [dif]=nand2mean(sample1,sample2,conf)
 //
 //This function    computes   an estimate (dif(1))  for  the
@@ -15,9 +27,6 @@ function [dif]=nand2mean(sample1,sample2,conf)
 //References:  Wonacott, T.H. & Wonacott, R.J.; Introductory
 //Statistics, J.Wiley & Sons, 1990.
 //
-//author: carlos klimann
-//
-//date: 2000-06-08
 //
   if (sample1==[]|sample2==[]) then
     dif=%nan
@@ -25,7 +34,7 @@ function [dif]=nand2mean(sample1,sample2,conf)
   end
   [lhs,rhs]=argn(0)
   if rhs<2|rhs>3  then 
-    error('nanstdev requires two or three inputs.'),
+	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nand2mean",2,3)),
   elseif rhs==2 then
     conf=.975
   end

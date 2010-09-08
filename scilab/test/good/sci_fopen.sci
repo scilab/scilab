@@ -1,10 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_fopen(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab fopen()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
-// V.C.
 
 if rhs==1 then
   filename=getrhs(tree)
@@ -19,18 +26,18 @@ end
 
 if typeof(filename)=="cste" then
   if filename.value=="all" then
-    no_equiv("fopen(""all"") has no translation")
+    no_equiv(gettext("fopen(''all'') has no translation."))
     return
   end
 elseif filename.vtype==Double then
-  no_equiv(expression2code(tree)+" (See fileinfo() function)")
+  no_equiv(msprintf(gettext("%s (See fileinfo() function)."),expression2code(tree)))
   return
 end
 
 // Options 'W' and 'A' are unknown for Scilab
 if typeof(permission)=="cste" then
   if or(permission.value==["W","A"]) then
-    no_equiv("W and A permission parameters");
+    no_equiv(gettext("W and A permission parameters."));
     return
   end
 end
@@ -49,6 +56,6 @@ elseif lhs==2 then
   tree.lhs(2).type=Type(String,Real)
 // [fid,mess,machineformat]=fopen(filename) and so on
 else
-  no_equiv("fopen used with three outputs...")
+  no_equiv(gettext("fopen used with three outputs."))
 end
 endfunction

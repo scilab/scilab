@@ -1,14 +1,23 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function f=%p_j_s(p,s)
 // %p_j_s(p,s)  computes p.^s for p polynomial matrix in special cases
 //!
-// Copyright INRIA
+
 if s==[] then f=[],return,end
 if  or(imag(s)<>0)|or(int(s)<>s) then error('%p_j_s: integer power only'),end
 [m,n]=size(p)
 [ms,ns]=size(s)
 if ms==1&ns==1 then
   if s<0 then 
-    if or(abs(coeff(p(:)))*ones(maxi(degree(p))+1,1)==0) then
+    if or(abs(coeff(p(:)))*ones(max(degree(p))+1,1)==0) then
       error(27)
     end
     f=tlist(['r','num','den','dt'],ones(p),p.^(-s),[])
@@ -32,7 +41,7 @@ elseif ms==m&ns==n then  // Element wise exponentiation
   num=p
   den=ones(s)
   num(kp)=num(kp).^s(kp)
-  if or(abs(coeff(p(kn)))*ones(maxi(degree(p(kn)))+1,1)==0) then
+  if or(abs(coeff(p(kn)))*ones(max(degree(p(kn)))+1,1)==0) then
     error(27)
   end
   num(kn)=ones(p(kn))

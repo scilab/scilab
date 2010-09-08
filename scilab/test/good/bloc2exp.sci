@@ -1,12 +1,22 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [h,name]=bloc2exp(syst,sexp)
-// Copyright INRIA
+
 [lhs,rhs]=argn(0)
 
 if type(syst)<>15 then
-  error('argument must be a list describing the blocks')
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A list expected.\n"),"bloc2exp",1));
 end;
 if syst(1)<>'blocd' then
-  error('argument must be a list describing the blocks')
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A list expected.\n"),"bloc2exp",1));
 end;
 //inter%connection matrix
 nsyst=size(syst)
@@ -46,12 +56,6 @@ function [ab,nio,name]=construct(syst)
 //!
 [lhs,rhs]=argn(0)
 
-if type(syst)<>15 then
-  error('input must be a list for block-diagramm representation')
-end;
-if syst(1)<>'blocd' then
-  error('input must be a list for block-diagramm representation')
-end;
 [lboites,lliens,lentrees,lsorties]=blocdext(syst)
 nio=[prod(size(lentrees)),prod(size(lsorties))]
 lliens=[lliens,lsorties]
@@ -123,12 +127,16 @@ for k=2:nsyst
             end;
                       else lentrees(1,-obj2(1))=k,
          end;
-     else error('undefined element')
+     else  error(msprintf(gettext("%s: Undefined type ''%s''.\n"),"bloc2exp",obj(1)))
   end;
   end,end
 end;
-if mini(lsorties)==0 then error('undefined output'),end
-if mini(lentrees)==0 then error('undefined input'),end
+if min(lsorties)==0 then
+  error(msprintf(gettext("%s: Some output(s) are undefined.\n"),"bloc2exp")),
+end
+if min(lentrees)==0 then
+  error(msprintf(gettext("%s: Some input(s) are undefined.\n"),"bloc2exp")),
+end
 
 endfunction
 function [where_x]=%connect(bloc,lliens,syst)

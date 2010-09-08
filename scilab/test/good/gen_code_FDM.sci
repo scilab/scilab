@@ -1,30 +1,49 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [equations,impl_type,Nfictif]=gen_code_FDM(a1,b1,a2,b2,a3,b3,a4,b4,..
           a5,b5,a6,b6,a7,b7,a,b,N,oper,vbc,kbc,DF_type,h)
-  // Copyright INRIA
-  // développé par EADS-CCR
-  // Cette fonction est pour la génération des équations DAE du bloc        //
+  // Cette fonction est pour la gï¿½nï¿½ration des ï¿½quations DAE du bloc        //
   // sorties :                                                              //
-  //    - equations (String) : vecteur qui contient le code C des équations //
+  //    - equations (String) : vecteur qui contient le code C des ï¿½quations //
   //      d'etat (DAE)                                                      //
-  //    - impl_type (Entier) : indique si le type des états                 //
-  //      (différentiels 1 ou algébrique -1)                                //       
+  //    - impl_type (Entier) : indique si le type des ï¿½tats                 //
+  //      (diffï¿½rentiels 1 ou algï¿½brique -1)                                //       
   //    - Nfictif (Entier) : le nombre de noeuds total avec les noeuds      //
-  //      fictifs correspodent à l'implémentation de la condition Neumann   //
-  // entrées :                                                              //
-  //    - ai, bi (String) : les differents coeficients des opérateurs       //
+  //      fictifs correspodent ï¿½ l'implï¿½mentation de la condition Neumann   //
+  // entrï¿½es :                                                              //
+  //    - ai, bi (String) : les differents coeficients des opï¿½rateurs       //
   //      (ai(x) et bi(t))                                                  //
   //    - a, b (Double) : limites du domaine [a b]                          //
   //    - N (Entier) : est le nombre de noeuds                              //
-  //    - oper (Entier) : vecteur des opérateurs selectionnes de 1 à 7      //   
+  //    - oper (Entier) : vecteur des opï¿½rateurs selectionnes de 1 ï¿½ 7      //   
   //    - vbc (String) : vecteur des conditions aux limites en a et b       //
   //    - kbc (Entier) : vecteur types des conditions au limites            //
   //    - DF_type (Entier) : 0 pour les differences finies centrees,        //
-  //      1 pour les decentrees a gauche et 2 pour les decentrees à droite  // 
+  //      1 pour les decentrees a gauche et 2 pour les decentrees ï¿½ droite  // 
   //    - h (Double) : le pas de discretisation h=(b-a)/N (i.e x(i)= i* h)  //
   //------------------------------------------------------------------------//  
 
   coef4=[];coef2=[];coef5=[];
-  impl_type=1; // 1 pour l'état différentiel, -1 pour l'état algébrique 
+  impl_type=1; // 1 pour l'ï¿½tat diffï¿½rentiel, -1 pour l'ï¿½tat algï¿½brique 
   sep=[',','*','/']; 
   
   // calcul de nombre de noeuds (noeuds + noeuds fictifs)
@@ -179,7 +198,7 @@ function [equations,impl_type,Nfictif]=gen_code_FDM(a1,b1,a2,b2,a3,b3,a4,b4,..
       end
     end
   else
-    // cas algébrique ==> implicite 
+    // cas algï¿½brique ==> implicite 
     impl_type=-1;
     equations=emptystr(Nfictif,1);
     vec2=equations;

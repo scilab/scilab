@@ -1,11 +1,35 @@
-function [ok,tt]=CFORTR2(funam,tt)
+//  Scicos
 //
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
+function [ok,tt,cancel]=CFORTR2(funam,tt)
+
+//
+cancel=%f
+
 if tt==[] then
   
   textmp=[
 	  '#include <math.h>';
 	  '#include <stdlib.h>';
-	  '#include <scicos/includes/scicos_block.h>';
+	  '#include <scicos_block.h>';
 	  'void '+funam+'(scicos_block *block,int flag)';
 	 ];
   ttext=[];
@@ -99,22 +123,42 @@ else
   textmp=tt;
 end
 
+tt = textmp
+ok   = %t
+//## set param of scstxtedit
+ptxtedit=scicos_txtedit(clos = 0,...
+          typ  = "Cfunc",...
+          head = ['Function definition in C';
+                  'Here is a skeleton of the functions which';
+                  ' you shoud edit.']);
+
 while 1==1
-  [txt]=x_dialog(['Function definition in C';
-		  'Here is a skeleton of the functions which';'you shoud edit'],..
-		 textmp);
-  
+
+  [txt,Quit] = scstxtedit(textmp,ptxtedit);
+
+  if ptxtedit.clos==1 then
+    break;
+  end
+
   if txt<>[] then
-    tt=txt
-    [ok]=scicos_block_link(funam,tt,'c')
-    if ok then
+    [libss,ok,cancel]=get_dynamic_lib_dir(txt,funam,'c')
+
+    if ~cancel & ok then
+      [ok]=scicos_block_link(funam,txt,'c',libss)
+      if ok then
+        ptxtedit.clos=1
+        tt=txt
+        ok = %t;
+      end
       textmp=txt;
     end
-    break;
-  else
-    ok=%f;break;
-  end  
-end
+  end
 
+  if Quit==1 then
+    ok = %f;
+    cancel =%t;
+    break;
+  end
+end
 
 endfunction

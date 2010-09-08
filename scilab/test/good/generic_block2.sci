@@ -1,6 +1,26 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=generic_block2(job,arg1,arg2)
 //
-// Copyright INRIA
 x=[];y=[];typ=[];
 select job
 case 'plot' then
@@ -17,7 +37,7 @@ case 'set' then
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
     [ok,junction_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,nmode,nzcr,auto0,depu,dept,lab]=..
-        getvalue('Set GENERIC block parameters',..
+        scicos_getvalue('Set GENERIC block parameters',..
         ['simulation function';
         'function type (0,1,2,..)';
         'input ports sizes';
@@ -47,7 +67,7 @@ case 'set' then
     funtyp=int(funtyp)
     if funtyp<0 then message('function type cannot be negative');ok=%f;end
     if [ci;co]<>[] then
-      if maxi([ci;co])>1 then message('vector event links not supported');ok=%f;end
+      if max([ci;co])>1 then message('vector event links not supported');ok=%f;end
     end
     depu=stripblanks(depu);if part(depu,1)=='y' then depu=%t; else depu=%f;end
     dept=stripblanks(dept);if part(dept,1)=='y' then dept=%t; else dept=%f;end

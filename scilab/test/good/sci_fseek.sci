@@ -1,10 +1,17 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_fseek(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab fseek()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
-// V.C.
 
 [fid,offset,origin]=getrhs(tree)
 
@@ -23,7 +30,7 @@ if typeof(origin)=="cste" then
   case 1 then
     flag="end"
   else
-    set_infos("Not enough information on "+expression2code(origin)+" to set the proper flag",1)
+    set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."),expression2code(origin)),1)
     flag=Funcall("fseek_origin",1,list(origin),list())
   end
 else
@@ -34,13 +41,13 @@ else
       end
     end
   else
-    set_infos("Not enough information on "+expression2code(origin)+" to set the proper flag",1)
+    set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."),expression2code(origin)),1)
     flag=Funcall("fseek_origin",1,list(origin),list())
   end
 end
 
 tree.name="mseek"
-tree.rhs=Rhs(offset,fid,flag)
+tree.rhs=Rhs_tlist(offset,fid,flag)
 
 tree.lhs(1).dims=list(1,1)
 tree.lhs(1).type=Type(Double,Real)

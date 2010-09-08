@@ -1,22 +1,32 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2001  - INRIA - Serge Steer
+// Copyright (C) Enrico Segre
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 // set of functions for getting information about variables saved in a Scilab 
 //  data file
-// Author: Serge Steer, 31 Jan 2001, reedited by Enrico Segre
+
 function varargout=listvarinfile(fil)
   lhs=argn(1)
   u=mopen(fil,"rb")
-  typenames=[
+  typenames=[  // in vector form, in order to cover the first 17
       "constant";
       "polynomial";
-      ""
+      "???"
       "boolean";
       "sparse";
       "boolean sparse";
       "Matlab sparse";
       "integer"
-      "graphic handles"; //not yet done
+      "graphic handle"; //not yet done
       "string";
       "function";
-      " "
+      "???"
       "function";
       "library";
       "list"
@@ -43,19 +53,31 @@ function varargout=listvarinfile(fil)
     [typ,dim,vol]=listnextvar(u)
     if typ<=17 then
       typn=typenames(typ)
+    elseif typ==128 then
+      typn="pointer";
     elseif typ==129 then
       typn="size implicit";
+    elseif typ==130 then
+      typn="primitive";
+    else
+       error(msprintf(gettext("%s: Wrong variable type (%s) found in ''%s''. File may be wrong or corrupted.\n"), "listvarinfile", string(typ), fil))
     end
 
     if lhs==1 then
-      write(%io(2),part(nam,1:25)+part(typn,1:15)+..
-    	   part(strcat(string(dim)," by "),1:16)+part(string(vol),1:10))
+      if typ<>9 & typ <>128 & typ <> 130 then
+        write(%io(2),part(nam,1:25)+part(typn,1:15)+..
+      	   part(strcat(string(dim)," by "),1:16)+part(string(vol),1:10))
+      else //types 9, 128 and 130 are known in scilab, but their API is unpublished
+        write(%io(2),part(nam,1:25)+part(typn,1:15)+"unknown         unknown")
+        warning(".... unknown structure, I''m forced to stop here (bug 2387)")
+      end
     end
     typs=[typs;typ]
     dims($+1)=dim
     nams=[nams;nam]
     vols=[vols;vol]
-   end
+    if dim==-1 | vol==-1 then break; end // this for types with unknown API
+  end
   mclose(u)
   
   varargout=list(nams,typs,dims,vols)
@@ -67,6 +89,7 @@ endfunction
 
 function [typ,dim,vol]=listnextvar(u)
   typ=mget(1,"il",u) //The variable type
+  dim=-1;vol=-1; //flags to break the caller loop in unknown cases
   select typ
   case 1 then //matrix of numbers
     w=mget(3,"il",u) //header of the variable 
@@ -135,6 +158,8 @@ function [typ,dim,vol]=listnextvar(u)
       //A=mget((m*n,"uc",u)
       vol=4*4+m*n
     end
+  case 9 then //graphic handle: API?? 
+
   case 10 then //string
     w=mget(3,"il",u)
     m=w(1);n=w(2);it=w(3);dim=[m,n]
@@ -167,7 +192,7 @@ function [typ,dim,vol]=listnextvar(u)
     nn=mget(1,"il",u) //number of names
     dim=nn
     mseek((nclas+1)*4,u,"cur") //skeep the class pointers
-    mseek(nn*6*4,u,"cur") //skeep the names
+    mseek(nn*6*4,u,"cur") //skip the names
     vol=(2+np+1+nclas+1+nn*6)*4
   case 15 then //list
     n=mget(1,"il",u);dim=n//number of fields
@@ -193,6 +218,8 @@ function [typ,dim,vol]=listnextvar(u)
       [t,d,v]=listnextvar(u)
       vol=vol+v
     end
+  case 128 then //pointer: API?? 
+    
   case 129 then //size implicit index (same as polynomial)
     w=mget(3,"il",u) //header of the variable 
     m=w(1);n=w(2);it=w(3);dim=[m,n]
@@ -203,8 +230,10 @@ function [typ,dim,vol]=listnextvar(u)
     mseek(8*N,u,"cur") //skip the values
     //A=mget(N,"dl",u)
     vol=(4+4+(m*n+1))*4+8*N
-  else
-    error("Unknown variable type, may be incorrect file type")
+  case 130 then //scilab primitive: API?? 
+    
+  else  //unknown type, or file content plainly wrong
+
   end
 endfunction
 

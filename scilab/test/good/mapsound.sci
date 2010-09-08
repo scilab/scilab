@@ -1,9 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function mapsound (w,dt,fmin,fmax,simpl,rate)
 // Plots a sound map for a sound.
 // It does FFT at time increments dt.
 // rate is the sampling rate.
 // simpl points are collected for speed reasons.
-// Copyright INRIA
+
 [lhs,rhs]=argn(0);
 if ( rhs <= 5 ) then rate=0;end
 if ( rhs <= 4 ) then simpl=1; end ;

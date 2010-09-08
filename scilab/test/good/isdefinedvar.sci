@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [boolval,index]=isdefinedvar(var)
-// Copyright INRIA
 // Verify if variable is defined in varslist
 // Input:
 // - var: a M2SCI tlist (funcall, operation...) or a character string (name) for special variables
@@ -8,7 +16,6 @@ function [boolval,index]=isdefinedvar(var)
 // - boolval:
 //   %T if input tlist is a defined 'variable' (already found while converting M-file)
 //   %F if input is not a 'variable' or an uknown 'variable'
-// V.C.
 
 // Global variable for M2SCI
 global("varslist")
@@ -22,7 +29,7 @@ index=[]
 // If input is a string
 if type(var)==10 then
   if and(var<>["i","j","pi","eps","%nargin","%nargout"]) then
-    warning("Bad use of isdefinedvar() with input: "+var)
+    warning(msprintf(gettext("Bad use of isdefinedvar() with input: %s."),var))
     return
   end
   varname=var

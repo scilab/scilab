@@ -1,3 +1,24 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=freq_div(job,arg1,arg2)
 x=[];y=[],typ=[]
 select job
@@ -25,9 +46,9 @@ case 'set' then
  graphics=xx.graphics;exprs=graphics.exprs
  model=xx.model;
  while %t do
-   [ok,%ph,%df,exprs]=getvalue...
-       ('Set frequency division block parameters',...
-	['Phase (0 to division factor -1)';'Division factor'],...
+   [ok,%ph,%df,exprs]=scicos_getvalue..
+       ('Set frequency division block parameters',..
+	['Phase (0 to division factor -1)';'Division factor'],..
 	list('vec',1,'vec',1),exprs)
    if ~ok then break,end
    if ok then
@@ -108,9 +129,11 @@ mlist(["graphics","orig","sz","flip","exprs","pin","pout","pein",..
         "xstringb(orig(1),orig(2),[''  Counter'';''Modulo ''+string(base)],sz(1),sz(2),''fill'');",..
                 8),"",[],"E"),..
                 mlist(..
-                ["model","sim","in","out","evtin","evtout","state","dstate",..
-                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
-                "nmode","equations"],list("modulo_count",4),[],1,1,[],[],0,[],3,..
+                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..
+                "state","dstate","odstate",..
+                "rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],list("modulo_count",4),[],[],1,1,[],1,1,[],[],0,list(),..
+                [],3,list(),..
                 "c",[],[%f,%f],"",0,0,list()),"Modulo_Count",list())
 scs_m_1.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
@@ -121,9 +144,11 @@ scs_m_1.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
                 ["xo=orig(1);yo=orig(2)+sz(2)/3";
                 "xstringb(xo,yo,string(prt),sz(1),sz(2)/1.5)"],8),"",[],[]),..
                 mlist(..
-                ["model","sim","in","out","evtin","evtout","state","dstate",..
-                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
-                "nmode","equations"],"input",[],[],[],1,[],[],[],1,"d",-1,..
+                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..
+                "state","dstate","odstate",..
+                "rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"input",[],[],1,[],[],1,[],1,[],[],list(),[],1,..
+                list(),"d",-1,..
                 [%f,%f],"",0,0,list()),"CLKINV_f",list())
 scs_m_1.objs(3)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
@@ -132,9 +157,10 @@ scs_m_1.objs(3)=mlist(["Block","graphics","model","gui","doc"],..
                 [221.30407,86.481481],[20,30],%t,"1",[],[],5,[],list(" ",8),"",..
                 [],[]),..
                 mlist(..
-                ["model","sim","in","out","evtin","evtout","state","dstate",..
-                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
-                "nmode","equations"],"output",[],[],1,[],[],[],[],1,"d",[],..
+                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..
+                "state","dstate","odstate",..
+                "rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"output",[],[],1,[],[],1,1,[],[],[],list(),[],1,list(),"d",[],..
                 [%f,%f],"",0,0,list()),"CLKOUTV_f",list())
 scs_m_1.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
                 mlist(..
@@ -146,9 +172,11 @@ scs_m_1.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
                 "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],8),"","E",..
                 []),..
                 mlist(..
-                ["model","sim","in","out","evtin","evtout","state","dstate",..
-                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
-                "nmode","equations"],list("ifthel",-1),1,[],1,[1;1],[],[],[],[],..
+                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..
+                "state","dstate","odstate",..
+                "rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],list("ifthel",-1),1,[],1,[],[],1,1,[1;1],[],[],list(),..
+                [],[],list(),..
                 "l",[-1,-1],[%t,%f],"",0,0,list()),"IFTHEL_f",list())
 scs_m_1.objs(5)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
                 [233.14804;231.30407],[162.98942;116.48148],"drawlink",[0,0],..
@@ -166,9 +194,11 @@ scs_m_1.objs(8)=mlist(["Block","graphics","model","gui","doc"],..
                 [224.29194;267.98739],[0.3333333,0.3333333],%t,[],[],[],6,[9;10],..
                 list([],8),"",[],[]),..
                 mlist(..
-                ["model","sim","in","out","evtin","evtout","state","dstate",..
-                "rpar","ipar","blocktype","firing","dep_ut","label","nzcross",..
-                "nmode","equations"],"split",[],[],1,[1;1],[],[],[],[],"d",..
+                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..
+                "state","dstate","odstate",..
+                "rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross",..
+                "nmode","equations"],"split",[],[],1,[],[],1,1,[1;1],[],[],list(),..
+                [],[],list(),"d",..
                 [%f,%f,%f],[%f,%f],"",0,0,list()),"CLKSPLIT_f",list())
 scs_m_1.objs(9)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
                 [224.29194;223.14804],[267.98739;234.41799],"drawlink",[0,0],..
@@ -177,9 +207,10 @@ scs_m_1.objs(10)=mlist(["Link","xx","yy","id","thick","ct","from","to"],..
                  [224.29194;90.518363;90.518363],[267.98739;267.98739;224.04762],..
                  "drawlink",[0,0],[5,-1],[8,2,0],[1,1,1])
 model = mlist(..
-["model","sim","in","out","evtin","evtout","state","dstate","rpar","ipar","blocktype",..
-"firing","dep_ut","label","nzcross","nmode","equations"],"csuper",[],[],1,1,[],[],..
-scs_m_1,[],"h",[],[%f,%f],"",0,0,list())
+["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout",..
+"state","dstate","odstate","rpar","ipar","opar","blocktype",..
+"firing","dep_ut","label","nzcross","nmode","equations"],"csuper",[],[],1,[],[],1,1,1,[],[],list(),..
+scs_m_1,[],list(),"h",[],[%f,%f],"",0,0,list())
   gr_i='xstringb(orig(1),orig(2),''freq_div'',sz(1),sz(2),''fill'')';
   x=standard_define([2 2],model,[],gr_i)
 end

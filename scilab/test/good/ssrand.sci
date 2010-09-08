@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [sl,U]=ssrand(nout,nin,nstate,flag)
 //flag=list('co',dim_cont_subs)
 //flag=list('uo',dim_unobs_subs)
@@ -98,8 +107,8 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
 //         dimension A44=nwuis-nwui
 //         row dimension C2.= row dimension of D2. =rk
 //***************************************************************
-// Copyright INRIA
-deff('[w]=st_able(w,margin)','if w~=[] then w=w-(maxi(real(spec(w)))+margin)*eye();end')
+
+deff('[w]=st_able(w,margin)','if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end')
 margin=0.5;  //M "stable"  will mean real-part(M) < -margin
 [lhs,rhs]=argn(0)
 //rand('seed',0)
@@ -180,7 +189,9 @@ case 'on'
   b21=b21d1(1:nstate-nv,:);d1=b21d1(nstate-nv+1:nstate-nv+nout,:);
   a21=a21c1(1:nstate-nv,:);c1=a21c1(nstate-nv+1:nstate-nv+nout,:);
 
-  if rk>=nout then error('ssrand: you must choose rk<nout!');end
+  if rk>=nout then 
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: you must choose rk<nout.\n"),"ssrand",4))
+  end
 //  if rk>=nout then j=-b21*pinv(d1);a22=-j*c2;end
   [pp,qq]=size(a21);a21(p1+1:pp,1:nv)=0*a21(p1+1:pp,1:nv);
   b21(p1+1:pp,:)=0*b21(p1+1:pp,:);
@@ -232,7 +243,7 @@ function w=imag_axis(ns,nn,nu,flag);
 [LHS,RHS]=argn(0);
 if RHS==3 then flag='siu';end
 if flag=='siu' then
-deff('[w]=st_able(w,margin)','if w~=[] then w=w-(maxi(real(spec(w)))+margin)*eye();end')
+deff('[w]=st_able(w,margin)','if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end')
 margin=0.5;  //M "stable"  will mean real-part(M) < -margin
 w=[];k=int(nn/2);
 rand('normal');
@@ -248,7 +259,7 @@ rand('uniform');
 return
 end
 if flag=='uis' then
-deff('[w]=st_able(w,margin)','if w~=[] then w=w-(maxi(real(spec(w)))+margin)*eye();end')
+deff('[w]=st_able(w,margin)','if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end')
 w=[];k=int(nn/2);
 rand('normal');
 //rand('seed',0);

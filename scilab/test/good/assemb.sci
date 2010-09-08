@@ -1,14 +1,33 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [gk,gf]=assemb(gk,gf,ek,ef,nel,n,nodes)
-// Copyright INRIA
-// développé par EADS-CCR
-//  la fonction assemb assemble la matrice de regidité gk et le second   //
+//  la fonction assemb assemble la matrice de regiditï¿½ gk et le second   //
 //  membre gf en bouclant sur les nel- elements.                         //                  
 //   Sorties :                                                           //
 //      - gk (Double) E/S : matrice globale                              //
 //      - gf (Double) E/S : vecteur qui correspond au scond membre       //
-//   Entrées :                                                           //     
-//      - ek (Double) : matrice élémentaire                              //
-//      - ef (Double) : vecteur élémentaire du scond membre              //
+//   Entrï¿½es :                                                           //     
+//      - ek (Double) : matrice ï¿½lï¿½mentaire                              //
+//      - ef (Double) : vecteur ï¿½lï¿½mentaire du scond membre              //
 //      - nel (Entier) : le nombre d'element.                            //                                     
 //      - n (Entier) :   nombre de points nodales dans un element,       //
 //        e.g. linear n=2; quadrtic, n=3; cubic: n=4.                    //                                  
@@ -23,7 +42,7 @@ function [gk,gf]=assemb(gk,gf,ek,ef,nel,n,nodes)
 
     for j=1:n
       jg = nodes(j,nel);
-      // Assemblage global de la matrice de regidité gk
+      // Assemblage global de la matrice de regiditï¿½ gk
       gk(ig,jg) = gk(ig,jg) + ek(i,j);
     end
   end 

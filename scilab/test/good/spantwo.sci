@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - François DELEBECQUE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Xp,dima,dimb,dim]=spantwo(A,B)
 //Given two matrices A and B with same number of rows,
 //returns a square matrix Xp (not necessarily orthogonal) 
@@ -20,8 +30,7 @@ function [Xp,dima,dimb,dim]=spantwo(A,B)
 //[uo,Y]=unobs(Sl(2),Sl(4));UO=Y(:,1:uo);  //Unobservable part
 //[Xp,dimc,dimu,dim]=spantwo(CO,UO);    //Kalman decomposition
 //Slcan=ss2ss(Sl,inv(Xp));             
-//F.D.
-// Copyright INRIA
+
   [X1,dim,dima]=spanplus(A,B);Xp=X1';
   B1B2B3=Xp*B;B1B2B3=B1B2B3(1:dim,:);
   [W,dimb]=rowcomp(B1B2B3);W=W(dim:-1:1,:);

@@ -1,22 +1,22 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_repmat(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab repmat()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 // Emulation function: mtlb_repmat()
-// V.C.
 
 // repmat(A,m)
 if rhs==2 then
   [A,m] = getrhs(tree)
-  if is_complex(m) then
-    m=Funcall("real",1,list(m),list(Variable("",m.infer)))
-  elseif ~is_real(m) then
-    newm=Funcall("real",1,list(m),list(Variable("",m.infer)))
-    repl_poss(newm,m,m,"is Real");
-    m=newm
-  end
   vtype=A.vtype
   if A.vtype==Unknown then
     tree.name="mtlb_repmat"
@@ -80,20 +80,6 @@ if rhs==2 then
 // repmat(A,m,n)
 else
   [A,m,n] = getrhs(tree)
-  if is_complex(m) then
-    m=Funcall("real",1,list(m),list(Variable("",m.infer)))
-  elseif ~is_real(m) then
-    newm=Funcall("real",1,list(m),list(Variable("",m.infer)))
-    repl_poss(newm,m,m,"is Real");
-    m=newm
-  end
-  if is_complex(n) then
-    n=Funcall("real",1,list(n),list(Variable("",n.infer)))
-  elseif ~is_real(n) then
-    newn=Funcall("real",1,list(n),list(Variable("",n.infer)))
-    repl_poss(newn,n,n,"is Real");
-    n=newn
-  end
   vtype=A.vtype
   if A.vtype==Unknown then
     tree.name="mtlb_repmat"
@@ -110,7 +96,7 @@ else
   elseif A.vtype==String then
     A=convert2double(A)
   end
-  tree.rhs=Rhs(m,n)
+  tree.rhs=Rhs_tlist(m,n)
   tree.name="ones";
   tree=Operation(".*.",list(tree,A),tree.lhs)
 

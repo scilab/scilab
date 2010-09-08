@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [f,x,g]=leastsq(imp,fun,varargin)
 
 //                                                        n     p          
@@ -32,9 +41,9 @@ if type(Dfun)==10 then //the 'b' keyword or the jacobian entry point name
 elseif type(Dfun)==11|type(Dfun)==13 then
   J=%t  //Jacobian provided
 elseif type(Dfun)==15 then 
-  error('Jacobian cannot be a list, parameters must be set in fun')
+  error(msprintf(gettext('%s: Jacobian cannot be a list, parameters must be set in fun.'),'leastsq'));
 else
-  J=%f
+  J=%f;
 end
 if J then, varargin(1)=null(), end  // to correct bug 1219 (bruno, 22 feb 2005)
 kr=1
@@ -44,7 +53,7 @@ x0=varargin(kr)
 
 if type(fn)==10 then //hard coded function given by its name
   if size(params)==0 then 
-    error('With hard coded function, user must give output size of fun'),
+    error(msprintf(gettext('%s: With hard coded function, user must give output size of fun.'),'leastsq'));
   end
   m=params(1);params(1)=null()
   n=size(x0,'*')
@@ -91,3 +100,4 @@ end
 
 [f,x,g]=optim(%opt,varargin(:),imp=imp)
 endfunction
+

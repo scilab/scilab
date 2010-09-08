@@ -1,5 +1,25 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=Capacitor(job,arg1,arg2)
-// Copyright INRIA
 // exemple d'un bloc implicit, 
 //   -  sans entree ni sortie de conditionnement
 //   -  avec une entree et une sortie de type implicit et de dimension 1
@@ -20,8 +40,8 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,C,v,exprs]=getvalue('Set Capacitor block parameter',..
-    			   ['C (F)','Initial Voltage'],list('vec',1,'vec',1),exprs)
+    [ok,C,v,exprs]=scicos_getvalue('Set Capacitor block parameter',..
+    			   ['C (F)';'Initial Voltage'],list('vec',1,'vec',1),exprs)
     if ~ok then break,end
     model.rpar=C
     model.equations.parameters(2)=list(C,v)
@@ -60,8 +80,15 @@ case 'define' then
 	'  xstring(orig(1)+sz(1)*1/12,orig(2)+sz(2)*3/4,''-'');';
 	'  xstring(orig(1)+sz(1)*7/8,orig(2)+sz(2)*3/4,''+'');';
 	'end'
-	'rect=xstringl(0,0,''C=''+C)'
-        'xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''C= ''+C);'
+        'txt=''C= ''+C;'
+        'style=2;'
+        'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+        'if ~exists(''%zoom'') then %zoom=1, end;'
+        'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+        'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+        'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+        'e=gce();'
+        'e.font_style=style;'
 	];
   x=standard_define([2 1.1],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']

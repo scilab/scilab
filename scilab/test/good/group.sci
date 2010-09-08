@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1988 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
 //Calculate the group delay of a digital filter
 //with transfer function h(z).
@@ -21,8 +30,7 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
 //       h(z)=prod(a1i+a2i*z+z**2)/prod(b1i+b2i*z+z^2)
 //
 //!
-//author: C. Bunks  date: 2 March 1988
-// Copyright INRIA
+
 
 //get frequency grid values in [0,.5)
  
@@ -49,7 +57,7 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
  
 //make h a rational polynomial
  
-         hs=maxi(size(h));
+         hs=max(size(h));
          z=poly(0,'z');
          h=poly(h,'z','c');
          h=gtild(h,'d')*(1/z^(hs-1));
@@ -62,7 +70,7 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
       //-compat ht==15 retained for list/tlist compatibility
       if ht==15|ht==16 then
          z=varn(h(3));
-         hcs=maxi(size(h(2)));
+         hcs=max(size(h(2)));
       end,
  
 //if the rational polynomial is not in cascade form then

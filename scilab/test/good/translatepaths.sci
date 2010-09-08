@@ -1,6 +1,14 @@
-function   transorder=translatepaths(Paths,res_path)
-// Copyright INRIA
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// Copyright (C) ???? - INRIA - Serge STEER 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function   transorder=translatepaths(Paths,res_path)
 // Perform translation of Matlab M-files to Scilab for all M-files found in Paths
 
 // Output :
@@ -18,21 +26,20 @@ function   transorder=translatepaths(Paths,res_path)
 
 [lhs,rhs]=argn(0)
 if rhs<2 then res_path="./",end
-if rhs<1 then m2sci_gui();return;end
+if rhs<1 then m2sci_gui();transorder=[];return;end
 
 // Loads libraries related to m2sci
-if exists("m2skernellib")==0 then load("SCI/macros/m2sci/kernel/lib"),end
-if exists("m2spercentlib")==0 then load("SCI/macros/m2sci/percent/lib"),end
-if exists("m2ssci_fileslib")==0 then load("SCI/macros/m2sci/sci_files/lib"),end
+if exists("m2skernellib")==0 then load("SCI/modules/m2sci/macros/kernel/lib"),end
+if exists("m2spercentlib")==0 then load("SCI/modules/m2sci/macros/percent/lib"),end
+if exists("m2ssci_fileslib")==0 then load("SCI/modules/m2sci/macros/sci_files/lib"),end
 
 // Convert paths so that they can be used according to the platform
 
-if MSDOS then 
-  sep='\'
+sep = filesep();
+if getos() == 'Windows' then 
   Paths=strsubst(Paths,'/',sep)
   res_path=strsubst(res_path,'/',sep)
 else
-  sep='/'
   Paths=strsubst(Paths,'\',sep)
   res_path=strsubst(res_path,'\',sep)
 end
@@ -45,17 +52,17 @@ end
 
 // Create a logfile and a whatis file
 Paths=stripblanks(Paths)
-[tempfd,ierr]=file('open',pathconvert(TMPDIR)+"unitfile.dat","old");
+[tempfd,ierr]=file('open',pathconvert(TMPDIR)+gettext("unitfile.dat"),"old");
 
 if ierr==0 then
-  load(pathconvert(TMPDIR)+"unitfile.dat")
+  load(pathconvert(TMPDIR)+gettext("unitfile.dat"))
   file('close',whsfil_unit);
   file('close',tempfd);
-  mdelete(pathconvert(TMPDIR)+"unitfile.dat")
+  mdelete(pathconvert(TMPDIR)+gettext("unitfile.dat"))
 end
 
 whsfil_unit=file('open',res_path+'whatis','unknown')
-save(pathconvert(TMPDIR)+"unitfile.dat",whsfil_unit)
+save(pathconvert(TMPDIR)+gettext("unitfile.dat"),whsfil_unit)
 // Close paths with a / or a \
 for k=1:size(Paths,'*')
   if part(Paths(k),length(Paths(k)))<>sep then 
@@ -67,12 +74,8 @@ end
 // mfiles is a vector which contains the names (and the paths) of files to translate
 mfiles=[]
 for k=1:size(Paths,'*')
-  path=Paths(k)
-  if MSDOS then 
-    mfiles=[mfiles;path + unix_g('dir /b '+ """" + path + """" + '*.m')]
-  else
-    mfiles=[mfiles;unix_g('ls '+ """" + path + """" + '*.m')]
-  end
+  path = Paths(k);
+  mfiles = [mfiles; ls(path+'*.m')];
 end
 
 // fnamvect is a vector which contains all M-files names (just the names) found in Paths
@@ -86,8 +89,8 @@ end
 
 for k1=1:size(mfiles,1)
     mpath=mfiles(k1)
-    disp("********************lst_funcall**********************")
-   disp(mpath)
+//    disp(gettext("********************lst_funcall**********************"))
+//   disp(mpath)
  filefuncallname($+1)=lst_funcall(mpath,fnamvect)
 end
 
@@ -114,7 +117,7 @@ end
 
 // Translation is done only if M-file has changed
 logtxt=[]
-resumelogtxt=[]
+resumelogtxt="";
 
 for i=1:size(funpath,1)
   kk=strindex(funpath(i),sep)
@@ -135,12 +138,12 @@ for i=1:size(funpath,1)
     end
     
     tmp_sci_file=pathconvert(TMPDIR)+"tmp_"+fnam+".sci"
-    ierr=execstr("getf(tmp_sci_file)","errcatch");errclear();
+    ierr=execstr("exec(tmp_sci_file)","errcatch");errclear();
     if ierr==0 & strindex(mpath,TMPDIR)==[] then
       txt=[]
       txt=mgetl(scipath)
       txt=[txt;" ";mgetl(tmp_sci_file)]
-      mputl(txt,scipath) 
+      mputl(txt,scipath);
       mdelete(tmp_sci_file)
     end
     
@@ -172,13 +175,13 @@ for i=1:size(funpath,1)
       mdelete(tmp_resume_m2sci_file)
     end
   end
-  mputl(logtxt,res_path+'log')
-  mputl(resumelogtxt,res_path+'resumelog')
+  mputl(logtxt,res_path+'log');
+  mputl(resumelogtxt,res_path+'resumelog');
 end
 
 // File closing
 file('close',whsfil_unit);
-mdelete(pathconvert(TMPDIR)+"unitfile.dat")
+mdelete(pathconvert(TMPDIR)+gettext("unitfile.dat"))
 
 // create builder.sce and loader.sce files
 // get the directory name where the Scilab functions are written 
@@ -198,12 +201,12 @@ buildertxt=[]
 buildertxt($+1)="path=get_absolute_file_path(""builder.sce"")"
 buildertxt($+1)="genlib("""+namelib+"lib"",path)"
 builderfile=res_path+"builder.sce"
-mputl(buildertxt,builderfile)
+mputl(buildertxt,builderfile);
 //loader.sce
 loadertxt=[]
 loadertxt($+1)="path=get_absolute_file_path(""loader.sce"")"
 loadertxt($+1)="load(path+"+"""lib"")"
 loaderfile=res_path+"loader.sce"
-mputl(loadertxt,loaderfile)
+mputl(loadertxt,loaderfile);
 
 endfunction

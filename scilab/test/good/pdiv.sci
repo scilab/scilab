@@ -1,9 +1,18 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [R,Q]=pdiv(P1,P2)
-// Element wise euclidan division of a polynomial matrix 
+// Element wise euclidan division of a polynomial matrix
 // by a polynomial
 // This is just a loop for the primitive pppdiv
 //!
-// Copyright INRIA
 [lhs,rhs]=argn(0);
 [n,m]=size(P1);
 [n1,m1]=size(P2);

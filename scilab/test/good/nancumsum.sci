@@ -1,3 +1,15 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2003 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
+
 function [s]=nancumsum(x,orient)
 //
 //This function returns in scalar or vector s the sum of the
@@ -23,9 +35,6 @@ function [s]=nancumsum(x,orient)
 //composed of NAN, the corresponding place of s will contain
 //a NAN.
 //
-//author: carlos klimann
-//
-//date: 2003-09-03
 //
   if argn(2)==1 then  orient='*',end
   isn=isnan(x)

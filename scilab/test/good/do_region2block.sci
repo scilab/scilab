@@ -1,23 +1,48 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//                      - Alan Layec <alan.layec@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [%pt,scs_m] = do_region2block(%pt,scs_m)
-// Copyright INRIA
-//** 29 June 2006
-//** This is a quite f..ing function : handle with care
-  
+
+//** Very complex and critical functions inside : handle with care ;) 
+//**
+//** 11 Jan 2007 : 'Block' / 'Text' bug validation: this function is OK.
+//** Alan, 15/10/7 : patch for rotated blocks
+//**  
+
   win = %win;
   xc = %pt(1); yc = %pt(2);
-  
   %pt=[] ;
-  scs_m_save = scs_m,nc_save = needcompile;
+  
+  scs_m_save = scs_m
+  nc_save    = needcompile;
   
   //** block select function 
-  // disp (".... get_region2()... ");
-  [scs_mb,rect,prt] = get_region2(xc,yc,win) ; //** see file "get_region2.sci"
+  [scs_mb, rect, prt, is_flip] = get_region2(xc,yc,win) ; //** see file "get_region2.sci"
 
-  if rect==[] then
+  if rect==[] then //** if no rectangle 
     return
   end
   
-  if lstsize(scs_mb.objs)==0 then
+  if lstsize(scs_mb.objs)==0 then //** if no object selected 
     return
   end
   
@@ -33,6 +58,7 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
   sup = SUPER_f('define')
   sup.graphics.orig   = [rect(1)+rect(3)/2-20, rect(2)+rect(4)/2-20]
   sup.graphics.sz     = [40 40]
+  sup.graphics.flip   = or(is_flip)
   
   sup.model.in        = 1
   sup.model.out       = 1
@@ -41,13 +67,13 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
   sup.model.dep_ut    = [%f %f]
   
   // open the superblock in editor
-  [ok,sup] = adjust_s_ports(sup)
+  [ok,sup] = adjust_s_ports(sup) //** looks OK because works on specific 'Block'
   // detruire la region
   del=[]
   
   for k=1:lstsize(scs_m.objs)
     o = scs_m.objs(k)
-    if typeof(o)=='Block'| typeof(o)=='Text' then
+    if typeof(o)=='Block'| typeof(o)=='Text' then //** OK
       // check if block is outside rectangle
       orig = o.graphics.orig
       sz = o.graphics.sz
@@ -67,8 +93,9 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
   end ;//** of for()
   
   needreplay = replayifnecessary() ;
-  
-  [scs_m,DEL] = do_delete2(scs_m,del,%t)
+
+  drawlater();
+  [scs_m,DEL] = do_delete2(scs_m,del,%t) ; //** VERY dangerous here !
 
   // add super block
   drawobj(sup)
@@ -93,6 +120,15 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
 	else //explicit regular link
 	  [x,y,vtyp] = getoutputs(o1)
 	end
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
 	
 	if tpsup==1 then //link connected to an input port of the superblock 
 	  
@@ -133,6 +169,15 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
 	else
 	  [x,y,vtyp]=getinputs(o1)
 	end
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
 	
 	if tpsup==1 then //link connected to an input port of the superblock 
 	  if typ>1 then //implicit regular link
@@ -164,6 +209,16 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
     else //event link
       if tpsup==1 then //link connected to an event input port of the superblock 
 	[x,y,vtyp]=getoutputs(o1)
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
+
 	[xn,yn,vtypn]=getinputs(sup),
 	p=prt(k,7)+size(find(vtyp==1),'*')+size(find(vtyp==2),'*')
 	pn=prt(k,2)+size(find(vtypn==1),'*')+size(find(vtypn==2),'*')
@@ -175,6 +230,16 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
 	scs_m.objs(nn).graphics.pein(prt(k,2))=nnk+1
       else //link connected to an event output port of the superblock 
 	[x,y,vtyp]=getinputs(o1)
+
+        if x<>[] & y<>[] then
+          xxx=rotate([x;y],...
+                     o1.graphics.theta*%pi/180,...
+                     [o1.graphics.orig(1)+o1.graphics.sz(1)/2;...
+                      o1.graphics.orig(2)+o1.graphics.sz(2)/2]);
+          x=xxx(1,:);
+          y=xxx(2,:);
+        end
+
 	[xn,yn,vtypn]=getoutputs(sup),
 	p=prt(k,7)+size(find(vtyp==1),'*')+size(find(vtyp==2),'*')
 	pn=prt(k,2)+size(find(vtypn==1),'*')+size(find(vtypn==2),'*')
@@ -205,5 +270,5 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
   
   [scs_m_save,nc_save,enable_undo,edited,needcompile,..
    needreplay] = resume(scs_m_save,nc_save,%t,%t,4,needreplay)
-  
+
 endfunction

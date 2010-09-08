@@ -1,12 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=%g2sci(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab logical OR
 // Input: tree = Matlab operation tree
 // Output: tree = Scilab equivalent for tree
-// V.C.
 
-// Overloading functions in $SCI/macros/mtlb/:
+// Overloading functions in $SCI/modules/compatibility_functions/macros/:
 // - %b_g_s.sci
 // - %s_g_b.sci
 // These functions are not used to get the same output value as Matlab one with empty matrices
@@ -19,7 +26,7 @@ function [tree]=%g2sci(tree)
 if (typeof(B)=="variable" & B.name=="%shortcircuit") then
   if typeof(tree.out(1))=="variable" & tree.out(1).name=="ans" then
     tmp=gettempvar()
-    tmp.type=Type(Double,Real)
+    tmp.type=Type(Boolean,Real)
     tree=tmp
   else
     tmp=tree.out(1)
@@ -27,15 +34,19 @@ if (typeof(B)=="variable" & B.name=="%shortcircuit") then
     varslist($+1)=M2scivar(tree.out(1).name,tree.out(1).name,Infer(list(1,1),Type(Boolean,Real)))
     tree=list()
   end
-  insert(Equal(list(tmp),Funcall("bool2s",1,list(Cste(%T)),list())))
+  insert(Equal(list(tmp),Cste(%T)))
   insert(tlist(["ifthenelse","expression","then","elseifs","else"],Operation("~",list(A.operands(1)),list()),list(Equal(list(tmp),A.operands(2))),list(),list()))
   return
 end
 
 // To have good size for result with String as input
 // And overloading functions are not written for Strings
-A = convert2double(A)
-B = convert2double(B)
+if A.vtype==Unknown | A.vtype==String then
+  A = convert2double(A)
+end
+if B.vtype==Unknown | B.vtype==String then
+  B = convert2double(B)
+end
 tree.operands=list(A,B)
 
 tree.out(1).type=Type(Boolean,Real)

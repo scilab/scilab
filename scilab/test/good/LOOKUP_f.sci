@@ -1,5 +1,25 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=LOOKUP_f(job,arg1,arg2)
-// Copyright INRIA
 x=[];y=[];typ=[];
 select job
 case 'plot' then
@@ -17,12 +37,14 @@ case 'set' then
   n=size(rpar,'*')/2
   xx=rpar(1:n);yy=rpar(n+1:2*n)
   while %t do
-    old_win=xget('window')
-    win=maxi(winsid())+1
-    xset('window',win);xsetech([0 0 1 1])
-    [xx,yy,ok]=edit_curv(xx,yy,'axy')
-    xdel(win)
-    xset('window',old_win)
+    [ln,fun]=where();  
+
+    if ~or(fun == "do_eval") then // cas standard  
+        [xx,yy,ok,gc] = edit_curv(xx,yy,'axy');
+    else
+      ok=%t
+    end  // no need anymore to overload edit_curv in do_eval
+
     if ~ok then break,end
     n=size(xx,'*')
     if or(xx(2:n)-xx(1:n-1)<=0) then
@@ -47,9 +69,9 @@ case 'define' then
   gr_i=['rpar=model.rpar;n=size(rpar,''*'')/2;';
     'thick=xget(''thickness'');xset(''thickness'',2);';
     'xx=rpar(1:n);yy=rpar(n+1:2*n);';
-    'mnx=mini(xx);xx=xx-mnx*ones(xx);mxx=maxi(xx);';
+    'mnx=min(xx);xx=xx-mnx*ones(xx);mxx=max(xx);';
     'xx=orig(1)+sz(1)*(1/10+(4/5)*xx/mxx);';
-    'mnx=mini(yy);yy=yy-mnx*ones(yy);mxx=maxi(yy);';
+    'mnx=min(yy);yy=yy-mnx*ones(yy);mxx=max(yy);';
     'yy=orig(2)+sz(2)*(1/10+(4/5)*yy/mxx);';
     'xpoly(xx,yy,''lines'');';
     'xset(''thickness'',thick);']

@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 1990 - C. Bunks
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [y]=intdec(x,lom)
 //y=intdec(x,lom)
 //Changes the sampling rate of a 1D or 2D signal by the rates in lom
@@ -7,13 +16,11 @@ function [y]=intdec(x,lom)
 //         :changes lom=(col rate change,row rate change)
 //  y      :Output sampled signal
 //!
-// author: C. Bunks  date: 8 August 1990
-// Copyright INRIA
 
 //Get dimensions of vectors
  
    xsize=size(x);
-   xmin=mini(x);xmax=maxi(x);
+   xmin=min(x);xmax=max(x);
    if xsize(1)==1 then, lom=[1 lom]; end,
    if xsize(2)==1 then, lom=[lom 1]; end,
  

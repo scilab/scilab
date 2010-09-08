@@ -1,14 +1,23 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+// Copyright (C) ???? - INRIA - Serge STEER
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function savematfile(varargin)
 // Save variables in a Matlab binary or ASCII file into Scilab
 // This function has been developped following the 'MAT-File Format' description:
 // www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
-// Copyright INRIA
-// Authors: SS, VC
+
 vars=who('get');
 // Verify that all inputs are character strings
 for k=1:size(varargin)
   if type(varargin(k))<>10 then
-    error("All inputs must be character strings");
+    error(gettext("All inputs must be character strings."));
   end
 end
 
@@ -17,7 +26,7 @@ end
 mtlb_opts=[]; // Options for ASCII format
 mtlb_thefile=[]; // Name of file to write
 mtlb_names=[]; // Variable names to save
-version=[]; // MAT-file version (4 or 6, miCOMPRESSED not yet implemented)
+version=[]; // MAT-file version: 4 or 6 or 7 (7.3 not yet implemented)
 bin=[]; // %T is binary file %F if ASCII file
 
 // Default format is binary
@@ -35,7 +44,7 @@ while k<=lstsize(varargin)
   
   select varargin(k)
   case "-append"
-    warning("Option -append not implemented: IGNORED")
+    warning(msprintf(gettext("Option %s not implemented: IGNORED."),"-append"));
     k=k+1
   case "-mat"
     bin=%T
@@ -72,6 +81,14 @@ while k<=lstsize(varargin)
     version=6;
     bin=%T;
     k=k+1
+  case "-v7"
+    version=7;
+    bin=%T;
+    k=k+1
+  case "-v7.3"
+    version=7.3;
+    bin=%T;
+    k=k+1
   case "-tabs"
     bin=%F;
     mtlb_opts=[mtlb_opts varargin(k)];
@@ -81,13 +98,13 @@ while k<=lstsize(varargin)
     mtlb_opts=[mtlb_opts varargin(k)];
     k=k+1
   case "-regexp"
-    warning("Option -regexp not implemented: IGNORED")
+    warning(msprintf(gettext("Option %s not implemented: IGNORED."),"-regexp"));
     while k<=lstsize(varargin) & and(varargin(k)<>["-mat","-ascii"])
       k=k+1
     end
   else 
     if isempty(mtlb_thefile) then // Filename
-      mtlb_thefile=varargin(k)
+      mtlb_thefile=pathconvert(varargin(k),%f,%t);
       if fileparts(mtlb_thefile,"extension")==".mat" & isempty(bin) then // extension .mat and bin not already fixed by options
 	bin=%T
       end
@@ -98,10 +115,10 @@ while k<=lstsize(varargin)
   end
 end
 
-// Default version 6 for binary files
+// Default version 7 for binary files
 if isempty(version) & bin then
-  version=6;
-  warning("Option -v6 added");
+  version=7;
+  warning(gettext("Option -v7 added."));
 end
 
 // If no name given then all workspace saved
@@ -130,7 +147,7 @@ if bin then
     for k=size(mtlb_names,"*"):-1:1
       execstr("x="+mtlb_names(k))
       if and(type(x)<>[1 4 5 6 10]) then
-	warning("Variable "+mtlb_names(k)+" can not be save in level 4 MAT-file: IGNORED");
+	warning(msprintf(gettext("Variable %s can not be saved in level 4 MAT-file: IGNORED."),mtlb_names(k)));
 	mtlb_names(k)=[]
       end
     end
@@ -141,7 +158,7 @@ if bin then
     // Clear variable wich are no more used to avoid name conflicts
     for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
       if or(mtlb_names==k) then
-	error("Name conflict: it is not possible to save variable with name "+k)
+	error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
       end
     end
     clear("x","k","rhs","lhs","kk","err","bin","version","mtlb_thefile","mtlb_opts");
@@ -164,6 +181,7 @@ if bin then
 	if norm(imag(x),1)<>0 then it1=1,else it1=0,end
 	P=0
 	T=2
+        // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
 	[x,v,mn]=spget(x);
 	if it1==0 then
 	  x=[x real(v);[mn 0]]
@@ -196,7 +214,7 @@ if bin then
 	P=5
 	T=1
       else
-	error("Attempt to write an unsupported data type to an ASCII file")
+	error(gettext("Attempt to write an unsupported data type to an ASCII file."));
       end
       [m,n]=size(x)
       
@@ -241,23 +259,15 @@ if bin then
     // End of loop written by SS
   // LEVEL 6 MAT-file  
   elseif version==6 then
-    // Load functions
-    ReadmiMatrix=ReadmiMatrix;
-    WritemiMatrix=WritemiMatrix;
-    
     // Open file for writing
-    mtlb_fd=open_matfile_wb(mtlb_thefile);
-    
-    // Write header
-    endian=write_matfile_header(mtlb_fd);
-  
-    //--set constants
-    exec(LoadMatConstants,-1);
-    
+    mtlb_fd=matfile_open(mtlb_thefile, "w");
+    if mtlb_fd == -1 then
+      error(msprintf(gettext("%s: Could not open file ''%s''.\n"),"savematfile",mtlb_thefile))
+    end
     // Clear variable wich are no more used to avoid name conflicts
-    for k=["endian","varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
+    for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
       if or(mtlb_names==k) then
-	error("Name conflict: it is not possible to save variable with name "+k)
+	error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k))
       end
     end
     clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
@@ -265,15 +275,49 @@ if bin then
     // Write variables as miMATRIX data type
     for k=1:size(mtlb_names,"*")
       %var=evstr(mtlb_names(k));
+      // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
+      if type(%var)==5 then %var = %var'; end
       if and(type(%var)<>[9 11 13]) then
-        WritemiMatrix(mtlb_fd,evstr(mtlb_names(k)),mtlb_names(k));
+	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), %var, %F) then
+	  error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
+	end
+      else
+	error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
       end
     end
     
-    mclose(mtlb_fd);
-  else
-    // This part should contain miCOMPRESSED data type handling
-    error("Version "+string(version)+" MAT-file not implemented");
+    matfile_close(mtlb_fd);
+  elseif version==7
+    // Open file for writing
+    mtlb_fd=matfile_open(mtlb_thefile, "w");
+    if mtlb_fd == -1 then
+      error(msprintf(gettext("%s: Could not open file ''%s''.\n"),"savematfile",mtlb_thefile))
+    end
+    // Clear variable wich are no more used to avoid name conflicts
+    for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
+      if or(mtlb_names==k) then
+	error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k))
+      end
+    end
+    clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
+
+    // Write variables as miCOMPRESSED data type
+    for k=1:size(mtlb_names,"*")
+      %var=evstr(mtlb_names(k));
+      // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
+      if type(%var)==5 then %var = %var'; end
+      if and(type(%var)<>[9 11 13]) then
+	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), %var, %T) then
+	  error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
+	end
+      else
+	error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
+      end
+    end
+    
+    matfile_close(mtlb_fd);
+  else // Version 7.3 ???
+    error(msprintf(gettext("Version %d MAT-file not implemented."),version));
   end
   
 // ASCII save
@@ -284,7 +328,7 @@ else
   for k=size(mtlb_names,"*"):-1:1
     execstr("x="+mtlb_names(k))
     if and(type(x)<>[1 4 5 6 10]) then
-      warning("Variable "+mtlb_names(k)+" can not be save in ASCII file: IGNORED");
+      warning(msprintf(gettext("Variable %s can not be saved in ASCII file: IGNORED."),mtlb_names(k)));
       mtlb_names(k)=[]
     end
   end
@@ -304,7 +348,7 @@ else
   // Clear variable wich are no more used to avoid name conflicts
   for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
     if or(mtlb_names==k) then
-      error("Name conflict: it is not possible to save variable with name "+k)
+      error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
     end
   end
   clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
@@ -318,7 +362,8 @@ else
     case 4 then
       write(mtlb_fd,bool2s(x),"("+string(size(x,2))+mtlb_fmt+")")
     case 5 then
-      [ij,x]=spget(real(x));x=[ij x];
+      // We need to transpose to conform to the matlab sparse format
+      [ij,x]=spget(real(x'));x=[ij x];
       write(mtlb_fd,real(x),"(2f8.0,1x"+string(size(x,2))+mtlb_fmt+")")
     case 6 then
       [ij,x]=spget(bool2s(x));x=[ij x];
@@ -335,5 +380,3 @@ else
   file("close",mtlb_fd)
 end
 endfunction
-
-

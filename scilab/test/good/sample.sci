@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2003 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// 
+
 function s=sample(n,X,orient)
 //
 //This function gives a  vector (or matrix) nx1. It contains
@@ -18,11 +28,8 @@ function s=sample(n,X,orient)
 //random  sample of  n columns,  extracted  with replacement
 //from the columns of X.
 //
-//author: carlos klimann
-//
-//date: 2003-08-28
   [lhs,rhs]=argn(0)
-  if rhs<2 | rhs>3 then error('sample requires two or three inputs.'), end
+  if rhs<2 | rhs>3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"sample",2,3)), end
   if X==[] then s=[]; return;end
   if rhs==2 then 
     orient='*'
@@ -39,6 +46,6 @@ function s=sample(n,X,orient)
     s=X(:,grand(n,1,'uin',1,size(X,'c'))),
     return
   end
-  error('orient must be *, r, 1, c or 2 ')
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"orient",3,"*","r","c",1,2))
 endfunction
 

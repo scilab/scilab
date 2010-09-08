@@ -1,23 +1,32 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function [n]=np()
 // Return the size  of the Fortran pendulum 
-// Copyright ENPC
   n=1;
   n=fort('np',n,1,'i','sort',1);
-endfunction 
+endfunction
+
 
 function [ydot]=npend ( t, th)
-// Fortran version 
+// Fortran version
 //      data r  / 1.0, 1.0, 1.0, 1.0 /
 //      data m  / 1.0, 1.0, 1.0, 1.0 /
 //      data j  / 0.3, 0.3, 0.3, 0.3 /
   ydot=ones(6,1)
   ydot=fort('npend',3,1,'i',t,2,'d',th,3,'d',ydot,4,'d','sort',4);
-endfunction 
+endfunction
+
 
 function [E]=ener( th)
   E=0.0;
   E=fort('ener',th,1,'d',E,2,'d','sort',2);
-endfunction 
+endfunction
+
 
 function [ydot]=npend3 ( t, th)
 // Scilab version of the three link pendulum 
@@ -61,9 +70,9 @@ function [ydot]=npend3 ( t, th)
   ydot(1:n,1)=th((n+1):2*n)
   const= const+ cc3S*( th((n+1):2*n,1).* th((n+1):2*n,1));
   ydot((n+1):2*n,1)= -me3s\const
-endfunction 
+endfunction
 
-  
+
 function [E]=ener3(yt)
 // Scilab version for th three link pendulum 
   th=yt(1:n);
@@ -88,19 +97,19 @@ endfunction
 function []=npend_build_and_load() 
 // since this demo can be run by someone 
 // who has no write access in this directory 
-// we use TMPDIR 
+// we use TMPDIR
 
   if ~c_link('npend') then
-    cd = getcwd(); 
+    cdpath = pwd(); 
     chdir(TMPDIR); 
-    fcode=mgetl(SCI+'/demos/npend/Maple/dlslv.f');mputl(fcode,'dlslv.f')
-    fcode=mgetl(SCI+'/demos/npend/Maple/ener.f');mputl(fcode,'ener.f')
-    fcode=mgetl(SCI+'/demos/npend/Maple/np.f');mputl(fcode,'np.f')
-    fcode=mgetl(SCI+'/demos/npend/Maple/npend.f');mputl(fcode,'npend.f')
-    files = ['npend.o','np.o','ener.o','dlslv.o' ];
+    fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/dlslv.f');mputl(fcode,'dlslv.f')
+    fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/ener.f');mputl(fcode,'ener.f')
+    fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/np.f');mputl(fcode,'np.f')
+    fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/npend.f');mputl(fcode,'npend.f')
+    files = ['npend.f','np.f','ener.f','dlslv.f' ];
     ilib_for_link(['npend';'np';'ener'],files,[],"f");
     exec loader.sce 
-    chdir(cd) 
+    chdir(cdpath) 
   end
 endfunction 
 

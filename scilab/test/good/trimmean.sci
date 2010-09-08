@@ -1,4 +1,12 @@
-function t=trimmean(x,discard,orien)
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002 - INRIA - Carlos Klimann
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+function t=trimmean(x,discard,orien, verbose)
 //
 //A  trimmed mean  is calculated  by discarding  a certain
 //percentage of the lowest and the highest scores and then
@@ -57,42 +65,71 @@ function t=trimmean(x,discard,orien)
 //Gordaliza,  Robustness Properties  of Means  and Trimmed
 //Means, JASA, Volume 94, Number 447, Sept 1999, pp956-969
 //
-//author: carlos klimann
+
 //
-//date: 2002-10-10
-//
-  [lhs,rhs]=argn(0)
-  if rhs==0 then error('trimmean requires at least two input parameters.'), end
-  if x==[] then t=%nan;return,end
-  if rhs==1 then  error('trimmean requires at least two input parameters.'), end
-  if rhs==2 then 
-    if type(discard)<>1 then error('2nd input parameter must be a number'), end
-    if discard > 100 | discard <0 then
-      error('second input parameter must be in the 0-100 range.'), end
-      sizx=size(x,'*')
-      nomdis=sizx*discard/200
-      if floor(nomdis)==0 then nomdis=1, end
-      disp(nomdis)
-      x=sort(x)
-      t=sum(x(floor(nomdis):ceil(sizx-nomdis))) / (2*nomdis)
-      return,
+// modified by Bruno Pincon 2006-08-12 (to fix bug 2083)
+
+  [lhs,rhs]=argn()
+  if rhs < 1 | rhs > 4 then 
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"trimmean",1,4))
   end
-  if rhs==3 then
-    if orien=='r' | orien==1 then
-      sizx=size(x,'r')
-      nomdis=sizx*discard/200
-      if floor(nomdis)==0 then nomdis=1, end
-      x=sort(x,'r')
-      t=sum(x(floor(nomdis):ceil(sizx-nomdis),:),'r') / (2*nomdis)
-      return,
+    
+  if exists('discard','local')==0 then
+     discard = 50.
+  else
+    if type(discard)~=1 | ~isreal(discard) | length(discard) ~=1 | discard > 100 | discard < 0 then
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Real number between %d to %d expected.\n"),"trimmean",2,0,100))
     end
-    if orien=='c' | orien==2 then
-      sizx=size(x,'c')
-      nomdis=sizx*discard/200
-      if floor(nomdis)==0 then nomdis=1, end
-      t=sum(x(:,floor(nomdis):ceil(sizx-nomdis)),'c') / (2*nomdis)
-      return,
-    end,
   end
-  error('trimmean requires at most three input parameters')
+  if exists('orien','local')==0 then
+     orien = 'all'
+  end
+  if exists('verbose','local')==0 then
+     verbose=0;
+  end
+  // Compute sizx
+  if (orien=='r' | orien==1) then
+    sizx=size(x,'r')
+  elseif (orien=='c' | orien==2) then
+    sizx=size(x,'c')
+  elseif (orien == 'all') then
+    sizx = length(x)
+  else
+    error(msprintf(gettext("Wrong value for input argument orien: %s.\n"),string(orien)))
+  end
+  
+  if sizx==0 then
+    if (verbose==1) then
+      printf(gettext("Size of x is zero : returning NaN.\n"));
+    end  
+    t=%nan
+    return
+  end
+  
+  nomdis = floor(sizx*discard/200)
+  k1 = 1 + nomdis
+  k2 = sizx - nomdis
+  if k2 < k1 then
+    [k1,k2] = (k2,k1)
+  end
+  nb = k2-k1+1
+  if (verbose==1) then
+    printf(gettext("discard=%s\n"),string(discard));
+    printf(gettext("orien=%s\n"),string(orien));
+    printf(gettext("Size of x:%i\n"),sizx);
+    printf(gettext("Keeping %i values from %i to %i in sorted order\n"),nb,k1,k2);
+  end  
+  if orien == 'all' then
+     x = gsort(x)
+     t = sum(x(k1:k2)) / nb
+  elseif (orien=='r' | orien==1) then
+     x = gsort(x,'r')
+     t = sum(x(k1:k2,:),'r') / nb
+  elseif (orien=='c' | orien==2) then
+     x = gsort(x,'c')
+     t = sum(x(:,k1:k2),'c') / nb
+  else
+     error(msprintf(gettext("Unexpected value of orien : %s\n"),string(orien)))
+  end
 endfunction
+

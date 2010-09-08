@@ -1,9 +1,19 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [enx,X,Y,eny]=entropy(S,gama)
 //Computation of the entropy at gama of a linear system S
 //[enx,X,Y,eny]=entropy(S,gama)
 //!
 //
-// Copyright INRIA
+
 S1=S(1);
 if S1(1)=='r' then S=tf2ss(S);end
 [A,B,C,D]=S(2:5);

@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function t=sci2exp(a,nom,lmax)
 // sci2exp - convert a variable to an expression
 //%SYNTAX
@@ -11,7 +21,7 @@ function t=sci2exp(a,nom,lmax)
 //  a=[1 2;3 4]
 //  sci2exp(a,'aa')
 //!
-// Copyright INRIA
+
   deff('x=String(a)',['x=string(a)'
 		      'x=strsubst(x,''Nan'',''%nan'')'
 		      'x=strsubst(x,''Inf'',''%inf'')'
@@ -64,7 +74,7 @@ case 13 then
   end
   t(1)=part(t(1),10:length(t(1)))
   t($)=[]
-  t=sci2exp(t)
+  t=sci2exp(t,lmax)
   t(1)='createfun('+t(1)
   t($)=t($)+')'
 case 15 then
@@ -80,7 +90,7 @@ case 129 then
   t=imp2exp(a,lmax)
 else
 //  execstr('t='+typeof(a)+'2exp(a,lmax)')
-  error('Variable translation of type '+string(type(a))+' Not implemented')
+   error(msprintf(gettext("%s: This feature has not been implemented: Variable translation of type %s.\n"),"sci2exp",string(type(a))));
 end,
 if named&and(type(a)<>[11 13]) then
   t(1)=nom+' = '+t(1)
@@ -165,7 +175,7 @@ function t=mat2exp(a,lmax)
       k1=1;l=0;I=[];
       while %t
 	if lx-l<lmax|k1>length(ind) then,break,end
-	k2=k1-1+maxi(find(ind(k1:$)<l+lmax))
+	k2=k1-1+max(find(ind(k1:$)<l+lmax))
 	I=[I ind(k2)];
 //	t=[t;part(x,l+1:ind(k2))]
 	k1=k2+1
@@ -183,7 +193,7 @@ function t=mat2exp(a,lmax)
       k1=1;l=0;I=[];
       while %t
 	if lx-l<lmax|k1>length(ind) then break,end
-	k2=k1-1+maxi(find(ind(k1:$)<l+lmax))
+	k2=k1-1+max(find(ind(k1:$)<l+lmax))
 	I=[I ind(k2)];
 //	t=[t;part(x,l+1:ind(k2))+dots]
 	k1=k2+1
@@ -206,7 +216,7 @@ function t=mat2exp(a,lmax)
 	k1=1;l=0;I=[];
 	while %t
 	  if lx-l<lmax|k1>length(ind) then break,end
-	  k2=k1-1+maxi(find(ind(k1:$)<l+lmax))
+	  k2=k1-1+max(find(ind(k1:$)<l+lmax))
 	  I=[I ind(k2)];
 //	  t=[t;part(x,l+1:ind(k2))+dots]
 	  k1=k2+1
@@ -289,7 +299,6 @@ function t=pol2exp(a,lmax)
 	if ny>1 then x($+1:$+ny-1)=y(2:ny),end
       else
 	if length(x($))==0 then
-	  //added by Andre Hentz (andre@lcmi.ufsc.br) 10-Oct-95
 	  x($:$+ny-1) = y;
 	else
 	  x($)=x($)+','+dots;
@@ -331,7 +340,7 @@ function t=list2exp(l,lmax)
     else
       t1=sci2exp(lk,lmax)
     end
-    if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
+    if size(t1,'*')==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
       t($)=t($)+sep+t1
     else
       t($)=t($)+sep+dots
@@ -361,7 +370,7 @@ function t=tlist2exp(l,lmax)
     else
       t1=sci2exp(lk,lmax)
     end
-    if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
+    if size(t1,'*')==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
       t($)=t($)+sep+t1
     else
       t($)=t($)+sep+dots
@@ -391,7 +400,7 @@ function t=mlist2exp(l,lmax)
     else
       t1=sci2exp(lk,lmax)
     end
-    if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
+    if size(t1,'*')==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
       t($)=t($)+sep+t1
     else
       t($)=t($)+sep+dots
@@ -433,13 +442,9 @@ function t=log2exp(a,lmax)
 	x($+1)=y
       end
     end
-    if lmax>0 then
-      t=[t;x]
-    else
-      t=t+x
-    end
+    t=[t;x]
   end,
-  if lmax>0&sum(length(t))<lmax then
+  if lmax==0|lmax>0&sum(length(t))<lmax then
     t=strcat(t,';')
   end
   if m*n>1 then

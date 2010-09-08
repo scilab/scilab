@@ -1,11 +1,31 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=CSCOPE(job,arg1,arg2)
-// Copyright INRIA
 x=[];y=[];typ=[]
 select job
 case 'plot' then
   standard_draw(arg1)
 case 'getinputs' then
-  [x,y,typ]=standard_inputs(o)
+  [x,y,typ]=standard_inputs(arg1)
 case 'getoutputs' then
   x=[];y=[];typ=[];
 case 'getorigin' then
@@ -13,11 +33,11 @@ case 'getorigin' then
 case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
-  if size(exprs)<10 then exprs(10)=emptystr(),end // compatibility
+
   model=arg1.model;
   //dstate=model.in
   while %t do
-    [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=getvalue(..
+    [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['Color (>0) or mark (<0) vector (8 entries)';
 	'Output window number (-1 for automatic)';
@@ -67,7 +87,7 @@ case 'set' then
 	         ' ';mess])
 	   end
     if ok then
-      [model,graphics,ok]=check_io(model,graphics,-1,[],ones(1-heritance,1),[])
+      [model,graphics,ok]=set_io(model,graphics,list([-1 1],1),list(),ones(1-heritance,1),[])
     end
     
     if ok then
@@ -76,9 +96,7 @@ case 'set' then
       rpar=[0;ymin;ymax;per]
       ipar=[win;1;N;clrs(:);wpos(:);wdim(:)]
       //if prod(size(dstate))<>(8+1)*N+1 then dstate=-eye((8+1)*N+1,1),end
-      model.dstate=[];
-      //model.dstate=dstate;
-      
+      //model.dstate=[];      
       model.rpar=rpar;model.ipar=ipar
       model.evtin=ones(1-heritance,1)
       model.label=nom;
@@ -99,6 +117,7 @@ case 'define' then
   model=scicos_model()
   model.sim=list('cscope',4)
   model.in=-1
+  model.in2=1
   model.evtin=1
   model.rpar=[0;ymin;ymax;per]
   model.ipar=[win;1;N;clrs;wpos;wdim]

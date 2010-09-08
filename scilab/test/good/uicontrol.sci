@@ -1,3 +1,10 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
 function add_list_item()
   if e1<>0&l1<>0 then
   new = get(e1,'String')
@@ -12,15 +19,22 @@ function myuidialog()
   e1=0;l1 =0
   initial=strcat(list_item,'|')
 
-  f = figure("Position",[50 50 300 200],...
-	     "BackgroundColor",[0.9 0.9 0.9],...
-	     "Unit", "pixel");
-
-  m=uimenu(f,'label', 'menu');
+  f = figure("figure_name", "Uicontrols demo",...
+      "Position",[50 50 300 330],...
+      "BackgroundColor",[0.9 0.9 0.9],...
+      "Units", "pixels");
+  
+  // Remove Scilab menus
+  delmenu(f.figure_id, gettext("&File"));
+  delmenu(f.figure_id, gettext("&Tools"));
+  delmenu(f.figure_id, gettext("&Edit"));
+  delmenu(f.figure_id, gettext("&?"));
+  
+  m=uimenu(f,"label", "Menu");
   // create an item on the menu bar
-  m1=uimenu(m,'label', 'launch plot3d1', 'callback', "plot3d1()");
-  m2=uimenu(m,'label', 'Exit figure', 'callback', "fin=%t;");
-  m3=uimenu(m,'label', 'quit scilab', 'callback', "exit");
+  m1=uimenu(m,"label", "Launch plot3d1", "callback", "plot3d1()");
+  m2=uimenu(m,"label", "Exit figure", "callback", "fin=%t;");
+  m3=uimenu(m,"label", "Quit scilab", "callback", "exit");
 
   fr1= uicontrol(f, "Position"  , [5 5 160 100],...
 		 "Style"     , "frame",...
@@ -60,7 +74,7 @@ function myuidialog()
 		 "BackgroundColor",[0 0.7 1],...
 		 "callback"  , "fin=%t");
 
-  fr2= uicontrol(f, "Position"  , [138 128 29 19],...
+  fr2= uicontrol(f, "Position"  , [137 128 29 19],...
 		 "Style"     , "frame",...
 		 "BackgroundColor",[0.9 0.9 0.9]);
 
@@ -68,24 +82,24 @@ function myuidialog()
 		 "Style"     , "text",...
 		 "String"    , "50",...
 		 "BackgroundColor",[1 1 1]);
-  s1=0
+  
   s1 = uicontrol(f, "Position"  , [10 130 120 15],..
 		 "Style"     , "slider",...
 		 "Min"       , 0,...
 		 "Max"       , 100,...
 		 "Value"     , 50,...
 		 "SliderStep", [2 10],...
-		 "callback"  , "set(t2,''String'',string(get(s1,''Value'')))");
+		 "callback"  , "set(t2,''String'',string(get(gcbo,''Value'')))");
   // Note pour un slider la position de ref est ulp
 
-  p1 = uicontrol(f, "Position"  , [100 170 50 20],...
+  p1 = uicontrol(f, "Position"  , [90 170 70 20],...
 		 "Style"     , "popupmenu",...
 		 "String"    , "popup|item1|item2|item3|toto|truc|bidule");
 
   fin=%f
   while ~fin
     sleep(1)
-    if findobj('label', 'menu')==[] then
+    if findobj("label", "Menu")==[] then
       return;
     end
   end

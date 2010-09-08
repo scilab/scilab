@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - F.D
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [y]=%asn(x,m)
 //Calculates the elliptic integral:
 //  y = integral from 0 to x of
@@ -8,10 +17,11 @@ function [y]=%asn(x,m)
 //  y :Value of the integral
 //
 //!
-//Author F.D.
-// Copyright INRIA
-m=real(m);
-if m<0 then error('m must be positive');end 
-if m>1 then error('m must be lower than 1');end 
-y=delip(x,sqrt(m));
+  m=real(m);
+
+  if m<0|m>1 then 
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"),'%%asn',2,"0","1"));
+  end
+
+  y=delip(x,sqrt(m));
 endfunction

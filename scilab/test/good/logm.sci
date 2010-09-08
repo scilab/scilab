@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function x=logm(a)
 //   logm - log(A)
 //%CALLING SEQUENCE
@@ -7,19 +16,22 @@ function x=logm(a)
 //   X   : square matrix
 //%DESCRIPTION
 //computes X=logm(A), matrix log of A
-//!
-// Copyright INRIA
-[m,n]=size(a)
-if m<>n then error(20,1),end
+
+[m,n]=size(a);
+
+if m<>n then
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"logm",1));
+end
+
 flag=or(a<>a')
-if ~flag then 
+if ~flag then
 //Hermitian matrix
   r=and(imag(a)==0)
-  [u,s]=schur(a);w=diag(s); 
+  [u,s]=schur(a);w=diag(s);
   zw=find(w==0);
   if zw<>[] then
     w(zw)=%eps*ones(zw);w1=log(w);w1(zw)=-%inf*ones(zw);
-    warning('Log of a singular matrix')
+    warning(msprintf(gettext("%s: Log of a singular matrix.\n"),"logm"));
   else
     w1=log(w)
   end
@@ -34,15 +46,17 @@ if flag then
  //General matrix
 r=and(imag(a)==0)
 a=a+0*%i;   //Set complex
-[s,u,bs]=bdiag(a);
-  if maxi(bs)>1 then
-    error('logm: unable to diagonalize!');return
+rmax=max(norm(a,1),1/sqrt(%eps))
+[s,u,bs]=bdiag(a,rmax);
+  if max(bs)>1 then
+    error(msprintf(gettext("%s: Unable to diagonalize.\n"),"logm"));
+    return
   end
   w=diag(s);
   zw=find(w==0);
   if zw<>[] then
     w(zw)=%eps*ones(zw);w1=log(w);w1(zw)=-%inf*ones(zw);
-    warning('Log of a singular matrix')
+    warning(msprintf(gettext("%s: Log of a singular matrix.\n"),"logm"));
   else
     w1=log(w)
   end

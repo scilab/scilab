@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [num,den]=frfit(w,fresp,order,weight)
 //Calling sequence:
 //[num,den]=frfit(w,fresp,r,weight)
@@ -14,7 +23,6 @@ function [num,den]=frfit(w,fresp,order,weight)
 //  freq(num,den,%i*w) should be close to fresp
 //
 // changing frequencies to rad/s 
-// Copyright INRIA
 w=2*%pi*w;
 [LHS,RHS]=argn(0);
 if RHS==3 
@@ -62,7 +70,7 @@ mindeg=max(abs(sl0),-slinf);
 end
 
 if mindeg > order
-  warning('Filter order too small');
+  warning(msprintf(gettext('%s: Filter order too small.\n'),'frfit'));
   sl0=sign(sl0)*min(order,sl0);
   if sl0>0 then
     slinf=-(order-abs(sl0));
@@ -152,7 +160,8 @@ else
   vvv=[fweight;fweight];
   x=(vvv*ones(1,size(A,2)).*A)\(vvv.*y);
   x=[Ac1\(ycons-Ac2*x);x];
-  [s,perm]=sort(-perm);s=-s;
+  [s,perm]=gsort(-perm);
+  s=-s;
   x=x(perm);              
 
   nresp=Aom*x(1:order1); dresp=Aom*x(order1+1:2*order1); 

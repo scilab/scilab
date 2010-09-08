@@ -1,5 +1,15 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function fr=freson(h)
-// Copyright INRIA
+
 [lhs,rhs]=argn(0)
 [n,d]=h(['num','den']);
 if type(n)==1 then n=poly(n,varn(d),'c'),end
@@ -20,7 +30,7 @@ if k==[] then fr=[],g=[],return,end
 w=real(w(k))
 
 //find maximums
-wx=maxi(w)+0.5
+wx=max(w)+0.5
 if horner(modul_d,wx)<0 then
   w=w($:-2:1)
 else

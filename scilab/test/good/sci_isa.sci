@@ -1,17 +1,24 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=sci_isa(tree)
-// Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab isa()
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
-// V.C.
 
 [OBJ,class] = getrhs(tree)
 
 if typeof(class)=="cste" then
   
-  typetree=Funcall("type",1,Rhs(OBJ),list())
-  typeoftree=Funcall("typeof",1,Rhs(OBJ),list())
+  typetree=Funcall("type",1,Rhs_tlist(OBJ),list())
+  typeoftree=Funcall("typeof",1,Rhs_tlist(OBJ),list())
   
   select class.value
   case "logical"
@@ -53,7 +60,7 @@ if typeof(class)=="cste" then
   case "lti"
     tree=Operation("==",list(typeoftree,Cste("state-space")),tree.lhs)
   else
-    set_infos("Unhandled class: "+class.value,2)
+    set_infos(msprintf(gettext("Unhandled class: %s."),class.value),2)
     tree.lhs(1).dims=list(1,1)
     tree.lhs(1).type=Type(Boolean,Real)
     return

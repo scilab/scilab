@@ -1,216 +1,162 @@
-function []=bode(sl,fmin,fmax,pas,comments)
-//!
-// Copyright INRIA
-[lhs,rhs]=argn(0);
-dom='c';
-//---------------------
-nyq_frq=[];l10=log(10);
-pas_def='auto' // default
-ilf=0
-typ=type(sl)
-//-compat next line added for list/tlist compatibility
-if typ==15 then typ=16,end
-select typ
-case 16 then  // sl,fmin,fmax [,pas] [,comments]
-  typ=sl(1);typ=typ(1);
-  if typ<>'lss'&typ<>'r' then
-    error(97,1)
-  end
-  if typ=='lss' then
-    if sl(7)==[] then error('Undefined time domain (sl(7))');end
-  end
-  if typ=='r' then
-    if sl(4)==[] then error('Undefined time domain (sl(4))');end
-  end
-  dom=sl('dt')
-  if dom==[]|dom==0 then error(96,1),end
-  if dom=='d' then dom=1;end
-  
-  select rhs
-  case 1 then //sl
-   comments=' '
-   fmin_default=1.d-3;
-   fmax_default=1.d3;
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C)  1985-2010 - INRIA - Serge Steer
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-   if dom=='c' then fmax_default=1.d3; else fmax_default=1/(2*dom),end
-   [frq,repf]=repfreq(sl,fmin_default,fmax_default);
-   [d,phi]=dbphi(repf);
-   sl=[] 
-  case 2 then // sl,frq
-   comments=' '
-   if min(fmin)<=0 then
-     error('bode: requires strictly positive frequency vector')
-   end
-   [frq,repf]=repfreq(sl,fmin);
-   [d,phi]=dbphi(repf);
-   fmin=[];sl=[]
-  case 3 , //sl,frq,comments ou sl,fmin,fmax
-   if type(fmax)==1 then
-      comments=' '
-      if fmin<=0 then
-         error('bode: requires strictly positive frequency range')
-       end
-      [frq,repf]=repfreq(sl,fmin,fmax,pas_def),sl=[]
-      [d,phi]=dbphi(repf);
-   else
-      comments=fmax
-      if min(fmin)<=0 then
-	error('bode: requires strictly positive frequency vector')
-      end      
-      if type(dom)==1 then nyq_frq=1/2/dom;end
-      if find(fmin>nyq_frq)~=[] then 
-	warning('There are frequencies beyond Nyquist f!');
+function []=bode(varargin)
+  rhs=size(varargin)
+  if type(varargin($))==10 then
+    comments=varargin($),rhs=rhs-1;
+  else
+    comments=[];
+  end
+  fname="bode";//for error messages
+  fmax=[]
+  discr=%f //for shannon limit
+  if or(typeof(varargin(1))==["state-space" "rational"]) then
+    //sys,fmin,fmax [,pas] or sys,frq
+    refdim=1 //for error message
+    discr=varargin(1).dt<>'c';
+    if rhs==1 then //sys
+      [frq,repf]=repfreq(varargin(1),1d-3,1d3)
+    elseif rhs==2 then //sys,frq
+      if size(varargin(2),2)<2 then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A row vector with length>%d expected.\n"),..
+                       fname,2,1))
       end
-      [frq,repf]=repfreq(sl,fmin);fmin=[];sl=[]
-      [d,phi]=dbphi(repf);
-   end
-  case 4 ,
-    if type(pas)==1 then 
-      comments=' ',
-    else 
-      comments=pas;pas=pas_def;
-    end,
-    if min(fmin)<=0 then
-      error('bode: requires strictly positive frequency vector')
+      [frq,repf]=repfreq(varargin(1:rhs))
+    elseif or(rhs==(3:4)) then //sys,fmin,fmax [,pas]
+      [frq,repf]=repfreq(varargin(1:rhs))
+    else
+      error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,1,5))
     end
-    [frq,repf]=repfreq(sl,fmin,fmax,pas)
-    [d,phi]=dbphi(repf);
-  case 5 then,
-    if min(fmin)<=0 then
-      error('bode: requires strictly positive frequency vector')
+    [phi,d]=phasemag(repf)
+    if rhs>=3 then fmax=varargin(3),end
+  elseif  type(varargin(1))==1 then
+    //frq,db,phi [,comments] or frq, repf [,comments]
+    refdim=2
+    select rhs
+    case 2 then //frq,repf
+      frq=varargin(1);
+      if size(frq,2)<2 then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A row vector with length>%d expected.\n"),..
+                       fname,1,1))
+      end
+      if size(frq,2)<>size(varargin(2),2) then
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+                       fname,1,2))
+      end
+      [phi,d]=phasemag(varargin(2))
+    case 3 then  //frq,db,phi
+      [frq,d,phi]=varargin(1:rhs)
+      if size(frq,2)<>size(d,2) then
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+                       fname,1,2))
+      end
+      if size(frq,2)<>size(phi,2) then
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+                       fname,1,3))
+      end
+    else
+      error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,2,4))
     end
-    [frq,repf]=repfreq(sl,fmin,fmax,pas)
-    [d,phi]=dbphi(repf);
-  else 
-    error('Invalid call: sys,fmin,fmax [,pas] [,com]')
+  else
+    error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
+  end;
+  frq=frq';d=d',phi=phi'
+  [n,mn]=size(d)
+
+  if comments==[] then
+    hx=0.48
+  else
+    if size(comments,"*")<>mn then
+      error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same number of elements expected.\n"),...
+                     fname,refdim,rhs+1))
+    end
+    hx=0.43
   end;
 
-case 1 then //frq,db,phi [,comments] ou frq, repf [,comments]
-  select rhs
-  case 2 , //frq,repf
-    comments=' '
-    [phi,d]=phasemag(fmin);fmin=[]
-  case 3 then
-    if type(fmax)==1 then
-      comments=' '//frq db phi
-      d=fmin,fmin=[]
-      phi=fmax,fmax=[]
-    else
-      [phi,d]=phasemag(fmin);fmin=[]
-      comments=fmax
-     end;
-   case 4 then 
-     comments=pas;d=fmin;fmin=[];phi=fmax;fmax=[]
-   else 
-     error('Invalid call: frq,db,phi,[com] or frq,repf,[com]')
-   end;
-   frq=sl;sl=[];[mn,n]=size(frq);
-   if min(frq)<=0 then
-     error('bode: requires strictly positive frequencies')
-   end
-   if mn<>1 then
-      ilf=1;//un vecteur de frequences par reponse
-   else
-      ilf=0;//un seul vecteur de frequence
-   end;
-else 
-   error('Bode: invalid call')
-end;
-[mn,n]=size(phi)
-//
-//Captions
-if comments==' ' then
-   comments(mn)=' ';
-   mnc=0
-   hx=0.48
-   else
-   mnc=mn
-   hx=0.43
-end;
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
 
-isNewStyle = ( get("figure_style") == "new") ;
-
-[wrect,frect]=xgetech();
-//magnitude
-xsetech(wrect=[wrect(1)+0,wrect(2)+0,wrect(3)*1.0,wrect(4)*hx*0.95]);
-rect=[mini(frq),mini(d);maxi(frq),maxi(d)]
-// just to fix the scales for xgrid
-if ~isNewStyle then
-  plot2d1("oln",mini(frq),mini(d),0,"051"," ",rect);
-end
-
-// xgrid first 
-xgrid(4);
-// now the curves 
-plot2d1("oln",frq',d') ;
-if isNewStyle then
-  axes = gca() ;
-  axes.data_bounds = rect ;
-  a.log_flags = "lnn" ;
-end
-
-if type(dom)==1 then
-  [xx1,xx2]=xgetech();
-  val= xx2([2;4])';
-  plot2d1("oln",max(frq)*[1;1],val,5,"000"," ",rect);
-end
-xtitle('Magnitude ',' Hz','db');
-//phase
-xsetech(wrect=[wrect(1)+0,wrect(2)+wrect(4)*hx,wrect(3)*1.0,wrect(4)*hx*0.95]);
-
-// get the axes of the phase
-if ( get("figure_style") == "new" ) then
-  sciCurAxes = get("current_axes") ;
-end
-
-rect=[mini(frq),mini(phi);maxi(frq),maxi(phi)]
-// just to fix the scales for xgrid
-if ~isNewStyle then
-  plot2d1("oln",mini(frq),mini(phi),0,"051"," ",rect);
-end
-
-xgrid(4);
-//  now the curves
-plot2d1( "oln",frq',phi' ) ;
-if isNewStyle then
-  axes = gca() ;
-  axes.data_bounds = rect ;
-  a.log_flags = "lnn" ;
-end
+  sciCurAxes=gca();
+  axes=sciCurAxes;
+  wrect=axes.axes_bounds;
 
 
-if type(dom)==1 then
-  [xx1,xx2]=xgetech();
-  val= xx2([2;4])';
-  plot2d1("oln",max(frq)*[1;1],val,5,"000");
-end
-xtitle('Phase ',' Hz','degrees');
-
-// create legend
-if mnc>0 then
-  xsetech([wrect(1)+0,wrect(2)+wrect(4)*2*hx,wrect(3)*1.0,wrect(4)*0.1],[0 0 1 1]);
-  dash=xget('color')
-  y0=0.7;dy=-1/2
-  x0=0;dx=1/2
-  count=0
-  for k=1:mnc
-    xset('color',k)
-    xsegs([x0;x0+0.08],[y0;y0])
-    rect=xstringl(x0+0.1,y0,comments(k))
-    xset('color',dash(1));
-    xstring(x0+0.1,y0-rect(4)/3,comments(k))
-    count=count+1
-    y0=y0+dy
-    if count==3 then x0=x0+dx;y0=0.7,end
+  //magnitude
+  axes.axes_bounds=[wrect(1)+0,wrect(2)+0,wrect(3)*1.0,wrect(4)*hx*0.95]
+  axes.data_bounds = [min(frq),min(d);max(frq),max(d)];
+  axes.log_flags = "lnn" ;
+  axes.grid=color("lightgrey")*ones(1,3);
+  axes.axes_visible="on";
+  axes.clip_state = "clipgrf";
+  if size(d,2)>1&size(frq,2)==1 then
+    xpolys(frq(:,ones(1,mn)),d,1:mn)
+  else
+    xpolys(frq,d,1:mn)
   end
-  xset('color',dash(1))
-end
+  //set datatips info
+  e=gce();
 
-// return to the previous scale
-if ( get("figure_style") == "old" ) then
-  xsetech(wrect,frect);
-else
+  for i=1:size(e.children,"*")
+    datatipInitStruct(e.children(i),"formatfunction","formatBodeMagTip")
+  end
+
+  if discr&fmax<>[]&max(frq)<fmax then
+    xpoly(max(frq)*[1;1],axes.y_ticks.locations([1 $]));e=gce();
+    e.foreground=5;
+  end
+  xtitle("",_("Frequency (Hz)"),_("Magnitude (dB)"));
+
+  //phase
+
+  axes=newaxes();
+  axes.axes_bounds=[wrect(1)+0,wrect(2)+wrect(4)*hx,wrect(3)*1.0,wrect(4)*hx*0.95];
+  axes.data_bounds = [min(frq),min(phi);max(frq),max(phi)];
+  axes.log_flags = "lnn" ;
+  axes.grid=color("lightgrey")*ones(1,3);
+  axes.axes_visible="on";
+  axes.clip_state = "clipgrf";
+  if size(phi,2)>1&size(frq,2)==1 then
+    xpolys(frq(:,ones(1,mn)),phi,1:mn)
+  else
+    xpolys(frq,phi,1:mn)
+  end
+  ephi=gce()
+  //set datatips info
+  for i=1:size(ephi.children,"*")
+    datatipInitStruct(ephi.children(i),"formatfunction","formatBodePhaseTip")
+  end
+
+  if discr&fmax<>[]&max(frq)<fmax then
+    xpoly(max(frq)*[1;1],axes.y_ticks.locations([1 $]));e=gce();
+    e.foreground=5;
+  end
+  xtitle("",_("Frequency (Hz)"),_("Phase (degree)"));
+  // create legend
+  if comments<>[] then
+    c=captions(ephi.children,comments,"lower_caption")
+    c.background=get(gcf(),"background")
+  end
+  fig.immediate_drawing=immediate_drawing;
+  // return to the previous scale
   set( "current_axes", sciCurAxes ) ;
-end
 
+endfunction
+
+function str=formatBodeMagTip(curve,pt,index)
+//this function is called by the datatips mechanism to format the tip
+//string for the magnitude bode curves
+  str=msprintf("%.4g"+_("Hz")+"\n%.4g"+_("dB"), pt(1),pt(2))
+endfunction
+
+function str=formatBodePhaseTip(curve,pt,index)
+//this function is called by the datatip mechanism to format the tip
+//string for the bode phase curves
+  str=msprintf("%.4g"+_("Hz")+"\n %.4g"+_("dB"), pt(1),pt(2))
 endfunction

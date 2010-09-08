@@ -1,6 +1,25 @@
-function [x,y,typ]=CBLOCK(job,arg1,arg2)
+//  Scicos
 //
-// Copyright INRIA
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
+function [x,y,typ]=CBLOCK(job,arg1,arg2)
 x=[];y=[];typ=[];
 select job
 case 'plot' then
@@ -17,7 +36,7 @@ case 'set' then
  label=graphics.exprs;
   while %t do
     [ok,junction_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=..
-        getvalue('Set C-Block2 block parameters',..
+        scicos_getvalue('Set C-Block2 block parameters',..
         ['simulation function';
 	 'is block implicit? (y,n)';
         'input ports sizes';
@@ -46,7 +65,7 @@ case 'set' then
     co=int(co(:));nevout=size(co,1);
     if part(impli,1)=='y' then funtyp=12004, else funtyp=2004,end
     if [ci;co]<>[] then
-      if maxi([ci;co])>1 then message('vector event links not supported');ok=%f;end
+      if max([ci;co])>1 then message('vector event links not supported');ok=%f;end
     end
     depu=stripblanks(depu);if part(depu,1)=='y' then depu=%t; else depu=%f;end
     dept=stripblanks(dept);if part(dept,1)=='y' then dept=%t; else dept=%f;end
@@ -54,14 +73,20 @@ case 'set' then
     
 
     if funam==' ' then break,end
-    tt=label(2);
+
     if model.sim(1)<>funam|sign(size(model.state,'*'))<>sign(nx)|..
 	  sign(size(model.dstate,'*'))<>sign(nz)|model.nzcross<>ng|..
     sign(size(model.evtout,'*'))<>sign(nevout) then
       tt=[]
     end
-    [ok,tt]=CFORTR2(funam,tt)
-    if ~ok then break,end
+
+    tt=label(2);
+    while %t
+
+    [ok,tt,cancel]=CFORTR2(funam,tt)
+    if ~ok then
+        if cancel then break,end
+    else
     [model,graphics,ok]=check_io(model,graphics,i,o,ci,co)
     if ok then
       model.sim=list(funam,funtyp)
@@ -83,6 +108,10 @@ case 'set' then
       break
     end
   end
+  end
+  if ok|cancel then break,end
+  end
+
 case 'define' then
   in=1
   out=1

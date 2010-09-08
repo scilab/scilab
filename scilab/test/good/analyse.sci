@@ -1,3 +1,24 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function syst=analyse(scs_m)
 // Analyse le graphique pour rechercher les connections
 //given	a block-diagram	representation of a linear system bloc2exp returns
@@ -5,7 +26,6 @@ function syst=analyse(scs_m)
 //  string 'blocd'.  Each	other element of this list (blocd(2),blocd(3),...) is
 //  itself a list	of one the following types :
 
-// Copyright INRIA
 
 //  list('transfer','name_of_linear_system')
 
@@ -53,7 +73,7 @@ function syst=analyse(scs_m)
 	  case 'OUT_f' then
 	  nb=nb-1
 	else
-	  message('Non linear systems are not implemented yet')
+	  messagebox('Non linear systems are not implemented yet','modal')
 	  syst(nb)=list('transfer',o.gui_name)
 	  corresp(k)=nb
 	end

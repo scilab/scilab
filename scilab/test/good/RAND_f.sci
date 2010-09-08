@@ -1,5 +1,25 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [x,y,typ]=RAND_f(job,arg1,arg2)
-// Copyright INRIA
 x=[];y=[];typ=[];
 select job
 case 'plot' then //normal  position
@@ -17,7 +37,7 @@ case 'set' then
   if size(exprs,'*')==5 then exprs=exprs(1:3),end //compatibility
   if size(exprs,'*')==3 then exprs=[exprs;string(model.dstate(1))],end //compatibility
   while %t do
-    [ok,flag,a,b,seed_c,exprs]=getvalue([
+    [ok,flag,a,b,seed_c,exprs]=scicos_getvalue([
 	'Set Random generator block parameters';
 	'flag = 0 : Uniform distribution A is min and A+B max';
 	'flag = 1 : Normal distribution A is mean and B deviation';

@@ -1,5 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Vincent Couvert
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function t=etime(t1,t0)
-// Copyright INRIA
+
 // returns the time in seconds that has elapsed between vectors t1 and t0
 // t1 and t0 must be six elements long, in the format:
 //       t = [Year Month Day Hour Minute Second.Milliseconds]
@@ -7,23 +16,23 @@ function t=etime(t1,t0)
 //       t = [Year Month ISO_8601_week_number Julian_day Week_Day Day Hour Minute Second Millisecond]
 // in this case ISO_8601_week_number Julian_day Week_Day are ignored
 // t1 and t0 can also be matrices having each line equal to a vector described above
-// V.C. 2004
+
 
 if type(t1)<>1 then
-  error("Wrong type for first input: must be a real vector");
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"),"etime",1));
 end
 if type(t0)<>1 then
-  error("Wrong type for second input: must be a real vector");
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"),"etime",2));
 end
 if and(size(t1,2)<>[6,10]) then
-  error("Wrong size for first input: must be a 6 or 10 element long vector");
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be between %d and %d.\n"),"etime",1,6,10));
 end
 if and(size(t0,2)<>[6,10]) then
-  error("Wrong size for second input: must be a 6 or 10 element long vector");
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be between %d and %d.\n"),"etime",2,6,10));
 end
 
 if size(t1,"*")<>size(t0,"*") then
-  error("Both operands must have the same size.");
+  error(msprintf(gettext("%s: Wrong size for input argument: Same size expected.\n"),"etime"));
 end
 
 if size(t1,2)==10 then

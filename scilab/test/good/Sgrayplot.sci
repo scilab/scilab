@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// Copyright (C) Bruno Pincon
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
 // 
 // PURPOSE
@@ -6,8 +16,8 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
 //    a set of triangles built from the grid (here with n1=5, n2=3):
 //             _____________
 //             | /| /| /| /|
-//             |/_|/_|/_|/_| 
-//             | /| /| /| /| 
+//             |/_|/_|/_|/_|
+//             | /| /| /| /|
 //             |/_|/_|/_|/_|
 //
 // Copyright INRIA
@@ -18,25 +28,18 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
 	[lhs,rhs] = argn();
 	 
 	if rhs == 0 then   // demo
-		title_demo = [
-			'';
-			'Demo of Sgrayplot()';
-			'========================================';
-			''];
 		
-		s_mat = ["t=-%pi:0.1:%pi";
-			"m=sin(t)''*cos(t)";
-			"xbasc()";
-			"xset(''colormap'',jetcolormap(64))";
-			"colorbar(-1,1)"
-			"Sgrayplot(t,t,m,strf=''041'',zminmax=[-1,1])";
-			"xtitle(''Sgrayplot demo f(x,y)=sin(x)*cos(y) on [-pi,pi]x[-pi,pi]'')"]
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		t=-%pi:0.1:%pi;
+		m=sin(t)'*cos(t)
+		f=gcf();
+		f.color_map = jetcolormap(64);
+		f.immediate_drawing = "off";
+		colorbar(-1,1);
+		Sgrayplot(t,t,m,strf="041",zminmax=[-1,1]);
+		xtitle("Sgrayplot demo f(x,y)=sin(x)*cos(y) on [-pi,pi]x[-pi,pi]");
+		f.immediate_drawing = "on";
 		return
+		
 	elseif rhs < 3 then
 		error("bad number of input arguments")
 	end

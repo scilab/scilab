@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - François DELEBECQUE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Q,M,i1]=pencan(E,A)
 // [Q,M,i1]=pencan(E,A)
 // Given the pencil s*E-A pencan returns matrices Q and M
@@ -8,9 +18,7 @@ function [Q,M,i1]=pencan(E,A)
 // M*A*Q is a block matrix [Ar,0;
 //                         0,I ]
 //See glever,  penlaur
-//F.D.
 //!
-// Copyright INRIA
   [LHS,RHS]=argn(0);
   if RHS==1 then [E,A]=pen2ea(E);end
   [Si,Pi,Di,index]=penlaur(E,A);

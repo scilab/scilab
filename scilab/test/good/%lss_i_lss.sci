@@ -1,9 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Serge Steer
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function s=%lss_i_lss(i,j,s1,s2)
 //%lss_i_lss(i,j,s1,s2) <=>  s2(i,j)=s1
 //!
-// origine s. steer inria 1992
-//
-// Copyright INRIA
 if type(i)==10|type(j)==10 then 
   error(21)
 end
@@ -12,12 +18,12 @@ end
 
 if size(i)==[-1,-1] then i=1:m2,end
 if size(j)==[-1,-1] then j=1:p2,end
-if maxi(i)>m2 then
-   s2=[s2;0*ones(maxi(i)-m2,p2)]
+if max(i)>m2 then
+   s2=[s2;0*ones(max(i)-m2,p2)]
    [m2,p2]=size(s2(5));
 end
-if maxi(j)>p2 then
-   s2=[s2,0*ones(m2,maxi(j)-p2)]
+if max(j)>p2 then
+   s2=[s2,0*ones(m2,max(j)-p2)]
    [m2,p2]=size(s2(5));
 end
 jj=0*ones(1,p2);jj(j)=ones(1,prod(size(j)));

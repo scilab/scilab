@@ -1,5 +1,14 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [x0,kerA]=linsolve(A,b,x0)
-// Copyright INRIA
   %tol=1.D-10;
   // Finds all x solution to Ax+b=0; 
   // x0=particular solution; kerA=nullspace of A
@@ -12,7 +21,8 @@ function [x0,kerA]=linsolve(A,b,x0)
     W=W(:,1:na-rk);last=W(na,:);
     [W2,rk1]=colcomp(last);
     if rk1==0 then 
-      warning('Conflicting linear constraints!');x0=[];kerA=[];return;
+      warning(gettext('Conflicting linear constraints!'));
+      x0=[];kerA=[];return;
     end
     W=W*W2;
     kerA=W(1:na-1,1:na-rk-1);
@@ -20,13 +30,13 @@ function [x0,kerA]=linsolve(A,b,x0)
       if norm(A*x0+b,1)<%tol then 
 	return;
       end
-      disp('recomputing initial guess');
+      disp(gettext('Recomputing initial guess'));
     end
     piv=W(na,na-rk);x0=W(1:na-1,na-rk)/piv;
   case 5 then        //sparse matrix
 
     [ma,na]=size(A);
-    %tol=1.D-10*maxi(abs(A))*max(ma,na);
+    %tol=1.D-10*max(abs(A))*max(ma,na);
     if ma<na then 
       A=[A;sparse([],[],[na-ma,na])];b=[b;zeros(na-ma,1)];end
       if ma>na then
@@ -59,8 +69,7 @@ function [x0,kerA]=linsolve(A,b,x0)
 	kerA=clean(Q'*kerA);
       end
       if norm(A*x0+b,1)>%tol then
-	warning('Possible Conflicting linear constraints, error in the order of '+...
-		string(norm(A*x0+b,1)));
+	      warning(msprintf(gettext('Possible Conflicting linear constraints, error in the order of %s'),string(norm(A*x0+b,1)) ));
       end
       if ma>na then kerA=kerA(1:na,:);x0=x0(1:na,1);end     
       ludel(ptrU);

@@ -1,7 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function varargout=mtlb_size(X,dim)
-// Copyright INRIA
 // Emulation function for Matlab size()
-// V.C.
 
 varargout=list()
 
@@ -9,8 +16,8 @@ varargout=list()
 
 // d=size(X,dim)
 if rhs==2 then
-  if dim<size(size(X),2) then
-    varargout=size(X,dim)
+  if dim<=size(size(X),2) then
+    varargout(1)=size(X,dim)
   else
     varargout(1)=1
   end

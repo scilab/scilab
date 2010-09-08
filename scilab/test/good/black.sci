@@ -1,4 +1,14 @@
-function []=black(sl,fmin,fmax,pas,comments)
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 1998-2010 - INRIA - Serge Steer
+// Copyright (C) 2010 - DIGITEO - Yann COLLETTE
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+function black(varargin)
 //Black's diagram (Nichols chart) for a linear system sl.
 //sl can be a continuous-time, discrete-time or sampled SIMO system
 //Syntax:
@@ -6,10 +16,10 @@ function []=black(sl,fmin,fmax,pas,comments)
 //           black( sl,fmin,fmax [,pas] [,comments] )
 //           black(frq,db,phi [,comments])
 //           black(frq, repf  [,comments])
-//  
+//
 //  sl       : SIMO linear system (see syslin). In case of multi-output
 //             system the outputs are plotted with differents symbols.
-//            
+//
 //  fmin     : minimal frequency (in Hz).
 //  fmax     : maximal frequency (in Hz).
 //  pas      : logarithmic discretization step. (see calfrq for the
@@ -22,161 +32,200 @@ function []=black(sl,fmin,fmax,pas,comments)
 //  phi      : matrix of phases (in degrees). One row for each response.
 //  repf     : matrix of complex numbers. One row for each response.
 
-// Copyright INRIA
 //To plot the grid of iso-gain and iso-phase of y/(1+y) use abaque()
 //%Example
-//  s=poly(0,'s')
-//  h=syslin('c',(s**2+2*0.9*10*s+100)/(s**2+2*0.3*10.1*s+102.01))
+//  s=poly(0,'s")
+//  h=syslin("c",(s**2+2*0.9*10*s+100)/(s**2+2*0.3*10.1*s+102.01))
 //  abaque();
-//  black(h,0.01,100,'(s**2+2*0.9*10*s+100)/(s**2+2*0.3*10.1*s+102.01)')
+//  black(h,0.01,100,"(s**2+2*0.9*10*s+100)/(s**2+2*0.3*10.1*s+102.01)")
 //  //
-//  h1=h*syslin('c',(s**2+2*0.1*15.1*s+228.01)/(s**2+2*0.9*15*s+225))
-//  black([h1;h],0.01,100,['h1';'h'])
+//  h1=h*syslin("c",(s**2+2*0.1*15.1*s+228.01)/(s**2+2*0.9*15*s+225))
+//  black([h1;h],0.01,100,["h1";"h"])
 //See also:
-//  bode nyquist  abaque freq repfreq 
+//  bode nyquist  abaque freq repfreq
 //!
-[lhs,rhs]=argn(0);
-pas_def='auto' //
-//
-//
-ilf=0
-typ=type(sl)
-//-compat next line added for list/tlist compatibility
-if typ==15 then typ=16,end
-select typ
-case 16 then  // sl,fmin,fmax [,pas] [,comments]
-  typ=sl(1);typ=typ(1);
-  if typ<>'lss'&typ<>'r' then
-    error(97,1)
+  rhs=size(varargin)
+  if type(varargin($))==10 then
+    comments=varargin($),rhs=rhs-1;
+  else
+    comments=[];
   end
-  select rhs
-  case 1 then //sl
-   comments=' '
-   [frq,repf]=repfreq(sl);
-   [d,phi]=dbphi(repf);
-   sl=[] 
-  case 2 then // sl,frq
-   comments=' '
-   [frq,repf]=repfreq(sl,fmin);
-   [d,phi]=dbphi(repf);
-   fmin=[];sl=[]
-  case 3 ,
-   if type(fmax)==1 then
-      comments=' '
-      [frq,repf]=repfreq(sl,fmin,fmax,pas_def),
-      [d,phi]=dbphi(repf);
-      sl=[]
-   else
-      comments=fmax
-      [frq,repf]=repfreq(sl,fmin);
-      [d,phi]=dbphi(repf);
-      fmin=[];sl=[]
-   end
-  case 4 ,
-    if type(pas)==1 then 
-      comments=' ',
-    else 
-      comments=pas;pas=pas_def
-    end,
-    [frq,repf]=repfreq(sl,fmin,fmax,pas)
-    [d,phi]=dbphi(repf);
-  case 5 then,
-    [frq,repf]=repfreq(sl,fmin,fmax,pas)
-    [d,phi]=dbphi(repf);
-  else 
-    error('invalid call: sys,fmin,fmax [,pas] [,com]')
-  end;
-//bode(sl,fmin,fmax,pas,comments)
-case 1 then //frq,db,phi [,comments] or frq, repf [,comments]
-  select rhs
-  case 2 , //frq,repf
-    comments=' '
-    [phi,d]=phasemag(fmin),fmin=[]
-  case 3 then
-    if type(fmax)==1 then
-      comments=' '//frq db phi
-      d=fmin,fmin=[]
-      phi=fmax,fmax=[]
+  fname="black";//for error messages
+  fmax=[]
+  if or(typeof(varargin(1))==["state-space" "rational"]) then
+    //sys,fmin,fmax [,pas] or sys,frq
+    refdim=1 //for error message
+    if rhs==1 then
+      [frq,repf]=repfreq(varargin(1),1d-3,1d3)
+    elseif rhs==2 then //sys,frq
+      if size(varargin(2),2)<2 then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A row vector with length>%d expected.\n"),..
+                       fname,2,1))
+      end
+      [frq,repf]=repfreq(varargin(1:rhs))
+    elseif or(rhs==(3:4)) then //sys,fmin,fmax [,pas]
+      [frq,repf]=repfreq(varargin(1:rhs))
     else
-      [phi,d]=phasemag(fmin);fmin=[]
-      comments=fmax
-     end;
-   case 4 then 
-     comments=pas;d=fmin;fmin=[];phi=fmax;fmax=[]
-   else 
-     error('invalid call :frq,db,phi,[com] ou frq,repf,[com]')
-   end;
-   frq=sl;sl=[];[mn,n]=size(frq);
-   if mn<>1 then
-      ilf=1;
-   else
-      ilf=0;
-   end;
-else 
-   error('invalid call to black')
-end;
+      error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,1,5))
+    end
+    [phi,d]=phasemag(repf)
+    if rhs>=3 then fmax=varargin(3),end
+  elseif  type(varargin(1))==1 then
+    //frq,db,phi [,comments] or frq, repf [,comments]
+    refdim=2
+    select rhs
+    case 2 then //frq,repf
+      frq=varargin(1);
+      if size(frq,2)<2 then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A row vector with length>%d expected.\n"),..
+                       fname,1,1))
+      end
+      if size(frq,2)<>size(varargin(2),2) then
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+                       fname,1,2))
+      end
+      [phi,d]=phasemag(varargin(2))
+    case 3 then  //frq,db,phi
+      [frq,d,phi]=varargin(1:rhs)
+      if size(frq,2)<>size(d,2) then
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+                       fname,1,2))
+      end
+      if size(frq,2)<>size(phi,2) then
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+                       fname,1,3))
+      end
+    else
+      error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,2,4))
+    end
+  else
+    error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
+  end;
 
-[mn,n]=size(phi);
-//
-if comments==' ' then
-   comments(mn)=' ';
-   mnc=0;
-   strf='051'
-else
-   mnc=mn;
-  strf='151'
-end;
-xmn=floor(min(phi)/90)*90
-xmx=ceil(max(phi)/90)*90
-ymn=min(d)
-ymx=max(d)
-rect=[ymn;xmn;ymx;xmx]
-//[xmn,xmx,npx]=graduate(-360,0)
-//[ymn,ymx,npy]=graduate(mini(d),maxi(d))
-rect=[xmn,ymn,xmx,ymx]
-leg=strcat(comments,'@')
-
-//plot2d(phi',d',(1:mn),strf,leg,rect,[10,npx,10,npy]);
-plot2d(phi',d',(1:mn),strf,leg,rect);
-kf=1
-phi1=phi+5*ones(phi);
-xgeti=xget("mark");
-xset("mark",2,xgeti(2));
-xset("clipgrf");
-
-
-
-kk=1;p0=[phi(:,kk) d(:,kk)];ks=1;dst=0;
-dx=rect(3)-rect(1)
-dy=rect(4)-rect(2)
-dx2=dx^2;dy2=dy^2
-
-while kk<n
-  kk=kk+1
-  dst=dst+mini(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2)
-  if dst>0.001 then
-  if mini(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
-   ks=[ks kk]
-   dst=0
+  if size(frq,1)==1 then
+    ilf=0
+  else
+    ilf=1
   end
+
+  [mn,n]=size(phi);
+  if and(size(comments,"*")<>[0 mn]) then
+    error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same number of elements expected.\n"),...
+                   fname,refdim,rhs+1))
   end
-end
-kf=1
-for k=1:mn,
-    xnumb(phi(k,ks),d(k,ks),frq(kf,ks),0);
-    xpoly(phi(k,ks),d(k,ks),'marks',0);
-  kf=kf+ilf
-end;
-xclip();
-xtitle('h(2i.pi.f) ','phase','magnitude');
-//     contour 2.3 db
-mbf=2.3;
-lmda=exp(log(10)/20*mbf);
-r=lmda/(lmda**2-1);
-npts=100;
-crcl=exp(%i*(-%pi:(2*%pi/npts):%pi));
-lgmt=log(-r*crcl+r*lmda*ones(crcl));
-plot2d([180*(imag(lgmt)/%pi-ones(lgmt))]',[(20/log(10)*real(lgmt))]',...
-     [2,-(mnc+1)],"100",'2.3db curve'),
-xset("mark",xgeti(1),xgeti(2));
+
+  //
+  xmn=floor(min(phi)/90)*90
+  xmx=ceil(max(phi)/90)*90
+  ymn=min(d)
+  ymx=max(d)
+
+
+  kf=1
+  phi1=phi+5*ones(phi);
+
+  kk=1;p0=[phi(:,kk) d(:,kk)];ks=1;dst=0;
+  dx=max(%eps,xmx-xmn);
+  dy=max(%eps,ymx-ymn);
+  dx2=dx^2;dy2=dy^2
+
+  while kk<n
+    kk=kk+1
+    dst=dst+min(sqrt(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2))
+    if dst>0.2 then
+      if min(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
+        ks=[ks kk]
+        dst=0
+      end
+    end
+  end
+  kf=1
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
+  ax=gca();
+  if size(ax.children,"*")==0 then
+    ax.data_bounds=[xmn ymn;xmx ymx];
+    ax.x_label.text=_("Phase (deg)");
+    ax.y_label.text=_("Magnitude (dB)")
+  else
+    ax.data_bounds=[min([xmn ymn],ax.data_bounds(1,:));
+                    max([xmx ymx],ax.data_bounds(2,:))];
+  end
+  ax.axes_visible="on";
+  ax.clip_state="clipgrf";
+  r=xstringl(0,0,"m");r=r(3)
+  E=[]
+  if ks($)<size(phi,2) then last=$;else    last=$-1;end
+  for k=1:mn
+    e2=[]
+    if size(ks,"*") >1 then
+      d_phi=phi(k,ks(1:last)+1)-phi(k,ks(1:last));
+      d_d=d(k,ks(1:last)+1)-d(k,ks(1:last));
+      dd=400*sqrt((d_phi/dx).^2+(d_d/dy).^2);
+      if dd>0 then
+        // we should use xarrows or xsegs here.
+        // However their displayed arrow size depends
+        // on the data bounds and we want to avoid this.
+        xpolys([phi(k,ks(1:last));phi(k,ks(1:last))+d_phi./dd],..
+               [d(k,ks(1:last));d(k,ks(1:last))+d_d./dd]);
+        ea=gce();
+        ea.children.foreground=k;
+        ea.children.polyline_style = 4;
+        ea.children.arrow_size_factor = 1.5;
+
+        //xarrows([phi(k,ks(1:last));phi(k,ks(1:last))+d_phi./dd],..
+        //    [d(k,ks(1:last));d(k,ks(1:last))+d_d./dd],60)
+        //ea=gce();ea.segs_color=k*ones(dd);
+        //add a frequency label near each arrow
+        el=[];
+
+        for l=ks
+          xstring(phi(k,l)+r,d(k,l),msprintf("%-5.2g",frq(kf,l)))
+          e=gce()
+          e.font_foreground=k;
+          el=[e,el]
+        end
+        e2=glue([el ea])
+      end
+    end
+
+    xpoly(phi(k,:),d(k,:));e1=gce()
+    e1.foreground=k;
+    datatipInitStruct(e1,"formatfunction","formatBlackTip","freq",frq(kf,:))
+
+    // glue entities relative to a single black curve
+    E=[E glue([e2 e1])]
+    kf=kf+ilf
+  end
+
+
+  //  2.3 db curve
+  mbf=2.3;
+  lmda=exp(log(10)/20*mbf);
+  r=lmda/(lmda**2-1);
+  npts=100;
+  crcl=exp(%i*(-%pi:(2*%pi/npts):%pi));
+  lgmt=log(-r*crcl+r*lmda*ones(crcl));
+  xpoly([180*(imag(lgmt)/%pi-ones(lgmt))],[(20/log(10)*real(lgmt))])
+  e=gce();e.foreground=2;e.line_style=3;
+  if comments<>[] then
+    c=[];for k=1:mn,c=[E(k).children(1),c];end
+    legend([c e]',["2.3"+_("dB");comments(:)])
+  end
+  fig.immediate_drawing=immediate_drawing;
+endfunction
+
+function str=formatBlackTip(curve,pt,index)
+//This function is called by the datatip mechanism to format the tip
+//string for black curves.
+  ud=datatipGetStruct(curve);
+  if index<>[] then
+    f=ud.freq(index)
+  else //interpolated
+    [d,ptp,i,c]=orthProj(curve.data,pt)
+    f=ud.freq(i)+(ud.freq(i+1)-ud.freq(i))*c
+  end
+  str=msprintf("%.4g°\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
 endfunction

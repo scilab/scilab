@@ -1,21 +1,27 @@
-// Allan CORNET INRIA 2004
-// Lance un script Perl
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2004 - INRIA - Allan CORNET
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [resultat,status] = perl(varargin)
   Chainecmd = '';
   lhs=argn(1);   
   rhs=argn(2);
   
   if (rhs) then
-    // Verification que le premier parametre est un fichier 
+    // Check that the first param is a file 
     [x,ierr]=fileinfo(varargin(1));
     if (x == []) then
-      msgerr='Unable to find Perl file: '+string(varargin(1));
-    	error(msgerr);
+    	error(msprintf(gettext("%s: Unable to find Perl file: %s"),"perl",string(varargin(1))));
     else
-      // Verification que les parametres sont des chaines de caracteres
+      // Check that params are strings
       for i=1:1:rhs,
         if ~(type(varargin(i)) == 10) then
-          error('All input arguments must be strings.');
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: Strings expected.\n"),"perl",i));
         end
         
         idx=strindex(varargin(i),' ');
@@ -30,16 +36,15 @@ function [resultat,status] = perl(varargin)
       end
       
       if (Chainecmd == '') then
-        error('No perl command specified');
+        error(msprintf(gettext("%s: No perl command specified."),"perl"));
       else
-        if MSDOS then
-          // Pour Windows
+        if getos() == 'Windows' then
+          // For Windows
           CheminPerl= fullfile(pathconvert(SCI,%f,%f,'w'),'\tools\perl\bin\');
           
           [x,ierr]=fileinfo(CheminPerl+'perl.exe');
           if (x == []) then
-            msgerr='Unable to find Perl in: '+CheminPerl;
-            error(msgerr);
+            error(msprintf(gettext("%s: Unable to find Perl in ''%s''"),"perl",CheminPerl));
           else
             Chainecmd = 'perl'+' '+Chainecmd;
             CommandePerl = 'set PATH='+CheminPerl+';%PATH%&'+Chainecmd+'>'+TMPDIR+'\script';
@@ -47,7 +52,7 @@ function [resultat,status] = perl(varargin)
             resultat=mgetl(TMPDIR+'\script');
           end
         else
-          // Pour Linux
+          // For Linux
           status = unix('which perl'+'>'+TMPDIR+'/pathperl');
           pathperl=mgetl(TMPDIR+'/pathperl');
           if (status == 0) then
@@ -55,16 +60,15 @@ function [resultat,status] = perl(varargin)
             status = unix(Chainecmd);
             resultat=mgetl(TMPDIR+'\script');
           else
-            error('Unable to find Perl.');
+            error(msprintf(gettext("%s: Unable to find Perl.\n"),"perl"));
           end
         end
       end
       if (status~=0) then
-        msgerr= 'System error: '+ resultat+' Command executed: '+ Chainecmd;
-        error(msgerr);
+        error(msprintf(gettext("%s: System error: Command executed: %s"),"perl",Chainecmd));
       end
     end  
   else
-    error('First input argument must be a Perl File');
+    error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"perl",1));
   end
 endfunction

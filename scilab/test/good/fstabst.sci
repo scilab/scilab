@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [J]=fstabst(Stplant,r)
 //[J]=fstabst(Stplant,r) 
 // Parametrization of all stabilizing feedbacks.
@@ -11,7 +21,7 @@ function [J]=fstabst(Stplant,r)
 //               j21 j22]
 // K is a stablizing controller iff K=LFT(J,r,Q) with Q stable
 //!
-// Copyright INRIA
+
 Stplant1=Stplant(1);
 flag='ss';if Stplant1(1)=='r' then flag='tf';Stplant=tf2ss(Stplant);end
 [LHS,RHS]=argn(0);

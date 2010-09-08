@@ -1,11 +1,30 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - Author : EADS-CCR
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,CI,CI1,CLa_type,CLa_exp,..
    CLb_type,CLb_exp,oper,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,mesures,k]=extraction_infos(edita,..
    editb,check1,check2,rad_automatique,rad_manuel,liste_signe,liste_meth,editdegre,editpas,editCI,editCI1,..
    popa,editCLa,popb,editCLb,check_op1,edita1,editb1,check_op2,edita2,editb2,check_op3,edita3,..
    editb3,check_op4,edita4,editb4,check_op5,edita5,editb5,check_op6,edita6,editb6,check_op7,edita7,..
    editb7,list_points)
-  // Copyright INRIA
-  // développé par EADS-CCR
   // Cette fonction permet d'extraire les information renseignes dans l'IHM                                 //
   // Entrees :                                                                                              //
   //          - edita, editb : les handl des zones edit resp du bord a et b                                 //
@@ -22,21 +41,21 @@ function [a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,CI,
   //                              conditions aux limittes                                                   //
   //          - check_opi,editai,editbi : handls respectivement du checkbox d'activation d'un operateur,    //
   //                                      de la zone edit de l'expression du ai(x) et de la zone edit de    //
-  //                                      l'expression du bi(x), où i=1,2,...7 ( 1 : d2u/dt2, 2 : d2u/dx2,  //
+  //                                      l'expression du bi(x), oï¿½ i=1,2,...7 ( 1 : d2u/dt2, 2 : d2u/dx2,  //
   //                                      3 : du/dt, 4 : d2u/dtdx, 5 : du/dx, 6 : u, 7 : f)                 //
   //          - list_points : vecteur string contient la liste des points de mesure                         //
   // Sorties :                                                                                              //
   //          - a_domaine, b_domaine (doubles) : correspondant resp aux valeurs des bords du domaine a et b //
   //          - discr (entier) : =0 si le discriminant de l'EDP est constant, =1 sinon                      // 
-  //          - signe (entier) : signe du discriminant non constant(1: positif, 2: négatif, 3: nul)         //
-  //          - choix (entier) : mode (0 : système expert, 1 : Manuel)                                      //
+  //          - signe (entier) : signe du discriminant non constant(1: positif, 2: nï¿½gatif, 3: nul)         //
+  //          - choix (entier) : mode (0 : systï¿½me expert, 1 : Manuel)                                      //
   //          - type_meth (entier) : type de la methode de discretisation (type_meth=1 : DF, 2 : EF, 3 : VF)// 
   //          - degre (entier) : le degre de la methode de discretisation)                                  //
   //          - Nbr_maillage (entier) : nombre de noeuds ave les noeuds aux limmites                        //
   //          - CI, CI1(String) : expressions des conditions initiales resp u(t0,x) et du/dt|t=0            // 
   //          - CLa_type, CLb_type(entiers) : types des conditions aux limites (0 : Dirichlet, 1 : Neumann) //
   //          - CLb_exp, CLa_exp (String) :  expressions des conditions aux limites resp en a et en b       //   
-  //          - oper (vecteur des entiers) : code les opérateurs selectionnes de 1 à 7                      //                  
+  //          - oper (vecteur des entiers) : code les opï¿½rateurs selectionnes de 1 ï¿½ 7                      //                  
   //          - ai, bi (String) : avec i=1:7 : expressions des coefficients des differents operateurs       // 
   //          - mesures (vecteur des doubles) : renvoi la liste des points de mesures                       //
   //          - k (entier) : renvoie le nombre de port d'entree regulier du bloc EDP                        //
@@ -74,11 +93,11 @@ function [a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,CI,
   CI = get(editCI,'String');
   CI1 = get(editCI1,'String');
   //type de la condition au limite en a (0 : Dirichlet, 1 : Neumann)
-  CLa_type = get(popa,'Value');
+  CLa_type = get(popa,'Value')-1; //S.S. : -1 to patch the 4667 bug
   // l'expression de la condition au limite en a (une chaine de caracteres)
   CLa_exp = get(editCLa,'String');
   //type de la condition au limite en b (0 : Dirichlet, 1 : Neumann)
-  CLb_type = get(popb,'Value');
+  CLb_type = get(popb,'Value')-1; //S.S. : -1 to patch the 4667 bug
   // l'expression de la condition au limite en b (une chaine de caracteres)
   CLb_exp = get(editCLb,'String');
   // les operateurs

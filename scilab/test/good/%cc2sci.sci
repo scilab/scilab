@@ -1,5 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ???? - INRIA - Scilab
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [tree]=%cc2sci(tree)
-// Copyright INRIA
 
 // Make a 'column' with many rows
 if tree.operands(1).vtype==Cell then
@@ -17,14 +25,18 @@ complexrows=0
 
 for k=1:rownb
   ck=tree.operands(k)
-  col(k)=ck
-  rowsize=[rowsize tree.operands(k).dims(1)]
-  colsize=[colsize tree.operands(k).dims(2)]
-  if ck.property==Complex then
-    complexrows=complexrows+1
-  end
-  if ck.property==Real then
-    realrows=realrows+1
+  if ck==list("EOL") | typeof(ck)=="comment" then
+    rowsize=[rowsize 0]
+    colsize=[colsize 0]
+  else
+    rowsize=[rowsize tree.operands(k).dims(1)]
+    colsize=[colsize tree.operands(k).dims(2)]
+    if ck.property==Complex then
+      complexrows=complexrows+1
+    end
+    if ck.property==Real then
+      realrows=realrows+1
+    end
   end
 end
 

@@ -1,3 +1,11 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [xx,yy,zz]=genfac3d(x,y,zmat,mask)
 	
 	// genfac - transforms  standard 3d data to four sides facets representation
@@ -14,30 +22,20 @@ function [xx,yy,zz]=genfac3d(x,y,zmat,mask)
 	//%Examples
 	//  genfac3d() 
 	//!
-	// Copyright INRIA
 	
 	[lhs,rhs]=argn(0)
 	
 	if rhs <= 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of genfac3d()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			't=(0:10)''*%pi/5;';
-			'zmat=sin(t)*cos(t'');';
-			'[xx,yy,zz]=genfac3d(t,t,zmat,zmat>=0);';
-			'plot3d(xx,yy,zz)'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		t=(0:10)'*%pi/5;
+		zmat=sin(t)*cos(t');
+		[xx,yy,zz]=genfac3d(t,t,zmat,zmat>=0);
+		plot3d(xx,yy,zz);
 		return
 	end
+
+  if rhs<3 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "genfac3d", 3));
+  end
 
 [nr,nc]=size(zmat)
 indy=(ones(1,nc-1).*.[0;1;1;0]+(1:nc-1).*.[1;1;1;1]).*.ones(1,nr-1);

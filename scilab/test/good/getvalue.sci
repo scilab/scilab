@@ -1,3 +1,12 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [%ok,%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=getvalue(%desc,%labels,%typ,%ini)
 //  getvalues - %window dialog for data acquisition 
 //%Synta%
@@ -41,7 +50,6 @@ function [%ok,%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=ge
 //%See also
 // x_mdialog, x_dialog
 //!
-// Copyright INRIA
 [%lhs,%rhs]=argn(0)
 
 %nn=prod(size(%labels))
@@ -173,22 +181,18 @@ while %t do
 	if %sz(2)>=0 then if %nv<>%sz(2) then %nok=%kk,break,end,end
       end
     else
-      error('type non gere :'+%typ(2*%kk-1))
+      error(msprintf(_("%s: Type %s is not implemented.\n"),"getvalue", %typ(2*%kk-1)))
     end
     execstr('%'+string(%kk)+'=%vv')
   end
   if %nok>0 then 
-    x_message(['answer given for  '+%labels(%nok);
-             'has invalid dimension: ';
-             'waiting for dimension  '+%ssz])
+    messagebox(msprintf(_("Answer given for %s \n has invalid dimension: \n waiting for dimension %s.\n"), %labels(%nok), %ssz));
     %ini=%str
   elseif %nok<0 then
     if %ierr==0 then
-      x_message(['answer given for  '+%labels(-%nok);
-	'has incorrect type :'+ %typ(-2*%nok-1)])
+      messagebox(msprintf(_("Answer given for %s \n has incorrect type %s.\n"), %labels(-%nok), %typ(-2*%nok-1)));
     else
-      x_message(['answer given for  '+%labels(-%nok);
-	'is incorrect see error message in scilab window'])
+      messagebox(msprintf(_("Answer given for %s \n is incorrect see error message in scilab window.\n"), %labels(-%nok)));
     end
     %ini=%str
   else
