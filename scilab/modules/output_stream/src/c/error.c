@@ -12,14 +12,12 @@
  */
 
 #include "do_error_number.h"
-#include "MALLOC.h" /* NULL*/
-#include "error_internal.h"
-#include "msgstore.h"
+#include "errorTable.h"
 #include "lasterror.h"
 /*--------------------------------------------------------------------------*/ 
 int C2F(error)(int *n)
 {
-    return error_internal(n,NULL,ERROR_FROM_FORTRAN);
+    return errorTable(*n);
 } 
 /*--------------------------------------------------------------------------*/ 
 void SciError(int n)

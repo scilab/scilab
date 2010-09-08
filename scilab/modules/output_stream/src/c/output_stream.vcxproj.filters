@@ -50,9 +50,6 @@
     <ClCompile Include="errmds.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="errmsg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="erro.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -113,6 +110,9 @@
     <ClCompile Include="set_xxprintf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="errorTable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\basout.h">
@@ -143,9 +143,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\errmds.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="errmsg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\erro.h">
@@ -185,6 +182,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="set_xxprintf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="errorTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
