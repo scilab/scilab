@@ -30,6 +30,7 @@ public :
 CPP_GATEWAY_PROTOTYPE(sci_grep);
 CPP_GATEWAY_PROTOTYPE(sci_stripblanks);
 CPP_GATEWAY_PROTOTYPE(sci_regexp);
+CPP_GATEWAY_PROTOTYPE(sci_part);
 
 
 #endif /* !__STRING_GW_HXX__ */

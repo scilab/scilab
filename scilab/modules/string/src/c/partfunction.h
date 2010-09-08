@@ -12,6 +12,7 @@
 #ifndef __PARTFUNCTION_H__
 #define __PARTFUNCTION_H__
 
+#include "dynlib_string.h"
 
 /**
 * part : extraction of strings
@@ -22,7 +23,9 @@
 * @param[in] row : row of vectInput
 * @return matrix of strings (same size as stringInput)
 */
-char **partfunction(char** stringInput,int m,int n,int *vectInput,int row);
+STRING_IMPEXP char **partfunction(char** stringInput,int m,int n,int *vectInput,int row);
+
+STRING_IMPEXP wchar_t **partfunctionW(wchar_t** _pwstStringInput, int _iRows, int _iCols, int *_piVectInput, int _iVectSize);
 
 #endif /* __PARTFUNCTION_H__ */
 /*---------------------------------------------------------------------------*/ 

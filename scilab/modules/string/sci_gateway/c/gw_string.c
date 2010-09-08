@@ -20,7 +20,7 @@
 static gw_generic_table Tab[] =
 {
 	{NULL, ""}, //length
-	{sci_part,"part"},
+	{NULL, ""}, //part
 	{sci_string,"string"},
 	{sci_convstr,"convstr"},
 	{sci_emptystr,"emptystr"},

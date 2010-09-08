@@ -58,3 +58,31 @@ char **partfunction(char** stringInput,int m,int n,int *vectInput,int row)
 	return parts;
 }
 /*--------------------------------------------------------------------------*/
+wchar_t **partfunctionW(wchar_t** _pwstStringInput, int _iRows, int _iCols, int *_piVectInput, int _iVectSize)
+{
+    int i,j;
+	wchar_t **pwstParts = NULL;
+	int iSize = _iRows * _iCols;
+
+	pwstParts = (wchar_t**)MALLOC(sizeof(wchar_t*)*(iSize));
+
+    for(i = 0 ; i < iSize ; i++)
+	{
+		pwstParts[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (_iVectSize + 1));
+
+        for(j = 0 ; j < _iVectSize ; j++)
+		{
+			if(_piVectInput[j] > wcslen(_pwstStringInput[i]))
+			{
+				pwstParts[i][j] = L' ';
+			}
+			else
+			{
+				pwstParts[i][j] = _pwstStringInput[i][_piVectInput[j] - 1];
+			}
+		}
+		pwstParts[i][j] ='\0';
+	}
+	return pwstParts;
+}
+/*--------------------------------------------------------------------------*/
