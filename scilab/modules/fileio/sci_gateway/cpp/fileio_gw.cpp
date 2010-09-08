@@ -35,5 +35,6 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"isdir", &sci_isdir, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"filesep", &sci_filesep, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"fileparts", &sci_fileparts, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"findfiles", &sci_findfiles, MODULE_NAME));
     return true;
 }

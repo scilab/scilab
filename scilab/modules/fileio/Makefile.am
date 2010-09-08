@@ -56,7 +56,6 @@ sci_gateway/c/sci_msscanf.c \
 sci_gateway/c/sci_mfscanf.c \
 sci_gateway/c/sci_fprintfMat.c \
 sci_gateway/c/sci_fscanfMat.c \
-sci_gateway/c/sci_findfiles.c \
 sci_gateway/c/sci_maxfiles.c \
 sci_gateway/c/sci_getdrives.c \
 sci_gateway/c/sci_fullpath.c \
@@ -96,7 +95,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_pathconvert.cpp \
 	sci_gateway/cpp/sci_isdir.cpp \
 	sci_gateway/cpp/sci_filesep.cpp \
-	sci_gateway/cpp/sci_fileparts.cpp
+	sci_gateway/cpp/sci_fileparts.cpp \
+	sci_gateway/cpp/sci_findfiles.cpp
 
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \

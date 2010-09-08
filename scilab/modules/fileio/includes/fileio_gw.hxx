@@ -46,5 +46,6 @@ CPP_GATEWAY_PROTOTYPE(sci_pathconvert);
 CPP_GATEWAY_PROTOTYPE(sci_isdir);
 CPP_GATEWAY_PROTOTYPE(sci_filesep);
 CPP_GATEWAY_PROTOTYPE(sci_fileparts);
+CPP_GATEWAY_PROTOTYPE(sci_findfiles);
 
 #endif /* !__FILEIO_GW_HXX__ */

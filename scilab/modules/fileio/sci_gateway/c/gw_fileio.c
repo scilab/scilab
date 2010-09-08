@@ -36,7 +36,7 @@ static gw_generic_table Tab[]={
 	{sci_fscanfMat,"fscanfMat"},
 	{sci_fprintfMat,"fprintfMat"},
 	{sci_merror, "merror"},
-	{sci_findfiles,"findfiles"},
+	{NULL, ""}, //findfiles
 	{sci_maxfiles,"maxfiles"},
 	{sci_getdrives,"getdrives"},
 	{sci_fullpath,"fullpath"},

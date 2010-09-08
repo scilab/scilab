@@ -30,7 +30,6 @@ FILEIO_IMPEXP int sci_scanf(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_fprintfMat(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_sscanf(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_fscanf(char *fname,unsigned long fname_len);
-FILEIO_IMPEXP int sci_findfiles(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_maxfiles(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_getdrives(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_fullpath(char *fname,unsigned long fname_len);
