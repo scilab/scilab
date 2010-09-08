@@ -65,6 +65,8 @@ Bug Fixes:
 
 * bug 7924 fixed - pathconvert failed conversion to cygwin format.
 
+* bug 7941 fixed - The demonstration CACSD/PID did not work.
+
 * bug 7943 fixed - On a GNU/Linux binary version, it was not possible to use
                    the fortran_block block.
 

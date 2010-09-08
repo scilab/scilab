@@ -108,7 +108,7 @@ while %t do
   case 2
     if Plant(4)=='c' then
       mode(1)
-      defv=['0.1','50'];
+      defv=['0.1';'50'];
       _title='Enter Sampling period and Tmax';
       rep=x_mdialog(_title,['Sampling period?';'Tmax?'],defv);
       if rep==[] then break,end
