@@ -325,7 +325,7 @@ public class XcosTab extends ScilabTab {
 	CheckBoxMenuItem menu = ViewViewportAction
 		.createCheckBoxMenu(diagram);
 	view.add(menu);
-	((XcosDiagram) diagram).setViewPortMenuItem(menu);
+	(diagram).setViewPortMenuItem(menu);
 	view.add(ViewDetailsAction.createMenu(diagram));
 
 	/** Simulation menu */
@@ -385,7 +385,6 @@ public class XcosTab extends ScilabTab {
 	CheckBoxMenuItem gridMenu = ViewGridAction
 		.createCheckBoxMenu(diagram);
 	format.add(gridMenu);
-	((XcosDiagram) diagram).setGridMenuItem(menu);
 
 	/** Tools menu */
 	tools = ScilabMenu.createMenu();

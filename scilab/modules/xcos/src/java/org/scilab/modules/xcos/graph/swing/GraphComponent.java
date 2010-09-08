@@ -12,12 +12,32 @@
 
 package org.scilab.modules.xcos.graph.swing;
 
+import java.awt.MouseInfo;
+
 import org.scilab.modules.graph.ScilabComponent;
+import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.PasteAction;
+import org.scilab.modules.graph.actions.RedoAction;
+import org.scilab.modules.graph.actions.SelectAllAction;
+import org.scilab.modules.graph.actions.UndoAction;
+import org.scilab.modules.graph.actions.ZoomInAction;
+import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
+import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
+import org.scilab.modules.xcos.actions.SetContextAction;
+import org.scilab.modules.xcos.actions.SetupAction;
+import org.scilab.modules.xcos.actions.XcosDocumentationAction;
+import org.scilab.modules.xcos.block.actions.ShowParentAction;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.swing.handler.ConnectionHandler;
+import org.scilab.modules.xcos.graph.swing.handler.GraphHandler;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxConnectionHandler;
+import com.mxgraph.swing.handler.mxGraphHandler;
 
 /**
  * Implement a specific {@link mxGraphComponent} for an Xcos diagram.
@@ -40,5 +60,56 @@ public class GraphComponent extends ScilabComponent {
 	@Override
 	protected mxConnectionHandler createConnectionHandler() {
 		return new ConnectionHandler(this);
+	}
+	
+	/**
+	 * @return a new {@link GraphHandler} instance
+	 * @see com.mxgraph.swing.mxGraphComponent#createGraphHandler()
+	 */
+	@Override
+	protected mxGraphHandler createGraphHandler() {
+		return new GraphHandler(this);
+	}
+	
+	/**
+	 * Display the context menu on the current component
+	 */
+	public void displayContextMenu() {
+		ContextMenu menu = ScilabContextMenu.createContextMenu();
+
+		menu.add(UndoAction.undoMenu((ScilabGraph) getGraph()));
+		menu.add(RedoAction.redoMenu((ScilabGraph) getGraph()));
+		menu.add(PasteAction.pasteMenu((ScilabGraph) getGraph()));
+		menu.add(SelectAllAction.createMenu((ScilabGraph) getGraph()));
+		/*---*/
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*---*/
+		menu.add(SetContextAction.createMenu((ScilabGraph) getGraph()));
+		menu.add(SetupAction.createMenu((ScilabGraph) getGraph()));
+
+		if (getGraph() instanceof SuperBlockDiagram) {
+			/*---*/
+			menu.getAsSimpleContextMenu().addSeparator();
+			/*---*/
+			menu.add(ShowParentAction.createMenu((ScilabGraph) getGraph()));
+		}
+		/*---*/
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*---*/
+		menu.add(ZoomInAction.zoominMenu((ScilabGraph) getGraph()));
+		menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getGraph()));
+		/*---*/
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*---*/
+		menu.add(DiagramBackgroundAction.createMenu((ScilabGraph) getGraph()));
+		/*---*/
+		menu.getAsSimpleContextMenu().addSeparator();
+		/*---*/
+		menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getGraph()));
+
+		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x,
+			MouseInfo.getPointerInfo().getLocation().y);
+
+		menu.setVisible(true);
 	}
 }

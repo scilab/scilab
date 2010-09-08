@@ -16,8 +16,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 
 import com.mxgraph.model.mxICell;
@@ -34,8 +32,6 @@ import com.mxgraph.view.mxGraph;
  *      href="http://www.jgraph.org/bugzilla/show_bug.cgi?id=20">http://www.jgraph.org/bugzilla/show_bug.cgi?id=20</a>
  */
 public class ConnectionHandler extends mxConnectionHandler {
-	private static final Log LOG = LogFactory.getLog(ConnectionHandler.class);
-
 	private boolean multiPointLinkStarted;
 
 	/**
@@ -88,10 +84,9 @@ public class ConnectionHandler extends mxConnectionHandler {
 			}
 			
 			// scale and set the point
-			final double scale = graph.getView().getScale();
-			final double sx = graph.snap(e.getX() / scale);
-			final double sy = graph.snap(e.getY() / scale);
-			points.add(new mxPoint(sx, sy));
+			mxPoint pt = new mxPoint(e.getPoint());
+			pt = graphComponent.snapScaledPoint(pt);
+			points.add(pt);
 
 			// update the preview and set the flag
 			connectPreview.update(e, null, x, y);

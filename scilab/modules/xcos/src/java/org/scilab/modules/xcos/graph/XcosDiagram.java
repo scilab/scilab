@@ -14,9 +14,6 @@
 package org.scilab.modules.xcos.graph;
 
 import java.awt.Color;
-import java.awt.MouseInfo;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
@@ -34,7 +31,6 @@ import java.util.Map;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -49,18 +45,9 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabCanvas;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.PasteAction;
-import org.scilab.modules.graph.actions.RedoAction;
-import org.scilab.modules.graph.actions.SelectAllAction;
-import org.scilab.modules.graph.actions.UndoAction;
-import org.scilab.modules.graph.actions.ZoomInAction;
-import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
-import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.contextmenu.ContextMenu;
-import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -72,10 +59,6 @@ import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.types.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
-import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
-import org.scilab.modules.xcos.actions.SetContextAction;
-import org.scilab.modules.xcos.actions.SetupAction;
-import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -83,7 +66,6 @@ import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
-import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
@@ -101,10 +83,8 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
-import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -125,7 +105,6 @@ import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
-import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import com.mxgraph.view.mxStylesheet;
@@ -463,8 +442,8 @@ public class XcosDiagram extends ScilabGraph {
 
 		// add points after breaking point in the new link
 		if (points != null) {
-			for (int i = 0; i < points.length; i++) {
-				newLink1.addPoint(points[i].getX(), points[i].getY());
+			for (mxPoint point : points) {
+				newLink1.addPoint(point.getX(), point.getY());
 			}
 		}
 		addCell(newLink1);
@@ -567,8 +546,6 @@ public class XcosDiagram extends ScilabGraph {
     		}
     	    }
     	});
-    	
-    	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
     }
     
 	/**
@@ -977,201 +954,6 @@ public class XcosDiagram extends ScilabGraph {
         }
     };
 
-    /**
-     * MouseListener inner class
-     */
-    private class XcosMouseListener implements MouseListener {
-    	private final XcosDiagram diagram;
-
-    	/**
-    	 * @param diagram diagram
-    	 */
-    	public XcosMouseListener(final XcosDiagram diagram) {
-    		this.diagram = diagram;
-    	}
-
-    	/**
-    	 * Handle click on the diagram component
-    	 * @param e the event
-    	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-    	 */
-    	@Override
-    	public void mouseClicked(final MouseEvent e) {
-    		final Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
-    		final double scale = getView().getScale();
-
-    		// Double Click within empty diagram Area
-    		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
-    			final TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
-    			final mxGeometry geom = textBlock.getGeometry();
-    			geom.setX((e.getX() * scale) - (geom.getWidth() / 2));
-    			geom.setY((e.getY() * scale) - (geom.getHeight() / 2));
-    			
-    			final mxGeometry parent = ((mxICell) getDefaultParent()).getGeometry();
-    			if (parent != null) {
-    				// update the geometry in place
-    				geom.setX(geom.getX() - parent.getX());
-    				geom.setY(geom.getY() - parent.getY());
-    			}
-    			addCell(textBlock);
-    			return;
-    		}
-
-    		// Double Click within some component
-    		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell != null)
-    		{
-    			getModel().beginUpdate();
-    			if (cell instanceof BasicBlock) {
-    				final BasicBlock block = (BasicBlock) cell;
-    				e.consume();
-    				block.openBlockSettings(getContext());
-    			}
-    			if (cell instanceof BasicLink) {
-    				final mxGeometry parent = ((BasicLink) cell).getParent().getGeometry();
-    				final mxPoint p = new mxPoint(e.getX() / scale, e.getY() / scale);
-    				if (parent != null) {
-    					p.setX(p.getX() - parent.getX());
-    					p.setY(p.getY() - parent.getY());
-    				}
-    				BlockPositioning.alignPoint(p, getGridSize(), 0);
-    				((BasicLink) cell).insertPoint(p);
-    			}
-    			getModel().endUpdate();
-    			refresh();
-    		}
-
-    		// Ctrl + Shift + Right Middle Click : for debug !!
-    		if (e.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(e)
-    				&& e.isShiftDown() && e.isControlDown()) {
-    			System.err.println("[DEBUG] Click at position : " + e.getX() + " , " + e.getY());
-    			if (cell == null) {
-    				System.err.println("[DEBUG] Click on diagram");
-    				System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
-    				System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
-    				System.err.println("getParentWindow : " + (getParentTab() == null ? null : getParentTab().getParentWindow()));
-    			} else {
-    				System.err.println("[DEBUG] Click on : " + cell);
-    				System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
-    				System.err.println("[DEBUG] NbEdges : " + ((mxCell) cell).getEdgeCount());
-    				System.err.println("[DEBUG] NbChildren : " + ((mxCell) cell).getChildCount());
-    				for (int i = 0; i < ((mxCell) cell).getChildCount(); i++) {
-    					System.err.println("[DEBUG] Child NbEdges : " + ((mxCell) cell).getChildAt(i).getEdgeCount());
-    				}
-
-    				if (cell instanceof BasicLink) {
-    					System.err.println("[DEBUG] Link Points : " + ((BasicLink) cell).getPointCount());
-    				}
-    			}
-
-    		}
-
-    		// Context menu
-    		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
-    				|| e.isPopupTrigger()
-    				|| XcosMessages.isMacOsPopupTrigger(e)) {
-
-    			if (cell == null) {
-    				// Display diagram context menu
-    				final ContextMenu menu = ScilabContextMenu.createContextMenu();
-
-    				menu.add(UndoAction.undoMenu((ScilabGraph) getAsComponent().getGraph()));
-    				menu.add(RedoAction.redoMenu((ScilabGraph) getAsComponent().getGraph()));
-    				menu.add(PasteAction.pasteMenu((ScilabGraph) getAsComponent().getGraph()));
-    				menu.add(SelectAllAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-    				/*---*/
-    				menu.getAsSimpleContextMenu().addSeparator();
-    				/*---*/
-    				menu.add(SetContextAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-    				menu.add(SetupAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-
-    				if (diagram instanceof SuperBlockDiagram) {
-    					/*---*/
-    					menu.getAsSimpleContextMenu().addSeparator();
-    					/*---*/
-    					menu.add(ShowParentAction.createMenu(diagram));
-    				}
-    				/*---*/
-    				menu.getAsSimpleContextMenu().addSeparator();
-    				/*---*/
-    				menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
-    				menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
-    				/*---*/
-    				menu.getAsSimpleContextMenu().addSeparator();
-    				/*---*/
-    				menu.add(DiagramBackgroundAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-    				/*---*/
-    				menu.getAsSimpleContextMenu().addSeparator();
-    				/*---*/
-    				menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-
-    				((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x,
-    					MouseInfo.getPointerInfo().getLocation().y);
-
-    				menu.setVisible(true);
-
-    			} else {
-    				// Display object context menu
-    				if (cell instanceof BasicBlock) {
-    					final BasicBlock block = (BasicBlock) cell;
-    					block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
-    				}
-    				if (cell instanceof BasicLink) {
-    					final BasicLink link = (BasicLink) cell;
-    					link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
-    				}
-    			}
-    		}
-    	}
-
-    	/**
-    	 * Do nothing
-    	 * @param e the event
-    	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-    	 */
-    	@Override
-    	public void mouseEntered(final MouseEvent e) {
-    	}
-
-    	/**
-    	 * Do nothing
-    	 * @param e the event
-    	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-    	 */
-    	@Override
-    	public void mouseExited(final MouseEvent e) {
-    	}
-
-    	/**
-    	 * Do nothing
-    	 * @param e the event
-    	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-    	 */
-    	@Override
-    	public void mousePressed(final MouseEvent e) {
-    	}
-
-    	/**
-    	 * Cancel split and link if running
-    	 * @param e the event
-    	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-    	 */
-    	@Override
-    	public void mouseReleased(final MouseEvent e) {
-    		getAsComponent().getCellAt(e.getX(), e.getY());
-    		final double scale = getView().getScale();
-    		
-    		if (SwingUtilities.isLeftMouseButton(e)) {
-    			if (waitSplitRelease) {
-    				dragSplitPos = new mxPoint(e.getX() / scale, e.getY() / scale);
-    				waitSplitRelease = false;
-    				addSplitEdge(splitLink, splitPort);
-    			} else {
-    				dragSplitPos = null;
-    			}
-    		}
-    	}
-    }
-
 	/**
 	 * Get the point position according to the scale.
 	 * 
@@ -1554,13 +1336,6 @@ public class XcosDiagram extends ScilabGraph {
 	setGridEnabled(status);
 	getAsComponent().setGridVisible(status);
 	getAsComponent().repaint();
-    }
-
-    /**
-     * Set menu used to manage Grid visibility
-     * @param menu the menu
-     */
-    public void setGridMenuItem(final CheckBoxMenuItem menu) {
     }
 
 	/**
