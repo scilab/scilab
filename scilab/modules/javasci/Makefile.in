@@ -1263,9 +1263,11 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@JAVASCI_TRUE@@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@JAVASCI_TRUE@@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@clean-local: clean-java
+@JAVASCI_TRUE@@NEED_JAVA_FALSE@clean-local:
 
 @JAVASCI_TRUE@distclean-local:
 @JAVASCI_TRUE@	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

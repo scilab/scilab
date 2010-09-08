@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-05-14 12:26+0000\n"
-"Last-Translator: Felipe G. Wozniak <Unknown>\n"
+"PO-Revision-Date: 2010-07-17 03:13+0000\n"
+"Last-Translator: Albuquerque <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +48,7 @@ msgstr "   %s: É necessário rodar a detecção de compilador (configurar).\n"
 
 #, c-format
 msgid "   %s: Substitute the reference by the actual file.\n"
-msgstr ""
+msgstr "   %s: substituir a referência pelo arquivo atual.\n"
 
 #, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
@@ -69,30 +69,30 @@ msgid "   Compilation of "
 msgstr "   Compilação de "
 
 msgid "   Generate a Makefile\n"
-msgstr ""
+msgstr "   Gerar um Makefile\n"
 
 #, c-format
 msgid "   Generate a Makefile: %s\n"
-msgstr ""
+msgstr "   Gerar um Makefile: %s\n"
 
 msgid "   Generate a cleaner file\n"
-msgstr ""
+msgstr "   Gerar um arquivo mais limpo\n"
 
 msgid "   Generate a gateway file\n"
 msgstr "   Gerar um arquivo de gateway\n"
 
 msgid "   Generate a loader file\n"
-msgstr ""
+msgstr "   Gerar um arquivo de carga\n"
 
 #, c-format
 msgid "   Output: %s\n"
 msgstr "   Saída: %s\n"
 
 msgid "   Running the Makefile\n"
-msgstr ""
+msgstr "   Executando o Makefile\n"
 
 msgid "   Running the makefile\n"
-msgstr ""
+msgstr "   Executando o makefile\n"
 
 #, c-format
 msgid "   stderr: %s\n"
@@ -134,12 +134,20 @@ msgid "%s: An error occurred during the compilation:\n"
 msgstr "%s: Ocorreu um erro durante a compilação:\n"
 
 #, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr ""
+"%s: Ocorreu um erro ao detectar o(s) compilador(es). Defina ilib_verbose(2) "
+"para mais informações.\n"
+
+#, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s: Um erro ocorreu: %s\n"
 
 #, c-format
 msgid "%s: Build command: %s\n"
-msgstr ""
+msgstr "%s: construir comando: %s\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -153,7 +161,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
-msgstr ""
+msgstr "%s: erro quando modificando o Makefile de referência:\n"
 
 #, c-format
 msgid "%s: Feature not available under Microsoft Windows.\n"
@@ -196,14 +204,29 @@ msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
+"%s: Alerta: Scilab não foi capaz de encontrar onde os fontes do Scilab se "
+"encontram. Por favor envie um relato de erro através de "
+"http://bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr ""
+msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d, %d ou "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -218,6 +241,8 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
 msgstr ""
+"%s: tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de strings < 999.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -227,10 +252,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"texto.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
 msgstr ""
+"%s: tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
+"de strings < %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
@@ -241,11 +270,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de textos.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -258,12 +291,10 @@ msgstr ""
 "%s: Tipo errado para o argumento de entrada #%d: Esperava-se um inteiro.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de textos.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings expected.\n"
@@ -279,8 +310,16 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%sTipo errado para argumentos de entrada: Esperava-se texto.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"\" ou "
+"\"[]\".\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -318,10 +357,10 @@ msgstr "Ponto de entrada %s na biblioteca compartilhada %d.\n"
 
 #, c-format
 msgid "Error: Not a valid internal routine number %d.\n"
-msgstr ""
+msgstr "Erro: Não é um número válido para rotina interna %d.\n"
 
 msgid "F2C cannot build fortran 90"
-msgstr ""
+msgstr "F2C não pode construir fortran 90"
 
 #, c-format
 msgid "Interface %s not linked.\n"
@@ -348,7 +387,7 @@ msgstr ""
 
 #, c-format
 msgid "Output: %s\n"
-msgstr ""
+msgstr "Saída: %s\n"
 
 msgid "Shared archive loaded.\n"
 msgstr "Arquivo compartilhado carregado.\n"
@@ -365,8 +404,8 @@ msgstr "] : %d bibliotecas.\n"
 
 #, c-format
 msgid "] : %d library.\n"
-msgstr ""
+msgstr "] : %d biblioteca.\n"
 
 #, c-format
 msgid "stderr: %s\n"
-msgstr ""
+msgstr "saída de erro padrão: %s\n"

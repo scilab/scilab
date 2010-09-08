@@ -46,7 +46,7 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 	 *            otherwise.
 	 */
 	public void setCompilationNeeded(boolean status) {
-		this.compilationNeeded = status;
+		compilationNeeded = status;
 	}
 
 	/**

@@ -17,10 +17,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s：内存申请错误。\n"
-
-#, c-format
 msgid "%s: %s format not recognized.\n"
 msgstr "%s：无法识别格式 %s 。\n"
 
@@ -122,6 +118,10 @@ msgid "%s: Invalid conversion.\n"
 msgstr "%s：不正确的转换。\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: No File opened in Scilab.\n"
 msgstr "%s：在Scilab中没有打开的文件。\n"
 
@@ -156,6 +156,10 @@ msgstr "%s：不能在Scilab中打开文件 %s 。\n"
 #, c-format
 msgid "%s: Too many directives in scanf.\n"
 msgstr "%s：在scanf中的标志太多。\n"
+
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -240,6 +244,10 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
 msgstr "%s：输入参数#%d的大小错误：必须少于%d个字符。\n"
@@ -251,6 +259,11 @@ msgstr "%s：输入参数#%d的大小错误：应该为非空字符串。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为标量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: String or logical unit expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument: Scalar expected.\n"
@@ -292,6 +305,10 @@ msgid "%s: Wrong type for input argument #%d: A string.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Matrix of floating point numbers "
 "expected.\n"
@@ -308,6 +325,11 @@ msgstr "%s：输入参数#%d的类型错误：应该为字符串数组。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: A string expected.\n"
@@ -370,6 +392,10 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为一个正确的文件名或目录。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s：输入参数#%d的值错误：格式无法识别。\n"
 
@@ -396,8 +422,16 @@ msgid "%s: end of input reached before final conversion.\n"
 msgstr "%s：最终转换尚未完成，但输入已经结束。\n"
 
 #, c-format
+msgid "%s: error.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: format is of 0 length.\n"
 msgstr "%s：格式长度为 0。\n"
+
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: invalid filename.\n"
@@ -420,6 +454,10 @@ msgstr "无法得到当前目录。\n"
 #, c-format
 msgid "Can't go to directory %s.\n"
 msgstr "无法进入目录%s。\n"
+
+#, c-format
+msgid "Can't go to directory %s: %s\n"
+msgstr ""
 
 msgid "Invalid buffer.\n"
 msgstr "无效缓存。\n"

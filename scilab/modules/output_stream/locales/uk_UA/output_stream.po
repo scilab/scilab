@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-04-13 09:09+0000\n"
+"PO-Revision-Date: 2010-06-29 12:31+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -61,10 +61,6 @@ msgstr "%d: логічний блок вже використано.\n"
 #, c-format
 msgid "%dth argument type must be boolean.\n"
 msgstr "Типом %d-го параметра має бути «boolean».\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
 msgid "%s and %s must have equal dimensions.\n"
@@ -160,6 +156,10 @@ msgstr "%s: вхідні параметри повинні мати ту сам�
 #, c-format
 msgid "%s: Loop on two orders detected.\n"
 msgstr "%s: виявлено цикл між двома порядками.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -546,9 +546,6 @@ msgstr "%s: не вдалося завантажити архів спільно
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr "%s: встановлено виміри вікна, менші за 2^16.\n"
 
-msgid "'o' format not allowed."
-msgstr "Не можна використовувати формат «o»."
-
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr "Запис розрідженої матриці визначено двома різними значеннями.\n"
 
@@ -646,12 +643,13 @@ msgstr "Змінну одиничної матриці у цьому конте�
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
-"Bad call to a scilab function ?\n"
-"Otherwise, send a bug report to :\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
 msgstr ""
-"Критична помилка! Ваші змінні було збережено до файла %s\n"
-"Помилковий виклик функції Scilab?\n"
-"Якщо це не так, надішліть звіт про ваду на адресу:\n"
+"Критична помилка!!! Ваші змінні було збережено до файла %s\n"
+"                                   Помилковий виклик функції scilab?\n"
+"                                   Якщо це не так, надішліть звіт про ваду "
+"за адресою:\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -1104,6 +1102,9 @@ msgstr "Невизначена функція.\n"
 
 msgid "Undefined operation for the given operands.\n"
 msgstr "Невизначена операція над вказаними операндами.\n"
+
+msgid "Undefined variable.\n"
+msgstr "Невизначена змінна.\n"
 
 #, c-format
 msgid "Undefined variable: %s\n"

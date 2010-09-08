@@ -12,6 +12,7 @@
 
 package org.scilab.modules.console;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -20,6 +21,8 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.Writer;
@@ -32,10 +35,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.StyleContext;
+
+import org.scilab.modules.commons.gui.ScilabCaret;
 
 import com.artenum.rosetta.interfaces.ui.OutputView;
 import com.artenum.rosetta.util.BufferedWriter;
@@ -98,15 +104,13 @@ public class SciOutputView extends JTextPane implements OutputView {
 		 * Default caret for output view (to handle paste actions using middle button)
 		 * @author Vincent COUVERT
 		 */
-		final class FixedCaret extends DefaultCaret {
+		final class FixedCaret extends ScilabCaret {
 
-			private static final long serialVersionUID = 8230195712653828841L;
-
-			/**
+		        /**
 			 * Constructor
 			 */
 			private FixedCaret() {
-				super();
+				super(SciOutputView.this);
 			}
 
 			/**

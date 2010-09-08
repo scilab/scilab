@@ -65,6 +65,10 @@ msgid "%s: Invalid library %s.\n"
 msgstr "%s：不正确的库%s。\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s：没有扩展名为 %s 的文件存在于 %s\n"
 
@@ -220,18 +224,6 @@ msgstr "该函数将被永久地从 Scilab %s 中移除。"
 
 msgid "Tools"
 msgstr "工具"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "警告：函数%s已废弃。\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "警告：请用%s代替。\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "警告：这个函数将从Scilab %s中永久地移除。\n"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "

@@ -11,6 +11,10 @@
  */
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -42,7 +46,7 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
      * doAction
      */
     public void doAction() {
-        getEditor().enableHighlightedLine(this.getState());
+        SciNotes.enableHighlightedLine(this.getState());
         ConfigSciNotesManager.saveHighlightState(this.getState());
     }
 
@@ -54,8 +58,13 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
      * @return CheckBoxMenuItem
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new HighlightCurrentLineAction(label, editor), key);
-        cb.setChecked(ConfigSciNotesManager.getHighlightState());
+        final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new HighlightCurrentLineAction(label, editor), key);
+        ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    cb.setChecked(ConfigSciNotesManager.getHighlightState());
+                }
+            });
+
         return cb;
     }
 }

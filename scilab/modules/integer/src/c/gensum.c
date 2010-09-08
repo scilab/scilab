@@ -57,7 +57,7 @@ int C2F(gensum)(int *typ, int *n, void *dx, int *incx)
     return dtemp;
 }
 
-double C2F(gensum_double)(int *typ, int *n, void *dx, int *incx)
+double C2F(gensumasdouble)(int *typ, int *n, void *dx, int *incx)
 {
     int  i1, i2;
     static int i;

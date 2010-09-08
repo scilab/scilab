@@ -35,6 +35,9 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
+	 * @param from not used
+	 * @param element returned
+	 * @return the element
 	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeDecode(ScilabType, Object)
 	 */
 	@Override
@@ -61,6 +64,9 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
+	 * @param from not used
+	 * @param element returned
+	 * @return the element
 	 * @see org.scilab.modules.xcos.io.scicos.Element#afterEncode(Object, ScilabType)
 	 */
 	@Override
@@ -71,6 +77,9 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
+	 * @param element not used
+	 * @param into returned
+	 * @return into
 	 * @see org.scilab.modules.xcos.io.scicos.Element#beforeDecode(ScilabType, Object)
 	 */
 	@Override
@@ -81,6 +90,9 @@ public abstract class AbstractElement<T> implements Element<T> {
 	/**
 	 * Default implementation is empty.
 	 * 
+	 * @param element not used
+	 * @param into returned
+	 * @return into
 	 * @see org.scilab.modules.xcos.io.scicos.Element#afterDecode(ScilabType, Object)
 	 */
 	@Override
@@ -112,7 +124,7 @@ public abstract class AbstractElement<T> implements Element<T> {
 	 * @param isColumnDominant the index placement flag
 	 * @return the column-row index.
 	 */
-	protected static int[] getIndexes(int index, boolean isColumnDominant) {
+	public static int[] getIndexes(int index, boolean isColumnDominant) {
 		int[] ret = {0, 0};
 		
 		if (isColumnDominant) {
@@ -130,7 +142,7 @@ public abstract class AbstractElement<T> implements Element<T> {
 	 * @param indexes the current indexes (length=2)
 	 * @param isColumnDominant flag to specify the field to increment.
 	 */
-	protected static void incrementIndexes(int[] indexes, boolean isColumnDominant) {
+	public static void incrementIndexes(int[] indexes, boolean isColumnDominant) {
 		if (isColumnDominant) {
 			indexes[0]++;
 		} else {
@@ -148,7 +160,7 @@ public abstract class AbstractElement<T> implements Element<T> {
 	 * @return true if the data can be extracted without throwing an exception,
 	 *         false if not.
 	 */
-	protected static boolean canGet(ScilabType data, int[] indexes) {
+	public static boolean canGet(ScilabType data, int[] indexes) {
 		return data.getHeight() > indexes[0] && data.getWidth() > indexes[1];
 	}
 }

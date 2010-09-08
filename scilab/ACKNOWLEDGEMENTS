@@ -1,147 +1,149 @@
+                CONTRIBUTORS
+                ************
 
-
-			CONTRIBUTORS
-			************
-
-Outside of the Scilab Consortium, many people contributed to Scilab version 5.
+Outside of the Scilab Consortium, many people contributed to Scilab.
 We are very grateful for all the work and the time they all spend to make
 Scilab a better software.
 
 * Vorona Aleksey
-	- Russian localization
+    - Russian localization
 
 * Jonathan Blanchard
-	- Misc patches for Solaris
-	- Testing of Scilab under Solaris
+    - Misc patches for Solaris
+    - Testing and binary of Scilab under Solaris
 
 * Yuri Chornoivan
     - Ukrainian localization 
+    - Many patches fixing typos and English mistakes
 
 * Yann Collette
-	- Genetic algorithm
-	- Generic probabilistic meta-algorithm
-	- Param/parameters module
-	- French localization
-	- Bug reports
-	- Bug Fixes
+    - Genetic algorithm
+    - Generic probabilistic meta-algorithm
+    - Param/parameters module
+    - French localization
+    - Bug reports
+    - Bug Fixes
 
 * Arnaud Dessein
-	- French localization
+    - French localization
 
 * Calixte Denizet 
-	- LaTeX and MathML rendering capabilities in the Scilab Graphic
-	- Improved graphic exports
-	- Many contributions
+    - LaTeX and MathML rendering capabilities in the Scilab Graphic
+    - Improved graphic exports
+    - SciNotes (Scilab editors)
+    - Many contributions
 
 * Markus Dittrich 
-	- Misc patches for Gentoo
+    - Misc patches for Gentoo
 
 * Andrea Florio
-	- Misc patches for Opensuse
+    - Misc patches for Opensuse
 
 * Oriol Gonzalez
-	- Catalan localization
+    - Catalan localization
 
 * Tomasz Pawel Gajc
-	- Misc patches for Mandriva
+    - Misc patches for Mandriva
 
 * Aurélien Gérôme
-	- Misc patches for Debian & Ubuntu
+    - Misc patches for Debian & Ubuntu
 
 * Samuel Gougeon
-	- Advice
-	- Many feedbacks and bug reports
-	- Patches	
+    - The world record of reported bugs on Scilab
+    - Advice
+    - Many feedbacks
+    - Patches
 
 * Paul Griffiths
-	- Misc patches for the Scilab Graphic exports
+    - Misc patches for the Scilab Graphic exports
+    - Patch on SciNotes
 
 * Gerard Henry
-	- Misc patches for Solaris/Opensolaris
+    - Misc patches for Solaris/Opensolaris
 
-* Sébastien Jourdain from Artenum ( http://www.artenum.com )	
-	- Scilab Console ( Jrosetta )
+* Sébastien Jourdain from Artenum ( http://www.artenum.com )
+    - Scilab Console ( Jrosetta )
 
 * Vincent Lejeune
-	- Patches
-	- Feedbacks & bug reports
+    - Patches
+    - Feedbacks & bug reports
 
 * Kirill Kirillov
-	- Russian localization
-	
+    - Russian localization
+
 * Christoph Korn
-	- Misc patches for Debian & Ubuntu
+    - Misc patches for Debian & Ubuntu
 
 * Yung-Jang Lee
-	- Management of non-UTF8 asian/russian charset internationalization
-	- Modification of almost all the i/o functions in order to handle directory
-	 and file names containing UTF-8 characters.
-	- Traditional Chinese localization
+    - Management of non-UTF8 asian/russian charset internationalization
+    - Modification of almost all the i/o functions in order to handle directory
+     and file names containing UTF-8 characters.
+    - Traditional Chinese localization
 
 * Séverin Lemaignan
-	- Advice
+    - Advice
 
 * Dan McMahill 
-  	- Patches for NetBSD
+      - Patches for NetBSD
 
 * Olivier Mehani
-	- Advice
-	- Patches
+    - Advice
+    - Patches
 
 * Armin Mohring
-  	- German localization
+      - German localization
 
 * Stéphane Mottelet 
-	- Advice
-	- Bug reports
-	- Misc patches for Mac OS X
+    - Advice
+    - Bug reports
+    - Misc patches for Mac OS X
 
 * Bruno Pinçon
-	- UMFPACK interface
-	- Bug reports
-	- Bug fixes
-	- Advice
+    - UMFPACK interface
+    - Bug reports
+    - Bug fixes
+    - Advice
 
 * Jacques-Deric Rouault 
-	- Bug reports
+    - Bug reports
 
 * Jean-Sebastien Roy 
-	- Misc patches for FreeBSD
+    - Misc patches for FreeBSD
 
 * Daniel de Souza Grilo 
-	- Traduction of the help into Portugues do Brazil
-	- Portugues do Brazil localization
+    - Traduction of the help into Portugues do Brazil
+    - Portugues do Brazil localization
 
 * Hiroshi Saito
-	- Japanese localization
-	- Misc patches on localization issues
+    - Japanese localization
+    - Misc patches on localization issues
 
 * Enrico Segre
-	- Bug reports
-	- Bug fixes
-	- Advice
+    - Bug reports
+    - Bug fixes
+    - Advice
 
 * Federico Vera
-	- Spanish localization
+    - Spanish localization
 
 * François Vogel
-	- Bug reports
-	- Bug fixes
-	- Advice
+    - Bug reports
+    - Bug fixes
+    - Advice
 
 * Torsten Werner
-	- Misc patches for Debian & Ubuntu
+    - Misc patches for Debian & Ubuntu
 
 * Jeffrey Whitaker
-	- Misc patches for Mac OS X
+    - Misc patches for Mac OS X
 
 * Shiqi Yu
-	- Simplified Chinese localization
+    - Simplified Chinese localization
 
 And many others...
 
-			    ORIGIN OF CODE
-			    **************
+                ORIGIN OF CODE
+                **************
 
     The contribution of many people is acknowledged (the following list
     is not exhaustive!).
@@ -184,8 +186,8 @@ graphics based on entities: INRIA (M. Philippe, D. Abdemouche).
 integ: routines from Odepack and Quadpack.
          dassl: L. Petzold (LLNL).
          hybrd: Minpack (ANL).
-	 routines colnew from U. Ascher and G. Bader
-	 Sundials : Nonlinear Solvers and Differential Equations Project, Lawrence Livermore National Laboratory
+     routines colnew from U. Ascher and G. Bader
+     Sundials : Nonlinear Solvers and Differential Equations Project, Lawrence Livermore National Laboratory
 
 interf: Scilab interface with numerical libraries (INRIA/ENPC).
 
@@ -205,10 +207,10 @@ qsort: qsort.c ( quicksort from the University of California Berkeley)
        modified for Scilab.
 
 randlib: Library of Fortran Routines for Random Number Generation
-	  Barry W. Brown, James Lovato, Kathy Russell, John Venier.
+      Barry W. Brown, James Lovato, Kathy Russell, John Venier.
 
 SciGui: a tcl gui environment developed by Jaime Urzua: jaime_urzua@yahoo.com
-	used for the help browser, waitbar and editvar 
+    used for the help browser, waitbar and editvar
 
 signal: routines from IEEE Signal processing library, (interfaced by C. Bunks)
 
@@ -223,11 +225,11 @@ sparse: Operations on sparse matrices (interfaced by S. Steer INRIA, Bruno Pinco
          work with singular matrices (J.P.Chancelier). lu.c
          (INRIA/ENPC)
 
-	 sparse Cholesky factorization codes are by Joseph W.H. Liu
+     sparse Cholesky factorization codes are by Joseph W.H. Liu
          and Esmond G. Ng and Barry W. Peyton from Mathematical
          Sciences Section, Oak Ridge National Laboratory
 
-	 routines to read .mps file (sparse linear programming) are from 
+     routines to read .mps file (sparse linear programming) are from
          J. Gondzio (Hopdm).
 
 os_specific: system specific Scilab routines (INRIA/ENPC). 

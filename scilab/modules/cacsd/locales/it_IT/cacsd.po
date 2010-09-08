@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-16 11:39+0000\n"
+"PO-Revision-Date: 2010-08-16 08:48+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -796,6 +796,21 @@ msgstr "Frequenza (Hz)"
 msgid "Gain :"
 msgstr "Si ottiene:"
 
+msgid "Hall chart"
+msgstr ""
+
+msgid "Hz"
+msgstr "Hz"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
 msgid "Imaginary axis"
 msgstr "Asse dei numeri immaginari"
 
@@ -810,7 +825,7 @@ msgstr ""
 "Fattori non riducibili della frequenza naturale della funzione di "
 "trasferimento e del fattore di smorzamento (fare un click sotto)"
 
-msgid "Magnitude (Db)"
+msgid "Magnitude (dB)"
 msgstr "Ampiezza (dB)"
 
 msgid "Numerator :"
@@ -827,6 +842,15 @@ msgstr "Fase (gradi)"
 
 msgid "Poles"
 msgstr "Poli"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
 
 msgid "Real axis"
 msgstr "Asse dei numeri reali"
@@ -849,7 +873,13 @@ msgstr "Zeri"
 msgid "asymptotic directions"
 msgstr "direzioni asintotiche"
 
+msgid "dB"
+msgstr "dB"
+
 msgid "magnitude(y) (Db)"
+msgstr "ampiezza(y) (dB)"
+
+msgid "magnitude(y) (dB)"
 msgstr "ampiezza(y) (dB)"
 
 msgid "open loop poles"

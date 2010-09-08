@@ -31,6 +31,18 @@
     <para>Se <literal>n</literal> é positivo, é o número do erro limpo; caso
     contrário, todos os erros são limpos (caso padrão).</para>
   </refsection>
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role = "example"><![CDATA[
+a=1;
+b=undefinedvariable+a;
+lasterror()
+b=undefinedvariable+a;
+errclear()
+lasterror()
+]]></programlisting>
+  </refsection>
 
   <refsection>
     <title>Ver Também</title>

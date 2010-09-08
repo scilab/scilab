@@ -45,10 +45,6 @@ msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: kein weiterer Raum, um Zeichenketten-Argumente zu speichern.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Fehler bei der Speicherbelegung.\n"
-
-#, c-format
 msgid "%s and %s arguments"
 msgstr "%s und %s Argumente"
 
@@ -132,24 +128,8 @@ msgstr ""
 "intersiz.\n"
 
 #, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s: Kann Speicher nicht belegen.\n"
-"Versuchen Sie gstacksize('max').\n"
-
-#, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: kann Speicher nicht belegen.\n"
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s: Kann keinen zusätzlichen Speicher belegen.\n"
-"Versuchen Sie Stapelgröße ('max').\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -170,6 +150,10 @@ msgstr "%s: ungültiger '%s' Wert.\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: ungültiger Modulname: %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -262,12 +246,8 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s: falscher %s Wert %d anstatt von %d.\n"
 
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s: Falsche Dateiversion %s.\n"
-
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: Falsche Dateiversion in %s.\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -344,13 +324,16 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: Falsche Größe für Eingabeargumente.\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s: falscher Typ für Argument #%d: Skalar, '%s' oder '%s' erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s: Falsche Größe für Eingabeargumente.\n"
 
 #, c-format
 msgid ""
@@ -564,17 +547,6 @@ msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: kompiliertes Makro erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: benannte Variable erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: Skalar, '%s' oder '%s' erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Skalar, '%s' oder '%s'.\n"
 
@@ -685,13 +657,6 @@ msgid ""
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: Muss im Intervall [%d, %d] "
 "liegen.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Skalar, '%s' oder '%s' "
-"erwartet.\n"
 
 #, c-format
 msgid ""
@@ -832,6 +797,15 @@ msgstr "Fehler"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Fehler beim Zurückgeben der tlist, Speicher voll.\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -998,6 +972,14 @@ msgstr "Nicht definierte Variable %s.\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "Unerwarteter Opcode, starten Sie den Scilab Fehlersucher."
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr ""
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr ""
 
 msgid "User variables are:"
 msgstr "Benutzervariablen:"

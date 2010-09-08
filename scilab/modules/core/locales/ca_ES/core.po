@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-05-22 18:58+0000\n"
+"PO-Revision-Date: 2010-07-29 09:42+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -43,10 +43,6 @@ msgstr " està utilitzant %10d elements de  %10d.\n"
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: No queda més espai per als arguments de cadena de text.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Error d'assignació de memòria.\n"
 
 #, c-format
 msgid "%s and %s arguments"
@@ -132,24 +128,8 @@ msgstr ""
 "%s: (%s) massa arguments a la pila. Editeu stack.h i augmenteu intersiz.\n"
 
 #, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s: No es pot assignar més memòria.\n"
-"Proveu gstacksize('max').\n"
-
-#, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: No s'ha pogut assignar més memòria.\n"
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s: No es pot assignar més memòria.\n"
-"Proveu stacksize('max').\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -170,6 +150,10 @@ msgstr "%s: El valor '%s' no és vàlid.\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: El nom del mòdul no és vàlid: %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -262,12 +246,8 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s: Valor %s incorrecte %d en comptes de %d.\n"
 
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s: VERSIÓ incorrecta al fitxer %s.\n"
-
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: VERSIÓ incorrecta al fitxer a %s.\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr "%s: El fitxer version.xml %s és incorrecte.\n"
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -352,14 +332,19 @@ msgstr ""
 "text.\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: Els arguments d'entrada tenen una mida incorrecta.\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un escalar.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un escalar, '%s' o "
-"'%s'.\n"
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
+"cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s: Els arguments d'entrada tenen una mida incorrecta.\n"
 
 #, c-format
 msgid ""
@@ -597,19 +582,6 @@ msgstr ""
 "compilada.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nom de "
-"variable existent.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar, "
-"'%s' o '%s'.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un escalar, "
@@ -740,13 +712,6 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha d'estar a l'interval "
 "[%d,%d].\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un escalar, "
-"'%s' o '%s'.\n"
 
 #, c-format
 msgid ""
@@ -891,6 +856,16 @@ msgstr "Error"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Error en retornar el tlist, la memòria està plena.\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+"Error(x) és obsolet, i s'eliminarà a Scilab 5.4. Utilitzeu SciError(x).\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "Error: No s'ha pogut crear %s: %s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -1059,6 +1034,14 @@ msgstr "No s'ha definit la variable %s.\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "Codi incorrecte, informeu al tracker d'errors de Scilab."
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr "S'està traient de la cua %s - No s'ha marcat cap opció.\n"
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr "S'està traient de la cua %s - seq.\n"
 
 msgid "User variables are:"
 msgstr "Les variables d'usuari són:"

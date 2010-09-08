@@ -14,7 +14,6 @@
 package org.scilab.modules.ui_data.variableeditor.celleditor;
 
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -68,7 +67,7 @@ public abstract class ScilabGenericCellEditor extends DefaultCellEditor {
          * and return the result back to EditVar
          * @param request the request to be executed by Scilab
          */
-        private void callScilabValidationOfCellContent(String request){
+        private void callScilabValidationOfCellContent(String request) {
             final ActionListener action = new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -97,7 +96,7 @@ public abstract class ScilabGenericCellEditor extends DefaultCellEditor {
         String variableName = ScilabVariableEditor.getVariableEditor().getVariablename();
         String data = getDataAsScilabString();
         
-        String cellInVariable = variableName + "(" + row + "," + col + ")";;
+        String cellInVariable = variableName + "(" + row + "," + col + ")";
         
         // Manage Special transtyping case :
         // a = 1 then a = "plop"
@@ -120,8 +119,8 @@ public abstract class ScilabGenericCellEditor extends DefaultCellEditor {
     protected String getDataAsScilabString() {
         String data = String.valueOf(textField.getText());
 
-        data = data.replace("\"","\"\"");
-        data = data.replace("'","''");
+        data = data.replace("\"", "\"\"\"\""); // Change " to """" because added in an execstr command
+        data = data.replace("'", "''''"); // Change ' to '''' because added in an execstr command
 
         return data;
     }

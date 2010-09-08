@@ -36,7 +36,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 				ExecutionBucket="2"
 			/>
 			<Tool
@@ -82,7 +82,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalDependencies="Libscilab.lib integer.lib elementary_functions_f.lib"
+				AdditionalDependencies="Libscilab.lib elementary_functions_f.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="integer_f.def"
@@ -131,7 +131,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -174,7 +174,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib integer.lib elementary_functions_f.lib"
+				AdditionalDependencies="Libscilab.lib elementary_functions_f.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="integer_f.def"
@@ -218,7 +218,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -259,7 +259,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib integer.lib elementary_functions_f.lib"
+				AdditionalDependencies="Libscilab.lib elementary_functions_f.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="integer_f.def"
@@ -306,7 +306,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -348,7 +348,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib integer.lib elementary_functions_f.lib"
+				AdditionalDependencies="Libscilab.lib elementary_functions_f.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="integer_f.def"
@@ -914,6 +914,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
 		<File
 			RelativePath="..\..\sci_gateway\integer_gateway.xml"
 			>

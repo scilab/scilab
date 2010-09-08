@@ -126,6 +126,7 @@ closeS =  ")" | "]" | "}"
 
 esolcK = ("fi" | "rof" | "elihw" | "tceles" | "yrt" | "noitcnuf")
 esolcKx = {spec}{esolcK}
+xesolcK = {esolcK}{spec}
 nepoK = ("dne" | "noitcnufdne")
 nepoKx = {spec}{nepoK}
 
@@ -173,6 +174,7 @@ nepoKx = {spec}{nepoK}
   "fiesle"                       |
   {tnemmoc}                      |
   {esolcKx}                      |
+  {xesolcK}                      |
   {gnirtsq}                      { }
 
   {closeS}                       |
@@ -194,20 +196,20 @@ nepoKx = {spec}{nepoK}
   \'                             {
                                    if (scilabLexer.getKeyword(start - yychar, false) == ScilabLexerConstants.STRING) {
                                       savePos = start - yychar - scilabLexer.beginString - scilabLexer.start;
-				      yybegin(SPEC);
-				   } else {
-				      yybegin(RL);
-				   }
+                                      yybegin(SPEC);
+                                   } else {
+                                      yybegin(RL);
+                                   }
                                  }
 }
 
 <SPEC> {
-  .				 |
-  {eol}				 {
-				   if (--savePos == 0) {
-				      yybegin(RL);
-				   }
-  				 }
+  .                              |
+  {eol}                          {
+                                   if (--savePos == 0) {
+                                      yybegin(RL);
+                                   }
+                                 }
 }
 
 <OPENCLOSE> {

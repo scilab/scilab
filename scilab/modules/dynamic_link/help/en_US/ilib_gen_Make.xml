@@ -62,21 +62,21 @@
         <term>ldflags</term>
         <listitem>
           <para>a string. It can be used to add specific linker options in the
-	    generated Makefile. Default value is ''</para>
+	    generated Makefile. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>cflags</term>
         <listitem>
           <para>a string. It can be used to add specific C compiler options in the
-	    generated Makefile. Default value is ''</para>
+	    generated Makefile. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fflags</term>
         <listitem>
           <para>a string. It can be used to add specific Fortran compiler options in the
-	    generated Makefile. Default value is ''</para>
+	    generated Makefile. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-05-28 01:39+0000\n"
+"PO-Revision-Date: 2010-07-19 02:53+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,9 @@ msgid "%s: An error occurred: %s.\n"
 msgstr "%s：发生一个错误：%s。\n"
 
 #, c-format
-msgid "%s: An exception occurred: %s"
+msgid ""
+"%s: An exception occurred: %s\n"
+"%s\n"
 msgstr ""
 
 #, c-format
@@ -626,6 +628,9 @@ msgstr "全选(&S)"
 msgid "&Select as current figure"
 msgstr "设为当前Figure(&S)"
 
+msgid "&Start datatip manager"
+msgstr ""
+
 msgid "&Start entity picker"
 msgstr "开始选择实体(&S)"
 
@@ -675,6 +680,9 @@ msgstr "所有Scilab文件"
 
 msgid "All files"
 msgstr "全部文件"
+
+msgid "An error occured: "
+msgstr ""
 
 #, c-format
 msgid ""
@@ -856,10 +864,10 @@ msgid "Help about '"
 msgstr ""
 
 msgid "Help about a selected text"
-msgstr ""
+msgstr "选定文字的帮助"
 
 msgid "Help on a selected keyword"
-msgstr ""
+msgstr "选定关键词的帮助"
 
 msgid "Impossible to get current look and feel"
 msgstr "不能得到目前的界面风格"
@@ -871,10 +879,10 @@ msgid "Launch Scilab text editor"
 msgstr "启动Scilab文本编辑器"
 
 msgid "Launch plot2d"
-msgstr ""
+msgstr "运行plot2d"
 
 msgid "Launch plot3d"
-msgstr ""
+msgstr "运行plot3d"
 
 msgid ""
 "Left click to start selection of the zooming area. Right click to cancel."
@@ -890,20 +898,20 @@ msgid "M&odule manager - ATOMS"
 msgstr ""
 
 msgid "Menu"
-msgstr ""
+msgstr "菜单"
 
 #, c-format
 msgid "Menu ''%s'' is %s."
-msgstr ""
+msgstr "菜单''%s''是%s。"
 
 msgid "Menu status"
-msgstr ""
+msgstr "菜单状态"
 
 msgid "Module manager - ATOMS"
 msgstr ""
 
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
@@ -914,13 +922,16 @@ msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr "不存在属性'%s'，此属性用于风格为%s的uicontrol。\n"
 
 msgid "No color selected."
-msgstr ""
+msgstr "没有选中颜色"
+
+msgid "No print service found."
+msgstr "没有发现打印服务"
 
 msgid "No text selected"
-msgstr ""
+msgstr "没有选择文字"
 
 msgid "OK"
-msgstr ""
+msgstr "确认"
 
 msgid "Ok"
 msgstr "确定"
@@ -950,7 +961,7 @@ msgid "Paste"
 msgstr "粘贴"
 
 msgid "Please enter a color name first."
-msgstr ""
+msgstr "请先输入一个颜色名"
 
 msgid "Please specify a file format"
 msgstr "请指定一个文件格式"
@@ -965,10 +976,10 @@ msgid "Print..."
 msgstr "打印..."
 
 msgid "Quit Scilab"
-msgstr ""
+msgstr "退出Scilab"
 
 msgid "Quit demonstration"
-msgstr ""
+msgstr "退出Demo"
 
 msgid "Replace existing file?"
 msgstr "替换已有的文件？"
@@ -983,13 +994,13 @@ msgid "SVG image"
 msgstr "SVG图像"
 
 msgid "Save and execute"
-msgstr ""
+msgstr "保存并执行"
 
 msgid "Scicos files"
-msgstr ""
+msgstr "Scicos文件"
 
 msgid "Scilab &ATOMS Web Site"
-msgstr ""
+msgstr "Scilab &ATOMS网页"
 
 msgid "Scilab &Demonstrations"
 msgstr "Scilab &Demos"
@@ -1092,6 +1103,9 @@ msgid ""
 msgstr ""
 "某些Scilab模块以GPLv4协议发布。\n"
 "\n"
+
+msgid "Stop datatip manager"
+msgstr ""
 
 msgid "Sub-menu 1"
 msgstr ""
@@ -1297,6 +1311,12 @@ msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr "属性'%s'的值错误：应该为一个'%s'或'%s'句柄。\n"
 
 #, c-format
+msgid ""
+"Wrong value for '%s' property: A String containing a numeric value "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr "属性'%s'的值错误：应该为一个实数。\n"
 
@@ -1311,17 +1331,17 @@ msgid ""
 msgstr "属性'%s'的值错误：应该为一个字符串或者 1x%d 的实数行向量。\n"
 
 msgid "Xcos"
-msgstr ""
+msgstr "Xcos"
 
 msgid "Xcos files"
-msgstr ""
+msgstr "Xcos文件"
 
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #, c-format
 msgid "You clicked on menu ''%s''."
-msgstr ""
+msgstr "你点击了菜单''%s''."
 
 #, c-format
 msgid "You selected ''%s''."
@@ -1331,10 +1351,10 @@ msgid "Zoom Area"
 msgstr "放大区域"
 
 msgid "blue"
-msgstr ""
+msgstr "蓝"
 
 msgid "checked"
-msgstr ""
+msgstr "已选"
 
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems：存在空的级联菜单。"
@@ -1360,7 +1380,7 @@ msgid ""
 msgstr "disp(\"警告: 由于显卡驱动的限制，不能使用OpenGL，无法绘制任何图像，请升级你的驱动程序。\")"
 
 msgid "green"
-msgstr ""
+msgstr "绿"
 
 msgid "http://www.scilab.org/"
 msgstr "http://www.scilab.org/"
@@ -1369,10 +1389,13 @@ msgid "item1|item2|item3|item4"
 msgstr ""
 
 msgid "red"
+msgstr "红"
+
+msgid "toggle datatip mode"
 msgstr ""
 
 msgid "unchecked"
-msgstr ""
+msgstr "未选中"
 
 msgid "yellow"
-msgstr ""
+msgstr "黄"

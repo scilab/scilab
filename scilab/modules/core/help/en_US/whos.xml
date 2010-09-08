@@ -32,10 +32,10 @@ whos -name nam</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>whos()</literal> displays all current variable names, types and memory used.</para>
+    <para><literal>whos()</literal> displays all current variable names sorted by name (case insensitive), types and memory used.</para>
     <para><literal>whos -type typ</literal> displays all current variables with specified type.</para>
     <para><literal>whos -name nam</literal> displays all current variables whose names begin with <literal>nam</literal>.</para>
-    <para>Note : If a variable is global, a * appears ahead of his type.</para>
+    <para>Note : If a variable is global, a * appears after his type name.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

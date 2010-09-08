@@ -21,9 +21,9 @@
 //
 //    leads to a error 43 the m2sci script
 
-MFILECONTENTS = "if(true)t=1;end"
-MFILE         = TMPDIR+"/bug1123.m"
-SCIFILE       = TMPDIR+"/bug1123.sci"
+MFILECONTENTS = "if(true)t=1;end";
+MFILE         = TMPDIR+"/bug1123.m";
+SCIFILE       = TMPDIR+"/bug1123.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);

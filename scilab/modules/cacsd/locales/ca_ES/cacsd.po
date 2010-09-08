@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-10 18:47+0000\n"
+"PO-Revision-Date: 2010-07-29 09:42+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -773,6 +773,21 @@ msgstr "Freqüència (Hz)"
 msgid "Gain :"
 msgstr "Guany:"
 
+msgid "Hall chart"
+msgstr "Hall chart"
+
+msgid "Hz"
+msgstr "Hz"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
 msgid "Imaginary axis"
 msgstr "Eix imaginari"
 
@@ -787,8 +802,8 @@ msgstr ""
 "Factors irreductibles de la freqüència natural de la funció de transferència "
 "i factor d'esmortiment (feu clic a sota)"
 
-msgid "Magnitude (Db)"
-msgstr "Magnitud (Db)"
+msgid "Magnitude (dB)"
+msgstr "Magnitut (dB)"
 
 msgid "Numerator :"
 msgstr "Numerador:"
@@ -804,6 +819,15 @@ msgstr "Fase (graus)"
 
 msgid "Poles"
 msgstr "Pols"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
 
 msgid "Real axis"
 msgstr "Eix real"
@@ -826,8 +850,14 @@ msgstr "Zeros"
 msgid "asymptotic directions"
 msgstr "direccions assimptòtiques"
 
+msgid "dB"
+msgstr "dB"
+
 msgid "magnitude(y) (Db)"
 msgstr "magnitud(y) (Db)"
+
+msgid "magnitude(y) (dB)"
+msgstr "magnitude(y) (dB)"
 
 msgid "open loop poles"
 msgstr "pols d'enllaç obert"

@@ -45,11 +45,11 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть в интервале [%d, "
 "%d].\n"
 
-msgid "Begin Session : "
-msgstr "Начало сессии : "
+msgid "// Begin Session : "
+msgstr "// Начало сессии : "
 
-msgid "End Session   : "
-msgstr "Конец сессии   : "
+msgid "// End Session   : "
+msgstr "// Конец сессии   : "
 
 msgid "Apr"
 msgstr "Апр"

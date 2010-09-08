@@ -1,3 +1,16 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 2007 - Vincent Couvert
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+
 /* GuiManagement.i */
 /** 
  * Windows: swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i 
@@ -7,7 +20,6 @@
 %{
 #include "MALLOC.h"
 #include "../c/GuiManagement.h"
-#include "../../../core/includes/SCIHOME.h"
 %}
 
 %include "../../../jvm/src/jni/scilab_typemaps.i"
@@ -82,12 +94,3 @@ public class";
    */
 ";
 void setScilabLines(int nbRows, int nbCols);
-
-/* JavaDoc */
-%javamethodmodifiers getSCIHOME() "
- /**
-   * Get SCIHOME variable from Scilab
-   * @return SCIHOME value
-   */
-public";
-char* getSCIHOME();

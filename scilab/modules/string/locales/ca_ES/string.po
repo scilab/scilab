@@ -8,17 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2009-12-12 18:00+0000\n"
+"PO-Revision-Date: 2010-07-29 10:11+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Error d'assignació de memòria.\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
@@ -72,6 +68,10 @@ msgstr ""
 #, c-format
 msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr "%s: El text comprovat desborda el límit de la memòria intermèdia.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -237,6 +237,12 @@ msgstr ""
 "escalar.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de text.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
@@ -253,12 +259,6 @@ msgid "%s: Wrong type for input argument #%d: Character expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
 "caràcter.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
-"de cadenes de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
@@ -443,15 +443,3 @@ msgstr "%s: No s'ha pogut obtenir les dimensions de la matriu.\n"
 
 msgid "WARNING : \n"
 msgstr "Avís: \n"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "Avís: La funció %s és obsoleta.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "Avís: Utilitzeu %s.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "Avís: Aquesta funció s'eliminarà de forma permanent a Scilab %s.\n"

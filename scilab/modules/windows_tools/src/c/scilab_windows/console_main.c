@@ -29,6 +29,8 @@
 #include "WndThread.h"
 #include "localization.h"
 #include "LanguagePreferences_Windows.h"
+#include "with_module.h"
+
 /*--------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
 /*--------------------------------------------------------------------------*/ 
@@ -81,7 +83,10 @@ int Console_Main(int argc, char **argv)
     while (argcount > 0)
     {
         argcount--;
-        if (_stricmp (my_argv[argcount], "-NW") == 0) nowin = 1;
+        if (_stricmp (my_argv[argcount], "-NW") == 0) 
+        {
+            nowin = 1;
+        }
         else if (_stricmp (my_argv[argcount], "-NS") == 0) startupf = 1;
         else if ( _stricmp(my_argv[argcount],"-NB") == 0) { sci_show_banner = 0; }
         else if (_stricmp (my_argv[argcount], "-NWNI") == 0)
@@ -145,6 +150,12 @@ int Console_Main(int argc, char **argv)
             printf("\n");
             exit(1);
         }
+    }
+
+    if (!with_module("jvm")) 
+    {
+        /* no module jvm then we force NWNI mode */
+        setScilabMode(SCILAB_NWNI);
     }
 
     if (getScilabMode() != SCILAB_NWNI) CreateScilabHiddenWndThread();

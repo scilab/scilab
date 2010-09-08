@@ -39,6 +39,7 @@ import com.mxgraph.util.mxPoint;
  * Perform a link transformation between Scicos and Xcos.
  */
 // CSOFF: ClassDataAbstractionCoupling
+// CSOFF: FanOutComplexity
 public class LinkElement extends AbstractElement<BasicLink> {
 	private static final List<String> DATA_FIELD_NAMES = asList("Link", "xx",
 			"yy", "id", "thick", "ct", "from", "to");
@@ -487,3 +488,4 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	}
 }
 // CSON: ClassDataAbstractionCoupling
+// CSON: FanOutComplexity

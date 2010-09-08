@@ -22,8 +22,8 @@ MFILECONTENTS=["a = 1;"
                 "end";
                 "a = 3"];
 
-MFILE=TMPDIR+"/bug2656.m"
-SCIFILE=TMPDIR+"/bug2656.sci"
+MFILE=TMPDIR+"/bug2656.m";
+SCIFILE=TMPDIR+"/bug2656.sci";
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);

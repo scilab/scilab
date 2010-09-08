@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-01-16 17:39+0000\n"
+"PO-Revision-Date: 2010-06-29 12:33+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -23,5 +23,14 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
 
+msgid "A null assignment can have only one non-colon index"
+msgstr "Нульова прив’язка може мати лише один індекс поза стовпчиками"
+
 msgid "Affection of a string in a matrix of numbers is not implemented."
 msgstr "Прив’язку до рядка у числовій матриці не реалізовано."
+
+msgid "Incorrect assignment.\n"
+msgstr "Помилкова прив’язка.\n"
+
+msgid "Invalid index.\n"
+msgstr "Некоректний індекс.\n"

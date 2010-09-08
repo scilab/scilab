@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  loaded = atomsGetLoaded()
-	</synopsis>
+      loaded = atomsGetLoaded()
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -33,30 +33,34 @@
       <varlistentry>
         <term>loaded</term>
         <listitem>
-          <para>5xn String matrix :</para>
+          <para>mx5 String matrix :</para>
           <itemizedlist>
             <listitem>
-              <para><literal>1st column</literal> : External module's technical name
-				</para>
+              <para>
+                <literal>1st column</literal> : External module's technical name
+              </para>
             </listitem>
             <listitem>
-              <para><literal>2nd column</literal> : External module's version
-				</para>
+              <para>
+                <literal>2nd column</literal> : External module's version
+              </para>
             </listitem>
             <listitem>
               <para><literal>3rd column</literal> : allusers/user, this parameter tell if
-				the external module has been installed for all users or only for the
-				current user.
-				</para>
+                the external module has been installed for all users or only for the
+                current user.
+              </para>
             </listitem>
             <listitem>
-              <para><literal>4th column</literal> : External module's installation path
-				</para>
+              <para>
+                <literal>4th column</literal> : External module's installation path
+              </para>
             </listitem>
             <listitem>
-              <para><literal>5th column</literal> : I/A, this parameter tell if
-				the external module has been automatically or intentionnaly installed.
-				</para>
+              <para>
+                <literal>5th column</literal> : I/A, this parameter tell if
+                the external module has been automatically or intentionnaly installed.
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -68,8 +72,9 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsGetLoaded</literal> returns the list of loaded external modules
-	</para>
+    <para>
+      <literal>atomsGetLoaded</literal> returns the list of loaded external modules
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->

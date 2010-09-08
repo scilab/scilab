@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA -
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -20,20 +20,20 @@ Type *V;\
     V=(Type *)v;\
     iv = 0;\
     if (*job == 0) {\
-	t = 1;\
-	for (j = 0; j < *n; ++j) \
-	    t *=  C2F(genprod)(typ,m, &A[j * (*na)], &c__1);\
-	V[0] = (Type)t;}\
+    t = 1;\
+    for (j = 0; j < *n; ++j) \
+        t *=  C2F(genprod)(typ,m, &A[j * (*na)], &c__1);\
+    V[0] = (Type)t;}\
     else if (*job == 1) {\
-	for (j = 0; j < *n; ++j) {\
-	    t =  C2F(genprod)(typ,m, &A[j * (*na) ], &c__1);\
-	    V[iv] = (Type)t;iv += *nv;\
-	}}\
+    for (j = 0; j < *n; ++j) {\
+        t =  C2F(genprod)(typ,m, &A[j * (*na) ], &c__1);\
+        V[iv] = (Type)t;iv += *nv;\
+    }}\
     else if (*job == 2) {\
-	for (i = 0; i < *m; ++i) {\
-	    t =  C2F(genprod)(typ,n, &A[i], m);\
-	    V[iv] = (Type)t;iv += *nv;\
-	}\
+    for (i = 0; i < *m; ++i) {\
+        t =  C2F(genprod)(typ,n, &A[i], m);\
+        V[iv] = (Type)t;iv += *nv;\
+    }\
     }\
 }
 
@@ -68,24 +68,24 @@ Type *A;\
     A=(Type *)a;\
     iv = 0;\
     if (*job == 0) {\
-	t = 1.0;\
-	for (j = 0; j < *n; ++j) \
-	    t *=  C2F(genprod_double)(typ,m, &A[j * (*na)], &c__1);\
-	v[0] = t;}\
+    t = 1.0;\
+    for (j = 0; j < *n; ++j) \
+        t *=  C2F(genprodasdouble)(typ,m, &A[j * (*na)], &c__1);\
+    v[0] = t;}\
     else if (*job == 1) {\
-	for (j = 0; j < *n; ++j) {\
-	    v[iv] =  C2F(genprod_double)(typ,m, &A[j * (*na) ], &c__1);\
-	    iv += *nv;\
-	}}\
+    for (j = 0; j < *n; ++j) {\
+        v[iv] =  C2F(genprodasdouble)(typ,m, &A[j * (*na) ], &c__1);\
+        iv += *nv;\
+    }}\
     else if (*job == 2) {\
-	for (i = 0; i < *m; ++i) {\
-	    v[iv] =  C2F(genprod_double)(typ,n, &A[i], m);\
-	    iv += *nv;\
-	}\
+    for (i = 0; i < *m; ++i) {\
+        v[iv] =  C2F(genprodasdouble)(typ,n, &A[i], m);\
+        iv += *nv;\
+    }\
     }\
 }
 
-int C2F(genmprod_double)(int *typ,int *job, int *a, int *na, int *m, int *n, double *v, int *nv)
+int C2F(genmprodasdouble)(int *typ,int *job, int *a, int *na, int *m, int *n, double *v, int *nv)
 {
   static int  i, j, iv;
   static double t;

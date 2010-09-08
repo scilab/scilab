@@ -131,7 +131,7 @@ public class StartAction extends DefaultAction {
 		 * Import a valid scs_m structure into Scilab
 		 */
 		final File temp = FileUtils.createTempFile();
-		diagram.dumpToHdf5File(temp.getAbsolutePath());
+		diagram.dumpToHdf5File(temp);
 
 		command.append(buildCall("import_from_hdf5", temp.getAbsolutePath()));
 		command.append(buildCall("scicos_debug", diagram.getScicosParameters().getDebugLevel()));

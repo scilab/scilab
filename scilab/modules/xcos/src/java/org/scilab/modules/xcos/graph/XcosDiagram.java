@@ -35,9 +35,13 @@ import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -75,10 +79,10 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
@@ -104,15 +108,13 @@ import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
-import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
@@ -120,7 +122,6 @@ import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
-import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import com.mxgraph.view.mxStylesheet;
@@ -1340,18 +1341,24 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * @param fileName HDF5 filename
      */
-    public void dumpToHdf5File(final String fileName) {
-	String writeFile = fileName;
+    public void dumpToHdf5File(final File fileName) {
+    	File writeFile = fileName;
 	if (fileName == null) {
 	    final FileChooser fc = ScilabFileChooser.createFileChooser();
-	    fc.setInitialDirectory(getSavedFile());
+	    if (getSavedFile() != null) {
+	    	try {
+				fc.setInitialDirectory(getSavedFile().getCanonicalPath());
+			} catch (final IOException e) {
+				LOG.error(e);
+			}
+	    }
 	    fc.setMultipleSelection(false);
 	    fc.displayAndWait();
 
 	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 		return;
 	    }
-	    writeFile = fc.getSelection()[0];
+	    writeFile = new File(fc.getSelection()[0]);
 	}
 	
 	new H5RWHandler(writeFile).writeDiagram(this);
@@ -1609,10 +1616,9 @@ public class XcosDiagram extends ScilabGraph {
      * @param fileName diagram filename
      * @return save status
      */
-    public boolean saveDiagramAs(final String fileName) {
-
+    public boolean saveDiagramAs(final File fileName) {
 	boolean isSuccess = false;
-	String writeFile = fileName;
+	File writeFile = fileName; 
 	info(XcosMessages.SAVING_DIAGRAM);
 	if (fileName == null) {
 	    // Choose a filename
@@ -1621,7 +1627,7 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 	    fc.setMultipleSelection(false);
 	    if (getSavedFile() != null) {
-		fc.setSelectedFile(new File(getSavedFile()));
+	    	fc.setSelectedFile(getSavedFile());
 	    }
 
 	    final SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
@@ -1637,64 +1643,141 @@ public class XcosDiagram extends ScilabGraph {
 		info(XcosMessages.EMPTY_INFO);
 		return isSuccess;
 	    }
-	    writeFile = fc.getSelection()[0];
+	    writeFile = new File(fc.getSelection()[0]);
 	}
+	
 	/* Extension checks */
-	final File file = new File(writeFile);
-	if (!file.exists()) {
-	    final String extension = writeFile.substring(writeFile.lastIndexOf('.') + 1);
-
-	    if (extension.equals(writeFile)) {
-		/* No extension given --> .xcos added */
-		writeFile += ".xcos";
+	if (!writeFile.exists()) {
+		final String filename = writeFile.getName();
+	    if (!filename.endsWith(XcosFileType.XCOS.getDottedExtension())) {
+	    	/* No extension given --> .xcos added */
+	    	writeFile = new File(writeFile.getParent(), filename + XcosFileType.XCOS.getDottedExtension());
 	    }
 	}
-
-	final XcosCodec codec = new XcosCodec();
-	final String xml = mxUtils.getXml(codec.encode(this));
-
+	
 	try {
-	    mxUtils.writeFile(xml, writeFile);
-	    isSuccess = true;
-	} catch (final IOException e1) {
-	    e1.printStackTrace();
-	    isSuccess = false;
-	}
-
-	if (isSuccess) {
+		save(writeFile);
 	    setSavedFile(writeFile);
-	    final File theFile = new File(writeFile);
-	    setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
+	    
+	    setTitle(writeFile.getName().substring(0, writeFile.getName().lastIndexOf('.')));
 	    ConfigurationManager.getInstance().addToRecentFiles(writeFile);
 	    setModified(false);
-	} else {
-	    XcosDialogs.couldNotSaveFile(this);
+	    isSuccess = true;
+	} catch (final TransformerException e) {
+		LogFactory.getLog(XcosDiagram.class).error(e);
+		XcosDialogs.couldNotSaveFile(this);
 	}
+	
 	info(XcosMessages.EMPTY_INFO);
 	return isSuccess;
     }
 
-    /**
-     * Set the title of the diagram
-     * @param title the title
-     * @see org.scilab.modules.graph.ScilabGraph#setTitle(java.lang.String)
-     */
-    @Override
-    public void setTitle(final String title) {
-	super.setTitle(title);
-	updateTabTitle();
-    }
-
-    /**
-     * Update the title
-     */
-    public void updateTabTitle() {
-	final String tabTitle = !isModified() ? getTitle() : "* " + getTitle();
-	if (getParentTab() != null) {
-	    getParentTab().setName(tabTitle);
-	    getParentTab().draw();
+	/**
+	 * Save to a file
+	 * 
+	 * @param file the file
+	 * @throws TransformerException on error
+	 */
+	private void save(final File file) throws TransformerException {
+		final XcosCodec codec = new XcosCodec();
+		final TransformerFactory tranFactory = TransformerFactory.newInstance();
+		final Transformer aTransformer = tranFactory.newTransformer();
+		
+		final DOMSource src = new DOMSource(codec.encode(this));
+		final StreamResult result = new StreamResult(file);
+		aTransformer.transform(src, result);
 	}
-    }
+	
+	/**
+	 * Load from a file
+	 * 
+	 * @param file the file
+	 * @throws TransformerException on error
+	 */
+	private void load(final File file) throws TransformerException {
+		final XcosCodec codec = new XcosCodec();
+		final TransformerFactory tranFactory = TransformerFactory.newInstance();
+		final Transformer aTransformer = tranFactory.newTransformer();
+		
+		final StreamSource src = new StreamSource(file);
+		final DOMResult result = new DOMResult();
+		aTransformer.transform(src, result);
+		
+		codec.decode(result.getNode().getFirstChild(), this);
+	}
+	
+	/**
+	 * Perform post loading initialization.
+	 * @param file the loaded file
+	 */
+	private void postLoad(final File file) {
+		final String name = file.getName();
+
+		setModified(false);
+		setSavedFile(file);
+		setTitle(name.substring(0, name.lastIndexOf('.')));
+		generateUID();
+	}
+	
+	/**
+	 * Set the title of the diagram
+	 * 
+	 * @param title
+	 *            the title
+	 * @see org.scilab.modules.graph.ScilabGraph#setTitle(java.lang.String)
+	 */
+	@Override
+	public void setTitle(final String title) {
+		super.setTitle(title);
+		updateTabTitle();
+	}
+
+	/**
+	 * Update the title
+	 */
+	public void updateTabTitle() {
+		// get the modifier string 
+		final String modified;
+		if (isModified()) {
+			modified = "*";
+		} else {
+			modified = "";
+		}
+		
+		// get the title string
+		final String title = getTitle();
+		
+		// get the path
+		CharSequence formattedPath = "";
+		final File savedFile = getSavedFile();
+		if (savedFile != null) {
+			try {
+				final String path = savedFile.getCanonicalPath();
+				formattedPath = new StringBuilder()
+					.append(" (")
+					.append(path)
+					.append(')');
+			} catch (final IOException e) {
+				LOG.debug(e);
+			}
+		}
+		
+		// Product name
+		final String product = Xcos.TRADENAME;
+		
+		final String tabTitle = new StringBuilder()
+			.append(modified)
+			.append(title)
+			.append(formattedPath)
+			.append(" - ")
+			.append(product)
+			.toString();
+		
+		if (getParentTab() != null) {
+			getParentTab().setName(tabTitle);
+			getParentTab().draw();
+		}
+	}
     
     /**
      * @param context set context
@@ -1753,17 +1836,22 @@ public class XcosDiagram extends ScilabGraph {
      * Read a diagram from an HDF5 file (ask for creation if the file does not exist) 
      * @param diagramFileName file to open
      */
-    public void openDiagramFromFile(final String diagramFileName) {
-	    final File theFile = new File(diagramFileName);
+    public void openDiagramFromFile(final File diagramFileName) {
 	    info(XcosMessages.LOADING_DIAGRAM);
 
-	    if (theFile.exists()) {
-	    	transformAndLoadFile(theFile, false);
+	    if (diagramFileName.exists()) {
+	    	transformAndLoadFile(diagramFileName, false);
 	    } else {
-		final AnswerOption answer = ScilabModalDialog.show(getParentTab(), String.format(
-			XcosMessages.FILE_DOESNT_EXIST, theFile.getAbsolutePath()),
-			XcosMessages.XCOS, IconType.QUESTION_ICON,
-			ButtonType.YES_NO);
+		AnswerOption answer;
+		try {
+			answer = ScilabModalDialog.show(getParentTab(), String.format(
+				XcosMessages.FILE_DOESNT_EXIST, diagramFileName.getCanonicalFile()),
+				XcosMessages.XCOS, IconType.QUESTION_ICON,
+				ButtonType.YES_NO);
+		} catch (final IOException e) {
+			LOG.error(e);
+			answer = AnswerOption.YES_OPTION;
+		}
 
 		if (answer == AnswerOption.YES_OPTION) {
 		    try {
@@ -1772,10 +1860,9 @@ public class XcosDiagram extends ScilabGraph {
 			writer.flush();
 			writer.close();
 			setSavedFile(diagramFileName);
-			setTitle(theFile.getName().substring(0,
-				theFile.getName().lastIndexOf('.')));
 		    } catch (final IOException ioexc) {
-			JOptionPane.showMessageDialog(getAsComponent(), ioexc);
+		    	LOG.error(ioexc);
+		    	JOptionPane.showMessageDialog(getAsComponent(), ioexc);
 		    }
 		}
 	    }
@@ -1787,7 +1874,8 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Load a file with different method depending on it extension 
      * @param theFile File to load
-     * @param wait wait end transform 
+     * @param wait wait end transform
+     * @return the status of the operation
      */
     protected boolean transformAndLoadFile(final File theFile, final boolean wait) {
 	final File fileToLoad = theFile;
@@ -1821,40 +1909,30 @@ public class XcosDiagram extends ScilabGraph {
 	    break;
 
 	case XCOS:
-	    final Document document = loadXcosDocument(theFile.getAbsolutePath());
-	    if (document == null) {
-		XcosDialogs.couldNotLoadFile(this);
-		return false;
-	    }
-
-	    final XcosCodec codec = new XcosCodec(document);
-
-	    if (getModel().getChildCount(getDefaultParent()) == 0) {
-		codec.decode(document.getDocumentElement(), this);
-		setModified(false);
-		setSavedFile(theFile.getAbsolutePath());
-		setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
-		generateUID();
-	    } else {
-	    	info(XcosMessages.LOADING_DIAGRAM);
-		final XcosDiagram xcosDiagram = new XcosDiagram();
-		codec.decode(document.getDocumentElement(), xcosDiagram);
-		xcosDiagram.setModified(false);
-		xcosDiagram.setSavedFile(theFile.getAbsolutePath());
-		xcosDiagram.setTitle(theFile.getName().substring(0,	theFile.getName().lastIndexOf('.')));
-		xcosDiagram.generateUID();
-		new XcosTab(xcosDiagram).setVisible(true);
-		info(XcosMessages.EMPTY_INFO);
-	    }
-	    
-	    result = true;
+		try {
+			if (getModel().getChildCount(getDefaultParent()) == 0) {
+		    	load(theFile);
+		    	postLoad(theFile);
+		    } else {
+		    	info(XcosMessages.LOADING_DIAGRAM);
+		    	final XcosDiagram xcosDiagram = new XcosDiagram();
+				xcosDiagram.load(theFile);
+				xcosDiagram.postLoad(theFile);
+				new XcosTab(xcosDiagram).setVisible(true);
+				info(XcosMessages.EMPTY_INFO);
+		    }
+			result = true;
+		} catch (final TransformerException e) {
+			LOG.error(e);
+			result = false;
+		}
 	    break;
 
 	case HDF5:
 	    final H5RWHandler handler = new H5RWHandler(fileToLoad);
 	    handler.readDiagram(this);
 	    generateUID();
-	    setModified(false);
+	    updateTabTitle();
 	    result = true;
 	    break;
 
@@ -1863,25 +1941,6 @@ public class XcosDiagram extends ScilabGraph {
 	    break;
 	}
 	return result;
-    }
-
-    /**
-     * @param xcosFile xcos file
-     * @return opened document
-     */
-    static Document loadXcosDocument(final String xcosFile) {
-	final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-	DocumentBuilder docBuilder;
-	try {
-	    docBuilder = docBuilderFactory.newDocumentBuilder();
-	    return docBuilder.parse(xcosFile);
-	} catch (final ParserConfigurationException e) {
-	    return null;
-	} catch (final SAXException e) {
-	    return null;
-	} catch (final IOException e) {
-	    return null;
-	}
     }
     
     /**

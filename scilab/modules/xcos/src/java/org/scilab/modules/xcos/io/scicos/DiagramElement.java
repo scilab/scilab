@@ -48,7 +48,7 @@ import com.mxgraph.model.mxIGraphModel;
 public class DiagramElement extends AbstractElement<XcosDiagram> {
 	private static final List<String> BASE_FIELD_NAMES = asList(
 			"diagram", "props", "objs");
-	private static final String VERSION = "scicos4.2";
+	private static final String VERSION = "scicos4.3";
 	
 	private static final int OBJS_INDEX = 2;
 	private static final int VERSION_INDEX = 3;
@@ -78,7 +78,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(
 			OPTS_FIELDS,
 		Arrays.asList(
-			new ScilabList( // 3D
+			new ScilabList(// 3D
 				Arrays.asList(
 					new ScilabBoolean(true),
 					new ScilabDouble(33)
@@ -86,7 +86,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			),
 			new ScilabDouble(new double[][] {{8, 1}}), // Background
 			new ScilabDouble(new double[][] {{1, 5}}), // Link
-			new ScilabList( // ID
+			new ScilabList(// ID
 				Arrays.asList(
 					new ScilabDouble(new double[][] {{5, 1}}),
 					new ScilabDouble(new double[][] {{4, 1}})

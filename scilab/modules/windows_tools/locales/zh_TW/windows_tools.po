@@ -3,18 +3,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2009-10-30 14:46+0000\n"
-"Last-Translator: TzuYuan Lin <Unknown>\n"
+"PO-Revision-Date: 2010-06-30 02:07+0000\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-06-09 10:22+0100\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: 配置記憶體空間時發生錯誤.\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -29,8 +25,16 @@ msgid "%s: Cannot query value of this type.\n"
 msgstr "%s: 此資料型態的值無法查詢.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Memory 分配有誤.\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體空間不足.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 輸入參數的個數錯誤: 應該有 %d 個.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -77,11 +81,11 @@ msgstr "僅適用於微軟視窗系統."
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "僅可在視窗模式下使用,不可在主控模式下使用.\n"
 
-msgid "Powershell not found."
-msgstr "找不到 Powershell."
+msgid "Please verify your powershell command without Scilab."
+msgstr "請驗証你的 powershell command without Scilab."
 
-msgid "Verify your script without Scilab."
-msgstr "檢查您的 script 不需要 Scilab."
+msgid "Powershell 1.0 not found."
+msgstr "Powershell 1.0 找不到."
 
 #
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50

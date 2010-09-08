@@ -141,7 +141,7 @@ $(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 $(top_builddir)/modules/scicos/libscisundials.la \
 $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 $(top_builddir)/modules/mexlib/libmex.la \
-$(top_builddir)/modules/core/libscicore.la \
+ \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la \
 $(top_builddir)/modules/arnoldi/libsciarnoldi.la 
@@ -155,12 +155,6 @@ libsciscicos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libsciscicos_la_etcdir = $(mydatadir)/etc
 libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
 
-#### scicos : tcl scripts ####
-libsciscicos_la_tcldir = $(mydatadir)/tcl
-libsciscicos_la_tcl_DATA = tcl/MIHM.tcl \
-tcl/scicos.gif \
-tcl/scicos2.gif
-
 #### scicos : gateway declaration ####
 libsciscicos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
@@ -171,7 +165,8 @@ libsciscicos_la_includedir=$(pkgincludedir)/scicos
 libsciscicos_la_include_HEADERS = includes/scicos.h \
 includes/scicos-def.h \
 includes/scicos_free.h \
-includes/scicos_malloc.h
+includes/scicos_malloc.h \
+includes/scicos_math.h
 
 
 #### scicos : cosf files ####
@@ -181,7 +176,9 @@ palettes/DemoBlocks.cosf \
 palettes/Events.cosf \
 palettes/Integer.cosf \
 palettes/Linear.cosf \
+palettes/Lookup_Tables.cosf \
 palettes/Matrix.cosf \
+palettes/Modelica.cosf \
 palettes/Non_linear.cosf \
 palettes/OldBlocks.cosf \
 palettes/Others.cosf \

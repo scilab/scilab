@@ -8,17 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2009-11-20 23:01+0000\n"
+"PO-Revision-Date: 2010-07-05 22:02+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
@@ -74,6 +70,10 @@ msgstr ""
 #, c-format
 msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr "%s: Совпавший текст превосходит ограничение буфера.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -222,6 +222,12 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался массив строковых "
+"переменных.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
@@ -232,12 +238,6 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Character expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался символ.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась матрица символьных "
-"строк.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
@@ -405,15 +405,3 @@ msgstr "%s: не удалось получить размерность этой
 
 msgid "WARNING : \n"
 msgstr "ВНИМАНИЕ: \n"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "Внимание: функция %s устарела.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "Внимание: используйте %s вместо неё.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "Внимание: эта функция будет полностью удалена в Scilab %s.\n"

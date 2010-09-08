@@ -71,7 +71,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/** Name of the action */
 	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "object-group.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */

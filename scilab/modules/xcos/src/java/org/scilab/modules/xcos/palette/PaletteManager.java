@@ -30,7 +30,7 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.jvm.utils.ScilabConstants;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.FileUtils;
@@ -164,10 +164,6 @@ public final class PaletteManager {
 						"user palette configuration file is not valid.\n"
 						+ "Switching to the default one."
 						+ e);
-
-				if (getView() == null) {
-					throw new Error(XcosMessages.ERR_CONFIG_PALETTE_INVALID);
-				}
 
 				ScilabModalDialog.show(getView(),
 						XcosMessages.ERR_CONFIG_PALETTE_INVALID,

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-12 16:01+0000\n"
+"PO-Revision-Date: 2010-06-29 11:59+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -780,6 +780,21 @@ msgstr "Частота (Гц)"
 msgid "Gain :"
 msgstr "Приріст:"
 
+msgid "Hall chart"
+msgstr "Частотна діаграма"
+
+msgid "Hz"
+msgstr "Гц"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
 msgid "Imaginary axis"
 msgstr "Вісь уявних значень"
 
@@ -794,8 +809,8 @@ msgstr ""
 "Непридатні до розкладу множники власної частоти і коефіцієнта затухання "
 "функції переходу (натисніть посилання нижче)"
 
-msgid "Magnitude (Db)"
-msgstr "Амплітуда (дБ)"
+msgid "Magnitude (dB)"
+msgstr "Інтенсивність (дБ)"
 
 msgid "Numerator :"
 msgstr "Чисельник:"
@@ -811,6 +826,15 @@ msgstr "Фаза (у градусах)"
 
 msgid "Poles"
 msgstr "Полюси"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
 
 msgid "Real axis"
 msgstr "Вісь дійсних значень"
@@ -833,8 +857,14 @@ msgstr "Нулі"
 msgid "asymptotic directions"
 msgstr "асимптотичні напрямки"
 
+msgid "dB"
+msgstr "дБ"
+
 msgid "magnitude(y) (Db)"
 msgstr "амплітуда (y) (дБ)"
+
+msgid "magnitude(y) (dB)"
+msgstr "magnitude(y) (дБ)"
 
 msgid "open loop poles"
 msgstr "полюса розімкненої системи"

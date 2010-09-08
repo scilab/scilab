@@ -10,6 +10,8 @@ subdemolist = [                                   ..
 	"plot2d1 (1)"    , "plot2d1_1.dem.sce"       ; ..
 	"plot2d3"        , "plot2d3.dem.sce"         ; ..
 	"plot2d1 (2)"    , "plot2d1_2.dem.sce"       ; ..
+	"plotyy"         , "plotyy.dem.sce"          ; ..
+	"plotyyy"        , "plotyyy.dem.sce"         ; ..
 	"histplot"       , "histplot.dem.sce"        ; ..
 	"fplot2d"        , "fplot2d.dem.sce"         ; ..
 	"param3d (1)"    , "param3d_1.dem.sce"       ; ..

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-02-11 13:57+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-08-14 02:02+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,6 +17,133 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
+
+msgid ""
+"\n"
+"         (already programmed) event. There may be an error in"
+msgstr ""
+"\n"
+"         (プログラム済みの)イベント. エラーが発生している可能性があります."
+
+msgid ""
+"\n"
+"         your model. Please check your model\n"
+msgstr ""
+"\n"
+"         モデルを確認してください.\n"
+
+msgid ""
+"\n"
+" The residual function returns NAN/Inf. \n"
+" Please verify your model:\n"
+" some functions might be called with illegal inputs."
+msgstr ""
+"\n"
+" residual関数が NAN/inf を返しました.\n"
+"モデルを検証してください:\n"
+"誤った入力を指定して関数がコールされた可能性があります."
+
+#, c-format
+msgid ""
+"\n"
+" Warning:an event is reprogrammed at t=%g by removing another"
+msgstr ""
+"\n"
+" 警告: 他のイベントを削除し, イベントが t=%g で再度プログラムされました."
+
+msgid ""
+"\n"
+" error in Jacobian"
+msgstr ""
+"\n"
+" ヤコビアンでエラー発生"
+
+#, c-format
+msgid ""
+"\n"
+"MEMORY_ERROR: %s() failed - returned NULL pointer\n"
+"\n"
+msgstr ""
+"\n"
+"MEMORY_ERROR: %s() が失敗しました - NULLポインタが返されました\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"SUNDIALS_ERROR: %s() failed - returned NULL pointer\n"
+"\n"
+msgstr ""
+"\n"
+"SUNDIALS_ERROR: %s() が失敗しました - NULLポインタが返されました\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"SUNDIALS_ERROR: %s() failed with flag = %d\n"
+"\n"
+msgstr ""
+"\n"
+"SUNDIALS_ERROR: %s() が flag =%d で失敗しました\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The computing function #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"警告: 関数 #%d の計算が NaN/Inf を返しました."
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The initialization system #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"警告: システム初期化 #%d が NaN/Inf を返しました."
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"警告: residual 関数 #%d が NaN/Inf を返しました"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The zero-crossing function #%d returns a NaN"
+msgstr ""
+"\n"
+"警告: ゼロ交差判定用の関数 #%d が NaNを返しました"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The zero_crossing function #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"警告: zero_crossing 関数 #%d が NaN/Inf を返しました"
+
+msgid ""
+"\n"
+"getscicosvars : utility function to retrieve\n"
+msgstr ""
+"\n"
+"getscicosvars : 取得用のユーティリティ関数\n"
+
+msgid ""
+"                scicos arrays during simulation.\n"
+"\n"
+msgstr ""
+"                シミュレーション中のscicos配列.\n"
+"\n"
+
+msgid "  that must be informed with the following values :\n"
+msgstr "  以下の値を指定する必要があります:\n"
 
 #
 # File: macros/scicos_scicos/genmoc.sci, line: 79
@@ -36,29 +163,244 @@ msgstr " %s.mo を強制的に生成しました。\n"
 msgid " %s.mo must be recompiled\n"
 msgstr " %s.mo は生成されなくてはなりません。\n"
 
-#
-# File: macros/scicos_scicos/MODCOM.sci, line: 91
-#, c-format
-msgid "%s: An error occurred during the compilation of the Modelica block."
-msgstr "%s: Modelicaブロックのコンパイル中に問題が起こりました。"
+msgid " Scilab is in no gui mode : Scicos is unavailable"
+msgstr " Scilab が GUIモードではありません: Scicos は使用できません"
 
-#
-# File: macros/scicos_scicos/genmoc.sci, line: 45
+#, c-format
+msgid "%s : Allocation error.\n"
+msgstr "%s: 領域確保エラー.\n"
+
+#, c-format
+msgid "%s : Bad size for Rhs(1).\n"
+msgstr "%s: 右辺引数(1) の大きさが間違っています.\n"
+
+#, c-format
+msgid "%s : Bad size for Rhs(2).\n"
+msgstr "%s: 右辺引数(2) の大きさが間違っています.\n"
+
+#, c-format
+msgid "%s : Error.\n"
+msgstr "%s: エラー\n"
+
+#, c-format
+msgid "%s : First argument must be a Typed list.\n"
+msgstr "%s: 最初の引数は型付きのリスト (tlist) としてください.\n"
+
+#, c-format
+msgid ""
+"%s : First argument must be a matrix or an hypermatrix\n"
+"of real, complex or integer numbers.\n"
+msgstr "%s: 最初の引数は行列またはハイパー行列としてください.\n"
+
+#, c-format
+msgid "%s : First argument must be a scicos model.\n"
+msgstr "%s: 最初の引数はscicosモデルとしてください.\n"
+
+#, c-format
+msgid "%s : First argument must be a scicos signal structure.\n"
+msgstr "%s: 最初の引数はscicos signal 構造体としてください.\n"
+
+#, c-format
+msgid "%s : First argument must be a scicos_block typed list.\n"
+msgstr "%s : 最初の引数は、scicosブロック 型リストでなくてはなりません。\n"
+
+#, c-format
+msgid "%s : First argument must be a string.\n"
+msgstr "%s : 最初の引数は、文字でなくてはなりません。\n"
+
+#, c-format
+msgid "%s : First argument must be a structure.\n"
+msgstr "%s: 最初の引数は構造体とする必要があります.\n"
+
+#, c-format
+msgid "%s : First argument must be a valid scicos_block typed list.\n"
+msgstr "%s: 最初の引数は有効な scicos_block 型付きリスト(tlist) とする必要があります.\n"
+
+#, c-format
+msgid "%s : Fourth argument must be a Tlist.\n"
+msgstr "%s : 4番目の引数はTlistでなくてはなりません。\n"
+
+#, c-format
+msgid "%s : Function not found\n"
+msgstr "%s: 関数が見つかりません.\n"
+
+#, c-format
+msgid "%s : Incompatible sim.nb RHS parameter.\n"
+msgstr "%s: sim.nb の右辺パラメータに互換性がありません.\n"
+
+#, c-format
+msgid "%s : No more free memory.\n"
+msgstr "%s : これ以上空きメモリはありません。\n"
+
+#, c-format
+msgid "%s : No more memory.\n"
+msgstr "%s: メモリが不足しています.\n"
+
+#, c-format
+msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
+msgstr "%s: 3次元のハイパー行列のみが使用可能です.\n"
+
+#, c-format
+msgid "%s : Second argument must be a scalar.\n"
+msgstr "%s: 第2引数にはスカラーを指定してください.\n"
+
+#, c-format
+msgid "%s : Second argument must be scalar.\n"
+msgstr "%s: 第2引数にはスカラーを指定してください.\n"
+
+#, c-format
+msgid "%s : Second element of sim must be a list.\n"
+msgstr "%s : 第2のsimの要素は、リストでなくてはなりません。\n"
+
+#, c-format
+msgid "%s : Secong argument must be a real.\n"
+msgstr "%s: 第2引数には実数を指定してください.\n"
+
+#, c-format
+msgid "%s : Secong argument must be a scalar.\n"
+msgstr "%s : 第2の引数は、スカラーでなくてはなりません。\n"
+
+#, c-format
+msgid "%s : Sixth argument must have a maximum of seven elements.\n"
+msgstr "%s: 第6引数には7つの要素の最大値を指定してください.\n"
+
+#, c-format
+msgid "%s : Sixth argument must have at least four elements.\n"
+msgstr "%s : 第6の引数は、最低4つの要素を持っていなくてはいけません。\n"
+
+#, c-format
+msgid "%s : Third argument must be a scalar.\n"
+msgstr "%s : 第3の引数はスカラーでなくてはなりません。\n"
+
+#, c-format
+msgid "%s : Third argument must be scalar.\n"
+msgstr "%s : 第3の引数はスカラーでなくてはなりません。\n"
+
+#, c-format
+msgid "%s : Undefined Function type\n"
+msgstr "%s : 関数型は定義されていません\n"
+
+#, c-format
+msgid "%s : Undefined field in string matrix position : %d.\n"
+msgstr "%s: 文字列行列の位置 %d に未定義のフィールドがあります.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
+msgstr "%s:　大きさが定義されていません. in(%d)=%d. モデルを調整してください.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
+msgstr "%s: 大きさが定義されていません. in2(%d)=%d. モデルを調整してください.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
+msgstr "%s: 大きさが定義されていません. out(%d)=%d. モデルを調整してください.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
+msgstr "%s: 大きさが定義されていません. out2(%d)=%d. モデルを調整してください.\n"
+
+#, c-format
+msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
+msgstr "%s: 型が定義されていません. intyp(%d)=%d. モデルを調整してください.\n"
+
+#, c-format
+msgid "%s : Undetermined Type. outtyp(%d)=%d. Please adjust your model.\n"
+msgstr "%s: 型が定義されていません. outtyp(%d)=%d. モデルを調整してください.\n"
+
+#, c-format
+msgid "%s : bad dimension for lnksz argument.\n"
+msgstr "%s : lnksz 引数の次元が不正です。\n"
+
+#, c-format
+msgid "%s : bad dimension for lnktyp argument.\n"
+msgstr "%s : lnktyp 引数の次元が不正です。\n"
+
+#, c-format
+msgid "%s : error\n"
+msgstr "%s : エラー\n"
+
+#, c-format
+msgid "%s : error in cross variable size checking : %d\n"
+msgstr "%s: cross 変数の大きさを確認する際にエラーを発生しました: %d\n"
+
+#, c-format
+msgid "%s : error. Type %d not yet supported for outtb.\n"
+msgstr "%s : エラー、型 %d はまだouttbでサポートされません。\n"
+
+#, c-format
+msgid ""
+"%s : error. Type %d of double scalar matrix not yet supported for outtb.\n"
+msgstr "%s : エラー、doubleスカラー行列の型 %d はまだouttbでサポートされません。\n"
+
+#, c-format
+msgid ""
+"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgstr "%s : エラー、intスカラー行列の型 %d はまだouttbでサポートされません。\n"
+
+#, c-format
+msgid "%s : inconsistent dimension between lnksz and lnktyp.\n"
+msgstr "%s : lnkszとlnktyp間の次元に一貫性がありません。\n"
+
+#, c-format
+msgid "%s : lnksz and lnktyp argument must have the same length.\n"
+msgstr "%s : lnkszとlnktyp引数は、同じ長さを持っていなくてはいけません。\n"
+
+#, c-format
+msgid "%s : lnksz argument must be double or integer.\n"
+msgstr "%s : lnksz引数は、doubleまたは整数でなくてはなりません。\n"
+
+#, c-format
+msgid "%s : lnktyp argument must be double or integer.\n"
+msgstr "%s : LNKTYP引数はdoubleか整数でなくてはなりません。\n"
+
+#, c-format
+msgid "%s : outtb element of state must be a list.\n"
+msgstr "%s : ステートのouttb要素はリストでなくてはなりません。\n"
+
+#, c-format
+msgid "%s : oz element of state must be a list.\n"
+msgstr "%s : ステートのoz要素はリストでなくてはなりません。\n"
+
+#, c-format
+msgid "%s : sim.opar must be a list.\n"
+msgstr "%s : sim.opar はリストでなくてはなりません。\n"
+
+#, c-format
+msgid "%s : type 1 function not allowed for scilab blocks\n"
+msgstr "%s: 1形関数はScilab ブロックでは使用できません.\n"
+
+#, c-format
+msgid "%s : type 2 function not allowed for scilab blocks\n"
+msgstr "%s: 2形関数はScilab ブロックでは使用できません.\n"
+
+#, c-format
+msgid "%s : unknown block : %s\n"
+msgstr "%s : 未知の block : %s\n"
+
+#, c-format
+msgid "%s :the handle is not or no more valid.\n"
+msgstr "%s: ハンドルが有効ではないか, 有効ではなくなっています.\n"
+
+#, c-format
+msgid "%s is not a valid directory\n"
+msgstr "%s は有効なディレクトリではありません.\n"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s は有効な名前ではありません, 図のタイトルを変更してください."
+
+#, c-format
+msgid "%s: 1st and 2nd argument must have equal size\n"
+msgstr "%s: 第1および第2引数の大きさを同じにしてください.\n"
+
 #, c-format
 msgid "%s: Cannot find any MO files in the following location: %s.\n"
-msgstr "%s: どのようなMOファイルも以下の場所で見つけることができません: %s\n"
+msgstr "%s: MOファイルが以下の場所で見つかりませんでした: %s.\n"
 
-#
-# File: macros/scicos_auto/lincos.sci, line: 126
 #, c-format
 msgid "%s: Diagram does not compile in pass %d.\n"
-msgstr "%s: 図形は、%d でコンパイルできません。\n"
-
-#
-# File: macros/scicos_scicos/build_block.sci, line: 92
-#, c-format
-msgid "%s: Error : the following command line failed to execute: %s.\n"
-msgstr "%s: エラー: 以下のコマンドを実行できませんでした。: %s\n"
+msgstr "%s: 図形をパス %d でコンパイルできません.\n"
 
 #
 # File: macros/scicos_scicos/build_block.sci, line: 31
@@ -74,17 +416,21 @@ msgstr "%s: エラー: scifuncブロックは、定義されませんでした�
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
 msgstr "%s: エラー: Modelica(MODELICAC)コンパイラーは有効でありません。"
 
-#
-# File: macros/scicos_auto/lincos.sci, line: 115
+#, c-format
+msgid "%s: First argument must be a Scicos diagram data structure\n"
+msgstr "%s: 最初の引数は、Scicos 図形データ構造体でなくてはなりません\n"
+
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
-msgstr "%s: 入力 ports は適切な番号をつけられません。\n"
+msgstr "%s: 入力ポートの番号付けが間違っています.\n"
 
-#
-# File: macros/scicos_auto/lincos.sci, line: 120
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
+
 #, c-format
 msgid "%s: Output ports are not numbered properly.\n"
-msgstr "%s: 出力 ports は適切な番号をつけられません。\n"
+msgstr "%s: 出力ポートの番号付けが間違っています.\n"
 
 #
 # File: macros/scicos_auto/scicos_simulate.sci, line: 181
@@ -92,29 +438,21 @@ msgstr "%s: 出力 ports は適切な番号をつけられません。\n"
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr "%s: 入力引数の数が不正です: %d と %d の間である必要があります。\n"
 
-#
-# File: macros/scicos_scicos/xgetcolor.sci, line: 29
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: macros/scicos_scicos/xgetcolor.sci, line: 32
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: 出力引数の数が不正です: %d を想定します。\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: macros/scicos_scicos/xgetcolor.sci, line: 46
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
-msgstr "%s: 出力引数 #%d で不正なサイズ: 単一整数を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 整数を指定してください.\n"
 
-#
-# File: macros/scicos_scicos/xgetcolor.sci, line: 43
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 単一整数を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #
 # File: macros/scicos_auto/lincos.sci, line: 180
@@ -122,17 +460,45 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 単一整数を想定しま�
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: 入力引数 #%d と #%d で不正なサイズです。\n"
 
-#
-# File: macros/scicos_scicos/xgetcolor.sci, line: 39
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
-#
-# File: macros/scicos_scicos/xgetcolor.sci, line: 36
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: error %d. A type of a scilab object has changed.\n"
+msgstr "%s: エラー %d. scilabオブジェクトの型は変更されました。\n"
+
+#, c-format
+msgid "%s: error %d. Bad double object sub_type.\n"
+msgstr "%s: エラー %d. 不正な sub_type double オブジェクトです。\n"
+
+#, c-format
+msgid "%s: error %d. Bad int object sub_type.\n"
+msgstr "%s: エラー %d. 不正な sub_type int オブジェクトです。\n"
+
+#, c-format
+msgid "%s: error %d. No more space on the stack for new data.\n"
+msgstr "%s: エラー %d. スタック上に新規データ用の領域が確保できません.\n"
+
+#, c-format
+msgid "%s: error %d. Only int or double object are accepted.\n"
+msgstr "%s: エラー %d. int またはdouble オブジェクトのみが使用可能です.\n"
+
+#, c-format
+msgid "%s: error %d. Stack is full.\n"
+msgstr "%s: エラー %d. スタックに空きがありません.\n"
+
+#, c-format
+msgid "%s: error %d. Undefined error.\n"
+msgstr "%s: エラー %d. 未定義のエラー。\n"
+
+#, c-format
+msgid "%s: scicosim is not running.\n"
+msgstr "%s: scicosim は実行されていません.\n"
 
 #
 # File: macros/scicos_scicos/do_load_as_palette.sci, line: 54
@@ -163,13 +529,992 @@ msgstr "ツール(&T)"
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr "''scicos''は利用できません、代わりに''xcos'' を使ってください。\n"
 
-msgid "A compatible C compiler required."
-msgstr "互換性のあるCコンパイラが必要です。"
+msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
+msgstr "**** SUNDIALS.IDA 初期化に失敗 ->再度試してください *****\n"
+
+msgid "**** SUNDIALS.IDA succesfully initialized *****\n"
+msgstr "**** SUNDIALS.IDA 初期化成功 *****\n"
+
+#, c-format
+msgid ""
+"**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
+"ATOL)\n"
+msgstr "**** SUNDIALS.Ida: 動作のための十分な時間=%g (硬領域, RTOLとATOLの変更)\n"
+
+#, c-format
+msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
+msgstr "****SUNDIALS.Cvode : %2$f へ %1$f 、最新= %3$d  から  \n"
+
+#, c-format
+msgid "****SUNDIALS.Cvode reached: %f\n"
+msgstr "****SUNDIALS.Cvode 達しました: %f\n"
+
+#, c-format
+msgid ""
+"****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
+"ATOL)\n"
+msgstr "****SUNDIALS.Cvode: 動作のための十分な時間=%g (硬領域, RTOLとATOLの変更)\n"
+
+#, c-format
+msgid "****SUNDIALS.Ida reached: %f\n"
+msgstr "****SUNDIALS.Ida 達しました: %f\n"
+
+#, c-format
+msgid "****daskr from: %f to %f hot= %d  \n"
+msgstr "****daskr : %2$f への %1$f hot= %3$d から  \n"
+
+msgid "**mod**\n"
+msgstr "**mod**\n"
+
+msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
+msgstr "- [\"文字1\";\"文字2\",...] は文字行列です\n"
+
+msgid "- myvar : an int32 or double matrix or a Tlist.\n"
+msgstr "-myvar: int32またはdoubleの行列またはTlist.\n"
+
+msgid "?"
+msgstr "ヘルプ"
+
+msgid "About Scicos"
+msgstr "Scicosについて"
+
+msgid "Activate Scilab Window"
+msgstr "Scilabウインドウをアクティブにする"
+
+msgid "Add a new color at the Scicos palette"
+msgstr "Scicosパレットで新しい色を加えて下さい"
+
+msgid "Add color"
+msgstr "色の追加"
+
+msgid "Add new block"
+msgstr "新しいブロックの追加"
+
+msgid "Align"
+msgstr "整列"
+
+msgid "An Atomic Superblock cannot contain sample clocks"
+msgstr "Atomic スーパーブロックはサンプルクロックを有することができません."
+
+msgid "An error occur when evaluating context:"
+msgstr "コンテキストを評価する際にエラーが発生しました:"
+
+#, c-format
+msgid ""
+"An unexpected  error occured while executing the menu\n"
+"%s:\n"
+msgstr ""
+"メニューを実行している間に、思いがけないエラーが起こりました\n"
+"%s:\n"
+
+msgid "Analyze Diagram"
+msgstr "図形を分析"
+
+msgid "Atomic"
+msgstr "Atomic"
+
+msgid "Available Parameters"
+msgstr "使用可能なパラメータ"
+
+msgid "Background color"
+msgstr "背景色"
+
+msgid "Background color ? :"
+msgstr "背景色 ? :"
+
+msgid "Block Documentation"
+msgstr "ブロック資料"
+
+msgid "Block ID font name"
+msgstr "ブロックID フォント名"
+
+msgid "Block ID font size"
+msgstr "ブロックID フォントサイズ"
+
+msgid "BrowseTo"
+msgstr "ブラウズする"
+
+msgid "Browser"
+msgstr "ブラウズ"
+
+msgid "C Code Generation"
+msgstr "Cコード生成"
+
+msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
+msgstr "CV_BAD_ABSTOL: abstol は, (間違った)負の要素を有してます."
+
+msgid ""
+"CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
+"[((d/dy)^k)y](t)."
+msgstr "CV_BAD_DKY: dky引数はNULLでした。dkyは、出力微分ベクトルです [((d/dy)^k)y](t)"
+
+msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
+msgstr "CV_BAD_EWT: 最初のewtは、ゼロに等しい構成要素を持っています(不正)。"
+
+msgid "CV_BAD_H0: h0 and tout - t0 inconsistent."
+msgstr "CV_BAD_H0: h0 と tout - t0 に一貫性がありません."
+
+msgid "CV_BAD_INIT_ROOT: Root found at and very near initial t."
+msgstr "CV_BAD_INIT_ROOT:  tの初期値またはその近傍に根がみつかりました."
+
+msgid "CV_BAD_ITASK: Illegal value for itask."
+msgstr "CV_BAD_ITASK: itaskへの不正な値です。"
+
+msgid ""
+"CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+"CV_WF."
+msgstr "CV_BAD_ITOL:itolへの不正な値です。適正な値は、CV_S、CV_SVとCV_WFです。"
+
+msgid ""
+"CV_BAD_K: k (the order of the derivative of y to be computed) is not in the "
+"range 0, 1, ..., qu, where qu is the order last used"
+msgstr ""
+"CV_BAD_K: k (計算するyの微分の次数) が 0.1,...,qu の範囲にありません.ただし. qu は直近に使用された次数です."
+
+msgid "CV_BAD_NVECTOR: A required vector operation is not implemented."
+msgstr "CV_BAD_NVECTOR: 指定されたベクトル処理は実装されていません."
+
+msgid "CV_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
+msgstr "CV_BAD_RELTOL: 相対許容度 reltol < 0 は不正です。"
+
+msgid "CV_BAD_T: t is not in the interval [tn-hu,tn]."
+msgstr "CV_BAD_T: t はその刻みに合いません [tn-hu,tn]."
+
+msgid ""
+"CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
+"integration"
+msgstr "CV_BAD_TOUT: 補間計算で問題を発生しました. \"tout\" が積分方向から後方に戻りすぎています."
+
+msgid ""
+"CV_BAD_TSTOP: tstop is behind current simulation time in the direction of "
+"integration."
+msgstr "CV_BAD_TSTOP: tstop が積分方向のカレントのシミュレーション時間を過ぎています."
+
+msgid "CV_CLOSE_ROOTS: Root found at and very near starting time."
+msgstr "CV_CLOSE_ROOTS: 開始時間またはその近傍に根がみつかりました."
+
+msgid ""
+"CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF "
+"= 10) during one internal time step or occurred with |h| = hmin."
+msgstr ""
+"CV_CONV_FAILURE: 1回の積分ステップにおける制限回数(=MXNCF = 10) の収束エラーが発生したか, |h| = hmin "
+"となりました."
+
+msgid "CV_Derivative_NAN: The Derivatives returned by blocks are NAN."
+msgstr "CV_Derivative_NAN: ブロックから返された微係数が NaN です."
+
+msgid ""
+"CV_ERR_FAILURE: Error test failures occurred too many times (=MXETF = 7) "
+"during one internal step or occurred with |h|=h_min "
+msgstr ""
+"CV_ERR_FAILURE: 1回の積分ステップにおける制限回数(=MXETF = 7) のエラーが発生したか, |h| = hmin となりました. "
+
+msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
+msgstr "CV_EWT_FAIL: ユーザー提供のEwtSet関数は失敗しました。"
+
+msgid ""
+"CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+"recoverable error at th efirst call"
+msgstr ""
+"CV_FIRST_RHSFUNC_ERR: 右辺側の関数 (ユーザ定義のODE) が efirstコール時に回復可能なエラーを発生しました."
+
+msgid ""
+"CV_ILL_INPUT: indicating an input argument was illegal. This include the "
+"situation where a component of the error weight vector becomes negative "
+"during internal time-stepping. This also includes if the linear solver "
+"function initialization (called by the user after calling CVodeCreat) failed "
+"to set the linear solver-specific ''lsolve'' field in cvode_mem. This error "
+"happens if number of root functions is positive but the return surface value "
+"is NULL. "
+msgstr ""
+"CV_ILL_INPUT: 入力引数が間違っていると判定されています. "
+"これには,内部的な積分計算時に誤差重みベクトルの要素が負となるような状況も含まれています.また,(CVodeCreatをコールした後でユーザによりコールさ"
+"れた)線形ソルバ関数の初期化時にcvode_memの線形ソルバ専用のフィールド \"lsolve\" の設定に失敗したことも考えられます.このエラーは, "
+"root関数の数が正にもかかわらず,返される surface の値が NULLの場合に発生します. "
+
+msgid "CV_LINIT_FAIL: The linear solver''s initialization function failed."
+msgstr "CV_LINIT_FAIL: 線形ソルバーの初期化手順に失敗しました"
+
+msgid ""
+"CV_LSETUP_FAIL: The linear solver''s setup routine failed in an "
+"unrecoverable manner."
+msgstr "CV_LSETUP_FAIL: 線形ソルバーのセットアップ手順は、復旧できない方法で失敗しました。"
+
+msgid ""
+"CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an "
+"unrecoverable manner."
+msgstr "CV_LSOLVE_FAIL: 線形ソルバのソルバルーチンが復旧できないエラーを発生しました."
+
+msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
+msgstr "CV_LSOLVE_FAIL: 線形ソルバのソルバルーチンがNULLです."
+
+msgid ""
+"CV_MEM_FAIL: a memory allocation failed, including an attempt to increase "
+"maxord"
+msgstr "CV_MEM_FAIL: メモリー割り当てに失敗しました、maxordを増やす試みを含みます。"
+
+msgid "CV_MEM_NULL: the cvode memory was NULL"
+msgstr "CV_MEM_NULL: cvode メモリはNULLでした"
+
+msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
+msgstr "CV_NO_EFUN: itol = CV_WF しかし、いかなるEwtSet関数も提供されませんでした。"
+
+msgid ""
+"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
+"was not set"
+msgstr ""
+"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP または itask = CV_ONE_STEP_TSTOP "
+"しかし、tstopはセットされませんでした"
+
+msgid ""
+"CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., "
+"CVodeMalloc has not been called)."
+msgstr ""
+"CV_NO_MALLOC: cvode_memが割り当てられなかったことを示します(すなわち、CVodeMallocが呼ばれませんでした)"
+
+msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
+msgstr "CV_NULL_ABSTOL: 絶対許容誤差 = NULL の不正です。"
+
+msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
+msgstr "CV_NULL_F: ユーザ定義のODE ルーチンが不正 (NULL)です。"
+
+msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
+msgstr "CV_NULL_G: ユーザ定義のゼロ交差判定ルーチンが不正 (NULL)です。"
+
+msgid "CV_NULL_Y0: y0 = NULL illegal."
+msgstr "CV_NULL_Y0: y0 = NULL 不正です。"
+
+msgid ""
+"CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to "
+"repeated recoverable errors in the right-hand side function (user supplied "
+"ODE). This error may be raised due to repeated  recoverable errors during "
+"the estimation of an initial step size."
+msgstr ""
+"CV_REPTD_RHSFUNC_ERR: "
+"収束判定時に,右辺側の関数(ユーザ定義のODE)において回復可能なエラーの発生回数が制限値を超えました.このエラーは, "
+"時間ステップの初期推定時に回復可能なエラーを繰り返し発生したことによる可能性があります."
+
+msgid ""
+"CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in "
+"an unrecoverable manner"
+msgstr "CV_RHSFUNC_FAIL: 右辺側の関数(ユーザー定義のODE)が回復できないエラーを発生しました"
+
+msgid ""
+"CV_RTFUNC_FAIL: The rootfinding routine failed in an unrecoverable manner."
+msgstr "CV_RTFUNC_FAIL: 求根ルーチンが回復できないエラーを発生しました."
+
+msgid "CV_Rootfunction_NAN: The Root function returns NAN."
+msgstr "CV_Rootfunction_NAN: root 関数がNaNを返しました."
+
+msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
+msgstr "CV_TOO_CLOSE: 積分を開始するためには, \"tout\" が \"t0\" に接近しすぎています."
+
+msgid ""
+"CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
+"user for some internal step"
+msgstr "CV_TOO_MUCH_ACC: ソルバが 内部積分計算でユーザ指定の精度を満たせませんでした."
+
+msgid ""
+"CV_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
+"''tout''. The default value for mxstep is MXSTEP_DEFAULT = 500."
+msgstr ""
+"CV_TOO_MUCH_WORK: ソルバーはmxstep内蔵刻みを取りますが ''tout'' "
+"に届かないかもしれません。mxstepのためのデフォルト値は、MXSTEP_DEFAULT = 500 です。"
+
+msgid "CV_TRET_NULL: ''tret'' = NULL illegal."
+msgstr "CV_TRET_NULL: ''tret'' = NULL 不正です。"
+
+msgid ""
+"CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+"recoverable error, but no recovery was possible."
+msgstr ""
+"CV_UNREC_RHSFUNC_ERR: "
+"右手側の関数(ユーザ供給のODE)回復可能なエラーが起きました、しかし、いかなる回復も可能ではありませんでした。"
+
+msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
+msgstr "CV_YOUT_NULL: ''yout'' = NULL 不正です。"
+
+msgid "Calc"
+msgstr "Calc(計算)"
+
+msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
+msgstr "初期モードをみつけることができませんでした. おそらく, スライディングモード条件が存在します."
+
+msgid "Choose export format:"
+msgstr "エクスポート・フォーマットを選択:"
+
+msgid "Click block to label"
+msgstr "ブロックをクリックしてラベルへ"
+
+msgid "Click block to resize"
+msgstr "ブロックをクリックしてリサイズへ"
+
+msgid "Click object to move, drag and click (left to fix, right to cancel)"
+msgstr "オブジェクトをクリックして動作、ドラッグしてクリック(左ボタン:確定、右ボタン:キャンセル)"
+
+msgid ""
+"Click on a Super Block (without activation output) to obtain a coded block!"
+msgstr "スーパ・ブロックをクリックして(活動化出力無しで)コード化されたブロックを取得します!"
+
+msgid "Click on a block to set or get it''s documentation"
+msgstr "セットするためブロックをクリックして下さい、またはそのドキュメントを取得します"
+
+msgid "Click on a super block"
+msgstr "スーパ・ブロックをクリックします"
+
+msgid "Click on an a port, click on a port of object to be moved"
+msgstr "ポートをクリックして下さい、オブジェクトのポートをクリックして動かします"
+
+msgid "Click on an object to set or get identification"
+msgstr "オブジェクトをクリックして識別をセットするかまたは取得します"
+
+msgid "Click on block to  open graphic icon editor"
+msgstr "ブロックをクリックしてグラフィック・アイコン編集を開きます"
+
+msgid "Click on block to be flipped"
+msgstr "ブロックをクリックして返します"
+
+msgid "Click on block to be turned left"
+msgstr "ブロックをクリックして左回転します"
+
+msgid "Click on block to be turned right"
+msgstr "ブロックをクリックして右回転します"
+
+msgid "Click on block to edit its icon"
+msgstr "ブロックをクリックしてアイコンを編集します"
+
+msgid "Click on object  to get information on it"
+msgstr "オブジェクトをクリックして関係する情報を取得します"
+
+msgid "Click on object to choose its color"
+msgstr "オブジェクトをクリックして色を選択します"
+
+msgid ""
+"Click on the object to duplicate, drag, click (left to copy, right to cancel)"
+msgstr "複製するオブジェクトをクリックして下さい、ドラッグしてクリック(左でコピー、右でキャンセル)"
+
+msgid "Click to open block or make a link"
+msgstr "クリックしてブロックを開くか、またはリンクを作って下さい"
+
+msgid "Click where you want object to be placed (right-click to cancel)"
+msgstr "オブジェクトを置きたい場所でクリックします(右クリックで取り消し)"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Code Generation only works for a Superblock !\n"
+msgstr "コード生成は、スーパー・ブロックのために働きます !\n"
+
+msgid "Code generation applies only to Super Blocks."
+msgstr "コード生成は、スーパー・ブロックにのみ適合します。"
+
+msgid "Color"
+msgstr "色"
+
+msgid "Compile"
+msgstr "コンパイル"
+
+msgid "Context"
+msgstr "コンテキスト"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Create Atomic"
+msgstr "アトミック生成"
+
+msgid "Create Mask"
+msgstr "マスク生成"
+
+msgid "CtrlSelect"
+msgstr "コントロール選択"
+
+msgid "Customize Mask"
+msgstr "マスクをカスタマイズ"
+
+msgid "Customize block GUI:"
+msgstr "ブロックGUIをカスタマイズ:"
+
+msgid "Cut"
+msgstr "切り取り"
+
+msgid "Cut: Click on the object to cut"
+msgstr "切り取り: 対象のオブジェクトをクリックしてください"
+
+msgid "Debug Level"
+msgstr "デバッグ・レベル"
+
+msgid "Default link colors"
+msgstr "リンク色初期値"
+
+msgid "Default window parameters"
+msgstr "ウインドウ・パラメータ初期値"
+
+msgid "Defined shortcuts"
+msgstr "定義されたショートカット"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Delete: Click on the object to delete"
+msgstr "削除: 対象のオブジェクトをクリックしてください"
+
+msgid "Demos"
+msgstr "デモ"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Diagram"
+msgstr "図形"
+
+msgid "Done\n"
+msgstr "完了\n"
+
+msgid "Drag, click left for final or intermediate points or right to cancel"
+msgstr "ドラッグ、左クリックは取り消す最終または中間の点、または右でキャンセル"
+
+msgid "Duplicate"
+msgstr "重複"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "End of activation"
+msgstr "有効化の終わり"
+
+msgid "End of activation\n"
+msgstr "有効化の終わり\n"
+
+msgid "Entering the block \n"
+msgstr "ブロックへ入る \n"
+
+msgid "Error\n"
+msgstr "エラー\n"
+
+msgid "Error in the Debug block \n"
+msgstr "デバッグ・ブロックでエラー \n"
+
+#, c-format
+msgid "Error: cannot find '%s'  \n"
+msgstr "エラー: '%s' は見つかりません  \n"
+
+#, c-format
+msgid "Error: cannot write to  '%s'  \n"
+msgstr "エラー: '%s' に書き込めません  \n"
+
+msgid "Eval"
+msgstr "Eval(評価)"
+
+msgid "Event links color? :"
+msgstr "イベント・リンク 色? :"
+
+#, c-format
+msgid "Event: %d activated at t=%f\n"
+msgstr "イベント: t=%2$f で作動した %1$d\n"
+
+msgid "Exit"
+msgstr "出口"
+
+msgid "Export"
+msgstr "エクスポート"
+
+msgid "Export All"
+msgstr "全てエクスポート"
+
+#, c-format
+msgid "Export in file %s failed\n"
+msgstr "ファイル %s エクスポートで失敗しました\n"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Fit diagram to figure"
+msgstr "適当な図形構造"
+
+msgid "Flip"
+msgstr "反転"
+
+msgid "Following palette(s) ignored (associated file(s) no more exist):"
+msgstr "以下のパレットは無視されました(関連したファイルはもはや存在しません):"
+
+msgid "Foreground color ? :"
+msgstr "前景色"
+
+msgid "Format"
+msgstr "フォーマット"
+
+msgid "Free"
+msgstr "解放"
+
+msgid "Function not found\n"
+msgstr "関数は見つかりません\n"
+
+msgid "Get Info"
+msgstr "情報取得"
+
+msgid "Help"
+msgstr "ヘルプ"
+
+msgid "ID font definitions"
+msgstr "IDフォント定義"
+
+msgid "ID fonts"
+msgstr "IDフォント"
+
+msgid ""
+"IDACalc cannot find the initial condition at this point. If you are using a "
+"Modelica model, you can try with the initialization GUI to try with other "
+"nonlinear solvers."
+msgstr ""
+"IDACalcは、初期状態をその点で見つけることができません。Modelicaモデルを使うか、他の非線形の解を試みるために、初期化GUIで試みることができ"
+"ます。"
+
+msgid "IDA_BAD_ABSTOL: abstol has negative component(s) (illegal)."
+msgstr "IDA_BAD_ABSTOL: abstolは、否定の構成要素を持っています(不正)"
+
+msgid ""
+"IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), "
+"either for the input value of y0 or a corrected value."
+msgstr "IDA_BAD_EWT: 間違った重さベクトルの構成要素はゼロです(不正)、y０の入力値または正しい値のいずれか。"
+
+msgid "IDA_BAD_H0: h0 and tout - t0 inconsistent."
+msgstr "IDA_BAD_H0: h0とtout - t0 一貫性がありません"
+
+msgid "IDA_BAD_HINIT: yret = NULL illegal.."
+msgstr "IDA_BAD_HINIT: yret = NULL 不正.."
+
+msgid "IDA_BAD_INIT_ROOT: Root found at and very near initial t."
+msgstr "IDA_BAD_INIT_ROOT: ルートを見つけました、そしてとても近い最初の t"
+
+msgid "IDA_BAD_ITASK: Illegal value for itask."
+msgstr "IDA_BAD_ITASK: itaskの不正な値"
+
+msgid ""
+"IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+"and IDA_WF."
+msgstr "IDA_BAD_ITOL: itolの不正な値、適正な値は、IDA_S、IDA_SVとIDA_WFです。"
+
+msgid "IDA_BAD_NVECTOR: A required vector operation is not implemented."
+msgstr "IDA_BAD_NVECTOR: 要求されたベクトル操作は装備されていません。"
+
+msgid "IDA_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
+msgstr "IDA_BAD_RELTOL: 相対許容度は reltol < 0 で不正です."
+
+msgid "IDA_BAD_T: t is not in the interval [tn-hu,tn]."
+msgstr "IDA_BAD_T: t はその刻みに合いません [tn-hu,tn]."
+
+msgid ""
+"IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
+"integration"
+msgstr "IDA_BAD_TOUT: 書き込み問題、''tout'' 統合の方向にあまりに遠いです"
+
+msgid ""
+"IDA_BAD_TSTOP: tstop is behind current simulation time in the direction of "
+"integration."
+msgstr "IDA_BAD_TSTOP: tstopは、統合の方向への現在のシミュレーション時間で遅れます。"
+
+msgid "IDA_CLOSE_ROOTS: Root found at and very near starting time."
+msgstr "IDA_CLOSE_ROOTS: ルートで見つけました、そしてとても近い開始時間。"
+
+msgid ""
+"IDA_CONSTR_FAIL: IDACalcIC was unable to find a solution satisfying the "
+"inequality constraints."
+msgstr "IDA_CONSTR_FAIL: IDACalcICは、不等制約の解決策を見つけることができませんでした。"
+
+msgid ""
+"IDA_CONV_FAIL: IDACalcIC->Failed to get convergence of the Newton "
+"iterations. or IDA_solve->Convergence test failures occurred too many times "
+"(= MXNCF = 10) during one internal step. "
+msgstr ""
+"IDA_CONV_FAIL: ニュートン繰り返しの集合を得る IDACalcIC ->失敗します。または、内蔵の刻みの間に IDA_solve-"
+">集合テスト失敗 が何度も起こりました(= MXNCF = 10) "
+
+msgid ""
+"IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
+"during one internal step or occurred with |h|=h_min"
+msgstr ""
+"IDA_ERR_FAIL: エラーテストの失敗は、あまりにも何度も起こりました (=MXETF = 10)内蔵刻みの間か、または |h|=h_min "
+"で起こりました"
+
+msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
+msgstr "IDA_EWT_FAIL: ユーザー提供のEwtSet関数は失敗しました。"
+
+msgid ""
+"IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
+"error flag on the first call, but IDACalcIC was unable to recover."
+msgstr ""
+"IDA_FIRST_RES_FAIL: "
+"ユーザーの残りの方法は、最初の呼び出しで回復可能なエラーフラグを返しました、しかし、IDACalcICは回復することができません。"
+
+msgid ""
+"IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
+"may be returned if the linear solver function initialization (called by the "
+"user after calling IDACreate) failed to set the linear solver-specific "
+"lsolve field in ida_mem."
+msgstr ""
+"IDA_ILL_INPUT: "
+"入力引数の１つは、不正でした。線形ソルバー方法の初期化でこのエラー・メッセージが返されるかもしれません。(IDACreateを呼ばれた後でユーザーによって"
+"呼ばれた)ida_memで線形ソルバーのlsolveフィールドをセットしそこねました。"
+
+msgid ""
+"IDA_LINESEARCH_FAIL: The Linesearch algorithm failed to find a solution with "
+"a step larger than steptol in weighted RMS norm."
+msgstr ""
+"IDA_LINESEARCH_FAIL: 加重RMS標準のtol刻みよりも大きい刻みで線検索アルゴリズム解決策を見つけるのに失敗しました。"
+
+msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
+msgstr "IDA_LINIT_FAIL: 線形ソルバーの初期化方法に失敗しました。"
+
+msgid ""
+"IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
+"error."
+msgstr "IDA_LSETUP_FAIL: 線形ソルバーセットアップ方法で戻せないエラーが起きました。"
+
+msgid ""
+"IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
+"error."
+msgstr "IDA_LSOLVE_FAIL: 線形ソルバーを助ける方法で戻せないエラーが起きました。"
+
+msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
+msgstr "IDA_LSOLVE_NULL: 線形ソルバーの助ける手順は NULL です。"
+
+msgid "IDA_MEM_FAIL: A memory allocation failed."
+msgstr "IDA_MEM_FAIL: メモリの割り当てに失敗しました。"
+
+msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
+msgstr "IDA_MEM_NULL: 引数 ida_mem は NULL でした"
+
+msgid ""
+"IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) "
+"but suppressalg option on."
+msgstr "IDA_MISSING_ID :id = NULL (''id'''定義代数と差分の状態)しかしsuppressalg選択"
+
+msgid "IDA_NO_EFUN: itol = IDA_WF but no EwtSet function was provided."
+msgstr "IDA_NO_EFUN: itol = IDA_WF しかし、いかなるEwtSet機能も提供されませんでした。"
+
+msgid ""
+"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP or itask = IDA_ONE_STEP_TSTOP but "
+"tstop was not set"
+msgstr ""
+"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP または itask = IDA_ONE_STEP_TSTOP "
+"しかし、tstopはセットされませんでした"
+
+msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
+msgstr "IDA_NO_MALLOC: ida_memは割り当てられなかったことを示します。"
+
+msgid ""
+"IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup "
+"or solve routine had a  recoverable error, but IDACalcIC was unable to "
+"recover."
+msgstr ""
+"IDA_NO_RECOVERY: "
+"ユーザーの残りの方法または線形ソルバーのセットアップ、あるいは、ソルバー方法の回復可能なエラー、しかし、IDACalcICは回復することができません。"
+
+msgid "IDA_NULL_ABSTOL: absolute tolerances is = NULL illegal."
+msgstr "IDA_NULL_ABSTOL:  絶対許容誤差 = NULL の不正です。"
+
+msgid "IDA_NULL_F: user supplied ODE routine is (NULL) illegal."
+msgstr "IDA_NULL_F: ユーザ供給の ODE 方法は (NULL) 不正です。"
+
+msgid "IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
+msgstr "IDA_NULL_G: ユーザ供給のゼロ交差方法は (NULL) の不正です。"
+
+msgid "IDA_NULL_Y0: y0 = NULL illegal."
+msgstr "IDA_NULL_Y0: y0 = NULL 不正です。"
+
+msgid ""
+"IDA_REP_RES_ERR: The user''s residual function repeatedly returned a "
+"recoverable error flag, but the solver was unable to recover."
+msgstr ""
+"IDA_REP_RES_ERR: ユーザーの剰余関数は、回復可能なエラーフラグを繰り返しました、しかし、ソルバーは、回復することができません。"
+
+msgid ""
+"IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error "
+"flag."
+msgstr "IDA_RES_FAIL: ユーザーの残りの方法は、回復不能のエラーフラグを返しました。"
+
+msgid "IDA_RES_NULL: th returned residual res = NULL is illegal."
+msgstr "IDA_RES_NULL: 返された残りの res = NULL は不正です。"
+
+msgid "IDA_RTFUNC_FAIL: The root founding function failed."
+msgstr "IDA_RTFUNC_FAIL: ルートの見つけた関数は失敗しました。"
+
+msgid "IDA_Residual_NAN: The residual function returns NAN."
+msgstr "IDA_Residual_NAN: 剰余関数はNANを返します。"
+
+msgid "IDA_Rootfunction_NAN: The Root function returns NAN."
+msgstr "IDA_Rootfunction_NAN: ルート関数は NAN を返しました。"
+
+msgid "IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
+msgstr "IDA_TOO_CLOSE:  開始統合に ''tout'' また ''t0'' に近いです。"
+
+msgid ""
+"IDA_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
+"user for some internal step."
+msgstr "IDA_TOO_MUCH_ACC: ソルバーは、ある内蔵された刻みのためにユーザーの要求された正確さを満足させないかもしれません。"
+
+msgid ""
+"IDA_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
+"tout. The default value for mxstep is MXSTEP_DEFAULT = 500."
+msgstr ""
+"IDA_TOO_MUCH_WORK: "
+"ソルバーは、mxstep内蔵ステップを取りますが、toutに届かないかもしれません。mxstepのためのデフォルト値は、MXSTEP_DEFAULT = "
+"500です。"
+
+msgid "IDA_TRET_NULL: ''tret'' = NULL illegal."
+msgstr "IDA_TRET_NULL: ''tret'' = NULL 不正"
+
+msgid "IDA_Y0_FAIL_CONSTR: y0 fails to satisfy constraints."
+msgstr "IDA_Y0_FAIL_CONSTR: y0 は制約を満足させられませんでした。"
+
+msgid "IDA_YOUT_NULL: ''yout'' = NULL illegal."
+msgstr "IDA_YOUT_NULL: ''yout'' = NULL 不正"
+
+msgid "IDA_YP0_NULL: the derivative yp0 = NULL is illegal."
+msgstr "IDA_YP0_NULL: the derivative yp0 = NULL は不正です。"
+
+msgid "IDA_YPRET_NULL: yret = NULL illegal.."
+msgstr "IDA_YPRET_NULL: yret = NULL 不正.."
+
+msgid "IDA_YRET_NULL: yret = NULL illegal.."
+msgstr "IDA_YRET_NULL: yret = NULL 不正.."
+
+msgid "Icon"
+msgstr "アイコン"
+
+msgid "Icon Editor"
+msgstr "アイコン編集"
+
+msgid "Identification"
+msgstr "識別"
+
+msgid "It is impossible to set ID for this type of object"
+msgstr "このオブジェクトの型にIDを設定することができません"
+
+msgid ""
+"KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
+"verify your model. There might be an error in the computing function, for "
+"example a function may be called with illegal inputs."
+msgstr ""
+"KIN_FIRST_SYSFUNC_ERR: "
+"システム関数は最初の呼び出しで失敗しました。どうぞモデルを確かめて下さい。計算中の関数に間違いがあるかもしれません、例えば、関数は不法な入力で呼ばれるかも"
+"しれません。"
+
+msgid "KIN_ILL_INPUT: A supplied parameter is invalid (check error message)."
+msgstr "KIN_ILL_INPUT: 提供されたパラメーターは無効です(エラー・メッセージを確認してください)"
+
+msgid ""
+"KIN_LINESEARCH_BCFAI: The line search algorithm (implemented in "
+"KINLineSearch) was unable to satisfy the beta-condition for MXNBCF + 1 "
+"nonlinear iterations (not necessarily consecutive), which may indicate the "
+"algorithm is making  poor progress "
+msgstr ""
+"KIN_LINESEARCH_BCFAI: "
+"線検索アルゴリズム(KINLineSearchで装備された)はベータ状態のため納得させることができなかったです。なぜなら、MXNBCF+１回の非線形の繰り"
+"返し(必ずしも連続しない)、貧しい進歩のアルゴリズムを示すかもしれません。 "
+
+msgid ""
+"KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
+"iterate sufficiently distinct  from the current iterate failure to satisfy "
+"the sufficient decrease condition could mean the current iterate is close to "
+"an approximate solution of the given nonlinear system, the finite-difference "
+" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
+"real scalar scsteptol is too large "
+msgstr ""
+"KIN_LINESEARCH_NONCONV:  "
+"線検索アルゴリズムは、十分な繰り返しを見つけることができません。現在は、納得させることの失敗を繰り返します。繰り返す状態が意味することができた減少は与えら"
+"れた非線形システムのおおよその解決策に近いです。領域差分法の近似値、行列ベクトル製品 J(u)*v "
+"は、不正確です、あるいは、実スカラーがあるscsteptolは、あまりにも大きいです。 "
+
+msgid ""
+"KIN_LINIT_FAIL: The linear solver initialization routine (linit) encountered "
+"an error."
+msgstr "KIN_LINIT_FAIL: 線形ソルバーの初期化方法(linit)はエラーに遭遇しました。"
+
+msgid ""
+"KIN_LINSOLV_NO_RECOVERY: The user-supplied routine psolve encountered a "
+"recoverable error, but the preconditioner is already current"
+msgstr ""
+"KIN_LINSOLV_NO_RECOVERY: ユーザー供給のpsolveは、回復可能なエラーに遭遇しました。しかし、現在は既に前調整です"
+
+msgid ""
+"KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the "
+"preconditioner) encountered an unrecoverable error ."
+msgstr "KIN_LSETUP_FAIL: ユーザー供給のpset(前調整を計算するために使用される)で回復できないエラーが起きました。"
+
+msgid ""
+"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve "
+"the preconditioned linear system) encountered an unrecoverable error, or the "
+"linear solver routine  (lsolve) encountered an error condition."
+msgstr ""
+"KIN_LSOLVE_FAIL: "
+"ユーザ供給のpsolve手順(調整された線形システム)救えないエラー、あるいは、線形ソルバー手順(lsolve)はエラー状態に遭遇しました。"
+
+msgid ""
+"KIN_MAXITER_REACHED: The maximum number of nonlinear iterations has been "
+"reached "
+msgstr "KIN_MAXITER_REACHED: 非線形の繰り返しの最大数に達しました。 "
+
+msgid ""
+"KIN_MEM_FAIL: An error occurred during memory allocation (either "
+"insufficient system resources are available or the vector kernel has not yet "
+"been initialized "
+msgstr ""
+"KIN_MEM_FAIL: "
+"メモリ割り当て中にエラーが起きました。(不十分なシステム・リソースは、利用できないか、あるいはベクトル・カーネルは、まだ初期化されませんでした) "
+
+msgid ""
+"KIN_MEM_NULL: An error in the memory allocation in KINCreate or KINMalloc."
+msgstr "KIN_MEM_NULL: KINCreate または KINMalloc のメモリ割り当てエラー"
+
+msgid ""
+"KIN_MXNEWT_5X_EXCEEDE: Five consecutive steps have been taken that satisfy "
+"the following inequality:  ||uscale*p||_L2 > 0.99*mxnewtstep where p denotes "
+"the current step and mxnewtstep is a real scalar upper bound on the scaled "
+"step length such a failure may mean ||fscale*func(u)||_L2 asymptotes from "
+"above to a finite value, or the real scalar mxnewtstep is too small "
+msgstr ""
+"KIN_MXNEWT_5X_EXCEEDE: 以下の不平等と納得させる５回の連続刻みが取られました: "
+"pが現在の刻みを示す、||uscale*p||_L2 > 0.99*mxnewtstep "
+"そして、mxnewtstepは、本当のスカラーがある上位のはずみです。上から限りある値に ||fscale*func(u)||_L2 "
+"漸近線が失敗を意味するかもしれない目盛り刻み長さ、 あるいは、実スカラーの mxnewtstep は、あまりにも小さいです。 "
+
+msgid ""
+"KIN_NAN_ERR: The residual function returns NAN. Please verify your model: "
+"some functions might be called with illegal inputs."
+msgstr "KIN_NAN_ERR: 剰余関数は NAN を返します。どうぞモデルを確かめて下さい: いくつかの関数は、不法な入力で呼ばれました。"
+
+msgid ""
+"KIN_NO_MALLOC: Additional system memory has not yet been  allocated for "
+"vector storage (forgot to call the  KINMalloc routine)"
+msgstr ""
+"KIN_NO_MALLOC: 追加のシステム・メモリは、まだベクトル領域のために割り当てられませんでした(KINMalloc方法の呼び出しを忘れました)"
+
+msgid ""
+"KIN_REPTD_SYSFUNC_ERR: The system function failed repeatedly. Please verify "
+"your model. There might be an error in the computing function, for example a "
+"function may be called with illegal inputs"
+msgstr ""
+"KIN_REPTD_SYSFUNC_ERR: "
+"システム関数は繰り返し失敗しました。どうぞモデルを確かめて下さい。計算している関数に間違いはあるかもしれません、例えば、関数は不法の入力で呼ばれるかもしれ"
+"ません"
+
+msgid ""
+"KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."
+msgstr "KIN_SYSFUNC_FAIL: 計算方法のエラー、 どうぞモデルを確かめて下さい。"
+
+msgid "Label"
+msgstr "ラベル"
+
+#, c-format
+msgid "Leaving block %d \n"
+msgstr "ブロック %d を出る \n"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Link ID font name"
+msgstr "リンクID フォント名"
+
+msgid "Link ID font size"
+msgstr "リンクID フォントサイズ"
+
+msgid "Link parameters"
+msgstr "リンクパラメータ"
+
+msgid "Load as Palette"
+msgstr "パレットとしてロード"
+
+msgid "Mask"
+msgstr "マスク"
+
+msgid "Mask can only be created for Super Blocks."
+msgstr "マスクは、スーパ・ブロックのために作ることができます。"
+
+msgid "Modelica initialize"
+msgstr "原型の初期化"
+
+msgid "Modify title and menu labels."
+msgstr "タイトルとメニュー・ラベルを修正して下さい。"
+
+msgid "Move"
+msgstr "移動"
+
+msgid "MoveLink "
+msgstr "リンク移動 "
+
+msgid "Multiple selection cannot be used here"
+msgstr "複数の選択は、ここで使うことができません"
+
+msgid "Navigator window"
+msgstr "ナビゲーター・ウインドウ"
+
+msgid "New"
+msgstr "新規"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "No selected block in the current Scicos window."
+msgstr "現在のScicos ウインドウでブロックを選択しませんでした。"
+
+msgid "Only  blocks can be selected for this operation."
+msgstr "ブロックだけがこの操作で選ぶことができます。"
 
 #
 # File: macros/scicos_scicos/do_icon_edit.sci, line: 34
 msgid "Only one block can be selected in current window for this operation."
 msgstr "単一のブロックは、現在のウインドウで選択ができます。"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Open a Scicos demonstration diagram"
+msgstr "Scicos デモ図形 を開く"
+
+msgid "Open a Scicos diagram"
+msgstr "Scicos 図形 を開く"
+
+msgid "Open/Set"
+msgstr "開く/設定"
+
+msgid "Pal editor"
+msgstr "仲間の編集"
+
+msgid "Palette"
+msgstr "パレット"
+
+msgid "Palettes"
+msgstr "パレット"
+
+msgid "Palettes Tree"
+msgstr "パレット・ツリー"
+
+msgid "Paste"
+msgstr "貼り付け"
+
+msgid "Place in Diagram"
+msgstr "図形の場所"
+
+msgid "PlaceinBrowser"
+msgstr "ブラウザの場所"
+
+msgid "PlaceinDiagram"
+msgstr "図形の場所"
+
+msgid "Please report"
+msgstr "報告してください"
+
+msgid "Popup"
+msgstr "ポップアップ"
+
+msgid ""
+"Press lef mouse button, drag region and release (right button to cancel)"
+msgstr "マウスの左ボタンを押して、ドラッグ範囲と解放(右ボタンで取消)"
+
+msgid "Problem saving a backup; I cannot activate Scilab\n"
+msgstr "バックアップ保存の問題; Scilabを有効にできません\n"
 
 #
 # File: macros/scicos_scicos/genmoc.sci, line: 95
@@ -177,10 +1522,342 @@ msgstr "単一のブロックは、現在のウインドウで選択ができま
 msgid "Problem while building library %s\n"
 msgstr "ライブラリ %s の構築中に問題がありました。\n"
 
-msgid "Sorry compiling problem"
-msgstr "コンパイルに問題がありました・・"
+msgid "Properties"
+msgstr "プロパティ"
+
+msgid "Purge"
+msgstr "浄化"
+
+msgid "Region to Palette"
+msgstr "パレットへの領域"
+
+msgid "Region to Super Block"
+msgstr "スーパー・ブロックへの領域"
+
+msgid "Regular links color ? :"
+msgstr "正規のリンク色 ? :"
+
+msgid "Remove Atomic"
+msgstr "原子除去"
+
+msgid "Remove Mask"
+msgstr "マスク除去"
+
+msgid "Rename"
+msgstr "名前変更"
+
+msgid "Replot"
+msgstr "再プロット"
+
+#, c-format
+msgid "Requested action: %s is not available"
+msgstr "アクションの要求: %s は有効ではありません。"
+
+msgid "Resize"
+msgstr "リサイズ"
+
+msgid "Resize is allowed only for Blocks or Links."
+msgstr "リサイズは、ブロックまたはリンクのためだけに許されます。"
+
+msgid "Rotate Left"
+msgstr "左循環"
+
+msgid "Rotate Right"
+msgstr "右循環"
+
+msgid "Run"
+msgstr "実行"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Save As"
+msgstr "名前を付けて保存"
+
+msgid "Save Block GUI"
+msgstr "ブロックGUI保存"
+
+msgid "Save as Interf Func"
+msgstr "干渉関数として保存"
+
+msgid "Save as Palette"
+msgstr "パレットとして保存"
+
+msgid "Scicos Documentation"
+msgstr "Scicos ドキュメント"
+
+#, c-format
+msgid "Scicos version %s\n"
+msgstr "Scicos バージョン %s\n"
+
+#, c-format
+msgid "Scilab Graphics of %s"
+msgstr "%s のScilabグラフィック"
+
+msgid "Select a block."
+msgstr "ブロック選択"
+
+msgid "Select a directory path"
+msgstr "ディレクトリPATH選択"
+
+msgid "SelectAll"
+msgstr "全て選択"
+
+msgid "SelectLink  "
+msgstr "リンク選択  "
+
+msgid "SelectRegion"
+msgstr "領域選択"
+
+msgid "Set Block identification"
+msgstr "ブロック・識別設定"
+
+msgid "Set Block sizes"
+msgstr "ブロック・サイズ設定"
+
+msgid "Set Diagram Info"
+msgstr "図形情報の設定"
+
+msgid "Set grid"
+msgstr "グリッド設定"
+
+msgid "Set link Identification"
+msgstr "リンク・識別設定"
+
+msgid "Set link edition mode"
+msgstr "リンク・編集モード設定"
+
+msgid "Setup"
+msgstr "設定"
+
+msgid "Shortcuts"
+msgstr "ショートカット"
+
+msgid "Show Block Shadow"
+msgstr "ブロック影表示"
+
+msgid "Simulate"
+msgstr "シミュレーション"
+
+#, c-format
+msgid "Slider t=%10.3f, flag=%d \n"
+msgstr "スライダー t=%10.3f, フラグ=%d \n"
+
+msgid "Smart"
+msgstr "スマート"
+
+msgid "Smart Move"
+msgstr "スマート動作"
+
+msgid "Smart move does not work yet with multiple selection"
+msgstr "スマート動作は複数の選択でもう作業できません"
+
+msgid "Sorry file name not defined in "
+msgstr "すみません、ファイル名は定義されていません "
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "すみません: C か FORTRAN言語のみがサポートされています"
+
+msgid "Stop"
+msgstr "停止"
 
 #
 # File: macros/scicos_scicos/do_icon_edit.sci, line: 67
 msgid "The current icon depends on block parameter\n"
 msgstr "現在のアイコンは、ブロック・パラメーターに依存します\n"
+
+#, c-format
+msgid "The key %s is already in use for %s"
+msgstr "キー %1$s は、すでに %2$s のため使われています。"
+
+#, c-format
+msgid "The key %s is not a valid letter"
+msgstr "キー %s は、妥当な文ではありません"
+
+msgid ""
+"The number of parameter provided by Scicos blocks is different from what "
+"expected by the code generated by the Modelica compiler. You might have "
+"relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica "
+"model. This will be corrected in the next version"
+msgstr ""
+"Modelicaコンパイラによって生成したコードが想定したものはScicosブロックによって提供されたパラメーターの数が異なります。あなたは、プロパティを"
+"利用したパラメーターを緩めることができたかもしれません。(すなわち、fixed=false)Modelicaモデルで。これは、次のバージョンで正されるでし"
+"ょう。"
+
+#, c-format
+msgid ""
+"The parameter(s) %s \n"
+"must be defined in the"
+msgstr ""
+"パラメーター%s\n"
+"が定義されなくてはいけません"
+
+msgid "Thickness"
+msgstr "厚さ"
+
+msgid "This block is not masked."
+msgstr "このブロックはマスクされていません。"
+
+msgid "This window is not an active palette"
+msgstr "このウインドウは、有効なパレットではありません"
+
+msgid "This window is not an active scicos window"
+msgstr "このウインドウは、有効なscicosウインドウではありません"
+
+msgid "Title of the GUI"
+msgstr "GUIのタイトル"
+
+msgid "TkPopup "
+msgstr "TkPopup "
+
+#, c-format
+msgid "To avoid this message, please update the %s.scicos_pal file."
+msgstr "メッセージを避けるために、どうぞ %s を更新して下さい。scicos_pal ファイル"
+
+msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
+msgstr "Scicosを復活させるため、図形または型scicos()をクリックして下さい;\n"
+
+msgid "Toggle grid"
+msgstr "トグル・グリッド"
+
+msgid "Tools"
+msgstr "ツール"
+
+msgid "Type"
+msgstr "型"
+
+msgid "Type not recognized"
+msgstr "認められない型"
+
+msgid "Undefined Function type\n"
+msgstr "定義されていない関数型\n"
+
+msgid "Undefined data type."
+msgstr "データ型は定義されていません。"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Up To Main Diagram"
+msgstr "主な図形まで"
+
+msgid ""
+"Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
+"\n"
+msgstr ""
+"使い方 : [myvar]=getscicosvars([\"文字列1\";\"文字列2\";...]);\n"
+"\n"
+
+msgid "Use 3D aspect?"
+msgstr "3Dを使っていますか?"
+
+msgid "View"
+msgstr "ビュー"
+
+#, c-format
+msgid "Warning %d menus have identical name %s\n"
+msgstr "警告 %d メニューは、同一の名前 %s を持っています\n"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid ""
+"You have changed a parameter in your model, but the model has been compiled "
+"to use an XML file containing initial values and parameters. So you should "
+"either recompile your Scicos diagram or [re]launch the initialization "
+"interface to regenerate the XML file  with new parameters."
+msgstr ""
+"あなたはモデルでパラメーターを変えました、しかし、そのモデルは最初の値とパラメーターを含んでいるXMLファイルを使うために編集されました。そのとおりであれ"
+"ば、Scicos図形を再編集するか、あるいは再度、初期化インターフェースで新しいパラメーターを持つXMLファイルを復活させて下さい。"
+
+msgid "Your diagram is not saved. Do not quit Scilab or "
+msgstr "あなたの図形は保存されません。また、Scilabを終わらせない "
+
+msgid "Zoom in"
+msgstr "ズーム・イン"
+
+msgid "Zoom out"
+msgstr "ズーム・アウト"
+
+msgid "algrebraic loop detected"
+msgstr "代数ループを検出しました"
+
+#, c-format
+msgid "at time %f \n"
+msgstr "時間 %f で \n"
+
+#, c-format
+msgid "block %d is called "
+msgstr "ブロック %d が呼ばれました "
+
+msgid "block produces an internal error"
+msgstr "ブロック生成は内部エラー"
+
+msgid "cannot allocate memory"
+msgstr "メモリを割り当てることができません"
+
+#, c-format
+msgid "cannot allocate memory in block=%d"
+msgstr "ブロック=%d でメモリを割り当てることができません"
+
+msgid "current choice is "
+msgstr "現在の選択 "
+
+msgid "event conflict"
+msgstr "イベント衝突"
+
+msgid "height"
+msgstr "高さ"
+
+msgid "initial conditions not converging"
+msgstr "集合でない初期条件"
+
+msgid "input to zero-crossing stuck on zero"
+msgstr "ZEROのzero-crossingスタックに入力されました"
+
+#, c-format
+msgid "integration problem istate=%d"
+msgstr "istate=%d 統合問題"
+
+#, c-format
+msgid "mode of block %d=%d, "
+msgstr "%d=%d ブロックのモード、 "
+
+#, c-format
+msgid "root found at t=: %f\n"
+msgstr "at=: %f で見つかったroot\n"
+
+msgid "scheduling problem"
+msgstr "予期する問題"
+
+msgid "scicos unexpected error,please report..."
+msgstr "scicos 予期しないエラーです、報告してください..."
+
+msgid "scs_show active..."
+msgstr "scs_show 有効..."
+
+msgid "singularity in a block"
+msgstr "ブロック特性"
+
+msgid "sliding mode condition, cannot integrate"
+msgstr "スライド・モード状態、統合できません"
+
+#, c-format
+msgid "the block %d has been called with input out of its domain"
+msgstr "そのドメイン外の入力でブロック %d が呼ばれました。"
+
+msgid "type 1 function not allowed for scilab blocks\n"
+msgstr "scilabブロックのために許されない型1関数です\n"
+
+msgid "type 2 function not allowed for scilab blocks\n"
+msgstr "scilabブロックのために許されない型2関数です\n"
+
+msgid "unknown or erroneous block"
+msgstr "未知、または誤りのあるブロック"
+
+msgid "width"
+msgstr "幅"
+
+#, c-format
+msgid "with flag %d "
+msgstr "%d フラグで "

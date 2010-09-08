@@ -29,8 +29,10 @@ msgid "%s: An error occurred: %s.\n"
 msgstr "%s: ein Fehler ist aufgetreten: %s.\n"
 
 #, c-format
-msgid "%s: An exception occurred: %s"
-msgstr "%s: Ein Ausnahmefehler ist aufgetreten: %s"
+msgid ""
+"%s: An exception occurred: %s\n"
+"%s\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -716,6 +718,9 @@ msgstr "&Alle auswählen"
 msgid "&Select as current figure"
 msgstr "&Als aktuelle Darstellung auswählen"
 
+msgid "&Start datatip manager"
+msgstr ""
+
 msgid "&Start entity picker"
 msgstr "&Einheitswähler starten"
 
@@ -765,6 +770,9 @@ msgstr "Alle Scilab Dateien"
 
 msgid "All files"
 msgstr "Alle Dateien"
+
+msgid "An error occured: "
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1009,6 +1017,9 @@ msgstr "Keine '%s' Eigenschaft für Uicontrol des Designs: %s.\n"
 msgid "No color selected."
 msgstr "keine Fareb ausgewählt"
 
+msgid "No print service found."
+msgstr ""
+
 msgid "No text selected"
 msgstr "kein Text ausgewählt"
 
@@ -1188,6 +1199,9 @@ msgid ""
 msgstr ""
 "Einige Scilab Module werden unter der GPLv2 Lizenz veröffentlicht.\n"
 "\n"
+
+msgid "Stop datatip manager"
+msgstr ""
 
 msgid "Sub-menu 1"
 msgstr "Submenü 1"
@@ -1434,6 +1448,12 @@ msgstr ""
 "Falscher Wert für Eigenschaft '%s': ein '%s' oder '%s' Alias erwartet.\n"
 
 #, c-format
+msgid ""
+"Wrong value for '%s' property: A String containing a numeric value "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr "Falscher Wert für Eigenschaft '%s': ein reeller Wert erwartet.\n"
 
@@ -1516,6 +1536,9 @@ msgstr "item1|item2|item3|item4"
 
 msgid "red"
 msgstr "rot"
+
+msgid "toggle datatip mode"
+msgstr ""
 
 msgid "unchecked"
 msgstr "nicht ausgewählt"

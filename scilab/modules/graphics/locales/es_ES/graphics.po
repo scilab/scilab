@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-02-15 21:39+0000\n"
+"PO-Revision-Date: 2010-08-02 16:43+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -143,12 +143,20 @@ msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
 msgstr "%s: Dimensión incompatible de los argumentos #%d y #%d.\n"
 
 #, c-format
+msgid "%s: Input argument #%d must be a '%s' handle.\n"
+msgstr "%s: El argumento de entrada #%d debe ser un manejador '%s'.\n"
+
+#, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
 msgstr "%s: El argumento de entrada #%d debe ser un manejador de ejes.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: El argumento de entrada #%d debe ser real.\n"
+
+#, c-format
+msgid "%s: Input argument and the legend must have the same parent axes.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
@@ -163,6 +171,10 @@ msgstr "%s: La leyenda no entra en el contexto actual. Salteada\n"
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr ""
 "%s: Argumento opcional mal colocado: #%d debe estar en la posición %d\n"
+
+#, c-format
+msgid "%s: No ''%s'' handle found.\n"
+msgstr "%s: No se encontró un manejador ''%s''.\n"
 
 #, c-format
 msgid "%s: No more memory\n"
@@ -262,6 +274,11 @@ msgstr ""
 "%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d."
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
@@ -294,6 +311,12 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumento(s) de entrada: Se esperaban al menos %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for arguments #%d and #%d.\n"
@@ -367,6 +390,12 @@ msgstr ""
 "'%s' o un escalar real.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto para el argumento de entrada #%d: Se esperaba un "
+"manejado ''%s''.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un manejador "
@@ -402,6 +431,12 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string "
+"simple.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -550,12 +585,6 @@ msgstr ""
 "de datos %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or handle expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba '%s' o un "
-"manejador.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
@@ -666,6 +695,13 @@ msgstr ""
 "Reales o un manejador gráfico.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
+"Real o Compleja.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un vector fila "
@@ -684,6 +720,11 @@ msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar "
 "real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
@@ -874,6 +915,10 @@ msgid "%s: please use %s instead.\n"
 msgstr "%s: por favor use %s en su lugar.\n"
 
 #, c-format
+msgid "%s: too many input arguments"
+msgstr "%s: demasiados argumentos de entrada"
+
+#, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr "%s: el vector x no es monótono.\n"
 
@@ -896,6 +941,9 @@ msgstr "El manejador '%s' no existe o ya no existe.\n"
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "la propiedad '%s' no existe para este manejador.\n"
+
+msgid "A Label object cannot be deleted.\n"
+msgstr "No se puede eliminar una etiqueta.\n"
 
 #, c-format
 msgid "Argument #%d must have %d elements.\n"
@@ -947,11 +995,37 @@ msgstr "Cobre"
 msgid "Customize your complex function"
 msgstr "Personalizar su función compleja"
 
+msgid ""
+"Data tips cannot be attached to this curve,\n"
+"the user_data field is already used"
+msgstr ""
+
 msgid "Default axes cannot be create.\n"
 msgstr "No pueden crearse los ejes predeterminados.\n"
 
 msgid "Default figure cannot be create.\n"
 msgstr "No puede crearse figura predeterminada.\n"
+
+msgid "Delete all datatips"
+msgstr ""
+
+msgid "Delete all datatips for the selected curve"
+msgstr ""
+
+msgid "Delete last datatip"
+msgstr ""
+
+msgid "Delete nearest datatip"
+msgstr ""
+
+msgid "Disable interpolation"
+msgstr "Desactivar interpolación"
+
+msgid "Edit the curve tip display function"
+msgstr ""
+
+msgid "Enable interpolation"
+msgstr "Activar interpolación"
 
 #, c-format
 msgid "Entity with type %d cannot be destroyed.\n"
@@ -1039,12 +1113,19 @@ msgstr "Error Interno: Loop en graduate1\n"
 msgid "Jet"
 msgstr "Jet"
 
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
+msgstr ""
+
 #, c-format
 msgid "Line width must be greater than %d.\n"
 msgstr "El ancho de línea debe ser mayor que %d.\n"
 
 msgid "Misc"
 msgstr "Varios"
+
+msgid "Multiple datatips mode"
+msgstr ""
 
 msgid "Name"
 msgstr "Nombre"
@@ -1107,11 +1188,17 @@ msgstr "Problemas con sciInitFontContext\n"
 msgid "Rainbow"
 msgstr "Arcoiris"
 
+msgid "Redraw all datatips"
+msgstr ""
+
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Módulo gráfico de Scilab no instalado.\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Módulo de gráficos de Scilab deshabilitado en modo -nogui o -nwni.\n"
+
+msgid "Select tip orientation"
+msgstr ""
 
 msgid "Spring"
 msgstr "Primavera"
@@ -1143,6 +1230,20 @@ msgstr "El padre debe ser una FIGURA\n"
 
 msgid "The parent has to be a SUBWIN\n"
 msgstr "El padre debe ser una SUBVENTANA\n"
+
+msgid "The selected file cannot be executed"
+msgstr "El archivo seleccionado no puede ejecutarse"
+
+msgid "The selected file defines more than one function"
+msgstr "El archivo seleccionado define mas de una función"
+
+msgid "The selected function must have 1 output parameter (str)"
+msgstr "La función seleccionada debe tener 1 parámetro de salida (str)"
+
+msgid "The selected function must have 3 input parameters (curve,pt,index)"
+msgstr ""
+"La función seleccionada debe tener 3 parámetros de entrada (curva, punto, "
+"indice)"
 
 msgid "This object can not be moved.\n"
 msgstr "El objeto no puede ser movido.\n"
@@ -1190,6 +1291,9 @@ msgstr ""
 
 msgid "Unhandled data field\n"
 msgstr "Campo de datos no manejado\n"
+
+msgid "Unique datatip mode"
+msgstr ""
 
 #, c-format
 msgid "Unknown property: %s.\n"
@@ -1340,6 +1444,10 @@ msgstr ""
 "manejador '%s'.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
 msgstr "Tipo incorrecto para la propiedad '%s': Se esperaba un manejador.\n"
 
@@ -1436,3 +1544,25 @@ msgstr ""
 
 msgid "You are not using a legend object.\n"
 msgstr "No está usando un objeto leyenda.\n"
+
+#, c-format
+msgid "You must first specify an %s for this object.\n"
+msgstr "Primero debe especificar un %s para este objeto.\n"
+
+msgid "automatic"
+msgstr "automático"
+
+msgid "lower left"
+msgstr "abajo a la izquierda"
+
+msgid "lower right"
+msgstr "abajo a la derecha"
+
+msgid "select the curve tip display function"
+msgstr ""
+
+msgid "upper left"
+msgstr "arriba a la izquierda"
+
+msgid "upper right"
+msgstr "arriba a la derecha"

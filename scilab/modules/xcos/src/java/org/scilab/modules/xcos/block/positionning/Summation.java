@@ -27,7 +27,7 @@ public class Summation extends BasicBlock {
 	public Summation() {
 		super();
 
-		parametersPCS.addPropertyChangeListener("integerParameters",
+		getParametersPCS().addPropertyChangeListener("integerParameters",
 				SumPortLabelingListener.getInstance());
 	}
 

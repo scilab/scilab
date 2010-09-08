@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<fileset-config file-format-version="1.2.0" simple-config="true">
-    <local-check-config name="Scilab CheckStyle" location="internal_config__1181368585947.xml" type="internal" description=""/>
-    <fileset name="tous" enabled="true" check-config-name="Scilab CheckStyle" local="true">
-        <file-match-pattern match-pattern="." include-pattern="true"/>
-    </fileset>
-</fileset-config>

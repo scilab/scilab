@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-18 20:10+0000\n"
+"PO-Revision-Date: 2010-06-29 12:39+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,8 @@ msgid "%s: No such file or directory.\n"
 msgstr "%s: немає такого файла або каталогу.\n"
 
 #, c-format
-msgid "%s: Unknown type or not yet implemented\n"
-msgstr "%s: невідомий або ще не реалізований тип\n"
+msgid "%s: Unknown or not yet implemented type.\n"
+msgstr "%s: невідомий або ще не реалізований тип.\n"
 
 #, c-format
 msgid "%s: Unknown type or not yet implemented.\n"
@@ -47,12 +47,12 @@ msgstr ""
 "%s: помилковий перший параметр: слід використовувати «%s» або «%s».\n"
 
 #, c-format
-msgid "%s: work space (stacksize) is too small d\n"
+msgid "%s: work space (stacksize) is too small.\n"
 msgstr "%s: занадто малий робочий простір (розмір стека).\n"
 
 #, c-format
-msgid "%s: work space (stacksize) is too small.\n"
-msgstr "%s: занадто малий робочий простір (розмір стека).\n"
+msgid "%s: workspace (stacksize) is too small.\n"
+msgstr "%s: робочий простір (розмір стеку) занадто малий.\n"
 
 msgid "(group,instance) already exists"
 msgstr "Група або екземпляр вже існує"

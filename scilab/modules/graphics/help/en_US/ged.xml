@@ -80,8 +80,18 @@
     <para><literal>ged</literal> starts Scilab Graphic Editor on figure number <literal>fignum</literal> and execute action given by <literal>action</literal>.</para>
   </refsection>
   <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+// Moving a curve
+scf(0);
+plot2d();
+ged(6,0) // Then click on a curve and try moving it
+ ]]></programlisting>
+
+  </refsection>
+
+  <refsection>
     <title>Authors</title>
     <para>V.C.</para>
   </refsection>
 </refentry>
-

@@ -14,9 +14,8 @@
 
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
-SUBDIRS = core
 
-SUBDIRS += \
+SUBDIRS = \
 output_stream \
 arnoldi \
 elementary_functions \
@@ -28,6 +27,8 @@ history_manager \
 spreadsheet \
 tclsci \
 localization \
+commons \
+jvm \
 action_binding \
 renderer \
 shell \
@@ -35,7 +36,6 @@ completion \
 console \
 graphic_export \
 gui \
-jvm \
 graphics \
 optimization \
 symbolic \
@@ -195,7 +195,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+	$(top_builddir)/modules/commons/libscicommons.la
 
 
 # These libraries are loaded dynamically from Scilab.

@@ -8,7 +8,10 @@
 // <-- Short Description -->
 // White-box test for the xcosPalAdd macro.
 
-loadScicosLibs;
+loadScicosLibs();
+
+prot = funcprot();
+funcprot(0);
 
 // stub methods (white box)
 function [status, msg] = xcosPalExport(pal, path)
@@ -23,6 +26,8 @@ function xcosPalLoad(pal, category)
     if typeof(category) <> "string" then pause, end
     if and([size(category, 'r') > 1, size(category, 'c') > 1]) then pause, end
 endfunction
+
+funcprot(prot);
 
 // start of the test
 pal = xcosPal();

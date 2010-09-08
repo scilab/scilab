@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-04-13 09:03+0000\n"
+"PO-Revision-Date: 2010-06-29 12:02+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -43,10 +43,6 @@ msgstr " на основі %10d елементів з %10d.\n"
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: простору для зберігання рядкових параметрів не залишилося.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
 msgid "%s and %s arguments"
@@ -134,24 +130,8 @@ msgstr ""
 "stack.h.\n"
 
 #, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s: не вдалося отримати більше пам’яті.\n"
-"Спробуйте ввести команду gstacksize('max').\n"
-
-#, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: не вдалося виділити пам’ять.\n"
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s: не вдалося виділити пам’ять.\n"
-"Спробуйте stacksize('max').\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -172,6 +152,10 @@ msgstr "%s: некоректне значення «%s».\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: некоректна назва модуля: %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -266,12 +250,8 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s: помилкове значення %s — %d замість %d.\n"
 
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s: помилковий запис VERSION у файлі — %s.\n"
-
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: помилковий запис VERSION у файлі — %s.\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr "%s: помилка у файлі version.xml %s.\n"
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -358,14 +338,19 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: помилкова розмірність вхідних параметрів.\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"число.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати скалярний тип, «%s» "
-"або «%s».\n"
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s: помилкова розмірність вхідних параметрів.\n"
 
 #, c-format
 msgid ""
@@ -609,19 +594,6 @@ msgstr ""
 "макрос.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати іменовану "
-"змінну.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
-"тип, «%s», «%s».\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
@@ -758,13 +730,6 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "у інтервалі [%d, %d]\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати скалярне "
-"значення, «%s» або «%s».\n"
 
 #, c-format
 msgid ""
@@ -911,6 +876,17 @@ msgid "Error returning tlist, memory full.\n"
 msgstr ""
 "Помилка під час спроби повернути tlist, перевищено обмеження на розміри "
 "пам’яті.\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+"Error(x) вважається застарілою функцією, її буде вилучено у Scilab 5.4. Будь "
+"ласка, скористайтеся функцією SciError(x).\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "Помилка: не вдалося створити %s: %s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -1080,6 +1056,14 @@ msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
 "Неочікуваний код операції, будь ласка, повідомте про помилку у системі "
 "стеження за вадами Scilab."
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr "Вилучення з черги %s: параметр не задано.\n"
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr "Вилучення з черги %s: послідовність.\n"
 
 msgid "User variables are:"
 msgstr "Змінними користувача є:"

@@ -17,10 +17,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Fehler bei der Speicherbelegung.\n"
-
-#, c-format
 msgid "%s: %s format not recognized.\n"
 msgstr "%s: %s Format ist nicht erlaubt.\n"
 
@@ -137,6 +133,10 @@ msgid "%s: Invalid conversion.\n"
 msgstr "%s: ungültige Konversion.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: No File opened in Scilab.\n"
 msgstr "%s: keine Datei in Scilab geöffnet.\n"
 
@@ -172,6 +172,10 @@ msgstr "%s: die Datei %s ist nicht Scilab nicht geöffnet.\n"
 #, c-format
 msgid "%s: Too many directives in scanf.\n"
 msgstr "%s: zu viele Direktiven in Scanf.\n"
+
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -272,6 +276,10 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
 msgstr ""
@@ -287,6 +295,11 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: Skalar erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: String or logical unit expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument: Scalar expected.\n"
@@ -337,6 +350,10 @@ msgid "%s: Wrong type for input argument #%d: A string.\n"
 msgstr "%s: falscher Typ an Eingangsargumenten #%d: eine Zeichenkette.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Matrix of floating point numbers "
 "expected.\n"
@@ -357,6 +374,11 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: A string expected.\n"
@@ -430,6 +452,10 @@ msgstr ""
 "Zeichenkette erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s: falscher Wert für Eingangsargument #%d: Format nicht erkannt.\n"
 
@@ -459,8 +485,16 @@ msgid "%s: end of input reached before final conversion.\n"
 msgstr "%s: Ende des Dateneingangs vor der Finalen Konversion erreicht.\n"
 
 #, c-format
+msgid "%s: error.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: format is of 0 length.\n"
 msgstr "%s: Format hat die Länge 0.\n"
+
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: invalid filename.\n"
@@ -483,6 +517,10 @@ msgstr "Kann das aktuelle Verzeichnis nicht erreichen.\n"
 #, c-format
 msgid "Can't go to directory %s.\n"
 msgstr "Kann in Verzeichnis nicht wechseln %s.\n"
+
+#, c-format
+msgid "Can't go to directory %s: %s\n"
+msgstr ""
 
 msgid "Invalid buffer.\n"
 msgstr "Falscher Puffer.\n"

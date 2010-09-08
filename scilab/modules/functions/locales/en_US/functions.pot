@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-08-17 12:09+0100\n"
 
 # File: sci_gateway/c/sci_exec.c, line: 267
 #, c-format
@@ -116,11 +116,6 @@ msgstr ""
 msgid "%s: The function has not been built for profiling"
 msgstr ""
 #
-# File: macros/get_function_path.sci, line: 34
-#, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr ""
-#
 # File: macros/head_comments.sci, line: 17
 #, c-format
 msgid "%s: Undefined variable %s.\n"
@@ -143,7 +138,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 #
-# File: macros/get_function_path.sci, line: 18
+# File: macros/get_function_path.sci, line: 20
 # File: sci_gateway/c/sci_execstr.c, line: 135
 # File: sci_gateway/c/sci_execstr.c, line: 204
 # File: sci_gateway/c/sci_whereis.c, line: 94
@@ -169,7 +164,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 #
-# File: macros/get_function_path.sci, line: 14
+# File: macros/get_function_path.sci, line: 16
 # File: sci_gateway/c/sci_execstr.c, line: 87
 # File: sci_gateway/c/sci_execstr.c, line: 94
 # File: sci_gateway/c/sci_execstr.c, line: 122
@@ -229,8 +224,7 @@ msgstr ""
 msgid "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
 #
-# File: macros/bytecodewalk.sci, line: 59
-# File: macros/bytecodewalk.sci, line: 98
+# File: macros/bytecodewalk.sci, line: 164
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
 msgstr ""
@@ -240,7 +234,7 @@ msgstr ""
 msgid "-- Creation of [%s] (Macros) --\n"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 94
+# File: macros/plotprofile.sci, line: 92
 msgid "?"
 msgstr ""
 #
@@ -249,19 +243,19 @@ msgstr ""
 msgid "Checking: %s.\n"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 99
+# File: macros/plotprofile.sci, line: 97
 msgid "Click to get corresponding line, move with a-z."
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 77
+# File: macros/plotprofile.sci, line: 75
 msgid "Complexity"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 93
+# File: macros/plotprofile.sci, line: 91
 msgid "Edit"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 96
+# File: macros/plotprofile.sci, line: 94
 msgid "Exit"
 msgstr ""
 #
@@ -297,16 +291,16 @@ msgstr ""
 msgid "This function will be permanently removed in Scilab %s"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 92
+# File: macros/plotprofile.sci, line: 90
 msgid "Tools"
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 154
+# File: macros/plotprofile.sci, line: 152
 #, c-format
 msgid "line %s [%s call, %s sec] :: "
 msgstr ""
 #
-# File: macros/plotprofile.sci, line: 156
+# File: macros/plotprofile.sci, line: 154
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr ""

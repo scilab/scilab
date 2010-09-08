@@ -87,26 +87,27 @@ class BlockGraphicElement extends BlockPartsElement {
 		if (into == null) {
 			throw new IllegalArgumentException();
 		}
-
+		BasicBlock block = into;
+		
 		data = (ScilabMList) element;
 
 		validate();
 		
-		into = beforeDecode(element, into);
+		block = beforeDecode(element, block);
 		
 		/*
 		 * fill the data
 		 */
-		fillDimension(into);
-		fillOrigin(into);
-		fillFlipAndRotation(into);
+		fillDimension(block);
+		fillOrigin(block);
+		fillFlipAndRotation(block);
 		
-		into.setExprs(data.get(EXPRS_INDEX));
+		block.setExprs(data.get(EXPRS_INDEX));
 		
 		
-		into = afterDecode(element, into);
+		block = afterDecode(element, block);
 		
-		return into;
+		return block;
 	}
 
 	/**

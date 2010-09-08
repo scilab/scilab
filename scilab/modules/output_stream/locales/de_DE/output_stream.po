@@ -64,10 +64,6 @@ msgid "%dth argument type must be boolean.\n"
 msgstr "%dth Argument Typ muß ein boolscher Wert sein.\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Fehler bei der Speicherbelegung.\n"
-
-#, c-format
 msgid "%s and %s must have equal dimensions.\n"
 msgstr "%s und %s müssen die gleiche Dimension haben.\n"
 
@@ -159,6 +155,10 @@ msgstr ""
 #, c-format
 msgid "%s: Loop on two orders detected.\n"
 msgstr "%s: Schleife bei zwei Anordnungen erkannt.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -523,9 +523,6 @@ msgstr "%s: das gemeinsame Archiv wurde nicht geladen.\n"
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr "%s: Fensterdimensionen wurde auf wenige als 2e16 gesetzt.\n"
 
-msgid "'o' format not allowed."
-msgstr "'o' Format nicht erlaubt."
-
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr "eine dürtige Matrix ist durch zwei Werte definiert.\n"
 
@@ -626,12 +623,9 @@ msgstr "Augen-Variable für diesen Kontext definiert.\n"
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
-"Bad call to a scilab function ?\n"
-"Otherwise, send a bug report to :\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
 msgstr ""
-"Gravierender Fehler! Ihre Variablen wurde in die Datei %s gespeichert\n"
-"Falscher Aufruf einer Scilab Funktion?\n"
-"Andernfalls senden Sie einen Fehlerbericht an:\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -1092,6 +1086,9 @@ msgstr "Undefinierte Funktion.\n"
 
 msgid "Undefined operation for the given operands.\n"
 msgstr "Undefinierte Operation für die gegebenen Operanden.\n"
+
+msgid "Undefined variable.\n"
+msgstr ""
 
 #, c-format
 msgid "Undefined variable: %s\n"

@@ -65,6 +65,10 @@ msgid "%s: Invalid library %s.\n"
 msgstr "%s: ungültige Bibliothek %s.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: Es wurden keine Dateien mit der Erweiterung %s in %s gefunden.\n"
 
@@ -233,18 +237,6 @@ msgstr "Diese Funktion wird aus Scilab dauerhaft entfernt %s"
 
 msgid "Tools"
 msgstr "Extras"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "Warnung: Funktion %s ist obsolet.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "Warnung: bitte verwenden Sie anstattdessen %s.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "Warnung: diese Funktion wird in Scilab dauerhaft entfernt %s.\n"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "

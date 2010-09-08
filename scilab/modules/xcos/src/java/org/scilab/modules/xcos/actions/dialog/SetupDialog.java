@@ -297,12 +297,14 @@ public class SetupDialog extends JDialog {
 	private void installActionListeners(JButton cancelButton, JButton okButton,
 			JButton defaultButton, JButton setContextButton) {
 		cancelButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
 
 		defaultButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				integration.setValue(new BigDecimal(ScicosParameters.FINAL_INTEGRATION_TIME));
 				rts.setValue(new BigDecimal(ScicosParameters.REAL_TIME_SCALING));
@@ -316,6 +318,7 @@ public class SetupDialog extends JDialog {
 		});
 
 		okButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 			    if (((JButton) e.getSource()).hasFocus()) {
 			    try {
@@ -346,6 +349,7 @@ public class SetupDialog extends JDialog {
 		});
 
 		setContextButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, parameters);
 				
