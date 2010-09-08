@@ -380,16 +380,30 @@ void visitprivate(const OpExp &e)
     }
     case OpExp::eq :
     {
+        if(TypeL == GenericType::RealDouble && execMeL.result_get()->getAsDouble()->size_get() == 0)
+        {//[] == xx
+            if(TypeR != InternalType::RealDouble)
+            {
+                result_set(new Bool(false));
+                return;
+            }
+        }
+
+        if(TypeR == GenericType::RealDouble && execMeR.result_get()->getAsDouble()->size_get() == 0)
+        {//xx == []
+            if(TypeL != InternalType::RealDouble)
+            {
+                result_set(new Bool(false));
+                return;
+            }
+        }
+
         if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
         {
             Double *pL			= execMeL.result_get()->getAsDouble();
             Double *pR			= execMeR.result_get()->getAsDouble();
 
             if(pR->size_get() == 0 && pL->size_get() == 0)
-            {
-                pResult = new Bool(true);
-            }
-            else if(pL->size_get() == 0  && pR->size_get() == 0)
             {
                 pResult = new Bool(true);
             }
@@ -591,6 +605,24 @@ void visitprivate(const OpExp &e)
     }
     case OpExp::ne :
     {
+        if(TypeL == GenericType::RealDouble && execMeL.result_get()->getAsDouble()->size_get() == 0)
+        {//[] <> xx
+            if(TypeR != InternalType::RealDouble)
+            {
+                result_set(new Bool(true));
+                return;
+            }
+        }
+
+        if(TypeR == GenericType::RealDouble && execMeR.result_get()->getAsDouble()->size_get() == 0)
+        {//xx <> []
+            if(TypeL != InternalType::RealDouble)
+            {
+                result_set(new Bool(true));
+                return;
+            }
+        }
+
         if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
         {
             Double *pL			= execMeL.result_get()->getAsDouble();
@@ -600,7 +632,11 @@ void visitprivate(const OpExp &e)
             {
                 pResult = new Bool(false);
             }
-            else if(pR->size_get() == 1)
+            else if(pL->size_get() == 0  || pR->size_get() == 0)
+            {
+                pResult = new Bool(true);
+            }
+           else if(pR->size_get() == 1)
             {
                 pResult				= new Bool(pL->rows_get(), pL->cols_get());
                 double dblRef	= pR->real_get(0,0);
