@@ -76,6 +76,8 @@ Bug Fixes:
 
 * bug 7981 fixed - copyfile failed with localized filenames on linux.
 
+* bug 7988 fixed - Inverted pendulum demo failed with f2c version on Windows.
+
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
          ===============================================================
