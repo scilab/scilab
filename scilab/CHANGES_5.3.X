@@ -38,6 +38,9 @@ GUI creation:
 * It is now possible to use LaTeX or MathML as label for uimenu or pushbutton
 in uicontrol. See bug #7366.
 
+* bug 7082 fixed - Setting the "enable" property had no effect on "listbox" and
+                   "text" uicontrols.
+
 * bug 7367 fixed - uimenu properties display was not consistent.
 
 * bug 7368 fixed - Setting the "Visible" property to "off" had no effect on.
