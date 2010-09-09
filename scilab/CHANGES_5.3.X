@@ -62,6 +62,9 @@ Compilation:
 Bug Fixes:
 ==========
 
+* bug 7163 fixed - tree2code wrongly replaced every (:) occurence in a function
+                   definition with (eye()).
+
 * bug 7231 fixed - mtlb_num2str did not manage second input argument.
 
 * bug 7640 fixed - xs2pdf, xs2eps, xs2emf crashed if filename prefix had less
