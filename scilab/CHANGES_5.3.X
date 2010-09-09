@@ -18,7 +18,8 @@ Xcos:
 
 * bug 7922 fixed - The Automotive Suspension demo did not work.
 
-* bugs 7931, 7933, 7934 fixed - Some artifacts were visible on diagrams such as wrong links and block names.
+* bugs 7931, 7933, 7934 fixed - Some artifacts were visible on diagrams such as
+                   wrong links and block names.
 
 * bug 7945 fixed - The path of the diagram was not displayed in the title bar.
 
@@ -141,6 +142,8 @@ Bug Fixes:
 * bug 7981 fixed - copyfile failed with localized filenames on linux.
 
 * bug 7988 fixed - Inverted pendulum demo failed with f2c version on Windows.
+
+* bug 7994 fixed - xs2emf created empty files on Windows.
 
 * bug 8006 fixed - mgetl produced a memory allocation error.
 
