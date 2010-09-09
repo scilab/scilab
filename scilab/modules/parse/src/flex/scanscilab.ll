@@ -306,7 +306,18 @@ assign			"="
 <BEGINID>
 {
     {id}                        {
-        yylval.str = new std::wstring(to_wide_string(yytext));
+        wchar_t *pwText = to_wide_string(yytext);
+        if (yytext != NULL && pwText == NULL)
+        {
+            std::string str = "can not convert'";
+            str += yytext;
+            str += "' to UTF-8";
+            std::cerr << "[ERROR] " << str << std::endl;
+            exit_status = SCAN_ERROR;
+            scan_error("can not convert string to UTF-8");
+            yyterminate();
+        }
+        yylval.str = new std::wstring(pwText);
         if (symbol::Context::getInstance()->get(*yylval.str) != NULL
             && symbol::Context::getInstance()->get(*yylval.str)->isCallable())
         {
@@ -530,7 +541,18 @@ assign			"="
 
 
 <INITIAL,MATRIX>{id}			{
-    yylval.str = new std::wstring(to_wide_string(yytext));
+    wchar_t *pwText = to_wide_string(yytext);
+    if (yytext != NULL && pwText == NULL)
+    {
+        std::string str = "can not convert'";
+        str += yytext;
+        str += "' to UTF-8";
+        std::cerr << "[ERROR] " << str << std::endl;
+        exit_status = SCAN_ERROR;
+        scan_error("can not convert string to UTF-8");
+        yyterminate();
+    }
+    yylval.str = new std::wstring(pwText);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
@@ -771,7 +793,18 @@ assign			"="
 
   {id}					{
     yy_pop_state();
-    yylval.str = new std::wstring(to_wide_string(yytext));
+    wchar_t* pwText = to_wide_string(yytext);
+    if (yytext != NULL && pwText == NULL)
+    {
+        std::string str = "can not convert'";
+        str += yytext;
+        str += "' to UTF-8";
+        std::cerr << "[ERROR] " << str << std::endl;
+        exit_status = SCAN_ERROR;
+        scan_error("can not convert string to UTF-8");
+        yyterminate();
+    }
+    yylval.str = new std::wstring(pwText);
 #ifdef TOKENDEV
     std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
@@ -845,6 +878,16 @@ assign			"="
         //std::cerr << "pstBuffer->c_str() = {" << pstBuffer->c_str() << "}" << std::endl;
         wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
         //std::wcerr << L"pwstBuffer = W{" << pwstBuffer << L"}" << std::endl;
+        if (pstBuffer->c_str() != NULL && pwstBuffer == NULL)
+        {
+            std::string str = "can not convert'";
+            str += pstBuffer->c_str();
+            str += "' to UTF-8";
+            std::cerr << "[ERROR] " << str << std::endl;
+            exit_status = SCAN_ERROR;
+            scan_error("can not convert string to UTF-8");
+            yyterminate();
+        }
         yylval.comment = new std::wstring(pwstBuffer);
         delete pstBuffer;
         FREE (pwstBuffer);
@@ -855,6 +898,16 @@ assign			"="
   <<EOF>>	{
     yy_pop_state();
     wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+    if (pstBuffer->c_str() != NULL && pwstBuffer == NULL)
+    {
+        std::string str = "can not convert'";
+        str += pstBuffer->c_str();
+        str += "' to UTF-8";
+        std::cerr << "[ERROR] " << str << std::endl;
+        exit_status = SCAN_ERROR;
+        scan_error("can not convert string to UTF-8");
+        yyterminate();
+    }
     yylval.comment = new std::wstring(pwstBuffer);
     delete pstBuffer;
     FREE (pwstBuffer);
@@ -929,6 +982,16 @@ assign			"="
     yy_pop_state();
     scan_step();
     wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+    if (pstBuffer->c_str() != NULL && pwstBuffer == NULL)
+    {
+        std::string str = "can not convert'";
+        str += pstBuffer->c_str();
+        str += "' to UTF-8";
+        std::cerr << "[ERROR] " << str << std::endl;
+        exit_status = SCAN_ERROR;
+        scan_error("can not convert string to UTF-8");
+        yyterminate();
+    }
     yylval.str = new std::wstring(pwstBuffer);
     delete pstBuffer;
     FREE(pwstBuffer);
@@ -987,6 +1050,16 @@ assign			"="
     yy_pop_state();
     scan_step();
     wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+    if (pstBuffer->c_str() != NULL && pwstBuffer == NULL)
+    {
+        std::string str = "can not convert'";
+        str += pstBuffer->c_str();
+        str += "' to UTF-8";
+        std::cerr << "[ERROR] " << str << std::endl;
+        exit_status = SCAN_ERROR;
+        scan_error("can not convert string to UTF-8");
+        yyterminate();
+    }
     yylval.str = new std::wstring(pwstBuffer);
     delete pstBuffer;
     FREE(pwstBuffer);
