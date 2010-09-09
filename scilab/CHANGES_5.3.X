@@ -38,8 +38,9 @@ GUI creation:
 * It is now possible to use LaTeX or MathML as label for uimenu or pushbutton
 in uicontrol. See bug #7366.
 
-* bug 7368 fixed - Setting the "Visible" property to "off" had no effect on
-                   "Checked" uimenus.
+* bug 7367 fixed - uimenu properties display was not consistent.
+
+* bug 7368 fixed - Setting the "Visible" property to "off" had no effect on.
 
 * bug 7898 fixed - In an uicontrol of style "popupmenu", when the list in the
                    "String" parameter has several repeated values, the returned
