@@ -23,7 +23,7 @@ Xcos:
 SciNotes:
 =========
 
-* LaTeX formula in comments or in a string are now rendered when the mouse 
+* LaTeX formula in comments or in a string are now rendered when the mouse
   cursor is over.
 
 * Block text (function, if, while...) are now easily selectable. See bug #7546.
@@ -50,6 +50,9 @@ Bug Fixes:
 
 * bug 7231 fixed - mtlb_num2str did not manage second input argument.
 
+* bug 7640 fixed - xs2pdf, xs2eps, xs2emf crashed if filename prefix had less
+                   of three characters.
+
 * bug 7872 fixed - Riemann Surface demo returned a error if window was closed by
                    the cross button.
 
@@ -70,7 +73,6 @@ Bug Fixes:
                    information.
 
 * bug 7981 fixed - copyfile failed with localized filenames on linux.
-
 
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
