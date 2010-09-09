@@ -48,6 +48,8 @@ Graphics:
 Bug Fixes:
 ==========
 
+* bug 7231 fixed - mtlb_num2str did not manage second input argument.
+
 * bug 7872 fixed - Riemann Surface demo returned a error if window was closed by
                    the cross button.
 
