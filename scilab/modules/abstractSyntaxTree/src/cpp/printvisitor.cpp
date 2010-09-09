@@ -18,17 +18,21 @@ namespace ast {
      ** \{ */
     void PrintVisitor::visit (const MatrixExp &e)
     {
-        std::list<MatrixLineExp *>::const_iterator	i;
+        std::list<MatrixLineExp *>::const_iterator	i, j;
         *ostr << SCI_OPEN_MATRIX;
         ++indent;
+        this->is_last_matrix_line = false;
         for (i = e.lines_get().begin() ; i != e.lines_get().end() ; )
         {
-            (*i)->accept (*this);
-            if (++i != e.lines_get().end())
+            j = i;
+            if (++j == e.lines_get().end())
             {
-                *ostr << SCI_LINE_SEPARATOR << std::endl;
-                this->apply_indent();
+                this->is_last_matrix_line = true;
             }
+            (*i)->accept (*this);
+            ++i;
+            *ostr << std::endl;
+            this->apply_indent();
         }
         *ostr << SCI_CLOSE_MATRIX;
         --indent;
@@ -36,14 +40,28 @@ namespace ast {
 
     void PrintVisitor::visit (const MatrixLineExp &e)
     {
-        std::list<Exp *>::const_iterator	i;
+        std::list<Exp *>::const_iterator        i;
+        bool                                    last_column_is_comment = false;
+
         for (i = e.columns_get().begin() ; i != e.columns_get().end() ; )
         {
             (*i)->accept (*this);
+            if (dynamic_cast<ast::CommentExp*>(*i) != NULL)
+            {
+                last_column_is_comment = true;
+            }
             if (++i != e.columns_get().end())
             {
-                *ostr << SCI_COLUMN_SEPARATOR << " ";
+                if (dynamic_cast<ast::CommentExp*>(*i) == NULL)
+                {
+                    *ostr << SCI_COLUMN_SEPARATOR;
+                }
+                *ostr << " ";
             }
+        }
+        if (!last_column_is_comment && this->is_last_matrix_line == false)
+        {
+            *ostr << SCI_LINE_SEPARATOR;
         }
     }
     /** \} */

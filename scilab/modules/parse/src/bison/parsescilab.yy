@@ -1067,25 +1067,25 @@ variableFields COMMA variable		{
 */
 cell :
 LBRACE matrixOrCellLines RBRACE					{ $$ = new ast::CellExp(@$, *$2); }
-| LBRACE lineEnd matrixOrCellLines RBRACE				{ $$ = new ast::CellExp(@$, *$3); }
+//| LBRACE lineEnd matrixOrCellLines RBRACE				{ $$ = new ast::CellExp(@$, *$3); }
 | LBRACE matrixOrCellLines matrixOrCellColumns RBRACE			{
 								  $2->push_back(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::CellExp(@$, *$2);
 								}
-| LBRACE lineEnd matrixOrCellLines matrixOrCellColumns RBRACE		{
-								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
-								  $$ = new ast::CellExp(@$, *$3);
-								}
+//| LBRACE lineEnd matrixOrCellLines matrixOrCellColumns RBRACE		{
+//								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
+//								  $$ = new ast::CellExp(@$, *$3);
+//								}
 | LBRACE matrixOrCellColumns RBRACE					{
 								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
 								  tmp->push_front(new ast::MatrixLineExp(@2, *$2));
 								  $$ = new ast::CellExp(@$, *tmp);
 								}
-| LBRACE lineEnd matrixOrCellColumns RBRACE				{
-								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
-								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
-								  $$ = new ast::CellExp(@$, *tmp);
-}
+//| LBRACE lineEnd matrixOrCellColumns RBRACE				{
+//								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
+//								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
+//								  $$ = new ast::CellExp(@$, *tmp);
+//}
 | LBRACE RBRACE							{ $$ = new ast::CellExp(@$, *new std::list<ast::MatrixLineExp *>); }
 ;
 
@@ -1096,25 +1096,25 @@ LBRACE matrixOrCellLines RBRACE					{ $$ = new ast::CellExp(@$, *$2); }
 /* How Matrix are written */
 matrix :
 LBRACK matrixOrCellLines RBRACK					{ $$ = new ast::MatrixExp(@$, *$2); }
-| LBRACK lineEnd matrixOrCellLines RBRACK				{ $$ = new ast::MatrixExp(@$, *$3); }
+//| LBRACK lineEnd matrixOrCellLines RBRACK				{ $$ = new ast::MatrixExp(@$, *$3); }
 | LBRACK matrixOrCellLines matrixOrCellColumns RBRACK			{
 								  $2->push_back(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::MatrixExp(@$, *$2);
 								}
-| LBRACK lineEnd matrixOrCellLines matrixOrCellColumns RBRACK		{
-								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
-								  $$ = new ast::MatrixExp(@$, *$3);
-								}
+//| LBRACK lineEnd matrixOrCellLines matrixOrCellColumns RBRACK		{
+//								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
+//								  $$ = new ast::MatrixExp(@$, *$3);
+//								}
 | LBRACK matrixOrCellColumns RBRACK					{
 								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
 								  tmp->push_front(new ast::MatrixLineExp(@2, *$2));
 								  $$ = new ast::MatrixExp(@$, *tmp);
 								}
-| LBRACK lineEnd matrixOrCellColumns RBRACK				{
-								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
-								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
-								  $$ = new ast::MatrixExp(@$, *tmp);
-								}
+//| LBRACK lineEnd matrixOrCellColumns RBRACK				{
+//								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
+//								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
+//								  $$ = new ast::MatrixExp(@$, *tmp);
+//								}
 | LBRACK RBRACK							{ $$ = new ast::MatrixExp(@$, *new std::list<ast::MatrixLineExp *>); }
 ;
 
@@ -1131,6 +1131,8 @@ matrixOrCellLines matrixOrCellLine	{
 					  $$ = new std::list<ast::MatrixLineExp *>;
 					  $$->push_front($1);
 					}
+//| matrixOrCellLines lineEnd {}
+//| COMMENT EOL {}
 ;
 
 /*
@@ -1138,9 +1140,9 @@ matrixOrCellLines matrixOrCellLine	{
 */
 /* Fake Rule : How can we be sure this is a line ending in a Matrix/Cell */
 matrixOrCellLineBreak :
-SEMI							{ /* !! Do Nothing !! */ }
-| EOL							{ /* !! Do Nothing !! */ }
-| SEMI EOL						{ /* !! Do Nothing !! */ }
+SEMI                            { /* !! Do Nothing !! */ }
+| EOL                           { /* !! Do Nothing !! */ }
+| SEMI EOL                      { /* !! Do Nothing !! */ }
 ;
 
 /*
@@ -1148,12 +1150,8 @@ SEMI							{ /* !! Do Nothing !! */ }
 */
 /* Some matrix/cell columns with a special matrix/cell line break at the end */
 matrixOrCellLine :
-matrixOrCellColumns matrixOrCellLineBreak				{ $$ = new ast::MatrixLineExp(@$, *$1); }
-| matrixOrCellColumns COMMENT EOL					{ $$ = new ast::MatrixLineExp(@$, *$1); }
-| matrixOrCellColumns SEMI COMMENT EOL					{ $$ = new ast::MatrixLineExp(@$, *$1); }
+matrixOrCellColumns matrixOrCellLineBreak                               { $$ = new ast::MatrixLineExp(@$, *$1); }
 | matrixOrCellColumns matrixOrCellColumnsBreak matrixOrCellLineBreak	{ $$ = new ast::MatrixLineExp(@$, *$1); }
-| matrixOrCellColumns matrixOrCellColumnsBreak COMMENT EOL		{ $$ = new ast::MatrixLineExp(@$, *$1); }
-| matrixOrCellColumns matrixOrCellColumnsBreak SEMI COMMENT EOL		{ $$ = new ast::MatrixLineExp(@$, *$1); }
 ;
 
 /*
@@ -1161,30 +1159,38 @@ matrixOrCellColumns matrixOrCellLineBreak				{ $$ = new ast::MatrixLineExp(@$, *
 */
 /* Matrix or Cell Columns : [variable|functinoCall] ([,|][variable|functionCall])* */
 matrixOrCellColumns :
-matrixOrCellColumns matrixOrCellColumnsBreak variable		%prec HIGHLEVEL {
-								  $1->push_back($3);
-								  $$ = $1;
-								}
+matrixOrCellColumns matrixOrCellColumnsBreak variable       %prec HIGHLEVEL {
+                                                                                $1->push_back($3);
+                                                                                $$ = $1;
+                                                                            }
 | matrixOrCellColumns matrixOrCellColumnsBreak functionCall	%prec HIGHLEVEL {
-								  $1->push_back($3);
-								  $$ = $1;
-								}
-| matrixOrCellColumns variable					%prec HIGHLEVEL {
-								  $1->push_back($2);
-								  $$ = $1;
-								}
-| matrixOrCellColumns functionCall				%prec HIGHLEVEL {
-								  $1->push_back($2);
-								  $$ = $1;
-								}
-| variable							%prec HIGHLEVEL {
-								  $$ = new ast::exps_t;
-								  $$->push_front($1);
-								}
-| functionCall							%prec HIGHLEVEL {
-								  $$ = new ast::exps_t;
-								  $$->push_front($1);
-								}
+                                                                                $1->push_back($3);
+                                                                                $$ = $1;
+                                                                            }
+| matrixOrCellColumns variable                              %prec HIGHLEVEL {
+                                                                                $1->push_back($2);
+                                                                                $$ = $1;
+                                                                            }
+| matrixOrCellColumns functionCall                          %prec HIGHLEVEL {
+                                                                                $1->push_back($2);
+                                                                                $$ = $1;
+                                                                            }
+| matrixOrCellColumns COMMENT                               %prec HIGHLEVEL {
+                                                                                $1->push_back(new ast::CommentExp(@2, $2));
+                                                                                $$ = $1;
+                                                                            }
+| variable                                                  %prec HIGHLEVEL {
+                                                                                $$ = new ast::exps_t;
+                                                                                $$->push_front($1);
+                                                                            }
+| functionCall                                              %prec HIGHLEVEL {
+                                                                                $$ = new ast::exps_t;
+                                                                                $$->push_front($1);
+                                                                            }
+| COMMENT                                                                   {
+                                                                                $$ = new ast::exps_t;
+                                                                                $$->push_front(new ast::CommentExp(@$, $1));
+                                                                            }
 ;
 
 /*
@@ -1533,23 +1539,24 @@ expressions			{ $$ = $1; }
 */
 /* Fake Rule : How can we be sure this is the 'while' condition ending. */
 whileConditionBreak :
-COMMA				{ /* !! Do Nothing !! */ }
-| SEMI				{ /* !! Do Nothing !! */ }
-| DO				{ /* !! Do Nothing !! */ }
-| DO COMMA			{ /* !! Do Nothing !! */ }
-| DO SEMI			{ /* !! Do Nothing !! */ }
-| THEN				{ /* !! Do Nothing !! */ }
-| THEN COMMA			{ /* !! Do Nothing !! */ }
-| THEN SEMI			{ /* !! Do Nothing !! */ }
-| lineEnd			{ /* !! Do Nothing !! */ }
-| COMMA EOL			{ /* !! Do Nothing !! */ }
-| SEMI EOL			{ /* !! Do Nothing !! */ }
-| DO EOL			{ /* !! Do Nothing !! */ }
-| DO COMMA EOL			{ /* !! Do Nothing !! */ }
-| DO SEMI EOL			{ /* !! Do Nothing !! */ }
-| THEN EOL			{ /* !! Do Nothing !! */ }
-| THEN COMMA EOL		{ /* !! Do Nothing !! */ }
-| THEN SEMI EOL			{ /* !! Do Nothing !! */ }
+COMMA                   { /* !! Do Nothing !! */ }
+| SEMI                  { /* !! Do Nothing !! */ }
+| DO                    { /* !! Do Nothing !! */ }
+| DO COMMA              { /* !! Do Nothing !! */ }
+| DO SEMI               { /* !! Do Nothing !! */ }
+| THEN                  { /* !! Do Nothing !! */ }
+| THEN COMMA            { /* !! Do Nothing !! */ }
+| THEN SEMI             { /* !! Do Nothing !! */ }
+| COMMENT EOL           { /* !! Do Nothing !! */ }
+| EOL                   { /* !! Do Nothing !! */ }
+| COMMA EOL             { /* !! Do Nothing !! */ }
+| SEMI EOL              { /* !! Do Nothing !! */ }
+| DO EOL                { /* !! Do Nothing !! */ }
+| DO COMMA EOL          { /* !! Do Nothing !! */ }
+| DO SEMI EOL           { /* !! Do Nothing !! */ }
+| THEN EOL              { /* !! Do Nothing !! */ }
+| THEN COMMA EOL        { /* !! Do Nothing !! */ }
+| THEN SEMI EOL         { /* !! Do Nothing !! */ }
 ;
 
 /*

@@ -47,7 +47,16 @@ void visitprivate(const MatrixExp &e)
                 for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
                 {
                     T* execMe = new T();
-                    (*col)->accept (*execMe);
+                    CommentExp* pComment = dynamic_cast<CommentExp*>((*col));
+                    if(pComment != NULL)
+                    {
+                        execMe->result_set(Double::Empty());
+                    }
+                    else
+                    {
+                        (*col)->accept (*execMe);
+                    }
+
                     if(execMe->result_get()->getType() == InternalType::RealImplicitList)
                     {
                         if(execMe->result_get()->getAsImplicitList()->computable() == true)
@@ -90,30 +99,34 @@ void visitprivate(const MatrixExp &e)
                     pResult->DecreaseRef();
                 }
 
-                if(iCols == -1)
+                //if empty row, ignore it
+                if(iCurCol != 0)
                 {
-                    iCols = iCurCol;
-                    if(iCols == 0)
-                    {//manage []
-                        iCols = -1;
+                    if(iCols == -1)
+                    {
+                        iCols = iCurCol;
+                        if(iCols == 0)
+                        {//manage []
+                            iCols = -1;
+                        }
                     }
-                }
-                else if(iCols != 0 && iCols != iCurCol)
-                {
-                    std::wostringstream os;
-                    os << L"inconsistent row/column dimensions";
-                    os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
-                    throw os.str();
-                }
+                    else if(iCols != 0 && iCols != iCurCol)
+                    {
+                        std::wostringstream os;
+                        os << L"inconsistent row/column dimensions";
+                        os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
+                        throw os.str();
+                    }
 
-                iRows += iCurRow;
-                if(iRows == -1)
-                {//manage  []
-                    iRows = 0;
+                    iRows += iCurRow;
+                    if(iRows == -1)
+                    {//manage  []
+                        iRows = 0;
+                    }
+                    iCurCol = 0;
+                    iCurRow = -1;
+                    MatrixList.push_back(RowList);
                 }
-                iCurCol = 0;
-                iCurRow = -1;
-                MatrixList.push_back(RowList);
             }
 
             list<list<InternalType*> >::const_iterator it_ML;

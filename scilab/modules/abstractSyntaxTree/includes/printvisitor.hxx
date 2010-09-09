@@ -121,6 +121,7 @@ namespace ast
         std::wostream   *ostr;
         int             indent;
         bool            force_parenthesis;
+        bool            is_last_matrix_line;
 
         void            apply_indent(void);
         void            enable_force_parenthesis(void);
