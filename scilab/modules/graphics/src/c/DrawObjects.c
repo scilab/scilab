@@ -468,7 +468,7 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
   const int lognbtics_thrsh  = 7;
 
   double grads_diff;  /* Used for computing spacing between major ticks. */
-  int nbtics_safe;    /* nbtics clamped to the range 0 to subticsval_len-1. Safe as an index into subticsval. */
+  int nbtics_safe = 0;    /* nbtics clamped to the range 0 to subticsval_len-1. Safe as an index into subticsval. */
 
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
@@ -540,6 +540,7 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
   {
     if(ppsubwin->flagNax == FALSE) /* if auto subtics mode == ON */
     {
+      double intbase10 = 0.;
       /* Without graduations, use the heuristic */
       if( grads == NULL )
       {
@@ -557,7 +558,7 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
       grads_diff = fabs( grads_diff );  /* Make into a positive difference. */
 
       /* Compute the largest integral power of 10 smaller than grads_diff. */
-      double intbase10 = pow(10, floor( log10(grads_diff) ) );
+      intbase10 = pow(10, floor( log10(grads_diff) ) );
 
       /* Check if grads_diff is very close to a multiple of intbase10 -- if not, try one power of 10 lower */
       if( fabs( round( grads_diff/intbase10 ) - grads_diff/intbase10 ) >= mult_thrsh )
