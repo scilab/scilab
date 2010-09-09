@@ -23,8 +23,10 @@ Xcos:
 SciNotes:
 =========
 
-* It is now possible to preview a LaTeX formula in comments or in a string on
-mouseover event.
+* LaTeX formula in comments or in a string are now rendered when the mouse 
+  cursor is over.
+
+* Block text (function, if, while...) are now easily selectable. See bug #7546.
 
 * bug 7524 fixed - Tabulation representation had a bad size in whitespace mode.
 
