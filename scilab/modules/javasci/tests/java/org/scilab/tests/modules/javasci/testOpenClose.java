@@ -14,6 +14,9 @@ package org.scilab.tests.modules.javasci;
 import org.testng.annotations.*;
 
 import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.scilabTypes.ScilabBoolean;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 
 public class testOpenClose {
@@ -27,23 +30,41 @@ public class testOpenClose {
 	 * would fail.
 	 */ 
 	@BeforeMethod
-	public void open() throws NullPointerException, InitializationException {
+	public void openTest() throws NullPointerException, InitializationException {
 		sci = new Scilab();
         assert sci.open() == true;
 	}
-
-	@Test(sequential = true)
-    public void openTest() throws NullPointerException, InitializationException {
-// @TODO: uncomment this
-    }
 
 	@Test(sequential = true)
     public void multipleOpenCloseTest() throws NullPointerException, InitializationException {
         assert sci.close() == true;
         assert sci.open() == true;
         assert sci.close() == true;
-// @TODO: uncomment this
-//        sci.close();
+    }
+
+	@Test(sequential = true)
+    public void OpenWithJobTest() throws NullPointerException, InitializationException {
+        assert sci.close() == true;
+        assert sci.open("a=42*2;") == true;
+        
+        ScilabType a = sci.get("a");
+        
+        assert ((ScilabDouble)a).getRealPart()[0][0] == 84.0;
+    }
+
+	@Test(sequential = true)
+    public void OpenWithJobsTest() throws NullPointerException, InitializationException {
+        assert sci.close() == true;
+        assert sci.open(new String[]{"a=42*2;","b=44*2", "c=(a==b)"}) == true;
+        
+        ScilabType a = sci.get("a");
+        assert ((ScilabDouble)a).getRealPart()[0][0] == 84.0;
+
+        ScilabType b = sci.get("b");
+        assert ((ScilabDouble)b).getRealPart()[0][0] == 88.0;
+
+        ScilabType c = sci.get("c");
+        assert ((ScilabBoolean)c).getData()[0][0] == false;
     }
 
 	/**

@@ -12,6 +12,7 @@
 package org.scilab.modules.javasci;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
@@ -84,8 +85,6 @@ public class Scilab {
 		int res = Call_Scilab.Call_ScilabOpen(this.SCI, null, -1);
 		switch (res) {
 			case -1: 
-				/* @TODO : update this exception for a new one (already running) */
-				System.err.println("Javasci already running");
 				throw new InitializationException("Javasci already running");
 			case -2:
 				/* Should not occurd (processed before) */
@@ -138,7 +137,7 @@ public class Scilab {
      * @param job The script to execute on startup
      * @return if the operation is successful
      */
-    public boolean open(File scriptFilename) throws InitializationException {
+    public boolean open(File scriptFilename) throws InitializationException, FileNotFoundException {
         if (!this.open()) {
 			return false;
 		}
@@ -175,8 +174,10 @@ public class Scilab {
      * @param job the script to execute
      * @return if the operation is successful
      */
-    public boolean exec(File scriptFilename) {
-		// @TODO: rajouter le check du fichier et lancer une nosuch file exception
+    public boolean exec(File scriptFilename) throws FileNotFoundException {
+        if (!scriptFilename.exists()) {
+            throw new FileNotFoundException("Could not find " + scriptFilename);
+        }
         return this.exec("exec('" + scriptFilename + "');");
     }
 

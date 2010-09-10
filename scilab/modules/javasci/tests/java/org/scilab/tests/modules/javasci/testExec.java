@@ -12,6 +12,11 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import java.io.File;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
@@ -74,6 +79,41 @@ public class testExec {
         /* Compare if they match */
         assert ((ScilabDouble)sumMatrix).getRealPart()[0][0] == sum;
 
+    }
+
+
+	@Test(sequential = true)
+    public void execFromFileTest() throws NullPointerException, InitializationException {
+		sci.close();
+
+        try {
+            // Create temp file.
+            File tempScript = File.createTempFile("tempScript", ".sci");
+            
+            // Write to temp file
+            BufferedWriter out = new BufferedWriter(new FileWriter(tempScript));
+            out.write("a=4+42;");
+            out.close();
+            
+            assert sci.open(tempScript) == true;
+
+            ScilabType a = sci.get("a");
+            double[][] aReal = ((ScilabDouble)a).getRealPart();
+
+            assert ((ScilabDouble)a).getRealPart()[0][0] == 46.0;
+            tempScript.delete();
+
+        } catch (IOException e) {
+        }
+    }
+
+    @Test(sequential = true, expectedExceptions = FileNotFoundException.class)
+    public void execFromNonExistingFileTest() throws NullPointerException, InitializationException, FileNotFoundException {
+		sci.close();
+
+        File nonExistingFile = new File("/wrong/path/file");
+
+        sci.open(nonExistingFile);
     }
 
 	/**

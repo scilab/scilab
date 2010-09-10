@@ -35,30 +35,30 @@ public class testErrorManagement {
 
 	@Test(sequential = true)
     public void getLastErrorCodeTest() throws NullPointerException, InitializationException {
-	assert sci.getLastErrorCode() == 0; // No error
+        assert sci.getLastErrorCode() == 0; // No error
         assert sci.open("a=1+") == false;
-	assert sci.getLastErrorCode() == 2;
+        assert sci.getLastErrorCode() == 2;
         sci.exec("errclear();");
         sci.exec("a+b");
-	assert sci.getLastErrorCode() == 4;
+        assert sci.getLastErrorCode() == 4;
         sci.exec("errclear();");
     }
 
 	@Test(sequential = true)
     public void getLastErrorMessageTest() throws NullPointerException, InitializationException {
         sci.exec("errclear();"); // No error by default
-	assert sci.getLastErrorMessage().equals("");
-	assert sci.getLastErrorMessage().length() == 0;
+        assert sci.getLastErrorMessage().equals("");
+        assert sci.getLastErrorMessage().length() == 0;
 
         sci.exec("errclear();");
         assert sci.open("a=1+") == false;
-	assert sci.getLastErrorMessage().length() > 0;
+        assert sci.getLastErrorMessage().length() > 0;
         sci.exec("errclear();");
         sci.exec("a+b"); //undefined a & b
-	assert sci.getLastErrorMessage().length() > 0;
-	sci.exec("errclear();");
-	sci.exec("a=rand(10,10);");//no error
-	assert sci.getLastErrorMessage().length() == 0;
+        assert sci.getLastErrorMessage().length() > 0;
+        sci.exec("errclear();");
+        sci.exec("a=rand(10,10);");//no error
+        assert sci.getLastErrorMessage().length() == 0;
     }
 
 	/**
