@@ -119,7 +119,8 @@ int ScilabHaveAGraph(void);
  * This function is supposed to be used only in the call_scilab context
  * 
  * @param varName the variable name
- * @return the type of the variable (the enum is defined in sci_types)
+ * @return the type of the variable (the enum is defined in sci_types) 
+ * Returns -1 when an error occurs -2 when varName cannot be found
  */
 sci_types getVariableType(char *varName);
 
