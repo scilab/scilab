@@ -20,5 +20,6 @@ bool StringModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"stripblanks", &sci_stripblanks, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"regexp", &sci_regexp, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"part", &sci_part, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"length", &sci_length, MODULE_NAME));
     return true;
 }

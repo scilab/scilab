@@ -108,6 +108,7 @@ namespace types
       */
 
       /* GenericType */
+      bool                              isGenericType(void);
       virtual GenericType*              getAsGenericType(void) { return NULL; }
 
       /* String */

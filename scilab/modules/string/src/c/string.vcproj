@@ -464,10 +464,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_length.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_str2code.c"
 				>
 			</File>
