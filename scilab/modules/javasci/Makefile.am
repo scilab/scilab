@@ -73,6 +73,7 @@ libjavasci_la_LIBADD = \
 	$(top_builddir)/modules/libscilab.la
 
 libjavasci2_la_CFLAGS = -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
 			$(JAVA_JNI_INCLUDE) \
 			$(TCL_INC_PATH) \
 			$(TK_INC_PATH) \

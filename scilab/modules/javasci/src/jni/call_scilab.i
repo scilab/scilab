@@ -24,6 +24,8 @@
 //%}
 %{
 #include "BOOL.h"
+#define ENABLE_HELPERS
+#include "javasci2_helper.h"
 #include "../../../core/includes/sci_types.h"
 %}
 %include "../../../jvm/src/jni/scilab_typemaps.i"
@@ -135,10 +137,6 @@ int putDouble(char * variableName, double variable[], int nbRow, int nbCol);
 // boolean (%t / %f)
 BOOL * getBoolean(char *variableName, int *nbRow, int *nbCol);
 int putBoolean(char * variableName, BOOL variable[], int nbRow, int nbCol);
-
-%inline %{
-typedef unsigned char byte;
-%}
 
 // byte/char = int8
 byte * getByte(char *variableName, int *nbRow, int *nbCol);

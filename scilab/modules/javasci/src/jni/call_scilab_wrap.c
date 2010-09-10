@@ -188,6 +188,8 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 
 
 #include "BOOL.h"
+#define ENABLE_HELPERS
+#include "javasci2_helper.h"
 #include "../../../core/includes/sci_types.h"
 
 
@@ -759,9 +761,6 @@ jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
 
 
 #endif
-
-
-typedef unsigned char byte;
 
 
 #ifdef __cplusplus

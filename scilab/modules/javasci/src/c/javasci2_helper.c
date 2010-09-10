@@ -12,11 +12,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define ENABLE_HELPERS
+#include "javasci2_helper.h"
 #include "api_scilab.h"
-#include "sci_types.h"
-#include "BOOL.h"
 #include "lasterror.h"
-typedef unsigned char byte;
 
 BOOL isComplex(char *variableName) {
     int iComplex = isNamedVarComplex(pvApiCtx, variableName);

@@ -481,6 +481,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 
 @JAVASCI_TRUE@libjavasci2_la_CFLAGS = -I$(srcdir)/includes/ \
+@JAVASCI_TRUE@			-I$(srcdir)/src/c/ \
 @JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
 @JAVASCI_TRUE@			$(TCL_INC_PATH) \
 @JAVASCI_TRUE@			$(TK_INC_PATH) \
