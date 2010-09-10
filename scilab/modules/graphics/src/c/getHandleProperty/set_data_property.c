@@ -636,7 +636,7 @@ int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
 int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     double *pdblValue = getDoubleMatrixFromStack(stackPointer);
-    BOOL bResult = setGraphicObjectProperty(pobj->UID, __GO_DATA__, pdblValue, jni_double, 1);
+    BOOL bResult = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COORDINATES__, pdblValue, jni_double, 1);
 
     if (bResult == FALSE)
     {

@@ -45,7 +45,32 @@ public static final String __GO_USER_DATA__ =              "UserData";
 public static final String __GO_USER_DATA_SIZE__ =         "UserDataSize";
 public static final String __GO_VISIBLE__ =                "Visible";
 public static final String __GO_TYPE__ =                   "Type";
-public static final String __GO_DATA__ =                   "Data";
+public static final String __GO_DATA_MODEL__ =             "DataModel";
+
+public static final String __GO_DATA_MODEL_COORDINATES__ =            "DataModelCoordinates";
+public static final String __GO_DATA_MODEL_X__ =		           "DataModelX";
+public static final String __GO_DATA_MODEL_Y__ =                      "DataModelY";
+public static final String __GO_DATA_MODEL_Z__ =                      "DataModelZ";
+
+public static final String __GO_DATA_MODEL_X_COORDINATES_SHIFT__ =     "DataModelXCoordinatesShift";
+public static final String __GO_DATA_MODEL_Y_COORDINATES_SHIFT__ =     "DataModelYCoordinatesShift";
+public static final String __GO_DATA_MODEL_Z_COORDINATES_SHIFT__ =     "DataModelZCoordinatesShift";
+
+public static final String __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__ = "DataModelXCoordinatesShiftSet";
+public static final String __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__ = "DataModelYCoordinatesShiftSet";
+public static final String __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__ = "DataModelZCoordinatesShiftSet";
+
+public static final String __GO_DATA_MODEL_NUM_ELEMENTS__ =	    "DataModelNumElements";
+public static final String __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__ =      "DataModelNumElementsArray";
+public static final String __GO_DATA_MODEL_NUM_VERTICES_PER_GON__ =    "DataModelNumVerticesPerGon";
+public static final String __GO_DATA_MODEL_NUM_GONS__ =                "DataModelNumGons";
+
+public static final String __GO_DATA_MODEL_Z_COORDINATES_SET__ =       "DataModelZCoordinatesSet";
+
+public static final String __GO_DATA_MODEL_COLORS__ =                  "DataModelColors";
+
+public static final String __GO_DATA_MODEL_INDICES__ =                 "DataModelIndices";
+
 public static final String __GO_REFERENCED__ =             "Referenced";
 public static final String __GO_VALID__ =                  "Valid";
 
@@ -194,6 +219,7 @@ public static final String __GO_CLOSED__ =                 "Closed";
 public static final String __GO_ARROW_SIZE_FACTOR__ =      "ArrowSizeFactor";
 public static final String __GO_POLYLINE_STYLE__ =         "PolylineStyle";
 public static final String __GO_INTERP_COLOR_VECTOR__ =    "InterpColorVector";
+public static final String __GO_INTERP_COLOR_VECTOR_SET__ =    "InterpColorVectorSet";
 public static final String __GO_INTERP_COLOR_MODE__ =      "InterpColorMode";
 public static final String __GO_X_SHIFT__ =                "XShift";
 public static final String __GO_Y_SHIFT__ =                "YShift";

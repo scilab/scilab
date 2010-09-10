@@ -380,6 +380,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\Data3D.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\dataModel.cpp"
 				>
 			</File>
@@ -404,6 +408,18 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\NgonData.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\NgonGeneralData.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\NgonPolylineData.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_graphicfunction.cpp"
 				>
 			</File>
@@ -421,6 +437,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\Data3D.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\DataProperties.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\dynlib_graphic_objects.h"
 				>
 			</File>
@@ -430,6 +454,26 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_graphic_objects.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\NgonData.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\NgonGeneralData.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\NgonGridData.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\NgonPolylineData.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\TriangleMeshData.hxx"
 				>
 			</File>
 		</Filter>

@@ -15,6 +15,9 @@ extern "C"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
+
+#include <stdio.h>
+#include <string.h>
 }
 
 #include "CallGraphicController.hxx"
@@ -31,11 +34,11 @@ BOOL setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _Ret
     BOOL boolValue;
 
     // Special Case for data, no need to go through Java.
-    if (strcmp(_pstName, __GO_DATA__) == 0)
+    if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)
     {
-        doubleValue = *(double*)_pvValue;
-        result = DataController::setGraphicObjectProperty(_pstID, doubleValue);
-        return result;
+        result = DataController::setGraphicObjectProperty(_pstID, _pstName, _pvValue, numElements);
+
+        return booltoBOOL(result);
     }
 
     switch(_valueType)

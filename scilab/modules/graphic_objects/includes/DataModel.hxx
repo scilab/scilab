@@ -10,11 +10,25 @@
  *
  */
 
+#ifndef DATA_MODEL_H
+#define DATA_MODEL_H
+
 #include <map>
 #include <string>
 
+#include "Data3D.hxx"
+
+#include "NgonGeneralData.hxx"
+#include "NgonGridData.hxx"
+#include "NgonPolylineData.hxx"
+#include "TriangleMeshData.hxx"
+
+#include "graphicObjectProperties.h"
+
 extern "C" {
 #include "BOOL.h"
+
+#include <stdio.h>
 }
 
 class DataModel
@@ -22,7 +36,7 @@ class DataModel
 private :
     DataModel()
     {
-        m_dataMap = new std::map<std::string, double>();
+        m_dataMap = new std::map<std::string, Data3D*>();
     }
 
 public :
@@ -37,18 +51,40 @@ public :
     }
 
 public :
-    BOOL setGraphicObjectProperty(char *_pstID, double _dblValue)
-    {
-        (*m_dataMap)[std::string(_pstID)] = _dblValue;
-        return TRUE;
-    }
+    /**
+     * Sets a graphic object property
+     * As some set methods allocate memory, the FALSE return value also indicates
+     * a failed allocation for these methods, which overlaps with the non-existing
+     * property return value (also FALSE); returning an int, with -1 for a failed
+     * allocation would possibly solve this problem.
+     */
+    BOOL setGraphicObjectProperty(char *_pstID, char* _pstName, void* _dblValue, int numElements);
 
-    double getGraphicObjectProperty(char *_pstID)
-    {
-        return (*m_dataMap)[std::string(_pstID)];
-    }
+    /** Returns a graphic object vector property */
+    void* getGraphicObjectProperty(char *_pstID, char* _pstName);
+
+    /**
+     * Returns a graphic object integer property
+     * Implemented in order to avoid returning the address of a
+     * static local variable across too many function calls (see the getProperty
+     * methods of the different Data classes when integer values are returned)
+     * Possibly redundant with getGraphicObjectProperty
+     */
+    int getGraphicObjectIntProperty(char *_pstID, char* _pstName);
+
+    /** Creates a data object */
+    char* createDataObject(char* _pstID, char* _sType);
+
+    /**
+     * Deletes a data object
+     * To be implemented
+     */
+    void deleteDataObject(char* _pstID);
 
 private :
     static DataModel *m_me;
-    std::map<std::string, double> *m_dataMap;
+
+    std::map<std::string, Data3D*> *m_dataMap;
 };
+
+#endif

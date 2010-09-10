@@ -37,7 +37,12 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
 								src/cpp/setGraphicObjectProperty.cpp \
 								src/cpp/deleteGraphicObject.cpp \
-								src/cpp/dataModel.cpp
+								src/cpp/dataModel.cpp \
+								src/cpp/Data3D.cpp \
+								src/cpp/NgonData.cpp \
+								src/cpp/NgonGeneralData.cpp \
+								src/cpp/NgonPolylineData.cpp
+
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 

@@ -156,7 +156,7 @@ int get3ddata(sciPointObj *pobj)
 /*------------------------------------------------------------------------*/
 int get_data_property( sciPointObj * pobj )
 {
-    double *pdblData = getGraphicObjectProperty(pobj->UID, __GO_DATA__, jni_double);
+    double *pdblData = getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COORDINATES__, jni_double);
 
     if (pdblData == NULL)
     {

@@ -18,6 +18,8 @@ extern "C"
 
 #include "CallGraphicController.hxx"
 
+#include "DataController.hxx"
+
 using namespace org_scilab_modules_graphic_objects;
 
 char *createGraphicObject(char *_sType)
@@ -29,3 +31,9 @@ char *cloneGraphicObject(char *_sId)
 {
     return CallGraphicController::cloneGraphicObject(getScilabJavaVM(), _sId);
 }
+
+char* createDataObject(char* _sId, char* _sType)
+{
+    return DataController::createDataObject(_sId, _sType);
+}
+

@@ -20,13 +20,24 @@ class DataController
 {
 
 public :
-    static BOOL setGraphicObjectProperty(char *_pstID, double _dblValue)
+    static BOOL setGraphicObjectProperty(char *_pstID, char* _pstName, void* _dblValue, int numElements)
     {
-        return DataModel::get()->setGraphicObjectProperty(_pstID, _dblValue);
+        return DataModel::get()->setGraphicObjectProperty(_pstID, _pstName, _dblValue, numElements);
     }
 
-    static double getGraphicObjectProperty(char *_pstID)
+    static void* getGraphicObjectProperty(char *_pstID, char* _pstName)
     {
-        return DataModel::get()->getGraphicObjectProperty(_pstID);
+        return DataModel::get()->getGraphicObjectProperty(_pstID, _pstName);
     }
+
+    static int getGraphicObjectIntProperty(char* _pstID, char* _pstName)
+    {
+        return DataModel::get()->getGraphicObjectIntProperty(_pstID, _pstName);
+    }
+
+    static char* createDataObject(char* _pstID, char* _sType)
+    {
+        return DataModel::get()->createDataObject(_pstID, _sType);
+    }
+
 };

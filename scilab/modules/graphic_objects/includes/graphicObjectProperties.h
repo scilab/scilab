@@ -44,7 +44,32 @@
 #define __GO_USER_DATA_SIZE__              "UserDataSize"
 #define __GO_VISIBLE__                     "Visible"
 #define __GO_TYPE__                        "Type"
-#define __GO_DATA__                        "Data"
+#define __GO_DATA_MODEL__                  "DataModel"
+
+#define __GO_DATA_MODEL_COORDINATES__                 "DataModelCoordinates"
+#define __GO_DATA_MODEL_X__     		           "DataModelX"
+#define __GO_DATA_MODEL_Y__                           "DataModelY"
+#define __GO_DATA_MODEL_Z__                           "DataModelZ"
+
+#define __GO_DATA_MODEL_X_COORDINATES_SHIFT__          "DataModelXCoordinatesShift"
+#define __GO_DATA_MODEL_Y_COORDINATES_SHIFT__          "DataModelYCoordinatesShift"
+#define __GO_DATA_MODEL_Z_COORDINATES_SHIFT__          "DataModelZCoordinatesShift"
+
+#define __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__      "DataModelXCoordinatesShiftSet"
+#define __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__      "DataModelYCoordinatesShiftSet"
+#define __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__      "DataModelZCoordinatesShiftSet"
+
+#define __GO_DATA_MODEL_NUM_ELEMENTS__     	    "DataModelNumElements"
+#define __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__           "DataModelNumElementsArray"
+#define __GO_DATA_MODEL_NUM_VERTICES_PER_GON__         "DataModelNumVerticesPerGon"
+#define __GO_DATA_MODEL_NUM_GONS__                     "DataModelNumGons"
+
+#define __GO_DATA_MODEL_Z_COORDINATES_SET__            "DataModelZCoordinatesSet"
+
+#define __GO_DATA_MODEL_COLORS__                       "DataModelColors"
+
+#define __GO_DATA_MODEL_INDICES__                      "DataModelIndices"
+
 #define __GO_REFERENCED__                  "Referenced"
 #define __GO_VALID__                       "Valid"
 
@@ -193,6 +218,7 @@
 #define __GO_ARROW_SIZE_FACTOR__           "ArrowSizeFactor"
 #define __GO_POLYLINE_STYLE__              "PolylineStyle"
 #define __GO_INTERP_COLOR_VECTOR__         "InterpColorVector"
+#define __GO_INTERP_COLOR_VECTOR_SET__         "InterpColorVectorSet"
 #define __GO_INTERP_COLOR_MODE__           "InterpColorMode"
 #define __GO_X_SHIFT__                     "XShift"
 #define __GO_Y_SHIFT__                     "YShift"
