@@ -26,6 +26,40 @@ public abstract class JavasciException extends Exception {
 			super(message, cause);
 		}
 	}
+
+	public static class UnsupportedTypeException extends JavasciException {
+
+		public UnsupportedTypeException(String message) {
+			super(message);
+		}
+
+		public UnsupportedTypeException(String message, Throwable cause) {
+			super(message, cause);
+		}
+	}
+
+	public static class UnknownTypeException extends JavasciException {
+
+		public UnknownTypeException(String message) {
+			super(message);
+		}
+
+		public UnknownTypeException(String message, Throwable cause) {
+			super(message, cause);
+		}
+	}
+
+	public static class UndefinedVariableException extends JavasciException {
+
+		public UndefinedVariableException(String message) {
+			super(message);
+		}
+
+		public UndefinedVariableException(String message, Throwable cause) {
+			super(message, cause);
+		}
+	}
+
 	/**
 	 * Default constructor
 	 */
