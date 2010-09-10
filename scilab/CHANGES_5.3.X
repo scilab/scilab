@@ -65,6 +65,8 @@ Compilation:
 Bug Fixes:
 ==========
 
+* bug 6514 fixed - "help %k" and "help %asn" pointed to the symbols help page.
+
 * bug 7163 fixed - tree2code wrongly replaced every (:) occurence in a function
                    definition with (eye()).
 
