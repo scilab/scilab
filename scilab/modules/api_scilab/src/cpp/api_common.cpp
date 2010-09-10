@@ -194,7 +194,7 @@ SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
 	sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(sciErr.iErr)
 	{
-		addErrorMessage(&sciErr, API_ERROR_NAMED_TYPE, _("%s: Unable to get type of variable \"%s\""), "getNamedVarType", _pstName);
+		addErrorMessage(&sciErr, API_ERROR_NAMED_UNDEFINED_VAR, _("%s: Unable to get variable \"%s\""), "getNamedVarType", _pstName);
 		return sciErr;
 	}
 	
