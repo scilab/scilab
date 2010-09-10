@@ -467,17 +467,19 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
   /** Threshold number of major ticks above which subtics are supressed in logarithmic-scaling. */
   const int lognbtics_thrsh  = 7;
 
-  double grads_diff;  /* Used for computing spacing between major ticks. */
-  int nbtics_safe = 0;    /* nbtics clamped to the range 0 to subticsval_len-1. Safe as an index into subticsval. */
+  double grads_diff;        /* Used for computing spacing between major ticks. */
+  int nbtics_safe = nbtics; /* nbtics clamped to the range 0 to subticsval_len-1. Safe as an index into subticsval. */
 
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 
-  if( nbtics_safe < 0 )
+  if (nbtics_safe < 0 )
+  {
     nbtics_safe = 0;
-  else if( nbtics >= subticsval_len)
+  }
+  else if (nbtics_safe >= subticsval_len)
+  {
     nbtics_safe = subticsval_len - 1;
-  else
-    nbtics_safe = nbtics;
+  }
 
   if(logflag =='l')
   {
