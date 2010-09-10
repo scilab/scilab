@@ -226,6 +226,9 @@ CALL_SCILAB_ENGINE_STATE getCallScilabEngineState(void)
 sci_types getVariableType(char *varName) {
     int iSciType = -1;
     SciErr sciErr = getNamedVarType(pvApiCtx, (char*)varName, &iSciType);
+    if (sciErr.iErr == API_ERROR_NAMED_UNDEFINED_VAR) {
+        return -2;
+    }
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
