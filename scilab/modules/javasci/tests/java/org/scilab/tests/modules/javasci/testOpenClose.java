@@ -17,6 +17,7 @@ import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
 import org.scilab.modules.types.scilabTypes.ScilabBoolean;
+import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 
 public class testOpenClose {
@@ -43,7 +44,7 @@ public class testOpenClose {
     }
 
 	@Test(sequential = true)
-    public void OpenWithJobTest() throws NullPointerException, InitializationException {
+    public void OpenWithJobTest() throws NullPointerException, JavasciException {
         assert sci.close() == true;
         assert sci.open("a=42*2;") == true;
         
@@ -53,7 +54,7 @@ public class testOpenClose {
     }
 
 	@Test(sequential = true)
-    public void OpenWithJobsTest() throws NullPointerException, InitializationException {
+    public void OpenWithJobsTest() throws NullPointerException, JavasciException {
         assert sci.close() == true;
         assert sci.open(new String[]{"a=42*2;","b=44*2", "c=(a==b)"}) == true;
         

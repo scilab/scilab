@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabDouble;
@@ -40,7 +41,7 @@ public class testExec {
 	}
 
 	@Test(sequential = true)
-		public void execAndReadTest() throws NullPointerException, InitializationException {
+		public void execAndReadTest() throws NullPointerException, JavasciException {
 
         /* Scalar test */
         assert sci.exec("a = 1+1") == true;
@@ -83,7 +84,7 @@ public class testExec {
 
 
 	@Test(sequential = true)
-    public void execFromFileTest() throws NullPointerException, InitializationException {
+    public void execFromFileTest() throws NullPointerException, JavasciException {
 		sci.close();
 
         try {

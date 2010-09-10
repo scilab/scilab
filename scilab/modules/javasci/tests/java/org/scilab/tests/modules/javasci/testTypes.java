@@ -14,7 +14,7 @@ package org.scilab.tests.modules.javasci;
 import org.testng.annotations.*;
 
 import org.scilab.modules.javasci.Scilab;
-import org.scilab.modules.javasci.JavasciException.InitializationException;
+import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
 
 public class testTypes {
@@ -28,14 +28,14 @@ public class testTypes {
 	 * would fail.
 	 */ 
 	@BeforeMethod
-	public void open() throws NullPointerException, InitializationException {
+	public void open() throws NullPointerException, JavasciException {
 		sci = new Scilab();
+
+        assert sci.open() == true;
 	}
 
 	@Test(sequential = true) 
-		public void getVariableTypeTest() throws NullPointerException, InitializationException {
-
-        assert sci.open() == true;
+		public void getVariableTypeTest() throws NullPointerException, JavasciException {
 
         sci.exec("a = 2*%pi");
         assert sci.getVariableType("a") == ScilabTypeEnum.sci_matrix;
@@ -93,7 +93,6 @@ public class testTypes {
 
         sci.exec("M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);");
         assert sci.getVariableType("M") == ScilabTypeEnum.sci_mlist;
-		sci.close();
 
     }
 	/**

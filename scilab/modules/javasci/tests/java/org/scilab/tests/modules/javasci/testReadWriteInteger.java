@@ -14,6 +14,7 @@ package org.scilab.tests.modules.javasci;
 import org.testng.annotations.*;
 
 import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabInteger;
@@ -35,7 +36,7 @@ public class testReadWriteInteger {
 	}
 
 	@Test(sequential = true)
-	public void putAndGetInteger8UnsignedTest() throws NullPointerException, InitializationException {
+	public void putAndGetInteger8UnsignedTest() throws NullPointerException, JavasciException {
 
         byte [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
@@ -57,7 +58,7 @@ public class testReadWriteInteger {
     }
 
 	@Test(sequential = true)
-	public void putAndGetInteger8SignedTest() throws NullPointerException, InitializationException {
+	public void putAndGetInteger8SignedTest() throws NullPointerException, JavasciException {
         byte [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
@@ -76,7 +77,7 @@ public class testReadWriteInteger {
     }
 
 	@Test(sequential = true)
-	public void putAndGetInteger16UnsignedTest() throws NullPointerException, InitializationException {
+	public void putAndGetInteger16UnsignedTest() throws NullPointerException, JavasciException {
         short [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
         sci.put("b",aOriginal);
@@ -88,7 +89,7 @@ public class testReadWriteInteger {
     }
 
 	@Test(sequential = true)
-	public void putAndGetInteger16SignedTest() throws NullPointerException, InitializationException {
+	public void putAndGetInteger16SignedTest() throws NullPointerException, JavasciException {
         short [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
@@ -101,7 +102,7 @@ public class testReadWriteInteger {
     }
 
 	@Test(sequential = true)
-	public void putAndGetInteger32UnsignedTest() throws NullPointerException, InitializationException {
+	public void putAndGetInteger32UnsignedTest() throws NullPointerException, JavasciException {
 
         int [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
@@ -116,7 +117,7 @@ public class testReadWriteInteger {
     }
 
 	@Test(sequential = true)
-	public void putAndGetInteger32SignedTest() throws NullPointerException, InitializationException {
+	public void putAndGetInteger32SignedTest() throws NullPointerException, JavasciException {
         int [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
@@ -130,7 +131,7 @@ public class testReadWriteInteger {
 
 	//	@Test(sequential = true)
 	// Will be unblocked for Scilab 6
-	public void putAndGetInteger64UnsignedTest() throws NullPointerException, InitializationException {
+	public void putAndGetInteger64UnsignedTest() throws NullPointerException, JavasciException {
         long [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
         sci.put("b",aOriginal);
@@ -145,7 +146,7 @@ public class testReadWriteInteger {
 
 	//	@Test(sequential = true)
 	// Will be unblocked for Scilab 6
-	public void putAndGetInteger64SignedTest() throws NullPointerException, InitializationException {
+	public void putAndGetInteger64SignedTest() throws NullPointerException, JavasciException {
         long [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
