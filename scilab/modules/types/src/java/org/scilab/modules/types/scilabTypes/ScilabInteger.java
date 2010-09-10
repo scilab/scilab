@@ -23,22 +23,7 @@ public class ScilabInteger implements ScilabType {
 	private short[][] shortData = null;
 	private int[][] intData = null;
 	private byte[][] byteData = null;
-	private IntegerType prec;
-	private boolean bUnsigned;
-
-	/**
-	 * The different size of the integer type.
-	 */
-	public enum IntegerType {
-		/** Integer of size 8 */
-		TYPE8,
-		/** Integer of size 16 */
-		TYPE16,
-		/** Integer of size 32 */
-		TYPE32,
-		/** Integer of size 64 */
-		TYPE64
-	}
+	private ScilabIntegerTypeEnum type;
 	
 	/**
 	 * Default constructor
@@ -95,7 +80,7 @@ public class ScilabInteger implements ScilabType {
 	public ScilabInteger(byte value) {
 		this.byteData = new byte[1][1];
 		this.byteData[0][0] = value;
-		this.prec = IntegerType.TYPE8;
+		this.type = ScilabIntegerTypeEnum.sci_int8;
 	}
 
 	/**
@@ -106,7 +91,7 @@ public class ScilabInteger implements ScilabType {
 	public ScilabInteger(short value) {
 		this.shortData = new short[1][1];
 		this.shortData[0][0] = value;
-		this.prec = IntegerType.TYPE16;
+		this.type = ScilabIntegerTypeEnum.sci_int16;
 	}
 
 	/**
@@ -117,7 +102,7 @@ public class ScilabInteger implements ScilabType {
 	public ScilabInteger(int value) {
 		this.intData = new int[1][1];
 		this.intData[0][0] = value;
-		this.prec = IntegerType.TYPE32;
+		this.type = ScilabIntegerTypeEnum.sci_int32;
 	}
 
 	/**
@@ -128,7 +113,7 @@ public class ScilabInteger implements ScilabType {
 	public ScilabInteger(long value) {
 		this.longData = new long[1][1];
 		this.longData[0][0] = value;
-		this.prec = IntegerType.TYPE64;
+		this.type = ScilabIntegerTypeEnum.sci_int64;
 	}
 
 	/**
@@ -139,8 +124,11 @@ public class ScilabInteger implements ScilabType {
 	 */
 	public void setData(byte[][] data, boolean bUnsigned) {
 		this.byteData = data;
-		prec = IntegerType.TYPE8;
-		this.bUnsigned = bUnsigned; 
+		if (bUnsigned) {
+			this.type = ScilabIntegerTypeEnum.sci_uint8;
+		} else {
+			this.type = ScilabIntegerTypeEnum.sci_int8;
+		}
 	}
 
 	/**
@@ -151,8 +139,11 @@ public class ScilabInteger implements ScilabType {
 	 */
 	public void setData(short[][] data, boolean bUnsigned) {
 		this.shortData = data;
-		prec = IntegerType.TYPE16;
-		this.bUnsigned = bUnsigned; 
+		if (bUnsigned) {
+			this.type = ScilabIntegerTypeEnum.sci_uint16;
+		} else {
+			this.type = ScilabIntegerTypeEnum.sci_int16;
+		}
 	}
 
 	/**
@@ -163,8 +154,11 @@ public class ScilabInteger implements ScilabType {
 	 */
 	public void setData(int[][] data, boolean bUnsigned) {
 		this.intData = data;
-		prec = IntegerType.TYPE32;
-		this.bUnsigned = bUnsigned; 
+		if (bUnsigned) {
+			this.type = ScilabIntegerTypeEnum.sci_uint32;
+		} else {
+			this.type = ScilabIntegerTypeEnum.sci_int32;
+		}
 	}
 
 	/**
@@ -175,8 +169,11 @@ public class ScilabInteger implements ScilabType {
 	 */
 	public void setData(long[][] data, boolean bUnsigned) {
 		this.longData = data;
-		prec = IntegerType.TYPE64;
-		this.bUnsigned = bUnsigned; 
+		if (bUnsigned) {
+			this.type = ScilabIntegerTypeEnum.sci_uint64;
+		} else {
+			this.type = ScilabIntegerTypeEnum.sci_int64;
+		}
 	}
 
 	/**
@@ -189,28 +186,32 @@ public class ScilabInteger implements ScilabType {
 		long[][] convertedMatrix = new long[this.getHeight()][this.getWidth()];
 		switch (this.getPrec()) {
 
-			case TYPE8:
+			case sci_int8:
+			case sci_uint8:
 				for (int i = 0; i < this.getHeight(); i++) {
 					for (int j = 0; j < this.getWidth(); j++) {
 						convertedMatrix[i][j] = Long.valueOf(byteData[i][j]);
 					}
 				}
 				return convertedMatrix;
-			case TYPE16:
+			case sci_int16:
+			case sci_uint16:
 				for (int i = 0; i < this.getHeight(); i++) {
 					for (int j = 0; j < this.getWidth(); j++) {
 						convertedMatrix[i][j] = Long.valueOf(shortData[i][j]);
 					}
 				}
 				return convertedMatrix;
-			case TYPE32:
+			case sci_int32:
+			case sci_uint32:
 				for (int i = 0; i < this.getHeight(); i++) {
 					for (int j = 0; j < this.getWidth(); j++) {
 						convertedMatrix[i][j] = Long.valueOf(intData[i][j]);
 					}
 				}
 				return convertedMatrix;
-			case TYPE64:
+			case sci_int64:
+			case sci_uint64:
 				return longData;
 		}
 		return null;
@@ -253,16 +254,69 @@ public class ScilabInteger implements ScilabType {
 	/**
 	 * @return the precision of the values
 	 */
-	public IntegerType getPrec() {
-		return prec;
+	public ScilabIntegerTypeEnum getPrec() {
+		return type;
 	}
 
 	/**
 	 * @return true, if the values are signed, false otherwise.
 	 */
 	public boolean isUnsigned() {
-		return bUnsigned;
+		switch (type) {
+			case sci_int8:
+			case sci_int16:
+			case sci_int32:
+			case sci_int64:
+				return false;
+			case sci_uint8:
+			case sci_uint16:
+			case sci_uint32:
+			case sci_uint64:
+				return true;
+		}
+		return false;
 	}
+
+	/**
+	 * Manage the old representation of IntegerType 
+	 * @param typeName the typeName (TYPE8, TYPE16, TYPE32, TYPE64)
+	 * @param unsigned unsigned or not
+	 * @return the converted type to ScilabIntegerTypeEnum. null is cannot convert
+	 */
+	public static ScilabIntegerTypeEnum convertOldType(String typeName, boolean unsigned) {
+		
+		if (typeName.equals("TYPE8")) {
+			if (unsigned) {
+				return ScilabIntegerTypeEnum.sci_uint8;
+			} else {
+				return ScilabIntegerTypeEnum.sci_int8;
+			}
+		}
+		if (typeName.equals("TYPE16")) {
+			if (unsigned) {
+				return ScilabIntegerTypeEnum.sci_uint16;
+			} else {
+				return ScilabIntegerTypeEnum.sci_int16;
+			}
+		}
+		if (typeName.equals("TYPE32")) {
+			if (unsigned) {
+				return ScilabIntegerTypeEnum.sci_uint32;
+			} else {
+				return ScilabIntegerTypeEnum.sci_int32;
+			}
+		}
+		if (typeName.equals("TYPE64")) {
+			if (unsigned) {
+				return ScilabIntegerTypeEnum.sci_uint64;
+			} else {
+				return ScilabIntegerTypeEnum.sci_int64;
+			}
+		}
+		return null;
+
+	}
+
 
 	/**
 	 * @return the height of the value matrix
@@ -271,22 +325,26 @@ public class ScilabInteger implements ScilabType {
 	@Override
 		public int getHeight() {
 		switch (this.getPrec()) {
-			case TYPE8:
+			case sci_int8:
+			case sci_uint8:
 				if (byteData == null) {
 					return 0;
 				}
 				return byteData.length;
-			case TYPE16:
+			case sci_int16:
+			case sci_uint16:
 				if (shortData == null) {
 					return 0;
 				}
 				return shortData.length;
-			case TYPE32:
+			case sci_int32:
+			case sci_uint32:
 				if (intData == null) {
 					return 0;
 				}
 				return intData.length;
-			case TYPE64:
+			case sci_int64:
+			case sci_uint64:
 				if (longData == null) {
 					return 0;
 				}
@@ -303,22 +361,26 @@ public class ScilabInteger implements ScilabType {
 	@Override
 	public int getWidth() {
 		switch (this.getPrec()) {
-			case TYPE8:
+			case sci_int8:
+			case sci_uint8:
 				if (byteData == null) {
 					return 0;
 				}
 				return byteData[0].length;
-			case TYPE16:
+			case sci_int16:
+			case sci_uint16:
 				if (shortData == null) {
 					return 0;
 				}
 				return shortData[0].length;
-			case TYPE32:
+			case sci_int32:
+			case sci_uint32:
 				if (intData == null) {
 					return 0;
 				}
 				return intData[0].length;
-			case TYPE64:
+			case sci_int64:
+			case sci_uint64:
 				if (longData == null) {
 					return 0;
 				}
@@ -334,39 +396,43 @@ public class ScilabInteger implements ScilabType {
 	/**
 	 * @return true, if there is no values; false otherwise.
 	 */
-    public boolean isEmpty() {
+	public boolean isEmpty() {
 		switch (this.getPrec()) {
-			case TYPE8:
+			case sci_int8:
+			case sci_uint8:
 				return byteData == null;
-			case TYPE16:
+			case sci_int16:
+			case sci_uint16:
 				return shortData == null;
-			case TYPE32:
+			case sci_int32:
+			case sci_uint32:
 				return intData == null;
-			case TYPE64:
+			case sci_int64:
+			case sci_uint64:
 				return longData == null;
 			default:
 				return true;
 		}
-    }
+	}
 	
-    /**
+	/**
 	 * @see org.scilab.modules.types.scilabTypes.ScilabType#equals(Object)
-     */
-    public boolean equals(Object obj) {
-        if (obj instanceof ScilabInteger) {
-            return Arrays.deepEquals(this.getData(), ((ScilabInteger)obj).getData());
-        } else {
-            return false;
-        }
-    }
+	 */
+	public boolean equals(Object obj) {
+		if (obj instanceof ScilabInteger) {
+			return Arrays.deepEquals(this.getData(), ((ScilabInteger)obj).getData());
+		} else {
+			return false;
+		}
+	}
 
-    /**
-     * @return the pretty-printed values 
-     * @see java.lang.Object#toString()
-     */
-    @Override
+	/**
+	 * @return the pretty-printed values 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
 	public String toString() {
-    	StringBuilder result = new StringBuilder();
+		StringBuilder result = new StringBuilder();
 		
 		
 		if (isEmpty()) {
@@ -380,24 +446,28 @@ public class ScilabInteger implements ScilabType {
 		result.append("int");
 		
 		switch (this.getPrec()) {
-		case TYPE8:
-			result.append("8");
+			case sci_int8:
+			case sci_uint8:
+				result.append("8");
 			break;
 
-		case TYPE16:
-			result.append("16");
-			break;
+			case sci_int16:
+			case sci_uint16:
+				result.append("16");
+				break;
 			
-		case TYPE32:
-			result.append("32");
-			break;
+			case sci_int32:
+			case sci_uint32:
+				result.append("32");
+				break;
 			
-		case TYPE64:
-			result.append("64");
-			break;
+			case sci_int64:
+			case sci_uint64:
+				result.append("64");
+				break;
 			
-		default:
-			break;
+			default:
+				break;
 		}
 
 		result.append("([");

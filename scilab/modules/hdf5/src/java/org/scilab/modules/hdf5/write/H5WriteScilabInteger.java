@@ -17,28 +17,30 @@ import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
-import org.scilab.modules.types.scilabTypes.ScilabInteger;;
+import org.scilab.modules.types.scilabTypes.ScilabInteger;
+import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
+
 
 public class H5WriteScilabInteger {
 	public static void writeInDataSet(int file_id, String dataSetName, ScilabInteger data) throws NullPointerException, HDF5Exception {
 		Object[] dataToWrite = null; 
-		ScilabInteger.IntegerType prec = data.getPrec();
+		ScilabIntegerTypeEnum prec = data.getPrec();
 		int nativeType = 0;
 		String classType = "";
 
-		if(prec == ScilabInteger.IntegerType.TYPE8) {
+		if (prec == ScilabIntegerTypeEnum.sci_int8 || prec == ScilabIntegerTypeEnum.sci_uint8) {
 			nativeType = data.isUnsigned() ? HDF5Constants.H5T_NATIVE_UINT8 : HDF5Constants.H5T_NATIVE_INT8; 
 			classType = data.isUnsigned() ? H5ScilabConstant.SCILAB_CLASS_UINT8 : H5ScilabConstant.SCILAB_CLASS_INT8; 
 			dataToWrite = getDataToWrite8(data);
-		}else if(prec == ScilabInteger.IntegerType.TYPE16) {
+		}else if (prec == ScilabIntegerTypeEnum.sci_int16 || prec == ScilabIntegerTypeEnum.sci_uint16) {
 			nativeType = data.isUnsigned() ? HDF5Constants.H5T_NATIVE_UINT16 : HDF5Constants.H5T_NATIVE_INT16; 
 			classType = data.isUnsigned() ? H5ScilabConstant.SCILAB_CLASS_UINT16 : H5ScilabConstant.SCILAB_CLASS_INT16; 
 			dataToWrite = getDataToWrite16(data);
-		}else if(prec == ScilabInteger.IntegerType.TYPE32) {
+		}else if (prec == ScilabIntegerTypeEnum.sci_int32 || prec == ScilabIntegerTypeEnum.sci_uint32) {
 			nativeType = data.isUnsigned() ? HDF5Constants.H5T_NATIVE_UINT32 : HDF5Constants.H5T_NATIVE_INT32; 
 			classType = data.isUnsigned() ? H5ScilabConstant.SCILAB_CLASS_UINT32 : H5ScilabConstant.SCILAB_CLASS_INT32; 
 			dataToWrite = getDataToWrite32(data);
-		}else if(prec == ScilabInteger.IntegerType.TYPE64) {
+		}else if (prec == ScilabIntegerTypeEnum.sci_int64 || prec == ScilabIntegerTypeEnum.sci_uint64) {
 			nativeType = data.isUnsigned() ? HDF5Constants.H5T_NATIVE_UINT64 : HDF5Constants.H5T_NATIVE_INT64; 
 			classType = data.isUnsigned() ? H5ScilabConstant.SCILAB_CLASS_UINT64 : H5ScilabConstant.SCILAB_CLASS_INT64; 
 			dataToWrite = getDataToWrite64(data);
