@@ -67,6 +67,9 @@ Bug Fixes:
 
 * bug 6514 fixed - "help %k" and "help %asn" pointed to the symbols help page.
 
+* bug 6767 fixed - The "uicontrol" help page said the "Style" property of an
+                   uicontrol can be set after creation but it does not.
+
 * bug 7163 fixed - tree2code wrongly replaced every (:) occurence in a function
                    definition with (eye()).
 
