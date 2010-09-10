@@ -66,7 +66,7 @@ void DisableInteractiveMode(void)
     setScilabMode(SCILAB_NWNI);
 }
 /*--------------------------------------------------------------------------*/
-BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize) {
+BOOL StartScilab(char *SCIpath,char *ScilabStartup, int Stacksize) {
 	return Call_ScilabOpen (SCIpath, ScilabStartup, Stacksize) == 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -83,7 +83,7 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize) {
  * -3: No existing directory
  * Any other positive integer: A Scilab internal error
  */
-int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int *Stacksize)
+int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int Stacksize)
 {
 #define FORMAT_SCRIPT_STARTUP "exec(\"%s\",-1);quit;"
     char *ScilabStartupUsed = NULL;
@@ -141,13 +141,13 @@ int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int *Stacksize)
         ScilabStartupUsed = strdup(ScilabStartup);
     }
 
-    if (Stacksize==NULL)
+    if (Stacksize==NULL || Stacksize == -1)
     {
         StacksizeUsed = DEFAULTSTACKSIZE;
     }
     else
     {
-        StacksizeUsed = *Stacksize;
+        StacksizeUsed = Stacksize;
     }
 
     /* creates TMPDIR */

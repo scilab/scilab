@@ -41,6 +41,11 @@ Graphics:
 
 * The icons has been updated to the Tango Art libre icons and to the Inkscape themable icons.
 
+Call_Scilab:
+============
+
+* In function StartScilab, argument "int *Stacksize" changed to "int Stacksize"
+
 Bug Fixes:
 ==========
 

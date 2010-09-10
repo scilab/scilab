@@ -38,7 +38,7 @@ class Call_ScilabJNI {
     }
   }
 
-  public final static native int Call_ScilabOpen(String jarg1, String jarg2, long jarg3);
+  public final static native int Call_ScilabOpen(String jarg1, String jarg2, int jarg3);
   public final static native boolean TerminateScilab(String jarg1);
   public final static native int SendScilabJob(String jarg1);
   public final static native int SendScilabJobs(String[] jarg1, int jarg2);

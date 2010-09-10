@@ -767,11 +767,11 @@ jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
 extern "C" {
 #endif
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_Call_1ScilabOpen(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_Call_1ScilabOpen(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
   char *arg2 = (char *) 0 ;
-  int *arg3 = (int *) 0 ;
+  int arg3 ;
   int result;
   
   (void)jenv;
@@ -786,7 +786,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_Call_1Sc
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
-  arg3 = *(int **)&jarg3; 
+  arg3 = (int)jarg3; 
   result = (int)Call_ScilabOpen(arg1,arg2,arg3);
   jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);

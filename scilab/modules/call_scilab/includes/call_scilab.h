@@ -38,7 +38,7 @@ void DisableInteractiveMode(void);
  * @param Stacksize : Default --> NULL 
  * @return TRUE if it is OK else FALSE
 */
-BOOL StartScilab(char *SCIpath, char *ScilabStartup, int *Stacksize);
+BOOL StartScilab(char *SCIpath, char *ScilabStartup, int Stacksize);
 
 /**
  * Terminate Scilab

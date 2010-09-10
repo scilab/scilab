@@ -81,7 +81,7 @@ public class Scilab {
      */
     public boolean open() throws InitializationException {
 //        System.out.println("SCI : " + SCI);
-		int res = Call_Scilab.Call_ScilabOpen(this.SCI, null, null);
+		int res = Call_Scilab.Call_ScilabOpen(this.SCI, null, -1);
 		switch (res) {
 			case -1: 
 				/* @TODO : update this exception for a new one (already running) */

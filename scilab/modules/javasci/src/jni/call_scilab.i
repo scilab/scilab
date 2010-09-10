@@ -94,7 +94,7 @@ public class";
 #endif
 
 
-int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int *Stacksize);
+int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int Stacksize);
 
 BOOL TerminateScilab(char *ScilabQuit);
 
