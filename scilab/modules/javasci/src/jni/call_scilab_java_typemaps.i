@@ -31,32 +31,37 @@
 
 // retrieve from the native code a CTYPE * => JAVAPRIMITIVETYPE[][] (java)
 %typemap(out) (CTYPE *) (int nbRow, int nbCol) {
-  
+
   jclass JAVAPRIMITIVETYPE##Arr = (*jenv)->FindClass(jenv, JNICODE);
-   int i,j;
-    jresult = (*jenv)->NewObjectArray(jenv, nbRow, ##JAVAPRIMITIVETYPE##Arr, NULL);
+  int i = 0, j = 0;
+  jresult = (*jenv)->NewObjectArray(jenv, nbRow, ##JAVAPRIMITIVETYPE##Arr, NULL);
 
     for (i=0; i < nbRow; i++) {
-        JNITYPE array[nbCol];
+        JNITYPE *array = (JNITYPE*)malloc(nbCol * sizeof(JNITYPE)) ;
         ##JNITYPE##Array jarray = (*jenv)->New##JAVATYPE##Array(jenv, nbCol);
         if (jarray == NULL) {
             printf("Could not allocate\n");fflush(NULL);
         }
 
-        for (j=0; j < nbCol; j++) { 
+        if (array) {
+            for (j=0; j < nbCol; j++) {
             /* Scilab is storing matrice cols by cols while Java is doing it
                row by row. Therefor, we need to convert it */
-            array[j]=result[nbRow*j+i];
+                array[j]=result[nbRow*j+i];
+                }
         }
-        
+
         (*jenv)->Set##JAVATYPE##ArrayRegion(jenv, jarray, 0, nbCol, array);
 
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
 
         (*jenv)->DeleteLocalRef(jenv, jarray);
-      
+        if (array) {
+            free(array);
+            array = NULL;
+        }
     }
-    
+
 
      if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
     free(result);
@@ -81,7 +86,7 @@
 
 %include "arrays_java.i"
 
-/* Transform the input datatype CTYPE[] to JAVAPRIMITIVETYPE[][] to facilitate the 
+/* Transform the input datatype CTYPE[] to JAVAPRIMITIVETYPE[][] to facilitate the
 matching in Java */
 %typemap(jni) CTYPE[] "jobjectArray"
 %typemap(jtype) CTYPE[] "JAVAPRIMITIVETYPE[][]"
@@ -96,22 +101,24 @@ matching in Java */
 
 %typemap(in) (CTYPE variable[], int nbRow, int nbCol) {
 // Convert the CTYPE[][] => CTYPE *
+      int i=0, j=0;
       $2 = (*jenv)->GetArrayLength(jenv, $input);
-   	  $3 = 0;
-	  int i=0, j=0;
-	  for(i=0; i<$2; i++) {
-		  ##JNITYPE##Array oneDim=(##JNITYPE##Array)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-		  if ($3==0) {
-			  /* First time we are here, init + create the array where we store the data */
-			  $3 = (*jenv)->GetArrayLength(jenv, oneDim);
-			  $1 = (CTYPE*)malloc(sizeof(##CTYPE##)*arg3*arg4);
-		  }
-		  ##JNITYPE## *element=(*jenv)->Get##JAVATYPE##ArrayElements(jenv, oneDim, 0);
+      $3 = 0;
 
-		  for(j=0; j<$3; j++) {
-			  $1[j*$2+i]=element[j];
-		  }
-	  }
+      for(i=0; i<$2; i++) {
+          ##JNITYPE## *element = NULL;
+          ##JNITYPE##Array oneDim=(##JNITYPE##Array)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
+          if ($3==0) {
+              /* First time we are here, init + create the array where we store the data */
+              $3 = (*jenv)->GetArrayLength(jenv, oneDim);
+              $1 = (CTYPE*)malloc(sizeof(##CTYPE##)*arg3*arg4);
+          }
+          element=(*jenv)->Get##JAVATYPE##ArrayElements(jenv, oneDim, 0);
+
+          for(j=0; j<$3; j++) {
+              $1[j*$2+i]=element[j];
+          }
+      }
 
 }
 %enddef

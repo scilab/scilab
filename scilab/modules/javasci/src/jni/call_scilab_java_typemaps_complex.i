@@ -14,7 +14,6 @@ matching in Java */
 
 %typemap(in) (CTYPE variable[], int nbRow, int nbCol) {
 // Convert the CTYPE[][] => CTYPE *
-// LALALAL
       $2 = (*jenv)->GetArrayLength(jenv, $input);
    	  $3 = 0;
 	  int i=0, j=0;

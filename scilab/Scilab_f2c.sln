@@ -1291,6 +1291,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "commons", "modules\commons\
 		{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E} = {6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-java-tests", "modules\javasci\tests\java\javasci-JAVA-tests.vcproj", "{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2503,6 +2505,10 @@ Global
 		{ECA09A1E-6D12-4A47-92E1-A671C181DF77}.Release|Win32.Build.0 = Release|Win32
 		{ECA09A1E-6D12-4A47-92E1-A671C181DF77}.Release|x64.ActiveCfg = Release|x64
 		{ECA09A1E-6D12-4A47-92E1-A671C181DF77}.Release|x64.Build.0 = Release|x64
+		{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}.Debug|x64.ActiveCfg = Debug|x64
+		{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}.Release|Win32.ActiveCfg = Release|Win32
+		{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - INRIA - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at	
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,6 +25,7 @@ import org.scilab.modules.javasci.Call_Scilab;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 
 public class Scilab {
+
 	private String SCI = null;
 	
 
@@ -64,14 +65,15 @@ public class Scilab {
 		this.initScilab(SCI);
 	}
 
-	private void initScilab(String SCI) throws InitializationException {
-		File f = new File(SCI);
-		if (!f.isDirectory()) { 
-			throw new InitializationException("Could not find directory " + f.getAbsolutePath());
-		}
-
-		this.SCI = SCI;
-	}
+    private void initScilab(String SCI) throws InitializationException {
+        if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
+            File f = new File(SCI);
+            if (!f.isDirectory()) {
+                throw new InitializationException("Could not find directory " + f.getAbsolutePath());
+            }
+            this.SCI = SCI;
+        }
+    }
 
 	/**
 	 * Open a connection to the Scilab engine
@@ -81,7 +83,7 @@ public class Scilab {
 	 * @return if the operation is successful
 	 */
 	public boolean open() throws InitializationException {
-//		System.out.println("SCI : " + SCI);
+
 		int res = Call_Scilab.Call_ScilabOpen(this.SCI, null, -1);
 		switch (res) {
 			case -1: 
@@ -383,5 +385,6 @@ public class Scilab {
 
 		return true;
 	}
+
 
 }

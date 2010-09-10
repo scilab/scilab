@@ -14,7 +14,7 @@
 // retrieve from the native code a char ** => String[][] (java)
 %typemap(out) (char **) (int nbRow, int nbCol) {
       const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/Object");
-      int i,j;
+      int i = 0, j = 0;
 
 
     jresult = (*jenv)->NewObjectArray(jenv, nbRow,clazz, NULL);
@@ -59,10 +59,11 @@ matching in Java */
 }
 
 %typemap(in) (char **variable, int nbRow, int nbCol) {
+    int i=0, j=0;
     // Convert the String[][] => char *
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
-    int i=0, j=0;
+    
     for(i=0; i<arg3; i++) {
       jobjectArray oneDim=(jobjectArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
       if (arg4==0) {

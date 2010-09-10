@@ -41,6 +41,21 @@ void DisableInteractiveMode(void);
 BOOL StartScilab(char *SCIpath, char *ScilabStartup, int Stacksize);
 
 /**
+ * Start Scilab engine
+ * Function created in the context of javasci v2. 
+ * This function is just like StartScilab but provides more error messages
+ * in case or error. For now, it is only used in javasci v2 but it might
+ * be public sooner or later.
+ * @return 
+ * 0: success
+ * -1: already running
+ * -2: Could not find SCI
+ * -3: No existing directory
+ * Any other positive integer: A Scilab internal error
+ */
+int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int Stacksize);
+
+/**
  * Terminate Scilab
  * @param ScilabQuit path & filename of scilab.quit : Default --> NULL 
  * @return TRUE if it is OK else FALSE 

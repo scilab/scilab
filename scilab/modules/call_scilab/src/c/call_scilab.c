@@ -224,13 +224,13 @@ CALL_SCILAB_ENGINE_STATE getCallScilabEngineState(void)
 }
 /*--------------------------------------------------------------------------*/
 sci_types getVariableType(char *varName) {
-    sci_types sciType = -1;
-    SciErr sciErr = getNamedVarType(pvApiCtx, (char*)varName, &sciType);
+    int iSciType = -1;
+    SciErr sciErr = getNamedVarType(pvApiCtx, (char*)varName, &iSciType);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return -1;
     }
-    return sciType;
+    return (sci_types) iSciType;
 }
 /*--------------------------------------------------------------------------*/

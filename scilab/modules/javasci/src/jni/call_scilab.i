@@ -12,7 +12,7 @@
 
 /* Call_Scilab.i */
 /**
- * Windows: swig -java -package org.scilab.modules.javasci -outdir ../java/org/scilab/modules/javasci/ call_scilab.i 
+ * Windows: swig -java -package org.scilab.modules.javasci -outdir ../java/org/scilab/modules/javasci/ call_scilab.i
  * Other: Use the option --enable-build-swig to the configure
 */
 
@@ -26,6 +26,8 @@
 #include "BOOL.h"
 #define ENABLE_HELPERS
 #include "javasci2_helper.h"
+#include "../../../call_scilab/includes/call_scilab.h"
+#include "../../../output_stream/includes/lasterror.h"
 #include "../../../core/includes/sci_types.h"
 %}
 %include "../../../jvm/src/jni/scilab_typemaps.i"
@@ -51,21 +53,25 @@ class%}
     * Constructor
     */
   protected Call_ScilabJNI() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
   }";
 
 /* static load of library */
 %pragma(java) jniclasscode=%{
   static {
     try {
+    if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+        System.loadLibrary("javasci");
+    } else {
         System.loadLibrary("scilab");
         System.loadLibrary("javasci2");
+        }
     } catch (SecurityException e) {
-		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-		e.printStackTrace(System.err);
-	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library javasci does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
+        e.printStackTrace(System.err);
+    } catch (UnsatisfiedLinkError e)    {
+        System.err.println("The native library javasci does not exist or cannot be found.");
+        e.printStackTrace(System.err);
     }
   }
 %}
@@ -88,7 +94,7 @@ public class";
    * Constructor
    */
  protected Call_Scilab() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }";
 
 #endif
@@ -104,7 +110,8 @@ int SendScilabJobs(char **jobs,int numberjobs);
 
 int ScilabHaveAGraph(void);
 
-int GetLastErrorCode(void);
+%rename(GetLastErrorCode) getLastErrorValue;
+int getLastErrorValue(void);
 
 %rename(getLastErrorMessage) getLastErrorMessageSingle;
 const char* getLastErrorMessageSingle();
@@ -113,7 +120,8 @@ sci_types getVariableType(char *varname);
 
 sci_int_types getIntegerPrecision(char* varname);
 
-BOOL isComplex(char* varname);
+%rename(isComplex) isComplexVar;
+BOOL isComplexVar(char* varname);
 
 %include "call_scilab_java_typemaps_string.i"
 // string

@@ -65,7 +65,7 @@ double * getDouble(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putDouble(char* variableName, double *variable, int *nbRow, int *nbCol);
+int putDouble(char* variableName, double *variable, int nbRow, int nbCol);
 
 /**
  * Return the real part of a matrix of complex double
@@ -117,7 +117,7 @@ BOOL * getBoolean(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putBoolean(char* variableName, BOOL *variable, int *nbRow, int *nbCol);
+int putBoolean(char* variableName, BOOL *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of byte (int8)
@@ -138,7 +138,7 @@ byte * getByte(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putByte(char* variableName, byte *variable, int *nbRow, int *nbCol);
+int putByte(char* variableName, byte *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of unsigned byte (uint8)
@@ -159,7 +159,7 @@ byte * getUnsignedByte(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putUnsignedByte(char* variableName, byte *variable, int *nbRow, int *nbCol);
+int putUnsignedByte(char* variableName, byte *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of short (int16)
@@ -180,7 +180,7 @@ short * getShort(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putShort(char* variableName, short *variable, int *nbRow, int *nbCol);
+int putShort(char* variableName, short *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of unsigned short (uint16)
@@ -201,7 +201,7 @@ unsigned short * getUnsignedShort(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putUnsignedShort(char* variableName, unsigned short *variable, int *nbRow, int *nbCol);
+int putUnsignedShort(char* variableName, unsigned short *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of integer (int32)
@@ -222,7 +222,7 @@ int * getInt(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putInt(char* variableName, int *variable, int *nbRow, int *nbCol);
+int putInt(char* variableName, int *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of unsigned integer (uint32)
@@ -243,7 +243,7 @@ unsigned int * getUnsignedInt(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putUnsignedInt(char* variableName, unsigned int *variable, int *nbRow, int *nbCol);
+int putUnsignedInt(char* variableName, unsigned int *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of long (int64)
@@ -264,7 +264,7 @@ long * getLong(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putLong(char* variableName, long *variable, int *nbRow, int *nbCol);
+int putLong(char* variableName, long *variable, int nbRow, int nbCol);
 
 /**
  * Return a matrix of unsigned long (uint64)
@@ -285,7 +285,7 @@ unsigned long * getUnsignedLong(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putUnsignedLong(char* variableName, unsigned long *variable, int *nbRow, int *nbCol);
+int putUnsignedLong(char* variableName, unsigned long *variable, int nbRow, int nbCol);
 
 
 /**
@@ -314,7 +314,7 @@ char ** getString(char* variableName, int *nbRow, int *nbCol);
  * @param nbCol Number of cols
  * @return 0 if successfull, != 0 otherwise
  */
-int putString(char* variableName, char **variable, int *nbRow, int *nbCol);
+int putString(char* variableName, char **variable, int nbRow, int nbCol);
 
 
 #endif /* __JAVASCI2_HELPER_H__ */

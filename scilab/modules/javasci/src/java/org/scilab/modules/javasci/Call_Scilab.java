@@ -23,7 +23,7 @@ public class Call_Scilab {
    * Constructor
    */
  protected Call_Scilab() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   public static int Call_ScilabOpen(String SCIpath, String ScilabStartup, int Stacksize) {
     return Call_ScilabJNI.Call_ScilabOpen(SCIpath, ScilabStartup, Stacksize);
