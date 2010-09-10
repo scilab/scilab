@@ -47,6 +47,8 @@ Bug Fixes:
 * bug 7364 fixed - The "Checked" property misworked for uimenus and they could
                    not have a callback.
 
+* bug 7768 fixed - for cdfgam, the Scale parameter was, in fact, the Rate.
+
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
 
 * bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni
