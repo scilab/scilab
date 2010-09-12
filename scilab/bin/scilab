@@ -399,7 +399,7 @@ fi
 					"s390"|"s390x")
 						proc="s390"
 						;;
-					"armv4l"|"armv5tel")
+					armv*)
 						proc="arm"
 						;;
 					*)

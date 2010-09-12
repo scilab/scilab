@@ -45,6 +45,11 @@ Graphics:
 
 * bug 6686 fixed - The automatic sub-ticking gave wrong results.
 
+Compilation:
+============
+
+* Fix a problem in the detection of some ARM cpus.
+
 Bug Fixes:
 ==========
 
