@@ -351,6 +351,7 @@ public class Scilab {
 					break;
 				case sci_uint32:
 					err = Call_Scilab.putUnsignedInt(varname, sciInteger.getDataAsInt());
+					break;
 				case sci_int32:
 					err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
 					break;

@@ -49,6 +49,7 @@ sci_int_types getIntegerPrecision(char* variableName) {
 			case SCI_INT64:
 				return sci_int64;
 				break;
+			/* Now, the unsigned int */
 			case SCI_UINT8:
 				return sci_uint8;
 				break;
