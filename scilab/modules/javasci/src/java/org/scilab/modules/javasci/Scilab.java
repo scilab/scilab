@@ -42,22 +42,23 @@ public class Scilab {
 	 * @param SCI provide the path to Scilab data
 	 */
 	public Scilab() throws InitializationException {
-		// Auto detect 
-		String detectedSCI;
-		try {
-			detectedSCI = System.getProperty("SCI");
-			if (detectedSCI == null || detectedSCI.length() == 0) {
-				detectedSCI = System.getenv("SCI");
-				if (detectedSCI == null || detectedSCI.length() == 0) {
-					throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
-				}
-			}
-			this.initScilab(detectedSCI);
+        if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
+            // Auto detect 
+            String detectedSCI;
+            try {
+                detectedSCI = System.getProperty("SCI");
+                if (detectedSCI == null || detectedSCI.length() == 0) {
+                    detectedSCI = System.getenv("SCI");
+                    if (detectedSCI == null || detectedSCI.length() == 0) {
+                        throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
+                    }
+                }
+                this.initScilab(detectedSCI);
 
-		} catch (Exception e) {
-			throw new InitializationException("Auto detection of SCI failed.\nCould not retrieve the variable SCI.", e);
-		}
-		// @TODO manage windows through the registery
+            } catch (Exception e) {
+                throw new InitializationException("Auto detection of SCI failed.\nCould not retrieve the variable SCI.", e);
+            }
+        }
 	}
 
 	/**
