@@ -68,9 +68,9 @@ public :
      * Implemented in order to avoid returning the address of a
      * static local variable across too many function calls (see the getProperty
      * methods of the different Data classes when integer values are returned)
-     * Possibly redundant with getGraphicObjectProperty
+     * Probably redundant with getGraphicObjectProperty
      */
-    int getGraphicObjectIntProperty(char *_pstID, char* _pstName);
+    int* getGraphicObjectIntProperty(char *_pstID, char* _pstName);
 
     /** Creates a data object */
     char* createDataObject(char* _pstID, char* _sType);

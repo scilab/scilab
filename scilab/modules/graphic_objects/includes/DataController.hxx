@@ -30,7 +30,7 @@ public :
         return DataModel::get()->getGraphicObjectProperty(_pstID, _pstName);
     }
 
-    static int getGraphicObjectIntProperty(char* _pstID, char* _pstName)
+    static int* getGraphicObjectIntProperty(char* _pstID, char* _pstName)
     {
         return DataModel::get()->getGraphicObjectIntProperty(_pstID, _pstName);
     }
@@ -38,6 +38,11 @@ public :
     static char* createDataObject(char* _pstID, char* _sType)
     {
         return DataModel::get()->createDataObject(_pstID, _sType);
+    }
+
+    static void deleteDataObject(char* _pstID)
+    {
+        DataModel::get()->deleteDataObject(_pstID);
     }
 
 };

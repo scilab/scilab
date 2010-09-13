@@ -18,8 +18,6 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
-
-#include <stdio.h>
 }
 
 #include "CallGraphicController.hxx"
@@ -37,21 +35,7 @@ void *getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _retur
     /* All the Data model properties have the DATA_MODEL prefix */
     if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)
     {
-	double* mydata;
-
-        switch(_returnType)
-        {
-        case jni_double_vector:
-            return DataController::getGraphicObjectProperty(_pstID, _pstName);
-        case jni_int:
-        {
-            localIntResult = (int) DataController::getGraphicObjectIntProperty(_pstID, _pstName);
-
-            return &localIntResult;
-        }
-        default:
-            return NULL;
-        }
+        return DataController::getGraphicObjectProperty(_pstID, _pstName);
     }
 
     switch(_returnType)

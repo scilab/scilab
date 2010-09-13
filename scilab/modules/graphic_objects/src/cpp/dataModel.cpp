@@ -47,10 +47,8 @@ void* DataModel::getGraphicObjectProperty(char *_pstID, char* _pstName)
     return dataObject->getDataProperty(property);
 }
 
-int DataModel::getGraphicObjectIntProperty(char *_pstID, char* _pstName)
+int* DataModel::getGraphicObjectIntProperty(char *_pstID, char* _pstName)
 {
-    int* tmpValue;
-
     Data3D* dataObject;
     int property;
 
@@ -60,9 +58,7 @@ int DataModel::getGraphicObjectIntProperty(char *_pstID, char* _pstName)
 
     property = dataObject->getPropertyFromName(_pstName);
 
-    tmpValue = (int*) dataObject->getDataProperty(property);
-
-    return *tmpValue;
+    return (int*) dataObject->getDataProperty(property);
 }
 
 char* DataModel::createDataObject(char* _pstID, char* _sType)
@@ -100,6 +96,7 @@ char* DataModel::createDataObject(char* _pstID, char* _sType)
 
     (*m_dataMap)[std::string(_pstID)] = newObject;
 
+    return _pstID;
 }
 
 /* To be implemented */
@@ -107,6 +104,4 @@ void DataModel::deleteDataObject(char* _pstID)
 {
 
 }
-
-
 

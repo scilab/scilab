@@ -16,9 +16,15 @@
 #include "dynlib_graphic_objects.h"
 
 /*
-** Ask Controler to delete a graphic object
+** Ask Controller to delete a graphic object
 ** referenced by the given _sId.
 */
 GRAPHIC_OBJECTS_IMPEXP void deleteGraphicObject(char *_sId);
+
+/*
+** Ask Controller to delete a data object
+** referenced by the given _sId.
+*/
+GRAPHIC_OBJECTS_IMPEXP void deleteDataObject(char *_sId);
 
 #endif /* !__DELETEGRAPHICOBJECT_H__ */

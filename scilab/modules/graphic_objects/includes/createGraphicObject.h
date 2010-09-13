@@ -16,15 +16,21 @@
 #include "dynlib_graphic_objects.h"
 
 /*
-** Ask Controler to create a graphic object
+** Ask Controller to create a graphic object
 ** of the given _sType.
 */
 GRAPHIC_OBJECTS_IMPEXP char *createGraphicObject(char *_sType);
 
 /*
-** Ask Controler to clone a graphic object
+** Ask Controller to clone a graphic object
 ** referenced the given _sId.
 */
 GRAPHIC_OBJECTS_IMPEXP char *cloneGraphicObject(char *_sId);
+
+/*
+** Ask Controller to create a data object
+** referenced by the given _sId and of the given _sType
+*/
+GRAPHIC_OBJECTS_IMPEXP char *createDataObject(char* _sId, char* _sType);
 
 #endif /* !__CREATEGRAPHICOBJECT_H__ */
