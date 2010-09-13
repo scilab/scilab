@@ -16,6 +16,7 @@ import org.testng.annotations.*;
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
+import org.scilab.modules.javasci.JavasciException.UnsupportedTypeException;
 import org.scilab.modules.types.scilabTypes.ScilabType;
 import org.scilab.modules.types.scilabTypes.ScilabInteger;
 
@@ -129,28 +130,24 @@ public class testReadWriteInteger {
 
     }
 
-	//	@Test(sequential = true)
+    @Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
 	// Will be unblocked for Scilab 6
 	public void putAndGetInteger64UnsignedTest() throws NullPointerException, JavasciException {
         long [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
-        sci.put("b",aOriginal);
-        assert sci.exec("somme = sum(a);") == true;
+        sci.put("b",aOriginal); /* Exception launched */
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
         assert aFromScilab.equals(aOriginal);
-
-
     }
 
-	//	@Test(sequential = true)
+	@Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
 	// Will be unblocked for Scilab 6
 	public void putAndGetInteger64SignedTest() throws NullPointerException, JavasciException {
         long [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
-        sci.put("b",aOriginal);
-        assert sci.exec("somme = sum(a);") == true;
+        sci.put("b",aOriginal);  /* Exception launched */
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 

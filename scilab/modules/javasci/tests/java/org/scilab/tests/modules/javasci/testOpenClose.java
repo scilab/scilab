@@ -36,46 +36,68 @@ public class testOpenClose {
 	@BeforeMethod
 	public void openTest() throws NullPointerException, InitializationException {
 		sci = new Scilab();
-        assert sci.open() == true;
+		assert sci.open() == true;
 	}
 
 	@Test(sequential = true)
-    public void multipleOpenCloseTest() throws NullPointerException, InitializationException {
-        assert sci.close() == true;
-        assert sci.open() == true;
-        assert sci.close() == true;
-    }
+	public void multipleOpenCloseTest() throws NullPointerException, InitializationException {
+		assert sci.close() == true;
+		assert sci.open() == true;
+		assert sci.close() == true;
+	}
 
-        @Test(sequential = true, expectedExceptions = InitializationException.class)
-    public void specificSCIPathTest() throws NullPointerException, InitializationException {
-        assert sci.close() == true;
-        sci = new Scilab(System.getProperty("java.io.tmpdir")+"/non-existing-directory-scilab/");
-    }
+	@Test(sequential = true, expectedExceptions = InitializationException.class)
+	public void specificWrongSCIPathTest() throws NullPointerException, InitializationException {
+		assert sci.close() == true;
+		sci = new Scilab(System.getProperty("java.io.tmpdir")+"/non-existing-directory-scilab/");
+	}
 
-	@Test(sequential = true)
-    public void OpenWithJobTest() throws NullPointerException, JavasciException {
-        assert sci.close() == true;
-        assert sci.open("a=42*2;") == true;
-
-        ScilabType a = sci.get("a");
-
-        assert ((ScilabDouble)a).getRealPart()[0][0] == 84.0;
-    }
 
 	@Test(sequential = true)
-    public void OpenWithJobsTest() throws NullPointerException, JavasciException {
-        assert sci.close() == true;
-        assert sci.open(new String[]{"a=42*2;","b=44*2", "c=(a==b)"}) == true;
+	public void specificPropertySCIPathTest() throws NullPointerException, InitializationException {
+		assert sci.close() == true;
+		sci = new Scilab(System.getProperty("SCI"));
+	}
 
-        ScilabType a = sci.get("a");
-        assert ((ScilabDouble)a).getRealPart()[0][0] == 84.0;
+	@Test(sequential = true)
+	public void specificEnvSCIPathTest() throws NullPointerException, InitializationException {
+		assert sci.close() == true;
+		String SCIPath = System.getProperty("SCI"); // Temp backup to set it again
+		System.clearProperty("SCI"); // Remove the property to check it is using the variable
+		sci = new Scilab();
+		System.setProperty("SCI",SCIPath); // Set it again
+	}
 
-        ScilabType b = sci.get("b");
-        assert ((ScilabDouble)b).getRealPart()[0][0] == 88.0;
+	@Test(sequential = true)
+	public void OpenWithJobTest() throws NullPointerException, JavasciException {
+		assert sci.close() == true;
+		assert sci.open("a=42*2;") == true;
 
-        ScilabType c = sci.get("c");
-        assert ((ScilabBoolean)c).getData()[0][0] == false;
-    }
+		ScilabType a = sci.get("a");
+
+		assert ((ScilabDouble)a).getRealPart()[0][0] == 84.0;
+	}
+
+	@Test(sequential = true)
+	public void OpenWithJobsTest() throws NullPointerException, JavasciException {
+		assert sci.close() == true;
+		assert sci.open(new String[]{"a=42*2;","b=44*2", "c=(a==b)"}) == true;
+
+		ScilabType a = sci.get("a");
+		assert ((ScilabDouble)a).getRealPart()[0][0] == 84.0;
+
+		ScilabType b = sci.get("b");
+		assert ((ScilabDouble)b).getRealPart()[0][0] == 88.0;
+
+		ScilabType c = sci.get("c");
+		assert ((ScilabBoolean)c).getData()[0][0] == false;
+	}
+
+	@Test(sequential = true, expectedExceptions = InitializationException.class)
+	public void OpenMultipleTimeTest() throws NullPointerException, InitializationException {
+		assert sci.open("a=42*2;") == true;
+
+	}
 
 	/**
 	 * See #open()

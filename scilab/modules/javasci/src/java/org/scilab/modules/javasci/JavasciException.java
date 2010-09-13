@@ -5,7 +5,7 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at	
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,6 +25,7 @@ public abstract class JavasciException extends Exception {
 		public InitializationException(String message, Throwable cause) {
 			super(message, cause);
 		}
+		
 	}
 
 	public static class UnsupportedTypeException extends JavasciException {
@@ -33,9 +34,14 @@ public abstract class JavasciException extends Exception {
 			super(message);
 		}
 
-		public UnsupportedTypeException(String message, Throwable cause) {
-			super(message, cause);
+	}
+
+	public static class ScilabInternalException extends JavasciException {
+
+		public ScilabInternalException(String message) {
+			super(message);
 		}
+
 	}
 
 	public static class UnknownTypeException extends JavasciException {
@@ -44,9 +50,6 @@ public abstract class JavasciException extends Exception {
 			super(message);
 		}
 
-		public UnknownTypeException(String message, Throwable cause) {
-			super(message, cause);
-		}
 	}
 
 	public static class UndefinedVariableException extends JavasciException {
@@ -55,9 +58,6 @@ public abstract class JavasciException extends Exception {
 			super(message);
 		}
 
-		public UndefinedVariableException(String message, Throwable cause) {
-			super(message, cause);
-		}
 	}
 
 	/**
