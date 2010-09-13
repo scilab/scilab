@@ -136,6 +136,8 @@ Bug Fixes:
 
 * bug 7988 fixed - Inverted pendulum demo failed with f2c version on Windows.
 
+* bug 8006 fixed - mgetl produced a memory allocation error.
+
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
          ===============================================================
