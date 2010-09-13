@@ -485,7 +485,7 @@ assign			"="
   return scan_throw(LBRACK);
 }
 
-{rbrack}				{
+<INITIAL>{rbrack}				{
   return scan_throw(RBRACK);
 }
 
@@ -495,9 +495,9 @@ assign			"="
 }
 
 <INITIAL,MATRIX>{next}			{
-  yy_push_state(LINEBREAK);
+    ParserSingleInstance::pushControlStatus(Parser::WithinDots);
+    yy_push_state(LINEBREAK);
 }
-
 
 <INITIAL,MATRIX>{integer}		{
   yylval.number = atof(yytext);
@@ -833,6 +833,7 @@ assign			"="
     yylloc.last_column = 1;
     scan_step();
     yy_pop_state();
+    ParserSingleInstance::popControlStatus();
   }
 
   {startblockcomment}			{
@@ -850,12 +851,16 @@ assign			"="
     /* Do nothing... */
   }
 
+  <<EOF>>	{
+      yy_pop_state();
+  }
   .					{
     std::string str = "unexpected token '";
     str += yytext;
     str += "' after line break with .. or ...";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yy_pop_state();
     yyterminate();
   }
 }

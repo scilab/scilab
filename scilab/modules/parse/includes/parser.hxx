@@ -75,7 +75,8 @@ public:
         WithinOtherwise,
         WithinMatrix,
         WithinCell,
-        WithinBlockComment
+        WithinBlockComment,
+        WithinDots
     };
 
 public:

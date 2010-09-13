@@ -2265,7 +2265,8 @@ YY_RULE_SETUP
 case 65:
 YY_RULE_SETUP
 {
-  yy_push_state(LINEBREAK);
+    ParserSingleInstance::pushControlStatus(Parser::WithinDots);
+    yy_push_state(LINEBREAK);
 }
 	YY_BREAK
 case 66:
@@ -2654,6 +2655,7 @@ YY_RULE_SETUP
     yylloc.last_column = 1;
     scan_step();
     yy_pop_state();
+    ParserSingleInstance::popControlStatus();
   }
 	YY_BREAK
 case 99:
@@ -2677,6 +2679,11 @@ YY_RULE_SETUP
     /* Do nothing... */
   }
 	YY_BREAK
+case YY_STATE_EOF(LINEBREAK):
+{
+      yy_pop_state();
+  }
+	YY_BREAK
 case 102:
 YY_RULE_SETUP
 {
@@ -2685,6 +2692,7 @@ YY_RULE_SETUP
     str += "' after line break with .. or ...";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yy_pop_state();
     yyterminate();
   }
 	YY_BREAK
@@ -3032,7 +3040,6 @@ YY_RULE_SETUP
 ECHO;
 	YY_BREAK
 			case YY_STATE_EOF(INITIAL):
-			case YY_STATE_EOF(LINEBREAK):
 			case YY_STATE_EOF(MATRIX):
 			case YY_STATE_EOF(MATRIXMINUSID):
 			case YY_STATE_EOF(BEGINID):
