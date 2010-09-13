@@ -15,7 +15,7 @@
 
 #include <wchar.h>
 #include "BOOL.h"
-
+#include "dynlib_fileio.h"
 
 /**
 * strip directory and suffix from filenames
@@ -23,7 +23,7 @@
 * @param[in] BOOL flagexpand
 * @return basename
 */
-char *basename(char *fullfilename, BOOL bExpand);
+FILEIO_IMPEXP char *basename(char *fullfilename, BOOL bExpand);
 
 
 /**
@@ -32,6 +32,6 @@ char *basename(char *fullfilename, BOOL bExpand);
 * @param[in] BOOL flagexpand
 * @return basename
 */
-wchar_t *basenameW(wchar_t *wcfullfilename, BOOL bExpand);
+FILEIO_IMPEXP wchar_t *basenameW(wchar_t *wcfullfilename, BOOL bExpand);
 
 #endif

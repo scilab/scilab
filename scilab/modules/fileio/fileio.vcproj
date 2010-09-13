@@ -573,10 +573,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_basename.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_chdir.c"
 				>
 			</File>
