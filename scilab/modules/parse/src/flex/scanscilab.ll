@@ -1003,6 +1003,14 @@ assign			"="
     scan_step();
   }
 
+  {dquote}                  {
+    std::string str = "Heterogeneous string detected, starting with ' and ending with \".";
+    exit_status = SCAN_ERROR;
+    scan_error(str);
+    yy_pop_state();
+    yyterminate();
+  }
+
   {newline}					{
     std::string str = "unexpected end of line in a string.";
     exit_status = SCAN_ERROR;
@@ -1064,6 +1072,14 @@ assign			"="
     delete pstBuffer;
     FREE(pwstBuffer);
     return scan_throw(STR);
+  }
+
+  {quote}                  {
+    std::string str = "Heterogeneous string detected, starting with \" and ending with '.";
+    exit_status = SCAN_ERROR;
+    scan_error(str);
+    yy_pop_state();
+    yyterminate();
   }
 
   {newline} {
@@ -1149,7 +1165,8 @@ void scan_step() {
 void scan_error(std::string msg)
 {
   wchar_t* pstMsg = to_wide_string(msg.c_str());
-  std::wcerr << pstMsg << std::endl;
+
+  //std::wcerr << pstMsg << std::endl;
   ParserSingleInstance::PrintError(pstMsg);
   ParserSingleInstance::setExitStatus(Parser::Failed);
   FREE(pstMsg);
