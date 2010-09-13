@@ -12,6 +12,12 @@
 */
 /*--------------------------------------------------------------------------*/
 
+#ifndef _MSC_VER
+    #include <iconv.h>
+    #include <errno.h>
+#endif
+
+#include <wchar.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -84,71 +90,71 @@ int wcstat(char* filename, struct _stat *st)
 #else //Linux check for MAC OS X
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
-	size_t iCharLen = 0;
-	wchar_t *pwstr = _wide;
-	char* pchar = NULL;
+    char* pOutSave = NULL;
+    wchar_t* pSaveIn = _wide;
+    size_t iSize = 0;
+    size_t iLeftIn = wcslen(_wide) * sizeof(wchar_t);
+    size_t iLeftOut = 0;
 
-	if (_wide == NULL)
-	{
-		return NULL;
-	}
+    char* pOut = NULL;
 
-	/* The value of MB_CUR_MAX is the maximum number of bytes
-	   in a multibyte character for the current locale. */
-	int iMaxLen = (int)wcslen(_wide) * MB_CUR_MAX ;
-	pchar = (char*) MALLOC(( iMaxLen + 1) * sizeof(char));
-	if(pchar == NULL)
-	{
-		return NULL;
-	}
-	iCharLen = wcstombs (pchar, pwstr, iMaxLen);
-	if ( iCharLen == (size_t)(-1) )
-	{
-		if (pchar) {FREE(pchar);pchar = NULL;}
-		return NULL;
-	}
-	pchar[iCharLen] = '\0';
-	return pchar;
+    iconv_t cd_UTF16_to_UTF8 = iconv_open("UTF-8", "UTF-32LE");
+
+    iLeftOut = iLeftIn + (1 * sizeof(wchar_t));
+    pOut = (char*)MALLOC(iLeftOut);
+    memset(pOut, 0x00, iLeftOut);
+    pOutSave = pOut;
+
+    iSize = iconv(cd_UTF16_to_UTF8, (char**)&pSaveIn, &iLeftIn, &pOut, &iLeftOut);
+    iconv_close(cd_UTF16_to_UTF8);
+    if(iSize == (size_t)(-1))
+    {
+        return NULL;
+    }
+
+    return pOutSave;
 }
 /*--------------------------------------------------------------------------*/
 wchar_t *to_wide_string(const char *_UTFStr)
 {
-	wchar_t *_buf = NULL;
-	size_t pszLen = 0;
-	char *psz = _UTFStr;
-	mbstate_t ps;
+    wchar_t* pOutSave = NULL;
+    char* pInSave = _UTFStr;
+    size_t iSize = 0;
+    size_t iLeftIn = strlen(_UTFStr);
+    size_t iLeftOut = 0;
 
-	if (_UTFStr == NULL)
-	{
-		return NULL;
-	}
+    wchar_t* pOut = NULL;
 
-	memset (&ps, 0x00, sizeof(ps));
-	pszLen = mbsrtowcs(NULL, (const char**)&psz, 0, &ps);
+    iconv_t cd_UTF8_to_UTF16 = iconv_open("UTF-32LE", "UTF-8");
 
-	if ( pszLen == (size_t)(-1) )
-	{
-		return NULL;
-	}
+    iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
+    pOut = (wchar_t*)MALLOC(iLeftOut);
+    memset(pOut, 0x00, iLeftOut);
+    pOutSave = pOut;
 
-	_buf = (wchar_t*)MALLOC((pszLen + 1) * sizeof(wchar_t));
-	if(_buf == NULL)
-	{
-		return NULL;
-	}
+    iSize = iconv(cd_UTF8_to_UTF16, &_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+    iconv_close(cd_UTF8_to_UTF16);
+    if(iSize == (size_t)(-1))
+    {
+        iconv_t cd_ISO8851_to_UTF16 = iconv_open("UTF-32LE", "ISO_8859-1");
 
-	pszLen = mbsrtowcs(_buf, (const char**)&psz, (int)strlen(psz), &ps);
+        _UTFStr = pInSave;
+        iLeftIn = strlen(_UTFStr);
 
-	if ( pszLen == (size_t)(-1) )
-	{
-		FREE(_buf);
-		return NULL;
-	}
-	else
-	{
-		_buf[pszLen] = L'\0';
-	}
-	return _buf;
+        iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
+        pOut = pOutSave;
+        memset(pOut, 0x00, iLeftOut);
+
+
+        iSize = iconv(cd_ISO8851_to_UTF16, &_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+        iconv_close(cd_ISO8851_to_UTF16);
+        if(iSize == (size_t)(-1))
+        {
+            return NULL;
+        }
+    }
+
+    return pOutSave;
 }
 /*--------------------------------------------------------------------------*/
 int wcstat(char* filename, struct stat *st)
