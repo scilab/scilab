@@ -20,6 +20,8 @@ Xcos:
 
 * bug 7945 fixed - The path of the diagram was not displayed in the title bar.
 
+* bug 8014 fixed - The TEXT_f.png file was not present on the source tree.
+
 SciNotes:
 =========
 

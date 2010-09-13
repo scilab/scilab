@@ -382,6 +382,7 @@ images/palettes/SWITCH_f.png \
 images/palettes/Switch.png \
 images/palettes/TANBLK_f.png \
 images/palettes/TCLSS.png \
+images/palettes/TEXT_f.png \
 images/palettes/TIME_DELAY.png \
 images/palettes/TIME_f.png \
 images/palettes/TKSCALE.png \
