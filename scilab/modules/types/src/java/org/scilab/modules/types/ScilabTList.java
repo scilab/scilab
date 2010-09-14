@@ -10,61 +10,61 @@
  * 
  */
 
-package org.scilab.modules.types.scilabTypes;
+package org.scilab.modules.types;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * This class provides a wrapping on the Scilab Mlist datatype
+ * This class provides a wrapping on the Scilab TList datatype
  */
-public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
-   
+public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
+
 	/**
-	 * Construct an empty mlist.
+	 * Construct an empty tlist.
 	 * 
 	 * Note that the first element of this collection is the header used by
-	 * Scilab to find each field name.
+	 * Scilab to find each field type.
 	 */
-    public ScilabMList() {
+    public ScilabTList() {
 		super();
     }
     
     /**
-     * Construct an mlist with a specified header.
+     * Construct a tlist with a specified header.
      *  
-     * @param types field names used by the accessors.
+     * @param types type names of the fields.
      */
-    public ScilabMList(String []types) {
+    public ScilabTList(String []types) {
 		super();
 		String [][] typesData = new String[1][types.length];
 		typesData[0] = types;
 		add(new ScilabString(typesData));
     }
-    
+
 	/**
 	 * Construct a tlist containing the elements of the specified collection, in
 	 * the order that they are returned by the specified collection's iterator.
 	 * 
-	 * @param names
-	 *            field names, used by the accessors.
+	 * @param types
+	 *            type names of the fields.
 	 * @param c
 	 *            the collection whose elements are to be placed into this
-	 *            mlist.
+	 *            tlist.
 	 */
-    public ScilabMList(String[] names, Collection< ? extends ScilabType> c) {
+    public ScilabTList(String[] types, Collection< ? extends ScilabType> c) {
     	super(c.size() + 1);
     	
-    	String[][] namesData = new String[1][names.length];
-    	namesData[0] = names;
-    	add(new ScilabString(namesData));
+    	String[][] typesData = new String[1][types.length];
+    	typesData[0] = types;
+    	add(new ScilabString(typesData));
     	
     	addAll(c);
     }
     
     /**
      * @return 1 when there is data on the list, 0 otherwise.
-     * @see org.scilab.modules.types.scilabTypes.ScilabType#getHeight()
+     * @see org.scilab.modules.types.ScilabType#getHeight()
      */
 	public int getHeight() {
 		if (isEmpty()) {
@@ -75,7 +75,7 @@ public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
 
 	/**
      * @return 1 when there is data on the list, 0 otherwise.
-	 * @see org.scilab.modules.types.scilabTypes.ScilabType#getWidth()
+	 * @see org.scilab.modules.types.ScilabType#getWidth()
 	 */
 	public int getWidth() {
 		if (isEmpty()) {
@@ -84,19 +84,19 @@ public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
 		return size();
 	}
 	
-    /**
-     * @return the pretty-printed data 
-     * @see java.util.AbstractCollection#toString()
-     */
+	/**
+	 * @return the pretty-printed data
+	 * @see java.util.AbstractCollection#toString()
+	 */
 	public String toString() {
 		
 		StringBuffer result = new StringBuffer();
 		if (isEmpty()) {
-			result.append("mlist()");
+			result.append("tlist()");
 			return result.toString();
 		}
 
-		result.append("mlist");
+		result.append("tlist(");
 		for (int i = 0; i < size(); i++) {
 			result.append(get(i).toString());
 			if (i != size() - 1) {

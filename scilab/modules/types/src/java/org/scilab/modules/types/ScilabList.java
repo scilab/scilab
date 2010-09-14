@@ -10,7 +10,7 @@
  * 
  */
 
-package org.scilab.modules.types.scilabTypes;
+package org.scilab.modules.types;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +40,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 	
 	/**
 	 * @return 1 when there is data on the list, 0 otherwise.
-	 * @see org.scilab.modules.types.scilabTypes.ScilabType#getHeight()
+	 * @see org.scilab.modules.types.ScilabType#getHeight()
 	 */
     public int getHeight() {
 		if (isEmpty()) {
@@ -51,7 +51,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 
     /**
      * @return 1 when there is data on the list, 0 otherwise.
-     * @see org.scilab.modules.types.scilabTypes.ScilabType#getWidth()
+     * @see org.scilab.modules.types.ScilabType#getWidth()
      */
     public int getWidth() {
 		if (isEmpty()) {

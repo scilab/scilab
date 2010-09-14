@@ -14,8 +14,10 @@ package org.scilab.tests.modules.javasci;
 import org.testng.annotations.*;
 
 import org.scilab.modules.javasci.Scilab;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
+
 
 public class testErrorManagement {
 	private Scilab sci;

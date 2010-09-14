@@ -15,8 +15,8 @@ package org.scilab.modules.graph.io;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabInteger;
-import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
+import org.scilab.modules.types.ScilabInteger;
+import org.scilab.modules.types.ScilabIntegerTypeEnum;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 

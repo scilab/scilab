@@ -14,13 +14,13 @@ package org.scilab.modules.javasci;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import org.scilab.modules.types.scilabTypes.ScilabType;
-import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
-import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabBoolean;
-import org.scilab.modules.types.scilabTypes.ScilabInteger;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.types.ScilabTypeEnum;
+import org.scilab.modules.types.ScilabIntegerTypeEnum;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabBoolean;
+import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.javasci.Call_Scilab;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.javasci.JavasciException.UnsupportedTypeException;
@@ -89,7 +89,6 @@ public class Scilab {
 	 * @return if the operation is successful
 	 */
 	public boolean open() throws InitializationException {
-
 		int res = Call_Scilab.Call_ScilabOpen(this.SCI, null, -1);
 		switch (res) {
 			case -1: 

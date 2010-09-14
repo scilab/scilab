@@ -11,7 +11,7 @@
  * 
  */
 
-package org.scilab.modules.types.scilabTypes;
+package org.scilab.modules.types;
 
 import java.util.Arrays;
 
@@ -102,7 +102,7 @@ public class ScilabBoolean implements ScilabType {
     
 
     /**
-	 * @see org.scilab.modules.types.scilabTypes.ScilabType#equals(Object)
+	 * @see org.scilab.modules.types.ScilabType#equals(Object)
      */
     public boolean equals(Object obj) {
         if (obj instanceof ScilabBoolean) {

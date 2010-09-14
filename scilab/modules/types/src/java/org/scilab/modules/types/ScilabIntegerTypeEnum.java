@@ -6,55 +6,45 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package org.scilab.modules.types.scilabTypes;
+package org.scilab.modules.types;
 
-public enum ScilabTypeEnum {
-  sci_matrix(1),
-  sci_poly(2),
-  sci_boolean(4),
-  sci_sparse(5),
-  sci_boolean_sparse(6),
-  sci_matlab_sparse(7),
-  sci_ints(8),
-  sci_handles(9),
-  sci_strings(10),
-  sci_u_function(11),
-  sci_c_function(13),
-  sci_lib(14),
-  sci_list(15),
-  sci_tlist(16),
-  sci_mlist(17),
-  sci_pointer(128),
-  sci_implicit_poly(129),
-  sci_intrinsic_function(130);
+public enum ScilabIntegerTypeEnum {
+  sci_int8(1),
+  sci_int16(2),
+  sci_int32(4),
+  sci_int64(8),
+  sci_uint8(11),
+  sci_uint16(12),
+  sci_uint32(14),
+  sci_uint64(18);
 
   public final int swigValue() {
     return swigValue;
   }
 
-  public static ScilabTypeEnum swigToEnum(int swigValue) {
-    ScilabTypeEnum[] swigValues = ScilabTypeEnum.class.getEnumConstants();
+  public static ScilabIntegerTypeEnum swigToEnum(int swigValue) {
+    ScilabIntegerTypeEnum[] swigValues = ScilabIntegerTypeEnum.class.getEnumConstants();
     if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
       return swigValues[swigValue];
-    for (ScilabTypeEnum swigEnum : swigValues)
+    for (ScilabIntegerTypeEnum swigEnum : swigValues)
       if (swigEnum.swigValue == swigValue)
         return swigEnum;
-    throw new IllegalArgumentException("No enum " + ScilabTypeEnum.class + " with value " + swigValue);
+    throw new IllegalArgumentException("No enum " + ScilabIntegerTypeEnum.class + " with value " + swigValue);
   }
 
   @SuppressWarnings("unused")
-  private ScilabTypeEnum() {
+  private ScilabIntegerTypeEnum() {
     this.swigValue = SwigNext.next++;
   }
 
   @SuppressWarnings("unused")
-  private ScilabTypeEnum(int swigValue) {
+  private ScilabIntegerTypeEnum(int swigValue) {
     this.swigValue = swigValue;
     SwigNext.next = swigValue+1;
   }
 
   @SuppressWarnings("unused")
-  private ScilabTypeEnum(ScilabTypeEnum swigEnum) {
+  private ScilabIntegerTypeEnum(ScilabIntegerTypeEnum swigEnum) {
     this.swigValue = swigEnum.swigValue;
     SwigNext.next = this.swigValue+1;
   }

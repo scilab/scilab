@@ -17,8 +17,8 @@ import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.javasci.JavasciException.UnsupportedTypeException;
-import org.scilab.modules.types.scilabTypes.ScilabType;
-import org.scilab.modules.types.scilabTypes.ScilabInteger;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.types.ScilabInteger;
 
 public class testReadWriteInteger {
 	private Scilab sci;

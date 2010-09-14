@@ -18,11 +18,11 @@ import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.javasci.JavasciException.UnsupportedTypeException;
 import org.scilab.modules.javasci.JavasciException.UndefinedVariableException;
-import org.scilab.modules.types.scilabTypes.ScilabType;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabBoolean;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabBoolean;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabTypeEnum;
 
 public class testReadWrite {
 	private Scilab sci;

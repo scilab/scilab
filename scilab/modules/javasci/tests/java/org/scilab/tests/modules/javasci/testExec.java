@@ -21,8 +21,8 @@ import java.io.FileNotFoundException;
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
-import org.scilab.modules.types.scilabTypes.ScilabType;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
 
 public class testExec {
 	private Scilab sci;

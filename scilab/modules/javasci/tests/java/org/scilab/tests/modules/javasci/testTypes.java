@@ -16,7 +16,7 @@ import org.testng.annotations.*;
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.UndefinedVariableException;
-import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
+import org.scilab.modules.types.ScilabTypeEnum;
 
 public class testTypes {
 	private Scilab sci;

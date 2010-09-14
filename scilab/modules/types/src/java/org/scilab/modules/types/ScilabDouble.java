@@ -11,7 +11,7 @@
  * 
  */
 
-package org.scilab.modules.types.scilabTypes;
+package org.scilab.modules.types;
 
 import java.util.Arrays;
 
@@ -151,7 +151,7 @@ public class ScilabDouble implements ScilabType {
 
 	/**
 	 * @return the height of the data matrix
-	 * @see org.scilab.modules.types.scilabTypes.ScilabType#getHeight()
+	 * @see org.scilab.modules.types.ScilabType#getHeight()
 	 */
 	@Override
 	public int getHeight() {
@@ -163,7 +163,7 @@ public class ScilabDouble implements ScilabType {
 
 	/**
 	 * @return the width of the data matrix
-	 * @see org.scilab.modules.types.scilabTypes.ScilabType#getWidth()
+	 * @see org.scilab.modules.types.ScilabType#getWidth()
 	 */
 	@Override
 	public int getWidth() {
@@ -175,7 +175,7 @@ public class ScilabDouble implements ScilabType {
 	}
 
     /**
-	 * @see org.scilab.modules.types.scilabTypes.ScilabType#equals(Object)
+	 * @see org.scilab.modules.types.ScilabType#equals(Object)
      */
     public boolean equals(Object obj) {
         if (obj instanceof ScilabDouble) {

@@ -17,8 +17,8 @@ import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
-import org.scilab.modules.types.scilabTypes.ScilabInteger;
-import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
+import org.scilab.modules.types.ScilabInteger;
+import org.scilab.modules.types.ScilabIntegerTypeEnum;
 
 
 public class H5WriteScilabInteger {

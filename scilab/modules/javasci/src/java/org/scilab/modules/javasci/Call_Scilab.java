@@ -9,8 +9,8 @@
 package org.scilab.modules.javasci;
 
 
-import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
-import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
+import org.scilab.modules.types.ScilabTypeEnum;
+import org.scilab.modules.types.ScilabIntegerTypeEnum;
 
  /**
    * Connector for Javasci v2

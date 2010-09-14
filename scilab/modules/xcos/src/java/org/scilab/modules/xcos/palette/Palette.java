@@ -28,7 +28,7 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.types.scilabTypes.ScilabTList;
+import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;

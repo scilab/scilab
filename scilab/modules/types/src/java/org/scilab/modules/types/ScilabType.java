@@ -10,7 +10,7 @@
  * 
  */
 
-package org.scilab.modules.types.scilabTypes;
+package org.scilab.modules.types;
 
 import java.io.Serializable;
 
