@@ -41,12 +41,20 @@ public class Call_Scilab {
     return Call_ScilabJNI.SendScilabJobs(jobs, numberjobs);
   }
 
-  public static int ScilabHaveAGraph() {
-    return Call_ScilabJNI.ScilabHaveAGraph();
+  public static void SetFromJavaToON() {
+    Call_ScilabJNI.SetFromJavaToON();
+  }
+
+  public static boolean isGraphicOpened() {
+    return Call_ScilabJNI.isGraphicOpened();
   }
 
   public static int GetLastErrorCode() {
     return Call_ScilabJNI.GetLastErrorCode();
+  }
+
+  public static boolean isExistingVariable(String varname) {
+    return Call_ScilabJNI.isExistingVariable(varname);
   }
 
   public static String getLastErrorMessage() {

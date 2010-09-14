@@ -191,7 +191,10 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #define ENABLE_HELPERS
 #include "javasci2_helper.h"
 #include "../../../call_scilab/includes/call_scilab.h"
+#include "../../../call_scilab/includes/fromjava.h"
+#include "../../../api_scilab/includes/api_scilab.h"
 #include "../../../output_stream/includes/lasterror.h"
+#include "../../../modules/graphics/includes/WindowList.h"
 #include "../../../core/includes/sci_types.h"
 
 
@@ -875,14 +878,24 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_SendScil
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_ScilabHaveAGraph(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
-  int result;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_SetFromJavaToON(JNIEnv *jenv, jclass jcls) {
+  (void)jenv;
+  (void)jcls;
+  SetFromJavaToON();
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_isGraphicOpened(JNIEnv *jenv, jclass jcls) {
+  jboolean jresult = 0 ;
+  BOOL result;
   
   (void)jenv;
   (void)jcls;
-  result = (int)ScilabHaveAGraph();
-  jresult = (jint)result; 
+  result = sciHasFigures();
+  {
+    if (result) jresult = JNI_TRUE   ;
+    else  jresult = JNI_FALSE   ;
+  }
   return jresult;
 }
 
@@ -895,6 +908,28 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_GetLastE
   (void)jcls;
   result = (int)getLastErrorValue();
   jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_isExistingVariable(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jboolean jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  BOOL result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = isExistingVariable(arg1);
+  {
+    if (result) jresult = JNI_TRUE   ;
+    else  jresult = JNI_FALSE   ;
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
 

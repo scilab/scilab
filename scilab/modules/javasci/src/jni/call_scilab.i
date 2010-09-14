@@ -27,7 +27,10 @@
 #define ENABLE_HELPERS
 #include "javasci2_helper.h"
 #include "../../../call_scilab/includes/call_scilab.h"
+#include "../../../call_scilab/includes/fromjava.h"
+#include "../../../api_scilab/includes/api_scilab.h"
 #include "../../../output_stream/includes/lasterror.h"
+#include "../../../modules/graphics/includes/WindowList.h"
 #include "../../../core/includes/sci_types.h"
 %}
 %include "../../../jvm/src/jni/scilab_typemaps.i"
@@ -108,10 +111,18 @@ int SendScilabJob(char *job);
 
 int SendScilabJobs(char **jobs,int numberjobs);
 
-int ScilabHaveAGraph(void);
+// Direct access to the Scilab function (no helper)
+void SetFromJavaToON(void);
 
+// Direct access to the Scilab function (no helper)
+%rename(isGraphicOpened) sciHasFigures;
+BOOL sciHasFigures( void );
+
+// Direct access to the Scilab function (no helper)
 %rename(GetLastErrorCode) getLastErrorValue;
 int getLastErrorValue(void);
+
+BOOL isExistingVariable(char* varname);
 
 %rename(getLastErrorMessage) getLastErrorMessageSingle;
 const char* getLastErrorMessageSingle();

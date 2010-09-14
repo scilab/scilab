@@ -72,6 +72,8 @@ public class Scilab {
 	}
 
 	private void initScilab(String SCI) throws InitializationException {
+		/* Let Scilab engine knows that he is run through the Javasci API */
+		Call_Scilab.SetFromJavaToON();
 		if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
 			File f = new File(SCI);
 			if (!f.isDirectory()) {
@@ -92,12 +94,12 @@ public class Scilab {
 		int res = Call_Scilab.Call_ScilabOpen(this.SCI, null, -1);
 		switch (res) {
 			case -1: 
-				throw new InitializationException("Javasci already running");
+				throw new InitializationException("Javasci already running.");
 			case -2:
 				/* Should not occurd (processed before) */
-				throw new InitializationException("Could not find SCI");
+				throw new InitializationException("Could not find SCI.");
 			case -3:
-				throw new InitializationException("No existing directory");
+				throw new InitializationException("No existing directory.");
 		}
 		return true;
 	}
@@ -194,7 +196,7 @@ public class Scilab {
 	 * @return if the variable exists or not
 	 */
 	public boolean isExistingVariable(String varname) {
-		return true;
+		return Call_Scilab.isExistingVariable(varname);
 	}
 
 
@@ -234,7 +236,7 @@ public class Scilab {
 	 * @return if the graphic is open or not
 	 */
 	public boolean isGraphicOpened() {
-		return false;
+		return Call_Scilab.isGraphicOpened();
 	}
 
 	/**
@@ -256,7 +258,7 @@ public class Scilab {
 			if (lastWord.equals("-2")) { /* Crappy workaround. Parse the exception */
 				throw new UndefinedVariableException("Could not find variable '"+varName+"'");
 			}
-			throw new UnknownTypeException("Type of "+varName+" unkown");
+			throw new UnknownTypeException("Type of "+varName+" unknown");
 
 		}
 		return variableType;
