@@ -33,7 +33,13 @@ public abstract class JavasciException extends Exception {
 		public UnsupportedTypeException(String message) {
 			super(message);
 		}
+	}
 
+	public static class AlreadyRunningException extends JavasciException {
+
+		public AlreadyRunningException(String message) {
+			super(message);
+		}
 	}
 
 	public static class ScilabInternalException extends JavasciException {

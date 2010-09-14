@@ -439,7 +439,7 @@ public class testEquals {
 		data3.add(new ScilabBoolean(true));
 		assert data.equals(data2) == true;
 		assert data.equals(data3) == false;
-		System.out.println("mlist " + data);
+
 		assert data.toString().equals("mlist([\"hello\"], [2.0], [51.0])") == true;
 		assert data3.toString().equals("mlist([\"hello\"], [2.0], [42.0], [%t])") == true;
 		String []b={"a","b","c"};

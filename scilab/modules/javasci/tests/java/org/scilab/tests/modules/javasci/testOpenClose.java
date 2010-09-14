@@ -34,33 +34,33 @@ public class testOpenClose {
 	 * would fail.
 	 */ 
 	@BeforeMethod
-	public void openTest() throws NullPointerException, InitializationException {
+	public void openTest() throws NullPointerException, JavasciException {
 		sci = new Scilab();
 		assert sci.open() == true;
 	}
 
 	@Test(sequential = true)
-	public void multipleOpenCloseTest() throws NullPointerException, InitializationException {
+	public void multipleOpenCloseTest() throws NullPointerException, JavasciException {
 		assert sci.close() == true;
 		assert sci.open() == true;
 		assert sci.close() == true;
 	}
 
-	@Test(sequential = true, expectedExceptions = InitializationException.class)
-	public void specificWrongSCIPathTest() throws NullPointerException, InitializationException {
+	@Test(sequential = true, expectedExceptions = JavasciException.class)
+	public void specificWrongSCIPathTest() throws NullPointerException, JavasciException {
 		assert sci.close() == true;
 		sci = new Scilab(System.getProperty("java.io.tmpdir")+"/non-existing-directory-scilab/");
 	}
 
 
 	@Test(sequential = true)
-	public void specificPropertySCIPathTest() throws NullPointerException, InitializationException {
+	public void specificPropertySCIPathTest() throws NullPointerException, JavasciException {
 		assert sci.close() == true;
 		sci = new Scilab(System.getProperty("SCI"));
 	}
 
 	@Test(sequential = true)
-	public void specificEnvSCIPathTest() throws NullPointerException, InitializationException {
+	public void specificEnvSCIPathTest() throws NullPointerException, JavasciException {
 		assert sci.close() == true;
 		String SCIPath = System.getProperty("SCI"); // Temp backup to set it again
 		System.clearProperty("SCI"); // Remove the property to check it is using the variable
@@ -93,8 +93,8 @@ public class testOpenClose {
 		assert ((ScilabBoolean)c).getData()[0][0] == false;
 	}
 
-	@Test(sequential = true, expectedExceptions = InitializationException.class)
-	public void OpenMultipleTimeTest() throws NullPointerException, InitializationException {
+	@Test(sequential = true, expectedExceptions = JavasciException.class)
+	public void OpenMultipleTimeTest() throws NullPointerException, JavasciException {
 		assert sci.open("a=42*2;") == true;
 
 	}

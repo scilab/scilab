@@ -35,7 +35,7 @@ public class testExec {
 	 * would fail.
 	 */ 
 	@BeforeMethod
-	public void open() throws NullPointerException, InitializationException {
+	public void open() throws NullPointerException, JavasciException {
 		sci = new Scilab();
         assert sci.open() == true;
 	}
@@ -79,7 +79,12 @@ public class testExec {
         ScilabType sumMatrix = sci.get("sumMatrix");
         /* Compare if they match */
         assert ((ScilabDouble)sumMatrix).getRealPart()[0][0] == sum;
-
+sci.exec("b = matrix(1:100,10,10)") ;
+ScilabType b2 = sci.get("b");
+b2.getHeight(); // 10 
+b2.getWidth(); // 10
+ScilabDouble b3 = (ScilabDouble)sci.get("b");
+assert b3.equals(b2);
     }
 
 
@@ -109,7 +114,7 @@ public class testExec {
     }
 
     @Test(sequential = true, expectedExceptions = FileNotFoundException.class)
-    public void execFromNonExistingFileTest() throws NullPointerException, InitializationException, FileNotFoundException {
+    public void execFromNonExistingFileTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
 		sci.close();
 
         File nonExistingFile = new File("/wrong/path/file");

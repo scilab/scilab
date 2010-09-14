@@ -30,7 +30,7 @@ public class testErrorManagement {
 	 * would fail.
 	 */ 
 	@BeforeMethod
-	public void open() throws NullPointerException, InitializationException {
+	public void open() throws NullPointerException, JavasciException {
 		sci = new Scilab();
         assert sci.open() == true;
 
@@ -38,7 +38,7 @@ public class testErrorManagement {
 
 
 	@Test(sequential = true)
-    public void getLastErrorCodeTest() throws NullPointerException, InitializationException {
+    public void getLastErrorCodeTest() throws NullPointerException, JavasciException {
         assert sci.getLastErrorCode() == 0; // No error
 		sci.close();
 
@@ -51,7 +51,7 @@ public class testErrorManagement {
     }
 
 	@Test(sequential = true)
-    public void getLastErrorMessageTest() throws NullPointerException, InitializationException {
+    public void getLastErrorMessageTest() throws NullPointerException, JavasciException {
         sci.exec("errclear();"); // No error by default
         assert sci.getLastErrorMessage().equals("");
         assert sci.getLastErrorMessage().length() == 0;

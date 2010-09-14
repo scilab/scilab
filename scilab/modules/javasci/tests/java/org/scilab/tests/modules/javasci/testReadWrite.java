@@ -35,7 +35,7 @@ public class testReadWrite {
 	 * would fail.
 	 */ 
 	@BeforeMethod
-	public void open() throws NullPointerException, InitializationException {
+	public void open() throws NullPointerException, JavasciException {
 		sci = new Scilab();
         assert sci.open() == true;
 	}
