@@ -44,9 +44,10 @@
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
  /**
-   * Connector for Javasci v2
-   * @author Sylvestre LEDRU
-   * @copyright DIGITEO
+   * Connector for Javasci v2.
+   * This class should <b>not</b> be used directly
+   * @see org.scilab.modules.javasci.Scilab
+   * @author DIGITEO - Sylvestre LEDRU
    */
 class%}
 
@@ -81,13 +82,14 @@ class%}
 
 /* JavaDoc for Call_Scilab class */
 %pragma(java) moduleclassmodifiers="
-import org.scilab.modules.types.scilabTypes.ScilabTypeEnum;
-import org.scilab.modules.types.scilabTypes.ScilabIntegerTypeEnum;
+import org.scilab.modules.types.ScilabTypeEnum;
+import org.scilab.modules.types.ScilabIntegerTypeEnum;
 
  /**
-   * Connector for Javasci v2
-   * @author Sylvestre LEDRU
-   * @copyright DIGITEO
+   * Connector for Javasci v2.
+   * This class should <b>not</b> be used directly
+   * @see org.scilab.modules.javasci.Scilab
+   * @author DIGITEO - Sylvestre LEDRU
    */
 public class";
 

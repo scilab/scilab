@@ -12,9 +12,10 @@ package org.scilab.modules.javasci;
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
  /**
-   * Connector for Javasci v2
-   * @author Sylvestre LEDRU
-   * @copyright DIGITEO
+   * Connector for Javasci v2.
+   * This class should <b>not</b> be used directly
+   * @see org.scilab.modules.javasci.Scilab
+   * @author DIGITEO - Sylvestre LEDRU
    */
 class Call_ScilabJNI {
 
