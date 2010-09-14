@@ -29,6 +29,22 @@ import org.scilab.modules.javasci.JavasciException.UnknownTypeException;
 import org.scilab.modules.javasci.JavasciException.ScilabInternalException;
 
 
+/**
+ * This class provides the capability to access to the Scilab engine from
+ * a Java application.
+ * <br>
+ * Example:<br />
+ * <code>
+ * Scilab sci = new Scilab();<br />
+ * if (sci.open()) {<br />
+ * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
+ * ScilabDouble aOriginal = new ScilabDouble(a);<br />
+ * sci.put("a",aOriginal);<br />
+ * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
+ * }<br />
+ * </code>
+ * @see org.scilab.modules.types
+ */
 public class Scilab {
 
 	private String SCI = null;
@@ -41,7 +57,6 @@ public class Scilab {
 	 * if not, try with the global variable SCI
 	 * if not, throws a new exception
 	 * Under Windows, use also the registery
-	 * @param SCI provide the path to Scilab data
 	 */
 	public Scilab() throws InitializationException {
 		if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
@@ -142,7 +157,7 @@ public class Scilab {
 	 * This function is based on Call_ScilabOpen from call_scilab
 	 * Note: For now, only one instance of Scilab can be launched
 	 * A second launch will return FALSE
-	 * @param job The script to execute on startup
+	 * @param scriptFilename The script to execute on startup
 	 * @return if the operation is successful
 	 */
 	public boolean open(File scriptFilename) throws InitializationException, FileNotFoundException {
@@ -168,7 +183,7 @@ public class Scilab {
 	/**
 	 * Execute several commands in Scilab
 	 * This function is based on SendScilabJob from call_scilab
-	 * @param job the serie of job to execute
+	 * @param jobs the serie of job to execute
 	 * @return if the operation is successful
 	 */
 	public boolean exec(String jobs[]) {
@@ -179,7 +194,7 @@ public class Scilab {
 	/**
 	 * Execute a Scilab script .sce/.sci
 	 * This function is based on SendScilabJob from call_scilab
-	 * @param job the script to execute
+	 * @param scriptFilename the script to execute
 	 * @return if the operation is successful
 	 */
 	public boolean exec(File scriptFilename) throws FileNotFoundException {
@@ -242,7 +257,7 @@ public class Scilab {
 	/**
 	 * Return the code type of a variable varname
 	 * The int refers to a Java enum from ScilabType.types
-	 * @param varname the name of the variable
+	 * @param varName the name of the variable
 	 * @return the type of the variable
 	 * @todo check the enum here
 	 */
@@ -321,7 +336,7 @@ public class Scilab {
 	 * Send to Scilab a variable theVariable named varname
 	 * Throws an exception if the datatype is not managed or if the variable is not available
 	 * @param varname the name of the variable
-	 * @param varname the variable itself
+	 * @param theVariable the variable itself
 	 * @return true if the operation is successful
 	 */
 	public boolean put(String varname, ScilabType theVariable) throws JavasciException {
