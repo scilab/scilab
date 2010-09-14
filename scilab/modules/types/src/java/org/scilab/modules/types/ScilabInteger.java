@@ -15,7 +15,14 @@ package org.scilab.modules.types;
 import java.util.Arrays;
 
 /**
- * This class provides a wrapping on the Scilab Integer datatype
+ * This class provides a representation on the Scilab Integer datatype
+ * <br>
+ * Example:<br />
+ * <code>
+ * byte [][]a={{32,42,41}, {12,13,32}};<br />
+ * ScilabInteger aMatrix = new ScilabInteger(a, true); // true = unsigned 
+ * </code>
+ * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabInteger implements ScilabType {
 

@@ -16,7 +16,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * This class provides a wrapping on the Scilab List datatype
+ * This class provides a representation on the Scilab List datatype
+ * <br>
+ * Example:<br />
+ * <code>
+ * ScilabList data = new ScilabList();<br />
+ * data.add(new ScilabString("hello"));<br />
+ * data.add(new ScilabDouble(2));<br />
+ * </code>
+ * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 	

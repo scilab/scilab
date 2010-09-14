@@ -16,7 +16,14 @@ package org.scilab.modules.types;
 import java.util.Arrays;
 
 /**
- * This class provides a wrapping on the Scilab boolean datatype
+ * This class provides a representation on the Scilab boolean datatype<br />
+ * <br>
+ * Example:<br />
+ * <code>
+ * boolean [][]a={{true,false,true}, {true,true,true}};<br />
+ * ScilabBoolean aMatrix = new ScilabBoolean(a);
+ * </code>
+ * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabBoolean implements ScilabType {
 

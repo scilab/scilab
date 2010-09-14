@@ -16,8 +16,23 @@ package org.scilab.modules.types;
 import java.util.Arrays;
 
 /**
- * This class provides a wrapping on the Scilab Double datatype<br />
+ * This class provides a representation on the Scilab Double datatype<br />
  * Note that double is the default datatype in Scilab
+ * <br>
+ * Example (real):<br />
+ * <code>
+ * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
+ * ScilabDouble aMatrix = new ScilabDouble(a);<br />
+ * </code>
+ * <br>
+ * Example (complex):<br />
+ * <code>
+ * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
+ * double [][]aImg={{210.2, 220.0, 420.0, 390.0},{230.2, 240.0, 440.0, 400.0}};<br />
+
+ * ScilabDouble aMatrix = new ScilabDouble(a, aImg);
+ * </code>
+ * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabDouble implements ScilabType {
 

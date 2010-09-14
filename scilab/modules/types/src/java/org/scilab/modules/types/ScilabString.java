@@ -15,7 +15,14 @@ package org.scilab.modules.types;
 import java.util.Arrays;
 
 /**
- * This class provides a wrapping on the Scilab String datatype
+ * This class provides a representation on the Scilab String datatype
+ * <br>
+ * Example:<br />
+ * <code>
+ * String [][]a={{"This","is","my","string"},{"and","I want to", "compare"," them"}};<br />
+ * ScilabString aMatrix = new ScilabString(a);
+ * </code>
+ * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabString implements ScilabType {
 
