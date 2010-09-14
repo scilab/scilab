@@ -104,6 +104,10 @@ Bug Fixes:
 
 * bug 7231 fixed - mtlb_num2str did not manage second input argument.
 
+* bug 7569 fixed - the number of accurate digits during inversion of cdfbet, 
+                   cdfgam, cdfbin, cdfchi, cdfchin, cdff, cdffnc, cdfnbn, cdfpoi 
+                   was only 8.
+
 * bug 7640 fixed - xs2pdf, xs2eps, xs2emf crashed if filename prefix had less
                    of three characters.
 
