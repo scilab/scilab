@@ -86,6 +86,7 @@ import org.scilab.modules.scinotes.actions.ExitAction;
 import org.scilab.modules.scinotes.actions.FindAction;
 import org.scilab.modules.scinotes.actions.SetColorsAction;
 import org.scilab.modules.scinotes.actions.LineBeautifierAction;
+import org.scilab.modules.scinotes.actions.InsertOverwriteAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
@@ -163,7 +164,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public SciNotes(Window parentWindow) {
         super(SCINOTES);
-	setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/accessories-text-editor.png").getImage());
+        setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/accessories-text-editor.png").getImage());
         scinotesList.add(this);
         this.parentWindow = parentWindow;
         this.uuid = UUID.randomUUID();
@@ -983,6 +984,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     public void initInputMap(ScilabEditorPane pane) {
         setKeyStrokeAction(pane, this);
         LineBeautifierAction.putInInputMap(pane);
+        InsertOverwriteAction.putInInputMap(pane);
     }
 
     /**

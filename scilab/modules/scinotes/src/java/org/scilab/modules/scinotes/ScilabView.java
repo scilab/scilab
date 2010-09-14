@@ -161,6 +161,13 @@ public class ScilabView extends WrappedPlainView {
     }
 
     /**
+     * @return the width of a white
+     */
+    public int getWhiteWidth() {
+        return whiteWidth;
+    }
+
+    /**
      * This method can be used to draw anything you want in the editor (such as
      * the line of maximum recommanded chars).
      * @param g the graphics where to draw
