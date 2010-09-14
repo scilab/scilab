@@ -38,6 +38,9 @@ SciNotes:
 
 * bug 8008 fixed - The "Edition" menu had a bad name (renamed to "Edit").
 
+* bug 8027 fixed - In a splitted view, a frame was not informed of a change in
+                   the other frame.
+
 GUI creation:
 =============
 

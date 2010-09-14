@@ -284,10 +284,30 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * {@inheritDoc}
      */
     public void setName(String name) {
+        setNameInSuper(name);
+        setShortNameAndTitle(name);
+        ScilabEditorPane pane = getOtherPaneInSplit();
+        if (pane != null) {
+            // I don't call pane.setName since we will enter in an infinite loop
+            pane.setNameInSuper(name);
+            pane.setShortNameAndTitle(name);
+        }
+    }
+
+    /**
+     * @param name the name
+     */
+    private void setNameInSuper(String name) {
         super.setName(name);
+    }
+
+    /**
+     * @param name the name
+     */
+    private void setShortNameAndTitle(String name) {
         if (name != null) {
             File f = new File(name);
-            this.shortName = f.getName();
+            setShortName(f.getName());
             title =  shortName + " (" + f.getAbsolutePath() + ")" + TIRET + SciNotesMessages.SCILAB_EDITOR;
         }
     }
@@ -444,6 +464,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void setLastModified(long time) {
         this.lastModified = time;
+        ScilabEditorPane pane = getOtherPaneInSplit();
+        if (pane != null) {
+            pane.lastModified = time;
+        }
     }
 
     /**
