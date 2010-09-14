@@ -1434,6 +1434,7 @@ extern "C"
 #include "MALLOC.h"
 }
 
+static int matrix_level = 0;
 static int comment_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
@@ -1449,6 +1450,9 @@ static std::string *pstBuffer;
 /* -*- Verbose Special Debug -*- */
 //#define DEV
 //#define TOKENDEV
+
+//#define DEBUG(x) std::cout << "[DEBUG] " << x << std::endl;
+#define DEBUG(x) /* Nothing */
 
 #define INITIAL 0
 #define SIMPLESTRING 1
@@ -1767,6 +1771,7 @@ YY_RULE_SETUP
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinIf);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(IF);
 }
@@ -1774,8 +1779,9 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 {
-    	BEGIN(INITIAL);
-        return scan_throw(THEN);
+    DEBUG("BEGIN(INITIAL)");
+    BEGIN(INITIAL);
+    return scan_throw(THEN);
 }
 	YY_BREAK
 case 3:
@@ -1787,6 +1793,7 @@ YY_RULE_SETUP
         ParserSingleInstance::popControlStatus();
         ParserSingleInstance::pushControlStatus(Parser::WithinElse);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(ELSE);
 }
@@ -1799,6 +1806,7 @@ YY_RULE_SETUP
         ParserSingleInstance::popControlStatus();
         ParserSingleInstance::pushControlStatus(Parser::WithinElseIf);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(ELSEIF);
 }
@@ -1810,6 +1818,7 @@ YY_RULE_SETUP
     {
         ParserSingleInstance::popControlStatus();
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(END);
 }
@@ -1821,6 +1830,7 @@ YY_RULE_SETUP
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinSelect);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(SELECT);
 }
@@ -1832,6 +1842,7 @@ YY_RULE_SETUP
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinSwitch);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(SWITCH);
 }
@@ -1844,6 +1855,7 @@ YY_RULE_SETUP
         ParserSingleInstance::popControlStatus();
         ParserSingleInstance::pushControlStatus(Parser::WithinOtherwise);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(OTHERWISE);
 }
@@ -1856,6 +1868,7 @@ YY_RULE_SETUP
         ParserSingleInstance::popControlStatus();
         ParserSingleInstance::pushControlStatus(Parser::WithinCase);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(CASE);
 }
@@ -1867,6 +1880,7 @@ YY_RULE_SETUP
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(FUNCTION);
 }
@@ -1878,6 +1892,7 @@ YY_RULE_SETUP
     {
         ParserSingleInstance::popControlStatus();
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(ENDFUNCTION);
 }
@@ -1889,6 +1904,7 @@ YY_RULE_SETUP
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(HIDDENFUNCTION);
 }
@@ -1896,6 +1912,7 @@ YY_RULE_SETUP
 case 13:
 YY_RULE_SETUP
 {
+    DEBUG("BEGIN(INITIAL)");
  	BEGIN(INITIAL);
     return scan_throw(HIDDEN);
 }
@@ -2245,6 +2262,7 @@ YY_RULE_SETUP
 case 62:
 YY_RULE_SETUP
 {
+  DEBUG("yy_push_state(MATRIX)");
   yy_push_state(MATRIX);
   ParserSingleInstance::pushControlStatus(Parser::WithinMatrix);
   return scan_throw(LBRACK);
@@ -2423,6 +2441,7 @@ YY_RULE_SETUP
 case 79:
 YY_RULE_SETUP
 {
+    DEBUG("yy_pop_state()");
     yy_pop_state();
     ParserSingleInstance::popControlStatus();
     return scan_throw(RBRACK);
@@ -2542,6 +2561,11 @@ YY_RULE_SETUP
     exit_status = SCAN_ERROR;
     scan_error(str);
     yyterminate();
+  }
+	YY_BREAK
+case YY_STATE_EOF(MATRIX):
+{
+      yy_pop_state();
   }
 	YY_BREAK
 
@@ -3040,7 +3064,6 @@ YY_RULE_SETUP
 ECHO;
 	YY_BREAK
 			case YY_STATE_EOF(INITIAL):
-			case YY_STATE_EOF(MATRIX):
 			case YY_STATE_EOF(MATRIXMINUSID):
 			case YY_STATE_EOF(BEGINID):
 				yyterminate();

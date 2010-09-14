@@ -12,6 +12,7 @@ extern "C"
 #include "MALLOC.h"
 }
 
+static int matrix_level = 0;
 static int comment_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
@@ -27,6 +28,10 @@ static std::string *pstBuffer;
 /* -*- Verbose Special Debug -*- */
 //#define DEV
 //#define TOKENDEV
+
+//#define DEBUG(x) std::cout << "[DEBUG] " << x << std::endl;
+#define DEBUG(x) /* Nothing */
+
 %}
 
 %option stack
@@ -105,7 +110,7 @@ endblockcomment		"*/"
 dquote			"\""
 quote			"'"
 
-dot			"."
+dot             "."
 dotquote		".'"
 dottimes		".*"
 dotdivide		"./"
@@ -130,9 +135,9 @@ krontimes		".*."
 krondivide		"./."
 kronrdivide		".\\."
 
-controltimes        ("*."[^0-9])
-controldivide		("/."[^0-9])
-controlrdivide      ("\\."[^0-9])
+controltimes    ("*."[^0-9])
+controldivide	("/."[^0-9])
+controlrdivide  ("\\."[^0-9])
 
 assign			"="
 
@@ -143,13 +148,15 @@ assign			"="
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinIf);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(IF);
 }
 
 <INITIAL,BEGINID>"then"          {
-    	BEGIN(INITIAL);
-        return scan_throw(THEN);
+    DEBUG("BEGIN(INITIAL)");
+    BEGIN(INITIAL);
+    return scan_throw(THEN);
 }
 
 <INITIAL,BEGINID>"else"          {
@@ -159,6 +166,7 @@ assign			"="
         ParserSingleInstance::popControlStatus();
         ParserSingleInstance::pushControlStatus(Parser::WithinElse);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(ELSE);
 }
@@ -169,6 +177,7 @@ assign			"="
         ParserSingleInstance::popControlStatus();
         ParserSingleInstance::pushControlStatus(Parser::WithinElseIf);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(ELSEIF);
 }
@@ -178,6 +187,7 @@ assign			"="
     {
         ParserSingleInstance::popControlStatus();
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(END);
 }
@@ -187,6 +197,7 @@ assign			"="
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinSelect);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(SELECT);
 }
@@ -196,6 +207,7 @@ assign			"="
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinSwitch);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(SWITCH);
 }
@@ -206,6 +218,7 @@ assign			"="
         ParserSingleInstance::popControlStatus();
         ParserSingleInstance::pushControlStatus(Parser::WithinOtherwise);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(OTHERWISE);
 }
@@ -216,6 +229,7 @@ assign			"="
         ParserSingleInstance::popControlStatus();
         ParserSingleInstance::pushControlStatus(Parser::WithinCase);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(CASE);
 }
@@ -225,6 +239,7 @@ assign			"="
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
     return scan_throw(FUNCTION);
 }
@@ -234,6 +249,7 @@ assign			"="
     {
         ParserSingleInstance::popControlStatus();
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(ENDFUNCTION);
 }
@@ -243,11 +259,13 @@ assign			"="
     {
         ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
     }
+    DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(HIDDENFUNCTION);
 }
 
 <INITIAL,BEGINID>"hidden"	{
+    DEBUG("BEGIN(INITIAL)");
  	BEGIN(INITIAL);
     return scan_throw(HIDDEN);
 }
@@ -480,6 +498,7 @@ assign			"="
 
 
 <INITIAL,MATRIX>{lbrack}		{
+  DEBUG("yy_push_state(MATRIX)");
   yy_push_state(MATRIX);
   ParserSingleInstance::pushControlStatus(Parser::WithinMatrix);
   return scan_throw(LBRACK);
@@ -623,7 +642,6 @@ assign			"="
   scan_throw(EOL);
 }
 
-
 .					{
     std::string str = "unexpected token '";
     str += yytext;
@@ -637,6 +655,7 @@ assign			"="
 <MATRIX>
 {
   {rbrack}				{
+    DEBUG("yy_pop_state()");
     yy_pop_state();
     ParserSingleInstance::popControlStatus();
     return scan_throw(RBRACK);
@@ -737,6 +756,10 @@ assign			"="
     exit_status = SCAN_ERROR;
     scan_error(str);
     yyterminate();
+  }
+
+  <<EOF>>       {
+      yy_pop_state();
   }
 }
 
