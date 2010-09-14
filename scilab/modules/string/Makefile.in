@@ -136,8 +136,7 @@ am__objects_4 = libscistring_la-gw_string.lo \
 	libscistring_la-sci_ascii.lo libscistring_la-sci_code2str.lo \
 	libscistring_la-sci_convstr.lo libscistring_la-sci_emptystr.lo \
 	libscistring_la-sci_str2code.lo libscistring_la-sci_strcat.lo \
-	libscistring_la-sci_strindex.lo libscistring_la-sci_string.lo \
-	libscistring_la-sci_strsplit.lo \
+	libscistring_la-sci_string.lo libscistring_la-sci_strsplit.lo \
 	libscistring_la-sci_strsubst.lo libscistring_la-sci_tokens.lo \
 	libscistring_la-sci_strcmp.lo libscistring_la-sci_isletter.lo \
 	libscistring_la-sci_isdigit.lo \
@@ -151,7 +150,7 @@ am__objects_5 = sci_string.lo strops.lo
 am__objects_6 = libscistring_la-sci_stripblanks.lo \
 	libscistring_la-sci_grep.lo libscistring_la-string_gw.lo \
 	libscistring_la-sci_regexp.lo libscistring_la-sci_part.lo \
-	libscistring_la-sci_length.lo
+	libscistring_la-sci_length.lo libscistring_la-sci_strindex.lo
 am_libscistring_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
 	$(am__objects_6)
@@ -478,7 +477,6 @@ sci_gateway/c/sci_convstr.c \
 sci_gateway/c/sci_emptystr.c \
 sci_gateway/c/sci_str2code.c \
 sci_gateway/c/sci_strcat.c \
-sci_gateway/c/sci_strindex.c \
 sci_gateway/c/sci_string.c \
 sci_gateway/c/sci_strsplit.c \
 sci_gateway/c/sci_strsubst.c \
@@ -504,7 +502,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/string_gw.cpp \
 	sci_gateway/cpp/sci_regexp.cpp \
 	sci_gateway/cpp/sci_part.cpp \
-	sci_gateway/cpp/sci_length.cpp
+	sci_gateway/cpp/sci_length.cpp \
+	sci_gateway/cpp/sci_strindex.cpp
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f
@@ -986,13 +985,6 @@ libscistring_la-sci_strcat.lo: sci_gateway/c/sci_strcat.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_strcat.lo `test -f 'sci_gateway/c/sci_strcat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strcat.c
 
-libscistring_la-sci_strindex.lo: sci_gateway/c/sci_strindex.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_strindex.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_strindex.Tpo -c -o libscistring_la-sci_strindex.lo `test -f 'sci_gateway/c/sci_strindex.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strindex.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_la-sci_strindex.Tpo $(DEPDIR)/libscistring_la-sci_strindex.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_strindex.c' object='libscistring_la-sci_strindex.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_strindex.lo `test -f 'sci_gateway/c/sci_strindex.c' || echo '$(srcdir)/'`sci_gateway/c/sci_strindex.c
-
 libscistring_la-sci_string.lo: sci_gateway/c/sci_string.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_string.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_string.Tpo -c -o libscistring_la-sci_string.lo `test -f 'sci_gateway/c/sci_string.c' || echo '$(srcdir)/'`sci_gateway/c/sci_string.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_la-sci_string.Tpo $(DEPDIR)/libscistring_la-sci_string.Plo
@@ -1188,6 +1180,13 @@ libscistring_la-sci_length.lo: sci_gateway/cpp/sci_length.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_length.cpp' object='libscistring_la-sci_length.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscistring_la-sci_length.lo `test -f 'sci_gateway/cpp/sci_length.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_length.cpp
+
+libscistring_la-sci_strindex.lo: sci_gateway/cpp/sci_strindex.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscistring_la-sci_strindex.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_strindex.Tpo -c -o libscistring_la-sci_strindex.lo `test -f 'sci_gateway/cpp/sci_strindex.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_strindex.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscistring_la-sci_strindex.Tpo $(DEPDIR)/libscistring_la-sci_strindex.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_strindex.cpp' object='libscistring_la-sci_strindex.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscistring_la-sci_strindex.lo `test -f 'sci_gateway/cpp/sci_strindex.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_strindex.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

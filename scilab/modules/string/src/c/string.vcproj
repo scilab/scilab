@@ -500,10 +500,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_strindex.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_string.c"
 				>
 			</File>
