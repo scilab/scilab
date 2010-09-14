@@ -22,6 +22,8 @@ Xcos:
 
 * bug 8014 fixed - The TEXT_f.png file was not present on the source tree.
 
+* bug 8025 fixed - The simulation parameter dialog was modal.
+
 SciNotes:
 =========
 
