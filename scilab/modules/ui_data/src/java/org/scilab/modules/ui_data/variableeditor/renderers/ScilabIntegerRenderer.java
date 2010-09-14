@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,15 +15,15 @@ package org.scilab.modules.ui_data.variableeditor.renderers;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
- * CellRenderer for string type
- * @author Allan SIMON
+ * CellRenderer for integer type
+ * @author Calixte DENIZET
  */
-public class ScilabStringRenderer extends DefaultTableCellRenderer {
+public class ScilabIntegerRenderer extends DefaultTableCellRenderer {
 
     /**
      * Constructor
      */
-    public ScilabStringRenderer() {
+    public ScilabIntegerRenderer() {
         super();
     }
 
@@ -33,6 +33,8 @@ public class ScilabStringRenderer extends DefaultTableCellRenderer {
     protected void setValue(Object value) {
         if (value == null) {
             super.setValue("");
+        } else if (value instanceof String) {
+            super.setValue(value);
         } else {
             super.setValue(value);
         }

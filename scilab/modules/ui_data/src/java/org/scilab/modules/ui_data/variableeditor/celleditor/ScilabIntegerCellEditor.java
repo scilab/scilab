@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Allan SIMON
- * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,18 +13,17 @@
 package org.scilab.modules.ui_data.variableeditor.celleditor;
 
 /**
- * CellEditor for boolean type
- * @author Allan SIMON
- * @author Bruno JOFRET
+ * CellEditor for integer type
+ * @author Calixte DENIZET
  */
-public class ScilabBooleanCellEditor extends ScilabGenericCellEditor {
+public class ScilabIntegerCellEditor extends ScilabGenericCellEditor {
 
-    private static final long serialVersionUID = 3866054279955696250L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructor
      */
-    public ScilabBooleanCellEditor() {
+    public ScilabIntegerCellEditor() {
         super();
     }
 
@@ -34,12 +32,8 @@ public class ScilabBooleanCellEditor extends ScilabGenericCellEditor {
      */
     public String getDataAsScilabString(Object value) {
         String newValue = "";
-        if (value != null && value instanceof Boolean) {
-            if (((Boolean) value).booleanValue()) {
-                newValue = "%t";
-            } else {
-                newValue = "%f";
-            }
+        if (value != null) {
+            newValue = value.toString();
         } else if (value instanceof String) {
             newValue = (String) value;
         }
