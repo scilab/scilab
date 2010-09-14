@@ -34,5 +34,11 @@ int sci_xcosPalDisable(char* fname, unsigned long l);
 int sci_xcosPalGenerateIcon(char* fname, unsigned long l);
 int sci_xcosConfigureXmlFile(char* fname, unsigned long l);
 /*--------------------------------------------------------------------------*/
+/**
+* xcos already started
+* @return 1 if xcos started else 0
+*/
+int xcosStarted(void);
+/*--------------------------------------------------------------------------*/
 #endif /* __GW_XCOS__ */
 /*--------------------------------------------------------------------------*/
