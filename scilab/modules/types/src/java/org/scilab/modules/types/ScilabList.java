@@ -32,7 +32,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 	 * the order that they are returned by the specified collection's iterator.
 	 * 
 	 * @param c
-	 *            the collection whose elements are to be placed into this list.
+	 *			the collection whose elements are to be placed into this list.
 	 */
 	public ScilabList(Collection< ? extends ScilabType> c) {
 		super(c);
@@ -42,29 +42,30 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 	 * @return 1 when there is data on the list, 0 otherwise.
 	 * @see org.scilab.modules.types.ScilabType#getHeight()
 	 */
-    public int getHeight() {
+	public int getHeight() {
 		if (isEmpty()) {
 			return 0;
 		}
 		return 1;
-    }
+	}
 
-    /**
-     * @return 1 when there is data on the list, 0 otherwise.
-     * @see org.scilab.modules.types.ScilabType#getWidth()
-     */
-    public int getWidth() {
+	/**
+	 * @return 1 when there is data on the list, 0 otherwise.
+	 * @see org.scilab.modules.types.ScilabType#getWidth()
+	 */
+	public int getWidth() {
 		if (isEmpty()) {
 			return 0;
 		}
 		return size();
-    }
+	}
 
-    /**
-     * @return the pretty-printed data 
-     * @see java.util.AbstractCollection#toString()
-     */
-    public String toString() {
+	/**
+	 * Display the representation in the Scilab language of the type
+	 * @return the pretty-printed data 
+	 * @see java.util.AbstractCollection#toString()
+	 */
+	public String toString() {
 
 		StringBuffer result = new StringBuffer();
 		if (isEmpty()) {
@@ -76,11 +77,11 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 		for (int i = 0; i < size(); i++) {
 			result.append(get(i).toString());
 			if (i != size() - 1) {
-				result.append(",\n");
+				result.append(", ");
 			}
 		}
 		result.append(")");
 
 		return result.toString();
-    }
+	}
 }
