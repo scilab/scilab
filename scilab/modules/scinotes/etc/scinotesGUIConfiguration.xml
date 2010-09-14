@@ -27,7 +27,7 @@
       <menuitem action="ExitAction" label="Exit"/>
     </menu>
 
-    <menu label="Edition" mnemonic="E">
+    <menu label="Edit" mnemonic="E">
       <menuitem action="UndoAction" label="Undo"/>
       <menuitem action="RedoAction" label="Redo"/>
       <separator/>
