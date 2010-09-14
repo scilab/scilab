@@ -24,25 +24,25 @@ public class ScilabString implements ScilabType {
 	/**
 	 * Default constructor
 	 */
-    public ScilabString() {
+	public ScilabString() {
 		data = null;
-    }
-    
-    /**
-     * Constructor with data.
-     * 
-     * @param data the associated data.
-     */
-    public ScilabString(String[][] data) {
+	}
+	
+	/**
+	 * Constructor with data.
+	 * 
+	 * @param data the associated data.
+	 */
+	public ScilabString(String[][] data) {
 		this.data = data;
-    }
-    
-    /**
-     * Constructor with vector data.
-     * 
-     * @param data the column vector data 
-     */
-    public ScilabString(String[] data) {
+	}
+	
+	/**
+	 * Constructor with vector data.
+	 * 
+	 * @param data the column vector data 
+	 */
+	public ScilabString(String[] data) {
 		if (data == null || data.length == 0) {
 			this.data = new String[1][1];
 			this.data[0][0] = "";
@@ -52,42 +52,42 @@ public class ScilabString implements ScilabType {
 				this.data[0][i] = data[i];
 			}
 		}
-    }
-    
-    /**
-     * Constructor with a unique value
-     * 
-     * @param string the value
-     */
-    public ScilabString(String string) {
+	}
+	
+	/**
+	 * Constructor with a unique value
+	 * 
+	 * @param string the value
+	 */
+	public ScilabString(String string) {
 		if (string == null) {
 			throw new IllegalArgumentException("string == null");
 		}
 		this.data = new String[1][1];
 		this.data[0][0] = string;
-    }
+	}
 
-    /**
-     * Set the values.
-     * 
-     * @param data the values
-     */
-    public void setData(String[][] data) {
+	/**
+	 * Set the values.
+	 * 
+	 * @param data the values
+	 */
+	public void setData(String[][] data) {
 		this.data = data;
-    }
+	}
 
-    /**
-     * @return the associated values
-     */
-    public String[][] getData() {
+	/**
+	 * @return the associated values
+	 */
+	public String[][] getData() {
 		return data;
-    }
-    
+	}
+	
 	/**
 	 * @return the height of the data matrix
 	 * @see org.scilab.modules.types.ScilabType#getHeight()
 	 */
-    public int getHeight() {
+	public int getHeight() {
 		if (data == null) {
 			return 0;
 		}
@@ -104,27 +104,28 @@ public class ScilabString implements ScilabType {
 		}
 		return data[0].length;
 	}
-    
+	
 	/**
 	 * Check the emptiness of the associated data.
 	 * @return true, if the associated data array is empty. 
 	 */
-    public boolean isEmpty() {
-    	return (data == null);
-    }
-    
-    /**
+	public boolean isEmpty() {
+		return (data == null);
+	}
+	
+	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
-     */
-    public boolean equals(Object obj) {
-        if (obj instanceof ScilabString) {
-            return Arrays.deepEquals(this.getData(), ((ScilabString)obj).getData());
-        } else {
-            return false;
-        }
-    }
+	 */
+	public boolean equals(Object obj) {
+		if (obj instanceof ScilabString) {
+			return Arrays.deepEquals(this.getData(), ((ScilabString)obj).getData());
+		} else {
+			return false;
+		}
+	}
 
 	/**
+	 * Display the representation in the Scilab language of the type
 	 * @return a Scilab-like String representation of the data.
 	 * @see java.lang.Object#toString()
 	 */

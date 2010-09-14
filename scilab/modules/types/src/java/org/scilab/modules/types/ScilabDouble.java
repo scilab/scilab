@@ -136,16 +136,16 @@ public class ScilabDouble implements ScilabType {
 	 * @return the serialized matrix with complex values
 	 */
 	public double[] getSerializedComplexMatrix() {
-        int size = this.getHeight()*this.getWidth();
-        double [] serializedComplexMatrix = new double[size*2];
-        for (int i = 0; i < this.getHeight(); i++) {
-            for (int j = 0; j < this.getWidth(); j++) {
-                serializedComplexMatrix[j * this.getHeight() + i] = realPart[i][j];
-                serializedComplexMatrix[size+j * this.getHeight() + i] = imaginaryPart[i][j];
-            }
-        }
+		int size = this.getHeight()*this.getWidth();
+		double [] serializedComplexMatrix = new double[size*2];
+		for (int i = 0; i < this.getHeight(); i++) {
+			for (int j = 0; j < this.getWidth(); j++) {
+				serializedComplexMatrix[j * this.getHeight() + i] = realPart[i][j];
+				serializedComplexMatrix[size+j * this.getHeight() + i] = imaginaryPart[i][j];
+			}
+		}
 
-        return serializedComplexMatrix;
+		return serializedComplexMatrix;
 	}
 
 
@@ -174,25 +174,26 @@ public class ScilabDouble implements ScilabType {
 		return realPart[0].length;
 	}
 
-    /**
+	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
-     */
-    public boolean equals(Object obj) {
-        if (obj instanceof ScilabDouble) {
-            ScilabDouble sciDouble = ((ScilabDouble)obj);
-            if (this.isReal() && sciDouble.isReal()) {
-                return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart());
-            } else {
-                /* Complex */
-                return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart()) && Arrays.deepEquals(this.getImaginaryPart(), sciDouble.getImaginaryPart());
-            }
-        } else {
-            return false;
-        }
-    }
+	 */
+	public boolean equals(Object obj) {
+		if (obj instanceof ScilabDouble) {
+			ScilabDouble sciDouble = ((ScilabDouble)obj);
+			if (this.isReal() && sciDouble.isReal()) {
+				return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart());
+			} else {
+				/* Complex */
+				return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart()) && Arrays.deepEquals(this.getImaginaryPart(), sciDouble.getImaginaryPart());
+			}
+		} else {
+			return false;
+		}
+	}
 
 
 	/**
+	 * Display the representation in the Scilab language of the type
 	 * @return a Scilab-like String representation of the data.
 	 * @see java.lang.Object#toString()
 	 */

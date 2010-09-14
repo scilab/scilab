@@ -22,6 +22,8 @@ import org.scilab.modules.types.ScilabIntegerTypeEnum;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabMList;
 
 public class testEquals {
 
@@ -39,6 +41,22 @@ public class testEquals {
 		assert Arrays.deepEquals(aMatrix.getRealPart(), bMatrix.getRealPart()) == true;
 		assert aMatrix.toString().equals("[21.2, 22.0, 42.0, 39.0 ; 23.2, 24.0, 44.0, 40.0]") == true;
 		assert cMatrix.toString().equals("[42.0, 43.0 ; 21.0, 22.0]") == true;
+	}
+
+	@Test
+	public void doubleMatrixTests() {
+		double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+		ScilabDouble emptyMatrix = new ScilabDouble();
+		assert emptyMatrix.getHeight() == 0;
+		assert emptyMatrix.getWidth() == 0;
+		assert emptyMatrix.isEmpty() == true;
+		assert emptyMatrix.toString().equals("[]") == true;
+		emptyMatrix.setRealPart(a);
+		emptyMatrix.setImaginaryPart(a);
+
+		ScilabBoolean aMatrix = new ScilabBoolean(true);
+		assert aMatrix.equals(emptyMatrix) == false;
+		assert emptyMatrix.equals(aMatrix) == false;
 	}
 
 
@@ -64,8 +82,9 @@ public class testEquals {
 		double [] result = new double[]{21.2, 23.2, 22.0, 24.0, 42.0, 44.0, 39.0, 40.0, 210.2, 230.2, 220.0, 240.0, 420.0, 440.0, 390.0, 400.0};
 		assert aMatrix.getSerializedComplexMatrix().length == result.length;
 		assert Arrays.equals(aMatrix.getSerializedComplexMatrix(),result) == true;
-
-
+		ScilabDouble scalarComplex = new ScilabDouble(1,2);
+		assert aMatrix.equals(scalarComplex) == false;
+		assert aMatrix.equals(bMatrix) == true;
 	}
 
 
@@ -103,6 +122,23 @@ public class testEquals {
 
 
 	@Test
+	public void integer8MatrixTests() {
+		byte [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
+		ScilabInteger emptyMatrix = new ScilabInteger();
+		assert emptyMatrix.getHeight() == 0;
+		assert emptyMatrix.getWidth() == 0;
+		assert emptyMatrix.isEmpty() == true;
+		assert emptyMatrix.toString().equals("int([])") == true;
+		emptyMatrix.setData(a, true);
+
+		ScilabBoolean aMatrix = new ScilabBoolean(true);
+		assert aMatrix.equals(emptyMatrix) == false;
+		assert emptyMatrix.equals(aMatrix) == false;
+		ScilabInteger scalarInteger = new ScilabInteger((byte)2);
+	}
+
+
+	@Test
 	public void compareInteger16Test() throws NullPointerException {
 		short [][]a={{32,42,41}, {12,13,32}};
 		short [][]b={{32,42,41}, {12,13,32}};
@@ -132,6 +168,18 @@ public class testEquals {
 		assert dMatrix.isUnsigned() == false;
 		assert ScilabInteger.convertOldType("TYPE16", true) == ScilabIntegerTypeEnum.sci_uint16;
 		assert ScilabInteger.convertOldType("TYPE16", false) == ScilabIntegerTypeEnum.sci_int16;
+	}
+
+	@Test
+	public void integer16MatrixTests() {
+		short [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
+		ScilabInteger emptyMatrix = new ScilabInteger();
+		emptyMatrix.setData(a, true);
+
+		ScilabBoolean aMatrix = new ScilabBoolean(true);
+		assert aMatrix.equals(emptyMatrix) == false;
+		assert emptyMatrix.equals(aMatrix) == false;
+		ScilabInteger scalarInteger = new ScilabInteger((short)2);
 	}
 
 	@Test
@@ -167,6 +215,18 @@ public class testEquals {
 	}
 
 	@Test
+	public void integer32MatrixTests() {
+		int [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
+		ScilabInteger emptyMatrix = new ScilabInteger();
+		emptyMatrix.setData(a, true);
+
+		ScilabBoolean aMatrix = new ScilabBoolean(true);
+		assert aMatrix.equals(emptyMatrix) == false;
+		assert emptyMatrix.equals(aMatrix) == false;
+		ScilabInteger scalarInteger = new ScilabInteger((int)2);
+	}
+
+	@Test
 	public void compareInteger64Test() throws NullPointerException {
 		long [][]a={{32,42,41}, {12,13,32}};
 		long [][]b={{32,42,41}, {12,13,32}};
@@ -198,6 +258,18 @@ public class testEquals {
 		assert ScilabInteger.convertOldType("TYPE64", false) == ScilabIntegerTypeEnum.sci_int64;
 	}
 
+	@Test
+	public void integer64MatrixTests() {
+		long [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
+		ScilabInteger emptyMatrix = new ScilabInteger();
+		emptyMatrix.setData(a, true);
+
+		ScilabBoolean aMatrix = new ScilabBoolean(true);
+		assert aMatrix.equals(emptyMatrix) == false;
+		assert emptyMatrix.equals(aMatrix) == false;
+		ScilabInteger scalarInteger = new ScilabInteger((long)2);
+	}
+
 
 	@Test
 	public void compareBooleanTest() throws NullPointerException {
@@ -213,6 +285,20 @@ public class testEquals {
 		assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
 		assert aMatrix.toString().equals("[%t, %f, %t ; %t, %t, %t]") == true;
 		assert cMatrix.toString().equals("[%t, %f ; %f, %t]") == true;
+	}
+
+	@Test
+	public void booleanMatrixTests() {
+		boolean [][]a={{true,false,true}, {true,true,true}};
+		ScilabBoolean emptyMatrix = new ScilabBoolean();
+		assert emptyMatrix.getHeight() == 0;
+		assert emptyMatrix.getWidth() == 0;
+		assert emptyMatrix.isEmpty() == true;
+		assert emptyMatrix.toString().equals("[]") == true;
+		emptyMatrix.setData(a);
+		ScilabDouble aMatrix = new ScilabDouble(2);
+		assert aMatrix.equals(emptyMatrix) == false;
+		assert emptyMatrix.equals(aMatrix) == false;
 	}
 
 	@Test
@@ -232,11 +318,38 @@ public class testEquals {
 
 	}
 
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void stringMatrixTests() {
+		String [][]a={{"This","is","my","string"},{"and","I want to", "compare"," them"}};
+		ScilabString emptyMatrix = new ScilabString();
+		assert emptyMatrix.getHeight() == 0;
+		assert emptyMatrix.getWidth() == 0;
+		assert emptyMatrix.isEmpty() == true;
+		assert emptyMatrix.toString().equals("[]") == true;
+		emptyMatrix.setData(a);
+		ScilabDouble aMatrix = new ScilabDouble(2);
+		assert aMatrix.equals(emptyMatrix) == false;
+		assert emptyMatrix.equals(aMatrix) == false;
+		String []b={"This","is","my","string"};
+		ScilabString vectorString = new ScilabString(b);
+		String []c = null;
+		ScilabString emptyString = new ScilabString(c);
+		ScilabString nullString = new ScilabString((String)null);
+
+	}
+
 	@Test
 	public void compareListTest() throws NullPointerException {
 		ScilabList data = new ScilabList();
+		assert data.getHeight() == 0;
+		assert data.getWidth() == 0;
+		assert data.toString().equals("list()");
 		data.add(new ScilabDouble(2));
+		assert data.getHeight() == 1;
+		assert data.getWidth() == 1;
 		data.add(new ScilabDouble(51));
+		assert data.getHeight() == 1;
+		assert data.getWidth() == 2;
 		data.add(new ScilabString("hello"));
 		ScilabList data2 = new ScilabList();
 		data2.add(new ScilabDouble(2));
@@ -249,8 +362,98 @@ public class testEquals {
 		data3.add(new ScilabString("hello"));
 		assert data.equals(data2) == true;
 		assert data.equals(data3) == false;
-		assert data.toString().equals("list([2.0],\n[51.0],\n[\"hello\"])") == true;
-		assert data3.toString().equals("list([2.0],\n[42.0],\n[%t],\n[\"hello\"])") == true;
+		assert data.toString().equals("list([2.0], [51.0], [\"hello\"])") == true;
+		assert data3.toString().equals("list([2.0], [42.0], [%t], [\"hello\"])") == true;
+
+		ScilabList data4 = new ScilabList(data3);
+		assert data4.equals(data3) == true;
 
 	}
+
+
+	@Test
+	public void compareTListTest() throws NullPointerException {
+		ScilabTList data = new ScilabTList();
+		assert data.getHeight() == 0;
+		assert data.getWidth() == 0;
+		assert data.toString().equals("tlist()");
+		data.add(new ScilabString("hello"));
+		assert data.getHeight() == 1;
+		assert data.getWidth() == 1;
+		data.add(new ScilabDouble(2));
+		assert data.getHeight() == 1;
+		assert data.getWidth() == 2;
+		data.add(new ScilabDouble(51));
+		assert data.getHeight() == 1;
+		assert data.getWidth() == 3;
+		ScilabTList data2 = new ScilabTList();
+		data2.add(new ScilabString("hello"));
+		data2.add(new ScilabDouble(2));
+		data2.add(new ScilabDouble(51));
+		ScilabTList data3 = new ScilabTList();
+		data3.add(new ScilabString("hello"));
+		data3.add(new ScilabDouble(2));
+		data3.add(new ScilabDouble(42));
+		data3.add(new ScilabBoolean(true));
+		assert data.equals(data2) == true;
+		assert data.equals(data3) == false;
+
+		assert data.toString().equals("tlist([\"hello\"], [2.0], [51.0])") == true;
+		assert data3.toString().equals("tlist([\"hello\"], [2.0], [42.0], [%t])") == true;
+		String []b={"a","b","c"};
+
+		ScilabTList tlist = new ScilabTList(b);
+		tlist.add(new ScilabDouble(2));
+		tlist.add(new ScilabDouble(3));
+		assert tlist.toString().equals("tlist([\"a\", \"b\", \"c\"], [2.0], [3.0])") == true;
+		ScilabTList tlistFromAnOther = new ScilabTList(b, data2);
+		assert tlistFromAnOther.getHeight() == 1;
+		assert tlistFromAnOther.getWidth() == 4;
+		assert tlistFromAnOther.toString().equals("tlist([\"a\", \"b\", \"c\"], [\"hello\"], [2.0], [51.0])");
+	}
+
+
+	@Test
+	public void compareMListTest() throws NullPointerException {
+		ScilabMList data = new ScilabMList();
+		assert data.getHeight() == 0;
+		assert data.getWidth() == 0;
+		assert data.toString().equals("mlist()");
+		data.add(new ScilabString("hello"));
+		assert data.getHeight() == 1;
+		assert data.getWidth() == 1;
+		data.add(new ScilabDouble(2));
+		assert data.getHeight() == 1;
+		assert data.getWidth() == 2;
+		data.add(new ScilabDouble(51));
+		assert data.getHeight() == 1;
+		assert data.getWidth() == 3;
+		ScilabMList data2 = new ScilabMList();
+		data2.add(new ScilabString("hello"));
+		data2.add(new ScilabDouble(2));
+		data2.add(new ScilabDouble(51));
+		ScilabMList data3 = new ScilabMList();
+		data3.add(new ScilabString("hello"));
+		data3.add(new ScilabDouble(2));
+		data3.add(new ScilabDouble(42));
+		data3.add(new ScilabBoolean(true));
+		assert data.equals(data2) == true;
+		assert data.equals(data3) == false;
+		System.out.println("mlist " + data);
+		assert data.toString().equals("mlist([\"hello\"], [2.0], [51.0])") == true;
+		assert data3.toString().equals("mlist([\"hello\"], [2.0], [42.0], [%t])") == true;
+		String []b={"a","b","c"};
+
+		ScilabMList mlist = new ScilabMList(b);
+		mlist.add(new ScilabDouble(2));
+		mlist.add(new ScilabDouble(3));
+		assert mlist.toString().equals("mlist([\"a\", \"b\", \"c\"], [2.0], [3.0])") == true;
+		ScilabMList mlistFromAnOther = new ScilabMList(b, data2);
+		assert mlistFromAnOther.getHeight() == 1;
+		assert mlistFromAnOther.getWidth() == 4;
+		assert mlistFromAnOther.toString().equals("mlist([\"a\", \"b\", \"c\"], [\"hello\"], [2.0], [51.0])");
+
+	}
+
+
 }

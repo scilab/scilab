@@ -21,101 +21,101 @@ import java.util.Arrays;
 public class ScilabBoolean implements ScilabType {
 
 	/* the boolean data */
-    private boolean[][] data;
+	private boolean[][] data;
 
-    /**
-     * Create an empty object
+	/**
+	 * Create an empty object
 	 */
-    public ScilabBoolean() {
+	public ScilabBoolean() {
 		data = null;
-    }
-    
-    /**
-     * Create an object from an array of array of boolean
-     *
-     * @param data the array of boolean
+	}
+	
+	/**
+	 * Create an object from an array of array of boolean
+	 *
+	 * @param data the array of boolean
 	 */
-    public ScilabBoolean(boolean[][] data) {
+	public ScilabBoolean(boolean[][] data) {
 		this.data = data;
-    }
-    
-    /**
-     * Create a scalar boolean from a boolean
-     *
-     * @param value the boolean
+	}
+	
+	/**
+	 * Create a scalar boolean from a boolean
+	 *
+	 * @param value the boolean
 	 */
-    public ScilabBoolean(boolean value) {
+	public ScilabBoolean(boolean value) {
 		this.data = new boolean[1][1];
 		this.data[0][0] = value;
-    }
+	}
 
-    /**
-     * Change the value with the provided data
-     *
-     * @param data array of boolean
+	/**
+	 * Change the value with the provided data
+	 *
+	 * @param data array of boolean
 	 */
-    public void setData(boolean[][] data) {
+	public void setData(boolean[][] data) {
 		this.data = data;
-    }
+	}
 
-    /**
-     * Return the data
-     *
-     * @return the array of array of boolean
+	/**
+	 * Return the data
+	 *
+	 * @return the array of array of boolean
 	 */
-    public boolean[][] getData() {
+	public boolean[][] getData() {
 		return data;
-    }
+	}
 
-    /**
-     * Return the height (number of element) of the stored data
-     *
-     * @return the height
+	/**
+	 * Return the height (number of element) of the stored data
+	 *
+	 * @return the height
 	 */
-    public int getHeight() {
+	public int getHeight() {
 		if (data == null) {
 			return 0;
 		}
 		return data.length;
-    }
+	}
 
-    /**
-     * Return the width (number of element) of the stored data
-     *
-     * @return the width
+	/**
+	 * Return the width (number of element) of the stored data
+	 *
+	 * @return the width
 	 */
-    public int getWidth() {
+	public int getWidth() {
 		if (data == null) {
 			return 0;
 		}
 		return data[0].length;
-    }
+	}
 
-    /**
-     * If it is empty / uninitialized
-     *
-     * @return true if empty
+	/**
+	 * If it is empty / uninitialized
+	 *
+	 * @return true if empty
 	 */
-    public boolean isEmpty() {
-    	return (data == null);
-    }
-    
+	public boolean isEmpty() {
+		return (data == null);
+	}
+	
 
-    /**
+	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
-     */
-    public boolean equals(Object obj) {
-        if (obj instanceof ScilabBoolean) {
-            return Arrays.deepEquals(this.getData(), ((ScilabBoolean)obj).getData());
-        } else {
-            return false;
-        }
-    }
+	 */
+	public boolean equals(Object obj) {
+		if (obj instanceof ScilabBoolean) {
+			return Arrays.deepEquals(this.getData(), ((ScilabBoolean)obj).getData());
+		} else {
+			return false;
+		}
+	}
 
-    /**
-     * Display the matrix
-     *
-     * @return the pretty print
+	/**
+	 * Display the representation in the Scilab language of the type
+	 *
+	 * @return the pretty print
 	 */
 	public String toString() {
 		StringBuilder result = new StringBuilder();

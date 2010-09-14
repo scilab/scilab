@@ -323,7 +323,10 @@ public class ScilabInteger implements ScilabType {
 	 * @see org.scilab.modules.types.ScilabType#getHeight()
 	 */
 	@Override
-		public int getHeight() {
+	public int getHeight() {
+		if (this.getPrec() == null) {
+			return 0;
+		}
 		switch (this.getPrec()) {
 			case sci_int8:
 			case sci_uint8:
@@ -360,6 +363,9 @@ public class ScilabInteger implements ScilabType {
 	 */
 	@Override
 	public int getWidth() {
+		if (this.getPrec() == null) {
+			return 0;
+		}
 		switch (this.getPrec()) {
 			case sci_int8:
 			case sci_uint8:
@@ -397,6 +403,9 @@ public class ScilabInteger implements ScilabType {
 	 * @return true, if there is no values; false otherwise.
 	 */
 	public boolean isEmpty() {
+		if (this.getPrec() == null) {
+			return true;
+		}
 		switch (this.getPrec()) {
 			case sci_int8:
 			case sci_uint8:
@@ -427,6 +436,7 @@ public class ScilabInteger implements ScilabType {
 	}
 
 	/**
+	 * Display the representation in the Scilab language of the type
 	 * @return the pretty-printed values 
 	 * @see java.lang.Object#toString()
 	 */

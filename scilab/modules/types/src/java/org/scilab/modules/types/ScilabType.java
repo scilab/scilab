@@ -19,17 +19,17 @@ import java.io.Serializable;
  */
 public interface ScilabType extends Serializable, Cloneable {
 
-    /**
-     * Return the width (number of elements) of the stored data
-     *
-     * @return the width
+	/**
+	 * Return the width (number of elements) of the stored data
+	 *
+	 * @return the width
 	 */
 	int getWidth();
 	
-    /**
-     * Return the height (number of elements) of the stored data
-     *
-     * @return the height
+	/**
+	 * Return the height (number of elements) of the stored data
+	 *
+	 * @return the height
 	 */
 	int getHeight();
 	
@@ -41,17 +41,17 @@ public interface ScilabType extends Serializable, Cloneable {
 	boolean isEmpty();
 	
 
-    /**
-     * Compare if obj is the same object or not
-     * @param obj the object we want to compare
-     * @return true if the two objects are equals, false otherwise
-     */
-    public boolean equals(Object obj);
+	/**
+	 * Compare if obj is the same object or not
+	 * @param obj the object we want to compare
+	 * @return true if the two objects are equals, false otherwise
+	 */
+	public boolean equals(Object obj);
 
-    /**
-     * Display the data
-     *
-     * @return the pretty print
+	/**
+	 * Display the representation in the Scilab language of the type
+	 *
+	 * @return the pretty print
 	 */
 	String toString();
 }
