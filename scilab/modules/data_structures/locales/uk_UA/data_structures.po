@@ -2,14 +2,13 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-06-29 12:03+0000\n"
+"PO-Revision-Date: 2010-08-20 13:06+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +37,10 @@ msgid "%s: ''dims'' can not be used as a field name.\n"
 msgstr "%s: поле не можна називати «dims».\n"
 
 #, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr "%s: кількість записів не дорівнює добутку вимірів"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід було вказати парну "
@@ -62,6 +65,14 @@ msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
 "«struct».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
+"%s: помилкові значення для вхідного параметра №%d: елементами мають бути "
+"невід’ємні цілі значення.\n"
 
 #, c-format
 msgid "%s: field name ''%s'' defined twice.\n"

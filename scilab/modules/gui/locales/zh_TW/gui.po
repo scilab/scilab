@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-07 12:27+0000\n"
-"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"PO-Revision-Date: 2010-08-20 14:08+0000\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -514,6 +514,9 @@ msgstr "關閉(&C)"
 msgid "&Colors"
 msgstr "顏色"
 
+msgid "&Command History"
+msgstr ""
+
 msgid "&Contributions"
 msgstr "貢獻(&C)"
 
@@ -537,9 +540,6 @@ msgstr "&EPS"
 
 msgid "&Edit"
 msgstr "編輯(&E)"
-
-msgid "&Editor"
-msgstr "編輯器(&E)"
 
 msgid "&Empty clipboard"
 msgstr "清空剪貼簿(&E)"
@@ -622,6 +622,9 @@ msgstr "將軟體環境存起(&S)...."
 msgid "&Save..."
 msgstr "儲存(&S)..."
 
+msgid "&SciNotes"
+msgstr ""
+
 msgid "&Scilab Help"
 msgstr "&Scilab 協助"
 
@@ -642,6 +645,9 @@ msgstr "工具(&T)"
 
 msgid "&UnZoom"
 msgstr "&UnZoom (回復正常)"
+
+msgid "&Variable Browser"
+msgstr ""
 
 msgid "&Vectorial export"
 msgstr "向量圖檔輸出(&V)"
@@ -716,6 +722,9 @@ msgstr ""
 msgid "Application"
 msgstr "應用程式"
 
+msgid "Attributes"
+msgstr ""
+
 msgid ""
 "Authors:\n"
 "Scilab Consortium / INRIA / ENPC / Contributors\n"
@@ -727,6 +736,9 @@ msgstr ""
 
 msgid "Back"
 msgstr "返回"
+
+msgid "Bold"
+msgstr ""
 
 msgid "C&lose"
 msgstr "關閉(&L)"
@@ -787,6 +799,9 @@ msgstr "版權所有 (c) 1989-2007 (ENPC)"
 
 msgid "Copyright (c) 1989-2010 (INRIA)"
 msgstr "Copyright (c) 1989-2010 (INRIA)"
+
+msgid "Could not open: "
+msgstr ""
 
 msgid "Cut"
 msgstr "剪下"
@@ -851,6 +866,12 @@ msgstr "檔案已經存在"
 msgid "File already exists"
 msgstr "檔案已經存在"
 
+msgid "Font"
+msgstr ""
+
+msgid "Font Chooser"
+msgstr ""
+
 msgid "Forward"
 msgstr "往前"
 
@@ -875,11 +896,14 @@ msgstr "所選的關鍵字說明"
 msgid "Impossible to get current look and feel"
 msgstr "無法取得目前之 look and feel"
 
+msgid "Italic"
+msgstr ""
+
 msgid "JPEG image"
 msgstr "JPEG 影像"
 
-msgid "Launch Scilab text editor"
-msgstr "執行 Scilab 文字編輯器"
+msgid "Launch SciNotes"
+msgstr ""
 
 msgid "Launch plot2d"
 msgstr "啟動 plot2d"
@@ -912,6 +936,9 @@ msgstr "選單狀態"
 
 msgid "Module manager - ATOMS"
 msgstr "模組管理器 - ATOMS"
+
+msgid "Monospaced"
+msgstr ""
 
 msgid "No"
 msgstr "否"
@@ -999,6 +1026,9 @@ msgstr "SVG 影像"
 msgid "Save and execute"
 msgstr "儲存和執行"
 
+msgid "SciNotes compatible"
+msgstr ""
+
 msgid "Scicos files"
 msgstr "Scicos檔案"
 
@@ -1036,6 +1066,9 @@ msgstr "Scilab 選擇訊息"
 msgid "Scilab Contributors..."
 msgstr "Scilab 貢獻者..."
 
+msgid "Scilab Demo files"
+msgstr ""
+
 msgid "Scilab Demonstrations"
 msgstr "Scilab 展示"
 
@@ -1051,11 +1084,17 @@ msgstr "Scilab 訊息"
 msgid "Scilab Multiple Values Request"
 msgstr "Scilab 多值選單"
 
+msgid "Scilab Quit files"
+msgstr ""
+
 msgid "Scilab SCE files"
 msgstr "Scilab SCE 檔案"
 
 msgid "Scilab SCI files"
 msgstr "Scilab SCI 檔案"
+
+msgid "Scilab Start files"
+msgstr ""
 
 msgid "Scilab binary files"
 msgstr "Scilab 二進位檔案"
@@ -1075,8 +1114,8 @@ msgstr "選擇執行之檔案"
 msgid "Select a file to load"
 msgstr "選擇一檔案以載入系統"
 
-msgid "Select a file to open with Scilab text editor"
-msgstr "使用 Scilab 文字編輯器開啟所選擇的檔案"
+msgid "Select a file to open with SciNotes"
+msgstr ""
 
 msgid "Select a file to write"
 msgstr "選擇一檔案以寫入"
@@ -1122,6 +1161,9 @@ msgstr "子選單 2-1"
 msgid "Sub-menu 2-2"
 msgstr "子選單 2-2"
 
+msgid "Test files"
+msgstr ""
+
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab 集團組織 (DIGITEO)"
 
@@ -1132,7 +1174,7 @@ msgid "Uicontrols demo"
 msgstr "Uicontrols(使用者介面控制項) 展示"
 
 msgid "Unrecognized extension '"
-msgstr "副檔名無法識 '"
+msgstr "副檔名無法識別 '"
 
 msgid "Untitled-export"
 msgstr "無標題匯出"

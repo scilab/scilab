@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2010-07-05 22:02+0000\n"
+"PO-Revision-Date: 2010-08-18 19:44+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,10 @@ msgstr "%s: Неизвестная ошибка.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
@@ -320,6 +324,11 @@ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr "%s: Неверное значение входного параметра №%d: ожидалось %s или %s.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось %s, %s или %s.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
@@ -371,12 +380,6 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалась строка, а не шаблон "
 "регулярного выражения.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «r», «l» или «c».\n"
 
 #, c-format
 msgid ""

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2010-07-03 00:20+0000\n"
+"PO-Revision-Date: 2010-08-18 12:23+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -137,6 +137,9 @@ msgstr "powershell コマンドを Scilab なしの環境で確認してくだ�
 
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 が見つかりません."
+
+msgid "Scilab Console"
+msgstr "Scilabコンソール"
 
 #
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50

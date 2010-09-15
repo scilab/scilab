@@ -646,6 +646,9 @@ msgstr "&Zamknij"
 msgid "&Colors"
 msgstr "&Kolory"
 
+msgid "&Command History"
+msgstr ""
+
 msgid "&Contributions"
 msgstr "Weź &udział"
 
@@ -669,9 +672,6 @@ msgstr "&EPS"
 
 msgid "&Edit"
 msgstr "&Edycja"
-
-msgid "&Editor"
-msgstr "&Edytor"
 
 msgid "&Empty clipboard"
 msgstr "&Wyczyść schowek"
@@ -754,6 +754,9 @@ msgstr "&Zapisz środowisko..."
 msgid "&Save..."
 msgstr "&Zapisz..."
 
+msgid "&SciNotes"
+msgstr ""
+
 msgid "&Scilab Help"
 msgstr "&Pomoc Scilab"
 
@@ -774,6 +777,9 @@ msgstr "&Narzędzia"
 
 msgid "&UnZoom"
 msgstr "&Oddal"
+
+msgid "&Variable Browser"
+msgstr ""
 
 msgid "&Vectorial export"
 msgstr "&Eksportowanie wektorowe"
@@ -850,6 +856,9 @@ msgstr ""
 msgid "Application"
 msgstr "Program"
 
+msgid "Attributes"
+msgstr ""
+
 msgid ""
 "Authors:\n"
 "Scilab Consortium / INRIA / ENPC / Contributors\n"
@@ -861,6 +870,9 @@ msgstr ""
 
 msgid "Back"
 msgstr "Powrót"
+
+msgid "Bold"
+msgstr ""
 
 msgid "C&lose"
 msgstr "Zam&knij"
@@ -921,6 +933,9 @@ msgstr "Copyright (c) 1989-2007 (ENPC)"
 
 msgid "Copyright (c) 1989-2010 (INRIA)"
 msgstr "Copyright (c) 1989-2010 (INRIA)"
+
+msgid "Could not open: "
+msgstr ""
 
 msgid "Cut"
 msgstr "Wytnij"
@@ -985,6 +1000,12 @@ msgstr "Plik już istnieje"
 msgid "File already exists"
 msgstr "Plik już istnieje"
 
+msgid "Font"
+msgstr ""
+
+msgid "Font Chooser"
+msgstr ""
+
 msgid "Forward"
 msgstr "Do przodu"
 
@@ -1009,11 +1030,14 @@ msgstr "Pomoc o wybranym słowie kluczowym"
 msgid "Impossible to get current look and feel"
 msgstr "Nie można uzyskać bieżącego wyglądu i czucia"
 
+msgid "Italic"
+msgstr ""
+
 msgid "JPEG image"
 msgstr "Obraz JPEG"
 
-msgid "Launch Scilab text editor"
-msgstr "Uruchom edytor textu Scilab"
+msgid "Launch SciNotes"
+msgstr ""
 
 msgid "Launch plot2d"
 msgstr "Uruchom plot2d"
@@ -1050,6 +1074,9 @@ msgstr "Status menu"
 
 msgid "Module manager - ATOMS"
 msgstr "Moduł zarządzania - ATOMS"
+
+msgid "Monospaced"
+msgstr ""
 
 msgid "No"
 msgstr "Nie"
@@ -1138,6 +1165,9 @@ msgstr "Obraz SVG"
 msgid "Save and execute"
 msgstr "Zapisz i wykonaj"
 
+msgid "SciNotes compatible"
+msgstr ""
+
 msgid "Scicos files"
 msgstr "Pliki Scicos"
 
@@ -1176,6 +1206,9 @@ msgstr "Wiadomość Wyboru programu Scilab"
 msgid "Scilab Contributors..."
 msgstr "Uczestnicy projektu"
 
+msgid "Scilab Demo files"
+msgstr ""
+
 msgid "Scilab Demonstrations"
 msgstr "Przykłady"
 
@@ -1191,11 +1224,17 @@ msgstr "Komunikat Scilab"
 msgid "Scilab Multiple Values Request"
 msgstr "Wprowadzenie wartości wejściowych Scilab"
 
+msgid "Scilab Quit files"
+msgstr ""
+
 msgid "Scilab SCE files"
 msgstr "SCE-pliki Scilab"
 
 msgid "Scilab SCI files"
 msgstr "SCE-pliki Scilab"
+
+msgid "Scilab Start files"
+msgstr ""
 
 msgid "Scilab binary files"
 msgstr "Plik binarny Scilab"
@@ -1215,8 +1254,8 @@ msgstr "Wybierz plik do wykonania"
 msgid "Select a file to load"
 msgstr "Wybierz plik do załadowania"
 
-msgid "Select a file to open with Scilab text editor"
-msgstr "Wybierz plik do otwarcia w edytorze tekstowym Scilab"
+msgid "Select a file to open with SciNotes"
+msgstr ""
 
 msgid "Select a file to write"
 msgstr "Wybierz plik do zapisania"
@@ -1261,6 +1300,9 @@ msgstr "Pod-menu 2-1"
 
 msgid "Sub-menu 2-2"
 msgstr "Pod-menu 2-2"
+
+msgid "Test files"
+msgstr ""
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab Konsorcjom (DIGITEO)"

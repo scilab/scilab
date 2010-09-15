@@ -37,16 +37,8 @@ msgid "%s: Unknown or not yet implemented type.\n"
 msgstr "%s: 未知的或未實作的型別.\n"
 
 #, c-format
-msgid "%s: Unknown type or not yet implemented.\n"
-msgstr "%s:未知的型別或者尚未實作.\n"
-
-#, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr "%s: 第一個輸入參數錯誤: 應該是 '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "%s: work space (stacksize) is too small.\n"
-msgstr "%s:工作空間(堆疊大小)太小.\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"

@@ -155,10 +155,6 @@ msgstr "%s: %s ゲートウエイを読み込むことができません.\n"
 msgid "%s: Incompatible sizes.\n"
 msgstr "%s: 大きさに互換性がありません.\n"
 
-#, c-format
-msgid "%s: Invalid '%s' value.\n"
-msgstr "%s: 値 '%s' が不正です.\n"
-
 #
 # File: sci_gateway/c/sci_readgateway.c, line: 119
 #, c-format

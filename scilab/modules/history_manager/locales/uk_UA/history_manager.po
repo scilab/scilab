@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2010-01-15 18:40+0000\n"
+"PO-Revision-Date: 2010-08-17 15:25+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -52,17 +52,14 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "у інтервалі [%d, %d]\n"
 
-msgid "// Begin Session : "
-msgstr "// Початок сеансу: "
-
-msgid "// End Session   : "
-msgstr "// Завершення сеансу: "
-
 msgid "Apr"
 msgstr "кві"
 
 msgid "Aug"
 msgstr "сер"
+
+msgid "Begin Session : "
+msgstr "Початок сеансу: "
 
 msgid "Dec"
 msgstr "гру"
@@ -99,9 +96,6 @@ msgstr "жов"
 
 msgid "Sat"
 msgstr "Сбт"
-
-msgid "Scilab history_manager module not installed.\n"
-msgstr "Модуль history_manager Scilab не встановлено.\n"
 
 msgid "Sep"
 msgstr "вер"

@@ -102,6 +102,10 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s：第一个输入参数值错误：应该为%d。\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
@@ -284,6 +288,10 @@ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为 %s 或 %s 。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为'%s'或'%s'。\n"
 
@@ -324,11 +332,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: a string expected, not a regexp "
 "pattern.\n"
 msgstr "%s：输入参数#%d的值错误：应该为一个字符串，而不是一个regexp模式。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为''r''、''l''或''c''。\n"
 
 #, c-format
 msgid ""

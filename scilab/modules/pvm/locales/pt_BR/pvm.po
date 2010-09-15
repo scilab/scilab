@@ -37,18 +37,9 @@ msgid "%s: Unknown or not yet implemented type.\n"
 msgstr "%s: Tipo desconhecido ou ainda não implementado.\n"
 
 #, c-format
-msgid "%s: Unknown type or not yet implemented.\n"
-msgstr "%s: Tipo desconhecido ou ainda não implementado.\n"
-
-#, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Primeiro argumento de entrada errado: Esperava-se '%s' ou '%s'.\n"
-
-#, c-format
-msgid "%s: work space (stacksize) is too small.\n"
-msgstr ""
-"%s: espaço de trabalho (tamanho da pilha - stacksize) muito pequeno.\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"

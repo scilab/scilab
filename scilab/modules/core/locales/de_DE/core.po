@@ -144,10 +144,6 @@ msgid "%s: Incompatible sizes.\n"
 msgstr "%s: inkompatible Größen.\n"
 
 #, c-format
-msgid "%s: Invalid '%s' value.\n"
-msgstr "%s: ungültiger '%s' Wert.\n"
-
-#, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: ungültiger Modulname: %s.\n"
 

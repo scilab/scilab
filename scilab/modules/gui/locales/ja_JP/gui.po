@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-03 00:42+0000\n"
+"PO-Revision-Date: 2010-08-18 12:28+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -968,6 +968,9 @@ msgstr "閉じる(&C)"
 msgid "&Colors"
 msgstr "色(&C)"
 
+msgid "&Command History"
+msgstr "コマンドヒストリ (&C)"
+
 #
 # File: scilab_fake_localization_file.c, line: 78
 msgid "&Contributions"
@@ -1009,11 +1012,6 @@ msgstr "EPS(&E)"
 # File: scilab_fake_localization_file.c, line: 51
 msgid "&Edit"
 msgstr "編集(&E)"
-
-#
-# File: scilab_fake_localization_file.c, line: 70
-msgid "&Editor"
-msgstr "エディタ(&E)"
 
 #
 # File: scilab_fake_localization_file.c, line: 55
@@ -1145,6 +1143,9 @@ msgstr "環境を保存(&S)..."
 msgid "&Save..."
 msgstr "保存(&S)..."
 
+msgid "&SciNotes"
+msgstr "&SciNotes"
+
 #
 # File: scilab_fake_localization_file.c, line: 35
 msgid "&Scilab Help"
@@ -1178,6 +1179,9 @@ msgstr "ツール(&T)"
 # File: scilab_fake_localization_file.c, line: 24
 msgid "&UnZoom"
 msgstr "ズームしない(&U)"
+
+msgid "&Variable Browser"
+msgstr "変数ブラウザ(&V)"
 
 #
 # File: scilab_fake_localization_file.c, line: 11
@@ -1276,6 +1280,9 @@ msgstr ""
 msgid "Application"
 msgstr "アプリケーション"
 
+msgid "Attributes"
+msgstr "属性"
+
 #
 # File: macros/about.sci, line: 18
 msgid ""
@@ -1289,6 +1296,9 @@ msgstr ""
 
 msgid "Back"
 msgstr "戻る"
+
+msgid "Bold"
+msgstr "ボールド体"
 
 #
 # File: scilab_fake_localization_file.c, line: 20
@@ -1378,6 +1388,9 @@ msgstr "Copyright (c) 1989-2007 (ENPC)"
 msgid "Copyright (c) 1989-2010 (INRIA)"
 msgstr "Copyright (c) 1989-2010 (INRIA)"
 
+msgid "Could not open: "
+msgstr "オープンできません: "
+
 msgid "Cut"
 msgstr "切り取り"
 
@@ -1459,6 +1472,12 @@ msgstr "ファイルは既にあります"
 msgid "File already exists"
 msgstr "ファイルは既にあります"
 
+msgid "Font"
+msgstr "フォント"
+
+msgid "Font Chooser"
+msgstr "フォントセレクタ"
+
 msgid "Forward"
 msgstr "進む"
 
@@ -1490,13 +1509,14 @@ msgstr "選択したキーワードのヘルプ"
 msgid "Impossible to get current look and feel"
 msgstr "現在のルックアンドフィールを取得できません"
 
+msgid "Italic"
+msgstr "イタリック"
+
 msgid "JPEG image"
 msgstr "JPEG イメージ"
 
-#
-# File: scilab_fake_localization_file.c, line: 86
-msgid "Launch Scilab text editor"
-msgstr "Scipadテキスト編集を始める"
+msgid "Launch SciNotes"
+msgstr "SciNotesを起動"
 
 msgid "Launch plot2d"
 msgstr "plot2d を開始する"
@@ -1535,6 +1555,9 @@ msgstr "メニュー状態"
 
 msgid "Module manager - ATOMS"
 msgstr "モジュール管理 - ATOMS"
+
+msgid "Monospaced"
+msgstr "モノスペース"
 
 msgid "No"
 msgstr "いいえ"
@@ -1690,6 +1713,9 @@ msgstr "SVG イメージ"
 msgid "Save and execute"
 msgstr "保存して実行"
 
+msgid "SciNotes compatible"
+msgstr "SciNotes互換"
+
 msgid "Scicos files"
 msgstr "Scicos ファイル"
 
@@ -1739,6 +1765,9 @@ msgstr "Scilab メッセージ選択"
 msgid "Scilab Contributors..."
 msgstr "Scilab の貢献者達..."
 
+msgid "Scilab Demo files"
+msgstr "Scilabデモファイル"
+
 #
 # File: scilab_fake_localization_file.c, line: 75
 msgid "Scilab Demonstrations"
@@ -1756,11 +1785,17 @@ msgstr "Scilab メッセージ"
 msgid "Scilab Multiple Values Request"
 msgstr "Scilab 複合値要求"
 
+msgid "Scilab Quit files"
+msgstr "Scilab Quitファイル"
+
 msgid "Scilab SCE files"
 msgstr "Scilab SCE ファイル"
 
 msgid "Scilab SCI files"
 msgstr "Scilab SCI ファイル"
+
+msgid "Scilab Start files"
+msgstr "Scilab Startファイル"
 
 msgid "Scilab binary files"
 msgstr "Scilabライブラリファイル"
@@ -1801,11 +1836,8 @@ msgstr "ファイルを選択して実行"
 msgid "Select a file to load"
 msgstr "ファイルを選択してロード"
 
-#
-# File: etc/main_menubar.xml, line: 23
-# File: etc/main_toolbar.xml, line: 11
-msgid "Select a file to open with Scilab text editor"
-msgstr "ファイルを選んでScilabテキスト・エディタで開く"
+msgid "Select a file to open with SciNotes"
+msgstr "SciNotesでオープンするファイルを選択"
 
 #
 # File: etc/graphics_menubar.xml, line: 23
@@ -1871,6 +1903,9 @@ msgstr "サブ・メニュー 2-1"
 
 msgid "Sub-menu 2-2"
 msgstr "サブ・メニュー 2-2"
+
+msgid "Test files"
+msgstr "テスト用ファイル"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab コンソーシアム (DIGITEO)"

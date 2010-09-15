@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-07-17 11:41+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"PO-Revision-Date: 2010-09-14 20:50+0000\n"
+"Last-Translator: ido <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr ""
 #, c-format
 msgid ""
 "\n"
-" Warning:an event is reprogrammed at t=%g by removing another"
+" Warning: an event is reprogrammed at t=%g by removing another"
 msgstr ""
 
 msgid ""
@@ -189,7 +189,7 @@ msgstr ""
 
 #, c-format
 msgid "%s : Function not found\n"
-msgstr ""
+msgstr "%s : Funzione non trovata\n"
 
 #, c-format
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
@@ -208,6 +208,10 @@ msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
 msgstr ""
 
 #, c-format
+msgid "%s : Second argument must be a real.\n"
+msgstr ""
+
+#, c-format
 msgid "%s : Second argument must be a scalar.\n"
 msgstr ""
 
@@ -217,14 +221,6 @@ msgstr ""
 
 #, c-format
 msgid "%s : Second element of sim must be a list.\n"
-msgstr ""
-
-#, c-format
-msgid "%s : Secong argument must be a real.\n"
-msgstr ""
-
-#, c-format
-msgid "%s : Secong argument must be a scalar.\n"
 msgstr ""
 
 #, c-format
@@ -285,7 +281,7 @@ msgstr ""
 
 #, c-format
 msgid "%s : error\n"
-msgstr ""
+msgstr "%s : errore\n"
 
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
@@ -488,7 +484,7 @@ msgstr "\"scicos\" non è più disponibile, usare \"xcos\" invece.\n"
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 
-msgid "**** SUNDIALS.IDA succesfully initialized *****\n"
+msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
 #, c-format
@@ -557,7 +553,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"An unexpected  error occured while executing the menu\n"
+"An unexpected  error occurred while executing the menu\n"
 "%s:\n"
 msgstr ""
 
@@ -599,7 +595,7 @@ msgstr ""
 
 msgid ""
 "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
-"[((d/dy)^k)y](t)."
+"[((d/dt)^k)y](t)."
 msgstr ""
 
 msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
@@ -615,7 +611,7 @@ msgid "CV_BAD_ITASK: Illegal value for itask."
 msgstr ""
 
 msgid ""
-"CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+"CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
 "CV_WF."
 msgstr ""
 
@@ -664,7 +660,7 @@ msgstr ""
 
 msgid ""
 "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-"recoverable error at th efirst call"
+"recoverable error at the first call"
 msgstr ""
 
 msgid ""
@@ -739,7 +735,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"CV_RTFUNC_FAIL: The rootfinding routine failed in an unrecoverable manner."
+"CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
 msgstr ""
 
 msgid "CV_Rootfunction_NAN: The Root function returns NAN."
@@ -791,13 +787,13 @@ msgid ""
 "Click on a Super Block (without activation output) to obtain a coded block!"
 msgstr ""
 
-msgid "Click on a block to set or get it''s documentation"
+msgid "Click on a block to set or get its documentation"
+msgstr ""
+
+msgid "Click on a port, click on a port of object to be moved"
 msgstr ""
 
 msgid "Click on a super block"
-msgstr ""
-
-msgid "Click on an a port, click on a port of object to be moved"
 msgstr ""
 
 msgid "Click on an object to set or get identification"
@@ -1024,7 +1020,7 @@ msgid "IDA_BAD_ITASK: Illegal value for itask."
 msgstr ""
 
 msgid ""
-"IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+"IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
 "and IDA_WF."
 msgstr ""
 
@@ -1152,7 +1148,7 @@ msgid ""
 "flag."
 msgstr ""
 
-msgid "IDA_RES_NULL: th returned residual res = NULL is illegal."
+msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
 msgstr ""
 
 msgid "IDA_RTFUNC_FAIL: The root founding function failed."
@@ -1248,9 +1244,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve "
-"the preconditioned linear system) encountered an unrecoverable error, or the "
-"linear solver routine  (lsolve) encountered an error condition."
+"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
+"preconditioned linear system) encountered an unrecoverable error, or the "
+"linear solver routine (lsolve) encountered an error condition."
 msgstr ""
 
 msgid ""
@@ -1402,7 +1398,7 @@ msgid "Popup"
 msgstr ""
 
 msgid ""
-"Press lef mouse button, drag region and release (right button to cancel)"
+"Press left mouse button, drag region and release (right button to cancel)"
 msgstr ""
 
 msgid "Problem saving a backup; I cannot activate Scilab\n"
@@ -1560,7 +1556,7 @@ msgstr ""
 
 #, c-format
 msgid "The key %s is not a valid letter"
-msgstr ""
+msgstr "La chiave %s non è una lettera valida"
 
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
@@ -1658,7 +1654,7 @@ msgstr ""
 msgid "Zoom out"
 msgstr ""
 
-msgid "algrebraic loop detected"
+msgid "algebraic loop detected"
 msgstr ""
 
 #, c-format
@@ -1709,7 +1705,7 @@ msgstr ""
 msgid "scheduling problem"
 msgstr ""
 
-msgid "scicos unexpected error,please report..."
+msgid "scicos unexpected error, please report..."
 msgstr ""
 
 msgid "scs_show active..."

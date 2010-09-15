@@ -36,6 +36,10 @@ msgid "%s: ''dims'' can not be used as a field name.\n"
 msgstr "%s: ''dims'' ne peut etre utilisé comme nom de champs.\n"
 
 #, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
 msgstr ""
 "%s: Mauvais nombre d'argument d'entrée(s) : un nombre pair est attendu.\n"
@@ -58,6 +62,12 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
 msgstr ""
 "%s: Mauvais type for l'argument d'entrée n° %d: une structure attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: field name ''%s'' defined twice.\n"

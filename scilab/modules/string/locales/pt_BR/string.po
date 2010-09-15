@@ -105,6 +105,10 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumentos de saída: esperava-se %d.\n"
 
@@ -352,6 +356,10 @@ msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se %s ou %s.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\" ou "
@@ -409,13 +417,6 @@ msgid ""
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto e "
 "não um padrão de expressão regular.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
-msgstr ""
-"%s: Valores incorretos para o argumento de entrada #%d: esperava-se \"r\", "
-"\"l\" ou \"c\".\n"
 
 #, c-format
 msgid ""

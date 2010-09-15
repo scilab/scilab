@@ -154,10 +154,6 @@ msgid "%s: Incompatible sizes.\n"
 msgstr "%s : Tailles incompatibles.\n"
 
 #, c-format
-msgid "%s: Invalid '%s' value.\n"
-msgstr "%s : Valeur '%s' incorrecte.\n"
-
-#, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s : Nom de module invalide : %s.\n"
 
@@ -1195,6 +1191,10 @@ msgstr "tlist partiellement remplie.\n"
 # File: src/c/scicurdir.c, line: 49
 #~ msgid "Can't get current directory.\n"
 #~ msgstr "Impossible d'obtenir le répertoire courant.\n"
+
+#, c-format
+#~ msgid "%s: Invalid '%s' value.\n"
+#~ msgstr "%s : Valeur '%s' incorrecte.\n"
 
 #, c-format
 #~ msgid "Compilation date: %s"

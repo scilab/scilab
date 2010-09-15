@@ -646,6 +646,9 @@ msgstr "&Tanca"
 msgid "&Colors"
 msgstr "&Colors"
 
+msgid "&Command History"
+msgstr ""
+
 msgid "&Contributions"
 msgstr "&Contribuïdors"
 
@@ -669,9 +672,6 @@ msgstr "&EPS"
 
 msgid "&Edit"
 msgstr "&Edita"
-
-msgid "&Editor"
-msgstr "&Editor"
 
 msgid "&Empty clipboard"
 msgstr "&Buida el porta-retalls"
@@ -754,6 +754,9 @@ msgstr "&Desa l'entorn..."
 msgid "&Save..."
 msgstr "&Desa..."
 
+msgid "&SciNotes"
+msgstr ""
+
 msgid "&Scilab Help"
 msgstr "Ajuda del &Scilab"
 
@@ -774,6 +777,9 @@ msgstr "&Eines"
 
 msgid "&UnZoom"
 msgstr "R&edueix"
+
+msgid "&Variable Browser"
+msgstr ""
 
 msgid "&Vectorial export"
 msgstr "Exportació &vectorial"
@@ -850,6 +856,9 @@ msgstr ""
 msgid "Application"
 msgstr "Aplicació"
 
+msgid "Attributes"
+msgstr ""
+
 msgid ""
 "Authors:\n"
 "Scilab Consortium / INRIA / ENPC / Contributors\n"
@@ -861,6 +870,9 @@ msgstr ""
 
 msgid "Back"
 msgstr "Enrere"
+
+msgid "Bold"
+msgstr ""
 
 msgid "C&lose"
 msgstr "&Tanca"
@@ -921,6 +933,9 @@ msgstr "Copyright (c) 1989-2007 (ENPC)"
 
 msgid "Copyright (c) 1989-2010 (INRIA)"
 msgstr "Copyright (c) 1989-2010 (INRIA)"
+
+msgid "Could not open: "
+msgstr ""
 
 msgid "Cut"
 msgstr "Retalla"
@@ -985,6 +1000,12 @@ msgstr "El fitxer ja existeix"
 msgid "File already exists"
 msgstr "El fitxer ja existeix"
 
+msgid "Font"
+msgstr ""
+
+msgid "Font Chooser"
+msgstr ""
+
 msgid "Forward"
 msgstr "Endavant"
 
@@ -1009,11 +1030,14 @@ msgstr "Ajuda sobre una paraula seleccionada"
 msgid "Impossible to get current look and feel"
 msgstr "No s'ha pogut recuperar l'aparença actual"
 
+msgid "Italic"
+msgstr ""
+
 msgid "JPEG image"
 msgstr "Imatge JPEG"
 
-msgid "Launch Scilab text editor"
-msgstr "Executar l'editor de text de l'Scilab"
+msgid "Launch SciNotes"
+msgstr ""
 
 msgid "Launch plot2d"
 msgstr "Executa el plot2d"
@@ -1050,6 +1074,9 @@ msgstr "Estat del menú"
 
 msgid "Module manager - ATOMS"
 msgstr "Gestor de mòduls - ATOMS"
+
+msgid "Monospaced"
+msgstr ""
 
 msgid "No"
 msgstr "No"
@@ -1137,6 +1164,9 @@ msgstr "Imatge SVG"
 msgid "Save and execute"
 msgstr "Desa i executa"
 
+msgid "SciNotes compatible"
+msgstr ""
+
 msgid "Scicos files"
 msgstr "Fitxers de Scicos"
 
@@ -1177,6 +1207,9 @@ msgstr "Missatge d'elecció d'Scilab"
 msgid "Scilab Contributors..."
 msgstr "Contribuïdors al Scilab..."
 
+msgid "Scilab Demo files"
+msgstr ""
+
 msgid "Scilab Demonstrations"
 msgstr "Demostracions d'Scilab"
 
@@ -1192,11 +1225,17 @@ msgstr "Missatge del Scilab"
 msgid "Scilab Multiple Values Request"
 msgstr "Petició de valors múltiples d'Scilab"
 
+msgid "Scilab Quit files"
+msgstr ""
+
 msgid "Scilab SCE files"
 msgstr "Fitsers SCE d'Scilab"
 
 msgid "Scilab SCI files"
 msgstr "Fitxers SCI d'Scilab"
+
+msgid "Scilab Start files"
+msgstr ""
 
 msgid "Scilab binary files"
 msgstr "Fitxers binaris d'Scilab"
@@ -1216,8 +1255,8 @@ msgstr "Seleccioneu un fitxer a executar"
 msgid "Select a file to load"
 msgstr "Seleccioneu un fitxer a carregar"
 
-msgid "Select a file to open with Scilab text editor"
-msgstr "Seleccioneu un fitxer a obrir amb l'editor de l'Scilab"
+msgid "Select a file to open with SciNotes"
+msgstr ""
 
 msgid "Select a file to write"
 msgstr "Seleccioneu un fitxer a escriure"
@@ -1262,6 +1301,9 @@ msgstr "Submenú 2-1"
 
 msgid "Sub-menu 2-2"
 msgstr "Submenú 2-2"
+
+msgid "Test files"
+msgstr ""
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "El Scilab Consortium (DIGITEO)"

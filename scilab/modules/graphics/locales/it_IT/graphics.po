@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-07-17 11:17+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"PO-Revision-Date: 2010-09-13 10:40+0000\n"
+"Last-Translator: Andrea Amoroso <andrea.amoroso@alice.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -161,6 +161,8 @@ msgstr "%s: L'argomento in ingresso #%d deve essere reale.\n"
 #, c-format
 msgid "%s: Input argument and the legend must have the same parent axes.\n"
 msgstr ""
+"%s: L'argomento in ingresso e la legenda devono avere gli stessi assi "
+"d'origine.\n"
 
 #, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
@@ -989,7 +991,7 @@ msgid "'%s' property does not exist for this handle.\n"
 msgstr "La proprietà \"%s\" non esiste per questo gestore.\n"
 
 msgid "A Label object cannot be deleted.\n"
-msgstr ""
+msgstr "Un oggetto Etichetta non può essere eliminato.\n"
 
 #, c-format
 msgid "Argument #%d must have %d elements.\n"
@@ -1048,6 +1050,8 @@ msgid ""
 "Data tips cannot be attached to this curve,\n"
 "the user_data field is already used"
 msgstr ""
+"I datatip non possono essere allegati a questa curva,\n"
+"il campo user_data è già utilizzato"
 
 msgid "Default axes cannot be create.\n"
 msgstr "Gli assi predefiniti non possono essere creati.\n"
@@ -1056,25 +1060,25 @@ msgid "Default figure cannot be create.\n"
 msgstr "La figura predefinita non può essere creata.\n"
 
 msgid "Delete all datatips"
-msgstr ""
+msgstr "Cancella tutti i datatip"
 
 msgid "Delete all datatips for the selected curve"
-msgstr ""
+msgstr "Cancella tutti i datatip per la curva selezionata"
 
 msgid "Delete last datatip"
-msgstr ""
+msgstr "Cancella l'ultimo datatip"
 
 msgid "Delete nearest datatip"
-msgstr ""
+msgstr "Cancella il datatip più vicino"
 
 msgid "Disable interpolation"
 msgstr "Disabilita l'interpolazione"
 
 msgid "Edit the curve tip display function"
-msgstr ""
+msgstr "Modifica il suggerimento curvo per mostrare la funzione"
 
 msgid "Enable interpolation"
-msgstr ""
+msgstr "Abilita l'interpolazione"
 
 #, c-format
 msgid "Entity with type %d cannot be destroyed.\n"
@@ -1167,6 +1171,8 @@ msgstr "Jet"
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
+"Clic su tasto sinistro per creare un datatip, il tasto destro apre il menu "
+"contestuale"
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1176,7 +1182,7 @@ msgid "Misc"
 msgstr "Misc"
 
 msgid "Multiple datatips mode"
-msgstr ""
+msgstr "Modalità multipla dei datatip"
 
 msgid "Name"
 msgstr "Nome"
@@ -1241,7 +1247,7 @@ msgid "Rainbow"
 msgstr "Arcobaleno"
 
 msgid "Redraw all datatips"
-msgstr ""
+msgstr "Ridisegna tutti i datatip"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Il modulo Graphics di Scilab non è installato.\n"
@@ -1251,7 +1257,7 @@ msgstr ""
 "Il modulo grafico di Scilab ha disabilitato la modalità -nogui o -nwni.\n"
 
 msgid "Select tip orientation"
-msgstr ""
+msgstr "Seleziona l'orientamento del suggerimento"
 
 msgid "Spring"
 msgstr "Primavera"
@@ -1291,7 +1297,7 @@ msgid "The selected file defines more than one function"
 msgstr "Il file selezionato definisce più di una funzione"
 
 msgid "The selected function must have 1 output parameter (str)"
-msgstr ""
+msgstr "La funzione selezionata deve avere 1 parametro di output (str)"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
@@ -1348,7 +1354,7 @@ msgid "Unhandled data field\n"
 msgstr "Campo di dati non gestito\n"
 
 msgid "Unique datatip mode"
-msgstr ""
+msgstr "Modalità del datatip unico"
 
 #, c-format
 msgid "Unknown property: %s.\n"
@@ -1506,6 +1512,8 @@ msgstr ""
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
 msgstr ""
+"La proprietà \"%s\" è di tipo sbagliato: era atteso un array di gestori "
+"grafici.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
@@ -1618,16 +1626,16 @@ msgid "automatic"
 msgstr "automatico(i)"
 
 msgid "lower left"
-msgstr ""
+msgstr "in basso a sinistra"
 
 msgid "lower right"
-msgstr ""
+msgstr "in basso a destra"
 
 msgid "select the curve tip display function"
-msgstr ""
+msgstr "seleziona la funzione di visualizzazione del suggerimento curvo"
 
 msgid "upper left"
-msgstr ""
+msgstr "in alto a sinistra"
 
 msgid "upper right"
-msgstr ""
+msgstr "in alto a destra"

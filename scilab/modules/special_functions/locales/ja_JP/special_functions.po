@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 17:16+0100\n"
-"PO-Revision-Date: 2010-08-04 14:50+0000\n"
+"PO-Revision-Date: 2010-08-18 12:20+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -63,3 +63,18 @@ msgstr "%s: エラー番号 %d\n"
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s: 拡張された範囲においてオーバーフローまたはアンダーフローを発生しました\n"
+
+#, c-format
+msgid "Function %s is obsolete."
+msgstr "関数 %s は廃止対象となっています."
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "代わりに %s を使用してください."
+
+#, c-format
+msgid "This function will be permanently removed in Scilab %s"
+msgstr "この関数は Scilab %s  以降では削除される予定です."
+
+msgid "Warning: "
+msgstr "警告: "
