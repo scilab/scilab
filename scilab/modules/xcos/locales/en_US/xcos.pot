@@ -14,20 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-08-17 16:29+0100\n"
+"Revision-Date: 2010-09-15 14:22+0100\n"
 
-# File: macros/xcosConfigureModelica.sci, line: 28
+# File: macros/xcosConfigureModelica.sci, line: 27
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
 msgstr ""
 #
-# File: macros/getModelicaPath.sci, line: 43
+# File: macros/getModelicaPath.sci, line: 39
 #, c-format
 msgid "%s: All paths defined by %s variable must exist.\n"
 msgstr ""
 #
-# File: macros/importScicosPal.sci, line: 57
 # File: macros/generateBlockImages.sci, line: 56
+# File: macros/importScicosPal.sci, line: 57
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
 msgstr ""
@@ -49,7 +49,7 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr ""
 #
-# File: macros/getModelicaPath.sci, line: 58
+# File: macros/getModelicaPath.sci, line: 54
 #, c-format
 msgid ""
 "%s: The directory %s cannot been created, please check if you have write "
@@ -58,6 +58,7 @@ msgstr ""
 #
 # File: macros/xcosPalAddBlock.sci, line: 80
 # File: macros/xcosPalAddBlock.sci, line: 92
+# File: macros/%diagram_xcos.sci, line: 37
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
 msgstr ""
@@ -72,12 +73,12 @@ msgstr ""
 msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 162
+# File: macros/xcosPalAddBlock.sci, line: 150
 #, c-format
 msgid "%s: Unable to generate the image %s.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 136
+# File: macros/xcosPalAddBlock.sci, line: 130
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
 msgstr ""
@@ -109,11 +110,11 @@ msgstr ""
 msgid "%s: Wrong input argument %s: svg or gif expected.\n"
 msgstr ""
 #
-# File: macros/getDiagramVersion.sci, line: 5
+# File: macros/getDiagramVersion.sci, line: 30
+# File: macros/importXcosDiagram.sci, line: 37
+# File: macros/generateBlockImages.sci, line: 25
 # File: macros/importScicosPal.sci, line: 47
 # File: macros/importScicosDiagram.sci, line: 24
-# File: macros/generateBlockImages.sci, line: 25
-# File: macros/importXcosDiagram.sci, line: 37
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
@@ -123,10 +124,10 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAdd.sci, line: 56
-# File: macros/xcosPalAddBlock.sci, line: 62
 # File: macros/xcosPal.sci, line: 58
 # File: macros/generateBlockImage.sci, line: 32
+# File: macros/xcosPalAdd.sci, line: 56
+# File: macros/xcosPalAddBlock.sci, line: 62
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -147,15 +148,15 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_xcosDiagramClose.cpp, line: 62
-# File: sci_gateway/cpp/sci_xcosDiagramOpen.cpp, line: 66
 # File: sci_gateway/cpp/sci_warnBlockByUID.cpp, line: 67
 # File: sci_gateway/cpp/sci_warnBlockByUID.cpp, line: 107
+# File: sci_gateway/cpp/sci_xcosDiagramOpen.cpp, line: 66
+# File: sci_gateway/cpp/sci_xcosDiagramClose.cpp, line: 62
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: macros/getModelicaPath.sci, line: 39
+# File: macros/getModelicaPath.sci, line: 35
 #, c-format
 msgid "%s: Wrong type for %s variable: A string array expected.\n"
 msgstr ""
@@ -166,7 +167,7 @@ msgstr ""
 msgid "%s: Wrong type for argument %d: String or diagram structure expected"
 msgstr ""
 #
-# File: macros/getDiagramVersion.sci, line: 9
+# File: macros/getDiagramVersion.sci, line: 34
 #, c-format
 msgid "%s: Wrong type for argument %d: diagram structure expected"
 msgstr ""
@@ -242,8 +243,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 140
-# File: macros/xcosPalAddBlock.sci, line: 144
+# File: macros/xcosPalAddBlock.sci, line: 135
 #, c-format
 msgid "%s: Wrong type for input argument %s: path string expected.\n"
 msgstr ""
@@ -253,7 +253,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr ""
 #
-# File: macros/xcosPalAddBlock.sci, line: 166
+# File: macros/xcosPalAddBlock.sci, line: 155
 #, c-format
 msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
 msgstr ""
@@ -266,6 +266,11 @@ msgstr ""
 # File: macros/xcosPalAdd.sci, line: 74
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+#
+# File: macros/xcosPalAddBlock.sci, line: 138
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 114
@@ -369,6 +374,14 @@ msgstr ""
 msgid "Compile"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 42
+msgid "Compiling"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 43
+msgid "Computing"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 123
 msgid "Continuous time systems"
 msgstr ""
@@ -429,8 +442,16 @@ msgstr ""
 msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 59
+msgid "Diff. States"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 125
 msgid "Discontinuities"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 47
+msgid "Discrete"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 135
@@ -465,6 +486,14 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 46
+msgid "Equations"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 54
+msgid "Error"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 136
 msgid "Event handling"
 msgstr ""
@@ -493,6 +522,10 @@ msgstr ""
 msgid "Export to XML"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 58
+msgid "Extended"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 156
 msgid "Failed to load Diagram"
 msgstr ""
@@ -511,6 +544,22 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
 msgid "Fit diagram to view"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 37
+msgid "Fix derivatives"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 38
+msgid "Fix states"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 60
+msgid "Fixed parameters"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 62
+msgid "Fixed variables"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 95
@@ -537,6 +586,10 @@ msgstr ""
 msgid "From %s"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 53
+msgid "Generate Jacobian"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 232
 msgid "Generate SuperBlock, please wait ..."
 msgstr ""
@@ -547,6 +600,10 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 79
 msgid "Get infos"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 45
+msgid "Global"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 275
@@ -583,6 +640,14 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 170
 msgid "Import from XML"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 50
+msgid "Initial computing method"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 48
+msgid "Input"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 250
@@ -669,6 +734,10 @@ msgstr ""
 msgid "Modelica initialize"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 23
+msgid "Modelica settings"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 253
 msgid "Move Down"
 msgstr ""
@@ -721,8 +790,16 @@ msgstr ""
 msgid "Palettes"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 51
+msgid "Parameter embedding"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 239
 msgid "Per block execution trace and Debug block calls"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 65
+msgid "Please take a look into the Scilab console"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 133
@@ -750,8 +827,20 @@ msgstr ""
 msgid "Recent Files"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 57
+msgid "Reduced"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 54
 msgid "Region to superblock"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 61
+msgid "Relaxed parameters"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 63
+msgid "Relaxed variables"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 57
@@ -798,7 +887,7 @@ msgstr ""
 msgid "Scicos file"
 msgstr ""
 #
-# File: sci_gateway/c/gw_xcos.c, line: 48
+# File: sci_gateway/c/gw_xcos.c, line: 50
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
@@ -862,6 +951,14 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 132
 msgid "Sinks"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 40
+msgid "Solve"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 49
+msgid "Solver"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 210
@@ -950,25 +1047,25 @@ msgstr ""
 msgid "Unable to load block from %s ."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 73
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 74
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 69
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 70
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 67
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 68
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 71
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 72
 msgid "Unable to load the native HDF5 library."
 msgstr ""
 #
@@ -984,6 +1081,14 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 161
 msgid "Unknown Diagram Version : "
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 56
+msgid "Unknowns"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 55
+msgid "Unknowns not equals to Equations"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 34
@@ -1084,10 +1189,64 @@ msgstr ""
 msgid "Zero crossing detection"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 34
+msgid "comment"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 180
 msgid "control port must be connected to command port"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 28
+msgid "fixed"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 26
+msgid "id"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 29
+msgid "initial"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 27
+msgid "kind"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 52
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 31
+msgid "max"
+msgstr ""
+#
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 213
 msgid "maximum step size (0 means no limit)"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 32
+msgid "min"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 41
+msgid "model is not valid"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 25
+msgid "name"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 33
+msgid "nominal"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 35
+msgid "selected"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 30
+msgid "weight"
 msgstr ""
