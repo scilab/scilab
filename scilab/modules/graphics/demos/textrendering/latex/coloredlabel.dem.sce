@@ -3,24 +3,31 @@
 //
 // This file is released into the public domain
 
-my_handle             = scf(100001);
-clf(my_handle,"reset");
-demo_viewCode("coloredlabel.dem.sce");
+function demo_coloredlabel()
 
-// DEMO START
+  my_handle             = scf(100001);
+  clf(my_handle,"reset");
+  demo_viewCode("coloredlabel.dem.sce");
 
-x1 = -2:0.1:2;
-x2 = -1:0.1:1;
+  // DEMO START
 
-plot2d(x1,2/sqrt(%pi)*exp(-x1.^2));
-xpoly([-1 x2 1],[0 2/sqrt(%pi)*exp(-x2.^2) 0],"lines",1);
-p=get("hdl");
-p.polyline_style = 5;
-p.foreground = 20;
+  x1 = -2:0.1:2;
+  x2 = -1:0.1:1;
 
-xtitle("$\textstyle\mbox{Graph of }f:t\in[-2;2]\longmapsto\frac2{\sqrt\pi}\mathrm{e}^{-t^2}\in\mathbb{R}$","$t$")
+  plot2d(x1,2/sqrt(%pi)*exp(-x1.^2));
+  xpoly([-1 x2 1],[0 2/sqrt(%pi)*exp(-x2.^2) 0],"lines",1);
+  p=get("hdl");
+  p.polyline_style = 5;
+  p.foreground = 20;
 
-xstring(-0.55,0.2,"$\fcolorbox{black}{Tan}{\frac2{\sqrt\pi}\int_{-1}^{1}\mathrm{e}^{-t^2}\,\mathrm{d}t\approx"+string(erf(1)-erf(-1))+"}$");
+  xtitle("$\textstyle\mbox{Graph of }f:t\in[-2;2]\longmapsto\frac2{\sqrt\pi}\mathrm{e}^{-t^2}\in\mathbb{R}$","$t$")
 
-xstring(1.8,0.04,"$\mathscr{C}_f$");
-// DEMO END
+  xstring(-0.55,0.2,"$\fcolorbox{black}{Tan}{\frac2{\sqrt\pi}\int_{-1}^{1}\mathrm{e}^{-t^2}\,\mathrm{d}t\approx"+string(erf(1)-erf(-1))+"}$");
+
+  xstring(1.8,0.04,"$\mathscr{C}_f$");
+  // DEMO END
+  
+endfunction  
+
+demo_coloredlabel();
+clear demo_coloredlabel;

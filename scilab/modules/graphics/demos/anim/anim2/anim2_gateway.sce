@@ -9,7 +9,4 @@
 // Demonstrate animation based on the evolution of a 3d curve
 // =============================================================================
 
-//demo_begin();
-//demo_message("SCI/modules/graphics/demos/anim/anim2/anim2.sce");
 demo_run("SCI/modules/graphics/demos/anim/anim2/anim2.sce");
-//demo_end();

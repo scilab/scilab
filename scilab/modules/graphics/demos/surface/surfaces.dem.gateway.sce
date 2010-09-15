@@ -4,7 +4,6 @@
 // This file is released into the public domain
 
 demopath = get_absolute_file_path("surfaces.dem.gateway.sce");
-exec(demopath+"/Macros.sci",-1);
 
 subdemolist=["Surface with holes 1"    , "hole3d.sce"   ; ..
              "Surface with holes 2"    , "hole3d1.sce"  ; ..
@@ -20,3 +19,4 @@ subdemolist=["Surface with holes 1"    , "hole3d.sce"   ; ..
              "Riemann surface (n=2)"   , "cplxroot.sce" ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

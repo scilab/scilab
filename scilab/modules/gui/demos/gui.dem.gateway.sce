@@ -16,3 +16,4 @@ end
 subdemolist = [ subdemolist ; "Uicontrols with LaTeX/MathML" ,  "uicontrol_LaTeX.dem.sce" ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

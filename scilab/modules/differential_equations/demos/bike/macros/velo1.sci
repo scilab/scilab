@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) DIGITEO - 2010 - Allan CORNET
 //
 // This file is distributed under the same license as the Scilab package.
 //
@@ -24,7 +25,7 @@ function []=velo1()
   curAxe.rotation_angles = [82,-3];
   curAxe.title.text      = _("bike simulation, stable trajectory")
   curAxe.title.font_size = 3;
-  
+
   // The floor
   xfpoly([xmin xmax xmax xmin xmin],[ymin ymin ymax ymax ymin])
   e=gce();
@@ -46,7 +47,7 @@ function []=velo1()
   drawnow()
 
   // animation
-  if ~isdef('velo_rti') then   velo_rti=0.05;end 
+  if ~isdef('velo_rti') then   velo_rti=0.05;end
   realtimeinit(velo_rti);
   realtime(0)
 
@@ -54,16 +55,32 @@ function []=velo1()
   show_pixmap();
 
   for i=2:1:n2
-    
+
     realtime(i);
+
+    if ~is_handle_valid(curAxe) then
+      break;
+    end
+
     drawlater();
-    e1.data     = [xfrontar(:,i) yfrontar(:,i) zfrontar(:,i)];
-    e2.data     = [xrearar(:,i)  yrearar(:,i)  zrearar(:,i) ];
-    e3.data     = [xf(:,i) yf(:,i) zf(:,i)];
-    erear.data  = [erear.data;
-		   xprear(1,i),xprear(2,i),xprear(3,i)];
-//    efront.data = [efront.data;
-//		   xpfront(1,i),xpfront(2,i),xpfront(3,i)];
+
+    if is_handle_valid(e1) then
+      e1.data     = [xfrontar(:,i) yfrontar(:,i) zfrontar(:,i)];
+    end
+
+    if is_handle_valid(e2) then
+      e2.data     = [xrearar(:,i)  yrearar(:,i)  zrearar(:,i) ];
+    end
+
+    if is_handle_valid(e3) then
+      e3.data     = [xf(:,i) yf(:,i) zf(:,i)];
+    end
+
+    if is_handle_valid(erear) then
+      erear.data  = [erear.data;
+           xprear(1,i),xprear(2,i),xprear(3,i)];
+    end
+
     drawnow();
 
   end

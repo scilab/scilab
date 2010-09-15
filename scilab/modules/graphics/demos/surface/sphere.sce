@@ -11,6 +11,8 @@
 
 function sphere()
 
+    exec("SCI/modules/graphics/demos/surface/Macros.sci",-1);
+
     u = linspace(-%pi/2,%pi/2,40);
     v = linspace(0,2*%pi,20);
     x = cos(u)'*cos(v);

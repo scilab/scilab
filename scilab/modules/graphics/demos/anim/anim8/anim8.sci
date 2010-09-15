@@ -23,9 +23,7 @@ function demo_riemann()
 
   // Add "see code" menu item
   // =========================================================================
-  f = mopen("SCI/modules/graphics/demos/anim/anim8/anim8.sci", "rt");
-  demo_viewCode("anim8.sci");
-  mclose(f);
+  demo_viewCode("SCI/modules/graphics/demos/anim/anim8/anim8.sci");
 
   // Drawlater
   // =========================================================================
@@ -145,6 +143,7 @@ function demo_riemann()
       quit_var = 1;    
     end
   end
+  
   
 endfunction
 

@@ -16,3 +16,4 @@ subdemolist=[                                                                   
     "Pie Chart"                                        ,"basic_functions_8.dem.sce" ]
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

@@ -8,3 +8,4 @@ demopath = get_absolute_file_path("polynomials.dem.gateway.sce");
 subdemolist = ["Introduction"             , "intro/poly.intro.dem.sce" ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2)
+clear demopath;

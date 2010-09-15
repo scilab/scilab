@@ -16,3 +16,4 @@ subdemolist = ["binomial random variable"        ,"binomial.dem.sce"      ; ..
                "Erlang random variable"          ,"erlang.dem.sce"        ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;
