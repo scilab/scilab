@@ -135,8 +135,14 @@ void Objpoly ( double  * x     ,
   pFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();
 
+  /*
+   * Deactivated for now as it involves the renderer module
+   * To be implemented
+   */
+#if 0
+  checkRedrawing();
+#endif
 
-  checkRedrawing() ;
   if (mark <= 0)
     {
       int absmark = abs(mark);
@@ -148,6 +154,8 @@ void Objpoly ( double  * x     ,
       pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
 	                       &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
     }
+
+  /* pobj may be NULL, however this is not tested at all */
   sciSetCurrentObj(pobj);
    *hdl=sciGetHandle(pobj);
 }

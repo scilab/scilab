@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,6 +27,11 @@
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )
 {
@@ -33,6 +39,10 @@ int sci_xpoly( char * fname, unsigned long fname_len )
 
   long hdl;/* NG */
   int mark;/* NG */
+  int markMode;
+  int lineMode;
+  int foreground;
+  int* tmp;
   sciPointObj * pobj    = NULL ;
   sciPointObj * psubwin = NULL ;
   sciPointObj * pFigure = NULL;
@@ -64,35 +74,70 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   if (Rhs >= 4) { GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (int)  *stk(l4);} 
   /* NG beg */
 
-  
+  /* Deactivated for now (synchronization) */
+#if 0
   startGraphicDataWriting();
+#endif
+
   pFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();
-  endGraphicDataWriting();
 
-  
+  /* Deactivated for now (synchronization) */
+#if 0
+  endGraphicDataWriting();
+#endif
+
   Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
+
   pobj = sciGetCurrentObj(); /* the polyline newly created */
+
+  /* Deactivated for now (synchronization) */
+#if 0
   startFigureDataWriting(pFigure);
-  if(mark == 0){ 
+#endif
+
+  /*
+   * The contour properties set calls below were
+   * already present and have been updated for the MVC.
+   */
+  if(mark == 0){
     /* marks are enabled but markstyle & foreground 
     is determined by parents' markstyle & foreground */
-    sciSetIsMark(pobj, TRUE);
-    sciSetIsLine(pobj,FALSE);
-    sciSetMarkStyle (pobj,sciGetMarkStyle(psubwin));
-    sciSetForeground (pobj, sciGetForeground (psubwin));
+
+    markMode = 1;
+    lineMode = 0;
+
+    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_MARK_STYLE__, jni_int);
+    sciInitMarkStyle(pobj, *tmp);
   }
   else{
-    sciSetIsMark(pobj, FALSE);
-    sciSetIsLine(pobj, TRUE);
-    sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
-    sciSetForeground (pobj, sciGetForeground (psubwin));
+    markMode = 0;
+    lineMode = 1;
+
+    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_LINE_STYLE__, jni_int);
+    sciInitLineStyle(pobj, *tmp);
   }
+
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int);
+  foreground = *tmp;
+
+  setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+
+  setGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+  setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+
+
+ /*
+  * Deactivated for now as it performs drawing operations
+  * To be implemented
+  */
+#if 0
   endFigureDataWriting(pFigure);
 
   startFigureDataReading(pFigure);
   sciDrawObjIfRequired(pobj);
   endFigureDataReading(pFigure);
+#endif
 
   /* NG end */
   LhsVar(1)=0;

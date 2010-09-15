@@ -6,6 +6,7 @@
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -51,7 +52,9 @@
 #include "Scierror.h"
 
 #include "createGraphicObject.h"
+#include "deleteGraphicObject.h"
 #include "returnType.h"
+#include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
@@ -925,9 +928,25 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
                                BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
   sciPointObj * pobj = NULL;
-  sciPolyline * ppPoly = NULL;
   int i = 0;
-  if (sciGetEntityType (pparentsubwin) != SCI_SUBWIN)
+  BOOL result;
+  char* type;
+  char* polylineID;
+  double barWidth;
+  double arrowSizeFactor;
+  double* clipRegion;
+  double* dataVector;
+  int clipState;
+  int lineClosed;
+  int numElementsArray[2];
+  int polylineStyle;
+  int visible;
+  int zCoordinatesSet;
+  int* tmp;
+
+  type = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+
+  if (strcmp(type, __GO_AXES__) != 0)
   {
     Scierror(999, _("The parent has to be a SUBWIN\n"));
     return (sciPointObj *) NULL;
@@ -937,105 +956,187 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   {
     return NULL;
   }
-  sciSetEntityType (pobj, SCI_POLYLINE);
-  if ((pobj->pfeatures = MALLOC ((sizeof (sciPolyline)))) == NULL)
+
+  pobj->UID = (char*) createGraphicObject(__GO_POLYLINE__);
+
+  polylineID = (char*) createDataObject(pobj->UID, __GO_POLYLINE__);
+
+  if (polylineID == NULL)
   {
     FREE(pobj);
-    return (sciPointObj *) NULL;
+    deleteGraphicObject(pobj->UID);
+    return (sciPointObj*) NULL;
   }
 
-	/* Create the default relationShip */
-	createDefaultRelationShip(pobj);
+  /* To be deleted */
+#if 0
+  /* Create the default relationShip */
+  createDefaultRelationShip(pobj);
+#endif
 
-  sciSetParent( pobj, pparentsubwin ) ;
+  /* To be deleted */
+  /* To be implemented within the MVC */
+#if 0
+  sciSetParent( pobj, pparentsubwin );
+#endif
 
-  pPOLYLINE_FEATURE (pobj)->x_shift = (double *) NULL;
-  pPOLYLINE_FEATURE (pobj)->y_shift = (double *) NULL;
-  pPOLYLINE_FEATURE (pobj)->z_shift = (double *) NULL;
-  pPOLYLINE_FEATURE (pobj)->bar_width = 0.;
+  barWidth = 0.0;
+  setGraphicObjectProperty(pobj->UID, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);
 
+  /* To be implemented */
+#if 0
   pPOLYLINE_FEATURE (pobj)->callback = (char *)NULL;
   pPOLYLINE_FEATURE (pobj)->callbacklen = 0;
   pPOLYLINE_FEATURE (pobj)->callbackevent = 100;
-  pPOLYLINE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+#endif
 
+  tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
+  visible = *tmp;
+
+  setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+
+
+  /* To be deleted, see the MVC corresponding calls below */
+#if 0
   pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
   sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
   sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+#endif
+
+  /* Clip state and region */
+  /* To be checked for consistency */
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, jni_int);
+  clipState = *tmp;
+
+  setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+  clipRegion = (double*) getGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, jni_double_vector);
+  setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
 
-  pPOLYLINE_FEATURE (pobj)->arsize_factor = 1;
+  arrowSizeFactor = 1.0;
+  setGraphicObjectProperty(pobj->UID, __GO_ARROW_SIZE_FACTOR__, &arrowSizeFactor, jni_double, 1);
 
+  /* To be implemented */
+#if 0
   pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
-  ppPoly = pPOLYLINE_FEATURE (pobj);
+#endif
 
+
+  /*
+   * First element: number of gons (always 1 for a Polyline)
+   * Second one: number of vertices composing the Polyline
+   */
+  numElementsArray[0] = 1;
+  numElementsArray[1] = n1;
+
+  /* Data */
   if ( n1 != 0 )
   {
-    if ((ppPoly->pvx = MALLOC (n1 * sizeof (double))) == NULL)
+    /*
+     * Sets the number of elements (vertices composing the polyline) and allocates the coordinates array
+     * The FALSE value is used to identify a failed memory allocation for now.
+     */
+    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
+
+    if (result == FALSE)
     {
-      FREE(pPOLYLINE_FEATURE(pobj));
-      FREE(pobj);
-      return (sciPointObj *) NULL;
+        FREE(pobj);
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        return (sciPointObj *) NULL;
     }
 
-    if ((ppPoly->pvy = MALLOC (n1 * sizeof (double))) == NULL)
+    dataVector = MALLOC(3*n1*sizeof(double));
+
+    if (dataVector == NULL)
     {
-      FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-      FREE(pPOLYLINE_FEATURE(pobj));
-      FREE(pobj);
-      return (sciPointObj *) NULL;
+        FREE(pobj);
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        return (sciPointObj *) NULL;
     }
 
     if ((pvecx != (double *)NULL)&&(pvecy != (double *)NULL))
     {
-      for (i = 0; i < n1; i++)
-      {
-        ppPoly->pvx[i] = pvecx[i] ;
-        ppPoly->pvy[i] = pvecy[i] ;
-      }
+        for (i = 0; i < n1; i++)
+        {
+            dataVector[i] = pvecx[i];
+            dataVector[n1+i] = pvecy[i];
+        }
     }
     else
     {
-      for (i = 0; i < n1; i++)
-      {
-        ppPoly->pvx[i] = 0.0;
-        ppPoly->pvy[i] = 0.0;
-      }
+        for (i = 0; i < n1; i++)
+        {
+            dataVector[i] = 0.0;
+            dataVector[n1+i] = 0.0;
+        }
     }
-
 
     /**DJ.Abdemouche 2003**/
     if (pvecz == NULL)
     {
-      pPOLYLINE_FEATURE (pobj)->pvz = NULL;
+        for (i = 0; i < n1; i++)
+        {
+            dataVector[2*n1+i] = 0.0;
+        }
+
+        zCoordinatesSet = 0;
     }
     else
     {
-      if ((ppPoly->pvz = MALLOC (n1 * sizeof (double))) == NULL)
-      {
-        FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-        FREE(pPOLYLINE_FEATURE (pobj)->pvy);
-        FREE(pPOLYLINE_FEATURE(pobj));
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-      }
-      for (i = 0; i < n1; i++)
-      {
-        ppPoly->pvz[i] = pvecz[i];
-      }
+        for (i = 0; i < n1; i++)
+        {
+            dataVector[2*n1+i] = pvecz[i];
+        }
+
+        zCoordinatesSet = 1;
     }
+
+    /*
+     * We could probably do without the dataVector copy by individually setting
+     * x, y or z coordinates, and initializing coordinates to 0 during allocation
+     * to ensure consistency
+     */
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COORDINATES__, dataVector, jni_double, n1);
+
+    FREE(dataVector);
+
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_double, n1);
   }
   else
   {
-    ppPoly->pvx = NULL ;
-    ppPoly->pvy = NULL ;
-    ppPoly->pvz = NULL ;
+      /* 0 points */
+      result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
+
+      if (result == FALSE)
+      {
+          FREE(pobj);
+          deleteGraphicObject(pobj->UID);
+          deleteDataObject(pobj->UID);
+          return (sciPointObj *) NULL;
+      }
   }
 
-  ppPoly->n1 = n1;	  /* memorisation du nombre de points */
-  ppPoly->closed = (closed > 0) ? 1 : 0;
-  ppPoly->plot = plot;
+  if (closed > 0)
+  {
+      lineClosed = 1;
+  }
+  else
+  {
+      lineClosed = 0;
+  }
 
+  setGraphicObjectProperty(pobj->UID, __GO_CLOSED__, &lineClosed, jni_bool, 1);
+  setGraphicObjectProperty(pobj->UID, __GO_POLYLINE_STYLE__, &plot, jni_int, 1);
+
+  /*
+   * InitGraphicContext initializes the contour properties (background, foreground, etc)
+   * to the default values
+   * Commented out until implemented within the MVC
+   */
+#if 0
   if (sciInitGraphicContext (pobj) == -1)
   {
     FREE(pPOLYLINE_FEATURE (pobj)->pvy);
@@ -1044,63 +1145,101 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
     FREE(pobj);
     return (sciPointObj *) NULL;
   }
+#endif
 
   /* colors and marks setting */
-  sciInitIsMark(pobj,ismark);
-  sciInitIsLine(pobj,isline);
-  sciInitIsFilled(pobj,isfilled);
-  /*       sciSetIsInterpShaded(pobj,isinterpshaded); */
+  setGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, &ismark, jni_bool, 1);
+  setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &isline, jni_bool, 1);
+  setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
 
-  ppPoly->isinterpshaded = isinterpshaded; /* set the isinterpshaded mode */
+  /* shading interpolation vector and mode */ 
+  setGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_MODE__, &isinterpshaded, jni_bool, 1);
 
   if(foreground != NULL)
   {
-    sciInitForeground(pobj,(*foreground));
+      setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, foreground, jni_int, 1);
+
+      /* To be fully implemented within the MVC framework since it performs color range checks */
+#if 0
+      sciInitForeground(pobj,(*foreground));
+#endif
   }
 
-  ppPoly->scvector = (int *) NULL;
-
   if(background != NULL){
-    if(isinterpshaded == TRUE)
-		{ /* 3 or 4 values to store */
+      if(isinterpshaded == TRUE)
+      { /* 3 or 4 values to store */
 
-      sciSetInterpVector(pobj,n1,background);
-    }
-    else
-		{
-      sciInitBackground(pobj,(*background));
-		}
+          setGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_VECTOR__, background, jni_int_vector, n1);
+
+          /* To be deleted */
+#if 0
+          sciSetInterpVector(pobj,n1,background);
+#endif
+      }
+      else
+      {
+          setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, background, jni_int, 1);
+
+    /* To be fully implemented within the MVC framework since it performs color range checks */
+#if 0
+          sciInitBackground(pobj,(*background));
+#endif
+      }
   }
 
   if(mark_style != NULL)
-	{
-    sciInitMarkStyle(pobj,(*mark_style));
-	}
+  {
+      /* This does use the MVC */
+      sciInitMarkStyle(pobj,(*mark_style));
+  }
 
   if(mark_foreground != NULL)
   {
+    setGraphicObjectProperty(pobj->UID, __GO_MARK_FOREGROUND__, mark_foreground, jni_int, 1);
+
+    /* To be fully implemented within the MVC framework since it performs color range checks */
+#if 0
     sciInitMarkForeground(pobj,(*mark_foreground));
+#endif
   }
 
   if(mark_background != NULL)
   {
+    setGraphicObjectProperty(pobj->UID, __GO_MARK_BACKGROUND__, mark_background, jni_int, 1);
+
+    /* To be fully implemented within the MVC framework since it performs color range checks */
+#if 0
     sciInitMarkBackground(pobj,(*mark_background));
+#endif
   }
 
   /* no sons for now */
+  /* To be deleted */
+#if 0
   sciInitSelectedSons( pobj ) ;
 
   sciGetRelationship(pobj)->psons        = NULL ;
   sciGetRelationship(pobj)->plastsons    = NULL ;
   sciGetRelationship(pobj)->pSelectedSon = NULL ;
+#endif
 
-  sciInitVisibility( pobj, TRUE ) ;
+  visible = 1;
+  setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
+  /*
+   * Deactivated for now since not fully implemented yet by the MVC
+   * To be implemented
+   */
+#if 0
   initUserData(pobj);
+#endif
 
+  /*
+   * To be deleted
+   */
   pobj->pObservers = NULL;
 
-  pobj->pDrawer = NULL ;
+  pobj->pDrawer = NULL;
 
   return pobj;
 
@@ -1125,11 +1264,28 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
   }
 
   /* allocatePolyline created a "fake" relationship, destroy it */
+  /*
+   * Deactivated since the sciPolyline struct is not used anymore
+   * and sciStandardBuildOperations uses the obsolete C hierarchical
+   * relationships.
+   * The operations still relevant are performed below
+   * (sciStandardBuildOperations should be updated as to include them).
+   */
+#if 0
   FREE(pobj->relationShip);
 
   if (sciStandardBuildOperations(pobj, pparentsubwin) == NULL)
   {
     FREE(pobj->pfeatures);
+    FREE(pobj);
+    return NULL;
+  }
+#endif
+
+  if (sciAddNewHandle(pobj) == -1)
+  {
+    deleteGraphicObject(pobj->UID);
+    deleteDataObject(pobj->UID);
     FREE(pobj);
     return NULL;
   }
