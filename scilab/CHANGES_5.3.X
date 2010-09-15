@@ -13,11 +13,11 @@ Xcos:
 
 * bug 7219 fixed - The old gain demo did not work.
 
-* bug 7770 fixed - It was not possible to compile a diagram with Modelica
-                   blocks.
-
 * bug 7445 fixed - The Kalman filter and the Cont-Plant-Hybrid-Observer demos
                    did not simulate.
+
+* bug 7716 fixed - Block inter-functions were not loaded after using the 
+                   xcosPal API and then starting Xcos.
 
 * bug 7770 fixed - It was not possible to compile a diagram with Modelica
                    blocks.

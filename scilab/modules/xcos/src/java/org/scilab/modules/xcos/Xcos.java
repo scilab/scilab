@@ -110,9 +110,6 @@ public final class Xcos {
 			LOG.error(e);
 		}
 		
-		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadScicosLibs();");
-		
 		/* Check the dependencies at startup time */
 		checkDependencies();
 		
@@ -410,6 +407,9 @@ public final class Xcos {
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos() {
 		final Xcos instance = getInstance();
+		
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec("loadScicosLibs();");
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -431,6 +431,9 @@ public final class Xcos {
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos(final String fileName) {
 		final File filename = new File(fileName);
+		
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec("loadScicosLibs();");
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
