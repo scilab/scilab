@@ -5,6 +5,7 @@
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -59,6 +60,7 @@
 
 #include "CallFigure.h"
 
+#include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
@@ -2192,6 +2194,7 @@ sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin)
 int
 sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 {
+  char* type;
   int i,n1,k,k1,k2;
   double * pvx  = NULL ;
   double * pvy  = NULL ;
@@ -2201,88 +2204,80 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
   double * pvfz = NULL ;
   int * pstyle = NULL;
 
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_POLYLINE:
-      n1=pPOLYLINE_FEATURE (pthis)->n1;
+  type = (char*) getGraphicObjectProperty(pthis->UID, __GO_TYPE__, jni_string);
+
+  /*
+   * switch over sciGetEntityType replaced by object type string comparisons
+   * Still required as we have no better way to do this for the moment
+   */
+  if (strcmp(type, __GO_POLYLINE__) == 0)
+  {
+      BOOL result;
+      int numElementsArray[2];
+      int zCoordinatesSet;
+
       if ( (*numcol != 3) && (*numcol != 2) && (*numcol != 0) )
-	{
+      {
 	  Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
 	  return -1;
-	}
-      if (*numrow != n1) /* SS 30/1/02 */
+      }
+
+      /*
+       * The coordinates array is re-allocated (if required) within the data model, testing whether
+       * the new number of points is different in order to free/re-allocate is not needed anymore.
+       * The 0-element array case is managed by the data model as well.
+       */
+
+      if (*numcol == 0)
       {
-
-        FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
-        FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
-        FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
-
-        n1=*numrow;
-
-        if ( *numcol > 0 )
-        {
-          if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL)
-          {
-            FREE(pvx); pvx = (double *) NULL;
-	    return -1;
-	  }
-	  if (*numcol == 3)
-          {
-            if ((pvz = MALLOC (n1 * sizeof (double))) == NULL)
-            {
-              FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-              return -1;
-            }
-          }
-
-	  for ( i = 0 ; i < *numrow ; i++ )
-	  {
-	    pvx[i] = tab[i];
-	    pvy[i] = tab[i+ (*numrow)];
-            if (*numcol == 3)
-            {
-	      pvz[i] = tab[i+ 2*(*numrow)];
-            }
-          }
-	  pPOLYLINE_FEATURE (pthis)->pvx=pvx;
-	  pPOLYLINE_FEATURE (pthis)->pvy=pvy;
-          pPOLYLINE_FEATURE (pthis)->pvz=pvz;
-        }
-
-        pPOLYLINE_FEATURE (pthis)->n1 = n1 ;
-
+          n1 = 0;
       }
       else
-	{
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pPOLYLINE_FEATURE (pthis)->pvx[i] = tab[i];
-	      pPOLYLINE_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
-	    }
-	  if (*numcol == 3)
-	    {
-	      if(pPOLYLINE_FEATURE (pthis)->pvz==NULL)
-		if ((pPOLYLINE_FEATURE (pthis)->pvz = MALLOC ((*numrow) * sizeof (double))) == NULL)
-		  return -1;
+      {
+          n1 = *numrow;
+      }
 
-	      for (i=0;i < *numrow;i++)
-		pPOLYLINE_FEATURE (pthis)->pvz[i] = tab[i+ 2*(*numrow)];
-	    }
-	  else
-	    {
-	      FREE(pPOLYLINE_FEATURE (pthis)->pvz);
-	      pPOLYLINE_FEATURE (pthis)->pvz=NULL;
-	    }
-	}
+      /* The first element must be equal to 1 for a Polyline, the second is the polyline's number of vertices */
+      numElementsArray[0] = 1;
+      numElementsArray[1] = n1;
 
+      /* Resizes the data coordinates array if required */
+      result = setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
 
+      /*
+       * For now, the FALSE return value corresponds to a failed memory allocation,
+       * which does not allow to discriminate between the failed allocation and non-existing
+       * property conditions.
+       */
+      if (result == FALSE)
+      {
+	  Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+          return -1;
+      }
+
+      if ( *numcol > 0 )
+      {
+          setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_X__, tab, jni_double_vector, n1);
+          setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Y__, &tab[n1], jni_double_vector, n1);
+
+          if (*numcol == 3)
+          {
+              setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, &tab[2*n1], jni_double_vector, n1);
+              zCoordinatesSet = 1;
+          }
+          else
+          {
+              zCoordinatesSet = 0;
+          }
+
+          /* Required for now to indicate that the z coordinates have been set or not */
+          setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
+      }
 
       return 0;
-      break;
-    case SCI_RECTANGLE:
-    {
+  }
+  else if (strcmp(type, __GO_RECTANGLE__) == 0)
+  {
       int widthIndex = 2 ;
       int size = *numrow * *numcol ;
       if ( size != 5 && size != 4 )
@@ -2310,9 +2305,9 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       pRECTANGLE_FEATURE (pthis)->height = tab[widthIndex + 1] ;
 
       return 0;
-    }
-    break;
-    case SCI_ARC:
+  }
+  else if (strcmp(type, __GO_ARC__) == 0)
+  {
       if ((*numrow * *numcol != 7)&&(*numrow * *numcol != 6))
 	{
 	  Scierror(999, _("Number of elements must be %d (%d if z coordinate )\n"),6,7);
@@ -2337,8 +2332,9 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  pARC_FEATURE (pthis)->alphaend   = DEG2RAD(tab[5]);
 	}
       return 0;
-      break;
-    case SCI_TEXT:
+  }
+  else if (strcmp(type, __GO_TEXT__) == 0)
+  {
       if ((*numrow * *numcol != 2)&&(*numrow * *numcol != 3))
 	{
 	  Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),2,3,"z");
@@ -2349,8 +2345,9 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
 	pTEXT_FEATURE (pthis)->z = tab[2];
       return 0;
-      break;
-    case SCI_SEGS:
+  }
+  else if (strcmp(type, __GO_SEGS__) == 0)
+  {
       if (pSEGS_FEATURE (pthis)->ptype <= 0) {
 	if ((*numcol != 3)&&(*numcol != 2)) {
 	  Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
@@ -2505,14 +2502,21 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	}
       }
       return 0;
-      break;
-
-
-    case SCI_SURFACE:/* DJ.A 2003 */
+  }
+  /* DJ.A 2003 */
+  /* SCI_SURFACE has been replaced by the MVC's FAC3D and PLOT3D */
+  else if (strcmp(type, __GO_FAC3D__) == 0)
+  {
       Scierror(999, _("Unhandled data field\n"));
       return -1;
-      break;
-    case SCI_GRAYPLOT:
+  }
+  else if (strcmp(type, __GO_PLOT3D__) == 0)
+  {
+      Scierror(999, _("Unhandled data field\n"));
+      return -1;
+  }
+  else if (strcmp(type, __GO_GRAYPLOT__) == 0)
+  {
       if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
 	double *pvecx,*pvecy,*pvecz;
 	int nx,ny;
@@ -2561,9 +2565,9 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	pGRAYPLOT_FEATURE (pthis)->ny=ny+1;
 	pGRAYPLOT_FEATURE (pthis)->nx=nx+1;
       }
-      break;
-    case SCI_FEC:
-      {
+  }
+  else if (strcmp(type, __GO_FEC__) == 0)
+    {
 	double *pvecx,*pvecy,*pfun;
 	int Nnode;
 	if (*numcol != 3) {
@@ -2592,20 +2596,51 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  pFEC_FEATURE (pthis)->pvecy[i]=tab[Nnode+i];
 	  pFEC_FEATURE (pthis)->pfun[i]=tab[2*Nnode+i];
 	}
-      }
-      break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_LEGEND:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
+    }
+  else if (strcmp(type, __GO_FIGURE__) == 0)
+  {
       printSetGetErrorMessage("data");
       return -1;
-      break;
-    }
+  }
+  else if (strcmp(type, __GO_AXES__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  else if (strcmp(type, __GO_LEGEND__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  else if (strcmp(type, __GO_AXIS__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  else if (strcmp(type, __GO_COMPOUND__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  /* F.Leray 28.05.04 */
+  else if (strcmp(type, __GO_LABEL__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  /*
+   * Deactivated for now
+   * Same condition as the default one
+   */
+#if 0
+    case SCI_UIMENU:
+#endif
+  else
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+
   return 0;
 }
 

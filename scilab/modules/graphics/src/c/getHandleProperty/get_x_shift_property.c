@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,26 +25,34 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_x_shift_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) == SCI_POLYLINE )
-  {
-    sciPolyline *  ppolyline = pPOLYLINE_FEATURE (pobj);
+    double* shiftCoordinates;
+    int* tmp;
 
-    if( ppolyline->x_shift ==  NULL )
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, jni_int);
+
+    if (tmp == NULL)
     {
-      return sciReturnEmptyMatrix() ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_shift");
+        return -1;
+    }
+
+    if (*tmp == 0)
+    {
+        return sciReturnEmptyMatrix();
     }
     else
     {
-      return sciReturnRowVector( ppolyline->x_shift, ppolyline->n1 ) ;
+        shiftCoordinates = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, jni_double_vector);
+        tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int);
+
+        return sciReturnRowVector(shiftCoordinates, *tmp);
     }
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_shift") ;
-    return -1 ;
-  }
 }
 /*------------------------------------------------------------------------*/

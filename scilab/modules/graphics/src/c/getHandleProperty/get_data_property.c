@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -154,6 +155,12 @@ int get3ddata(sciPointObj *pobj)
   return 0;
 }
 /*------------------------------------------------------------------------*/
+/*
+ * This version of get_data_property corresponds to the first data model
+ * implementation (now obsolete)
+ * To be deleted
+ */
+#if 0
 int get_data_property( sciPointObj * pobj )
 {
     double *pdblData = getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COORDINATES__, jni_double);
@@ -167,21 +174,30 @@ int get_data_property( sciPointObj * pobj )
     return sciReturnDouble(*pdblData);
 
 }
+#endif
 
+/*
+ * This version of get_data_property allows to get data from the data model.
+ * It currently only works for a Polyline object.
+ */
 
-#if 0
 int get_data_property( sciPointObj * pobj )
 {
 
-  if ( sciGetEntityType( pobj ) == SCI_SURFACE )
+  /*
+   * 0 values put within the conditional expressions to prevent calling sciGetEntityType
+   * The last else block allows to get Polyline data (via sciGetPoint)
+   * To be implemented with string comparisons using the GO_TYPE property (see the sciGetPoint function)
+   */
+  if (0 &&  sciGetEntityType( pobj ) == SCI_SURFACE )
   {
     return get3ddata( pobj ) ;
   }
-  else if ( (sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1) )
+  else if (0 &&  (sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1) )
   {
     return getchampdata( pobj ) ;
   }
-  else if ( (sciGetEntityType(pobj) == SCI_GRAYPLOT)  && (pGRAYPLOT_FEATURE(pobj)->type == 0) ) /* case 0: real grayplot */
+  else if (0 &&  (sciGetEntityType(pobj) == SCI_GRAYPLOT)  && (pGRAYPLOT_FEATURE(pobj)->type == 0) ) /* case 0: real grayplot */
   {
     return getgrayplotdata( pobj ) ;
   }
@@ -220,5 +236,4 @@ int get_data_property( sciPointObj * pobj )
   }
 
 }
-#endif
 /*------------------------------------------------------------------------*/

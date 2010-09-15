@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -546,6 +547,11 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   return SET_PROPERTY_SUCCEED ;
 }
 /*--------------------------------------------------------------------------*/
+/*
+ * This function is now useless since the Polyline data model
+ * updates the x-shift coordinate array, if necessary, when polyline point coordinates are set.
+ * To be deleted.
+ */
 int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
 {
   sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
@@ -575,6 +581,11 @@ int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
   return SET_PROPERTY_SUCCEED ;
 }
 /*--------------------------------------------------------------------------*/
+/*
+ * This function is now useless since the Polyline data model
+ * updates the y-shift coordinate array, if necessary, when polyline point coordinates are set.
+ * To be deleted.
+ */
 int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
 {
   sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
@@ -604,6 +615,11 @@ int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
   return SET_PROPERTY_SUCCEED ;
 }
 /*--------------------------------------------------------------------------*/
+/*
+ * This function is now useless since the Polyline data model
+ * updates the z-shift coordinate array, if necessary, when polyline point coordinates are set.
+ * To be deleted.
+ */
 int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
 {
   sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
@@ -633,6 +649,12 @@ int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
   return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/
+/*
+ * This version of set_data_property corresponds to the first data model
+ * implementation (now obsolete)
+ * To be deleted
+ */
+#if 0
 int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     double *pdblValue = getDoubleMatrixFromStack(stackPointer);
@@ -645,12 +667,20 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 
     return SET_PROPERTY_SUCCEED;
 }
+#endif
 
-
-#if 0
+/*
+ * This version of set_data_property allows to set data within the data model.
+ * It currently only works for a Polyline object.
+ */
 int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-  if( sciGetEntityType(pobj) == SCI_SEGS && pSEGS_FEATURE(pobj)->ptype == 1 )
+  /*
+   * 0 values put within the conditional expressions to prevent calling sciGetEntityType
+   * The last else block allows to set Polyline data (via sciSetPoint)
+   * To be implemented with string comparisons using the GO_TYPE property (see the sciSetPoint function)
+   */
+  if(0 && sciGetEntityType(pobj) == SCI_SEGS && pSEGS_FEATURE(pobj)->ptype == 1 )
   {
     AssignedList * tlist = NULL ;
     int status = -1 ;
@@ -672,7 +702,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
     destroyAssignedList( tlist ) ;
     return status ;
   }
-  else if((sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
+  else if(0 && (sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
   {
     AssignedList * tlist = NULL ;
     int status = -1 ;
@@ -694,7 +724,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
     destroyAssignedList( tlist ) ;
     return status ;
   }
-  else if(sciGetEntityType(pobj) == SCI_SURFACE)
+  else if(0 && sciGetEntityType(pobj) == SCI_SURFACE)
   {
     AssignedList * tlist = NULL ;
     int status = -1 ;
@@ -740,17 +770,22 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
       return SET_PROPERTY_ERROR ;
     }
 
+    /*
+     * Deactivated, since the update of the shift coordinates arrays is now implemented within the data model
+     * To be deleted.
+     */
+#if 0
     if ( sciGetEntityType(pobj) == SCI_POLYLINE )
     {
       CheckAndUpdate_x_shift( pobj, nbRow ) ; /* used only on Polyline */
       CheckAndUpdate_y_shift( pobj, nbRow ) ; /* used only on Polyline */
       CheckAndUpdate_z_shift( pobj, nbRow ) ; /* used only on Polyline */
     }
+#endif
 
     return sciSetPoint( pobj, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
   }
   return SET_PROPERTY_ERROR ;
 
 }
-#endif
 /*------------------------------------------------------------------------*/

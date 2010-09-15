@@ -5,6 +5,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Serge Steer
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,6 +37,8 @@
 
 #include "MALLOC.h" /* MALLOC */
 
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 
 
 /**sciGetPointerToFeature
@@ -1926,12 +1929,20 @@ sciIsExistingSubWin (double WRect[4])
 /**MAJ pour le 3D DJ.Abdemouche 2003**/
 double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 {
+    char* type;
     double *tab;
     int i,k;
-    switch (sciGetEntityType (pthis))
+
+    type = (char*) getGraphicObjectProperty(pthis->UID, __GO_TYPE__, jni_string);
+
+//    switch (sciGetEntityType (pthis))
+
+    /*
+     * switch over sciGetEntityType replaced by object type string comparisons
+     * Required as we have no better way to do this for the moment
+     */
+    if (strcmp(type, __GO_FIGURE__) == 0)
     {
-    case SCI_FIGURE:
-        {
             int posX ;
             int posY ;
             *numrow = 2;
@@ -1948,20 +1959,63 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             tab[2] = (double)sciGetWidth (pthis);
             tab[3] = (double)sciGetHeight (pthis);
             return tab;
+    }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
+    {
+        double* dataX = NULL;
+        double* dataY = NULL;
+        double* dataZ = NULL;
+        int* tmp;
+        int view = 0;
+
+        /*
+         * Testing whether data properties exist for this object
+         * is currently done only for this property. The type comparison already
+         * ensure that this is the case, though doing so is awkward
+         */
+        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int);
+
+        if (tmp == NULL)
+        {
+            *numrow = -2;
+            *numcol = -2;
+            return NULL;
         }
-    case SCI_POLYLINE:
-        *numrow = pPOLYLINE_FEATURE (pthis)->n1;
-        *numcol=(pPOLYLINE_FEATURE (pthis)->pvz != NULL)? 3:2;
+
+        *numrow = *tmp;
+
+        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z_COORDINATES_SET__, jni_int);
+
+        if (*tmp)
+        {
+            *numcol = 3;
+        }
+        else
+        {
+            *numcol = 2;
+        }
 
         if ( (*numrow)*(*numcol) == 0 )
         {
             /* empty data, no warnings */
             *numrow = 0;
             *numcol = 0;
-            return NULL ;
+            return NULL;
         }
 
+        /*
+         * The is3d test must be corrected using the parent Axes' MVC GO_VIEW property,
+         * the view variable used within the condition is currently set to 0 (2D view)
+         * To be implemented when GetParentSubwin works
+         */
+#if 0
         if(*numcol==2 && pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
+#endif
+
+        dataX = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_X__, jni_double_vector);
+        dataY = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Y__, jni_double_vector);
+
+        if (*numcol == 2 && view)
         {
             *numcol = (*numcol)+1; /* colonne de 0. a prendre en compte / afficher => numcol+1*/
             if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
@@ -1970,10 +2024,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
                 *numcol = -1;
                 return NULL;
             }
+
             for ( i = 0 ; i < *numrow ; i++ )
             {
-                tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];
-                tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];
+                tab[i] = dataX[i];
+                tab[*numrow+i]= dataY[i];
                 tab[(2*(*numrow))+i]= 0.;
             }
         }
@@ -1985,19 +2040,27 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
                 *numcol = -1;
                 return NULL ;
             }
+
+            if (*numcol == 3)
+            {
+                dataZ = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, jni_double_vector);
+            }
+
             for ( i = 0 ; i < *numrow ; i++ )
             {
-                tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];
-                tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];
+                tab[i] = dataX[i];
+                tab[*numrow+i]= dataY[i];
                 if (*numcol== 3)
                 {
-                    tab[(2*(*numrow))+i] = pPOLYLINE_FEATURE (pthis)->pvz[i] ;
+                    tab[(2*(*numrow))+i] = dataZ[i];
                 }
             }
+
         }
         return tab;
-        break;
-    case SCI_RECTANGLE:
+    }
+    else if (strcmp(type, __GO_RECTANGLE__) == 0)
+    {
         *numrow = 1;
         *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 5: 4;
         if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
@@ -2020,8 +2083,9 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             tab[3] = pRECTANGLE_FEATURE (pthis)->height;
         }
         return (double*)tab;
-        break;
-    case SCI_ARC:
+    }
+    else if (strcmp(type, __GO_ARC__) == 0)
+    {
         *numrow = 1;
         *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 7: 6;
         if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
@@ -2049,11 +2113,13 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 
         }
         return (double*)tab;
-        break;
-    case SCI_AGREG:
+    }
+    else if (strcmp(type, __GO_COMPOUND__) == 0)
+    {
         return (double*)NULL;
-        break;
-    case SCI_TEXT:
+    }
+    else if (strcmp(type, __GO_COMPOUND__) == 0)
+    {
         *numrow = 1;
         *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 3: 2;
         if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
@@ -2067,9 +2133,9 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
             tab[2] =  pTEXT_FEATURE (pthis)->z;
         return (double*)tab;
-        break;
-
-    case SCI_SEGS:
+    }
+    else if (strcmp(type, __GO_SEGS__) == 0)
+    {
         if (pSEGS_FEATURE (pthis)->ptype == 0) {
             *numrow = pSEGS_FEATURE (pthis)->Nbr1;
 
@@ -2115,14 +2181,23 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             return (double *) NULL;
         }
         return (double*)tab;
-        break;
-    case SCI_SURFACE:
-        /* F.Leray 17.03.04*/
+    }
+    /* F.Leray 17.03.04*/
+    /* SCI_SURFACE replaced by FAC3D and PLOT3D in the MVC framework */
+    else if (strcmp(type, __GO_FAC3D__) == 0)
+    {
         *numrow = -1;
         *numcol = -1;
         return (double*) NULL;
-        break;
-    case SCI_GRAYPLOT:
+    }
+    else if (strcmp(type, __GO_PLOT3D__) == 0)
+    {
+        *numrow = -1;
+        *numcol = -1;
+        return (double*) NULL;
+    }
+    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    {
         if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
             int ny=pGRAYPLOT_FEATURE (pthis)->ny,nx=pGRAYPLOT_FEATURE (pthis)->nx;
             *numrow = nx+1;
@@ -2156,8 +2231,9 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
                 tab[i] = pGRAYPLOT_FEATURE (pthis)->pvecz[i];
         }
         return (double*)tab;
-        break;
-    case SCI_FEC:
+    }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
         *numcol = 3;
         *numrow = pFEC_FEATURE (pthis)->Nnode;
         if ((tab = CALLOC(*numrow * 3,sizeof(double))) == NULL)
@@ -2173,17 +2249,46 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             tab[*numrow*2+i] = pFEC_FEATURE (pthis)->pfun[i];
         }
         return (double*)tab;
-        break;
-    case SCI_LEGEND:
-    case SCI_AXES:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
+    }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
         *numrow = -2;
         *numcol = -2;
         return (double*)NULL;
-        break;
     }
+    else if (strcmp(type, __GO_LEGEND__) == 0)
+    {
+        *numrow = -2;
+        *numcol = -2;
+        return (double*)NULL;
+    }
+    else if (strcmp(type, __GO_AXES__) == 0)
+    {
+        *numrow = -2;
+        *numcol = -2;
+        return (double*)NULL;
+    }
+    /* F.Leray 28.05.04 */
+    else if (strcmp(type, __GO_LABEL__) == 0)
+    {
+        *numrow = -2;
+        *numcol = -2;
+        return (double*)NULL;
+    }
+    else
+    {
+        *numrow = -2;
+        *numcol = -2;
+        return (double*)NULL;
+    }
+
+    /*
+     * Deactivated for now
+     * Same as the else condition
+     */
+#if 0
+    case SCI_UIMENU:
+#endif
     return (double*)NULL;
 }
 
