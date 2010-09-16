@@ -585,11 +585,18 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
 
 int sciSetLineWidth( sciPointObj * pobj, double linewidth )
 {
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetLineWidth( pobj ) == linewidth )
   {
     /* nothing to do */
     return 1 ;
   }
+#endif
+
   return sciInitLineWidth( pobj, linewidth ) ;
 }
 
@@ -623,11 +630,18 @@ sciInitLineWidth (sciPointObj * pobj, double linewidth)
 
 int sciSetLineStyle( sciPointObj * pobj, int linestyle )
 {
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetLineStyle( pobj ) == linestyle )
   {
     /* nothing to do */
     return 1 ;
   }
+#endif
+
   return sciInitLineStyle( pobj, linestyle ) ;
 }
 
@@ -789,12 +803,18 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 int
 sciSetMarkStyle (sciPointObj * pobj, int markstyle)
 {
-
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetMarkStyle( pobj ) == markstyle )
   {
     /* nothing to do */
     return 1 ;
   }
+#endif
+
   return sciInitMarkStyle( pobj, markstyle ) ;
 }
 
@@ -827,13 +847,19 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
 int
 sciSetMarkSize (sciPointObj * pobj, int marksize)
 {
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetMarkSize( pobj ) == marksize )
   {
     /* nothing to do */
     return 1 ;
   }
-  return sciInitMarkSize( pobj, marksize ) ;
+#endif
 
+  return sciInitMarkSize( pobj, marksize ) ;
 }
 
 int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
@@ -863,12 +889,18 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
 int
 sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit)
 {
-
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetMarkSizeUnit( pobj ) == marksizeunit )
   {
     /* nothing to do */
     return 1 ;
   }
+#endif
+
   return sciInitMarkSizeUnit( pobj, marksizeunit ) ;
 }
 
