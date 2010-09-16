@@ -24,7 +24,8 @@ public class Polyline extends ClippableContouredObject {
 	// Data data -> Data Model
 	/* TBD: properties relative to the data model */
 	/** Polyline properties names */
-	private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE, INTERPCOLORVECTOR, INTERPCOLORMODE,
+	private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
+		INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
 		XSHIFT, YSHIFT, ZSHIFT, BARWIDTH };
 
 	/** Specifies whether the polyline is closed */
@@ -38,6 +39,9 @@ public class Polyline extends ClippableContouredObject {
 	
 	/** Interpolation color vector (3- or 4-element array) */
 	private int[] interpColorVector;
+
+	/** Specifies whether the interpolation color vector has been set */
+	private boolean interpColorVectorSet;
 
 	/** Specifies whether interpolated shading is used */
 	private boolean interpColorMode;
@@ -60,7 +64,8 @@ public class Polyline extends ClippableContouredObject {
 		closed = false;
 		arrowSizeFactor = 0.0;
 		polylineStyle = 0;
-		interpColorVector = null;
+		interpColorVector = new int[4];
+		interpColorVectorSet = false;
 		interpColorMode = false;
 		xShift = null;
 		yShift = null;
@@ -82,6 +87,8 @@ public class Polyline extends ClippableContouredObject {
 			return PolylineProperty.POLYLINESTYLE;
 		} else if (propertyName.equals(__GO_INTERP_COLOR_VECTOR__)) {
 			return PolylineProperty.INTERPCOLORVECTOR;
+		} else if (propertyName.equals(__GO_INTERP_COLOR_VECTOR_SET__)) {
+			return PolylineProperty.INTERPCOLORVECTORSET;
 		} else if (propertyName.equals(__GO_INTERP_COLOR_MODE__)) {
 			return PolylineProperty.INTERPCOLORMODE;
 		} else if (propertyName.equals(__GO_X_SHIFT__)) {
@@ -111,6 +118,8 @@ public class Polyline extends ClippableContouredObject {
 			return getPolylineStyle();
 		} else if (property == PolylineProperty.INTERPCOLORVECTOR) {
 			return getInterpColorVector();
+		} else if (property == PolylineProperty.INTERPCOLORVECTORSET) {
+			return getInterpColorVectorSet();
 		} else if (property == PolylineProperty.INTERPCOLORMODE) {
 			return getInterpColorMode();
 		} else if (property == PolylineProperty.XSHIFT) {
@@ -141,6 +150,8 @@ public class Polyline extends ClippableContouredObject {
 			setPolylineStyle((Integer) value);
 		} else if (property == PolylineProperty.INTERPCOLORVECTOR) {
 			setInterpColorVector((Integer[]) value);
+		} else if (property == PolylineProperty.INTERPCOLORVECTORSET) {
+			setInterpColorVectorSet((Boolean) value);
 		} else if (property == PolylineProperty.INTERPCOLORMODE) {
 			setInterpColorMode((Boolean) value);
 		} else if (property == PolylineProperty.XSHIFT) {
@@ -230,9 +241,27 @@ public class Polyline extends ClippableContouredObject {
 	 * @param interpColorVector the interpColorVector to set
 	 */
 	public void setInterpColorVector(Integer[] interpColorVector) {
+		if (interpColorVectorSet == false) {
+			interpColorVectorSet = true;
+		}
+
 		for(int i = 0; i < interpColorVector.length; i++) {
 			this.interpColorVector[i] = interpColorVector[i];
 		}
+	}
+
+	/**
+	 * @return the interpColorVectorSet
+	 */
+	public Boolean getInterpColorVectorSet() {
+		return interpColorVectorSet;
+	}
+
+	/**
+	 * @param interpColorVectorSet the interpColorVectorSet to set
+	 */
+	public void setInterpColorVectorSet(Boolean interpColorVectorSet) {
+		this.interpColorVectorSet = interpColorVectorSet;
 	}
 
 	/**

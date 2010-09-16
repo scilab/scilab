@@ -28,29 +28,54 @@
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
 
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_interp_color_mode_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-	int b =  (int)FALSE;
-	if (sciGetEntityType(pobj) != SCI_POLYLINE)
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
-		return SET_PROPERTY_ERROR ;
-	}
+    BOOL status;
+    int b =  (int)FALSE;
+    int* interpColorVectorSet;
+#if 0
+    if( sciGetEntityType(pobj) != SCI_POLYLINE )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
+        return SET_PROPERTY_ERROR ;
+    }
+#endif
 
-	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "interp_color_mode");
-	if (b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "interp_color_mode");
+    if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-	if (b == TRUE)
-	{
-		if (sciGetInterpVector(pobj) == NULL)
-		{
-			Scierror(999, _("You must first specify an %s for this object.\n"), "interp_color_vector");
-			return SET_PROPERTY_ERROR;
-		}
-	}
+    if (b == TRUE)
+    {
+        interpColorVectorSet = (int*) getGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool);
 
-	pPOLYLINE_FEATURE (pobj)->isinterpshaded = b;
-	return SET_PROPERTY_SUCCEED;
+        if (interpColorVectorSet == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (*interpColorVectorSet  == FALSE)
+        {
+            Scierror(999, _("You must first specify an %s for this object.\n"), "interp_color_vector");
+            return SET_PROPERTY_ERROR;
+        }
+    }
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_MODE__, &b, jni_bool, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

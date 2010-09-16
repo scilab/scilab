@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,38 +28,74 @@
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
 
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_interp_color_vector_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if( sciGetEntityType(pobj) != SCI_POLYLINE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
-    return SET_PROPERTY_ERROR ;
-  }
+    BOOL status;
+    int* numElements;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "interp_color_vector");
-    return SET_PROPERTY_ERROR ;
-  }
+#if 0
+    if( sciGetEntityType(pobj) != SCI_POLYLINE )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
+        return SET_PROPERTY_ERROR;
+    }
+#endif
 
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "interp_color_vector");
+        return SET_PROPERTY_ERROR;
+    }
 
+    numElements = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int);
 
-  if( ( nbCol == 3 && sciGetNbPoints(pobj) == 3 ) || 
-      ( nbCol == 4 && sciGetNbPoints(pobj) == 4 ) )
-  {
-    int tmp[4] ;
-    getDoubleMatrixFromStack( stackPointer ) ;
+    /*
+     * A way to display a more explicit message would be to first get the
+     * interpolation vector set flag and test it for NULL.
+     */
+    if (numElements == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
+        return SET_PROPERTY_ERROR;
+    }
 
-    copyDoubleVectorToIntFromStack( stackPointer, tmp, nbCol ) ;
+    /*  sciGetNbPoints's only use was to get a polyline's number of points */
+#if 0
+    if( ( nbCol == 3 && sciGetNbPoints(pobj) == 3 ) ||
+        ( nbCol == 4 && sciGetNbPoints(pobj) == 4 ) )
+#endif
 
-    return sciSetInterpVector( pobj, nbCol, tmp ) ;
-  }
-  else
-  {
-    Scierror(999, _("Under interpolated color mode the column dimension of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
-    return SET_PROPERTY_ERROR ;
-  }
+    if( ( nbCol == 3 && *numElements == 3 ) ||
+        ( nbCol == 4 && *numElements == 4 ) )
+    {
+        int tmp[4];
+        getDoubleMatrixFromStack( stackPointer );
+
+        copyDoubleVectorToIntFromStack( stackPointer, tmp, nbCol );
+
+        status = setGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_VECTOR__, tmp, jni_int_vector, nbCol);
+
+        if (status == TRUE)
+        {
+            return SET_PROPERTY_SUCCEED;
+        }
+        else
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
+            return SET_PROPERTY_ERROR;
+        }
+
+    }
+    else
+    {
+        Scierror(999, _("Under interpolated color mode the column dimension of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
+        return SET_PROPERTY_ERROR;
+    }
 
 }
 /*------------------------------------------------------------------------*/
