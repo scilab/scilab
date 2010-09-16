@@ -147,6 +147,16 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	}
 	
 	/**
+	 * Sets the enable status of an UIElement
+	 * @param newEnableState the enable status we want to set for the UIElement
+	 *                      (true if the UIElement is enabled, false if not)
+	 */
+	public void setEnabled(boolean newEnableState) {
+		super.setEnabled(newEnableState);
+		getLabel().setEnabled(newEnableState);
+	}
+	
+	/**
 	 * Gets the dimensions (width and height) of a swing Scilab element
 	 * @return the dimensions of the element
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims()

@@ -121,7 +121,7 @@ public class SetupDialog extends JDialog {
 		setLayout(new GridBagLayout());
 		setIconImage(imageForIcon);
 		setTitle(XcosMessages.SETUP_TITLE);
-		setModal(true);
+		setModal(false);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		

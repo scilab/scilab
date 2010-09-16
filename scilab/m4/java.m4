@@ -155,13 +155,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&conftest.java.output 2>&AS_MESSAGE_LOG_FD) ; then
+    if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >conftest.java.output 2>&AS_MESSAGE_LOG_FD) ; then
        if test "$3" = "no"; then
            echo "yes" >&AS_MESSAGE_LOG_FD
    		   $4
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&conftest.java.output 2>&AS_MESSAGE_LOG_FD); then
+	   	   if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >conftest.java.output 2>&AS_MESSAGE_LOG_FD); then
 	           echo "yes" >&AS_MESSAGE_LOG_FD
        		   $4
 			else
@@ -449,7 +449,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 	    powerpc|ppc64)
 	  	  machine=ppc
 		  ;;
-		  armv4l|armv5tel)
+		  armv*)
 		  machine=arm
 		  ;;
 		  s390x) # s390 arch can also returns s390x

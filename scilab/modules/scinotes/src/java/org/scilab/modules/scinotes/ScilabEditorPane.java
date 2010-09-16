@@ -32,6 +32,7 @@ import java.util.EventObject;
 import java.util.List;
 import java.util.UUID;
 
+import javax.swing.text.Caret;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollBar;
@@ -47,6 +48,7 @@ import javax.swing.text.View;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
+import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
@@ -74,6 +76,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean highlightEnable;
     private Object highlightCL;
     private boolean matchingEnable;
+    private boolean overwriteMode;
     private ScilabLexer lexer;
     private SciNotes editor;
     private IndentManager indent;
@@ -124,6 +127,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
         this.editor = editor;
         this.uuid = UUID.randomUUID();
+        updateCaret();
         scroll = new JScrollPane(this);
 
         addCaretListener(this);
@@ -234,6 +238,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         return split == null;
     }
 
+    public boolean getOverwriteMode() {
+        return this.overwriteMode;
+    }
+
+    public void setOverwriteMode(boolean overwriteMode) {
+        this.overwriteMode = overwriteMode;
+        ((ScilabCaret) getCaret()).setOverwriteMode(overwriteMode);
+    }
+
+    public void replaceSelection(String content) {
+        if (overwriteMode && getSelectionStart() == getSelectionEnd()) {
+            int pos = getCaretPosition();
+            select(pos, pos + content.length());
+        }
+        super.replaceSelection(content);
+    }
+
     /**
      * Nothing !
      * @param e the event
@@ -284,10 +305,30 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * {@inheritDoc}
      */
     public void setName(String name) {
+        setNameInSuper(name);
+        setShortNameAndTitle(name);
+        ScilabEditorPane pane = getOtherPaneInSplit();
+        if (pane != null) {
+            // I don't call pane.setName since we will enter in an infinite loop
+            pane.setNameInSuper(name);
+            pane.setShortNameAndTitle(name);
+        }
+    }
+
+    /**
+     * @param name the name
+     */
+    private void setNameInSuper(String name) {
         super.setName(name);
+    }
+
+    /**
+     * @param name the name
+     */
+    private void setShortNameAndTitle(String name) {
         if (name != null) {
             File f = new File(name);
-            this.shortName = f.getName();
+            setShortName(f.getName());
             title =  shortName + " (" + f.getAbsolutePath() + ")" + TIRET + SciNotesMessages.SCILAB_EDITOR;
         }
     }
@@ -378,6 +419,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * @return the String which must be displayed in the infobar
+     */
+    public void setInfoBarText(String text) {
+        this.infoBar = text;
+        editor.getInfoBar().setText(getInfoBarText());
+    }
+
+    /**
      * @param readonly true to set Read-Only mode
      */
     public void setReadOnly(boolean readonly) {
@@ -444,6 +493,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void setLastModified(long time) {
         this.lastModified = time;
+        ScilabEditorPane pane = getOtherPaneInSplit();
+        if (pane != null) {
+            pane.lastModified = time;
+        }
     }
 
     /**
@@ -547,6 +600,22 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     }
                 });
         }
+    }
+
+    /**
+     * @return the width of a white
+     */
+    public int getWhiteWidth() {
+        View view = ((ScilabDocument) getDocument()).getView();
+        if (view != null) {
+            if (view instanceof ScilabView) {
+                return ((ScilabView) view).getWhiteWidth();
+            } else {
+                return ((ScilabPlainView) view).getWhiteWidth();
+            }
+        }
+
+        return 0;
     }
 
     /**
@@ -970,6 +1039,16 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             enableHighlightedLine(true);
         }
         hasBeenSaved = false;
+    }
+
+    /**
+     * Add a the ScilabCaret
+     */
+    private void updateCaret() {
+        Caret caret = new ScilabCaret(this);
+        caret.setBlinkRate(getCaret().getBlinkRate());
+        setCaretColor(getCaretColor());
+        setCaret(caret);
     }
 
     /**

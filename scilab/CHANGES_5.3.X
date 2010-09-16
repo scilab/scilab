@@ -6,11 +6,13 @@ Xcos:
 
 * Include all the old-scicos palettes on the binary version.
 
-* bug 7770 fixed - It was not possible to compile a diagram with Modelica 
-                   blocks.
+* bug 7219 fixed - The old gain demo did not work. 
 
 * bug 7445 fixed - The Kalman filter and the Cont-Plant-Hybrid-Observer demos
                    did not simulate.
+
+* bug 7770 fixed - It was not possible to compile a diagram with Modelica
+                   blocks.
 
 * bug 7822 fixed - Xcos menu bar was larger than the Scilab one.
 
@@ -20,21 +22,46 @@ Xcos:
 
 * bug 7945 fixed - The path of the diagram was not displayed in the title bar.
 
+* bug 8014 fixed - The TEXT_f.png file was not present on the source tree.
+
+* bug 8025 fixed - The simulation parameter dialog was modal.
+
 SciNotes:
 =========
 
-* It is now possible to preview a LaTeX formula in comments or in a string on
-mouseover event.
+* LaTeX formula in comments or in a string are now rendered when the mouse
+  cursor is over.
+
+* Block text (function, if, while...) are now easily selectable. See bug #7546.
 
 * bug 7524 fixed - Tabulation representation had a bad size in whitespace mode.
 
 * bug 7546 fixed - It was not possible to select easily a block.
+
+* bug 8008 fixed - The "Edition" menu had a bad name (renamed to "Edit").
+
+* bug 8024 fixed - No key Insert had no effect.
+
+* bug 8027 fixed - In a splitted view, a frame was not informed of a change in
+                   the other frame.
 
 GUI creation:
 =============
 
 * It is now possible to use LaTeX or MathML as label for uimenu or pushbutton
 in uicontrol. See bug #7366.
+
+* bug 7082 fixed - Setting the "enable" property had no effect on "listbox" and
+                   "text" uicontrols.
+
+* bug 7367 fixed - uimenu properties display was not consistent.
+
+* bug 7368 fixed - Setting the "Visible" property to "off" had no effect on.
+
+* bug 7898 fixed - In an uicontrol of style "popupmenu", when the list in the
+                   "String" parameter has several repeated values, the returned
+                   selected value was always the first value in the list and not
+                   the currently selected one.
 
 Graphics:
 =========
@@ -46,10 +73,48 @@ Call_Scilab:
 
 * In function StartScilab, argument "int *Stacksize" changed to "int Stacksize"
 
+* bug 6395 fixed - evans display improved to take special care of the
+                   root loci points where complex conjugates roots
+                   collapse in a pair of real roots. Datatips
+                   customization added. Root locus grids "sgrid" and
+                   "zgrid" superposition improved.
+
+* bug 6686 fixed - The automatic sub-ticking gave wrong results.
+
+Compilation:
+============
+
+* Fix a problem in the detection of some ARM cpus.
+
+
 Bug Fixes:
 ==========
 
+* bug 6514 fixed - "help %k" and "help %asn" pointed to the symbols help page.
+
+* bug 6767 fixed - The "uicontrol" help page said the "Style" property of an
+                   uicontrol can be set after creation but it does not.
+
+* bug 7163 fixed - tree2code wrongly replaced every (:) occurence in a function
+                   definition with (eye()).
+
+* bug 7231 fixed - mtlb_num2str did not manage second input argument.
+
+* bug 7640 fixed - xs2pdf, xs2eps, xs2emf crashed if filename prefix had less
+                   of three characters.
+
+* bug 7872 fixed - Riemann Surface demo returned a error if window was closed by
+                   the cross button.
+
+* bug 7897 fixed - configure failed under FreeBSD (bashim)
+
+* bug 7908 fixed - The number of values modified by scicos_getvalues could not
+                   by more than 20. This value has been updated to 30
+                   variables.
+
 * bug 7924 fixed - pathconvert failed conversion to cygwin format.
+
+* bug 7941 fixed - The demonstration CACSD/PID did not work.
 
 * bug 7943 fixed - On a GNU/Linux binary version, it was not possible to use
                    the fortran_block block.
@@ -60,11 +125,14 @@ Bug Fixes:
 
 * bug 7952 fixed - libraryinfo did not check size of input argument.
 
+* bug 7959 fixed - fscanf did not manage file descriptor as input argument.
+
 * bug 7974 fixed - Customized xerbla.f subroutine did not return enough
                    information.
 
 * bug 7981 fixed - copyfile failed with localized filenames on linux.
 
+* bug 7988 fixed - Inverted pendulum demo failed with f2c version on Windows.
 
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
@@ -565,6 +633,8 @@ Bug Fixes:
 
 * bug 6639 fixed - "hypermat"  did not remove the higher dimensions equal to 1.
 
+* bug 6741 fixed - Some source files were useless.
+
 * bug 6849 fixed - add_profiling badly handled "else" which made plotprofile
                    function produced an incorrect report.
 
@@ -862,7 +932,7 @@ Graphics:
                    (superseed "m_circle") and "nicholschart" (superseed
                    "chart").
 
-* bug 6532 fixed - In some cases, the text entity rendering order was wrong.
+* bug 6532 fixed - In some case text entity rendering order was wrong.
 
 * bug 6676 fixed - When "twinkle(gca())" was executed, data related to the
                    current axes was not twinkling.
