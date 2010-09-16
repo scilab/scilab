@@ -234,7 +234,13 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 * Destroy the MenuItem
 	 */
 	public void destroy() {
-		ScilabSwingUtilities.removeFromParent(this);
+		if (meAsAMenu != null) {
+			ScilabSwingUtilities.removeFromParent((SwingScilabMenu) meAsAMenu.getAsSimpleMenu());
+		} else if (meAsACheckBoxMenuItem != null) {
+			ScilabSwingUtilities.removeFromParent((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem());
+		} else {
+			ScilabSwingUtilities.removeFromParent(this);
+		}
 	}
 
 	/**

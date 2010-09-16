@@ -54,6 +54,9 @@ in uicontrol. See bug #7366.
 * bug 7082 fixed - Setting the "enable" property had no effect on "listbox" and
                    "text" uicontrols.
 
+* bug 7365 fixed - "delete" applied to a "Checked" uimenu destroyed the handle
+                   without updating the display.
+
 * bug 7367 fixed - uimenu properties display was not consistent.
 
 * bug 7368 fixed - Setting the "Visible" property to "off" had no effect on.
