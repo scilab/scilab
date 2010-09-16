@@ -13,6 +13,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "BOOL.h"
 #include "call_scilab.h"
 #include "MALLOC.h"
 #include "scilabmode.h"
@@ -67,23 +68,23 @@ void DisableInteractiveMode(void)
 }
 /*--------------------------------------------------------------------------*/
 BOOL StartScilab(char *SCIpath,char *ScilabStartup, int Stacksize) {
-	return Call_ScilabOpen (SCIpath, ScilabStartup, Stacksize) == 0;
+    return Call_ScilabOpen (SCIpath, TRUE, ScilabStartup, Stacksize) == 0;
 }
 /*--------------------------------------------------------------------------*/
 /**
  * Start Scilab engine
- * Function created in the context of javasci v2. 
+ * Function created in the context of javasci v2.
  * This function is just like StartScilab but provides more error messages
  * in case or error. For now, it is only used in javasci v2 but it might
  * be public sooner or later.
- * @return 
+ * @return
  * 0: success
  * -1: already running
  * -2: Could not find SCI
  * -3: No existing directory
  * Any other positive integer: A Scilab internal error
  */
-int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int Stacksize)
+int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int Stacksize)
 {
 #define FORMAT_SCRIPT_STARTUP "exec(\"%s\",-1);quit;"
     char *ScilabStartupUsed = NULL;
@@ -93,9 +94,14 @@ int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int Stacksize)
 
     static int iflag = -1, ierr = 0;
 
-	DisableInteractiveMode();
+    if (advancedMode == FALSE)
+    {
+        DisableInteractiveMode();
+    }else{
+        setScilabMode(SCILAB_API);
+    }
 
-	if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED) return -1;
+    if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED) return -1;
 
     SetFromCToON();
 
@@ -155,6 +161,7 @@ int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int Stacksize)
 
     /* Scilab Initialization */
     C2F(inisci)(&iflag, &StacksizeUsed, &ierr);
+
     if ( ierr > 0 ) return ierr;
 
     lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartupUsed + 1));

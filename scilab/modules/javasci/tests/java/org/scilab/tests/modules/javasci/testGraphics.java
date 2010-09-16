@@ -30,7 +30,7 @@ public class testGraphics {
 	 */ 
 	@BeforeMethod
 	public void open() throws NullPointerException, JavasciException {
-		sci = new Scilab();
+		sci = new Scilab(true); // True = enable advanced mode
 		assert sci.open() == true;
 	}
 

@@ -26,8 +26,8 @@ public class Call_Scilab {
  protected Call_Scilab() {
     throw new UnsupportedOperationException();
  }
-  public static int Call_ScilabOpen(String SCIpath, String ScilabStartup, int Stacksize) {
-    return Call_ScilabJNI.Call_ScilabOpen(SCIpath, ScilabStartup, Stacksize);
+  public static int Call_ScilabOpen(String SCIpath, boolean advancedMode, String ScilabStartup, int Stacksize) {
+    return Call_ScilabJNI.Call_ScilabOpen(SCIpath, advancedMode, ScilabStartup, Stacksize);
   }
 
   public static boolean TerminateScilab(String ScilabQuit) {

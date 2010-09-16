@@ -25,9 +25,10 @@ extern "C" {
 #include "BOOL.h"
 #include "sci_types.h"
 /*--------------------------------------------------------------------------*/
+
 /**
- * Disable TCL/TK and graphic interfaces 
- * Scilab no GUI no TCL/TK "kernel mode" 
+ * Disable Tcl/Tk and graphic interfaces 
+ * Scilab no GUI no Tcl/Tk "kernel mode" 
 */
 void DisableInteractiveMode(void);
 
@@ -53,7 +54,7 @@ BOOL StartScilab(char *SCIpath, char *ScilabStartup, int Stacksize);
  * -3: No existing directory
  * Any other positive integer: A Scilab internal error
  */
-int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int Stacksize);
+int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int Stacksize);
 
 /**
  * Terminate Scilab

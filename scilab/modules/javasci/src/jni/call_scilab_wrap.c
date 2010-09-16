@@ -772,11 +772,12 @@ jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
 extern "C" {
 #endif
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_Call_1ScilabOpen(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_Call_1ScilabOpen(JNIEnv *jenv, jclass jcls, jstring jarg1, jboolean jarg2, jstring jarg3, jint jarg4) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
-  char *arg2 = (char *) 0 ;
-  int arg3 ;
+  BOOL arg2 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
   int result;
   
   (void)jenv;
@@ -786,16 +787,20 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_Call_1Sc
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
-    if (!arg2) return 0;
+  {
+    if (jarg2 == JNI_TRUE) arg2 = TRUE;
+    else arg2 = FALSE;
   }
-  arg3 = (int)jarg3; 
-  result = (int)Call_ScilabOpen(arg1,arg2,arg3);
+  arg3 = 0;
+  if (jarg3) {
+    arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
+    if (!arg3) return 0;
+  }
+  arg4 = (int)jarg4; 
+  result = (int)Call_ScilabOpen(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
 

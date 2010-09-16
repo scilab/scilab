@@ -19,9 +19,6 @@
 //%rename(ScilabTypeEnum) sci_types;
 
 %module Call_Scilab
-//%{
-//#include "../c/Call_Scilab.h"
-//%}
 %{
 #include "BOOL.h"
 #define ENABLE_HELPERS
@@ -105,7 +102,7 @@ public class";
 #endif
 
 
-int Call_ScilabOpen(char* SCIpath, char *ScilabStartup, int Stacksize);
+int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int Stacksize);
 
 BOOL TerminateScilab(char *ScilabQuit);
 

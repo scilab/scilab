@@ -22,6 +22,7 @@ import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.javasci.Call_Scilab;
+import org.scilab.modules.javasci.JavasciException.AlreadyRunningException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
 import org.scilab.modules.javasci.JavasciException.UnsupportedTypeException;
 import org.scilab.modules.javasci.JavasciException.UndefinedVariableException;
@@ -48,7 +49,33 @@ import org.scilab.modules.javasci.JavasciException.ScilabInternalException;
 public class Scilab {
 
 	private String SCI = null;
-	
+	private boolean advancedMode = false;
+
+	/**
+	 * Creator of the Scilab Javasci object. 
+	 * Scilab data path is autodetected and advanced features disabled
+	 */
+	public Scilab() throws InitializationException {
+		this(null, false);
+	}
+
+	/**
+	 * Creator of the Scilab Javasci object with a specific Scilab path.
+	 * Advanced features are disabled (faster)
+	 * @param SCI provide the path to Scilab data
+	 */
+	public Scilab(String SCI) throws InitializationException {
+		this(SCI, false);
+	}
+
+	/**
+	 * Creator of the Scilab Javasci object in advanced mode
+	 * Scilab data path is autodetected 
+	 * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
+	 */
+	public Scilab(boolean advancedMode) throws InitializationException {
+		this(null, advancedMode);
+	}
 
 	/**
 	 * Creator of the Scilab Javasci object. 
@@ -57,34 +84,32 @@ public class Scilab {
 	 * if not, try with the global variable SCI
 	 * if not, throws a new exception
 	 * Under Windows, use also the registery
+	 * @param SCIPath the path to Scilab data
+	 * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
 	 */
-	public Scilab() throws InitializationException {
+	public Scilab(String SCIPath, boolean advancedMode) throws InitializationException {
+		String SCI = SCIPath;
 		if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
-			// Auto detect 
-			String detectedSCI;
-			try {
-				detectedSCI = System.getProperty("SCI");
-				if (detectedSCI == null || detectedSCI.length() == 0) {
-					detectedSCI = System.getenv("SCI");
-					if (detectedSCI == null || detectedSCI.length() == 0) {
-						throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
+			if (SCI==null) {
+				// Auto detect
+				try {
+					SCI = System.getProperty("SCI");
+					if (SCI == null || SCI.length() == 0) {
+						SCI = System.getenv("SCI");
+						if (SCI == null || SCI.length() == 0) {
+							throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
+						}
 					}
+				} catch (Exception e) {
+					throw new InitializationException("Auto detection of SCI failed.\nCould not retrieve the variable SCI.", e);
 				}
-				this.initScilab(detectedSCI);
-
-			} catch (Exception e) {
-				throw new InitializationException("Auto detection of SCI failed.\nCould not retrieve the variable SCI.", e);
 			}
 		}
+		this.advancedMode = advancedMode;
+		this.initScilab(SCI);
+
 	}
 
-	/**
-	 * Creator of the Scilab Javasci object. 
-	 * @param SCI provide the path to Scilab data
-	 */
-	public Scilab(String SCI) throws InitializationException {
-		this.initScilab(SCI);
-	}
 
 	private void initScilab(String SCI) throws InitializationException {
 		/* Let Scilab engine knows that he is run through the Javasci API */
@@ -105,8 +130,8 @@ public class Scilab {
 	 * A second launch will return FALSE
 	 * @return if the operation is successful
 	 */
-	public boolean open() throws InitializationException {
-		int res = Call_Scilab.Call_ScilabOpen(this.SCI, null, -1);
+	public boolean open() throws JavasciException, AlreadyRunningException, InitializationException {
+		int res = Call_Scilab.Call_ScilabOpen(this.SCI, this.advancedMode, null, -1);
 		switch (res) {
 			case -1: 
 				throw new InitializationException("Javasci already running.");
@@ -127,7 +152,7 @@ public class Scilab {
 	 * @param job The job to run on startup
 	 * @return if the operation is successful
 	 */
-	public boolean open(String job) throws InitializationException {
+	public boolean open(String job) throws JavasciException {
 		if (!this.open()) {
 			return false;
 		}
@@ -143,7 +168,7 @@ public class Scilab {
 	 * @param jobs The serie of jobs to run on startup
 	 * @return if the operation is successful
 	 */
-	public boolean open(String jobs[]) throws InitializationException {
+	public boolean open(String jobs[]) throws JavasciException {
 		if (!this.open()) {
 			return false;
 		}
@@ -160,7 +185,7 @@ public class Scilab {
 	 * @param scriptFilename The script to execute on startup
 	 * @return if the operation is successful
 	 */
-	public boolean open(File scriptFilename) throws InitializationException, FileNotFoundException {
+	public boolean open(File scriptFilename) throws JavasciException, FileNotFoundException {
 		if (!this.open()) {
 			return false;
 		}
