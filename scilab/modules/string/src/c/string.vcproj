@@ -444,10 +444,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_emptystr.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_isalphanum.c"
 				>
 			</File>
@@ -590,10 +586,6 @@
 			</File>
 			<File
 				RelativePath=".\convstr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\CreateEmptystr.h"
 				>
 			</File>
 			<File

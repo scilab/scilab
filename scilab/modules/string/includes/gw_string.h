@@ -22,7 +22,6 @@ STRING_IMPEXP int gw_string(void);
 //STRING_IMPEXP int sci_length(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_string(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_convstr(char *fname,unsigned long fname_len);
-STRING_IMPEXP int sci_emptystr(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_str2code(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_code2str(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strcat(char *fname,unsigned long fname_len);
