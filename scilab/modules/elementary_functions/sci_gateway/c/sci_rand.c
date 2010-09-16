@@ -267,7 +267,8 @@ int sci_rand(char *fname, int* _piKey)
 		else //uniform or normal or 'g' ( 'u', 'n', 'g' )
 		{
 			siRandType = setRandType(pstData[0]);
-		}
+            return 0;
+        }
 	}
 	else
 	{
