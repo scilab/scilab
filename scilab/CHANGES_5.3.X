@@ -6,11 +6,13 @@ Xcos:
 
 * Include all the old-scicos palettes on the binary version.
 
-* bug 7770 fixed - It was not possible to compile a diagram with Modelica
-                   blocks.
+* bug 7219 fixed - The old gain demo did not work. 
 
 * bug 7445 fixed - The Kalman filter and the Cont-Plant-Hybrid-Observer demos
                    did not simulate.
+
+* bug 7770 fixed - It was not possible to compile a diagram with Modelica
+                   blocks.
 
 * bug 7822 fixed - Xcos menu bar was larger than the Scilab one.
 
