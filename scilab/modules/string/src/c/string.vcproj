@@ -528,10 +528,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_strsubst.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_strtod.c"
 				>
 			</File>

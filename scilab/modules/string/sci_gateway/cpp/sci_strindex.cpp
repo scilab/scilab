@@ -103,45 +103,35 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     int iValues = 0;
     if(bRegExp)
     {//pcre
-        pcre_error_code errorCode = PCRE_FINISHED_OK;
-
-	//		int Output_Start = 0;
-	//		int Output_End = 0;
-
-	//		/* We use pcre library */
-        char* pstIn = wide_string_to_UTF8(pwstData);
+        pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
         for(int i = 0 ; i < pS->size_get() ; i++)
         {
             int iStart      = 0;
             int iEnd        = 0;
-            char* pstSearch = wide_string_to_UTF8(pwstSearch[i]);
+            int iStep       = 0;
 
-            errorCode = pcre_private(pstIn, pstSearch, &iStart,&iEnd);
-
-            if ( errorCode == PCRE_FINISHED_OK)
-			{
-                pstSearch[iStart]               = L'\0';
-                wchar_t* pstTemp                = to_wide_string(pstSearch);
-                pstrResult[iValues].data        = (int)wcslen(pstTemp) + 1;
-                pstrResult[iValues].position    = i + 1;
-                iValues++;
-                FREE(pstTemp);
-            }
-            else
+            do
             {
-                if (errorCode != NO_MATCH)
-                {
-                    pcre_error("strindex", errorCode);
-                    FREE(pstSearch);
-                    FREE(pstIn);
-                    delete[] pstrResult;
-                    return Function::Error;
+                iPcreStatus = wide_pcre_private(pwstData + iStep, pwstSearch[i], &iStart,&iEnd);
+                if(iPcreStatus == PCRE_FINISHED_OK)
+			    {
+                    pstrResult[iValues].data        = iStart + iStep + 1;
+                    pstrResult[iValues].position    = i + 1;
+                    iStep                           += iEnd;
+                    iValues++;
                 }
+                else
+                {
+                    if(iPcreStatus != NO_MATCH)
+                    {
+                        pcre_error("strindex", iPcreStatus);
+                        delete[] pstrResult;
+                        return Function::Error;
+                    }
                     break;
-            }
-            FREE(pstSearch);
+                }
+            }while(iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd);
         }
-        FREE(pstIn);
     }
     else
     {

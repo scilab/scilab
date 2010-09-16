@@ -15,7 +15,10 @@
 #ifndef __PCRE_PRIVATE_H__
 #define __PCRE_PRIVATE_H__
 
+#include <string.h>
+#include <wchar.h>
 #include "dynlib_string.h"
+
 typedef enum {
 	PCRE_EXIT = 1,
 	PCRE_FINISHED_OK = 0,
@@ -35,6 +38,7 @@ typedef enum {
 
 
 STRING_IMPEXP pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End);
+STRING_IMPEXP pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, int* _piStart, int* _piEnd);
 
 #endif /* __PCRE_PRIVATE_H__ */
 /*------------------------------------------------------------------------*/

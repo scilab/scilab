@@ -27,6 +27,7 @@
 #include "strsubst.h"
 #include "sci_warning.h"
 #include "sciprint.h"
+#include "charEncoding.h"
 /*-------------------------------------------------------------------------------*/
 /* A number of things vary for Windows builds. Originally, pcretest opened its
 input and output without "b"; then I was told that "b" was needed in some
@@ -868,5 +869,46 @@ SKIP_DATA:
 
 	return PCRE_EXIT;
 }
-
 /*-------------------------------------------------------------------------------*/
+pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, int* _piStart, int* _piEnd)
+{
+    int iStart          = 0;
+    int iEnd            = 0;
+    int iPcreStatus     = 0;
+
+    char* pstInput      = wide_string_to_UTF8(_pwstInput);
+    char* pstPattern    = wide_string_to_UTF8(_pwstPattern);
+
+
+    iPcreStatus = pcre_private(pstInput, pstPattern, &iStart, &iEnd);
+    if(iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd)
+    {
+        char* pstTempStart      = NULL;
+        char* pstTempEnd        = NULL;
+        wchar_t* pwstTempStart  = NULL;
+        wchar_t* pwstTempEnd    = NULL;
+
+        pstTempStart            = os_strdup(pstInput);
+        pstTempEnd              = os_strdup(pstInput);
+        pstTempEnd[iEnd]        = 0;
+        pstTempStart[iStart]    = 0;
+
+
+        pwstTempStart           = to_wide_string(pstTempStart);
+        pwstTempEnd             = to_wide_string(pstTempEnd);
+
+        *_piStart               = (int)wcslen(pwstTempStart);
+        *_piEnd                 = (int)wcslen(pwstTempEnd);
+
+        FREE(pstTempStart);
+        FREE(pstTempEnd);
+        FREE(pwstTempStart);
+        FREE(pwstTempEnd);
+    }
+    else
+    {
+        *_piStart   = iStart;
+        *_piEnd     = iEnd;
+    }
+    return iPcreStatus;
+}
