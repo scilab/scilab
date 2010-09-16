@@ -48,7 +48,18 @@ function varargout = fscanf(fil, frmt)
 
   v = "v";
   args = strcat( v(ones(lhs, 1)) + string(1:lhs)', ",");
-  buf = mgetl(fil, 1);
+
+  if (type(fil) == 1) then
+    [id, typ, fn] = file(fil);
+    if typ == "F" then
+      buf = read(fil, 1, 1, "(a)");
+    else
+      buf = mgetl(fil, 1);
+    end
+  else
+    buf = mgetl(fil, 1);
+  end
+
   execstr("[" + args + "] = sscanf(buf, frmt);");
   execstr("varargout = list(" + args + ");");
 
