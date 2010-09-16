@@ -106,6 +106,9 @@ Bug Fixes:
 * bug 7640 fixed - xs2pdf, xs2eps, xs2emf crashed if filename prefix had less
                    of three characters.
 
+* bug 7862 fixed - "savematfile" only saved the first string in the vector
+                   (or matrix) when variable is a vector (or matrix) of strings.
+
 * bug 7872 fixed - Riemann Surface demo returned a error if window was closed by
                    the cross button.
 
