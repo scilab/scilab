@@ -282,12 +282,7 @@
 %nonassoc TOPLEVEL
 %nonassoc HIGHLEVEL
 %nonassoc UPLEVEL
-
 %nonassoc LISTABLE
-
-%nonassoc FUNCTIONCALL
-%nonassoc BOOLTRUE BOOLFALSE
-%nonassoc LPAREN LBRACE
 
 %left OR OROR
 %left AND ANDAND
@@ -303,6 +298,10 @@
 %left DOT
 
 %left NOT
+
+%nonassoc FUNCTIONCALL
+%nonassoc BOOLTRUE BOOLFALSE
+%nonassoc LPAREN LBRACE
 
 %start program
 
@@ -482,10 +481,10 @@ ID						{ $$ = new ast::StringExp(@$, *$1); }
 */
 /* How to call a function or a cell extraction */
 functionCall :
-simpleFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
-| specificFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
+simpleFunctionCall			{ $$ = $1; }
+| specificFunctionCall		{ $$ = $1; }
 //| recursiveFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
-| LPAREN functionCall RPAREN	%prec FUNCTIONCALL	{ $$ = $2; }
+| LPAREN functionCall RPAREN	{ $$ = $2; }
 ;
 
 /*
@@ -1007,7 +1006,7 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | functionCall listableEnd		%prec UPLEVEL	{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | matrix						{ $$ = $1; }
 | cell							{ $$ = $1; }
-| operation						{ $$ = $1; }
+| operation				%prec UPLEVEL		{ $$ = $1; }
 | ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *$1); }
 | VARINT				%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
 | NUM					%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
@@ -1096,7 +1095,7 @@ LBRACE matrixOrCellLines RBRACE					{ $$ = new ast::CellExp(@$, *$2); }
 /* How Matrix are written */
 matrix :
 LBRACK matrixOrCellLines RBRACK					{ $$ = new ast::MatrixExp(@$, *$2); }
-//| LBRACK lineEnd matrixOrCellLines RBRACK				{ $$ = new ast::MatrixExp(@$, *$3); }
+| LBRACK EOL matrixOrCellLines RBRACK				{ $$ = new ast::MatrixExp(@$, *$3); }
 | LBRACK matrixOrCellLines matrixOrCellColumns RBRACK			{
 								  $2->push_back(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::MatrixExp(@$, *$2);
