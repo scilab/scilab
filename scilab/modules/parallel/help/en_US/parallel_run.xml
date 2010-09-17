@@ -18,7 +18,6 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
   </info>
 
   <refnamediv>
@@ -139,7 +138,7 @@ For this reason, the concurrent execution of Scilab macros cannot be safe in a s
 </para>
     <para>As it is not possible to synchronize the access to Java Virtual Machine accross separate memory spaces, Scilab macros called by parallel_run are not allowed to use the JVM. This unfortunately encompass all the graphics functions as the Scilab GUI is based on Java. The spawned Scilab process are run in "nwni" mode their calls to <link linkend="disp">disp()</link> are redirected to the standard output.
 </para>
-    <para>A last limitation imposed by the aim to minimize data shuffling info memory is that no stack resizing (via <link linkend="gstacksize">gstacksize()</link> or via <link linkend="stacksize">stacksize()</link>) should take place during a call to <literal>parallel_run</literal> (neither by the function f nor by the prologue or epilogue cf. infra.).
+    <para>A last limitation imposed by the aim to minimize data shuffling info memory is that no stack resizing (via <link linkend="gstacksize">gstacksize()</link> or via <link linkend="stacksize">stacksize()</link>) should take place during a call to <literal>parallel_run</literal> (neither by the function f nor by the prologue or epilogue cf. infra.). Attempts to do do will result in a warning and leave the stack untouched.
 </para>
   </refsection>
  <refsection>

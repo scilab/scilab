@@ -86,6 +86,7 @@ src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
 src/c/dynamic_tclsci.c \
+src/c/dynamic_parallel.c \
 src/c/storeCommand.c
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \

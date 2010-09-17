@@ -1,14 +1,14 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 extern "C" {
 #include <stdio.h>
 #include "api_scilab.h"
@@ -21,6 +21,21 @@ extern "C" {
 #include "parameters.h"
 #include "stack-def.h" /* #define nlgh nsiz*4   */
 #include "stack-c.h"  /* #define Nbvars C2F(intersci).nbvars, Top & cie */
+#include "Thread_Wrapper.h" /* locks for concurrency access */
+
+#ifdef _MSC_VER
+
+#include "mmapWindows.h"
+#include "strdup_windows.h"
+
+#else
+#include <sys/mman.h>
+#ifndef MAP_ANONYMOUS
+# define MAP_ANONYMOUS MAP_ANON
+#endif
+#endif
+
+#include "concurrency.h" /* prototype for concurrency query function */
 }
 
 #include <cstdlib>
@@ -38,21 +53,21 @@ extern "C" {
 #include <limits>
 #include <iterator>
 /*
- *
- We can handle k Rhs  et m Lhs. Currently, only real (double) matrix are implemented.
- In fact, from a performance point of view, only Random-Acces data types where it is possible to "extract" a column in O(1)
- (plus memcpy for macro a args) are making sense. This rules out most Scilab data types except for matrices of double / int.
+*
+We can handle k Rhs  et m Lhs. Currently, only real (double) matrix are implemented.
+In fact, from a performance point of view, only Random-Acces data types where it is possible to "extract" a column in O(1)
+(plus memcpy for macro a args) are making sense. This rules out most Scilab data types except for matrices of double / int.
 
 
- [R1, ... , Rm] = parallel_run(A1, ... , Ak, f [,Types] [,Dims])
+[R1, ... , Rm] = parallel_run(A1, ... , Ak, f [,Types] [,Dims])
 
- If Args are of différent sizes, the smallest are recycled.
+If Args are of différent sizes, the smallest are recycled.
 
- Types : matrix of <=m strings of the names (as in typeof()) of the  m lhs fo 'f'. default to "constant"
- Rows : matrix of doubles 1 x <=m or 2 x <=m giving the nb of rows (or rows and columns) of the m lhs of f. default to 1
+Types : matrix of <=m strings of the names (as in typeof()) of the  m lhs fo 'f'. default to "constant"
+Rows : matrix of doubles 1 x <=m or 2 x <=m giving the nb of rows (or rows and columns) of the m lhs of f. default to 1
 
- /!\ due to matrix data layout in Scilab (i.e. Fortran columnswise storage)
- , a matrix [a11,a12,a13;a21,a22,a23] contains 3 (ncols) arguments of 2 (nrows) elements;
+/!\ due to matrix data layout in Scilab (i.e. Fortran columnswise storage)
+, a matrix [a11,a12,a13;a21,a22,a23] contains 3 (ncols) arguments of 2 (nrows) elements;
 */
 
 extern "C"
@@ -62,6 +77,9 @@ extern "C"
 
 namespace
 {
+    int threadConcurrencyLevel;
+    int processConcurrencyLevel;
+
     /* to distinguish scilab variable 'address' from usual int* */
     typedef int* scilabVar_t;
 
@@ -71,7 +89,7 @@ namespace
     SciErr err; /* store error status from api_scilab functions */
 
     /* often, we handle nb of dimensions (rows and cols) at once.
-     * I'd have gone for std::size_t but Scilab uses int :( */
+    * I'd have gone for std::size_t but Scilab uses int :( */
     typedef std::pair<int, int> dim_t;
 
     /* A scilab variable description is a typename and a matric dimension, just to add a default constructor on the inherited struct
@@ -83,15 +101,15 @@ namespace
             :std::pair<char const*, dim_t>(name, dim)
         {
         }
-/* for debug purposes only
+        /* for debug purposes only
         std::string toString() const
         {
-            std::stringstream buf;
-            buf<<std::pair<char const*, dim_t>::first<<" :"<<std::pair<char const*, dim_t>::second.first
-               <<" x "<<std::pair<char const*, dim_t>::second.second;
-            return buf.str();
-            }
-*/
+        std::stringstream buf;
+        buf<<std::pair<char const*, dim_t>::first<<" :"<<std::pair<char const*, dim_t>::second.first
+        <<" x "<<std::pair<char const*, dim_t>::second.second;
+        return buf.str();
+        }
+        */
     };
 
     /* types to be used in unions of function pointers */
@@ -111,9 +129,9 @@ namespace
     } unionOfPtrs_t;
 
     /* a functional version of getVarType that can be composed
-     * @param int* address of the scilab var
-     * @return the type (0 on error)
-     */
+    * @param int* address of the scilab var
+    * @return the type (0 on error)
+    */
     int getVarType(scilabVar_t var)
     {
         int res(0);
@@ -122,31 +140,31 @@ namespace
     }
 
     /* return the typename (as in typeof() )
-     * @param int* address of the scilab var
-     * @return the name
-     * only implements the current valid types for parallel_run args.
-     */
+    * @param int* address of the scilab var
+    * @return the name
+    * only implements the current valid types for parallel_run args.
+    */
     char const* getTypeName(scilabVar_t var)
     {
         char const* res;
         switch(getVarType(var))
         {
         case sci_matrix:
-        {
-            res= "constant";
-            break;
-        }
+            {
+                res= "constant";
+                break;
+            }
         default:
-        {
-            res="unimplemented type in getTypeName";
-        }
+            {
+                res="unimplemented type in getTypeName";
+            }
         }
         return res;
     }
     /* get nb of Rows & Cols of a Scilab var : a fonctional version of getVarDimension that can be composed.
-     * @param the address of the variable
-     * @return the dimensions in a std::pair<int,int> of nb of rows, nb of columns. (0,0) on error.
-     */
+    * @param the address of the variable
+    * @return the dimensions in a std::pair<int,int> of nb of rows, nb of columns. (0,0) on error.
+    */
     dim_t getRowsCols(scilabVar_t var)
     {
         dim_t res(0,0);
@@ -154,170 +172,170 @@ namespace
         return res;
     }
     /* get nb of Rows of a Scilab var (would not be needed with tr1)
-     * @param the address of the variable
-     * @return the nb of rows, 0 on error.
-     */
+    * @param the address of the variable
+    * @return the nb of rows, 0 on error.
+    */
     int getRows(scilabVar_t var)
     {
         return getRowsCols(var).first;
     }
     /* get nb of Columns of a Scilab var (would not be needed with tr1)
-     * @param the address of the variable
-     * @return the nb of columns, 0 on error.
-     */
+    * @param the address of the variable
+    * @return the nb of columns, 0 on error.
+    */
     int getCols(scilabVar_t var)
     {
         return getRowsCols(var).second;
     }
 
     /* test if the scilab var can be a function (either because it *is* one or because it can be the name of a function : 1x1 string marix)
-     * @param var the scilab var
-     * @return bool true iff it can be a function
-     */
+    * @param var the scilab var
+    * @return bool true iff it can be a function
+    */
     bool isFunctionOrString(scilabVar_t var){
         bool res;
         switch(getVarType(var))
         {
         case sci_u_function :
         case sci_c_function :
-        {
-            res= true;
-            break;
-        }
+            {
+                res= true;
+                break;
+            }
         case sci_strings :
-        {
-            res= (getRows(var) == 1) && (getCols(var) == 1);
-            break;
-        }
+            {
+                res= (getRows(var) == 1) && (getCols(var) == 1);
+                break;
+            }
         default :
-        {
-            res= false;
-        }
+            {
+                res= false;
+            }
         }
         return res;
     }
     /* get ptr to data of a Scilab variable
-     * @param var 'address' of the scilab var
-     * @return ptr to the data
-     */
+    * @param var 'address' of the scilab var
+    * @return ptr to the data
+    */
     unionOfPtrs_t getData(scilabVar_t var)
     {
         unionOfPtrs_t res={0};
         switch(getVarType(var)) // unhandled data types should be caught during arg validation
         {
         case sci_matrix :
-        {
-            if(!isVarComplex(pvApiCtx, var))
             {
-                int unused;
-                err= getMatrixOfDouble(pvApiCtx, var, &unused, &unused, &res.doublePtr);
-            }
-            else
-            {/* TODO suggest workaround in tutorial */
+                if(!isVarComplex(pvApiCtx, var))
+                {
+                    int unused;
+                    err= getMatrixOfDouble(pvApiCtx, var, &unused, &unused, &res.doublePtr);
+                }
+                else
+                {/* TODO suggest workaround in tutorial */
 
-//              std::cerr<<"complex data not yet implemented var @"<<var<<std::endl;
+                    //              std::cerr<<"complex data not yet implemented var @"<<var<<std::endl;
+                }
+                break;
             }
-            break;
-        }
         case sci_strings :
-        {
-//          std::cerr<<"getData() string data not yet implemented"<<std::endl;
-            break;
-        }
+            {
+                //          std::cerr<<"getData() string data not yet implemented"<<std::endl;
+                break;
+            }
         default :
-        {
-//          std::cerr<<"getData() data type"<<getVarType(var)<<" not yet implemented"<<std::endl;
-//          abort();
-        }
+            {
+                //          std::cerr<<"getData() data type"<<getVarType(var)<<" not yet implemented"<<std::endl;
+                //          abort();
+            }
         }
         return res;
     }
     /* get size of an element in a scilab matrix data structure.
-     * @param var 'address' of the scilab var
-     * @return the size in bytes, 0 on error.
-     */
+    * @param var 'address' of the scilab var
+    * @return the size in bytes, 0 on error.
+    */
     std::size_t getSizeOfElement(scilabVar_t var)
     {
         std::size_t res(0);
         switch(getVarType(var))
         {
         case sci_matrix :
-        {
-            res= sizeof(double);
-            break;
-        }
+            {
+                res= sizeof(double);
+                break;
+            }
         default : /* returns 0 */
-        {
-//    std::cerr<<"getSizeOfElt() @"<<var<<":data type not yet implemented"<<std::endl;
-        }
+            {
+                //    std::cerr<<"getSizeOfElt() @"<<var<<":data type not yet implemented"<<std::endl;
+            }
         }
         return res;
     }
 
     /* get size of a columns in a scilab matrix data structure.
-     * @param var 'address' of the scilab var
-     * @return the size in bytes, 0 on error.
-     */
+    * @param var 'address' of the scilab var
+    * @return the size in bytes, 0 on error.
+    */
     std::size_t getSizeOfColumn(scilabVar_t var)
     {
         return getSizeOfElement(var) * getRows(var) ;
     }
 
     /* get size of the data in a scilab matrix data structure.
-     * @param var 'address' of the scilab var
-     * @return the size in bytes, 0 on error.
-     */
+    * @param var 'address' of the scilab var
+    * @return the size in bytes, 0 on error.
+    */
     std::size_t getSizeOfData(scilabVar_t var)
     {
         return getSizeOfColumn(var) * getCols(var) ;
     }
 
     /* computes a dimension that is either
-     * a slice (one column), or the concatenation of n matrix
-     * For n=1, the dimension is untouched.
-     * @param d dimension to slice or concatenate
-     * @return the new dimension
-     */
+    * a slice (one column), or the concatenation of n matrix
+    * For n=1, the dimension is untouched.
+    * @param d dimension to slice or concatenate
+    * @return the new dimension
+    */
     dim_t sliceOrConcat(dim_t d, std::size_t n=1)
     {
         switch(n)
         {
         case 0 :
-        {
-            d.second= 1; /* slice : one column */
-            break;
-        }
+            {
+                d.second= 1; /* slice : one column */
+                break;
+            }
         case 1:
             break;
         default :
-        {
-            d.first *= d.second;
-            d.second = static_cast<int>(n);
-        }
+            {
+                d.first *= d.second;
+                d.second = static_cast<int>(n);
+            }
         }
         return d;
     }
 
     /* Get the description from a scilab variable.
-     * If n is provided, it instead returns the description of
-     * either a slice (n==0) or a concatenation (n>1) of the variable.
-     * @param var scilab variable address
-     * @param n either slice or concatenation
-     * @return the description
-     */
+    * If n is provided, it instead returns the description of
+    * either a slice (n==0) or a concatenation (n>1) of the variable.
+    * @param var scilab variable address
+    * @param n either slice or concatenation
+    * @return the description
+    */
     scilabDesc_t getDesc(scilabVar_t var, std::size_t n=1)
     {
         return scilabDesc_t( getTypeName(var),sliceOrConcat(getRowsCols(var), n));
     }
 
     /* allocate a scilab variable according to a provided description.
-     * If n is provided, it instead allocates
-     * either a slice (n==0) or a concatenation (n>1) of the variable.
-     * @param d scilab variable description
-     * @param n either slice or concatenation
-     * @return the variable address
-     * only real matrices are implemented yet.
-     */
+    * If n is provided, it instead allocates
+    * either a slice (n==0) or a concatenation (n>1) of the variable.
+    * @param d scilab variable description
+    * @param n either slice or concatenation
+    * @return the variable address
+    * only real matrices are implemented yet.
+    */
     scilabVar_t allocVar(scilabDesc_t d, std::size_t n=1)
     {
         scilabVar_t res(0);
@@ -327,26 +345,26 @@ namespace
             dim_t toAlloc(sliceOrConcat(d.second, n));
             err= allocMatrixOfDouble(pvApiCtx, ++currentTop, toAlloc.first, toAlloc.second, &unused);
             ++Nbvars;
-//          std::cerr<<"alloc var :"<<d.toString()<<" @"<<(currentTop)<<" with Nbvars="<<Nbvars<<std::endl;
+            //          std::cerr<<"alloc var :"<<d.toString()<<" @"<<(currentTop)<<" with Nbvars="<<Nbvars<<std::endl;
             err= getVarAddressFromPosition(pvApiCtx, currentTop, &res);
         }
         else /* unhandled type should be caught at arg validation time */
         {
-//          std::cerr<<"allocVar() "<<d.first<<" data type not yet implemented"<<std::endl;
+            //          std::cerr<<"allocVar() "<<d.first<<" data type not yet implemented"<<std::endl;
         }
         return res;
     }
     /* Ensures that the complete expected var is filled with reasonable default values
-     * when the returned var was smaller than expected
-     *
-     * i.e. we just copied the data from a resultVar @ varData
-     * when we were expecting an expectedVar : we fill the rest.
-     *
-     * @param d scilab variable description
-     * @param n either slice or concatenation
-     * @return the variable address
-     * only real matrices are implemented yet.
-     */
+    * when the returned var was smaller than expected
+    *
+    * i.e. we just copied the data from a resultVar @ varData
+    * when we were expecting an expectedVar : we fill the rest.
+    *
+    * @param d scilab variable description
+    * @param n either slice or concatenation
+    * @return the variable address
+    * only real matrices are implemented yet.
+    */
     void fillUndefinedData(void* varData, scilabDesc_t resultVar, scilabDesc_t expectedVar)
     {
         if(!std::strcmp(resultVar.first, expectedVar.first))
@@ -355,31 +373,31 @@ namespace
             {
                 std::size_t const nbFilled(resultVar.second.first * resultVar.second.second);
                 std::fill_n(static_cast<double *>(varData)+ nbFilled
-                            , expectedVar.second.first * expectedVar.second.second - nbFilled
-                            ,std::numeric_limits<double>::quiet_NaN() );
+                    , expectedVar.second.first * expectedVar.second.second - nbFilled
+                    ,std::numeric_limits<double>::quiet_NaN() );
 
             }
         }
     }
     /*
-      wrapper on a native c function or a scilab macro called on scilab variables.
+    wrapper on a native c function or a scilab macro called on scilab variables.
 
-      constructed on :
-      - scilab variable for the function (external native function name, sci_c_function (buggy) or macro name)scilab matrices of arguments
-      - expected lhs
+    constructed on :
+    - scilab variable for the function (external native function name, sci_c_function (buggy) or macro name)scilab matrices of arguments
+    - expected lhs
 
-      upon construction, allocate scilab result variables and computes all necessary meta data.
+    upon construction, allocate scilab result variables and computes all necessary meta data.
     */
     struct wrapper {
 
         typedef std::vector<std::size_t> sizes_container;
 
         /* wrapper contructor
-         * @param args_begin iterator to the first args of parallel_run
-         * @param function_it iterator to the function argument of parallel_run
-         * @param args_end iterator past the end of parallel_run args
-         * @param function_lhs number of lhs (of parallel_run and of the function: it is the same)
-         */
+        * @param args_begin iterator to the first args of parallel_run
+        * @param function_it iterator to the function argument of parallel_run
+        * @param args_end iterator past the end of parallel_run args
+        * @param function_lhs number of lhs (of parallel_run and of the function: it is the same)
+        */
         template<typename VarsIt>
         wrapper(VarsIt begin, VarsIt functionIt, VarsIt end, std::size_t functionLhs)
         {
@@ -390,16 +408,16 @@ namespace
         }
 
         /* the member function performing the call to the function (foreign function of Scilab macro)
-         * @ param args array of ptrs to args data
-         * @ param res array of ptrs to res data
-         */
+        * @ param args array of ptrs to args data
+        * @ param res array of ptrs to res data
+        */
         void operator()(char const** args, char ** res)
         {
             (*this.*(this->fPtr))(args, res);
         }
 
         /* It is idiomatic to pass functors by value in C++, but our wrapper is heavy,
-         * so we provide a lightweight handle */
+        * so we provide a lightweight handle */
         struct handle
         {
             handle(wrapper& r) : w(r)
@@ -475,9 +493,9 @@ namespace
         }
 
         /* alloc the scilab variables that will hold the complete collection of results
-         * @param first_arg_position only used to compute the args positions for error messages
-         * @param res_types_begin, res_types_end iterator range on the args describing result, can be empty
-         * @param nb_lhs number of lhs    */
+        * @param first_arg_position only used to compute the args positions for error messages
+        * @param res_types_begin, res_types_end iterator range on the args describing result, can be empty
+        * @param nb_lhs number of lhs    */
         template<typename VarPtrIt>
         void allocCompleteResults(VarPtrIt begin, VarPtrIt resBegin, VarPtrIt resEnd, std::size_t nbLhs)
         {
@@ -500,29 +518,29 @@ namespace
                         {
 
                         case 2:
-                        {
-                            //            std::cerr<<"we have rows and cols\n";
-                            for(int i(0); i < tmp.first && i< tmp.first*tmp.second; ++i)
                             {
-                                lhsDesc[i].second.first= static_cast<int>(data[i]);
-                                lhsDesc[i].second.second=static_cast<int>(data[i+tmp.first]);
+                                //            std::cerr<<"we have rows and cols\n";
+                                for(int i(0); i < tmp.first && i< tmp.first*tmp.second; ++i)
+                                {
+                                    lhsDesc[i].second.first= static_cast<int>(data[i]);
+                                    lhsDesc[i].second.second=static_cast<int>(data[i+tmp.first]);
+                                }
+                                break;
                             }
-                            break;
-                        }
                         case 1:
-                        {
-                            //            std::cerr<<"we have rows \n";
-                            for(int i(0); i< tmp.first && i< tmp.first*tmp.second; ++i)
                             {
-                                lhsDesc[i].second.first= static_cast<int>(data[i]);
+                                //            std::cerr<<"we have rows \n";
+                                for(int i(0); i< tmp.first && i< tmp.first*tmp.second; ++i)
+                                {
+                                    lhsDesc[i].second.first= static_cast<int>(data[i]);
+                                }
+                                break;
                             }
-                            break;
-                        }
                         default :
-                        {
-                            Scierror(999,_("%s: Wrong size of input argument #%d: Number of columns are incompatible ")
-                                     ,currentFname, std::distance(begin, resBegin));
-                        }
+                            {
+                                Scierror(999,_("%s: Wrong size of input argument #%d: Number of columns are incompatible ")
+                                    ,currentFname, std::distance(begin, resBegin));
+                            }
                         }
                     }
                 }
@@ -535,9 +553,9 @@ namespace
         }
 
         /* extract the function form the scilab variable (i.e.string) reprensenting it.
-         * @param v the variable
-         * @return nothing useful but GetRhsVar() macro wants to be able to return an int :(
-         */
+        * @param v the variable
+        * @return nothing useful but GetRhsVar() macro wants to be able to return an int :(
+        */
         int getFunction(scilabVar_t var) {
             function.toCall= 0;
             switch(getVarType(var))
@@ -547,7 +565,7 @@ namespace
                 GetRhsVar(2, EXTERNAL_DATATYPE, unused, unused+1, &scilabFunction);
                 fPtr = &wrapper::macro<false>;
                 break;
-            }
+                                  }
             case sci_strings : {
                 char* funName;
                 getAllocatedSingleString(pvApiCtx, var, &funName);
@@ -562,22 +580,22 @@ namespace
                     scilabFunctionNameLength= std::strlen(scilabFunctionName);
                     fPtr= &wrapper::macro<true>;
                 }
-            }
+                               }
             }
             return 0;
         }
 
         /* performs the Scilab macro call
-         * @param byName bool template parameter tells if the macro is called by name or by ptr (ptr is currently broken).
-         * @param args array of ptrs to args data
-         * @param res array of ptr to res data
-         */
+        * @param byName bool template parameter tells if the macro is called by name or by ptr (ptr is currently broken).
+        * @param args array of ptrs to args data
+        * @param res array of ptr to res data
+        */
         template<bool byName>
         void macro(char const** args, char ** res)  {
             /* rhs models from  */
             int saveNbvars= Nbvars, saveTop= currentTop;
             for( std::vector<scilabDesc_t>::const_iterator it(rhsDesc.begin())
-                     ; it != rhsDesc.end(); ++it, ++args)
+                ; it != rhsDesc.end(); ++it, ++args)
             {
                 scilabVar_t scilabArg= allocVar(*it); /* create a var for a slice (col)of the parallel_run Rhs arg */
                 memcpy(getData(scilabArg).bytePtr, *args, getSizeOfData(scilabArg));
@@ -595,16 +613,16 @@ namespace
             }
             Nbvars = Rhs+Lhs+sciRhs;
             bool success(byName
-                          ? C2F(scistring)(&sciArgPos, scilabFunctionName, &sciLhs, &sciRhs, static_cast<unsigned long>(scilabFunctionNameLength))
-                          : C2F(scifunction)(&sciArgPos, &scilabFunction, &sciLhs, &sciRhs)
-                         );
+                ? C2F(scistring)(&sciArgPos, scilabFunctionName, &sciLhs, &sciRhs, static_cast<unsigned long>(scilabFunctionNameLength))
+                : C2F(scifunction)(&sciArgPos, &scilabFunction, &sciLhs, &sciRhs)
+                );
             // result r is now on first position on stack
             {
                 Nbvars = static_cast<int>(Rhs + Lhs + sciRhs + dummyVars);
                 int resPos = Rhs + Lhs + 1; //+1
 
                 for( std::vector<scilabDesc_t>::iterator it(lhsDesc.begin())
-                         ; it != lhsDesc.end(); ++it, ++resPos, ++res)
+                    ; it != lhsDesc.end(); ++it, ++resPos, ++res)
                 {
                     scilabVar_t scilabRes;
                     if(success)
@@ -654,12 +672,12 @@ namespace
 
     };
     /* Checks if the function parallel_run arguments are valid.
-     * 1 or more matrices of doubles
-     * 1 matrix of 1 string
-     * 0 or 1 matrix of strings and/or 1 matrix of doubles with 1 ou 2 columns
-     * 0 or 1 configuration plist
-     *
-     * @retun true is the args are valid */
+    * 1 or more matrices of doubles
+    * 1 matrix of 1 string
+    * 0 or 1 matrix of strings and/or 1 matrix of doubles with 1 ou 2 columns
+    * 0 or 1 configuration plist
+    *
+    * @retun true is the args are valid */
     bool check_args(void) {
         {
             if(Rhs<2) { return false; }
@@ -672,50 +690,50 @@ namespace
                 err= getVarType( pvApiCtx, addr, &type );
                 if (before_function) {
                     switch (type) {
-                    case sci_matrix : {
-                        /* check not complex "%s: This feature has not been implemented.\n" */
-                        ok= !isVarComplex( pvApiCtx, addr);
-                        at_least_one_arg= true;
-                        break;
-                    }
-                    case sci_strings : {
-                        /* check dim = 1x1 */
-                        int rows, cols;
-                        err= getMatrixOfString(pvApiCtx, addr, &rows, &cols, 0,0);
-                        ok= (rows == 1) && (cols == 1);
-                    }/* no break */
-                    case sci_c_function:{
-                        before_function= false;
-                        break;
-                    }
-                    default : {
-                        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),currentFname, 1);
-                        ok= false;
-                    }
+    case sci_matrix : {
+        /* check not complex "%s: This feature has not been implemented.\n" */
+        ok= !isVarComplex( pvApiCtx, addr);
+        at_least_one_arg= true;
+        break;
+                      }
+    case sci_strings : {
+        /* check dim = 1x1 */
+        int rows, cols;
+        err= getMatrixOfString(pvApiCtx, addr, &rows, &cols, 0,0);
+        ok= (rows == 1) && (cols == 1);
+                       }/* no break */
+    case sci_c_function:{
+        before_function= false;
+        break;
+                        }
+    default : {
+        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),currentFname, 1);
+        ok= false;
+              }
                     }
                 } else {
                     switch (type) {
-                    case sci_strings :{
-                        break;
-                    }
-                    case sci_matrix :{
-                        /* check not complex and ncol <=2 */
-                        ok= !isVarComplex( pvApiCtx, addr);
-                        if(ok) {
-                            int rows, cols;
-                            double* unused;
-                            err= getMatrixOfDouble(pvApiCtx, addr, &rows, &cols, &unused);
-                            ok= (cols <= 2);
-                            break;
-                        }
-                    }
-                    case sci_mlist :{ /* config plist (which is a mlist) */
-                        break;
+    case sci_strings :{
+        break;
+                      }
+    case sci_matrix :{
+        /* check not complex and ncol <=2 */
+        ok= !isVarComplex( pvApiCtx, addr);
+        if(ok) {
+            int rows, cols;
+            double* unused;
+            err= getMatrixOfDouble(pvApiCtx, addr, &rows, &cols, &unused);
+            ok= (cols <= 2);
+            break;
+        }
+                     }
+    case sci_mlist :{ /* config plist (which is a mlist) */
+        break;
                     }
 
-                    default : {
-                        ok= false;
-                    }
+    default : {
+        ok= false;
+              }
                     }
                 }
             }
@@ -724,55 +742,55 @@ namespace
     }
 
     /* Get configuration options form the config parameter
-     *
-     * in :
-     * @param config_arg_pos position where the config arg can be
-     *
-     * in/out:
-     *
-     * @param nb_workers int config value for the key "nb_workers"
-     * @param shared_memory bool config value for the key "shared_memory"
-     * @param dynamic_scheduling bool config value for the key "dynamic_scheduling"
-     * @param chunk_size int config value for the key "chunk_size"
-     * @param prologue char* config value for the key "prologue"
-     * @param prologue char* config value for the key "epilogue"
-     *
-     * @return bool true if there was a configuration argument in position config_arg_pos.
-     */
+    *
+    * in :
+    * @param config_arg_pos position where the config arg can be
+    *
+    * in/out:
+    *
+    * @param nb_workers int config value for the key "nb_workers"
+    * @param shared_memory bool config value for the key "shared_memory"
+    * @param dynamic_scheduling bool config value for the key "dynamic_scheduling"
+    * @param chunk_size int config value for the key "chunk_size"
+    * @param prologue char* config value for the key "prologue"
+    * @param prologue char* config value for the key "epilogue"
+    *
+    * @return bool true if there was a configuration argument in position config_arg_pos.
+    */
     bool getConfigParameters
-(int config_arg_pos, int& nb_workers, bool& shared_memory, bool& dynamic_scheduling, int& chunk_size, char const*& prologue, char const*& epilogue){
-        int log(0);
-        int* addr = NULL;
-        getVarAddressFromPosition(pvApiCtx, config_arg_pos, &addr);
-        bool has_config_arg(checkPList(pvApiCtx, addr) != 0);
-        if(has_config_arg) {
-            int found;
-            getIntInPList(pvApiCtx, addr, "nb_workers", &nb_workers, &found, nb_workers, log,  CHECK_NONE);
-            int tmp;
-            getIntInPList(pvApiCtx, addr, "shared_memory", &tmp, &found, shared_memory ? 1:0, log,CHECK_NONE);
-            shared_memory= (tmp!=0);
-            getIntInPList(pvApiCtx, addr, "dynamic_scheduling", &tmp, &found, dynamic_scheduling ? 1:0, log,CHECK_NONE);
-            dynamic_scheduling= (tmp!=0);
-            getIntInPList(pvApiCtx, addr, "chunk_size", &chunk_size, &found, chunk_size, log,CHECK_NONE);
-            getStringInPList(pvApiCtx, addr, "prologue", const_cast<char**>(&prologue), &found, const_cast<char*>(prologue), log, CHECK_NONE);
-            getStringInPList(pvApiCtx, addr, "epilogue", const_cast<char**>(&epilogue), &found, const_cast<char*>(epilogue), log, CHECK_NONE);
-        }
-        return has_config_arg;
+        (int config_arg_pos, int& nb_workers, bool& shared_memory, bool& dynamic_scheduling, int& chunk_size, char const*& prologue, char const*& epilogue){
+            int log(0);
+            int* addr = NULL;
+            getVarAddressFromPosition(pvApiCtx, config_arg_pos, &addr);
+            bool has_config_arg(checkPList(pvApiCtx, addr) != 0);
+            if(has_config_arg) {
+                int found;
+                getIntInPList(pvApiCtx, addr, "nb_workers", &nb_workers, &found, nb_workers, log,  CHECK_NONE);
+                int tmp;
+                getIntInPList(pvApiCtx, addr, "shared_memory", &tmp, &found, shared_memory ? 1:0, log,CHECK_NONE);
+                shared_memory= (tmp!=0);
+                getIntInPList(pvApiCtx, addr, "dynamic_scheduling", &tmp, &found, dynamic_scheduling ? 1:0, log,CHECK_NONE);
+                dynamic_scheduling= (tmp!=0);
+                getIntInPList(pvApiCtx, addr, "chunk_size", &chunk_size, &found, chunk_size, log,CHECK_NONE);
+                getStringInPList(pvApiCtx, addr, "prologue", const_cast<char**>(&prologue), &found, const_cast<char*>(prologue), log, CHECK_NONE);
+                getStringInPList(pvApiCtx, addr, "epilogue", const_cast<char**>(&epilogue), &found, const_cast<char*>(epilogue), log, CHECK_NONE);
+            }
+            return has_config_arg;
     }
 
     /*
-      A simple wrapper just wraps prologues and epilogues, each taking only a scalar argument (the process number).
+    A simple wrapper just wraps prologues and epilogues, each taking only a scalar argument (the process number).
     */
     struct simple_wrapper{
         /* the constructor
-         * @param the macro or foreign function name, empty string allowed: the function then does nothing.
-         */
+        * @param the macro or foreign function name, empty string allowed: the function then does nothing.
+        */
         explicit simple_wrapper(char const* name):fun(name)
         {
         }
         /* the operator : calls the function or macro passing a scalar argument on the stack
-         * @param i the scalar to pass on the stack as a real value.
-         */
+        * @param i the scalar to pass on the stack as a real value.
+        */
         void operator()(int i)
         {
             if(*fun)
@@ -802,23 +820,91 @@ namespace
         }
         char const* fun;
     };
+
+    struct ConcurrencyState
+    {
+        ConcurrencyState()
+        {
+            lock = static_cast<__threadSignalLock*>(mmap(0, sizeof( __threadSignalLock), PROT_READ | PROT_WRITE,MAP_SHARED |  MAP_ANONYMOUS, -1, 0));
+            processConcurrencyLevelPtr= static_cast<int*>(mmap(0, sizeof(int), PROT_READ | PROT_WRITE,MAP_SHARED |  MAP_ANONYMOUS, -1, 0));
+            __InitSignalLock(lock);
+        }
+
+        struct ScopedUpdater
+        {
+            ScopedUpdater(ConcurrencyState& c, bool threads)
+                : lock(c.lock), countPtr( threads
+                ? &c.threadConcurrencyLevel
+                : c.processConcurrencyLevelPtr)
+            {
+                __LockSignal(lock);
+                ++(*countPtr);
+                __UnLockSignal(lock);
+            }
+            ~ScopedUpdater()
+            {
+                __LockSignal(lock);
+                --(*countPtr);
+                __UnLockSignal(lock);
+            }
+            __threadSignalLock* lock;
+            int* countPtr;
+        };
+        ScopedUpdater scopedUpdater(bool threads)
+        {
+            return ScopedUpdater(*this, threads);
+        }
+
+        int get() const
+        {
+            __LockSignal(lock);
+            int res((threadConcurrencyLevel ? 1 : 0) | (*processConcurrencyLevelPtr ? 2 : 0));
+            __UnLockSignal(lock);
+            return res;
+        }
+
+        ~ConcurrencyState()/* called by exit() for static variables */
+        {
+            __UnLockSignal(lock);
+        }
+        __threadSignalLock* lock;
+        int* processConcurrencyLevelPtr; /* must be in shared mem */
+        int threadConcurrencyLevel;
+    };
+
+
 }
 
+ConcurrencyState concurrencyState;
+
+int parallelConcurrency()
+{
+    return concurrencyState.get();
+}
+
+int parallelForbidden(char const* fname)
+{
+    Scierror(999,_("%s: This function is forbidden in a concurrent execution context.\n"), fname);
+    return 0;
+}
+
+
+
 /* Calling point from Scilab.
- * checking args and contruction a wrapper around function call of a foreign function or a Scilab macro.
- * this wrapper (in fact, a handle) is then passed to another wrapper that will parallelize the calls.
- * the parallel wrapper is independant of Scilab (thanks to this wrapper) and is implemented in parallel_wrapper.hpp.
- *
- * Calling parallel_run is
- * 1 checking args
- * 2 constructing wrapper pre allocating result Scilab vars and abstracting arrays of args and results pointers
- * (in parallel_wrapper )
- * 3 contructing a parallel_wrapper
- * 4 calling the parallel_wrapper according to config options (i.e. nb of workers)
- * 4.1 for each call to be made, adjusting the args and res ptr
- * 4.2 calling the wrapper
- *
- */
+* checking args and contruction a wrapper around function call of a foreign function or a Scilab macro.
+* this wrapper (in fact, a handle) is then passed to another wrapper that will parallelize the calls.
+* the parallel wrapper is independant of Scilab (thanks to this wrapper) and is implemented in parallel_wrapper.hpp.
+*
+* Calling parallel_run is
+* 1 checking args
+* 2 constructing wrapper pre allocating result Scilab vars and abstracting arrays of args and results pointers
+* (in parallel_wrapper )
+* 3 contructing a parallel_wrapper
+* 4 calling the parallel_wrapper according to config options (i.e. nb of workers)
+* 4.1 for each call to be made, adjusting the args and res ptr
+* 4.2 calling the wrapper
+*
+*/
 int sci_parallel_run(char *fname,unsigned long fname_len)
 {
     typedef std::vector<scilabVar_t> varsContainer_t;
@@ -856,11 +942,14 @@ int sci_parallel_run(char *fname,unsigned long fname_len)
     varsContainer_t::iterator functionArg= std::find_if(stack.begin(), stack.end(), &isFunctionOrString);
     wrapper w(stack.begin(), functionArg, stack.end(), Lhs);
     bool const withThreads(w.isForeignFunction() && sharedMemory);
+
+    ConcurrencyState::ScopedUpdater u(concurrencyState.scopedUpdater(withThreads));
+
     simple_wrapper prologue(prologueName), epilogue(epilogueName);
 
     make_parallel_wrapper(w.argsDataBegin(), w.argsSizesBegin(), w.argsNbBegin(), w.nbRhs(), w.tasksNb()
-                          ,  w.resDataBegin(), w.resSizesBegin()
-                          , Lhs, w.getHandle(), prologue, epilogue)(withThreads, nbWorkers, dynamicScheduling, chunkSize);
+        ,  w.resDataBegin(), w.resSizesBegin()
+        , Lhs, w.getHandle(), prologue, epilogue)(withThreads, nbWorkers, dynamicScheduling, chunkSize);
 
     for(int i(0); i != Lhs; ++i)
     {

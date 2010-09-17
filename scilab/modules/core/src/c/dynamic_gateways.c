@@ -14,6 +14,7 @@
 #include "dynamic_gateways.h"
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
+#include "dynamic_parallel.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* special_functions module */
@@ -377,22 +378,6 @@ int gw_dynamic_action_binding(void)
         &ptr_gw_action_binding);
 }
 /*--------------------------------------------------------------------------*/
-/* PARALLEL module */
-#define PARALLEL_MODULE_NAME "parallel"
-static DynLibHandle hParallelLib = NULL;
-static PROC_GATEWAY ptr_gw_parallel = NULL;
-static char* dynlibname_parallel = NULL;
-static char* gatewayname_parallel = NULL;
-/*--------------------------------------------------------------------------*/
-int gw_dynamic_parallel(void)
-{
-    return gw_dynamic_generic(PARALLEL_MODULE_NAME,
-        &dynlibname_parallel,
-        &gatewayname_parallel,
-        &hParallelLib,
-        &ptr_gw_parallel);
-}
-/*--------------------------------------------------------------------------*/
 /* ui_data module */
 #define UI_DATA_MODULE_NAME "ui_data"
 static DynLibHandle hUi_dataLib = NULL;
@@ -522,14 +507,12 @@ void freeAllDynamicGateways(void)
         &hAction_bindingLib,
         &ptr_gw_action_binding);
 
-    freeDynamicGateway(&dynlibname_parallel,
-        &gatewayname_parallel,
-        &hParallelLib,
-        &ptr_gw_parallel);
+    dynTerminateParallel();
 
     freeDynamicGateway(&dynlibname_ui_data,
         &gatewayname_ui_data,
         &hUi_dataLib,
-        &ptr_gw_ui_data);}
+        &ptr_gw_ui_data);
+}
 /*--------------------------------------------------------------------------*/
 

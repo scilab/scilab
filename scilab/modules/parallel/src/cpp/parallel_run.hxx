@@ -139,7 +139,7 @@ namespace
     */
 
 #ifndef _MSC_VER
- #define __HAVE_FORK__ 1
+#define __HAVE_FORK__ 1
 #endif
 
 #ifdef __HAVE_FORK__
