@@ -16,6 +16,7 @@
   <property name="library-v1.name" value="${library.javasci-v1.name}" />
   <property name="library.name" value="${library.javasci.name}" />
 
+	
   <description>
 	Build the Java/Scilab connecter (javasci) module
   </description>
@@ -54,7 +55,7 @@
 
   <property name="examples.classes.dir" location="${build.dir}/examples/" />
 
-  <target name="build-examples" description="Build the examples" depends="jar-v1, jar">
+  <target name="build-examples" description="Build the examples" depends="jar, jar-v1">
         <property name="examples.src.dir"  location="examples/others/" />
         <mkdir dir="${examples.classes.dir}"/>
 
@@ -77,7 +78,12 @@
   </target>
 
   <target name="jar-v1" description="Build the jar file" depends="compile-v1">
+      <manifestclasspath property="manifest-v1.classpath" jarfile="${build.jar.dir}/${library-v1.name}">
+          <classpath location="${library.jvm.dir}/${library.jvm.name}" />
+      </manifestclasspath>
+
 	<jar destfile="${build.jar.dir}/${library-v1.name}" basedir="${classes.dir}/v1/">
+
 	  <manifest>
 		<attribute name="SciAbstractDataType" value="javasci.SciAbstractDataType"/>
 		<attribute name="SciBooleanArray" value="javasci.SciBooleanArray"/>
@@ -93,18 +99,19 @@
 		<attribute name="SciStringArray" value="javasci.SciStringArray"/>
 		<attribute name="ClassPath" value="javasci.ClassPath"/>
 		<attribute name="LibraryPath" value="javasci.LibraryPath"/>
+        <attribute name="Class-Path" value="${manifest-v1.classpath}"/>
 	  </manifest>
 	</jar>
   </target>
 
 	<!-- Create the jar -->
 	<target name="jar" description="Build the jar file" depends="compile">
-
         <manifestclasspath property="manifest.classpath" jarfile="${build.jar.dir}/${library.name}">
              <classpath location="${library.jvm.dir}/${library.jvm.name}" />
         </manifestclasspath>
-	
+
 		<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}/v2/">
+
 		<manifest>
                 <attribute name="Class-Path" value="${manifest.classpath}"/>
 		</manifest>
