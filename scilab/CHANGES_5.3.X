@@ -34,6 +34,9 @@ Xcos:
 
 * bug 7945 fixed - The path of the diagram was not displayed in the title bar.
 
+* bug 7995 fixed - The "export diagram" actions did not work with file without
+                   extension.
+
 * bug 8014 fixed - The TEXT_f.png file was not present on the source tree.
 
 * bug 8025 fixed - The simulation parameter dialog was modal.
