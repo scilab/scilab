@@ -27,6 +27,10 @@ Xcos:
 * bugs 7931, 7933, 7934 fixed - Some artifacts were visible on diagrams such as
                    wrong links and block names.
 
+* bug 7942 fixed - The "Start" button was not disabled when the diagram was
+                   empty.
+
+* bug 7944 fixed - "Fit diagram to view" was disabled after opening a diagram.
 
 * bug 7945 fixed - The path of the diagram was not displayed in the title bar.
 
