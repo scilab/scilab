@@ -50,6 +50,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxICell;
+import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
@@ -216,6 +217,7 @@ public final class SuperBlock extends BasicBlock {
 			getChild().setModifiedNonRecursively(false);
 			
 			new XcosTab(getChild()).setVisible(true);
+			getChild().fireEvent(new mxEventObject(mxEvent.ROOT));
 			getChild().getView().invalidate();
 		}
 		

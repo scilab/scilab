@@ -287,13 +287,14 @@ public final class Xcos {
 			 */
 			diag = new XcosDiagram();
 			diag.installListeners();
+			final XcosTab tab = new XcosTab(diag);
 
 			if (filename != null) {
 				diag.openDiagramFromFile(filename);
 			}
 
 			diagrams.add(diag);
-			new XcosTab(diag).setVisible(true);
+			tab.setVisible(true);
 
 		} else {
 
