@@ -70,12 +70,8 @@ in uicontrol. See bug #7366.
 Graphics:
 =========
 
-* The icons has been updated to the Tango Art libre icons and to the Inkscape themable icons.
-
-Call_Scilab:
-============
-
-* In function StartScilab, argument "int *Stacksize" changed to "int Stacksize"
+* The icons has been updated to the Tango Art libre icons and to the Inkscape 
+  themable icons.
 
 * bug 6395 fixed - evans display improved to take special care of the
                    root loci points where complex conjugates roots
@@ -85,11 +81,15 @@ Call_Scilab:
 
 * bug 6686 fixed - The automatic sub-ticking gave wrong results.
 
+Call_Scilab:
+============
+
+* In function StartScilab, argument "int *Stacksize" changed to "int Stacksize"
+
 Compilation:
 ============
 
 * Fix a problem in the detection of some ARM cpus.
-
 
 Bug Fixes:
 ==========
@@ -138,7 +138,8 @@ Bug Fixes:
 
 * bug 7959 fixed - fscanf did not manage file descriptor as input argument.
 
-* bug 7964 - errclear(2) cleared all errors and not only error 2 as written in help.
+* bug 7964 fixed - errclear(2) cleared all errors and not only error 2 as written
+                   in help.
 
 * bug 7974 fixed - Customized xerbla.f subroutine did not return enough
                    information.
