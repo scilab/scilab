@@ -7,7 +7,7 @@ Xcos:
 * Include all the old-scicos palettes on the binary version.
 
 * bug 6500 fixed - The ideal transformer block was unusable due to wrong port
-                   positioning.
+                   positioning (update the Transfomer demo).
 
 * bug 7219 fixed - The old gain demo did not work.
 
