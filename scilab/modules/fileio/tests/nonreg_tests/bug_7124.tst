@@ -6,7 +6,6 @@
 // =============================================================================
 //
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 7124 -->
 //
@@ -18,4 +17,6 @@
 //
 ierr = execstr("mputl(""ABC"", ""xzwz\names"")", "errcatch");
 if ierr <> 999 then pause, end
-if lasterror() <> "mputl: Cannot open file xzwz\names." then pause, end
+if lasterror() <> strsubst(msprintf(_("%s: Cannot open file %s.\n"), "mputl", "xzwz/names"), "/", "\") then pause, end
+
+

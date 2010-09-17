@@ -56,16 +56,18 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
+import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
+import org.scilab.modules.xcos.block.actions.ShowParentAction;
+>>>>>>> origin/master
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
@@ -95,9 +97,11 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+
+import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
-import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
@@ -1170,7 +1174,7 @@ public class XcosDiagram extends ScilabGraph {
 	    if (getSavedFile() != null) {
 	    	try {
 				fc.setInitialDirectory(getSavedFile().getCanonicalPath());
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				LOG.error(e);
 			}
 	    }
@@ -1478,7 +1482,7 @@ public class XcosDiagram extends ScilabGraph {
 	    ConfigurationManager.getInstance().addToRecentFiles(writeFile);
 	    setModified(false);
 	    isSuccess = true;
-	} catch (TransformerException e) {
+	} catch (final TransformerException e) {
 		LogFactory.getLog(XcosDiagram.class).error(e);
 		XcosDialogs.couldNotSaveFile(this);
 	}
@@ -1493,7 +1497,7 @@ public class XcosDiagram extends ScilabGraph {
 	 * @param file the file
 	 * @throws TransformerException on error
 	 */
-	private void save(File file) throws TransformerException {
+	private void save(final File file) throws TransformerException {
 		final XcosCodec codec = new XcosCodec();
 		final TransformerFactory tranFactory = TransformerFactory.newInstance();
 		final Transformer aTransformer = tranFactory.newTransformer();
@@ -1509,7 +1513,7 @@ public class XcosDiagram extends ScilabGraph {
 	 * @param file the file
 	 * @throws TransformerException on error
 	 */
-	private void load(File file) throws TransformerException {
+	private void load(final File file) throws TransformerException {
 		final XcosCodec codec = new XcosCodec();
 		final TransformerFactory tranFactory = TransformerFactory.newInstance();
 		final Transformer aTransformer = tranFactory.newTransformer();
@@ -1525,7 +1529,7 @@ public class XcosDiagram extends ScilabGraph {
 	 * Perform post loading initialization.
 	 * @param file the loaded file
 	 */
-	private void postLoad(File file) {
+	private void postLoad(final File file) {
 		final String name = file.getName();
 
 		setModified(false);
@@ -1534,27 +1538,65 @@ public class XcosDiagram extends ScilabGraph {
 		generateUID();
 	}
 	
-    /**
-     * Set the title of the diagram
-     * @param title the title
-     * @see org.scilab.modules.graph.ScilabGraph#setTitle(java.lang.String)
-     */
-    @Override
-    public void setTitle(final String title) {
-	super.setTitle(title);
-	updateTabTitle();
-    }
-
-    /**
-     * Update the title
-     */
-    public void updateTabTitle() {
-	final String tabTitle = !isModified() ? getTitle() : "* " + getTitle();
-	if (getParentTab() != null) {
-	    getParentTab().setName(tabTitle);
-	    getParentTab().draw();
+	/**
+	 * Set the title of the diagram
+	 * 
+	 * @param title
+	 *            the title
+	 * @see org.scilab.modules.graph.ScilabGraph#setTitle(java.lang.String)
+	 */
+	@Override
+	public void setTitle(final String title) {
+		super.setTitle(title);
+		updateTabTitle();
 	}
-    }
+
+	/**
+	 * Update the title
+	 */
+	public void updateTabTitle() {
+		// get the modifier string 
+		final String modified;
+		if (isModified()) {
+			modified = "*";
+		} else {
+			modified = "";
+		}
+		
+		// get the title string
+		final String title = getTitle();
+		
+		// get the path
+		CharSequence formattedPath = "";
+		final File savedFile = getSavedFile();
+		if (savedFile != null) {
+			try {
+				final String path = savedFile.getCanonicalPath();
+				formattedPath = new StringBuilder()
+					.append(" (")
+					.append(path)
+					.append(')');
+			} catch (final IOException e) {
+				LOG.debug(e);
+			}
+		}
+		
+		// Product name
+		final String product = Xcos.TRADENAME;
+		
+		final String tabTitle = new StringBuilder()
+			.append(modified)
+			.append(title)
+			.append(formattedPath)
+			.append(" - ")
+			.append(product)
+			.toString();
+		
+		if (getParentTab() != null) {
+			getParentTab().setName(tabTitle);
+			getParentTab().draw();
+		}
+	}
     
     /**
      * @param context set context
@@ -1625,7 +1667,7 @@ public class XcosDiagram extends ScilabGraph {
 				XcosMessages.FILE_DOESNT_EXIST, diagramFileName.getCanonicalFile()),
 				XcosMessages.XCOS, IconType.QUESTION_ICON,
 				ButtonType.YES_NO);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			LOG.error(e);
 			answer = AnswerOption.YES_OPTION;
 		}
@@ -1699,7 +1741,7 @@ public class XcosDiagram extends ScilabGraph {
 				info(XcosMessages.EMPTY_INFO);
 		    }
 			result = true;
-		} catch (TransformerException e) {
+		} catch (final TransformerException e) {
 			LOG.error(e);
 			result = false;
 		}
@@ -1709,7 +1751,7 @@ public class XcosDiagram extends ScilabGraph {
 	    final H5RWHandler handler = new H5RWHandler(fileToLoad);
 	    handler.readDiagram(this);
 	    generateUID();
-	    setModified(false);
+	    updateTabTitle();
 	    result = true;
 	    break;
 

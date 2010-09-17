@@ -9907,13 +9907,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
    		   works=yes
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   works=yes
 			else
@@ -9973,13 +9973,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
    		   ac_java_jvm_name=gcj
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   ac_java_jvm_name=gcj
 			else
@@ -10037,13 +10037,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
    		   ac_java_jvm_version=1.4
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   ac_java_jvm_version=1.4
 			else
@@ -10082,13 +10082,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
    		   ac_java_jvm_version=1.5
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   ac_java_jvm_version=1.5
 			else
@@ -10233,7 +10233,7 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
 	    powerpc|ppc64)
 	  	  machine=ppc
 		  ;;
-		  armv4l|armv5tel)
+		  armv*)
 		  machine=arm
 		  ;;
 		  s390x) # s390 arch can also returns s390x
@@ -11341,7 +11341,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -11353,7 +11353,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -11440,13 +11440,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""yes"" = "no"; then
            echo "yes" >&5
    		   echo "yes"
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   echo "yes"
 			else
@@ -11506,7 +11506,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -11518,7 +11518,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -11605,13 +11605,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""yes"" = "no"; then
            echo "yes" >&5
    		   echo "yes"
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   echo "yes"
 			else
@@ -11671,7 +11671,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -11683,7 +11683,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -11778,7 +11778,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -11790,7 +11790,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -11886,7 +11886,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -11898,7 +11898,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -11993,7 +11993,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12005,7 +12005,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12203,7 +12203,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12215,7 +12215,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12365,7 +12365,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12377,7 +12377,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12472,7 +12472,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12484,7 +12484,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12580,7 +12580,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12592,7 +12592,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12687,7 +12687,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12699,7 +12699,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12796,7 +12796,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12808,7 +12808,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12905,7 +12905,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12917,7 +12917,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13012,7 +13012,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13024,7 +13024,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13119,7 +13119,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13131,7 +13131,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13218,13 +13218,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""yes"" = "no"; then
            echo "yes" >&5
    		   echo "yes"
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   echo "yes"
 			else
@@ -13284,7 +13284,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13296,7 +13296,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13391,7 +13391,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13403,7 +13403,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13498,7 +13498,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13510,7 +13510,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13605,7 +13605,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13617,7 +13617,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13712,7 +13712,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13724,7 +13724,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13823,7 +13823,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13835,7 +13835,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13930,7 +13930,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13942,7 +13942,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14004,8 +14004,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jlatexmath
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (0.8.8) of jlatexmath" >&5
-$as_echo_n "checking minimal version (0.8.8) of jlatexmath... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (0.9.3) of jlatexmath" >&5
+$as_echo_n "checking minimal version (0.9.3) of jlatexmath... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$JLATEXMATH:$ac_java_classpath"
 
@@ -14015,7 +14015,7 @@ import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="0.8.8";
+        String minVersion="0.9.3";
 
                             System.out.println(TeXFormula.VERSION);
    						   	if (minVersion.compareTo(TeXFormula.VERSION) > 0) {
@@ -14029,13 +14029,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""yes"" = "no"; then
            echo "yes" >&5
    		   echo "yes"
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   echo "yes"
 			else
@@ -14045,7 +14045,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
         		echo "configure: CLASSPATH was $CLASSPATH" >&5
-        		  as_fn_error "Wrong version of jlatexmath. Expected at least 0.8.8. Found $STDOUT" "$LINENO" 5
+        		  as_fn_error "Wrong version of jlatexmath. Expected at least 0.9.3. Found $STDOUT" "$LINENO" 5
         					fi
 		fi
         if test -f conftest.java.output; then
@@ -14055,7 +14055,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error "Wrong version of jlatexmath. Expected at least 0.8.8. Found $STDOUT" "$LINENO" 5
+          as_fn_error "Wrong version of jlatexmath. Expected at least 0.9.3. Found $STDOUT" "$LINENO" 5
             fi
 
    ac_java_classpath=$saved_ac_java_classpath
@@ -14101,7 +14101,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14113,7 +14113,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14208,7 +14208,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14220,7 +14220,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14315,7 +14315,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14327,7 +14327,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14422,7 +14422,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14434,7 +14434,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14529,7 +14529,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14541,7 +14541,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14636,7 +14636,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14648,7 +14648,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14743,7 +14743,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14755,7 +14755,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -18656,7 +18656,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -18668,7 +18668,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -18814,13 +18814,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""yes"" = "no"; then
            echo "yes" >&5
    		   echo "yes"
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   echo "yes"
 			else
@@ -24284,7 +24284,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -24296,7 +24296,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -24391,7 +24391,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -24403,7 +24403,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5

@@ -9,3 +9,4 @@ subdemolist = ["call a C function"             , "call_c.sce" ;
                "call a fortran subroutine"             , "call_fortran.sce" ;];
 
 subdemolist(:,2) = demopath + subdemolist(:,2)
+clear demopath;

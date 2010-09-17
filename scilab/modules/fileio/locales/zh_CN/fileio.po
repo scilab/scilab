@@ -261,6 +261,10 @@ msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为标量。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
@@ -329,6 +333,11 @@ msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format

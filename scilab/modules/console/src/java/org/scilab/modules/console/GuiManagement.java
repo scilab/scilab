@@ -32,13 +32,4 @@ public class GuiManagement {
     GuiManagementJNI.setScilabLines(nbRows, nbCols);
   }
 
-  
- /**
-   * Get SCIHOME variable from Scilab
-   * @return SCIHOME value
-   */
-public static String getSCIHOME() {
-    return GuiManagementJNI.getSCIHOME();
-  }
-
 }

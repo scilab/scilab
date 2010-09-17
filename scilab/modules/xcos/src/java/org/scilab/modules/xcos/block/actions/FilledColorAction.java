@@ -37,7 +37,7 @@ public final class FilledColorAction extends VertexSelectionDependantAction {
 	/** Name of the action */
 	public static final String NAME = XcosMessages.FILL_COLOR;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "color-fill.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */

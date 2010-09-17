@@ -26,6 +26,7 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
@@ -270,7 +271,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	Menu format = ScilabMenu.createMenu();
 	format.setText(XcosMessages.FORMAT);
 	format.add(BorderColorAction.createMenu(graph));
-	format.add(TextAction.createMenu(graph));
+	format.add(EditFormatAction.createMenu(graph));
 	menu.add(format);
 	/*--- */
 	menu.getAsSimpleContextMenu().addSeparator();

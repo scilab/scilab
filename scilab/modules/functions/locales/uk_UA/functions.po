@@ -92,10 +92,6 @@ msgid "%s: The function has not been built for profiling"
 msgstr "%s: функцію не було зібрано для профілювання"
 
 #, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr "%s: файла з назвою %s.sci у каталозі бібліотеки %s не виявлено.\n"
-
-#, c-format
 msgid "%s: Undefined variable %s.\n"
 msgstr "%s: невизначена змінна %s.\n"
 

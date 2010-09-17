@@ -141,7 +141,7 @@ $(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 $(top_builddir)/modules/scicos/libscisundials.la \
 $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 $(top_builddir)/modules/mexlib/libmex.la \
-$(top_builddir)/modules/core/libscicore.la \
+ \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la \
 $(top_builddir)/modules/arnoldi/libsciarnoldi.la 
@@ -176,7 +176,9 @@ palettes/DemoBlocks.cosf \
 palettes/Events.cosf \
 palettes/Integer.cosf \
 palettes/Linear.cosf \
+palettes/Lookup_Tables.cosf \
 palettes/Matrix.cosf \
+palettes/Modelica.cosf \
 palettes/Non_linear.cosf \
 palettes/OldBlocks.cosf \
 palettes/Others.cosf \

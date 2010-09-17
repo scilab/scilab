@@ -24,7 +24,7 @@ public final class AlignBlockActionTop extends AlignBlockAction {
 	/** Name of the action */
 	public static final String NAME = XcosMessages.ALIGN_TOP;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "go-top.png";
+	public static final String SMALL_ICON = "align-vertical-top.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */

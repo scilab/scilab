@@ -1,0 +1,13 @@
+ext1c	a b 
+a 	vector	m
+b 	vector	m
+c	vector  m 
+
+ext1c   m a b c 
+m	integer 
+a	double 
+b	double 
+c	double 
+
+out	sequence	c
+***********************

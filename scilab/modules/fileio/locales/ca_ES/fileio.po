@@ -302,6 +302,10 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un escalar.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
@@ -396,6 +400,11 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text o "
 "una unitat lògica.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: A string expected.\n"

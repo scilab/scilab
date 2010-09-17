@@ -87,6 +87,9 @@ msgstr "請驗証你的 powershell command without Scilab."
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 找不到."
 
+msgid "Scilab Console"
+msgstr ""
+
 #
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
 msgid "see help"

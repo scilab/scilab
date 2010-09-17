@@ -32,6 +32,10 @@ msgid "%s: ''dims'' can not be used as a field name.\n"
 msgstr "%s: ''dims'' 不能用於欄位名稱.\n"
 
 #, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
 msgstr "%s:輸入的參數有誤:偶數才對.\n"
 
@@ -50,6 +54,12 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是字串型態.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
 msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是結構陣列.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: field name ''%s'' defined twice.\n"

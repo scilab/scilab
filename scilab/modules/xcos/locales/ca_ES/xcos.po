@@ -53,6 +53,10 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: No s'ha pogut exportar %s a %s.\n"
 
 #, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: No s'ha pogut exportar la paleta a hdf5.\n"
 
@@ -63,6 +67,10 @@ msgstr "%s: No s'ha pogut generar la imatge %s.\n"
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
 msgstr "%s: No s'ha pogut generar la icona de la paleta: Ja existeix %s.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to import xcos file %s.\n"
@@ -418,10 +426,6 @@ msgstr "S'està exportant"
 msgid "Export to XML"
 msgstr "Exporta a XML"
 
-#, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "Ha fallat l'exportació: %s\n"
-
 msgid "Failed to load Diagram"
 msgstr "No s'ha pogut carregar el diagrama"
 
@@ -529,6 +533,9 @@ msgstr "S'està carregant el diagrama"
 
 msgid "Loading palettes"
 msgstr "S'està carregant les paletes"
+
+msgid "Loading the block"
+msgstr ""
 
 msgid "Loading user defined palettes"
 msgstr "S'està carregant les paletes d'usuari"
@@ -788,11 +795,9 @@ msgstr ""
 "Ha de ser la versió %s ; Hi ha la versió %s ."
 
 msgid ""
-"Unable to load the HDF5 library. \n"
+"Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
-"No s'ha pogut carregar la llibreria HDF5. \n"
-"Ha de ser la versió %s ; Hi ha la versió %s ."
 
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -800,6 +805,9 @@ msgid ""
 msgstr ""
 "No s'ha pogut carregar la llibreria jgraphx. \n"
 "Ha de ser la versió %s ; Hi ha la versió %s ."
+
+msgid "Unable to load the native HDF5 library."
+msgstr ""
 
 #, c-format
 msgid "Unable to open %s"
@@ -853,6 +861,10 @@ msgstr "WinTitle"
 
 msgid "Window title"
 msgstr "Títol de la finestra"
+
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
+msgstr ""
 
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr "L'argument d'entrada \"%s\" és incorrecte: No és un camí vàlid.\n"

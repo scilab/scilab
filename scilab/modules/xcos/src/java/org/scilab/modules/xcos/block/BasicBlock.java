@@ -56,17 +56,17 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.hdf5.write.H5Write;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
-import org.scilab.modules.xcos.block.actions.EditBlockFormatAction;
 import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
@@ -1332,7 +1332,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			format.add(BorderColorAction.createMenu(graph));
 			format.add(FilledColorAction.createMenu(graph));
 		} else {
-			format.add(EditBlockFormatAction.createMenu(graph));
+			format.add(EditFormatAction.createMenu(graph));
 		}
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
@@ -1358,7 +1358,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() != null) {
 			isFlipped = flip;
 			final mxIGraphModel model = getParentDiagram().getModel();
-			mxUtils.setCellStyles(model, new Object[] {this},
+			mxUtils.setCellStyles(model, new Object[] { this },
 					ScilabGraphConstants.STYLE_FLIP, Boolean.toString(flip));
 		}
 	}
@@ -1386,7 +1386,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() != null) {
 			isMirrored = mirror;
 			final mxIGraphModel model = getParentDiagram().getModel();
-			mxUtils.setCellStyles(model, new Object[] {this},
+			mxUtils.setCellStyles(model, new Object[] { this },
 					ScilabGraphConstants.STYLE_MIRROR, Boolean.toString(mirror));
 		}
 	}

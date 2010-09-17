@@ -53,6 +53,10 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: È impossibile esportare %s a %s.\n"
 
 #, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: È impossibile esportare la tavolozza ad hdf5.\n"
 
@@ -64,6 +68,10 @@ msgstr "%s: È impossibile generare l'immagine %s.\n"
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
 msgstr ""
 "%s: È impossibile generaree l'icona della tavolozza: %s già esiste.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to import xcos file %s.\n"
@@ -423,10 +431,6 @@ msgstr "Esportazione in corso"
 msgid "Export to XML"
 msgstr "Esporta in XML"
 
-#, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "FALLITA L'ESPORTAZIONE: %s\n"
-
 msgid "Failed to load Diagram"
 msgstr "Fallito il caricamento del diagramma"
 
@@ -534,6 +538,9 @@ msgstr "Caricamento del diagramma"
 
 msgid "Loading palettes"
 msgstr "Caricamento dei pannelli in corso"
+
+msgid "Loading the block"
+msgstr ""
 
 msgid "Loading user defined palettes"
 msgstr "Caricamento in corso dei pannelli definiti dall'utente"
@@ -786,13 +793,16 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Unable to load the HDF5 library. \n"
+"Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
+msgstr ""
+
+msgid "Unable to load the native HDF5 library."
 msgstr ""
 
 #, c-format
@@ -847,6 +857,10 @@ msgstr ""
 
 msgid "Window title"
 msgstr "Titolo della finestra"
+
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
+msgstr ""
 
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""

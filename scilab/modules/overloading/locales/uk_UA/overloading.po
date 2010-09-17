@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-06-29 12:33+0000\n"
+"PO-Revision-Date: 2010-08-24 08:41+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -18,10 +18,31 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
+msgid "%s is not a valid field name."
+msgstr "%s не є коректною назвою поля."
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"з набору {%s}.\n"
 
 msgid "A null assignment can have only one non-colon index"
 msgstr "Нульова прив’язка може мати лише один індекс поза стовпчиками"
@@ -31,6 +52,9 @@ msgstr "Прив’язку до рядка у числовій матриці �
 
 msgid "Incorrect assignment.\n"
 msgstr "Помилкова прив’язка.\n"
+
+msgid "Invalid field name."
+msgstr "Некоректна назва поля."
 
 msgid "Invalid index.\n"
 msgstr "Некоректний індекс.\n"

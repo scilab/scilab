@@ -17,8 +17,24 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
+msgid "%s is not a valid field name."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
 
 msgid "A null assignment can have only one non-colon index"
 msgstr ""
@@ -27,6 +43,9 @@ msgid "Affection of a string in a matrix of numbers is not implemented."
 msgstr ""
 
 msgid "Incorrect assignment.\n"
+msgstr ""
+
+msgid "Invalid field name."
 msgstr ""
 
 msgid "Invalid index.\n"

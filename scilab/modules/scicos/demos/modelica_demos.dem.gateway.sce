@@ -15,3 +15,4 @@ subdemolist = ["Ball on a Platform"                       , "ModelicaBlocks/ball
               ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

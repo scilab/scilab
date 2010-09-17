@@ -14,3 +14,4 @@ subdemolist = ["Standard demos"                       , "standard.dem.gateway.sc
               ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

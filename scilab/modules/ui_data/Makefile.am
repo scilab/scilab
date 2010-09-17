@@ -45,8 +45,7 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 
 GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_editvar.cpp \
-						sci_gateway/cpp/sci_browsevar.cpp \
-						sci_gateway/cpp/sci_updateEditvarValue.cpp
+						sci_gateway/cpp/sci_browsevar.cpp
 
 libsciui_data_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -97,7 +96,7 @@ if SWIG
 BUILT_SOURCES=swig
 endif
 
-libsciui_data_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libsciui_data_la_LIBADD =  \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 

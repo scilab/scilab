@@ -34,6 +34,8 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  */
 public class HelpOnKeywordAction extends DefaultAction {
 
+    protected boolean isPopup;
+
     /**
      * Constructor
      * @param name the name of the action
@@ -52,7 +54,7 @@ public class HelpOnKeywordAction extends DefaultAction {
         int end = getEditor().getTextPane().getSelectionEnd();
         try {
             if (start == end) {
-                KeywordEvent kwe = ((ScilabEditorPane) getEditor().getTextPane()).getKeywordEvent();
+                KeywordEvent kwe = ((ScilabEditorPane) getEditor().getTextPane()).getKeywordEvent(!isPopup, true);
                 if (ScilabLexerConstants.isHelpable(kwe.getType())) {
                     selection = getEditor().getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());
                 }
@@ -68,19 +70,31 @@ public class HelpOnKeywordAction extends DefaultAction {
      * createMenu
      * @param label label of the menu
      * @param editor SciNotes
-     * @param key Keystroke
+     * @param key KeyStroke
      * @return MenuItem
      */
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
         StringTokenizer token = new StringTokenizer(label, ";");
         final String label1 = token.nextToken();
         final String label2 = token.nextToken();
-        final MenuItem menuitem = createMenu(label1, null, new HelpOnKeywordAction(label1 + SciNotesMessages.DOTS, editor), key);
+        return createMenu(label1, label2, editor, key, new HelpOnKeywordAction(label1 + SciNotesMessages.DOTS, editor));
+    }
+
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key Keystroke
+     * @param hoka the HelpOnKeyword action
+     * @return MenuItem
+     */
+    protected static MenuItem createMenu(final String label1, final String label2, final SciNotes editor, KeyStroke key, final HelpOnKeywordAction hoka) {
+        final MenuItem menuitem = createMenu(label1, null, hoka, key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     String select = editor.getTextPane().getSelectedText();
                     if (select == null) {
-                        KeywordEvent kwe = ((ScilabEditorPane) editor.getTextPane()).getKeywordEvent();
+                        KeywordEvent kwe = ((ScilabEditorPane) editor.getTextPane()).getKeywordEvent(!hoka.isPopup, true);
                         if (ScilabLexerConstants.isHelpable(kwe.getType())) {
                             try {
                                 String kw = editor.getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());

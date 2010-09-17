@@ -8,7 +8,7 @@
     <add as="strokeColor" value="black" />
     <add as="fillColor" value="white" />
     <add as="fontColor" value="black" />
-    <add as="noLabel" value="0"/>
+    <add as="noLabel" value="1"/>
   </add>
 
 <!-- *** GENERIC BLOCKS *** -->
@@ -18,6 +18,7 @@
   </add>
 
   <add as="blockWithLabel" extend="defaultVertex">
+    <add as="noLabel" value="0"/>
   	<add as="spacing" value="13" />
   </add>
 
@@ -122,6 +123,8 @@
 		<add as="labelBackgroundColor" value="white" />
 		<!-- To have rounded links -->
 		<!-- <add as="rounded" value="1"/> -->
+		<!-- <add as="edgeStyle" value="elbowEdgeStyle"/> -->
+		<add as="elbow" value="horizontal" />
 		<add as="shape" value="connector" />
 		<add as="labelBackgroundColor" value="white" />
 		<add as="endArrow" value="classicnone" />

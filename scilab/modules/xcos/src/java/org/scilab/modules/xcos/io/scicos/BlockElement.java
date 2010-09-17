@@ -19,11 +19,11 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
@@ -101,7 +101,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * @param into the target, if null a new instance is allocated and returned.
 	 * @return the decoded block.
 	 * @throws ScicosFormatException when e decoding error occurred.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType, java.lang.Object)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType, java.lang.Object)
 	 */
 	@Override
 	public BasicBlock decode(ScilabType element, BasicBlock into) throws ScicosFormatException {
@@ -301,7 +301,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * 
 	 * @param element the current element
 	 * @return true, if the element can be decoded, false otherwise
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -317,7 +317,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * @param from the source instance
 	 * @param element the previously allocated element.
 	 * @return the element parameter
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(BasicBlock from, ScilabType element) {

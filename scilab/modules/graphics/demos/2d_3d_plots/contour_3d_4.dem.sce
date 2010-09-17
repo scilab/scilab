@@ -1,24 +1,32 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file is released into the public domain
 
-my_handle             = scf(100001);
-clf(my_handle,"reset");
-demo_viewCode("contour_3d_4.dem.sce");
+function demo_contour_3d_4()
 
-// DEMO START
+  my_handle             = scf(100001);
+  clf(my_handle,"reset");
+  demo_viewCode("contour_3d_4.dem.sce");
 
-my_plot_desc          = "plot3d and contour";
-my_handle.figure_name = my_plot_desc;
+  // DEMO START
 
-t    = %pi*(-10:10)/10;
-deff("[z]=Surf(x,y)","z=sin(x)*cos(y)");
-rect = [-%pi,%pi,-%pi,%pi,-1,1];
-z    = feval(t,t,Surf);
-plot3d(t,t,z,35,45,"X@Y@Z",[-20,1,3],rect);
-contour(t,t,z+0.1,10,35,45,"X@Y@Z",[0,1,2],rect);
+  my_plot_desc          = "plot3d and contour";
+  my_handle.figure_name = my_plot_desc;
 
-xtitle(my_plot_desc," "," "," ");
+  t    = %pi*(-10:10)/10;
+  deff("[z]=Surf(x,y)","z=sin(x)*cos(y)");
+  rect = [-%pi,%pi,-%pi,%pi,-1,1];
+  z    = feval(t,t,Surf);
+  plot3d(t,t,z,35,45,"X@Y@Z",[-20,1,3],rect);
+  contour(t,t,z+0.1,10,35,45,"X@Y@Z",[0,1,2],rect);
 
-// DEMO END
+  xtitle(my_plot_desc," "," "," ");
+
+  // DEMO END
+endfunction
+
+
+demo_contour_3d_4();
+clear demo_contour_3d_4;

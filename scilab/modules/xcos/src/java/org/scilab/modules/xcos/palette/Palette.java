@@ -28,7 +28,7 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.types.scilabTypes.ScilabTList;
+import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -229,7 +229,7 @@ if (next.toString().equals(path[categoryCounter])
 				}
 			});
 		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getTargetException();
+			throw (Exception) exception.getCause();
 		}
 	}
 
@@ -248,12 +248,11 @@ if (next.toString().equals(path[categoryCounter])
 				@Override
 				public void run() {
 					final PaletteNode node = getPathNode(name, false);
-					PaletteNode.checkRemoving(node);
 					PaletteNode.remove(node);
 				}
 			});
 		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getTargetException();
+			throw (Exception) exception.getCause();
 		}
 	}
 
@@ -286,7 +285,7 @@ if (next.toString().equals(path[categoryCounter])
 				}
 			});
 		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getTargetException();
+			throw (Exception) exception.getCause();
 		}
 	}
 
@@ -338,7 +337,7 @@ if (next.toString().equals(path[categoryCounter])
 				}
 			});
 		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getTargetException();
+			throw (Exception) exception.getCause();
 		}
 	}
 

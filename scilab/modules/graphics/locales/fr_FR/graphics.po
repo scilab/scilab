@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-08-02 17:00+0000\n"
-"Last-Translator: Djiboun <Unknown>\n"
+"PO-Revision-Date: 2010-08-20 12:00+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +148,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Input argument #%d must be a '%s' handle.\n"
-msgstr ""
+msgstr "%s : L'argument d'entrée #%d doit être un identificateur de '%s.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
@@ -161,6 +161,7 @@ msgstr "%s : L'argument d'entrée n°%d doit être réel.\n"
 #, c-format
 msgid "%s: Input argument and the legend must have the same parent axes.\n"
 msgstr ""
+"%s : L'argument d'entrée et la légende doivent avoir le même axe parent.\n"
 
 #, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
@@ -312,6 +313,8 @@ msgstr ""
 msgid ""
 "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
+"%s : Mauvais nombre d'argument d'entrée obligatoires. Un minimum de %d est "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for arguments #%d and #%d.\n"
@@ -433,6 +436,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n° #%d : Une simple chaîne "
+"de caractères est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -695,6 +700,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
 msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n° #%d : Matrice réelle ou "
+"complexe attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
@@ -935,7 +942,7 @@ msgid "'%s' property does not exist for this handle.\n"
 msgstr "La propriété '%s' n'existe pas pour ce handle.\n"
 
 msgid "A Label object cannot be deleted.\n"
-msgstr ""
+msgstr "Un objet Label ne peut être supprimé.\n"
 
 #, c-format
 msgid "Argument #%d must have %d elements.\n"
@@ -993,6 +1000,8 @@ msgid ""
 "Data tips cannot be attached to this curve,\n"
 "the user_data field is already used"
 msgstr ""
+"Les étiquettes de données ne peuvent être liées à cette courbe.\n"
+"le champ user_data est déjà utilisé"
 
 msgid "Default axes cannot be create.\n"
 msgstr "Les axes par défaut ne peuvent pas être créés.\n"
@@ -1001,13 +1010,13 @@ msgid "Default figure cannot be create.\n"
 msgstr "La figure par défaut ne peut pas être créée.\n"
 
 msgid "Delete all datatips"
-msgstr ""
+msgstr "Effacer toutes les étiquettes de données"
 
 msgid "Delete all datatips for the selected curve"
-msgstr ""
+msgstr "Effacer toutes les étiquettes de données pour la courbe sélectionnée"
 
 msgid "Delete last datatip"
-msgstr ""
+msgstr "Effacer la dernière étiquette de donnée"
 
 msgid "Delete nearest datatip"
 msgstr "Effacer l'étiquette de donnée la plus proche"
@@ -1111,6 +1120,8 @@ msgstr "Jet"
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
+"Cliquer sur une courbe pour crée une étiquette de donnée, cliquer avec le "
+"bouton droit ouvre un menu contextuel"
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1120,7 +1131,7 @@ msgid "Misc"
 msgstr "Divers"
 
 msgid "Multiple datatips mode"
-msgstr ""
+msgstr "Mode d'étiquettes de données multiples"
 
 msgid "Name"
 msgstr "Nom"
@@ -1184,7 +1195,7 @@ msgid "Rainbow"
 msgstr "Arc-en-ciel"
 
 msgid "Redraw all datatips"
-msgstr ""
+msgstr "Redessiner toutes les étiquettes de données"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Le module Scilab Graphics n'est pas installé.\n"
@@ -1194,7 +1205,7 @@ msgstr ""
 "Le module graphique de Scilab est désactivé en mode -nogui ou -nwni.\n"
 
 msgid "Select tip orientation"
-msgstr ""
+msgstr "Sélectionner l'orientation de l'étiquette"
 
 msgid "Spring"
 msgstr "Printemps"
@@ -1228,16 +1239,17 @@ msgid "The parent has to be a SUBWIN\n"
 msgstr "Le parent doit être une SUBWIN\n"
 
 msgid "The selected file cannot be executed"
-msgstr ""
+msgstr "Le fichier sélectionné ne peut pas être exécuté"
 
 msgid "The selected file defines more than one function"
-msgstr ""
+msgstr "Le fichier sélectionné définit plus d'une fonction"
 
 msgid "The selected function must have 1 output parameter (str)"
-msgstr ""
+msgstr "La fonction sélectionnée doit avoir 1 paramètre de sortie (str)"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
+"La fonction sélectionnée doit avoir 3 paramètres d'entrée (curve,pt,index)"
 
 msgid "This object can not be moved.\n"
 msgstr "Cet objet ne peut pas être déplacé.\n"
@@ -1288,7 +1300,7 @@ msgid "Unhandled data field\n"
 msgstr "Champ de données non supporté\n"
 
 msgid "Unique datatip mode"
-msgstr ""
+msgstr "Mode d'étiquette de donnée unique"
 
 #, c-format
 msgid "Unknown property: %s.\n"
@@ -1436,6 +1448,8 @@ msgstr ""
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
 msgstr ""
+"Mauvais type pour la propriété de '%s' : Tableau d'identificateur graphique "
+"attendu\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
@@ -1548,7 +1562,7 @@ msgid "lower right"
 msgstr "en bas à droite"
 
 msgid "select the curve tip display function"
-msgstr ""
+msgstr "sélectionner la fonction d'affichage d'étiquette de courbe"
 
 msgid "upper left"
 msgstr "en haut à gauche"

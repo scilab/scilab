@@ -201,10 +201,6 @@ msgid "%s: Incompatible sizes.\n"
 msgstr "%s: 大小不匹配.\n"
 
 #, c-format
-msgid "%s: Invalid '%s' value.\n"
-msgstr "%s: 不正確之 '%s' 值.\n"
-
-#, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: 模組名稱不正確 : %s.\n"
 

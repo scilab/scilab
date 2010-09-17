@@ -18,10 +18,10 @@
 //    Matlab comments like %blabla are translated to
 //    part(comment,"blabla") [!?]
 
-MFILECONTENTS=["comment=1;";"%This line is a comment line"]
+MFILECONTENTS=["comment=1;";"%This line is a comment line"];
 
-MFILE=TMPDIR+"/bug979.m"
-SCIFILE=TMPDIR+"/bug979.sci"
+MFILE=TMPDIR+"/bug979.m";
+SCIFILE=TMPDIR+"/bug979.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -35,6 +35,6 @@ SCIFILECONTENTSREF=["";
 		"ieee(1);";
 		"";
 		"comment = 1;";
-		"//This line is a comment line"]
+		"//This line is a comment line"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

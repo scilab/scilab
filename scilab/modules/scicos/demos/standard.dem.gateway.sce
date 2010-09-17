@@ -21,5 +21,4 @@ subdemolist = ["Simple Demo"                          , "simple_demo.dem.sce"   
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
 
-//**               "Bouncing Ball"                        , "bouncing_ball.dem.sce"  ; ..
-//**               "Space Balls"                          , "bounce.dem.sce"            ; ..
+clear demopath;

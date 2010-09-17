@@ -89,10 +89,6 @@ msgid "%s: The function has not been built for profiling"
 msgstr "%s: 此函數尚未被特徵建立"
 
 #, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr "%s: 沒有檔名叫做 %s.sci 在函式庫的的目錄 %s 下.\n"
-
-#, c-format
 msgid "%s: Undefined variable %s.\n"
 msgstr "%s: %s 變數未被定義.\n"
 

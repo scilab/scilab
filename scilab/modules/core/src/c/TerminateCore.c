@@ -2,18 +2,18 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
 #include <libxml/parser.h>
 
 #include "TerminateCore.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "realmain.h" /* Get_no_startup_flag */
 #include "inffic.h" /* get_sci_data_strings */
 #include "scirun.h" /* scirun */
@@ -24,10 +24,10 @@
 #include "filesmanagement.h"
 #include "scilabmode.h"
 #include "dynamic_gateways.h" /* freeAllDynamicGateways */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 BOOL TerminateCorePart1(void)
 {
-    if ( Get_no_startup_flag() == 0) 
+    if ( Get_no_startup_flag() == 0)
     {
         char *quit_script = NULL;
 
@@ -40,10 +40,10 @@ BOOL TerminateCorePart1(void)
     }
     return TRUE;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 BOOL TerminateCorePart2(void)
 {
-#ifdef _MSC_VER /* Bug sous Linux lors de la liberation memoire */
+#ifdef _MSC_VER /* Bug under Linux on freeing memory */
 #ifndef _WIN64
     C2F(freegmem)();
     C2F(freemem)();
@@ -70,4 +70,4 @@ BOOL TerminateCorePart2(void)
 
     return TRUE;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

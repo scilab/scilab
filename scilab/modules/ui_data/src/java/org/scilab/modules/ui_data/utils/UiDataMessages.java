@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan SIMON
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,9 +31,8 @@ public final class UiDataMessages {
     /* File menu */
     public static final String FILE = Messages.gettext("File");
     public static final String CLOSE = Messages.gettext("Close");
-    
     public static final String FILTER = Messages.gettext("Filter");
-    
+
     public static final String DOUBLE = Messages.gettext("Double");
     public static final String POLYNOMIAL = Messages.gettext("Polynomial");
     public static final String BOOLEAN = Messages.gettext("Boolean");
@@ -57,26 +56,31 @@ public final class UiDataMessages {
     public static final String VARIABLE_BROWSER = Messages.gettext("Variable Browser");
 
     public static final String GLOBAL_NOT_EDITABLE = Messages.gettext("Global variables can not be edited.");
-    
+
+    public static final String REFRESH = Messages.gettext("Refresh the variable ");
+    public static final String COPY = Messages.gettext("Copy");
+    public static final String PASTE = Messages.gettext("Paste");
+    public static final String CUT = Messages.gettext("Cut");
+
     /** This class is a static singleton, thus it must not be instantiated */
     private UiDataMessages() { }
-    
-    
-    
+
+
+
  // CSON: JavadocVariable
  // CSON: LineLength
  // CSON: MultipleStringLiterals
-     
+
     /**
      * This function checks for the popup menu activation under MacOS with Java version 1.5
      * Related to Scilab bug #5190
      * @param e Click event
      * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
      */
-	public static boolean isMacOsPopupTrigger(MouseEvent e) {
-		return (SwingUtilities.isLeftMouseButton(e)
-				&& e.isControlDown()
-				&& (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System
-				.getProperty("java.specification.version").equals("1.5")));
-	}
+        public static boolean isMacOsPopupTrigger(MouseEvent e) {
+                return (SwingUtilities.isLeftMouseButton(e)
+                                && e.isControlDown()
+                                && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System
+                                .getProperty("java.specification.version").equals("1.5")));
+        }
 }

@@ -6,34 +6,35 @@
  *
  */
 
-import javasci.* ; 
+import javasci.Scilab; 
+import javasci.SciBoolean; 
 
 class Example12 {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    boolean b;
-  	
-  	SciBoolean a = new SciBoolean("A");
-  	Scilab.Exec("A=%t;");
-  	System.out.println("----------------------------------------------------");
-  	a.disp();
-  	System.out.println("----------------------------------------------------");
-  	b=a.getData();
-  	
-  	System.out.println(b);
+        boolean b;
+      
+        SciBoolean a = new SciBoolean("A");
+        Scilab.Exec("A=%t;");
+        System.out.println("----------------------------------------------------");
+        a.disp();
+        System.out.println("----------------------------------------------------");
+        b=a.getData();
+      
+        System.out.println(b);
     
-  	System.out.println("----------------------------------------------------");
- 	  SciBoolean d = new SciBoolean("D",true);
- 	  d.Send();
- 	  SciBoolean p = new SciBoolean("P");
-    Scilab.Exec("P=~D;");
-    p.disp();
-    System.out.println("----------------------------------------------------");
-    SciBoolean dp = new SciBoolean("D");
-    dp.disp();
+        System.out.println("----------------------------------------------------");
+        SciBoolean d = new SciBoolean("D",true);
+        d.Send();
+        SciBoolean p = new SciBoolean("P");
+        Scilab.Exec("P=~D;");
+        p.disp();
+        System.out.println("----------------------------------------------------");
+        SciBoolean dp = new SciBoolean("D");
+        dp.disp();
     
-    Scilab.Finish();
-  }
+        Scilab.Finish();
+    }
 }
 

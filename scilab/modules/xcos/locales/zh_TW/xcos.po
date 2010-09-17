@@ -8,13 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-18 07:11+0000\n"
-"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"PO-Revision-Date: 2010-08-18 17:19+0000\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
+"Revision-Date: 2010-08-18 15:26+0100\n"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -51,6 +52,10 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: 不能匯出( export) %s 到 %s.\n"
 
 #, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s:不能匯出( export) palette到 hdf5.\n"
 
@@ -61,6 +66,10 @@ msgstr "%s: 不能產生(generate) 圖片( image) %s.\n"
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
 msgstr "%s: 不能產生(generate)  palette icon : %s 已存在.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to import xcos file %s.\n"
@@ -370,10 +379,6 @@ msgstr ""
 msgid "Export to XML"
 msgstr "匯出至 XML 檔案"
 
-#, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "匯出至 %s 失敗\n"
-
 msgid "Failed to load Diagram"
 msgstr "載入圖框失敗"
 
@@ -477,6 +482,9 @@ msgstr "圖框載入中"
 
 msgid "Loading palettes"
 msgstr "載入調色盤"
+
+msgid "Loading the block"
+msgstr ""
 
 msgid "Loading user defined palettes"
 msgstr "載入使用者自訂的調色盤"
@@ -724,13 +732,16 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Unable to load the HDF5 library. \n"
+"Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
+msgstr ""
+
+msgid "Unable to load the native HDF5 library."
 msgstr ""
 
 #, c-format
@@ -785,6 +796,10 @@ msgstr "WinTitle"
 
 msgid "Window title"
 msgstr "視窗標題"
+
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
+msgstr ""
 
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""

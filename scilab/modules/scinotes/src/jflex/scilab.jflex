@@ -141,6 +141,7 @@ url = "http://"[^ \t\f\n\r\'\"]+
 mail = "<"[ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*">"
 
 latex = "$"(([^$]*|"\\$")+)"$"
+latexinstring = (\"|\')"$"(([^$]*|"\\$")+)"$"(\"|\')
 
 digit = [0-9]
 exp = [eE][+-]?{digit}+
@@ -225,6 +226,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    yybegin(FIELD);
                                    return ScilabLexerConstants.OPERATOR;
                                  }
+
+ {latexinstring}		 {
+ 				   return ScilabLexerConstants.LATEX;
+				 }
 
   {quote}                        {
                                     if (transposable) {

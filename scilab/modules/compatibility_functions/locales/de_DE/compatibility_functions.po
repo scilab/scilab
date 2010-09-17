@@ -169,6 +169,14 @@ msgid "%s: Wrong size for ''%s'': Vector expected.\n"
 msgstr "%s: falsche Größe für '%s'. Vektor erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
 msgstr ""
@@ -241,6 +249,10 @@ msgid ""
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: ein positiver Integerwert "
 "erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"

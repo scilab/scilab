@@ -89,12 +89,6 @@ msgid "%s: The function has not been built for profiling"
 msgstr "%s: La función no fue construida para hacer perfiles"
 
 #, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr ""
-"%s: No hay ningún archivo llamado %s.sci en el directorio de bibliotecas "
-"%s.\n"
-
-#, c-format
 msgid "%s: Undefined variable %s.\n"
 msgstr "%s: Variable indefinida %s.\n"
 

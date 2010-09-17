@@ -44,13 +44,13 @@ function datatipManagerMode(varargin)
   else
     error(msprintf(_("%s: too many input arguments"),'datatipManagerMode'))
   end
-  if fig.event_handler == '' then
-    fig.event_handler = "datatipEventhandler"
-  end
   select action
   case 'on'
+    fig.event_handler_enable = "off" //to prevent against bug 7855
+    fig.event_handler = "datatipEventhandler"
     fig.event_handler_enable = "on"
     xinfo(_("Left click on a curve to create a datatip, right opens contextual menu"))
+    show_window(fig)
   case 'off'
     fig.event_handler_enable = "off"
     clearglobal datatipAngles
@@ -58,11 +58,22 @@ function datatipManagerMode(varargin)
   case 'toggle'
     if  fig.event_handler_enable == "on" then
       fig.event_handler_enable = "off"
-      clearglobal datatipAngles
-      xinfo("")
+      if fig.event_handler <> "datatipEventhandler" then
+        fig.event_handler = "datatipEventhandler"
+        fig.event_handler_enable = "on"
+        xinfo(_("Left click on a curve to create a datatip, right opens"+...
+                " contextual menu"))
+      else
+        clearglobal datatipAngles
+        xinfo("")
+      end
+    
     else
+      fig.event_handler_enable = "off" //to prevent against bug 7855
+      fig.event_handler = "datatipEventhandler"
       fig.event_handler_enable = "on"
       xinfo(_("Left click on a curve to create a datatip, right opens contextual menu"))
+      show_window(fig)
     end
   end
 endfunction
@@ -80,6 +91,7 @@ function datatipEventhandler(win,x,y,ibut)
 //     end
     return,
   end
+
   fig.event_handler_enable = "off";
   ax=getAxes([x,y],fig);
   sca(ax);

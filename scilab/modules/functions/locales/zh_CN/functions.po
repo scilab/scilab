@@ -89,10 +89,6 @@ msgid "%s: The function has not been built for profiling"
 msgstr "%s：该函数没有被为 profiling 生成。"
 
 #, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr "%s：没有文件名为 %s.sci 存在于库目录 %s 中。\n"
-
-#, c-format
 msgid "%s: Undefined variable %s.\n"
 msgstr "%s：没定义的变量 %s。\n"
 

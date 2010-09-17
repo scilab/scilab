@@ -150,7 +150,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
@@ -932,7 +931,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@$(top_builddir)/modules/scicos/libscisundials.la \
 @SCICOS_TRUE@$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 @SCICOS_TRUE@$(top_builddir)/modules/mexlib/libmex.la \
-@SCICOS_TRUE@$(top_builddir)/modules/core/libscicore.la \
+@SCICOS_TRUE@ \
 @SCICOS_TRUE@$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@$(top_builddir)/modules/arnoldi/libsciarnoldi.la 
@@ -970,7 +969,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@palettes/Events.cosf \
 @SCICOS_TRUE@palettes/Integer.cosf \
 @SCICOS_TRUE@palettes/Linear.cosf \
+@SCICOS_TRUE@palettes/Lookup_Tables.cosf \
 @SCICOS_TRUE@palettes/Matrix.cosf \
+@SCICOS_TRUE@palettes/Modelica.cosf \
 @SCICOS_TRUE@palettes/Non_linear.cosf \
 @SCICOS_TRUE@palettes/OldBlocks.cosf \
 @SCICOS_TRUE@palettes/Others.cosf \
@@ -2310,9 +2311,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

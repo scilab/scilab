@@ -52,7 +52,10 @@ src/c/basename.c \
 src/c/pathconvert.c \
 src/c/copyfile_others.c \
 src/c/getFullFilename.c \
-src/c/mputl.c
+src/c/mputl.c \
+src/c/fscanfMat.c \
+src/c/fprintfMat.c
+
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -128,7 +131,7 @@ CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
+libscifileio_la_LIBADD = \
 				$(top_builddir)/modules/string/libscistring.la \
 				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \

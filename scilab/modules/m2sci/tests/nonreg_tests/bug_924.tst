@@ -38,10 +38,10 @@ MFILECONTENTS=["function bug924";
 		"[c,d]=svd(1)";
 		"b=a;";
 		"b=a,";
-		"b=a"]
+		"b=a"];
 
-MFILE=TMPDIR+"/bug924.m"
-SCIFILE=TMPDIR+"/bug924.sci"
+MFILE=TMPDIR+"/bug924.m";
+SCIFILE=TMPDIR+"/bug924.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -67,6 +67,6 @@ SCIFILECONTENTSREF=["function [] = bug924()";
 		"b = a;";
 		"b = a,";
 		"b = a";
-		"endfunction"]
+		"endfunction"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

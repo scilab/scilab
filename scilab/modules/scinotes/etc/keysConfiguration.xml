@@ -16,6 +16,7 @@
   <entry key="UnCommentAction">control shift D</entry>
   <entry key="RemoveTrailingWhiteAction">control shift W</entry>
   <entry key="SelectAllAction">control A</entry>
+  <entry key="SelectBlockAction">control B</entry>
   <entry key="OpenTabInNewWindowAction">control shift T</entry>
   <entry key="CCloseTabInNewWindowAction">control shift C</entry>
 
@@ -47,6 +48,10 @@
   <entry key="FindAction">control F</entry>
   <entry key="FindNextAction">control K</entry>
   <entry key="FindPreviousAction">control shift K</entry>
+  <entry key="SetAnchorAction">control M</entry>
+  <entry key="RemoveAnchorAction">control shift M</entry>
+  <entry key="GotoNextAnchorAction">control shift LESS</entry>
+  <entry key="GotoPreviousAnchorAction">control LESS</entry>
   <entry key="CodeNavigatorAction">control G</entry>
 
   <entry key="SciNotesCompletionAction">control SPACE</entry>

@@ -81,7 +81,7 @@ libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciarnoldi_la_CFLAGS)
 
-libsciarnoldi_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la
+libsciarnoldi_la_LIBADD =  #
 
 #### Target ######
 modulename=arnoldi

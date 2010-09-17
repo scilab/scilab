@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -26,6 +27,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
@@ -83,6 +85,8 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
+    private static final Image SCILAB_ICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage();
+
     private static final long serialVersionUID = 1L;
 
     private static final int VIEWPORT_SIZE = 4;
@@ -106,6 +110,8 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
     /** Scroll the axes */
     private ScilabScrollPane scrolling;
+
+    private Image icon;
 
     /**
      * Constructor
@@ -140,6 +146,24 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         } else {
             SwingScilabTab.this.requestFocusInWindow();
         }
+    }
+
+    /**
+     * @return the window icon associated with this tab
+     */
+    public Image getWindowIcon() {
+	if (icon ==null) {
+	    return SCILAB_ICON;
+	} else {
+	    return icon;
+	}
+    }
+
+    /**
+     * @param the window icon associated with this tab
+     */
+    public void setWindowIcon(Image icon) {
+	this.icon = icon;
     }
 
     /**

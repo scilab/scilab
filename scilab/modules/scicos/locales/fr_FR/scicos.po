@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-08-13 19:53+0000\n"
-"Last-Translator: zzz <Unknown>\n"
+"PO-Revision-Date: 2010-08-20 12:06+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +20,15 @@ msgid ""
 "\n"
 "         (already programmed) event. There may be an error in"
 msgstr ""
+"\n"
+"         événement (déjà programmé). Il peut y a une erreur dans"
 
 msgid ""
 "\n"
 "         your model. Please check your model\n"
 msgstr ""
+"\n"
+"         votre modèle. Veuillez vérifier votre modèle\n"
 
 msgid ""
 "\n"
@@ -32,17 +36,24 @@ msgid ""
 " Please verify your model:\n"
 " some functions might be called with illegal inputs."
 msgstr ""
+"\n"
+" La fonction résiduelle renvoie NaN/Inf. \n"
+" Veuillez vérifier votre modèle :\n"
+" quelques fonctions pourraient être appelées avec des valeurs d'entrée "
+"illégales."
 
 #, c-format
 msgid ""
 "\n"
-" Warning:an event is reprogrammed at t=%g by removing another"
+" Warning: an event is reprogrammed at t=%g by removing another"
 msgstr ""
 
 msgid ""
 "\n"
 " error in Jacobian"
 msgstr ""
+"\n"
+" erreur dans le Jacobien"
 
 #, c-format
 msgid ""
@@ -50,6 +61,9 @@ msgid ""
 "MEMORY_ERROR: %s() failed - returned NULL pointer\n"
 "\n"
 msgstr ""
+"\n"
+"MEMORY_ERROR : %s () a échoué - le pointeur NULL a été retourné\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -57,6 +71,9 @@ msgid ""
 "SUNDIALS_ERROR: %s() failed - returned NULL pointer\n"
 "\n"
 msgstr ""
+"\n"
+"SUNDIALS_ERROR : %s () a échoué -  le pointeur NULL a été retourné\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -64,18 +81,25 @@ msgid ""
 "SUNDIALS_ERROR: %s() failed with flag = %d\n"
 "\n"
 msgstr ""
+"\n"
+"SUNDIALS_ERROR : %s () a échoué avec le drapeau = %d\n"
+"\n"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The computing function #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"Avertissement : La fonction de calcul #%d renvoie NaN/Inf"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The initialization system #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"Avertissement : Le système d'initialisation #%d renvoie un NaN/Inf"
 
 #, c-format
 msgid ""
@@ -139,7 +163,7 @@ msgstr ""
 
 #, c-format
 msgid "%s : Error.\n"
-msgstr ""
+msgstr "%s : Erreur.\n"
 
 #, c-format
 msgid "%s : First argument must be a Typed list.\n"
@@ -181,7 +205,7 @@ msgstr ""
 
 #, c-format
 msgid "%s : Function not found\n"
-msgstr ""
+msgstr "%s : Fonction non trouvée\n"
 
 #, c-format
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
@@ -189,19 +213,23 @@ msgstr ""
 
 #, c-format
 msgid "%s : No more free memory.\n"
-msgstr ""
+msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
-msgstr ""
+msgstr "%s : Pas assez de mémoire.\n"
 
 #, c-format
 msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
+msgstr "%s : Seules les hypermatrices à 3 dimensions sont autorisées.\n"
+
+#, c-format
+msgid "%s : Second argument must be a real.\n"
 msgstr ""
 
 #, c-format
 msgid "%s : Second argument must be a scalar.\n"
-msgstr ""
+msgstr "%s : Le deuxième argument doit être une grandeur scalaire.\n"
 
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
@@ -209,14 +237,6 @@ msgstr ""
 
 #, c-format
 msgid "%s : Second element of sim must be a list.\n"
-msgstr ""
-
-#, c-format
-msgid "%s : Secong argument must be a real.\n"
-msgstr ""
-
-#, c-format
-msgid "%s : Secong argument must be a scalar.\n"
 msgstr ""
 
 #, c-format
@@ -347,7 +367,7 @@ msgstr ""
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
-msgstr ""
+msgstr "%s n'est pas un nom valide, changez, svp, le titre du diagramme."
 
 #, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
@@ -381,7 +401,7 @@ msgstr "%s: Les ports d'entrée ne sont pas numérotés correctement.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s : Erreur d'allocation de mémoire.\n"
 
 #, c-format
 msgid "%s: Output ports are not numbered properly.\n"
@@ -474,7 +494,7 @@ msgstr "''scicos'' n'est plus accessible, veuillez utiliser ''xcos''.\n"
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 
-msgid "**** SUNDIALS.IDA succesfully initialized *****\n"
+msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
 #, c-format
@@ -518,7 +538,7 @@ msgid "?"
 msgstr ""
 
 msgid "About Scicos"
-msgstr ""
+msgstr "A propos de Scicos"
 
 msgid "Activate Scilab Window"
 msgstr ""
@@ -533,7 +553,7 @@ msgid "Add new block"
 msgstr ""
 
 msgid "Align"
-msgstr ""
+msgstr "Aligner"
 
 msgid "An Atomic Superblock cannot contain sample clocks"
 msgstr ""
@@ -543,7 +563,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"An unexpected  error occured while executing the menu\n"
+"An unexpected  error occurred while executing the menu\n"
 "%s:\n"
 msgstr ""
 
@@ -557,7 +577,7 @@ msgid "Available Parameters"
 msgstr ""
 
 msgid "Background color"
-msgstr ""
+msgstr "Couleur de l'arrière-plan"
 
 msgid "Background color ? :"
 msgstr ""
@@ -585,7 +605,7 @@ msgstr ""
 
 msgid ""
 "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
-"[((d/dy)^k)y](t)."
+"[((d/dt)^k)y](t)."
 msgstr ""
 
 msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
@@ -601,7 +621,7 @@ msgid "CV_BAD_ITASK: Illegal value for itask."
 msgstr ""
 
 msgid ""
-"CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+"CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
 "CV_WF."
 msgstr ""
 
@@ -650,7 +670,7 @@ msgstr ""
 
 msgid ""
 "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-"recoverable error at th efirst call"
+"recoverable error at the first call"
 msgstr ""
 
 msgid ""
@@ -725,7 +745,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"CV_RTFUNC_FAIL: The rootfinding routine failed in an unrecoverable manner."
+"CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
 msgstr ""
 
 msgid "CV_Rootfunction_NAN: The Root function returns NAN."
@@ -756,7 +776,7 @@ msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
 msgstr ""
 
 msgid "Calc"
-msgstr ""
+msgstr "Calculer"
 
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
@@ -777,13 +797,13 @@ msgid ""
 "Click on a Super Block (without activation output) to obtain a coded block!"
 msgstr ""
 
-msgid "Click on a block to set or get it''s documentation"
+msgid "Click on a block to set or get its documentation"
+msgstr ""
+
+msgid "Click on a port, click on a port of object to be moved"
 msgstr ""
 
 msgid "Click on a super block"
-msgstr ""
-
-msgid "Click on an a port, click on a port of object to be moved"
 msgstr ""
 
 msgid "Click on an object to set or get identification"
@@ -818,52 +838,52 @@ msgid "Click to open block or make a link"
 msgstr ""
 
 msgid "Click where you want object to be placed (right-click to cancel)"
-msgstr ""
+msgstr "Cliquer où vous voulez placer l'objet (clic-droit pour annuler)"
 
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 msgid "Code Generation only works for a Superblock !\n"
-msgstr ""
+msgstr "La génération de code fonctionne uniquement pour un super-bloc !\n"
 
 msgid "Code generation applies only to Super Blocks."
-msgstr ""
+msgstr "La génération de code s'applique seulement aux super-blocs."
 
 msgid "Color"
-msgstr ""
+msgstr "Couleur"
 
 msgid "Compile"
-msgstr ""
+msgstr "Compiler"
 
 msgid "Context"
-msgstr ""
+msgstr "Contexte"
 
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
 msgid "Create Atomic"
 msgstr ""
 
 msgid "Create Mask"
-msgstr ""
+msgstr "Créer un masque"
 
 msgid "CtrlSelect"
 msgstr ""
 
 msgid "Customize Mask"
-msgstr ""
+msgstr "Personnaliser le masque"
 
 msgid "Customize block GUI:"
 msgstr ""
 
 msgid "Cut"
-msgstr ""
+msgstr "Couper"
 
 msgid "Cut: Click on the object to cut"
-msgstr ""
+msgstr "Couper : Cliquer sur l'objet pour le couper"
 
 msgid "Debug Level"
-msgstr ""
+msgstr "Niveau de débogage"
 
 msgid "Default link colors"
 msgstr ""
@@ -872,40 +892,42 @@ msgid "Default window parameters"
 msgstr ""
 
 msgid "Defined shortcuts"
-msgstr ""
+msgstr "Raccourcis définis"
 
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 msgid "Delete: Click on the object to delete"
-msgstr ""
+msgstr "Suppression : Cliquer sur l'objet pour le supprimer"
 
 msgid "Demos"
-msgstr ""
+msgstr "Démos"
 
 msgid "Details"
-msgstr ""
+msgstr "Détails"
 
 msgid "Diagram"
-msgstr ""
+msgstr "Diagramme"
 
 msgid "Done\n"
-msgstr ""
+msgstr "Effectué\n"
 
 msgid "Drag, click left for final or intermediate points or right to cancel"
 msgstr ""
+"Glisser, clic gauche pour les points finaux ou intermédiaires ou droit de "
+"annuler"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliquer"
 
 msgid "Edit"
-msgstr ""
+msgstr "Edition"
 
 msgid "End of activation"
-msgstr ""
+msgstr "Fin d'activation"
 
 msgid "End of activation\n"
-msgstr ""
+msgstr "Fin d'activation\n"
 
 msgid "Entering the block \n"
 msgstr ""
@@ -914,68 +936,70 @@ msgid "Error\n"
 msgstr "Erreur\n"
 
 msgid "Error in the Debug block \n"
-msgstr ""
+msgstr "Erreur dans le bloc de débogage \n"
 
 #, c-format
 msgid "Error: cannot find '%s'  \n"
-msgstr ""
+msgstr "Erreur : impossible de trouver '%s'  \n"
 
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
-msgstr ""
+msgstr "Erreur : impossible d'écrire dans '%s'  \n"
 
 msgid "Eval"
-msgstr ""
+msgstr "Évaluation"
 
 msgid "Event links color? :"
 msgstr ""
 
 #, c-format
 msgid "Event: %d activated at t=%f\n"
-msgstr ""
+msgstr "Événement : %d activé à t=%f\n"
 
 msgid "Exit"
-msgstr ""
+msgstr "Quitter"
 
 msgid "Export"
-msgstr ""
+msgstr "Exporter"
 
 msgid "Export All"
-msgstr ""
+msgstr "Exporter tout"
 
 #, c-format
 msgid "Export in file %s failed\n"
 msgstr ""
 
 msgid "File"
-msgstr ""
+msgstr "Fichier"
 
 msgid "Fit diagram to figure"
 msgstr "Adapter le diagramme à la figure"
 
 msgid "Flip"
-msgstr ""
+msgstr "Pivoter"
 
 msgid "Following palette(s) ignored (associated file(s) no more exist):"
 msgstr ""
+"La(les) palette(s) suivante(s) est(sont) ignorée(s) (le(s) dossier(s) "
+"associé(s) n'existe(nt) plus) :"
 
 msgid "Foreground color ? :"
-msgstr ""
+msgstr "Couleur de premier plan ? :"
 
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 msgid "Free"
-msgstr ""
+msgstr "Gratuit"
 
 msgid "Function not found\n"
-msgstr ""
+msgstr "Fonction non trouvée\n"
 
 msgid "Get Info"
-msgstr ""
+msgstr "Obtenir les informations"
 
 msgid "Help"
-msgstr ""
+msgstr "Aide"
 
 msgid "ID font definitions"
 msgstr ""
@@ -1010,7 +1034,7 @@ msgid "IDA_BAD_ITASK: Illegal value for itask."
 msgstr ""
 
 msgid ""
-"IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+"IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
 "and IDA_WF."
 msgstr ""
 
@@ -1138,7 +1162,7 @@ msgid ""
 "flag."
 msgstr ""
 
-msgid "IDA_RES_NULL: th returned residual res = NULL is illegal."
+msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
 msgstr ""
 
 msgid "IDA_RTFUNC_FAIL: The root founding function failed."
@@ -1182,16 +1206,16 @@ msgid "IDA_YRET_NULL: yret = NULL illegal.."
 msgstr ""
 
 msgid "Icon"
-msgstr ""
+msgstr "Icône"
 
 msgid "Icon Editor"
-msgstr ""
+msgstr "Éditeur d'icônes"
 
 msgid "Identification"
-msgstr ""
+msgstr "Identification"
 
 msgid "It is impossible to set ID for this type of object"
-msgstr ""
+msgstr "Il est impossible de définir l'ID pour ce type d'objet"
 
 msgid ""
 "KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
@@ -1234,9 +1258,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve "
-"the preconditioned linear system) encountered an unrecoverable error, or the "
-"linear solver routine  (lsolve) encountered an error condition."
+"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
+"preconditioned linear system) encountered an unrecoverable error, or the "
+"linear solver routine (lsolve) encountered an error condition."
 msgstr ""
 
 msgid ""
@@ -1283,14 +1307,14 @@ msgid ""
 msgstr ""
 
 msgid "Label"
-msgstr ""
+msgstr "Etiquettes"
 
 #, c-format
 msgid "Leaving block %d \n"
-msgstr ""
+msgstr "Laisser le bloc %d \n"
 
 msgid "Link"
-msgstr ""
+msgstr "Lien"
 
 msgid "Link ID font name"
 msgstr ""
@@ -1299,46 +1323,46 @@ msgid "Link ID font size"
 msgstr ""
 
 msgid "Link parameters"
-msgstr ""
+msgstr "Paramètres de lien"
 
 msgid "Load as Palette"
-msgstr ""
+msgstr "Charger en tant que palette"
 
 msgid "Mask"
-msgstr ""
+msgstr "Masque"
 
 msgid "Mask can only be created for Super Blocks."
 msgstr ""
 
 msgid "Modelica initialize"
-msgstr ""
+msgstr "Initialisation de Modelica"
 
 msgid "Modify title and menu labels."
-msgstr ""
+msgstr "Modifier les étiquettes de titre et de menu."
 
 msgid "Move"
-msgstr ""
+msgstr "Déplacer"
 
 msgid "MoveLink "
 msgstr ""
 
 msgid "Multiple selection cannot be used here"
-msgstr ""
+msgstr "Le choix multiple ne peut pas être employé ici"
 
 msgid "Navigator window"
-msgstr ""
+msgstr "Fenêtre de navigateur"
 
 msgid "New"
-msgstr ""
+msgstr "Nouveau"
 
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 msgid "No selected block in the current Scicos window."
-msgstr ""
+msgstr "Aucun bloc sélectionné dans la fenêtre courante de Scicos."
 
 msgid "Only  blocks can be selected for this operation."
-msgstr ""
+msgstr "Seuls des blocs peuvent être choisis pour cette opération."
 
 msgid "Only one block can be selected in current window for this operation."
 msgstr ""
@@ -1346,13 +1370,13 @@ msgstr ""
 "opération."
 
 msgid "Open"
-msgstr ""
+msgstr "Ouvrir"
 
 msgid "Open a Scicos demonstration diagram"
-msgstr ""
+msgstr "Ouvrir un diagramme de démonstration de Xcos"
 
 msgid "Open a Scicos diagram"
-msgstr ""
+msgstr "Ouvrir un diagramme de Xicos"
 
 msgid "Open/Set"
 msgstr ""
@@ -1361,19 +1385,19 @@ msgid "Pal editor"
 msgstr ""
 
 msgid "Palette"
-msgstr ""
+msgstr "Palette"
 
 msgid "Palettes"
-msgstr ""
+msgstr "Palettes"
 
 msgid "Palettes Tree"
-msgstr ""
+msgstr "Arbre de palettes"
 
 msgid "Paste"
-msgstr ""
+msgstr "Coller"
 
 msgid "Place in Diagram"
-msgstr ""
+msgstr "Placer dans le diagramme"
 
 msgid "PlaceinBrowser"
 msgstr ""
@@ -1382,27 +1406,28 @@ msgid "PlaceinDiagram"
 msgstr ""
 
 msgid "Please report"
-msgstr ""
+msgstr "Faites un rapport svp"
 
 msgid "Popup"
-msgstr ""
+msgstr "Fenêtre qui apparaît"
 
 msgid ""
-"Press lef mouse button, drag region and release (right button to cancel)"
+"Press left mouse button, drag region and release (right button to cancel)"
 msgstr ""
 
 msgid "Problem saving a backup; I cannot activate Scilab\n"
 msgstr ""
+"Problème lors de la sauvegarde du backup ; Je ne peux pas activer Scilab\n"
 
 #, c-format
 msgid "Problem while building library %s\n"
 msgstr "Un problème est arrivé en construisant la bibliothèque %s\n"
 
 msgid "Properties"
-msgstr ""
+msgstr "Propriétés"
 
 msgid "Purge"
-msgstr ""
+msgstr "Purger"
 
 msgid "Region to Palette"
 msgstr ""
@@ -1417,38 +1442,38 @@ msgid "Remove Atomic"
 msgstr ""
 
 msgid "Remove Mask"
-msgstr ""
+msgstr "Enlever le masque"
 
 msgid "Rename"
-msgstr ""
+msgstr "Renommer"
 
 msgid "Replot"
-msgstr ""
+msgstr "Retracer"
 
 #, c-format
 msgid "Requested action: %s is not available"
-msgstr ""
+msgstr "Action demandée : %s n'est pas disponible"
 
 msgid "Resize"
-msgstr ""
+msgstr "Redimensionner"
 
 msgid "Resize is allowed only for Blocks or Links."
-msgstr ""
+msgstr "Le redimensionnement n'est permis que pour les blocs et les liens."
 
 msgid "Rotate Left"
-msgstr ""
+msgstr "Tourner vers la gauche"
 
 msgid "Rotate Right"
-msgstr ""
+msgstr "Tourner vers la droite"
 
 msgid "Run"
-msgstr ""
+msgstr "Exécuter"
 
 msgid "Save"
-msgstr ""
+msgstr "Enregistrer"
 
 msgid "Save As"
-msgstr ""
+msgstr "Enregistrer sous..."
 
 msgid "Save Block GUI"
 msgstr ""
@@ -1457,10 +1482,10 @@ msgid "Save as Interf Func"
 msgstr ""
 
 msgid "Save as Palette"
-msgstr ""
+msgstr "Sauvegarder une palette"
 
 msgid "Scicos Documentation"
-msgstr ""
+msgstr "Documentation de Xcos"
 
 #, c-format
 msgid "Scicos version %s\n"
@@ -1468,13 +1493,13 @@ msgstr "Version de Scicos %s\n"
 
 #, c-format
 msgid "Scilab Graphics of %s"
-msgstr ""
+msgstr "Graphiques de Scilab de %s"
 
 msgid "Select a block."
 msgstr ""
 
 msgid "Select a directory path"
-msgstr ""
+msgstr "Choisir un chemin de dossier"
 
 msgid "SelectAll"
 msgstr ""
@@ -1489,38 +1514,38 @@ msgid "Set Block identification"
 msgstr "Définir l'identification bloc"
 
 msgid "Set Block sizes"
-msgstr ""
+msgstr "Définir la taille bloc"
 
 msgid "Set Diagram Info"
-msgstr ""
+msgstr "Définir l'information de diagramme"
 
 msgid "Set grid"
-msgstr ""
+msgstr "Définir la grille"
 
 msgid "Set link Identification"
-msgstr ""
+msgstr "Définir l'identification de lien"
 
 msgid "Set link edition mode"
-msgstr ""
+msgstr "Définir le mode d'édition de lien"
 
 msgid "Setup"
-msgstr ""
+msgstr "Configurer"
 
 msgid "Shortcuts"
-msgstr ""
+msgstr "Raccourcis"
 
 msgid "Show Block Shadow"
 msgstr ""
 
 msgid "Simulate"
-msgstr ""
+msgstr "Simuler"
 
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
-msgstr ""
+msgstr "Curseur t=%10.3f, drapeau=%d \n"
 
 msgid "Smart"
-msgstr ""
+msgstr "Rapide"
 
 msgid "Smart Move"
 msgstr ""
@@ -1529,24 +1554,24 @@ msgid "Smart move does not work yet with multiple selection"
 msgstr ""
 
 msgid "Sorry file name not defined in "
-msgstr ""
+msgstr "Désolé le nom de fichier n'est pas défini dans "
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
-msgstr ""
+msgstr "Désolé : Seuls les langages C et Fortran sont supportés"
 
 msgid "Stop"
-msgstr ""
+msgstr "Arrêter"
 
 msgid "The current icon depends on block parameter\n"
 msgstr "L'icône courant dépend des paramètres du bloc\n"
 
 #, c-format
 msgid "The key %s is already in use for %s"
-msgstr ""
+msgstr "La clef %s est déjà en service pour %s"
 
 #, c-format
 msgid "The key %s is not a valid letter"
-msgstr ""
+msgstr "La clef %s n'est pas une lettre valide"
 
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
@@ -1560,66 +1585,70 @@ msgid ""
 "The parameter(s) %s \n"
 "must be defined in the"
 msgstr ""
+"Le(s) paramètre(s) %s \n"
+"doit(doivent) être défini(s) dans"
 
 msgid "Thickness"
-msgstr ""
+msgstr "Épaisseur"
 
 msgid "This block is not masked."
-msgstr ""
+msgstr "Ce bloc n'est pas masqué."
 
 msgid "This window is not an active palette"
-msgstr ""
+msgstr "Cette fenêtre n'est pas une palette active"
 
 msgid "This window is not an active scicos window"
-msgstr ""
+msgstr "Cette fenêtre n'est pas une fenêtre active de scicos"
 
 msgid "Title of the GUI"
-msgstr ""
+msgstr "Titre de la GUI"
 
 msgid "TkPopup "
 msgstr ""
 
 #, c-format
 msgid "To avoid this message, please update the %s.scicos_pal file."
-msgstr ""
+msgstr "Pour éviter ce message, mettre svp le fichier %s.scicos_pal."
 
 msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
-msgstr ""
+msgstr "Pour réactiver Scicos, cliquer sur un diagramme ou tapez xcos();\n"
 
 msgid "Toggle grid"
-msgstr ""
+msgstr "Basculer la grille"
 
 msgid "Tools"
-msgstr ""
+msgstr "Outils"
 
 msgid "Type"
 msgstr ""
 
 msgid "Type not recognized"
-msgstr ""
+msgstr "Type non reconnu"
 
 msgid "Undefined Function type\n"
-msgstr ""
+msgstr "Type de fonction non défini\n"
 
 msgid "Undefined data type."
-msgstr ""
+msgstr "Type de données non défini."
 
 msgid "Undo"
-msgstr ""
+msgstr "Défaire"
 
 msgid "Up To Main Diagram"
-msgstr ""
+msgstr "Jusqu'au diagramme principal"
 
 msgid ""
 "Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
 "\n"
 msgstr ""
+"Utilisation : [myvar]=getscicosvars([« str1 » ; « str2 » ; …]);\n"
+"\n"
 
 msgid "Use 3D aspect?"
 msgstr ""
 
 msgid "View"
-msgstr ""
+msgstr "Vue"
 
 #, c-format
 msgid "Warning %d menus have identical name %s\n"
@@ -1634,9 +1663,14 @@ msgid ""
 "either recompile your Scicos diagram or [re]launch the initialization "
 "interface to regenerate the XML file  with new parameters."
 msgstr ""
+"Vous avez changé un paramètre dans votre modèle, mais le modèle a été "
+"compilé pour employer un fichier XML contenant des valeurs initiales et des "
+"paramètres. Ainsi vous devriez soit recompiler votre diagramme Scicos soit "
+"[re]lancer l'interface d'initialisation pour régénérer le fichier XML avec "
+"de nouveaux paramètres."
 
 msgid "Your diagram is not saved. Do not quit Scilab or "
-msgstr ""
+msgstr "Votre diagramme n'est pas sauvegarder. Ne pas quitter Scilab ou "
 
 msgid "Zoom in"
 msgstr ""
@@ -1644,41 +1678,41 @@ msgstr ""
 msgid "Zoom out"
 msgstr ""
 
-msgid "algrebraic loop detected"
+msgid "algebraic loop detected"
 msgstr ""
 
 #, c-format
 msgid "at time %f \n"
-msgstr ""
+msgstr "au temps %f \n"
 
 #, c-format
 msgid "block %d is called "
-msgstr ""
+msgstr "le bloc %d est appelé "
 
 msgid "block produces an internal error"
-msgstr ""
+msgstr "le bloc produit une erreur interne"
 
 msgid "cannot allocate memory"
-msgstr ""
+msgstr "impossible d'allouer la mémoire"
 
 #, c-format
 msgid "cannot allocate memory in block=%d"
-msgstr ""
+msgstr "impossible d'allouer la mémoire dans le block=%d"
 
 msgid "current choice is "
-msgstr ""
+msgstr "le choix courant est "
 
 msgid "event conflict"
-msgstr ""
+msgstr "conflit d'événement"
 
 msgid "height"
-msgstr ""
+msgstr "hauteur"
 
 msgid "initial conditions not converging"
-msgstr ""
+msgstr "les conditions initiales ne convergent pas"
 
 msgid "input to zero-crossing stuck on zero"
-msgstr ""
+msgstr "entrée au passage à zéro coincée sur zéro"
 
 #, c-format
 msgid "integration problem istate=%d"
@@ -1686,23 +1720,23 @@ msgstr ""
 
 #, c-format
 msgid "mode of block %d=%d, "
-msgstr ""
+msgstr "mode du bloc %d=%d, "
 
 #, c-format
 msgid "root found at t=: %f\n"
-msgstr ""
+msgstr "racine trouvée à t=: %f\n"
 
 msgid "scheduling problem"
-msgstr ""
+msgstr "problème d'ordonnancement"
 
-msgid "scicos unexpected error,please report..."
+msgid "scicos unexpected error, please report..."
 msgstr ""
 
 msgid "scs_show active..."
 msgstr ""
 
 msgid "singularity in a block"
-msgstr ""
+msgstr "singularité dans un bloc"
 
 msgid "sliding mode condition, cannot integrate"
 msgstr ""
@@ -1712,17 +1746,17 @@ msgid "the block %d has been called with input out of its domain"
 msgstr ""
 
 msgid "type 1 function not allowed for scilab blocks\n"
-msgstr ""
+msgstr "fonction de type 1 non permise pour des des blocs de scilab\n"
 
 msgid "type 2 function not allowed for scilab blocks\n"
 msgstr "fonction de type 2 non permise pour des des blocs de scilab\n"
 
 msgid "unknown or erroneous block"
-msgstr ""
+msgstr "bloc inconnu ou incorrect"
 
 msgid "width"
-msgstr ""
+msgstr "largeur"
 
 #, c-format
 msgid "with flag %d "
-msgstr ""
+msgstr "avec le drapeau %d "

@@ -51,6 +51,10 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr ""
 
@@ -60,6 +64,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to import data from %s"
 msgstr ""
 
 #, c-format
@@ -367,10 +375,6 @@ msgstr ""
 msgid "Export to XML"
 msgstr "导出到XML"
 
-#, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "导出失败：%s\n"
-
 msgid "Failed to load Diagram"
 msgstr "载入图表失败"
 
@@ -473,6 +477,9 @@ msgid "Loading diagram"
 msgstr ""
 
 msgid "Loading palettes"
+msgstr ""
+
+msgid "Loading the block"
 msgstr ""
 
 msgid "Loading user defined palettes"
@@ -723,13 +730,16 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Unable to load the HDF5 library. \n"
+"Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
+msgstr ""
+
+msgid "Unable to load the native HDF5 library."
 msgstr ""
 
 #, c-format
@@ -783,6 +793,10 @@ msgid "WinTitle"
 msgstr ""
 
 msgid "Window title"
+msgstr ""
+
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
