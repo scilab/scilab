@@ -19,6 +19,7 @@
 %module ScilabCommons
 %{
 #include "../../../core/includes/SCIHOME.h"
+#include "../../../core/includes/tmpdir.h"
 %}
 
 /* JavaDoc for ScilabCommonsJNI class */
@@ -90,3 +91,13 @@ public class";
    */
 public";
 char* getSCIHOME();
+
+
+/* JavaDoc */
+%javamethodmodifiers getTMPDIR() "
+ /**
+   * returns TMPDIR directory value
+   * @return TMPDIR value
+   */
+public";
+char *getTMPDIR(void);
