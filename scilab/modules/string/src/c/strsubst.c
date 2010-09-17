@@ -308,6 +308,7 @@ wchar_t *wcssub_reg(wchar_t* _pwstInput, wchar_t* _pwstSearch, wchar_t* _pwstRep
     FREE(piStart);
     FREE(piEnd);
 
+    *_piErr = iPcreStatus;
     return pwstOutput;
 }
 /*-------------------------------------------------------------------------------------*/
