@@ -48,6 +48,7 @@ public final class CutAction extends CallBack {
     }
 
     /**
+     * @param editor the editor
      * @param table where to put the action
      */
     public static void registerAction(SwingScilabVariableEditor editor, JTable table) {
@@ -66,26 +67,29 @@ public final class CutAction extends CallBack {
             table.setColumnSelectionInterval(cols[0], cols[cols.length - 1]);
             table.setRowSelectionInterval(rows[0], rows[rows.length - 1]);
             StringBuffer buf = new StringBuffer();
+            SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
             for (int i = rows[0]; i <= rows[rows.length - 1]; i++) {
                 for (int j = cols[0]; j <= cols[cols.length - 1]; j++) {
-                    String exp = ((SwingEditvarTableModel) table.getModel()).getCellEditor().getExpression(i, j);
+                    String exp = model.getCellEditor().getExpression(i, j);
                     if (exp != null) {
                         buf.append("=" + exp);
                     } else {
-                        buf.append(((SwingEditvarTableModel) table.getModel()).getScilabValueAt(i, j));
+                        buf.append(model.getScilabValueAt(i, j));
                     }
-                    ((SwingEditvarTableModel) table.getModel()).emptyValueAt(i, j);
+                    model.emptyValueAt(i, j);
                     if (j < cols[cols.length - 1]) {
                         buf.append("\t");
                     }
                 }
-                ((SwingEditvarTableModel) table.getModel()).removeRow(i, cols[0], cols[cols.length - 1]);
                 buf.append("\n");
             }
-            for (int j = cols[0]; j <= cols[cols.length - 1]; j++) {
-                ((SwingEditvarTableModel) table.getModel()).removeCol(table, j, rows[0], rows[rows.length - 1]);
+            for (int i = rows[rows.length - 1]; i >= rows[0]; i--) {
+                model.removeRow(i, cols[0], cols[cols.length - 1]);
             }
-            ((SwingEditvarTableModel) table.getModel()).updateMatrix();
+            for (int j = cols[cols.length - 1]; j >= cols[0]; j--) {
+                model.removeCol(table, j, rows[0], rows[rows.length - 1]);
+            }
+            model.updateMatrix();
             StringSelection sel  = new StringSelection(buf.toString());
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
         }

@@ -28,6 +28,7 @@ import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
+import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoableEdit;
 
 /**
  * Class ScilabVariableEditor
@@ -79,6 +80,16 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
         editorTab.close();
         instance = null;
         map.clear();
+        CellsUndoableEdit.clear();
+    }
+
+    /**
+     * Close the edition of the variable
+     * @param name the variable
+     */
+    public static void close(String name) {
+        map.remove(name);
+        CellsUndoableEdit.removeVar(name);
     }
 
     /**
@@ -89,7 +100,7 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
      */
     public void updateData(String name, String type, Object[][] data) {
         if (map.containsKey(name)) {
-            ((SwingScilabVariableEditor) editorTab).updateData(map.get(name), type, data);
+            ((SwingScilabVariableEditor) editorTab).updateData(map.get(name), name, type, data);
         } else {
             editorTab.setData(name, type, data);
             map.put(name, tabPane.getSelectedComponent());
@@ -116,14 +127,21 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
             instance = new ScilabVariableEditor(type, data, variableName);
             instance.setVisible(true);
         } else {
-            final int row = ((SwingEditvarTableModel) ((SwingScilabVariableEditor) editorTab).getCurrentModel()).getCurrentRow();
-            final int col = ((SwingEditvarTableModel) ((SwingScilabVariableEditor) editorTab).getCurrentModel()).getCurrentCol();
+            int row = -1;
+            int col = -1;
+            SwingEditvarTableModel model = (SwingEditvarTableModel) ((SwingScilabVariableEditor) editorTab).getCurrentModel();
+            if (model != null) {
+                row = model.getCurrentRow();
+                col = model.getCurrentCol();
+            }
+            final int r = row;
+            final int c = col;
             SwingUtilities.invokeLater(new Thread() {
                     public void run() {
                         instance.updateData(variableName, type, data);
-                        if (row != -1 && col != -1) {
-                            ((SwingScilabVariableEditor) editorTab).getCurrentTable().setRowSelectionInterval(row, row);
-                            ((SwingScilabVariableEditor) editorTab).getCurrentTable().setColumnSelectionInterval(col, col);
+                        if (r != -1 && c != -1) {
+                            ((SwingScilabVariableEditor) editorTab).getCurrentTable().setRowSelectionInterval(r, r);
+                            ((SwingScilabVariableEditor) editorTab).getCurrentTable().setColumnSelectionInterval(c, c);
                         }
                     }
                 });
