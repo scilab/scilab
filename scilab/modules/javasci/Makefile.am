@@ -134,7 +134,7 @@ BUILT_SOURCES+=swig
 endif
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Call_Scilab.i
+SWIG_WRAPPERS = src/jni/call_scilab.i
 
 USEANT=1
 
