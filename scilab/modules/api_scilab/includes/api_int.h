@@ -131,7 +131,7 @@ SciErr getMatrixOfUnsignedInteger64(void* _pvCtx, int* _piAddress, int* _piRows,
  * @param[in] _pcData8 array of 8-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char* _pcData8);
+SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const char* _pcData8);
 
 /**
  * Create 8-bit unsigned integer variable
@@ -141,7 +141,7 @@ SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, c
  * @param[in] _pucData8 array of 8-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char* _pucData8);
+SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned char* _pucData8);
 
 /**
  * Create 16-bit integer variable
@@ -151,7 +151,7 @@ SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _
  * @param[in] _psData16 array of 16-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short* _psData16);
+SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const short* _psData16);
 
 /**
  * Create 16-bit unsigned integer variable
@@ -161,7 +161,7 @@ SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, 
  * @param[in] _pusData16 array of 16-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short* _pusData16);
+SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned short* _pusData16);
 
 /**
  * Create 32-bit integer variable
@@ -171,7 +171,7 @@ SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int 
  * @param[in] _piData32 array of 32-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piData32);
+SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const int* _piData32);
 
 /**
  * Create 32-bit unsigned integer variable
@@ -181,7 +181,7 @@ SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, 
  * @param[in] _puiData32 array of 32-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int* _puiData32);
+SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned int* _puiData32);
 
 #ifdef __SCILAB_INT64__
 
@@ -193,7 +193,7 @@ SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int 
  * @param[in] _pllData64 array of 64-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, long long* _pllData64);
+SciErr createMatrixOfInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, const long long* _pllData64);
 
 /**
  * Create 64-bit unsigned integer variable
@@ -203,7 +203,7 @@ SciErr createMatrixOfInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, 
  * @param[in] _pullData64 array of 64-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned long long* _pullData64);
+SciErr createMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned long long* _pullData64);
 
 #endif
 
@@ -215,7 +215,7 @@ SciErr createMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int 
  * @param[in] _pcData8 array of 8-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char* _pcData8);
+SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const char* _pcData8);
 
 /**
  * Create named 8-bit unsigned integer variable
@@ -225,7 +225,7 @@ SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int
  * @param[in] _pucData8 array of 8-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned char* _pucData8);
+SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8);
 
 /**
  * Create named 16-bit integer variable
@@ -235,7 +235,7 @@ SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iR
  * @param[in] _psData16 array of 16-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, short* _psData16);
+SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const short* _psData16);
 
 /**
  * Create named 16-bit unsigned integer variable
@@ -245,7 +245,7 @@ SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, in
  * @param[in] _pusData16 array of 16-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned short* _pusData16);
+SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned short* _pusData16);
 
 /**
  * Create named 32-bit integer variable
@@ -255,7 +255,7 @@ SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _i
  * @param[in] _piData32 array of 32-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piData32);
+SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const int* _piData32);
 
 /**
  * Create named 32-bit unsigned integer variable
@@ -265,7 +265,7 @@ SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, in
  * @param[in] _puiData32 array of 32-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned int* _puiData32);
+SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned int* _puiData32);
 
 #ifdef __SCILAB_INT64__
 
@@ -277,7 +277,7 @@ SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _i
  * @param[in] _pllData64 array of 64-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, long long* _pllData64);
+SciErr createNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const long long* _pllData64);
 
 /**
  * Create named 64-bit unsigned integer variable
@@ -287,7 +287,7 @@ SciErr createNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int _iRows, in
  * @param[in] _pullData64 array of 64-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfUnsignedInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned long long* _pullData64);
+SciErr createNamedMatrixOfUnsignedInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned long long* _pullData64);
 
 #endif
 
