@@ -53,7 +53,7 @@ SciErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
  * @param[in] _piColPos array of item column positions ( 1 indexed )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos);
 
 /**
  * Create named boolean sparse variable
@@ -65,7 +65,7 @@ SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
  * @param[in] _piColPos array of item column positions ( 1 indexed )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos);
 
 /**
  * Read named boolean sparse variable

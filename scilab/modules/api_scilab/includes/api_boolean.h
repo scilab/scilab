@@ -44,7 +44,7 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
  * @param[in] _piBool pointer to data
  * @return if the operation succeeded (0) or not ( !0 )
  */
-SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piBool);
+SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, const int* _piBool);
 
 /**
  * Create boolean named variable
@@ -54,7 +54,7 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, in
  * @param[in] _piBool pointer to data
  * @return if the operation succeeded (0) or not ( !0 )
  */
-SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piBool);
+SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const int* _piBool);
 
 /**
  * Read boolean named variable
