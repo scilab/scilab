@@ -74,7 +74,10 @@ public final class CopyAction extends CallBack {
                     if (exp != null) {
                         buf.append("=" + exp);
                     } else {
-                        buf.append(model.getScilabValueAt(i, j));
+                        String val = model.getScilabValueAt(i, j, false);
+                        if (val != null) {
+                            buf.append(val);
+                        }
                     }
                     if (j < cols[cols.length - 1]) {
                         buf.append("\t");

@@ -74,7 +74,10 @@ public final class CutAction extends CallBack {
                     if (exp != null) {
                         buf.append("=" + exp);
                     } else {
-                        buf.append(model.getScilabValueAt(i, j));
+                        String val = model.getScilabValueAt(i, j, false);
+                        if (val != null) {
+                            buf.append(val);
+                        }
                     }
                     model.emptyValueAt(i, j);
                     if (j < cols[cols.length - 1]) {

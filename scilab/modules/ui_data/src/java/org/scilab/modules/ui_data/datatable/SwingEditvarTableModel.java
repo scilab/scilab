@@ -125,10 +125,15 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     /**
      * @param row the row
      * @param col the col
+     * @param useDefault if true, null is replaced by the default value
      * @return the scilab expression corresponding to the value
      */
-    public String getScilabValueAt(int row, int col) {
+    public String getScilabValueAt(int row, int col, boolean useDefault) {
         String str = cellEditor.getDataAsScilabString(getValueAt(row, col));
+        if (!useDefault && getValueAt(row, col) == null) {
+            return null;
+        }
+
         if (str.length() == 0) {
             str = getDefaultStringValue();
         }
@@ -138,6 +143,15 @@ public class SwingEditvarTableModel extends DefaultTableModel {
         }
 
         return str;
+    }
+
+    /**
+     * @param row the row
+     * @param col the col
+     * @return the scilab expression corresponding to the value
+     */
+    public String getScilabValueAt(int row, int col) {
+        return getScilabValueAt(row, col, true);
     }
 
     /**
