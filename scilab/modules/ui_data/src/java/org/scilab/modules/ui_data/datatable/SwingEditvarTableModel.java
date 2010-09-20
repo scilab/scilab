@@ -421,7 +421,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
         command.append("messagebox(\"Could not edit variable: \" + lasterror() + \"\"");
         command.append(",\"Variable editor\", \"error\", \"modal\");");
         command.append("end;");
-        command.append("warning(L8625083632641564277);");
+        command.append("warning(L8625083632641564277);clear(L8625083632641564277)");
         command.append("editvar(\"" + varName + "\");");
         return command.toString();
     }
