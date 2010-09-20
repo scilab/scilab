@@ -1100,20 +1100,20 @@ LBRACK matrixOrCellLines RBRACK					{ $$ = new ast::MatrixExp(@$, *$2); }
 								  $2->push_back(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::MatrixExp(@$, *$2);
 								}
-//| LBRACK lineEnd matrixOrCellLines matrixOrCellColumns RBRACK		{
-//								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
-//								  $$ = new ast::MatrixExp(@$, *$3);
-//								}
+| LBRACK EOL matrixOrCellLines matrixOrCellColumns RBRACK		{
+								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
+								  $$ = new ast::MatrixExp(@$, *$3);
+								}
 | LBRACK matrixOrCellColumns RBRACK					{
 								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
 								  tmp->push_front(new ast::MatrixLineExp(@2, *$2));
 								  $$ = new ast::MatrixExp(@$, *tmp);
 								}
-//| LBRACK lineEnd matrixOrCellColumns RBRACK				{
-//								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
-//								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
-//								  $$ = new ast::MatrixExp(@$, *tmp);
-//								}
+| LBRACK EOL matrixOrCellColumns RBRACK				{
+								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
+								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
+								  $$ = new ast::MatrixExp(@$, *tmp);
+								}
 | LBRACK RBRACK							{ $$ = new ast::MatrixExp(@$, *new std::list<ast::MatrixLineExp *>); }
 ;
 
@@ -1344,7 +1344,7 @@ ELSEIF condition then thenBody						{
 									}
 | ELSEIF condition then thenBody elseIfControl				{
 										ast::exps_t *tmp = new ast::exps_t;
-										tmp->push_front( new ast::IfExp(@$, *$2, *$5) );
+										tmp->push_front( new ast::IfExp(@$, *$2, *$4, *$5) );
 										$$ = new ast::SeqExp(@$, *tmp);
 									}
 ;
@@ -1416,7 +1416,15 @@ CASE variable caseControlBreak caseBody							{
 																  $$ = new ast::cases_t;
 																  $$->push_back(new ast::CaseExp(@$, *$2, *$4));
 																}
+| CASE functionCall caseControlBreak caseBody					{
+																  $$ = new ast::cases_t;
+																  $$->push_back(new ast::CaseExp(@$, *$2, *$4));
+																}
 | comments CASE variable caseControlBreak caseBody				{
+																  $$ = new ast::cases_t;
+																  $$->push_back(new ast::CaseExp(@$, *$3, *$5));
+																}
+| comments CASE functionCall caseControlBreak caseBody          {
 																  $$ = new ast::cases_t;
 																  $$->push_back(new ast::CaseExp(@$, *$3, *$5));
 																}
@@ -1424,7 +1432,15 @@ CASE variable caseControlBreak caseBody							{
 																  $$ = new ast::cases_t;
 																  $$->push_back(new ast::CaseExp(@$, *$2, *$5));
 																}
+| CASE functionCall COMMENT EOL caseBody						{
+																  $$ = new ast::cases_t;
+																  $$->push_back(new ast::CaseExp(@$, *$2, *$5));
+																}
 | comments CASE variable COMMENT EOL caseBody					{
+																  $$ = new ast::cases_t;
+																  $$->push_back(new ast::CaseExp(@$, *$3, *$6));
+																}
+| comments CASE functionCall COMMENT EOL caseBody				{
 																  $$ = new ast::cases_t;
 																  $$->push_back(new ast::CaseExp(@$, *$3, *$6));
 																}
@@ -1432,7 +1448,15 @@ CASE variable caseControlBreak caseBody							{
 																  $1->push_back(new ast::CaseExp(@$, *$3, *$5));
 																  $$ = $1;
 																}
+| casesControl CASE functionCall caseControlBreak caseBody		{
+																  $1->push_back(new ast::CaseExp(@$, *$3, *$5));
+																  $$ = $1;
+																}
 | casesControl CASE variable COMMENT EOL caseBody				{
+																  $1->push_back(new ast::CaseExp(@$, *$3, *$6));
+																  $$ = $1;
+																}
+| casesControl CASE functionCall COMMENT EOL caseBody			{
 																  $1->push_back(new ast::CaseExp(@$, *$3, *$6));
 																  $$ = $1;
 																}
@@ -1461,8 +1485,10 @@ THEN						{ /* !! Do Nothing !! */ }
 | THEN EOL					{ /* !! Do Nothing !! */ }
 | COMMA EOL					{ /* !! Do Nothing !! */ }
 | SEMI EOL					{ /* !! Do Nothing !! */ }
-| THEN COMMA					{ /* !! Do Nothing !! */ }
-| THEN COMMA EOL				{ /* !! Do Nothing !! */ }
+| THEN COMMA				{ /* !! Do Nothing !! */ }
+| THEN COMMA EOL			{ /* !! Do Nothing !! */ }
+| THEN SEMI					{ /* !! Do Nothing !! */ }
+| THEN SEMI EOL				{ /* !! Do Nothing !! */ }
 ;
 
 /*
