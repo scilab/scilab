@@ -436,7 +436,9 @@ public final class SuperBlock extends BasicBlock {
 
 		// populate
 		for (int i = 0; i < array.length; i++) {
-			int index = (Integer) ((BasicBlock) blocks.get(i)).getValue();
+			final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks.get(i)).getIntegerParameters();
+			final int index = (int) data.getRealPart()[0][0];
+			
 			if (index <= array.length) {
 				array[index - 1] = 1;
 			}
@@ -480,7 +482,8 @@ public final class SuperBlock extends BasicBlock {
 			Arrays.fill(isDone, false);
 
 			for (int i = 0; i < blocks.size(); i++) {
-				int index = (Integer) ((BasicBlock) blocks.get(i)).getValue();
+				final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks.get(i)).getIntegerParameters();
+				final int index = (int) data.getRealPart()[0][0];
 				if (index > countUnique || isDone[index - 1]) {
 					child.getAsComponent().setCellWarning(blocks.get(i),
 							"Wrong port number");

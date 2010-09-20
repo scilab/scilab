@@ -48,6 +48,8 @@ Xcos:
 
 * bug 8025 fixed - The simulation parameter dialog was modal.
 
+* bug 8052 fixed - The value of a I/O block was used for computational purpose.
+
 SciNotes:
 =========
 
