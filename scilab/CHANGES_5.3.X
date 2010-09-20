@@ -70,6 +70,9 @@ SciNotes:
 * bug 8056 fixed - Comments were badly colorized after a command without
                    parenthesis.
 
+* bug 8061 fixed - An unwanted message box was displayed when an unsaved file
+                   was executed.
+
 GUI creation:
 =============
 
