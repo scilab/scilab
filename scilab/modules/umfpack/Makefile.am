@@ -84,6 +84,8 @@ libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES)
 libsciumfpack_la_CFLAGS= -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/umfpack/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes
+
+libsciumfpack_la_CPPFLAGS=-I$(top_srcdir)/modules/operations/includes
 endif
 
 include $(top_srcdir)/Makefile.incl.am

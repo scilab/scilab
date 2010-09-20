@@ -73,6 +73,8 @@ libscifftw_la_CFLAGS= 	-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes
+
+libscifftw_la_CPPFLAGS= -I$(top_srcdir)/modules/operations/includes
 endif
 
 include $(top_srcdir)/Makefile.incl.am
