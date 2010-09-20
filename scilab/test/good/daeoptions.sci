@@ -1,26 +1,26 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Sabine GAUZERE
 // ...
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [%DAEOPTIONS] = daeoptions(%DAEOPTIONS)
 
 //%DAEOPTIONS=list(tstop,imode,band,maxstep,stepin,nonneg,isest)
-// This function displays the command line 
-// %DAEOPTIONS=[...] to be executed 
+// This function displays the command line
+// %DAEOPTIONS=[...] to be executed
 // for defining the variable %DAEOPTIONS
-// This variables sets a number of optional parameters 
+// This variables sets a number of optional parameters
 // for the lsod* fortran routines.
 
-//** This function can be (ab)used from the Scilab command line and 
+//** This function can be (ab)used from the Scilab command line and
 //** inside a Scicos "context". In order to handle the different situations,
-//** the required library are loaded if not already present in the 
-//** "semiglobal-local-environment".  
+//** the required library are loaded if not already present in the
+//** "semiglobal-local-environment".
 
 //if exists('scicos_scicoslib')==0 then
 //    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
@@ -52,7 +52,7 @@ function [%DAEOPTIONS] = daeoptions(%DAEOPTIONS)
 chapeau=["Defining %DAEOPTIONS variable";
          "*****************************";
 	 'Meaning of tstop:';
-	 'tstop is a real scalar which gives the maximum time'; 
+	 'tstop is a real scalar which gives the maximum time';
          'for which g is allowed to be evaluated';
 	 '[] : if no limits imposed for time';
 	 ' ';
@@ -75,7 +75,7 @@ chapeau=["Defining %DAEOPTIONS variable";
          '1 : if ydot0 is just an estimation';
 	 ' '
 	 'Default values are given in square brackets'
-	 'If the function is called without argument, default values"+...
+	 "If the function is called without argument, default values"+...
 	 " are used"
 	]
 

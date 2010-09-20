@@ -153,7 +153,7 @@ function tcltk_help(path,key,key1)
 		TCL_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
 		TCL_EvalStr("browsehelp eval {set sciw .scihelp-"+key1+"}")
 		TCL_EvalStr("browsehelp eval {set manpath """+path+"""}")
-		TCL_EvalStr("browsehelp eval {source ""'+SCI+'/tcl/browsehelp.tcl""}")
+		TCL_EvalStr("browsehelp eval {source """+SCI+"/tcl/browsehelp.tcl""}")
 	else
 		TCL_SetVar("lang",LANGUAGE)
 		TCL_SetVar("Home",INDEX)

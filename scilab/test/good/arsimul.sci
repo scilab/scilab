@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 
-// 
+// Copyright (C) INRIA -
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -12,9 +12,9 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
 // function z=arsimul(a,b,d,sig,u,up,yp,ep)
 
   [lhs,rhs]=argn(0)
-  // switch to ar representation 
-  if type(x1)<>15&type(x1)<>16 then 
-    if rhs < 5, 
+  // switch to ar representation
+  if type(x1)<>15&type(x1)<>16 then
+    if rhs < 5,
       error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"arsimul",5,8));
     end;
     ar=armac(x1,x2,x3,size(x1,'r'),size(x5,'r'),x4);
@@ -28,8 +28,8 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
   u=x2;
   [bl,bc]=size(b);[al,ac]=size(a);[dl,dc]=size(d);
   [mmu,Nu]=size(u);
-  if mmu<>x1('nu') then 
-    error(msprintf(gettext("%s: Number of rows of %s are incompatible with %s object.\n"),"arsimul","u",'arma"));
+  if mmu<>x1('nu') then
+    error(msprintf(gettext("%s: Number of rows of %s are incompatible with %s object.\n"),"arsimul","u","arma"));
     return;
   end;
   // X = [y_{n-1},y_{n-2},...y_{n-ka},u_{n-1},....,u_{n-kb},e_{n-1},....,e_{n-kd}
@@ -37,13 +37,13 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
   b1=b(:,mmu+1:$);bl1=size(b1,'c');
   d1=d(:,al+1:$);dl1=size(d1,'c');
   A=[-a1,b1,d1];
-  // y_{n} = A*X + b(:,1:mmu)*u_{n}+d(:,1:al)*e_{n} 
+  // y_{n} = A*X + b(:,1:mmu)*u_{n}+d(:,1:al)*e_{n}
   // in the system fff x=[y_n;X];
-  if A==[] then 
+  if A==[] then
     deff('[xkp1]=fff(k,x)',...
 	 ['ukp1=u(:,k+1);dkp1=br(:,k+1);';
 	  'xkp1= b(:,1:mmu)*ukp1+d(:,1:al)*dkp1']);
-  else 
+  else
     deff('[xkp1]=fff(k,x)',...
 	 ['x=x(al+1:$);ukp1=u(:,k+1);dkp1=br(:,k+1);';
 	  'ykp1= A*x + b(:,1:mmu)*ukp1+d(:,1:al)*dkp1';
@@ -56,26 +56,26 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
   // Noise simulation.
   br=sig*rand(al,Nu,'normal');
   //br=[-2,1,0.5]
-  // Initial condition 
-  // the first call to fff will be fff(0,x) 
-  // x must be set to 
+  // Initial condition
+  // the first call to fff will be fff(0,x)
+  // x must be set to
   // [ y_{0},...y{-ak},u_{0},...u_{-bk},d_{0},...d_{-dk}
   // where ak= al1/al -1; bk= bl1/mmu -1 ; dk = dl1/al-1
-  // past conditions for up 
+  // past conditions for up
   //--------------------------
   if rhs <=2,
     up=0*ones(bl1,1);
   else
     up=x3;
-    if bl1==0 then 
+    if bl1==0 then
       if up<>[] then error(msprintf(gettext("%s: Wrong size for input argument #%d: An empty matrix expected.\n"),"arsimul",3))
 	return ;
       end;
-    else 
+    else
       up_s=size(up)
       if up_s(1)<>mmu|up_s(2)<>(bl1/mmu) then
       	error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"),"arsimul","up=[u(0),u(-1),..,]",string(mmu),string(bl1/mmu)));
-        return 
+        return
       end
       up=matrix(up,bl1,1);
     end
@@ -86,13 +86,13 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     yp=0*ones(al1,1)
   else
     yp=x4;
-    if al1==0 then 
+    if al1==0 then
       if yp<>[] then error(msprintf(gettext("%s: Wrong size for input argument #%d: An empty matrix expected.\n"),"arsimul",4))
 	return ;
       end;
-    else 
+    else
       yp_s=size(yp);
-      if yp_s(1)<>al|yp_s(2)<>(al1/al) then 
+      if yp_s(1)<>al|yp_s(2)<>(al1/al) then
 	error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"), "arsimul","yp=[y(0),y(-1),..,]",string(al), string(al1/al)));
 	return;
       end
@@ -105,11 +105,11 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     ep=0*ones(dl1,1);
   else
     ep=x5
-    if dl1==0 then 
+    if dl1==0 then
       if ep<>[] then error(msprintf(gettext("%s: Wrong size for input argument #%d: An empty matrix expected.\n"),"arsimul",5))
 	return ;
       end;
-    else 
+    else
       ep_s=size(ep);
       if ep_s(1)<>al|ep_s(2)<>(dl1/al) then
 	error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"), "arsimul","ep=[e(0),e(-1),..,]",string(al), string(dl1/al)));
@@ -119,10 +119,10 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     end;
   end;
   xi=[yp;up;ep];
-  // If A=[] it is a degenerate case which also work 
-  // but xi must be set to a scalar value to provide proper 
+  // If A=[] it is a degenerate case which also work
+  // but xi must be set to a scalar value to provide proper
   // result dimensions.
-  // 
+  //
   xi=[0*ones(al,1);xi];
   z=ode('discret',xi,0,1:Nu,fff);
   // Now z contains y_{1},.....y_{Nu};

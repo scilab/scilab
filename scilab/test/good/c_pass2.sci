@@ -27,7 +27,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
 //          1- a list containing function name and function type
 //          2- vector of number of inputs
 //          3- vector of number of ouputs
-//          4- vector of number of clock inputs 
+//          4- vector of number of clock inputs
 //          5- vector of number of clock outputs
 //          6- vector (column) of continuous initial condition
 //          7- vector (column) of discrete initial condition
@@ -37,9 +37,9 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
 //          (memo) or 'x' for blocks that need to be called during
 //          integration even in the absence of state (only if with workspace)
 //          11- vector of size <number of clock outputs> including
-//              preprogrammed event firing times (<0 if no firing) 
+//              preprogrammed event firing times (<0 if no firing)
 //          12- boolean vector (column): 1:nin entry for dependence on u,
-//          last on t 
+//          last on t
 //          13- block label
 //          14- number of zero crossings
 //          15- number of modes
@@ -66,10 +66,10 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     ok=%f;
     return
   end
-  
+
   //correction of clkconnect.. Must be done before
   clkconnect(find(clkconnect(:,2)==0),2)=1;
-  
+
 
 
 
@@ -83,12 +83,12 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
    typ_l,typ_r,typ_m,tblock,typ_cons,typ_zx,ok]=mini_extract_info(bllst,..
                                                 connectmat,clkconnect)
   if show_trace then mprintf('c_pass20:'+string(timer())),end
-  if ~ok then 
+  if ~ok then
       cpr=list()
       return
   end
   [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
-  
+
   [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
 			   typ_l,typ_zx,outoin,outoinptr,clkptr)
   [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,typ_r,..
@@ -99,12 +99,12 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
    dep_uptr,corinv,clkptr,cliptr,critev,ok]=paksazi2(typ_l,clkconnect,..
 	connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
 
-  if ~ok then 
+  if ~ok then
     cpr=list()
     return
   end
 
-  if show_pause then 
+  if show_pause then
     mprintf('fin de paksazi')
     pause
   end
@@ -117,9 +117,9 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
    ipar,opar,typ_z,typ_x,typ_m,funs,funtyp,initexe,labels,..
    bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect,typ_l);
   typ_z0=typ_z;
- 
 
-  
+
+
   if ~ok then
     messagebox(_('Problem in port size or type.'),"modal","error");
     cpr=list()
@@ -127,25 +127,25 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
   end
 
   if show_trace then mprintf('c_pass41:'+string(timer())),end
- 
+
   //form a matrix which gives destinations of each block
   [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
   [evoutoin,evoutoinptr]=synch_clkconnect(typ_l,clkconnect)
   //
   if show_trace then mprintf('c_pass50:'+string(timer())),end
-  
+
   [execlk_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
 
   clkconnect=[];exe_cons=[]
 
   if show_trace then mprintf('c_pass501:'+string(timer())),end
 
-  // Set execution scheduling tables 
+  // Set execution scheduling tables
   [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_cons,..
    outoin,outoinptr,evoutoin,evoutoinptr,typ_z,typ_x,typ_l,bexe,boptr,blnk,blptr,..
    ordclk,ordptr,cord,dep_t,dep_u,dep_uptr);
 
-  if ~ok then 
+  if ~ok then
     cpr=list()
     return,
   end
@@ -164,7 +164,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
 
   ztyp=sign(typ_z0)  //completement inutile pour simulation
                      // utiliser pour la generation de code
-	
+
   if xptr($)==1 & zcptr($)>1 then
     mess=msprintf(_('No continuous-time state. Thresholds are ignored; this \n'+..
 		'may be OK if you don''t generate external events with them.\n'+..
@@ -228,10 +228,10 @@ function [vec_clk]=get_clocks(clkconnect,clkptr)
     //activation continue
     vec_clk=[vec_clk;0 0];
   end
-  for blk=1:size(clkptr,1)-1       
+  for blk=1:size(clkptr,1)-1
     if ~typ_l(blk) then
       for port=1:clkptr(blk+1)-clkptr(blk)
-	vec_clk=[vec_clk; blk port];           
+	vec_clk=[vec_clk; blk port];
       end
     end
   end
@@ -287,7 +287,7 @@ function vec_clk0=set_primary_clkport(vec_clk,primary,i)
   else
     vec_clk0=primary
   end
-  
+
 endfunction
 
 //insere la sous-matrice ordoclk0 dans ordclk apr�s le block k
@@ -460,23 +460,23 @@ function [typ_l,clkconnect,connectmat,vbllst,dep_t,dep_u,dep_uptr,..
     xx(:,1)=nblock
     clkconnect=[clkconnect;xx]
   end
-  
+
   g=find(connectmat(:,3)==bl)
   xx=connectmat(g,:)
   xx(:,3)=nblock*ones(size(xx,1),1)
   connectmat=[connectmat;xx]
-  
+
   typ_l($+1)=%t
   critev=[critev;critev(clkptr(bl):clkptr(bl+1)-1)]
   vbllst(nblock)=vbllst(bl)
   dep_t(nblock)=dep_t(bl)
   dep_u=[dep_u;dep_u(dep_uptr(bl))]
   dep_uptr($+1)=dep_uptr($)+1
-  
+
   corinv(nblock)=corinv(bl)
   clkptr(nblock+1)=clkptr(nblock)+clkptr(bl+1)-clkptr(bl)
   cliptr(nblock+1)=cliptr(nblock)+cliptr(bl+1)-cliptr(bl)
-  
+
 endfunction
 
 function [childs]=get_allchilds(primary,fblks,fblksptr,typ_l)
@@ -512,7 +512,7 @@ function ok=is_alg_event_loop(typ_l,clkconnect)
       ok=%t
       return
     end
-  end  
+  end
 endfunction
 
 function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
@@ -524,21 +524,21 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 
   vbllst=1:length(bllst)
 
-  zz=get_clocks(clkconnect,clkptr)  
+  zz=get_clocks(clkconnect,clkptr)
   //testing event algebraic loops
   ok=is_alg_event_loop(typ_l,clkconnect)
   if ~ok then messagebox(_('Algebraic loop on events.'),"modal","error");return ,end
-  
+
 
   ok=%t
   [fblks,fblksptr]=event_activates(clkconnect,clkptr)
   [blks,blksptr]=depend_on(connectmat,dep_u,dep_uptr)
   [eblks,eblksptr]=event_depend_on(clkconnect,cliptr)
-  
+
 
   for i=1:size(zz,1)
 
-    nblock=size(typ_l,1);  // number of blocks in diagram 
+    nblock=size(typ_l,1);  // number of blocks in diagram
 
     todo=zz(i,:)
     while todo<>[]
@@ -553,23 +553,23 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	  primary0=[]
 	end
 
-	if  show_comment then mprintf('Processing blk '+string(blk)+' port"+...
-				   " '+string(port)),end
-	  
+	if  show_comment then mprintf('Processing blk '+string(blk)+" port"+...
+				   " "+string(port)),end
+
 	  if primary0<>[] then  // delete redundant links
 	    [jj,k]=unique(primary0*(1+max(prt0))+prt0)
-	    index=setdiff(1:size(primary0,1),k) 
+	    index=setdiff(1:size(primary0,1),k)
 	    clkconnect(f(index),:)=[]  // does not affect e(f)blks
-	    
+
 	    primary=unique(primary0)
 
             [balg,vec]=ini_ordo3(primary)
-            if balg then 
+            if balg then
     	      messagebox(_('Algebraic loop.'),"modal","error"),
     	      ok=%f
     	      return
-            end  
-	    
+            end
+
             pvec=vec(primary)+.5*typ_l(primary) // same order typ_l to the right
             [mi,In]=gsort(-pvec)
 	    primary=primary(In)
@@ -587,7 +587,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
                end
                if bouclalg then break,end
             end
-   
+
             if show_comment&bouclalg then mprintf('found intersect'),end
 
             if ~bouclalg then
@@ -598,7 +598,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	      if bouclalg then
                 if show_comment then mprintf('found non convergence'),pause,end
                 i=lp(1)  // first typ_l
-                if i==[] then 
+                if i==[] then
                   messagebox(_('Algebraic loop.'),"modal","error")
                   ok=%f
                   return
@@ -618,7 +618,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	      if size(f,2)<>size(h,2) then
 		nblock=nblock+1
 		clkconnect(f,3)=nblock
-		if  show_comment then   
+		if  show_comment then
                     mprintf('duplicating pivot'+string(bl)+' to obtain '+string(nblock)),
                 end
 		[typ_l,clkconnect,connectmat,vbllst,dep_t,dep_u,dep_uptr,..
@@ -637,14 +637,14 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		lprimary(i)=bl
 	      end
 
-	      for bli=J(:)'	    
+	      for bli=J(:)'
 		modif=%t
 		f=find(clkconnect(:,1)==blk&clkconnect(:,2)==port&clkconnect(:,3)==bli)
 		clkconnect(f,1)=bl
 		clkconnect(f,2)=1
 		xx= clkconnect(f,:)
 		for jj=2:nout
-                    if  show_comment then  
+                    if  show_comment then
                        mprintf('No block duplication but link between '+string(blk)+..
                             ' and '+string(bli)+'replaced with links from '+..
                                                  string(bl)+' to '+string(bli)),
@@ -657,17 +657,17 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
               [eblks,eblksptr]=update_event_depend_on(eblks,eblksptr,clkconnect,cliptr,J(:)')
 	      bls=[blk,bl];bls(find(bls==0))=[];bls=bls(typ_l(bls)); //exclude non typ_l and 0
               [fblks,fblksptr]=update_event_activates(fblks,fblksptr,clkconnect,clkptr,bls)
-	      		
+
 	      // can (must) be done outside the for loop
 	    //  [fblks2,fblksptr2]=event_activates(clkconnect,clkptr)
 	    //  [eblks2,eblksptr2]=event_depend_on(clkconnect,cliptr)
 	      //but then it must be updated
-            //  if norm(eblksptr-eblksptr2)>0 then mprintf('roro2');pause,end	
-            //  if norm(fblksptr-fblksptr2)>0 then mprintf('soso2');pause,end	
-            //  if norm(eblks-eblks2)>0 then mprintf('roro');pause,end	
-            //  if norm(fblks-fblks2)>0 then mprintf('soso');pause,end	
+            //  if norm(eblksptr-eblksptr2)>0 then mprintf('roro2');pause,end
+            //  if norm(fblksptr-fblksptr2)>0 then mprintf('soso2');pause,end
+            //  if norm(eblks-eblks2)>0 then mprintf('roro');pause,end
+            //  if norm(fblks-fblks2)>0 then mprintf('soso');pause,end
 
-	      
+
 	      if ~modif then messagebox(_('Algebraic loop.'),"modal","error"),ok=%f,return,end
 	    else
 	      primary0=primary0(k);
@@ -677,7 +677,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	      if blk<>0 then
         	lordclk(clkptr(blk)+port-1)=[primary0(In),prt0(In)]
 
-		if  show_comment then  
+		if  show_comment then
                       mprintf('for blk port '+string(blk)+' '+string(port)+..
                                ' ordclk is'),mprintf(lordclk(clkptr(blk)+port-1)),
                 end
@@ -697,7 +697,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	    if blk<>0 then
 	      J=clkptr(blk)+port-1
 	      lordclk(J)=[]
-	      if  show_comment then   
+	      if  show_comment then
                   mprintf('for blk port '+string(blk)+' '+string(port)+..
                                   ' ordclk is'), mprintf(lordclk(J)),
               end
@@ -709,13 +709,13 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	  end
 	else
 	  todo(1,:)=[]
-	end 
+	end
       end
     end
 
     for J=1:clkptr($)-1
       ordclk=[ordclk;lordclk(J)]
-      ordptr=[ordptr;ordptr($)+size(lordclk(J),1)]   
+      ordptr=[ordptr;ordptr($)+size(lordclk(J),1)]
     end
 
     bllst=list(bllst(vbllst))
@@ -813,21 +813,21 @@ function [bouclalg,vec,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	  cliptr,critev)
 
   n_p=size(primary,1)
-  
+
   nblock=size(typ_l,1);
   //initialisation de vec
   //on initialise vec � -1
   vec=-ones(nblock,1)
   vec(primary(:,1))=1
-  
+
   bouclalg=%f
   fromfixe=%f
   oldvec2=[]
   counter2=0
-  
+
   [wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr]=prim_calc(primary)
-  
-  while ~fromfixe 
+
+  while ~fromfixe
     vec=update_vec3(vec,wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr)
     //
     if and(vec==oldvec2) then
@@ -841,29 +841,29 @@ function [bouclalg,vec,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
       //      mprintf('Algebraic Loop detection.')
       break
     end
-  end  
+  end
 endfunction
 
 function [bouclalg,vec]=ini_ordo3(primary)
 
   n_p=size(primary,1)
-  
+
   nblock=size(typ_l,1);
   //initialisation de vec
   //on initialise vec � -1
   vec=-ones(nblock,1)
   vec(primary(:,1))=0
-  
+
   bouclalg=%f
   fromfixe=%f
   oldvec2=[]
   counter2=0
-  
+
   [wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr]=prim_calc(primary)
-  
-  while ~fromfixe  
+
+  while ~fromfixe
     vec=update_vec4(vec,wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr)
-    
+
     if and(vec==oldvec2) then
       fromfixe=%t
     else
@@ -875,7 +875,7 @@ function [bouclalg,vec]=ini_ordo3(primary)
       //      mprintf('Algebraic Loop detection.')
       break
     end
-  end  
+  end
 endfunction
 
 
@@ -915,7 +915,7 @@ function [wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr]=prim_calc(primary)
 
   for i=1:size(primary,'*')
     w0=primary(i)
-    if typ_l(w0) then 
+    if typ_l(w0) then
       w=get_allchilds(w0,fblks,fblksptr,typ_l)
       j=find(w==w0)
       w([1,j])=w([j,1])  // put w0 on top
@@ -924,12 +924,12 @@ function [wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr]=prim_calc(primary)
     end
     wprim=[wprim;w(:)]
     wprimptr($+1)=wprimptr($)+size(w,'*')
-    
+
     px=blksptr(w(1));py=blksptr(w(1)+1)-1
     //mprintf([px,py,size(blks,'*')])
     g0prim=[g0prim;blks(px:py)]
     g0primptr($+1)=g0primptr($)+size(px:py,2)
-  
+
     g=[]
     for i1=2:size(w,'*') // 1 is done already
       px=blksptr(w(i1));py=blksptr(w(i1)+1)-1
@@ -937,7 +937,7 @@ function [wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr]=prim_calc(primary)
     end
     gprim=[gprim;g]
     gprimptr($+1)=gprimptr($)+size(g,'*')
-  end       
+  end
 endfunction
 
 function primary=discardprimary(primary)
@@ -953,9 +953,9 @@ function primary=discardprimary(primary)
   // group calls to different ports of the same block.
   primary=[primary(:,1),2^(primary(:,2)-ones(primary(:,2)))]
   primary=int(primary)
-  con=primary(:,1) 
-  clkconnectjj=[]     
-  if size(con,'*')>=2 then 
+  con=primary(:,1)
+  clkconnectjj=[]
+  if size(con,'*')>=2 then
     iini=[find(con(2:$)-con(1:$-1)<>0),size(primary,1)]
   else
     iini=1
@@ -989,12 +989,12 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
     iord=[]
   end
   //
-  if ~ok then 
+  if ~ok then
     messagebox(_('Algebraic loop.'),"modal","error");
     iord=[],oord=[],zord=[],critev=[]
     return,
   end
-  
+
   n=size(cord,1)
   vec=-ones(1,nblk);
   vec(cord(:,1))=0;
@@ -1020,35 +1020,35 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   //for i=ext_cord
   //  if typ_l(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
   //end  // adding zero crossing surfaces to cont. time synchros
-  
+
   //a supprimer
 
   [ext_cord_old,ok]=newc_tree3(vec,dep_u,dep_uptr,typp);
- 
+
   if or(gsort(ext_cord_old)<>gsort(ext_cord)) then pause,end
   //
   //pour mettre a zero les typ_z qui ne sont pas dans ext_cord
   //noter que typ_z contient les tailles des nzcross (peut etre >1)
   typ_z(ext_cord)=-typ_z(ext_cord)
   typ_z=-min(typ_z,0)
-  
+
   if ~ok then mprintf('serious bug, report.');pause;end
   // ext_cord=ext_cord(n+1:$);
 
   typ_z_save=typ_z
-  
+
   fin=0
   while ~fin
     fin=1
     for i=ext_cord($:-1:1)
       for ii=[outoin(outoinptr(i):outoinptr(i+1)-1,1)',..
 	      evoutoin(evoutoinptr(i):evoutoinptr(i+1)-1,1)']
-	//ii est un block affecte par changement de sortie du 
+	//ii est un block affecte par changement de sortie du
 	//i-eme block de oord
-	if typ_z(ii) then 
+	if typ_z(ii) then
 	  if typ_z(i)==0 then typ_z(i)=1;fin=0;end
 	end
-	if typ_x(ii) then 
+	if typ_x(ii) then
 	  if ~typ_x(i) then typ_x(i)=%t;fin=0;end
 	end
 	if typ_z(i)&typ_x(i) then break,end
@@ -1059,7 +1059,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   ind=find(typ_z(cord(:,1)));
   zord=cord(ind,:)
   ind=find(typ_x(cord(:,1)));
-  oord=cord(ind,:)  
+  oord=cord(ind,:)
   typ_z=typ_z_save
   //critev: vecteur indiquant si evenement est important pour tcrit
   //Donc les blocks indiques sont des blocks susceptibles de produire
@@ -1070,7 +1070,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   // 1: important; 0:non
   //n=clkptr(nblk+1)-1 //nb d'evenement
   n=size(ordptr,'*')-1 //nb d'evenement
-  
+
   //a priori tous les evenemets sont non-importants
   //critev=zeros(n,1)
   for i=1:n
@@ -1091,8 +1091,8 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
   for j=1:nb+2
     fini=%t
     for i=1:nb
-      if vec(i)==j-1&typ_l(i)<>-1 then 
-	if j==nb+2 then 
+      if vec(i)==j-1&typ_l(i)<>-1 then
+	if j==nb+2 then
 	  messagebox(_('Algebraic loop.'),"modal","error");ok=%f;ord=[];return;
 	end
 	if typ_l(i)==1 then
@@ -1133,7 +1133,7 @@ function [clkconnectj_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
     clkconnectj=int(clkconnectj)
     con=clkconnectj(:,1)
     clkconnectj_cons=[]
-    if size(con,'*')>=2 then 
+    if size(con,'*')>=2 then
       iini=[find(con(2:$)-con(1:$-1)<>0),size(clkconnectj,1)]
     else
       iini=1
@@ -1318,10 +1318,10 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     typ_x(i)=ll.state<>[]|ll.blocktype=='x' // some blocks like delay
                                             // need to be in oord even
                                             // without state
-				
+
     typ_m(i)=ll.blocktype=='m'
     //
-    if ll.evtout<>[] then  
+    if ll.evtout<>[] then
       ll11=ll.firing
       prt=find(ll11>=zeros(ll11))
       nprt=prod(size(prt))
@@ -1334,7 +1334,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
       labels=[labels;' ']
     end
   end
-  
+
   clkconnect=clkconnect(find(clkconnect(:,1)<>0),:);
 
   con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
@@ -1350,7 +1350,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     boptr=[boptr;boptr($)+size(r,1)];
   end
   //
- 
+
   blptr=1;
   blnk=[];
 
@@ -1358,7 +1358,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     r=connectmat(find(connectmat(:,1)==i),3:4);
     blnk=[blnk;r];
     blptr=[blptr;blptr($)+size(r,1)];
-  end  
+  end
   //
 
   nlnk=size(connectmat,1)
@@ -1368,7 +1368,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     ko=outlnk(outptr(connectmat(jj,1))+connectmat(jj,2)-1)
     ki=inplnk(inpptr(connectmat(jj,3))+connectmat(jj,4)-1)
     if ko<>0 & ki<>0 then
-      if ko>ki then 
+      if ko>ki then
 	outlnk(outlnk>ko)=outlnk(outlnk>ko)-1
 	outlnk(outlnk==ko)=ki
 	inplnk(inplnk>ko)=inplnk(inplnk>ko)-1
@@ -1426,7 +1426,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     m=max(find(inpptr<=j))
     n=j-inpptr(m)+1
     nm=bllst(m).in(n)
-    if nm<1 then 
+    if nm<1 then
      under_connection(corinv(m),n,nm,-2,0,0,1),ok=%f,return,
     end
     nm2=bllst(m).in2(n)
@@ -1470,8 +1470,8 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
   for j=1:nb+2
     fini=%t
     for i=1:nb
-      if vec(i)==j-1 then 
-	if j==nb+2 then 
+      if vec(i)==j-1 then
+	if j==nb+2 then
 	  messagebox(_('algebraic loop.'),"modal","error");ok=%f;ord=[];return;
 	end
 	for k=outoinptr(i):outoinptr(i+1)-1
@@ -1496,9 +1496,9 @@ endfunction
 
 //adjust_inout : it resolves positive, negative and null size
 //               of in/out port dimensions of connected block.
-//               If it's not done in a first pass, the second 
-//               pass try to resolve negative or null port 
-//               dimensions by asking user to informed dimensions 
+//               If it's not done in a first pass, the second
+//               pass try to resolve negative or null port
+//               dimensions by asking user to informed dimensions
 //               with underconnection function.
 //               It is a fixed point algorithm.
 //
@@ -1587,7 +1587,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 //              end
 //            end
 
-           //loop on the two dimensions of source/target port 
+           //loop on the two dimensions of source/target port
            for ndim=1:2
               //check test source/target sizes
               //in case of negatif equal target dimensions
@@ -1730,7 +1730,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
                     //is positive
                     if nin(1,ndim)>0 then
 
-                       //if the sum of the size of the ndim dimension of the input 
+                       //if the sum of the size of the ndim dimension of the input
                        //port of the source block is equal to the size of the ndim dimension
                        //of the target port, then the size of the ndim dimension of the source
                        //port is equal to nin(1,ndim)
@@ -1775,13 +1775,13 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
                        end
 
                        //compute a size to be the difference between the size
-                       //of the ndim dimension of the target block and sum of positive 
+                       //of the ndim dimension of the target block and sum of positive
                        //size of input ports of the source block divided by the number
                        //of input ports of source block with same negative size
                        k=(nin(1,ndim)-sum(ww(find(ww>0))))/size(nww,'*')
 
                        //if this size is a positive integer then assign it
-                       //to the size of the ndim dimension of input ports of the 
+                       //to the size of the ndim dimension of input ports of the
                        //source block which have negative size
                        if k==int(k)&k>0 then
                           if ndim==1 then
@@ -1820,7 +1820,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
                     //is positive
                     if nout(1,ndim)>0 then
 
-                       //if the sum of the size of the ndim dimension of the output 
+                       //if the sum of the size of the ndim dimension of the output
                        //port of the target block is equal to the size of the ndim dimension
                        //of the source port, then the size of the ndim dimension of the target
                        //port is equal to nout(1,ndim)
@@ -1865,13 +1865,13 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
                        end
 
                        //compute a size to be the difference between the size
-                       //of the ndim dimension of the source block and sum of positive 
+                       //of the ndim dimension of the source block and sum of positive
                        //size of output ports of the target block divided by the number
                        //of output ports of target block with same negative size
                        k=(nout(1,ndim)-sum(ww(find(ww>0))))/size(nww,'*')
 
                        //if this size is a positive integer then assign it
-                       //to the size of the ndim dimension of output ports of the 
+                       //to the size of the ndim dimension of output ports of the
                        //target block which have negative size
                        if k==int(k)&k>0 then
                           if ndim==1 then
@@ -1892,7 +1892,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 
                  end
 
-              //sixth (& last) case : dimension of both source 
+              //sixth (& last) case : dimension of both source
               //                      and target port are negatives
               else
                  ok=%f //set flag ok to false
@@ -1966,12 +1966,12 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
             bllst(connectmat(jj,1)).in2(ww)=ninnout(1,2)
             //
             ww=find(bllst(connectmat(jj,1)).in==0)
-            if (ww<>[]&min(bllst(connectmat(jj,1)).out(:))>0) then 
+            if (ww<>[]&min(bllst(connectmat(jj,1)).out(:))>0) then
                bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out)
             end
 
             ww=find(bllst(connectmat(jj,1)).in2==0)
-            if (ww<>[]&min(bllst(connectmat(jj,1)).out2(:))>0) then 
+            if (ww<>[]&min(bllst(connectmat(jj,1)).out2(:))>0) then
                  bllst(connectmat(jj,1)).in2(ww)=sum(bllst(connectmat(jj,1)).out2)
             end
             //
@@ -2020,7 +2020,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
      end
 
      //if failed then display message
-     if ~findflag then 
+     if ~findflag then
         messagebox(msprintf(_('I cannot find a link with undetermined size.\n'+..
 			      'My guess is that you have a block with unconnected \n'+..
 			      'undetermined output ports.')),"modal","error");
@@ -2083,10 +2083,10 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
 
     if flagg==1 then
       ninnout=evstr(dialog(mess,'[1,1]'))
-    else 
+    else
       ninnout=evstr(dialog(mess,'1'))
     end
-	      
+
     for k=size(path,'*'):-1:1,
       //** select the mxwin+k window and get the handle
       gh_del = scf(mxwin+k);
@@ -2107,7 +2107,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
       if prt_in<>[] & prt_out<>[] then
         if prt_in >0 & prt_out >0 then
           if scs_m.objs(path_out).graphics.pout(prt_out) == ...
-              scs_m.objs(path_in).graphics.pin(prt_in) then 
+              scs_m.objs(path_in).graphics.pin(prt_in) then
                 kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
           end
         end
@@ -2139,7 +2139,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
       if prt_in<>[] & prt_out<>[] then
         if prt_in >0 & prt_out >0 then
           if scs_m.objs(path_out).graphics.pout(prt_out) == ...
-              scs_m.objs(path_in).graphics.pin(prt_in) then 
+              scs_m.objs(path_in).graphics.pin(prt_in) then
                 kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
           end
         end
@@ -2154,7 +2154,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
 	    'with  types that cannot be determined by the context';
 	    'what is the size of this link'],'1'))
       end
-      
+
       //for k=size(path,'*'):-1:1,xdel(mxwin+k),end //TOBEDONE
       for k=size(path,'*'):-1:1,
         //** select the mxwin+k window and get the handle
@@ -2199,7 +2199,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   vec=-ones(1,nblk);
   vec(ind)=0
   [r,ok]=newc_tree4(vec,outoin,outoinptr,typ_r)
-  
+
   exe_cons=[exe_cons;r]
 
   if show_trace then mprintf('c_pass4445:'+string(timer())),end
@@ -2231,7 +2231,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
     clkconnect=[clkconnect;[all_out,ones(all_out)*[k,0;0,0]]]
   end
   // end of  temoprary fix
-  if show_trace then mprintf('c_pass4446:'+string(timer())),end 
+  if show_trace then mprintf('c_pass4446:'+string(timer())),end
 endfunction
 
 function [r,ok]=tree4(vec,outoin,outoinptr,typ_r)
@@ -2242,14 +2242,14 @@ function [r,ok]=tree4(vec,outoin,outoinptr,typ_r)
   for j=1:nb-1
     fini=%t
     for i=1:nb
-      if vec(i)==j-1 then 
+      if vec(i)==j-1 then
 	for k=outoinptr(i):outoinptr(i+1)-1
 	  ii=outoin(k,1);
 	  if (vec(ii)>-1)|typ_r(ii) then
 	    fini=%f;
-	    vec(ii)=j;   
+	    vec(ii)=j;
 	  end
-	  if typ_r(ii) then 
+	  if typ_r(ii) then
 	    r=[r;outoin(k,:)]
 	  end
 	end
@@ -2277,15 +2277,15 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
     ll=bllst(i)
     if (ll.state==[]&ll.nzcross==0) then typ_zx(i)=%f;end
     inpnum=ll.in;outnum=ll.out;cinpnum=ll.evtin;coutnum=ll.evtout;
-    //    
+    //
     if cinpnum==[] then
       // this block inherits
       //ok=%f
-      
+
       typ_r(i)=~ll.dep_ut($)
       tblock(i)=ll.dep_ut($)
       //if block depends on time but has no event input port
-      if ~ll.dep_ut($) then 
+      if ~ll.dep_ut($) then
 	//inherits from the inputs
 	cinpnum=ones(inpnum)
 	bllst(i).evtin=cinpnum  //XXXXXXXXXXXXXXXXXXXXX
@@ -2309,12 +2309,12 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
 	messagebox(msprintf(_('the dep_ut size of the %s block is not correct.\n'+..
 			      'It should be a colon vector of size %d.'),..
 			    ll.sim(1),sizenin+1),"modal","error");
-	ok=%f;   
+	ok=%f;
       end
     end
 
-    dep_t(i)=ll.dep_ut($);  
-    
+    dep_t(i)=ll.dep_ut($);
+
     if (size(ll.dep_ut,'*') == 2) then
       if (sizenin == 1) then
 	dep_u($+1)=ll.dep_ut(1);
@@ -2325,12 +2325,12 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
       else
 	dep_uptr($+1)=dep_uptr($);
       end
-    else  
+    else
       dep_u_i=ll.dep_ut(1:$-1);
       dep_u=[dep_u;dep_u_i(:)];
       dep_uptr($+1)=dep_uptr($)+sizenin;
     end
-  
+
     //
   end
   if show_trace then mprintf('c_pass22222222:'+string(timer())),end //'
@@ -2341,7 +2341,7 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
     ko=outlnk(outptr(connectmat(jj,1))+connectmat(jj,2)-1)
     ki=inplnk(inpptr(connectmat(jj,3))+connectmat(jj,4)-1)
     if ko<>0 & ki<>0 then
-      if ko>ki then 
+      if ko>ki then
 	outlnk(outlnk>ko)=outlnk(outlnk>ko)-1
 	outlnk(outlnk==ko)=ki
 	inplnk(inplnk>ko)=inplnk(inplnk>ko)-1
@@ -2382,7 +2382,7 @@ function [evoutoin,evoutoinptr]=synch_clkconnect(typ_l,clkconnect)
   for i=1:nblk
     if typ_l(i) then
       dd=clkconnect(clkconnect(:,1)==i,3)
-    else 
+    else
       dd=[]
     end
     evoutoin=[evoutoin;dd]
@@ -2446,7 +2446,7 @@ endfunction
 
 function  [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
   nd=zeros(size(vec,'*'),(max(outoin(:,2))+1));
-  ddd=zeros(typ_r);ddd(typ_r)=1; 
+  ddd=zeros(typ_r);ddd(typ_r)=1;
   [r1,r2]=sci_tree4(vec,outoin,outoinptr,nd,ddd)
   r=[r1',r2']
   ok=%t
@@ -2454,8 +2454,8 @@ endfunction
 
 function  [r,ok]=newc_tree4(vec,outoin,outoinptr,typ_r)
   nd=zeros(size(vec,'*'),(max(outoin(:,2))+1));
-  ddd=zeros(typ_r);ddd(typ_r)=1; 
-  [r1,r2]=ctree4(vec,outoin,outoinptr,nd,ddd)  
+  ddd=zeros(typ_r);ddd(typ_r)=1;
+  [r1,r2]=ctree4(vec,outoin,outoinptr,nd,ddd)
   r=[r1',r2']
   ok=%t
 endfunction
@@ -2465,7 +2465,7 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
 
   typ_c=typ_l<>typ_l;
   typ_r=typ_r|dep_t
-  
+
   done1=%f
   while ~done1
     done1=%t
@@ -2477,18 +2477,18 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
     clkconnect=clkconnect(ind,:);
     cll=[-1;-cll;mm];
     ii=find(cll(2:$)-cll(1:$-1)<>0)
-    
+
     for k=1:size(ii,'*')-1
       oo=[ii(k):ii(k+1)-1]
       vec=-ones(1,nblk);
       vec(clkconnect(oo,3))=0
       [r,ok]=newc_tree4(vec,outoin,outoinptr,typ_r)
-      
+
       m=size(r,1)
       r=[clkconnect(ii(k),1)*ones(m,1),clkconnect(ii(k),2)*ones(m,1),r]
       clkconnect=[clkconnect;r]
     end
-    
+
     done=%f;
     while ~done
       done=%t;
@@ -2502,7 +2502,7 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
 	end
       end
     end
-  end 
+  end
   critev=zeros(clkptr($)-1,1);
   for bb=1:size(clkptr,1)-1
     for i=clkptr(bb):clkptr(bb+1)-1
@@ -2511,7 +2511,7 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
 	critev(i)=1
       end
     end
-  end 
+  end
 endfunction
 
 // adjust_typ: It resolves positives and negatives port types.
@@ -2528,25 +2528,25 @@ for i=1:length(bllst)
     bllst(i).outtyp=bllst(i).outtyp(1)*ones(size(bllst(i).out,1),1);
   end
 end
-nlnk=size(connectmat,1) 
+nlnk=size(connectmat,1)
 for hhjj=1:length(bllst)+1
-  for hh=1:length(bllst)+1 
+  for hh=1:length(bllst)+1
     ok=%t
-    for jj=1:nlnk 
+    for jj=1:nlnk
       nnout(1,1)=bllst(connectmat(jj,1)).out(connectmat(jj,2))
       nnout(1,2)=bllst(connectmat(jj,1)).out2(connectmat(jj,2))
       nnin(1,1)=bllst(connectmat(jj,3)).in(connectmat(jj,4))
       nnin(1,2)=bllst(connectmat(jj,3)).in2(connectmat(jj,4))
       outtyp = bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))
       intyp = bllst(connectmat(jj,3)).intyp(connectmat(jj,4))
-      
+
       //first case : types of source and
       //             target ports are explicitly informed
       //             with positive types
       if (intyp>0 & outtyp>0) then
 	//if types of source and target port doesn't match and aren't double and complex
 	//then call bad_connection, set flag ok to false and exit
-	
+
 	if intyp<>outtyp then
 	  if (intyp==1 & outtyp==2) then
 	    bllst(connectmat(jj,3)).intyp(connectmat(jj,4))=2;
@@ -2561,7 +2561,7 @@ for hhjj=1:length(bllst)+1
 	    return
 	  end
 	end
-	
+
 	//second case : type of source port is
 	//              positive and type of
 	//              target port is negative
@@ -2571,13 +2571,13 @@ for hhjj=1:length(bllst)+1
 	//and assign it to outtyp
 	ww=find(bllst(connectmat(jj,3)).intyp==intyp)
 	bllst(connectmat(jj,3)).intyp(ww)=outtyp
-	
+
 	//find vector of output ports of target block with
 	//type equal to intyp
 	//and assign it to outtyp
 	ww=find(bllst(connectmat(jj,3)).outtyp==intyp)
 	bllst(connectmat(jj,3)).outtyp(ww)=outtyp
-	
+
 	//third case : type of source port is
 	//             negative and type of
 	//             target port is positive
@@ -2587,15 +2587,15 @@ for hhjj=1:length(bllst)+1
 	//and assign it to intyp
 	ww=find(bllst(connectmat(jj,1)).outtyp==outtyp)
 	bllst(connectmat(jj,1)).outtyp(ww)=intyp
-	
+
 	//find vector of input ports of source block with
 	//type equal to size outtyp
 	//and assign it to intyp
 	ww=find(bllst(connectmat(jj,1)).intyp==outtyp)
 	bllst(connectmat(jj,1)).intyp(ww)=intyp
-	
-	
-	//fourth (& last) case : type of both source 
+
+
+	//fourth (& last) case : type of both source
 	//                      and target port are negatives
       else
 	ok=%f //set flag ok to false
@@ -2606,11 +2606,11 @@ for hhjj=1:length(bllst)+1
   //if failed then display message
   messagebox(msprintf(_('Not enough information to find port type.\n'+..
 			'I will try to find the problem.')),"modal","info");
-  findflag=%f 
-  for jj=1:nlnk 
+  findflag=%f
+  for jj=1:nlnk
     nouttyp=bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))
     nintyp=bllst(connectmat(jj,3)).intyp(connectmat(jj,4))
-    
+
     //loop on the two dimensions of source/target port
     //only case : target and source ports are both
     //            negatives or null
@@ -2618,28 +2618,28 @@ for hhjj=1:length(bllst)+1
       findflag=%t;
       //
       inouttyp=under_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nouttyp,..
-	  corinv(connectmat(jj,3)),connectmat(jj,4),nintyp,2)			   
+	  corinv(connectmat(jj,3)),connectmat(jj,4),nintyp,2)
       //
       if inouttyp<1|inouttyp>8 then ok=%f;return;end
       //
       ww=find(bllst(connectmat(jj,1)).outtyp==nouttyp)
       bllst(connectmat(jj,1)).outtyp(ww)=inouttyp
-      
+
       //
       ww=find(bllst(connectmat(jj,1)).intyp==nouttyp)
       bllst(connectmat(jj,1)).intyp(ww)=inouttyp
-      
+
       ww=find(bllst(connectmat(jj,3)).intyp==nintyp)
       bllst(connectmat(jj,3)).intyp(ww)=inouttyp
       //
       ww=find(bllst(connectmat(jj,3)).outtyp==nintyp)
       bllst(connectmat(jj,3)).outtyp(ww)=inouttyp
-      
+
       //
     end
   end
   //if failed then display message
-  if ~findflag then 
+  if ~findflag then
     messagebox(msprintf(_('I cannot find a link with undetermined size.\n'+..
 			  'My guess is that you have a block with unconnected \n'+..
 			  'undetermined types.')),"modal","error");

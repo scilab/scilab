@@ -4,8 +4,8 @@
 // Date : 9 Dec 2005
 
  diary("bug545.txt");
- 
-a=int8(hypermat({3 2 2}));b=hypermat({1 2 2});
+
+a=int8(hypermat([3 2 2]));b=hypermat([1 2 2]);
 a(1,:,:)=b;
 
 diary(0);
