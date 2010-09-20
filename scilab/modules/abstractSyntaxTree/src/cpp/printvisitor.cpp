@@ -448,7 +448,6 @@ namespace ast {
         cases_t::const_iterator it;
         for (it = e.cases_get()->begin() ; it != e.cases_get()->end() ; ++it)
         {
-            this->apply_indent();
             (*it)->accept (*this);
         }
         if (e.default_case_get() != NULL)
@@ -466,12 +465,14 @@ namespace ast {
 
     void PrintVisitor::visit (const CaseExp &e)
     {
+        this->apply_indent();
         *ostr << SCI_CASE;
         *ostr << " " << SCI_OPEN_TEST;
         e.test_get()->accept(*this);
         *ostr << SCI_CLOSE_TEST << std::endl;
-        this->apply_indent();
+        indent++;
         e.body_get()->accept(*this);
+        indent--;
     }
 
     void PrintVisitor::visit (const SeqExp  &e)
@@ -598,7 +599,7 @@ namespace ast {
     void       	PrintVisitor::apply_indent() {
         int i;
         for (i = 0; i < indent; ++i)
-            *ostr << "  ";
+            *ostr << "    ";
     }
 
     void	PrintVisitor::enable_force_parenthesis() {
