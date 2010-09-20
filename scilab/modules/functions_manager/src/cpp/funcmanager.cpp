@@ -44,7 +44,7 @@ extern "C"
 using namespace std;
 using namespace ast;
 
-#define BASENAMEMODULESFILE L"etc/yasp_modules.xml"
+#define BASENAMEMODULESFILE L"etc/modules.xml"
 
 bool FileExist(std::string _szFile);
 bool FileExist(std::wstring _szFile);
@@ -296,7 +296,7 @@ bool FuncManager::CreateModuleList(void)
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"functions", &FunctionsModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"output_stream", &OutputStreamModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"matio", &MatioModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"fileio", &FileioModule::Load));
+        m_ModuleMap.insert(pair<wstring, GW_MOD>(L"fileio", &FileioModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"gui", &GuiModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"time", &TimeModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
