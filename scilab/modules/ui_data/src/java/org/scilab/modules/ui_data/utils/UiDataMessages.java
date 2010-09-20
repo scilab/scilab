@@ -61,6 +61,8 @@ public final class UiDataMessages {
     public static final String COPY = Messages.gettext("Copy");
     public static final String PASTE = Messages.gettext("Paste");
     public static final String CUT = Messages.gettext("Cut");
+    public static final String UNDO = Messages.gettext("Undo");
+    public static final String REDO = Messages.gettext("Redo");
 
     /** This class is a static singleton, thus it must not be instantiated */
     private UiDataMessages() { }

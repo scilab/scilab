@@ -65,7 +65,8 @@ public class testOpenClose {
 		String SCIPath = System.getProperty("SCI"); // Temp backup to set it again
 		System.clearProperty("SCI"); // Remove the property to check it is using the variable
 		sci = new Scilab();
-		System.setProperty("SCI",SCIPath); // Set it again
+		assert sci.open("a=42*2;") == true;
+
 	}
 
 	@Test(sequential = true)

@@ -51,13 +51,20 @@ import com.mxgraph.view.mxStylesheet;
  * functions.
  */
 public final class Palette {
+	/** the "name" argument */
 	public static final String NAME = "name";
 
+	/** Error message used on invalid path */
 	public static final String WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH = Messages.gettext("Wrong input argument \"%s\": invalid tree path.\n");
-	public static final String WRONG_INPUT_ARGUMENT_S_INVALID_NODE = Messages.gettext("Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n");
+	/** Error message used on invalid node */
+	public static final String WRONG_INPUT_ARGUMENT_S_INVALID_NODE = 
+		Messages.gettext("Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n");
+	/** "Unable to import" string */
 	public static final String UNABLE_TO_IMPORT = Messages.gettext("Unable to import %s .\n");
 
-	public static final Log LOG = LogFactory.getLog(Palette.class);
+	private static final Log LOG = LogFactory.getLog(Palette.class);
+	private static final String XCOS = "xcos";
+	private static final String PALETTE_GIWS_XML = "Palette.giws.xml";
 
 	/**
 	 * Default hidden constructor
@@ -127,12 +134,9 @@ if (next.toString().equals(path[categoryCounter])
 	 *            full path to the scilab exported palette
 	 * @param category
 	 *            TreePath of the palette
-	 * @throws Exception
-	 *             in case of error
 	 */
-	@ScilabExported(module = "xcos", filename = "Palette.giws.xml")
-	public static void loadPal(final String path, final String[] category)
-			throws Exception {
+	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
+	public static void loadPal(final String path, final String[] category) {
 		/*
 		 * Import the palette
 		 */
@@ -143,48 +147,61 @@ if (next.toString().equals(path[categoryCounter])
 			H5Read.readDataFromFile(fileId, data);
 			H5Read.closeFile(fileId);
 		} catch (final HDF5Exception e) {
-			throw new Exception(String.format(UNABLE_TO_IMPORT, file), e);
+			throw new RuntimeException(String.format(UNABLE_TO_IMPORT, file), e);
 		}
 
 		/*
 		 * handle shared data on the EDT thread
 		 */
-		SwingUtilities.invokeAndWait(new Runnable() {
-			@Override
-			public void run() {
-				/*
-				 * Decode the style part of the palette
-				 */
-				final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
-				try {
-					new StyleElement().decode(data, styleSheet);
-				} catch (final ScicosFormatException e) {
-					throw new RuntimeException(e);
-				}
+			try {
+				SwingUtilities.invokeAndWait(new Runnable() {
+					@Override
+					public void run() {
+						/*
+						 * Decode the style part of the palette
+						 */
+						final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
+						try {
+							new StyleElement().decode(data, styleSheet);
+						} catch (final ScicosFormatException e) {
+							throw new RuntimeException(e);
+						}
 
-				final PaletteNode node = getPathNode(category, true);
-				if (!(node instanceof Category)) {
-					throw new RuntimeException(String.format(
-							WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH,
-							"category"));
-				}
-				final Category cat = (Category) node;
+						final PaletteNode node = getPathNode(category, true);
+						if (!(node instanceof Category)) {
+							throw new RuntimeException(String.format(
+									WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH,
+									"category"));
+						}
+						final Category cat = (Category) node;
 
-				/*
-				 * Adding the palette tree part of the palette
-				 */
-				PreLoaded pal;
-				try {
-					pal = new PreLoadedElement().decode(data, new PreLoaded.Dynamic());
-				} catch (final ScicosFormatException e) {
-					throw new RuntimeException(e);
+						/*
+						 * Adding the palette tree part of the palette
+						 */
+						PreLoaded pal;
+						try {
+							pal = new PreLoadedElement().decode(data, new PreLoaded.Dynamic());
+						} catch (final ScicosFormatException e) {
+							throw new RuntimeException(e);
+						}
+						cat.getNode().add(pal);
+						pal.setParent(cat);
+						
+						PaletteNode.refreshView(pal);
+					}
+				});
+			} catch (final InterruptedException e) {
+				LogFactory.getLog(Palette.class).error(e);
+			} catch (final InvocationTargetException e) {
+				Throwable throwable = e;
+				String firstMessage = null;
+				while (throwable != null) {
+					firstMessage = throwable.getLocalizedMessage();
+					throwable = throwable.getCause();
 				}
-				cat.getNode().add(pal);
-				pal.setParent(cat);
 				
-				PaletteNode.refreshView(pal);
+				throw new RuntimeException(firstMessage, e);
 			}
-		});
 	}
 
 	/**
@@ -192,11 +209,9 @@ if (next.toString().equals(path[categoryCounter])
 	 * 
 	 * @param path
 	 *            full path to the scilab exported palette
-	 * @throws Exception
-	 *             in case of error
 	 */
-	@ScilabExported(module = "xcos", filename = "Palette.giws.xml")
-	public static void loadPal(final String path) throws Exception {
+	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
+	public static void loadPal(final String path) {
 		loadPal(path, null);
 	}
 
@@ -207,12 +222,9 @@ if (next.toString().equals(path[categoryCounter])
 	 *            TreePath of the palette
 	 * @param visible
 	 *            default visibility of the palette
-	 * @throws Exception
-	 *             in case of error
 	 */
-	@ScilabExported(module = "xcos", filename = "Palette.giws.xml")
-	public static void addCategory(final String[] name, final boolean visible)
-			throws Exception {
+	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
+	public static void addCategory(final String[] name, final boolean visible) {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
@@ -228,8 +240,17 @@ if (next.toString().equals(path[categoryCounter])
 					PaletteNode.refreshView(node.getParent());
 				}
 			});
-		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getCause();
+		} catch (final InterruptedException e) {
+			LogFactory.getLog(Palette.class).error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 
@@ -238,11 +259,9 @@ if (next.toString().equals(path[categoryCounter])
 	 * 
 	 * @param name
 	 *            TreePath of the palette
-	 * @throws Exception
-	 *             in case of error
 	 */
-	@ScilabExported(module = "xcos", filename = "Palette.giws.xml")
-	public static void remove(final String[] name) throws Exception {
+	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
+	public static void remove(final String[] name) {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
@@ -251,8 +270,17 @@ if (next.toString().equals(path[categoryCounter])
 					PaletteNode.remove(node);
 				}
 			});
-		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getCause();
+		} catch (final InterruptedException e) {
+			LogFactory.getLog(Palette.class).error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 
@@ -263,12 +291,9 @@ if (next.toString().equals(path[categoryCounter])
 	 *            TreePath of the palette or category
 	 * @param status
 	 *            True to set the palette visible, false otherwise
-	 * @throws Exception
-	 *             in case of error
 	 */
-	@ScilabExported(module = "xcos", filename = "Palette.giws.xml")
-	public static void enable(final String[] name, final boolean status)
-			throws Exception {
+	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
+	public static void enable(final String[] name, final boolean status) {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
@@ -284,8 +309,17 @@ if (next.toString().equals(path[categoryCounter])
 					PaletteNode.refreshView(node.getParent());
 				}
 			});
-		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getCause();
+		} catch (final InterruptedException e) {
+			LogFactory.getLog(Palette.class).error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 
@@ -297,12 +331,9 @@ if (next.toString().equals(path[categoryCounter])
 	 * @param target
 	 *            TreePath of the category
 	 * @link TreePath} of the destination
-	 * @throws Exception
-	 *             in case of error
 	 */
-	@ScilabExported(module = "xcos", filename = "Palette.giws.xml")
-	public static void move(final String[] source, final String[] target)
-			throws Exception {
+	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
+	public static void move(final String[] source, final String[] target) {
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
@@ -336,8 +367,17 @@ if (next.toString().equals(path[categoryCounter])
 					PaletteNode.refreshView(toBeReloaded[1]);
 				}
 			});
-		} catch (final InvocationTargetException exception) {
-			throw (Exception) exception.getCause();
+		} catch (final InterruptedException e) {
+			LogFactory.getLog(Palette.class).error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 
@@ -352,7 +392,7 @@ if (next.toString().equals(path[categoryCounter])
 	 * @throws IOException
 	 *             in case of write errors
 	 */
-	@ScilabExported(module = "xcos", filename = "Palette.giws.xml")
+	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
 	public static void generatePaletteIcon(final String blockPath, final String iconPath)
 			throws IOException {
 		final BasicBlock block = new H5RWHandler(blockPath).readBlock();
@@ -456,7 +496,14 @@ if (next.toString().equals(path[categoryCounter])
 		} catch (final InterruptedException e) {
 			LOG.error(e);
 		} catch (final InvocationTargetException e) {
-			LOG.error(e);
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 
 		LOG.trace("All images has been generated.");

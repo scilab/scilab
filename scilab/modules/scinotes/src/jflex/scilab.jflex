@@ -227,9 +227,9 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.OPERATOR;
                                  }
 
- {latexinstring}		 {
- 				   return ScilabLexerConstants.LATEX;
-				 }
+ {latexinstring}                 {
+                                   return ScilabLexerConstants.LATEX;
+                                 }
 
   {quote}                        {
                                     if (transposable) {
@@ -299,7 +299,13 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <COMMANDSWHITE> {
-  [^ \t,;]*                      {
+  {comment}                      {
+                                   transposable = false;
+                                   yypushback(2);
+                                   yybegin(COMMENT);
+                                 }
+
+  ([^ \t,;/]*) | ("/"[^ /]*)     {
                                    return ScilabLexerConstants.STRING;
                                  }
 

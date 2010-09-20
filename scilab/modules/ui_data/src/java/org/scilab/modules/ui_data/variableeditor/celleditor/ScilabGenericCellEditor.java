@@ -21,8 +21,6 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 
-import org.scilab.modules.ui_data.variableeditor.ScilabVariableEditor;
-
 /**
  * @author Calixte DENIZET
  */
@@ -100,11 +98,11 @@ public class ScilabGenericCellEditor extends DefaultCellEditor {
     }
 
     /**
+     * @param var the variable name
      * @return all the expressions in one scilab expression
      */
-    public String getAllExpressions() {
+    public String getAllExpressions(String var) {
         String exp = "";
-        String var = ScilabVariableEditor.getVariableEditor().getVariablename();
         Iterator<Coords> iter = expressions.keySet().iterator();
         while (iter.hasNext()) {
             Coords c = iter.next();

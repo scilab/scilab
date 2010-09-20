@@ -15,7 +15,10 @@ package org.scilab.modules.ui_data.variableeditor;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -23,6 +26,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.TableModel;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -38,16 +42,18 @@ import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.rowheader.RowHeader;
-import org.scilab.modules.ui_data.rowheader.RowHeaderModel;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variableeditor.action.CopyAction;
 import org.scilab.modules.ui_data.variableeditor.action.CutAction;
 import org.scilab.modules.ui_data.variableeditor.action.PasteAction;
 import org.scilab.modules.ui_data.variableeditor.action.RefreshAction;
 import org.scilab.modules.ui_data.variableeditor.action.SupprAction;
+import org.scilab.modules.ui_data.variableeditor.action.UndoAction;
+import org.scilab.modules.ui_data.variableeditor.action.RedoAction;
 import org.scilab.modules.ui_data.variableeditor.renderers.RendererFactory;
 import org.scilab.modules.ui_data.variableeditor.celleditor.CellEditorFactory;
 import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabGenericCellEditor;
+import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoManager;
 
 /**
  * Swing implementation of Scilab Variable Editor
@@ -69,6 +75,8 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     private JTabbedPane tabPane;
     private JScrollPane scrollPane;
     private PushButton refreshButton;
+    private PushButton undoButton;
+    private PushButton redoButton;
 
     /**
      * Create a JTable with data Model.
@@ -78,32 +86,47 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
      */
     public SwingScilabVariableEditor(String name, String type, Object[][] data) {
         super(UiDataMessages.VARIABLE_EDITOR);
+        setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/rrze_table.png").getImage());
         refreshButton = RefreshAction.createButton(this, UiDataMessages.REFRESH);
-        tabPane = new JTabbedPane();
+        undoButton = UndoAction.createButton(this, UiDataMessages.UNDO);
+        redoButton = RedoAction.createButton(this, UiDataMessages.REDO);
+        enableUndoButton(false);
+        enableRedoButton(false);
+        tabPane = new ScilabTabbedPane(this);
         tabPane.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
-                    String name = tabPane.getTitleAt(tabPane.getSelectedIndex()).substring(PREFIX.length());
-                    String tooltip = "";
-                    if (name != null) {
-                        tooltip = UiDataMessages.REFRESH + APOS + name + APOS;
-                        String type = ((SwingEditvarTableModel) getCurrentModel()).getType();
-                        String title = UiDataMessages.VARIABLE_EDITOR + " - " + name + "  (" + type + ")";
-                        setName(title);
-                        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tabPane);
-                        if (window != null) {
-                            window.setTitle(title);
+                    String name = tabPane.getTitleAt(tabPane.getSelectedIndex());
+                    if (name.length() != 0) {
+                        name = name.substring(PREFIX.length());
+                        String tooltip = "";
+                        if (name != null && getCurrentModel() != null) {
+                            tooltip = UiDataMessages.REFRESH + APOS + name + APOS;
+                            String type = ((SwingEditvarTableModel) getCurrentModel()).getType();
+                            String title = UiDataMessages.VARIABLE_EDITOR + " - " + name + "  (" + type + ")";
+                            setName(title);
+                            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tabPane);
+                            if (window != null) {
+                                window.setTitle(title);
+                            }
                         }
+                        CellsUndoManager undoManager = ((SwingEditvarTableModel) getCurrentModel()).getUndoManager();
+                        enableUndoButton(undoManager.canUndo());
+                        enableRedoButton(undoManager.canRedo());
+                        refreshButton.setToolTipText(tooltip);
                     }
-                    refreshButton.setToolTipText(tooltip);
                 }
             });
         setContentPane(tabPane);
         setData(name, type, data);
         ToolBar toolBar = ScilabToolBar.createToolBar();
         toolBar.add(refreshButton);
+        toolBar.addSeparator();
         toolBar.add(CutAction.createButton(this, UiDataMessages.CUT));
         toolBar.add(CopyAction.createButton(this, UiDataMessages.COPY));
         toolBar.add(PasteAction.createButton(this, UiDataMessages.PASTE));
+        toolBar.addSeparator();
+        toolBar.add(undoButton);
+        toolBar.add(redoButton);
         addToolBar(toolBar);
     }
 
@@ -139,31 +162,55 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
      * @return the current table
      */
     public JTable getCurrentTable() {
-        return (JTable) ((JScrollPane) tabPane.getSelectedComponent()).getViewport().getComponent(0);
+        Component c = tabPane.getSelectedComponent();
+        if (c != null) {
+            return (JTable) ((JScrollPane) c).getViewport().getComponent(0);
+        }
+
+        return null;
     }
 
     /**
      * @return the current table
      */
     public TableModel getCurrentModel() {
-        return getCurrentTable().getModel();
+        JTable t = getCurrentTable();
+        if (t != null) {
+            return t.getModel();
+        }
+
+        return null;
     }
 
     /**
      * {@inheritDoc}
      */
     public void setData(String name, String type, Object[][] data) {
-        JTable table = new JTable();
+        final JTable table = new JTable();
+        table.getTableHeader().addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    int column = table.getColumnModel().getColumnIndexAtX(evt.getX());
+                    table.setColumnSelectionInterval(column, column);
+                    table.setRowSelectionInterval(0, table.getRowCount() - 1);
+                    table.requestFocus();
+                }
+            });
+        table.getTableHeader().setReorderingAllowed(false);
+
         CopyAction.registerAction(this, table);
         CutAction.registerAction(this, table);
         PasteAction.registerAction(this, table);
         SupprAction.registerAction(this, table);
+        UndoAction.registerAction(this, table);
+        RedoAction.registerAction(this, table);
+
         scrollPane = new JScrollPane(table);
         table.setFillsViewportHeight(true);
         table.setAutoResizeMode(CENTER);
         table.setRowHeight(25);
+        scrollPane.setRowHeaderView(new RowHeader(table));
 
-        updateData(table, type, data);
+        updateData(table, name, type, data);
 
         table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         table.setCellSelectionEnabled(true);
@@ -175,32 +222,45 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
 
     /**
      * @param table the table to update
+     * @param name the name of the variable
      * @param type the type of the matrix
      * @param data the matrix datas
      */
-    public void updateData(JTable table, String type, Object[][] data) {
+    public void updateData(JTable table, String name, String type, Object[][] data) {
         ScilabGenericCellEditor cellEditor = (ScilabGenericCellEditor) CellEditorFactory.createCellEditor(type);
+        CellsUndoManager undo = null;
         if (table.getModel() instanceof SwingEditvarTableModel) {
             cellEditor.setExpressions(((SwingEditvarTableModel) table.getModel()).getCellEditor().getExpressions());
+            undo = ((SwingEditvarTableModel) table.getModel()).getUndoManager();
         }
-        dataModel = new SwingEditvarTableModel(type, data, cellEditor);
+        dataModel = new SwingEditvarTableModel(this, name, type, data, cellEditor);
+        dataModel.addTableModelListener(getRowHeader());
+        if (undo != null) {
+            dataModel.setUndoManager(undo);
+        }
+        getRowHeader().tableChanged(new TableModelEvent(dataModel));
         table.setModel(dataModel);
-        RowHeaderModel rowHeaderModel = new RowHeaderModel(dataModel);
-        RowHeader rowHeader = new RowHeader(rowHeaderModel, table);
-        scrollPane.setRowHeaderView(rowHeader);
         table.setDefaultEditor(Object.class, cellEditor);
         table.setDefaultRenderer(Object.class, RendererFactory.createRenderer(type));
     }
 
     /**
      * @param c the component in the tabbedpane
+     * @param name the name of the variable
      * @param type the type of the matrix
      * @param data the matrix datas
      */
-    public void updateData(Component c, String type, Object[][] data) {
+    public void updateData(Component c, String name, String type, Object[][] data) {
         tabPane.setSelectedComponent(c);
         JTable table = (JTable) ((JScrollPane) c).getViewport().getComponent(0);
-        updateData(table, type, data);
+        updateData(table, name, type, data);
+    }
+
+    /**
+     * @return the row header used in this table
+     */
+    public RowHeader getRowHeader() {
+        return (RowHeader) scrollPane.getRowHeader().getView();
     }
 
     /**
@@ -215,5 +275,23 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
      */
     public Window getParentWindow() {
         return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
+    }
+
+    /**
+     * @param b true to enable the button
+     */
+    public void enableUndoButton(boolean b) {
+        if (undoButton != null) {
+            undoButton.setEnabled(b);
+        }
+    }
+
+    /**
+     * @param b true to enable the button
+     */
+    public void enableRedoButton(boolean b) {
+        if (redoButton != null) {
+            redoButton.setEnabled(b);
+        }
     }
 }

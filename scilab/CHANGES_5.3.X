@@ -6,11 +6,15 @@ Xcos:
 
 * Include all the old-scicos palettes on the binary version.
 
+* Use a user-friendly error message on the palette management implementation.
+
 * bug 6500 fixed - The ideal transformer block was unusable due to wrong port
-                   positioning.
+                   positioning (update the Transfomer demo).
 
 * bug 7219 fixed - The old gain demo did not work.
 
+* bug 7770 fixed - It was not possible to compile a diagram with Modelica
+                   blocks.
 
 * bug 7445 fixed - The Kalman filter and the Cont-Plant-Hybrid-Observer demos
                    did not simulate.
@@ -20,6 +24,9 @@ Xcos:
 
 * bug 7822 fixed - Xcos menu bar was larger than the Scilab one.
 
+* bug 7868 fixed - Resizing a super-block with a lot of inputs or outputs
+                   sometimes changed the order of the ports.
+
 * bug 7922 fixed - The Automotive Suspension demo did not work.
 
 * bug 7923 fixed - The DSUPER block was not documented.
@@ -27,8 +34,15 @@ Xcos:
 * bugs 7931, 7933, 7934 fixed - Some artifacts were visible on diagrams such as
                    wrong links and block names.
 
+* bug 7942 fixed - The "Start" button was not disabled when the diagram was
+                   empty.
+
+* bug 7944 fixed - "Fit diagram to view" was disabled after opening a diagram.
 
 * bug 7945 fixed - The path of the diagram was not displayed in the title bar.
+
+* bug 7995 fixed - The "export diagram" actions did not work with file without
+                   extension.
 
 * bug 8014 fixed - The TEXT_f.png file was not present on the source tree.
 
@@ -52,6 +66,12 @@ SciNotes:
 
 * bug 8027 fixed - In a splitted view, a frame was not informed of a change in
                    the other frame.
+
+* bug 8056 fixed - Comments were badly colorized after a command without
+                   parenthesis.
+
+* bug 8061 fixed - An unwanted message box was displayed when an unsaved file
+                   was executed.
 
 GUI creation:
 =============
@@ -159,6 +179,8 @@ Bug Fixes:
 
 * bug 8006 fixed - mgetl produced a memory allocation error.
 
+* bug 8055 fixed - lines() was wrongly updated when the console had the focus
+                   back.
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
          ===============================================================

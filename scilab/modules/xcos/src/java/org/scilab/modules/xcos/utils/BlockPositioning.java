@@ -73,8 +73,14 @@ public final class BlockPositioning {
 			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = -portGeom.getWidth();
+			final int order;
+			if (port.getOrdering() <= portsSize) {
+				order = port.getOrdering() - 1;
+			} else {
+				order = i;
+			}
 			double alignedPosition = calculateAlignedPosition(gridSize,
-					segLength, i);
+					segLength, order);
 			
 			portGeom.setX(nonVariantPosition);
 			portGeom.setY(alignedPosition);
@@ -168,8 +174,14 @@ public final class BlockPositioning {
 			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = -portGeom.getHeight();
+			final int order;
+			if (port.getOrdering() <= portsSize) {
+				order = port.getOrdering() - 1;
+			} else {
+				order = i;
+			}
 			double alignedPosition = calculateAlignedPosition(gridSize,
-					segLength, i);
+					segLength, order);
 			
 			portGeom.setX(alignedPosition);
 			portGeom.setY(nonVariantPosition);
@@ -204,8 +216,14 @@ public final class BlockPositioning {
 			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = blockGeom.getWidth();
+			final int order;
+			if (port.getOrdering() <= portsSize) {
+				order = port.getOrdering() - 1;
+			} else {
+				order = i;
+			}
 			double alignedPosition = calculateAlignedPosition(gridSize,
-					segLength, i);
+					segLength, order);
 			
 			portGeom.setX(nonVariantPosition);
 			portGeom.setY(alignedPosition);
@@ -240,8 +258,14 @@ public final class BlockPositioning {
 			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = blockGeom.getHeight();
+			final int order;
+			if (port.getOrdering() <= portsSize) {
+				order = port.getOrdering() - 1;
+			} else {
+				order = i;
+			}
 			double alignedPosition = calculateAlignedPosition(gridSize,
-					segLength, i);
+					segLength, order);
 			
 			portGeom.setX(alignedPosition);
 			portGeom.setY(nonVariantPosition);
@@ -313,8 +337,6 @@ public final class BlockPositioning {
 		Orientation rotated = rotateOrientation(iter, mirrored, flipped);
 		
 		updatePortsPosition(block, rotated, angle, working);
-		
-		
 	}
 
 	/**
@@ -366,7 +388,7 @@ public final class BlockPositioning {
 		int rotationIndex = angle / ROTATION_STEP;
 		rotated = Orientation.values()[(rotated.ordinal() + rotationIndex)
 		           					% nbOfOrientations];
-
+		
 		/* Call the associated function */
 		switch (rotated) {
 		case NORTH:

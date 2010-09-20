@@ -541,7 +541,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@BUILT_SOURCES = $(am__append_1)
 
 #### SWIG Declaration ####
-@JAVASCI_TRUE@SWIG_WRAPPERS = src/jni/Call_Scilab.i
+@JAVASCI_TRUE@SWIG_WRAPPERS = src/jni/call_scilab.i
 @JAVASCI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)

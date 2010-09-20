@@ -48,6 +48,7 @@ public final class CopyAction extends CallBack {
     }
 
     /**
+     * @param editor the editor
      * @param table where to put the action
      */
     public static void registerAction(SwingScilabVariableEditor editor, JTable table) {
@@ -66,13 +67,17 @@ public final class CopyAction extends CallBack {
             table.setColumnSelectionInterval(cols[0], cols[cols.length - 1]);
             table.setRowSelectionInterval(rows[0], rows[rows.length - 1]);
             StringBuffer buf = new StringBuffer();
+            SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
             for (int i = rows[0]; i <= rows[rows.length - 1]; i++) {
                 for (int j = cols[0]; j <= cols[cols.length - 1]; j++) {
-                    String exp = ((SwingEditvarTableModel) table.getModel()).getCellEditor().getExpression(i, j);
+                    String exp = model.getCellEditor().getExpression(i, j);
                     if (exp != null) {
                         buf.append("=" + exp);
                     } else {
-                        buf.append(((SwingEditvarTableModel) table.getModel()).getScilabValueAt(i, j));
+                        String val = model.getScilabValueAt(i, j, false);
+                        if (val != null) {
+                            buf.append(val);
+                        }
                     }
                     if (j < cols[cols.length - 1]) {
                         buf.append("\t");

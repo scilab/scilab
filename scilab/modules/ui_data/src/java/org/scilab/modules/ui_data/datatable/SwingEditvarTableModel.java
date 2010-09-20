@@ -21,9 +21,12 @@ import javax.swing.table.DefaultTableModel;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.ui_data.EditVar;
-import org.scilab.modules.ui_data.variableeditor.ScilabVariableEditor;
+import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabGenericCellEditor;
+import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoManager;
+import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoableEdit;
 
 /**
  * Swing implementation of table model.
@@ -47,15 +50,22 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     private int currentRow = -1;
     private int currentCol = -1;
     private String type;
+    private String varName;
     private ScilabGenericCellEditor cellEditor;
+    private SwingScilabVariableEditor editor;
+    private CellsUndoManager undoManager;
 
     /**
      * Default construction setting table data.
+     * @param editor the editor
+     * @param varName the variable name
      * @param type the variable type
      * @param data : the data to store.
      * @param cellEditor the cellEditor
      */
-    public SwingEditvarTableModel(String type, Object[][] data, ScilabGenericCellEditor cellEditor) {
+    public SwingEditvarTableModel(SwingScilabVariableEditor editor, String varName, String type, Object[][] data, ScilabGenericCellEditor cellEditor) {
+        this.editor = editor;
+        this.varName = varName;
         scilabMatrixRowCount = data.length;
         scilabMatrixColCount = 0;
         if (scilabMatrixRowCount != 0) { // Not an empty matrix
@@ -64,6 +74,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
         this.type = type;
         this.setDataVector(data);
         this.cellEditor = cellEditor;
+        this.undoManager = new CellsUndoManager(editor, getCommandFromMatrix());
         expandTable();
     }
 
@@ -91,6 +102,20 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     }
 
     /**
+     * @return the undoManager used in this tableModel
+     */
+    public CellsUndoManager getUndoManager() {
+        return undoManager;
+    }
+
+    /**
+     * @param manager the undoManager to set in this tableModel
+     */
+    public void setUndoManager(CellsUndoManager manager) {
+        this.undoManager = manager;
+    }
+
+    /**
      * @return the tyype of this tableModel
      */
     public String getType() {
@@ -100,10 +125,15 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     /**
      * @param row the row
      * @param col the col
+     * @param useDefault if true, null is replaced by the default value
      * @return the scilab expression corresponding to the value
      */
-    public String getScilabValueAt(int row, int col) {
+    public String getScilabValueAt(int row, int col, boolean useDefault) {
         String str = cellEditor.getDataAsScilabString(getValueAt(row, col));
+        if (!useDefault && getValueAt(row, col) == null) {
+            return null;
+        }
+
         if (str.length() == 0) {
             str = getDefaultStringValue();
         }
@@ -113,6 +143,15 @@ public class SwingEditvarTableModel extends DefaultTableModel {
         }
 
         return str;
+    }
+
+    /**
+     * @param row the row
+     * @param col the col
+     * @return the scilab expression corresponding to the value
+     */
+    public String getScilabValueAt(int row, int col) {
+        return getScilabValueAt(row, col, true);
     }
 
     /**
@@ -222,7 +261,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     }
 
     /**
-     * @param the table where to remove the col
+     * @param table where to remove the col
      * @param col the col
      * @param rowB the first row
      * @param rowE the last row
@@ -238,11 +277,7 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      * Update all the matrix on the Scilab's side.
      */
     public void updateMatrix() {
-        String matrix = getDataAsScilabString(getMatrix());
-        String variableName = ScilabVariableEditor.getVariableEditor().getVariablename();
-        String expr = variableName + EQUAL + matrix;
-        String command = buildScilabRequest(expr);
-        execCommand(command);
+        execCommand(getCommandFromMatrix());
     }
 
     /**
@@ -272,7 +307,35 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      * Refresh the current matrix
      */
     public void refreshMatrix() {
-        execCommand("editvar(\"" + ScilabVariableEditor.getVariableEditor().getVariablename() + "\");");
+        execCommand("editvar(\"" + varName + "\");");
+    }
+
+    /**
+     * @param command the command to execute.
+     */
+    public void updateCommand(String command) {
+        try {
+            ScilabInterpreterManagement.asynchronousScilabExec(EMPTYACTION, command);
+        } catch (InterpreterException e1) {
+            System.err.println(e1);
+        }
+    }
+
+    /**
+     * Update all the matrix on the Scilab's side.
+     * @return the command to create the matrix
+     */
+    public String getCommandFromMatrix() {
+        String matrix = getDataAsScilabString(getMatrix());
+        String expr = varName + EQUAL + matrix;
+        return buildScilabRequest(expr);
+    }
+
+    /**
+     * @return the var name in this model
+     */
+    public String getVarName() {
+        return varName;
     }
 
     /**
@@ -320,25 +383,30 @@ public class SwingEditvarTableModel extends DefaultTableModel {
      * @param col the col coord
      */
     private void updateMatrix(Object value, int row, int col) {
-        String variableName = ScilabVariableEditor.getVariableEditor().getVariablename();
         String val = getScilabValueAt(row, col);
         String coords = "";
         if (scilabMatrixRowCount != 1 || scilabMatrixColCount != 1) {
             coords = "(" + (row + 1) + COMMA + (col + 1) + ")";
         }
-        String expr = variableName + coords + EQUAL + getDataAsScilabString(val);
+        String expr = varName + coords + EQUAL + getDataAsScilabString(val);
         String command = buildScilabRequest(expr);
         execCommand(command);
     }
 
     /**
-     * @param command the command to execute.
+     * @param com the command to execute.
      */
-    private void execCommand(String command) {
+    private void execCommand(final String com) {
         try {
-            ScilabInterpreterManagement.asynchronousScilabExec(EMPTYACTION, command);
+            CallBack callback = new CallBack("") {
+                    public void callBack() {
+                        undoManager.addEdit(new CellsUndoableEdit(SwingEditvarTableModel.this));
+                    }
+                };
+
+            ScilabInterpreterManagement.asynchronousScilabExec(callback, com);
         } catch (InterpreterException e1) {
-            System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
+            System.err.println(e1);
         }
     }
 
@@ -349,12 +417,12 @@ public class SwingEditvarTableModel extends DefaultTableModel {
     private String buildScilabRequest(String expr) {
         StringBuilder command = new StringBuilder();
         command.append("L8625083632641564277=warning(\"query\");warning(\"off\");");
-        command.append("if execstr(\"" + expr + SEMI + cellEditor.getAllExpressions() + "\", \"errcatch\") <> 0 then ");
+        command.append("if execstr(\"" + expr + SEMI + cellEditor.getAllExpressions(varName) + "\", \"errcatch\") <> 0 then ");
         command.append("messagebox(\"Could not edit variable: \" + lasterror() + \"\"");
         command.append(",\"Variable editor\", \"error\", \"modal\");");
         command.append("end;");
         command.append("warning(L8625083632641564277);");
-        command.append("editvar(\"" + ScilabVariableEditor.getVariableEditor().getVariablename() + "\");");
+        command.append("editvar(\"" + varName + "\");");
         return command.toString();
     }
 
@@ -370,10 +438,12 @@ public class SwingEditvarTableModel extends DefaultTableModel {
                 } else if (i < scilabMatrixRowCount - 1) {
                     str += getScilabValueAt(i, j) + SEMI;
                 } else {
-                    str += getScilabValueAt(i, j) + "]";
+                    str += getScilabValueAt(i, j);
                 }
             }
         }
+
+        str += "]";
 
         return str;
     }
