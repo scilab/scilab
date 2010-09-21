@@ -28,7 +28,7 @@ function demo_basic_function4()
   messagebox(["[IV] General functions"],"modal");
 
   // Demo IV.1
-  expr=["scf()"
+  expr=["scf(100001)"
   "plot2d()";
   "a=gca(); t=a.title;"
   "t.text=""window properties""; t.font_size=3;"];
@@ -36,7 +36,7 @@ function demo_basic_function4()
   execstr(expr);
 
   // Demo IV.2
-  expr=["scf(0); fec();";
+  expr=["scf(100001); fec();";
   "show_window();";]
   messagebox(["[IV.2] Creating window number 0";expr],"modal");
   execstr(expr);
