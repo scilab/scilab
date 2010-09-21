@@ -38,35 +38,42 @@ void *getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _retur
         return DataController::getGraphicObjectProperty(_pstID, _pstName);
     }
 
-    switch(_returnType)
-    {
-    case jni_string :
-        return CallGraphicController::getGraphicObjectPropertyAsString(getScilabJavaVM(), _pstID, _pstName);
-    case jni_string_vector :
-        return CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _pstName);
-    case jni_double :
-    {
-        localDoubleResult = CallGraphicController::getGraphicObjectPropertyAsDouble(getScilabJavaVM(), _pstID, _pstName);
-        return &localDoubleResult;
-    }
-    case jni_double_vector :
-        return CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _pstName);
-    case jni_bool :
-    {
-        localBoolResult = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _pstName);
-        return &localBoolResult;
-    }
-    case jni_bool_vector :
-        return CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _pstName);
-    case jni_int :
-    {
-        localIntResult = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _pstName);
-        return &localIntResult;
-    }
-    case jni_int_vector :
-        return CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _pstName);
+    try {
+        switch(_returnType)
+        {
+        case jni_string :
+            return CallGraphicController::getGraphicObjectPropertyAsString(getScilabJavaVM(), _pstID, _pstName);
+        case jni_string_vector :
+            return CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _pstName);
+        case jni_double :
+        {
+            localDoubleResult = CallGraphicController::getGraphicObjectPropertyAsDouble(getScilabJavaVM(), _pstID, _pstName);
+            return &localDoubleResult;
+        }
+        case jni_double_vector :
+            return CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _pstName);
+        case jni_bool :
+        {
+            localBoolResult = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _pstName);
+            return &localBoolResult;
+        }
+        case jni_bool_vector :
+            return CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _pstName);
+        case jni_int :
+        {
+            localIntResult = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _pstName);
+            return &localIntResult;
+        }
+        case jni_int_vector :
+            return CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _pstName);
 
-    default :
+        default :
+            return NULL;
+        }
+    }
+    catch (std::exception e)
+    {
+        // If we have an exception, return null to scilab to manage error.
         return NULL;
     }
 
