@@ -96,6 +96,27 @@ in uicontrol. See bug #7366.
                    selected value was always the first value in the list and not
                    the currently selected one.
 
+Editvar:
+========
+
+Actions such as Copy, Cut, Paste, Undo, Redo have been added.
+
+The matrices of integer are now handled.
+
+* bug 7319 fixed - Expressions such as =2+2 were not handled.
+
+* bug 7321 fixed - There was no refresh button.
+
+* bug 7325 fixed - An error message did not respect the standard format.
+
+* bug 7327 fixed - Memory problems could lead to a crash without warning.
+
+* bug 7338 fixed - %nan and %inf were not correctly displayed.
+
+* bug 7340 fixed - %t or %f were not correctly displayed.
+
+* bug 7839 fixed - A global variable could be modified.
+
 Graphics:
 =========
 
