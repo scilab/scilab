@@ -11419,9 +11419,10 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgraphx us
 $as_echo_n "checking minimal version (1.4.1.0) of jgraphx... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$JGRAPHX:$ac_java_classpath"
+   if test "x=" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 11424 "configure"
+// #line 11425 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -11429,9 +11430,9 @@ public class conftest {
         String minVersion="1.4.1.0";
 
                             System.out.println(mxGraph.VERSION);
-   						   	if (minVersion.compareTo(mxGraph.VERSION) > 0) {
-							   	System.exit(-1);
-								}
+                                  if (minVersion.compareTo(mxGraph.VERSION) < 0) {
+                                   System.exit(-1);
+                                }
 
     }
 }
@@ -11469,6 +11470,58 @@ EOF
           as_fn_error "Wrong version of jgraphx. Expected at least 1.4.1.0. Found $STDOUT" "$LINENO" 5
             fi
 
+   else
+
+    cat << \EOF > conftest.java
+// #line 11476 "configure"
+import com.mxgraph.view.mxGraph;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="1.4.1.0";
+
+                            System.out.println(mxGraph.VERSION);
+                                  if (minVersion.compareTo(mxGraph.VERSION) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error "Wrong version of jgraphx. Expected exact version 1.4.1.0. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error "Wrong version of jgraphx. Expected exact version 1.4.1.0. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
    ac_java_classpath=$saved_ac_java_classpath
 
 
@@ -11493,7 +11546,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11496 "configure"
+// #line 11549 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11584,9 +11637,10 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar flexdock u
 $as_echo_n "checking minimal version (0.5.2) of flexdock... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$FLEXDOCK:$ac_java_classpath"
+   if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 11589 "configure"
+// #line 11643 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -11594,9 +11648,9 @@ public class conftest {
         String minVersion="0.5.2";
 
                             System.out.println(Utilities.VERSION);
-   						   	if (minVersion.compareTo(Utilities.VERSION) > 0) {
-							   	System.exit(-1);
-								}
+                                  if (minVersion.compareTo(Utilities.VERSION) < 0) {
+                                   System.exit(-1);
+                                }
 
     }
 }
@@ -11634,6 +11688,58 @@ EOF
           as_fn_error "Wrong version of flexdock. Expected at least 0.5.2. Found $STDOUT" "$LINENO" 5
             fi
 
+   else
+
+    cat << \EOF > conftest.java
+// #line 11694 "configure"
+import org.flexdock.util.Utilities;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="0.5.2";
+
+                            System.out.println(Utilities.VERSION);
+                                  if (minVersion.compareTo(Utilities.VERSION) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error "Wrong version of flexdock. Expected exact version 0.5.2. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error "Wrong version of flexdock. Expected exact version 0.5.2. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
    ac_java_classpath=$saved_ac_java_classpath
 
 
@@ -11658,7 +11764,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11661 "configure"
+// #line 11767 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11765,7 +11871,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11768 "configure"
+// #line 11874 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11873,7 +11979,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11876 "configure"
+// #line 11982 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -11980,7 +12086,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11983 "configure"
+// #line 12089 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -12190,7 +12296,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12193 "configure"
+// #line 12299 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -12352,7 +12458,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12355 "configure"
+// #line 12461 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12459,7 +12565,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12462 "configure"
+// #line 12568 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12567,7 +12673,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12570 "configure"
+// #line 12676 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -12674,7 +12780,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12677 "configure"
+// #line 12783 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -12783,7 +12889,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12786 "configure"
+// #line 12892 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -12892,7 +12998,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12895 "configure"
+// #line 13001 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -12999,7 +13105,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13002 "configure"
+// #line 13108 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -13106,7 +13212,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13109 "configure"
+// #line 13215 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -13197,9 +13303,10 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik used
 $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$BATIK:$ac_java_classpath"
+   if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 13202 "configure"
+// #line 13309 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -13207,9 +13314,9 @@ public class conftest {
         String minVersion="1.7";
 
                             System.out.println(Version.getVersion());
-   						   	if (minVersion.compareTo(Version.getVersion()) > 0) {
-							   	System.exit(-1);
-								}
+                                  if (minVersion.compareTo(Version.getVersion()) < 0) {
+                                   System.exit(-1);
+                                }
 
     }
 }
@@ -13247,6 +13354,58 @@ EOF
           as_fn_error "Wrong version of batik. Expected at least 1.7. Found $STDOUT" "$LINENO" 5
             fi
 
+   else
+
+    cat << \EOF > conftest.java
+// #line 13360 "configure"
+import org.apache.batik.Version;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="1.7";
+
+                            System.out.println(Version.getVersion());
+                                  if (minVersion.compareTo(Version.getVersion()) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error "Wrong version of batik. Expected exact version 1.7. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error "Wrong version of batik. Expected exact version 1.7. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
    ac_java_classpath=$saved_ac_java_classpath
 
 
@@ -13271,7 +13430,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13274 "configure"
+// #line 13433 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -13378,7 +13537,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13381 "configure"
+// #line 13540 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -13485,7 +13644,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13488 "configure"
+// #line 13647 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -13592,7 +13751,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13595 "configure"
+// #line 13754 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -13699,7 +13858,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13702 "configure"
+// #line 13861 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -13810,7 +13969,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13813 "configure"
+// #line 13972 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -13917,7 +14076,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13920 "configure"
+// #line 14079 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -14008,9 +14167,10 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jlatexmath
 $as_echo_n "checking minimal version (0.9.3) of jlatexmath... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$JLATEXMATH:$ac_java_classpath"
+   if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14013 "configure"
+// #line 14173 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -14018,9 +14178,9 @@ public class conftest {
         String minVersion="0.9.3";
 
                             System.out.println(TeXFormula.VERSION);
-   						   	if (minVersion.compareTo(TeXFormula.VERSION) > 0) {
-							   	System.exit(-1);
-								}
+                                  if (minVersion.compareTo(TeXFormula.VERSION) < 0) {
+                                   System.exit(-1);
+                                }
 
     }
 }
@@ -14058,6 +14218,58 @@ EOF
           as_fn_error "Wrong version of jlatexmath. Expected at least 0.9.3. Found $STDOUT" "$LINENO" 5
             fi
 
+   else
+
+    cat << \EOF > conftest.java
+// #line 14224 "configure"
+import org.scilab.forge.jlatexmath.TeXFormula;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="0.9.3";
+
+                            System.out.println(TeXFormula.VERSION);
+                                  if (minVersion.compareTo(TeXFormula.VERSION) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error "Wrong version of jlatexmath. Expected exact version 0.9.3. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error "Wrong version of jlatexmath. Expected exact version 0.9.3. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
    ac_java_classpath=$saved_ac_java_classpath
 
 
@@ -14088,7 +14300,7 @@ $as_echo_n "checking checkstyle... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14091 "configure"
+// #line 14303 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -14195,7 +14407,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14198 "configure"
+// #line 14410 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -14302,7 +14514,7 @@ $as_echo_n "checking antlr... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14305 "configure"
+// #line 14517 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -14409,7 +14621,7 @@ $as_echo_n "checking testng... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14412 "configure"
+// #line 14624 "configure"
 import org.testng.TestNG;
 
 public class conftest {
@@ -14516,7 +14728,7 @@ $as_echo_n "checking qdox... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14519 "configure"
+// #line 14731 "configure"
 import com.thoughtworks.qdox.tools.QDoxTester;
 
 public class conftest {
@@ -14623,7 +14835,7 @@ $as_echo_n "checking bsh... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14626 "configure"
+// #line 14838 "configure"
 import bsh.Console;
 
 public class conftest {
@@ -14730,7 +14942,7 @@ $as_echo_n "checking junit... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14733 "configure"
+// #line 14945 "configure"
 import junit.framework.Assert;
 
 public class conftest {
@@ -16128,7 +16340,7 @@ $as_echo "$USE_NLS" >&6; }
 
 
 
-      GETTEXT_MACRO_VERSION=0.18
+      GETTEXT_MACRO_VERSION=0.17
 
 
 
@@ -16429,70 +16641,23 @@ fi
   prefix="$acl_save_prefix"
 
 
-
-  acl_libdirstem=lib
-  acl_libdirstem2=
-  case "$host_os" in
-    solaris*)
-                                    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for 64-bit host" >&5
-$as_echo_n "checking for 64-bit host... " >&6; }
-if test "${gl_cv_solaris_64bit+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-#ifdef _LP64
-sixtyfour bits
-#endif
-
-_ACEOF
-if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
-  $EGREP "sixtyfour bits" >/dev/null 2>&1; then :
-  gl_cv_solaris_64bit=yes
-else
-  gl_cv_solaris_64bit=no
-fi
-rm -f conftest*
-
-
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $gl_cv_solaris_64bit" >&5
-$as_echo "$gl_cv_solaris_64bit" >&6; }
-      if test $gl_cv_solaris_64bit = yes; then
-        acl_libdirstem=lib/64
-        case "$host_cpu" in
-          sparc*)        acl_libdirstem2=lib/sparcv9 ;;
-          i*86 | x86_64) acl_libdirstem2=lib/amd64 ;;
+                  acl_libdirstem=lib
+  searchpath=`(LC_ALL=C $CC -print-search-dirs) 2>/dev/null | sed -n -e 's,^libraries: ,,p' | sed -e 's,^=,,'`
+  if test -n "$searchpath"; then
+    acl_save_IFS="${IFS= 	}"; IFS=":"
+    for searchdir in $searchpath; do
+      if test -d "$searchdir"; then
+        case "$searchdir" in
+          */lib64/ | */lib64 ) acl_libdirstem=lib64 ;;
+          *) searchdir=`cd "$searchdir" && pwd`
+             case "$searchdir" in
+               */lib64 ) acl_libdirstem=lib64 ;;
+             esac ;;
         esac
       fi
-      ;;
-    *)
-      searchpath=`(LC_ALL=C $CC -print-search-dirs) 2>/dev/null | sed -n -e 's,^libraries: ,,p' | sed -e 's,^=,,'`
-      if test -n "$searchpath"; then
-        acl_save_IFS="${IFS= 	}"; IFS=":"
-        for searchdir in $searchpath; do
-          if test -d "$searchdir"; then
-            case "$searchdir" in
-              */lib64/ | */lib64 ) acl_libdirstem=lib64 ;;
-              */../ | */.. )
-                # Better ignore directories of this form. They are misleading.
-                ;;
-              *) searchdir=`cd "$searchdir" && pwd`
-                 case "$searchdir" in
-                   */lib64 ) acl_libdirstem=lib64 ;;
-                 esac ;;
-            esac
-          fi
-        done
-        IFS="$acl_save_IFS"
-      fi
-      ;;
-  esac
-  test -n "$acl_libdirstem2" || acl_libdirstem2="$acl_libdirstem"
-
-
-
+    done
+    IFS="$acl_save_IFS"
+  fi
 
 
 
@@ -16538,10 +16703,6 @@ if test "${with_libiconv_prefix+set}" = set; then :
       else
         additional_includedir="$withval/include"
         additional_libdir="$withval/$acl_libdirstem"
-        if test "$acl_libdirstem2" != "$acl_libdirstem" \
-           && ! test -d "$withval/$acl_libdirstem"; then
-          additional_libdir="$withval/$acl_libdirstem2"
-        fi
       fi
     fi
 
@@ -16551,7 +16712,6 @@ fi
   LTLIBICONV=
   INCICONV=
   LIBICONV_PREFIX=
-      HAVE_LIBICONV=
   rpathdirs=
   ltrpathdirs=
   names_already_handled=
@@ -16694,9 +16854,7 @@ fi
           if test "X$found_dir" != "X"; then
                         LTLIBICONV="${LTLIBICONV}${LTLIBICONV:+ }-L$found_dir -l$name"
             if test "X$found_so" != "X"; then
-                                                        if test "$enable_rpath" = no \
-                 || test "X$found_dir" = "X/usr/$acl_libdirstem" \
-                 || test "X$found_dir" = "X/usr/$acl_libdirstem2"; then
+                                                        if test "$enable_rpath" = no || test "X$found_dir" = "X/usr/$acl_libdirstem"; then
                                 LIBICONV="${LIBICONV}${LIBICONV:+ }$found_so"
               else
                                                                                 haveit=
@@ -16763,16 +16921,7 @@ fi
             case "$found_dir" in
               */$acl_libdirstem | */$acl_libdirstem/)
                 basedir=`echo "X$found_dir" | sed -e 's,^X,,' -e "s,/$acl_libdirstem/"'*$,,'`
-                if test "$name" = 'iconv'; then
-                  LIBICONV_PREFIX="$basedir"
-                fi
-                additional_includedir="$basedir/include"
-                ;;
-              */$acl_libdirstem2 | */$acl_libdirstem2/)
-                basedir=`echo "X$found_dir" | sed -e 's,^X,,' -e "s,/$acl_libdirstem2/"'*$,,'`
-                if test "$name" = 'iconv'; then
-                  LIBICONV_PREFIX="$basedir"
-                fi
+                LIBICONV_PREFIX="$basedir"
                 additional_includedir="$basedir/include"
                 ;;
             esac
@@ -16821,11 +16970,9 @@ fi
                 case "$dep" in
                   -L*)
                     additional_libdir=`echo "X$dep" | sed -e 's/^X-L//'`
-                                                                                                                                                                if test "X$additional_libdir" != "X/usr/$acl_libdirstem" \
-                       && test "X$additional_libdir" != "X/usr/$acl_libdirstem2"; then
+                                                                                                                                                                if test "X$additional_libdir" != "X/usr/$acl_libdirstem"; then
                       haveit=
-                      if test "X$additional_libdir" = "X/usr/local/$acl_libdirstem" \
-                         || test "X$additional_libdir" = "X/usr/local/$acl_libdirstem2"; then
+                      if test "X$additional_libdir" = "X/usr/local/$acl_libdirstem"; then
                         if test -n "$GCC"; then
                           case $host_os in
                             linux* | gnu* | k*bsd*-gnu) haveit=yes;;
@@ -16950,12 +17097,6 @@ fi
       LTLIBICONV="${LTLIBICONV}${LTLIBICONV:+ }-R$found_dir"
     done
   fi
-
-
-
-
-
-
 
 
 
@@ -17253,25 +17394,6 @@ int main ()
           return 1;
       }
   }
-  /* Test against Solaris 10 bug: Failures are not distinguishable from
-     successful returns.  */
-  {
-    iconv_t cd_ascii_to_88591 = iconv_open ("ISO8859-1", "646");
-    if (cd_ascii_to_88591 != (iconv_t)(-1))
-      {
-        static const char input[] = "\263";
-        char buf[10];
-        const char *inptr = input;
-        size_t inbytesleft = strlen (input);
-        char *outptr = buf;
-        size_t outbytesleft = sizeof (buf);
-        size_t res = iconv (cd_ascii_to_88591,
-                            (char **) &inptr, &inbytesleft,
-                            &outptr, &outbytesleft);
-        if (res == 0)
-          return 1;
-      }
-  }
 #if 0 /* This bug could be worked around by the caller.  */
   /* Test against HP-UX 11.11 bug: Positive return value instead of 0.  */
   {
@@ -17350,9 +17472,6 @@ $as_echo "$LIBICONV" >&6; }
 
 
 
-
-
-
     use_additional=yes
 
   acl_save_prefix="$prefix"
@@ -17389,10 +17508,6 @@ if test "${with_libintl_prefix+set}" = set; then :
       else
         additional_includedir="$withval/include"
         additional_libdir="$withval/$acl_libdirstem"
-        if test "$acl_libdirstem2" != "$acl_libdirstem" \
-           && ! test -d "$withval/$acl_libdirstem"; then
-          additional_libdir="$withval/$acl_libdirstem2"
-        fi
       fi
     fi
 
@@ -17402,7 +17517,6 @@ fi
   LTLIBINTL=
   INCINTL=
   LIBINTL_PREFIX=
-      HAVE_LIBINTL=
   rpathdirs=
   ltrpathdirs=
   names_already_handled=
@@ -17545,9 +17659,7 @@ fi
           if test "X$found_dir" != "X"; then
                         LTLIBINTL="${LTLIBINTL}${LTLIBINTL:+ }-L$found_dir -l$name"
             if test "X$found_so" != "X"; then
-                                                        if test "$enable_rpath" = no \
-                 || test "X$found_dir" = "X/usr/$acl_libdirstem" \
-                 || test "X$found_dir" = "X/usr/$acl_libdirstem2"; then
+                                                        if test "$enable_rpath" = no || test "X$found_dir" = "X/usr/$acl_libdirstem"; then
                                 LIBINTL="${LIBINTL}${LIBINTL:+ }$found_so"
               else
                                                                                 haveit=
@@ -17614,16 +17726,7 @@ fi
             case "$found_dir" in
               */$acl_libdirstem | */$acl_libdirstem/)
                 basedir=`echo "X$found_dir" | sed -e 's,^X,,' -e "s,/$acl_libdirstem/"'*$,,'`
-                if test "$name" = 'intl'; then
-                  LIBINTL_PREFIX="$basedir"
-                fi
-                additional_includedir="$basedir/include"
-                ;;
-              */$acl_libdirstem2 | */$acl_libdirstem2/)
-                basedir=`echo "X$found_dir" | sed -e 's,^X,,' -e "s,/$acl_libdirstem2/"'*$,,'`
-                if test "$name" = 'intl'; then
-                  LIBINTL_PREFIX="$basedir"
-                fi
+                LIBINTL_PREFIX="$basedir"
                 additional_includedir="$basedir/include"
                 ;;
             esac
@@ -17672,11 +17775,9 @@ fi
                 case "$dep" in
                   -L*)
                     additional_libdir=`echo "X$dep" | sed -e 's/^X-L//'`
-                                                                                                                                                                if test "X$additional_libdir" != "X/usr/$acl_libdirstem" \
-                       && test "X$additional_libdir" != "X/usr/$acl_libdirstem2"; then
+                                                                                                                                                                if test "X$additional_libdir" != "X/usr/$acl_libdirstem"; then
                       haveit=
-                      if test "X$additional_libdir" = "X/usr/local/$acl_libdirstem" \
-                         || test "X$additional_libdir" = "X/usr/local/$acl_libdirstem2"; then
+                      if test "X$additional_libdir" = "X/usr/local/$acl_libdirstem"; then
                         if test -n "$GCC"; then
                           case $host_os in
                             linux* | gnu* | k*bsd*-gnu) haveit=yes;;
@@ -17801,11 +17902,6 @@ fi
       LTLIBINTL="${LTLIBINTL}${LTLIBINTL:+ }-R$found_dir"
     done
   fi
-
-
-
-
-
 
           { $as_echo "$as_me:${as_lineno-$LINENO}: checking for GNU gettext in libintl" >&5
 $as_echo_n "checking for GNU gettext in libintl... " >&6; }
@@ -18759,7 +18855,7 @@ $as_echo_n "checking jhdf5... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18762 "configure"
+// #line 18858 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -18905,9 +19001,10 @@ fi
 $as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$JHDF5:$ac_java_classpath"
+   if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 18910 "configure"
+// #line 19007 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -18919,9 +19016,9 @@ public class conftest {
                 String ver = vers[0] + "."+ vers[1] +"."+vers[2];
 
                             System.out.println(ver);
-   						   	if (minVersion.compareTo(ver) > 0) {
-							   	System.exit(-1);
-								}
+                                  if (minVersion.compareTo(ver) < 0) {
+                                   System.exit(-1);
+                                }
 
     }
 }
@@ -18959,6 +19056,62 @@ EOF
           as_fn_error "Wrong version of hdf5. Expected at least 1.8.4. Found $STDOUT" "$LINENO" 5
             fi
 
+   else
+
+    cat << \EOF > conftest.java
+// #line 19062 "configure"
+import ncsa.hdf.hdf5lib.H5;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="1.8.4";
+                            int[] vers = new int[3];
+                try { H5.H5get_libversion(vers); }
+                catch (Throwable ex) {System.exit(-1);}
+                String ver = vers[0] + "."+ vers[1] +"."+vers[2];
+
+                            System.out.println(ver);
+                                  if (minVersion.compareTo(ver) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error "Wrong version of hdf5. Expected exact version 1.8.4. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error "Wrong version of hdf5. Expected exact version 1.8.4. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
    ac_java_classpath=$saved_ac_java_classpath
 
       unset LD_LIBRARY_PATH
@@ -23491,7 +23644,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 23494 "configure"
+#line 23647 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -23803,7 +23956,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 23806 "configure"
+#line 23959 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -24387,7 +24540,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24390 "configure"
+// #line 24543 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -24494,7 +24647,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24497 "configure"
+// #line 24650 "configure"
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
@@ -30795,7 +30948,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 30798 "configure"
+#line 30951 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -30901,7 +31054,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 30904 "configure"
+#line 31057 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
