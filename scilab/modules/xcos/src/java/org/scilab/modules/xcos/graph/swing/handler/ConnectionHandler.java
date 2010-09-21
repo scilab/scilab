@@ -84,8 +84,7 @@ public class ConnectionHandler extends mxConnectionHandler {
 			}
 			
 			// scale and set the point
-			mxPoint pt = new mxPoint(e.getPoint());
-			pt = graphComponent.snapScaledPoint(pt);
+			mxPoint pt = graphComponent.getPointForEvent(e);
 			points.add(pt);
 
 			// update the preview and set the flag

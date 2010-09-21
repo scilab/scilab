@@ -119,8 +119,7 @@ public class GraphHandler extends mxGraphHandler {
 				.createBlock(BlockInterFunction.TEXT_f);
 		
 		// set the position of the block
-		mxPoint pt = new mxPoint(e.getPoint());
-		pt = graphComponent.snapScaledPoint(pt);
+		final mxPoint pt = graphComponent.getPointForEvent(e);
 		final mxGeometry geo = textBlock.getGeometry();
 		geo.setX(pt.getX());
 		geo.setY(pt.getY());
@@ -153,8 +152,7 @@ public class GraphHandler extends mxGraphHandler {
 		}
 		
 		// get the point
-		mxPoint pt = new mxPoint(e.getPoint());
-		pt = graphComponent.snapScaledPoint(pt);
+		final mxPoint pt = graphComponent.getPointForEvent(e);
 		
 		// add or remove the point to the list and fire event
 		final mxIGraphModel model = graphComponent.getGraph().getModel();

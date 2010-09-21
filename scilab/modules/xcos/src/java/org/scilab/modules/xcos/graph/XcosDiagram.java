@@ -62,11 +62,10 @@ import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
-import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
@@ -96,11 +95,9 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
-
-import com.mxgraph.model.mxGraphModel;
-import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
@@ -208,11 +205,8 @@ public class XcosDiagram extends ScilabGraph {
     	// Switch source and target !
     	if (target instanceof CommandPort) {
     		if (source instanceof ControlPort) {
-    			mxICell current = (mxICell) cell;
-				if (current.getGeometry() != null
-						&& current.getGeometry().getPoints() != null) {
-    				Collections.reverse(current.getGeometry().getPoints());
-    			}
+    			BasicLink current = (BasicLink) cell;
+    			current.invertDirection();
     			
     			return super.addCell(cell, parent, index, target, source);
     		}
@@ -228,11 +222,8 @@ public class XcosDiagram extends ScilabGraph {
     	// Switch source and target !
     	if (target instanceof ExplicitOutputPort) {
     		if (source instanceof ExplicitInputPort) {
-    			mxICell current = (mxICell) cell;
-				if (current.getGeometry() != null
-						&& current.getGeometry().getPoints() != null) {
-    				Collections.reverse(current.getGeometry().getPoints());
-    			}
+    			BasicLink current = (BasicLink) cell;
+    			current.invertDirection();
 				
     			return super.addCell(cell, parent, index, target, source);
     		}
@@ -248,11 +239,8 @@ public class XcosDiagram extends ScilabGraph {
     	// Switch source and target !
     	if (target instanceof ImplicitOutputPort) {
     		if (source instanceof ImplicitInputPort) {
-    			mxICell current = (mxICell) cell;
-				if (current.getGeometry() != null
-						&& current.getGeometry().getPoints() != null) {
-    				Collections.reverse(current.getGeometry().getPoints());
-    			}
+    			BasicLink current = (BasicLink) cell;
+    			current.invertDirection();
 				
     			return super.addCell(cell, parent, index, target, source);
     		}
@@ -268,11 +256,8 @@ public class XcosDiagram extends ScilabGraph {
     	// Switch source and target !
     	if (target instanceof ImplicitOutputPort) {
     		if (source instanceof ImplicitOutputPort) {
-    			mxICell current = (mxICell) cell;
-				if (current.getGeometry() != null
-						&& current.getGeometry().getPoints() != null) {
-    				Collections.reverse(current.getGeometry().getPoints());
-    			}
+    			BasicLink current = (BasicLink) cell;
+    			current.invertDirection();
 				
     			return super.addCell(cell, parent, index, target, source);
     		}
