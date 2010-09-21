@@ -1,5 +1,5 @@
-         Changes between version 5.3.0-beta-3 and 5.3.0 of Scilab
-         ========================================================
+         Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
+         ===============================================================
 
 Xcos:
 =====
@@ -8,16 +8,18 @@ Xcos:
 
 * Use a user-friendly error message on the palette management implementation.
 
+* Update to the latest jgraphx version.
+
 * bug 6500 fixed - The ideal transformer block was unusable due to wrong port
                    positioning (update the Transfomer demo).
 
 * bug 7219 fixed - The old gain demo did not work.
 
-* bug 7770 fixed - It was not possible to compile a diagram with Modelica
-                   blocks.
-
 * bug 7445 fixed - The Kalman filter and the Cont-Plant-Hybrid-Observer demos
                    did not simulate.
+
+* bug 7716 fixed - Block inter-functions were not loaded after using the 
+                   xcosPal API and then starting Xcos.
 
 * bug 7770 fixed - It was not possible to compile a diagram with Modelica
                    blocks.
@@ -47,6 +49,8 @@ Xcos:
 * bug 8014 fixed - The TEXT_f.png file was not present on the source tree.
 
 * bug 8025 fixed - The simulation parameter dialog was modal.
+
+* bug 8052 fixed - The value of a I/O block was used for computational purpose.
 
 SciNotes:
 =========
@@ -94,6 +98,27 @@ in uicontrol. See bug #7366.
                    selected value was always the first value in the list and not
                    the currently selected one.
 
+Editvar:
+========
+
+Actions such as Copy, Cut, Paste, Undo, Redo have been added.
+
+The matrices of integer are now handled.
+
+* bug 7319 fixed - Expressions such as =2+2 were not handled.
+
+* bug 7321 fixed - There was no refresh button.
+
+* bug 7325 fixed - An error message did not respect the standard format.
+
+* bug 7327 fixed - Memory problems could lead to a crash without warning.
+
+* bug 7338 fixed - %nan and %inf were not correctly displayed.
+
+* bug 7340 fixed - %t or %f were not correctly displayed.
+
+* bug 7839 fixed - A global variable could be modified.
+
 Graphics:
 =========
 
@@ -138,6 +163,8 @@ Bug Fixes:
 * bug 7640 fixed - xs2pdf, xs2eps, xs2emf crashed if filename prefix had less
                    of three characters.
 
+* bug 7690 fixed - Long lines removed in the parallel_run help page.
+
 * bug 7862 fixed - "savematfile" only saved the first string in the vector
                    (or matrix) when variable is a vector (or matrix) of strings.
 
@@ -151,6 +178,8 @@ Bug Fixes:
                    variables.
 
 * bug 7924 fixed - pathconvert failed conversion to cygwin format.
+
+* bug 7940 fixed - Typo fixed in the parallel_run documentation.
 
 * bug 7941 fixed - The demonstration CACSD/PID did not work.
 
@@ -514,6 +543,7 @@ Bug Fixes:
                    source directory tree.
 
 * bug 7840 fixed - big lines were splitted by mgetl.
+
 
          Changes between version 5.3.0-beta-1 and 5.3.0-beta-2 of Scilab
          ===============================================================

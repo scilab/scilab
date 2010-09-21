@@ -70,6 +70,7 @@
 	<add as="Port" extend="defaultVertex">
 		<add as="shape" value="triangle" />
 		<add as="perimeter" value="trianglePerimeter" />
+		<add as="noLabel" value="0"/>
 	</add>
 
 	<!-- Command Port -->

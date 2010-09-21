@@ -25,7 +25,7 @@ Source: modules\{#JAVASCI}\changelog.txt; DestDir: {app}\modules\{#JAVASCI}; Com
 ;
 Source: bin\{#JAVASCI}.dll; DestDir: {app}\bin; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\jar\{#JAVASCI}.jar;DestDir: {app}\modules\{#JAVASCI}\jar; Components: {#COMPN_JAVASCI}
-Source: modules\#JAVASCI}\jar\org.scilab.modules.{#JAVASCI}.jar;DestDir: {app}\modules\{#JAVASCI}\jar; Components: {#COMPN_JAVASCI}
+Source: modules\{#JAVASCI}\jar\org.scilab.modules.{#JAVASCI}.jar;DestDir: {app}\modules\{#JAVASCI}\jar; Components: {#COMPN_JAVASCI}
 ;
 Source: modules\{#JAVASCI}\etc\{#JAVASCI}.quit; DestDir: {app}\modules\{#JAVASCI}\etc; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\etc\{#JAVASCI}.start; DestDir: {app}\modules\{#JAVASCI}\etc; Components: {#COMPN_JAVASCI}
