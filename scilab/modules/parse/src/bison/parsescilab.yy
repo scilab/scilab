@@ -312,7 +312,7 @@
 */
 /* Root of the Abstract Syntax Tree */
 program:
-expressions					{ ParserSingleInstance::setTree($1); }
+expressions                     { ParserSingleInstance::setTree($1); }
 | EOL expressions 				{ ParserSingleInstance::setTree($2); }
 | /* Epsilon */                 { ParserSingleInstance::setTree(NULL); }
 ;
@@ -322,33 +322,33 @@ expressions					{ ParserSingleInstance::setTree($1); }
 */
 /* List of expression or single instruction */
 expressions :
-recursiveExpression				{
-						  $$ = new ast::SeqExp(@$, *$1);
-						}
-| recursiveExpression expression		{
-						  $2->set_verbose(true);
-						  $1->push_back($2);
-						  $$ = new ast::SeqExp(@$, *$1);
-						}
-| recursiveExpression expression COMMENT	{
-						  $2->set_verbose(true);
-						  $1->push_back($2);
-						  $1->push_back(new ast::CommentExp(@3, $3));
-						  $$ = new ast::SeqExp(@$, *$1);
-						}
-| expression					{
-						  ast::exps_t *tmp = new ast::exps_t;
-						  $1->set_verbose(true);
-						  tmp->push_front($1);
-						  $$ = new ast::SeqExp(@$, *tmp);
-						}
-| expression COMMENT				{
-						  ast::exps_t *tmp = new ast::exps_t;
-						  $1->set_verbose(true);
-						  tmp->push_front(new ast::CommentExp(@2, $2));
-						  tmp->push_front($1);
-						  $$ = new ast::SeqExp(@$, *tmp);
-						}
+recursiveExpression                             {
+                                                  $$ = new ast::SeqExp(@$, *$1);
+                                                }
+| recursiveExpression expression                {
+                                                  $2->set_verbose(true);
+                                                  $1->push_back($2);
+                                                  $$ = new ast::SeqExp(@$, *$1);
+                                                }
+| recursiveExpression expression COMMENT        {
+                                                  $2->set_verbose(true);
+                                                  $1->push_back($2);
+                                                  $1->push_back(new ast::CommentExp(@3, $3));
+                                                  $$ = new ast::SeqExp(@$, *$1);
+                                                }
+| expression                                    {
+                                                  ast::exps_t *tmp = new ast::exps_t;
+                                                  $1->set_verbose(true);
+                                                  tmp->push_front($1);
+                                                  $$ = new ast::SeqExp(@$, *tmp);
+                                                }
+| expression COMMENT                            {
+                                                  ast::exps_t *tmp = new ast::exps_t;
+                                                  $1->set_verbose(true);
+                                                  tmp->push_front(new ast::CommentExp(@2, $2));
+                                                  tmp->push_front($1);
+                                                  $$ = new ast::SeqExp(@$, *tmp);
+                                                }
 ;
 
 /*
@@ -387,12 +387,12 @@ recursiveExpression expression expressionLineBreak	{
 */
 /* Fake Rule : How can we be sure this is the end of an instruction. */
 expressionLineBreak :
-SEMI						{ $$ = false; }
-| COMMA						{ $$ = true; }
-| EOL						{ $$ = true; }
-| expressionLineBreak SEMI			{ $$ = false; }
-| expressionLineBreak COMMA			{ $$ = true; }
-| expressionLineBreak EOL			{ $$ = $1; }
+SEMI                            { $$ = false; }
+| COMMA                         { $$ = true; }
+| EOL                           { $$ = true; }
+| expressionLineBreak SEMI      { $$ = false; }
+| expressionLineBreak COMMA     { $$ = $1; }
+| expressionLineBreak EOL       { $$ = $1; }
 ;
 
 /*
@@ -1253,9 +1253,18 @@ LBRACK matrixOrCellColumns RBRACK			{ $$ = new ast::AssignListExp(@$, *$2); }
 */
 /* If Then Else End control block */
 ifControl :
-IF condition then thenBody END				{ $$ = new ast::IfExp(@$, *$2, *$4); }
-| IF condition then thenBody else elseBody END		{ $$ = new ast::IfExp(@$, *$2, *$4, *$6); }
-| IF condition then thenBody elseIfControl END		{ $$ = new ast::IfExp(@$, *$2, *$4, *$5); }
+IF condition then thenBody END                          { $$ = new ast::IfExp(@$, *$2, *$4); }
+| IF condition then thenBody else elseBody END          {
+    if ($6 != NULL)
+    {
+        $$ = new ast::IfExp(@$, *$2, *$4, *$6);
+    }
+    else
+    {
+       $$ = new ast::IfExp(@$, *$2, *$4);
+    }
+    }
+| IF condition then thenBody elseIfControl END          { $$ = new ast::IfExp(@$, *$2, *$4, *$5); }
 ;
 
 /*
@@ -1263,14 +1272,14 @@ IF condition then thenBody END				{ $$ = new ast::IfExp(@$, *$2, *$4); }
 */
 /* Instructions that can be managed inside THEN */
 thenBody :
-expressions						{ $$ = $1; }
-| /* Epsilon */						{
-							  ast::exps_t *tmp = new ast::exps_t;
-							  #ifdef BUILD_DEBUG_AST
-							  tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty then body")));
-							  #endif
-							  $$ = new ast::SeqExp(@$, *tmp);
-							}
+expressions                             { $$ = $1; }
+| /* Epsilon */                         {
+    ast::exps_t *tmp = new ast::exps_t;
+    #ifdef BUILD_DEBUG_AST
+    tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty then body")));
+    #endif
+    $$ = new ast::SeqExp(@$, *tmp);
+                                        }
 ;
 
 /*
@@ -1278,14 +1287,16 @@ expressions						{ $$ = $1; }
 */
 /* Instructions that can be managed inside ELSE */
 elseBody :
-expressions						{ $$ = $1; }
-| /* Epsilon */						{
-							  ast::exps_t *tmp = new ast::exps_t;
-							  #ifdef BUILD_DEBUG_AST
-							  tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty else body")));
-							  #endif
-							  $$ = new ast::SeqExp(@$, *tmp);
-							}
+expressions                             { $$ = $1; }
+| /* Epsilon */                         {
+                                         #ifdef BUILD_DEBUG_AST
+                                           ast::exps_t *tmp = new ast::exps_t;
+                                           tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty else body")));
+                                           $$ = new ast::SeqExp(@$, *tmp);
+                                         #else
+                                           $$ = NULL;
+                                         #endif
+                                        }
 ;
 
 /*

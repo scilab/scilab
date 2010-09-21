@@ -78,6 +78,7 @@ id              (([a-zA-Z_%#?]|{utf})([a-zA-Z_0-9#?]|{utf})*)
 
 newline			("\n"|"\r\n"|"\r")
 blankline		^[ \t\v\f]+{newline}
+emptyline       ^[ \t\v\f,;]+{newline}
 next			(".."|"...")
 
 boolnot			("@"|"~")
@@ -642,6 +643,12 @@ assign			"="
   scan_throw(EOL);
 }
 
+<INITIAL,MATRIX>{emptyline}		{
+  yylloc.last_line += 1;
+  yylloc.last_column = 1;
+  scan_step();
+  scan_throw(EOL);
+}
 .					{
     std::string str = "unexpected token '";
     str += yytext;
