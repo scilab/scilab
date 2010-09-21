@@ -22,7 +22,7 @@ function demo_lqg2()
   frq=logspace(-3,3);     //10^-3  to 10^3 
   y=svplot(Slqg);       //Computes singular values;
   clf();
-  xset("window",0);
+  scf(100001);
   gainplot(frq,y)   //Plot sing. values
   w1=1/(s+1);
   w2=100;
@@ -31,7 +31,7 @@ function demo_lqg2()
   [Kinf,ro]=h_inf(Pinf,r,0,0.1,50);
   [Sinf,Rinf,Tinf]=sensi(P22,Kinf);  //Sensitivity functions
   y=svplot(Sinf);       //Computes singular values;
-  xset("window",1);
+  scf(100002);
   show_window();
   gainplot(frq,y)   //Plot sing. values
 
