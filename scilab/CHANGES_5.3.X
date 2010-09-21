@@ -122,7 +122,7 @@ The matrices of integer are now handled.
 Graphics:
 =========
 
-* The icons has been updated to the Tango Art libre icons and to the Inkscape 
+* The icons have been updated to the Tango Art libre icons and to the Inkscape
   themable icons.
 
 * bug 6395 fixed - evans display improved to take special care of the
