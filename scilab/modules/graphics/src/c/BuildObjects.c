@@ -1265,7 +1265,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 
   /* allocatePolyline created a "fake" relationship, destroy it */
   /*
-   * Deactivated since the sciPolyline struct is not used anymore
+   * Deactivated since the sciPolyline struct is not used anymore 
    * and sciStandardBuildOperations uses the obsolete C hierarchical
    * relationships.
    * The operations still relevant are performed below
@@ -1281,6 +1281,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
     return NULL;
   }
 #endif
+
+  setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
 
   if (sciAddNewHandle(pobj) == -1)
   {
