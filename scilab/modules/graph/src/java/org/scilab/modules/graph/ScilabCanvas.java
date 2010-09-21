@@ -219,7 +219,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			paintRectangle(state.getLabelBounds().getRectangle(), bg, border);
 
 			// Paints the label and restores the graphics object
-			shape.paintShape(this, text, state.getLabelBounds(), style);
+			shape.paintShape(this, text, state, style);
 			g.dispose();
 			g = previousGraphics;
 		}

@@ -80,7 +80,7 @@ public class GraphHandler extends mxGraphHandler {
 				if (cell == null) {
 					createTextBlock(e);
 				} else if (cell instanceof BasicLink) {
-					addPoint(e, (BasicLink) cell);
+					clickOnLink(e, (BasicLink) cell);
 				} else if (cell instanceof BasicBlock) {
 					openBlock(e, (BasicBlock) cell);
 				}
@@ -143,7 +143,7 @@ public class GraphHandler extends mxGraphHandler {
 	 * @param e the event
 	 * @param cell the link
 	 */
-	private void addPoint(MouseEvent e, BasicLink cell) {
+	private void clickOnLink(MouseEvent e, BasicLink cell) {
 		// getting the point list
 		List<mxPoint> points = graphComponent.getGraph().getCellGeometry(cell)
 				.getPoints();
@@ -156,12 +156,16 @@ public class GraphHandler extends mxGraphHandler {
 		mxPoint pt = new mxPoint(e.getPoint());
 		pt = graphComponent.snapScaledPoint(pt);
 		
-		// add the point to the list and fire event
+		// add or remove the point to the list and fire event
 		final mxIGraphModel model = graphComponent.getGraph().getModel();
 		model.beginUpdate();
 		try {
 			final int index = cell.findNearestSegment(pt);
-			points.add(index, pt);
+			if (index > points.size() && points.get(index).getPoint().distanceSq(pt.getPoint()) == 0) {
+				points.remove(index);
+			} else {
+				points.add(index, pt);
+			}
 			model.setGeometry(cell, (mxGeometry) cell.getGeometry().clone());
 		} finally {
 			model.endUpdate();

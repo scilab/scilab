@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.graph.swing.handler;
 
+import java.awt.event.MouseEvent;
+
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 
 import com.mxgraph.model.mxICell;

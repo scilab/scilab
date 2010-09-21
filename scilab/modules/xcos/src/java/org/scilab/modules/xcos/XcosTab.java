@@ -364,7 +364,6 @@ public class XcosTab extends ScilabTab {
 		final CheckBoxMenuItem gridMenu = ViewGridAction
 				.createCheckBoxMenu(diagram);
 		format.add(gridMenu);
-		(diagram).setGridMenuItem(menu);
 
 		/** Tools menu */
 		tools = ScilabMenu.createMenu();
