@@ -296,4 +296,18 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 	 * @param exprs the associated block expression.
 	 */
 	public void updateLabel(ScilabType exprs) { }
+	
+    /*
+     * Overriden methods from jgraphx
+     */
+    
+    /**
+     * @return true if not already connected
+     * @see com.mxgraph.model.mxCell#isConnectable()
+     */
+    @Override
+    public boolean isConnectable() {
+    	final int edges = getEdgeCount();
+    	return edges == 0 || getEdgeAt(0).getTerminal(false) == null;
+    }
 }

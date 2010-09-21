@@ -1491,6 +1491,19 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		return parametersPCS;
 	}
 	
+    /*
+     * Overriden methods from jgraphx
+     */
+    
+    /**
+     * @return always false
+     * @see com.mxgraph.model.mxCell#isConnectable()
+     */
+    @Override
+    public boolean isConnectable() {
+    	return false;
+    }
+	
 	/**
 	 * Re-associate fields with the new instance.
 	 * 

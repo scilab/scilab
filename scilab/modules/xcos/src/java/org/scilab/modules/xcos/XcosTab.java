@@ -1,3 +1,4 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clément DAVID
@@ -363,7 +364,6 @@ public class XcosTab extends ScilabTab {
 		final CheckBoxMenuItem gridMenu = ViewGridAction
 				.createCheckBoxMenu(diagram);
 		format.add(gridMenu);
-		(diagram).setGridMenuItem(menu);
 
 		/** Tools menu */
 		tools = ScilabMenu.createMenu();

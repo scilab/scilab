@@ -8,6 +8,8 @@ Xcos:
 
 * Use a user-friendly error message on the palette management implementation.
 
+* Update to the latest jgraphx version.
+
 * bug 6500 fixed - The ideal transformer block was unusable due to wrong port
                    positioning (update the Transfomer demo).
 
