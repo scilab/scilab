@@ -223,10 +223,10 @@ Bug Fixes:
 
 * bug 8006 fixed - mgetl produced a memory allocation error.
 
+* bug 8032 fixed - cdfnor was able to fail silently.
+
 * bug 8055 fixed - lines() was wrongly updated when the console had the focus
                    back.
-
-* bug 8032 fixed - cdfnor was able to fail silently.
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
          ===============================================================
