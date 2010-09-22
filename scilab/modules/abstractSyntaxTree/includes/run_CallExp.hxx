@@ -92,9 +92,9 @@ void visitprivate(const CallExp &e)
             std::wostringstream os;
             wchar_t szError[bsiz];
 #ifdef _MSC_VER
-            swprintf_s(szError, bsiz, _W("Function \"%s\" failed\n"), pCall->getName().c_str());
+            swprintf_s(szError, bsiz, _W("at line % 5d of function %s called by :\n"), e.location_get().first_line, pCall->getName().c_str());
 #else
-            swprintf(szError, bsiz, _W("Function \"%ls\" failed\n"), pCall->getName().c_str());
+            swprintf(szError, bsiz, _W("at line % 5d of function %s called by :\n"), e.location_get().first_line, pCall->getName().c_str());
 #endif
             throw wstring(szError);
         }

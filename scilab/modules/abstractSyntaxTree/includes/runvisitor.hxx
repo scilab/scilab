@@ -1432,7 +1432,7 @@ namespace ast
 #ifdef _MSC_VER
                 sprintf_s(st, bsiz, _("%s: Wrong type for argument %d: Scalar expected.\n"), ":", iPos);
 #else
-                sprintf(st, _("%s: Wrong type for argument %d: Scalar expected.\n"), "::", 1);
+                sprintf(st, _("%s: Wrong type for argument %d: Scalar expected.\n"), ":", iPos);
 #endif
                 throw string(st);
             }
