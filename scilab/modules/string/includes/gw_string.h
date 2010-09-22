@@ -41,7 +41,6 @@ STRING_IMPEXP int sci_strtod(char *fname,unsigned long fname_len);
 //STRING_IMPEXP int sci_NumTokens(char *fname,unsigned long fname_len);
 
 //YaSp
-STRING_IMPEXP int sci_length(char *fname, int* _piKey);
 STRING_IMPEXP int sci_strsplit(char *fname, int* _piKey);
 STRING_IMPEXP int sci_isdigit(char *fname, int* _piKey);
 STRING_IMPEXP int sci_isalphanum(char *fname, int* _piKey);
