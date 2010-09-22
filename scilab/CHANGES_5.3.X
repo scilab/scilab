@@ -52,6 +52,9 @@ Xcos:
 
 * bug 8052 fixed - The value of a I/O block was used for computational purpose.
 
+* bug 8071 fixed - The PROD_f block in the Fibonacci demo was not well 
+                   rendered.
+
 * bug 8073 fixed - The child context could not be used to specify masked 
                    super-blocks parameters.
 
