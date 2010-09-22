@@ -399,6 +399,10 @@
 				RelativePath="..\..\sci_gateway\cpp\sci_editvar.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\cpp\UpdateBrowseVar.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -422,6 +426,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_ui_data.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\UpdateBrowseVar.h"
 				>
 			</File>
 		</Filter>
