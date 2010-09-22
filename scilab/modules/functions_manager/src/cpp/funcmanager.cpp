@@ -210,16 +210,7 @@ bool FuncManager::AppendModules()
 		encoding = NULL;
 	}
 
-    String *pS  = new String(static_cast<int>(m_ModuleName.size()), 1);
-
-    list<wstring>::iterator it = m_ModuleName.begin();
-    for(int i = 0; it != m_ModuleName.end() ; it++,i++)
-    {
-        pS->string_set(i, it->c_str());
-    }
-
-    symbol::Context::getInstance()->put(L"modules_list", *pS);
-
+    ConfigVariable::setModuleList(m_ModuleName);
     FREE(pstTemp);
 
 	return true;

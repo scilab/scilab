@@ -32,6 +32,11 @@ void ConfigVariable::setModuleList(list<wstring>& _pModule_list)
 list<wstring> ConfigVariable::getModuleList()
 {
     list<wstring> moduleList;
+    list<wstring>::iterator it;
+    for(it = m_ModuleList.begin() ; it != m_ModuleList.end() ; it++)
+    {
+        moduleList.push_back(*it);
+    }
     return moduleList;
 }
 /*
