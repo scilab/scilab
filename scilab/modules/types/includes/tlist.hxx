@@ -39,6 +39,8 @@ namespace types
         InternalType*                   get(const std::wstring& _sKey);
         InternalType*                   get(const int _iIndex);
         int                             getIndexFromString(const std::wstring _sKey);
+        bool                            set(const std::wstring& _sKey, InternalType* _pIT);
+        bool                            set(const int _iIndex, InternalType* _pIT);
 
         std::vector<InternalType*>      extract_string(list<wstring> _stFields);
 
