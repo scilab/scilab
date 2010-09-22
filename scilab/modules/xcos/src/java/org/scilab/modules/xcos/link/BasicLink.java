@@ -32,7 +32,6 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
 import org.scilab.modules.xcos.link.actions.StyleStraightAction;
 import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
-import org.scilab.modules.xcos.link.actions.TextAction;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
@@ -335,11 +334,12 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	    setSource(linkTarget);
 	    setTarget(linkSource);
 
-	    removePoints();
-	    for (int i = points.size() - 1; i >= 0; i--) {
-		addPoint(points.get(i).getX(), points.get(i).getY());
+	    if (points != null) {
+		    removePoints();
+		    for (int i = points.size() - 1; i >= 0; i--) {
+		    	addPoint(points.get(i).getX(), points.get(i).getY());
+		    }
 	    }
-	    
     }
     
     /*
