@@ -629,10 +629,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_isfile.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_maxfiles.c"
 				>
 			</File>

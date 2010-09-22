@@ -46,7 +46,7 @@ src/c/basename.c \
 src/c/pathconvert.c \
 src/c/copyfile_others.c \
 src/c/getFullFilename.c \
-src/c/os_wfopen.c 
+src/c/os_wfopen.c
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -80,8 +80,7 @@ sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
 sci_gateway/c/sci_getrelativefilename.c \
 sci_gateway/c/sci_copyfile.c \
-sci_gateway/c/sci_movefile.c \
-sci_gateway/c/sci_isfile.c
+sci_gateway/c/sci_movefile.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/fileio_gw.cpp \
@@ -96,7 +95,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_filesep.cpp \
 	sci_gateway/cpp/sci_fileparts.cpp \
 	sci_gateway/cpp/sci_findfiles.cpp \
-	sci_gateway/cpp/sci_basename.cpp
+	sci_gateway/cpp/sci_basename.cpp \
+	sci_gateway/cpp/sci_isfile.cpp
+
 
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \

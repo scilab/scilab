@@ -50,7 +50,6 @@ FILEIO_IMPEXP int sci_pwd(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_chdir(char *fname, int* _piKey);
 FILEIO_IMPEXP int sci_copyfile(char *fname,int* _piKey);
 FILEIO_IMPEXP int sci_movefile(char *fname, int* _piKey);
-FILEIO_IMPEXP int sci_isfile(char *fname, int* _piKey);
 
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_FILEIO_H__ */

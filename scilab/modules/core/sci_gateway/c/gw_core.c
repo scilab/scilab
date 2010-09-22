@@ -67,7 +67,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_getmemory),"getmemory"},
 {C2F(sci_getmd5),"getmd5"},
 {NULL,""}, //getmodules
-{C2F(sci_with_module),"with_module"},
+{NULL, ""}, //with_module
 {NULL, ""}, //getdebuginfo
 {C2F(sci_readgateway),"readgateway"},
 {NULL, ""} //exit

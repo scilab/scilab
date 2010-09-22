@@ -773,10 +773,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_with_module.c"
-				>
-			</File>
-			<File
 				RelativePath=".\scimem.c"
 				>
 			</File>

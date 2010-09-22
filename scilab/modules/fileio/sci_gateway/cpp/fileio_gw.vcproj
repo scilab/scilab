@@ -353,6 +353,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_isfile.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_mclose.cpp"
 				>
 			</File>

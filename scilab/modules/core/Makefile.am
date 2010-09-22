@@ -233,7 +233,6 @@ sci_gateway/c/gw_core.c \
 sci_gateway/c/gw_user.c \
 sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
-sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
@@ -267,7 +266,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_isglobal.cpp \
 	sci_gateway/cpp/sci_getscilabmode.cpp \
 	sci_gateway/cpp/sci_getos.cpp \
-	sci_gateway/cpp/sci_exists.cpp
+	sci_gateway/cpp/sci_exists.cpp \
+	sci_gateway/cpp/sci_with_module.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
