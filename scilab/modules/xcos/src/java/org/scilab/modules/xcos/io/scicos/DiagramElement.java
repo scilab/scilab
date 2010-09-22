@@ -38,6 +38,7 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
 
@@ -232,8 +233,9 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			if (blockElement.canDecode(data)) {
 				BasicBlock block = blockElement.decode(data, null);
 				blocks.put(i, block);
-				BlockPositioning.updateBlockView(block);
 				cell = block;
+				
+				BlockPositioning.updateBlockView(block);
 				
 				minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
 			} else if (labelElement.canDecode(data)) {
@@ -269,11 +271,21 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		/*
 		 * Perform post-calculus
 		 */
-		final mxICell defaultParent = ((mxICell) diag.getDefaultParent());
-		
-		// Translate the y axis
+
+		// Translate the y axis for blocks and links
 		final double minY = -minimalYaxisValue + V_MARGIN;
-		defaultParent.setGeometry(new mxGeometry(H_MARGIN, minY, 0, 0));
+		mxGraphModel.filterDescendants(diag.getModel(), new mxGraphModel.Filter() {
+			@Override
+			public boolean filter(Object cell) {
+				mxGeometry geom = ((mxICell) cell).getGeometry();
+				if (geom != null && (cell instanceof BasicBlock || cell instanceof BasicLink)) {
+					geom.translate(H_MARGIN, minY);
+				}
+				
+				// never store the cell
+				return false;
+			}
+		});
 	}
 	
 	/**

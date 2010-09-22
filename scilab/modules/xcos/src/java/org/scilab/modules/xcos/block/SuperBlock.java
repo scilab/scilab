@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -42,6 +41,7 @@ import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -200,7 +200,7 @@ public final class SuperBlock extends BasicBlock {
 		} else {
 			// reassociate (useful on clone and load operation)
 			getChild().setContainer(this);
-			getChild().setComponent(new ScilabComponent(getChild()));
+			getChild().setComponent(new GraphComponent(getChild()));
 			
 			getChild().initComponent();
 			getChild().installStylesheet();
