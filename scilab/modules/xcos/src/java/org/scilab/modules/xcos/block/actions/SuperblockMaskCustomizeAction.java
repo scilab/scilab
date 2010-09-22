@@ -42,6 +42,7 @@ import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -89,8 +90,9 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
 				.getSelectionCell();
-
-		CustomizeFrame frame = new CustomizeFrame();
+		block.createChildDiagram(); // assert that diagram is an xcos one
+		
+		CustomizeFrame frame = new CustomizeFrame(block.getChild());
 		CustomizeFrame.CustomizeFrameModel model = frame.getController()
 				.getModel();
 		model.setBlock(block);
@@ -104,7 +106,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	 */
 	// CSOFF: ClassDataAbstractionCoupling
 	private class CustomizeFrame extends JFrame {
-		private CustomizeFrameControler controler;
+		private final CustomizeFrameControler controler;
 
 		private javax.swing.JPanel buttonBlob;
 		private javax.swing.JButton cancelButton;
@@ -130,12 +132,13 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 		/**
 		 * Constructor
+		 * @param superBlockDiagram the diagram
 		 */
-		public CustomizeFrame() {
+		public CustomizeFrame(SuperBlockDiagram superBlockDiagram) {
 			setTitle(XcosMessages.MASK_TITLE);
 			setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 			controler = new CustomizeFrameControler();
-			initComponents();
+			initComponents(superBlockDiagram);
 		}
 
 		/**
@@ -147,10 +150,11 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 		/**
 		 * Construct the UI and install the listeners.
+		 * @param superBlockDiagram the diagram
 		 */
 		// CSOFF: JavaNCSS
 		// CSOFF: MagicNumber
-		private void initComponents() {
+		private void initComponents(SuperBlockDiagram superBlockDiagram) {
 
 			/* Construct the components */
 			mainPanel = new javax.swing.JPanel();
@@ -290,8 +294,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			/* Evaluate the context and set up the variable name selection */
 			TableColumn vars = varCustomizeTable.getColumnModel().getColumn(1);
 			JComboBox validVars = new JComboBox();
-			XcosDiagram graph = (XcosDiagram) getGraph(null);
-			Map<String, String> context = graph.evaluateContext();
+			Map<String, String> context = superBlockDiagram.evaluateContext();
 			for (String key : context.keySet()) {
 				validVars.addItem(key);
 			}
@@ -540,7 +543,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		 * Implement the action listeners for the frame
 		 */
 		private class CustomizeFrameControler {
-			private CustomizeFrameModel model;
+			private final CustomizeFrameModel model;
 
 			private final ActionListener cancelActionListener = new ActionListener() {
 				@Override
@@ -786,20 +789,4 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		}
 	}
 	// CSON: ClassDataAbstractionCoupling
-
-	/**
-	 * Ease the development of the UI (debug).
-	 * 
-	 * @param args
-	 *            Unused
-	 */
-	public static void main(String[] args) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new SuperblockMaskCustomizeAction(null).new CustomizeFrame()
-					.setVisible(true);
-			}
-		});
-	}
 }
