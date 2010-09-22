@@ -57,7 +57,8 @@ Xcos:
 
 Statistics:
 ===========
-* statistics: added examples for cdfnor
+
+* Examples added in the "cdfnor" help page.
 
 SciNotes:
 =========
