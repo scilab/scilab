@@ -41,6 +41,13 @@ Compilation:
 * -Wimplicit removed for gfortran in the enable debug mode
 
 
+Bug fixes:
+==========
+
+* bug 7691 fixed - Giving complex arguments to inverse degree trigonometric 
+                   functions produced inconsistent results.
+
+
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
