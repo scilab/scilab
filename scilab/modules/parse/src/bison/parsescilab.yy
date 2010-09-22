@@ -236,6 +236,7 @@
 
  // TRY Control
 %type<t_try_exp>	tryControl
+%type<t_seq_exp>    catchBody
 
  // SELECT Control
 %type<t_select_exp> selectControl
@@ -1560,14 +1561,14 @@ WHILE condition whileConditionBreak whileBody END	{ $$ = new ast::WhileExp(@$, *
 */
 /* Which instructions can be used in a while loop. */
 whileBody :
-expressions			{ $$ = $1; }
+expressions             { $$ = $1; }
 | /* Epsilon */			{
-				  ast::exps_t *tmp = new ast::exps_t;
-				  #ifdef BUILD_DEBUG_AST
-				    tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty while body")));
-				  #endif
-				  $$ = new ast::SeqExp(@$, *tmp);
-				}
+                          ast::exps_t *tmp = new ast::exps_t;
+                          #ifdef BUILD_DEBUG_AST
+                            tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty while body")));
+                          #endif
+                          $$ = new ast::SeqExp(@$, *tmp);
+                        }
 ;
 
 /*
@@ -1600,20 +1601,33 @@ COMMA                   { /* !! Do Nothing !! */ }
 */
 /* try ... catch ... end control block. */
 tryControl :
-TRY EOL expressions CATCH EOL expressions END			{ $$ =new ast::TryCatchExp(@$, *$3, *$6); }
-| TRY COMMENT EOL expressions CATCH EOL expressions END		{
-								  $4->exps_get().push_front(new ast::CommentExp(@2, $2));
-								  $$ =new ast::TryCatchExp(@$, *$4, *$7);
-								}
-| TRY EOL expressions CATCH COMMENT EOL expressions END		{
-								  $7->exps_get().push_front(new ast::CommentExp(@5, $5));
-								  $$ =new ast::TryCatchExp(@$, *$3, *$7);
-								}
-| TRY COMMENT EOL expressions CATCH COMMENT EOL expressions END {
-								  $4->exps_get().push_front(new ast::CommentExp(@2, $2));
-								  $8->exps_get().push_front(new ast::CommentExp(@6, $6));
-								  $$ =new ast::TryCatchExp(@$, *$4, *$8);
-								}
+TRY catchBody CATCH catchBody END                 { $$ =new ast::TryCatchExp(@$, *$2, *$4); }
+;
+
+/*
+** -*- CATCH BODY -*-
+*/
+/* Wich instructions can be used in a catch control. */
+catchBody :
+EOL expressions                 { $$ = $2; }
+| COMMENT EOL expressions       {
+                                  $3->exps_get().push_front(new ast::CommentExp(@1, $1));
+                                  $$ = $3;
+                                }
+| EOL                           {
+                                  ast::exps_t *tmp = new ast::exps_t;
+                                  #ifdef BUILD_DEBUG_AST
+                                    tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty catch body")));
+                                  #endif
+                                  $$ = new ast::SeqExp(@$, *tmp);
+                                }
+| /* Epsilon */                 {
+                                  ast::exps_t *tmp = new ast::exps_t;
+                                  #ifdef BUILD_DEBUG_AST
+                                    tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty catch body")));
+                                  #endif
+                                  $$ = new ast::SeqExp(@$, *tmp);
+                                }
 ;
 
 /*
