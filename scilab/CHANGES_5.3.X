@@ -55,6 +55,10 @@ Xcos:
 * bug 8073 fixed - The child context could not be used to specify masked 
                    super-blocks parameters.
 
+Statistics:
+===========
+* statistics: added examples for cdfnor
+
 SciNotes:
 =========
 
