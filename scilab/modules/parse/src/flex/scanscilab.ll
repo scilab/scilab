@@ -661,6 +661,10 @@ assign			"="
 
 <MATRIX>
 {
+  {spaces}*{colon}{spaces}* {
+      return scan_throw(COLON);
+  }
+
   {rbrack}				{
     DEBUG("yy_pop_state()");
     yy_pop_state();
