@@ -234,7 +234,7 @@ void visitprivate(const AssignExp  &e)
             }
             else if(execMeR.result_get()->isContainer())
             {
-                std::cout << "assign container type during insertion" << std::endl;
+                //std::cout << "assign container type during insertion" << std::endl;
                 InternalType* pIL = execMeR.result_get()->clone();
                 execMeR.result_set(pIL);
             }
@@ -421,15 +421,31 @@ void visitprivate(const AssignExp  &e)
         }
         else if(pField)
         {//a.b = x
+            //a.b can be a struct or a tlist/mlist
+            InternalType *pHead = NULL;
             Struct* pStr = getStructFromExp(pField->head_get());
-
-            if(pStr->isRef(1) == true)
+            if(pStr != NULL)
             {
-                pStr = pStr->clone();
-                const wstring *pstName = getStructNameFromExp(pField);
-                symbol::Context::getInstance()->put(*pstName, *pStr);
+                pHead = pStr;
+            }
+            else
+            {
+                //a is not a struct
+                const SimpleVar* pVar =  dynamic_cast<const SimpleVar*>(pField->head_get());
+                if(pVar == NULL)
+                {
+                    std::cout << "Houston ..." << std::endl;
+                }
+                pHead = symbol::Context::getInstance()->get(pVar->name_get());
             }
 
+            //if a is already assign, make a copy and replace it
+            if(pHead->isRef(1) == true)
+            {
+                pHead = pHead->clone();
+                const wstring *pstName = getStructNameFromExp(pField);
+                symbol::Context::getInstance()->put(*pstName, *pHead);
+            }
             /*getting what to assign*/
             execMeR.expected_size_set(1);
             e.right_exp_get().accept(execMeR);
@@ -455,15 +471,37 @@ void visitprivate(const AssignExp  &e)
                 }
             }
             else if(pIT->isContainer())
-            {
-                std::cout << "assign container type to field" << std::endl;
+            {//if assigned value is a container, copy it before assign.
+                //std::cout << "assign container type to field" << std::endl;
                 pIT = pIT->clone();
             }
 
             //assign result to new field
             const SimpleVar* pTail =  dynamic_cast<const SimpleVar*>(pField->tail_get());
 
-            pStr->add(pTail->name_get(), pIT);
+            if(pHead->isStruct())
+            {
+                pHead->getAsStruct()->add(pTail->name_get(), pIT);
+            }
+            else if(pHead->isTList())
+            {
+                TList* pT = pHead->getAsTList();
+                if(pT->exists(pTail->name_get()))
+                {
+                    pT->set(pTail->name_get(), pIT);
+                }
+                else
+                {
+                    std::wostringstream os;
+                    os << L"Field must be exist";
+                    throw os.str();
+                }
+            }
+            else if(pHead->isMList())
+            {
+                //TODO:
+            }
+
             if(e.is_verbose())
             {
                 const wstring *pstName = getStructNameFromExp(pField);
