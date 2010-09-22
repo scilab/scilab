@@ -178,6 +178,9 @@ Bug Fixes:
 
 * bug 7690 fixed - Long lines removed in the parallel_run help page.
 
+* bug 7748 fixed - The help page of rcond was wrong: only one output 
+                   argument is provided.
+
 * bug 7862 fixed - "savematfile" only saved the first string in the vector
                    (or matrix) when variable is a vector (or matrix) of strings.
 
