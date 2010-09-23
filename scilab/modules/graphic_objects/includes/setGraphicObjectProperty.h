@@ -20,6 +20,7 @@
 #include "returnType.h"
 #include "dynlib_graphic_objects.h"
 
+GRAPHIC_OBJECTS_IMPEXP void setGraphicObjectRelationship(char *_parentId, char *_childId);
 GRAPHIC_OBJECTS_IMPEXP BOOL setGraphicObjectProperty(char *_psUID, char *_psPropertyName, void *_pvValue, enum _ReturnType_ _valueTtype, int numElements);
 
 #endif /* !__SETGRAPHICOBJECTPROPERTY_H__ */

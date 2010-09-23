@@ -9,6 +9,12 @@
     <method name="askGraphicObject" returnType="String" modifier="static">
       <parameter name="typeName" type="String" />
     </method>
+    
+    <method name="setGraphicObjectRelationship" returnType="void" modifier="static">
+      <parameter name="parentId" type="String"/>
+      <parameter name="childId" type="String"/>
+    </method>    
+    
     <method name="getGraphicObjectPropertyAsString" returnType="String" modifier="static">
       <parameter name="id" type="String"/>
       <parameter name="propertyName" type="String"/>

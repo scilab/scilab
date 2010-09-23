@@ -25,6 +25,11 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
+void setGraphicObjectRelationship(char *_parentId, char *_childId)
+{
+    CallGraphicController::setGraphicObjectRelationship(getScilabJavaVM(), _parentId, _childId);
+}
+
 BOOL setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _ReturnType_ _valueType, int numElements)
 {
     bool result = false;
@@ -37,7 +42,7 @@ BOOL setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _Ret
     if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)
     {
         result = DataController::setGraphicObjectProperty(_pstID, _pstName, _pvValue, numElements);
-
+        CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, __GO_DATA_MODEL__, (char *)_pstID);
         return booltoBOOL(result);
     }
 

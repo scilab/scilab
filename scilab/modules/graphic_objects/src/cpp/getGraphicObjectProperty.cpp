@@ -10,7 +10,6 @@
  *
  */
 
-
 extern "C"
 {
 #include <stdlib.h>
@@ -28,6 +27,7 @@ using namespace org_scilab_modules_graphic_objects;
 
 void *getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _returnType)
 {
+    int lenRow;
     static int localIntResult;
     static int localBoolResult;
     static double localDoubleResult;
@@ -44,28 +44,28 @@ void *getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _retur
         case jni_string :
             return CallGraphicController::getGraphicObjectPropertyAsString(getScilabJavaVM(), _pstID, _pstName);
         case jni_string_vector :
-            return CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _pstName);
+            return CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _pstName, &lenRow);
         case jni_double :
         {
             localDoubleResult = CallGraphicController::getGraphicObjectPropertyAsDouble(getScilabJavaVM(), _pstID, _pstName);
             return &localDoubleResult;
         }
         case jni_double_vector :
-            return CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _pstName);
+            return CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _pstName, &lenRow);
         case jni_bool :
         {
             localBoolResult = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _pstName);
             return &localBoolResult;
         }
         case jni_bool_vector :
-            return CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _pstName);
+            return CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _pstName, &lenRow);
         case jni_int :
         {
             localIntResult = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _pstName);
             return &localIntResult;
         }
         case jni_int_vector :
-            return CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _pstName);
+            return CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _pstName, &lenRow);
 
         default :
             return NULL;
