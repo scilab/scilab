@@ -1,6 +1,7 @@
 /*
  * ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,19 +15,20 @@
 #include "MALLOC.h" /* NULL*/
 #include "error_internal.h"
 #include "msgstore.h"
+#include "lasterror.h"
 /*--------------------------------------------------------------------------*/ 
 int C2F(error)(int *n)
 {
-	return error_internal(n,NULL,ERROR_FROM_FORTRAN);
+    return error_internal(n,NULL,ERROR_FROM_FORTRAN);
 } 
 /*--------------------------------------------------------------------------*/ 
 void SciError(int n)
 {
-	C2F(error)(&n);
+    C2F(error)(&n);
 }
-
+/*--------------------------------------------------------------------------*/
 void SciStoreError(int n)
 {
-	C2F(errstore)(&n);
+    setLastErrorValue(n);
 }
 /*--------------------------------------------------------------------------*/

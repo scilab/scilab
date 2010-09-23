@@ -11,7 +11,10 @@ function nicholschart(modules,args,colors)
   l10=log(10);
   ratio=%pi/180;
 
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   ax=gca();
   nc=size(ax.children,"*")
   if nc==0 then
@@ -178,14 +181,16 @@ function nicholschart(modules,args,colors)
     swap_handles(ax.children(k),ax.children(k+1))
   end
 
-  drawnow() ;
+   fig.immediate_drawing=immediate_drawing;
 endfunction
+
 function str=formatNicholsGainTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for the Nichols chart iso gain curves.
   ud=datatipGetStruct(curve);
   str=msprintf("%.2g"+_("dB"),ud.gain);
 endfunction
+
 function str=formatNicholsPhaseTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for the Nichols chart iso phase curves.

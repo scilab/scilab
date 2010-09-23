@@ -19,7 +19,7 @@ public class Completion {
    * Constructor
    */
  protected Completion() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   
 /**

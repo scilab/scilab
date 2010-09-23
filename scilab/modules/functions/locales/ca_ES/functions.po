@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2009-10-22 16:01+0000\n"
+"PO-Revision-Date: 2010-07-29 09:49+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -65,6 +65,10 @@ msgid "%s: Invalid library %s.\n"
 msgstr "%s: La llibreria %s no és vàlida.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
+
+#, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: No s'ha trobat cap fitxer amb extensió %s a %s\n"
 
@@ -83,11 +87,6 @@ msgstr "%s: Regeneració dels noms i les llibreries\n"
 #, c-format
 msgid "%s: The function has not been built for profiling"
 msgstr "%s: No s'ha fet la funció per al perfil"
-
-#, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr ""
-"%s: No hi ha cap fitxer anomenat %s.sci al directori de llibreries %s.\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
@@ -111,6 +110,10 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -243,18 +246,6 @@ msgstr "S'eliminarà permanentment aquesta funció del Scilab %s"
 
 msgid "Tools"
 msgstr "Eines"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "Avís: La funció %s és obsoleta.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "Avís: Utilitzeu %s.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "Avís: Aquesta funció s'eliminarà de forma permanent a Scilab %s.\n"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "

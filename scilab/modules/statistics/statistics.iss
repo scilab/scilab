@@ -19,7 +19,7 @@
 #define STATISTICS "statistics"
 
 Source: bin\{#STATISTICS}.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
-Source: bin\dcd.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
+Source: bin\dcd_f.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
 ;
 Source: modules\{#STATISTICS}\VERSION.xml; DestDir: {app}\modules\{#STATISTICS}; Components: {#COMPN_STATS}
 Source: modules\{#STATISTICS}\readme.txt; DestDir: {app}\modules\{#STATISTICS}; Components: {#COMPN_STATS}

@@ -16,6 +16,7 @@
 /* desc : Several basic algorithms which can be used in several places in */
 /*        the code.                                                       */
 /*------------------------------------------------------------------------*/
+#include <string.h>
 #include "BasicAlgos.h"
 #include "MALLOC.h"
 #include "core_math.h"

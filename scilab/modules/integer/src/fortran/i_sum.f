@@ -17,11 +17,14 @@ c     WARNING : argument of this interface may be passed by reference
 
       external memused,mtlbsel
       integer memused,mtlbsel
+      integer type
+      integer native
+      parameter (native=0)
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-      if(rhs.gt.2) then
+      if(rhs.gt.3) then
          call error(42)
          return
       endif
@@ -31,19 +34,17 @@ c
       endif
 c
       tops=top
-      sel=0
 c     
       il0=iadr(lstk(tops-rhs+1))
       ilr=il0
       if(istk(il0).lt.0) il0=iadr(istk(il0+1))
       ref=ilr.ne.il0
 c     
-      if(rhs.eq.2) then
-         call  getorient(top,sel)
-         if(err.gt.0) return
-         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
-         top=top-1
-      endif
+      call  orientandtype(sel,type)
+      if (err.gt.0.or.err1.gt.0) return
+      if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
+      
+
       m=istk(il0+1)
       n=istk(il0+2)
       it=istk(il0+3)
@@ -51,6 +52,8 @@ c
       l1=ilr+4
       l=il0+4
       if(mn.eq.0) then
+c     .  as the only empty matrices have a double type this part of code
+c     .  should never be used.
          if(ref) then
             err=sadr(l1+1)-lstk(bot)
             if(err.gt.0) then
@@ -75,6 +78,22 @@ c
          endif
          return
       endif
+      if (sel.gt.2) then
+c     sum(a,sel)-->a
+         lr=sadr(il0+4)
+         err=lr+mn-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call tpconv(it,0, mn,istk(l1),-1,stk(lr),-1)
+         istk(ilr)=1
+         istk(ilr+1)=m
+         istk(ilr+2)=n
+         istk(ilr+3)=0
+         lstk(top+1)=lr+mn
+         return
+      endif
 
       if(sel.eq.0) then
          mr=1
@@ -86,22 +105,46 @@ c
          mr=m
          nr=1
       endif
-      if(ref) then
-         err=sadr(l1+memused(it,mr*nr))-lstk(bot)
+      if(type.eq.native) then
+c     .  return an array of integers
+         if(ref) then
+            err=sadr(l1+memused(it,mr*nr))-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+         endif
+     
+         istk(ilr)=8
+         istk(ilr+1)=mr
+         istk(ilr+2)=nr
+         istk(ilr+3)=it
+         l1=ilr+4
+         call genmsum(it,sel,istk(l),m,m,n,istk(l1),1)
+         lstk(top+1)=sadr(l1+memused(it,mr*nr))
+      else
+c     .  return an array of doubles
+         if(ref) then
+            lr=sadr(ilr+4)
+         else
+            lr=lstk(top+1)
+         endif
+         err=lr+mr*nr-lstk(bot)
          if(err.gt.0) then
             call error(17)
             return
          endif
+         call genmsumasdouble(it,sel,istk(l),m,m,n,stk(lr),1)
+         if (.not.ref) then
+            call dcopy(mr*nr,stk(lr),1,stk(sadr(ilr+4)),1)
+            lr=sadr(ilr+4)
+         endif
+         istk(ilr)=1
+         istk(ilr+1)=mr
+         istk(ilr+2)=nr
+         istk(ilr+3)=0
+         lstk(top+1)=lr+mr*nr
       endif
-      istk(ilr)=8
-      istk(ilr+1)=mr
-      istk(ilr+2)=nr
-      istk(ilr+3)=it
-      l1=ilr+4
-
-      call genmsum(it,sel,istk(l),m,m,n,istk(l1),1)
-
-      lstk(top+1)=sadr(l1+memused(it,mr*nr))
       return
       end
 

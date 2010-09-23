@@ -33,64 +33,66 @@ import org.scilab.modules.scinotes.ScilabDocument;
  */
 public final class SaveFile {
 
-	private static final String LINE_SEPARATOR = "line.separator";
-	
-	/**
-	 * private Constructor
-	 */
-	private SaveFile() {
-	}
-	/**
-	 * save text in JEditorPane
-	 * @param textPane JEditorPane
-	 * @param fOut File
-	 * @param editorKit EditorKit
-	 * @return true if saved
-	 */
-	public static boolean doSave(JEditorPane textPane, File fOut, EditorKit editorKit) {
-		
-		ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
+    private static final String LINE_SEPARATOR = "line.separator";
 
-		// get default eol
-		String defaultEol = System.getProperty(LINE_SEPARATOR);
+    /**
+     * private Constructor
+     */
+    private SaveFile() {
+    }
+    /**
+     * save text in JEditorPane
+     * @param textPane JEditorPane
+     * @param fOut File
+     * @param editorKit EditorKit
+     * @return true if saved
+     */
+    public static boolean doSave(JEditorPane textPane, File fOut, EditorKit editorKit) {
 
-		// set eol used to save file 
-		if (styledDocument.getEOL().compareTo(defaultEol) != 0) {
-			System.setProperty(LINE_SEPARATOR, styledDocument.getEOL());
-		}
-		boolean bReturn = false;
-		
-		BufferedWriter out = null;
-		try {
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fOut), styledDocument.getEncoding()));
-			try {
-				editorKit.write(out, styledDocument, 0, styledDocument.getLength());
-				out.flush();
-				out.close();
-				
-				// restore default eol
-				System.setProperty(LINE_SEPARATOR, defaultEol);
-				
-				bReturn = true;
-				
-			} catch (IOException e) {
-				// restore default eol
-				System.setProperty(LINE_SEPARATOR, defaultEol);
-				bReturn = false;
-			} catch (BadLocationException e) {
-				// restore default eol
-				System.setProperty(LINE_SEPARATOR, defaultEol);
-				bReturn = false;
-			}
-		} catch (UnsupportedEncodingException e) {
-			// restore default eol
-			System.setProperty(LINE_SEPARATOR, defaultEol);
-			bReturn = false;
-		} catch (FileNotFoundException e) {
-			// restore default eol
-			System.setProperty(LINE_SEPARATOR, defaultEol);
-			bReturn = false;
-		}
-		return bReturn;
-	}
+        ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
+
+        // get default eol
+        String defaultEol = System.getProperty(LINE_SEPARATOR);
+
+        // set eol used to save file
+        if (styledDocument.getEOL().compareTo(defaultEol) != 0) {
+            System.setProperty(LINE_SEPARATOR, styledDocument.getEOL());
+        }
+        boolean bReturn = false;
+
+        BufferedWriter bw = null;
+        OutputStreamWriter osw = null;
+        FileOutputStream fos = null;
+
+        try {
+            fos = new FileOutputStream(fOut);
+            osw = new OutputStreamWriter(fos, styledDocument.getEncoding());
+            bw = new BufferedWriter(osw);
+            editorKit.write(bw, styledDocument, 0, styledDocument.getLength());
+            bw.flush();
+
+            bReturn = true;
+        } catch (IOException e) {
+            bReturn = false;
+        } catch (BadLocationException e) {
+            bReturn = false;
+        } finally {
+            try {
+                if (fos != null) {
+                    fos.close();
+                }
+                if (osw != null) {
+                    osw.close();
+                }
+                if (bw != null) {
+                    bw.close();
+                }
+            } catch (IOException e) { }
+        }
+
+        // restore default eol
+        System.setProperty(LINE_SEPARATOR, defaultEol);
+
+        return bReturn;
+    }
 }

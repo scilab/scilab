@@ -9,3 +9,4 @@ subdemolist = ["Car"                ,"car.dem.sce"   ; ..
                "Two trailers truck" ,"truck.dem.sce" ]
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

@@ -22,8 +22,8 @@ MFILECONTENTS=["structure.field = 2;"
 ""
 "data = round(structure.field);"]
 
-MFILE=TMPDIR+"/bug1082.m"
-SCIFILE=TMPDIR+"/bug1082.sci"
+MFILE=TMPDIR+"/bug1082.m";
+SCIFILE=TMPDIR+"/bug1082.sci";
 
 mputl(MFILECONTENTS,MFILE);
 
@@ -39,6 +39,6 @@ SCIFILECONTENTSREF=["";
 "";
 "structure.field = 2;";
 "";
-"data = round(mtlb_double(structure.field));"]
+"data = round(structure.field);"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

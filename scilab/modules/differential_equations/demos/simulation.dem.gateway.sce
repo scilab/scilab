@@ -12,9 +12,10 @@ subdemolist = ["n-pendulum"         ,"n_pendulum/n_pendulum.dem.sce" ;
                "DAE''S"             ,"dae/dae.dem.gateway.sce"       ];
 
 if ~ usecanvas() then
-	subdemolist = [ subdemolist                               ; ..
-		"Flow simulation"   ,"flow/flow.dem.gateway.sce" ; ..
-		"Levitron"          ,"levitron/levitron.dem.sce" ];
+    subdemolist = [ subdemolist                               ; ..
+        "Flow simulation"   ,"flow/flow.dem.gateway.sce" ; ..
+        "Levitron"          ,"levitron/levitron.dem.sce" ];
 end
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

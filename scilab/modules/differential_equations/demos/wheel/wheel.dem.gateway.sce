@@ -9,3 +9,4 @@ subdemolist = ["Reading a precomputed trajectory"                               
                "Simulation with ode (needs f77 and link. may fail, see help link)" ,"wheel2.dem.sce"  ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

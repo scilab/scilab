@@ -27,7 +27,7 @@ public class Product extends BasicBlock {
 	public Product() {
 		super();
 
-		parametersPCS.addPropertyChangeListener("integerParameters",
+		getParametersPCS().addPropertyChangeListener("integerParameters",
 				ProdPortLabelingListener.getInstance());
 	}
 }

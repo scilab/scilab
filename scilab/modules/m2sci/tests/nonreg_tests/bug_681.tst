@@ -16,10 +16,10 @@
 // <-- Short Description -->
 //    m2sci doesn't translate "error" function.
 
-MFILECONTENTS="error(''This is an error message'')"
+MFILECONTENTS="error(''This is an error message'')";
 
-MFILE=TMPDIR+"/bug681.m"
-SCIFILE=TMPDIR+"/bug681.sci"
+MFILE=TMPDIR+"/bug681.m";
+SCIFILE=TMPDIR+"/bug681.sci";
 
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
@@ -38,7 +38,7 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"error(""This is an error message"")"]
+"error(""This is an error message"")"];
 
-correct=%T
+correct=%T;
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

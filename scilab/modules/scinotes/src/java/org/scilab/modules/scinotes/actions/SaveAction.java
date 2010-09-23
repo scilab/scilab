@@ -35,29 +35,33 @@ public final class SaveAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private SaveAction(SciNotes editor) {
-        super(SciNotesMessages.SAVE, editor);
+    public SaveAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
      * Create Menu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.SAVE, null, new SaveAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SaveAction(label, editor), key);
     }
 
     /**
-     * Create Button
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(SciNotes editor) {
-        return createButton(SciNotesMessages.SAVE, "media-floppy.png", new SaveAction(editor));
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new SaveAction(tooltip, editor));
     }
 
     /**

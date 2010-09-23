@@ -6,3 +6,5 @@ subdemolist=["Finite Element display with colorbar" ,"fec.ex4.dem.sce";
           "Sfgrayplot "                             ,"fec.ex3.dem.sce"];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+
+clear demopath;

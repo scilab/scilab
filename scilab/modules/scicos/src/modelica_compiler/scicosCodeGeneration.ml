@@ -1405,7 +1405,7 @@ let generate_code path filename fun_name model with_jac _ init =
     model.external_functions;
   Printf.fprintf oc "\n\n/* Utility functions */\n\n";
   Printf.fprintf oc
-    "double ipow_(double x, int n)\n\
+    "static double ipow_(double x, int n)\n\
      {\n\
      \tdouble y;\n\
      \ty = n %% 2 ? x : 1;\n\
@@ -1416,7 +1416,7 @@ let generate_code path filename fun_name model with_jac _ init =
      \treturn y;\n\
      }\n\
      \n\
-     double ipow(double x, int n)\n\
+     static double ipow(double x, int n)\n\
      {\n\
      \t/* NaNs propagation */\n\
      \tif (x != x || (x == 0.0 && n == 0)) return exp((double)n * log(x));\n\

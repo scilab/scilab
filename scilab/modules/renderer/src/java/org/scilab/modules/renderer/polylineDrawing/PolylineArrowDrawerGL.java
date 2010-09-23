@@ -47,8 +47,8 @@ public class PolylineArrowDrawerGL extends ArrowHeadDrawerGL implements Polyline
 		
 		// store the two endpoints of each arrow
 		for (int i = 0; i < xCoords.length - 1; i++) {
-			if (	GeomAlgos.isVector3DRepresentable(xCoords[i], yCoords[i], zCoords[i]) && 
-					GeomAlgos.isVector3DRepresentable(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1]) ) {
+			if (GeomAlgos.isVector3DRepresentable(xCoords[i], yCoords[i], zCoords[i])
+					&& GeomAlgos.isVector3DRepresentable(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1]) ) {
 				startPoints.addLast(
 					new Vector3D(
 						GeomAlgos.glRepresentable(xCoords[i]),

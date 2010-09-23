@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 15:01+0100\n"
-"PO-Revision-Date: 2010-04-24 16:24+0000\n"
-"Last-Translator: Piotr_Seroka <Unknown>\n"
+"PO-Revision-Date: 2010-06-19 09:30+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-04 21:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -27,11 +26,12 @@ msgstr "%s nie jest zainstalowanym modułem lub przybornikiem."
 
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-msgstr "%s: Testowy ''%s'' nie istnieje lub nie jest odczyt niedostępny.\n"
+msgstr "%s: Test ''%s'' nie istnieje lub nie jest dostępny do odczyt.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
-msgstr "%s: Zły parametr wejściowy: Oczekiwany plik z rozszerzeniem .dia."
+msgstr ""
+"%s: Zły pierwszy argument wejściowy: Oczekiwany plik z rozszerzeniem .dia."
 
 #, c-format
 msgid "%s: Wrong size for input argument."
@@ -39,10 +39,7 @@ msgstr "%s: Zły rozmiar parametru wejściowego."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: Zły typ parametru wejściowego #%d: oczekiwano %s.\n"
-
-msgid "Generating loader.sce...\n"
-msgstr "Generowanie loader.sce...\n"
+msgstr "%s: Niepoprawny typ parametru wejściowego nr %d: oczekiwano %s.\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"
@@ -58,10 +55,10 @@ msgstr "Test zakończony niepowodzeniem. Sprawdź : fc /L /N  %s"
 
 #, c-format
 msgid "Test failed ERROR DETECTED while executing %s"
-msgstr "Test przerwany, WYKRYTO BŁĄD podczas wykonywania %s"
+msgstr "Test przerwany, ERROR DETECTED podczas wykonywania %s"
 
 msgid "Test passed"
-msgstr "Test ukończony"
+msgstr "Test ukończony sukcesem"
 
 #, c-format
 msgid "The ref file (%s) doesn''t exist"
@@ -72,4 +69,4 @@ msgid "The test %s is not available from the %s module"
 msgstr "Testowy %s jest niedostępny z poziomu modułu %s"
 
 msgid "error : Input argument sizes are not valid"
-msgstr "błąd : Rozmiar parametru wejściowego nie jest właściwy"
+msgstr "błąd : Rozmiary parametru wejściowego nie są właściwe"

@@ -1,7 +1,7 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - AS
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,54 +17,34 @@
 #include "machine.h"
 #include "dynlib_output_stream.h"
 
-/* max numbers of lines in "error" buffer */
-#define MAX_MSG_LINES  20
+/* all these functions are obsolete */
+/* only used from fortran */
+/* see lasterror.h */
 
 /**
- * TODO : comment
- * @param n
- */
-OUTPUT_STREAM_IMPEXP int C2F(errstore)(int *n);
-
-
-/**
- * TODO : comment
- * @param n
- */
+* TODO : comment
+* @param n
+*/
 OUTPUT_STREAM_IMPEXP int C2F(linestore)(int *n);
 
 /**
- * TODO : comment
- * @param str
- * @param n
- * @param length str (required by fortran)
- */
+* TODO : comment
+* @param str
+* @param n
+* @param length str (required by fortran)
+*/
 OUTPUT_STREAM_IMPEXP int C2F(funnamestore)(char *str,int *n,int lenstr);
 
 /**
- * TODO : comment
- * @param str
- * @param n
- */
+* TODO : comment
+* @param str
+* @param n
+*/
 OUTPUT_STREAM_IMPEXP int C2F(msgstore)(char *str,int *n);
 
 /**
- * TODO : comment
- */
-OUTPUT_STREAM_IMPEXP void C2F(freemsgtable)(void);
-
-
-/**
- * TODO : comment
- * @param fname
- * @param fname_len
- */
-OUTPUT_STREAM_IMPEXP int C2F(lasterror)(char *fname, unsigned long fname_len);
-
-
-/**
- * TODO : comment
- */
+* TODO : comment
+*/
 OUTPUT_STREAM_IMPEXP int GetLastErrorCode(void);
 
 #endif /* __MSGSTORE_H__ */

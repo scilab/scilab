@@ -12,14 +12,10 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * NextTabAction Class
@@ -28,35 +24,37 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class NextTabAction extends DefaultAction {
 
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 3283491475309953312L;
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 3283491475309953312L;
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public NextTabAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-	/**
-	 * Constructor
-	 * @param editor SciNotes
-	 */
-	private NextTabAction(SciNotes editor) {
-		super(SciNotesMessages.NEXT_TAB, editor);
-	}
-	
-	/**
-	 * doAction
-	 */
-	public void doAction() {
-		int index = this.getEditor().getTabPane().getSelectedIndex();
-	}
-	
-	/**
-	 * createMenu
-	 * @param editor SciNotes
-	 * @return MenuItem
-	 */
-	public static MenuItem createMenu(SciNotes editor) {
-		return createMenu(SciNotesMessages.NEXT_TAB, null, new NextTabAction(editor), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_TAB, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-	 }
-	
+    /**
+     * doAction
+     */
+    public void doAction() {
+        int index = getEditor().getTabPane().getSelectedIndex();
+        int count = getEditor().getTabPane().getTabCount();
+        getEditor().getTabPane().setSelectedIndex((index + 1) % count);
+    }
+
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new NextTabAction(label, editor), key);
+    }
 }

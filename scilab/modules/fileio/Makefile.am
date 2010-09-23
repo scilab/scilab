@@ -51,7 +51,11 @@ src/c/expandPathVariable.c \
 src/c/basename.c \
 src/c/pathconvert.c \
 src/c/copyfile_others.c \
-src/c/getFullFilename.c
+src/c/getFullFilename.c \
+src/c/mputl.c \
+src/c/fscanfMat.c \
+src/c/fprintfMat.c
+
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -97,7 +101,8 @@ sci_gateway/c/sci_fileparts.c \
 sci_gateway/c/sci_movefile.c \
 sci_gateway/c/sci_basename.c \
 sci_gateway/c/sci_pathconvert.c \
-sci_gateway/c/sci_isfile.c
+sci_gateway/c/sci_isfile.c \
+sci_gateway/c/sci_mputl.c
 
 
 libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
@@ -126,7 +131,7 @@ CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
+libscifileio_la_LIBADD = \
 				$(top_builddir)/modules/string/libscistring.la \
 				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -148,5 +153,10 @@ libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 #### fileio : gateway declaration ####
 libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
+
+#### fileio : include files ####
+libscifileio_la_includedir=$(pkgincludedir)
+libscifileio_la_include_HEADERS = includes/getFullFilename.h \
+includes/dynlib_fileio.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -18,11 +18,11 @@ import java.beans.PropertyVetoException;
 import java.util.List;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabTList;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
@@ -61,31 +61,36 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 	 * @param into the Xcos associated instance
 	 * @return the modified into parameters
 	 * @throws ScicosFormatException on decode error
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType, java.lang.Object)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType, java.lang.Object)
 	 */
 	@Override
 	public ScicosParameters decode(ScilabType element, ScicosParameters into)
 			throws ScicosFormatException {
 		data = (ScilabTList) element;
+		ScicosParameters local = into;
 		
 		// Validate the fields
 		validate();
+		
+		local = beforeDecode(element, local);
 		
 		/*
 		 * fill data
 		 */
 		
-		fillWithThirdFields(into);
+		fillWithThirdFields(local);
 		
 		try {
-			into.setFinalIntegrationTime(((ScilabDouble) data.get(TF_INDEX)).getRealPart()[0][0]);
+			local.setFinalIntegrationTime(((ScilabDouble) data.get(TF_INDEX)).getRealPart()[0][0]);
 		} catch (PropertyVetoException e) {
 			LogFactory.getLog(ScicosParametersElement.class).error(e);
 		}
 		
-		fillContext(into);
+		fillContext(local);
 		
-		return into;
+		local = afterDecode(element, local);
+		
+		return local;
 	}
 
 	/**
@@ -319,7 +324,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 	 * 
 	 * @param element the element 
 	 * @return true when the implementation can be used to decode the element.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -335,7 +340,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 	 * @param from the source instance
 	 * @param element the previously allocated element.
 	 * @return the element parameter
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(ScicosParameters from, ScilabType element) {
@@ -344,6 +349,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		}
 		
 		data = (ScilabTList) element;
+		data = (ScilabTList) beforeEncode(from, element);
 		
 		/*
 		 * fill the tol field
@@ -373,6 +379,8 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 		 * fill the context
 		 */
 		data.set(CONTEXT_INDEX, new ScilabString(from.getContext()));
+		
+		data = (ScilabTList) afterEncode(from, data);
 		
 		return data;
 	}

@@ -12,7 +12,7 @@ c     WARNING : argument of this interface may be passed by reference
       INCLUDE 'stack.h'
       integer id(nsiz)
       logical ref
-      integer sel,tops
+      integer sel,tops,type
       integer iadr,sadr
       integer mtlbsel
       double precision t,tr,ti
@@ -20,7 +20,7 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-      if(rhs.gt.2) then
+      if(rhs.gt.3) then
          call error(42)
          return
       endif
@@ -39,12 +39,10 @@ c
 c
       if(istk(il0).eq.1) then
 c     standard matrix case
-         if(rhs.eq.2) then
-            call getorient(top,sel)
-            if(err.gt.0) return
-            top=top-1
-            if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
-         endif
+         call  orientandtype(sel,type)
+         if (err.gt.0.or.err1.gt.0) return
+         if (sel.gt.2) return
+         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
          m=istk(il0+1)
          n=istk(il0+2)
          it=istk(il0+3)
@@ -118,17 +116,10 @@ c     standard matrix case
          lstk(top+1)=l1+mr*nr*(it+1)
       elseif(istk(il0).eq.5) then
 c     sparse matrix case
-         if(rhs.eq.2) then
-            call getorient(top,sel)
-            if(err.gt.0) return
-            top=top-1
-         endif
-         if(sel.ne.0) then
-            top=tops
-            call funnam(ids(1,pt+1),'prod',il0)
-            fun=-1
-            return
-         endif
+         call  orientandtype(sel,type)
+         if (err.gt.0.or.err1.gt.0) return
+         if (sel.ne.0) goto 100
+         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
          m=istk(il0+1)
          n=istk(il0+2)
          it=istk(il0+3)
@@ -173,11 +164,16 @@ c
          fun=16
          return
       else
-         top=tops
-         call funnam(ids(1,pt+1),'prod',il0)
-         fun=-1
+         goto 100
       endif
       return
+ 100  continue
+c     overloaded cases
+      top=tops
+      call funnam(ids(1,pt+1),'prod',il0)
+      fun=-1
+      return
+
       end
 c     -------------------------------
       

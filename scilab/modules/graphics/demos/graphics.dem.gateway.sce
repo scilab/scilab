@@ -21,7 +21,8 @@ subdemolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gatew
 if ~ usecanvas() then
     subdemolist = [ subdemolist ;
                 "Misc"                        ,"misc/misc.dem.sce"                                  ; ..
-                "Colormap"                    ,"colormap.dem.sce"                                   ];
+                "Colormap"                    ,"colormap/colormap.dem.sce"                        ];
 end
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

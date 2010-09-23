@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry version="5.0-subset Scilab" xml:id="xcosPalAddBlock"
+xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns:ns3="http://www.w3.org/1999/xhtml"
+xmlns:mml="http://www.w3.org/1998/Math/MathML"
+xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>xcosPalAddBlock</refname>
+    <refpurpose>Add a block to a Scilab/Xcos palette instance. Some
+    optional properties can be added to customize the palette icon
+    and the style of the block.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis><![CDATA[pal = xcosPalAddBlock(pal, block);
+pal = xcosPalAddBlock(pal, block, pal_block_img);
+pal = xcosPalAddBlock(pal, block, [], style);
+pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>pal:</term>
+        <listitem>
+          <para>the palette to update</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>block:</term>
+        <listitem>
+          <para>the block to add to the palette</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pal_block_img:</term>
+        <listitem>
+          <para>the block icon to use on the palette
+          manager.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style:</term>
+        <listitem>
+          <para>the style to apply to the block</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This macros add a block instance to a palette. This block
+    parameter can be an instantiated block or a name
+    (interface-function) or a path to a saved instance. Some
+    operations are performed to load this block and check it's
+    availability so it's interface-function must be loaded on
+    Scilab. Some temporary files are also generated without full
+    path arguments.</para>
+    <para>The optional pal_block_img argument is generated on the 
+    <link linkend="TMPDIR">TMPDIR</link>using Scilab graphics if
+    not specified.Be careful that if you use our palette to be
+    persistent you then need to specify it. Otherwise the generated
+    image will be deleted at the end of the Scilab session.</para>
+    <para>The optional style argument allow the user to determine
+    the kind of style to be used by this block. This argument can
+    be typed as a path 
+    <link linkend="string">string</link>or a 
+    <link linkend="struct">struct</link>. If it is a string then a
+    default style value is generated and formatted as a style else
+    a struct is wrapped to a key-value jgraphx settings. The 
+    <link linkend="jgraphx-style-list">following
+    style</link>correspond to jgraphx version 1.4.0.2. These style
+    keys can change with new version of jgraphx without any
+    warranty.</para>
+    <para>
+      <variablelist xml:id="jgraphx-style-list">
+        <title>JGraphx style keys</title>
+        <varlistentry>
+          <term>
+            <literal>"opacity"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the opacity style. The type
+            of the value is float and the possible range is 
+            <literal>0-100</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"textOpacity"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the text opacity style. The
+            type of the value is float and the possible range is 
+            <literal>0-100</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"overflow"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the overflow style. Possible
+            values are 
+            <literal>"visible"</literal>, 
+            <literal>"hidden"</literal>or 
+            <literal>"fill"</literal>. The default value is
+            "visible". This value specifies how overlapping vertex
+            labels are handles. A value of "visible" will show the
+            complete label. A value of "hidden" will clip the label
+            so that it does not overlap the vertex bounds. A value
+            of "fill" will use the vertex bounds for the
+            label.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"orthogonal"</literal>
+          </term>
+          <listitem>
+            <para>Defines if the connection points on either end of
+            the edge should be computed so that the edge is
+            vertical or horizontal if possible and if the point is
+            not at a fixed location. Default is 
+            <literal>false</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"exitX"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the horizontal relative
+            coordinate connection point of an edge with its source
+            terminal.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"exitY"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the vertical relative
+            coordinate connection point of an edge with its source
+            terminal.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"exitPerimeter"</literal>
+          </term>
+          <listitem>
+            <para>Defines if the perimeter should be used to find
+            the exact entry point along the perimeter of the
+            source. The type of the value is 
+            <link linkend="boolean">boolean</link>. Default is 
+            <literal>true</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"entryX"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the horizontal relative
+            coordinate connection point of an edge with its target
+            terminal.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"entryY"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the vertical relative
+            coordinate connection point of an edge with its target
+            terminal.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"entryPerimeter"</literal>
+          </term>
+          <listitem>
+            <para>Defines if the perimeter should be used to find
+            the exact entry point along the perimeter of the
+            target. The type of the value is 
+            <link linkend="boolean">boolean</link>. Default is 
+            <literal>true</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"whiteSpace"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the white-space style.
+            Possible values are 
+            <literal>"nowrap"</literal>and 
+            <literal>"wrap"</literal>. The default value is 
+            <literal>"nowrap"</literal>. This value specifies how
+            white-space inside a HTML vertex label should be
+            handled. A value of 
+            <literal>"nowrap"</literal>means the text will never
+            wrap to the next line until a linefeed is encountered.
+            A value of 
+            <literal>"wrap"</literal>means text will wrap when
+            necessary.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"rotation"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the rotation style. The type
+            of the value is double and the possible range is 
+            <literal>0-360</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"fillColor"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the fillColor style. The
+            value is a string expression described on the 
+            <link linkend="jgraphx-style-color-list">color
+            list</link>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"gradientColor"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the gradientColor style. The
+            value is a string expression described on the 
+            <link linkend="jgraphx-style-color-list">color
+            list</link>. This is ignored if no 
+            <literal>"fillColor"</literal>is defined.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"gradientDirection"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the gradient direction. The
+            value is a string expression described on the 
+            <link linkend="jgraphx-style-direction-list">direction
+            list</link>. Default is 
+            <literal>"south"</literal>. Generally, and by default,
+            gradient painting is done from the value of 
+            <literal>"fillColor"</literal>to the value of 
+            <literal>"gradientColor"</literal>. Taking the example
+            of 
+            <literal>"north"</literal>, this means 
+            <literal>"fillColor"</literal>color at the bottom of
+            paint pattern and 
+            <literal>"gradientColor"</literal>at top, with a
+            gradient in-between.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"strokeColor"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the strokeColor style. The
+            value is a string expression on the 
+            <link linkend="jgraphx-style-color-list">color
+            list</link>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"separatorColor"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the separatorColor style. The
+            value is a string expression described on the 
+            <link linkend="jgraphx-style-color-list">color
+            list</link>. This style is only used for 
+            <literal>swimlane</literal>shapes.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"strokeWidth"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the strokeWidth style. The
+            type of the value is float and the possible range is
+            any non-negative value. The value reflects the stroke
+            width in pixels.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"align"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the align style. Possible
+            values are described on the 
+            <link linkend="jgraphx-style-align-list">alignment
+            list</link>. This value defines how the lines of the
+            label are horizontally aligned. 
+            <literal>"left"</literal>mean label text lines are
+            aligned to left of the label bounds, 
+            <literal>"right"</literal>to the right of the label
+            bounds and 
+            <literal>"center"</literal>means the center of the text
+            lines are aligned in the center of the label bounds.
+            Note this value doesn't affect the positioning of the
+            overall label bounds relative to the vertex, to move
+            the label bounds horizontally, use 
+            <literal>"labelPosition"</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"verticalAlign"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the verticalAlign style.
+            Possible values are described on the 
+            <link linkend="jgraphx-style-align-list">alignment
+            list</link>. This value defines how the lines of the
+            label are vertically aligned. 
+            <literal>"top"</literal>means the topmost label text
+            line is aligned against the top of the label bounds, 
+            <literal>"bottom"</literal>means the bottom-most label
+            text line is aligned against the bottom of the label
+            bounds and 
+            <literal>"middle"</literal>means there is equal spacing
+            between the topmost text label line and the top of the
+            label bounds and the bottom-most text label line and
+            the bottom of the label bounds. Note this value doesn't
+            affect the positioning of the overall label bounds
+            relative to the vertex, to move the label bounds
+            vertically, use 
+            <literal>"verticalLabelPosition"</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"labelPosition"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the horizontal label position
+            of vertices. Possible values are described on the 
+            <link linkend="jgraphx-style-align-list">alignment
+            list</link>. Default is 
+            <literal>"center"</literal>. The label align defines
+            the position of the label relative to the cell. 
+            <literal>"left"</literal>means the entire label bounds
+            is placed completely just to the left of the vertex, 
+            <literal>"right"</literal>means adjust to the right and
+            
+            <literal>"center"</literal>means the label bounds are
+            vertically aligned with the bounds of the vertex. Note
+            this value doesn't affect the positioning of label
+            within the label bounds, to move the label horizontally
+            within the label bounds, use 
+            <literal>"align"</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"verticalLabelPosition"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the vertical label position
+            of vertices. Possible values are described on the 
+            <link linkend="jgraphx-style-align-list">alignment
+            list</link>. Default is 
+            <literal>"middle"</literal>. The label align defines
+            the position of the label relative to the cell. 
+            <literal>"top"</literal>means the entire label bounds
+            is placed completely just on the top of the vertex, 
+            <literal>"bottom"</literal>means adjust on the bottom
+            and 
+            <literal>"middle"</literal>means the label bounds are
+            horizontally aligned with the bounds of the vertex.
+            Note this value doesn't affect the positioning of label
+            within the label bounds, to move the label vertically
+            within the label bounds, use 
+            <literal>"verticalAlign"</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"imageAlign"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the align style. Possible
+            values are described on the 
+            <link linkend="jgraphx-style-align-list">alignment
+            list</link>. The value defines how any image in the
+            vertex label is aligned horizontally within the label
+            bounds of a 
+            <literal>"label"</literal>shape.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"imageVerticalAlign"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the verticalAlign style.
+            Possible values are described on the 
+            <link linkend="jgraphx-style-align-list">alignment
+            list</link>. The value defines how any image in the
+            vertex label is aligned vertically within the label
+            bounds of a 
+            <literal>"label"</literal>shape.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"image"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the image style. Possible
+            values are any image URL, the type of the value is
+            String. This is the path to the image to image that is
+            to be displayed within the label of a vertex.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"imageWidth"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the imageWidth style. The
+            type of this value is int, the value is the image width
+            in pixels and must be greated than 
+            <literal>0</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"imageHeight"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the imageHeight style The
+            type of this value is int, the value is the image
+            height in pixels and must be greater than 
+            <literal>0</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"noLabel"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the noLabel style. If this is
+            
+            <literal>true</literal>then no label is visible for a
+            given cell. The type of the value is 
+            <link linkend="boolean">boolean</link>. Default is 
+            <literal>false</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"noEdgeStyle"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the noEdgeStyle style. If
+            this is 
+            <literal>true</literal>then no edge style is applied
+            for a given edge. The type of the value is 
+            <link linkend="boolean">boolean</link>. Default is 
+            <literal>false</literal>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"labelBackgroundColor"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the label background color.
+            The value is a string expression described on the 
+            <link linkend="jgraphx-style-color-list">color
+            list</link>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"labelBorderColor"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the label border color. The
+            value is a string expression described on the 
+            <link linkend="jgraphx-style-color-list">color
+            list</link>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"indicatorShape"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the indicatorShape style.
+            Possible values are described on the 
+            <link linkend="jgraphx-style-shape-list">shape
+            list</link>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"indicatorImage"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the indicatorImage style.
+            Possible values are any image URL, the type of the
+            value is String.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"indicatorColor"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the indicatorColor style. The
+            value is a string expression described below.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"indicatorGradientColor"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the indicatorGradientColor
+            style. The value is a string expression described on
+            the 
+            <link linkend="jgraphx-style-color-list">color
+            list</link>. This style is only supported in 
+            <literal>shape</literal>shapes.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"indicatorSpacing"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the indicatorSpacing style
+            (in px).</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"indicatorWidth"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the indicatorWidth style (in
+            px).</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"indicatorHeight"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the indicatorHeight style (in
+            px).</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"shadow"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the shadow style. The type of
+            the value is 
+            <link linkend="boolean">boolean</link>. This style
+            applies to vertices and arrow style edges.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"endArrow"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the endArrow style. Possible
+            values are described on the 
+            <link linkend="jgraphx-style-arrow-list">arrow
+            list</link>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"startArrow"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the startArrow style.
+            Possible values are described on the 
+            <link linkend="jgraphx-style-arrow-list">arrow
+            list</link>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"endSize"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the endSize style. The type
+            of this value is float and the value represents the
+            size of the end marker in pixels.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"startSize"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the startSize style. The type
+            of this value is float and the value represents the
+            size of the start marker or the size of the swimlane
+            title region depending on the shape it is used
+            for.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"dashed"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the dashed style. The type of
+            this value is 
+            <link linkend="boolean">boolean</link>and the value
+            determines whether or not an edge or border is drawn
+            with a dashed pattern along the line.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"rounded"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the rounded style. The type
+            of this value is 
+            <link linkend="boolean">boolean</link>. For edges this
+            determines whether or not joins between edges segments
+            are smoothed to a rounded finish. For vertices that
+            have the rectangle shape, this determines whether or
+            not the rectangle is rounded.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"sourcePerimeterSpacing"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the source perimeter spacing.
+            The type of this value is double. This is the distance
+            between the source connection point of an edge and the
+            perimeter of the source vertex in pixels. This style
+            only applies to edges.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"targetPerimeterSpacing"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the target perimeter spacing.
+            The type of this value is double. This is the distance
+            between the target connection point of an edge and the
+            perimeter of the target vertex in pixels. This style
+            only applies to edges.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"perimeterSpacing"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the perimeter spacing. This
+            is the distance between the connection point and the
+            perimeter in pixels. When used in a vertex style, this
+            applies to all incoming edges to floating ports (edges
+            that terminate on the perimeter of the vertex). When
+            used in an edge style, this spacing applies to the
+            source and target separately, if they terminate in
+            floating ports (on the perimeter of the vertex).</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"spacing"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the spacing. The value
+            represents the spacing, in pixels, added to each side
+            of a label in a vertex (style applies to vertices
+            only).</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"spacingTop"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the spacingTop style. The
+            value represents the spacing, in pixels, added to the
+            top side of a label in a vertex (style applies to
+            vertices only).</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"spacingLeft"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the spacingLeft style. The
+            value represents the spacing, in pixels, added to the
+            left side of a label in a vertex (style applies to
+            vertices only).</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"spacingBottom"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the spacingBottom style The
+            value represents the spacing, in pixels, added to the
+            bottom side of a label in a vertex (style applies to
+            vertices only).</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"spacingRight"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the spacingRight style The
+            value represents the spacing, in pixels, added to the
+            right side of a label in a vertex (style applies to
+            vertices only).</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"horizontal"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the horizontal style. The
+            type of this value is 
+            <link linkend="boolean">boolean</link>. This value only
+            applies to vertices. If the 
+            <literal>"shape"</literal>is 
+            <literal>"swimlane"</literal>a value of 
+            <literal>false</literal>indicates that the swimlane
+            should be drawn vertically, 
+            <literal>true</literal>indicates to draw it
+            horizontally. If the shape style does not indicate that
+            this vertex is a swimlane, this value affects only
+            whether the label is drawn horizontally or
+            vertically.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"direction"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the direction style. The
+            direction style is used to specify the direction of
+            certain shapes. Possible values are described on the 
+            <link linkend="jgraphx-style-direction-list">direction
+            list</link>. This value only applies to
+            vertices.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"elbow"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the elbow style. Possible
+            values are 
+            <literal>"horizontal"</literal>and 
+            <literal>"vertical"</literal>. Default is 
+            <literal>"horizontal"</literal>. This defines how the
+            three segment orthogonal edge style leaves its terminal
+            vertices. The vertical style leaves the terminal
+            vertices at the top and bottom sides.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"fontColor"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the fontColor style. The
+            value is type String and of the expression described
+            below.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"fontFamily"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the fontFamily style.
+            Possible values are names such as 
+            <literal>Arial</literal>; 
+            <literal>Dialog</literal>; 
+            <literal>Verdana</literal>; 
+            <literal>Times New Roman</literal>. The value is of
+            type String.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"fontSize"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the fontSize style (in
+            points). The type of the value is int.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"fontStyle"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the fontStyle style. Values
+            may be any logical AND (sum) of values on the 
+            <link linkend="jgraphx-style-font-table">font style
+            table</link>. The type of the value is int.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"shape"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the shape style. Possible
+            values are any of 
+            <link linkend="jgraphx-style-shape-list">shape
+            list</link>.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"routingCenterX"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the horizontal routing
+            center. Possible values are between -0.5 and 0.5. This
+            is the relative offset from the center used for
+            connecting edges. The type of this value is
+            float.</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <literal>"routingCenterY"</literal>
+          </term>
+          <listitem>
+            <para>Defines the key for the vertical routing center.
+            Possible values are between -0.5 and 0.5. This is the
+            relative offset from the center used for connecting
+            edges. The type of this value is float;</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </para>
+    <para>
+      <itemizedlist xml:id="jgraphx-style-align-list">
+        <title>JGraphx alignment values</title>
+        <listitem>
+          <para>
+          <literal>"left"</literal>- horizontal alignment</para>
+        </listitem>
+        <listitem>
+          <para>
+          <literal>"center"</literal>- horizontal alignment</para>
+        </listitem>
+        <listitem>
+          <para>
+          <literal>"right"</literal>- horizontal alignment</para>
+        </listitem>
+        <listitem>
+          <para>
+          <literal>"top"</literal>- vertical alignment</para>
+        </listitem>
+        <listitem>
+          <para>
+          <literal>"middle"</literal>- vertical alignment</para>
+        </listitem>
+        <listitem>
+          <para>
+          <literal>"bottom"</literal>- vertical alignment</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist xml:id="jgraphx-style-arrow-list">
+        <title>JGraphx arrow values</title>
+        <listitem>
+          <para>
+            <literal>"classic"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"block"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"oval"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"diamond"</literal>
+          </para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist xml:id="jgraphx-style-shape-list">
+        <title>JGraphx shape values</title>
+        <listitem>
+          <para>
+            <literal>"rectangle"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"ellipse"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"doubleEllipse"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"rhombus"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"line"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"image"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"arrow"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"curve"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"label"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"cylinder"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"swimlane"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"connector"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"actor"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"cloud"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"triangle"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"hexagon"</literal>
+          </para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist xml:id="jgraphx-style-color-list">
+        <title>JGraphx valid color values</title>
+        <listitem>
+          <para>Web notation colors - 
+          <literal>"#E1E1E1"</literal>for example</para>
+        </listitem>
+        <listitem>
+          <para>Java parseable colors - int values as RGB or sRGB
+          colors</para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"white"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"black"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"red"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"green"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"blue"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"orange"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"yellow"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"pink"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"turquoise"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"gray"</literal>
+          </para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist xml:id="jgraphx-style-direction-list">
+        <title>JGraphx direction values</title>
+        <listitem>
+          <para>
+            <literal>"north"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"south"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"east"</literal>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>"west"</literal>
+          </para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist xml:id="jgraphx-style-font-table">
+        <title>JGraphx font modifier values</title>
+        <listitem>
+          <para>bold - 
+          <literal>1</literal></para>
+        </listitem>
+        <listitem>
+          <para>italic - 
+          <literal>2</literal></para>
+        </listitem>
+        <listitem>
+          <para>underline - 
+          <literal>4</literal></para>
+        </listitem>
+        <listitem>
+          <para>shadow - 
+          <literal>8</literal></para>
+        </listitem>
+      </itemizedlist>
+    </para>
+    <para></para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+loadScicosLibs();
+pal = xcosPal();
+
+sumPath = TMPDIR + "/sum.h5";
+bigSomPath = TMPDIR + "/sum.h5";
+
+scs_m = SUM_f("define");
+export_to_hdf5(sumPath, "scs_m");
+scs_m = BIGSOM_f("define");
+export_to_hdf5(bigSomPath, "scs_m");
+
+pal = xcosPalAddBlock(pal, sumPath);
+pal = xcosPalAddBlock(pal, bigSomPath);
+
+xcosPalAdd(pal);]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xcosPal">xcosPal</link>
+      </member>
+      <member>
+        <link linkend="xcosPalAdd">xcosPalAdd</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Clément DAVID</member>
+      <member>Yann COLLETTE</member>
+    </simplelist>
+  </refsection>
+</refentry>

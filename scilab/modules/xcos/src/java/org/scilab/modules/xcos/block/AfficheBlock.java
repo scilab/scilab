@@ -13,19 +13,31 @@ package org.scilab.modules.xcos.block;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Formatter;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.swing.Timer;
 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.utils.Font;
 import org.scilab.modules.graph.utils.ScilabExported;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.scicos.AbstractElement;
 
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxCellState;
 import com.mxgraph.view.mxGraphView;
 
@@ -35,12 +47,17 @@ import com.mxgraph.view.mxGraphView;
 public final class AfficheBlock extends BasicBlock {
 
 	/**
-	 * 
+	 * Default refresh rate used on the simulation to update block.
 	 */
 	private static final int DEFAULT_TIMER_RATE = 200;
 
+	private static final Log LOG = LogFactory.getLog(AfficheBlock.class);
+	private static final String EXPRS = "exprs";
+	private static final int PRECISION_INDEX = 4;
+	private static final String NEW_LINE = System.getProperty("line.separator");
+	private static final String SPACE = "  ";
 	private static final long serialVersionUID = 6874403612919831380L;
-
+	
 	/**
 	 * Map any id to an affiche block instance.
 	 * 
@@ -88,17 +105,17 @@ public final class AfficheBlock extends BasicBlock {
 			 */
 			final StringBuilder blockResult = new StringBuilder();
 			final int iRows = data.length;
-			final int iCols = data.length;
+			final int iCols = data[0].length;
 
 			for (int i = 0; i < iRows; i++) {
 				for (int j = 0; j < iCols; j++) {
 					if (iCols != 0) {
-						blockResult.append("  ");
+						blockResult.append(SPACE);
 					}
 
 					blockResult.append(data[i][j]);
 				}
-				blockResult.append(System.getProperty("line.separator"));
+				blockResult.append(NEW_LINE);
 			}
 			
 			/*
@@ -112,14 +129,169 @@ public final class AfficheBlock extends BasicBlock {
 			view.validateBounds(parentState, block);
 			block.getParentDiagram().repaint(view.validatePoints(parentState, block));
 			
-			if (LogFactory.getLog(UpdateValueListener.class).isTraceEnabled()) {
-				LogFactory.getLog(UpdateValueListener.class).trace(blockResult.toString());
+			if (LOG.isTraceEnabled()) {
+				LOG.trace(blockResult.toString());
 			}
 		}		
 	}
 	
-	private Timer printTimer;  
-	private UpdateValueListener updateAction;
+	/**
+	 * Update the style according to the values of the expression
+	 */
+	private static final class UpdateStyle implements PropertyChangeListener, Serializable {
+		/**
+		 * 
+		 */
+		private static final String OPENING_BRACKET = "[";
+		private static transient UpdateStyle instance;
+		
+		/**
+		 * Default constructor.
+		 */
+		private UpdateStyle() {
+		}
+		
+		/**
+		 * @return the instance
+		 */
+		public static UpdateStyle getInstance() {
+			if (instance == null) {
+				instance = new UpdateStyle();
+			}
+			return instance;
+		}
+		
+		/**
+		 * Update the style of the block according to the expression value
+		 * 
+		 * @param evt the evnt
+		 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+		 */
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			// Pre-condition
+			final String property = evt.getPropertyName();
+			if (evt.getSource() == null || !property.equals(EXPRS)) {
+				LOG.error("Unable to update the style");
+			}
+			
+			final AfficheBlock src = (AfficheBlock) evt.getSource();
+			final String[][] data = ((ScilabString) evt.getNewValue()).getData();
+			
+			updateValue(src, data);
+			updateStyle(src, data);
+			
+			/*
+			 * Refresh
+			 */
+			if (src.getParentDiagram() != null) {
+				final XcosDiagram parent = src.getParentDiagram();
+				final mxRectangle rect = parent.getPreferredSizeForCell(src);
+				rect.setX(src.getGeometry().getX());
+				rect.setY(src.getGeometry().getY());
+				parent.resizeCell(src, rect);
+				
+				final mxGraphView view = parent.getView();
+				final mxCellState parentState = view.getState(src.getParent());
+				
+				view.validateBounds(parentState, src);
+				parent.repaint(view.validatePoints(parentState, src));
+			}
+		}
+
+		/**
+		 * Update the value according to the data (matrix size and precision)
+		 * 
+		 * @param src the src block
+		 * @param data the "exprs" data
+		 */
+		private void updateValue(AfficheBlock src, String[][] data) {
+			/*
+			 * Getting the first parameter for the matrix size
+			 */
+			final int[] size;
+			int[] index = new int[] {0, 0};
+			final String data00 = data[index[0]][index[1]];
+			if (data00.startsWith(OPENING_BRACKET)) {
+				final String[] strSize = data00.split("[\\[\\],]");
+				try {
+					size = new int[] {
+							Integer.parseInt(strSize[1]),
+							Integer.parseInt(strSize[2])
+						};
+				} catch (NumberFormatException e) {
+					LOG.error(e);
+					return;
+				}
+			} else {
+				size = new int[] {1, 1};
+			}
+			
+			index = new int[] {PRECISION_INDEX, 0};
+			final String width = data[index[0]][index[1]];
+			
+			AbstractElement.incrementIndexes(index, true);
+			final String rational = data[index[0]][index[1]];
+			
+			final String format = "%" + width + "." + rational + "f";
+			final StringBuilder value = new StringBuilder();
+			for (int i = 0; i < size[0]; i++) {
+				for (int j = 0; j < size[1]; j++) {
+					value.append(new Formatter(Locale.US)
+									.format(format, Double.valueOf(0.0))
+										.toString());
+					value.append(SPACE);
+				}
+				value.append(NEW_LINE);
+			}
+			
+			src.setValue(value.toString());
+		}
+
+		/**
+		 * Update the style of the block according to the data.
+		 * 
+		 * @param src the block
+		 * @param data the "exprs" data
+		 */
+		private void updateStyle(final AfficheBlock src, final String[][] data) {
+			/*
+			 * Getting the first index to handle Affich_f and Affich_m
+			 */
+			int[] index = new int[] {0, 0};
+			final String data00 = data[index[0]][index[1]];
+			if (data00.startsWith(OPENING_BRACKET)) {
+				AbstractElement.incrementIndexes(index, true);
+			}
+			
+			/*
+			 * Apply style
+			 */
+			final StyleMap style = new StyleMap(src.getStyle());
+			
+			try {
+				final int parsedFontInt = Integer.parseInt(data[index[0]][index[1]]);
+				style.put(mxConstants.STYLE_FONTFAMILY,	Font.getFont(parsedFontInt).getName());
+				
+				AbstractElement.incrementIndexes(index, true);
+				final int parsedFontSizeInt = Integer.parseInt(data[index[0]][index[1]]);
+				style.put(mxConstants.STYLE_FONTSIZE, Integer.toString(Font.getSize(parsedFontSizeInt)));
+				
+				AbstractElement.incrementIndexes(index, true);
+				final int parsedFontColorInt = Integer.parseInt(data[index[0]][index[1]]);
+				String color = "#" + Integer.toHexString(Font.getColor(parsedFontColorInt).getRGB());
+				style.put(mxConstants.STYLE_FONTCOLOR, color);
+			} catch (NumberFormatException e) {
+				LOG.error(e);
+				return;
+			}
+			
+			src.setStyle(style.toString());
+		}
+	}
+	
+	private final Timer printTimer;  
+	private final UpdateValueListener updateAction;
 	
 	/** Default constructor */
 	public AfficheBlock() {
@@ -128,17 +300,19 @@ public final class AfficheBlock extends BasicBlock {
 		updateAction = new UpdateValueListener(this);
 		printTimer = new Timer(DEFAULT_TIMER_RATE, updateAction);
 		printTimer.setRepeats(false);
+		
+		getParametersPCS().addPropertyChangeListener(EXPRS, UpdateStyle.getInstance());
 	}
-
+	
 	/**
-	 * Constructor with label
-	 * 
-	 * @param value
-	 *            the default value.
+	 * Set the default values
+	 * @see org.scilab.modules.xcos.block.BasicBlock#setDefaultValues()
 	 */
-	protected AfficheBlock(String value) {
-		this();
-		setValue(value);
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		
+		setValue("0.0");
 	}
 
 	/**
@@ -203,10 +377,12 @@ public final class AfficheBlock extends BasicBlock {
 	 * @see java.lang.Object#finalize()
 	 */
 	@Override
+	//CSOFF: IllegalThrows
 	protected void finalize() throws Throwable {
 		INSTANCES.remove(hashCode());
 		super.finalize();
 	}
+	//CSON: IllegalThrows
 	
 	/**
 	 * @return a clone of the block

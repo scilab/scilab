@@ -15,16 +15,20 @@ package org.scilab.modules.gui.bridge.label;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLEditorKit;
 
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -39,6 +43,7 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.gui.utils.ScilabSpecialTextUtilities;
 
 /**
  * Swing implementation for Scilab Labels in GUIs
@@ -49,7 +54,7 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	
 	private static final long serialVersionUID = 7177323379068859441L;
 	
-	private JTextPane label;
+	private ScilabJTextPane label;
 
 	private String horizontalAlignment = "left"; /* Horizontal alignment property */
 	
@@ -139,6 +144,16 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	public void setVisible(boolean newVisibleState) {
 		super.setVisible(newVisibleState);
 		getLabel().setVisible(newVisibleState);
+	}
+	
+	/**
+	 * Sets the enable status of an UIElement
+	 * @param newEnableState the enable status we want to set for the UIElement
+	 *                      (true if the UIElement is enabled, false if not)
+	 */
+	public void setEnabled(boolean newEnableState) {
+		super.setEnabled(newEnableState);
+		getLabel().setEnabled(newEnableState);
 	}
 	
 	/**
@@ -279,7 +294,7 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	 */
 	private JTextPane getLabel() {
 		if (label == null) {
-			label = new JTextPane();
+			label = new ScilabJTextPane();
 			label.setContentType("text/html");
 			label.setOpaque(false);
 			label.setBorder(null);
@@ -289,7 +304,7 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 			label.addHyperlinkListener(new HyperlinkListener() {
 				public void hyperlinkUpdate(HyperlinkEvent event) {
 					if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-						WebBrowser.openUrl(event.getURL().toString());
+						WebBrowser.openUrl(event.getURL(), event.getDescription());
 					}
 				}
 			});
@@ -392,5 +407,68 @@ public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 		
 		return alignmentPanel;
 	}
+
+    /**
+     * Inner class to handle the case where the label is in LaTeX or in MathML
+     */
+    public class ScilabJTextPane extends JTextPane {
+
+	private int descent;
+	private int fontSize;
+	private String expression;
+
+	/**
+	 * Sets the Icon of this textPane
+	 * @param icon to set
+	 */
+	public void setIcon(Icon icon) {
+	    insertIcon(icon);
+	    int width = icon.getIconWidth();
+	    // We need to add the descent to avoid the vertical scrollbar
+	    int height = icon.getIconHeight() + descent;
+	    setSize(width, height);
+	    SwingScilabLabel.this.setDims(new Size(width, height));
+	}
+
+	/**
+	 * @param font to use in this textPane
+	 */
+	public void setFont(Font font) {
+	    super.setFont(font);
+	    descent = getDescent(font);
+	    if (font.getSize() != fontSize && expression != null) {		
+		try {
+		    //If we have an icon, it is considered as one char
+		    getDocument().remove(0, 1);
+		} catch (BadLocationException e) { }
+		ScilabSpecialTextUtilities.setText(this, expression);
+		fontSize = font.getSize();
+	    }
+	}
+
+	/**
+	 * Sets the text of a Text Widget
+	 * @param newText the text to set to the Text Widget
+	 */
+	public void setText(String newText) {
+	    if (ScilabSpecialTextUtilities.setText(this, newText)) {
+		expression = newText;
+	    } else {
+		super.setText(newText);
+	    }
+	}
+
+	/**
+	 * @param font where to get the descent
+	 * @return the descent of the font
+	 */
+	private int getDescent(Font font) {
+	    Graphics g = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB).createGraphics();
+	    g.setFont(font);
+	    int d = (int) (g.getFontMetrics().getDescent() + 0.99f);
+	    g.dispose();
+	    return d;
+	}
+    }
 	
 }

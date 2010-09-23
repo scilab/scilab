@@ -1,15 +1,15 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
- *  Copyright (C) 2008-2008 - INRIA - Allan CORNET
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+*  Copyright (C) 2008-2008 - INRIA - Allan CORNET
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /*
 ** Thread wrapper to have an easy way to manage
@@ -56,6 +56,8 @@ typedef HANDLE				__threadSignal;
 #define __Terminate(threadId)					TerminateThread(threadId, 0)
 
 #define __StaticInitLock                                        NULL
+
+#define __StaticInitThreadSignal            NULL
 
 #else
 #include <pthread.h>
@@ -104,7 +106,9 @@ Linux uses PTHREAD_MUTEX_ERRORCHECK_NP other Posix use PTHREAD_MUTEX_ERRORCHECK
 
 #define __Terminate(threadId)			pthread_cancel(threadId)
 
-#define __StaticInitLock                        PTHREAD_MUTEX_INITIALIZER
+#define __StaticInitLock                   PTHREAD_MUTEX_INITIALIZER
+
+#define __StaticInitThreadSignal            PTHREAD_COND_INITIALIZER
 
 #endif //_MSC_VER
 

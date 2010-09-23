@@ -15,6 +15,8 @@ c     ode
 c     
       include 'stack.h'
       integer iadr,sadr
+c      
+      character buftmp*(bsiz)
 c     
 c     common de lsode,lsoda,lsodar
       double precision xxxx,yyyy,rlsr
@@ -768,7 +770,8 @@ c     --------------
      1           stk(la),itask,istate,iopt,stk(lc),lrw,istk(ilc),
      2           liw,bjac,meth)
             if(iero.eq.-1) then
-               write(buf,'(e10.3)') tout
+               write(buftmp,'(e10.3)') tout
+               buf = buftmp
                call msgs(70,0)
             endif
          elseif(meth.eq.6) then
@@ -868,7 +871,8 @@ c--------------------
      1              stk(la),itask,istate,iopt,stk(lc),lrw,istk(ilc),
      2              liw,bjac,meth)
                if(iero.eq.-1) then
-                  write(buf,'(e10.3)') tout
+                  write(buftmp,'(e10.3)') tout
+                  buf = buftmp
                   call msgs(70,0)
                endif
             elseif(meth.eq.6) then

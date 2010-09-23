@@ -58,28 +58,22 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	this.container = container;
     }
 
-	/**
-	 * Concatenate all the parent diagrams context to get the full variables
-	 * definitions in one String array.
-	 * 
-	 * @return the context available on this diagram
-	 */
-    public String[] buildEntireContext() {
-	
-	String[] parentContext = getContainer().getParentDiagram().getScicosParameters().getContext();
-	String []entireContext = new String[getScicosParameters().getContext().length + parentContext.length];
-	
-	for (int i = 0; i < parentContext.length; ++i) {
-	    entireContext[i] = parentContext[i];
-	}
-
-	for (int i = 0; i < getScicosParameters().getContext().length; ++i) {
-	    entireContext[i + parentContext.length] = getScicosParameters().getContext()[i];
-	}
-	
-	return entireContext;
+    /**
+     * Concatenate the context with the parent one
+     * @return the context
+     * @see org.scilab.modules.xcos.graph.XcosDiagram#getContext()
+     */
+    @Override
+    public String[] getContext() {
+    	final String[] parent = getContainer().getParentDiagram().getContext();
+    	final String[] current = super.getContext();
+    	
+    	String[] full = new String[current.length + parent.length];
+    	System.arraycopy(parent, 0, full, 0, parent.length);
+    	System.arraycopy(current, 0, full, parent.length, current.length);
+    	return full;
     }
-
+    
     /**
      * Listener for SuperBlock diagram events.
      */
@@ -112,29 +106,19 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	 */
 	public void invoke(Object arg0, mxEventObject arg1) {
 	    ((SuperBlockDiagram) arg0).getContainer().updateAllBlocksColor();
-	    ((SuperBlockDiagram) arg0).getContainer().updateExportedPort();	    
+	    ((SuperBlockDiagram) arg0).getContainer().updateExportedPort();
 	}
     }
     
     /**
-     * 
+     * Install the specific listeners for {@link SuperBlockDiagram}.
      */
     public void installSuperBlockListeners() {
 	addListener(XcosEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
 
 	addListener(XcosEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
 
-	addListener(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.IN_IMPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.IN_EVENT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.OUT_EVENT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
+	addListener(XcosEvent.IO_PORT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
     }
 
     /**

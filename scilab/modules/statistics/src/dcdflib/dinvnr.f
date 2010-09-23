@@ -71,15 +71,24 @@ C
 C     FIND MINIMUM OF P AND Q
 C
       qporq = p .LE. q
-      IF (.NOT. (qporq)) GO TO 10
-      pp = p
-      GO TO 20
-
-   10 pp = q
+      IF (.NOT. (qporq)) THEN
+        pp = q
+      ELSE
+        pp = p
+      ENDIF
+c
+c DIGITEO - M. Baudin - 2010
+c Patched for bug #8032.
+c Avoid to enter in the zero-finder algorithm in trivial case.
+c
+      IF ( pp .EQ. 0.5d0 ) THEN
+        dinvnr = 0.d0
+        RETURN
+      ENDIF
 C
 C     INITIALIZATION STEP
 C
-   20 strtx = stvaln(pp)
+      strtx = stvaln(pp)
       xcur = strtx
 C
 C     NEWTON INTERATIONS

@@ -15,8 +15,8 @@ package org.scilab.modules.scinotes.actions;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
 
 /**
@@ -28,28 +28,28 @@ public final class CodeNavigatorAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private CodeNavigatorAction(SciNotes editor) {
-        super(SciNotesMessages.CODE_NAVIGATOR, editor);
+    public CodeNavigatorAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return createMenu
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.CODE_NAVIGATOR, null, new CodeNavigatorAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new CodeNavigatorAction(label, editor), key);
     }
 
     /**
      * Action !!
      */
     public void doAction() {
-        if (!getEditor().getTextPane().hasNavigator()) {
-            new NavigatorWindow(getEditor().getTextPane());
-        }
+        NavigatorWindow.activateNavigator((ScilabDocument) getEditor().getTextPane().getDocument());
     }
 }

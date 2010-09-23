@@ -920,10 +920,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\jni\SwingScilabMenu.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\TerminateGui.c"
 				>
 			</File>
@@ -1666,10 +1662,6 @@
 			</File>
 			<File
 				RelativePath="..\cpp\Slider.hxx"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\SwingScilabMenu.hxx"
 				>
 			</File>
 			<File

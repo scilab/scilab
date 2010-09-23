@@ -15,7 +15,7 @@ package org.scilab.modules.graph.io;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.ScilabDouble;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 

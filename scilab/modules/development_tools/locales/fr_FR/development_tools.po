@@ -41,9 +41,6 @@ msgstr "%s : Mauvaise dimension pour l'argument d'entrée."
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
 
-msgid "Generating loader.sce...\n"
-msgstr "Génération de loader.sce...\n"
-
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "Pas de variable %s_ref dans le fichier de référence"

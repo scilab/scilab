@@ -20,3 +20,4 @@ subdemolist = ["RLC Circuit"                      , "Electrical/rlc_circuit.dem.
               ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

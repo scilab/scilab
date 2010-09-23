@@ -32,10 +32,10 @@ whos -name nam</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>whos()</literal> affiche tous les noms des variables courantes, leurs types et la place mémoire occupée.</para>
+    <para><literal>whos()</literal> affiche tous les noms des variables courantes triés par nom sans tenir compte de la casse, leurs types et la place mémoire occupée.</para>
     <para><literal>whos -type typ</literal> affiche tous les noms des variables courantes de type spécifié dans <literal>typ</literal>.</para>
     <para><literal>whos -name nam</literal> affiche tous les noms des variables courantes dont le nom commence par <literal>'nam'</literal></para>
-    <para>Remarque : si une variable est globale, le caractère * apparait devant son type.</para>
+    <para>Remarque : si une variable est globale, le caractère * apparait aprés son type.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

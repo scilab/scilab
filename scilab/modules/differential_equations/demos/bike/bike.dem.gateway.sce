@@ -9,3 +9,4 @@ subdemolist = ["unstable trajectory"  , "bike1.dem.sce" ; ..
                "stable trajectory!"   , "bike2.dem.sce" ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

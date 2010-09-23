@@ -149,19 +149,10 @@
             <varlistentry>
               <term>pixel_drawing_mode: </term>
               <listitem>
-                <para>This field defines the bitwise operation used to draw the
-		  pixel on the screen. The default mode is <literal>copy</literal> what is
-		  to say the pixel is drawn as required. More generally the bitwise
-		  operation is performed between the color of the source pixel and
-		  the color of the pixel already present on the screen. Operations
-		  are : <literal>"clear"</literal>, <literal>"and"</literal>,
-		  <literal>"andReverse"</literal> , <literal>"copy"</literal>,
-		  <literal>"andInverted"</literal> , <literal>"noop"</literal> ,
-		  <literal>"xor"</literal> , <literal>"or"</literal> , <literal>"nor"</literal> ,
-		  <literal>"equiv"</literal> , <literal>"invert"</literal> ,
-		  <literal>"orReverse"</literal> , <literal>"copyInverted"</literal> ,
-		  <literal>"orInverted"</literal> , <literal>"nand"</literal> ,
-		  <literal>"set"</literal> ,</para>
+                <para>This field specifies the bitwise operation used for pixel rendering.
+                      The default mode is <literal>copy</literal>.
+                      For more details see the <link linkend="pixel_drawing_mode">pixel drawing mode reference page</link>.
+                </para>
               </listitem>
             </varlistentry>
 	    <varlistentry>

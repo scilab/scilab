@@ -44,9 +44,6 @@ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати %s.\n"
 
-msgid "Generating loader.sce...\n"
-msgstr "Створення loader.sce…\n"
-
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "У еталонному файлі немає змінної %s_ref"

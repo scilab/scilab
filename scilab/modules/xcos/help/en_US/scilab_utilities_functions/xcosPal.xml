@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * This help file was generated from xcosPal.sci using help_from_sci().
+ * 
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="xcosPal" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <info>
+    <pubdate>$LastChangedDate: 12-Juil-2010 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xcosPal</refname><refpurpose>Instanciate a new Xcos palette on Scilab.</refpurpose>
+  </refnamediv>
+
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   pal = xcosPal();
+   pal = xcosPal(name);
+   pal = xcosPal(scs_m);
+   pal = xcosPal([], scs_m);
+   pal = xcosPal(name, scs_m);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>name:</term>
+      <listitem><para> string; the optional palette name</para></listitem></varlistentry>
+   <varlistentry><term>scs_m:</term>
+      <listitem><para> diagram mlist; the optional source diagram</para></listitem></varlistentry>
+   <varlistentry><term>pal:</term>
+      <listitem><para> palette tlist; the palette instance</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Instanciate a new palette diagram.
+   </para>
+   <para>
+The optional name argument can be used to set a name to the palette. The optional scs_m argument can be used to import diagrams as palettes.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+loadScicosLibs();
+
+// from scratch
+pal = xcosPal("My sum palette");
+pal = xcosPalAddBlock(pal, "SUM_f");
+pal = xcosPalAddBlock(pal, "BIGSOM_f");
+xcosPalAdd(pal);
+
+// from an old palette
+exec(SCI + "/modules/scicos/palettes/Integer.cosf", -1);
+pal = xcosPal(scs_m);
+xcosPalAdd(pal);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="xcosPal">xcosPal</link></member>
+   <member><link linkend="xcosPalAddBlock">xcosPalAddBlock</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Clément DAVID</member>
+   </simplelist>
+</refsection>
+</refentry>

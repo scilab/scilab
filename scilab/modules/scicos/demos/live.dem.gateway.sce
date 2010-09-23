@@ -13,3 +13,4 @@ subdemolist = ["Simple block construction"                , "tut1.dem.sce"   ; .
                "The Cblock2 block"                        , "tut6.dem.sce"   ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

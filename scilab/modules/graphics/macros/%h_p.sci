@@ -814,16 +814,16 @@ function %h_p(h)
             t=[t;
                 "Parent: "+h.parent.type
                 "Children: "+fmtchildren(h.children)
-		"Enable = "+sci2exp(h.enable)
+                "Enable = "+sci2exp(h.enable)
                 "Foregroundcolor = "+sci2exp(h.foregroundcolor,0)
                 "Label = "+h.label 
                 //"Handle_visible = "+sci2exp(h.handle_visible)
                 //"Position = "+sci2exp(h.position,0)
                 "Visible = "+sci2exp(h.visible)
                 "Callback = "+h.callback
-                "CallbackType = "+sci2exp(h.callback_type,0)
-		"Checked: "+sci2exp(h.checked)
-		"Tag = "+h.tag
+                "Callback_type = "+sci2exp(h.callback_type,0)
+                "Checked =  "+sci2exp(h.checked)
+                "Tag = "+h.tag
             ]
         
         // uicontextmenu

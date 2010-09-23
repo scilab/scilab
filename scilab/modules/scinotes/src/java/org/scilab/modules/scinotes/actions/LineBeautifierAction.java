@@ -26,33 +26,32 @@ import org.scilab.modules.scinotes.ScilabEditorPane;
  *
  */
 public final class LineBeautifierAction extends ScilabEditorKit.InsertBreakAction {
-	
+
     /**
      * The key associated with tthis action
      */
-    public static String key = "ENTER";
-    
+    private static String key = "ENTER";
+
     /**
      * serialVersionUID
      */
     private static final long serialVersionUID = -8313095922543576108L;
-    
+
     /**
      * Constructor
      */
-    private LineBeautifierAction() {	
-    }
-    
+    public LineBeautifierAction() { }
+
     /**
      * actionPerformed
      * @param ev ActionEvent
      */
     public void actionPerformed(ActionEvent ev) {
-	super.actionPerformed(ev);
-	ScilabEditorPane sep = (ScilabEditorPane) ev.getSource();
-	sep.getIndentManager().indentDoc(sep.getCaretPosition() - 1);
+        super.actionPerformed(ev);
+        ScilabEditorPane sep = (ScilabEditorPane) ev.getSource();
+        sep.getIndentManager().indentDoc(sep.getCaretPosition() - 1);
     }
-    
+
     /**
      * putInInputMap
      * @param textPane JComponent

@@ -1,0 +1,218 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+//
+// This file is distributed under the same license as the Scilab package.
+// <-- TEST WITH XCOS -->
+//
+// <-- Short Description -->
+// White-box test for the xcosPal macro.
+loadScicosLibs();
+name = "My palette";
+exec(SCI + "/modules/scicos/palettes/Lookup_Tables.cosf", -1); // getting an scs_m
+pal = xcosPal()
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ New palette   
+ 
+       pal(3)
+ 
+     []
+ 
+       pal(4)
+ 
+     []
+ 
+       pal(5)
+ 
+     []
+ 
+       pal(6)
+ 
+     []
+pal = xcosPal(name)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ My palette   
+ 
+       pal(3)
+ 
+     []
+ 
+       pal(4)
+ 
+     []
+ 
+       pal(5)
+ 
+     []
+ 
+       pal(6)
+ 
+     []
+pal = xcosPal(scs_m)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ Lookup_Tables   
+ 
+       pal(3)
+ 
+!LOOKUP_c     !
+!             !
+!LOOKUP2D     !
+!             !
+!INTRPLBLK_f  !
+!             !
+!INTRP2BLK_f  !
+ 
+       pal(4)
+ 
+!TMPDIR/LOOKUP_c.h5     !
+!                                         !
+!TMPDIR/LOOKUP2D.h5     !
+!                                         !
+!TMPDIR/INTRPLBLK_f.h5  !
+!                                         !
+!TMPDIR/INTRP2BLK_f.h5  !
+ 
+       pal(5)
+ 
+!TMPDIR/LOOKUP_c.gif     !
+!                                          !
+!TMPDIR/LOOKUP2D.gif     !
+!                                          !
+!TMPDIR/INTRPLBLK_f.gif  !
+!                                          !
+!TMPDIR/INTRP2BLK_f.gif  !
+ 
+       pal(6)
+ 
+!noLabel=1;image=file:TMPDIR/LOOKUP_c.svg;     !
+!                                                                !
+!noLabel=1;image=file:TMPDIR/LOOKUP2D.svg;     !
+!                                                                !
+!noLabel=1;image=file:TMPDIR/INTRPLBLK_f.svg;  !
+!                                                                !
+!noLabel=1;image=file:TMPDIR/INTRP2BLK_f.svg;  !
+pal = xcosPal([], scs_m)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ Lookup_Tables   
+ 
+       pal(3)
+ 
+!LOOKUP_c     !
+!             !
+!LOOKUP2D     !
+!             !
+!INTRPLBLK_f  !
+!             !
+!INTRP2BLK_f  !
+ 
+       pal(4)
+ 
+!TMPDIR/LOOKUP_c.h5     !
+!                                         !
+!TMPDIR/LOOKUP2D.h5     !
+!                                         !
+!TMPDIR/INTRPLBLK_f.h5  !
+!                                         !
+!TMPDIR/INTRP2BLK_f.h5  !
+ 
+       pal(5)
+ 
+!TMPDIR/LOOKUP_c.gif     !
+!                                          !
+!TMPDIR/LOOKUP2D.gif     !
+!                                          !
+!TMPDIR/INTRPLBLK_f.gif  !
+!                                          !
+!TMPDIR/INTRP2BLK_f.gif  !
+ 
+       pal(6)
+ 
+!noLabel=1;image=file:TMPDIR/LOOKUP_c.svg;     !
+!                                                                !
+!noLabel=1;image=file:TMPDIR/LOOKUP2D.svg;     !
+!                                                                !
+!noLabel=1;image=file:TMPDIR/INTRPLBLK_f.svg;  !
+!                                                                !
+!noLabel=1;image=file:TMPDIR/INTRP2BLK_f.svg;  !
+pal = xcosPal(name, scs_m)
+ pal  =
+ 
+ 
+       pal(1)
+ 
+!palette  name  blockNames  blocks  icons  style  !
+ 
+       pal(2)
+ 
+ Lookup_Tables   
+ 
+       pal(3)
+ 
+!LOOKUP_c     !
+!             !
+!LOOKUP2D     !
+!             !
+!INTRPLBLK_f  !
+!             !
+!INTRP2BLK_f  !
+ 
+       pal(4)
+ 
+!TMPDIR/LOOKUP_c.h5     !
+!                                         !
+!TMPDIR/LOOKUP2D.h5     !
+!                                         !
+!TMPDIR/INTRPLBLK_f.h5  !
+!                                         !
+!TMPDIR/INTRP2BLK_f.h5  !
+ 
+       pal(5)
+ 
+!TMPDIR/LOOKUP_c.gif     !
+!                                          !
+!TMPDIR/LOOKUP2D.gif     !
+!                                          !
+!TMPDIR/INTRPLBLK_f.gif  !
+!                                          !
+!TMPDIR/INTRP2BLK_f.gif  !
+ 
+       pal(6)
+ 
+!noLabel=1;image=file:TMPDIR/LOOKUP_c.svg;     !
+!                                                                !
+!noLabel=1;image=file:TMPDIR/LOOKUP2D.svg;     !
+!                                                                !
+!noLabel=1;image=file:TMPDIR/INTRPLBLK_f.svg;  !
+!                                                                !
+!noLabel=1;image=file:TMPDIR/INTRP2BLK_f.svg;  !

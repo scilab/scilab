@@ -19,7 +19,6 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.PrinterWriter;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.SciNotesPrintPreviewWindow;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * PrintPreviewAction class
@@ -28,44 +27,48 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class PrintPreviewAction extends DefaultAction {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -3222532237364937814L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -3222532237364937814L;
 
-	/**
-	 * Constructor
-	 * @param editor SciNotes
-	 */
-	private PrintPreviewAction(SciNotes editor) {
-		super(SciNotesMessages.PRINT_PREVIEW, editor);
-	}
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public PrintPreviewAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-	/**
-	 * doAction
-	 */
-	public void doAction() {
-		PrinterWriter printerWriter = new PrinterWriter(getEditor().getTextPane());
-		new SciNotesPrintPreviewWindow(printerWriter, getEditor());
-	}
+    /**
+     * doAction
+     */
+    public void doAction() {
+        PrinterWriter printerWriter = new PrinterWriter(getEditor().getTextPane());
+        new SciNotesPrintPreviewWindow(printerWriter, getEditor());
+    }
 
-	/**
-	 * createMenu
-	 * @param editor SciNotes
-	 * @param key KeyStroke
-	 * @return MenuItem
-	 */
-        public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-	    return createMenu(SciNotesMessages.PRINT_PREVIEW, null, new PrintPreviewAction(editor), key);
-	}
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new PrintPreviewAction(label, editor), key);
+    }
 
-	/**
-	 * createButton
-	 * @param editor SciNotes
-	 * @return PushButton
-	 */
-	public static PushButton createButton(SciNotes editor) {
-		return createButton(SciNotesMessages.PRINT_PREVIEW, "document-print-preview.png", new PrintPreviewAction(editor));
-	}
+    /**
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
+     * @param editor SciNotes
+     * @return PushButton
+     */
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new PrintPreviewAction(tooltip, editor));
+    }
 
 }

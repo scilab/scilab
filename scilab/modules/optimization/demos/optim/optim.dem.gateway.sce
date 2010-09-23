@@ -11,5 +11,5 @@ subdemolist = ["Rosenbrock", "optim_rosenbrock.sce"; ...
 	       "Derivative", "optim_withderivative.sce"];
 
 subdemolist(:,2) = demopath + subdemolist(:,2)
-
+clear demopath;
 

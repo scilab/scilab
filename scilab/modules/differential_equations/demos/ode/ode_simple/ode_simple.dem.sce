@@ -5,24 +5,32 @@
 
 // Simple example
 
-my_handle = scf(100001);
-clf(my_handle,"reset");
-demo_viewCode("ode_simple.dem.sce");
+function demo_ode_simple()
 
-// ODE definition
-function xd=lin(t,x,A),xd=A*x,endfunction
-A=[1 1;0 2];
+  my_handle = scf(100001);
+  clf(my_handle,"reset");
+  demo_viewCode("ode_simple.dem.sce");
 
-// Integration and comparison with exp
-ea = ode(eye(2,2),0,1,list(lin,A)),expm(A);
+  // ODE definition
+  function xd=odelin(t,x,A)
+    xd=A*x;
+  endfunction
+  A=[1 1;0 2];
 
-// New integration with another a
-t  = 0:0.1:3;
-ee = ode(1,0,t,list(lin,1));
+  // Integration and comparison with exp
+  ea = ode(eye(2,2),0,1,list(odelin,A)),expm(A);
 
-// Visualization
-plot2d(t',ee',style=2);
-xlabel('t');ylabel('x');
-title(['Simple ODE'
+  // New integration with another a
+  t  = 0:0.1:3;
+  ee = ode(1,0,t,list(odelin,1));
+
+  // Visualization
+  plot2d(t',ee',style=2);
+  xlabel('t');ylabel('x');
+  title(['Simple ODE'
        ' xdot=x'],'fontsize',3)
-   
+       
+endfunction
+
+demo_ode_simple();
+clear demo_ode_simple;

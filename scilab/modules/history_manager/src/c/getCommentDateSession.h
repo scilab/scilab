@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,7 +21,10 @@ extern "C" {
 /*------------------------------------------------------------------------*/
 #include "BOOL.h" /* BOOL */
 /*------------------------------------------------------------------------*/
-char *getCommentDateSession(BOOL BeginSession);
+#define SESSION_PRAGMA_BEGIN "// -- "
+#define SESSION_PRAGMA_END " -- //"
+/*------------------------------------------------------------------------*/
+char *getCommentDateSession(void);
 /*------------------------------------------------------------------------*/
 #ifdef __cplusplus
 }

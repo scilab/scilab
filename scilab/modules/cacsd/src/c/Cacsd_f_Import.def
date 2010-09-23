@@ -5,19 +5,6 @@ EXPORTS
 ; --------------------------------------- 
 ; cacsd_f
 ; --------------------------------------- 
-scitzer_ 
-scirtitr_
-sciresidu_
-intmb03od_
-intzb03od_
-scippol_
-sciltitr_
-scildiv_
-scigspec_
-scigschur_
-intfstair_
-scifreq_
-intereduc_
 intricc_
 scisylv_
 scilyap_
@@ -26,7 +13,20 @@ intdhinf_
 inthinf_
 intricc2_
 intmucomp_
-sorder_
 findbd_
+sorder_
 sident_
 sciarl2_
+intereduc_
+scifreq_
+intfstair_
+scigschur_
+scigspec_ 
+scildiv_
+sciltitr_
+scippol_
+intzb03od_
+intmb03od_
+sciresidu_
+scirtitr_
+scitzer_

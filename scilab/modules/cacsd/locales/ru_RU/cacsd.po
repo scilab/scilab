@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-21 15:40+0000\n"
+"PO-Revision-Date: 2010-09-18 21:11+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -268,7 +268,7 @@ msgstr "%s: Количество строк в %s не соответствуе�
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
-msgstr "%s: Норма невзяки = %g\n"
+msgstr "%s: Норма невязки = %g\n"
 
 #, c-format
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
@@ -314,6 +314,10 @@ msgstr ""
 #, c-format
 msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: Вычисленное значение || G || может быть неточным.\n"
+
+#, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr "%s: Заданная система не имеет полюсов и нулей.\n"
 
 #, c-format
 msgid "%s: Undefined type ''%s''.\n"
@@ -438,6 +442,13 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного параметра №%d: количество столбцов не "
 "соответствует %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался массив действительных "
+"чисел с плавающей точкой\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -756,6 +767,24 @@ msgstr "Частота (Гц)"
 msgid "Gain :"
 msgstr "Приращение :"
 
+msgid "Hall chart"
+msgstr "График Холла"
+
+msgid "Hz"
+msgstr "Гц"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
+msgid "Imaginary Axis"
+msgstr "Мнимая ось"
+
 msgid "Imaginary axis"
 msgstr "Мнимая ось"
 
@@ -770,7 +799,7 @@ msgstr ""
 "Неразложимые делители собственной частоты и коэффициента затухания "
 "передаточной функции (нажмите левую кнопку мыши ниже)"
 
-msgid "Magnitude (Db)"
+msgid "Magnitude (dB)"
 msgstr "Амплитуда (дБ)"
 
 msgid "Numerator :"
@@ -787,6 +816,18 @@ msgstr "Фаза (градус)"
 
 msgid "Poles"
 msgstr "Полюса"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
+
+msgid "Real Axis"
+msgstr "Действительная ось"
 
 msgid "Real axis"
 msgstr "Вещественная ось"
@@ -809,8 +850,21 @@ msgstr "Нули"
 msgid "asymptotic directions"
 msgstr "асимптотические направления"
 
+msgid "dB"
+msgstr "дБ"
+
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+"Места с постоянным затуханием и постоянной собственной частотой\n"
+"в дискретной плоскости"
+
 msgid "magnitude(y) (Db)"
 msgstr "амплитуда (у) (дБ)"
+
+msgid "magnitude(y) (dB)"
+msgstr "амплитуда(y) (дБ)"
 
 msgid "open loop poles"
 msgstr "полюса разомкнутой системы"
@@ -820,3 +874,6 @@ msgstr "нули разомкнутой системы"
 
 msgid "phase(y) (degree)"
 msgstr "фаза (y) (градус)"
+
+msgid "rad/sec"
+msgstr "рад/с"

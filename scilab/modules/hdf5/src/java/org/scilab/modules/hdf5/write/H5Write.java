@@ -16,14 +16,14 @@ import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
-import org.scilab.modules.types.scilabTypes.ScilabBoolean;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabInteger;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabTList;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabBoolean;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabInteger;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
 
 
 public class H5Write {  
@@ -59,6 +59,8 @@ public class H5Write {
 		int attributeId = H5.H5Acreate(datasetId, attributeName, tid, attributespaceId, HDF5Constants.H5P_DEFAULT);
 		H5.H5Awrite(attributeId, tid, attributeValue.getBytes());
 		H5.H5Aclose(attributeId);
+		H5.H5Sclose(attributespaceId);
+		H5.H5Tclose(tid);
 	}
 
 	public static void createIntAttribute(int datasetId, String attributeName, int attributeValue) throws NullPointerException, HDF5Exception {
@@ -68,6 +70,7 @@ public class H5Write {
 			attributespaceId, HDF5Constants.H5P_DEFAULT);
 		H5.H5Awrite(attributeId, HDF5Constants.H5T_NATIVE_INT, new Integer[]{attributeValue});
 		H5.H5Aclose(attributeId);
+		H5.H5Sclose(attributespaceId);
 	}
 
 	//    public static void writeInDataSet(int fileId, String dataSetName, int[] data) throws NullPointerException, HDF5Exception {

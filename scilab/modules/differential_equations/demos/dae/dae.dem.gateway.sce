@@ -9,3 +9,4 @@ subdemolist = ["Spherical pendulum" ,"dae1/pend3d1.dem.sce" ;
                "Sliding pendulum"   ,"dae2/dae2.dem.gateway.sce"   ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

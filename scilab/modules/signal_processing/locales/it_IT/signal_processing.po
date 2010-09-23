@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-02-16 11:50+0000\n"
+"PO-Revision-Date: 2010-07-14 14:25+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d o %d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"

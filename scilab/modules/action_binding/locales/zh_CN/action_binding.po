@@ -21,9 +21,15 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
 
 #, c-format
-msgid "Unqueuing %s - No option.\n"
-msgstr "非队列（Unqueuing） %s - 无选项。\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+msgid "Same command executed again"
+msgstr ""
 
 #, c-format
-msgid "Unqueuing %s - seq.\n"
-msgstr "非队列（Unqueuing） %s - 序列（seq）。\n"
+msgid "Scilab '%s' module not installed.\n"
+msgstr ""
+
+msgid "Unable to communicate with the interpreter"
+msgstr ""

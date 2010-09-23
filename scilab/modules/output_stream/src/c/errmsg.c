@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,6 +23,7 @@
 #include "inffic.h"
 #include "msgstore.h"
 #include "msgout.h"
+#include "lasterror.h"
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
 #endif
@@ -55,7 +57,7 @@ int C2F(errmsg)(int *n,int *errtyp)
     resetLastError();
 
     /* store error code (lasterror) */
-    C2F(errstore)(n);
+    setLastErrorValue(*n);
 
     *errtyp = 0; /* by default errors are recoverable */
     /* errors not recoverable aren't catchable by top
@@ -1694,7 +1696,7 @@ static void resetLastError(void)
     /* reset lasterror */
     C2F(linestore)(&zero);
     C2F(funnamestore)(SPACE_CHAR, &zero, lenspace);
-    C2F(freemsgtable)();
+    clearLastError();
 }
 /*--------------------------------------------------------------------------*/
 static char *defaultStringError(void)

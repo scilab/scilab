@@ -309,6 +309,14 @@ int C2F(run)(void)
 	lc += 9;
 	goto L10;
       }
+      if (Fin==0) {
+        SciError(4);
+        if (Err > 0||C2F(errgst).err1 > 0) {
+          lc += 9;
+          goto L10;
+        }
+      }
+
     } else {
       /* referenced name was function at compile time it is now a
        * primitive. Modify the code for further use */

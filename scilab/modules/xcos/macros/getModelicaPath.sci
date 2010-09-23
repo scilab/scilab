@@ -9,24 +9,20 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
-//
-// return the Modelica directory path modelica_path
-// used by Xcos diagram containing Modelica blocks
 
 function [modelica_path, modelica_directory] = getModelicaPath()
-
-    // modelica_path
-    //  - Indicates path for generic modelica blocks
-    //  - User can add paths with %MODELICA_USER_LIBS for his own blocks
-
-    // modelica_directory
-    //  - Path for generic modelica blocks
-    //  - Add TMPDIR/modelica for generic modelica blocks
-    //    needed by modelicat to compile every modelica file
-
-    // %MODELICA_USER_LIBS
-    //  - Should be a string array
-    //  - All paths should exist
+// Return the Modelica directory path used by Xcos diagram containing Modelica blocks
+//
+// Calling Sequence
+//  [modelica_path, modelica_directory] = getModelicaPath()
+//
+// Parameters
+//  modelica_path:          Indicates path for generic modelica blocks, user 
+//                          can add paths with %MODELICA_USER_LIBS for his own
+//                          blocks.
+//  modelica_directory:     output directory for generated modelica files
+//  %MODELICA_USER_LIBS:    string path global variable used by the user to 
+//                          modify modelica_path. All paths should exist.
 
     // Init
     modelica_path      = "SCI/modules/scicos_blocks/macros/" + ["Electrical","Hydraulics"];
@@ -59,3 +55,4 @@ function [modelica_path, modelica_directory] = getModelicaPath()
     end
 
 endfunction
+

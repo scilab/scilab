@@ -290,6 +290,10 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s：计算出的|| G ||值可能不准确。\n"
 
 #, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Undefined type ''%s''.\n"
 msgstr "%s：未定义的类型\"%s\"。\n"
 
@@ -395,6 +399,11 @@ msgid ""
 "%s: Wrong size of input argument #%d: Number of columns are incompatible "
 "with %s.\n"
 msgstr "%s：输入参数#%d的大小错误：列数与%s不兼容。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -641,6 +650,24 @@ msgstr "频率（Hz）"
 msgid "Gain :"
 msgstr "增益："
 
+msgid "Hall chart"
+msgstr ""
+
+msgid "Hz"
+msgstr ""
+
+msgid "Im"
+msgstr ""
+
+msgid "Im(h(2if))"
+msgstr ""
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr ""
+
+msgid "Imaginary Axis"
+msgstr ""
+
 msgid "Imaginary axis"
 msgstr "虚轴"
 
@@ -652,8 +679,8 @@ msgid ""
 "factor (click below)"
 msgstr "不可约的传递函数因素的固有频率和阻尼因子（点击下面）"
 
-msgid "Magnitude (Db)"
-msgstr "幅度（Db）"
+msgid "Magnitude (dB)"
+msgstr ""
 
 msgid "Numerator :"
 msgstr "分子："
@@ -669,6 +696,18 @@ msgstr "相位（度）"
 
 msgid "Poles"
 msgstr "极点"
+
+msgid "Re"
+msgstr ""
+
+msgid "Re(h(2if))"
+msgstr ""
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr ""
+
+msgid "Real Axis"
+msgstr ""
 
 msgid "Real axis"
 msgstr "实轴"
@@ -691,8 +730,19 @@ msgstr "零"
 msgid "asymptotic directions"
 msgstr "渐近方向"
 
+msgid "dB"
+msgstr ""
+
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+
 msgid "magnitude(y) (Db)"
 msgstr "幅度（y）（Db）"
+
+msgid "magnitude(y) (dB)"
+msgstr ""
 
 msgid "open loop poles"
 msgstr "开环极点"
@@ -702,3 +752,6 @@ msgstr "开环零"
 
 msgid "phase(y) (degree)"
 msgstr "相位（y）（度）"
+
+msgid "rad/sec"
+msgstr ""

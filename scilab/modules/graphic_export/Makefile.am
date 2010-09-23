@@ -75,7 +75,7 @@ INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libscigraphic_export_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_export_la_LIBADD =  $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \

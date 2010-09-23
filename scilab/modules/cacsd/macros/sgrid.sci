@@ -1,79 +1,214 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) 2010 - INRIA - Serge STEER
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function sgrid(varargin)
+// sgrid(["new",] [,Z,Wn [,colors]])
+// sgrid(Z,Wn [,"new"] [,colors])
 
+  defaultcolors=[4 12];
+  defaultbounds=[-1.6,-1.6;0,1.6];
+  rhs=argn(2)
+  new=%f
+  if rhs>=1 then
+    if type(varargin(1))==10 then
+      if varargin(1)<>"new" then
+        error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"sgrid",1,"new"))
+      end
+      varargin(1)=null()
+      rhs=rhs-1
+      new=%t
+    end
+  end
+  if rhs>=3 then
+    if type(varargin(3))==10 then
+      if varargin(3)<>"new" then
+        error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"sgrid",3,"new"))
+      end
+      varargin(3)=null()
+      rhs=rhs-1
+      new=%t
+    end
+  end
 
-function [] = sgrid(zeta,wn,col)
+  defaultwn=%f;
+  defaultzeta=[0 0.16 0.34 0.5 0.64 0.76 0.86 0.94 0.985 1]
 
-// sgrid()
-// sgrid(Z,Wn)
-// sgrid('new') 
-  [lhs,rhs]=argn(0)
-  axes=gca();
   select rhs
-  case 0 then 
-    wn= 0:1:10;
-    zeta = linspace(0,1,10);
-    col=3;
-  case 1 then
-    if type(zeta)<>10 then
-      error(msprintf(_("%s: Wrong type for input argument #%d: String array expected.\n"),"sgrid",1))
-    end
-    if size(zeta,'*')<>1 then
-      error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sgrid",1))
-    end
-    wn = 0:1:10;
-    zeta = [ 0 .1 .2 .3 .4 .5 .6 .7 .8 .9 1 ];
-    col=3;
-    clf()
-    axes.data_bounds=[-20,-20;20,20];axes.axes_visible='on';
+  case 0 then  //sgrid() or sgrid("new")
+    defaultwn=%t
+    zeta = defaultzeta
+    colors = defaultcolors
   case 2 then
-    col=3;
-  end 
-  wmax = 10 .^(floor(log10(max(abs(axes.data_bounds)))));
-  // building a grid 
-  zx = 0:.01:1;
-  [rx,cx]=size(wn);[ry,cy]=size(zx);
-  w=wn.*.ones(cy,1);z=zx'.*.ones(1,cx);
+    zeta =  varargin(1)
+    if type(zeta)<>1|~isreal(zeta) then
+      error(msprintf(_("%s: Wrong type for input argument #%d : real floating point array expected\n"),"sgrid",1));
+    end
+    wn = varargin(2)
+    if type(wn)<>1|~isreal(wn) then
+      error(msprintf(_("%s: Wrong type for input argument #%d : real floating point array expected\n"),"sgrid",2));
+    end
+    colors = defaultcolors
+  case 3 then
+    zeta =  varargin(1)
+    if type(zeta)<>1|~isreal(zeta) then
+      error(msprintf(_("%s: Wrong type for input argument #%d : real floating point array expected\n"),"sgrid",1));
+    end
+    wn = varargin(2)
+    if type(wn)<>1|~isreal(wn) then
+      error(msprintf(_("%s: Wrong type for input argument #%d : real floating point array expected\n"),"sgrid",2));
+    end
+    colors = varargin(3)
+    if type(colors)<>1|~isreal(colors) then
+      error(msprintf(_("%s: Wrong type for input argument #%d : real floating point array expected\n"),"sgrid",3));
+    end
+    if size(colors,"*")==1 then colors=colors*ones(1,2),end
+  end
+  zeta=zeta(zeta>=0&zeta<=1)
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
 
-  // plot : part I 
-  re = - w .* z;
-  [zr,zc] = size(z);
-  im = w .* sqrt( 1 - z .* z );
-  plot2d(re,im,style=col*ones(1,zc));
-  plot2d(re,-im,style=col*ones(1,zc));
-  
-  // info on curves 
+  axes=gca();
+  if new&axes.children<>[] then
+    delete(axes.children)
+  end
+  nc=size(axes.children,"*")
+  if nc==0 then
+    axes.data_bounds=defaultbounds
+    axes.axes_visible="on";
+    ax.box="on";
+  else
+    axes.data_bounds=[min(defaultbounds(1,:),axes.data_bounds(1,:));
+                      max(defaultbounds(2,:),axes.data_bounds(2,:))];
+  end
+  if axes.tight_limits=="off"&axes.auto_ticks(1)=="on" then
+    xmin=axes.x_ticks.locations(1)
+    xmax=axes.x_ticks.locations($)
+  else
+    xmin=axes.data_bounds(1,1)
+    xmax=axes.data_bounds(2,1)
+  end
+  if axes.tight_limits=="off"&axes.auto_ticks(2)=="on" then
+    ymin=axes.y_ticks.locations(1)
+    ymax=axes.y_ticks.locations($)
+  else
+    ymin=axes.data_bounds(1,2)
+    ymax=axes.data_bounds(2,2)
+  end
 
-  [rer,rec] = size(re)
+  //iso natural frequency curves
+  if defaultwn then
+    rmax=sqrt(min(xmin^2+ymin^2,xmin^2+ymax^2))
+    rmax=floor(10*rmax)/10;
+    [xi,xa,np]=graduate(0.2,rmax,8,12)
+    wn=linspace(xi,xa,np)
+  end
+  wn=wn(wn>=0)
+  t=linspace(%pi/2,1.5*%pi,200)
+  chart_handles=[]
+  for i=1:size(wn,"*")
+    xpoly(wn(i)*cos(t),wn(i)*sin(t))
+    ec=gce();
+    datatipInitStruct(ec,"formatfunction","formatSgridFreqTip","freq",wn(i))
 
-  axes.clip_state = "clipgrf";
-  xnumb(re(1,:),im(1,:),wn);
-  axes.clip_state = "off";
+    ec.foreground=colors(1),
+    ec.line_style=7;
+    ec.clip_state="clipgrf";
 
-  // building an other grid 
+    lab=msprintf("%.2g",wn(i))
+    r=xstringl(0,wn(i),lab)
+    if %t then
+      xstring(-r(3),wn(i),lab)
+      es1=gce();
+      es1.font_foreground=colors(1),
+      es1.clip_state="clipgrf";
+      xstring(-r(3),-wn(i)-r(4),lab)
+      es2=gce();
+      es2.font_foreground=colors(1),
+      es2.clip_state="clipgrf";
+      e=glue([es2 es1 ec])
+    else
+      xstring(-wn(i)-r(3),0,lab)
+      es1=gce();
+      es1.font_foreground=colors(1),
+      es1.clip_state="clipgrf";
+      e=glue([es1 ec]);
+    end
+    chart_handles=[e chart_handles]
+  end
+  //iso damping factor curves
+  angl=acos(zeta)
 
-  wn = [0,wn,2*wmax];
-  [rx,cx]=size(wn);[ry,cy]=size(zeta);
-  w=wn.*.ones(cy,1);z=zeta'.*.ones(1,cx);
+  for i=1:size(zeta,"*")
+    lab=string(zeta(i))
+    rect=xstringl(0,0,lab)
 
-  // plot part II  
+    sa=sin(angl(i));ca=cos(angl(i))
+    if sa==0 then sa=%eps;end
+    if ca==0 then ca=%eps;end
+    r=min(-ymin/sa,-xmin/ca)
 
-  [zr,zc] = size(z);
-  re = -w .* z;
-  im = w .* sqrt( 1 - z .* z );
-  plot2d(re',im',style=col*ones(1,zr));
-  plot2d(re',-im',style=col*ones(1,zr));
+    xpoly([0 -r*ca],[0 -r*sa])
+    ec=gce();
+    datatipInitStruct(ec,"formatfunction","formatSgridDampingTip",..
+                      "damping",zeta(i),"interpolate",%t)
 
-  // info on each curve ( straight lines )
-  [rer,rec] = size(re)
-  axes.clip_state = "clipgrf";
-  xnumb(re(:,$)',im(:,$)',zeta);
-  axes.clip_state = "off";
-  
+    ec.foreground=colors(2),
+    ec.line_style=7;
+    ec.clip_state="clipgrf";
+    if -ymin/sa<-xmin/ca
+      r1=r-rect(4)/sa
+      xstring(-r1*ca-rect(3),-r1*sa,lab)
+    else
+      xstring(-r*ca+0.02*rect(3),-r*sa,lab)
+    end
+    es=gce();
+    es.font_foreground=colors(2),
+    es.clip_state="clipgrf";
+    chart_handles=[glue([es ec]),chart_handles]
+
+    r=min(ymax/sa,-xmin/ca)
+    xpoly([0 -r*ca],[0 r*sa])
+    ec=gce();
+    datatipInitStruct(ec,"formatfunction","formatSgridDampingTip",..
+                      "damping",zeta(i),"interpolate",%t)
+
+    ec.foreground=colors(2),
+    ec.line_style=7;
+    ec.clip_state="clipgrf";
+    if ymax/sa<-xmin/ca then
+      xstring(-r*ca-rect(3),r*sa-rect(4),lab)
+    else
+      xstring(-r*ca,r*sa,lab)
+    end
+    es=gce();
+    es.font_foreground=colors(2),
+    es.clip_state="clipgrf";
+    chart_handles=[glue([es ec]),chart_handles]
+  end
+  chart_handles=glue(chart_handles)
+  //reorder axes children to make chart drawn before the black previously
+  // drawn curves if any
+  for k=1:nc
+    swap_handles(axes.children(k),axes.children(k+1))
+  end
+  fig.immediate_drawing=immediate_drawing;
+  show_window()
+endfunction
+function str=formatSgridFreqTip(curve,pt,index)
+//This function is called by the datatip mechanism to format the tip
+//string for the sgrid chart iso natural frequency curves.
+  ud=datatipGetStruct(curve);
+  str=msprintf("%.2g"+_("rad/sec"),ud.freq);
+endfunction
+function str=formatSgridDampingTip(curve,pt,index)
+//This function is called by the datatip mechanism to format the tip
+//string for the sgrid chart iso damping factor curves.
+  ud=datatipGetStruct(curve);
+  str=msprintf("%.2g\%",ud.damping*100);
 endfunction

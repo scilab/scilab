@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-01-12 11:45+0000\n"
+"PO-Revision-Date: 2010-06-29 12:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -122,10 +122,6 @@ msgstr "%s: обробка файла: %s у %s\n"
 #, c-format
 msgid "%s: Reading from directory %s\n"
 msgstr "%s: читання з каталогу %s\n"
-
-#, c-format
-msgid "%s: Scilab 5.0 or more is required.\n"
-msgstr "%s: потрібен Scilab 5.0 або новіша версія.\n"
 
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
@@ -280,8 +276,8 @@ msgstr ""
 "існуючого каталогу.\n"
 
 #, c-format
-msgid "%s: help module is not installed.\n"
-msgstr "%s: модуль довідки не встановлено.\n"
+msgid "%s: help file(.jar) is not installed.\n"
+msgstr "%s: не встановлено файл довідки (.jar).\n"
 
 #, c-format
 msgid "%s: hhc.exe not found.\n"

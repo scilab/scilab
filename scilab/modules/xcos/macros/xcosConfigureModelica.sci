@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+// Copyright (C) 2010-2010 - DIGITEO - Clément DAVID
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,16 +12,14 @@
 //
 
 function xcosConfigureModelica()
-
-// We need to define {modelica_libs} variable
-// was :
-//  [scicos_pal, %scicos_menu, %scicos_short, modelica_path, scicos_pal_libs,...
-//   %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-//   %scicos_libs, %scicos_with_grid, %scs_wgrid] = ...
-//     initial_scicos_tables();
+// Configure the current diagram with the modelica setting UI.
+// 
+// Description
+// On modelica diagrams, variable initialization has to be performed by a 
+// specific UI. This achieve on this macro which rely on an existing scs_m 
+// diagram variable.
 //
 
-//Scicos Modelica library path definitions========================================
   modelica_libs = getModelicaPath()
   
   name=scs_m.props.title(1);
@@ -57,19 +56,9 @@ function xcosConfigureModelica()
     %Modelica_Init=%f
   end
   [info,err1]=fileinfo(xmlfile);
-
-  // Load TCL tools 
-  TCL_EvalFile(SCI+"/modules/tclsci/tcl/sciGUI/sciConfig.tcl")
-  TCL_EvalFile(SCI+"/modules/tclsci/tcl/sciGUI/sciGUI.tcl")
-
-  // Initialize TCL GUI
-  sciGUI_init();
-  
-  // Load Modelica configuration GUI
-  TCL_EvalFile(SCI+"/modules/scicos/tcl/MIHM.tcl")
   
   if err1==0 then 
-    scimihm xmlfile
+    xcosConfigureXmlFile(xmlfile);
   end  
 
   // variables needed by compile_init_modelica
@@ -77,11 +66,3 @@ function xcosConfigureModelica()
   
 endfunction
 
-function  Doubleclick(name,last_name)
- 
-  //%cpr=tlist(['cpr','corinv'],corinv)
-
-  if last_name<>"" then unhilite_modelica_block(modelica_cind_from_name(last_name));end
-  hilite_modelica_block(modelica_cind_from_name(name))
-
-endfunction

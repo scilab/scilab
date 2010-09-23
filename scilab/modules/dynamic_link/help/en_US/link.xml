@@ -31,11 +31,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>x=link(files [, sub-names,flag]);
+    <synopsis>x = link(files [, sub-names,flag]);
 link(x , sub-names [, flag]);
-ulink(x)
-lst=link('show')
-lst=link()</synopsis>
+lstID = link("show")
+lst = link()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -78,6 +77,21 @@ lst=link()</synopsis>
           <literal>'c'</literal> for Fortran (default) or C code.</para>
         </listitem>
       </varlistentry>
+      
+      <varlistentry>
+        <term>listID</term>
+        <listitem>
+          <para>returns the current linked ID routines.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>list</term>
+        <listitem>
+          <para> returns names of functions linked.</para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
 

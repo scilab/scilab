@@ -10,3 +10,4 @@ subdemolist = ["Simulated Annealing",                   "SAdemo.sce"; ...
 	       "Simulated Annealing and Ising problem", "SAIsing2ddemo.sce"];
 
 subdemolist(:,2) = demopath + subdemolist(:,2)
+clear demopath;

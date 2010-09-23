@@ -82,7 +82,7 @@ public class CompileAction extends SimulationNotRunningAction {
 
 			@Override
 			protected Void doInBackground() throws Exception {
-				((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
+				((XcosDiagram) getGraph(null)).dumpToHdf5File(temp);
 				((XcosDiagram) getGraph(null)).setReadOnly(true);
 				return null;
 			}

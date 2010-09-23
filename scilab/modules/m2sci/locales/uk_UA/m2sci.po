@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-12 16:04+0000\n"
+"PO-Revision-Date: 2010-06-29 12:28+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -363,6 +363,14 @@ msgstr ""
 "Якщо %s не перебуває у проміжку [-1,1]\n"
 "   комплексна частина вихідного значення %s матиме знак, протилежний до "
 "визначеного у Matlab."
+
+#, c-format
+msgid ""
+"If %s is outside [-1,1]\n"
+"   real part of output of %s will be the opposite of Matlab one."
+msgstr ""
+"Якщо %s не належатиме проміжку [-1,1],\n"
+"   дійсна частина виводу %s матиме протилежний знак щодо значення у Matlab."
 
 #, c-format
 msgid ""

@@ -19,3 +19,4 @@ if with_module('simulated_annealing') then
 end
 
 subdemolist(:,2) = demopath + subdemolist(:,2)
+clear demopath;

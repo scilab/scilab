@@ -130,6 +130,12 @@ msgid "%s: An error occurred during the compilation:\n"
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s：出现错误：%s\n"
 
@@ -199,6 +205,14 @@ msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为 %d，%d 或 %d 个。\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s：输入参数#%d的大小错误。\n"
 
@@ -245,12 +259,8 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s：输入参数#%d类型错误：应该为整数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串数组。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings expected.\n"
@@ -263,6 +273,10 @@ msgstr "%s：输入参数的类型错误：应该为字符串向量。\n"
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s：输入参数的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"

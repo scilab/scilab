@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,94 +34,95 @@ static JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs = NULL;
 /*--------------------------------------------------------------------------*/ 
 jint SciJNI_GetDefaultJavaVMInitArgs(JavaVMInitArgs *args)
 {
-	if (ptr_JNI_GetDefaultJavaVMInitArgs) return (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
-	return JNI_ERR;
+    if (ptr_JNI_GetDefaultJavaVMInitArgs) return (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
+    return JNI_ERR;
 }
 /*--------------------------------------------------------------------------*/ 
 jint SciJNI_CreateJavaVM(JavaVM **jvm, JNIEnv **penv, JavaVMInitArgs *args)
 {
-	if (ptr_JNI_CreateJavaVM) return (ptr_JNI_CreateJavaVM)(jvm,penv,args);
-	return JNI_ERR;
+    if (ptr_JNI_CreateJavaVM) return (ptr_JNI_CreateJavaVM)(jvm,penv,args);
+    return JNI_ERR;
 }
 /*--------------------------------------------------------------------------*/ 
 jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
 {
-	if (ptr_JNI_GetCreatedJavaVMs) return (ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
-	return JNI_ERR;
+    if (ptr_JNI_GetCreatedJavaVMs) return (ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
+    return JNI_ERR;
 }
 /*--------------------------------------------------------------------------*/ 
 BOOL FreeDynLibJVM(void)
 {
-	if (hLibJVM)
-		{
-			if (FreeDynLibrary(hLibJVM))
-				{
-					ptr_JNI_GetDefaultJavaVMInitArgs = NULL; 
-					ptr_JNI_CreateJavaVM = NULL; 
-					ptr_JNI_GetCreatedJavaVMs = NULL; 
-					return TRUE;
-				}
-		}
-	return FALSE;
+    if (hLibJVM)
+    {
+        if (FreeDynLibrary(hLibJVM))
+        {
+            ptr_JNI_GetDefaultJavaVMInitArgs = NULL; 
+            ptr_JNI_CreateJavaVM = NULL; 
+            ptr_JNI_GetCreatedJavaVMs = NULL; 
+            hLibJVM = NULL;
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
 BOOL LoadFuntionsJVM(char *filedynlib)
 {
-	#ifdef _MSC_VER
-	wchar_t * wcfiledynlib = to_wide_string(filedynlib);
-	if (wcfiledynlib)
-	{
-		hLibJVM = LoadDynLibraryW(wcfiledynlib); 
-		FREE(wcfiledynlib);
-		wcfiledynlib = NULL;
-	}
-	#else
-	hLibJVM = LoadDynLibrary(filedynlib); 
-	#endif
-	
-	if (hLibJVM)
-	{
-		ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" ); 
-		ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetDynLibFuncPtr(hLibJVM, "JNI_CreateJavaVM" ); 
-		ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
+#ifdef _MSC_VER
+    wchar_t * wcfiledynlib = to_wide_string(filedynlib);
+    if (wcfiledynlib)
+    {
+        hLibJVM = LoadDynLibraryW(wcfiledynlib); 
+        FREE(wcfiledynlib);
+        wcfiledynlib = NULL;
+    }
+#else
+    hLibJVM = LoadDynLibrary(filedynlib); 
+#endif
 
-		if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) return TRUE;
-	}
-	return FALSE;
+    if (hLibJVM)
+    {
+        ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" ); 
+        ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetDynLibFuncPtr(hLibJVM, "JNI_CreateJavaVM" ); 
+        ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
+
+        if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) return TRUE;
+    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
 char *getJniErrorFromStatusCode(long status){
-	switch (status){
-		case JNI_ERR:
-			return _("Unknown JNI error");
-			break;
-		case JNI_EDETACHED:
-			return _("Thread detached from the VM");
-			break;
-		case JNI_EVERSION:
-			return _("JNI version error");
-			break;
+    switch (status){
+        case JNI_ERR:
+            return _("Unknown JNI error");
+            break;
+        case JNI_EDETACHED:
+            return _("Thread detached from the VM");
+            break;
+        case JNI_EVERSION:
+            return _("JNI version error");
+            break;
 #ifdef JNI_ENOMEM
-			/* ifdef because not defined with some version of gcj */
-		case JNI_ENOMEM:
-			return _("JNI: not enough memory");
-			break;
+            /* ifdef because not defined with some version of gcj */
+        case JNI_ENOMEM:
+            return _("JNI: not enough memory");
+            break;
 #endif
 #ifdef JNI_EEXIST
-			/* ifdef because not defined with some version of gcj */
-		case JNI_EEXIST:
-			return _("VM already created");
-			break;
+            /* ifdef because not defined with some version of gcj */
+        case JNI_EEXIST:
+            return _("VM already created");
+            break;
 #endif
 #ifdef JNI_EINVAL
-			/* ifdef because not defined with some version of gcj */
-		case JNI_EINVAL:
-			return _("JNI: invalid arguments");
-			break;
+            /* ifdef because not defined with some version of gcj */
+        case JNI_EINVAL:
+            return _("JNI: invalid arguments");
+            break;
 #endif
-		default:
-			return _("Undefined error code in the JNI. Weird problem");
-			break;
-	}
+        default:
+            return _("Undefined error code in the JNI. Weird problem");
+            break;
+    }
 }
 /*--------------------------------------------------------------------------*/ 

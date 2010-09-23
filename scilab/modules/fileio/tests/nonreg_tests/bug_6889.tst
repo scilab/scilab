@@ -16,5 +16,5 @@
 // 'fscanfMat' crashed with wrong formatted files.
 
 ierr = execstr("a = fscanfMat(SCI + ''/modules/fileio/tests/nonreg_tests/bug_6889.txt'')", "errcatch");
-if ierr <> 0 then pause,end
-if a <> 0 then pause,end
+if ierr <> 999 then pause,end
+

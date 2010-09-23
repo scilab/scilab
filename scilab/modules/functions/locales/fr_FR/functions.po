@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-06-10 09:02+0000\n"
-"Last-Translator: Sylvestre Ledru <Unknown>\n"
+"PO-Revision-Date: 2010-09-16 19:38+0000\n"
+"Last-Translator: xemard.nicolas <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,6 +65,10 @@ msgid "%s: Invalid library %s.\n"
 msgstr "%s : Bibliothèque invalide %s.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation de mémoire.\n"
+
+#, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s : Pas de fichiers avec l'extension %s trouvés dans %s\n"
 
@@ -83,12 +87,6 @@ msgstr "%s : Régénère noms et bibliothèques\n"
 #, c-format
 msgid "%s: The function has not been built for profiling"
 msgstr "%s : La fonction n'a pas été construite pour le profiling"
-
-#, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr ""
-"%s : Il n'y a pas de fichier nommé %s.sci dans le répertoire de la "
-"bibliothèque %s.\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
@@ -110,6 +108,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 "%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -239,24 +243,10 @@ msgstr "Utilisez plutôt %s s'il vous plait."
 
 #, c-format
 msgid "This function will be permanently removed in Scilab %s"
-msgstr "Cette fonction va être définitivement enlevée de Scilab %s"
+msgstr "Cette fonction va être définitivement enlevée dans Scilab %s"
 
 msgid "Tools"
 msgstr "Outils"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "ATTENTION: La fonction %s est obsolète.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "ATTENTION: Utilisez %s à la place.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr ""
-"ATTENTION: Cette fonction sera supprimée de façon permanente dans Scilab "
-"%s.\n"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "

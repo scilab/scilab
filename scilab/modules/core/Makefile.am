@@ -86,6 +86,7 @@ src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
 src/c/dynamic_tclsci.c \
+src/c/dynamic_parallel.c \
 src/c/storeCommand.c
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
@@ -254,8 +255,7 @@ sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_global.f \
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
@@ -374,5 +374,10 @@ includes/version.h \
 includes/getversion.h \
 includes/warningmode.h \
 includes/Thread_Wrapper.h
+
+if GUI
+USEANT=1
+endif
+
 
 include $(top_srcdir)/Makefile.incl.am

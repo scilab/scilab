@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-04-16 17:44+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-08-01 03:12+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,129 +18,77 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-#
-# File: macros/dae.sci, line: 168
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%1$s: %2$s : 入力引数(s)で不正な数: %4$d への %3$d を想定します。\n"
+msgstr "%1$s: %2$s : 入力引数の数が間違っています: %3$d から %4$d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
 msgstr "%s: 不正なオプション %s: 実行列を想定します。\n"
 
-#
-# File: macros/dae.sci, line: 17
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d または %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
-#
-# File: macros/dae.sci, line: 345
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%1$s: 入力引数の数が不正です: %3$d への %2$d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#
-# File: macros/dae.sci, line: 345
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: 少なくとも %d が予想されます。\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
-#
-# File: macros/dae.sci, line: 28
-# File: macros/dae.sci, line: 38
-# File: macros/dae.sci, line: 50
-# File: macros/dae.sci, line: 62
-# File: macros/dae.sci, line: 72
-# File: macros/dae.sci, line: 90
-# File: macros/dae.sci, line: 102
-# File: macros/dae.sci, line: 112
-# File: macros/dae.sci, line: 125
-# File: macros/dae.sci, line: 141
-# File: macros/dae.sci, line: 151
-# File: macros/dae.sci, line: 163
-# File: macros/dae.sci, line: 180
-# File: macros/dae.sci, line: 193
-# File: macros/dae.sci, line: 203
-# File: macros/dae.sci, line: 215
-# File: macros/dae.sci, line: 227
-# File: macros/dae.sci, line: 237
-# File: macros/dae.sci, line: 255
-# File: macros/dae.sci, line: 267
-# File: macros/dae.sci, line: 277
-# File: macros/dae.sci, line: 290
-# File: macros/dae.sci, line: 307
-# File: macros/dae.sci, line: 317
-# File: macros/dae.sci, line: 328
-# File: macros/dae.sci, line: 340
-# File: macros/dae.sci, line: 357
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr "%s: 出力引数の数が不正です: %d または %d を想定します。\n"
+msgstr "%s: 出力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
-#
-# File: macros/dae.sci, line: 17
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 実を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 実数を1つ指定してください.\n"
 
-#
-# File: macros/dae.sci, line: 17
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
-msgstr "%s: 入力引数 #%d で不正な値: 既知の構文エラーを想定します\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 指定された式に構文エラーがあります\n"
 
 msgid ""
 "0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))"
 msgstr "0 : 反復法 (ヤコビアンは使われません(''adams'' または ''stiff'' のみ))"
 
-#
-# File: macros/odeoptions.sci, line: 53
 msgid "1 : normal computation at specified times"
-msgstr "1 : 普通の計算指定された時間"
+msgstr "1: 指定された時間で通常の計算を実行"
 
 msgid "1 : user-supplied full jacobian"
-msgstr "1 : ユーザー指定 最大限のヤコビアン"
+msgstr "1 : ユーザー指定の完全なヤコビアン"
 
-#
-# File: macros/odeoptions.sci, line: 54
 msgid "2 : computation at mesh points (given in first row of output of ode)"
-msgstr "2:  メッシュ点の計算(常微分方程式の出力の最初の列で与えられる)"
+msgstr "2:  メッシュ点の計算(常微分方程式の出力の最初の行で指定)"
 
-#
-# File: macros/odeoptions.sci, line: 62
 msgid "2 : internally generated full jacobian"
-msgstr "2 : 内部で生成 最大限のヤコビアン"
+msgstr "内部的に生成した完全なヤコビアン"
 
-#
-# File: macros/odeoptions.sci, line: 63
 msgid ""
 "3 : internally generated diagonal jacobian (''adams'' or ''stiff'' only)"
-msgstr "3 : 内部で生成された対角線のヤコビアン (''adams'' または ''stiff'' のみ)"
+msgstr "3 : 内部で生成された対角ヤコビアン (''adams'' または ''stiff'' のみ)"
 
 msgid "3 : one step at one internal mesh point and return"
-msgstr "3: １つの内部のメッシュ点のワンステップと戻り"
+msgstr "3: 内部メッシュ点で1ステップ計算し,戻る"
 
-#
-# File: macros/odeoptions.sci, line: 56
 msgid "4 : normal computation without overshooting tcrit"
-msgstr "4 : tcritを行き過ぎることのない普通の計算"
+msgstr "4: tcrit を超過せずに通常の計算を実行"
 
-#
-# File: macros/odeoptions.sci, line: 64
 msgid "4 : user-supplied banded jacobian (see ml,mu)"
-msgstr "4 : ユーザーを満たす ヤコビアン帯域（ml,muを参照)"
+msgstr "4: ユーザが指定した帯行列ヤコビアン （ml,muを参照)"
 
 msgid "5 : internally generated banded jacobian (see ml,mu)"
-msgstr "5 : 内部で生成 ヤコビアン帯域（ml,muを参照)"
+msgstr "5: 内部生成した帯行列ヤコビアン （ml,muを参照)"
 
 msgid "5 : one step, without passing tcrit, and return"
-msgstr "5 : ワンステップ、tcrit を通過しないで、そして戻り"
+msgstr "5: trcit を超過せずに1ステップ実行し,戻る"
 
 #
 # File: demos/flow/blackhole_interface.sci, line: 48
@@ -166,17 +114,13 @@ msgid "Differential equations code generated by Maple"
 msgstr "メイプルによって生成された微分方程式コード"
 
 msgid "If jactype = 4 or 5 ml and mu are the lower and upper half-bandwidths"
-msgstr "もし jactype = ４ または ５ ml かつ mu が下位　かつ 上位帯域幅の半分"
+msgstr "jactype = 4 または 5 の場合, ml および mu は帯行列の下半分および上半分の幅となります."
 
-#
-# File: macros/odeoptions.sci, line: 70
 msgid "If jactype = 4 the jacobian function must return"
-msgstr "もし、jactype = 4 であるなら、ヤコビアン関数は戻らなくてはなりません"
+msgstr "jactype = 4 の場合, ヤコビアン関数は値を返す必要があります."
 
-#
-# File: macros/odeoptions.sci, line: 77
 msgid "If the function is called without argument, default values are used"
-msgstr "もし関数が引数なしで呼ばれれば、デフォルト値は使われます"
+msgstr "引数を指定しないで関数がコールされた場合, デフォルト値が使用されます."
 
 msgid "Lokta-Volterra vector field"
 msgstr "Lokta-Volterraベクトル・フィールド"
@@ -208,55 +152,38 @@ msgstr "ODE 1D ベクトル・フィールド"
 msgid "Simulation"
 msgstr "シミュレーション"
 
-#
-# File: demos/wheel/show.sci, line: 64
 msgid "Simulation of mechanical system with holonomic constraints"
-msgstr "ホロノーム制約をもつ機械的なシステムのシミュレーション"
+msgstr "ホロノミック拘束を有する機械システムのシミュレーション"
 
-#
-# File: demos/flow/sphere_interface.sci, line: 45
 msgid "Sphere"
-msgstr "天体"
+msgstr "球体"
 
 msgid "Van der Pol vector field"
 msgstr "Van der Pol ベクトル・フィールド"
 
-#
-# File: macros/odeoptions.sci, line: 71
 msgid "a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))"
-msgstr "ml+mu+1 x ny である 行列 J (ydot=f(t,y) で y の ny=dim のどこか)"
+msgstr "ml+mu+1 x ny の 行列 J (ただし, ydot=f(t,y) における ny=yの次元)"
 
-# File: demos/bike/macros/velo1.sci, line: 25
 msgid "bike simulation, stable trajectory"
-msgstr "自転車シミュレーション、安定軌道"
+msgstr "2輪車のシミュレーション, 安定な軌道"
 
-#
-# File: demos/bike/macros/velo2.sci, line: 24
 msgid "bike simulation, unstable trajectory"
-msgstr "自転車シミュレーション、不安定軌道"
+msgstr "2輪車のシミュレーション, 不安定な軌道"
 
 msgid "chemical process (implicit)"
-msgstr "化学の過程(暗示)"
+msgstr "化学プロセス (暗示的)"
 
-#
-# File: macros/odeoptions.sci, line: 74
 msgid "column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc"
-msgstr "列２は、ゼロが df1/dx2, df2/dx2,etc によってmu-1で作られています"
+msgstr "列2 は, mu-1 個のゼロの後に df1/dx2, df2/dx2,などが続く構成です."
 
-#
-# File: macros/odeoptions.sci, line: 73
 msgid "df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)"
-msgstr "df1/dy1, df2/dy1, df3/dy1,... (1+ml おそらくはゼロでない入力)"
+msgstr "df1/dy1, df2/dy1, df3/dy1,... (1+ml 個の非ゼロとなる可能性があるエントリ)"
 
-#
-# File: macros/odeoptions.sci, line: 69
 msgid "of the banded jacobian: the band is the i,j''s with i-ml <= j <= ny-1"
-msgstr "ヤコビアン帯域の: 帯域は、i,j で i-ml <= j <= ny-1"
+msgstr "帯行列ヤコビアン: 帯は i-ml <= j <= ny-1 の範囲の i,j の要素です."
 
 msgid "spherical pendulum simulation"
 msgstr "球形の振り子シミュレーション"
 
-#
-# File: macros/odeoptions.sci, line: 72
 msgid "such that column 1 of J is made of mu zeros followed by"
-msgstr "Jの列１がゼロのmuで作られている"
+msgstr "Jの1列目では mu 個のゼロの後に以下の要素が続いています"

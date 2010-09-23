@@ -29,7 +29,7 @@ public final class FitDiagramToViewAction extends OneBlockDependantAction {
 	/** Name of the action */
 	public static final String NAME = XcosMessages.FIT_DIAGRAM_TO_VIEW;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "view-fullscreen.png";
+	public static final String SMALL_ICON = "zoom-fit-drawing";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */

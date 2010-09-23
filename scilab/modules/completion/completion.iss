@@ -21,7 +21,7 @@
 Source: bin\sci{#COMPLETION}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\sci{#COMPLETION}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\jar\org.scilab.modules.{#COMPLETION}.jar;DestDir: {app}\modules\{#COMPLETION}\jar; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\jar\org.scilab.modules.{#COMPLETION}.jar;DestDir: {app}\modules\{#COMPLETION}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: bin\nosci{#COMPLETION}.dll; DestDir: {app}\bin; DestName: sci{#COMPLETION}.dll; Components: not ({#COMPN_SCILAB})
 ;

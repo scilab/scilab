@@ -7,6 +7,9 @@
 // <-- Non-regression test for bug 6781 -->
 //
 // <-- JVM NOT MANDATORY -->
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=6781
 //
@@ -28,7 +31,7 @@ clear a b
 deff("y=test", "y=a+b","n")
 if test()<>3 then bugmes();quit;end
 comp(test)
-Attention: redéfinition de la fonction: test                    . Utilisez funcprot(0) pour éviter ce message
+Warning : redefining function: test                    . Use funcprot(0) to avoid this message
 
 clear a b
 if test()<>3 then bugmes();quit;end

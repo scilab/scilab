@@ -20,7 +20,7 @@ public class GL2PSWrapping {
   * Constructor. Should not be called.
   */
  protected GL2PSWrapping() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   
  /**

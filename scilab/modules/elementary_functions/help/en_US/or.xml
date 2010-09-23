@@ -43,7 +43,10 @@ or(A,'c'), or(A,2)</synopsis>
     elements of the boolean matrix <literal>A</literal>.
     <literal>or(A)</literal> is true (<literal>%t</literal>) iff at least one
     entry of <literal>A</literal> is <literal>%t</literal>.</para>
-
+    <para>
+      <literal>or([])</literal> returns <literal>%F</literal>.
+    </para>
+ 
     <para><literal>y=or(A,'r')</literal> (or, equivalently,
     <literal>y=or(A,1)</literal>) is the rowwise or. It returns in each entry
     of the row vector <literal>y</literal> the or of the rows of

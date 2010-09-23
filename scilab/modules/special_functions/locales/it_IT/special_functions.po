@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 17:16+0100\n"
-"PO-Revision-Date: 2009-10-16 18:39+0000\n"
+"PO-Revision-Date: 2010-09-01 21:47+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -68,3 +68,18 @@ msgstr "%s: errore numero %d\n"
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s: overflow o underflow di un numero di portata estesa.\n"
+
+#, c-format
+msgid "Function %s is obsolete."
+msgstr "La funzione %s è obsoleta."
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "Usare %s invece."
+
+#, c-format
+msgid "This function will be permanently removed in Scilab %s"
+msgstr "Questa funzione sarà rimossa in modo permanente in Scilab %s"
+
+msgid "Warning: "
+msgstr "Attenzione: "

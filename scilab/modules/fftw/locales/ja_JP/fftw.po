@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-23 11:10+0100\n"
-"PO-Revision-Date: 2010-02-12 19:39+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-08-25 12:44+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,104 +18,60 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-#
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 78
 #, c-format
 msgid "%s: An error occurred: %s\n"
-msgstr "%s: エラーが起こりました: %s.\n"
+msgstr "%s: エラーが発生しました: %s\n"
 
-#
-# File: sci_gateway/c/sci_fftw.c, line: 228
 #, c-format
 msgid ""
 "%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
-msgstr "%s: 入力引数 '#%d と '#%d' とで互換性がありません: 同じサイズを想定します。\n"
+msgstr "%s: 入力引数 '#%d' および '#%d' で互換性がありません: 同じ大きさとしてください.\n"
 
-#
-# File: sci_gateway/c/sci_fftw.c, line: 235
-# File: sci_gateway/c/sci_fftw.c, line: 241
-# File: sci_gateway/c/sci_fftw.c, line: 415
-# File: sci_gateway/c/sci_fftw.c, line: 433
-# File: sci_gateway/c/sci_fftw.c, line: 461
-# File: sci_gateway/c/sci_fftw.c, line: 472
-# File: sci_gateway/c/sci_fftw.c, line: 495
-# File: sci_gateway/c/sci_fftw.c, line: 535
-# File: sci_gateway/c/sci_fftw.c, line: 561
-# File: sci_gateway/c/sci_fftw_flags.c, line: 176
-# File: sci_gateway/c/sci_fftw_flags.c, line: 183
-# File: sci_gateway/c/sci_fftw_flags.c, line: 201
-# File: sci_gateway/c/sci_fftw_flags.c, line: 208
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 59
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 66
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 86
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 92
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 60
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: これ以上メモリがありません。\n"
+msgstr "%s: メモリ不足です.\n"
 
-#
-# File: sci_gateway/c/sci_fftw.c, line: 98
 #, c-format
 msgid "%s: Wrong number of input arguments: %d not expected.\n"
-msgstr "%s: 入力引数の不正な数です: %d でないと想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_fftw.c, line: 197
-# File: sci_gateway/c/sci_fftw.c, line: 221
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
-#
-# File: sci_gateway/c/sci_fftw_flags.c, line: 158
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正な型です。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
-#
-# File: sci_gateway/c/sci_fftw.c, line: 165
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実、または複素数を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_loadfftwlibrary.c, line: 50
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 85
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: N-次元配列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: N次元配列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_fftw.c, line: 211
 #, c-format
 msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 整数行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_fftw.c, line: 172
 #, c-format
 msgid "%s: Wrong values for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正な値です。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
-#
-# File: sci_gateway/c/sci_fftw_flags.c, line: 146
 #, c-format
 msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: FFTWフラグを想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: FFTWフラグを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_fftw.c, line: 297
-# File: sci_gateway/c/sci_fftw.c, line: 350
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 負でない整数を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
 
 # File: sci_gateway/c/gw_fftw.c, line: 45
 #, c-format

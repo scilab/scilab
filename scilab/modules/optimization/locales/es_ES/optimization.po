@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-15 22:17+0000\n"
+"PO-Revision-Date: 2010-08-21 15:41+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -381,6 +381,30 @@ msgid ""
 msgstr ""
 "%s: El simplex orientado puede ser calculado solo con un simplex formado por "
 "n+1 puntos, pero la dimensión es %d y el número de vértices es %d"
+
+#, c-format
+msgid ""
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
+msgstr ""
+"%s: Se esperaba que la opción restarteps fuera un escalar, pero su forma "
+"actual es %d x %d"
+
+#, c-format
+msgid "%s: The restarteps option is expected to be positive"
+msgstr "%s: Se esperaba que la opción restarteps fuera positiva"
+
+#, c-format
+msgid "%s: The restartstep vector is expected to be positive"
+msgstr "%s: Se esperaba que el vector restartep fuera positivo"
+
+#, c-format
+msgid ""
+"%s: The restartstep vector is expected to have %d x %d shape, but current "
+"shape is %d x %d"
+msgstr ""
+"%s: Se esperaba que el vector restartstep tenga la forma %d x %d , pero su "
+"forma actual es %d x %d"
 
 #, c-format
 msgid ""

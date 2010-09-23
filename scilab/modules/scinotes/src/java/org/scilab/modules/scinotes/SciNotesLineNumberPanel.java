@@ -22,7 +22,8 @@ import java.awt.Toolkit;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
-
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseEvent;
 import java.util.Map;
 import java.util.Stack;
 
@@ -39,6 +40,7 @@ import javax.swing.text.Element;
 import javax.swing.text.View;
 
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * This class will display line numbers for a related text component. The text
@@ -50,7 +52,7 @@ import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
  * of a JScrollPane.
  * @author Calixte DENIZET
  */
-public class SciNotesLineNumberPanel extends JPanel implements CaretListener, DocumentListener {
+public class SciNotesLineNumberPanel extends JPanel implements CaretListener, DocumentListener, MouseMotionListener {
 
     private static final int PANELGAPSIZE = 10;
     private static final Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);
@@ -60,9 +62,10 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     private ScilabEditorPane textPane;
 
     private int borderGap;
-    private Color currentLineForeground;
     private boolean isHighlighted;
-    //private Color alternColor = new Color(240, 240, 240);
+    private Color currentLineForeground;
+    private Color foreground = Color.BLACK;
+    private Color alternColor = new Color(250, 251, 164);
     private Color currentColor = Color.GRAY;
 
     private int numbers;
@@ -90,26 +93,26 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
         setBorderGap(PANELGAPSIZE);
         setCurrentLineForeground(Color.RED);
         updateFont(ConfigSciNotesManager.getFont());
-        doc.addDocumentListener(this);
         textPane.addCaretListener(this);
+        addMouseMotionListener(this);
     }
 
     /**
      * Set a line numbering compatible with the whereami function
-     * @param state 0 for normal, 1 for whereami and 2 for nothing
+     * @param state 0 for nothing, 1 for normal and 2 for whereami
      */
     public void setWhereamiLineNumbering(int state) {
-        if (state != 2) {
+        if (state != 0) {
             if (!display) {
                 textPane.getScrollPane().setRowHeaderView(this);
             }
-            whereami = state == 1;
+            whereami = state == 2;
             display = true;
         } else {
             textPane.getScrollPane().setRowHeaderView(null);
             display = false;
         }
-        updateLineNumber(0, 0);
+        updateLineNumber();
         this.state = state;
     }
 
@@ -202,16 +205,26 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             for (int line = root.getElementIndex(rowStartOffset); line <= lineEnd; line++) {
                 String str;
                 if (whereami && lineNumber != null) {
-                    str = Integer.toString(lineNumber[line]);
+                    if (lineNumber[line] != -1) {
+                        str = Integer.toString(lineNumber[line]);
+                    } else {
+                        str = "";
+                    }
                     //g.fillRect(0, view.getLineAllocation(line), availableWidth, metrics.getHeight());
                 } else {
                     str = Integer.toString(line + 1);
                 }
 
+                Element elem = root.getElement(line);
+                if (((ScilabDocument.ScilabLeafElement) elem).isAnchor()) {
+                    g.setColor(alternColor);
+                    g.fillRect(0, ((ScilabView) view).getLineAllocation(line), availableWidth, metrics.getHeight());
+                }
+
                 if (line != lastLine) {
-                    g.setColor(getForeground());
+                    g.setColor(foreground);
                 } else {
-                    g.setColor(getCurrentLineForeground());
+                    g.setColor(currentLineForeground);
                 }
 
                 int diff = (availableWidth - metrics.stringWidth(str)) / 2;
@@ -246,10 +259,8 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     /**
      * Useful method to determinate the number of the lines in being compatible
      * with the whereami function
-     * @param p0 start position in the doc
-     * @param p1 end position in the doc
      */
-    private void updateLineNumber(int p0, int p1) {
+    private void updateLineNumber() {
         synchronized (doc) {
             Stack<Integer> stk = new Stack();
             Element root = doc.getDefaultRootElement();
@@ -257,10 +268,12 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             lineNumber = new int[nlines + 1];
             lineNumber[0] = 1;
             int current = 1;
+            boolean previousBroken = false;
+            ScilabDocument.ScilabLeafElement elem;
             for (int i = 0; i < nlines; i++) {
-                Element elem = root.getElement(i);
-                if (elem instanceof ScilabDocument.ScilabLeafElement) {
-                    int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
+                elem = (ScilabDocument.ScilabLeafElement) root.getElement(i);
+                int type = elem.getType();
+                if (!previousBroken) {
                     switch (type) {
                     case ScilabDocument.ScilabLeafElement.NOTHING :
                         lineNumber[i] = current++;
@@ -280,11 +293,34 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
                         break;
                     }
                 } else {
-                    lineNumber[i + 1] = lineNumber[i] + 1;
+                    lineNumber[i] = -1;
                 }
+
+                previousBroken = elem.isBroken();
             }
         }
     }
+
+    /**
+     * Implements mouseMoved in MouseMotionListener
+     * @param e event
+     */
+    public void mouseMoved(MouseEvent e) {
+        int pos = textPane.viewToModel(e.getPoint());
+        Element root = doc.getDefaultRootElement();
+        ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
+        if (line.isAnchor()) {
+            setToolTipText(SciNotesMessages.ANCHOR + line.toString());
+        } else {
+            setToolTipText(null);
+        }
+    }
+
+    /**
+     * Nothing !
+     * @param e event
+     */
+    public void mouseDragged(MouseEvent e) { }
 
     /**
      * Nothing !
@@ -297,7 +333,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
      * @param e the event
      */
     public void insertUpdate(DocumentEvent e) {
-        handleEvent(e.getOffset(), e.getLength());
+        handleEvent(e);
     }
 
     /**
@@ -305,24 +341,28 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
      * @param e the event
      */
     public void removeUpdate(DocumentEvent e) {
-        handleEvent(e.getOffset(), e.getLength());
+        handleEvent(e);
     }
 
     /**
      * Update the line numbering on a change in the document
-     * @param offset offset where the event occured
-     * @param length length of inserted or removed text
+     * @param e the document event
      */
-    private void handleEvent(int offset, int length) {
-        Element root = doc.getDefaultRootElement();
-        Element line = root.getElement(root.getElementIndex(offset));
-        if (line instanceof ScilabDocument.ScilabLeafElement) {
-            ((ScilabDocument.ScilabLeafElement) line).resetType();
-            if (whereami) {
-                updateLineNumber(offset, offset + length);
+    private void handleEvent(DocumentEvent e) {
+        if (whereami) {
+            Element root = doc.getDefaultRootElement();
+            DocumentEvent.ElementChange chg = e.getChange(root);
+            if (chg == null) {
+                // change occured only in one line
+                ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(e.getOffset()));
+                if (line.isFunction() || line.isBroken()) {
+                    updateLineNumber();
+                    repaint();
+                }
+            } else {
+                updateLineNumber();
             }
         }
-        repaint();
     }
 
     /**

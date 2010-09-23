@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -37,6 +37,7 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.ScilabSpecialTextUtilities;
 
 /**
  * Swing implementation for Scilab MenuBars in GUIs
@@ -46,11 +47,11 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private CallBack callback;
-	
+
 	private Menu meAsAMenu;
-	
+
 	private CheckBoxMenuItem meAsACheckBoxMenuItem;
 
 	private boolean checkedState = false;
@@ -71,13 +72,23 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 			}
 		});
 	}
-	
+
+        /**
+         * @param text to use for the menu, if it's enclosed between '$' then it's interpreted as
+         * a LaTeX string, in this case the setIcon method of this object is used.
+         */
+        public void setText(String text) {
+            if (!ScilabSpecialTextUtilities.setText(this, text)) {
+                super.setText(text);
+            }
+        }
+
 	/**
 	 * Add a callback to the MenuItem, this callback is a Scilab command
 	 * @param callback the callback to set.
 	 */
 	public void setCallback(CallBack callback) {
-		this.callback = callback; 
+		this.callback = callback;
 		addActionListener(this.callback);
 	}
 
@@ -87,9 +98,9 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 * @see org.scilab.modules.gui.widget.MenuItem#setMnemonic(org.scilab.modules.gui.widget.int)
 	 */
 	public void setMnemonic(int mnemonic) {
-		super.setMnemonic(mnemonic); 	 
+		super.setMnemonic(mnemonic);
 	}
-	
+
 	/**
 	 * Add a Scilab MenuItemBar to a Scilab MenuItem
 	 * @param menuBarToAdd the Scilab MenuBar to add to the Scilab MenuItem
@@ -185,7 +196,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	public void setVerticalAlignment(String alignment) {
 		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
-	
+
 	/**
 	 * Set the Relief of the Menu
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
@@ -223,16 +234,22 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 * Destroy the MenuItem
 	 */
 	public void destroy() {
-		ScilabSwingUtilities.removeFromParent(this);
+		if (meAsAMenu != null) {
+			ScilabSwingUtilities.removeFromParent((SwingScilabMenu) meAsAMenu.getAsSimpleMenu());
+		} else if (meAsACheckBoxMenuItem != null) {
+			ScilabSwingUtilities.removeFromParent((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem());
+		} else {
+			ScilabSwingUtilities.removeFromParent(this);
+		}
 	}
-	
+
 	/**
 	 * Set if the menu item is enabled or not
 	 * @param status true if the menu item is enabled
 	 */
 	public void setEnabled(boolean status) {
-		super.setEnabled(status);
-		/* (Des)Activate the callback */ 
+	    super.setEnabled(status);
+		/* (Des)Activate the callback */
 		if (callback != null) {
 			if (status) {
 				removeActionListener(callback); /* To be sure the callback is not added two times */
@@ -260,7 +277,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 			meAsAMenu.add(childMenu);
 		}
 	}
-	
+
 	/**
 	 * Setter for InfoBar
 	 * @param infoBarToAdd the InfoBar associated to the MenuItem.
@@ -278,7 +295,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 		/* Unimplemented for MenuItems */
 		throw new UnsupportedOperationException();
 	}
-	
+
 	/**
 	 * Retrieve the CallBack associated to this MenuItem
 	 * @return the CallBack
@@ -286,7 +303,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	public CallBack getCallback() {
 		return callback;
 	}
-	
+
 	/**
 	 * Set if the Menu is checked or not
 	 * @param status true if the Menu is checked
@@ -306,7 +323,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 			meAsACheckBoxMenuItem.setChecked(status);
 		}
 	}
-	
+
 	/**
 	 * Get if the Menu is checked or not
 	 * @return true if the Menu is checked
@@ -340,6 +357,18 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 */
 	public void addSeparator() {
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Set the MenuItem Visibility (See bug #7368)
+	 * @param status true if the MenuItem is visible
+	 * @see org.scilab.modules.gui.menu.SimpleMenu#setVisible()
+	 */
+	public void setVisible(boolean status) {
+		super.setVisible(status);
+		if (meAsACheckBoxMenuItem != null) {
+			meAsACheckBoxMenuItem.setVisible(status);
+		}
 	}
 
 }

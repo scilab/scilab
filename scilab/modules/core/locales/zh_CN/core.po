@@ -32,6 +32,9 @@ msgstr "  正在载入初始环境"
 msgid " and   %10d variables out of %10d.\n"
 msgstr " and %10d 个变量中的 %10d 个。\n"
 
+msgid " by "
+msgstr ""
+
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " 结果可能不精确。rcond=%s1\n"
@@ -43,10 +46,6 @@ msgstr " 使用了 %10d 个元素中的 %10d。\n"
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
 msgstr "%f：没有更多空间来存储字符串参数。\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s：内存分配发生错误。\n"
 
 #, c-format
 msgid "%s and %s arguments"
@@ -130,24 +129,8 @@ msgid ""
 msgstr "%s：（%s）栈中参数太多，请编辑 stack.h 并增大 intersiz。\n"
 
 #, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s：不能分配更多内存。\n"
-"请尝试 gstacksize('max')。\n"
-
-#, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s：不能分配内存。\n"
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s：无法分配更多内存。\n"
-"请尝试 stacksize('max')。\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -162,12 +145,12 @@ msgid "%s: Incompatible sizes.\n"
 msgstr "%s：大小不一致。\n"
 
 #, c-format
-msgid "%s: Invalid '%s' value.\n"
-msgstr "%s：无效的值 “%s”。\n"
-
-#, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s：无效的模块名 %s。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -258,12 +241,8 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s：%s的值 %d 出错，应该为 %d。\n"
 
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s：错误的文件 VERSION %s。\n"
-
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s：在 %s 有错误的文件 VERSION。\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -327,6 +306,10 @@ msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr "%s：参数 %d 的大小出错：应该至少为 %d。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s：输入参数 #%d 的大小出错：应该为一个比例。\n"
 
@@ -335,12 +318,20 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为一个字符串。\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s：输入参数的大小出错。\n"
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为标量，“%s”或“%s”。\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s：输入参数的大小出错。\n"
 
 #, c-format
 msgid ""
@@ -489,6 +480,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：输入参数 #%d 的类型出错。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为实的。\n"
 
@@ -519,15 +514,6 @@ msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为已编译的宏。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为已命名的变量。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为标量，“%s”或“%s”。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr "%s：输入参数 #%d 的类型出错：标量，“%s”或“%s”。\n"
 
@@ -554,6 +540,10 @@ msgstr "%s：输入参数 #%d 或 #%d 的类型出错：应该为字符串。\n"
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s：输入参数的类型出错。\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -626,11 +616,6 @@ msgstr "%s：输入参数 #%d 的值出错：必须为 %s。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr "%s：输入参数 #%d 的值出错：必须位于区间［%d，%d］中。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为标量，“%s”或“%s”。\n"
 
 #, c-format
 msgid ""
@@ -739,6 +724,9 @@ msgstr "&工具箱"
 msgid "A non square matrix!\n"
 msgstr "矩阵非方阵！\n"
 
+msgid "Bytes"
+msgstr ""
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "没有找到 Windows 的临时路径（1）。"
 
@@ -761,6 +749,15 @@ msgstr "出错"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "返回 tlist 出错，内存已用尽。\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -866,6 +863,9 @@ msgstr "不正确的时间域。\n"
 msgid "List full.\n"
 msgstr "列表满。\n"
 
+msgid "Name"
+msgstr ""
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "无空间用来分配 Scilab 栈。\n"
 
@@ -884,6 +884,9 @@ msgstr "未定义 SCIHOME。\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP：正在中断当前计算\n"
 
+msgid "Scilab Console"
+msgstr ""
+
 msgid "Scilab Version Info."
 msgstr "Scilab版本信息。"
 
@@ -899,6 +902,9 @@ msgstr ""
 "Scilab 版本\"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Size"
+msgstr ""
+
 msgid "Startup execution:"
 msgstr "开始执行："
 
@@ -911,12 +917,23 @@ msgstr "未设置 SCI 环境变量。\n"
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "在界面中间尝试终止 Scilab。\n"
 
+msgid "Type"
+msgstr ""
+
 #, c-format
 msgid "Undefined variable %s.\n"
 msgstr "未定义的变量 %s。\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "意外的操作码，请报告给 Scilab bug tracker。"
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr ""
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr ""
 
 msgid "User variables are:"
 msgstr "用户变量是："

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-10 18:47+0000\n"
+"PO-Revision-Date: 2010-07-29 09:42+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -311,6 +311,10 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: El valor calculat de || G || pot ser poc precís.\n"
 
 #, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Undefined type ''%s''.\n"
 msgstr "%s: No s'ha definit el tipus ''%s''.\n"
 
@@ -444,6 +448,11 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: El nombre de columnes "
 "és incompatible amb %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -773,6 +782,24 @@ msgstr "Freqüència (Hz)"
 msgid "Gain :"
 msgstr "Guany:"
 
+msgid "Hall chart"
+msgstr "Hall chart"
+
+msgid "Hz"
+msgstr "Hz"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
+msgid "Imaginary Axis"
+msgstr ""
+
 msgid "Imaginary axis"
 msgstr "Eix imaginari"
 
@@ -787,8 +814,8 @@ msgstr ""
 "Factors irreductibles de la freqüència natural de la funció de transferència "
 "i factor d'esmortiment (feu clic a sota)"
 
-msgid "Magnitude (Db)"
-msgstr "Magnitud (Db)"
+msgid "Magnitude (dB)"
+msgstr "Magnitut (dB)"
 
 msgid "Numerator :"
 msgstr "Numerador:"
@@ -804,6 +831,18 @@ msgstr "Fase (graus)"
 
 msgid "Poles"
 msgstr "Pols"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
+
+msgid "Real Axis"
+msgstr ""
 
 msgid "Real axis"
 msgstr "Eix real"
@@ -826,8 +865,19 @@ msgstr "Zeros"
 msgid "asymptotic directions"
 msgstr "direccions assimptòtiques"
 
+msgid "dB"
+msgstr "dB"
+
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+
 msgid "magnitude(y) (Db)"
 msgstr "magnitud(y) (Db)"
+
+msgid "magnitude(y) (dB)"
+msgstr "magnitude(y) (dB)"
 
 msgid "open loop poles"
 msgstr "pols d'enllaç obert"
@@ -837,3 +887,6 @@ msgstr "zeros d'enllaç obert"
 
 msgid "phase(y) (degree)"
 msgstr "fase(y) (graus)"
+
+msgid "rad/sec"
+msgstr ""

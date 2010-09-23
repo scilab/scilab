@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-09-15 14:22+0100\n"
 
 # File: macros/kernel/lst_funcall.sci, line: 94
 # File: macros/kernel/multi_fun_file.sci, line: 98
@@ -64,8 +64,8 @@ msgstr ""
 msgid "%s (See fileinfo() function)."
 msgstr ""
 #
-# File: macros/sci_files/sci_nargin.sci, line: 28
 # File: macros/sci_files/sci_nargout.sci, line: 28
+# File: macros/sci_files/sci_nargin.sci, line: 28
 #, c-format
 msgid "%s considered to be a Scilab macro."
 msgstr ""
@@ -80,9 +80,9 @@ msgstr ""
 msgid "%s is not implemented."
 msgstr ""
 #
-# File: macros/kernel/Type.sci, line: 20
-# File: macros/kernel/equal2sci.sci, line: 88
 # File: macros/kernel/expression2sci.sci, line: 123
+# File: macros/kernel/equal2sci.sci, line: 88
+# File: macros/kernel/Type.sci, line: 20
 # File: macros/kernel/convert2double.sci, line: 37
 #, c-format
 msgid "%s is not yet implemented."
@@ -310,9 +310,9 @@ msgid "Bad use of isdefinedvar() with input: %s."
 msgstr ""
 #
 # File: macros/sci_files/sci_besselj.sci, line: 17
+# File: macros/sci_files/sci_bessely.sci, line: 17
 # File: macros/sci_files/sci_besseli.sci, line: 17
 # File: macros/sci_files/sci_besselk.sci, line: 17
-# File: macros/sci_files/sci_bessely.sci, line: 17
 msgid "Bessel function is not implemented for 2 outputs arguments."
 msgstr ""
 #
@@ -390,14 +390,14 @@ msgstr ""
 msgid "Extraction from strings with more than two indexes not implemented."
 msgstr ""
 #
+# File: macros/kernel/%funcall_e.sci, line: 26
+# File: macros/kernel/%funcall_6.sci, line: 27
+# File: macros/kernel/%variable_6.sci, line: 27
+# File: macros/kernel/%variable_e.sci, line: 28
+# File: macros/kernel/%m2scivar_e.sci, line: 26
 # File: macros/kernel/%operatio_6.sci, line: 27
 # File: macros/kernel/%operatio_e.sci, line: 27
-# File: macros/kernel/%funcall_6.sci, line: 27
 # File: macros/kernel/%cste_e.sci, line: 25
-# File: macros/kernel/%m2scivar_e.sci, line: 26
-# File: macros/kernel/%variable_e.sci, line: 28
-# File: macros/kernel/%funcall_e.sci, line: 26
-# File: macros/kernel/%variable_6.sci, line: 27
 #, c-format
 msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
 msgstr ""
@@ -443,9 +443,9 @@ msgid "Global variable %s added to M2SCI variable list."
 msgstr ""
 #
 # File: macros/sci_files/sci_atanh.sci, line: 24
+# File: macros/sci_files/sci_acoth.sci, line: 19
 # File: macros/sci_files/sci_asin.sci, line: 24
 # File: macros/sci_files/sci_atan.sci, line: 24
-# File: macros/sci_files/sci_acoth.sci, line: 19
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
@@ -499,10 +499,10 @@ msgstr ""
 msgid "M-file reading: Done"
 msgstr ""
 #
-# File: macros/percent/%e_ce2sci.sci, line: 56
-# File: macros/percent/%e_ce2sci.sci, line: 161
 # File: macros/percent/%e_st2sci.sci, line: 55
 # File: macros/percent/%e_st2sci.sci, line: 97
+# File: macros/percent/%e_ce2sci.sci, line: 56
+# File: macros/percent/%e_ce2sci.sci, line: 161
 #, c-format
 msgid "M2SCI bug: extraction from unknown variable %s in varslist."
 msgstr ""
@@ -582,10 +582,10 @@ msgid "No minor grid in Scilab."
 msgstr ""
 #
 # File: macros/sci_files/sci_fprintf.sci, line: 17
-# File: macros/sci_files/sci_fwrite.sci, line: 17
-# File: macros/sci_files/sci_fread.sci, line: 19
-# File: macros/sci_files/sci_type.sci, line: 17
 # File: macros/sci_files/sci_fscanf.sci, line: 19
+# File: macros/sci_files/sci_fwrite.sci, line: 17
+# File: macros/sci_files/sci_type.sci, line: 17
+# File: macros/sci_files/sci_fread.sci, line: 19
 #, c-format
 msgid "No simple equivalent, so %s() is called."
 msgstr ""
@@ -596,25 +596,25 @@ msgstr ""
 msgid "Not enough information on %s to set the proper flag."
 msgstr ""
 #
-# File: macros/percent/%i_ce2sci.sci, line: 65
-# File: macros/percent/%i_ce2sci.sci, line: 168
-# File: macros/percent/%i_st2sci.sci, line: 89
+# File: macros/kernel/%s_i_variable.sci, line: 19
+# File: macros/kernel/%s_i_operatio.sci, line: 16
+# File: macros/kernel/infer2txt.sci, line: 18
+# File: macros/kernel/%contents_i_operatio.sci, line: 15
+# File: macros/kernel/%type_i_funcall.sci, line: 15
+# File: macros/kernel/%contents_i_variable.sci, line: 15
+# File: macros/kernel/%l_i_funcall.sci, line: 16
+# File: macros/kernel/%contents_i_funcall.sci, line: 15
 # File: macros/kernel/%type_i_variable.sci, line: 16
 # File: macros/kernel/%type_i_variable.sci, line: 30
 # File: macros/kernel/%type_i_variable.sci, line: 36
-# File: macros/kernel/%type_i_funcall.sci, line: 15
-# File: macros/kernel/%type_i_cste.sci, line: 15
-# File: macros/kernel/%s_i_operatio.sci, line: 16
-# File: macros/kernel/%l_i_variable.sci, line: 18
-# File: macros/kernel/%s_i_variable.sci, line: 19
-# File: macros/kernel/%l_i_operatio.sci, line: 16
-# File: macros/kernel/%contents_i_variable.sci, line: 15
-# File: macros/kernel/%contents_i_operatio.sci, line: 15
-# File: macros/kernel/%type_i_operatio.sci, line: 15
 # File: macros/kernel/%l_i_cste.sci, line: 17
-# File: macros/kernel/infer2txt.sci, line: 18
-# File: macros/kernel/%l_i_funcall.sci, line: 16
-# File: macros/kernel/%contents_i_funcall.sci, line: 15
+# File: macros/kernel/%type_i_cste.sci, line: 15
+# File: macros/kernel/%l_i_operatio.sci, line: 16
+# File: macros/kernel/%l_i_variable.sci, line: 18
+# File: macros/kernel/%type_i_operatio.sci, line: 15
+# File: macros/percent/%i_ce2sci.sci, line: 65
+# File: macros/percent/%i_ce2sci.sci, line: 168
+# File: macros/percent/%i_st2sci.sci, line: 89
 msgid "Not yet implemented."
 msgstr ""
 #
@@ -644,8 +644,8 @@ msgstr ""
 msgid "Option -append not yet handled: will be ignored."
 msgstr ""
 #
-# File: macros/sci_files/sci_save.sci, line: 26
 # File: macros/sci_files/sci_load.sci, line: 28
+# File: macros/sci_files/sci_save.sci, line: 26
 msgid "Option -regexp not yet handled: will be ignored."
 msgstr ""
 #
@@ -679,22 +679,22 @@ msgstr ""
 msgid "Result file path:"
 msgstr ""
 #
-# File: macros/sci_files/sci_cumsum.sci, line: 59
 # File: macros/sci_files/sci_cumprod.sci, line: 59
+# File: macros/sci_files/sci_cumsum.sci, line: 59
 #, c-format
 msgid ""
 "Scilab %s() does not work when dim input argument is greater than number of "
 "dims of first rhs..."
 msgstr ""
 #
-# File: macros/sci_files/sci_uint32.sci, line: 33
-# File: macros/sci_files/sci_uint32.sci, line: 41
+# File: macros/sci_files/sci_uint8.sci, line: 33
+# File: macros/sci_files/sci_uint8.sci, line: 41
 # File: macros/sci_files/sci_int8.sci, line: 33
 # File: macros/sci_files/sci_int8.sci, line: 41
 # File: macros/sci_files/sci_int16.sci, line: 33
 # File: macros/sci_files/sci_int16.sci, line: 41
-# File: macros/sci_files/sci_uint8.sci, line: 33
-# File: macros/sci_files/sci_uint8.sci, line: 41
+# File: macros/sci_files/sci_uint32.sci, line: 33
+# File: macros/sci_files/sci_uint32.sci, line: 41
 # File: macros/sci_files/sci_uint16.sci, line: 33
 # File: macros/sci_files/sci_uint16.sci, line: 41
 # File: macros/sci_files/sci_int32.sci, line: 33
@@ -839,16 +839,16 @@ msgstr ""
 msgid "Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."
 msgstr ""
 #
-# File: macros/kernel/Operation.sci, line: 17
-# File: macros/kernel/Variable.sci, line: 16
 # File: macros/kernel/repl_poss.sci, line: 17
-# File: macros/kernel/Equal.sci, line: 16
-# File: macros/kernel/Cste.sci, line: 16
-# File: macros/kernel/Funcall.sci, line: 18
-# File: macros/kernel/M2scivar.sci, line: 16
 # File: macros/kernel/getvar2sci.sci, line: 18
 # File: macros/kernel/m2sci.sci, line: 25
 # File: macros/kernel/Contents.sci, line: 29
+# File: macros/kernel/M2scivar.sci, line: 16
+# File: macros/kernel/Cste.sci, line: 16
+# File: macros/kernel/Variable.sci, line: 16
+# File: macros/kernel/Funcall.sci, line: 18
+# File: macros/kernel/Equal.sci, line: 16
+# File: macros/kernel/Operation.sci, line: 17
 msgid "Wrong number of inputs."
 msgstr ""
 #
@@ -915,8 +915,8 @@ msgstr ""
 msgid "index must be a list instead of a: %s."
 msgstr ""
 #
-# File: macros/kernel/Variable.sci, line: 22
 # File: macros/kernel/M2scivar.sci, line: 27
+# File: macros/kernel/Variable.sci, line: 22
 #, c-format
 msgid "infer must be an ''infer'' tlist instead of a: %s."
 msgstr ""
@@ -929,18 +929,18 @@ msgstr ""
 # File: macros/sci_files/sci_find.sci, line: 58
 # File: macros/sci_files/sci_any.sci, line: 31
 # File: macros/sci_files/sci_any.sci, line: 73
-# File: macros/sci_files/sci_uint32.sci, line: 42
-# File: macros/sci_files/sci_int8.sci, line: 42
-# File: macros/sci_files/sci_cell.sci, line: 29
-# File: macros/sci_files/sci_cell.sci, line: 62
-# File: macros/sci_files/sci_int16.sci, line: 42
-# File: macros/sci_files/sci_dec2hex.sci, line: 23
-# File: macros/sci_files/sci_uint8.sci, line: 42
+# File: macros/sci_files/sci_log2.sci, line: 30
 # File: macros/sci_files/sci_all.sci, line: 31
 # File: macros/sci_files/sci_all.sci, line: 73
-# File: macros/sci_files/sci_log2.sci, line: 30
+# File: macros/sci_files/sci_uint8.sci, line: 42
 # File: macros/sci_files/sci_pow2.sci, line: 35
 # File: macros/sci_files/sci_pow2.sci, line: 42
+# File: macros/sci_files/sci_cell.sci, line: 29
+# File: macros/sci_files/sci_cell.sci, line: 62
+# File: macros/sci_files/sci_int8.sci, line: 42
+# File: macros/sci_files/sci_int16.sci, line: 42
+# File: macros/sci_files/sci_dec2hex.sci, line: 23
+# File: macros/sci_files/sci_uint32.sci, line: 42
 # File: macros/sci_files/sci_uint16.sci, line: 42
 # File: macros/sci_files/sci_int32.sci, line: 42
 msgid "is Real."

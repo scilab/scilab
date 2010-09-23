@@ -17,6 +17,10 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Log of a singular matrix.\n"
 msgstr "%s：一个奇异矩阵的指数。\n"
 
@@ -64,6 +68,10 @@ msgstr "%s：输入参数的数目错误：最多应该%d个。\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected."
 msgstr "%s：输入参数的数目错误：应该为%d。"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -356,11 +364,6 @@ msgstr "%s：输入参数#%d的值错误：应该为[''g'' ''r'' ''c'' ''lc'' ''
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: [''g'' ''r'' ''c''] expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为[''g'' ''r'' ''c'']。\n"
-
-#, c-format
-msgid ""
 "%s: Wrong value for input argument(s): Valid base %d representations "
 "expected.\n"
 msgstr "%s：输入参数的值错误：应该为正确的基于%d进制的表示。\n"
@@ -372,13 +375,16 @@ msgid ""
 msgstr "%s：输入参数#%d和#%d的值错误：c(1)必须等于r(1)。\n"
 
 #, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "警告：函数%s已废弃。\n"
+msgid "Function %s is obsolete."
+msgstr ""
 
 #, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "警告：请用%s代替。\n"
+msgid "Please use %s instead."
+msgstr ""
 
 #, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "警告：这个函数将从Scilab %s中永久地移除。\n"
+msgid "This function will be permanently removed in Scilab %s"
+msgstr ""
+
+msgid "Warning: "
+msgstr ""

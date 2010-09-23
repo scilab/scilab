@@ -27,9 +27,9 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -71,7 +71,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/** Name of the action */
 	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "object-group.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */
@@ -83,10 +83,10 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	 * Any link which is broken by performing this action
 	 */
     private static class BrokenLink {
-	private BasicLink link;
-	private BasicPort port;
-	private mxGeometry geom;
-	private boolean outGoing;
+	private final BasicLink link;
+	private final BasicPort port;
+	private final mxGeometry geom;
+	private final boolean outGoing;
 	private int portNumber;
 
 	/**
@@ -224,6 +224,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	 * Creating the child graph
 	 */
 	SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
+	diagram.installListeners();
 
 	diagram.getModel().beginUpdate();
 	diagram.addCells(cellsCopy.toArray());
@@ -246,7 +247,6 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	 * Update block with real parameters
 	 */
 	superBlock.setRealParameters(new DiagramElement().encode(diagram));
-	diagram.installListeners();
 	diagram.installSuperBlockListeners();
 	superBlock.setChild(diagram);
 	
@@ -529,14 +529,14 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 			.createLinkFromPorts((BasicPort) link.getLink()
 				.getSource(), (BasicPort) block.getChildAt(0));
 		newLink.setGeometry(link.getLink().getGeometry());
-		newLink.setSource((BasicPort) link.getPort());
-		newLink.setTarget((BasicPort) block.getChildAt(0));
+		newLink.setSource(link.getPort());
+		newLink.setTarget(block.getChildAt(0));
 	    } else { // new -> old
 		newLink = BasicLink.createLinkFromPorts((BasicPort) block
 			.getChildAt(0), (BasicPort) link.getLink().getTarget());
 		newLink.setGeometry(link.getLink().getGeometry());
-		newLink.setSource((BasicPort) block.getChildAt(0));
-		newLink.setTarget((BasicPort) link.getPort());
+		newLink.setSource(block.getChildAt(0));
+		newLink.setTarget(link.getPort());
 	    }
 
 	    diagram.getModel().beginUpdate();
@@ -655,9 +655,9 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	int maxValue = 0;
 	if (blocks != null) {
 	    for (int i = 0; i < blocks.size(); i++) {
-		if (((BasicBlock) blocks.get(i)).getExprs() instanceof ScilabString) {
+		if ((blocks.get(i)).getExprs() instanceof ScilabString) {
 		    maxValue = Math.max(maxValue, Integer
-			    .parseInt(((ScilabString) ((BasicBlock) blocks
+			    .parseInt(((ScilabString) (blocks
 				    .get(i)).getExprs()).getData()[0][0]));
 		}
 	    }

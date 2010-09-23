@@ -50,8 +50,8 @@ MFILECONTENTS=["% Test with fgets result stored in a variable";
 		"disp(fgets(fp)); % -1 if eof ";
 		"fclose(fp);"]
 
-MFILE=TMPDIR+"/bug1003.m"
-SCIFILE=TMPDIR+"/bug1003.sci"
+MFILE=TMPDIR+"/bug1003.m";
+SCIFILE=TMPDIR+"/bug1003.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);

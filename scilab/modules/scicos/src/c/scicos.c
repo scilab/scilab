@@ -1427,7 +1427,7 @@ L30:
 					cnt = 0;
 				} else if ( flag==CV_TOO_MUCH_WORK ||  flag == CV_CONV_FAILURE || flag==CV_ERR_FAILURE) {  
 					if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-						sciprint(_("****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n"),*told);	  
+						sciprint(_("****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\n"),*told);	  
 					hot = 0;
 					cnt++;
 					if (cnt>5) {

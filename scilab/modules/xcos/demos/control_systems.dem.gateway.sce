@@ -20,3 +20,4 @@ subdemolist = ["Basic controller"                     , "basic_controller.dem.sc
 //               "Animated Inv.Pendulum"                , "inv_pend_anim.dem.sce"  ; ..
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

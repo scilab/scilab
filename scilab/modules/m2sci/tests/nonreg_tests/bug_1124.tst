@@ -20,10 +20,10 @@ MFILECONTENTS=[
 "load([rep,''alpha'']);";
 "load([rep,''beta'']);";
 "mu=beta*alpha;";
-]
+];
 
-MFILE=TMPDIR+"/bug1124.m"
-SCIFILE=TMPDIR+"/bug1124.sci"
+MFILE=TMPDIR+"/bug1124.m";
+SCIFILE=TMPDIR+"/bug1124.sci";
 
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);

@@ -69,7 +69,7 @@
         <term>libname</term>
         <listitem>
           <para>optional character string. The name of the generated shared
-	    library (default value  is '', and in this case the name is derived
+	    library (default value  is "", and in this case the name is derived
 	    from <literal>names(1)</literal>).</para>
         </listitem>
       </varlistentry>
@@ -77,27 +77,27 @@
         <term>ldflags</term>
         <listitem>
           <para>optional character string. It can be used to add specific linker options in the
-	    generated Makefile. Default value is ''</para>
+	    generated Makefile. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>cflags</term>
         <listitem>
           <para>optional character string. It can be used to add specific C compiler options in the
-	    generated Makefile. Default value is ''</para>
+	    generated Makefile. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fflags</term>
         <listitem>
           <para>optional character string. It can be used to add specific Fortran compiler options in the
-	    generated Makefile. Default value is ''</para>
+	    generated Makefile. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>cc</term>
         <listitem>
-          <para>optional character string. It can be used to specify a C compiler. Default value is ''</para>
+          <para>optional character string. It can be used to specify a C compiler. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>

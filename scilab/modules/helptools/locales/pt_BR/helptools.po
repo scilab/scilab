@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-11 18:25+0000\n"
+"PO-Revision-Date: 2010-07-09 13:59+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -120,10 +120,6 @@ msgstr "%s: Processando arquivo: %s a %s\n"
 #, c-format
 msgid "%s: Reading from directory %s\n"
 msgstr "%s: Lendo do diretório %s\n"
-
-#, c-format
-msgid "%s: Scilab 5.0 or more is required.\n"
-msgstr "%s: Exige-se Scilab 5.0 ou superior.\n"
 
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
@@ -278,8 +274,8 @@ msgstr ""
 "diretório existente.\n"
 
 #, c-format
-msgid "%s: help module is not installed.\n"
-msgstr "%s: O módulo de ajuda não está instalado.\n"
+msgid "%s: help file(.jar) is not installed.\n"
+msgstr "%s: o arquivo de ajuda (.jar) não está instalado.\n"
 
 #, c-format
 msgid "%s: hhc.exe not found.\n"
@@ -304,7 +300,7 @@ msgstr "Capítulo de ajuda"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "O módulo Scilab \"%s\" é desabilitado em modo -nogui ou -nwni.\n"
+msgstr "O módulo \"%s\" do Scilab é desabilitado em modo -nogui ou -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

@@ -15,7 +15,7 @@ package org.scilab.modules.graph.io;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabBoolean;
+import org.scilab.modules.types.ScilabBoolean;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 

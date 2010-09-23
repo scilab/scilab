@@ -36,7 +36,7 @@ int SetUicontrolFontSize(sciPointObj* sciObj, size_t stackPointer, int valueType
           return SET_PROPERTY_ERROR;
         }
 
-      fontSizeInt = ConvertToPoint((int) getDoubleFromStack(stackPointer), pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj, FALSE);
+      fontSizeInt = ConvertToPoint(getDoubleFromStack(stackPointer), pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj, FALSE);
       
       /* Send the value to java */
       if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */

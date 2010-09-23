@@ -33,13 +33,8 @@ function [ok,name,nipar,nrpar,nopar,nz,nx,nx_der,nx_ns,nin,nout,nm,ng,dep_u]=com
   dep_u=%t; nipar=0;nrpar=0;nopar=0;
   nz=0;nx=0;nx_der=0;nx_ns=0;nin=0;nout=0;nm=0;ng=0;
 
-  //initialize IHM
-  try   
-    %_winId=TCL_GetVar("IHMLoc")  
-    running=TCL_EvalStr("winfo exists [sciGUIName "+%_winId+"]")
-  catch
-    running="off";
-  end
+  // modelica UI initialization is always ignored
+  running="off";
  
   //set paths for generated files  
   outpath=pathconvert(TMPDIR,%t,%t);  

@@ -14,12 +14,14 @@
 // These data are then compared to the default.
 //
 
+currentPath = SCI + "/modules/xcos/tests/unit_tests/block_tests/ESELECT_f/";
+
 // Import the reference datas (A_ref)
-ierr = import_from_hdf5("sinus_ref.h5");
+ierr = import_from_hdf5(currentPath + "sinus_ref.h5");
 if ierr <> %t then pause; end
 
 // Import the diagram structure
-ierr = importXcosDiagram("sinus.xcos");
+ierr = importXcosDiagram(currentPath + "sinus.xcos");
 if ierr <> %t then pause; end
 
 // launch the simulation

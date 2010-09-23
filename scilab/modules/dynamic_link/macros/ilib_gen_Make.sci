@@ -76,10 +76,12 @@ function Makename = ilib_gen_Make(name, ..
     if ~ exists("dynamic_linkwindowslib") then
       load("SCI/modules/dynamic_link/macros/windows/lib");
     end
+    library_name = []; // auto. name library
     Makename = dlwGenerateMakefile(name, ..
                                  tables, ..
                                  files, ..
                                  libs, ..
+                                 library_name, ..
                                  makename, ..
                                  with_gateway, ..
                                  ldflags, ..

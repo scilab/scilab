@@ -72,7 +72,11 @@ function plzr(a,b,c,d)
     my=my+ay
   end
   rect=[mnx, -my, mxx, my];
-  drawlater()
+  
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   ax=gca();
   ax.data_bounds=[mnx, -my; mxx, my];
   ax.axes_visible='on';
@@ -98,6 +102,6 @@ function plzr(a,b,c,d)
   xtitle(gettext("Transmission zeros and poles"),gettext("Real axis"), ...
 	 gettext("Imaginary axis"));
   if legs<>[] then legend(lhandle,legs,1),end
-  drawnow()
+  fig.immediate_drawing=immediate_drawing;
   show_window();
 endfunction

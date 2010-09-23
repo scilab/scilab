@@ -1,23 +1,27 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC
 // Copyright (C) 2008 - INRIA
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file is released into the public domain
 
-thispath = get_absolute_file_path("wheel1.dem.sce");
+function demo_wheel1()
 
-my_handle = scf(100001);
-clf(my_handle,"reset");
+  thispath = get_absolute_file_path("wheel1.dem.sce");
 
-// A precomputed value for
-// x0=[0;%pi/2+0.1;0;5.0;0.0;4.0;0;0];
+  my_handle = scf(100001);
+  clf(my_handle,"reset");
 
-exec(thispath+"wheel_show.sci");
-x=read(thispath+"x.wrt",8,301);
+  // A precomputed value for
+  // x0=[0;%pi/2+0.1;0;5.0;0.0;4.0;0;0];
 
-wheelg=wheelgs;
-wheel_show(x);
+  exec(thispath+"wheel_show.sci");
+  x = read(thispath+"x.wrt",8,301);
 
-// Clear variable and functions
-clear wheelg wheelgs;
-clear wheel_show wheeld test_wheel wheel_build_and_load get_wheel_rti;
+  wheelg = wheelgs;
+  wheel_show(x);
+
+endfunction 
+
+demo_wheel1();
+clear demo_wheel1;

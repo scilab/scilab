@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-10-23 09:57+0000\n"
+"PO-Revision-Date: 2010-07-29 10:02+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,39 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
+msgid "%s is not a valid field name."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+msgid "A null assignment can have only one non-colon index"
+msgstr "Una assignació nul·la només pot tenir un índex"
 
 msgid "Affection of a string in a matrix of numbers is not implemented."
 msgstr ""
 "L'afecció d'una cadena de caràcters en una matriu de nombres no està "
 "implementada."
+
+msgid "Incorrect assignment.\n"
+msgstr "Assignació incorrecta.\n"
+
+msgid "Invalid field name."
+msgstr ""
+
+msgid "Invalid index.\n"
+msgstr "L'índex és invàlid.\n"

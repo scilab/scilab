@@ -32,6 +32,7 @@ Source: modules\{#SCINOTES}\etc\{#SCINOTES}.quit; DestDir: {app}\modules\{#SCINO
 Source: modules\{#SCINOTES}\etc\{#SCINOTES}.start; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\etc\{#SCINOTES}Configuration.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\etc\keysConfiguration.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
+Source: modules\{#SCINOTES}\etc\{#SCINOTES}GUIConfiguration.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 ;
 Source: modules\{#SCINOTES}\macros\lib; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\names; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}

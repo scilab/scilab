@@ -141,12 +141,8 @@ msgstr ""
 "%s: falsche Anzahl von Eingangsargumenten: mindestens %d werden erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be same size as input argument "
-"#%d"
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: falsch Größe für Eingangsargument #%d: muß die gleiche Größe wie das "
-"Eingangsargument #%d haben."
 
 #, c-format
 msgid ""
@@ -155,6 +151,10 @@ msgid ""
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: gleiche Größe wie das "
 "Eingangsargument #%d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
@@ -167,22 +167,6 @@ msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Spaltenvektor erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as input argument #%d "
-"expected.\n"
-msgstr ""
-"%s: falsche Typ für Eingangsargument #%d: gleiche Größe wie das "
-"Eingangsargument #%d erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as the input argument #%d "
-"expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: gleiche Größe wie das "
-"Eingangsargument #%d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -199,6 +183,12 @@ msgid ""
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: Transponent der Funktion %s "
 "erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for size argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-01-14 19:10+0000\n"
+"PO-Revision-Date: 2010-06-29 12:43+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -145,12 +145,10 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be same size as input argument "
-"#%d"
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
-"з розмірністю вхідного параметра №%d"
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"вектор-стовпчик.\n"
 
 #, c-format
 msgid ""
@@ -159,6 +157,12 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
 "з розмірністю вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
@@ -175,22 +179,6 @@ msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип вектора-"
 "стовпчика.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as input argument #%d "
-"expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: розмірність має збігатися з "
-"розмірністю вхідного параметра №%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as the input argument #%d "
-"expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: розмірність має збігатися з "
-"розмірністю вхідного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -211,6 +199,14 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мала бути функція, транспонована "
 "щодо %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for size argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"однакову з  параметром №%d розмірність.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"

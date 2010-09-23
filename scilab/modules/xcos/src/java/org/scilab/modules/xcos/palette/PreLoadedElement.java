@@ -18,9 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabTList;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.io.scicos.AbstractElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
@@ -50,7 +50,7 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
 	 * 
 	 * @param element the current element
 	 * @return <code>true</code> if the data can be decoded by this instance, <code>false</code> otherwise. 
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -67,7 +67,7 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
 	 * @param into the target of the decoding (may be null)
 	 * @return the filled instance
 	 * @throws ScicosFormatException on decoding error
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType, java.lang.Object)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType, java.lang.Object)
 	 */
 	@Override
 	public PreLoaded decode(ScilabType element, PreLoaded into)
@@ -222,7 +222,7 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
 	 * @param from the source
 	 * @param element the destination
 	 * @return null
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	@Deprecated

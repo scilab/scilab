@@ -10,10 +10,10 @@
 
 // save history file
 // =============================================================================
-if (sciargs()<>'-nouserstartup') then
-	// save history file
-	savehistory();
-	// disable history manager
-	historymanager('off');
+if (sciargs() <> '-nouserstartup') & ~fromjava() & ~fromc() then
+  // save history file
+  savehistory();
+  // disable history manager
+  historymanager('off');
 end
 

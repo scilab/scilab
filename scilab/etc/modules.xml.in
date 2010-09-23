@@ -37,6 +37,7 @@
 <module name="output_stream" activate="yes"/>
 <module name="intersci" activate="yes"/>
 <module name="jvm" activate="@JAVA_ENABLE@"/>
+<module name="commons" activate="yes"/>
 <module name="linear_algebra" activate="yes"/>
 <module name="localization" activate="yes"/>
 <module name="optimization" activate="yes"/>

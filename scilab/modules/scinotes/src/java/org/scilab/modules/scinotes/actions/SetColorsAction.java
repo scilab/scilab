@@ -39,6 +39,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.text.DefaultCaret;
 import javax.swing.event.ListSelectionEvent;
@@ -104,10 +105,11 @@ public final class SetColorsAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor Scilab editor instance
      */
-    private SetColorsAction(SciNotes editor) {
-        super(SciNotesMessages.SET_COLORS, editor);
+    public SetColorsAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -124,11 +126,13 @@ public final class SetColorsAction extends DefaultAction {
 
     /**
      * Create the associated menu
+     * @param label label of the menu
      * @param editor Scilab editor instance
+     * @param key KeyStroke
      * @return the menu
      */
-    public static MenuItem createMenu(SciNotes editor) {
-        return createMenu(SciNotesMessages.SET_COLORS, null, new SetColorsAction(editor), null);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SetColorsAction(label, editor), key);
     }
 
     /**
@@ -345,6 +349,7 @@ public final class SetColorsAction extends DefaultAction {
         previewEditorPane = new ScilabEditorPane(getEditor());
         previewEditorPane.setEditorKit(new ScilabEditorKit());
         previewEditorPane.setText("// A comment with whites    and tabulations \t\t\n"
+                                  + "// Email: <scilab.support@scilab.org>\n"
                                   + "// Scilab editor: http://www.scilab.org/\n"
                                   + "function [a, b] = myfunction(d, e, f)\n"
                                   + "\ta = 2.71828 + %pi + f($, :);\n"
@@ -391,7 +396,7 @@ public final class SetColorsAction extends DefaultAction {
         okButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     /* Apply all new settings */
-                    int numberOfTab = getEditor().getTabPane().getComponentCount();
+                    int numberOfTab = getEditor().getTabPane().getTabCount();
                     for (int j = 0; j < numberOfTab; j++) {
                         ScilabEditorPane textPane = getEditor().getTextPane(j);
                         for (int i = 0; i < numberOfStyles; i++) {

@@ -9,7 +9,8 @@
 
 PARALLEL_CPP_SOURCES =
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp \
+sci_gateway/c/sci_parallel_concurrency.c
 
 PARALLEL_C_SOURCES =
 

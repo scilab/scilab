@@ -54,9 +54,6 @@ msgstr "%s: 入力引数で不正なサイズです。"
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s: 入力引数 #%d で、不正な型: %s を想定します。\n"
 
-msgid "Generating loader.sce...\n"
-msgstr "loader.sce 生成中...\n"
-
 #
 # File: macros/testexamples.sci, line: 17
 # File: macros/testexamples.sci, line: 32

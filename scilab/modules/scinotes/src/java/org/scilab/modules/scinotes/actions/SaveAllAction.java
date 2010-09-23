@@ -26,44 +26,45 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class SaveAllAction extends DefaultAction {
 
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 7134703185408281234L;
 
-        /**
-         * serialVersionUID
-         */
-        private static final long serialVersionUID = 7134703185408281234L;
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public SaveAllAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-        /**
-         * Constructor
-         * @param editor SciNotes
-         */
-        private SaveAllAction(SciNotes editor) {
-                        super(SciNotesMessages.SAVE_ALL, editor);
-                    }
+    /**
+     * doAction
+     */
+    public void doAction() {
+        int currentIndex = getEditor().getTabPane().getSelectedIndex();
 
-        /**
-         * doAction
-         */
-        public void doAction() {
-                int currentIndex = getEditor().getTabPane().getSelectedIndex();
-
-                for (int i = 0; i < getEditor().getTabPane().getTabCount(); i++) {
-                        getEditor().getTabPane().setSelectedIndex(i);
-                        if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
-                                        ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_SAVE_FILE,
-                                                SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
-                                    }
-                }
-                getEditor().getTabPane().setSelectedIndex(currentIndex);
-
+        for (int i = 0; i < getEditor().getTabPane().getTabCount(); i++) {
+            getEditor().getTabPane().setSelectedIndex(i);
+            if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
+                ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_SAVE_FILE,
+                                       SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+            }
         }
+        getEditor().getTabPane().setSelectedIndex(currentIndex);
 
-        /**
-         * CreateMenu
-         * @param editor SciNotes
-         * @param key KeyStroke
-         * @return MenuItem
-         */
-        public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-            return createMenu(SciNotesMessages.SAVE_ALL, null, new SaveAllAction(editor), key);
-        }
+    }
+
+    /**
+     * CreateMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SaveAllAction(label, editor), key);
+    }
 }

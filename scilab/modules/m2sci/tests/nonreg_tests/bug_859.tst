@@ -23,10 +23,10 @@ MFILECONTENTS=["result=ones(10,10);";
 		"for h=1:10";
 		"  result_bis(m,:) = result(h,:);";
 		"  m = m + 1;";
-		"end"]
+		"end"];
 
-MFILE=TMPDIR+"/bug859.m"
-SCIFILE=TMPDIR+"/bug859.sci"
+MFILE=TMPDIR+"/bug859.m";
+SCIFILE=TMPDIR+"/bug859.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -44,6 +44,6 @@ SCIFILECONTENTSREF=["";
 		"for h = 1:10";
 		"  result_bis(m,1:length(result(h,:))) = result(h,:);";
 		"  m = m+1;";
-		"end;"]
+		"end;"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

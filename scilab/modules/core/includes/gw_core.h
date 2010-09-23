@@ -70,7 +70,6 @@ int C2F(sci_with_module)(char *fname,unsigned long fname_len);
 int C2F(sci_islittleendian)(char *fname,unsigned long fname_len);
 int C2F(sci_getscilabmode)(char *fname,unsigned long fname_len);
 int C2F(sci_librarieslist)(char *fname,unsigned long fname_len);
-int C2F(sci_libraryinfo)(char *fname,unsigned long fname_len);
 int C2F(sci_getvariablesonstack)(char *fname,unsigned long fname_len);
 int C2F(sci_getdebuginfo)(char *fname,unsigned long fname_len);
 int C2F(sci_readgateway)(char *fname,unsigned long fname_len);

@@ -8,6 +8,9 @@
 // <-- Non-regression test for bug 6781 -->
 //
 // <-- JVM NOT MANDATORY -->
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=6781
 //
