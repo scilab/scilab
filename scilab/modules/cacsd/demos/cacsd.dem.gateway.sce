@@ -15,3 +15,4 @@ subdemolist = ["LQG"                , "lqg/lqg.dem"
                "Robust control"     , "robust/rob.dem"]
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

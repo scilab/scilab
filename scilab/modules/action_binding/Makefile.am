@@ -84,8 +84,7 @@ INCLUDE_FLAGS = $(libsciaction_binding_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libsciaction_binding_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
-									$(top_builddir)/libs/MALLOC/libscimalloc.la \
+libsciaction_binding_la_LIBADD =  	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 									$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # Cyclic dependancy

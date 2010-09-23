@@ -13,14 +13,77 @@
  -->
 <project name="javasci" default="build-examples">
   <import file="../../build.incl.xml"/>
+  <property name="library-v1.name" value="${library.javasci-v1.name}" />
   <property name="library.name" value="${library.javasci.name}" />
 
+	
   <description>
 	Build the Java/Scilab connecter (javasci) module
   </description>
 
-  <target name="jar" description="Build the jar file" depends="compile">
-	<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
+        <!-- Compile sources -->
+        <target name="compile-v1" description="Build sources of Javasci v1" depends="init">
+        <mkdir dir="${classes.dir}/v1/"/>
+                <javac
+                        srcdir="src/java/javasci/" 
+                        destdir="${classes.dir}/v1/" 
+                        classpathref="compile.classpath" 
+                        deprecation="on"
+                        debug="off"
+                        verbose="off"
+                        listfiles="on"
+                        includeAntRuntime="no"
+                        source="5"
+                        />
+        </target>
+
+        <!-- Compile sources -->
+        <target name="compile" description="Build sources of Javasci v2" depends="init">
+        <mkdir dir="${classes.dir}/v2/"/>
+                <javac
+                        srcdir="src/java/org/" 
+                        destdir="${classes.dir}/v2/"
+                        classpathref="compile.classpath" 
+                        deprecation="on"
+                        debug="off"
+                        verbose="off"
+                        listfiles="on"
+                        includeAntRuntime="no"
+                        source="5"
+                        />
+        </target>
+
+  <property name="examples.classes.dir" location="${build.dir}/examples/" />
+
+  <target name="build-examples" description="Build the examples" depends="jar, jar-v1">
+        <property name="examples.src.dir"  location="examples/others/" />
+        <mkdir dir="${examples.classes.dir}"/>
+
+                <javac
+                        srcdir="${examples.src.dir}"
+                        destdir="${examples.classes.dir}"
+                        classpath="${library.javasci.dir}/${library.javasci-v1.name}"
+                        deprecation="on"
+                        debug="off"
+                        verbose="off"
+                        listfiles="on"
+                        includeAntRuntime="no"
+                        source="5"
+                        />
+
+  </target>
+
+  <target name="clean-examples" description="clean examples">
+  	  <delete dir="${examples.classes.dir}"/>
+  </target>
+
+  <target name="jar-v1" description="Build the jar file" depends="compile-v1">
+      <manifestclasspath property="manifest-v1.classpath" jarfile="${build.jar.dir}/${library-v1.name}">
+          <classpath location="${library.jvm.dir}/${library.jvm.name}" />
+      </manifestclasspath>
+
+	<jar destfile="${build.jar.dir}/${library-v1.name}" basedir="${classes.dir}/v1/">
+
 	  <manifest>
 		<attribute name="SciAbstractDataType" value="javasci.SciAbstractDataType"/>
 		<attribute name="SciBooleanArray" value="javasci.SciBooleanArray"/>
@@ -36,32 +99,25 @@
 		<attribute name="SciStringArray" value="javasci.SciStringArray"/>
 		<attribute name="ClassPath" value="javasci.ClassPath"/>
 		<attribute name="LibraryPath" value="javasci.LibraryPath"/>
+        <attribute name="Class-Path" value="${manifest-v1.classpath}"/>
 	  </manifest>
 	</jar>
   </target>
 
-  <property name="examples.classes.dir" location="${build.dir}/examples/" />
+	<!-- Create the jar -->
+	<target name="jar" description="Build the jar file" depends="compile">
+        <manifestclasspath property="manifest.classpath" jarfile="${build.jar.dir}/${library.name}">
+             <classpath location="${library.jvm.dir}/${library.jvm.name}" />
+        </manifestclasspath>
 
-  <target name="build-examples" description="Build the examples" depends="jar">
-        <property name="examples.src.dir"  location="examples/others/" />
-        <mkdir dir="${examples.classes.dir}"/>
+		<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}/v2/">
 
-                <javac
-                        srcdir="${examples.src.dir}"
-                        destdir="${examples.classes.dir}"
-                        classpath="jar/${library.javasci.name}"
-                        deprecation="on"
-                        debug="off"
-                        verbose="off"
-                        listfiles="on"
-                        includeAntRuntime="no"
-                        source="5"
-                        />
+		<manifest>
+                <attribute name="Class-Path" value="${manifest.classpath}"/>
+		</manifest>
+		</jar>
 
-  </target>
 
-  <target name="clean-examples" description="clean examples">
-  	  <delete dir="${examples.classes.dir}"/>
-  </target>
+	</target>
 
 </project>

@@ -10,3 +10,4 @@ subdemolist = ["Black hole"  ,"blackhole.dem.sce" ;
                "Sphere"      ,"sphere.dem.sce"    ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

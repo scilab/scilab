@@ -287,11 +287,13 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
 if NEED_JAVA
-clean-local: clean-java clean-macros
+clean-local: clean-java
 else
-clean-local: clean-macros
+clean-local:
 endif
 
 distclean-local:

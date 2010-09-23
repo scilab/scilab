@@ -17,10 +17,10 @@
 //    matlab file conversion problem (apparently: Extraction of
 //    out from 'funcall' tlist is not yet implemented)
 
-MFILECONTENTS=["%m2scideclare var|Unknown Unknown|Unknown";"var1 = strrep(var,'' '','','')"]
+MFILECONTENTS=["%m2scideclare var|Unknown Unknown|Unknown";"var1 = strrep(var,'' '','','')"];
 
-MFILE=TMPDIR+"/bug973.m"
-SCIFILE=TMPDIR+"/bug973.sci"
+MFILE=TMPDIR+"/bug973.m";
+SCIFILE=TMPDIR+"/bug973.sci";
 
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
@@ -40,6 +40,6 @@ SCIFILECONTENTSREF=["";
 "ieee(1);";
 "";
 "";
-"var1 = mtlb_strrep(var,"" "","","")"]
+"var1 = mtlb_strrep(var,"" "","","")"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

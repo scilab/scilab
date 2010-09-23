@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="DSUPER">
+  <refnamediv>
+    <refname>DSUPER</refname>
+    <refpurpose>Masked super block</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/SUPER_f.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_DSUPER">
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="DSUPER">Masked super block</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Description_DSUPER">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_DSUPER">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_DSUPER">Interfacing function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_DSUPER">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_DSUPER">
+    <title>Description</title>
+    <para>
+This block opens the settings of the masked <xref linkend="SUPER_f">Super block</xref>.
+</para>
+    <para>
+Any super block implementation can hide it's implementation be using the "Mask" feature and then some parameters (extracted from the context) can be added to configure it. If you want to edit such a block, you first need to "Unmask" it.
+</para>
+
+  </refsection>
+  <refsection id="Defaultproperties_DSUPER">
+    <title>Default properties</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">super</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_DSUPER">
+    <title>Interfacing function</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Misc/SUPER_f.sci</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Misc/DSUPER.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_DSUPER">
+    <title>See also</title>
+    <variablelist>
+      <varlistentry><term><xref linkend="SUPER_f">Super block</xref></term>
+        <listitem>
+          <para>The implementation of this black box is performed through a Super block.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection id="Authors_DSUPER">
+    <title>Authors</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
+  </refsection>
+</refentry>

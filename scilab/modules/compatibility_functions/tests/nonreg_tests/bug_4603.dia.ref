@@ -4,6 +4,11 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- JVM NOT MANDATORY -->
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 4603 -->
 //
 // <-- Bugzilla URL -->
@@ -12,6 +17,6 @@
 // <-- Short Description -->
 // Unknown function lst2tree called by function mtlb_eval.
 ierr = execstr("mtlb_eval(""a=2"")", "errcatch");
-  Conversion de l'arbre Matlab ...
-  Conversion de l'arbre Matlab : Terminée
+  Conversion of M-tree...
+  Conversion of M-tree: Done
 if ierr<>0 then bugmes();quit;end

@@ -54,7 +54,7 @@ import javax.swing.text.Element;
         breakstring = false;
         yyreset(new ScilabDocumentReader(doc, p0, p1));
         int currentLine = elem.getElementIndex(start);
-        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBroken()) {
+        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBrokenString()) {
            yybegin(QSTRING);
         }
     }
@@ -66,7 +66,7 @@ import javax.swing.text.Element;
     public int scan() throws IOException {
         int ret = yylex();
         if (start + yychar + yylength() == end - 1) {
-           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBroken(breakstring);
+           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBrokenString(breakstring);
            breakstring = false;
         }
         return ret;
@@ -141,6 +141,7 @@ url = "http://"[^ \t\f\n\r\'\"]+
 mail = "<"[ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*">"
 
 latex = "$"(([^$]*|"\\$")+)"$"
+latexinstring = (\"|\')"$"(([^$]*|"\\$")+)"$"(\"|\')
 
 digit = [0-9]
 exp = [eE][+-]?{digit}+
@@ -226,6 +227,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.OPERATOR;
                                  }
 
+ {latexinstring}                 {
+                                   return ScilabLexerConstants.LATEX;
+                                 }
+
   {quote}                        {
                                     if (transposable) {
                                        return ScilabLexerConstants.TRANSP;
@@ -294,7 +299,13 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <COMMANDSWHITE> {
-  [^ \t,;]*                      {
+  {comment}                      {
+                                   transposable = false;
+                                   yypushback(2);
+                                   yybegin(COMMENT);
+                                 }
+
+  ([^ \t,;/]*) | ("/"[^ /]*)     {
                                    return ScilabLexerConstants.STRING;
                                  }
 

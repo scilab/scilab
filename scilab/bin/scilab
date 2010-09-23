@@ -375,7 +375,7 @@ fi
 					"alpha")
 						proc="alpha"
 						;;
-					"sparc64")
+					"sparc"|"sparc64")
 						proc="sparc"
 						;;
 					sh*)
@@ -399,7 +399,7 @@ fi
 					"s390"|"s390x")
 						proc="s390"
 						;;
-					"armv4l"|"armv5tel")
+					armv*)
 						proc="arm"
 						;;
 					*)

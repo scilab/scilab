@@ -107,34 +107,52 @@ cdf_options(struct cdf_descriptor const * const cdf)
 void
 cdf_error(char const * const fname, int status, double bound)
 {
-  switch (status) {
+  switch (status)
+  {
   case 1:
-    Scierror(999, _("%s: Answer appears to be lower than lowest search bound %f\n"), fname, bound);
-    break;
+      Scierror(999, _("%s: Answer appears to be lower than lowest search bound %f\n"), fname, (bound > ZERO_FOR_CDF ? bound : 0));
+      break;
   case 2:
-    Scierror(999, _("%s: Answer appears to be higher than greatest search bound %f\n"), fname, bound);
+      if (bound >= INFINITY_FOR_CDF)
+      {
+          Scierror(999, _("%s: Answer appears to be higher than greatest search bound %s\n"), fname, "%inf");
+      }
+      else
+      {
+          Scierror(999, _("%s: Answer appears to be higher than greatest search bound %f\n"), fname, bound);
+      }
     break;
   case 3:
-    Scierror(999, "%s: P + Q ≠ 1\n", fname);
-    break;
+      Scierror(999, "%s: P + Q ≠ 1\n", fname);
+      break;
   case 4:
-    if (strcmp(fname, "cdfbet") == 0)
-      Scierror(999, "%s: X + Y ≠ 1", fname);
-    else if (strcmp(fname, "cdfbin") == 0 ||
+      if (strcmp(fname, "cdfbet") == 0)
+      {
+          Scierror(999, "%s: X + Y ≠ 1", fname);
+      }
+      else if (strcmp(fname, "cdfbin") == 0 ||
 	     strcmp(fname, "cdfnbn") == 0)
-      Scierror(999, "%s: Pr + Ompr ≠ 1\n", fname);
+      {
+          Scierror(999, "%s: Pr + Ompr ≠ 1\n", fname);
+      }
       else if (strcmp(fname, "cdfnor") == 0)
-      Scierror(999, _("%s: Std must not be zero\n"), fname);
+      {
+          Scierror(999, _("%s: Std must not be zero\n"), fname);
+      }
     break;
   case 10:
-    if (strcmp(fname, "cdfchi") == 0)
-      Scierror(999, _("%s: cumgam returned an error\n"), fname);
-    else if (strcmp(fname, "cdfchi") == 0)
-      Scierror(999, _("%s: gamma or inverse gamma routine failed\n"), fname);
-    break;
+      if (strcmp(fname, "cdfchi") == 0)
+      {
+          Scierror(999, _("%s: cumgam returned an error\n"), fname);
+      }
+      else if (strcmp(fname, "cdfchi") == 0)
+      {
+          Scierror(999, _("%s: gamma or inverse gamma routine failed\n"), fname);
+      }
+      break;
   default:
-    Scierror(999, _("%s: Argument #%d out of range. Bound exceeded: %f.\n"),
-	     fname, - status, bound);
+      Scierror(999, _("%s: Argument #%d out of range. Bound exceeded: %f.\n"),
+               fname, - status, bound);
   }
 }
 

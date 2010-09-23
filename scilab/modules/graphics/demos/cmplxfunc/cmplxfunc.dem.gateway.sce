@@ -21,5 +21,4 @@ subdemolist = ["log"       ,"demo_log.dem.sce"    ; ..
                "custom"    ,"demo_custom.dem.sce" ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
-
-exec(demopath+"/MacCmplx.sci");
+clear demopath;

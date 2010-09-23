@@ -84,7 +84,7 @@ CHECK_SRC= $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_manager_la_CFLAGS)
 
 ## Libraries necessary
-libscihistory_manager_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
+libscihistory_manager_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
 modulename=history_manager
 
 #### history_manager : Conf files ####

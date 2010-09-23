@@ -26,10 +26,10 @@
 //    m2sci application (menu option in the main Scilab window), 
 //    the reported error message displays.
 
-MFILECONTENTS=["M(1,1) = -sin(0.1);";"M(1,1) = sin(0.1);"]
+MFILECONTENTS=["M(1,1) = -sin(0.1);";"M(1,1) = sin(0.1);"];
 
-MFILE=TMPDIR+"/bug699.m"
-SCIFILE=TMPDIR+"/bug699.sci"
+MFILE=TMPDIR+"/bug699.m";
+SCIFILE=TMPDIR+"/bug699.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -43,7 +43,7 @@ SCIFILECONTENTSREF=["";
 		"ieee(1);";
 		"";
 		"M(1,1) = -sin(0.1);";
-		"M(1,1) = sin(0.1);"]
+		"M(1,1) = sin(0.1);"];
 
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

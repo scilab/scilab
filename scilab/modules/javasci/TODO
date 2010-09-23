@@ -1,0 +1,22 @@
+* check memory leaks
+
+* check what is the faster:
+	- From java, send variable [][] and convert into the JNI into variable[][] with row & col size
+	- From java, convert from [][] to [] directly and send it to the native code directly (avoid the conversion in the JNI)
+
+* Write documentation
+
+* scilab error management
+
+* if the function fails, .exec() should return false
+
+* check that a java [][] dimensions are consistent
+/!\ it can impact performances. 
+
+* move call_scilab.i into the right module (and helper)
+
+* handle of sparse data type
+See: http://bugzilla.scilab.org/show_bug.cgi?id=7989
+
+* handle of other data type (list, tlist, mlist)
+

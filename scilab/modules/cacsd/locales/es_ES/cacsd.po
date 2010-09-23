@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-15 21:34+0000\n"
+"PO-Revision-Date: 2010-08-02 16:15+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -314,6 +314,10 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: El valor computado de || G || puede ser inexacto.\n"
 
 #, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Undefined type ''%s''.\n"
 msgstr "%s: Tipo indefinido \"%s\".\n"
 
@@ -361,7 +365,7 @@ msgstr "%s: Número incorrecto del argumento de salida: Se esperaba %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Número incorrecto de argumentos de salida: Se esperaba %d.\n"
+msgstr "%s: Número incorrecto de argumentos de salida: Se esperaban %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -446,6 +450,11 @@ msgid ""
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: El número de columnas no "
 "es compatible con %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -772,6 +781,24 @@ msgstr "Frecuencia (Hz)"
 msgid "Gain :"
 msgstr "Ganancia :"
 
+msgid "Hall chart"
+msgstr "Tabla Hall"
+
+msgid "Hz"
+msgstr "Hz"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
+msgid "Imaginary Axis"
+msgstr ""
+
 msgid "Imaginary axis"
 msgstr "Eje Imaginario"
 
@@ -786,8 +813,8 @@ msgstr ""
 "Factores irreducibles de la función de transferencia frecuencia natural y "
 "factor de amortiguación (click abajo)"
 
-msgid "Magnitude (Db)"
-msgstr "Magnitud (Db)"
+msgid "Magnitude (dB)"
+msgstr "Magnitud (dB)"
 
 msgid "Numerator :"
 msgstr "Numerador :"
@@ -803,6 +830,18 @@ msgstr "Fase (grados)"
 
 msgid "Poles"
 msgstr "Polos"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
+
+msgid "Real Axis"
+msgstr ""
 
 msgid "Real axis"
 msgstr "Eje Real"
@@ -825,8 +864,19 @@ msgstr "Ceros"
 msgid "asymptotic directions"
 msgstr "direcciones asintóticas"
 
+msgid "dB"
+msgstr "dB"
+
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+
 msgid "magnitude(y) (Db)"
 msgstr "magnitud(y) (Db)"
+
+msgid "magnitude(y) (dB)"
+msgstr "magnitud(y) (dB)"
 
 msgid "open loop poles"
 msgstr "polos de loop abiertos"
@@ -836,3 +886,6 @@ msgstr "ceros de loop abiertos"
 
 msgid "phase(y) (degree)"
 msgstr "fase(y) (grados)"
+
+msgid "rad/sec"
+msgstr ""

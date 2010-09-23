@@ -23,7 +23,7 @@ function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
   // This will create a scs_m variable.
   status = import_from_hdf5(hdf5FileToLoad);
   if ~status then
-    error(msprintf(gettext("%s: Unable to import from data from %s"), "xcosCodeGeneration", hdf5FileToLoad));
+    error(msprintf(gettext("%s: Unable to import data from %s"), "xcosCodeGeneration", hdf5FileToLoad));
   end
   
   ierr = execstr("[ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock42(scs_m, [], [], %f); ", 'errcatch');

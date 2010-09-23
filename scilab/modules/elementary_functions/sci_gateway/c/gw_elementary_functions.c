@@ -37,6 +37,7 @@ static gw_generic_table Tab[] =
 	{sci_kron, "kron"},
 	{sci_kron, "kron"},
 	{sci_kron, "kron"},
+	{sci_kron, "kron"},
 	{sci_sin, "sin"},
 	{sci_cos, "cos"},
 	{sci_atan, "atan"},
@@ -67,14 +68,14 @@ static gw_generic_table Tab[] =
 	{sci_spones, "spones"},
 	{sci_gsort, "gsort"},
 	{sci_isequalbitwise, "isequalbitwise"},
-    {sci_scimatrix, "matrix"},	
+    {sci_scimatrix, "matrix"},
     {sci_rat, "rat"},
     {sci_maxi, "maxi"},
     {sci_maxi, "mini"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
-{  
+{
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

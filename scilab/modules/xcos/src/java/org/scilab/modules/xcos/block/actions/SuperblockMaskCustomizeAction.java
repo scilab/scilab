@@ -23,6 +23,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
@@ -36,11 +37,12 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -88,8 +90,9 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
 				.getSelectionCell();
-
-		CustomizeFrame frame = new CustomizeFrame();
+		block.createChildDiagram(); // assert that diagram is an xcos one
+		
+		CustomizeFrame frame = new CustomizeFrame(block.getChild());
 		CustomizeFrame.CustomizeFrameModel model = frame.getController()
 				.getModel();
 		model.setBlock(block);
@@ -103,7 +106,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	 */
 	// CSOFF: ClassDataAbstractionCoupling
 	private class CustomizeFrame extends JFrame {
-		private CustomizeFrameControler controler;
+		private final CustomizeFrameControler controler;
 
 		private javax.swing.JPanel buttonBlob;
 		private javax.swing.JButton cancelButton;
@@ -129,12 +132,13 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 		/**
 		 * Constructor
+		 * @param superBlockDiagram the diagram
 		 */
-		public CustomizeFrame() {
+		public CustomizeFrame(SuperBlockDiagram superBlockDiagram) {
 			setTitle(XcosMessages.MASK_TITLE);
-			setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 			controler = new CustomizeFrameControler();
-			initComponents();
+			initComponents(superBlockDiagram);
 		}
 
 		/**
@@ -146,10 +150,11 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 		/**
 		 * Construct the UI and install the listeners.
+		 * @param superBlockDiagram the diagram
 		 */
 		// CSOFF: JavaNCSS
 		// CSOFF: MagicNumber
-		private void initComponents() {
+		private void initComponents(SuperBlockDiagram superBlockDiagram) {
 
 			/* Construct the components */
 			mainPanel = new javax.swing.JPanel();
@@ -289,8 +294,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			/* Evaluate the context and set up the variable name selection */
 			TableColumn vars = varCustomizeTable.getColumnModel().getColumn(1);
 			JComboBox validVars = new JComboBox();
-			XcosDiagram graph = (XcosDiagram) getGraph(null);
-			Map<String, String> context = graph.evaluateContext();
+			Map<String, String> context = superBlockDiagram.evaluateContext();
 			for (String key : context.keySet()) {
 				validVars.addItem(key);
 			}
@@ -539,15 +543,17 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		 * Implement the action listeners for the frame
 		 */
 		private class CustomizeFrameControler {
-			private CustomizeFrameModel model;
+			private final CustomizeFrameModel model;
 
 			private final ActionListener cancelActionListener = new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent e) {
 					dispose();
 				}
 			};
 
 			private final ActionListener okActionListener = new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					/* TODO : handle ok click when editing a cell. */
 					model.exportToBlock();
@@ -556,6 +562,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			};
 
 			private final ChangeListener rowSpinnerChangeListener = new ChangeListener() {
+				@Override
 				public void stateChanged(ChangeEvent e) {
 					int rowCount = varCustomizeTable.getRowCount();
 					int value = (Integer) rowSpinner.getModel().getValue();
@@ -573,22 +580,26 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			};
 
 			private final ActionListener moveDownActionListener = new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					int selectedRow = varCustomizeTable.getSelectedRow();
-					/**
+					/*
 					 * doesn't need to be checked as the operation doesn't
 					 * depend on it
 					 */
+					@SuppressWarnings("unchecked")
 					List<List< ? >> data = model.customizeTableModel
 							.getDataVector();
 
 					if (selectedRow > 0
 							&& selectedRow < varCustomizeTable.getRowCount() - 1) {
-						/**
+						/*
 						 * doesn't need to be checked as the operation doesn't
 						 * depend on it
 						 */
+						@SuppressWarnings("unchecked")
 						List<Integer> current = (List<Integer>) data.get(selectedRow);
+						@SuppressWarnings("unchecked")
 						List<Integer> next = (List<Integer>) data.get(selectedRow + 1);
 
 						/* Inverting data */
@@ -596,8 +607,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 						data.set(selectedRow, next);
 
 						/* Update the index field */
-						current.set(0, ((Integer) current.get(0)) + 1);
-						next.set(0, ((Integer) next.get(0)) - 1);
+						current.set(0, (current.get(0)) + 1);
+						next.set(0, (next.get(0)) - 1);
 
 						/* Keep the same row selected */
 						varCustomizeTable.changeSelection(selectedRow + 1,
@@ -608,21 +619,25 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			};
 
 			private final ActionListener moveUpActionListener = new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					int selectedRow = varCustomizeTable.getSelectedRow();
-					/**
+					/*
 					 * doesn't need to be checked as the operation doesn't
 					 * depend on it
 					 */
+					@SuppressWarnings("unchecked")
 					final List<List< ? >> data = model.customizeTableModel
 							.getDataVector();
 
 					if (selectedRow > 1) {
-						/**
+						/*
 						 * doesn't need to be checked as the operation doesn't
 						 * depend on it
 						 */
+						@SuppressWarnings("unchecked")
 						List<Integer> current = (List<Integer>) data.get(selectedRow);
+						@SuppressWarnings("unchecked")
 						List<Integer> next = (List<Integer>) data.get(selectedRow - 1);
 
 						/* Inverting data */
@@ -630,8 +645,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 						data.set(selectedRow, next);
 
 						/* Update the index field */
-						current.set(0, ((Integer) current.get(0)) - 1);
-						next.set(0, ((Integer) next.get(0)) + 1);
+						current.set(0, (current.get(0)) - 1);
+						next.set(0, (next.get(0)) + 1);
 
 						/* Keep the same row selected */
 						varCustomizeTable.changeSelection(selectedRow - 1,
@@ -642,6 +657,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			};
 
 			private final ActionListener deleteActionListener = new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent e) {
 					int selected = varCustomizeTable.getSelectedRow();
 					int nbOfRows = varCustomizeTable.getRowCount();
@@ -673,6 +689,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			};
 
 			private final ActionListener insertActionListener = new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent e) {
 					model.customizeTableModel.addRow(new Object[] {
 							model.customizeTableModel.getRowCount() + 1, "",
@@ -686,6 +703,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			 * Update the buttons on selection change.
 			 */
 			private final ListSelectionListener updateButtonsSensibleForSelectionChange = new ListSelectionListener() {
+				@Override
 				public void valueChanged(ListSelectionEvent e) {
 					/* We cannot move up anymore */
 					boolean isFirst = false;
@@ -707,6 +725,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			 * Update the buttons/spinner on modifications
 			 */
 			private final TableModelListener updateButtonsSensibleForModifications = new TableModelListener() {
+				@Override
 				public void tableChanged(TableModelEvent e) {
 					/* We cannot delete anymore */
 					boolean canDelete = false;
@@ -724,6 +743,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			 * Update the values table on change on the customize table.
 			 */
 			private final TableModelListener updateValuesTable = new TableModelListener() {
+				@Override
 				public void tableChanged(TableModelEvent e) {
 					final DefaultTableModel valuesModel = model.valuesTableModel;
 					final DefaultTableModel customModel = model.customizeTableModel;
@@ -769,19 +789,4 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		}
 	}
 	// CSON: ClassDataAbstractionCoupling
-
-	/**
-	 * Ease the development of the UI (debug).
-	 * 
-	 * @param args
-	 *            Unused
-	 */
-	public static void main(String[] args) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new SuperblockMaskCustomizeAction(null).new CustomizeFrame()
-					.setVisible(true);
-			}
-		});
-	}
 }

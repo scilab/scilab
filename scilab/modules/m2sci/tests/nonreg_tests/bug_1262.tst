@@ -44,10 +44,10 @@ MFILECONTENTS=["A = rand(3,3);"
 	""
 	"C = [A [A [1;2;3]]];"
 	""
-	"B = -(A-A)"]
+	"B = -(A-A)"];
 
-MFILE=TMPDIR+"/bug1262.m"
-SCIFILE=TMPDIR+"/bug1262.sci"
+MFILE=TMPDIR+"/bug1262.m";
+SCIFILE=TMPDIR+"/bug1262.sci";
 
 mputl(MFILECONTENTS,MFILE);
 

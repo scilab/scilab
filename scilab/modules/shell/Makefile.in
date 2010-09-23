@@ -117,7 +117,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscishell_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscishell_la_DEPENDENCIES = $(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscishell_la_SOURCES_DIST = src/c/clc.c src/c/tohome.c \
@@ -466,7 +465,6 @@ INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
 libscishell_la_LIBADD = $(top_builddir)/modules/history_manager/libscihistory_manager.la \
-							$(top_builddir)/modules/core/libscicore.la \
 							$(top_builddir)/libs/MALLOC/libscimalloc.la \
 							$(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
@@ -1291,9 +1289,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

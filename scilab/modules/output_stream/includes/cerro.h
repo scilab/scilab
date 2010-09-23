@@ -13,12 +13,10 @@
 #ifndef __CERRO_H__
 #define __CERRO_H__
 /*--------------------------------------------------------------------------*/ 
-#include "dynlib_output_stream.h"
-
 /*
 * cerro
 */
-OUTPUT_STREAM_IMPEXP void cerro(char *str);
+void cerro(char *str);
 
 #endif /*__CERRO_H__*/
 /*--------------------------------------------------------------------------*/ 

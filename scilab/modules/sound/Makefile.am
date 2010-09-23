@@ -26,7 +26,7 @@ libscisound_la_SOURCES = $(GATEWAY_C_SOURCES)
 CHECK_SRC= $(libscisound_la_SOURCES)
 INCLUDE_FLAGS = $(libscisound_la_CFLAGS)
 
-libscisound_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscisound_la_LIBADD =   $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### Target ######

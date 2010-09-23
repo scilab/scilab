@@ -12,8 +12,11 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.Element;
 import javax.swing.text.BadLocationException;
@@ -115,7 +118,17 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
      * @param key Keystroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        return createMenu(label, null, new GenerateHelpFromFunctionAction(label, editor), key);
+    public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
+        final MenuItem menuitem = createMenu(label, null, new GenerateHelpFromFunctionAction(label, editor), key);
+        ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    Element root = editor.getTextPane().getDocument().getDefaultRootElement();
+                    int pos = editor.getTextPane().getCaretPosition();
+                    ScilabDocument.ScilabLeafElement elem = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
+                    menuitem.setEnabled(elem.isFunction());
+                }
+            });
+
+        return menuitem;
     }
 }

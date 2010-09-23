@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,10 +16,11 @@ package org.scilab.modules.xcos.block;
 import java.util.Map;
 
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.utils.Font;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -29,42 +31,7 @@ import com.mxgraph.util.mxConstants;
  * A textblock is used to annotate diagrams.
  */
 public final class TextBlock extends BasicBlock {
-
-	/**
-	 * The factor between a real point and a scicos point
-	 */
-	private static final int FONT_FACTOR = 4;
 	private static final String INTERFUNCTION_NAME = "TEXT_f";
-
-    /**
-     * Font list from http://www.w3.org/TR/CSS2/fonts.html#generic-font-families
-     * Scicos has a number descriptor < 7 and > 0 
-     */
-    enum Font {
-		SERIF("serif"),
-		SANS_SERIF("sans-serif"),
-		CURSIVE("cursive"),
-		FANTASY("fantasy"),
-		MONOSPACE("monospace"),
-		ARIAL("Arial");
-		
-		private String name;
-		
-		/**
-		 * Cstr
-		 * @param name the name of the font
-		 */
-		private Font(String name) {
-		    this.name = name;
-		}
-		
-		/**
-		 * @return the name of the font
-		 */
-		public String getName() {
-		    return name;
-		}
-    }
 
     /**
      * Default constructor
@@ -92,21 +59,21 @@ public final class TextBlock extends BasicBlock {
 	return ((ScilabString) getExprs()).getData()[0][0];
     }
     
-    /**
-     * @return the fontNumber
-     */
-    private Font getFont() {
-	int number = Integer.parseInt(((ScilabString) getExprs()).getData()[1][0]);
-	return Font.values()[number - 1];
-    }
+	/**
+	 * @return the fontNumber
+	 */
+	private Font getFont() {
+		int number = Integer
+				.parseInt(((ScilabString) getExprs()).getData()[1][0]);
+		return Font.getFont(number);
+	}
 
-    /**
-     * @return the fontSize
-     */
-    private int getFontSize() {
-	// After investigations, the 1pt of scicos is equivalent to a 10 real pt
-	return (Integer.parseInt(((ScilabString) getExprs()).getData()[2][0]) * FONT_FACTOR);
-   }
+	/**
+	 * @return the fontSize
+	 */
+	private int getFontSize() {
+		return Font.getSize(((ScilabString) getExprs()).getData()[2][0]);
+	}
     
     /**
      * Apply style on setExprs

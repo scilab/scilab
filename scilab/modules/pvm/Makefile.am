@@ -97,8 +97,7 @@ libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES)
 
-libscipvm_la_LIBADD = \
-	$(top_builddir)/modules/core/libscicore.la
+libscipvm_la_LIBADD =	
 
 libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(srcdir)/includes/ \

@@ -103,7 +103,7 @@ if SWIG
     BUILT_SOURCES=swig
 endif
 
-libsciscinotes_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libsciscinotes_la_LIBADD =  \
     $(top_builddir)/libs/MALLOC/libscimalloc.la \
     $(top_builddir)/modules/output_stream/libscioutput_stream.la
 

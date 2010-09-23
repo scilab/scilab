@@ -9,9 +9,13 @@
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
- 
+
 #ifndef __CDFBASE_H__
 #define __CDFBASE_H__
+
+/* see cdff.f line 97 */
+#define INFINITY_FOR_CDF 1.0e300
+#define ZERO_FOR_CDF 1.0e-300
 
 /**
  * Describe a way of calling a particular cdf function.
@@ -53,7 +57,7 @@ extern int cdf_generic(char *fname, struct cdf_descriptor *cdf);
 
 
 /**
- * Number of elements of an elttype-typed array 
+ * Number of elements of an elttype-typed array
  */
 #define	nelem(array, elttype) (sizeof(array) / sizeof(elttype))
 

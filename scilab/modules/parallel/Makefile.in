@@ -120,10 +120,12 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciparallel_la_LIBADD =
 am__libsciparallel_la_SOURCES_DIST = src/noparallel/noparallel.h \
 	src/noparallel/noparallel.c sci_gateway/c/gw_parallel.c \
-	sci_gateway/cpp/sci_parallel_run.cpp
+	sci_gateway/cpp/sci_parallel_run.cpp \
+	sci_gateway/c/sci_parallel_concurrency.c
 am__objects_1 =
 am__objects_2 = libsciparallel_la-gw_parallel.lo
-am__objects_3 = libsciparallel_la-sci_parallel_run.lo
+am__objects_3 = libsciparallel_la-sci_parallel_run.lo \
+	libsciparallel_la-sci_parallel_concurrency.lo
 @OPENMP_FALSE@am_libsciparallel_la_OBJECTS =  \
 @OPENMP_FALSE@	libsciparallel_la-noparallel.lo
 @OPENMP_TRUE@am_libsciparallel_la_OBJECTS = $(am__objects_1) \
@@ -408,7 +410,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 PARALLEL_CPP_SOURCES = 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp \
+sci_gateway/c/sci_parallel_concurrency.c
+
 PARALLEL_C_SOURCES = 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c
 libsciparallel_la_CFLAGS = $(OPENMP_CFLAGS) \
@@ -600,6 +604,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciparallel_la-gw_parallel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciparallel_la-noparallel.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciparallel_la-sci_parallel_concurrency.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciparallel_la-sci_parallel_run.Plo@am__quote@
 
 .c.o:
@@ -636,6 +641,13 @@ libsciparallel_la-gw_parallel.lo: sci_gateway/c/gw_parallel.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_parallel.c' object='libsciparallel_la-gw_parallel.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparallel_la_CPPFLAGS) $(CPPFLAGS) $(libsciparallel_la_CFLAGS) $(CFLAGS) -c -o libsciparallel_la-gw_parallel.lo `test -f 'sci_gateway/c/gw_parallel.c' || echo '$(srcdir)/'`sci_gateway/c/gw_parallel.c
+
+libsciparallel_la-sci_parallel_concurrency.lo: sci_gateway/c/sci_parallel_concurrency.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparallel_la_CPPFLAGS) $(CPPFLAGS) $(libsciparallel_la_CFLAGS) $(CFLAGS) -MT libsciparallel_la-sci_parallel_concurrency.lo -MD -MP -MF $(DEPDIR)/libsciparallel_la-sci_parallel_concurrency.Tpo -c -o libsciparallel_la-sci_parallel_concurrency.lo `test -f 'sci_gateway/c/sci_parallel_concurrency.c' || echo '$(srcdir)/'`sci_gateway/c/sci_parallel_concurrency.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciparallel_la-sci_parallel_concurrency.Tpo $(DEPDIR)/libsciparallel_la-sci_parallel_concurrency.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_parallel_concurrency.c' object='libsciparallel_la-sci_parallel_concurrency.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparallel_la_CPPFLAGS) $(CPPFLAGS) $(libsciparallel_la_CFLAGS) $(CFLAGS) -c -o libsciparallel_la-sci_parallel_concurrency.lo `test -f 'sci_gateway/c/sci_parallel_concurrency.c' || echo '$(srcdir)/'`sci_gateway/c/sci_parallel_concurrency.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -1155,9 +1167,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

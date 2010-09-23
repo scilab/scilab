@@ -42,9 +42,6 @@ msgstr "%s: Tamaño incorrecto de argumento de entrada."
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba %s.\n"
 
-msgid "Generating loader.sce...\n"
-msgstr "Generando loader.sce...\n"
-
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "No hay variable %s_ref en el archivo de referencia"

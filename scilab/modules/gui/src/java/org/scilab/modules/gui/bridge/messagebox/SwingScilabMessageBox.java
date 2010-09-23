@@ -210,7 +210,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		int line = 0;
 		message = "<HTML>";
 		for (line = 0; line < mess.length - 1; line++) {
-			message += mess[line] + "<br>";
+			message += "<div>" + mess[line] + "</div>";
 		}
 		message += mess[line] + "</HTML>";
 	}
@@ -248,7 +248,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 		messageLabel.addHyperlinkListener(new HyperlinkListener() {
 			public void hyperlinkUpdate(HyperlinkEvent e) {
 				if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-					WebBrowser.openUrl(e.getURL().toString());
+					WebBrowser.openUrl(e.getURL(), e.getDescription());
 				}
 			}
 		});

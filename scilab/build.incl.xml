@@ -64,6 +64,7 @@
 
 	<path id="compile.classpath">
 		<pathelement location="${library.types.dir}/${library.types.name}"/>
+		<pathelement location="${library.types.dir}/${library.output_stream.name}"/>		
 		<pathelement location="${library.graph.dir}/${library.graph.name}"/>
 		<pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
 		<pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
@@ -76,10 +77,17 @@
 		<pathelement location="${library.action_binding.dir}/${library.action_binding.name}"/>
 		
 		<pathelement location="${library.gui.dir}/${library.gui.name}"/>
+		<pathelement location="${library.commons.dir}/${library.commons.name}"/>
 		<pathelement location="${library.jvm.dir}/${library.jvm.name}"/>
 		<pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
 		<pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
+		<pathelement location="${library.core.dir}/${library.core.name}"/>
 		
+<!-- Not use at build time but used for unitary tests -->
+		<pathelement location="${library.javasci.dir}/${library.javasci.name}"/>
+		<pathelement location="${library.javasci.dir}/${library.javasci-v1.name}"/>
+
+
 		<pathelement location="${commons-logging.jar}"/>
 		
 		<pathelement location="${flexdock.jar}"/>

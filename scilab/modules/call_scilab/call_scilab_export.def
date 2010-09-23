@@ -13,4 +13,6 @@ EXPORTS
 	SendScilabJob
 	GetLastJob
 	SendScilabJobs
+	Call_ScilabOpen
+	getVariableType
 ; --------------------------------------- 

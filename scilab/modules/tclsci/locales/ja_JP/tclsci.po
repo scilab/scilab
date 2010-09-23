@@ -344,12 +344,6 @@ msgid "Tcl/TK interface disabled in -nogui mode.\n"
 msgstr "-nogui モードでTcl/TKインターフェースは無効です。\n"
 
 #
-# File: macros/tk_getdir.sci, line: 12
-# File: macros/tk_savefile.sci, line: 12
-msgid "Tcl/Tk interface not loaded."
-msgstr "Tcl/Tk インターフェースがロードできません。"
-
-#
 # File: src/c/InitTclTk.c, line: 69
 msgid ""
 "The SCI environment variable is not set.\n"

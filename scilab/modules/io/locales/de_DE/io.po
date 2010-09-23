@@ -17,8 +17,12 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Fehler bei der Speicherbelegung.\n"
+msgid "\"%s\" directory write access denied.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -66,15 +70,13 @@ msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: ein Integer erwatet.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: ein Integer-Skalar wird "
-"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -89,9 +91,31 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: Falscher Wert für Eingangsargument #%d: Integer erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: error during %s execution"
 msgstr "%s: Fehler während des %s Ausführens"
 
 #, c-format
+msgid "File \"%s\" already exists.\n"
+msgstr ""
+
+#, c-format
+msgid "File \"%s\" does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "File \"%s\" read access denied.\n"
+msgstr ""
+
+msgid "Too many files opened!\n"
+msgstr ""
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "undefinierte Umgebungsvariable %s.\n"
+
+msgid "unmanaged error by v2cunit.\n"
+msgstr ""

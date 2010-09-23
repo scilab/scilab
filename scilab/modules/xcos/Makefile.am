@@ -1,7 +1,7 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) DIGITEO - 2009 - Allan CORNET
-# Copyright (C) DIGITEO - 2010 - Clément DAVID
+# Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
+# Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
 # 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -28,7 +28,8 @@ libscixcos_la_etc_DATA =	etc/xcos.quit \
 				etc/xcos.xml \
 				etc/XcosConfiguration.xsd \
 				etc/palettes.xml \
-				etc/PaletteConfiguration.xsd
+				etc/PaletteConfiguration.xsd \
+				etc/Modelica.xsd
 
 XCOS_C_SOURCES = 
 
@@ -37,10 +38,13 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \
+			src/jni/Modelica.cpp \
+			src/jni/Modelica.hxx \
 			src/jni/GiwsException.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
-			src/jni/Palette.giws.xml
+			src/jni/Palette.giws.xml \
+			src/jni/Modelica.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -63,7 +67,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosPalMove.cpp \
 	sci_gateway/cpp/sci_xcosPalEnable.cpp \
 	sci_gateway/cpp/sci_xcosPalDisable.cpp \
-	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
+	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp \
+	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -111,7 +116,7 @@ INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
 
 
 
-libscixcos_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscixcos_la_LIBADD =  \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
@@ -124,7 +129,7 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 #### xcos : images files ####
 #
 # Generated with:
-#   $ find images/ -type f -printf "%p \\ \n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '{sub(/[ \t]+$/, "")};1' |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
+#   $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
 libscixcos_la_imagesdir=$(mydatadir)/
 nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
@@ -171,14 +176,20 @@ images/blocks/SWITCH.svg \
 images/blocks/VanneReglante.svg \
 images/blocks/VariableResistor.svg \
 images/blocks/VoltageSensor.svg \
-images/icons/go-bottom.png \
-images/icons/go-center.png \
-images/icons/go-first.png \
-images/icons/go-last.png \
-images/icons/go-middle.png \
-images/icons/go-top.png \
+images/icons/align-horizontal-center.png \
+images/icons/align-horizontal-left.png \
+images/icons/align-horizontal-right.png \
+images/icons/align-vertical-bottom.png \
+images/icons/align-vertical-center.png \
+images/icons/align-vertical-top.png \
+images/icons/color-fill.png \
+images/icons/draw-brush.png \
+images/icons/object-group.png \
+images/icons/preferences-desktop.png \
 images/icons/process-stop.png \
-images/icons/view-fullscreen.png \
+images/icons/select-by-color.png \
+images/icons/transform-flip.png \
+images/icons/transform-mirror.png \
 images/palettes/ABS_VALUE.png \
 images/palettes/AFFICH_m.png \
 images/palettes/ANDBLK.png \
@@ -373,6 +384,7 @@ images/palettes/SWITCH_f.png \
 images/palettes/Switch.png \
 images/palettes/TANBLK_f.png \
 images/palettes/TCLSS.png \
+images/palettes/TEXT_f.png \
 images/palettes/TIME_DELAY.png \
 images/palettes/TIME_f.png \
 images/palettes/TKSCALE.png \

@@ -18,6 +18,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
@@ -107,16 +109,16 @@ public abstract class SciConsole extends JPanel {
 			config = ConfigurationBuilder.buildConfiguration(configFilePath);
 			config.setActiveProfile("scilab");
 			if (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1)
-			{
-				ConsoleConfiguration configMac = ConfigurationBuilder.buildConfiguration(configFilePath);;
-				configMac.setActiveProfile("macosx");
-				for (KeyStroke key : config.getKeyMapping().keys()){
-					config.getKeyMapping().put(key,"");
+				{
+					ConsoleConfiguration configMac = ConfigurationBuilder.buildConfiguration(configFilePath);;
+					configMac.setActiveProfile("macosx");
+					for (KeyStroke key : config.getKeyMapping().keys()){
+						config.getKeyMapping().put(key,"");
+					}
+					for (KeyStroke key : configMac.getKeyMapping().keys()){
+						config.getKeyMapping().put(key, configMac.getKeyMapping().get(key));
+					}
 				}
-				for (KeyStroke key : configMac.getKeyMapping().keys()){
-					config.getKeyMapping().put(key, configMac.getKeyMapping().get(key));
-				}
-			}
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -152,6 +154,15 @@ public abstract class SciConsole extends JPanel {
 
 		// Reset history settings - bug 3612
 		((SciHistoryManager)config.getHistoryManager()).setInHistory(false);
+
+		// Bug 8055 : update the lines/columns only when the console is resized
+		addComponentListener(new ComponentAdapter() {
+				public void componentResized(ComponentEvent evt) {
+					scilabLinesUpdate();
+					jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
+					jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
+				}
+			});
 	}
 
 	/**
@@ -185,9 +196,9 @@ public abstract class SciConsole extends JPanel {
 		// This loop is not needed for monospaced fonts !
 		int maxCharWidth = charsWidth[0];
 		for (int i = 1; i < charsWidth.length; i++) {
-		    if (charsWidth[i] > maxCharWidth) {
-		    	maxCharWidth = charsWidth[i];
-		    }
+			if (charsWidth[i] > maxCharWidth) {
+				maxCharWidth = charsWidth[i];
+			}
 		}
 
 		int numberOfLines = getNumberOfLines();
@@ -215,120 +226,120 @@ public abstract class SciConsole extends JPanel {
 		// This loop is not needed for monospaced fonts !
 		int maxCharWidth = charsWidth[0];
 		for (int i = 1; i < charsWidth.length; i++) {
-		    if (charsWidth[i] > maxCharWidth) {
-		    	maxCharWidth = charsWidth[i];
-		    }
+			if (charsWidth[i] > maxCharWidth) {
+				maxCharWidth = charsWidth[i];
+			}
 		}
 
 		return outputViewHeight / charHeight - 1; /* -1 because of the size of the InputCommandLine */
 	}
 
-    /**
-     * Updates the scroll bars according to the contents
-     */
-    public void updateScrollPosition() {
-    	SwingUtilities.invokeLater(new Runnable() {
-    		public void run() {
-    			jSP.getViewport().setViewPosition(new Point(0,
-    					sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
-				//jSP.revalidate();
-			}	
-		});	
+	/**
+	 * Updates the scroll bars according to the contents
+	 */
+	public void updateScrollPosition() {
+		SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					jSP.getViewport().setViewPosition(new Point(0,
+																sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
+					//jSP.revalidate();
+				}
+			});
 		//jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
-    	//jSP.invalidate();
-    	//jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
- 		//jSP.revalidate();
-		
-    	// Update the scrollbar properties
+		//jSP.invalidate();
+		//jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
+		//jSP.revalidate();
+
+		// Update the scrollbar properties
 		jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
 		jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
-   }
+	}
 
-    /**
-     * Clears the console and the output view
-     */
-    public void clear() {
+	/**
+	 * Clears the console and the output view
+	 */
+	public void clear() {
 		try {
-            config.getInputCommandViewStyledDocument().remove(0, config.getInputCommandViewStyledDocument().getLength());
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
+			config.getInputCommandViewStyledDocument().remove(0, config.getInputCommandViewStyledDocument().getLength());
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
 		config.getOutputView().reset();
 		/* Bug 4014 */
 		/* We add a space to add a line */
 		/* clc , F2 and menus have same position */
 		config.getOutputView().append(" ");
-   }
+	}
 
-    /**
-     * Clears lines from the end of the output view
-     * If nbLines == -1 ==> Called from SwingScilabConsole.getCharWithoutOutput() ([more y or n ?])
-     * If nbLines == 0 ==> Clear the InputCommandLine
-     * @param nbLines the number of lines to be deleted
-     */
-    public void clear(int nbLines) {
+	/**
+	 * Clears lines from the end of the output view
+	 * If nbLines == -1 ==> Called from SwingScilabConsole.getCharWithoutOutput() ([more y or n ?])
+	 * If nbLines == 0 ==> Clear the InputCommandLine
+	 * @param nbLines the number of lines to be deleted
+	 */
+	public void clear(int nbLines) {
 
-    	if (nbLines == 0) {
-    		// Clear the prompt
-    		config.getInputCommandView().reset();
-    	} else {
-    		// Clear lines in output command view
-    		try {
-    			// We have to remove the command entered by the user
-    			int totalNumberOfLines = nbLines + LINE_NUMBER_IN_PROMPT;
+		if (nbLines == 0) {
+			// Clear the prompt
+			config.getInputCommandView().reset();
+		} else {
+			// Clear lines in output command view
+			try {
+				// We have to remove the command entered by the user
+				int totalNumberOfLines = nbLines + LINE_NUMBER_IN_PROMPT;
 
-    			StyledDocument outputStyle = config.getOutputViewStyledDocument();
-    			String outputTxt =  outputStyle.getText(0, outputStyle.getLength());
+				StyledDocument outputStyle = config.getOutputViewStyledDocument();
+				String outputTxt =  outputStyle.getText(0, outputStyle.getLength());
 
-    			// Are there enough lines in the output view ?
-    			String[] allLines = outputTxt.split(StringConstants.NEW_LINE);
-    			if (allLines.length < totalNumberOfLines) {
-    				// Delete lines
-    				config.getOutputView().reset();
-    				config.getOutputView().append(Messages.gettext("Out of Screen"));
-    			} else {
-    				// Delete lines
-    				int lastEOL;
-    				for (int i = 0; i < totalNumberOfLines; i++) {
-    					outputTxt = outputStyle.getText(0, outputStyle.getLength());
-    					lastEOL = outputTxt.lastIndexOf(StringConstants.NEW_LINE);
-    					outputStyle.remove(lastEOL, outputStyle.getLength() - lastEOL);
-    				}
-    			}
-    		} catch (BadLocationException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
+				// Are there enough lines in the output view ?
+				String[] allLines = outputTxt.split(StringConstants.NEW_LINE);
+				if (allLines.length < totalNumberOfLines) {
+					// Delete lines
+					config.getOutputView().reset();
+					config.getOutputView().append(Messages.gettext("Out of Screen"));
+				} else {
+					// Delete lines
+					int lastEOL;
+					for (int i = 0; i < totalNumberOfLines; i++) {
+						outputTxt = outputStyle.getText(0, outputStyle.getLength());
+						lastEOL = outputTxt.lastIndexOf(StringConstants.NEW_LINE);
+						outputStyle.remove(lastEOL, outputStyle.getLength() - lastEOL);
+					}
+				}
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-    }
+	}
 
-    /**
-     * Puts the prompt in the top left corner of the console
-     */
-    public void toHome() {
-    	Dimension jSPExtSize = jSP.getViewport().getExtentSize();
-    	Dimension newDim = new Dimension(jSPExtSize.width - jSP.getVerticalScrollBar().getPreferredSize().width, jSPExtSize.height);
-    	((JTextPane) config.getInputCommandView()).setPreferredSize(newDim);
-    	((JTextPane) config.getInputCommandView()).invalidate();
-    	((JTextPane) config.getInputCommandView()).doLayout();
-    	inputCommandViewSizeForced = true;
-   }
+	/**
+	 * Puts the prompt in the top left corner of the console
+	 */
+	public void toHome() {
+		Dimension jSPExtSize = jSP.getViewport().getExtentSize();
+		Dimension newDim = new Dimension(jSPExtSize.width - jSP.getVerticalScrollBar().getPreferredSize().width, jSPExtSize.height);
+		((JTextPane) config.getInputCommandView()).setPreferredSize(newDim);
+		((JTextPane) config.getInputCommandView()).invalidate();
+		((JTextPane) config.getInputCommandView()).doLayout();
+		inputCommandViewSizeForced = true;
+	}
 
-    /**
-     * Sets the flags indicating if the input command view has been resize by calling toHome()
-     * @param status the new status
-     */
-    public void setInputCommandViewSizeForced(boolean status) {
-    	inputCommandViewSizeForced = status;
-    }
+	/**
+	 * Sets the flags indicating if the input command view has been resize by calling toHome()
+	 * @param status the new status
+	 */
+	public void setInputCommandViewSizeForced(boolean status) {
+		inputCommandViewSizeForced = status;
+	}
 
-    /**
-     * Gets the flags indicating if the input command view has been resize by calling toHome()
-     * @return true if a toHome() call is still affecting the size of the input command view
-     */
-    public boolean getInputCommandViewSizeForced() {
-    	return inputCommandViewSizeForced;
-    }
+	/**
+	 * Gets the flags indicating if the input command view has been resize by calling toHome()
+	 * @return true if a toHome() call is still affecting the size of the input command view
+	 */
+	public boolean getInputCommandViewSizeForced() {
+		return inputCommandViewSizeForced;
+	}
 
 	/**
 	 * Gets the user input value
@@ -397,34 +408,19 @@ public abstract class SciConsole extends JPanel {
 			// Store the command in the buffer so that Scilab can read it
 			if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
 				config.getOutputView().append("Command is too long (more than " + MAX_CMD_LENGTH
-						+ " characters long): could not send it to Scilab\n");
+											  + " characters long): could not send it to Scilab\n");
 				((SciInputCommandView) config.getInputCommandView()).setCmdBuffer("", false);
 				return;
 			}
 
 			((SciInputCommandView) config.getInputCommandView())
-					.setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""), displayCmdInOutput);
+				.setCmdBuffer(linesToExec[nbStatements].replace(BACKSLASH_R, ""), displayCmdInOutput);
 			if (storeInHistory) {
 				((SciHistoryManager) config.getHistoryManager()).addEntry(linesToExec[nbStatements].replace(BACKSLASH_R, ""));
 			}
 			nbStatements++;
 		}
 
-	}
-
-	/**
-	 * Intercept doLayout events to send the new size of the console to Scilab
-	 * @see java.awt.Container#doLayout()
-	 */
-	public void doLayout() {
-		super.doLayout();
-		
-		// Send the size of the console to Scilab to adjust display (if resized)
-		scilabLinesUpdate();
-		
-    	// Update the scrollbar properties (if resized)
-		jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
-		jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
 	}
 
 	/**
@@ -461,7 +457,7 @@ public abstract class SciConsole extends JPanel {
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 
 		getConfiguration().getOutputView().setCaretPositionToEnd();
-		
+
 		displayPrompt();
 
 		// Display Cursor to show Scilab is available.
@@ -491,7 +487,7 @@ public abstract class SciConsole extends JPanel {
 	public void setFont(Font font) {
 		if (sciConsole != null) {
 			sciConsole.setFont(font);
-			
+
 			/* Have to update the output view contents with new font */
 			String txt;
 			try {
@@ -502,10 +498,11 @@ public abstract class SciConsole extends JPanel {
 				System.out.println(Messages.gettext("Could not change the Console Font."));
 				return;
 			}
-			
+
 			/* Update the prompt */
 			((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).setFont(font);
 			config.getPromptView().updatePrompt();
+			scilabLinesUpdate();
 		}
 	}
 
@@ -520,7 +517,7 @@ public abstract class SciConsole extends JPanel {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Get the Foreground Color of the Console
 	 * @return the Foreground Color
@@ -532,7 +529,7 @@ public abstract class SciConsole extends JPanel {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Get the Background Color of the Console
 	 * @return the Background Color
@@ -552,7 +549,7 @@ public abstract class SciConsole extends JPanel {
 	public void setForeground(Color color) {
 		if (sciConsole != null) {
 			sciConsole.setForeground(color);
-			
+
 			/* Have to update the output view contents with new Foreground */
 			String txt;
 			try {
@@ -563,13 +560,13 @@ public abstract class SciConsole extends JPanel {
 				System.out.println(Messages.gettext("Could not change the Console Foreground."));
 				return;
 			}
-			
+
 			/* Update the prompt */
 			((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).setForeground(color);
 			config.getPromptView().updatePrompt();
 		}
 	}
-	
+
 	/**
 	 * Set the Background Color of the Console
 	 * @param color the Background Color

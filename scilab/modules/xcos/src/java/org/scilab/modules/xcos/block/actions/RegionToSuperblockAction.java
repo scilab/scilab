@@ -27,9 +27,9 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -71,7 +71,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/** Name of the action */
 	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "object-group.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */
