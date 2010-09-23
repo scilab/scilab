@@ -80,6 +80,7 @@
       <menuitem action="DefaultEncodingAction" label="Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"/>
       <menuitem action="EndOfLineAction" label="Line Endings"/>
       <menuitem action="PageSetupAction" label="Page Setup"/>
+      <menuitem action="HorizontalWrapAction" label="Horizontal wrapping"/>
       <separator/>
       <menuitem action="ActivateHelpOnTypingForOpenersAction" label="Auto-completion on (,&quot;,..."/>
       <menuitem action="ActivateHelpOnTypingForKeywordsAction" label="Auto-completion on if,function,..."/>

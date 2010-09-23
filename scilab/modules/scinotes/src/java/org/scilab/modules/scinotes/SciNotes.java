@@ -172,7 +172,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         this.parentWindow = parentWindow;
         this.uuid = UUID.randomUUID();
         numberOfUntitled = 0;
-        editorKit = new ScilabEditorKit();
+        editorKit = new ScilabEditorKit(!ConfigSciNotesManager.getHorizontalWrap());
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Position pos = ConfigSciNotesManager.getMainWindowPosition();
         window.setLocation(pos.getX(), pos.getY());
@@ -984,7 +984,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param pane the pane to init
      */
     public void initPane(ScilabEditorPane pane) {
-        initPane(pane, false);
+        initPane(pane, !ConfigSciNotesManager.getHorizontalWrap());
     }
 
     /**
@@ -1404,6 +1404,33 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 ((ScilabDocument) sep.getDocument()).setAutoIndent(b);
                 if (sep.getOtherPaneInSplit() != null) {
                     ((ScilabDocument) sep.getOtherPaneInSplit().getDocument()).setAutoIndent(b);
+                }
+            }
+        }
+    }
+
+    /**
+     * Horizontal Wrap mode management
+     * @param b true to activate horizontal wrapping mode
+     */
+    public static void setHorizontalWrap(boolean b) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                if (sep.getOtherPaneInSplit() == null) {
+                    ScilabEditorPane pane = new ScilabEditorPane(editor);
+                    ed.initPane(pane, !b);
+                    sep.copyProps(pane);
+                    pane.setDocument(sep.getDocument());
+                    pane.setCaretPosition(sep.getCaretPosition());
+                    ed.tabPane.setComponentAt(i, pane.getScrollPane());
+                    ed.activateHelpOnTyping(pane);
+                    ed.initInputMap(pane);
+                    if (((ScilabDocument) sep.getDocument()).getBinary()) {
+                        pane.setBinary(true);
+                    }
+                    ed.getInfoBar().setText(pane.getInfoBarText());
                 }
             }
         }

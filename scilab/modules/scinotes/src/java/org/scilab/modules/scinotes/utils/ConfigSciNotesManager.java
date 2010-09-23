@@ -70,6 +70,7 @@ public final class ConfigSciNotesManager {
 
     private static final int MARGIN = 20;
 
+    private static final String HORIZONTALWRAP = "HorizontalWrapAllowed";
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
     private static final String VALUE = "value";
@@ -997,6 +998,54 @@ public final class ConfigSciNotesManager {
             return true;
         } else {
             return new Boolean(autoIndent.getAttribute(VALUE));
+        }
+    }
+
+    /**
+     * Save SciNotes horizontal wrapping or not
+     * @param activated if autoIndent should be used or not
+     */
+    public static void saveHorizontalWrap(boolean activated) {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HORIZONTALWRAP);
+        Element horizontalWrap = (Element) allSizeElements.item(0);
+        if (horizontalWrap == null) {
+            Element hw = document.createElement(HORIZONTALWRAP);
+
+            hw.setAttribute(VALUE, new Boolean(activated).toString());
+
+            scinotesProfile.appendChild((Node) hw);
+        } else {
+            horizontalWrap.setAttribute(VALUE, new Boolean(activated).toString());
+        }
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * @return a boolean if horizontal wrapping should be used or not
+     */
+    public static boolean getHorizontalWrap() {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HORIZONTALWRAP);
+        Element horizontalWrap = (Element) allSizeElements.item(0);
+
+        if (horizontalWrap == null) {
+            return true;
+        } else {
+            return new Boolean(horizontalWrap.getAttribute(VALUE));
         }
     }
 

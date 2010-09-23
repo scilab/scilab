@@ -431,6 +431,8 @@ SciNotes:
 * bug 8061 fixed - An unwanted message box was displayed when an unsaved file
                    was executed.
 
+* bug 8085 fixed - It was not possible to disable the horizontal line wrapping.
+
 
 GUI creation:
 =============

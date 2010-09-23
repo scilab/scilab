@@ -240,11 +240,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
     /**
      * {@inheritDoc}
-     * When no split, this method return true and the consequence is
+     * When no split and in wrapped view , this method return true and the consequence is
      * that there is no horizontal scrollbar.
      */
     public boolean getScrollableTracksViewportWidth() {
-        return split == null;
+        return ((ScilabDocument) getDocument()).getView() instanceof ScilabView && split == null;
     }
 
     public boolean getOverwriteMode() {
@@ -479,7 +479,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         pane.suppressCom = suppressCom;
         pane.setName(getName());
         pane.setShortName(getShortName());
-        pane.setTitle(getTitle());
+        pane.setTitle(getTitle().substring(0, getTitle().lastIndexOf(TIRET)));
         pane.setEditable(isEditable());
     }
 
