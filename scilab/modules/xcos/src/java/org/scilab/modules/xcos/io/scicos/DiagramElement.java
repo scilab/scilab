@@ -381,6 +381,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
+		if (!(element instanceof ScilabMList)) {
+			return false;
+		}
+		
 		base = (ScilabMList) element;
 		
 		/*
