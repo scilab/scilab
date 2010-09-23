@@ -46,7 +46,7 @@ Xcos:
 
 * bug 7944 fixed - "Fit diagram to view" was disabled after opening a diagram.
 
-* bug 7945 fixed - The path of the diagram was not displayed in the title bar.
+* bug 7945 fixed - The diagram path was not displayed in the title bar.
 
 * bug 7995 fixed - The "export diagram" actions did not work with file without
                    extension.
@@ -55,7 +55,7 @@ Xcos:
 
 * bug 8025 fixed - The simulation parameter dialog window was modal.
 
-* bug 8052 fixed - The value of a I/O block was used for computational purpose.
+* bug 8052 fixed - The I/O block value was used for computational purpose.
 
 * bug 8071 fixed - The PROD_f block in the Fibonacci demo was not well 
                    rendered.
@@ -80,7 +80,7 @@ SciNotes:
 
 * bug 7524 fixed - Tabulation representation had a bad size in whitespace mode.
 
-* bug 8008 fixed - The "Edition" menu had a incorrect name (renamed to "Edit").
+* bug 8008 fixed - The "Edition" menu had an incorrect name (renamed to "Edit").
 
 * bug 8024 fixed - No key Insert had no effect.
 
@@ -97,7 +97,7 @@ SciNotes:
 GUI creation:
 =============
 
-* It is now possible to use LaTeX or MathML as label for uimenu or pushbutton
+* Now, it is possible to use LaTeX or MathML as label for uimenu or pushbutton
 in uicontrol. See bug #7366.
 
 * bug 7082 fixed - Setting the "enable" property had no effect on "listbox" and
@@ -110,7 +110,7 @@ in uicontrol. See bug #7366.
 
 * bug 7368 fixed - Setting the "Visible" property to "off" had no effect.
 
-* bug 7898 fixed - In an uicontrol of style "popupmenu", when the list in the
+* bug 7898 fixed - In a "popupmenu" style uicontrol, when the list in the
                    "String" parameter has several repeated values, the returned
                    selected value was always the first value in the list and not
                    the selected one.
@@ -121,7 +121,7 @@ Editvar:
 
 Actions such as Copy, Cut, Paste, Undo and Redo have been added.
 
-The matrices of integer are now handled.
+The integer matrices are now handled.
 
 In a cell of editvar, expressions such as =2+2 are now accepted. See bug #7319.
 
@@ -147,7 +147,7 @@ Graphics:
 
 * bug 6395 fixed - evans display improved to take special care of the
                    root loci points where complex conjugates roots
-                   collapse in a pair of real roots. Datatips
+                   collapsed in a pair of real roots. Datatips
                    customization added. Root locus grids "sgrid" and
                    "zgrid" superposition improved.
 
@@ -158,7 +158,7 @@ Thanks to Paul Griffiths for the fix.
 Call_Scilab:
 ============
 
-* In function StartScilab, argument "int *Stacksize" changed to "int Stacksize"
+* In StartScilab function, "int *Stacksize" argument changed to "int Stacksize"
 
 
 Compilation:
@@ -173,7 +173,7 @@ Bug Fixes:
 * bug 6514 fixed - "help %k" and "help %asn" pointed to the symbols help page.
 
 * bug 6767 fixed - The "uicontrol" help page said the "Style" property of an
-                   uicontrol can be set after creation but it does not.
+                   uicontrol could be set after creation but it did not.
 
 * bug 7095 fixed - The margins unit_test failed.
 
@@ -198,9 +198,9 @@ Bug Fixes:
                    argument is provided.
 
 * bug 7862 fixed - "savematfile" only saved the first string in the vector
-                   (or matrix) when variable is a vector (or matrix) of strings.
+                   (or matrix) when variable was a vector (or matrix) of strings.
 
-* bug 7872 fixed - Riemann Surface demo returned a error if window was closed by
+* bug 7872 fixed - Riemann Surface demo returned an error if window was closed by
                    the cross button.
 
 * bug 7897 fixed - configure failed under FreeBSD (bashim)
