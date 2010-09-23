@@ -70,6 +70,7 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 {
     sciPointObj *pClone = sciCloneObj(getFigureModel());
     setGraphicObjectProperty(pClone->UID, __GO_ID__, figureIndex, jni_int, 1);
+    addNewFigureToList(pClone);
     return pClone;
 
 #ifdef __OLD_IMPLEMENTATION__
@@ -1282,7 +1283,11 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
   }
 #endif
 
-  setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+  /*
+   * Sets the Axes as the polyline's parent and adds the polyline to
+   * its parent's list of children.
+   */
+  setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID); 
 
   if (sciAddNewHandle(pobj) == -1)
   {

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  *
  * This file must be used under the terms of the CeCILL.
@@ -55,6 +56,24 @@ sciPointObj * sciGetCurrentFigure( void )
       int iZero = 0;
       pFigure = sciCloneObj(getFigureModel());
       setGraphicObjectProperty(pFigure->UID, __GO_ID__, &iZero, jni_int, 1);
+
+      /*
+       * Clones a new Axes objects using the axes model which is then
+       *  attached to the newly created Figure.
+       */
+      sciPointObj* newaxes = sciCloneObj(getAxesModel());
+
+      /* Sets the parent-child relationship within the MVC */
+      setGraphicObjectRelationship(pFigure->UID, newaxes->UID);
+
+      /*
+       * Added back to avoid creating a new Figure each time gcf() is executed.
+       * This was previously done in ConstructFigure, called by createFullFigure
+       * which has been replaced by the Figure model clone call above.
+       */
+      addNewFigureToList(pFigure);
+
+      sciSetCurrentFigure(pFigure);
 
       // Register handle to Scilab.
       sciAddNewHandle(pFigure);

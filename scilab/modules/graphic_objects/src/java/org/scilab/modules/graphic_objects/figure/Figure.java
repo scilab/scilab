@@ -14,10 +14,6 @@ package org.scilab.modules.graphic_objects.figure;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 /**
  * Figure class
@@ -25,7 +21,8 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
  */
 public class Figure extends GraphicObject {
 	/** Figure properties names */
-	private enum FigureProperty { INFOMESSAGE, COLORMAP, COLORMAPSIZE,
+	private enum FigureProperty {
+        INFOMESSAGE, COLORMAP, COLORMAPSIZE,
 		BACKGROUND, TAG, ROTATIONTYPE
 	};
 	
@@ -96,7 +93,6 @@ public class Figure extends GraphicObject {
 					return null;
 			}
 		}
-
 	};
 
 	/** FigureDimensions properties names */
@@ -261,13 +257,6 @@ public class Figure extends GraphicObject {
 		eventHandler = new EventHandler();
 		tag = "";
 		rotation = RotationType.UNARY;
-		
-		// Create a default Axes to put in.
-		String AxesId = GraphicController.getController().askObject(Type.AXES);
-		List<String> children = new ArrayList<String>();
-		children.add(AxesId);
-		
-		setChildren(children);
 	}
 	
 	@Override
