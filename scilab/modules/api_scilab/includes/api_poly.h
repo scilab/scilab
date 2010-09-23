@@ -67,7 +67,7 @@ SciErr getComplexMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* 
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
  
-SciErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+SciErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal);
 
 /**
  * Create complex polynomial variable data
@@ -81,7 +81,7 @@ SciErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
  
-SciErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+SciErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg);
 
 /**
  * Create polynomial named variable
@@ -94,7 +94,7 @@ SciErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
  
-SciErr createNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+SciErr createNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal);
 
 /**
  * Create complex polynomial named variable
@@ -108,7 +108,7 @@ SciErr createNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, 
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
  
-SciErr createNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+SciErr createNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg);
 
 /**
  * Get named polynomial variable
