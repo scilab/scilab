@@ -36,6 +36,9 @@ Scilab a better software.
 * Markus Dittrich 
     - Misc patches for Gentoo
 
+* Rob Farmer
+    - Misc patches for FreeBSD
+
 * Andrea Florio
     - Misc patches for Opensuse
 
@@ -48,6 +51,10 @@ Scilab a better software.
 * Aurélien Gérôme
     - Misc patches for Debian & Ubuntu
 
+* Artem Glebov
+    - Patches
+    - Feedbacks & Bug reports
+
 * Samuel Gougeon
     - The world record of reported bugs on Scilab
     - Advice
@@ -55,8 +62,9 @@ Scilab a better software.
     - Patches
 
 * Paul Griffiths
-    - Misc patches for the Scilab Graphic exports
+    - Patches for the Scilab Graphic exports
     - Patch on SciNotes
+    - Patch on Scilab Graphic
 
 * Gerard Henry
     - Misc patches for Solaris/Opensolaris
