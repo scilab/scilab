@@ -1,10 +1,15 @@
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
 
+
+Due to a critical bug from an underlying library of Scilab, a new beta release
+of Scilab has been decided. This will allow further testing and avoid potential 
+side effects in the future stable release.
+
 Xcos:
 =====
 
-* Include all the old-scicos palettes on the binary version.
+* Include all the old-scicos palettes in the binary version.
 
 * Use a user-friendly error message on the palette management implementation.
 
@@ -48,7 +53,7 @@ Xcos:
 
 * bug 8014 fixed - The TEXT_f.png file was not present on the source tree.
 
-* bug 8025 fixed - The simulation parameter dialog was modal.
+* bug 8025 fixed - The simulation parameter dialog window was modal.
 
 * bug 8052 fixed - The value of a I/O block was used for computational purpose.
 
@@ -58,10 +63,12 @@ Xcos:
 * bug 8073 fixed - The child context could not be used to specify masked 
                    super-blocks parameters.
 
+
 Statistics:
 ===========
 
 * Examples added in the "cdfnor" help page.
+
 
 SciNotes:
 =========
@@ -73,9 +80,7 @@ SciNotes:
 
 * bug 7524 fixed - Tabulation representation had a bad size in whitespace mode.
 
-* bug 7546 fixed - It was not possible to select easily a block.
-
-* bug 8008 fixed - The "Edition" menu had a bad name (renamed to "Edit").
+* bug 8008 fixed - The "Edition" menu had a incorrect name (renamed to "Edit").
 
 * bug 8024 fixed - No key Insert had no effect.
 
@@ -87,6 +92,7 @@ SciNotes:
 
 * bug 8061 fixed - An unwanted message box was displayed when an unsaved file
                    was executed.
+
 
 GUI creation:
 =============
@@ -102,23 +108,25 @@ in uicontrol. See bug #7366.
 
 * bug 7367 fixed - uimenu properties display was not consistent.
 
-* bug 7368 fixed - Setting the "Visible" property to "off" had no effect on.
+* bug 7368 fixed - Setting the "Visible" property to "off" had no effect.
 
 * bug 7898 fixed - In an uicontrol of style "popupmenu", when the list in the
                    "String" parameter has several repeated values, the returned
                    selected value was always the first value in the list and not
-                   the currently selected one.
+                   the selected one.
+
 
 Editvar:
 ========
 
-Actions such as Copy, Cut, Paste, Undo, Redo have been added.
+Actions such as Copy, Cut, Paste, Undo and Redo have been added.
 
 The matrices of integer are now handled.
 
-* bug 7319 fixed - Expressions such as =2+2 were not handled.
+In a cell of editvar, expressions such as =2+2 are now accepted. See bug #7319.
 
-* bug 7321 fixed - There was no refresh button.
+A refresh button to synchronise the variable from Scilab has been added. 
+See bug #7321
 
 * bug 7325 fixed - An error message did not respect the standard format.
 
@@ -129,6 +137,7 @@ The matrices of integer are now handled.
 * bug 7340 fixed - %t or %f were not correctly displayed.
 
 * bug 7839 fixed - A global variable could be modified.
+
 
 Graphics:
 =========
@@ -143,16 +152,20 @@ Graphics:
                    "zgrid" superposition improved.
 
 * bug 6686 fixed - The automatic sub-ticking gave wrong results.
+Thanks to Paul Griffiths for the fix.
+
 
 Call_Scilab:
 ============
 
 * In function StartScilab, argument "int *Stacksize" changed to "int Stacksize"
 
+
 Compilation:
 ============
 
 * Fix a problem in the detection of some ARM cpus.
+
 
 Bug Fixes:
 ==========
@@ -162,7 +175,7 @@ Bug Fixes:
 * bug 6767 fixed - The "uicontrol" help page said the "Style" property of an
                    uicontrol can be set after creation but it does not.
 
-* bug 7095 fixed - the margins unit_test failed.
+* bug 7095 fixed - The margins unit_test failed.
 
 * bug 7163 fixed - tree2code wrongly replaced every (:) occurence in a function
                    definition with (eye()).
@@ -172,9 +185,9 @@ Bug Fixes:
 
 * bug 7231 fixed - mtlb_num2str did not manage second input argument.
 
-* bug 7569 fixed - the number of accurate digits during inversion of cdfbet,
+* bug 7569 fixed - The number of accurate digits during inversion of cdfbet,
                    cdfgam, cdfbin, cdfchi, cdfchin, cdff, cdffnc, cdfnbn, cdfpoi
-                   was only 8.
+                   was only 8. Changed to 13.
 
 * bug 7640 fixed - xs2pdf, xs2eps, xs2emf crashed if filename prefix had less
                    of three characters.
@@ -209,19 +222,20 @@ Bug Fixes:
 
 * bug 7950 fixed - spec crashed on Windows.
 
-* bug 7951 fixed - strcat crashed with row concatenation option on linux.
+* bug 7951 fixed - strcat crashed with the row concatenation option on 
+                   GNU/Linux.
 
-* bug 7952 fixed - libraryinfo did not check size of input argument.
+* bug 7952 fixed - libraryinfo did not check size of the input argument.
 
 * bug 7959 fixed - fscanf did not manage file descriptor as input argument.
 
-* bug 7964 fixed - errclear(2) cleared all errors and not only error 2 as written
-                   in help.
+* bug 7964 fixed - errclear(2) cleared all errors and not only error 2 as
+                   written in help.
 
 * bug 7974 fixed - Customized xerbla.f subroutine did not return enough
                    information.
 
-* bug 7981 fixed - copyfile failed with localized filenames on linux.
+* bug 7981 fixed - copyfile failed with localized filenames on GNU/Linux.
 
 * bug 7988 fixed - Inverted pendulum demo failed with f2c version on Windows.
 
@@ -233,6 +247,7 @@ Bug Fixes:
 
 * bug 8055 fixed - lines() was wrongly updated when the console had the focus
                    back.
+
 
          Changes between version 5.3.0-beta-2 and 5.3.0-beta-3 of Scilab
          ===============================================================
