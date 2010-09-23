@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-17 15:25+0000\n"
+"PO-Revision-Date: 2010-09-15 15:39+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -1320,6 +1320,9 @@ msgstr "Огляд відомостей"
 
 msgid "Uicontrols demo"
 msgstr "Демонстрація елементів керування"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "Демонстрація елементів керування інтерфейсом з LaTeX"
 
 msgid "Unrecognized extension '"
 msgstr "Невідомий суфікс «"

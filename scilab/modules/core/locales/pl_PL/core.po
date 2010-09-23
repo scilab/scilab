@@ -32,6 +32,9 @@ msgstr "  ładowanie środowiska początkowego"
 msgid " and   %10d variables out of %10d.\n"
 msgstr " i %10d zmienne z %10d.\n"
 
+msgid " by "
+msgstr ""
+
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " wyniki mogą być niedokładne. rcond = %s1\n"
@@ -314,6 +317,10 @@ msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr "%s: Niewłaściwy rozmiar parametru %d: oczekiwano przynajmniej %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: oczekiwano "
@@ -324,6 +331,10 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -521,6 +532,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwana jest wartość "
@@ -590,6 +605,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Złe typy parametrów wejściowych\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -799,6 +818,9 @@ msgstr "&Przyborniki"
 msgid "A non square matrix!\n"
 msgstr "Macierz nie kwadratowa!\n"
 
+msgid "Bytes"
+msgstr ""
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Nieodnaleziono katalogu tymczasowego systemu Windows (1)."
 
@@ -948,6 +970,9 @@ msgstr "Nieprawidłowa dziedzina czasu.\n"
 msgid "List full.\n"
 msgstr "Lista pełna.\n"
 
+msgid "Name"
+msgstr ""
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Brak pamięci dla stosu programu Scilab.\n"
 
@@ -966,6 +991,9 @@ msgstr "Nie zdefiniowano SCIHOME.\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP: przerywanie bieżących obliczeń\n"
 
+msgid "Scilab Console"
+msgstr ""
+
 msgid "Scilab Version Info."
 msgstr "Informacja o wersji Scilab."
 
@@ -981,6 +1009,9 @@ msgstr ""
 "Wersja Scilab \"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Size"
+msgstr ""
+
 msgid "Startup execution:"
 msgstr "Wykonanie rozruchu:"
 
@@ -992,6 +1023,9 @@ msgstr "Nie ustawiono zmiennej środowiska SCI.\n"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Próbuję zatrzymać program Scilab w czasie pracy.\n"
+
+msgid "Type"
+msgstr ""
 
 #, c-format
 msgid "Undefined variable %s.\n"

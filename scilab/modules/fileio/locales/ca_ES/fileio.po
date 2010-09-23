@@ -85,14 +85,6 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
 
 #, c-format
-msgid "%s: Cannot open file '%s'.\n"
-msgstr "%s: No s'ha pogut obrir el fitxer '%s'.\n"
-
-#, c-format
-msgid "%s: Cannot read data in file '%s'.\n"
-msgstr "%s: No s'ha pogut llegir les dades del fitxer '%s'.\n"
-
-#, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
 msgstr ""
 "%s: No s'ha pogut llegir el fitxer amb descriptor %d: El fitxer no està "
@@ -129,6 +121,10 @@ msgstr "%s: El format és incorrecte.\n"
 #, c-format
 msgid "%s: Invalid conversion.\n"
 msgstr "%s: La conversió és incorrecta.\n"
+
+#, c-format
+msgid "%s: Invalid format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -230,6 +226,10 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d (%s) té una mida incorrecta: Ha de ser una "
 "cadena de text no-buida.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -490,12 +490,6 @@ msgstr ""
 "fitxer o de directori vàlid.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de tenir un format "
-"vàlid.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: No s'ha reconegut el "
@@ -523,6 +517,14 @@ msgid ""
 msgstr ""
 "%s: S'ha trobat un tipus de variable incorrecta (%s) a '%s'. Pot ser que el "
 "fitxer sigui incorrecte.\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: end of input reached before final conversion.\n"

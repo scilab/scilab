@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-18 12:28+0000\n"
+"PO-Revision-Date: 2010-09-17 13:10+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -1915,6 +1915,9 @@ msgstr "ツリー概要"
 
 msgid "Uicontrols demo"
 msgstr "UIコントロール・デモ"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "LaTeXを指定するuicontrolsのデモ"
 
 msgid "Unrecognized extension '"
 msgstr "承認されない拡張 '"

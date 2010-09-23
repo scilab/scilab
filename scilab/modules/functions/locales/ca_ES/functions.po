@@ -112,6 +112,10 @@ msgstr ""
 "text.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte.\n"
 

@@ -1314,6 +1314,9 @@ msgstr "Vista en arbre"
 msgid "Uicontrols demo"
 msgstr "Demostració d'Uicontrols"
 
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
 msgid "Unrecognized extension '"
 msgstr "Extensió no reconeguda '"
 

@@ -32,6 +32,9 @@ msgstr "  s'està carregant l'entorn inicial"
 msgid " and   %10d variables out of %10d.\n"
 msgstr " i   %10d variables de %10d.\n"
 
+msgid " by "
+msgstr ""
+
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " els resultats poden ser inexactes. rcond = %s1\n"
@@ -317,6 +320,10 @@ msgstr ""
 "%s: L'argument %d té una mida incorrecta: Han de ser com a mínim %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
@@ -326,6 +333,10 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -534,6 +545,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
@@ -613,6 +628,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Els arguments d'entrada són d'un tipus incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -830,6 +849,9 @@ msgstr "&Barres d'eines"
 msgid "A non square matrix!\n"
 msgstr "La matriu no és quadrada!\n"
 
+msgid "Bytes"
+msgstr ""
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "No s'ha trobat el directori temporal de Windows (1)."
 
@@ -979,6 +1001,9 @@ msgstr "El domini temporal no és vàlid.\n"
 msgid "List full.\n"
 msgstr "La llista està plena.\n"
 
+msgid "Name"
+msgstr ""
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "No hi ha prou espai per a la pila de Scilab.\n"
 
@@ -997,6 +1022,9 @@ msgstr "No s'ha definit el SCIHOME.\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP: s'està avortant el càlcul actual\n"
 
+msgid "Scilab Console"
+msgstr ""
+
 msgid "Scilab Version Info."
 msgstr "Informació de la versió de Scilab."
 
@@ -1012,6 +1040,9 @@ msgstr ""
 "Versió de Scilab \"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Size"
+msgstr ""
+
 msgid "Startup execution:"
 msgstr "Execució a l'arrancada:"
 
@@ -1023,6 +1054,9 @@ msgstr "No s'ha establert la variable d'entorn SCI.\n"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "S'ha intentat aturar el Scilab al mig d'una interfície.\n"
+
+msgid "Type"
+msgstr ""
 
 #, c-format
 msgid "Undefined variable %s.\n"

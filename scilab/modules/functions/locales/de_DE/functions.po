@@ -110,6 +110,10 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
 

@@ -389,6 +389,10 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: || G ||之計算結果可能不精確.\n"
 
 #, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Undefined type ''%s''.\n"
 msgstr "%s: 未定義型態 ''%s''.\n"
 
@@ -533,6 +537,11 @@ msgid ""
 "%s: Wrong size of input argument #%d: Number of columns are incompatible "
 "with %s.\n"
 msgstr "%s: 第 %d 輸入參數長度錯誤: 列數與 %s 不相容.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -824,6 +833,9 @@ msgstr ""
 msgid "Im(h(exp(2if*dt)))"
 msgstr ""
 
+msgid "Imaginary Axis"
+msgstr ""
+
 msgid "Imaginary axis"
 msgstr ""
 
@@ -868,6 +880,9 @@ msgstr ""
 msgid "Re(h(exp(2if*dt)))"
 msgstr ""
 
+msgid "Real Axis"
+msgstr ""
+
 #
 # File: macros/plzr.sci, line: 68
 msgid "Real axis"
@@ -898,6 +913,11 @@ msgstr ""
 msgid "dB"
 msgstr ""
 
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+
 msgid "magnitude(y) (Db)"
 msgstr ""
 
@@ -911,4 +931,7 @@ msgid "open loop zeroes"
 msgstr ""
 
 msgid "phase(y) (degree)"
+msgstr ""
+
+msgid "rad/sec"
 msgstr ""

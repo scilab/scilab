@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-18 12:21+0000\n"
+"PO-Revision-Date: 2010-09-17 13:00+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -143,18 +143,6 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s を開けません。\n"
 
 #
-# File: sci_gateway/c/sci_fscanfMat.c, line: 85
-#, c-format
-msgid "%s: Cannot open file '%s'.\n"
-msgstr "%s: ファイル '%s' を開けません。\n"
-
-#
-# File: sci_gateway/c/sci_fscanfMat.c, line: 109
-#, c-format
-msgid "%s: Cannot read data in file '%s'.\n"
-msgstr "%s: データをファイル '%s' に読み込めません。\n"
-
-#
 # File: src/c/mclose.c, line: 73
 #, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
@@ -215,6 +203,10 @@ msgstr "%s: 不正確なフォーマット\n"
 #, c-format
 msgid "%s: Invalid conversion.\n"
 msgstr "%s: 無効なコンバージョン\n"
+
+#, c-format
+msgid "%s: Invalid format.\n"
+msgstr "%s: 形式が間違っています.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -377,6 +369,10 @@ msgstr "%s: 入力引数の数が違います: %d を想定します。\n"
 msgid ""
 "%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
 msgstr "%s: 入力引数 #%d ('%s') で不正なサイズ: 空でない文字を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #
 # File: macros/mputl.sci, line: 32
@@ -691,10 +687,6 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 適切なファイル名、または、ディレクトリ を想定します。\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 正しい形式で指定してください.\n"
-
 #
 # File: src/c/mget.c, line: 193
 #, c-format
@@ -730,6 +722,14 @@ msgid ""
 "%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
 "corrupted.\n"
 msgstr "%s: ''%s'' で不正な変数型(%s)を見つけました、ファイルは、誤っているか無効です。\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr "%s: ファイル %s をオープンできません.\n"
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr "%s: ファイル %s を読み込めません.\n"
 
 #, c-format
 msgid "%s: end of input reached before final conversion.\n"

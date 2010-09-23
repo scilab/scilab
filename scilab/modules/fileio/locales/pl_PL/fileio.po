@@ -84,14 +84,6 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Nie można otworzyć pliku %s.\n"
 
 #, c-format
-msgid "%s: Cannot open file '%s'.\n"
-msgstr "%s: Nie można otworzyć pliku '%s'.\n"
-
-#, c-format
-msgid "%s: Cannot read data in file '%s'.\n"
-msgstr "%s: Nie można odczytać danych z pliku '%s'.\n"
-
-#, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
 msgstr ""
 "%s: Nie można odczytać pliku, którego deskryptor to%d: Plik nie jest "
@@ -127,6 +119,10 @@ msgstr "%s: Nieprawidłowy format.\n"
 #, c-format
 msgid "%s: Invalid conversion.\n"
 msgstr "%s: Niewłaściwe przekształcenie.\n"
+
+#, c-format
+msgid "%s: Invalid format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -228,6 +224,10 @@ msgid ""
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d (%s): Oczekiwano "
 "niepustego ciągu znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -487,12 +487,6 @@ msgstr ""
 "prawidłowej nazwy pliku lub katalogu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano "
-"specyfikację formatu.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: nie rozpoznano "
@@ -520,6 +514,14 @@ msgid ""
 msgstr ""
 "%s: Zły typ (%s) zmiennej  znaleziony w ''%s''. Plik może być błędny lub "
 "uszkodzony.\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: end of input reached before final conversion.\n"

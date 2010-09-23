@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-07-14 17:24+0000\n"
+"PO-Revision-Date: 2010-09-22 10:51+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1016,6 +1016,9 @@ msgstr "Quantidade de cores"
 msgid "Colormap"
 msgstr "Mapa de cores"
 
+msgid "Common X axis"
+msgstr "Eixo X em comum"
+
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 "As modificações de coordenadas só são aplicáveis a objetos \"Axes\" agora.\n"
@@ -1099,6 +1102,9 @@ msgstr "Janela gráfica número %d"
 msgid "Graphics"
 msgstr "Gráficos"
 
+msgid "Graphics with 2 different Y-scales"
+msgstr "Gráficos com duas escalas Y diferentes"
+
 msgid "Gray"
 msgstr "Cinzento"
 
@@ -1144,9 +1150,17 @@ msgstr "Erro interno: Loop em graduate1\n"
 msgid "Jet"
 msgstr "Jato"
 
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr ""
+
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
+"Clique com o esquerdo em uma entidade do gŕafico para abrir seu editor de "
+"propriedades"
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1212,6 +1226,9 @@ msgstr "Rosa"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Por favor, envie um relatório de erros para dev@lists.scilab.org\n"
 
+msgid "Plot with 3 different Y scales at shared X"
+msgstr "Desenha com 3 escalas Y diferentes com a X compartilhada"
+
 msgid "Problem with sciInitFontContext\n"
 msgstr "Problema com sciInitFontContext\n"
 
@@ -1219,6 +1236,9 @@ msgid "Rainbow"
 msgstr "Arco-íris"
 
 msgid "Redraw all datatips"
+msgstr ""
+
+msgid "Scale n1"
 msgstr ""
 
 msgid "Scilab Graphics module not installed.\n"
@@ -1235,6 +1255,9 @@ msgstr "Primavera"
 
 msgid "Summer"
 msgstr "Verão"
+
+msgid "Tcl/Tk interface not installed."
+msgstr "Interface Tcl/Tk não está instalada."
 
 #, c-format
 msgid "The font size must be greater than %d.\n"
@@ -1272,6 +1295,7 @@ msgstr "A função selecionada deve ter um parâmetro de saída (str)"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
+"A função selecionada deve ter 3 parâmetros de entrada (curva, ponto, índice)"
 
 msgid "This object can not be moved.\n"
 msgstr "Este objeto não pode ser movido.\n"

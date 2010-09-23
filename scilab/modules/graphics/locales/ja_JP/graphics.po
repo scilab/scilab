@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-08-01 02:38+0000\n"
+"PO-Revision-Date: 2010-09-17 13:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -1315,6 +1315,9 @@ msgstr "色番号"
 msgid "Colormap"
 msgstr "カラーマップ"
 
+msgid "Common X axis"
+msgstr "共通のX軸"
+
 #
 # File: src/c/GetProperty.c, line: 3300
 # File: src/c/GetProperty.c, line: 3321
@@ -1430,6 +1433,9 @@ msgstr "グラフィック・ウインドウ番号 %d"
 # File: etc/graphics.start, line: 20
 msgid "Graphics"
 msgstr "グラフィック"
+
+msgid "Graphics with 2 different Y-scales"
+msgstr "異なるYスケールを有するグラフィックス"
 
 #
 # File: demos/misc.dem.sci, line: 152
@@ -1625,9 +1631,15 @@ msgstr "内部エラー: 累進 1 のループ\n"
 msgid "Jet"
 msgstr "JET"
 
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr "datatipを作成するには曲線上で左クリック,右クリックで開きます"
+
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr "曲線の左クリックによりデータtipを作成, 右クリックによりコンテキストメニューを開く"
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr "プロパティエディタを開くには,グラフィックエンティティの上で左クリックしてください"
 
 #
 # File: src/c/SetProperty.c, line: 604
@@ -1735,6 +1747,9 @@ msgstr "桃"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "どうぞ、dev@lists.scilab.org にバグレポートを送ってください。\n"
 
+msgid "Plot with 3 different Y scales at shared X"
+msgstr "3つの異なるYスケールを共通のXでプロット"
+
 #
 # File: src/c/BuildObjects.c, line: 850
 msgid "Problem with sciInitFontContext\n"
@@ -1748,6 +1763,9 @@ msgstr "虹"
 
 msgid "Redraw all datatips"
 msgstr "全てのデータtipsを再描画"
+
+msgid "Scale n1"
+msgstr "スケール n1"
 
 #
 # File: src/nographics/nographics.c, line: 23
@@ -1773,6 +1791,9 @@ msgstr "春"
 # File: demos/misc/misc.dem.sci, line: 198
 msgid "Summer"
 msgstr "夏"
+
+msgid "Tcl/Tk interface not installed."
+msgstr "Tcl/Tkインターフェイスはインストールされていません."
 
 #
 # File: src/c/SetProperty.c, line: 931

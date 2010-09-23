@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-16 08:48+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"PO-Revision-Date: 2010-09-22 19:52+0000\n"
+"Last-Translator: Nicolò <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -322,6 +322,10 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: Il valore calcolato di || G || potrebbe essere inaccurato.\n"
 
 #, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Undefined type ''%s''.\n"
 msgstr "%s: ''%s'' è di tipo indefinito.\n"
 
@@ -466,6 +470,11 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata:  il numero "
 "delle colonne è incompatibile con %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -797,7 +806,7 @@ msgid "Gain :"
 msgstr "Si ottiene:"
 
 msgid "Hall chart"
-msgstr ""
+msgstr "Grafico di Hall"
 
 msgid "Hz"
 msgstr "Hz"
@@ -810,6 +819,9 @@ msgstr "Im(h(2if))"
 
 msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
+
+msgid "Imaginary Axis"
+msgstr ""
 
 msgid "Imaginary axis"
 msgstr "Asse dei numeri immaginari"
@@ -852,6 +864,9 @@ msgstr "Re(h(2if))"
 msgid "Re(h(exp(2if*dt)))"
 msgstr "Re(h(exp(2if*dt)))"
 
+msgid "Real Axis"
+msgstr ""
+
 msgid "Real axis"
 msgstr "Asse dei numeri reali"
 
@@ -876,6 +891,11 @@ msgstr "direzioni asintotiche"
 msgid "dB"
 msgstr "dB"
 
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+
 msgid "magnitude(y) (Db)"
 msgstr "ampiezza(y) (dB)"
 
@@ -890,3 +910,6 @@ msgstr "zeri a ciclo aperto"
 
 msgid "phase(y) (degree)"
 msgstr "fase(y) (gradi)"
+
+msgid "rad/sec"
+msgstr ""

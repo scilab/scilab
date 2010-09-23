@@ -1173,6 +1173,9 @@ msgstr "樹狀式概覽"
 msgid "Uicontrols demo"
 msgstr "Uicontrols(使用者介面控制項) 展示"
 
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
 msgid "Unrecognized extension '"
 msgstr "副檔名無法識別 '"
 

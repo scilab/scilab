@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-07-09 17:13+0000\n"
+"PO-Revision-Date: 2010-09-16 11:40+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,9 @@ msgstr "  carregando o ambiente inicial"
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr " e   %10d variáveis de um total de %10d.\n"
+
+msgid " by "
+msgstr " por "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -317,6 +320,12 @@ msgstr ""
 "%s: Tamanho incorreto para o argumento %d: esperava-se pelo menos %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"booleano.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
@@ -327,6 +336,12 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "texto.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -540,6 +555,12 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Tipo incorreto para o argumento de entrada #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
+"booleano.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
@@ -616,6 +637,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Tipo incorreto para os argumentos de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -837,6 +864,9 @@ msgstr "&Caixas de ferramentas"
 msgid "A non square matrix!\n"
 msgstr "Não é uma matriz quadrada!\n"
 
+msgid "Bytes"
+msgstr "Bytes"
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr ""
 "Não foi possível localizar o diretório de temporários do WIndows (1)."
@@ -986,6 +1016,9 @@ msgstr "O domínio de tempo é inválido.\n"
 msgid "List full.\n"
 msgstr "Lista cheia.\n"
 
+msgid "Name"
+msgstr "Nome"
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Não há espaço para alocar a pilha do Scilab.\n"
 
@@ -1004,6 +1037,9 @@ msgstr "SCIHOME não está definido.\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP: abortando a computação atual\n"
 
+msgid "Scilab Console"
+msgstr "Console do Scilab"
+
 msgid "Scilab Version Info."
 msgstr "Informações sobre a versão Scilab."
 
@@ -1019,6 +1055,9 @@ msgstr ""
 "Versão do Scilab \"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Size"
+msgstr "Tamanho"
+
 msgid "Startup execution:"
 msgstr "Execução de iniciação:"
 
@@ -1030,6 +1069,9 @@ msgstr "A variável de ambiente SCI não foi configurada.\n"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Tentando parar o Scilab no meio de uma interface.\n"
+
+msgid "Type"
+msgstr "Tipo"
 
 #, c-format
 msgid "Undefined variable %s.\n"

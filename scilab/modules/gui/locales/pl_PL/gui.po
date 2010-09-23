@@ -1313,6 +1313,9 @@ msgstr "Widok drzewa katalogowego"
 msgid "Uicontrols demo"
 msgstr "Przykład interfejsu graficznego (uicontrols)"
 
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
 msgid "Unrecognized extension '"
 msgstr "Nierozpoznane rozszerzenie '"
 

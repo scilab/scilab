@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-08-01 02:21+0000\n"
+"PO-Revision-Date: 2010-09-17 12:59+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,9 @@ msgstr "  初期環境をロードしています"
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr " 使用中の変数: %10d 個 (全体: %10d 個),\n"
+
+msgid " by "
+msgstr " by "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -368,12 +371,20 @@ msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr "%s: 引数 %d の大きさが間違っています: %d 以上としてください.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -538,6 +549,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
@@ -594,6 +609,10 @@ msgstr "%s: 入力引数 #%d および #%d の型が間違っています: 文�
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: 入力引数の型が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -804,6 +823,9 @@ msgstr "ツールボックス(&T)"
 msgid "A non square matrix!\n"
 msgstr "正方行列でありません!\n"
 
+msgid "Bytes"
+msgstr "バイト"
+
 #
 # File: src/c/tmpdir.c, line: 63
 msgid "Cannot find Windows temporary directory (1)."
@@ -985,6 +1007,9 @@ msgstr "時間領域が不正です.\n"
 msgid "List full.\n"
 msgstr "リストが一杯です。\n"
 
+msgid "Name"
+msgstr "名前"
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Scilabスタックを確保するためのメモリが不足しています.\n"
 
@@ -1012,6 +1037,9 @@ msgstr "SCIHOME が見つかりません。\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP: 現在の計算を中止します\n"
 
+msgid "Scilab Console"
+msgstr "Scilabコンソール"
+
 #
 # File: src/c/version.c, line: 33
 msgid "Scilab Version Info."
@@ -1034,6 +1062,9 @@ msgstr ""
 "Scilabバージョン \"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Size"
+msgstr "サイズ"
+
 msgid "Startup execution:"
 msgstr "スタートアップを実行中:"
 
@@ -1050,6 +1081,9 @@ msgstr "環境変数 SCI を設定できません.\n"
 # File: src/c/callinterf.c, line: 176
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "インターフェースの途中でscilabの中断を試みます。\n"
+
+msgid "Type"
+msgstr "種類"
 
 #
 # File: src/c/stack3.c, line: 85

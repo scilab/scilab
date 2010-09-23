@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-07-20 22:23+0000\n"
+"PO-Revision-Date: 2010-09-21 20:06+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
@@ -935,6 +935,9 @@ msgstr "Номер цвета"
 msgid "Colormap"
 msgstr "Цветовая палитра"
 
+msgid "Common X axis"
+msgstr "Общая ось X"
+
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr "Изменение координат применимо только к осям.\n"
 
@@ -958,16 +961,16 @@ msgid "Default figure cannot be create.\n"
 msgstr "Графическое окно по умолчанию не может быть создано.\n"
 
 msgid "Delete all datatips"
-msgstr "Удалить все точки данных"
+msgstr "Удалить все подсказки данных"
 
 msgid "Delete all datatips for the selected curve"
-msgstr "Удалить все точки данных для выделенной кривой"
+msgstr "Удалить все подсказки данных для выделенной кривой"
 
 msgid "Delete last datatip"
-msgstr "Удалить последнюю точку данных"
+msgstr "Удалить последнюю подсказку данных"
 
 msgid "Delete nearest datatip"
-msgstr "Удалить ближайшую точку данных"
+msgstr "Удалить ближайшую подсказку данных"
 
 msgid "Disable interpolation"
 msgstr "Выключить интерполяцию"
@@ -1019,6 +1022,9 @@ msgstr "Графическое окно %d"
 msgid "Graphics"
 msgstr "Графика"
 
+msgid "Graphics with 2 different Y-scales"
+msgstr "Графики с 2 разными масштабами по оси Y"
+
 msgid "Gray"
 msgstr "Gray"
 
@@ -1064,11 +1070,20 @@ msgstr "Внутренняя ошибка: цикл в «graduate1»\n"
 msgid "Jet"
 msgstr "Jet"
 
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr ""
+"Нажатие левой кнопки мыши на кривой - создать подсказку данных; правой "
+"кнопки - открыть"
+
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
-"Нажатие левой кнопки мыши - создать точку данных; правой кнопки - открыть "
-"контекстное меню."
+"Нажатие левой кнопки мыши - создать подсказку данных; правой кнопки - "
+"открыть контекстное меню."
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
+"Нажатие левой кнопки мыши на графическом объекте - открыть окно его свойств"
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1078,7 +1093,7 @@ msgid "Misc"
 msgstr "Разное"
 
 msgid "Multiple datatips mode"
-msgstr "Режим с многими точками данных"
+msgstr "Режим с несколькими подсказками данных"
 
 msgid "Name"
 msgstr "Название"
@@ -1134,6 +1149,9 @@ msgstr "Pink"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Отправляйте отчёты об ошибках на адрес dev@lists.scilab.org\n"
 
+msgid "Plot with 3 different Y scales at shared X"
+msgstr "Графики с 3 разными масштабами по оси Y и общей оси X"
+
 msgid "Problem with sciInitFontContext\n"
 msgstr "Проблема с sciInitFontContext\n"
 
@@ -1141,7 +1159,10 @@ msgid "Rainbow"
 msgstr "Rainbow"
 
 msgid "Redraw all datatips"
-msgstr "Перерисовать все точки данных"
+msgstr "Перерисовать все подсказки данных"
+
+msgid "Scale n1"
+msgstr "Масштаб №1"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Графический модуль Scilab не установлен.\n"
@@ -1157,6 +1178,9 @@ msgstr "Spring"
 
 msgid "Summer"
 msgstr "Summer"
+
+msgid "Tcl/Tk interface not installed."
+msgstr "Интерфейс Tcl/Tk не установлен."
 
 #, c-format
 msgid "The font size must be greater than %d.\n"
@@ -1244,7 +1268,7 @@ msgid "Unhandled data field\n"
 msgstr "Необработанное поле данных\n"
 
 msgid "Unique datatip mode"
-msgstr "Режим с одной точкой данных"
+msgstr "Режим с одной подсказкой данных"
 
 #, c-format
 msgid "Unknown property: %s.\n"

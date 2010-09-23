@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-08-20 12:00+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2010-09-20 11:51+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -394,6 +394,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
 msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un handle ''%s'' "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
@@ -613,7 +615,7 @@ msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : Un réel attendu.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n° %d : Un booléen attendu.\n"
+"%s : Mauvais type pour l'argument d'entrée n°%d : un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -985,6 +987,9 @@ msgstr "Numéro de la couleur"
 msgid "Colormap"
 msgstr "Palette de couleurs"
 
+msgid "Common X axis"
+msgstr "Axe X commun"
+
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 "Les modifications de coordonnées ne sont applicables que sur les objets "
@@ -1025,7 +1030,7 @@ msgid "Disable interpolation"
 msgstr "Désactiver l'interpolation"
 
 msgid "Edit the curve tip display function"
-msgstr ""
+msgstr "Editer la fonction d'affichage du datatip de la courbe"
 
 msgid "Enable interpolation"
 msgstr "Activer l'interpolation"
@@ -1072,6 +1077,9 @@ msgstr "Figure n°%d"
 msgid "Graphics"
 msgstr "Graphiques"
 
+msgid "Graphics with 2 different Y-scales"
+msgstr "Graphiques avec 2 échelles Y différentes"
+
 msgid "Gray"
 msgstr "Gris"
 
@@ -1117,11 +1125,19 @@ msgstr "Erreur interne : Boucle dans graduate1\n"
 msgid "Jet"
 msgstr "Jet"
 
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr ""
+"Clique gauche sur une courbe pour créer un datatip, clique droit ouvre"
+
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Cliquer sur une courbe pour crée une étiquette de donnée, cliquer avec le "
 "bouton droit ouvre un menu contextuel"
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
+"Clique gauche sur une entité graphique pour ouvrir son éditeur de propriétés"
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1188,6 +1204,9 @@ msgstr "Rose"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Merci d'envoyer un rapport de bug à dev@lists.scilab.org\n"
 
+msgid "Plot with 3 different Y scales at shared X"
+msgstr "Graphique avec 3 échelles Y différentes et une échelle X partagée"
+
 msgid "Problem with sciInitFontContext\n"
 msgstr "Problème avec sciInitFontContext\n"
 
@@ -1196,6 +1215,9 @@ msgstr "Arc-en-ciel"
 
 msgid "Redraw all datatips"
 msgstr "Redessiner toutes les étiquettes de données"
+
+msgid "Scale n1"
+msgstr "Echelle n° 1"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Le module Scilab Graphics n'est pas installé.\n"
@@ -1212,6 +1234,9 @@ msgstr "Printemps"
 
 msgid "Summer"
 msgstr "Été"
+
+msgid "Tcl/Tk interface not installed."
+msgstr "Interface Tcl/Tk pas installée."
 
 #, c-format
 msgid "The font size must be greater than %d.\n"

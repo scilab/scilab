@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-18 22:38+0000\n"
+"PO-Revision-Date: 2010-09-21 20:07+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
@@ -709,7 +709,7 @@ msgid "&Select as current figure"
 msgstr "&Установить текущим графическим окном"
 
 msgid "&Start datatip manager"
-msgstr "&Включить управление точками данных"
+msgstr "&Включить управление подсказками данных"
 
 msgid "&Start entity picker"
 msgstr "&Разрешить выбор объектов"
@@ -1226,7 +1226,7 @@ msgstr ""
 "\n"
 
 msgid "Stop datatip manager"
-msgstr "В&ыключить управление точками данных"
+msgstr "В&ыключить управление подсказками данных"
 
 msgid "Sub-menu 1"
 msgstr "Подменю 1"
@@ -1251,6 +1251,9 @@ msgstr "Обзор информации"
 
 msgid "Uicontrols demo"
 msgstr "Пример uicontrols"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "Пример использования LaTeX в uicontrols"
 
 msgid "Unrecognized extension '"
 msgstr "Неопознанное расширение  '"
@@ -1559,7 +1562,7 @@ msgid "red"
 msgstr "красный"
 
 msgid "toggle datatip mode"
-msgstr "Включить/выключить управление точками данных"
+msgstr "Включить/выключить управление подсказками данных"
 
 msgid "unchecked"
 msgstr "не помечено"

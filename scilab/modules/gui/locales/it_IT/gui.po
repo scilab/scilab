@@ -1326,6 +1326,9 @@ msgstr "Anteprima dell'albero"
 msgid "Uicontrols demo"
 msgstr "Demo degli uicontrol"
 
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
 msgid "Unrecognized extension '"
 msgstr "L'estensione ' non è riconosciuta"
 

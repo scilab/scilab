@@ -1036,6 +1036,9 @@ msgstr "Numero del colore"
 msgid "Colormap"
 msgstr "Tavolozza dei colori"
 
+msgid "Common X axis"
+msgstr ""
+
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 "Le modifiche di coordinate sono applicabili solo ad oggetti sugli assi.\n"
@@ -1122,6 +1125,9 @@ msgstr "Finestra grafica numero %d"
 msgid "Graphics"
 msgstr "Grafica"
 
+msgid "Graphics with 2 different Y-scales"
+msgstr ""
+
 msgid "Gray"
 msgstr "Grigio"
 
@@ -1168,11 +1174,17 @@ msgstr "Errore interno: ciclo infinito in graduate1\n"
 msgid "Jet"
 msgstr "Jet"
 
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr ""
+
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Clic su tasto sinistro per creare un datatip, il tasto destro apre il menu "
 "contestuale"
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1240,6 +1252,9 @@ msgstr "Rosa"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Per favore inviare una segnalazione di Bug a dev@lists.scilab.org\n"
 
+msgid "Plot with 3 different Y scales at shared X"
+msgstr ""
+
 msgid "Problem with sciInitFontContext\n"
 msgstr "C'è un problema con sciInitFontContext\n"
 
@@ -1248,6 +1263,9 @@ msgstr "Arcobaleno"
 
 msgid "Redraw all datatips"
 msgstr "Ridisegna tutti i datatip"
+
+msgid "Scale n1"
+msgstr ""
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Il modulo Graphics di Scilab non è installato.\n"
@@ -1264,6 +1282,9 @@ msgstr "Primavera"
 
 msgid "Summer"
 msgstr "Estate"
+
+msgid "Tcl/Tk interface not installed."
+msgstr ""
 
 #, c-format
 msgid "The font size must be greater than %d.\n"

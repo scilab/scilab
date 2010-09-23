@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-09-07 22:48+0000\n"
-"Last-Translator: Achim Behrens <Unknown>\n"
+"PO-Revision-Date: 2010-09-20 22:15+0000\n"
+"Last-Translator: kayalemao <kayalemao@online.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -209,6 +209,8 @@ msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
 "the %s field\n"
 msgstr ""
+"%s: Die Datei %s ist nicht korrekt formatiert, die Toolbox %s - %s enthält "
+"nicht das %s-Feld\n"
 
 #, c-format
 msgid "%s: The file ''%s'' cannot be written.\n"
@@ -525,6 +527,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
 msgstr ""
+"%s: Falscher Wert für das Eingabeargument #%d: Es wird eine gültige "
+"Kategorie erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
@@ -543,6 +547,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: It should have a field named "
 "''%s''.\n"
 msgstr ""
+"%s: Falscher Wert für das Eingabeargument #%d: Es sollte ein Feld namens "
+"\"%s\" besitzen.\n"
 
 #, c-format
 msgid ""
@@ -756,7 +762,7 @@ msgstr ""
 "Kein ATOMS Modul verfügbar. Bitte überprüfen Sie ihre Internetverbindung."
 
 msgid "No ATOMS module is available: your repository list is empty."
-msgstr ""
+msgstr "Kein ATOMS-Modul ist verfügbar: deine Repository-Liste ist leer."
 
 msgid "Package"
 msgstr "Paket"

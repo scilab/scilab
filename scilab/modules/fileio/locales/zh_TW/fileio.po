@@ -117,18 +117,6 @@ msgstr "%s: 無法進入該目錄.\n"
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: 無法開啟檔案 %s.\n"
 
-#
-# File: sci_gateway/c/sci_fscanfMat.c, line: 72
-#, c-format
-msgid "%s: Cannot open file '%s'.\n"
-msgstr "%s: 無法開啟檔案 '%s'.\n"
-
-#
-# File: sci_gateway/c/sci_fscanfMat.c, line: 96
-#, c-format
-msgid "%s: Cannot read data in file '%s'.\n"
-msgstr "%s: 無法從檔案 '%s' 中讀取資料.\n"
-
 #, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
 msgstr "%s: 無法讀取描述子是 %d的檔案: 檔案未在執行中.\n"
@@ -175,6 +163,10 @@ msgstr "%s: 格式不正確.\n"
 #, c-format
 msgid "%s: Invalid conversion.\n"
 msgstr "%s: 轉換不正確.\n"
+
+#, c-format
+msgid "%s: Invalid format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -323,6 +315,10 @@ msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
 msgid ""
 "%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤 ('%s'): 應為非空字串.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -556,10 +552,6 @@ msgid ""
 "expected.\n"
 msgstr "%s: 第#%d個參數值有誤:有效的檔名或目錄才對.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
-msgstr "%s: 第 #%d個參數值有誤: 有效的format 才對.\n"
-
 #
 # File: src/c/mget.c, line: 181
 #, c-format
@@ -587,6 +579,14 @@ msgid ""
 "%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
 "corrupted.\n"
 msgstr "%s: 變數型態 (%s) 錯誤(在''%s'' 內). 檔案可能有誤或已破壞.\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: end of input reached before final conversion.\n"

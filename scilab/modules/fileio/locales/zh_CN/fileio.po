@@ -76,14 +76,6 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
-msgid "%s: Cannot open file '%s'.\n"
-msgstr "%s：无法打开文件 '%s'。\n"
-
-#, c-format
-msgid "%s: Cannot read data in file '%s'.\n"
-msgstr "%s：无法从文件 '%s 中读数据。\n"
-
-#, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
 msgstr "%s：不能读文件描述符为%d的文件：文件不是打开状态。\n"
 
@@ -116,6 +108,10 @@ msgstr "%s：不正确的格式。\n"
 #, c-format
 msgid "%s: Invalid conversion.\n"
 msgstr "%s：不正确的转换。\n"
+
+#, c-format
+msgid "%s: Invalid format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -209,6 +205,10 @@ msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 msgid ""
 "%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
 msgstr "%s：输入参数#%d（%s）的大小错误：应该为非空字符串。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -401,10 +401,6 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为一个正确的文件名或目录。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s：输入参数#%d的值错误：格式无法识别。\n"
 
@@ -425,6 +421,14 @@ msgid ""
 "%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
 "corrupted.\n"
 msgstr "%s：错误的变量类型（%s）出现在 %s 中。文件可能有错或被破坏。\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: end of input reached before final conversion.\n"

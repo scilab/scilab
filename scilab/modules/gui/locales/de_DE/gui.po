@@ -1265,6 +1265,9 @@ msgstr "Baumübersicht"
 msgid "Uicontrols demo"
 msgstr "UIKontrollen Demo"
 
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
 msgid "Unrecognized extension '"
 msgstr "nicht erkannte Erweiterung"
 

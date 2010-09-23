@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-02 23:55+0000\n"
+"PO-Revision-Date: 2010-09-17 12:57+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -332,6 +332,10 @@ msgstr "%s: システムは可安定 (または可検出) ではありません 
 msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: ||G|| の計算値が不正確である可能性があります.\n"
 
+#, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr "%s:  指定されたシステムには極もゼロも存在しません.\n"
+
 #
 # File: macros/bloc2exp.sci, line: 130
 # File: macros/bloc2ss.sci, line: 225
@@ -488,6 +492,11 @@ msgid ""
 "%s: Wrong size of input argument #%d: Number of columns are incompatible "
 "with %s.\n"
 msgstr "%s: 入力引数 #%d のサイズが不正です: 列の数は、%s と互換性がありません。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr "%s: 入力引数 #%d の型が間違っています : 実数の浮動小数点数の配列を指定してください\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -788,6 +797,9 @@ msgstr "Im(h(2if))"
 msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
+msgid "Imaginary Axis"
+msgstr "虚軸"
+
 msgid "Imaginary axis"
 msgstr "虚部軸"
 
@@ -834,6 +846,9 @@ msgstr "Re(h(2if))"
 msgid "Re(h(exp(2if*dt)))"
 msgstr "Re(h(exp(2if*dt)))"
 
+msgid "Real Axis"
+msgstr "実軸"
+
 #
 # File: macros/evans.sci, line: 179
 # File: macros/plzr.sci, line: 97
@@ -874,6 +889,11 @@ msgstr "漸近方向"
 msgid "dB"
 msgstr "dB"
 
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr "離散平面におけるダンピング一定および固有周波数一定の軌跡"
+
 msgid "magnitude(y) (Db)"
 msgstr "振幅(y) (dB)"
 
@@ -890,3 +910,6 @@ msgstr "開ループのゼロ"
 # File: macros/chart.sci, line: 78
 msgid "phase(y) (degree)"
 msgstr "位相(y) (度)"
+
+msgid "rad/sec"
+msgstr "rad/sec"

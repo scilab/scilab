@@ -32,6 +32,9 @@ msgstr "  cargando entorno inicial"
 msgid " and   %10d variables out of %10d.\n"
 msgstr " y %10d variables de %10d.\n"
 
+msgid " by "
+msgstr ""
+
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " los resultados pueden ser inexactos. rcond = %s1\n"
@@ -315,6 +318,10 @@ msgstr ""
 "%s: Tamaño incorrecto para el argumento %d: Se esperaba al menos %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
@@ -323,6 +330,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -533,6 +544,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Tipo incorrecto del argumento de entrada #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
@@ -607,6 +622,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Tipo incorrecto de los argumentos de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -821,6 +840,9 @@ msgstr "Herramien&tas"
 msgid "A non square matrix!\n"
 msgstr "No es una matriz cuadrada!\n"
 
+msgid "Bytes"
+msgstr ""
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "No se pudo encontrar el directorio temporal de Windows (1)."
 
@@ -968,6 +990,9 @@ msgstr "Dominio de tiempo inválido.\n"
 msgid "List full.\n"
 msgstr "Lista llena.\n"
 
+msgid "Name"
+msgstr ""
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "No hay espacio para colocar la pila de Scilab.\n"
 
@@ -986,6 +1011,9 @@ msgstr "SCIHOME no está definido.\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP: abortando el cálculo actual\n"
 
+msgid "Scilab Console"
+msgstr ""
+
 msgid "Scilab Version Info."
 msgstr "Información sobre la versión de Scilab"
 
@@ -1001,6 +1029,9 @@ msgstr ""
 "Versión de Scilab \"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Size"
+msgstr ""
+
 msgid "Startup execution:"
 msgstr "Ejecucion de inicio:"
 
@@ -1012,6 +1043,9 @@ msgstr "La variable del entorno SCI no está definida.\n"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Intentando parar Scilab en el medio de una interfaz.\n"
+
+msgid "Type"
+msgstr ""
 
 #, c-format
 msgid "Undefined variable %s.\n"

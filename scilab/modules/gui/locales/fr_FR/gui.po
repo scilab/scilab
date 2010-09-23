@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-20 12:02+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2010-09-20 06:22+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -635,7 +635,7 @@ msgid "&Colors"
 msgstr "&Couleurs"
 
 msgid "&Command History"
-msgstr ""
+msgstr "Historique de &Commandes"
 
 msgid "&Contributions"
 msgstr "&Contributions"
@@ -743,7 +743,7 @@ msgid "&Save..."
 msgstr "&Enregistrer..."
 
 msgid "&SciNotes"
-msgstr ""
+msgstr "&SciNotes"
 
 msgid "&Scilab Help"
 msgstr "Aide &Scilab"
@@ -755,7 +755,7 @@ msgid "&Select as current figure"
 msgstr "&Sélectionner comme figure courante"
 
 msgid "&Start datatip manager"
-msgstr ""
+msgstr "Démarrer le gestionnaire de datatip"
 
 msgid "&Start entity picker"
 msgstr "Démarrer le &Sélectionneur d'entité"
@@ -767,7 +767,7 @@ msgid "&UnZoom"
 msgstr "&Dézoomer"
 
 msgid "&Variable Browser"
-msgstr ""
+msgstr "Navigateur de &Variable"
 
 msgid "&Vectorial export"
 msgstr "Export &Vectoriel"
@@ -923,7 +923,7 @@ msgid "Copyright (c) 1989-2010 (INRIA)"
 msgstr "Copyright (c) 1989-2010 (INRIA)"
 
 msgid "Could not open: "
-msgstr ""
+msgstr "Ne peut pas ouvrir: "
 
 msgid "Cut"
 msgstr "Couper"
@@ -1025,7 +1025,7 @@ msgid "JPEG image"
 msgstr "Image JPEG"
 
 msgid "Launch SciNotes"
-msgstr ""
+msgstr "Démarrer ScNotes"
 
 msgid "Launch plot2d"
 msgstr "Lancer plot2d"
@@ -1151,7 +1151,7 @@ msgid "Save and execute"
 msgstr "Enregistrer et lancer"
 
 msgid "SciNotes compatible"
-msgstr ""
+msgstr "Compatible SciNotes"
 
 msgid "Scicos files"
 msgstr "Fichiers xcos"
@@ -1193,7 +1193,7 @@ msgid "Scilab Contributors..."
 msgstr "Contributeurs de Scilab"
 
 msgid "Scilab Demo files"
-msgstr ""
+msgstr "Fichiers de démonstration Scilab"
 
 msgid "Scilab Demonstrations"
 msgstr "Démonstrations Scilab"
@@ -1211,7 +1211,7 @@ msgid "Scilab Multiple Values Request"
 msgstr "Demande de Plusieurs Valeurs Scilab"
 
 msgid "Scilab Quit files"
-msgstr ""
+msgstr "Fichiers Scilab de fin"
 
 msgid "Scilab SCE files"
 msgstr ".sce fichiers Scilab"
@@ -1220,7 +1220,7 @@ msgid "Scilab SCI files"
 msgstr ".sci fichiers Scilab"
 
 msgid "Scilab Start files"
-msgstr ""
+msgstr "Fichiers Scilab de démarrage"
 
 msgid "Scilab binary files"
 msgstr "fichier Scilab binaire"
@@ -1241,7 +1241,7 @@ msgid "Select a file to load"
 msgstr "Selectionnez un fichier à charger"
 
 msgid "Select a file to open with SciNotes"
-msgstr ""
+msgstr "Sélectionner un fichier à ouvrir avec SciNotes"
 
 msgid "Select a file to write"
 msgstr "Sélectionner un fichier à écrire"
@@ -1273,7 +1273,7 @@ msgstr ""
 "\n"
 
 msgid "Stop datatip manager"
-msgstr ""
+msgstr "Arrêter le gestionnaire de datatip"
 
 msgid "Sub-menu 1"
 msgstr "Sous-menu 1"
@@ -1288,7 +1288,7 @@ msgid "Sub-menu 2-2"
 msgstr "Sous-menu 2-2"
 
 msgid "Test files"
-msgstr ""
+msgstr "Fichiers de test"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab Consortium (DIGITEO)"
@@ -1298,6 +1298,9 @@ msgstr "Aperçu de l''arbre"
 
 msgid "Uicontrols demo"
 msgstr "Démo Uicontrol"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "Démonstration Uicontrol avec LaTeX"
 
 msgid "Unrecognized extension '"
 msgstr "Extension non reconnue '"
@@ -1628,7 +1631,7 @@ msgid "red"
 msgstr "rouge"
 
 msgid "toggle datatip mode"
-msgstr ""
+msgstr "Basculer le mode datatip"
 
 msgid "unchecked"
 msgstr "non coché"

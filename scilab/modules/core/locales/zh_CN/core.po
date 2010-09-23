@@ -32,6 +32,9 @@ msgstr "  正在载入初始环境"
 msgid " and   %10d variables out of %10d.\n"
 msgstr " and %10d 个变量中的 %10d 个。\n"
 
+msgid " by "
+msgstr ""
+
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " 结果可能不精确。rcond=%s1\n"
@@ -303,12 +306,20 @@ msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr "%s：参数 %d 的大小出错：应该至少为 %d。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s：输入参数 #%d 的大小出错：应该为一个比例。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -469,6 +480,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：输入参数 #%d 的类型出错。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为实的。\n"
 
@@ -525,6 +540,10 @@ msgstr "%s：输入参数 #%d 或 #%d 的类型出错：应该为字符串。\n"
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s：输入参数的类型出错。\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -705,6 +724,9 @@ msgstr "&工具箱"
 msgid "A non square matrix!\n"
 msgstr "矩阵非方阵！\n"
 
+msgid "Bytes"
+msgstr ""
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "没有找到 Windows 的临时路径（1）。"
 
@@ -841,6 +863,9 @@ msgstr "不正确的时间域。\n"
 msgid "List full.\n"
 msgstr "列表满。\n"
 
+msgid "Name"
+msgstr ""
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "无空间用来分配 Scilab 栈。\n"
 
@@ -859,6 +884,9 @@ msgstr "未定义 SCIHOME。\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP：正在中断当前计算\n"
 
+msgid "Scilab Console"
+msgstr ""
+
 msgid "Scilab Version Info."
 msgstr "Scilab版本信息。"
 
@@ -874,6 +902,9 @@ msgstr ""
 "Scilab 版本\"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Size"
+msgstr ""
+
 msgid "Startup execution:"
 msgstr "开始执行："
 
@@ -885,6 +916,9 @@ msgstr "未设置 SCI 环境变量。\n"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "在界面中间尝试终止 Scilab。\n"
+
+msgid "Type"
+msgstr ""
 
 #, c-format
 msgid "Undefined variable %s.\n"

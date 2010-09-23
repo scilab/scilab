@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-20 11:14+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2010-09-20 06:13+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,14 +87,6 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s : Ne peut pas ouvrir le fichier %s.\n"
 
 #, c-format
-msgid "%s: Cannot open file '%s'.\n"
-msgstr "%s : Le fichier %s ne peut être ouvert.\n"
-
-#, c-format
-msgid "%s: Cannot read data in file '%s'.\n"
-msgstr "%s : Ne peut pas lire les données dans le fichier '%s'.\n"
-
-#, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
 msgstr ""
 "%s: Ne peux pas lire le fichier qui a pour descripteur %d: Le fichier n'est "
@@ -135,8 +127,12 @@ msgid "%s: Invalid conversion.\n"
 msgstr "%s: Conversion invalide.\n"
 
 #, c-format
+msgid "%s: Invalid format.\n"
+msgstr "%s: Format invalide.\n"
+
+#, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr "%s: Erreur allocation de mémoire.\n"
+msgstr "%s : Erreur d'allocation de mémoire.\n"
 
 #, c-format
 msgid "%s: No File opened in Scilab.\n"
@@ -235,6 +231,10 @@ msgstr ""
 "caractères non vide attendue.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
@@ -250,7 +250,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un booléen attendu.\n"
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
@@ -284,7 +284,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
 msgstr ""
-"%s : Taille incorrecte pour l'argument d'entrée #%d  : un entier est "
+"%s : Taille incorrecte pour l'argument d'entrée n°%d  : un entier est "
 "attendu.\n"
 
 #, c-format
@@ -411,6 +411,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: une chaîne de caractèrers "
+"ou un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: A string expected.\n"
@@ -494,12 +496,6 @@ msgstr ""
 "répertoire valide attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
-msgstr ""
-"%s : Valeur incorrecte pour l'argument d'entrée #%d : Un format valide est "
-"attendue.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Format non reconnu.\n"
@@ -525,6 +521,14 @@ msgid ""
 msgstr ""
 "%s : Mauvais type de variable (%s) trouvé dans ''%s''. Le fichier est peut "
 "être mauvais ou corrompu.\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr "%s: ne peut pas ouvrir le fichier %s.\n"
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr "%s: ne peut pas lire le fichier %s.\n"
 
 #, c-format
 msgid "%s: end of input reached before final conversion.\n"

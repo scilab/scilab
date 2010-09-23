@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-07-10 21:06+0000\n"
+"PO-Revision-Date: 2010-09-18 21:21+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,9 @@ msgstr "  загрузка исходного окружения"
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr " и %10d переменных из %10d.\n"
+
+msgid " by "
+msgstr " на "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -310,12 +313,21 @@ msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr "%s: Неверный размер параметра %d: ожидался как минимум %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -505,6 +517,11 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Неверный тип входного параметра №%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
@@ -565,6 +582,10 @@ msgstr "%s: Неверный тип входного параметра №%d и
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Неверный тип входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -772,6 +793,9 @@ msgstr "&Модули"
 msgid "A non square matrix!\n"
 msgstr "Матрица не является квадратной!\n"
 
+msgid "Bytes"
+msgstr "Байт"
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Не удалось найти каталог хранения временных файлов Windows (1)."
 
@@ -920,6 +944,9 @@ msgstr "Недопустимая временная область.\n"
 msgid "List full.\n"
 msgstr "Полный список.\n"
 
+msgid "Name"
+msgstr "Название"
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Недостаточно места для размещения стека Scilab.\n"
 
@@ -938,6 +965,9 @@ msgstr "Переменная окружения SCIHOME не задана.\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP: отменяется текущее вычисление\n"
 
+msgid "Scilab Console"
+msgstr "Командное окно"
+
 msgid "Scilab Version Info."
 msgstr "О версии Scilab."
 
@@ -953,6 +983,9 @@ msgstr ""
 "Версия Scilab «%d.%d.%d.%d»\n"
 "%s\n"
 
+msgid "Size"
+msgstr "Размер"
+
 msgid "Startup execution:"
 msgstr "Запуск программы:"
 
@@ -964,6 +997,9 @@ msgstr "Переменная окружения SCI не установлена.
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Пытаюсь остановить scilab во время взаимодействия.\n"
+
+msgid "Type"
+msgstr "Тип"
 
 #, c-format
 msgid "Undefined variable %s.\n"

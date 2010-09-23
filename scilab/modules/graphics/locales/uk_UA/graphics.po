@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-06-29 12:22+0000\n"
+"PO-Revision-Date: 2010-09-15 15:38+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -1004,6 +1004,9 @@ msgstr "Номер кольору"
 msgid "Colormap"
 msgstr "Карта кольорів"
 
+msgid "Common X axis"
+msgstr "Загальна вісь X"
+
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr "Зміну координат можна застосовувати лише до об’єктів осей.\n"
 
@@ -1088,6 +1091,9 @@ msgstr "Графічне вікно номер %d"
 msgid "Graphics"
 msgstr "Графіка"
 
+msgid "Graphics with 2 different Y-scales"
+msgstr "Графіки з 2 різними масштабами за Y"
+
 msgid "Gray"
 msgstr "Сірий"
 
@@ -1135,11 +1141,21 @@ msgstr "Внутрішня помилка: цикл у «graduate1»\n"
 msgid "Jet"
 msgstr "Агат"
 
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr ""
+"Клацання лівою на кривій створить позначку даних, правою — відкриє вікно "
+"властивостей"
+
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Клацання лівою кнопкою миші на кривій створить позначку даних, клацання "
 "правою — відкриє контекстне меню."
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
+"Клацніть лівою кнопкою миші на пункті графіка, щоб відкрити редактор "
+"властивостей"
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1209,6 +1225,9 @@ msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr ""
 "Будь ласка, надішліть звіт про помилку на адресу dev@lists.scilab.org\n"
 
+msgid "Plot with 3 different Y scales at shared X"
+msgstr "Креслення з 3 різними масштабами за Y і спільною віссю X"
+
 msgid "Problem with sciInitFontContext\n"
 msgstr "Проблема з sciInitFontContext\n"
 
@@ -1217,6 +1236,9 @@ msgstr "Райдуга"
 
 msgid "Redraw all datatips"
 msgstr "Оновити всі позначки даних"
+
+msgid "Scale n1"
+msgstr "Масштаб n1"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Графічний модуль Scilab не встановлено.\n"
@@ -1232,6 +1254,9 @@ msgstr "Весна"
 
 msgid "Summer"
 msgstr "Літо"
+
+msgid "Tcl/Tk interface not installed."
+msgstr "Інтерфейс Tcl/Tk не встановлено."
 
 #, c-format
 msgid "The font size must be greater than %d.\n"
