@@ -22,10 +22,11 @@ import org.scilab.modules.graphic_objects.textObject.FormattedText;
  */
 public class TicksProperty {
 	/** TicksProperty properties names */
-	public enum TicksPropertyProperty { AUTO, LOCATIONS, LABELS, SUBTICKS };
+	public enum TicksPropertyProperty { AUTO, LOCATIONS, LABELS,
+		FONT_SIZE, FONT_STYLE, FONT_COLOR, SUBTICKS };
 
 	/** Default number of ticks */
-	private static final int DEFAULT_NUMBER_OF_TICKS = 20;
+	private static final int DEFAULT_NUMBER_OF_TICKS = 11;
 
 	/** Specifies whether ticks are automatically computed or not */
 	private boolean auto;
@@ -148,6 +149,86 @@ public class TicksProperty {
 	 */
 	public void setSubticks(Integer subticks) {
 		this.subticks = subticks;
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font style.
+	 * To be corrected.
+	 * @return the ticks labels font style
+	 */
+	public Integer getFontStyle() {
+		return labels.get(0).getFont().getStyle();
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font style.
+	 * To be corrected.
+	 * @param fontStyle the ticks labels font style to set
+	 */
+	public void setFontStyle(Integer fontStyle) {
+		for (int i = 0; i < labels.size(); i++) {
+			labels.get(i).getFont().setStyle(fontStyle);
+		}
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font size.
+	 * To be corrected.
+	 * @return the ticks labels font size
+	 */
+	public Double getFontSize() {
+		return labels.get(0).getFont().getSize();
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font size.
+	 * To be corrected.
+	 * @param fontSize the ticks labels font size to set
+	 */
+	public void setFontSize(Double fontSize) {
+		for (int i = 0; i < labels.size(); i++) {
+			labels.get(i).getFont().setSize(fontSize);
+		}
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font color.
+	 * To be corrected.
+	 * @return the ticks labels font color
+	 */
+	public Integer getFontColor() {
+		return labels.get(0).getFont().getColor();
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font color.
+	 * To be corrected.
+	 * @param fontColor the ticks labels font color to set
+	 */
+	public void setFontColor(Integer fontColor) {
+		for (int i = 0; i < labels.size(); i++) {
+			labels.get(i).getFont().setColor(fontColor);
+		}
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font fractional.
+	 * To be corrected.
+	 * @return the ticks labels font fractional
+	 */
+	public Boolean getFontFractional() {
+		return labels.get(0).getFont().getFractional();
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font fractional.
+	 * To be corrected.
+	 * @param fontFractional the ticks labels font fractional to set
+	 */
+	public void setFontFractional(Boolean fontFractional) {
+		for (int i = 0; i < labels.size(); i++) {
+			labels.get(i).getFont().setFractional(fontFractional);
+		}
 	}
 
 }

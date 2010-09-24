@@ -46,6 +46,7 @@ public class Axes extends GraphicObject {
 		YAXISTICKS, YAXISAUTOTICKS, YAXISNUMBERTICKS, YAXISTICKSLOCATIONS, YAXISTICKSLABELS, YAXISSUBTICKS,
 		ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
 		ZAXISTICKS, ZAXISAUTOTICKS, ZAXISNUMBERTICKS, ZAXISTICKSLOCATIONS, ZAXISTICKSLABELS, ZAXISSUBTICKS,
+		FONT_STYLE, FONT_SIZE, FONT_COLOR, FONT_FRACTIONAL,
 		GRIDPOSITION, TITLE, AUTOCLEAR, FILLED, BACKGROUND,
 		MARGINS, AXESBOUNDS,
 		HIDDENCOLOR };
@@ -231,6 +232,14 @@ public class Axes extends GraphicObject {
 			return AxesProperty.ZAXISTICKSLABELS;
 		} else if (propertyName.equals(__GO_Z_AXIS_SUBTICKS__)) {
 			return AxesProperty.ZAXISSUBTICKS;
+		} else if (propertyName.equals(__GO_FONT_STYLE__)) {
+			return AxesProperty.FONT_STYLE;
+		} else if (propertyName.equals(__GO_FONT_SIZE__)) {
+			return AxesProperty.FONT_SIZE;
+		} else if (propertyName.equals(__GO_FONT_COLOR__)) {
+			return AxesProperty.FONT_COLOR;
+		} else if (propertyName.equals(__GO_FONT_FRACTIONAL__)) {
+			return AxesProperty.FONT_FRACTIONAL;
 		} else if (propertyName.equals(__GO_GRID_POSITION__)) {
 			return AxesProperty.GRIDPOSITION;
 		} else if (propertyName.equals(__GO_TITLE__)) {
@@ -380,6 +389,14 @@ public class Axes extends GraphicObject {
 			return getZAxisTicksLabels();
 		} else if (property == AxesProperty.ZAXISSUBTICKS) {
 			return getZAxisSubticks();
+		} else if (property == AxesProperty.FONT_STYLE) {
+			return getFontStyle();
+		} else if (property == AxesProperty.FONT_SIZE) {
+			return getFontSize();
+		} else if (property == AxesProperty.FONT_COLOR) {
+			return getFontColor();
+		} else if (property == AxesProperty.FONT_FRACTIONAL) {
+			return getFontFractional();
 		} else if (property == AxesProperty.GRIDPOSITION) {
 			return getGridPosition();
 		} else if (property == AxesProperty.TITLE) {
@@ -524,6 +541,14 @@ public class Axes extends GraphicObject {
 			setZAxisTicksLabels((String[]) value);
 		} else if (property == AxesProperty.ZAXISSUBTICKS) {
 			setZAxisSubticks((Integer) value);
+		} else if (property == AxesProperty.FONT_STYLE) {
+			setFontStyle((Integer) value);
+		} else if (property == AxesProperty.FONT_SIZE) {
+			setFontSize((Double) value);
+		} else if (property == AxesProperty.FONT_COLOR) {
+			setFontColor((Integer) value);
+		} else if (property == AxesProperty.FONT_FRACTIONAL) {
+			setFontFractional((Boolean) value);
 		} else if (property == AxesProperty.GRIDPOSITION) {
 			setGridPosition((Integer) value);
 		} else if (property == AxesProperty.TITLE) {
@@ -783,7 +808,7 @@ public class Axes extends GraphicObject {
 	 * @param ticksLocations the x axis ticks locations to set
 	 */
 	public void setXAxisTicksLocations(Double[] ticksLocations) {
-			axes[0].setTicksLocations(ticksLocations);
+		axes[0].setTicksLocations(ticksLocations);
 	}
 
 	/**
@@ -1232,6 +1257,102 @@ public class Axes extends GraphicObject {
 	 */
 	public void setZAxisSubticks(Integer subticks) {
 		axes[2].setSubticks(subticks);
+	}
+
+	/**
+	 * Gets the ticks labels font style.
+	 * It supposes all ticks labels within a single axis have the same font style value
+         * and that this value is the same for the 3 axes.
+	 * To be corrected.
+	 * @return the ticks labels font style
+	 */
+	public Integer getFontStyle() {
+		return axes[0].getFontStyle();
+	}
+
+	/**
+	 * Sets the ticks labels font style.
+	 * It supposes all ticks labels within a single axis have the same font style value
+         * and that this value is the same for the 3 axes.
+	 * To be corrected.
+	 * @param fontStyle the ticks labels font style to set
+	 */
+	public void setFontStyle(Integer fontStyle) {
+		for (int i = 0; i < axes.length; i++) {
+			axes[i].setFontStyle(fontStyle);
+		}
+	}
+
+	/**
+	 * Gets the ticks labels font size.
+	 * It supposes all ticks labels within a single axis have the same font size value
+         * and that this value is the same for the 3 axes.
+	 * To be corrected.
+	 * @return the ticks labels font size
+	 */
+	public Double getFontSize() {
+		return axes[0].getFontSize();
+	}
+
+	/**
+	 * Sets the ticks labels font size.
+	 * It supposes all ticks labels within a single axis have the same font size value
+         * and that this value is the same for the 3 axes.
+	 * To be corrected.
+	 * @param fontSize the ticks labels font size to set
+	 */
+	public void setFontSize(Double fontSize) {
+		for (int i = 0; i < axes.length; i++) {
+			axes[i].setFontSize(fontSize);
+		}
+	}
+
+	/**
+	 * Gets the ticks labels font color.
+	 * It supposes all ticks labels within a single axis have the same font color value
+         * and that this value is the same for the 3 axes.
+	 * To be corrected.
+	 * @return the ticks labels font color
+	 */
+	public Integer getFontColor() {
+		return axes[0].getFontColor();
+	}
+
+	/**
+	 * Sets the ticks labels font color.
+	 * It supposes all ticks labels within a single axis have the same font color value
+         * and that this value is the same for the 3 axes.
+	 * To be corrected.
+	 * @param fontColor the ticks labels font color to set
+	 */
+	public void setFontColor(Integer fontColor) {
+		for (int i = 0; i < axes.length; i++) {
+			axes[i].setFontColor(fontColor);
+		}
+	}
+
+	/**
+	 * Gets the ticks labels font fractional.
+	 * It supposes all ticks labels within a single axis have the same font fractional value
+         * and that this value is the same for the 3 axes.
+	 * To be corrected.
+	 * @return the ticks labels font fractional
+	 */
+	public Boolean getFontFractional() {
+		return axes[0].getFontFractional();
+	}
+
+	/**
+	 * Sets the ticks labels font fractional.
+	 * It supposes all ticks labels within a single axis have the same font fractional value
+         * and that this value is the same for the 3 axes.
+	 * To be corrected.
+	 * @param fontFractional the ticks labels font fractional to set
+	 */
+	public void setFontFractional(Boolean fontFractional) {
+		for (int i = 0; i < axes.length; i++) {
+			axes[i].setFontFractional(fontFractional);
+		}
 	}
 
 	/**

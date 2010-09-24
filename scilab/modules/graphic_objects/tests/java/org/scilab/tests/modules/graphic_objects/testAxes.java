@@ -40,7 +40,7 @@ import org.testng.annotations.*;
 public class testAxes {
 
 	/** The default number of ticks */
-	public static final int DEFAULT_NUMBER_OF_TICKS = 20;
+	public static final int DEFAULT_NUMBER_OF_TICKS = 11;
 
 	/** Figure identifier */
 	private String figureID;

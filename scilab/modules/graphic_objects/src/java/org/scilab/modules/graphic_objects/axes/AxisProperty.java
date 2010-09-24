@@ -354,4 +354,76 @@ public class AxisProperty {
 		ticks.setSubticks(subticks);
 	}
 
+	/**
+	 * Supposes all ticks labels have the same font style.
+	 * To be corrected.
+	 * @return the ticks labels font style
+	 */
+	public Integer getFontStyle() {
+		return ticks.getFontStyle();
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font style.
+	 * To be corrected.
+	 * @param fontStyle the ticks labels font style to set
+	 */
+	public void setFontStyle(Integer fontStyle) {
+		ticks.setFontStyle(fontStyle);
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font size.
+	 * To be corrected.
+	 * @return the ticks labels font size
+	 */
+	public Double getFontSize() {
+		return ticks.getFontSize();
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font size.
+	 * To be corrected.
+	 * @param the ticks labels font size to set
+	 */
+	public void setFontSize(Double fontSize) {
+		ticks.setFontSize(fontSize);
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font color.
+	 * To be corrected.
+	 * @return the ticks labels font color
+	 */
+	public Integer getFontColor() {
+		return ticks.getFontColor();
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font color.
+	 * To be corrected.
+	 * @param the ticks labels font color to set
+	 */
+	public void setFontColor(Integer fontColor) {
+		ticks.setFontColor(fontColor);
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font fractional.
+	 * To be corrected.
+	 * @return the ticks labels font fractional
+	 */
+	public Boolean getFontFractional() {
+		return ticks.getFontFractional();
+	}
+
+	/**
+	 * Supposes all ticks labels have the same font fractional.
+	 * To be corrected.
+	 * @param the ticks labels font fractional to set
+	 */
+	public void setFontFractional(Boolean fontFractional) {
+		ticks.setFontFractional(fontFractional);
+	}
+
 }
