@@ -42,10 +42,11 @@ Bug Fixes:
 
 * bug 8081 fixed - msprintf did not manage tabulation as format.
 
+* bug 8087 fixed - prettyprint did not handle %inf and %nan.
+
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
-
 
 Due to a critical bug from an underlying library of Scilab, a new beta release
 of Scilab has been decided. This will allow further testing and avoid potential
