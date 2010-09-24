@@ -10,6 +10,11 @@ package org.scilab.tests.modules.hdf5;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
@@ -81,5 +86,53 @@ public class testScilabString {
 		}
 
     }
+	
+	@Test(dependsOnMethods={"testStringMatrix"})
+	public void testMultiByteString() throws NullPointerException, HDF5Exception {
+		String[][] dataStringMatix = {
+				{"éàᐛ@(1,1)", "éàᐛ@(1,1)"},
+				{"สวัสดี", "ァクゾ"}, 
+				{"Բարեւ Ձեզ", "העלא"}
+			};
+		
+		int ROWS = dataStringMatix.length;
+		int COLS = dataStringMatix[0].length;
+		
+		ScilabString scilabMatrixString = new ScilabString(dataStringMatix);
 
+		int fileId = H5Write.createFile(tempDir + "/matrixMultiByteStringFromJava.h5");
+		H5Write.writeInDataSet(fileId, "MatrixString", scilabMatrixString);
+		H5Write.closeFile(fileId);
+
+		ScilabString data = new ScilabString();
+		fileId = H5Read.openFile(tempDir + "/matrixMultiByteStringFromJava.h5");
+		Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_STRING);
+		H5Read.readDataFromFile(fileId, data);
+		Assert.assertEquals(data.getData().length, ROWS);
+		Assert.assertEquals(data.getData()[0].length, COLS);
+		for (int i = 0 ; i < ROWS ; ++i) {
+			for (int j = 0 ; j < COLS ; ++j) {
+				Assert.assertEquals(data.getData()[i][j], dataStringMatix[i][j]);
+			}
+		}
+	}
+
+	/**
+	 * Call all public methods through introspection
+	 * @param args not used
+	 * @throws InvocationTargetException 
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
+	 */
+	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		Object obj = new testScilabString();
+		Method[] tests = testScilabString.class.getDeclaredMethods();
+		for (Method method : tests) {
+			int modifiers = method.getModifiers();
+			if ((modifiers | Modifier.STATIC) != modifiers) {
+				method.invoke(obj, (Object[]) null);
+			}
+		}
+	}
+	
 }
