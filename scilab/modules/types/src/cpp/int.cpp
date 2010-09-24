@@ -20,7 +20,7 @@ using namespace std;
 
 namespace types
 {
-	Int* Int::createInt(int _iRows, int _iCols, IntType _iIntType)
+	Int* Int::createInt(size_t _iRows, size_t _iCols, IntType _iIntType)
 	{
 		Int* pOut	= NULL;
 		switch(_iIntType)
@@ -49,7 +49,7 @@ namespace types
 		case TypeUnsigned64 :
 			pOut = new UInt64(_iRows, _iCols);
 			break;
-		default : 
+		default :
 			break;
 		}
 		return pOut;
@@ -60,7 +60,7 @@ namespace types
 		return RealInt;
 	}
 
-	bool Int::extract_size_get(int* _piMaxDim, int* _piDimSize, bool _bAsVector, int* _piRows, int* _piCols)
+	bool Int::extract_size_get(size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector, size_t* _piRows, size_t* _piCols)
 	{
 		//check input param
 		if(	(_bAsVector && _piMaxDim[0] > size_get()) ||
@@ -91,9 +91,9 @@ namespace types
 		return true;
 	}
 
-	Int* Int::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Int* _poSource, bool _bAsVector)
+	Int* Int::insert_new(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, Int* _poSource, bool _bAsVector)
 	{
-		Int* pi	= NULL ; 
+		Int* pi	= NULL ;
 
 		if(_bAsVector)
 		{
@@ -125,10 +125,10 @@ namespace types
 		return pi;
 	}
 
-	bool Int::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+	bool Int::insert(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector)
 	{
-		int iNewRows = rows_get();
-		int iNewCols = cols_get();
+		size_t iNewRows = rows_get();
+		size_t iNewCols = cols_get();
 		//check input size
 		if(_bAsVector == false)
 		{
@@ -183,10 +183,10 @@ namespace types
 		return true;
 	}
 
-    bool Int::append(int _iRows, int _iCols, Int *_poSource)
+    bool Int::append(size_t _iRows, size_t _iCols, Int *_poSource)
     {
-        int iRows = _poSource->rows_get();
-        int iCols = _poSource->cols_get();
+        size_t iRows = _poSource->rows_get();
+        size_t iCols = _poSource->cols_get();
 
         //insert without resize
         if(iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
@@ -194,9 +194,9 @@ namespace types
             return false;
         }
 
-        for(int i = 0 ; i < iRows ; i++)
+        for(size_t i = 0 ; i < iRows ; i++)
         {
-            for(int j = 0 ; j < iCols ; j++)
+            for(size_t j = 0 ; j < iCols ; j++)
             {
                 data_set(_iRows + i, _iCols + j, _poSource->data_get(i,j));
             }

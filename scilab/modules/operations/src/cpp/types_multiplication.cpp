@@ -226,7 +226,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**	 _p
 			iDotMultiplyComplexMatrixByComplexMatrix(_pDouble1->real_get(), _pDouble1->img_get(), _pDouble2->real_get(), _pDouble2->img_get(), pReal, pImg, iRowResult, iColResult);
 		}
 	}
-	
+
 	return 0;
 }
 int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPolyOut)
@@ -238,15 +238,15 @@ int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPo
 
 	int iRowResult 	= 0;
 	int iColResult	= 0;
-	int *piRank			= NULL;
+	size_t *piRank			= NULL;
 
 	if(bScalar1)
 	{
 		iRowResult = _pPoly->rows_get();
 		iColResult = _pPoly->cols_get();
 
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly->poly_get(i)->rank_get();
 		}
@@ -256,8 +256,8 @@ int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPo
 		iRowResult = _pDouble->rows_get();
 		iColResult = _pDouble->cols_get();
 
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly->poly_get(0)->rank_get();
 		}
@@ -266,8 +266,8 @@ int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPo
 	{
 		iRowResult = _pDouble->rows_get();
 		iColResult = _pPoly->cols_get();
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly->rank_max_get();
 		}
@@ -286,7 +286,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPo
 
 	if(bScalar1)
 	{//cst * p
-		for(int i = 0 ; i < _pPoly->size_get() ; i++)
+		for(size_t i = 0 ; i < _pPoly->size_get() ; i++)
 		{
 			Poly *pPolyIn			= _pPoly->poly_get(i);
 			double* pRealIn		= pPolyIn->coef_get()->real_get();
@@ -335,7 +335,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPo
 		double* pRealIn		= pPolyIn->coef_get()->real_get();
 		double* pImgIn		= pPolyIn->coef_get()->img_get();
 
-		for(int i = 0 ; i < _pDouble->size_get() ; i++)
+		for(size_t i = 0 ; i < _pDouble->size_get() ; i++)
 		{
 			Poly *pPolyOut		= (*_pPolyOut)->poly_get(i);
 			double* pRealOut	= pPolyOut->coef_get()->real_get();
@@ -426,17 +426,17 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPo
 	bool bScalar1		= _pPoly->rows_get() == 1 && _pPoly->cols_get() == 1;
 	bool bScalar2		= _pDouble->rows_get() == 1 && _pDouble->cols_get() == 1;
 
-	int iRowResult 	= 0;
-	int iColResult	= 0;
-	int *piRank			= NULL;
+	size_t iRowResult 	= 0;
+	size_t iColResult	= 0;
+	size_t *piRank			= NULL;
 
 	if(bScalar1)
 	{
 		iRowResult = _pDouble->rows_get();
 		iColResult = _pDouble->cols_get();
 
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly->poly_get(0)->rank_get();
 		}
@@ -446,8 +446,8 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPo
 		iRowResult = _pPoly->rows_get();
 		iColResult = _pPoly->cols_get();
 
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly->poly_get(i)->rank_get();
 		}
@@ -456,8 +456,8 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPo
 	{
 		iRowResult = _pPoly->rows_get();
 		iColResult = _pDouble->cols_get();
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly->rank_max_get();
 		}
@@ -486,7 +486,7 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPo
 		double* pRealIn		= pPolyIn->coef_get()->real_get();
 		double* pImgIn		= pPolyIn->coef_get()->img_get();
 
-		for(int i = 0 ; i < _pDouble->size_get() ; i++)
+		for(size_t i = 0 ; i < _pDouble->size_get() ; i++)
 		{
 			Poly *pPolyOut		= (*_pPolyOut)->poly_get(i);
 			double* pRealOut	= pPolyOut->coef_get()->real_get();
@@ -524,7 +524,7 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPo
 	}
 	else if(bScalar2)
 	{//p * cst
-		for(int i = 0 ; i < _pPoly->size_get() ; i++)
+		for(size_t i = 0 ; i < _pPoly->size_get() ; i++)
 		{
 			Poly *pPolyIn			= _pPoly->poly_get(i);
 			double* pRealIn		= pPolyIn->coef_get()->real_get();
@@ -569,11 +569,11 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPo
 		//Distribution a la mano par appels a des sous-fonctions ( iMulti...ScalarBy...Scalar ) plus iAdd...To... )
 
 		//for each line of _pPoly
-		for(int iRow1 = 0 ; iRow1 < _pPoly->rows_get() ; iRow1++)
+		for(size_t iRow1 = 0 ; iRow1 < _pPoly->rows_get() ; iRow1++)
 		{//for each col of _pDouble
-			for(int iCol2 = 0 ; iCol2 < _pDouble->cols_get() ; iCol2++)
+			for(size_t iCol2 = 0 ; iCol2 < _pDouble->cols_get() ; iCol2++)
 			{//for each rows of _pDouble / cols of _pPoly
-				for(int iRow2 = 0 ; iRow2 < _pDouble->rows_get() ; iRow2++)
+				for(size_t iRow2 = 0 ; iRow2 < _pDouble->rows_get() ; iRow2++)
 				{
 					Double *pPolyCoef = _pPoly->poly_get(iRow1, iRow2)->coef_get();
 
@@ -595,9 +595,9 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPo
 
 					delete pAddDouble;
 					delete pDouble;
-				}//for(int iRow2 = 0 ; iRow2 < _pDouble->rows_get() ; iRow2++)
-			}//for(int iCol2 = 0 ; iCol2 < _pDouble->cols_get() ; iCol2++)
-		}//for(int iRow1 = 0 ; iRow1 < _pPoly->rows_get() ; iRow1++)
+				}//for(size_t iRow2 = 0 ; iRow2 < _pDouble->rows_get() ; iRow2++)
+			}//for(size_t iCol2 = 0 ; iCol2 < _pDouble->cols_get() ; iCol2++)
+		}//for(size_t iRow1 = 0 ; iRow1 < _pPoly->rows_get() ; iRow1++)
 	}
 	else //Wrong dimensions.
 	{
@@ -613,16 +613,16 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 	bool bScalar1		= _pPoly1->rows_get() == 1 && _pPoly1->cols_get() == 1;
 	bool bScalar2		= _pPoly2->rows_get() == 1 && _pPoly2->cols_get() == 1;
 
-	int iRowResult 	= 0;
-	int iColResult	= 0;
-	int *piRank			= NULL;
+	size_t iRowResult 	= 0;
+	size_t iColResult	= 0;
+	size_t *piRank			= NULL;
 
 	if(_pPoly1->size_get() == 1 && _pPoly2->size_get() == 1)
 	{
 		iRowResult = 1;
 		iColResult = 1;
 
-		piRank = new int[1];
+		piRank = new size_t[1];
 		piRank[0] = _pPoly1->poly_get(0)->rank_get() + _pPoly2->poly_get(0)->rank_get() - 1;
 	}
 	else if(_pPoly1->size_get() == 1)
@@ -630,8 +630,8 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		iRowResult = _pPoly2->rows_get();
 		iColResult = _pPoly2->cols_get();
 
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly1->poly_get(0)->rank_get() + _pPoly2->poly_get(i)->rank_get() - 1;
 		}
@@ -641,8 +641,8 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		iRowResult = _pPoly1->rows_get();
 		iColResult = _pPoly1->cols_get();
 
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly2->poly_get(0)->rank_get() * _pPoly1->poly_get(i)->rank_get();
 		}
@@ -651,8 +651,8 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 	{
 		iRowResult = _pPoly1->rows_get();
 		iColResult = _pPoly2->cols_get();
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly1->rank_max_get() * _pPoly2->rank_max_get();
 		}
@@ -733,7 +733,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		Poly *pPoly1		= _pPoly1->poly_get(0);
 		if(bComplex1 == false && bComplex2 == false)
 		{
-			for(int iPoly = 0 ; iPoly < _pPoly2->size_get() ; iPoly++)
+			for(size_t iPoly = 0 ; iPoly < _pPoly2->size_get() ; iPoly++)
 			{
 				Poly *pPoly2		= _pPoly2->poly_get(iPoly);
 				Poly *pPolyOut	= (*_pPolyOut)->poly_get(iPoly);
@@ -748,7 +748,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		}
 		else if(bComplex1 == false && bComplex2 == true)
 		{
-			for(int iPoly = 0 ; iPoly < _pPoly2->size_get() ; iPoly++)
+			for(size_t iPoly = 0 ; iPoly < _pPoly2->size_get() ; iPoly++)
 			{
 				Poly *pPoly2		= _pPoly2->poly_get(iPoly);
 				Poly *pPolyOut	= (*_pPolyOut)->poly_get(iPoly);
@@ -763,7 +763,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		}
 		else if(bComplex1 == true && bComplex2 == false)
 		{
-			for(int iPoly = 0 ; iPoly < _pPoly2->size_get() ; iPoly++)
+			for(size_t iPoly = 0 ; iPoly < _pPoly2->size_get() ; iPoly++)
 			{
 				Poly *pPoly2		= _pPoly2->poly_get(iPoly);
 				Poly *pPolyOut	= (*_pPolyOut)->poly_get(iPoly);
@@ -779,7 +779,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		else if(bComplex1 == true && bComplex2 == true)
 		{
 			Double *pCoef1		= pPoly1->coef_get();
-			for(int iPoly = 0 ; iPoly < _pPoly2->size_get() ; iPoly++)
+			for(size_t iPoly = 0 ; iPoly < _pPoly2->size_get() ; iPoly++)
 			{
 				Poly *pPoly2			= _pPoly2->poly_get(iPoly);
 				Poly *pPolyOut		= (*_pPolyOut)->poly_get(iPoly);
@@ -801,7 +801,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		Poly *pPoly2		= _pPoly2->poly_get(0);
 		if(bComplex1 == false && bComplex2 == false)
 		{
-			for(int iPoly = 0 ; iPoly < _pPoly1->size_get() ; iPoly++)
+			for(size_t iPoly = 0 ; iPoly < _pPoly1->size_get() ; iPoly++)
 			{
 				Poly *pPoly1		= _pPoly1->poly_get(iPoly);
 				Poly *pPolyOut	= (*_pPolyOut)->poly_get(iPoly);
@@ -816,7 +816,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		}
 		else if(bComplex1 == false && bComplex2 == true)
 		{
-			for(int iPoly = 0 ; iPoly < _pPoly1->size_get() ; iPoly++)
+			for(size_t iPoly = 0 ; iPoly < _pPoly1->size_get() ; iPoly++)
 			{
 				Poly *pPoly1		= _pPoly1->poly_get(iPoly);
 				Poly *pPolyOut	= (*_pPolyOut)->poly_get(iPoly);
@@ -831,7 +831,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		}
 		else if(bComplex1 == true && bComplex2 == false)
 		{
-			for(int iPoly = 0 ; iPoly < _pPoly1->size_get() ; iPoly++)
+			for(size_t iPoly = 0 ; iPoly < _pPoly1->size_get() ; iPoly++)
 			{
 				Poly *pPoly1		= _pPoly1->poly_get(iPoly);
 				Poly *pPolyOut	= (*_pPolyOut)->poly_get(iPoly);
@@ -847,7 +847,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 		else if(bComplex1 == true && bComplex2 == true)
 		{
 			Double *pCoef2		= pPoly2->coef_get();
-			for(int iPoly = 0 ; iPoly < _pPoly1->size_get() ; iPoly++)
+			for(size_t iPoly = 0 ; iPoly < _pPoly1->size_get() ; iPoly++)
 			{
 				Poly *pPoly1			= _pPoly1->poly_get(iPoly);
 				Poly *pPolyOut		= (*_pPolyOut)->poly_get(iPoly);
@@ -871,14 +871,14 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 			double *pReal	= NULL;
 			Poly *pTemp		= new Poly(&pReal, (*_pPolyOut)->rank_max_get());
 
-			for(int iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
+			for(size_t iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
 			{
-				for(int iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
+				for(size_t iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
 				{
 					Poly *pResult = (*_pPolyOut)->poly_get(iRow, iCol);
 					pResult->coef_get()->zero_set();
 
-					for(int iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
+					for(size_t iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
 					{
 						Poly *pL			= _pPoly1->poly_get(iRow, iCommon);
 						Poly *pR			= _pPoly2->poly_get(iCommon, iCol);
@@ -889,7 +889,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 								pL->coef_get()->real_get(), pL->rank_get(),
 								pR->coef_get()->real_get(), pR->rank_get(),
 								pTemp->coef_get()->real_get(), pL->rank_get() + pR->rank_get() - 1);
-				
+
 						iAddRealPolyToRealPoly(
 								pResult->coef_get()->real_get(), pResult->rank_get(),
 								pTemp->coef_get()->real_get(), pResult->rank_get(),
@@ -904,14 +904,14 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 			double *pImg	= NULL;
 			Poly *pTemp		= new Poly(&pReal, &pImg, (*_pPolyOut)->rank_max_get());
 
-			for(int iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
+			for(size_t iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
 			{
-				for(int iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
+				for(size_t iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
 				{
 					Poly *pResult = (*_pPolyOut)->poly_get(iRow, iCol);
 					pResult->coef_get()->zero_set();
 
-					for(int iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
+					for(size_t iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
 					{
 						Poly *pL			= _pPoly1->poly_get(iRow, iCommon);
 						Poly *pR			= _pPoly2->poly_get(iCommon, iCol);
@@ -922,7 +922,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 								pL->coef_get()->real_get(), pL->rank_get(),
 								pR->coef_get()->real_get(), pR->coef_get()->img_get(), pR->rank_get(),
 								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pL->rank_get() + pR->rank_get() - 1);
-				
+
 						iAddComplexPolyToComplexPoly(
 								pResult->coef_get()->real_get(), pResult->coef_get()->img_get(), pResult->rank_get(),
 								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pResult->rank_get(),
@@ -937,14 +937,14 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 			double *pImg	= NULL;
 			Poly *pTemp		= new Poly(&pReal, &pImg, (*_pPolyOut)->rank_max_get());
 
-			for(int iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
+			for(size_t iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
 			{
-				for(int iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
+				for(size_t iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
 				{
 					Poly *pResult = (*_pPolyOut)->poly_get(iRow, iCol);
 					pResult->coef_get()->zero_set();
 
-					for(int iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
+					for(size_t iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
 					{
 						Poly *pL			= _pPoly1->poly_get(iRow, iCommon);
 						Poly *pR			= _pPoly2->poly_get(iCommon, iCol);
@@ -955,7 +955,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 								pR->coef_get()->real_get(), pR->rank_get(),
 								pL->coef_get()->real_get(), pL->coef_get()->img_get(), pL->rank_get(),
 								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pL->rank_get() + pR->rank_get() - 1);
-				
+
 						iAddComplexPolyToComplexPoly(
 								pResult->coef_get()->real_get(), pResult->coef_get()->img_get(), pResult->rank_get(),
 								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pResult->rank_get(),
@@ -970,14 +970,14 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 			double *pImg	= NULL;
 			Poly *pTemp		= new Poly(&pReal, &pImg, (*_pPolyOut)->rank_max_get());
 
-			for(int iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
+			for(size_t iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
 			{
-				for(int iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
+				for(size_t iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
 				{
 					Poly *pResult = (*_pPolyOut)->poly_get(iRow, iCol);
 					pResult->coef_get()->zero_set();
 
-					for(int iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
+					for(size_t iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
 					{
 						Poly *pL			= _pPoly1->poly_get(iRow, iCommon);
 						Poly *pR			= _pPoly2->poly_get(iCommon, iCol);
@@ -988,7 +988,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _p
 								pL->coef_get()->real_get(), pL->coef_get()->img_get(), pL->rank_get(),
 								pR->coef_get()->real_get(), pR->coef_get()->img_get(), pR->rank_get(),
 								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pL->rank_get() + pR->rank_get() - 1);
-				
+
 						iAddComplexPolyToComplexPoly(
 								pResult->coef_get()->real_get(), pResult->coef_get()->img_get(), pResult->rank_get(),
 								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pResult->rank_get(),

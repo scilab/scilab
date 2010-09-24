@@ -26,18 +26,18 @@ namespace types
     {
     public :
                                 MatrixPoly();
-                                MatrixPoly(wstring _szVarName, int _iRows, int _iCols, int *_piRank);
+                                MatrixPoly(wstring _szVarName, size_t _iRows, size_t _iCols, size_t *_piRank);
         virtual                 ~MatrixPoly();
 
         // FIXME : Should not return NULL
         MatrixPoly*             clone() { std::cout << "MatrixPoly::clone" << std::endl; return NULL; }
 
-        GenericType*            get_col_value(int _iPos);
+        GenericType*            get_col_value(size_t _iPos);
 
-        Poly*                   poly_get(int _iRows, int _iCols);
-        Poly*                   poly_get(int _iIdx);
-        bool                    poly_set(int _iRows, int _iCols, Double *_pdblCoef);
-        bool                    poly_set(int _iIdx, Double *_pdblCoef);
+        Poly*                   poly_get(size_t _iRows, size_t _iCols);
+        Poly*                   poly_get(size_t _iIdx);
+        bool                    poly_set(size_t _iRows, size_t _iCols, Double *_pdblCoef);
+        bool                    poly_set(size_t _iIdx, Double *_pdblCoef);
 
         MatrixPoly*             getAsPoly();
         RealType                getType();
@@ -45,16 +45,16 @@ namespace types
         bool                    isComplex(void);
         void                    complex_set(bool _bComplex);
         wstring                 var_get();
-        bool                    rank_get(int *_piRank);
-        int                     rank_max_get(void);
+        bool                    rank_get(size_t *_piRank);
+        size_t                  rank_max_get(void);
         Double*                 evaluate(Double* _pdblValue);
         void                    update_rank(void);
         Double*                 coef_get(void);
         void                    coef_set(Double *_pCoef);
-        Double*                 extract_coef(int _iRank);
-        bool                    insert_coef(int _iRank, Double* _pCoef);
+        Double*                 extract_coef(size_t _iRank);
+        bool                    insert_coef(size_t _iRank, Double* _pCoef);
 
-        bool                    insert(int _iRows, int _iCols, MatrixPoly* _poSource);
+        bool                    insert(size_t _iRows, size_t _iCols, MatrixPoly* _poSource);
 
         wstring                 toString(int _iPrecison, int _iLineLen);
         wstring                 GetRowString(int _iPrecison, int _iLineLen, bool _bComplex);

@@ -29,9 +29,9 @@ namespace types
     {
 
     protected :
-        int                         m_iRows;
-        int                         m_iCols;
-        int                         m_iSize;
+        size_t                         m_iRows;
+        size_t                         m_iCols;
+        size_t                         m_iSize;
 
                                     GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0) {}
         virtual                     ~GenericType() {}
@@ -40,9 +40,9 @@ namespace types
         void                        whoAmI(void) { std::cout << "types::GenericType"; }
 
         /*commun functions*/
-        int                         cols_get();
-        int                         rows_get();
-        int                         size_get();
+        size_t                         cols_get();
+        size_t                         rows_get();
+        size_t                         size_get();
 
         wstring                     DimToString();
 

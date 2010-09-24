@@ -26,24 +26,24 @@ namespace types
 
                                     Double(double _dblReal);
                                     Double(double _dblReal, double _dblImg);
-                                    Double(int _iRows, int _iCols, bool _bComplex = false);
-                                    Double(int _iRows, int _iCols, double **_pdblReal);
-                                    Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+                                    Double(size_t _iRows, size_t _iCols, bool _bComplex = false);
+                                    Double(size_t _iRows, size_t _iCols, double **_pdblReal);
+                                    Double(size_t _iRows, size_t _iCols, double **_pdblReal, double **_pdblImg);
         static Double*              Empty();
 
         /*data management*/
-        GenericType*                get_col_value(int _iPos);
+        GenericType*                get_col_value(size_t _iPos);
         double*                     real_get() const;
-        double                      real_get(int _iRows, int _iCols) const;
+        double                      real_get(size_t _iRows, size_t _iCols) const;
         double*                     img_get() const;
-        double                      img_get(int _iRows, int _iCols) const;
+        double                      img_get(size_t _iRows, size_t _iCols) const;
 
         bool                        real_set(double *_pdblReal);
         bool                        real_set(int* _piReal); //to translate int to double matrix
         bool                        img_set(double *_pdblImg);
 
-        bool                        val_set(int _iRows, int _iCols, double _dblReal);
-        bool                        val_set(int _iRows, int _iCols, double _dblReal, double _dblImg);
+        bool                        val_set(size_t _iRows, size_t _iCols, double _dblReal);
+        bool                        val_set(size_t _iRows, size_t _iCols, double _dblReal, double _dblImg);
 
         /*zero or one set filler*/
         bool                        zero_set();
@@ -59,14 +59,14 @@ namespace types
         wstring                     toString(int _iPrecision, int _iLineLen);
 
         Double*                     clone();
-        bool                        append(int _iRows, int _iCols, Double *_poSource);
-        bool                        fillFromCol(int _iCols, Double *_poSource);
-        bool                        fillFromRow(int _iRows, Double *_poSource);
+        bool                        append(size_t _iRows, size_t _iCols, Double *_poSource);
+        bool                        fillFromCol(size_t _iCols, Double *_poSource);
+        bool                        fillFromRow(size_t _iRows, Double *_poSource);
 
-        bool                        resize(int _iNewRows, int _iNewCols);
-        bool                        insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-        static Double*              insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector);
-        Double*                     extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+        bool                        resize(size_t _iNewRows, size_t _iNewCols);
+        bool                        insert(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+        static Double*              insert_new(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, Double* _poSource, bool _bAsVector);
+        Double*                     extract(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector);
 
 
         bool                        operator==(const InternalType& it);
@@ -85,13 +85,13 @@ namespace types
         void                        all_delete(bool _bSetReal = false);
 
         /*Internal "constructor*/
-        void                        CreateDouble(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+        void                        CreateDouble(size_t _iRows, size_t _iCols, double **_pdblReal, double **_pdblImg);
 
     private :
         double*                       m_pdblReal;
         double*                       m_pdblImg;
         bool                          m_bComplex;
-        int                           m_iSizeMax;
+        size_t                        m_iSizeMax;
     };
 }
 

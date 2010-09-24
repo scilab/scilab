@@ -1,20 +1,20 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-* 
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-* 
+*
 */
 
 #include <sstream>
 #include "symbol.hxx"
 #include "struct.hxx"
 
-namespace types 
+namespace types
 {
     /**
     ** Constructor & Destructor (public)
@@ -27,7 +27,7 @@ namespace types
         m_iSize = 0;
     }
 
-    Struct::~Struct() 
+    Struct::~Struct()
     {
         if(isDeletable() == true)
         {
@@ -35,7 +35,7 @@ namespace types
         }
     }
 
-    /** 
+    /**
     ** Private Copy Constructor and data Access
     */
     Struct::Struct(Struct *_oStructCopyMe)
@@ -63,15 +63,15 @@ namespace types
     ** size_get
     ** Return the number of elements in struct
     */
-    int Struct::size_get() 
+    size_t Struct::size_get()
     {
-        return (int)m_plData->size();
+        return m_plData->size();
     }
 
     /**
     ** add(symbol::Symbol*_psKey, InternalType *_typedValue)
     ** Append the given value to the struct
-    */ 
+    */
     void Struct::add(const std::wstring& _sKey, InternalType *_typedValue)
     {
         m_iRows = 1;
@@ -99,7 +99,7 @@ namespace types
     /**
     ** add(symbol::Symbol*_psKey)
     ** Append an null value to the struct
-    */ 
+    */
     void Struct::add(const std::wstring& _sKey)
     {
         /* Look if we are replacing some existing value */
@@ -157,7 +157,7 @@ namespace types
             for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
             {
                 ostr << itValues->first << L" : ";
-                switch  ((itValues->second)->getType()) 
+                switch  ((itValues->second)->getType())
                 {
                 case RealStruct :
                     ostr << L"[ " << (itValues->second)->getAsStruct()->rows_get()

@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be 
+ * However, the API (profile of the functions in the header files) will be
  * still available and supported in Scilab 6.
  */
 
@@ -119,7 +119,9 @@ SciErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
     }
 
     MatrixPoly *pMP = ((InternalType*)_piAddress)->getAsPoly();
-    pMP->rank_get(_piNbCoef);
+    size_t sNbCoef = 0;
+    pMP->rank_get(&sNbCoef);
+    *_piNbCoef = sNbCoef;
 
     if(_pdblReal == NULL)
     {
@@ -164,7 +166,8 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
     InternalType** out = pStr->m_pOut;
 
     wchar_t* pstTemp = to_wide_string(_pstVarName);
-    MatrixPoly* pP = new MatrixPoly(pstTemp, _iRows, _iCols, _piNbCoef);
+    size_t sNbCoef = *_piNbCoef;
+    MatrixPoly* pP = new MatrixPoly(pstTemp, _iRows, _iCols, &sNbCoef);
     FREE(pstTemp);
     if(pP == NULL)
     {

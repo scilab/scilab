@@ -50,7 +50,7 @@ namespace types
 
     public :
         //IntT
-        void createInt(int _iRows, int _iCols)
+        void createInt(size_t _iRows, size_t _iCols)
         {
             m_iRows				= _iRows;
             m_iCols				= _iCols;
@@ -63,7 +63,7 @@ namespace types
         {
         }
 
-        IntT(int _iRows, int _iCols)
+        IntT(size_t _iRows, size_t _iCols)
         {
             createInt(_iRows, _iCols);
         }
@@ -74,10 +74,10 @@ namespace types
             m_pData[0]		= _TData;
         }
 
-        IntT(int _iRows, int _iCols, T* _pTData)
+        IntT(size_t _iRows, size_t _iCols, T* _pTData)
         {
             createInt(_iRows, _iCols);
-            for(int i = 0 ; i < m_iSize ; i++)
+            for(size_t i = 0 ; i < m_iSize ; i++)
             {
                 m_pData[i] = _pTData[i];
             }
@@ -107,14 +107,14 @@ namespace types
                 return false;
             }
 
-            for(int i = 0 ; i < m_iSize ; i++)
+            for(size_t i = 0 ; i < m_iSize ; i++)
             {
                 m_pData[i] = static_cast<T>(_pTData->data_get(i));
             }
             return true;
         }
 
-        bool data_set(int _iRows, int _iCols, long long _YData)
+        bool data_set(size_t _iRows, size_t _iCols, long long _YData)
         {
             if(_iRows >= m_iRows || _iCols >= m_iRows)
             {
@@ -124,7 +124,7 @@ namespace types
             return data_set(_iCols * m_iRows + _iRows, _YData);
         }
 
-        bool data_set(int _iPos, long long _YData)
+        bool data_set(size_t _iPos, long long _YData)
         {
             if(_iPos >= m_iSize)
             {
@@ -140,17 +140,17 @@ namespace types
             return m_pData;
         }
 
-        long long data_get(int _iPos)
+        long long data_get(size_t _iPos)
         {
             return m_pData[_iPos];
         }
 
-        long long data_get(int _iRows, int _iCols)
+        long long data_get(size_t _iRows, size_t _iCols)
         {
             return data_get(_iCols * m_iRows + _iRows);
         }
 
-        bool resize(int _iNewRows, int _iNewCols)
+        bool resize(size_t _iNewRows, size_t _iNewCols)
         {
             //alloc new data array
             T* pT = NULL;
@@ -158,9 +158,9 @@ namespace types
             pT = new T[_iNewRows * _iNewCols];
             memset(pT, 0x00, sizeof(T) * _iNewRows * _iNewCols);
 
-            for(int i = 0 ; i < m_iRows ; i++)
+            for(size_t i = 0 ; i < m_iRows ; i++)
             {
-                for(int j = 0 ; j < m_iCols ; j++)
+                for(size_t j = 0 ; j < m_iCols ; j++)
                 {
                     pT[j * _iNewRows + i] = m_pData[j * m_iRows + i];
                 }
@@ -170,17 +170,17 @@ namespace types
             return true;
         }
 
-        GenericType* get_col_value(int _iPos)
+        GenericType* get_col_value(size_t _iPos)
         {
             //FIXME
             return NULL;
         }
 
-        Int* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+        Int* extract(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector)
         {
             Int* pOut		= NULL;
-            int iRowsOut	= 0;
-            int iColsOut	= 0;
+            size_t iRowsOut	= 0;
+            size_t iColsOut	= 0;
 
             if(extract_size_get(_piMaxDim, _piDimSize, _bAsVector, &iRowsOut, &iColsOut) == false)
             {
@@ -192,11 +192,11 @@ namespace types
         }
 
 
-        Int* extract(Int* _poOut, int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+        Int* extract(Int* _poOut, size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector)
         {
             if(_bAsVector)
             {
-                for(int i = 0 ; i < _iSeqCount ; i++)
+                for(size_t i = 0 ; i < _iSeqCount ; i++)
                 {
                     T TTemp = static_cast<T>(data_get(_piSeqCoord[i] - 1));
                     _poOut->data_set(i, TTemp);
@@ -204,21 +204,21 @@ namespace types
             }
             else
             {
-                for(int i = 0 ; i < _iSeqCount ; i++)
+                for(size_t i = 0 ; i < _iSeqCount ; i++)
                 {
                     //convert vertical indexes to horizontal indexes
-                    int iOutIndex   = (i % _poOut->cols_get()) * _poOut->rows_get() + (i / _poOut->cols_get());
-                    int iInIndex    = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * m_iRows;
+                    size_t iOutIndex   = (i % _poOut->cols_get()) * _poOut->rows_get() + (i / _poOut->cols_get());
+                    size_t iInIndex    = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * m_iRows;
                     _poOut->data_set(iOutIndex,data_get(iInIndex));
                 }
             }
             return _poOut;
         }
 
-        bool insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+        bool insert(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector)
         {
-            int iNewRows = rows_get();
-            int iNewCols = cols_get();
+            size_t iNewRows = rows_get();
+            size_t iNewCols = cols_get();
 
             if(Int::insert(_iSeqCount, _piSeqCoord, _piMaxDim, _poSource, _bAsVector) == false)
             {
@@ -235,16 +235,16 @@ namespace types
             {//a(?) = x
                 if(_bAsVector)
                 {//a([]) = R
-                    for(int i = 0 ; i < _iSeqCount ; i++)
+                    for(size_t i = 0 ; i < _iSeqCount ; i++)
                     {
                         m_pData[_piSeqCoord[i] - 1]	= static_cast<T>(pIn->data_get(0));
                     }
                 }
                 else
                 {//a([],[]) = R
-                    for(int i = 0 ; i < _iSeqCount ; i++)
+                    for(size_t i = 0 ; i < _iSeqCount ; i++)
                     {
-                        int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * m_iRows;
+                        size_t iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * m_iRows;
                         m_pData[iPos]	= static_cast<T>(pIn->data_get(0));
                     }
                 }
@@ -253,19 +253,19 @@ namespace types
             {//a(?) = [x]
                 if(_bAsVector)
                 {//a([]) = [R]
-                    for(int i = 0 ; i < _iSeqCount ; i++)
+                    for(size_t i = 0 ; i < _iSeqCount ; i++)
                     {
                         m_pData[_piSeqCoord[i] - 1]	= static_cast<T>(pIn->data_get(i));
                     }
                 }
                 else
                 {//a([],[]) = [R]
-                    for(int i = 0 ; i < _iSeqCount ; i++)
+                    for(size_t i = 0 ; i < _iSeqCount ; i++)
                     {
-                        int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * m_iRows;
-                        int iTempR = i / pIn->cols_get();
-                        int iTempC = i % pIn->cols_get();
-                        int iNew_i = iTempR + iTempC * pIn->rows_get();
+                        size_t iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * m_iRows;
+                        size_t iTempR = i / pIn->cols_get();
+                        size_t iTempC = i % pIn->cols_get();
+                        size_t iNew_i = iTempR + iTempC * pIn->rows_get();
 
                         m_pData[iPos]	= static_cast<T>(pIn->data_get(iNew_i));
                     }
@@ -280,16 +280,16 @@ namespace types
            wostringstream ostr;
             if(m_iRows == 1 && m_iCols == 1)
             {//scalar
-                int iWidth = 0;
+                size_t iWidth = 0;
                 GetIntFormat(m_pData[0], &iWidth);
                 AddIntValue(&ostr, m_pData[0], iWidth);
                 ostr << std::endl;
             }
             else if(m_iCols == 1)
             {//column vector
-                for(int i = 0 ; i < m_iRows ; i++)
+                for(size_t i = 0 ; i < m_iRows ; i++)
                 {
-                    int iWidth = 0;
+                    size_t iWidth = 0;
                     GetIntFormat(m_pData[i], &iWidth);
                     AddIntValue(&ostr, m_pData[i], iWidth);
                     ostr << std::endl;
@@ -298,13 +298,13 @@ namespace types
             else if(m_iRows == 1)
             {//row vector
                 wostringstream ostemp;
-                int iLastVal = 0;
+                size_t iLastVal = 0;
 
-                for(int i = 0 ; i < m_iCols ; i++)
+                for(size_t i = 0 ; i < m_iCols ; i++)
                 {
-                    int iWidth = 0;
+                    size_t iWidth = 0;
                     GetIntFormat(m_pData[i], &iWidth);
-                    int iLen = iWidth + static_cast<int>(ostemp.str().size());
+                    size_t iLen = iWidth + ostemp.str().size();
                     if(iLen > _iLineLen)
                     {//Max length, new line
                         ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << i << std::endl << std::endl;
@@ -326,20 +326,20 @@ namespace types
             else // matrix
             {
                 wostringstream ostemp;
-                int iLen = 0;
-                int iLastCol = 0;
+                size_t iLen = 0;
+                size_t iLastCol = 0;
 
                 //Array with the max printed size of each col
-                int *piSize = new int[m_iCols];
-                memset(piSize, 0x00, m_iCols * sizeof(int));
+                size_t *piSize = new size_t[m_iCols];
+                memset(piSize, 0x00, m_iCols * sizeof(size_t));
 
                 //compute the row size for padding for each printed bloc.
-                for(int iCols1 = 0 ; iCols1 < m_iCols ; iCols1++)
+                for(size_t iCols1 = 0 ; iCols1 < m_iCols ; iCols1++)
                 {
-                    for(int iRows1 = 0 ; iRows1 < m_iRows ; iRows1++)
+                    for(size_t iRows1 = 0 ; iRows1 < m_iRows ; iRows1++)
                     {
-                        int iWidth			= 0;
-                        int iCurrentLen = 0;
+                        size_t iWidth			= 0;
+                        size_t iCurrentLen = 0;
 
                         GetIntFormat(m_pData[iCols1 * m_iRows + iRows1], &iWidth);
                         iCurrentLen	= iWidth ;
@@ -352,11 +352,11 @@ namespace types
 
                     if(iLen + piSize[iCols1] + SIGN_LENGTH > _iLineLen)
                     {//find the limit, print this part
-                        for(int iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
+                        for(size_t iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
                         {
-                            for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+                            for(size_t iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
                             {
-                                int iWidth	= 0;
+                                size_t iWidth	= 0;
                                 GetIntFormat(m_pData[iCols2 * m_iRows + iRows2], &iWidth);
                                 AddIntValue(&ostemp, m_pData[iCols2 * m_iRows + iRows2], piSize[iCols2]);
                             }
@@ -372,11 +372,11 @@ namespace types
                     iLen += piSize[iCols1] + SIGN_LENGTH;
                 }
 
-                for(int iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
+                for(size_t iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
                 {
-                    for(int iCols2 = iLastCol ; iCols2 < m_iCols ; iCols2++)
+                    for(size_t iCols2 = iLastCol ; iCols2 < m_iCols ; iCols2++)
                     {
-                        int iWidth			= 0;
+                        size_t iWidth			= 0;
                         GetIntFormat(m_pData[iCols2 * m_iRows + iRows2], &iWidth);
                         AddIntValue(&ostemp, m_pData[iCols2 * m_iRows + iRows2], piSize[iCols2]);
                     }
@@ -393,8 +393,8 @@ namespace types
         virtual IntType getIntType() = 0;
 
     private :
-        virtual void AddIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true) = 0;
-        virtual void GetIntFormat(T _TVal, int *_piWidth) = 0;
+        virtual void AddIntValue(std::wostringstream *_postr, T _TVal, size_t _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true) = 0;
+        virtual void GetIntFormat(T _TVal, size_t *_piWidth) = 0;
 
     };
 
@@ -411,14 +411,14 @@ namespace types
     class SignedIntT : public IntT<T>
     {
     protected :
-        SignedIntT(int _iRows, int _iCols) : IntT<T>(_iRows, _iCols) {}
+        SignedIntT(size_t _iRows, size_t _iCols) : IntT<T>(_iRows, _iCols) {}
 
-        void AddIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
+        void AddIntValue(std::wostringstream *_postr, T _TVal, size_t _iWidth, bool bPrintPlusSign, bool bPrintOne)
         {
             AddSignedIntValue(_postr, _TVal, _iWidth, bPrintPlusSign, bPrintOne);
         }
 
-        void GetIntFormat(T _TVal, int *_piWidth)
+        void GetIntFormat(T _TVal, size_t *_piWidth)
         {
             GetSignedIntFormat(_TVal, _piWidth);
         }
@@ -437,12 +437,12 @@ namespace types
     class UnsignedIntT : public IntT<T>
     {
     protected :
-        UnsignedIntT(int _iRows, int _iCols) : IntT<T>(_iRows, _iCols) {}
-        void AddIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
+        UnsignedIntT(size_t _iRows, size_t _iCols) : IntT<T>(_iRows, _iCols) {}
+        void AddIntValue(std::wostringstream *_postr, T _TVal, size_t _iWidth, bool bPrintPlusSign, bool bPrintOne)
         {
             AddUnsignedIntValue(_postr, _TVal, _iWidth, bPrintPlusSign, bPrintOne);
         }
-        void GetIntFormat(T _TVal, int *_piWidth)
+        void GetIntFormat(T _TVal, size_t *_piWidth)
         {
             GetUnsignedIntFormat(_TVal, _piWidth);
         }
@@ -454,7 +454,7 @@ namespace types
     class Int8 : public SignedIntT<char>
     {
     public :
-        Int8(int _iRows, int _iCols) : SignedIntT<char>(_iRows, _iCols) {}
+        Int8(size_t _iRows, size_t _iCols) : SignedIntT<char>(_iRows, _iCols) {}
         IntType getIntType() { return Type8; }
         wstring getTypeStr(){return L"int8";}
     };
@@ -465,7 +465,7 @@ namespace types
     class UInt8 : public UnsignedIntT<unsigned char>
     {
     public :
-        UInt8(int _iRows, int _iCols) : UnsignedIntT<unsigned char>(_iRows, _iCols) {}
+        UInt8(size_t _iRows, size_t _iCols) : UnsignedIntT<unsigned char>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned8; }
         wstring getTypeStr(){return L"uint8";}
     };
@@ -477,7 +477,7 @@ namespace types
     class Int16 : public SignedIntT<short>
     {
     public :
-        Int16(int _iRows, int _iCols) : SignedIntT<short>(_iRows, _iCols) {}
+        Int16(size_t _iRows, size_t _iCols) : SignedIntT<short>(_iRows, _iCols) {}
         IntType getIntType() { return Type16; }
         wstring getTypeStr(){return L"int16";}
     };
@@ -488,7 +488,7 @@ namespace types
     class UInt16 : public UnsignedIntT<unsigned short>
     {
     public :
-        UInt16(int _iRows, int _iCols) : UnsignedIntT<unsigned short>(_iRows, _iCols) {}
+        UInt16(size_t _iRows, size_t _iCols) : UnsignedIntT<unsigned short>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned16; }
         wstring getTypeStr(){return L"uint16";}
     };
@@ -500,7 +500,7 @@ namespace types
     class Int32 : public SignedIntT<int>
     {
     public :
-        Int32(int _iRows, int _iCols) : SignedIntT<int>(_iRows, _iCols) {}
+        Int32(size_t _iRows, size_t _iCols) : SignedIntT<int>(_iRows, _iCols) {}
         IntType getIntType() { return Type32; }
         wstring getTypeStr(){return L"int32";}
     };
@@ -511,7 +511,7 @@ namespace types
     class UInt32 : public UnsignedIntT<unsigned int>
     {
     public :
-        UInt32(int _iRows, int _iCols) : UnsignedIntT<unsigned int>(_iRows, _iCols) {}
+        UInt32(size_t _iRows, size_t _iCols) : UnsignedIntT<unsigned int>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned32; }
         wstring getTypeStr(){return L"uint32";}
     };
@@ -523,7 +523,7 @@ namespace types
     class Int64 : public SignedIntT<long long>
     {
     public :
-        Int64(int _iRows, int _iCols) : SignedIntT<long long>(_iRows, _iCols) {}
+        Int64(size_t _iRows, size_t _iCols) : SignedIntT<long long>(_iRows, _iCols) {}
         IntType getIntType() { return Type64; }
         wstring getTypeStr(){return L"int64";}
     };
@@ -534,7 +534,7 @@ namespace types
     class UInt64 : public UnsignedIntT<unsigned long long>
     {
     public :
-        UInt64(int _iRows, int _iCols) : UnsignedIntT<unsigned long long>(_iRows, _iCols) {}
+        UInt64(size_t _iRows, size_t _iCols) : UnsignedIntT<unsigned long long>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned64; }
         wstring getTypeStr(){return L"uint64";}
     };

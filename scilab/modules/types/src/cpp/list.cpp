@@ -1,13 +1,13 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-* 
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-* 
+*
 */
 
 #include <sstream>
@@ -16,7 +16,7 @@
 #include "listundefined.hxx"
 #include "listinsert.hxx"
 
-namespace types 
+namespace types
 {
     /**
     ** Constructor & Destructor (public)
@@ -26,7 +26,7 @@ namespace types
         m_plData = new std::vector<InternalType *>();
     }
 
-    List::~List() 
+    List::~List()
     {
         if(isDeletable() == true)
         {
@@ -39,7 +39,7 @@ namespace types
         }
     }
 
-    /** 
+    /**
     ** Private Copy Constructor and data Access
     */
     List::List(List *_oListCopyMe)
@@ -47,13 +47,13 @@ namespace types
         std::vector<InternalType *>::iterator itValues;
         m_plData = new std::vector<InternalType *>;
 
-        for(int i = 0 ; i < _oListCopyMe->getData()->size() ; i++)
+        for(size_t i = 0 ; i < _oListCopyMe->getData()->size() ; i++)
         {
             InternalType* pIT = (*_oListCopyMe->getData())[i];
             append(pIT);
         }
 
-        m_iSize = static_cast<int>(m_plData->size());
+        m_iSize = static_cast<size_t>(m_plData->size());
     }
 
     std::vector<InternalType *> *List::getData()
@@ -65,9 +65,9 @@ namespace types
     ** size_get
     ** Return the number of elements in list
     */
-    int List::size_get() 
+    size_t List::size_get()
     {
-        return static_cast<int>(m_plData->size());
+        return m_plData->size();
     }
 
     /**
@@ -78,7 +78,7 @@ namespace types
     {
         _typedValue->IncreaseRef();
         m_plData->push_back(_typedValue);
-        m_iSize = static_cast<int>(m_plData->size());
+        m_iSize = m_plData->size();
     }
 
     /**
@@ -115,7 +115,7 @@ namespace types
         return ostr.str();
     }
 
-    std::vector<InternalType*>	List::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+    std::vector<InternalType*>	List::extract(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector)
     {
         std::vector<InternalType*> outList;
 
@@ -131,7 +131,7 @@ namespace types
             return outList;
         }
 
-        for(int i = 0 ; i < _iSeqCount ; i++)
+        for(size_t i = 0 ; i < _iSeqCount ; i++)
         {
             InternalType* pIT = (*m_plData)[_piSeqCoord[i] - 1];
             outList.push_back(pIT);
@@ -140,7 +140,7 @@ namespace types
         return outList;
     }
 
-    bool List::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector)
+    bool List::insert(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector)
     {
         //check input param
         if(_bAsVector == false)
@@ -155,7 +155,7 @@ namespace types
         }
 
 
-        for(int i = 0 ; i < _iSeqCount ; i++)
+        for(size_t i = 0 ; i < _iSeqCount ; i++)
         {
             if((*_poSource)[i]->isListDelete())
             {//delete item

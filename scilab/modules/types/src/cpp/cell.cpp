@@ -1,13 +1,13 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-* 
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-* 
+*
 */
 
 #include <sstream>
@@ -18,7 +18,7 @@
 #include "tostring_common.hxx"
 #include "core_math.h"
 
-namespace types 
+namespace types
 {
     /**
     ** Constructor & Destructor (public)
@@ -31,12 +31,12 @@ namespace types
         m_iSize = 0;
     }
 
-    Cell::Cell(int _iRows, int _iCols)
+    Cell::Cell(size_t _iRows, size_t _iCols)
     {
         createCell(_iRows, _iCols);
     }
 
-    void Cell::createCell(int _iRows, int _iCols)
+    void Cell::createCell(size_t _iRows, size_t _iCols)
     {
         m_iRows = _iRows;
         m_iCols = _iCols;
@@ -45,18 +45,18 @@ namespace types
         m_plData = new InternalType*[size_get()];
 
         Double* pEmpty = Double::Empty();
-        for(int i = 0 ; i < size_get() ; i++)
+        for(size_t i = 0 ; i < size_get() ; i++)
         {
             pEmpty->IncreaseRef();
             m_plData[i] = pEmpty;
         }
     }
 
-    Cell::~Cell() 
+    Cell::~Cell()
     {
         if(isDeletable() == true)
         {
-            for(int i = 0 ; i < size_get() ; i++)
+            for(size_t i = 0 ; i < size_get() ; i++)
             {
                 m_plData[i]->DecreaseRef();
                 if(m_plData[i]->isDeletable())
@@ -68,19 +68,19 @@ namespace types
         }
     }
 
-    /** 
+    /**
     ** Private Copy Constructor and data Access
     */
     Cell::Cell(Cell *_oCellCopyMe)
     {
         createCell(_oCellCopyMe->rows_get(), _oCellCopyMe->cols_get());
-        for(int i = 0 ; i < size_get() ; i++)
+        for(size_t i = 0 ; i < size_get() ; i++)
         {
             set(i, _oCellCopyMe->get(i));
         }
     }
 
-    InternalType* Cell::get(int _iIndex)
+    InternalType* Cell::get(size_t _iIndex)
     {
         if(_iIndex < size_get())
         {
@@ -89,7 +89,7 @@ namespace types
         return NULL;
     }
 
-    InternalType* Cell::get(int _iRows, int _iCols)
+    InternalType* Cell::get(size_t _iRows, size_t _iCols)
     {
         if(_iRows < rows_get() && _iCols < cols_get())
         {
@@ -98,7 +98,7 @@ namespace types
         return NULL;
     }
 
-    bool Cell::set(int _iRows, int _iCols, InternalType* _pIT)
+    bool Cell::set(size_t _iRows, size_t _iCols, InternalType* _pIT)
     {
         if(_iRows < rows_get() && _iCols < cols_get())
         {
@@ -107,7 +107,7 @@ namespace types
         return false;
     }
 
-    bool Cell::set(int _iIndex, InternalType* _pIT)
+    bool Cell::set(size_t _iIndex, InternalType* _pIT)
     {
         if(_iIndex < size_get())
         {
@@ -131,7 +131,7 @@ namespace types
     ** size_get
     ** Return the number of elements in struct
     */
-    int Cell::size_get() 
+    size_t Cell::size_get()
     {
         return m_iSize;
     }
@@ -170,9 +170,9 @@ namespace types
             memset(piJLen, 0x00, cols_get() * sizeof(int));
             memset(piSumLen, 0x00, cols_get() * sizeof(int));
 
-            for(int j = 0 ; j < cols_get() ; j++)
+            for(size_t j = 0 ; j < cols_get() ; j++)
             {
-                for(int i = 0 ; i < rows_get() ; i++)
+                for(size_t i = 0 ; i < rows_get() ; i++)
                 {
                     InternalType* pIT = get(i,j);
 
@@ -206,9 +206,9 @@ namespace types
                 }
             }
 
-            for(int i = 0 ; i < rows_get() ; i++)
+            for(size_t i = 0 ; i < rows_get() ; i++)
             {
-                for(int j = 0 ; j < cols_get() ; j++)
+                for(size_t j = 0 ; j < cols_get() ; j++)
                 {
                     InternalType* pIT = get(i,j);
 
@@ -247,7 +247,7 @@ namespace types
         return ostr.str();
     }
 
-    bool Cell::resize(int _iNewRows, int _iNewCols)
+    bool Cell::resize(size_t _iNewRows, size_t _iNewCols)
     {
         if(_iNewRows <= rows_get() && _iNewCols <= cols_get())
         {//nothing to do
@@ -258,18 +258,18 @@ namespace types
         InternalType** pIT = NULL;
 
         pIT = new InternalType*[_iNewRows * _iNewCols];
-        for(int i = 0 ; i < _iNewRows ; i++)
+        for(size_t i = 0 ; i < _iNewRows ; i++)
         {
-            for(int j = 0 ; j < _iNewCols ; j++)
+            for(size_t j = 0 ; j < _iNewCols ; j++)
             {
                 pIT[j * _iNewRows + i] = Double::Empty();
             }
         }
 
         //copy existing values
-        for(int i = 0 ; i < rows_get() ; i++)
+        for(size_t i = 0 ; i < rows_get() ; i++)
         {
-            for(int j = 0 ; j < cols_get() ; j++)
+            for(size_t j = 0 ; j < cols_get() ; j++)
             {
                 delete pIT[j * _iNewRows + i];
                 pIT[j * _iNewRows + i] = m_plData[j * rows_get() + i];
@@ -284,7 +284,7 @@ namespace types
         return true;
     }
 
-    bool Cell::append(int _iRows, int _iCols, Cell *_poSource)
+    bool Cell::append(size_t _iRows, size_t _iCols, Cell *_poSource)
     {
         return true;
     }
@@ -303,9 +303,9 @@ namespace types
             return false;
         }
 
-        for(int i = 0 ; i < m_iRows ; i++)
+        for(size_t i = 0 ; i < m_iRows ; i++)
         {
-            for(int j = 0 ; j < m_iCols ; j++)
+            for(size_t j = 0 ; j < m_iCols ; j++)
             {
                 if(get(i,j) != pC->get(i,j))
                 {
@@ -321,11 +321,11 @@ namespace types
         return !(*this == it);
     }
 
-    Cell* Cell::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+    Cell* Cell::extract(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector)
     {
         Cell* pOut		= NULL;
-        int iRowsOut	= 0;
-        int iColsOut	= 0;
+        size_t iRowsOut	= 0;
+        size_t iColsOut	= 0;
 
         //check input param
 
@@ -360,25 +360,25 @@ namespace types
 
         if(_bAsVector)
         {
-            for(int i = 0 ; i < _iSeqCount ; i++)
+            for(size_t i = 0 ; i < _iSeqCount ; i++)
             {
                 pOut->set(i, get(_piSeqCoord[i] - 1));
             }
         }
         else
         {
-            for(int i = 0 ; i < _iSeqCount ; i++)
+            for(size_t i = 0 ; i < _iSeqCount ; i++)
             {
                 //convert vertical indexes to horizontal indexes
-                int iCurIndex		= (i % iColsOut) * iRowsOut + (i / iColsOut);
-                int iInIndex		= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+                size_t iCurIndex		= (i % iColsOut) * iRowsOut + (i / iColsOut);
+                size_t iInIndex		= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
                 pOut->set(iCurIndex, get(iInIndex));
             }
         }
         return pOut;
     }
 
-    vector<InternalType*> Cell::extract_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+    vector<InternalType*> Cell::extract_cell(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector)
     {
         vector<InternalType*> vectRet;
 
@@ -392,17 +392,17 @@ namespace types
 
         if(_bAsVector)
         {
-            for(int i = 0 ; i < _iSeqCount ; i++)
+            for(size_t i = 0 ; i < _iSeqCount ; i++)
             {
                 vectRet.push_back(m_plData[_piSeqCoord[i] - 1]);
             }
         }
         else
         {
-            for(int i = 0 ; i < _iSeqCount ; i++)
+            for(size_t i = 0 ; i < _iSeqCount ; i++)
             {
                 //convert vertical indexes to horizontal indexes
-                int iInIndex = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+                size_t iInIndex = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
                 vectRet.push_back(m_plData[iInIndex]);
             }
         }
@@ -410,10 +410,10 @@ namespace types
         return vectRet;
     }
 
-    bool Cell::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+    bool Cell::insert(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector)
     {
-        int iNewRows = rows_get();
-        int iNewCols = cols_get();
+        size_t iNewRows = rows_get();
+        size_t iNewCols = cols_get();
         //check input size
         if(_bAsVector == false)
         {
@@ -477,16 +477,16 @@ namespace types
             {//a(?) = x
                 if(_bAsVector)
                 {//a([]) = R
-                    for(int i = 0 ; i < _iSeqCount ; i++)
+                    for(size_t i = 0 ; i < _iSeqCount ; i++)
                     {
                         set(_piSeqCoord[i] - 1, pIn->get(0));
                     }
                 }
                 else
                 {//a([],[]) = R
-                    for(int i = 0 ; i < _iSeqCount ; i++)
+                    for(size_t i = 0 ; i < _iSeqCount ; i++)
                     {
-                        int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+                        size_t iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
                         set(iPos, pIn->get(0));
                     }
                 }
@@ -495,19 +495,19 @@ namespace types
             {//a(?) = [x]
                 if(_bAsVector)
                 {//a([]) = [R]
-                    for(int i = 0 ; i < _iSeqCount ; i++)
+                    for(size_t i = 0 ; i < _iSeqCount ; i++)
                     {
                         set(_piSeqCoord[i] - 1, pIn->get(i));
                     }
                 }
                 else
                 {//a([],[]) = [R]
-                    for(int i = 0 ; i < _iSeqCount ; i++)
+                    for(size_t i = 0 ; i < _iSeqCount ; i++)
                     {
-                        int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-                        int iTempR = i / pIn->cols_get();
-                        int iTempC = i % pIn->cols_get();
-                        int iNew_i = iTempR + iTempC * pIn->rows_get();
+                        size_t iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+                        size_t iTempR = i / pIn->cols_get();
+                        size_t iTempC = i % pIn->cols_get();
+                        size_t iNew_i = iTempR + iTempC * pIn->rows_get();
 
                         set(iPos, pIn->get(iNew_i));
                     }
@@ -521,7 +521,7 @@ namespace types
         return true;
     }
 
-    Cell* Cell::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+    Cell* Cell::insert_new(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector)
     {
         Cell *pCell = NULL;
 
@@ -543,10 +543,10 @@ namespace types
         return pCell;
     }
 
-    bool Cell::insert_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+    bool Cell::insert_cell(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector)
     {
-        int iNewRows = rows_get();
-        int iNewCols = cols_get();
+        size_t iNewRows = rows_get();
+        size_t iNewCols = cols_get();
         //check input size
         if(_bAsVector == false)
         {

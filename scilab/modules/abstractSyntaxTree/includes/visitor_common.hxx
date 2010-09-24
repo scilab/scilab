@@ -19,23 +19,23 @@
 #define bsiz	4096
 EXTERN_AST bool bConditionState(types::InternalType *_pITResult);
 
-EXTERN_AST void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
-EXTERN_AST int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
+EXTERN_AST void ExpandList(size_t ** _piList, size_t *_piListSize, size_t _iListSizeSize, size_t *_piResultList);
+EXTERN_AST int GetVarMaxDim(types::InternalType *_pIT, size_t _iCurrentDim, size_t _iMaxDim);
 
 EXTERN_AST types::InternalType* AddElementToVariable(
 						types::InternalType* _poDest,
 						types::InternalType* _poSource,
-						int _iRows, int _iCols, int *_piRows, int *_piCols);
+						size_t _iRows, size_t _iCols, size_t *_piRows, size_t *_piCols);
 
 EXTERN_AST types::InternalType* AddElementToVariableFromCol(
                         types::InternalType* _poDest,
                         types::InternalType* _poSource,
-                        int _iRows, int _iCols, int *_piCols);
+                        size_t _iRows, size_t _iCols, size_t *_piCols);
 
 EXTERN_AST types::InternalType* AddElementToVariableFromRow(
                         types::InternalType* _poDest,
                         types::InternalType* _poSource,
-                        int _iRows, int _iCols, int *_piRows);
+                        size_t _iRows, size_t _iCols, size_t *_piRows);
 
 
 EXTERN_AST const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);

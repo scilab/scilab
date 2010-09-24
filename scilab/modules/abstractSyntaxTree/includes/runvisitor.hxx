@@ -203,20 +203,20 @@ namespace ast
     class RunVisitorT : public RunVisitor
     {
     protected :
-        int  GetIndexList(InternalType* _pRef, std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
+        size_t  GetIndexList(InternalType* _pRef, std::list<ast::Exp *>const& _plstArg, size_t** _piIndexSeq, size_t** _piMaxDim, InternalType *_pRefVar, size_t *_iDimSize)
         {
             //Create list of indexes
             //std::vector<std::vector<int>> IndexList;
-            int iProductElem				= static_cast<int>(_plstArg.size());
-            int **piIndexList				= NULL;
-            int *piTabsize					= NULL;
-            int iTotalCombi					= 1;
+            size_t iProductElem				= _plstArg.size();
+            size_t **piIndexList				= NULL;
+            size_t *piTabsize					= NULL;
+            size_t iTotalCombi					= 1;
             int k										= 0;
 
-            piTabsize			= new int[iProductElem];
-            piIndexList		= new int*[iProductElem];
+            piTabsize			= new size_t[iProductElem];
+            piIndexList		= new size_t*[iProductElem];
 
-            (*_piMaxDim)	= new int[iProductElem];
+            (*_piMaxDim)	= new size_t[iProductElem];
 
             T execMeArg;
             std::list<Exp *>::const_iterator	i;
@@ -265,7 +265,7 @@ namespace ast
                     int *piB    = pB->bool_get();
 
                     //find true item count
-                    int iItemCount = 0;
+                    size_t iItemCount = 0;
                     for(int j = 0 ; j < pB->size_get() ; j++)
                     {
                         if(piB[j])
@@ -275,11 +275,11 @@ namespace ast
                     }
 
                     //allow new Double variable
-                    pDbl            = new Double(iItemCount, 1);
+                    pDbl            = new Double(iItemCount, static_cast<size_t>(1));
                     double* pdbl    = pDbl->real_get();
 
-                    int j = 0;
-                    for(int l = 0 ; l < pB->size_get() ; l++)
+                    size_t j = 0;
+                    for(size_t l = 0 ; l < pB->size_get() ; l++)
                     {
                         if(piB[l])
                         {
@@ -351,7 +351,7 @@ namespace ast
                 double *pData = pDbl->real_get();
 
                 piTabsize[k] = pDbl->size_get();
-                piIndexList[k] = new int[piTabsize[k]];
+                piIndexList[k] = new size_t[piTabsize[k]];
 
                 (*_piMaxDim)[k] = static_cast<int>(pData[0] + 0.5);
                 int iSize = pDbl->size_get();
@@ -376,8 +376,8 @@ namespace ast
                 }
             }
 
-            int iTabsize	= iTotalCombi * iProductElem;
-            *_piIndexSeq	= new int[iTabsize];
+            size_t iTabsize	= iTotalCombi * iProductElem;
+            *_piIndexSeq	= new size_t[iTabsize];
 
             if(iTabsize > 1)
             {
@@ -538,8 +538,8 @@ namespace ast
 
         void visitprivate(const ColonVar &e)
         {
-            int pRank[1] = {2};
-            Double dblCoef(1,2);
+            size_t pRank[1] = {2};
+            Double dblCoef(static_cast<size_t>(1),static_cast<size_t>(2));
             dblCoef.val_set(0, 0, 0);
             dblCoef.val_set(0, 1, 1);
 
@@ -560,8 +560,8 @@ namespace ast
 
         void visitprivate(const DollarVar &e)
         {
-            int pRank[1] = {2};
-            Double dblCoef(1,2);
+            size_t pRank[1] = {2};
+            Double dblCoef(static_cast<size_t>(1), static_cast<size_t>(2));
             dblCoef.val_set(0, 0, 0);
             dblCoef.val_set(0, 1, 1);
 
@@ -693,10 +693,10 @@ namespace ast
 
                     //Create list of indexes
                     bool bSeeAsVector   = iArgDim == 1;
-                    int *piIndexSeq		= NULL;
-                    int *piMaxDim       = NULL;
-                    int *piDimSize		= new int[iArgDim];
-                    int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+                    size_t *piIndexSeq		= NULL;
+                    size_t *piMaxDim       = NULL;
+                    size_t *piDimSize		= new size_t[iArgDim];
+                    size_t iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
                     //check we don't have bad indexes like "< 1"
                     for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
@@ -1326,11 +1326,11 @@ namespace ast
                 MatrixPoly *pReturn	= NULL;
 
                 //prepare rank array
-                int* piRank = new int[pMP->size_get()];
+                size_t* piRank = new size_t[pMP->size_get()];
 
-                for(int i = 0 ; i < pMP->rows_get() ; i++)
+                for(size_t i = 0 ; i < pMP->rows_get() ; i++)
                 {
-                    for(int j = 0 ; j < pMP->cols_get() ; j++)
+                    for(size_t j = 0 ; j < pMP->cols_get() ; j++)
                     {
                         piRank[i * pMP->cols_get() + j] = pMP->poly_get(i,j)->rank_get();
                     }

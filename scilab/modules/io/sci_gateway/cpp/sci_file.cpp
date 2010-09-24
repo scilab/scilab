@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -148,7 +148,7 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //				return 0;
 //			}
 //
-//			if ( (m1 != n1) && (n1 != 1) ) 
+//			if ( (m1 != n1) && (n1 != 1) )
 //			{
 //				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
 //				return 0;
@@ -161,7 +161,7 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //				return 0;
 //			}
 //
-//			if ( (m2 != n2) && (n2 != 1) ) 
+//			if ( (m2 != n2) && (n2 != 1) )
 //			{
 //				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
 //				return 0;
@@ -174,7 +174,7 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //				return 0;
 //			}
 //
-//			if ( (m3 != n3) && (n3 != 1) ) 
+//			if ( (m3 != n3) && (n3 != 1) )
 //			{
 //				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
 //				return 0;
@@ -227,14 +227,14 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //				sciErr = getMatrixOfString(_piKey, piAddressVarThree, &m3, &n3, &lenStVarThree, &pStVarThree);
 //				if(sciErr.iErr)
 //				{
-//					FREE(pStVarThree); pStVarThree = NULL; 
+//					FREE(pStVarThree); pStVarThree = NULL;
 //					printError(&sciErr, 0);
 //					return 0;
 //				}
 //
 //				if (strcmp(pStVarThree, FILE_OLD_STR) == 0)
 //				{
-//					FREE(pStVarThree); pStVarThree = NULL; 
+//					FREE(pStVarThree); pStVarThree = NULL;
 //
 //					// get lenStVarTwo value
 //					sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
@@ -305,7 +305,7 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //					FREE(pStVarTwo); pStVarTwo = NULL;
 //				}
 //
-//				FREE(pStVarThree); pStVarThree = NULL; 
+//				FREE(pStVarThree); pStVarThree = NULL;
 //			}
 //
 //			FREE(pStVarOne); pStVarOne = NULL;
@@ -327,11 +327,11 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         }
         return Function::OK;
     }
-    
+
     int* piIds = FileManager::getIDs();
     if(piIds)
     {
-        Double *pD = new Double(1, iCount);
+        Double *pD = new Double(static_cast<size_t>(1), iCount);
         pD->real_set(piIds);
         out.push_back(pD);
         delete[] piIds;
@@ -342,7 +342,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         wchar_t** pstTypes = FileManager::getTypesAsString();
         if(pstTypes != NULL)
         {
-            String* pS = new String(1, iCount);
+            String* pS = new String(static_cast<size_t>(1), iCount);
             pS->string_set(pstTypes);
             out.push_back(pS);
             for(int i = 0 ; i < iCount ; i++)
@@ -358,7 +358,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         wchar_t** pstNames = FileManager::getFilenames();
         if(pstNames != NULL)
         {
-            String* pS = new String(1, iCount);
+            String* pS = new String(static_cast<size_t>(1), iCount);
             pS->string_set(pstNames);
             out.push_back(pS);
             for(int i = 0 ; i < iCount ; i++)
@@ -374,7 +374,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         double* pdblModes = FileManager::getModes();
         if(pdblModes != NULL)
         {
-            Double* pD = new Double(1, iCount);
+            Double* pD = new Double(static_cast<size_t>(1), iCount);
             pD->real_set(pdblModes);
             out.push_back(pD);
             delete[] pdblModes;
@@ -386,7 +386,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         double* pdblSwaps = FileManager::getSwaps();
         if(pdblSwaps != NULL)
         {
-            Double* pD = new Double(1, iCount);
+            Double* pD = new Double(static_cast<size_t>(1), iCount);
             pD->real_set(pdblSwaps);
             out.push_back(pD);
             delete[] pdblSwaps;
@@ -470,7 +470,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //
 //	int m_out = 0;
 //	int n_out = 0;
-//	
+//
 //	/* get Address of inputs */
 //	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
 //	if(sciErr.iErr)
@@ -535,7 +535,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //		return 0;
 //	}
 //
-//	LhsVar(1) = Rhs + 1; 
+//	LhsVar(1) = Rhs + 1;
 //
 //	if (Lhs > 1) /* Type */
 //	{
@@ -562,7 +562,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //			return 0;
 //		}
 //
-//		LhsVar(2) = Rhs + 2; 
+//		LhsVar(2) = Rhs + 2;
 //	}
 //
 //	if (Lhs > 2) /* name */
@@ -599,7 +599,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //			return 0;
 //		}
 //
-//		LhsVar(3) = Rhs + 3; 
+//		LhsVar(3) = Rhs + 3;
 //	}
 //
 //	if (Lhs > 3)  /* mod */
@@ -625,7 +625,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //			return 0;
 //		}
 //
-//		LhsVar(4) = Rhs + 4; 
+//		LhsVar(4) = Rhs + 4;
 //	}
 //
 //	if (Lhs > 4) /* swap */
@@ -650,7 +650,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //			printError(&sciErr, 0);
 //			return 0;
 //		}
-//		LhsVar(5) = Rhs + 5; 
+//		LhsVar(5) = Rhs + 5;
 //	}
 //
 //	C2F(putlhsvar)();

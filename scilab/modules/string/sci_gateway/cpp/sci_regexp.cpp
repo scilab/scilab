@@ -94,16 +94,16 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     //input is empty
     if(wcslen(pwstInput) == 0)
     {
-        Double* pStart = new Double(0,0);
+        Double* pStart = new Double(static_cast<size_t>(0), static_cast<size_t>(0));
         out.push_back(pStart);
         if(_iRetCount > 1)
         {
-            Double* pEnd = new Double(0,0);
+            Double* pEnd = new Double(static_cast<size_t>(0),static_cast<size_t>(0));
             out.push_back(pEnd);
 
             if(_iRetCount > 2)
             {
-                String* pS = new String(0,0);
+                String* pS = new String(static_cast<size_t>(0),static_cast<size_t>(0));
                 out.push_back(pS);
             }
         }
@@ -130,9 +130,9 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
             return Function::Error;
         }
     }while(iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd && wcType != WSTR_ONCE);
- 
 
-    Double* pStart = new Double(1, iOccurs);
+
+    Double* pStart = new Double(static_cast<size_t>(1), iOccurs);
     double* pdblStart = pStart->real_get();
 
     for(int i = 0 ; i < iOccurs ; i++)
@@ -144,7 +144,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
 
     if(_iRetCount > 1)
     {
-        Double* pEnd = new Double(1, iOccurs);
+        Double* pEnd = new Double(static_cast<size_t>(1), iOccurs);
         double* pdblEnd = pEnd->real_get();
         for(int i = 0 ; i < iOccurs ; i++)
         {
@@ -158,7 +158,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         String *pS = NULL;
         if(iOccurs == 0)
         {
-            pS = new String(1,1);
+            pS = new String(static_cast<size_t>(1), static_cast<size_t>(1));
             pS->string_set(0, L"");
         }
         else

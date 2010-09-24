@@ -49,7 +49,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"),L"strindex", 2, 3);
         return Function::Error;
     }
-    
+
     if(in.size() > 2)
     {
         if(in[2]->isString() == false && in[2]->getAsString()->size_get() != 1)
@@ -154,7 +154,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
     qsort(pstrResult, iValues, sizeof(In), ComparaisonCallback);
 
-    Double* pIndex = new Double(1, iValues);
+    Double* pIndex = new Double(static_cast<size_t>(1), iValues);
     for(int i = 0 ; i < iValues ; i++)
     {
         pIndex->val_set(0, i, pstrResult[i].data);
@@ -164,7 +164,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
     if(_iRetCount == 2)
     {
-        Double* pPos = new Double(1, iValues);
+        Double* pPos = new Double(static_cast<size_t>(1), iValues);
         for(int i = 0 ; i < iValues ; i++)
         {
             pPos->val_set(0, i, pstrResult[i].position);

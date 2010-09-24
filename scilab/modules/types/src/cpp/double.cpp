@@ -27,7 +27,7 @@ namespace types
 {
     Double* Double::Empty()
     {
-        return new Double(0,0);
+        return new Double(static_cast<size_t>(0),static_cast<size_t>(0));
     }
 
     /*------------*/
@@ -45,7 +45,7 @@ namespace types
 	/*				Double			*/
 	/*	Empty constructor	*/
 	/*--------------------*/
-	Double::Double(int _iRows, int _iCols, bool _bComplex)
+	Double::Double(size_t _iRows, size_t _iCols, bool _bComplex)
 	{
 		double *pReal = NULL;
 		double *pImg	= NULL;
@@ -93,7 +93,7 @@ namespace types
 	/*		 	 Double				*/
 	/*	Real constructor	*/
 	/*--------------------*/
-	Double::Double(int _iRows, int _iCols, double **_pdblReal)
+	Double::Double(size_t _iRows, size_t _iCols, double **_pdblReal)
 	{
 		CreateDouble(_iRows, _iCols, _pdblReal, NULL);
 		m_bComplex = false;
@@ -104,7 +104,7 @@ namespace types
 	/*				Double				*/
 	/*	Complex constructor	*/
 	/*----------------------*/
-	Double::Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg)
+	Double::Double(size_t _iRows, size_t _iCols, double **_pdblReal, double **_pdblImg)
 	{
 		CreateDouble(_iRows, _iCols, _pdblReal, _pdblImg);
 		//		m_bComplex = false;
@@ -115,7 +115,7 @@ namespace types
 	/*			CreateDouble		*/
 	/*	Commun constructor	*/
 	/*----------------------*/
-	void Double::CreateDouble(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg)
+	void Double::CreateDouble(size_t _iRows, size_t _iCols, double **_pdblReal, double **_pdblImg)
 	{
 		m_iCols	= _iCols;
 		m_iRows	= _iRows;
@@ -249,7 +249,7 @@ namespace types
 	/*------------*/
 	/*	real_get	*/
 	/*------------*/
-	double	Double::real_get(int _iRows, int _iCols) const
+	double	Double::real_get(size_t _iRows, size_t _iCols) const
 	{
 		if(m_pdblReal != NULL)
 		{
@@ -284,7 +284,7 @@ namespace types
 	/*------------*/
 	/*	img_get	*/
 	/*------------*/
-	double	Double::img_get(int _iRows, int _iCols) const
+	double	Double::img_get(size_t _iRows, size_t _iCols) const
 	{
 		if(m_pdblImg != NULL)
 		{
@@ -299,7 +299,7 @@ namespace types
 	/*----------------*/
 	/*		val_set		*/
 	/*----------------*/
-	bool Double::val_set(int _iRows, int _iCols, double _dblVal)
+	bool Double::val_set(size_t _iRows, size_t _iCols, double _dblVal)
 	{
 		return val_set(_iRows, _iCols, _dblVal, 0);
 	}
@@ -307,7 +307,7 @@ namespace types
 	/*----------------*/
 	/*		val_set		*/
 	/*----------------*/
-	bool Double::val_set(int _iRows, int _iCols, double _dblReal, double _dblImg)
+	bool Double::val_set(size_t _iRows, size_t _iCols, double _dblReal, double _dblImg)
 	{
 		if(m_pdblReal != NULL)
 		{
@@ -396,7 +396,7 @@ namespace types
 	{
 		if(m_pdblReal != NULL)
 		{
-			for(int i = 0 ; i < m_iSize ; i++)
+			for(size_t i = 0 ; i < m_iSize ; i++)
 			{
 				m_pdblReal[i] = 0;
 			}
@@ -425,7 +425,7 @@ namespace types
 	{
 		if(m_pdblReal != NULL)
 		{
-			for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
+			for(size_t iIndex = 0 ; iIndex < m_iSize ; iIndex++)
 			{
 				m_pdblReal[iIndex] = 1;
 			}
@@ -437,7 +437,7 @@ namespace types
 		{
 			if(m_pdblImg != NULL)
 			{
-				for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
+				for(size_t iIndex = 0 ; iIndex < m_iSize ; iIndex++)
 				{
 					m_pdblImg[iIndex] = 1;
 				}
@@ -514,7 +514,7 @@ namespace types
 				//1 test and two loops for me ( AE )
 				if(isComplex() == false)
 				{
-					for(int i = 0 ; i < rows_get() ; i++)
+					for(size_t i = 0 ; i < rows_get() ; i++)
 					{
 						int iWidth = 0, iPrec = 0;
 						bool bFP = false; // FloatingPoint
@@ -525,7 +525,7 @@ namespace types
 				}
 				else
 				{
-					for(int i = 0 ; i < rows_get() ; i++)
+					for(size_t i = 0 ; i < rows_get() ; i++)
 					{//complex value
 						int iWidthR = 0, iWidthI = 0;
 						int iPrecR = 0, iPrecI = 0;
@@ -549,7 +549,7 @@ namespace types
 				//1 test and two loops for me ( AE )
 				if(isComplex() == false)
 				{
-					for(int i = 0 ; i < cols_get() ; i++)
+					for(size_t i = 0 ; i < cols_get() ; i++)
 					{
 						int iWidth = 0, iPrec = 0;
 						bool bFP = false; // FloatingPoint
@@ -579,7 +579,7 @@ namespace types
 				}
 				else //complex case
 				{
-					for(int i = 0 ; i < cols_get() ; i++)
+					for(size_t i = 0 ; i < cols_get() ; i++)
 					{
 						int iWidthR = 0, iWidthI = 0;
 						int iPrecR = 0, iPrecI = 0;
@@ -658,9 +658,9 @@ namespace types
 				if(isComplex() == false)
 				{
 					//compute the row size for padding for each printed bloc.
-					for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+					for(size_t iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
 					{
-						for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+						for(size_t iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
 						{
 							int iWidth			= 0;
 							int iPrec				= 0;
@@ -678,9 +678,9 @@ namespace types
 
 						if(iLen + piSize[iCols1] > _iLineLen)
 						{//find the limit, print this part
-							for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+							for(size_t iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
 							{
-								for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+								for(size_t iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
 								{
 									int iWidth			= 0;
 									int iPrec				= 0;
@@ -701,9 +701,9 @@ namespace types
 						iLen += piSize[iCols1] + SIGN_LENGTH + SIZE_BETWEEN_TWO_VALUES;
 					}
 
-					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					for(size_t iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
 					{
-						for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+						for(size_t iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
 						{
 							int iWidth			= 0;
 							int iPrec				= 0;
@@ -723,9 +723,9 @@ namespace types
 				else //Complex case
 				{
 					//compute the row size for padding for each printed bloc.
-					for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+					for(size_t iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
 					{
-						for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+						for(size_t iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
 						{
 							int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
 							int iPrecR = 0, iPrecI = 0;
@@ -755,9 +755,9 @@ namespace types
 								ostr << SPACE_BETWEEN_REAL_COMPLEX << SYMBOL_I << "|" << SPACE_BETWEEN_TWO_VALUES;
 							}
 */
-							for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+							for(size_t iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
 							{
-								for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+								for(size_t iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
 								{
 									int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
 									int iPrecR = 0, iPrecI = 0;
@@ -782,9 +782,9 @@ namespace types
 						iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
 					}
 
-					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					for(size_t iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
 					{
-						for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+						for(size_t iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
 						{
 							int iWidthR = 0, iWidthI = 0, iTotalWidth = 0;
 							int iPrecR = 0, iPrecI = 0;
@@ -832,7 +832,7 @@ namespace types
 		return pReturn;
 	}
 
-	bool Double::resize(int _iNewRows, int _iNewCols)
+	bool Double::resize(size_t _iNewRows, size_t _iNewCols)
 	{
 		if(_iNewRows <= rows_get() && _iNewCols <= cols_get())
 		{//nothing to do
@@ -855,9 +855,9 @@ namespace types
 				pdblImg		= new double[m_iSizeMax];
 				memset(pdblImg, 0x00, sizeof(double) * m_iSizeMax);
 
-				for(int i = 0 ; i < rows_get() ; i++)
+				for(size_t i = 0 ; i < rows_get() ; i++)
 				{
-					for(int j = 0 ; j < cols_get() ; j++)
+					for(size_t j = 0 ; j < cols_get() ; j++)
 					{
 						pdblReal[j * _iNewRows + i] = m_pdblReal[j * rows_get() + i];
 						pdblImg[j * _iNewRows + i]	= m_pdblImg[j * rows_get() + i];
@@ -874,35 +874,35 @@ namespace types
 				//if vector or if row dimension not change, we don't need to shift data
 				if(_iNewRows != 1 && _iNewCols != 1 && rows_get() != _iNewRows)
 				{
-					for(int i = cols_get() - 1 ; i >= 0 ; i--)
+					for(size_t i = cols_get() - 1 ; i >= 0 ; i--)
 					{
-						for(int j = rows_get() - 1 ; j >= 0 ; j--)
+						for(size_t j = rows_get() - 1 ; j >= 0 ; j--)
 						{
 							m_pdblReal[(i * _iNewRows) + j] = m_pdblReal[(i * rows_get()) + j];
 							m_pdblImg[(i * _iNewRows) + j] 	= m_pdblImg[(i * rows_get()) + j];
 						}
-						
+
 						//fill zero at the end of column
 						memset(m_pdblReal + (i * _iNewRows) + rows_get(), 0x00, sizeof(double) * (_iNewRows - rows_get()));
 						memset(m_pdblImg + (i * _iNewRows) + rows_get(), 0x00, sizeof(double) * (_iNewRows - rows_get()));
 					}
 				}
-			}	
-			
+			}
+
 		}
 		else
 		{
 			if(m_iSizeMax < _iNewRows * _iNewCols)
 			{
 				//alloc 10% bigger than asked to prevent future resize
-				m_iSizeMax = static_cast<int>(_iNewRows * _iNewCols * 1.1);
-				
+				m_iSizeMax = static_cast<size_t>(_iNewRows * _iNewCols * 1.1);
+
 				pdblReal	= new double[m_iSizeMax];
 				memset(pdblReal, 0x00, sizeof(double) * m_iSizeMax);
 
-				for(int i = 0 ; i < rows_get() ; i++)
+				for(size_t i = 0 ; i < rows_get() ; i++)
 				{
-					for(int j = 0 ; j < cols_get() ; j++)
+					for(size_t j = 0 ; j < cols_get() ; j++)
 					{
 						pdblReal[j * _iNewRows + i] = m_pdblReal[j * rows_get() + i];
 					}
@@ -916,18 +916,18 @@ namespace types
 				//if vector or if row dimension not change, we don't need to shift data
 				if(_iNewRows != 1 && _iNewCols != 1 && rows_get() != _iNewRows)
 				{
-					for(int i = cols_get() - 1 ; i >= 0 ; i--)
+					for(size_t i = cols_get() - 1 ; i >= 0 ; i--)
 					{
-						for(int j = rows_get() - 1 ; j >= 0 ; j--)
+						for(size_t j = rows_get() - 1 ; j >= 0 ; j--)
 						{
 							m_pdblReal[(i * _iNewRows) + j] = m_pdblReal[(i * rows_get()) + j];
 						}
-						
+
 						//fill zero at the end of column
 						memset(m_pdblReal + (i * _iNewRows) + rows_get(), 0x00, sizeof(double) * (_iNewRows - rows_get()));
 					}
 				}
-			}	
+			}
 		}
 
 		m_iRows = _iNewRows;
@@ -936,19 +936,18 @@ namespace types
 		return true;
 	}
 
-    bool Double::fillFromCol(int _iCols, Double *_poSource)
+    bool Double::fillFromCol(size_t _iCols, Double *_poSource)
     {
         if(m_bComplex)
         {
-            int iDestOffset = _iCols * m_iRows;
+            size_t iDestOffset = _iCols * m_iRows;
             memcpy(m_pdblReal + iDestOffset, _poSource->real_get(), _poSource->size_get() * sizeof(double));
             memcpy(m_pdblImg + iDestOffset, _poSource->img_get(), _poSource->size_get() * sizeof(double));
         }
         else
         {
             //memcpy version
-/*
-            int iDestOffset = _iCols * m_iRows;
+            size_t iDestOffset = _iCols * m_iRows;
             if(_poSource->size_get() ==  1)
             {
                 m_pdblReal[iDestOffset] =  _poSource->real_get()[0];
@@ -957,7 +956,7 @@ namespace types
             {
                 memcpy(m_pdblReal + iDestOffset, _poSource->real_get(), _poSource->size_get() * sizeof(double));
             }
-*/
+
             //loop version
 /*
             int iDestOffset = _iCols * m_iRows;
@@ -967,16 +966,18 @@ namespace types
             }
 */
             //blas
-            int iDestOffset     = _iCols * m_iRows;
-            int iSize           = _poSource->size_get();
+/*
+            size_t iDestOffset     = _iCols * m_iRows;
+            size_t iSize           = _poSource->size_get();
             double* pdblDest    = m_pdblReal + iDestOffset;
-            int iOne            = 1;
+            size_t iOne            = 1;
             dcopy_(&iSize, _poSource->real_get(), &iOne, pdblDest, &iOne);
+*/
         }
         return true;
     }
 
-    bool Double::fillFromRow(int _iRows, Double *_poSource)
+    bool Double::fillFromRow(size_t _iRows, Double *_poSource)
     {
         int iCols = _poSource->cols_get();
 
@@ -985,12 +986,11 @@ namespace types
         }
         else
         {
-            for(int i = 0 ; i < iCols ; i++)
+            for(size_t i = 0 ; i < iCols ; i++)
             {
                 //memcpy version
-/*                
-                int iDestOffset = i * m_iRows + _iRows;
-                int iOrigOffset = i * _poSource->rows_get();
+                size_t iDestOffset = i * m_iRows + _iRows;
+                size_t iOrigOffset = i * _poSource->rows_get();
                 if(_poSource->rows_get() == 1)
                 {
                     m_pdblReal[iDestOffset] = _poSource->real_get()[iOrigOffset];
@@ -999,7 +999,7 @@ namespace types
                 {
                     memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, _poSource->rows_get() * sizeof(double));
                 }
-*/                
+
                 //loop version
 /*
                 int iDestOffset = i * m_iRows + _iRows;
@@ -1010,14 +1010,17 @@ namespace types
                 }
 */
 
-                int iDestOffset     = i * m_iRows + _iRows;
-                int iOrigOffset     = i * _poSource->rows_get();
-                int iSize           = _poSource->rows_get();
+// blas
+/*
+                size_t iDestOffset     = i * m_iRows + _iRows;
+                size_t iOrigOffset     = i * _poSource->rows_get();
+                size_t iSize           = _poSource->rows_get();
                 double* pdblDest    = m_pdblReal + iDestOffset;
                 double* pdblSource  = _poSource->real_get() + iOrigOffset;
-                int iOne            = 1;
+                size_t iOne            = 1;
 
                 dcopy_(&iSize, pdblSource, &iOne, pdblDest, &iOne);
+*/
             }
 
 
@@ -1025,10 +1028,10 @@ namespace types
         return true;
     }
 
-	bool Double::append(int _iRows, int _iCols, Double *_poSource)
+	bool Double::append(size_t _iRows, size_t _iCols, Double *_poSource)
 	{
-		int iRows = _poSource->rows_get();
-		int iCols = _poSource->cols_get();
+		size_t iRows = _poSource->rows_get();
+		size_t iCols = _poSource->cols_get();
 
 		//insert without resize
 		if(iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
@@ -1038,10 +1041,10 @@ namespace types
 
 		if(m_bComplex)
 		{
-			for(int iRow = 0 ; iRow < iRows ; iRow++)
+			for(size_t iRow = 0 ; iRow < iRows ; iRow++)
 			{
-                int iDestOffset = _iCols * m_iRows + iRow;
-                int iOrigOffset = iCols * _poSource->rows_get() + iRow;
+                size_t iDestOffset = _iCols * m_iRows + iRow;
+                size_t iOrigOffset = iCols * _poSource->rows_get() + iRow;
                 memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, iCols * sizeof(double));
                 if(_poSource->isComplex())
                 {
@@ -1062,16 +1065,16 @@ namespace types
 		{
             if(iRows != 1)
             {
-                for(int iCol = 0 ; iCol < iCols ; iCol++)
+                for(size_t iCol = 0 ; iCol < iCols ; iCol++)
                 {
-                    int iDestOffset = (iCol + _iCols ) * m_iRows + _iRows;
-                    int iOrigOffset = iCol * _poSource->rows_get();
+                    size_t iDestOffset = (iCol + _iCols ) * m_iRows + _iRows;
+                    size_t iOrigOffset = iCol * _poSource->rows_get();
                     memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, iRows * sizeof(double));
                 }
             }
             else
             {
-                for(int iCol = 0 ; iCol < iCols ; iCol++)
+                for(size_t iCol = 0 ; iCol < iCols ; iCol++)
                 {
                     val_set(_iRows, _iCols + iCol, _poSource->real_get(0, iCol));
                 }
@@ -1129,7 +1132,7 @@ namespace types
 		return !(*this == it);
 	}
 
-	GenericType*	Double::get_col_value(int _iPos)
+	GenericType*	Double::get_col_value(size_t _iPos)
 	{
 		Double *pdbl = NULL;
 		if(_iPos < m_iCols)
@@ -1137,7 +1140,7 @@ namespace types
 			if(isComplex())
 			{
 				pdbl = new Double(m_iRows, 1, true);
-				for(int i = 0 ; i < m_iRows ; i++)
+				for(size_t i = 0 ; i < m_iRows ; i++)
 				{
 					pdbl->val_set(i, 0, real_get(i, _iPos), img_get(i, _iPos));
 				}
@@ -1145,7 +1148,7 @@ namespace types
 			else
 			{
 				pdbl = new Double(m_iRows, 1);
-				for(int i = 0 ; i < m_iRows ; i++)
+				for(size_t i = 0 ; i < m_iRows ; i++)
 				{
 					pdbl->val_set(i, 0, real_get(i, _iPos));
 				}
@@ -1154,10 +1157,10 @@ namespace types
 		return pdbl;
 	}
 
-	bool Double::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+	bool Double::insert(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector)
 	{
-		int iNewRows = rows_get();
-		int iNewCols = cols_get();
+		size_t iNewRows = rows_get();
+		size_t iNewCols = cols_get();
 		//check input size
 		if(_bAsVector == false)
 		{
@@ -1230,7 +1233,7 @@ namespace types
 
 						if(_bAsVector)
 						{//a([]) = C
-							for(int i = 0 ; i < _iSeqCount ; i++)
+							for(size_t i = 0 ; i < _iSeqCount ; i++)
 							{
 								m_pdblReal[_piSeqCoord[i] - 1]	= pInR[0];
 								m_pdblImg[_piSeqCoord[i] - 1]		= pInI[0];
@@ -1238,9 +1241,9 @@ namespace types
 						}
 						else
 						{//a([],[]) = C
-							for(int i = 0 ; i < _iSeqCount ; i++)
+							for(size_t i = 0 ; i < _iSeqCount ; i++)
 							{
-								int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+								size_t iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
 								m_pdblReal[iPos]	= pInR[0];
 								m_pdblImg[iPos]		= pInI[0];
 							}
@@ -1252,16 +1255,16 @@ namespace types
 
 						if(_bAsVector)
 						{//a([]) = R
-							for(int i = 0 ; i < _iSeqCount ; i++)
+							for(size_t i = 0 ; i < _iSeqCount ; i++)
 							{
 								m_pdblReal[_piSeqCoord[i] - 1]	= pInR[0];
 							}
 						}
 						else
 						{//a([],[]) = R
-							for(int i = 0 ; i < _iSeqCount ; i++)
+							for(size_t i = 0 ; i < _iSeqCount ; i++)
 							{
-								int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+								size_t iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
 								m_pdblReal[iPos]	= pInR[0];
 							}
 						}
@@ -1278,7 +1281,7 @@ namespace types
 
 						if(_bAsVector)
 						{//a([]) = [C]
-							for(int i = 0 ; i < _iSeqCount ; i++)
+							for(size_t i = 0 ; i < _iSeqCount ; i++)
 							{
 								m_pdblReal[_piSeqCoord[i] - 1]	= pInR[i];
 								m_pdblImg[_piSeqCoord[i] - 1]		= pInI[i];
@@ -1286,9 +1289,9 @@ namespace types
 						}
 						else
 						{//a([],[]) = [C]
-							for(int i = 0 ; i < _iSeqCount ; i++)
+							for(size_t i = 0 ; i < _iSeqCount ; i++)
 							{
-								int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+								size_t iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
 								m_pdblReal[iPos]	= pInR[i];
 								m_pdblImg[iPos]		= pInI[i];
 							}
@@ -1300,19 +1303,19 @@ namespace types
 
 						if(_bAsVector)
 						{//a([]) = [R]
-							for(int i = 0 ; i < _iSeqCount ; i++)
+							for(size_t i = 0 ; i < _iSeqCount ; i++)
 							{
 								m_pdblReal[_piSeqCoord[i] - 1]	= pInR[i];
 							}
 						}
 						else
 						{//a([],[]) = [R]
-							for(int i = 0 ; i < _iSeqCount ; i++)
+							for(size_t i = 0 ; i < _iSeqCount ; i++)
 							{
-								int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-								int iTempR = i / pIn->cols_get();
-								int iTempC = i % pIn->cols_get();
-								int iNew_i = iTempR + iTempC * pIn->rows_get();
+								size_t iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+								size_t iTempR = i / pIn->cols_get();
+								size_t iTempC = i % pIn->cols_get();
+								size_t iNew_i = iTempR + iTempC * pIn->rows_get();
 
 								m_pdblReal[iPos]	= pInR[iNew_i];
 							}
@@ -1328,10 +1331,10 @@ namespace types
 		return true;
 	}
 
-	Double* Double::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector)
+	Double* Double::insert_new(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, Double* _poSource, bool _bAsVector)
 	{
-		Double* pdbl	= NULL ; 
-		
+		Double* pdbl	= NULL ;
+
 		if(_bAsVector)
 		{
 			if(_poSource->cols_get() == 1)
@@ -1362,11 +1365,11 @@ namespace types
 		return pdbl;
 	}
 
-	Double* Double::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+	Double* Double::extract(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector)
 	{
 		Double *pOut	= NULL;
-		int iRowsOut	= 0;
-		int iColsOut	= 0;
+		size_t iRowsOut	= 0;
+		size_t iColsOut	= 0;
 
 		//check input param
 
@@ -1405,7 +1408,7 @@ namespace types
 		{
 			if(isComplex())
 			{
-				for(int i = 0 ; i < _iSeqCount ; i++)
+				for(size_t i = 0 ; i < _iSeqCount ; i++)
 				{
 					pdblReal[i] = m_pdblReal[_piSeqCoord[i] - 1];
 					pdblImg[i]	= m_pdblImg[_piSeqCoord[i] - 1];
@@ -1413,7 +1416,7 @@ namespace types
 			}
 			else
 			{
-				for(int i = 0 ; i < _iSeqCount ; i++)
+				for(size_t i = 0 ; i < _iSeqCount ; i++)
 				{
 					pdblReal[i] = m_pdblReal[_piSeqCoord[i] - 1];
 				}
@@ -1423,26 +1426,26 @@ namespace types
 		{
 			if(isComplex())
 			{
-				for(int i = 0 ; i < _iSeqCount ; i++)
+				for(size_t i = 0 ; i < _iSeqCount ; i++)
 				{
-					int iOutIndex				= (i % iColsOut) * iRowsOut + (i / iColsOut);
-					int iInIndex				= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+					size_t iOutIndex				= (i % iColsOut) * iRowsOut + (i / iColsOut);
+					size_t iInIndex				= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
 					pdblReal[iOutIndex] = m_pdblReal[iInIndex];
 					pdblImg[iOutIndex]	= m_pdblImg[iInIndex];
 				}
 			}
 			else
 			{
-				for(int i = 0 ; i < _iSeqCount ; i++)
+				for(size_t i = 0 ; i < _iSeqCount ; i++)
 				{
 					//convert vertical indexes to horizontal indexes
-					int iOutIndex				= (i % iColsOut) * iRowsOut + (i / iColsOut);
-					int iInIndex				= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+					size_t iOutIndex				= (i % iColsOut) * iRowsOut + (i / iColsOut);
+					size_t iInIndex				= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
 					pdblReal[iOutIndex] = m_pdblReal[iInIndex];
 				}
 			}
 		}
-		
+
 		return pOut;
 	}
 }

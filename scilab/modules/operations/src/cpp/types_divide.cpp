@@ -39,32 +39,32 @@ int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDouble
 	else if(bScalar2)
 	{//[] / x
 		int iErr				= 0;
-		int iRowResult	= _pDouble1->rows_get();
-		int iColResult	= _pDouble1->cols_get();
+		size_t iRowResult	= _pDouble1->rows_get();
+		size_t iColResult	= _pDouble1->cols_get();
 		int iInc1				= 1;
 		int iInc2				= 0;
-		int iSizeResult	= iRowResult * iColResult;
+		size_t iSizeResult	= iRowResult * iColResult;
 
 		*_pDoubleOut = new Double(iRowResult, iColResult, _pDouble1->isComplex() || _pDouble2->isComplex());
 
 		if(bComplex1 == false && bComplex2 == false)
 		{// Real1 \ Real2 -> Real2 / Real1
 			iErr = iRightDivisionRealMatrixByRealMatrix(
-				_pDouble1->real_get(), iInc1, 
-				_pDouble2->real_get(), iInc2, 
+				_pDouble1->real_get(), iInc1,
+				_pDouble2->real_get(), iInc2,
 				(*_pDoubleOut)->real_get(), 1, iSizeResult);
 		}
 		else if(bComplex1 == false && bComplex2 == true)
 		{// Real \ Complex -> Complex / Real
 			iErr = iRightDivisionRealMatrixByComplexMatrix(
-				_pDouble1->real_get(), iInc1, 
-				_pDouble2->real_get(), _pDouble2->img_get(), iInc2, 
+				_pDouble1->real_get(), iInc1,
+				_pDouble2->real_get(), _pDouble2->img_get(), iInc2,
 				(*_pDoubleOut)->real_get(),	(*_pDoubleOut)->img_get(), 1, iSizeResult);
 		}
 		else if(bComplex1 == true && bComplex2 == false)
 		{// Complex \ Real -> Real / Complex
 			iErr = iRightDivisionComplexMatrixByRealMatrix(
-				_pDouble1->real_get(), _pDouble1->img_get(), iInc1, 
+				_pDouble1->real_get(), _pDouble1->img_get(), iInc1,
 				_pDouble2->real_get(), iInc2,
 				(*_pDoubleOut)->real_get(),	(*_pDoubleOut)->img_get(), 1, iSizeResult);
 		}
@@ -72,7 +72,7 @@ int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDouble
 		{// Complex \ Complex
 			iErr = iRightDivisionComplexMatrixByComplexMatrix(
 				_pDouble1->real_get(), _pDouble1->img_get(), iInc1,
-				_pDouble2->real_get(), _pDouble2->img_get(), iInc2, 
+				_pDouble2->real_get(), _pDouble2->img_get(), iInc2,
 				(*_pDoubleOut)->real_get(),	(*_pDoubleOut)->img_get(), 1, iSizeResult);
 		}
 	}
@@ -82,10 +82,10 @@ int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDouble
 		double dblSavedI = 0;
 		Double *pdblTemp = NULL;
 
-		int iRowResult = _pDouble2->cols_get();
-		int iColResult = _pDouble2->rows_get();
+		size_t iRowResult = _pDouble2->cols_get();
+		size_t iColResult = _pDouble2->rows_get();
 
-		//in this case, we have to create a temporary square matrix 
+		//in this case, we have to create a temporary square matrix
 		pdblTemp	= new Double(iRowResult, iRowResult, _pDouble1->isComplex());
 		pdblTemp->zero_set();
 
@@ -93,7 +93,7 @@ int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDouble
 		{
 			dblSavedR = _pDouble1->real_get()[0];
 			dblSavedI = _pDouble1->img_get()[0];
-			for(int i = 0 ; i < iRowResult ; i++)
+			for(size_t i = 0 ; i < iRowResult ; i++)
 			{
 				pdblTemp->val_set(i,i,dblSavedR, dblSavedI);
 			}
@@ -101,7 +101,7 @@ int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDouble
 		else
 		{
 			dblSavedR = _pDouble1->real_get()[0];
-			for(int i = 0 ; i < iRowResult ; i++)
+			for(size_t i = 0 ; i < iRowResult ; i++)
 			{
 				pdblTemp->val_set(i,i,dblSavedR);
 			}
@@ -165,16 +165,16 @@ int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPoly
 
 	MatrixPoly *pTemp	= NULL; //use only is _pPoly is scalar and _pDouble not.
 
-	int iRowResult 	= 0;
-	int iColResult	= 0;
-	int *piRank			= NULL;
+	size_t iRowResult 	= 0;
+	size_t iColResult	= 0;
+	size_t *piRank			= NULL;
 
 /*	if(bScalar1 && bScalar2)
 	{
 		iRowResult = 1;
 		iColResult = 1;
 
-		piRank = new int[1];
+		piRank = new size_t[1];
 		piRank[0]	= _pPoly->poly_get(0)->rank_get();
 	}
 	else */if(bScalar2)
@@ -182,20 +182,20 @@ int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPoly
 		iRowResult = _pPoly->rows_get();
 		iColResult = _pPoly->cols_get();
 
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = _pPoly->poly_get(i)->rank_get();
 		}
 	}
 	else if(bScalar1)
 	{
-		//in this case, we have to create a temporary square polinomial matrix 
+		//in this case, we have to create a temporary square polinomial matrix
 		iRowResult = _pDouble->cols_get();
 		iColResult = _pDouble->rows_get();
 
-		piRank = new int[iRowResult * iRowResult];
-		for(int i = 0 ; i < iRowResult * iRowResult ; i++)
+		piRank = new size_t[iRowResult * iRowResult];
+		for(size_t i = 0 ; i < iRowResult * iRowResult ; i++)
 		{
 			piRank[i] = _pPoly->rank_max_get();
 		}
@@ -207,7 +207,7 @@ int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPoly
 		}
 
 		Double *pdblData = _pPoly->poly_get(0)->coef_get();
-		for(int i = 0 ; i < iRowResult ; i++)
+		for(size_t i = 0 ; i < iRowResult ; i++)
 		{
 			pTemp->poly_set(i,i, pdblData);
 		}
@@ -217,8 +217,8 @@ int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPoly
 		iRowResult = pL->rows_get();
 		iColResult = pL->cols_get();
 
-		piRank = new int[iRowResult * iColResult];
-		for(int i = 0 ; i < iRowResult * iColResult ; i++)
+		piRank = new size_t[iRowResult * iColResult];
+		for(size_t i = 0 ; i < iRowResult * iColResult ; i++)
 		{
 			piRank[i] = pL->poly_get(i)->rank_get();
 		}
@@ -239,7 +239,7 @@ int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPoly
 
 	if(bScalar2)
 	{//[p] * cst
-		for(int i = 0 ; i < _pPoly->size_get() ; i++)
+		for(size_t i = 0 ; i < _pPoly->size_get() ; i++)
 		{
 			Poly *pPolyIn			= _pPoly->poly_get(i);
 			double* pRealIn		= pPolyIn->coef_get()->real_get();
@@ -248,33 +248,33 @@ int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPoly
 			Poly *pPolyOut		= (*_pPolyOut)->poly_get(i);
 			double* pRealOut	= pPolyOut->coef_get()->real_get();
 			double* pImgOut		= pPolyOut->coef_get()->img_get();
-			
+
 			if(bComplex1 == false && bComplex2 == false)
 			{
 				iRightDivisionRealMatrixByRealMatrix(
 						pRealIn, 1,
-						_pDouble->real_get(),	0, 
+						_pDouble->real_get(),	0,
 						pRealOut, 1, pPolyOut->rank_get());
 			}
 			else if(bComplex1 == false && bComplex2 == true)
 			{
 				iRightDivisionRealMatrixByComplexMatrix(
 						pRealIn, 1,
-						_pDouble->real_get(),	_pDouble->img_get(), 0, 
+						_pDouble->real_get(),	_pDouble->img_get(), 0,
 						pRealOut,	pImgOut, 1, pPolyOut->rank_get());
 			}
 			else if(bComplex1 == true && bComplex2 == false)
 			{
 				iRightDivisionComplexMatrixByRealMatrix(
 						pRealIn, pImgIn, 1,
-						_pDouble->real_get(), 0, 
+						_pDouble->real_get(), 0,
 						pRealOut, pImgOut, 1, pPolyOut->rank_get());
 			}
 			else if(bComplex1 == true && bComplex2 == true)
 			{
 				iRightDivisionComplexMatrixByComplexMatrix(
 						pRealIn, pImgIn, 1,
-						_pDouble->real_get(),	_pDouble->img_get(), 0, 
+						_pDouble->real_get(),	_pDouble->img_get(), 0,
 						pRealOut, pImgOut, 1, pPolyOut->rank_get());
 			}
 		}
@@ -285,7 +285,7 @@ int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPoly
 		double *pReal				= pResultCoef->real_get();
 		double *pImg				= pResultCoef->img_get();
 
-		for(int i = 0 ; i < pTemp->poly_get(0)->rank_get() ; i++)
+		for(size_t i = 0 ; i < pTemp->poly_get(0)->rank_get() ; i++)
 		{
 			Double *pCoef				= pTemp->extract_coef(i);
 			Double *pResultCoef = new Double(iRowResult, iColResult, pCoef->isComplex());
@@ -297,7 +297,7 @@ int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPoly
 				double dblRcond = 0;
 				iRightDivisionOfRealMatrix(
 						pCoef->real_get(), iRowResult, iRowResult,
-						_pDouble->real_get(), _pDouble->rows_get(), _pDouble->cols_get(), 
+						_pDouble->real_get(), _pDouble->rows_get(), _pDouble->cols_get(),
 						pReal, iRowResult, iColResult, &dblRcond);
 			}
 			else
@@ -305,7 +305,7 @@ int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPoly
 				double dblRcond = 0;
 				iRightDivisionOfComplexMatrix(
 						pCoef->real_get(), pCoef->img_get(), iRowResult, iRowResult,
-						_pDouble->real_get(), _pDouble->img_get(), _pDouble->rows_get(), _pDouble->cols_get(), 
+						_pDouble->real_get(), _pDouble->img_get(), _pDouble->rows_get(), _pDouble->cols_get(),
 						pReal, pImg, iRowResult, iColResult, &dblRcond);
 			}
 

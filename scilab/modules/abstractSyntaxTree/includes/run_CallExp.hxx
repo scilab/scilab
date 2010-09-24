@@ -229,10 +229,10 @@ void visitprivate(const CallExp &e)
             {
                 //Create list of indexes
                 bool bSeeAsVector   = iArgDim == 1;
-                int *piIndexSeq		= NULL;
-                int *piMaxDim       = NULL;
-                int *piDimSize		= new int[iArgDim];
-                int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+                size_t *piIndexSeq		= NULL;
+                size_t *piMaxDim       = NULL;
+                size_t *piDimSize		= new size_t[iArgDim];
+                size_t iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
                 //check we don't have bad indexes like "< 1"
                 for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
@@ -268,11 +268,11 @@ void visitprivate(const CallExp &e)
         else
         {
             //Create list of indexes
-            bool bSeeAsVector   = iArgDim == 1;
-            int *piIndexSeq		= NULL;
-            int *piMaxDim       = NULL;
-            int *piDimSize		= new int[iArgDim];
-            int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+            bool bSeeAsVector       = iArgDim == 1;
+            size_t *piIndexSeq		= NULL;
+            size_t *piMaxDim        = NULL;
+            size_t *piDimSize		= new size_t[iArgDim];
+            size_t iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
             //check we don't have bad indexes like "< 1"
             for(int i = 0 ; i < iTotalCombi * iArgDim; i++)

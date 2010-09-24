@@ -31,7 +31,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
 {
     if(in.size() < 1)
     {
-        Scierror(999,_("%s: Wrong number of input arguments: At least %d expected.\n"), "size", 1);        
+        Scierror(999,_("%s: Wrong number of input arguments: At least %d expected.\n"), "size", 1);
         return Function::Error;
     }
 
@@ -63,13 +63,13 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 return Function::Error;
             }
 
-            int iRows = in[0]->getAsGenericType()->rows_get();
-            int iCols = in[0]->getAsGenericType()->cols_get();
+            size_t iRows = in[0]->getAsGenericType()->rows_get();
+            size_t iCols = in[0]->getAsGenericType()->cols_get();
 
             if(_iRetCount == 1)
             {
-                int iRowsOut = 1;
-                int iColsOut = 0;
+                size_t iRowsOut = 1;
+                size_t iColsOut = 0;
                 double pdblReal[2] = {0,0};
 
                 switch(iMode)

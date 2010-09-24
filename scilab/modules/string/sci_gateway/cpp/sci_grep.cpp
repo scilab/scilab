@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
@@ -27,7 +27,7 @@ extern "C"
 #include "charEncoding.h"
 #include "pcre_private.h"
 #include "pcre_error.h"
-} 
+}
 
 using namespace types;
 
@@ -37,10 +37,10 @@ using namespace types;
 /*------------------------------------------------------------------------*/
 typedef struct grep_results
 {
-	int sizeArraysMax;
-	int currentLength;
-	int *values;
-	int *positions;
+	size_t sizeArraysMax;
+	size_t currentLength;
+	int    *values;
+	int    *positions;
 } GREPRESULTS;
 /*------------------------------------------------------------------------*/
 static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char **Inputs_param_two,int mn_two);
@@ -149,7 +149,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
             {
                 pDbl1[i] = static_cast<double>(grepresults.values[i]);
             }
-            
+
             out.push_back(pD1);
 
             if (_iRetCount == 2)
@@ -254,7 +254,7 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 	int x = 0,y = 0;
 	char *save=NULL;
 	pcre_error_code answer = PCRE_FINISHED_OK;
-	for (x = 0; x <  mn_one ;x++) 
+	for (x = 0; x <  mn_one ;x++)
 	{
 		results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
 	}
@@ -281,7 +281,7 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 
 			if ( answer == PCRE_FINISHED_OK )
 			{
-				if (results->currentLength < results->sizeArraysMax) 
+				if (results->currentLength < results->sizeArraysMax)
 				{
 					results->values[results->currentLength] = y+1;
 					results->positions[results->currentLength] = x+1;
@@ -348,9 +348,9 @@ static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 //	int code_error_grep = GREP_OK;
 //
 //	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Strings_Input_One);
-//	m1n1 = m1*n1;  
+//	m1n1 = m1*n1;
 //	GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Strings_Input_Two);
-//	m2n2 = m2*n2; 
+//	m2n2 = m2*n2;
 //
 //	for (i = 0;i < m2n2;i++)
 //	{
