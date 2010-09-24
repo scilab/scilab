@@ -58,8 +58,8 @@ sciPointObj * sciGetCurrentFigure( void )
       setGraphicObjectProperty(pFigure->UID, __GO_ID__, &iZero, jni_int, 1);
 
       /*
-       * Clones a new Axes objects using the axes model which is then
-       *  attached to the newly created Figure.
+       * Clones a new Axes object using the Axes model which is then
+       * attached to the newly created Figure.
        */
       sciPointObj* newaxes = sciCloneObj(getAxesModel());
 

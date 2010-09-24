@@ -35,7 +35,7 @@ public abstract class GraphicObject implements Cloneable {
 	/** Identifier */
 	private String identifier;
 	
-	/** Parent object is known by it's UID */
+	/** Parent object is known by its UID */
 	private String parent;
 
 	/** Child objects list. Known by their UID */
@@ -72,7 +72,20 @@ public abstract class GraphicObject implements Cloneable {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-	    
+
+            /*
+             * Creating an empty list is done to avoid
+             * still referencing the original object's own list,
+             * which occurs when the Figure model is cloned.
+             */
+            copy.setChildren(new ArrayList<String>(0));
+
+            /*
+             * Avoids keeping the Figure model as a parent
+             * when the Axes model is cloned.
+             */
+            copy.setParent("");
+
 	    return (GraphicObject) copy;
 	}
 	
