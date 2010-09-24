@@ -10,6 +10,7 @@ package org.scilab.tests.modules.hdf5;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -17,12 +18,15 @@ import java.lang.reflect.Modifier;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
 import org.scilab.modules.hdf5.read.H5Read;
-import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.hdf5.write.H5Write;
+import org.scilab.modules.types.ScilabString;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 
 public class testScilabString {
@@ -49,11 +53,11 @@ public class testScilabString {
 
 		ScilabString data = new ScilabString();
 		fileId = H5Read.openFile(tempDir + "/singleStringFromJava.h5");
-		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_STRING);
+		Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_STRING);
 		H5Read.readDataFromFile(fileId, data);
-		assert data.getData().length == 1;
-		assert data.getData()[0].length == 1;
-		assert data.getData()[0][0].equals(myString);
+		Assert.assertEquals(data.getData().length, 1);
+		Assert.assertEquals(data.getData()[0].length, 1);
+		Assert.assertEquals(data.getData()[0][0], myString);
     }
 
 	@Test
@@ -75,13 +79,13 @@ public class testScilabString {
 
 		ScilabString data = new ScilabString();
 		fileId = H5Read.openFile(tempDir + "/matrixStringFromJava.h5");
-		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_STRING);
+		Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_STRING);
 		H5Read.readDataFromFile(fileId, data);
-		assert data.getData().length == ROWS;
-		assert data.getData()[0].length == COLS;
+		Assert.assertEquals(data.getData().length, ROWS);
+		Assert.assertEquals(data.getData()[0].length, COLS);
 		for (int i = 0 ; i < ROWS ; ++i) {
 			for (int j = 0 ; j < COLS ; ++j) {
-				assert data.getData()[i][j].equals(dataStringMatix[i][j]);
+				Assert.assertEquals(data.getData()[i][j], dataStringMatix[i][j]);
 			}
 		}
 
@@ -124,15 +128,15 @@ public class testScilabString {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
-		Object obj = new testScilabString();
-		Method[] tests = testScilabString.class.getDeclaredMethods();
-		for (Method method : tests) {
-			int modifiers = method.getModifiers();
-			if ((modifiers | Modifier.STATIC) != modifiers) {
+	public static void main(String[] args) throws Exception {
+		final Class< ? > myClass = Class.forName(new Throwable().getStackTrace()[0].getClassName());
+		
+		Object obj = myClass.newInstance();
+		java.lang.reflect.Method[] tests = myClass.getDeclaredMethods();
+		for (java.lang.reflect.Method method : tests) {
+			if (method.getAnnotation(Test.class) != null) {
 				method.invoke(obj, (Object[]) null);
 			}
 		}
 	}
-	
 }
