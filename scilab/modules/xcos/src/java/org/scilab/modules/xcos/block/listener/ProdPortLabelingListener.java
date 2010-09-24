@@ -23,6 +23,8 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 
+import com.mxgraph.model.mxICell;
+
 /**
  * Change the port label on ipar change.
  * 
@@ -65,7 +67,7 @@ public class ProdPortLabelingListener implements PropertyChangeListener, Seriali
 		 */
 		final List<InputPort> ports = new ArrayList<InputPort>();
 		for (int i = 0; i < source.getChildCount(); i++) {
-			final BasicPort port = (BasicPort) source.getChildAt(i);
+			final mxICell port = source.getChildAt(i);
 			
 			if (port instanceof InputPort) {
 				ports.add((InputPort) port);

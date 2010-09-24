@@ -1005,7 +1005,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			}
 			
 			final Deque<mxICell> current = oldPorts.get(klass);
-			current.add((mxICell) cell);
+			if (current != null) {
+				current.add((mxICell) cell);
+			}
 		}
 		
 		return oldPorts;
