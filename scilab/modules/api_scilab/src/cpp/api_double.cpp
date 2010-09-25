@@ -174,7 +174,7 @@ SciErr fillCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, in
 	return sciErr;
 }
 
-SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal)
+SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const double* _pdblReal)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
@@ -189,11 +189,11 @@ SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, dou
 		return sciErr;
 	}
 
-	C2F(dcopy)(&iSize, _pdblReal, &iOne, pdblReal, &iOne);
+	C2F(dcopy)(&iSize, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);
 	return sciErr;
 }
 
-SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	double *pdblReal	= NULL;
@@ -209,12 +209,12 @@ SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCo
 		return sciErr;
 	}
 
-	C2F(dcopy)(&iSize, _pdblReal,	&iOne, pdblReal,	&iOne);
-	C2F(dcopy)(&iSize, _pdblImg,	&iOne, pdblImg,		&iOne);
+	C2F(dcopy)(&iSize, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);
+	C2F(dcopy)(&iSize, const_cast<double*>(_pdblImg), &iOne, pdblImg, &iOne);
 	return sciErr;
 }
 
-SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData)
+SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const doublecomplex* _pdblData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	double *pdblReal		= NULL;
@@ -232,17 +232,17 @@ SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iC
 	return sciErr;
 }
 
-SciErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal)
+SciErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const double* _pdblReal)
 {
 	return createCommonNamedMatrixOfDouble(_pvCtx, _pstName, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
 	return createCommonNamedMatrixOfDouble(_pvCtx, _pstName, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
 
-SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData)
+SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const doublecomplex* _pdblData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -276,16 +276,17 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRow
 	return sciErr;
 }
 
-SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-	int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
-	int iSize					= _iRows * _iCols;
-	int *piAddr				= NULL;
+	int iSaveRhs		= Rhs;
+	int iSaveTop		= Top;
+	int iSize		= _iRows * _iCols;
+	int *piAddr		= NULL;
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
+	int iOne		= 1;
 
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
@@ -303,11 +304,11 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iCompl
 	//write matrix information
 	fillCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
 	//copy data in stack
-	memcpy(pdblReal, _pdblReal, sizeof(double) * _iRows * _iCols);
+	C2F(dcopy)(&iSize, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);
 
 	if(_iComplex)
 	{
-		memcpy(pdblImg, _pdblImg, sizeof(double) * _iRows * _iCols);
+		C2F(dcopy)(&iSize, const_cast<double*>(_pdblImg), &iOne, pdblImg, &iOne);
 	}
 
 	//update "variable index"
@@ -336,9 +337,11 @@ SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows
 SciErr readCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int* piAddr				= NULL;
+	int* piAddr		= NULL;
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
+	int iSize		= 0;
+	int iOne		= 1;
 
 	sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(sciErr.iErr)
@@ -359,10 +362,11 @@ SciErr readCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex
 		return sciErr;
 	}
 
-	memcpy(_pdblReal, pdblReal, sizeof(double) * *_piRows * *_piCols);
+	iSize = (*_piRows) * (*_piCols);
+	C2F(dcopy)(&iSize, _pdblReal, &iOne, pdblReal, &iOne);
 	if(_iComplex)
 	{
-		memcpy(_pdblImg, pdblImg, sizeof(double) * *_piRows * *_piCols);
+		C2F(dcopy)(&iSize, _pdblImg, &iOne, pdblImg, &iOne);
 	}
 
 	return sciErr;

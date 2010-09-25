@@ -86,7 +86,7 @@ SciErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
  * @param[in] _pdblReal pointer to real data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal);
 
 /**
  * Create a complex sparse double variable
@@ -100,7 +100,7 @@ SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _
  * @param[in] _pdblImg pointer to imaginary parts
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
 
 /**
  * Create a named sparse double variable
@@ -113,7 +113,7 @@ SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
  * @param[in] _pdblReal pointer to real data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+SciErr createNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal);
 
 /**
  * Create a named complex sparse double variable
@@ -127,7 +127,7 @@ SciErr createNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iC
  * @param[int] _pdblImg pointer to imaginary parts
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+SciErr createNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
 
 /**
  * Read named sparse double variable
