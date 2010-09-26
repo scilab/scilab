@@ -483,7 +483,7 @@ SciErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _
  * @param[in] _piBool pointer to boolean data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
+SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool);
 
 /**
  * Create a boolean variable in a named list
@@ -495,7 +495,7 @@ SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int 
  * @param[in] _piBool pointer to boolean data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
+SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool);
 
 /**
  * Read a boolean variable from a named list

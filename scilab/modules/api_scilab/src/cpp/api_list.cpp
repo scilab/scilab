@@ -1063,7 +1063,7 @@ SciErr getMatrixOfBooleanInList(void* _pvCtx, int* _piParent, int _iItemPos, int
 	return sciErr;
 }
 
-SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)
+SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piBool			= NULL;
@@ -1147,7 +1147,7 @@ static SciErr fillMatrixOfBoolInList(void* _pvCtx, int _iVar, int* _piParent, in
 	return sciErr;
 }
 
-SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)
+SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
