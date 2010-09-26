@@ -550,7 +550,7 @@ SciErr getComplexMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos,
  * @param[in] _pdblReal pointer to real polynomial coefficients
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+SciErr createMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal);
 
 /**
  * Create a complex polynomial variable in a list
@@ -565,7 +565,7 @@ SciErr createMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iI
  * @param[in] _pdblImg pointer to imaginary polynomial coefficients
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createComplexMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+SciErr createComplexMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg);
 
 /**
  * Read a polynomial variable from a named list
@@ -606,7 +606,7 @@ SciErr readComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _pi
  * @param[in] _pdblReal pointer to real polynomial coefficients
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+SciErr createMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal);
 
 /**
  * Create a complex polynomial variable in a named list
@@ -621,7 +621,7 @@ SciErr createMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParen
  * @param[in] _pdblImg pointer to imaginary polynomial coefficients
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+SciErr createComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg);
 
 /*********************
  * integer functions *
