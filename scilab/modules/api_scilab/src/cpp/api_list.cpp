@@ -2123,7 +2123,7 @@ SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _pi
 /*****************************
  * boolean sparses functions *
  *****************************/
-static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -2173,7 +2173,7 @@ static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piPar
 	return sciErr;
 }
 
-SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr					= NULL;
@@ -2206,7 +2206,7 @@ SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, 
 	return sciErr;
 }
 
-SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
