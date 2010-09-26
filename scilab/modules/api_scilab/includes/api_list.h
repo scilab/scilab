@@ -637,7 +637,7 @@ SciErr createComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _
  * @param[in] _pcData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData);
+SciErr createMatrixOfInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* _pcData);
 
 /**
  * Create an 8-bit unsigned integer variable in a list
@@ -649,7 +649,7 @@ SciErr createMatrixOfInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int
  * @param[in] _pucData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData);
+SciErr createMatrixOfUnsignedInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned char* _pucData);
 
 /**
  * Create a 16-bit signed integer variable in a list
@@ -661,7 +661,7 @@ SciErr createMatrixOfUnsignedInteger8InList(void* _pvCtx, int _iVar, int* _piPar
  * @param[in] _psData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData);
+SciErr createMatrixOfInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const short* _psData);
 
 /**
  * Create a 16-bit unsigned integer variable in a list
@@ -673,7 +673,7 @@ SciErr createMatrixOfInteger16InList(void* _pvCtx, int _iVar, int* _piParent, in
  * @param[in] _pusData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData);
+SciErr createMatrixOfUnsignedInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned short* _pusData);
 
 /**
  * Create a 32-bit signed integer variable in a list
@@ -685,7 +685,7 @@ SciErr createMatrixOfUnsignedInteger16InList(void* _pvCtx, int _iVar, int* _piPa
  * @param[in] _piData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData);
+SciErr createMatrixOfInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piData);
 
 /**
  * Create a 32-bit unsigned integer variable in a list
@@ -697,7 +697,7 @@ SciErr createMatrixOfInteger32InList(void* _pvCtx, int _iVar, int* _piParent, in
  * @param[in] _puiData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData);
+SciErr createMatrixOfUnsignedInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned int* _puiData);
 
 #ifdef __SCILAB_INT64__
 
@@ -711,7 +711,7 @@ SciErr createMatrixOfUnsignedInteger32InList(void* _pvCtx, int _iVar, int* _piPa
  * @param[in] _pllData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger64InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long* _pllData);
+SciErr createMatrixOfInteger64InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const long long* _pllData);
 
 /**
  * Create a 64-bit unsigned integer variable in a list
@@ -723,7 +723,7 @@ SciErr createMatrixOfInteger64InList(void* _pvCtx, int _iVar, int* _piParent, in
  * @param[in] _pullData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger64InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned long long* _pullData);
+SciErr createMatrixOfUnsignedInteger64InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned long long* _pullData);
 
 #endif
 
@@ -929,7 +929,7 @@ SciErr getMatrixOfUnsignedInteger64InList(void* _pvCtx, int* _piParent, int _iIt
  * @param[in] _pcData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData);
+SciErr createMatrixOfInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* _pcData);
 
 /**
  * Create an 8-bit unsigned integer variable in a named list
@@ -941,7 +941,7 @@ SciErr createMatrixOfInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piP
  * @param[in] _pucData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData);
+SciErr createMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned char* _pucData);
 
 /**
  * Create a 16-bit signed integer variable in a named list
@@ -953,7 +953,7 @@ SciErr createMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, i
  * @param[in] _psData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData);
+SciErr createMatrixOfInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const short* _psData);
 
 /**
  * Create a 16-bit unsigned integer variable in a named list
@@ -965,7 +965,7 @@ SciErr createMatrixOfInteger16InNamedList(void* _pvCtx, char* _pstName, int* _pi
  * @param[in] _pusData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData);
+SciErr createMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned short* _pusData);
 
 /**
  * Create a 32-bit signed integer variable in a named list
@@ -977,7 +977,7 @@ SciErr createMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, 
  * @param[in] _piData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData);
+SciErr createMatrixOfInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piData);
 
 /**
  * Create a 32-bit unsigned integer variable in a named list
@@ -989,7 +989,7 @@ SciErr createMatrixOfInteger32InNamedList(void* _pvCtx, char* _pstName, int* _pi
  * @param[in] _puiData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData);
+SciErr createMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned int* _puiData);
 
 #ifdef __SCILAB_INT64__
 
@@ -1003,7 +1003,7 @@ SciErr createMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, 
  * @param[in] _pllData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfInteger64InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long* _pllData);
+SciErr createMatrixOfInteger64InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const long long* _pllData);
 
 /**
  * Create a 64-bit unsigned integer variable in a named list
@@ -1015,7 +1015,7 @@ SciErr createMatrixOfInteger64InNamedList(void* _pvCtx, char* _pstName, int* _pi
  * @param[in] _pullData pointer to data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfUnsignedInteger64InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned long long* _pullData);
+SciErr createMatrixOfUnsignedInteger64InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned long long* _pullData);
 #endif
 
 /**
