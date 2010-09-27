@@ -129,6 +129,7 @@ libscixcos_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscixcos_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscixcos_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 =
 am__objects_3 = libscixcos_la-gw_xcos.lo
@@ -522,6 +523,7 @@ CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
 libscixcos_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/jvm/libscijvm.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

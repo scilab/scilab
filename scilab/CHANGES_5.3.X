@@ -6,6 +6,12 @@ Xcos:
 
 * bug 8081 fixed - The context was not checked before being set.
 
+Bug Fixes:
+==========
+
+* bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni 
+                   mode on Linux and MacOS X.
+
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
