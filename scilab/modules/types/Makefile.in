@@ -543,15 +543,15 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 
 libscitypes_la_CFLAGS = 
 libscitypes_la_CPPFLAGS = -Iincludes/ \
-				-I../elementary_functions/includes \
-				-I../operations/includes \
-				-I../symbol/includes \
-				-I../abstractSyntaxTree/includes \
-				-I../output_stream/includes \
-				-I../parse/includes \
-				-I../system_env/includes \
-				-I ../functions_manager/includes \
-				-I ../string/includes \
+				-I$(top_srcdir)/modules/elementary_functions/includes \
+				-I$(top_srcdir)/modules/operations/includes \
+				-I$(top_srcdir)/modules/symbol/includes \
+				-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/parse/includes \
+				-I$(top_srcdir)/modules/system_env/includes \
+				-I$(top_srcdir)/modules/functions_manager/includes \
+				-I$(top_srcdir)/modules/string/includes \
 				-I src/cpp
 
 pkglib_LTLIBRARIES = libscitypes.la
