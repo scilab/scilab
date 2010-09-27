@@ -50,9 +50,9 @@ c     ouverture du fichier
 c
       err  =0
       lunit=0
-      call inffic( 5, buf, nc)
+c     QUIT_ERRCATCH_ID 3 (see inffic.h)  
+      call inffic( 3, buf, nc)
       nc = max ( 1 , nc )
-      call inffic( 5, buf, nc)
       mode(1)=103
       call clunit( lunit, buf(1:nc), mode)
       if ( err.gt.0 ) call error(err)
