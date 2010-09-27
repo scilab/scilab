@@ -7,10 +7,18 @@ License:
 The license of all demos and examples have been changed to the 3-clause BSD
 license. The domain public license was not valid in some countries.
 
+
 Xcos:
 =====
 
 * bug 8081 fixed - The context was not checked before being set.
+
+
+SciNotes:
+=========
+
+* bug 8095 fixed - The Set Colors window was too height with OpenJDK.
+
 
 Bug Fixes:
 ==========
