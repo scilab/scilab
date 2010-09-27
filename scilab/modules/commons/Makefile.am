@@ -73,7 +73,7 @@ INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = 
+SWIG_WRAPPERS = src/jni/ScilabCommons.i
 
 if SWIG
 BUILT_SOURCES=swig
