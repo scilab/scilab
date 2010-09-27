@@ -54,7 +54,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 
 	private CheckBoxMenuItem meAsACheckBoxMenuItem;
 
-	private boolean checkedState = false;
+	private boolean checkedState;
 
 	/**
 	 * Constructor
@@ -90,6 +90,9 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	public void setCallback(CallBack callback) {
 		this.callback = callback;
 		addActionListener(this.callback);
+		if (meAsACheckBoxMenuItem != null) {
+			meAsACheckBoxMenuItem.setCallback(this.callback);
+		}
 	}
 
 	/**

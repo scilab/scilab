@@ -7,17 +7,17 @@ License:
 The license of all demos and examples have been changed to the 3-clause BSD
 license. The domain public license was not valid in some countries.
 
+Known incompatibilities:
+========================
+
+* Due to bug 7364 fix, "Checked" uimenus have to be manually managed, these
+  uimenus are no more (un)checked on mouse click. Moreover, they can now have
+  a callback.
 
 Xcos:
 =====
 
 * bug 8081 fixed - The context was not checked before being set.
-
-Bug fixes:
-==========
-
-* bug 8097 fixed - Scilab crashed when plotting on a figure with "Units" 
-                   property set to "pixels".
 
 
 SciNotes:
@@ -28,6 +28,9 @@ SciNotes:
 
 Bug Fixes:
 ==========
+
+* bug 7364 fixed - The "Checked" property misworked for uimenus and they could
+                   not have a callback.
 
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
 
