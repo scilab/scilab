@@ -3,7 +3,7 @@
  * Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
  * Copyright (C) INRIA - 2005 - Allan Cornet
  * 
- * This file is released into the public domain
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  */
 #include <stdio.h> /* stderr */

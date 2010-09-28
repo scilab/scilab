@@ -2,7 +2,7 @@
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2010 - DIGITEO
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function demo_fec4() 
   mode(0);

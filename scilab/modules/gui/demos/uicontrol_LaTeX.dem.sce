@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - Calixte DENIZET
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function latex_callback()
 messagebox("LaTeX is beautiful !", "", "info", "modal");

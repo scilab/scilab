@@ -2,7 +2,7 @@
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) ENPC
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function [y]=Geom(m,n,p)
 	// P(0)= 0 P(i) = p*(1-p)^{n-1} P(inf)=0

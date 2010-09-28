@@ -1,6 +1,12 @@
             Changes between version 5.3.0-beta-4 and 5.3.0 of Scilab
             ========================================================
 
+License:
+========
+
+The license of all demos and examples have been changed to the 3-clause BSD
+license. The domain public license was not valid in some countries.
+
 Xcos:
 =====
 

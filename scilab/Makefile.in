@@ -625,6 +625,7 @@ $(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/CHANGES_5.3.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
+$(top_srcdir)/COPYING-BSD \
 $(top_srcdir)/COPYING-FR \
 $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
