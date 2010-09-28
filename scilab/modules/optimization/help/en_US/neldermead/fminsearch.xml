@@ -257,6 +257,8 @@
         <listitem>
           <para>
 	  The verbose level. 
+          Possible values are "notify", "iter", "final" and "off". 
+          The default value is "notify".
 	  </para>
         </listitem>
       </varlistentry>
