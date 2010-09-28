@@ -17,15 +17,15 @@ msgstr ""
 "Revision-Date: 2010-11-18 15:37+0100\n"
 
 # File: src/c/banier.c, line: 36
-msgid "                 Consortium Scilab (DIGITEO)\n"
+msgid "Consortium Scilab (DIGITEO)\n"
 msgstr ""
 #
 # File: src/c/banier.c, line: 39
-msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr ""
 #
 # File: src/c/banier.c, line: 38
-msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+msgid "Copyright (c) 1989-2010 (INRIA)\n"
 msgstr ""
 #
 # File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 69

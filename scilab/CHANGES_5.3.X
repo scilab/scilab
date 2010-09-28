@@ -31,6 +31,11 @@ in the status bar of Scinotes.
 
 * A bad identifier is now shown in the text editor.
 
+Localization:
+=============
+
+* bug 8096 fixed - With Russian localization, the banner was not centered.
+
 Graphics:
 =========
 
