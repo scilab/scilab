@@ -44,6 +44,11 @@ Bug Fixes:
 
 * bug 8087 fixed - prettyprint did not handle %inf and %nan.
 
+* bug 8108 fixed - Modules that start by the letter "n" were not well managed
+                   by ATOMS. The cause of the issue is the behaviour of the
+                   msprintf function, which considers "\n" in file paths as a
+                   new line insertion.
+
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
