@@ -304,6 +304,8 @@ public class Axes extends GraphicObject {
 			return ClippablePropertyType.CLIPSTATE;
 		} else if (propertyName.equals(__GO_CLIP_BOX__)) {
 			return ClippablePropertyType.CLIPBOX;
+		} else if (propertyName.equals(__GO_CLIP_BOX_SET__)) {
+			return ClippablePropertyType.CLIPBOXSET;
 		} else if (propertyName.equals(__GO_ARC_DRAWING_METHOD__)) {
 			return ArcProperty.ARCDRAWINGMETHOD;
 		} else {
@@ -461,6 +463,8 @@ public class Axes extends GraphicObject {
 			return getClipState();
 		} else if (property == ClippablePropertyType.CLIPBOX) {
 			return getClipBox();
+		} else if (property == ClippablePropertyType.CLIPBOXSET) {
+			return getClipBoxSet();
 		} else if (property == ArcProperty.ARCDRAWINGMETHOD) {
 			return getArcDrawingMethod();
 		} else {
@@ -613,6 +617,8 @@ public class Axes extends GraphicObject {
 			setClipState((Integer) value);
 		} else if (property == ClippablePropertyType.CLIPBOX) {
 			setClipBox((Double[]) value);
+		} else if (property == ClippablePropertyType.CLIPBOXSET) {
+			setClipBoxSet((Boolean) value);
 		} else if (property == ArcProperty.ARCDRAWINGMETHOD) {
 			setArcDrawingMethod((Integer) value);
 		} else {
@@ -1559,6 +1565,20 @@ public class Axes extends GraphicObject {
 	 */
 	public void setClipBox(Double[] clipBox) {
 		clipProperty.setClipBox(clipBox);
+	}
+
+	/**
+	 * @return the clip box set
+	 */
+	public Boolean getClipBoxSet() {
+		return clipProperty.getClipBoxSet();
+	}
+
+	/**
+	 * @param clipBoxSet the clip box set to set
+	 */
+	public void setClipBoxSet(Boolean clipBoxSet) {
+		clipProperty.setClipBoxSet(clipBoxSet);
 	}
 
 	/**
