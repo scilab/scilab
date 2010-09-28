@@ -4,6 +4,11 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- JVM NOT MANDATORY -->
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 4926 -->
 //
 // <-- Bugzilla URL -->
@@ -16,6 +21,6 @@ s.firstname = "FIRSTNAME";
 s.age = 25;
 s.address = "TOWN";
 ierr = execstr("savematfile(TMPDIR + filesep() + ""bug_4926.tst"", ""s"")", "errcatch");
-ATTENTION : Option -v7 added.
-ATTENTION : Variable s can not be saved in ASCII file: IGNORED.
+WARNING: Option -v7 added.
+WARNING: Variable s can not be saved in ASCII file: IGNORED.
 if ierr <> 0 then bugmes();quit;end

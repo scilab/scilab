@@ -98,6 +98,15 @@ Visual-Studio-settings/f2c.props
 Visual-Studio-settings/f2c.targets
 Visual-Studio-settings/f2c.xml
 
+# eclipse temp files
+workspace/
+.checkstyle
+.classpath
+.project
+
+# MacOS files
+.DS_Store
+
 #
 # scilab/ specific files
 #

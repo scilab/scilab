@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<Setting>
+<Setting version="0.22">
   <!-- SCINOTES configuration -->
   <Profile name="scinotes">
 
@@ -28,8 +28,11 @@
     <!-- linecolor or contourcolor can be "null" to be transparent -->
     <LineHighlighter value="false" linecolor="#e4e9f4" contourcolor="#323232"/>
 
-    <!-- Activate or not the help on typing -->
-    <HelpOnTyping value="true"/>
+    <!-- Activate or not the help on typing for openers such as '(', '[', '"',... -->
+    <HelpOnTypingOpeners value="true"/>
+
+    <!-- Activate or not the help on typing for keywords such as 'if', 'function',... -->
+    <HelpOnTypingKeywords value="true"/>
 
     <!-- Restore the open files from the last session  -->
     <RestoreFiles value="true"/>
@@ -37,11 +40,15 @@
     <!-- Line numbering : 0 is off, 1 is normal and 2 is whereami-->
     <LineNumbering value="1"/>
 
-    <!-- inside is a boolean to indicate if the contents between the keywords must be highlighted
-         if inside is true type can be filled or framed else it can be filled, framed or underlined -->
+
+    <!-- * inside is a boolean to indicate if the contents between the keywords must be highlighted.
+         * included is only used when inside is true to say if keywords or open/close must be highlighted.
+         * If inside is true type can be filled or framed else it can be filled, framed or underlined.
+         * strict is only used for Keywords when inside is true, in this case the lines which contain the keywords
+           are not highlighted. -->
     <Matching onmouseover="true">
-      <KeywordsHighlighter color="#fff3d2" inside="true" type="filled"/>
-      <OpenCloseHighlighter color="#e40087" inside="false" type="framed"/>
+      <KeywordsHighlighter color="#fff3d2" inside="true" included="false" strict="true" type="filled"/>
+      <OpenCloseHighlighter color="#e40087" inside="false" included="true" type="framed"/>
     </Matching>
 
     <SciNotes>
@@ -51,7 +58,7 @@
 
     <styles>
 
-      <FontName default="Lucida Sans Typewriter Regular" useCache="true" value="Lucida Sans Typewriter Regular"/>
+      <FontName default="Lucida Sans Typewriter" useCache="true" value="Lucida Sans Typewriter"/>
       <FontSize default="14" useCache="true" value="14"/>
 
       <MainWindowPosition useCache="true" x="150" y="50"/>
@@ -118,7 +125,7 @@
       </style>
 
       <style name="MacroInFile" underline="true" defaultUnderline="true">
-	<ForegroundColor default="#000000" useCache="true" value="#000000"/>
+        <ForegroundColor default="#000000" useCache="true" value="#000000"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
@@ -157,6 +164,11 @@
         <FontStyle default="2" useCache="true" value="2"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
+      <style name="LaTeXInComment">
+        <ForegroundColor default="#8b2252" useCache="true" value="#8b2252"/>
+        <FontStyle default="2" useCache="true" value="2"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+      </style>
+
       <style name="WhiteInString">
         <ForegroundColor default="#e9b1b1" useCache="true" value="#e9b1b1"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
@@ -175,7 +187,7 @@
       <!-- rep can be "doublechevrons", "horizontal" or "vertical" or a single char such as "#" or "none" -->
       <!-- value is the number of space equivalent to a tabulation -->
       <!-- white is a boolean indicating if a \t must be inserted (false) or a sequence of whites -->
-      <style name="Tabulation" rep="doublechevrons" value="4" white="false">
+      <style name="Tabulation" rep="doublechevrons" value="4" white="true">
         <ForegroundColor default="#dcdcdc" useCache="true" value="#dcdcdc"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
@@ -189,15 +201,18 @@
         <ForegroundColor default="#4a55db" useCache="true" value="#4a55db"/>
         <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
-
     </styles>
+
+    <!-- Favorite Directories Section  -->
+    <favoriteDirectories>
+    </favoriteDirectories>
 
     <!-- Recent Opened Files Section  -->
     <recentFiles>
     </recentFiles>
 
     <!-- Currently Open Files Section  -->
-    <openFiles>      
+    <openFiles>
     </openFiles>
 
   </Profile>

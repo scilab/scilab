@@ -45,7 +45,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.console.GuiManagement;
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -72,6 +72,7 @@ public final class ConfigSciNotesManager {
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
     private static final String VALUE = "value";
+    private static final String VERSION = "version";
     private static final String STYLE = "style";
     private static final String UNDERLINE = "underline";
     private static final String DEFAULTUNDERLINE = "defaultUnderline";
@@ -131,11 +132,15 @@ public final class ConfigSciNotesManager {
     private static final String PANEINST = "paneInstance";
     private static final String PANEINST_EX = "paneInstanceExtra";
 
-    private static final String SCINOTES_CONFIG_FILE = System.getenv("SCI") + "/modules/scinotes/etc/scinotesConfiguration.xml";
-    private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv("SCI") + "/modules/scinotes/etc/keysConfiguration.xml";
+    private static final String FAVORITE_DIRS = "favoriteDirectories";
+    private static final String DIRECTORY = "Directory";
 
-    private static final String USER_SCINOTES_CONFIG_FILE = GuiManagement.getSCIHOME() + "/scinotesConfiguration.xml";
-    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = GuiManagement.getSCIHOME() + "/keysConfiguration.xml";
+    private static final String SCI = "SCI";
+    private static final String SCINOTES_CONFIG_FILE = System.getenv(SCI) + "/modules/scinotes/etc/scinotesConfiguration.xml";
+    private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv(SCI) + "/modules/scinotes/etc/keysConfiguration.xml";
+
+    private static final String USER_SCINOTES_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/scinotesConfiguration.xml";
+    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = ScilabCommons.getSCIHOME() + "/keysConfiguration.xml";
 
     private static final int PLAIN = 0;
     private static final int BOLD =  1;
@@ -152,6 +157,8 @@ public final class ConfigSciNotesManager {
     private static Document document;
     private static Properties keysMap;
 
+    private static boolean updated;
+
     /**
      * Constructor
      */
@@ -163,23 +170,58 @@ public final class ConfigSciNotesManager {
      * Create a copy of Scilab configuration file in the user directory
      */
     public static void createUserCopy() {
-        File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
-        if (!fileConfig.exists() || (fileConfig.length() == 0)) {
+        if (checkVersion()) {
             /* Create a local copy of the configuration file */
             copyFile(new File(SCINOTES_CONFIG_FILE), new File(USER_SCINOTES_CONFIG_FILE));
-        }
-        fileConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
-        if (!fileConfig.exists() || (fileConfig.length() == 0)) {
-            /* Create a local copy of the configuration file */
             copyFile(new File(SCINOTES_CONFIG_KEYS_FILE), new File(USER_SCINOTES_CONFIG_KEYS_FILE));
+            document = null;
+            keysMap = null;
+            updated = true;
         }
     }
+
     /**
      * Get the name of the user configuration file
      * @return the name of the configuration file
      */
     public static String getUserConfigFile() {
         return USER_SCINOTES_CONFIG_FILE;
+    }
+
+    /**
+     * @return true if scinotesConfiguration.xml in etc has a version greater than the version in home
+     */
+    public static boolean checkVersion() {
+        if (updated) {
+            return false;
+        }
+
+        File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
+        File keyConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
+        if (!keyConfig.exists()) {
+            return true;
+        }
+        if (fileConfig.exists()) {
+            document = null;
+            readDocument(SCINOTES_CONFIG_FILE, null);
+            Node setting = getNodeChild(null, SETTING);
+            String str = ((Element) setting).getAttribute(VERSION);
+            if (str != null && str.length() != 0) {
+                float versionEtc = Float.parseFloat(str);
+                document = null;
+                readDocument();
+                setting = getNodeChild(null, SETTING);
+                str = ((Element) setting).getAttribute(VERSION);
+                document = null;
+
+                if (str != null && str.length() != 0) {
+                    float versionHome = Float.parseFloat(str);
+                    return versionEtc != versionHome;
+                }
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -244,9 +286,10 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * @return true if help on typing is active
+     * @param type "Openers" or "Keywords"
+     * @return true if help on typing for openers is active
      */
-    public static boolean getHelpOnTypingState() {
+    public static boolean getHelpOnTyping(String type) {
         readDocument();
 
         Element root = document.getDocumentElement();
@@ -254,7 +297,7 @@ public final class ConfigSciNotesManager {
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING + type);
         Element helpontyping = (Element) allSizeElements.item(0);
 
         return TRUE.equals(helpontyping.getAttribute(VALUE));
@@ -262,9 +305,10 @@ public final class ConfigSciNotesManager {
 
     /**
      * Save help on typing
+     * @param type "Openers" or "Keywords"
      * @param activated active or not
      */
-    public static void saveHelpOnTypingState(boolean activated) {
+    public static void saveHelpOnTyping(String type, boolean activated) {
         readDocument();
 
         Element root = document.getDocumentElement();
@@ -272,10 +316,10 @@ public final class ConfigSciNotesManager {
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING + type);
         Element helpOnTyping = (Element) allSizeElements.item(0);
         if (helpOnTyping == null) {
-            Element help = document.createElement(HELPONTYPING);
+            Element help = document.createElement(HELPONTYPING + type);
             helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
             helpOnTyping.appendChild((Node) help);
         } else {
@@ -587,7 +631,7 @@ public final class ConfigSciNotesManager {
 
         NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
         Element fontName = (Element) fontNameElement.item(0);
-        fontName.setAttribute(VALUE, font.getFontName());
+        fontName.setAttribute(VALUE, font.getName());
 
         /* Save changes */
         writeDocument();
@@ -600,27 +644,30 @@ public final class ConfigSciNotesManager {
      */
     private static void copyFile(File in, File out) {
         FileInputStream fis = null;
+
+        FileOutputStream fos = null;
+
         try {
             fis = new FileInputStream(in);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        FileOutputStream fos = null;
-        try {
             fos = new FileOutputStream(out);
+            byte[] buf = new byte[BUFSIZE];
+            int i = 0;
+            while ((i = fis.read(buf)) != -1) {
+                fos.write(buf, 0, i);            }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        byte[] buf = new byte[BUFSIZE];
-        int i = 0;
-        try {
-            while ((i = fis.read(buf)) != -1) {
-                fos.write(buf, 0, i);
-            }
-            fis.close();
-            fos.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (fos != null) {
+                    fos.close();
+                }
+            } catch (IOException e) { }
         }
     }
 
@@ -675,7 +722,7 @@ public final class ConfigSciNotesManager {
      * @return an Object containing infos
      */
     public static MatchingBlockManager.Parameters getDefaultForMatcher(String kind) {
-        /* <KeywordsHighlighter color="#fff3d2" inside=TRUE type="filled"/> */
+        /* <KeywordsHighlighter color="#fff3d2" inside="true" strict="false" type="filled"/> */
 
         readDocument();
 
@@ -689,6 +736,8 @@ public final class ConfigSciNotesManager {
 
         Color color = Color.decode(matcher.getAttribute("color"));
         boolean inside = TRUE.equals(matcher.getAttribute("inside"));
+        boolean strict = TRUE.equals(matcher.getAttribute("strict"));
+        boolean included = TRUE.equals(matcher.getAttribute("included"));
         String stype = matcher.getAttribute("type");
         int type = 0;
         if ("filled".equals(stype)) {
@@ -699,7 +748,7 @@ public final class ConfigSciNotesManager {
             type = MatchingBlockManager.ScilabKeywordsPainter.FRAMED;
         }
 
-        return new MatchingBlockManager.Parameters(color, inside, type, onmouseover);
+        return new MatchingBlockManager.Parameters(color, inside, strict, included, type, onmouseover);
     }
 
     /**
@@ -1336,7 +1385,7 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * Get all the  recent opened files
+     * Get all the recent opened files
      * @return a array of uri
      */
     public static List<File> getAllRecentOpenedFiles() {
@@ -1355,12 +1404,74 @@ public final class ConfigSciNotesManager {
                 } else {
                     root.removeChild((Node) style);
                 }
-
-                /* Save changes */
-                writeDocument();
             }
         }
+
+        /* Save changes */
+        writeDocument();
+
         return files;
+    }
+
+    /**
+     * Get all the favorite dirs
+     * @return a list of File
+     */
+    public static List<File> getAllFavoriteDirs() {
+        List<File> dirsList = new ArrayList<File>();
+        readDocument();
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(FAVORITE_DIRS).item(0);
+        if (root != null) {
+            NodeList dirs = root.getElementsByTagName(DIRECTORY);
+            for (int i = 0; i < dirs.getLength(); i++) {
+                Element dir = (Element) dirs.item(i);
+                File temp = new File(dir.getAttribute(PATH));
+
+                if (temp.exists()) {
+                    dirsList.add(temp);
+                } else {
+                    root.removeChild((Node) dir);
+                }
+            }
+        }
+
+        /* Save changes */
+        writeDocument();
+
+        return dirsList;
+    }
+
+    /**
+     * Add a path to a favorite directory
+     * @param path the path of the dir
+     */
+    public static void saveFavoriteDirectory(String path) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(FAVORITE_DIRS).item(0);
+        Element newDir =  document.createElement(DIRECTORY);
+        newDir.setAttribute(PATH, path);
+        root.appendChild((Node) newDir);
+
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * Remove the last favorite directory
+     */
+    public static void rmLastFavoriteDirectory() {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(FAVORITE_DIRS).item(0);
+        NodeList dirs = root.getElementsByTagName(DIRECTORY);
+
+        if (dirs.getLength() != 0) {
+            root.removeChild(dirs.item(dirs.getLength() - 1));
+        }
+
+        /* Save changes */
+        writeDocument();
     }
 
     /**
@@ -1428,9 +1539,9 @@ public final class ConfigSciNotesManager {
         NodeList allSizeElements = scinotesProfile.getElementsByTagName(RESTOREFILES);
         Element restorefiles = (Element) allSizeElements.item(0);
         if (restorefiles == null) {
-            Element restore_element = document.createElement(RESTOREFILES);
+            Element restoreElement = document.createElement(RESTOREFILES);
             restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
-            restorefiles.appendChild((Node) restore_element);
+            restorefiles.appendChild((Node) restoreElement);
         } else {
             restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
         }
@@ -1476,10 +1587,11 @@ public final class ConfigSciNotesManager {
             NodeList openFiles = root.getElementsByTagName(DOCUMENT);
 
             /* Loop through the list and return only the files with a matching hash code. */
-            for (int i = 0; i < openFiles.getLength(); ++i) {
+            int i = 0;
+            for (; i < openFiles.getLength(); i++) {
                 Element style = (Element) openFiles.item(i);
 
-                if( editorID.equals( UUID.fromString(style.getAttribute(EDITORINST)))  ) {
+                if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))) {
                     File temp = new File(style.getAttribute(PATH));
 
                     /* Check that the file exists and add to file list or else remove the node. */
@@ -1514,8 +1626,9 @@ public final class ConfigSciNotesManager {
 
                 UUID editorID = UUID.fromString(style.getAttribute(EDITORINST));
 
-                if( !(editorIDlist.contains( editorID )) )
-                    editorIDlist.add( editorID );
+                if (!editorIDlist.contains(editorID)) {
+                    editorIDlist.add(editorID);
+                }
             }
         }
         return editorIDlist;
@@ -1525,10 +1638,11 @@ public final class ConfigSciNotesManager {
      * Add a file to currently open files
      * @param filePath the path of the files to add
      * @param editorInstance instance of the editor to associate with the open file
+     * @param sep the pane
      */
     public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep) {
         readDocument();
-        UUID nil = new UUID(0,0);
+        UUID nil = new UUID(0, 0);
 
         // Find the element containing the list of open files
         Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
@@ -1539,11 +1653,11 @@ public final class ConfigSciNotesManager {
         Element newFile =  document.createElement(DOCUMENT);
         newFile.setAttribute(PATH, filePath);
         // Record the editor instance's hash code
-        newFile.setAttribute(EDITORINST, editorInstance.getUUID().toString() );
+        newFile.setAttribute(EDITORINST, editorInstance.getUUID().toString());
         root.appendChild((Node) newFile);
         // Record the text pane's hash code
-        newFile.setAttribute(PANEINST, sep.getUUID().toString() );
-        newFile.setAttribute(PANEINST_EX, nil.toString() );
+        newFile.setAttribute(PANEINST, sep.getUUID().toString());
+        newFile.setAttribute(PANEINST_EX, nil.toString());
         root.appendChild((Node) newFile);
 
         /* Save changes */
@@ -1586,8 +1700,8 @@ public final class ConfigSciNotesManager {
             UUID paneID1 = UUID.fromString(style.getAttribute(PANEINST));
             UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
 
-            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST))) &&
-                (sepID.equals(nil) || sepID.equals(paneID1) || sepID.equals(paneID2))) {
+            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))
+                && (sepID.equals(nil) || sepID.equals(paneID1) || sepID.equals(paneID2))) {
                 root.removeChild((Node) style);
             }
         }
@@ -1598,7 +1712,7 @@ public final class ConfigSciNotesManager {
 
     /**
      * Change a filename.
-     * @param newfilepath new pathname of the file
+     * @param newfilePath new pathname of the file
      * @param editorInstance instance of the editor
      * @param sep instance of the editor pane
      */
@@ -1608,7 +1722,7 @@ public final class ConfigSciNotesManager {
         Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
         Element style = findOpenFileItem(root, editorInstance.getUUID(), sep.getUUID());
 
-        if( style != null)  {
+        if (style != null) {
             style.setAttribute(PATH, newfilePath);
         }
 
@@ -1618,7 +1732,6 @@ public final class ConfigSciNotesManager {
 
     /**
      * Replace a single text pane ID with two pane IDs when a tab split occurs
-     * @param newfilepath new pathname of the file
      * @param editorInstance instance of the editor
      * @param old1 old instance of the editor pane
      * @param new1 first new instance of the tabbed editor pane
@@ -1641,7 +1754,6 @@ public final class ConfigSciNotesManager {
 
     /**
      * Replace double pane IDs with a single ID when a tabbed pane is replaced by a single pane.
-     * @param newfilepath new pathname of the file
      * @param editorInstance instance of the editor
      * @param old1 one of the old tabbed editor pane
      * @param new1 new editor pane
@@ -1667,8 +1779,9 @@ public final class ConfigSciNotesManager {
      * @param root Document root
      * @param editorID instance of the editor to find
      * @param sepID instance of the editor pane to find
+     * @return the corresponding element
      */
-    public static Element findOpenFileItem(Element root, UUID editorID, UUID sepID ) {
+    public static Element findOpenFileItem(Element root, UUID editorID, UUID sepID) {
         NodeList openFiles = root.getElementsByTagName(DOCUMENT);
 
         // Find item with matching editor and pane IDs
@@ -1677,11 +1790,12 @@ public final class ConfigSciNotesManager {
             UUID paneID1 = UUID.fromString(style.getAttribute(PANEINST));
             UUID paneID2 = UUID.fromString(style.getAttribute(PANEINST_EX));
 
-            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST))) &&
-                (sepID.equals(paneID1) || sepID.equals(paneID2))) {
+            if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))
+                && (sepID.equals(paneID1) || sepID.equals(paneID2))) {
                 return style;
             }
         }
+
         return null;
     }
 
@@ -1715,6 +1829,13 @@ public final class ConfigSciNotesManager {
      * Read the file to modify
      */
     private static void readDocument() {
+        readDocument(USER_SCINOTES_CONFIG_FILE, USER_SCINOTES_CONFIG_KEYS_FILE);
+    }
+
+    /**
+     * Read the file to modify
+     */
+    private static void readDocument(String pathConfSci, String pathConfKeys) {
         File xml = null;
         DocumentBuilder docBuilder = null;
 
@@ -1724,27 +1845,36 @@ public final class ConfigSciNotesManager {
                 docBuilder = factory.newDocumentBuilder();
 
                 // read content of a XML file with DOM
-                xml = new File(USER_SCINOTES_CONFIG_FILE);
+                xml = new File(pathConfSci);
                 document = docBuilder.parse(xml);
             }
         } catch (ParserConfigurationException pce) {
-            System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_READ + pathConfSci);
         } catch (SAXException se) {
-            System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_READ + pathConfSci);
         } catch (IOException ioe) {
-            System.err.println(ERROR_READ + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_READ + pathConfSci);
         }
 
+        FileInputStream fis = null;
+
         try {
-            if (keysMap == null) {
-                xml = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
+            if (keysMap == null && pathConfKeys != null) {
+                xml = new File(pathConfKeys);
                 keysMap = new Properties();
-                keysMap.loadFromXML(new FileInputStream(xml));
+                fis = new FileInputStream(xml);
+                keysMap.loadFromXML(fis);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) { }
         }
     }
 

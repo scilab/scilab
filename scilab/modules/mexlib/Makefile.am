@@ -16,7 +16,7 @@ MEXLIB_FLAGS = 	-I$(srcdir)/includes/ \
 MEXLIB_FLAGS += -I$(top_srcdir)/modules/string/includes
 
 
-MEXLIB_DEP = $(top_builddir)/modules/core/libscicore.la \
+MEXLIB_DEP =  \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \

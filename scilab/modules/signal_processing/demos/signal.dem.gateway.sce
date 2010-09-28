@@ -15,3 +15,4 @@ subdemolist = ["Spectral Estimation"                , "spect.dem.sce"
                "Arma, Spectral power estimation"    , "arma/arma3.dem.sce"];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

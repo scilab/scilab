@@ -81,7 +81,6 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		BasicBlockCodec codec = (BasicBlockCodec) mxCodecRegistry.getCodec("AfficheBlock");
 		codec.exclude.add("printTimer");
 		codec.exclude.add("updateAction");
-		
 	}
 	
 	/**

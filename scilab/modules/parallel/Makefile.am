@@ -9,11 +9,14 @@
 
 PARALLEL_CPP_SOURCES =
 
-#GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
+GATEWAY_CPP_SOURCES =
+#sci_gateway/cpp/sci_parallel_run.cpp
+
 
 PARALLEL_C_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c
+#					sci_gateway/c/sci_parallel_concurrency.c
 
 
 libsciparallel_la_CFLAGS= $(OPENMP_CFLAGS) \
@@ -35,7 +38,8 @@ libsciparallel_la_CPPFLAGS= $(OPENMP_CXXFLAGS) \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/parameters/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/operations/includes
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/system_env/includes
 
 
 pkglib_LTLIBRARIES = libsciparallel.la

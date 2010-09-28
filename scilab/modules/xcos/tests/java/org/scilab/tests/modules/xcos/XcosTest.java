@@ -36,12 +36,12 @@ public class XcosTest {
 		Xcos.xcos();
 		
 		assert PaletteManager.isVisible();
-		assert XcosTab.getAllDiagrams().size() == 1;
+		assert Xcos.getInstance().getDiagrams().size() == 1;
 		
 		Xcos.closeSession();
 		
 		assert !PaletteManager.isVisible();
-		assert XcosTab.getAllDiagrams().size() == 0;
+		assert Xcos.getInstance().getDiagrams().size() == 0;
 	}
 	
 }

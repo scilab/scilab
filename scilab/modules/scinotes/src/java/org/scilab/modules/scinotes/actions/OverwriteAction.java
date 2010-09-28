@@ -12,6 +12,9 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -40,8 +43,15 @@ public final class OverwriteAction extends DefaultAction {
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        return createMenu(label, null, new OverwriteAction(label, editor), key);
+    public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
+        final MenuItem menuitem = createMenu(label, null, new OverwriteAction(label, editor), key);
+        ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    menuitem.setEnabled(editor.getTextPane().checkExternalModif());
+                }
+            });
+
+        return menuitem;
     }
 
     /**

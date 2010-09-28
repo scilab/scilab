@@ -20,10 +20,10 @@
 //    (Blank space between / and - is important, it works if no
 //    blank space)
 
-MFILECONTENTS=["a=1/-2;";"b=1/-23;";"c=1/-25;";"d=1/ -c;";"e=1 /  -36;x=1/-2";"f=1 / (-36);"]
+MFILECONTENTS=["a=1/-2;";"b=1/-23;";"c=1/-25;";"d=1/ -c;";"e=1 /  -36;x=1/-2";"f=1 / (-36);"];
 
-MFILE=TMPDIR+"/bug800.m"
-SCIFILE=TMPDIR+"/bug800.sci"
+MFILE=TMPDIR+"/bug800.m";
+SCIFILE=TMPDIR+"/bug800.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -41,6 +41,6 @@ SCIFILECONTENTSREF=["";
 		"c = 1/(-25);";
 		"d = 1/(-c);";
 		"e = 1/(-36);x = 1/(-2)";
-		"f = 1/(-36);"]
+		"f = 1/(-36);"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

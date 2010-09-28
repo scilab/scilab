@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../localization/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes;../../../string/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -130,7 +130,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../localization/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes;../../../string/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -218,7 +218,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../localization/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes;../../../string/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -309,7 +309,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../localization/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes;../../../string/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -391,11 +391,59 @@
 				RelativePath="..\..\sci_gateway\c\gw_parallel.c"
 				>
 			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_parallel_concurrency.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_parallel_run.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions="_SCL_SECURE_NO_WARNINGS  "
+						DisableSpecificWarnings="4800;4267"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions="_SCL_SECURE_NO_WARNINGS  "
+						DisableSpecificWarnings="4800;4267"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions="_SCL_SECURE_NO_WARNINGS  "
+						DisableSpecificWarnings="4800;4267"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions="_SCL_SECURE_NO_WARNINGS  "
+						DisableSpecificWarnings="4800;4267"
+					/>
+				</FileConfiguration>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\concurrency.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_parallel.h"
 				>

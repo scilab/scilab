@@ -251,6 +251,8 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
+// _pvCtx will not be used by getVarAddressFromName neither getVarType
+// it can then be NULL.
 SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
@@ -259,7 +261,7 @@ SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
 	sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(sciErr.iErr)
 	{
-		addErrorMessage(&sciErr, API_ERROR_NAMED_TYPE, _("%s: Unable to get type of variable \"%s\""), "getNamedVarType", _pstName);
+		addErrorMessage(&sciErr, API_ERROR_NAMED_UNDEFINED_VAR, _("%s: Unable to get variable \"%s\""), "getNamedVarType", _pstName);
 		return sciErr;
 	}
 

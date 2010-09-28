@@ -5,7 +5,7 @@
 
 DOUBLE_C_SOURCES = 	src/c/matmult.c \
 			src/c/matldiv.c \
-			src/c/matrdiv.c 
+			src/c/matrdiv.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_double.c
 
@@ -45,7 +45,7 @@ libscidouble_la_SOURCES = $(DOUBLE_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FOR
 CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidouble_la_CFLAGS)
 
-libscidouble_la_LIBADD =  $(top_builddir)/modules/boolean/libsciboolean.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/operations/libscioperations.la
+libscidouble_la_LIBADD =  $(top_builddir)/modules/boolean/libsciboolean.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/operations/libscioperations.la
 
 #### Target ######
 modulename=double

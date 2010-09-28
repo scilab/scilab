@@ -196,9 +196,6 @@ msgstr "Tcl错误：无法创建Tcl解释器（Tcl_CreateInter）。\n"
 msgid "Tcl/TK interface disabled in -nogui mode.\n"
 msgstr "在-nogui模式下Tcl/Tk界面被禁用。\n"
 
-msgid "Tcl/Tk interface not loaded."
-msgstr "Tcl/Tk界面没有载入。"
-
 msgid ""
 "The SCI environment variable is not set.\n"
 "TCL initialisation failed !\n"

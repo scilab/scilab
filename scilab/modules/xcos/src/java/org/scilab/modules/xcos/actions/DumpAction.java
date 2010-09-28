@@ -79,7 +79,7 @@ public class DumpAction extends DefaultAction {
 		try {
 		    File temp = FileUtils.createTempFile();
 		    temp.deleteOnExit();
-		    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
+		    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp);
 		    try {
 		    	String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath());
 		    	cmd += buildCall("deletefile", temp.getAbsolutePath());

@@ -14,6 +14,7 @@ package org.scilab.modules.scinotes.actions;
 
 import java.util.Iterator;
 import java.util.NavigableSet;
+import java.util.Set;
 import java.util.TreeSet;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -33,6 +34,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.JTextComponent;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
@@ -61,6 +63,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
     private JButton cancelButton;
     private JComboBox comboComplete;
     private boolean onMenu;
+    private int lastSize;
 
     /**
      * Constructor
@@ -278,6 +281,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
      */
     private void updateComboComplete(String old) {
         String name = (String) comboComplete.getEditor().getItem();
+        Set subset = null;
         if (name != null && !name.equals(old)) {
             String bound = "";
             Iterator<String> iter;
@@ -291,18 +295,24 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
                 }
                 /* If "abc" is entered, we built "abd" (last letter + 1) and we
                    retrieve all the names between "abc" and "abd" (excluded) */
-                iter = macrosSet.subSet(name, true, bound, false).iterator();
+                subset = macrosSet.subSet(name, true, bound, false);
+                iter = subset.iterator();
             } else {
                 iter = macrosSet.iterator();
             }
 
-            comboComplete.removeAllItems();
-            while (iter.hasNext()) {
-                comboComplete.addItem(iter.next());
+            if (subset != null && subset.size() != lastSize) {
+                comboComplete.removeAllItems();
+                while (iter.hasNext()) {
+                    comboComplete.addItem(iter.next());
+                }
+                lastSize = subset.size();
+                comboComplete.setPopupVisible(false);
             }
 
             comboComplete.getEditor().setItem(name);
-            comboComplete.setPopupVisible(false);
+            JTextComponent c = ((JTextComponent) comboComplete.getEditor().getEditorComponent());
+            c.setSelectionStart(c.getSelectionEnd());
         }
     }
 }

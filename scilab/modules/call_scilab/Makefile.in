@@ -113,8 +113,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscicall_scilab_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscicall_scilab_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscicall_scilab_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la
+libscicall_scilab_la_DEPENDENCIES =
 am__objects_1 = libscicall_scilab_la-call_scilab.lo \
 	libscicall_scilab_la-fromc.lo libscicall_scilab_la-fromjava.lo \
 	libscicall_scilab_la-SendScilabJobs.lo
@@ -431,7 +430,7 @@ libscicall_scilab_la_SOURCES = $(CALLSCILAB_C_SOURCES) $(GATEWAY_C_SOURCES)
 # For the code check (splint)
 CHECK_SRC = $(libscicall_scilab_la_SOURCES)
 INCLUDE_FLAGS = $(libscicall_scilab_la_CFLAGS)
-libscicall_scilab_la_LIBADD = $(top_builddir)/modules/core/libscicore.la
+libscicall_scilab_la_LIBADD = 
 
 #### Target ######
 modulename = call_scilab
@@ -1159,9 +1158,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

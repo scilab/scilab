@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-05-22 19:03+0000\n"
+"PO-Revision-Date: 2010-07-29 10:02+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,10 +63,6 @@ msgstr "%d: Ja s'ha utilitzant aquesta unitat lògica.\n"
 #, c-format
 msgid "%dth argument type must be boolean.\n"
 msgstr "L'argument #%d ha de ser un booleà.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Error d'assignació de memòria.\n"
 
 #, c-format
 msgid "%s and %s must have equal dimensions.\n"
@@ -163,6 +159,10 @@ msgstr ""
 #, c-format
 msgid "%s: Loop on two orders detected.\n"
 msgstr "%s: S'ha trobat un bucle en dos ordres.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -545,9 +545,6 @@ msgstr "%s: No s'ha carregat el fitxer compartit.\n"
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr "%s: S'han definit les dimensions de la finestra menors que 2^16.\n"
 
-msgid "'o' format not allowed."
-msgstr "El format 'o' no està permès."
-
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
 "Una entrada de la matriu dispersa s'ha definit amb dos valors diferents.\n"
@@ -649,12 +646,14 @@ msgstr "La variable objectiu no està definida en aquest context.\n"
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
-"Bad call to a scilab function ?\n"
-"Otherwise, send a bug report to :\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
 msgstr ""
-"Error fatal!!! S'ha desat les vostres variables al fitxer: %s\n"
-"Hi ha hagut una crida incorrecta a una funció del Scilab?\n"
-"En cas contrari, envieu un informe d'error a:\n"
+"Error. Les vostres variable s'han desat al fitxer: %s\n"
+"                                   Potser heu fet una crida incorrecta a una "
+"funció de l'Scilab.\n"
+"                                   Si no és així, envieu un informe amb "
+"l'error a:\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -1115,6 +1114,9 @@ msgstr "Funció indefinida.\n"
 
 msgid "Undefined operation for the given operands.\n"
 msgstr "L'operació no està definida per a aquests operands.\n"
+
+msgid "Undefined variable.\n"
+msgstr "Variable indefinida.\n"
 
 #, c-format
 msgid "Undefined variable: %s\n"

@@ -107,6 +107,7 @@ function CreateModulesFile: Boolean;
         if (IsComponentSelected( ExpandConstant('{#COMPN_JVM_MODULE}') )) then
             begin
                 ModulesXmlFileLines[i] := '<module name="jvm" activate="yes"/>'; i := i + 1;
+                ModulesXmlFileLines[i] := '<module name="commons" activate="yes"/>'; i := i + 1;
             end;
 
         if (IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') )) then

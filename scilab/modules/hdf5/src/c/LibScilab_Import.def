@@ -5,7 +5,6 @@ EXPORTS
 ;--------------------------
 ; core
 ;--------------------------
-getScilabMode 
 callFunctionFromGateway
 com_
 putlhsvar_

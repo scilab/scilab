@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2009-10-19 19:22+0000\n"
+"PO-Revision-Date: 2010-08-18 19:42+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -45,17 +45,14 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть в интервале [%d, "
 "%d].\n"
 
-msgid "Begin Session : "
-msgstr "Начало сессии : "
-
-msgid "End Session   : "
-msgstr "Конец сессии   : "
-
 msgid "Apr"
 msgstr "Апр"
 
 msgid "Aug"
 msgstr "Авг"
+
+msgid "Begin Session : "
+msgstr "Начало сессии : "
 
 msgid "Dec"
 msgstr "Дек"
@@ -92,9 +89,6 @@ msgstr "Окт"
 
 msgid "Sat"
 msgstr "Сбт"
-
-msgid "Scilab history_manager module not installed.\n"
-msgstr "Модуль history_manager не установлен.\n"
 
 msgid "Sep"
 msgstr "Сен"

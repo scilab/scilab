@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-14 20:55+0000\n"
+"PO-Revision-Date: 2010-08-21 12:42+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,13 +17,10 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
-msgstr " Извлечение из гиперматрицы должно иметь как минимум 2 параметра. "
+msgstr " Извлечение из гиперматрицы должно иметь не менее 2 параметров. "
 
-msgid " An hypermatrix insertion must have at least 3 arguments "
-msgstr " Вставка в гиперматрицу должна иметь как минимум 3 параметра "
-
-msgid " Argument is not an hypermatrix "
-msgstr " Параметр не является гиперматрицей "
+msgid " An hypermatrix insertion must have at least 3 arguments. "
+msgstr " Вставка в гиперматрицу должна иметь не менее 3 параметров. "
 
 msgid " Argument is not an hypermatrix. "
 msgstr " Параметр не является гиперматрицей. "
@@ -37,6 +34,10 @@ msgstr " Несовместимое извлеченение из гиперма
 #, c-format
 msgid "%s: ''dims'' can not be used as a field name.\n"
 msgstr "%s: «dims» не может быть использовано в качестве имени поля.\n"
+
+#, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr "%s: Количество элементов не совпадает с произведением размерностей"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
@@ -58,6 +59,14 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив структур.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: элементы должны быть целыми "
+"неотрицательными числами.\n"
 
 #, c-format
 msgid "%s: field name ''%s'' defined twice.\n"

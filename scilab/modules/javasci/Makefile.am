@@ -27,7 +27,7 @@ if JAVASCI
 
 
 #### Javasci : sources ####
-JAVASCI_C_SOURCES = src/c/javasci_Scilab2.c \
+JAVASCI_V1_C_SOURCES = src/c/javasci_Scilab2.c \
 src/c/javasci_globals.c \
 src/c/javasci_SciAbstractArray.c \
 src/c/javasci_SciStringArray.c \
@@ -38,11 +38,19 @@ src/c/javasci_Scilab.c \
 src/c/javasci_SciBooleanArray.c \
 src/c/javasci_SciIntegerArray.c
 
-pkglib_LTLIBRARIES = libjavasci.la
+JAVASCI_V2_C_SOURCES = \
+src/jni/call_scilab_wrap.c \
+src/c/javasci2_helper.c
+
+pkglib_LTLIBRARIES = libjavasci.la libjavasci2.la
 
 libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
+libjavasci_la_SOURCES = $(JAVASCI_V1_C_SOURCES)
+
+libjavasci2_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
+libjavasci2_la_SOURCES = $(JAVASCI_V2_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(JAVASCI_C_SOURCES)
@@ -63,6 +71,24 @@ libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/string/includes
 
 libjavasci_la_LIBADD = \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+	$(top_builddir)/modules/libscilab.la
+
+libjavasci2_la_CFLAGS = -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
+			$(JAVA_JNI_INCLUDE) \
+			$(TCL_INC_PATH) \
+			$(TK_INC_PATH) \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes \
+			-I$(top_srcdir)/modules/tclsci/includes \
+			-I$(top_srcdir)/modules/call_scilab/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/operations/includes
+
+libjavasci2_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/libscilab.la
@@ -105,6 +131,14 @@ tests/unit_tests/Strings1.dia.ref \
 tests/unit_tests/Strings1.java \
 tests/unit_tests/Strings2.java \
 tests/unit_tests/Strings2.dia.ref
+
+BUILT_SOURCES=
+if SWIG
+BUILT_SOURCES+=swig
+endif
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/call_scilab.i
 
 USEANT=1
 

@@ -377,6 +377,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dynamic_parallel.c"
+				>
+			</File>
+			<File
 				RelativePath=".\dynamic_tclsci.c"
 				>
 			</File>
@@ -919,6 +923,10 @@
 			</File>
 			<File
 				RelativePath=".\dynamic_menus.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dynamic_parallel.h"
 				>
 			</File>
 			<File

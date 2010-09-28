@@ -1,18 +1,20 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Allan CORNET
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2008 - INRIA - Allan CORNET
+* Copyright (C) 2010 - DIGITEO - Allan CORNET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 #include <stdlib.h>
 #include "dynamic_gateways.h"
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
+#include "dynamic_parallel.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* special_functions module */
@@ -324,10 +326,10 @@ int gw_dynamic_hdf5(void)
         &hHdf5Lib,
         &ptr_gw_hdf5);
 
-    if (hHdf5Lib) {FreeDynLibrary(hHdf5Lib); hHdf5Lib = NULL;}
-    if (ptr_gw_hdf5) ptr_gw_hdf5 = NULL;
-    if (dynlibname_hdf5) {FREE(dynlibname_hdf5); dynlibname_hdf5 = NULL;}
-    if (gatewayname_hdf5) {FREE(gatewayname_hdf5); gatewayname_hdf5 = NULL;}
+    freeDynamicGateway(&dynlibname_hdf5,
+        &gatewayname_hdf5,
+        &hHdf5Lib,
+        &ptr_gw_hdf5);
 
     return r;
 }
@@ -376,22 +378,6 @@ int gw_dynamic_action_binding(void)
         &ptr_gw_action_binding);
 }
 /*--------------------------------------------------------------------------*/
-/* PARALLEL module */
-#define PARALLEL_MODULE_NAME "parallel"
-static DynLibHandle hParallelLib = NULL;
-static PROC_GATEWAY ptr_gw_parallel = NULL;
-static char* dynlibname_parallel = NULL;
-static char* gatewayname_parallel = NULL;
-/*--------------------------------------------------------------------------*/
-int gw_dynamic_parallel(void)
-{
-    return gw_dynamic_generic(PARALLEL_MODULE_NAME,
-        &dynlibname_parallel,
-        &gatewayname_parallel,
-        &hParallelLib,
-        &ptr_gw_parallel);
-}
-/*--------------------------------------------------------------------------*/
 /* ui_data module */
 #define UI_DATA_MODULE_NAME "ui_data"
 static DynLibHandle hUi_dataLib = NULL;
@@ -402,17 +388,131 @@ static char* gatewayname_ui_data = NULL;
 int gw_dynamic_ui_data(void)
 {
 #ifdef _MSC_VER
-	if (dynlibname_ui_data == NULL)
-	{
-		dynlibname_ui_data = buildModuleDynLibraryName(UI_DATA_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
-	}
+    if (dynlibname_ui_data == NULL)
+    {
+        dynlibname_ui_data = buildModuleDynLibraryName(UI_DATA_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+    }
 #endif
 
-	return gw_dynamic_generic(UI_DATA_MODULE_NAME,
-		&dynlibname_ui_data,
-		&gatewayname_ui_data,
-		&hUi_dataLib,
-		&ptr_gw_ui_data);
+    return gw_dynamic_generic(UI_DATA_MODULE_NAME,
+        &dynlibname_ui_data,
+        &gatewayname_ui_data,
+        &hUi_dataLib,
+        &ptr_gw_ui_data);
+}
+/*--------------------------------------------------------------------------*/
+void freeAllDynamicGateways(void)
+{
+    freeDynamicGateway(&dynlibname_special_functions,
+        &gatewayname_special_functions,
+        &hSpecial_functionsLib,
+        &ptr_gw_special_functions);
+
+    freeDynamicGateway(&dynlibname_pvm,
+        &gatewayname_pvm,
+        &hPvmLib,
+        &ptr_gw_pvm);
+
+    freeDynamicGateway(&dynlibname_helptools,
+        &gatewayname_helptools,
+        &hHelptoolsLib,
+        &ptr_gw_helptools);
+
+    freeDynamicGateway(&dynlibname_optimization,
+        &gatewayname_optimization,
+        &hOptimizationLib,
+        &ptr_gw_optimization);
+
+    freeDynamicGateway(&dynlibname_matio,
+        &gatewayname_matio,&hMatioLib,
+        &ptr_gw_matio);
+
+    freeDynamicGateway(&dynlibname_umfpack,
+        &gatewayname_umfpack,
+        &hUmfpackLib,
+        &ptr_gw_umfpack);
+
+    freeDynamicGateway(&dynlibname_spreadsheet,
+        &gatewayname_spreadsheet,
+        &hSpreadsheetLib,
+        &ptr_gw_spreadsheet);
+
+    freeDynamicGateway(&dynlibname_sound,
+        &gatewayname_sound,
+        &hSoundLib,
+        &ptr_gw_sound);
+
+    freeDynamicGateway(&dynlibname_scicos,
+        &gatewayname_scicos,
+        &hScicosLib,
+        &ptr_gw_scicos);
+
+    freeDynamicGateway(&dynlibname_randlib,
+        &gatewayname_randlib,
+        &hRandlibLib,
+        &ptr_gw_randlib);
+
+    freeDynamicGateway(&dynlibname_arnoldi,
+        &gatewayname_arnoldi,
+        &hArnoldiLib,
+        &ptr_gw_arnoldi);
+
+    freeDynamicGateway(&dynlibname_symbolic,
+        &gatewayname_symbolic,
+        &hSymbolicLib,
+        &ptr_gw_symbolic);
+
+    freeDynamicGateway(&dynlibname_interpolation,
+        &gatewayname_interpolation,
+        &hInterpolationLib,
+        &ptr_gw_interpolation);
+
+    freeDynamicGateway(&dynlibname_statistics,
+        &gatewayname_statistics,
+        &hStatisticsLib,
+        &ptr_gw_statistics);
+
+    freeDynamicGateway(&dynlibname_signal_processing,
+        &gatewayname_signal_processing,
+        &hSignal_processingLib,
+        &ptr_gw_signal_processing);
+
+    freeDynamicGateway(&dynlibname_functions,
+        &gatewayname_functions,
+        &hFunctionsLib,
+        &ptr_gw_functions);
+
+    freeDynamicGateway(&dynlibname_xcos,
+        &gatewayname_xcos,
+        &hXcosLib,
+        &ptr_gw_xcos);
+
+    freeDynamicGateway(&dynlibname_scinotes,
+        &gatewayname_scinotes,
+        &hSciNotesLib,
+        &ptr_gw_scinotes);
+
+    freeDynamicGateway(&dynlibname_hdf5,
+        &gatewayname_hdf5,
+        &hHdf5Lib,
+        &ptr_gw_hdf5);
+
+    freeDynamicGateway(&dynlibname_graphic_export,
+        &gatewayname_graphic_export,
+        &hGraphic_exportLib,
+        &ptr_gw_graphic_export);
+
+    freeDynamicGateway(&dynlibname_action_binding,
+        &gatewayname_action_binding,
+        &hAction_bindingLib,
+        &ptr_gw_action_binding);
+
+    dynTerminateParallel();
+
+    freeDynamicGateway(&dynlibname_ui_data,
+        &gatewayname_ui_data,
+        &hUi_dataLib,
+        &ptr_gw_ui_data);
 }
 /*--------------------------------------------------------------------------*/
 

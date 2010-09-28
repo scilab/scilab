@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be 
+ * However, the API (profile of the functions in the header files) will be
  * still available and supported in Scilab 6.
  */
 
@@ -127,7 +127,7 @@ SciErr getCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, 
 	return sciErr;
 }
 
-SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char* _pucData8)
+SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned char* _pucData8)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	unsigned char *pucData8		= NULL;
@@ -144,7 +144,7 @@ SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _
 	return sciErr;
 }
 
-SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short* _pusData16)
+SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned short* _pusData16)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	unsigned short *psData16	= NULL;
@@ -161,7 +161,7 @@ SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int 
 	return sciErr;
 }
 
-SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int* _puiData32)
+SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned int* _puiData32)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	unsigned int *puiData32	= NULL;
@@ -179,7 +179,7 @@ SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int 
 }
 
 #ifdef __SCILAB_INT64__
-SciErr createMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned long long* _pullData64)
+SciErr createMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned long long* _pullData64)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	unsigned long long *pullData64	= NULL;
@@ -197,7 +197,7 @@ SciErr createMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int 
 }
 #endif
 
-SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char* _pcData8)
+SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const char* _pcData8)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	char *pcData8	= NULL;
@@ -214,7 +214,7 @@ SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, c
 	return sciErr;
 }
 
-SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short* _psData16)
+SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const short* _psData16)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	short *psData16	= NULL;
@@ -231,7 +231,7 @@ SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, 
 	return sciErr;
 }
 
-SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piData32)
+SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const int* _piData32)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piData32	= NULL;
@@ -249,7 +249,7 @@ SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, 
 }
 
 #ifdef __SCILAB_INT64__
-SciErr createMatrixOfInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, long long* _pllData64)
+SciErr createMatrixOfInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, const long long* _pllData64)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	long long  *pllData64	= NULL;
@@ -472,51 +472,51 @@ SciErr fillCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision,
 	return sciErr;
 }
 
-SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned char* _pucData8)
+SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT8, _iRows, _iCols, _pucData8);
 }
 
-SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned short* _pusData16)
+SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned short* _pusData16)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT16, _iRows, _iCols, _pusData16);
 }
 
-SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned int* _puiData32)
+SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned int* _puiData32)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT32, _iRows, _iCols, _puiData32);
 }
 
 #ifdef __SCILAB_INT64__
-SciErr createNamedMatrixOfUnsignedInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned long long* _pullData64)
+SciErr createNamedMatrixOfUnsignedInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned long long* _pullData64)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT64, _iRows, _iCols, _pullData64);
 }
 #endif
 
-SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char* _pcData8)
+SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const char* _pcData8)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT8, _iRows, _iCols, _pcData8);
 }
 
-SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, short* _psData16)
+SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const short* _psData16)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT16, _iRows, _iCols, _psData16);
 }
 
-SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piData32)
+SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const int* _piData32)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT32, _iRows, _iCols, _piData32);
 }
 
 #ifdef __SCILAB_INT64__
-SciErr createNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, long long* _pllData64)
+SciErr createNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const long long* _pllData64)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT64, _iRows, _iCols, _pllData64);
 }
 #endif
 
-SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecision, int _iRows, int _iCols, void* _pvData)
+SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -601,7 +601,7 @@ SciErr readNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int* _pi
 }
 
 #ifdef __SCILAB_INT64__
-SciErr readNamedMatrixOfUnsignedInteger64(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned int* _pullData64)
+SciErr readNamedMatrixOfUnsignedInteger64(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned long long* _pullData64)
 {
 	return readCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT64, _piRows, _piCols, _pullData64);
 }

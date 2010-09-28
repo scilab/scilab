@@ -27,7 +27,7 @@ static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs);
 static BOOL SetLastJob(char *JOB);
 static char *lastjob = NULL;
 /*--------------------------------------------------------------------------*/
-/* see call_scilab.h more informations*/
+/* see call_scilab.h more information */
 /*--------------------------------------------------------------------------*/
 int SendScilabJob(char *job)
 {

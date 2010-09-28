@@ -1,26 +1,34 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file is released into the public domain
 
-my_handle             = scf(100001);
-clf(my_handle,"reset");
-demo_viewCode("subplot.dem.sce");
+function demo_subplot()
 
-// DEMO START
+  my_handle             = scf(100001);
+  clf(my_handle,"reset");
+  demo_viewCode("subplot.dem.sce");
 
-my_plot_desc          = "subplot";
-my_handle.figure_name = my_plot_desc;
+  // DEMO START
 
-subplot(2,2,1);
-plot3d();
-subplot(2,2,2);
-plot2d();
-subplot(2,2,3);
-histplot();
-subplot(2,2,4);
-grayplot();
+  my_plot_desc          = "subplot";
+  my_handle.figure_name = my_plot_desc;
 
-xtitle(my_plot_desc," "," "," ");
+  subplot(2,2,1);
+  plot3d();
+  subplot(2,2,2);
+  plot2d();
+  subplot(2,2,3);
+  histplot();
+  subplot(2,2,4);
+  grayplot();
 
-// DEMO END
+  xtitle(my_plot_desc," "," "," ");
+
+  // DEMO END
+
+endfunction
+
+demo_subplot();
+clear demo_subplot;

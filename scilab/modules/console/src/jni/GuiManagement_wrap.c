@@ -219,7 +219,7 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_GuiManagementJNI_getS
     if (result != NULL)
     {
       jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-      FREE(result);
+      free(result);
       result = NULL;
     }       
   }

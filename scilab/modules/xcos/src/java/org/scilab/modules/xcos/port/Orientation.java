@@ -16,7 +16,6 @@ import java.util.NoSuchElementException;
 
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.util.mxConstants;
 
@@ -108,7 +107,7 @@ public enum Orientation {
 	 * @return the angle associated with this orientation.
 	 */
 	private int getOrientationAngle() {
-		return this.ordinal() * PERPENDICULAR_ROTATION;
+		return ordinal() * PERPENDICULAR_ROTATION;
 	}
 
 	/**
@@ -132,20 +131,20 @@ public enum Orientation {
 	
 	/**
 	 * @return The label position of the current port.
-	 * @see mxConstants#STYLE_LABEL_POSITION
+	 * @see com.mxgraph.util.mxConstants#STYLE_LABEL_POSITION
 	 */
 	public String getLabelPosition() {
 		final String ret;
 		
 		switch (this) {
 			case EAST:
-				ret = XcosConstants.ALIGN_LEFT;
+				ret = mxConstants.ALIGN_LEFT;
 				break;
 			case WEST:
-				ret = XcosConstants.ALIGN_RIGHT;
+				ret = mxConstants.ALIGN_RIGHT;
 				break;
 			default:
-				ret = XcosConstants.ALIGN_CENTER;
+				ret = mxConstants.ALIGN_CENTER;
 				break;
 		}
 		
@@ -154,20 +153,20 @@ public enum Orientation {
 	
 	/**
 	 * @return The vertical label position of the current port.
-	 * @see mxConstants#STYLE_VERTICAL_LABEL_POSITION
+	 * @see com.mxgraph.util.mxConstants#STYLE_VERTICAL_LABEL_POSITION
 	 */
 	public String getVerticalLabelPosition() {
 		final String ret;
 		
 		switch (this) {
 			case NORTH:
-				ret = XcosConstants.ALIGN_BOTTOM;
+				ret = mxConstants.ALIGN_BOTTOM;
 				break;
 			case SOUTH:
-				ret = XcosConstants.ALIGN_TOP;
+				ret = mxConstants.ALIGN_TOP;
 				break;
 			default:
-				ret = XcosConstants.ALIGN_MIDDLE;
+				ret = mxConstants.ALIGN_MIDDLE;
 				break;
 		}
 		
@@ -176,27 +175,27 @@ public enum Orientation {
 	
 	/**
 	 * @return the spacing side to increment
-	 * @see mxConstants#STYLE_SPACING_BOTTOM
-	 * @see mxConstants#STYLE_SPACING_LEFT
-	 * @see mxConstants#STYLE_SPACING_RIGHT
-	 * @see mxConstants#STYLE_SPACING_TOP
+	 * @see com.mxgraph.util.mxConstants#STYLE_SPACING_BOTTOM
+	 * @see com.mxgraph.util.mxConstants#STYLE_SPACING_LEFT
+	 * @see com.mxgraph.util.mxConstants#STYLE_SPACING_RIGHT
+	 * @see com.mxgraph.util.mxConstants#STYLE_SPACING_TOP
 	 */
 	public String getSpacingSide() {
 		final String ret;
 		
 		switch (this) {
 			case NORTH:
-				ret = XcosConstants.STYLE_SPACING_TOP;
+				ret = mxConstants.STYLE_SPACING_TOP;
 				break;
 			case SOUTH:
-				ret = XcosConstants.STYLE_SPACING_BOTTOM;
+				ret = mxConstants.STYLE_SPACING_BOTTOM;
 				break;
 			case EAST:
-				ret = XcosConstants.STYLE_SPACING_RIGHT;
+				ret = mxConstants.STYLE_SPACING_RIGHT;
 				break;
 			case WEST:
 			default:
-				ret = XcosConstants.STYLE_SPACING_LEFT;
+				ret = mxConstants.STYLE_SPACING_LEFT;
 				break;
 		}
 		

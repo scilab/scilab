@@ -113,7 +113,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscitclsci_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
@@ -496,7 +495,6 @@ libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
 CHECK_SRC = $(libscitclsci_la_SOURCES)
 INCLUDE_FLAGS = $(libscitclsci_la_CFLAGS)
 libscitclsci_la_LIBADD = $(top_builddir)/modules/fileio/libscifileio.la \
-							$(top_builddir)/modules/core/libscicore.la \
 							$(top_builddir)/libs/MALLOC/libscimalloc.la \
 							$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
@@ -551,8 +549,6 @@ tcl/sciGUI/local_extra/spinbutton.tcl \
 tcl/sciGUI/license.txt \
 tcl/sciGUI/sciGUI.tcl \
 tcl/sciGUI/sciConfig.tcl \
-tcl/sciGUI/sciBrowseVar.tcl \
-tcl/sciGUI/sciEditVar.tcl \
 tcl/BWidget-1.8.0/tests/entry.test \
 tcl/BWidget-1.8.0/BWman/SelectColor.html \
 tcl/BWidget-1.8.0/BWman/SpinBox.html \
@@ -1560,9 +1556,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

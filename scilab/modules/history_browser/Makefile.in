@@ -128,7 +128,6 @@ libscihistory_browser_disable_la_LINK = $(LIBTOOL) --tag=CC \
 	$(libscihistory_browser_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscihistory_browser_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscihistory_browser_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscihistory_browser_la_SOURCES_DIST =  \
@@ -545,7 +544,7 @@ INCLUDE_FLAGS = $(libscihistory_browser_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = 
-libscihistory_browser_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscihistory_browser_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
@@ -1184,9 +1183,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

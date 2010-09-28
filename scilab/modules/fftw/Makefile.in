@@ -117,7 +117,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @FFTW_TRUE@libscifftw_la_DEPENDENCIES =  \
 @FFTW_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@FFTW_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @FFTW_TRUE@	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
 @FFTW_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @FFTW_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
@@ -461,7 +460,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 # For the code check (splint)
 @FFTW_TRUE@CHECK_SRC = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 @FFTW_TRUE@INCLUDE_FLAGS = $(libscifftw_la_CFLAGS)
-@FFTW_TRUE@libscifftw_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+@FFTW_TRUE@libscifftw_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la  $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 @FFTW_FALSE@libscifftw_la_CFLAGS = -I$(srcdir)/includes/ \
 @FFTW_FALSE@			-I$(srcdir)/src/c/ \
 @FFTW_FALSE@			-I$(top_srcdir)/modules/api_scilab/includes \
@@ -1213,9 +1212,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

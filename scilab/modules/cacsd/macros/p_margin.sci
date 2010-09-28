@@ -60,7 +60,7 @@ function [phm,fr]=p_margin(h)
     f=horner(h,exp(%i*ws*dt));
   end
   phm=atand(imag(f),real(f));// phase of the frequency response in [-180 180]
-  phm=pmodulo(phm-180,360);
-  [phm,k]=min(phm)
+  phm=pmodulo(phm,360)-180; 
+  [phm,k]=min(phm);
   fr=ws(k)/(2*%pi);
 endfunction

@@ -17,13 +17,13 @@
 
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) DIGITEO - 2009 - Allan CORNET
-# Copyright (C) DIGITEO - 2010 - Clément DAVID
-# 
+# Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
+# Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -63,7 +63,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@am__append_1 = libscixcos.la 
+@GUI_TRUE@am__append_1 = libscixcos.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_2 = java
@@ -128,7 +128,6 @@ libscixcos_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscixcos_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscixcos_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscixcos_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 =
@@ -146,9 +145,11 @@ am__objects_4 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_xcosPalMove.lo \
 	libscixcos_la-sci_xcosPalEnable.lo \
 	libscixcos_la-sci_xcosPalDisable.lo \
-	libscixcos_la-sci_xcosPalGenerateIcon.lo
+	libscixcos_la-sci_xcosPalGenerateIcon.lo \
+	libscixcos_la-sci_xcosConfigureXmlFile.lo
 am__objects_5 = libscixcos_la-callxcos.lo libscixcos_la-Xcos.lo \
-	libscixcos_la-Palette.lo libscixcos_la-GiwsException.lo
+	libscixcos_la-Palette.lo libscixcos_la-Modelica.lo \
+	libscixcos_la-GiwsException.lo
 am_libscixcos_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
@@ -454,7 +455,8 @@ libscixcos_la_etc_DATA = etc/xcos.quit \
 				etc/xcos.xml \
 				etc/XcosConfiguration.xsd \
 				etc/palettes.xml \
-				etc/PaletteConfiguration.xsd
+				etc/PaletteConfiguration.xsd \
+				etc/Modelica.xsd
 
 XCOS_C_SOURCES = 
 XCOS_CPP_SOURCES = src/cpp/callxcos.cpp \
@@ -462,10 +464,13 @@ XCOS_CPP_SOURCES = src/cpp/callxcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \
+			src/jni/Modelica.cpp \
+			src/jni/Modelica.hxx \
 			src/jni/GiwsException.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
-			src/jni/Palette.giws.xml
+			src/jni/Palette.giws.xml \
+			src/jni/Modelica.giws.xml
 
 @GIWS_TRUE@BUILT_SOURCES = giws
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
@@ -483,7 +488,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosPalMove.cpp \
 	sci_gateway/cpp/sci_xcosPalEnable.cpp \
 	sci_gateway/cpp/sci_xcosPalDisable.cpp \
-	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
+	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp \
+	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
 
 libscixcos_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -493,7 +499,7 @@ libscixcos_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes	
+			-I$(top_srcdir)/modules/api_scilab/includes
 
 libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -506,10 +512,11 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
 			-I$(top_srcdir)/modules/operations/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/system_env/includes
 
 
-# Without the xcos module 
+# Without the xcos module
 libscixcos_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
@@ -523,7 +530,7 @@ libscixcos_la_SOURCES = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOU
 # For the code check (splint)
 CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
-libscixcos_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscixcos_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
@@ -535,7 +542,7 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 #### xcos : images files ####
 #
 # Generated with:
-#   $ find images/ -type f -printf "%p \\ \n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '{sub(/[ \t]+$/, "")};1' |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
+#   $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
 libscixcos_la_imagesdir = $(mydatadir)/
 nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
@@ -582,14 +589,20 @@ images/blocks/SWITCH.svg \
 images/blocks/VanneReglante.svg \
 images/blocks/VariableResistor.svg \
 images/blocks/VoltageSensor.svg \
-images/icons/go-bottom.png \
-images/icons/go-center.png \
-images/icons/go-first.png \
-images/icons/go-last.png \
-images/icons/go-middle.png \
-images/icons/go-top.png \
+images/icons/align-horizontal-center.png \
+images/icons/align-horizontal-left.png \
+images/icons/align-horizontal-right.png \
+images/icons/align-vertical-bottom.png \
+images/icons/align-vertical-center.png \
+images/icons/align-vertical-top.png \
+images/icons/color-fill.png \
+images/icons/draw-brush.png \
+images/icons/object-group.png \
+images/icons/preferences-desktop.png \
 images/icons/process-stop.png \
-images/icons/view-fullscreen.png \
+images/icons/select-by-color.png \
+images/icons/transform-flip.png \
+images/icons/transform-mirror.png \
 images/palettes/ABS_VALUE.png \
 images/palettes/AFFICH_m.png \
 images/palettes/ANDBLK.png \
@@ -784,6 +797,7 @@ images/palettes/SWITCH_f.png \
 images/palettes/Switch.png \
 images/palettes/TANBLK_f.png \
 images/palettes/TCLSS.png \
+images/palettes/TEXT_f.png \
 images/palettes/TIME_DELAY.png \
 images/palettes/TIME_f.png \
 images/palettes/TKSCALE.png \
@@ -944,6 +958,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_disable_la-noxcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-GiwsException.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Modelica.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Palette.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-callxcos.Plo@am__quote@
@@ -951,6 +966,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_Xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramClose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramOpen.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramToHDF5.Plo@am__quote@
@@ -1117,6 +1133,13 @@ libscixcos_la-sci_xcosPalGenerateIcon.lo: sci_gateway/cpp/sci_xcosPalGenerateIco
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalGenerateIcon.lo `test -f 'sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
 
+libscixcos_la-sci_xcosConfigureXmlFile.lo: sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosConfigureXmlFile.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Tpo -c -o libscixcos_la-sci_xcosConfigureXmlFile.lo `test -f 'sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Tpo $(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' object='libscixcos_la-sci_xcosConfigureXmlFile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosConfigureXmlFile.lo `test -f 'sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+
 libscixcos_la-callxcos.lo: src/cpp/callxcos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-callxcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-callxcos.Tpo -c -o libscixcos_la-callxcos.lo `test -f 'src/cpp/callxcos.cpp' || echo '$(srcdir)/'`src/cpp/callxcos.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-callxcos.Tpo $(DEPDIR)/libscixcos_la-callxcos.Plo
@@ -1137,6 +1160,13 @@ libscixcos_la-Palette.lo: src/jni/Palette.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Palette.cpp' object='libscixcos_la-Palette.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-Palette.lo `test -f 'src/jni/Palette.cpp' || echo '$(srcdir)/'`src/jni/Palette.cpp
+
+libscixcos_la-Modelica.lo: src/jni/Modelica.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-Modelica.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-Modelica.Tpo -c -o libscixcos_la-Modelica.lo `test -f 'src/jni/Modelica.cpp' || echo '$(srcdir)/'`src/jni/Modelica.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-Modelica.Tpo $(DEPDIR)/libscixcos_la-Modelica.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Modelica.cpp' object='libscixcos_la-Modelica.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-Modelica.lo `test -f 'src/jni/Modelica.cpp' || echo '$(srcdir)/'`src/jni/Modelica.cpp
 
 libscixcos_la-GiwsException.lo: src/jni/GiwsException.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-GiwsException.Tpo -c -o libscixcos_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
@@ -1639,9 +1669,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

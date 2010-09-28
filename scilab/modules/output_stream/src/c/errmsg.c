@@ -1,11 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -40,9 +41,9 @@ static char *defaultStringError(void);
 #endif
 /*--------------------------------------------------------------------------*/
 typedef enum {
-    CVNAME_READING_TYPE_1 = 0, 
-    CVNAME_READING_TYPE_2 = 1, 
-    CVNAME_READING_TYPE_3 = 2, 
+    CVNAME_READING_TYPE_1 = 0,
+    CVNAME_READING_TYPE_2 = 1,
+    CVNAME_READING_TYPE_3 = 2,
     CVNAME_READING_TYPE_4 = 3,
     CVNAME_READING_TYPE_5 = 4,
     CVNAME_READING_TYPE_6 = 5,
@@ -53,11 +54,11 @@ int C2F(errmsg)(int *n,int *errtyp)
     resetLastError();
 
     /* store error code (lasterror) */
-    C2F(errstore)(n);
+    setLastErrorValue(*n);
 
     *errtyp = 0; /* by default errors are recoverable */
     /* errors not recoverable aren't catchable by top
-    try,catch */ 
+    try,catch */
     /* errors 2,3,16,26,31,34,35,40,46,47,276*/
 
     switch ((int)*n)
@@ -313,7 +314,7 @@ int C2F(errmsg)(int *n,int *errtyp)
         break;
     case 37:
         {
-            if (Err>0) 
+            if (Err>0)
                 displayAndStoreError(_("Incorrect function at line %d.\n"),Err);
             else
                 displayAndStoreError(_("Incorrect function.\n"));
@@ -1109,7 +1110,7 @@ int C2F(errmsg)(int *n,int *errtyp)
             }
         }
         break;
-    case 208: 
+    case 208:
         {
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
@@ -1393,7 +1394,7 @@ int C2F(errmsg)(int *n,int *errtyp)
         }
         break;
     case 248:
-        {			
+        {
             displayAndStoreError(_("Wrong value for argument %d: Valid variable name expected.\n"),Err);
         }
         break;
@@ -1539,7 +1540,7 @@ int C2F(errmsg)(int *n,int *errtyp)
             displayAndStoreError(_("Too many commands defined.\n"));
         }
         break;
-    case 278: 
+    case 278:
         {
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
@@ -1600,7 +1601,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 
     switch (cvnametype)
     {
-    case CVNAME_READING_TYPE_1 : 
+    case CVNAME_READING_TYPE_1 :
         {
             C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
             strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
@@ -1692,7 +1693,7 @@ static void resetLastError(void)
     /* reset lasterror */
     C2F(linestore)(&zero);
     C2F(funnamestore)(SPACE_CHAR, &zero, lenspace);
-    C2F(freemsgtable)();
+    clearLastError();
 }
 /*--------------------------------------------------------------------------*/
 static char *defaultStringError(void)

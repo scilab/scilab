@@ -8,17 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2009-11-12 12:02+0000\n"
+"PO-Revision-Date: 2010-09-01 21:47+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Errore di allocazione della memoria\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
@@ -76,6 +72,10 @@ msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr "%s: Il test assortito eccede il limite del buffer.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Memoria esaurita.\n"
 
@@ -105,6 +105,11 @@ msgstr "%s: Errore sconosciuto.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
@@ -246,6 +251,12 @@ msgstr ""
 "scalare.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+"stringhe.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
@@ -261,12 +272,6 @@ msgid "%s: Wrong type for input argument #%d: Character expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
 "carattere.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di stringhe di caratteri.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
@@ -359,6 +364,12 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa %s o %s.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso %s, %s o "
+"%s.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
@@ -419,13 +430,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha dei valori sbagliati: era attesa una "
-"'\"r\", una \"l\" o una \"c\".\n"
-
-#, c-format
-msgid ""
 "%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha dei valori sbagliati: era atteso un "
@@ -453,16 +457,3 @@ msgstr "%s: è impossibile ottenere le dimensioni di questa matrice.\n"
 
 msgid "WARNING : \n"
 msgstr "ATTENZIONE : \n"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "ATTENZIONE: la funzione %s è obsoleta.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "ATTENZIONE: usare %s invece.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr ""
-"ATTENZIONE: la funzione %s verrà rimossa permanentemente in Scilab.\n"

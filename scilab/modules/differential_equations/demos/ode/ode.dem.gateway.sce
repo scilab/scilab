@@ -14,3 +14,4 @@ subdemolist = ["Simple ODE"                   ,"ode_simple/ode_simple.dem.sce"  
                "Lotka-Volterra vector field"  ,"ode_lotka/ode_lotka.dem.sce"         ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

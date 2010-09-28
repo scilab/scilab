@@ -21,12 +21,16 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
@@ -51,6 +55,7 @@ import com.mxgraph.util.mxEventObject;
  */
 public abstract class ContextUpdate extends BasicBlock {
 
+	private static final Log LOG_LOCAL = LogFactory.getLog(ContextUpdate.class);
 	private static final long serialVersionUID = 6076826729067963560L;
 
 	/**
@@ -111,11 +116,57 @@ public abstract class ContextUpdate extends BasicBlock {
 	}
 	
 	/**
+	 * Implement a listener to update the {@link ContextUpdate#isContextDependent} flag.
+	 */
+	private static final class ExprsChangeAdapter implements PropertyChangeListener, Serializable {
+		private static final Pattern INTEGER_PATTERN = Pattern.compile("\\d+");
+
+		private static ExprsChangeAdapter instance;
+		
+		/**
+		 * Default constructor
+		 */
+		public ExprsChangeAdapter() { }
+		
+		/**
+		 * @return the shared instance
+		 */
+		public static ExprsChangeAdapter getInstance() {
+			if (instance == null) {
+				instance = new ExprsChangeAdapter();
+			}
+			return instance;
+		}
+		
+		/**
+		 * isContextDependant field
+		 * 
+		 * @param evt the event
+		 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+		 */
+		@Override
+		public void propertyChange(final PropertyChangeEvent evt) {
+			final ScilabType data = (ScilabType) evt.getNewValue();
+			final ContextUpdate ioBlock = (ContextUpdate) evt.getSource();
+			
+			if (!data.isEmpty()) {
+				final String newIndex = ((ScilabString) data).getData()[0][0];
+				
+				if (!INTEGER_PATTERN.matcher(newIndex).matches()) {
+					ioBlock.isContextDependent = true;
+				} else {
+					ioBlock.isContextDependent = false;
+				}
+			}
+		}
+	}
+	
+	/**
 	 * This enum represent all the subclasses of ContextUpdate .
 	 * 
 	 * It is used to easily loop over a BasicBlock I/O blocks
 	 */
-	public enum IOBlocks {
+	public static enum IOBlocks {
 		/** Map a control port to an event input block */
 		EventInBlock(EventInBlock.class, ControlPort.class),
 		/** Map a command port to an event output block */
@@ -204,8 +255,8 @@ public abstract class ContextUpdate extends BasicBlock {
 			final Object[] children = mxGraphModel.getChildCells(
 					defaultModel, defaultParent, true, false);
 			
-			for (int i = 0; i < children.length; i++) {
-				final mxICell child = (mxICell) children[i];
+			for (Object element : children) {
+				final mxICell child = (mxICell) element;
 
 				/* if compatible add it to the list */
 				for (IOBlocks b : IOBlocks.values()) {
@@ -233,14 +284,18 @@ public abstract class ContextUpdate extends BasicBlock {
 		}
 	}
 	
+	private transient boolean isContextDependent;
+	
 	/**
 	 * Constructor.
 	 */
 	public ContextUpdate() {
 		super();
 		
-		getParametersPCS().addPropertyChangeListener("integerParameters",
+		getParametersPCS().addPropertyChangeListener(INTEGER_PARAMETERS,
 				IndexChangeAdapter.getInstance());
+		getParametersPCS().addPropertyChangeListener(EXPRS,
+				ExprsChangeAdapter.getInstance());
 	}
 
 	/**
@@ -265,9 +320,16 @@ public abstract class ContextUpdate extends BasicBlock {
 			return;
 		}
 
-		final File tempOutput;
-		final File tempInput;
-		final File tempContext;
+		// do not evaluate context is the block is not context dependent.
+		if (!isContextDependent) {
+			return;
+		}
+		
+		LOG_LOCAL.trace("Update the I/O value from the context");
+		
+		File tempOutput;
+		File tempInput;
+		File tempContext;
 		try {
 			tempInput = FileUtils.createTempFile();
 			tempInput.deleteOnExit();
@@ -290,7 +352,7 @@ public abstract class ContextUpdate extends BasicBlock {
 			updateBlockSettings(modifiedBlock);
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG_LOCAL.error(e);
 		}
 	}
 }

@@ -441,6 +441,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\fprintfMat.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fscanfMat.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\fullpath.c"
 				>
 			</File>
@@ -776,6 +784,14 @@
 			</File>
 			<File
 				RelativePath=".\includes\findfiles.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fprintfMat.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fscanfMat.h"
 				>
 			</File>
 			<File

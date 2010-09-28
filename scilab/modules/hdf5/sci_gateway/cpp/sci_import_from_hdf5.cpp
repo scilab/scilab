@@ -20,7 +20,6 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "../../../call_scilab/includes/call_scilab.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
@@ -69,98 +68,101 @@ int sci_import_from_hdf5(char *fname, int* _piKey)
     forceJHDF5load();
 #endif
 
-	iCloseList = 0;
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
-	if(sciErr.iErr)
-	{
-			printError(&sciErr, 0);
-			return 0;
-	}
+    iCloseList = 0;
+    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	sciErr = getVarDimension(_piKey, piAddr, &iRows, &iCols);
-	if(sciErr.iErr)
-	{
-			printError(&sciErr, 0);
-			return 0;
-	}
+    sciErr = getVarDimension(_piKey, piAddr, &iRows, &iCols);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	if(iRows != 1 || iCols != 1)
-	{
-		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
-	}
+    if(iRows != 1 || iCols != 1)
+    {
+        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
+    }
 
-	sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, NULL);
-	if(sciErr.iErr)
-	{
-			printError(&sciErr, 0);
-			return 0;
-	}
+    sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, NULL);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	pstVarName = (char*)MALLOC((iLen + 1) * sizeof(char));
-	sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, &pstVarName);
-	if(sciErr.iErr)
-	{
-			printError(&sciErr, 0);
-			return 0;
-	}
+    pstVarName = (char*)MALLOC((iLen + 1) * sizeof(char));
+    sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, &pstVarName);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	//open hdf5 file
-	int iFile = openHDF5File(pstVarName);
-	if(iFile < 0)
-	{
-		Scierror(999, "Unable to open file: %s", pstVarName);
-		return 0;
-	}
+    //open hdf5 file
+    int iFile = openHDF5File(pstVarName);
 
-	int iNbItem = 0;
-	iNbItem = getVariableNames(iFile, NULL);
-	char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
-	iNbItem = getVariableNames(iFile, pstVarNameList);
+    if(iFile < 0)
+    {
+        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstVarName);
+        return 0;
+    }
 
-	//import all data
-	for(int i = 0 ; i < iNbItem ; i++)
-	{
-		int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
-		if(iDataSetId == 0)
-		{
-			return 0;
-		}
+    int iNbItem = 0;
+    iNbItem = getVariableNames(iFile, NULL);
+    if(iNbItem != 0)
+    {
+        char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
+        iNbItem = getVariableNames(iFile, pstVarNameList);
 
-		bImport = import_data(_piKey, iDataSetId, 0, NULL, pstVarNameList[i]);
-		if(bImport == false)
-		{
-			break;
-		}
+        //import all data
+        for(int i = 0 ; i < iNbItem ; i++)
+        {
+            int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
+            if(iDataSetId == 0)
+            {
+                return 0;
+            }
 
-	}
+            bImport = import_data(_piKey, iDataSetId, 0, NULL, pstVarNameList[i]);
+            if(bImport == false)
+            {
+                break;
+            }
 
-	//close the file
-	closeHDF5File(iFile);
+        }
+    }
+    //close the file
+    closeHDF5File(iFile);
 
-	FREE(pstVarName);
+    FREE(pstVarName);
 
-	int *piReturn = NULL;
-	sciErr = allocMatrixOfBoolean(_piKey, Rhs + 1, 1, 1, &piReturn);
-	if(sciErr.iErr)
-	{
-			printError(&sciErr, 0);
-			return 0;
-	}
+    int *piReturn = NULL;
+    sciErr = allocMatrixOfBoolean(_piKey, Rhs + 1, 1, 1, &piReturn);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	if(bImport == true)
-	{
-		piReturn[0] = 1;
-	}
-	else
-	{
-		piReturn[0] = 0;
-	}
+    if(bImport == true)
+    {
+        piReturn[0] = 1;
+    }
+    else
+    {
+        piReturn[0] = 0;
+    }
 
-	LhsVar(1) = Rhs + 1;
-	PutLhsVar();
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
 
-//	printf("End gateway !!!\n");
-	return 0;
+    //	printf("End gateway !!!\n");
+    return 0;
 }
 
 static bool import_data(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
@@ -212,7 +214,7 @@ static bool import_data(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAdd
 			bRet = import_boolean_sparse(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
 			break;
 		}
-	default : 
+	default :
 		{
 #ifdef PRINT_DEBUG
             char pstMsg[512];
@@ -439,7 +441,7 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 
 	switch(iPrec)
 	{
-	case SCI_INT8 : 
+	case SCI_INT8 :
 		{
 			char* pcData	= NULL;
 			pcData = (char*)MALLOC(sizeof(char) * iRows * iCols);
@@ -459,7 +461,7 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 			}
 		}
 		break;
-	case SCI_UINT8 : 
+	case SCI_UINT8 :
 		{
 			unsigned char* pucData	= NULL;
 			pucData = (unsigned char*)MALLOC(sizeof(unsigned char) * iRows * iCols);
@@ -479,7 +481,7 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 			}
 		}
 		break;
-	case SCI_INT16 : 
+	case SCI_INT16 :
 		{
 			short* psData	= NULL;
 			psData = (short*)MALLOC(sizeof(short) * iRows * iCols);
@@ -499,7 +501,7 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 			}
 		}
 		break;
-	case SCI_UINT16 : 
+	case SCI_UINT16 :
 		{
 			unsigned short* pusData	= NULL;
 			pusData = (unsigned short*)MALLOC(sizeof(unsigned short) * iRows * iCols);
@@ -519,7 +521,7 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 			}
 		}
 		break;
-	case SCI_INT32 : 
+	case SCI_INT32 :
 		{
 			int* piData	= NULL;
 			piData = (int*)MALLOC(sizeof(int) * iRows * iCols);
@@ -539,7 +541,7 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 			}
 		}
 		break;
-	case SCI_UINT32 : 
+	case SCI_UINT32 :
 		{
 			unsigned int* puiData	= NULL;
 			puiData = (unsigned int*)MALLOC(sizeof(unsigned int) * iRows * iCols);
@@ -559,7 +561,7 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 			}
 		}
 		break;
-	case SCI_INT64 : 
+	case SCI_INT64 :
 		{
 #ifdef __SCILAB_INT64__
 			long long* pllData	= NULL;
@@ -583,7 +585,7 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
 #endif
         }
         break;
-    case SCI_UINT64 : 
+    case SCI_UINT64 :
         {
 #ifdef __SCILAB_INT64__
 			unsigned long long* pullData	= NULL;

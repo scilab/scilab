@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * Copyright (C) ENPC
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -40,9 +40,22 @@ typedef enum {
 
 } sci_types;
 
- /* lufact pointer... Done for backward compatibility. 
+
+typedef enum {
+    sci_integer8 = 1,
+    sci_integer16 = 2,
+    sci_integer32 = 4,
+    sci_integer64 = 8,
+    sci_uinteger8 = 11,
+    sci_uinteger16 = 12,
+    sci_uinteger32 = 14,
+    sci_uinteger64 = 18
+} sci_int_types;
+
+
+ /* lufact pointer... Done for backward compatibility.
   *	sci_lufact_pointer has been added to be able to handle umfpack data type
-  * Since the use of pointer data structure is very interesting for Scilab 
+  * Since the use of pointer data structure is very interesting for Scilab
   * we decided to rename it to remove the reference of the initial use.
   */
 #define sci_lufact_pointer sci_pointer

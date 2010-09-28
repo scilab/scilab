@@ -47,7 +47,7 @@ CHECK_SRC= $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciinterpolation_la_CFLAGS)
 
 libsciinterpolation_la_LIBADD = \
-	$(top_builddir)/modules/core/libscicore.la \
+	 \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
     $(top_builddir)/modules/string/libscistring.la
 

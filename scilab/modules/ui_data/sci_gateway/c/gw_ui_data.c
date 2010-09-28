@@ -25,7 +25,6 @@ static BOOL loadedDep = FALSE;
 static gw_generic_table Tab[]=
 {
     {NULL, ""}, //"editvar"
-    {NULL, ""}, //"updateEditvarValue"
     {NULL, ""}, //"browsevar"
 };
 /*--------------------------------------------------------------------------*/

@@ -121,7 +121,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/sparse/libscisparse.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 	src/c/taucs_scilab.c src/c/common_umfpack.c \
@@ -480,7 +479,6 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@$(top_builddir)/modules/mexlib/libmat.la \
 @UMFPACK_TRUE@$(top_builddir)/modules/sparse/libscisparse.la \
 @UMFPACK_TRUE@$(top_builddir)/modules/mexlib/libmex.la \
-@UMFPACK_TRUE@$(top_builddir)/modules/core/libscicore.la \
 @UMFPACK_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 @UMFPACK_FALSE@libsciumfpack_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
@@ -1257,9 +1255,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

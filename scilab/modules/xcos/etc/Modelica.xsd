@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="model" type="Model"/>
+
+  <xs:complexType name="Info" final="extension restriction">
+    <xs:sequence>
+      <xs:element name="number_of_integer_parameters" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_real_parameters" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_string_parameters" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_discrete_variables" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_continuous_variables" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_continuous_unknowns" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_continuous_states" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_inputs" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_outputs" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_modes" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="number_of_zero_crossings" type="xs:nonNegativeInteger" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ModelicaValue" final="extension restriction">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="value" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="Struct" final="extension restriction">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="subnodes">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="struct" type="Struct"/>
+              <xs:element name="terminal" type="Terminal"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Terminal" final="extension restriction">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="kind" type="xs:string"/>
+      <xs:element name="id" type="xs:string"/>
+      <xs:element name="fixed" type="ModelicaValue" minOccurs="0"/>
+      <xs:element name="initial_value" type="ModelicaValue" minOccurs="0"/>
+      <xs:element name="weight" type="ModelicaValue" minOccurs="0"/>
+      <xs:element name="max" type="ModelicaValue" minOccurs="0"/>
+      <xs:element name="min" type="ModelicaValue" minOccurs="0"/>
+      <xs:element name="nominal_value" type="ModelicaValue" minOccurs="0"/>
+      <xs:element name="comment" type="ModelicaValue" minOccurs="0"/>
+      <xs:element name="selected" type="ModelicaValue" minOccurs="0"/>
+      <xs:element name="output" type="xs:string" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Output" final="extension restriction">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="order" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="dependencies">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="variable" type="xs:string" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Model" final="extension restriction">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="model_info" type="Info" minOccurs="0"/>
+      <xs:element name="identifiers" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="parameter" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="explicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="implicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="implicit_relations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="implicit_relation" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="implicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="explicit_relations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="explicit_relation" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="explicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="outputs" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="output" type="Output" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="elements" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="struct" type="Struct" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="equations" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="equation" type="ModelicaValue" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="when_clauses" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

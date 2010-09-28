@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-25 04:27+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-08-04 15:55+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,51 +19,12 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: メモリの割り当てに失敗しました。\n"
-
-#
-# File: macros/auread.sci, line: 65
-# File: macros/auread.sci, line: 107
-# File: macros/auread.sci, line: 110
-# File: macros/auread.sci, line: 113
-# File: macros/auread.sci, line: 121
-# File: macros/auread.sci, line: 177
-# File: macros/auread.sci, line: 209
-# File: macros/auread.sci, line: 214
-# File: macros/auwrite.sci, line: 72
-# File: macros/auwrite.sci, line: 88
-# File: macros/auwrite.sci, line: 125
-# File: macros/auwrite.sci, line: 143
-# File: macros/auwrite.sci, line: 147
-# File: macros/savewave.sci, line: 146
-# File: macros/savewave.sci, line: 185
-# File: macros/sound.sci, line: 41
-# File: macros/wavread.sci, line: 82
-# File: macros/wavread.sci, line: 87
-# File: macros/wavread.sci, line: 102
-# File: macros/wavread.sci, line: 108
-# File: macros/wavread.sci, line: 119
-# File: macros/wavread.sci, line: 137
-# File: macros/wavread.sci, line: 159
-# File: macros/wavread.sci, line: 170
-# File: macros/wavread.sci, line: 178
-# File: macros/wavread.sci, line: 189
-# File: macros/wavread.sci, line: 200
-# File: macros/wavread.sci, line: 255
-# File: macros/wavread.sci, line: 271
-# File: macros/wavread.sci, line: 275
-# File: macros/wavread.sci, line: 278
-# File: sci_gateway/c/sci_PlaySound.c, line: 62
-#, c-format
 msgid "%s: An error occurred: %s\n"
-msgstr "%s: エラーが起こりました: %s\n"
+msgstr "%s: エラーが発生しました: %s\n"
 
-#
-# File: macros/wavread.sci, line: 236
 #, c-format
 msgid "%s: An error occurred: %s is not supported.\n"
-msgstr "%s: エラーが起きました: %s はサポートされません。\n"
+msgstr "%s: エラーが発生しました : %s はサポートされません.\n"
 
 #
 # File: macros/wavread.sci, line: 236
@@ -78,11 +39,9 @@ msgid ""
 "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr "%s: エラーが起きました: ファイルフォーマットが不正です、 <%s>　チャンク読み取りエラー。\n"
 
-#
-# File: macros/playsnd.sci, line: 32
 #, c-format
 msgid "%s: Audio capabilities not available.\n"
-msgstr "%s: オーディオの能力は利用できません。\n"
+msgstr "%s: オーディオ機能は利用できません.\n"
 
 #
 # File: macros/auread.sci, line: 43
@@ -94,110 +53,76 @@ msgstr "%s: オーディオの能力は利用できません。\n"
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s がオープンできません。\n"
 
-#
-# File: sci_gateway/c/sci_beep.c, line: 52
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
+
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d が不正: '%s' または '%s' を想定します。\n"
+msgstr "%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
 
-#
-# File: macros/sound.sci, line: 27
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数(s)で不正な数: 最小の %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
-#
-# File: macros/loadwave.sci, line: 17
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-# File: macros/auread.sci, line: 34
-# File: macros/auwrite.sci, line: 42
-# File: macros/auwrite.sci, line: 44
-# File: macros/wavwrite.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#
-# File: macros/loadwave.sci, line: 43
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: 出力引数(s)で不正な数です。\n"
+msgstr "%s: 出力引数の数が間違っています.\n"
 
-#
-# File: macros/loadwave.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
-msgstr "%s: 出力引数で不正な数です。\n"
+msgstr "%s: 出力引数の数が間違っています.\n"
 
-#
-# File: macros/savewave.sci, line: 98
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
-#
-# File: macros/loadwave.sci, line: 27
-# File: macros/savewave.sci, line: 228
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/loadwave.sci, line: 27
-# File: macros/savewave.sci, line: 228
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/wavread.sci, line: 75
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
-msgstr "%s: 入力引数 #%d で不正な値: %s または %s でなければなりません、整数、または %d 整数のベクトル\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s または %s , 整数または %d 整数のベクトルを指定してください.\n"
 
-#
-# File: macros/wavread.sci, line: 65
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: Index range must be specified as a "
 "scalar or %d-element vector.\n"
-msgstr "%s: 入力引数で不正な値: インデックス範囲は、スカラーとして明確に述べられなくてはいけません、あるいは、%d-要素ベクトル\n"
+msgstr "%s: 入力引数の値が間違っています: インデックスの範囲はスカラーまたは %d-要素ベクトルで指定してください.\n"
 
-#
-# File: macros/auwrite.sci, line: 60
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
-msgstr "%s: 入力引数で不正な数: ファイル名は文字列でなければなりません。\n"
+msgstr "%s: 入力引数の値が間違っています: ファイル名には文字列を指定してください.\n"
 
-#
-# File: macros/wavread.sci, line: 82
 msgid ".wav file does not contain the RIFF identifier."
-msgstr ".wavファイルは、RIFF識別を含んでいません。"
+msgstr ".wavファイルにRIFF識別子が含まれていません."
 
-#
-# File: macros/wavread.sci, line: 87
 msgid ".wav file does not contain the wave identifier."
-msgstr ".wavファイルは、wave識別を含んでいません。"
+msgstr ".wavファイルにwave 識別子が含まれていません."
 
-#
-# File: sci_gateway/c/sci_PlaySound.c, line: 62
 msgid "Cannot play file."
-msgstr "ファイルをプレイできません。"
+msgstr "ファイルを再生できません."
 
-#
-# File: macros/wavread.sci, line: 255
 msgid "Cannot read .wav file  with more than 16 bits per sample."
-msgstr "１サンプル当たり１６ビット以上で.wavファイルを読むことができません。"
+msgstr "16ビット/サンプルを超える .wav ファイルを読み込むことはできません."
 
-#
-# File: macros/auwrite.sci, line: 72
 msgid "Data array must have 1- or 2-dimensions only."
-msgstr "データ配列は、単に １- または ２-次元 を持っていなくてはいけません。"
+msgstr "データ配列の次元は 1または2次元としてください."
 
 #
 # File: macros/wavread.sci, line: 102
@@ -227,59 +152,38 @@ msgstr "サウンド・ファイルの書き込み中にエラー。"
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "RIFF・ファイルの不正確なチャンクサイズ情報。"
 
-#
-# File: macros/wavread.sci, line: 119
 msgid "Invalid .wav file: found data before format information."
-msgstr "無効な.wavファイル:見つけたデータは前に情報をフォーマットします。"
+msgstr "不正な .wav ファイル: フォーマット情報の前にデータが見つかりました."
 
-#
-# File: macros/wavread.sci, line: 278
 msgid "Invalid sample limits (use ascending order)."
-msgstr "無効なサンプル限界(昇順使用)"
+msgstr "サンプル範囲が間違っています (昇順としてください)"
 
-#
-# File: macros/wavread.sci, line: 170
 msgid "Invalid wav format."
-msgstr "wavフォーマットが間違いです。"
+msgstr "wavフォーマットが間違っています."
 
-#
-# File: macros/auwrite.sci, line: 125
 msgid ""
 "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
-msgstr "Mu-law は、単に８ビット・データで使うことができます。方法=''linear''を代わりに使ってください。"
+msgstr "Mu-law は 8ビットデータでのみ使用可能です. method=''linear'' を代わりに使用してください."
 
-#
-# File: macros/sound.sci, line: 41
 msgid "Requires 2-D values only."
-msgstr "２-D値のみが必要です。"
+msgstr "2次元の値のみとする必要があります."
 
-#
-# File: macros/wavread.sci, line: 271
 msgid "Sample limit vector must have 2 entries."
-msgstr "サンプル限界ベクトルのは、２つの登録をしなくてはいけません。"
+msgstr "サンプル範囲ベクトルは2つのエントリを有する必要があります."
 
-#
-# File: macros/wavread.sci, line: 275
 msgid "Sample limits out of range."
-msgstr "サンプル限界を超えました。"
+msgstr "サンプル範囲を超えました."
 
-#
-# File: src/nosound/nosound.c, line: 19
 msgid "Scilab sound module not installed.\n"
-msgstr "Scilabサウンド・モジュールは装備されていません。\n"
+msgstr "Scilab sound モジュールがインストールされていません.\n"
 
 #
 # File: macros/savewave.sci, line: 185
 msgid "Unknown data format."
 msgstr "未知のデータ・フォーマットです。"
 
-#
-# File: macros/auwrite.sci, line: 143
-# File: macros/auwrite.sci, line: 147
 msgid "Unrecognized data format."
-msgstr "承認されていないデータ・フォーマット。"
+msgstr "データ形式を認識できません."
 
-#
-# File: macros/savewave.sci, line: 146
 msgid "only 8/16/24/32 bits for the encoding."
-msgstr "符号化のためには ８/１６/２４/３２ ビット だけです。"
+msgstr "対応する符号化は 8/16/24/32 ビットのみです."

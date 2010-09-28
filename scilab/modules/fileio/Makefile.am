@@ -46,7 +46,10 @@ src/c/basename.c \
 src/c/pathconvert.c \
 src/c/copyfile_others.c \
 src/c/getFullFilename.c \
-src/c/os_wfopen.c
+src/c/os_wfopen.c \
+src/c/fscanfMat.c \
+src/c/fprintfMat.c
+
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -149,7 +152,7 @@ CHECK_SRC= $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATE
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
+libscifileio_la_LIBADD = \
 				$(top_builddir)/modules/string/libscistring.la \
 				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -171,5 +174,10 @@ libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 #### fileio : gateway declaration ####
 libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
+
+#### fileio : include files ####
+libscifileio_la_includedir=$(pkgincludedir)
+libscifileio_la_include_HEADERS = includes/getFullFilename.h \
+includes/dynlib_fileio.h
 
 include $(top_srcdir)/Makefile.incl.am

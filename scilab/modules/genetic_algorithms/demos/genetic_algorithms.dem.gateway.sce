@@ -13,3 +13,4 @@ subdemolist = ["Genetic algorithms",                   "GAdemo.sce"; ...
 	       "Niched Sharing Genetic Algorithm II",  "NSGA2demo.sce" ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2)
+clear demopath;

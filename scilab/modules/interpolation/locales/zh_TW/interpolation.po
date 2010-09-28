@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-06-17 16:54+0000\n"
-"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"PO-Revision-Date: 2010-06-20 00:33+0000\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,15 +14,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: %s must be a real %d-dim hypermatrix.\n"
-msgstr ""
+msgstr "%s: %s 必須是實數的%d-dim hypermatrix.\n"
 
 #, c-format
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
-msgstr ""
+msgstr "%s:重覆的節點是所有節點colinears (ier = %d).\n"
 
 #, c-format
 msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
-msgstr ""
+msgstr "%s: 對clamped spline來說,你必須給一個端點slopes.\n"
 
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 82
@@ -32,7 +32,7 @@ msgstr "%s: 第 %d 維之格點座標不是嚴格漸增.\n"
 
 #, c-format
 msgid "%s: Not enough points for the fit.\n"
-msgstr ""
+msgstr "%s: 對這個作品,點數不夠.\n"
 
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 113
@@ -52,7 +52,7 @@ msgstr "%s: 格點座標及格點數據之第 %d 維度大小不相容.\n"
 msgid ""
 "%s: Size incompatibility between grid points and values in dimension %d or "
 "%d.\n"
-msgstr ""
+msgstr "%s:在格子點和維度 %d or %d的值之間 ,大小是不一致的.\n"
 
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 109
@@ -63,7 +63,7 @@ msgstr "%s: 格點座標及格點數據之第 %d 維度大小不相容\n"
 
 #, c-format
 msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
-msgstr ""
+msgstr "%s:警告:最小分陣的列缺陷.\n"
 
 #
 # File: sci_gateway/c/sci_splin.c, line: 90
@@ -74,7 +74,7 @@ msgstr "%s: 輸入參數之數目錯誤(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr ""
+msgstr "%s:輸入參數數目錯誤: 應介於 %d 和 %d 之間.\n"
 
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 74
@@ -92,96 +92,96 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為實數 3-維超矩陣.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
-msgstr ""
+msgstr "%s:輸入參數的大小有誤 #%d:端點斜率.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
-msgstr ""
+msgstr "%s:輸入參數的大小有誤 #%d:必須是%s.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
-msgstr ""
+msgstr "%s:輸入參數的大小有誤 #%d:兩列才對.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為向量.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為向量或矩陣.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Vector of same size "
 "expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數長度錯誤#%d, #%d and #%d: 應為相同長度.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
-msgstr ""
+msgstr "%s: 輸入參數長度錯誤#%d, #%d or #%d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments: x, y and z grids must have at least %d "
 "points.\n"
-msgstr ""
+msgstr "%s: 輸入參數長度錯誤:x, y and z格線至少必須要 %d 點.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數型別有誤#%d: %s tlist 才對.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數陣列.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
 "expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' , ''%s'' 或 ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' 或 實數.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
 "detected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤:不是嚴格遞增或是+ -inf .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為實數但部分數值為 NaN.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤:%d個元素的向量才對.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
+msgstr "%s: 輸入參數數值錯誤#%d and #%d: 相同大小才對.\n"
 
 #, c-format
 msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
-msgstr ""
+msgstr "%s:週期性曲線的值有誤%s: 應相等於%s.\n"
 
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 73
@@ -192,11 +192,11 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
-msgstr ""
+msgstr "%s: 第 %d 個輸入參數數值錯誤:未知的 '%s'  型別.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
-msgstr ""
+msgstr "%s:第#%d個輸入參數值有誤:不支援的'%s' 型別.\n"
 
 #
 # File: sci_gateway/c/sci_splin2d.c, line: 60
@@ -213,8 +213,8 @@ msgstr "%s: xyz 應為一  (n,3)實數數矩陣, 其中 n >= 10\n"
 
 #, c-format
 msgid "Wrong type for input argument #%d: Real hypermatrix expected.\n"
-msgstr ""
+msgstr "第 %d 個輸入參數型別有誤:實數hypermatrix 才對.\n"
 
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "第#%d個輸入參數型別有誤:字串才對.\n"

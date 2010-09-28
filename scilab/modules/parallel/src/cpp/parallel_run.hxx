@@ -139,7 +139,7 @@ namespace
     */
 
 #ifndef _MSC_VER
- #define __HAVE_FORK__ 1
+#define __HAVE_FORK__ 1
 #endif
 
 #ifdef __HAVE_FORK__
@@ -257,11 +257,11 @@ namespace
             : w(wrapper)
         {
         }
-        void operator()()
+        void operator()(int* _piKey)
         {
             for(std::size_t i(0); i != w.n; ++i)
             {
-                w.callF(i);
+                w.callF(_piKey, i);
             }
         }
         ParallelWrapper& w;
@@ -278,11 +278,11 @@ namespace
         the nb of wokers (threads or processes) can also be specified (default is implementation defined usually nb of cores).
         TODO : enable specification of near / far / all (must, must not, can share L2 cache), at least for threads.
         so first arge might not stay boolean (we can add an overload)*/
-        F operator()( bool with_threads=false, std::size_t nb_workers=0, bool dynamic_scheduling=true, int chunk_size=1)
+        F operator()(int* _piKey, bool with_threads=false, std::size_t nb_workers=0, bool dynamic_scheduling=true, int chunk_size=1)
         {
             return with_threads
-                ? applyWithThreads(nb_workers, dynamic_scheduling, chunk_size)
-                : applyWithProcesses(nb_workers, dynamic_scheduling, chunk_size);
+                ? applyWithThreads(_piKey, nb_workers, dynamic_scheduling, chunk_size)
+                : applyWithProcesses(_piKey, nb_workers, dynamic_scheduling, chunk_size);
         }
     private:
         friend struct scheduler<parallel_wrapper>;
@@ -292,7 +292,7 @@ namespace
         * @param dynamic_scheduling if scheduling is dynamic or static
         * @param chunk_size chunk size.
         */
-        F applyWithThreads(std::size_t nb_threads, bool dynamic_scheduling, int chunk_size)
+        F applyWithThreads(int* _piKey, std::size_t nb_threads, bool dynamic_scheduling, int chunk_size)
         {
             signed int i;
             nb_threads = min(nb_threads, n);
@@ -305,13 +305,13 @@ namespace
 #pragma omp parallel for private(i) schedule(dynamic, chunk_size)
                 for(i=0; i < n; ++i)
                 {
-                    callF(i);
+                    callF(_piKey, i);
                 }
             } else {
 #pragma omp parallel for private(i)  schedule(static, chunk_size)
                 for(i=0; i < n; ++i)
                 {
-                    callF(i);
+                    callF(_piKey, i);
                 }
 
             }
@@ -323,17 +323,17 @@ namespace
         * @param dynamic_scheduling if scheduling is dynamic or static
         * @param chunk_size chunk size.
         */
-        F applyWithProcesses(std::size_t nb_process, bool dynamic_scheduling, std::size_t chunk_size)
+        F applyWithProcesses(int* _piKey, std::size_t nb_process, bool dynamic_scheduling, std::size_t chunk_size)
         {
             nb_process = min( (nb_process ? nb_process : omp_get_num_procs()), n);
             scheduler<parallel_wrapper> s(*this, nb_process, dynamic_scheduling, chunk_size );
-            s();
+            s(_piKey);
             return f;
         }
         /* Perform i^th call to f, ajusting arguments and results ptrs from args[] and res[]
         * @param i args and reults index.
         */
-        void callF(std::size_t const i)
+        void callF(int* _piKey, std::size_t const i)
         {
 
             std::vector<char const *> local_args(rhs);

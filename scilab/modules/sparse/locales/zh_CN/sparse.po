@@ -139,16 +139,18 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be same size as input argument "
-"#%d"
-msgstr "%s：输入参数#%d的大小错误：必须跟输入参数#%d同样大小。"
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该与输入参数#%d的大小相同。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
@@ -163,18 +165,6 @@ msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为列向量。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as input argument #%d "
-"expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该与输入参数#%d同样大小。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same size as the input argument #%d "
-"expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该与输入参数#%d的大小相同。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为标量。\n"
 
@@ -185,6 +175,12 @@ msgstr "%s：输入参数#%d的类型错误：应该为方阵。\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for size argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
 
