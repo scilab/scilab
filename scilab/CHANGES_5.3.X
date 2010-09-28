@@ -23,7 +23,7 @@ SciNotes:
 Bug Fixes:
 ==========
 
-* bug 8072 fixed - Figures were not all closed at the end of a demonstration.
+* bug 8068 fixed - Figures were not all closed at the end of a demonstration.
 
 * bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni 
                    mode on Linux and MacOS X.
