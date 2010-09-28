@@ -21,12 +21,13 @@ extern "C"
 /**
  * Read a single boolean on the stack.
  *
+ * @param _pvCtx private api context (opaque structure)
  * @param rhsPosition the position on the stack.
  * @param[out] out the read value.
  * @param fname the function name used for the call.
  * @return status of the operation (<> 0 on error)
  */
-int readSingleBoolean(int rhsPosition, bool* out, const char* fname)
+int readSingleBoolean(void* _pvCtx, int rhsPosition, bool* out, const char* fname)
 {
     int* argumentPointer = NULL;
     int rowsArgument = 0;
@@ -36,14 +37,14 @@ int readSingleBoolean(int rhsPosition, bool* out, const char* fname)
     *out = false;
     SciErr sciErr;
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, rhsPosition, &argumentPointer);
+    sciErr = getVarAddressFromPosition(_pvCtx, rhsPosition, &argumentPointer);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return -1;
     }
 
-    sciErr = getMatrixOfBoolean(pvApiCtx, argumentPointer,
+    sciErr = getMatrixOfBoolean(_pvCtx, argumentPointer,
             &rowsArgument, &colsArgument, NULL);
     if (sciErr.iErr)
     {
@@ -57,7 +58,7 @@ int readSingleBoolean(int rhsPosition, bool* out, const char* fname)
         return -1;
     }
 
-    sciErr = getMatrixOfBoolean(pvApiCtx, argumentPointer,
+    sciErr = getMatrixOfBoolean(_pvCtx, argumentPointer,
             &rowsArgument, &colsArgument, &value);
     if (sciErr.iErr)
     {
@@ -72,12 +73,13 @@ int readSingleBoolean(int rhsPosition, bool* out, const char* fname)
 /**
  * Read a single string on the stack.
  *
+ * @param _pvCtx private api context (opaque structure)
  * @param rhsPosition the position on the stack.
  * @param[out] out the read value.
  * @param fname the function name used for the call.
  * @return status of the operation (<> 0 on error)
  */
-int readSingleString(int rhsPosition, char** out, const char* fname)
+int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fname)
 {
     int* argumentPointer = NULL;
     int rowsArgument = 0;
@@ -88,14 +90,14 @@ int readSingleString(int rhsPosition, char** out, const char* fname)
     *out = NULL;
     SciErr sciErr;
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, rhsPosition, &argumentPointer);
+    sciErr = getVarAddressFromPosition(_pvCtx, rhsPosition, &argumentPointer);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return -1;
     }
 
-    sciErr = getMatrixOfString(pvApiCtx, argumentPointer, &rowsArgument,
+    sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
             &colsArgument, NULL, NULL);
     if (sciErr.iErr)
     {
@@ -109,7 +111,7 @@ int readSingleString(int rhsPosition, char** out, const char* fname)
         return -1;
     }
 
-    sciErr = getMatrixOfString(pvApiCtx, argumentPointer, &rowsArgument,
+    sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
             &colsArgument, &lenArgument, NULL);
     if (sciErr.iErr)
     {
@@ -119,7 +121,7 @@ int readSingleString(int rhsPosition, char** out, const char* fname)
 
     value = (char*) MALLOC(sizeof(char) * (lenArgument + 1)); //+ 1 for null termination
     value[lenArgument] = '\0';
-    sciErr = getMatrixOfString(pvApiCtx, argumentPointer, &rowsArgument,
+    sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
             &colsArgument, &lenArgument, &value);
     if (sciErr.iErr)
     {
@@ -133,15 +135,16 @@ int readSingleString(int rhsPosition, char** out, const char* fname)
 }
 
 /**
- * Read a single string on the stack.
+ * Read a vector of string on the stack.
  *
+ * @param _pvCtx private api context (opaque structure)
  * @param rhsPosition the position on the stack.
  * @param[out] out the read value.
  * @param[out] vectorLength the length of the vector.
  * @param fname the function name used for the call.
  * @return status of the operation (<> 0 on error)
  */
-int readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fname)
+int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLength, char* fname)
 {
     int* argumentPointer = NULL;
     int rowsArgument = 0;
@@ -153,14 +156,14 @@ int readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fnam
     *vectorLength = 0;
     SciErr sciErr;
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, rhsPosition, &argumentPointer);
+    sciErr = getVarAddressFromPosition(_pvCtx, rhsPosition, &argumentPointer);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return -1;
     }
 
-    sciErr = getMatrixOfString(pvApiCtx, argumentPointer, &rowsArgument,
+    sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
             &colsArgument, NULL, NULL);
     if (sciErr.iErr)
     {
@@ -175,7 +178,7 @@ int readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fnam
     }
 
     lenArgument = (int*) MALLOC(sizeof(int) * rowsArgument * colsArgument);
-    sciErr = getMatrixOfString(pvApiCtx, argumentPointer, &rowsArgument,
+    sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
             &colsArgument, lenArgument, NULL);
     if (sciErr.iErr)
     {
@@ -190,7 +193,7 @@ int readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fnam
         value[lenArgument[i]] = '\0';
     }
 
-    sciErr = getMatrixOfString(pvApiCtx, argumentPointer, &rowsArgument,
+    sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
             &colsArgument, lenArgument, value);
     if (sciErr.iErr)
     {
@@ -209,3 +212,4 @@ int readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fnam
     
     return 0;
 }
+
