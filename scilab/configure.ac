@@ -694,6 +694,21 @@ fi
 AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
 AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1")
 
+################
+## SSE
+## By default, for x86 CPU, enable the SSE. 
+## Note that it is already the case with 64 bits CPU 
+## (these extensions are enabled by default by gcc)
+################
+
+case "$host" in
+     i*86-linux-gnu|i*86-*-linux-gnu)
+        CFLAGS="$CFLAGS -msse"
+        FFLAGS="$FFLAGS -msse"
+        CPPFLAGS="$CPPFLAGS -msse"
+     ;;
+esac
+
 #######################
 ## test for underscores (name mangling issues between C and fortran)
 #######################

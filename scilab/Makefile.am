@@ -20,7 +20,7 @@ SUBDIRS= libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 
-changelogs = CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X
+changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
@@ -118,6 +118,7 @@ $(top_srcdir)/CHANGES_5.0.X \
 $(top_srcdir)/CHANGES_5.1.X \
 $(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/CHANGES_5.3.X \
+$(top_srcdir)/CHANGES_5.4.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-BSD \
