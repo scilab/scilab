@@ -620,7 +620,7 @@ Exiting: Maximum number of iterations has been exceeded
 
     <programlisting role="example"> 
      <![CDATA[ 
-ffunction y = banana (x)
+function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 opt = optimset ( "Display" , "iter" );
