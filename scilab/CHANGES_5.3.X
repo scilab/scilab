@@ -37,6 +37,8 @@ SciNotes:
 Bug Fixes:
 ==========
 
+* bug 3175 fixed - There were no shortcuts in the console menus.
+
 * bug 7364 fixed - The "Checked" property misworked for uimenus and they could
                    not have a callback.
 
