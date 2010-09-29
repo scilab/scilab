@@ -118,6 +118,7 @@ Bug Fixes:
 
 * bug 8087 fixed - prettyprint did not handle %inf and %nan.
 
+
 * bug 8107 fixed - sum(a,1), cumsum(a,1), .. made Scilab 5.0.3-beta-4 crash
                    in some particular context.
 
@@ -128,6 +129,8 @@ Bug Fixes:
 
 * bug 8110 fixed - ATOMS: When removing a module, its main directory
                    was not deleted even if it was empty.
+
+* bug 8115 fixed - DisableInteractiveMode() (call_scilab) did not work.
 
 * bug 8122 fixed - help of write_csv said that it reads file and not that it writes.
 

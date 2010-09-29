@@ -46,7 +46,7 @@ static CALL_SCILAB_ENGINE_STATE csEngineState = CALL_SCILAB_ENGINE_STOP;
 #ifdef _MSC_VER
 static void SetSciEnv(void)
 {
-    char *ScilabDirectory=NULL;
+    char *ScilabDirectory = NULL;
 
     ScilabDirectory = getScilabDirectory(TRUE);
 
@@ -57,7 +57,7 @@ static void SetSciEnv(void)
     }
     SetScilabEnvironmentVariables(ScilabDirectory);
 
-    if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
+    if (ScilabDirectory){FREE(ScilabDirectory); ScilabDirectory = NULL;}
 
 }
 #endif
@@ -67,26 +67,27 @@ void DisableInteractiveMode(void)
     setScilabMode(SCILAB_NWNI);
 }
 /*--------------------------------------------------------------------------*/
-BOOL StartScilab(char *SCIpath,char *ScilabStartup, int Stacksize) {
+BOOL StartScilab(char *SCIpath,char *ScilabStartup, int Stacksize)
+{
     return Call_ScilabOpen (SCIpath, TRUE, ScilabStartup, Stacksize) == 0;
 }
 /*--------------------------------------------------------------------------*/
 /**
- * Start Scilab engine
- * Function created in the context of javasci v2.
- * This function is just like StartScilab but provides more error messages
- * in case or error. For now, it is only used in javasci v2 but it might
- * be public sooner or later.
- * @return
- * 0: success
- * -1: already running
- * -2: Could not find SCI
- * -3: No existing directory
- * Any other positive integer: A Scilab internal error
- */
+* Start Scilab engine
+* Function created in the context of javasci v2.
+* This function is just like StartScilab but provides more error messages
+* in case or error. For now, it is only used in javasci v2 but it might
+* be public sooner or later.
+* @return
+* 0: success
+* -1: already running
+* -2: Could not find SCI
+* -3: No existing directory
+* Any other positive integer: A Scilab internal error
+*/
 int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int Stacksize)
 {
-#define FORMAT_SCRIPT_STARTUP "exec(\"%s\",-1);quit;"
+    #define FORMAT_SCRIPT_STARTUP "exec(\"%s\",-1);quit;"
     char *ScilabStartupUsed = NULL;
     char *InitStringToScilab = NULL;
     int StacksizeUsed = 0;
@@ -94,11 +95,16 @@ int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int S
 
     static int iflag = -1, ierr = 0;
 
-    if (advancedMode == FALSE)
+    if (getScilabMode() != SCILAB_NWNI)
     {
-        DisableInteractiveMode();
-    }else{
-        setScilabMode(SCILAB_API);
+        if (advancedMode == FALSE)
+        {
+            DisableInteractiveMode();
+        }
+        else
+        {
+            setScilabMode(SCILAB_API);
+        }
     }
 
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED) return -1;
@@ -147,7 +153,7 @@ int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int S
         ScilabStartupUsed = strdup(ScilabStartup);
     }
 
-    if (Stacksize==NULL || Stacksize == -1)
+    if (Stacksize == NULL || Stacksize == -1)
     {
         StacksizeUsed = DEFAULTSTACKSIZE;
     }
@@ -191,6 +197,10 @@ BOOL TerminateScilab(char *ScilabQuit)
         }
         ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
+
+        /* restore default mode */
+        setScilabMode(SCILAB_API);
+
         return TRUE;
     }
     return FALSE;
@@ -230,12 +240,15 @@ CALL_SCILAB_ENGINE_STATE getCallScilabEngineState(void)
     return csEngineState;
 }
 /*--------------------------------------------------------------------------*/
-sci_types getVariableType(char *varName) {
+sci_types getVariableType(char *varName) 
+{
     int iSciType = -1;
     SciErr sciErr = getNamedVarType(pvApiCtx, (char*)varName, &iSciType);
-    if (sciErr.iErr == API_ERROR_NAMED_UNDEFINED_VAR) {
+    if (sciErr.iErr == API_ERROR_NAMED_UNDEFINED_VAR) 
+    {
         return -2;
     }
+
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -244,3 +257,4 @@ sci_types getVariableType(char *varName) {
     return (sci_types) iSciType;
 }
 /*--------------------------------------------------------------------------*/
+
