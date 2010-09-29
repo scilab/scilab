@@ -254,7 +254,6 @@ public class Scilab {
 	/**
 	 * Return the last error code
 	 * @return the error code
-	 * @todo Check what is actually this number
 	 */
 	public int getLastErrorCode() {
 		return Call_Scilab.GetLastErrorCode();
@@ -284,7 +283,6 @@ public class Scilab {
 	 * The int refers to a Java enum from ScilabType.types
 	 * @param varName the name of the variable
 	 * @return the type of the variable
-	 * @todo check the enum here
 	 */
 	public ScilabTypeEnum getVariableType(String varName) throws JavasciException {
 		ScilabTypeEnum variableType = null;
