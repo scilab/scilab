@@ -129,12 +129,14 @@ public class Scilab {
 	 * Note: For now, only one instance of Scilab can be launched
 	 * A second launch will return FALSE
 	 * @return if the operation is successful
+     * @throws AlreadyRunningException Scilab is already running
+     * @throws InitializationException Cannot start Scilab
 	 */
-	public boolean open() throws JavasciException, AlreadyRunningException, InitializationException {
+	public boolean open() throws JavasciException {
 		int res = Call_Scilab.Call_ScilabOpen(this.SCI, this.advancedMode, null, -1);
 		switch (res) {
 			case -1: 
-				throw new InitializationException("Javasci already running.");
+				throw new AlreadyRunningException("Javasci already running.");
 			case -2:
 				/* Should not occurd (processed before) */
 				throw new InitializationException("Could not find SCI.");
@@ -283,6 +285,8 @@ public class Scilab {
 	 * The int refers to a Java enum from ScilabType.types
 	 * @param varName the name of the variable
 	 * @return the type of the variable
+     * @throws UndefinedVariableException The variable does not exist
+     * @throws UnknownTypeException Cannot find the type
 	 */
 	public ScilabTypeEnum getVariableType(String varName) throws JavasciException {
 		ScilabTypeEnum variableType = null;
@@ -307,6 +311,7 @@ public class Scilab {
 	 * Throws an exception if the datatype is not managed or if the variable is not available
 	 * @param varname the name of the variable
 	 * @return return the variable 
+     * @throws UnsupportedTypeException Type not managed yet.
 	 */
 	public ScilabType get(String varname) throws JavasciException {
 		ScilabTypeEnum sciType = this.getVariableType(varname);
@@ -361,6 +366,7 @@ public class Scilab {
 	 * @param varname the name of the variable
 	 * @param theVariable the variable itself
 	 * @return true if the operation is successful
+     * @throws UnsupportedTypeException Type not managed yet.
 	 */
 	public boolean put(String varname, ScilabType theVariable) throws JavasciException {
 		int err = -999; /* -999: if the type is not handled */
