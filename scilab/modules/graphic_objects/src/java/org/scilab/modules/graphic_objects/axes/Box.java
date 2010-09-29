@@ -18,7 +18,7 @@ package org.scilab.modules.graphic_objects.axes;
  */
 public class Box {
 	/** Box properties names */
-	public enum BoxProperty { BOX, HIDDENAXISCOLOR, TIGHTLIMITS, DATABOUNDS, REALDATABOUNDS, ZOOMENABLED, ZOOMBOX, AUTOSCALE };
+	public enum BoxProperty { BOX, HIDDENAXISCOLOR, TIGHTLIMITS, DATABOUNDS, REALDATABOUNDS, ZOOMENABLED, ZOOMBOX, AUTOSCALE, FIRSTPLOT };
 
 	/** Box type */
 	public static enum BoxType { OFF, ON, HIDDEN_AXES, BACK_HALF;
@@ -59,7 +59,7 @@ public class Box {
 	/** Data bounding box, as modified by automatic ticks computation (6-element array) */
 	private double[] realDataBounds;
 
-	/** Speficied whether zooming is enabled or not */
+	/** Speficies whether zooming is enabled or not */
 	private boolean zoomEnabled;
 
 	/** Magnified 3D sub-region (6-element array) */
@@ -67,6 +67,12 @@ public class Box {
 
 	/** Indicates whether data bounds are updated when a new plot command is executed */
 	private boolean autoScale;
+
+	/**
+         * Indicates whether no high-level drawing function has yet been called (true) or
+         * has been called at least once (false)
+         */
+	private boolean firstPlot;
 
 	/** Constructor */
 	public Box() {
@@ -78,6 +84,7 @@ public class Box {
 		zoomEnabled = false;
 		zoomBox = new double[6];
 		autoScale = false;
+		firstPlot = true;
 	}
 
 	/**
@@ -215,5 +222,20 @@ public class Box {
 			this.zoomBox[i] = zoomBox[i];
 		}
 	}
+
+	/**
+	 * @return the firstPlot
+	 */
+	public Boolean getFirstPlot() {
+		return firstPlot;
+	}
+
+	/**
+	 * @param firstPlot the firstPlot to set
+	 */
+	public void setFirstPlot(Boolean firstPlot) {
+		this.firstPlot = firstPlot;
+	}
+
 
 }

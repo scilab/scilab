@@ -228,6 +228,8 @@ public class testAxes {
 		initAxes.setZAxisTicksLocations(zlocs);
 		initAxes.setZAxisTicksLabelsAsArrayList(zlabels);
 
+		initAxes.setAutoSubticks(randomGen.nextBoolean());
+
 		/* Miscellaneous Axes properties */
 		Double marginXShift = randomGen.nextDouble() % 0.1;
 		Double marginYShift = randomGen.nextDouble() % 0.1;
@@ -293,6 +295,7 @@ public class testAxes {
 		initAxes.setZoomEnabled(randomGen.nextBoolean());
 		initAxes.setZoomBox(zoomBox);
 		initAxes.setAutoScale(randomGen.nextBoolean());
+		initAxes.setFirstPlot(randomGen.nextBoolean());
 	}
 
 	/* Reflection-based set/get methods tests */
@@ -493,6 +496,14 @@ public class testAxes {
 		assert Arrays.equals(retTicksLabels, initAxes.getZAxisTicksLabels());
 	}
 
+	/* Ticks property shared by the three axes */
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetAutoSubticks() {
+		controller.setProperty(axesID, __GO_AUTO_SUBTICKS__, initAxes.getAutoSubticks());
+		Boolean retAutoSubticks = (Boolean) controller.getProperty(axesID, __GO_AUTO_SUBTICKS__);
+		assert retAutoSubticks.equals(initAxes.getAutoSubticks());
+	}
+
 	/* Miscellaneous Axes properties */
 	@Test(groups = { "ReflectSetGetTest" })
 	public void testReflectSetGetGridPosition() {
@@ -611,6 +622,12 @@ public class testAxes {
 		controller.setProperty(axesID, __GO_AUTO_SCALE__, initAxes.getAutoScale());
 		Boolean retAutoScale = (Boolean) controller.getProperty(axesID, __GO_AUTO_SCALE__);
 		assert retAutoScale.equals(initAxes.getAutoScale());
+	}
+	@Test(groups = { "ReflectSetGetTest" })
+	public void testReflectSetGetFirstPlot() {
+		controller.setProperty(axesID, __GO_FIRST_PLOT__, initAxes.getFirstPlot());
+		Boolean retFirstPlot = (Boolean) controller.getProperty(axesID, __GO_FIRST_PLOT__);
+		assert retFirstPlot.equals(initAxes.getFirstPlot());
 	}
 
 	/* Default properties */
@@ -902,6 +919,14 @@ public class testAxes {
 		assert Arrays.equals(retTicksLabels, initAxes.getZAxisTicksLabels());
 	}
 
+	/* Ticks property shared by the three axes */
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetAutoSubticks() {
+		controller.setProperty(axesID, __GO_AUTO_SUBTICKS__, initAxes.getAutoSubticks());
+		Boolean retAutoSubticks = (Boolean) controller.getProperty(axesID, __GO_AUTO_SUBTICKS__);
+		assert retAutoSubticks.equals(initAxes.getAutoSubticks());
+	}
+
 	/* Miscellaneous Axes properties */
 	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
 	public void testFastSetGetGridPosition() {
@@ -1020,6 +1045,12 @@ public class testAxes {
 		controller.setProperty(axesID, __GO_AUTO_SCALE__, initAxes.getAutoScale());
 		Boolean retAutoScale = (Boolean) controller.getProperty(axesID, __GO_AUTO_SCALE__);
 		assert retAutoScale.equals(initAxes.getAutoScale());
+	}
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	public void testFastSetGetFirstPlot() {
+		controller.setProperty(axesID, __GO_FIRST_PLOT__, initAxes.getFirstPlot());
+		Boolean retFirstPlot = (Boolean) controller.getProperty(axesID, __GO_FIRST_PLOT__);
+		assert retFirstPlot.equals(initAxes.getFirstPlot());
 	}
 
 	/* Default properties */

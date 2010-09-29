@@ -46,6 +46,7 @@ public class Axes extends GraphicObject {
 		YAXISTICKS, YAXISAUTOTICKS, YAXISNUMBERTICKS, YAXISTICKSLOCATIONS, YAXISTICKSLABELS, YAXISSUBTICKS,
 		ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
 		ZAXISTICKS, ZAXISAUTOTICKS, ZAXISNUMBERTICKS, ZAXISTICKSLOCATIONS, ZAXISTICKSLABELS, ZAXISSUBTICKS,
+		AUTOSUBTICKS,
 		FONT_STYLE, FONT_SIZE, FONT_COLOR, FONT_FRACTIONAL,
 		GRIDPOSITION, TITLE, AUTOCLEAR, FILLED, BACKGROUND,
 		MARGINS, AXESBOUNDS,
@@ -74,6 +75,15 @@ public class Axes extends GraphicObject {
 
 	/** 3-element array (properties of the X, Y and Z axes) */
 	private AxisProperty[] axes;
+
+	/**
+	 * Specifies whether subticks are automatically computed or not
+	 * Used as an internal state only
+	 * Note: shared by the three axes to be compatible with the
+	 * former flagNax internal state (autoSubticks is equivalent to !flagNax)
+	 * This should eventually become a per-axis property (as the auto ticks flag).
+	 */
+	private boolean autoSubticks;
 
 	/** Grid position */
 	private GridPosition gridPosition;
@@ -232,6 +242,8 @@ public class Axes extends GraphicObject {
 			return AxesProperty.ZAXISTICKSLABELS;
 		} else if (propertyName.equals(__GO_Z_AXIS_SUBTICKS__)) {
 			return AxesProperty.ZAXISSUBTICKS;
+		} else if (propertyName.equals(__GO_AUTO_SUBTICKS__)) {
+			return AxesProperty.AUTOSUBTICKS;
 		} else if (propertyName.equals(__GO_FONT_STYLE__)) {
 			return AxesProperty.FONT_STYLE;
 		} else if (propertyName.equals(__GO_FONT_SIZE__)) {
@@ -274,6 +286,8 @@ public class Axes extends GraphicObject {
 			return Box.BoxProperty.ZOOMBOX;
 		} else if (propertyName.equals(__GO_AUTO_SCALE__)) {
 			return Box.BoxProperty.AUTOSCALE;
+		} else if (propertyName.equals(__GO_FIRST_PLOT__)) {
+			return Box.BoxProperty.FIRSTPLOT;
 		} else if (propertyName.equals(__GO_MARGINS__)) {
 			return AxesProperty.MARGINS;
 		} else if (propertyName.equals(__GO_AXES_BOUNDS__)) {
@@ -391,6 +405,8 @@ public class Axes extends GraphicObject {
 			return getZAxisTicksLabels();
 		} else if (property == AxesProperty.ZAXISSUBTICKS) {
 			return getZAxisSubticks();
+		} else if (property == AxesProperty.AUTOSUBTICKS) {
+			return getAutoSubticks();
 		} else if (property == AxesProperty.FONT_STYLE) {
 			return getFontStyle();
 		} else if (property == AxesProperty.FONT_SIZE) {
@@ -433,6 +449,8 @@ public class Axes extends GraphicObject {
 			return getZoomBox();
 		} else if (property == Box.BoxProperty.AUTOSCALE) {
 			return getAutoScale();
+		} else if (property == Box.BoxProperty.FIRSTPLOT) {
+			return getFirstPlot();
 		} else if (property == AxesProperty.MARGINS) {
 			return getMargins();
 		} else if (property == AxesProperty.AXESBOUNDS) {
@@ -545,6 +563,8 @@ public class Axes extends GraphicObject {
 			setZAxisTicksLabels((String[]) value);
 		} else if (property == AxesProperty.ZAXISSUBTICKS) {
 			setZAxisSubticks((Integer) value);
+		} else if (property == AxesProperty.AUTOSUBTICKS) {
+			setAutoSubticks((Boolean) value);
 		} else if (property == AxesProperty.FONT_STYLE) {
 			setFontStyle((Integer) value);
 		} else if (property == AxesProperty.FONT_SIZE) {
@@ -587,6 +607,8 @@ public class Axes extends GraphicObject {
 			setZoomBox((Double[]) value);
 		} else if (property == Box.BoxProperty.AUTOSCALE) {
 			setAutoScale((Boolean) value);
+		} else if (property == Box.BoxProperty.FIRSTPLOT) {
+			setFirstPlot((Boolean) value);
 		} else if (property == AxesProperty.MARGINS) {
 			setMargins((Double[]) value);
 		} else if (property == AxesProperty.AXESBOUNDS) {
@@ -1266,6 +1288,20 @@ public class Axes extends GraphicObject {
 	}
 
 	/**
+	 * @return the autosubticks
+	 */
+	public Boolean getAutoSubticks() {
+		return autoSubticks;
+	}
+
+	/**
+	 * @param autoSubticks the autosubticks to set
+	 */
+	public void setAutoSubticks(Boolean autoSubticks) {
+		this.autoSubticks = autoSubticks;
+	}
+
+	/**
 	 * Gets the ticks labels font style.
 	 * It supposes all ticks labels within a single axis have the same font style value
          * and that this value is the same for the 3 axes.
@@ -1733,6 +1769,20 @@ public class Axes extends GraphicObject {
 	 */
 	public void setAutoScale(Boolean autoScale) {
 		box.setAutoScale(autoScale);
+	}
+
+	/**
+	 * @return the firstplot
+	 */
+	public Boolean getFirstPlot() {
+		return box.getFirstPlot();
+	}
+
+	/**
+	 * @param firstPlot the firstplot to set
+	 */
+	public void setFirstPlot(Boolean firstPlot) {
+		box.setFirstPlot(firstPlot);
 	}
 
 	/**

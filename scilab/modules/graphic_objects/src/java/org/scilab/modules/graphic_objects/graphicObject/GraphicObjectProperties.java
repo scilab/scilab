@@ -145,6 +145,8 @@ public static final String __GO_Z_AXIS_TICKS_LOCATIONS__ = "ZAxisTicksLocations"
 public static final String __GO_Z_AXIS_TICKS_LABELS__ =    "ZAxisTicksLabels";
 public static final String __GO_Z_AXIS_SUBTICKS__ =        "ZAxisSubticks";
 
+public static final String __GO_AUTO_SUBTICKS__ =          "AutoSubticks";
+
 public static final String __GO_GRID_POSITION__ =          "GridPosition";
 public static final String __GO_TITLE__ =                  "Title";
 public static final String __GO_AUTO_CLEAR__ =             "AutoClear";
@@ -162,6 +164,7 @@ public static final String __GO_REAL_DATA_BOUNDS__ =       "RealDataBounds";
 public static final String __GO_ZOOM_ENABLED__ =           "ZoomEnabled";
 public static final String __GO_ZOOM_BOX__ =               "ZoomBox";
 public static final String __GO_AUTO_SCALE__ =             "AutoScale";
+public static final String __GO_FIRST_PLOT__ =             "FirstPlot";
 public static final String __GO_MARGINS__ =                "Margins";
 public static final String __GO_AXES_BOUNDS__ =            "AxesBounds";
 

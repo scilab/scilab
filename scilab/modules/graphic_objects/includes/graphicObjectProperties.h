@@ -144,6 +144,8 @@
 #define __GO_Z_AXIS_TICKS_LABELS__         "ZAxisTicksLabels"
 #define __GO_Z_AXIS_SUBTICKS__             "ZAxisSubticks"
 
+#define __GO_AUTO_SUBTICKS__               "AutoSubticks"
+
 #define __GO_GRID_POSITION__               "GridPosition"
 #define __GO_TITLE__                       "Title"
 #define __GO_AUTO_CLEAR__                  "AutoClear"
@@ -161,6 +163,7 @@
 #define __GO_ZOOM_ENABLED__                "ZoomEnabled"
 #define __GO_ZOOM_BOX__                    "ZoomBox"
 #define __GO_AUTO_SCALE__                  "AutoScale"
+#define __GO_FIRST_PLOT__                  "FirstPlot"
 #define __GO_MARGINS__                     "Margins"
 #define __GO_AXES_BOUNDS__                 "AxesBounds"
 
