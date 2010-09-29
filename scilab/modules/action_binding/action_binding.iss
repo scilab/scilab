@@ -40,10 +40,8 @@ Source: modules\{#ACTION_BINDING}\etc\{#ACTION_BINDING}.start; DestDir: {app}\mo
 Source: modules\{#ACTION_BINDING}\macros\buildmacros.sce; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#ACTION_BINDING}\macros\buildmacros.bat; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#ACTION_BINDING}\macros\cleanmacros.bat; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;Source: modules\{#ACTION_BINDING}\macros\*.bin; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;Source: modules\{#ACTION_BINDING}\macros\*.sci; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;Source: modules\{#ACTION_BINDING}\macros\lib; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;Source: modules\{#ACTION_BINDING}\macros\names; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;;Source: modules\{#ACTION_BINDING}\macros\lib; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: modules\{#ACTION_BINDING}\demos\*.*; DestDir: {app}\modules\{#ACTION_BINDING}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

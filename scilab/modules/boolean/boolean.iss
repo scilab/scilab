@@ -20,6 +20,7 @@
 ;
 Source: bin\{#BOOLEAN}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#BOOLEAN}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#BOOLEAN}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#BOOLEAN}\VERSION.xml; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\readme.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
@@ -33,10 +34,8 @@ Source: modules\{#BOOLEAN}\etc\{#BOOLEAN}.start; DestDir: {app}\modules\{#BOOLEA
 ;
 ;Source: modules\{#BOOLEAN}\includes\*.h; DestDir: {app}\modules\{#BOOLEAN}\includes; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#BOOLEAN}\macros\lib; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#BOOLEAN}\macros\names; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#BOOLEAN}\macros\*.bin; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#BOOLEAN}\macros\*.sci; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\macros\lib; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#BOOLEAN}\macros\*.sci; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\macros\buildmacros.sce; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\macros\buildmacros.bat; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\macros\cleanmacros.bat; DestDir: {app}\modules\{#BOOLEAN}\macros; Components: {#COMPN_SCILAB}

@@ -51,6 +51,17 @@ Source: bin\GNU_gettext.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
 ;
+
+;YaSp files
+Source: bin\abstractSyntaxTree.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\operations.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\functions_manager.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\symbol.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\system_env.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\parse.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\YaSp.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
+
 Source: bin\zlib1.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\DetectFramework.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\GetWindowsVersion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

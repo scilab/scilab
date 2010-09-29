@@ -21,7 +21,7 @@
 Source: bin\lib{#JVM}.lib; DestDir: {app}\bin; Components: {#COMPN_JVM_MODULE}
 ;
 Source: bin\lib{#JVM}.dll; DestDir: {app}\bin; Components: {#COMPN_JVM_MODULE}
-Source: bin\nolib{#JVM}.dll; DestDir: {app}\bin; DestName: lib{#JVM}.dll; Components: not ({#COMPN_JVM_MODULE})
+;Source: bin\nolib{#JVM}.dll; DestDir: {app}\bin; DestName: lib{#JVM}.dll; Components: not ({#COMPN_JVM_MODULE})
 ;
 Source: etc\classpath.xml; DestDir: {app}\etc; Components: {#COMPN_JVM_MODULE}
 Source: etc\librarypath.xml; DestDir: {app}\etc; Components: {#COMPN_JVM_MODULE}
@@ -52,9 +52,7 @@ Source: modules\{#JVM}\etc\{#JVM}.start; DestDir: {app}\modules\{#JVM}\etc; Comp
 Source: modules\{#JVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
 Source: modules\{#JVM}\macros\buildmacros.bat; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
 Source: modules\{#JVM}\macros\cleanmacros.bat; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
-Source: modules\{#JVM}\macros\lib; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
-Source: modules\{#JVM}\macros\names; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
-Source: modules\{#JVM}\macros\*.bin; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
+;Source: modules\{#JVM}\macros\lib; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
 Source: modules\{#JVM}\macros\*.sci; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#JVM}\tests\*.*; DestDir: {app}\modules\{#JVM}\tests; Flags: recursesubdirs; Components: {#COMPN_JVM_MODULE} and {#COMPN_TESTS}

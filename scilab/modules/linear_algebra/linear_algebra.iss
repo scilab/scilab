@@ -36,9 +36,7 @@ Source: modules\{#LINEAR_ALGEBRA}\etc\{#LINEAR_ALGEBRA}.start; DestDir: {app}\mo
 Source: modules\{#LINEAR_ALGEBRA}\macros\buildmacros.sce; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
 Source: modules\{#LINEAR_ALGEBRA}\macros\buildmacros.bat; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
 Source: modules\{#LINEAR_ALGEBRA}\macros\cleanmacros.bat; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
-Source: modules\{#LINEAR_ALGEBRA}\macros\lib; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
-Source: modules\{#LINEAR_ALGEBRA}\macros\names; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
-Source: modules\{#LINEAR_ALGEBRA}\macros\*.bin; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
+;Source: modules\{#LINEAR_ALGEBRA}\macros\lib; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
 Source: modules\{#LINEAR_ALGEBRA}\macros\*.sci; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_LINALG}
 ;
 ;Source: modules\{#LINEAR_ALGEBRA}\demos\*.*; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\demos; Flags: recursesubdirs;  Components: {#COMPN_LINALG}

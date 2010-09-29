@@ -37,9 +37,7 @@ Source: modules\{#SPARSE}\etc\{#SPARSE}.start; DestDir: {app}\modules\{#SPARSE}\
 Source: modules\{#SPARSE}\macros\buildmacros.sce; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\macros\buildmacros.bat; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
-Source: modules\{#SPARSE}\macros\lib; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
-Source: modules\{#SPARSE}\macros\names; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
-Source: modules\{#SPARSE}\macros\*.bin; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
+;Source: modules\{#SPARSE}\macros\lib; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\macros\*.sci; DestDir: {app}\modules\{#SPARSE}\macros; Components: {#COMPN_SPARSE}
 ;
 ;Source: modules\{#SPARSE}\demos\*.*; DestDir: {app}\modules\{#SPARSE}\demos; Flags: recursesubdirs;  Components: {#COMPN_SPARSE}

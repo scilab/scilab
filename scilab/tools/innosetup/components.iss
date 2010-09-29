@@ -25,7 +25,7 @@
 #define COMPN_EQUDIF 'scilab\differential_equations'
 #define COMPN_STATS 'scilab\statistics'
 ;
-; by default
+; by
 #define COMPN_JVM_MODULE 'scilab\JVM_MODULE'
 #define COMPN_JRE 'JRE_1_6'
 
@@ -76,22 +76,22 @@
 #define COMPN_PARALLEL 'parallel'
 
 ;
-Name: {#COMPN_SCILAB}; Description: Scilab {#ScilabVersion}; Types: default full custom cli; Flags: fixed;
+Name: {#COMPN_SCILAB}; Description: Scilab {#ScilabVersion}; Types:  full  ; Flags: fixed;
 ;
-Name: {#COMPN_EQUDIF}; Description: {cm:DescriptionEquDif}; Types: default full custom cli; Flags: fixed;
-Name: {#COMPN_POLY}; Description: {cm:DescriptionPolynomials}; Types: default full custom cli; Flags: fixed;
-Name: {#COMPN_SYMB}; Description: {cm:DescriptionSymbolic}; Types: default full custom cli; Flags: fixed;
-Name: {#COMPN_SPARSE}; Description: {cm:DescriptionSparse}; Types: default full custom cli; Flags: fixed;
-Name: {#COMPN_LINALG}; Description: {cm:DescriptionLinAlg}; Types: default full custom cli; Flags: fixed;
-Name: {#COMPN_CACSD}; Description: {cm:DescriptionCacsd}; Types: default full custom cli; Flags: fixed;
-Name: {#COMPN_STATS}; Description: {cm:DescriptionStats}; Types: default full custom cli; Flags: fixed;
-Name: {#COMPN_GRAPHICS}; Description: {cm:DescriptionGraphics}; Types: default full custom; Flags: fixed;
+Name: {#COMPN_EQUDIF}; Description: {cm:DescriptionEquDif}; Types:  full  ; Flags: fixed;
+Name: {#COMPN_POLY}; Description: {cm:DescriptionPolynomials}; Types:  full  ; Flags: fixed;
+Name: {#COMPN_SYMB}; Description: {cm:DescriptionSymbolic}; Types:  full  ; Flags: fixed;
+Name: {#COMPN_SPARSE}; Description: {cm:DescriptionSparse}; Types:  full  ; Flags: fixed;
+Name: {#COMPN_LINALG}; Description: {cm:DescriptionLinAlg}; Types:  full  ; Flags: fixed;
+Name: {#COMPN_CACSD}; Description: {cm:DescriptionCacsd}; Types:  full  ; Flags: fixed;
+Name: {#COMPN_STATS}; Description: {cm:DescriptionStats}; Types: full; Flags: fixed;
+Name: {#COMPN_GRAPHICS}; Description: {cm:DescriptionGraphics}; Types: full; Flags: fixed;
 ;
-Name: {#COMPN_JVM_MODULE}; Description: {cm:DescriptionModuleJVM}; Types: default full custom; Flags: fixed;
+Name: {#COMPN_JVM_MODULE}; Description: {cm:DescriptionModuleJVM}; Types: full; Flags: fixed;
 ;
-Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: default full custom; Flags: fixed;
+Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: full; Flags: fixed;
 ;
-Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: default full custom cli;
+Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: full;
 ;
 Name: {#COMPN_MKL_CPU_LIBRARY}; Description:{cm:DescriptionMKLLibrary}; Flags: exclusive
 ;
@@ -101,55 +101,55 @@ Name: {#COMPN_ATLAS_CPU_LIBRARY}; Description:{cm:DescriptionATLASLibrary}; Flag
 ;
 Name: {#COMPN_REF_CPU_LIBRARY}; Description:{cm:DescriptionRefBlasLibrary}; Flags: exclusive
 ;
-Name: {#COMPN_FFTW}; Description: {cm:DescriptionFftwModule}; Types: default full custom cli;
+Name: {#COMPN_FFTW}; Description: {cm:DescriptionFftwModule}; Types: full ;
 Name: {#COMPN_FFTW_MKL_LIBRARY};Description: {cm:DescriptionFftwMKLDownload}; Flags: exclusive
 Name: {#COMPN_FFTW_REF_LIBRARY};Description: {cm:DescriptionRefFftwLibrary}; Flags: exclusive
 ;
-Name: {#COMPN_SIGPROC}; Description: {cm:DescriptionSigProc}; Types: default full custom;
-Name: {#COMPN_INTERP}; Description: {cm:DescriptionInterpolation}; Types: default full custom;
-Name: {#COMPN_OPTIM}; Description: {cm:DescriptionOptim}; Types: default full custom;
+Name: {#COMPN_SIGPROC}; Description: {cm:DescriptionSigProc}; Types: full;
+Name: {#COMPN_INTERP}; Description: {cm:DescriptionInterpolation}; Types:  full;
+Name: {#COMPN_OPTIM}; Description: {cm:DescriptionOptim}; Types:  full ;
 ;
-Name: {#COMPN_XCOS}; Description: {cm:DescriptionXcos}; Types: default full custom;
+Name: {#COMPN_XCOS}; Description: {cm:DescriptionXcos}; Types:  full ;
 ;
-Name: {#COMPN_ARNOLDI}; Description: {cm:DescriptionArnoldi}; Types: default full custom;
-Name: {#COMPN_UMFPACK}; Description: {cm:DescriptionUmfpack}; Types: default full custom;
+Name: {#COMPN_ARNOLDI}; Description: {cm:DescriptionArnoldi}; Types:full;
+Name: {#COMPN_UMFPACK}; Description: {cm:DescriptionUmfpack}; Types:full;
 ;
-Name: {#COMPN_COMPATFUNCTIONS}; Description: {cm:DescriptionCompatFunctions}; Types: default full custom;
-Name: {#COMPN_M2SCI}; Description: {cm:DescriptionM2sci}; Types: default full custom;
-Name: {#COMPN_MATIO}; Description: {cm:DescriptionMatio}; Types: default full custom;
+Name: {#COMPN_COMPATFUNCTIONS}; Description: {cm:DescriptionCompatFunctions}; Types: full;
+Name: {#COMPN_M2SCI}; Description: {cm:DescriptionM2sci}; Types: full;
+Name: {#COMPN_MATIO}; Description: {cm:DescriptionMatio}; Types: full;
 ;
-Name: {#COMPN_TEXMACS}; Description: {cm:DescriptionTexmacs}; Types: default full custom;
-Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types: default full custom;
-Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types: default full custom;
+Name: {#COMPN_TEXMACS}; Description: {cm:DescriptionTexmacs}; Types:  full ;
+Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types:  full ;
+Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types: full ;
 ;
-Name: {#COMPN_JAVASCI}; Description: {cm:DescriptionJavasci}; Types: default full custom;
-Name: {#COMPN_MEXLIB}; Description: {cm:DescriptionMexlib}; Types: default full custom;
-Name: {#COMPN_INTERSCI}; Description: {cm:DescriptionIntersci}; Types: default full custom;
-Name: {#COMPN_MAP2SCI}; Description: {cm:DescriptionMaple2sci}; Types: default full custom;
+Name: {#COMPN_JAVASCI}; Description: {cm:DescriptionJavasci}; Types: full;
+Name: {#COMPN_MEXLIB}; Description: {cm:DescriptionMexlib}; Types: full;
+Name: {#COMPN_INTERSCI}; Description: {cm:DescriptionIntersci}; Types:  full ;
+Name: {#COMPN_MAP2SCI}; Description: {cm:DescriptionMaple2sci}; Types: full ;
 ;
-Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: default full custom;
+Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: full;
 ;
-Name: {#COMPN_SPREADSHEET}; Description: {cm:DescriptionSpreadsheet}; Types: default full custom;
+Name: {#COMPN_SPREADSHEET}; Description: {cm:DescriptionSpreadsheet}; Types: full;
 ;
-;Name: {#COMPN_PVM}; Description: {cm:DescriptionPvm}; Types: default full custom;
+;Name: {#COMPN_PVM}; Description: {cm:DescriptionPvm}; Types:  full ;
 ;
-Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom;
-Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: default full custom;
+Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: full;
+Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: full;
 ;
-Name: {#COMPN_PARALLEL}; Description: {cm:DescriptionParallel}; Types: default full custom;
+Name: {#COMPN_PARALLEL}; Description: {cm:DescriptionParallel}; Types: full;
 ;
-Name: {#COMPN_PARAMETERS}; Description: {cm:DescriptionParametersTlbx}; Types: full custom;
-Name: {#COMPN_GENETICALGORITHMS}; Description: {cm:DescriptionGeneticTlbx}; Types: full custom;
-Name: {#COMPN_SIMANNEALING}; Description: {cm:DescriptionSimulAnnealingTlbx}; Types: full custom;
+Name: {#COMPN_PARAMETERS}; Description: {cm:DescriptionParametersTlbx}; Types: full;
+Name: {#COMPN_GENETICALGORITHMS}; Description: {cm:DescriptionGeneticTlbx}; Types: full;
+Name: {#COMPN_SIMANNEALING}; Description: {cm:DescriptionSimulAnnealingTlbx}; Types: full;
 ;
-Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: full custom;
+Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: full;
 ;
 ;
-Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full custom; ExtraDiskSpaceRequired: {#TESTS_SIZE}
-Name: {#COMPN_TOOLBOX_SKELETON}; Description: {cm:DescriptionTlbxSkeleton}; Types: full custom;
+Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full ; ExtraDiskSpaceRequired: {#TESTS_SIZE}
+Name: {#COMPN_TOOLBOX_SKELETON}; Description: {cm:DescriptionTlbxSkeleton}; Types: full;
 ;
 #ifndef SCILAB_WITHOUT_JRE
-Name: {#COMPN_JRE}; Description: {cm:DescriptionJVM} (1.6.0_18); Types: default full custom; Flags: fixed;
+Name: {#COMPN_JRE}; Description: {cm:DescriptionJVM} (1.6.0_18); Types: full; Flags: fixed;
 #endif
 ;
 ;-------------------------------------------------------------------------------
