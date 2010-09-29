@@ -1694,6 +1694,24 @@ sciGetName (sciPointObj * pobj)
 int
 sciGetNum (sciPointObj * pobj)
 {
+    int* figureId;
+
+    figureId = (int*) getGraphicObjectProperty(pobj->UID, __GO_ID__, jni_int);
+
+    if (figureId == NULL)
+    {
+        printSetGetErrorMessage("figure_id");
+        return -1;
+    }
+
+    return *figureId;
+
+    /*
+     * Deactivated for now.
+     * The SUBWIN (Axes) case must be taken into account.
+     * To be implemented using the MVC framework.
+     */
+#if 0
     switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -1708,6 +1726,7 @@ sciGetNum (sciPointObj * pobj)
         return -1;
         break;
     }
+#endif
 }
 
 
