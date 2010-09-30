@@ -121,6 +121,8 @@ Bug Fixes:
 * bug 8110 fixed - ATOMS: When removing a module, its main directory
                    was not deleted even if it was empty.
 
+* bug 8122 fixed - help of write_csv said that it reads file and not that it writes.
+
 * bug 8124 fixed - Some translations were not up to date.
 
 * bug 8126 fixed - Some demos from the GUI modules where hanging.
