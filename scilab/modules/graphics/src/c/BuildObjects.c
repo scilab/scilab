@@ -569,10 +569,17 @@ ConstructSubWin(sciPointObj * pparentfigure)
 		pLABEL_FEATURE(ppsubwin->mon_title)->auto_rotation =
 			pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_rotation;
 
-		cloneGraphicContext( ppaxesmdl->mon_x_label, ppsubwin->mon_x_label ) ;
-		cloneGraphicContext( ppaxesmdl->mon_y_label, ppsubwin->mon_y_label ) ;
-		cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label ) ;
-		cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   ) ;
+                /*
+                 * Deactivated for now since the cloneGraphicContext function now
+                 * takes two char* (source MVC Identifier, destination MVC Identifier) as arguments.
+                 * To be implemented.
+                 */
+#if 0
+		cloneGraphicContext( ppaxesmdl->mon_x_label, ppsubwin->mon_x_label );
+		cloneGraphicContext( ppaxesmdl->mon_y_label, ppsubwin->mon_y_label );
+		cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label );
+		cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   );
+#endif
 
 		endFigureDataWriting(pparentfigure);
 

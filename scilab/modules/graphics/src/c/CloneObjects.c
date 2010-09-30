@@ -4,6 +4,7 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,6 +34,9 @@
 #include "BasicAlgos.h"
 
 #include "createGraphicObject.h" /* cloneGraphicObject */
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /**CloneText
  *
@@ -299,11 +303,80 @@ sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
 }
 
 /*--------------------------------------------------------------------------*/
-int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
+/*
+ * Copies the ContouredObject properties from the source object to the destination object
+ * This code ought to be moved into the Java Model, either in the relevant
+ * constructor (ContouredObject) or into an initialization function.
+ */
+int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
 {
-  /* struct affectation */
-  *(sciGetGraphicContext(pObjDest)) = *(sciGetGraphicContext(pObjSource)) ;
-  return 0 ;
+    double* doubleTmp;
+    int* tmp;
+
+    int lineMode;
+    int foreground;
+    int lineStyle;
+    int fillMode;
+    int background;
+    int markForeground;
+    int markBackground;
+    int markStyle;
+    int markSize;
+    int markSizeUnit;
+    double lineThickness;
+
+    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_LINE_MODE__, jni_bool);
+    lineMode = *tmp;
+    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_LINE_COLOR__, jni_int);
+    foreground = *tmp;
+    doubleTmp = (double*) getGraphicObjectProperty(sourceIdentifier, __GO_LINE_THICKNESS__, jni_double);
+    lineThickness = *doubleTmp;
+    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_LINE_STYLE__, jni_int);
+    lineStyle = *tmp;
+
+    /*
+     * Commented out since there is a confusion between Axes' FILLED property
+     * and the FILL_MODE ContouredObject property
+     * To be corrected
+     */
+#if 0
+    tmp = (int*) setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+    fillMode = *tmp;
+#endif
+
+    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_BACKGROUND__, jni_int);
+    background = *tmp;
+
+    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_FOREGROUND__, jni_int);
+    markForeground = *tmp;
+    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_BACKGROUND__, jni_int);
+    markBackground = *tmp;
+    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_STYLE__, jni_int);
+    markStyle = *tmp;
+    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE__, jni_int);
+    markSize = *tmp;
+    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE_UNIT__, jni_int);
+    markSizeUnit = *tmp;
+
+    setGraphicObjectProperty(destIdentifier, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+
+    /* Commented out due to the confusion between Axes' FILLED and the FILL_MODE Contoured property */
+#if 0
+    setGraphicObjectProperty(destIdentifier, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+#endif
+
+    setGraphicObjectProperty(destIdentifier, __GO_BACKGROUND__, &background, jni_int, 1);
+
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_FOREGROUND__, &markForeground, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_BACKGROUND__, &markBackground, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+    setGraphicObjectProperty(destIdentifier, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int cloneUserData( sciPointObj * pObjSource, sciPointObj * pObjDest )

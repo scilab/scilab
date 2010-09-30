@@ -6,6 +6,7 @@
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -40,13 +41,17 @@
 #include "sciprint.h"
 #include "ObjectSelection.h"
 #include "HandleManagement.h"
+#include "BasicAlgos.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
 #include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
+
+#define LABEL_BUFFER_LENGTH	128
 
 static char error_message[70]; /* DJ.A 08/01/04 */
 unsigned short defcolors[] = {
@@ -116,9 +121,16 @@ int C2F(graphicsmodels) (void)
     BOOL bTrue = TRUE;
     BOOL bFalse = FALSE;
 
+    int defaultBackground = -2;
     int m = NUMCOLORS_SCI;
     int i = 0;
     double *pdblColorMap = MALLOC(m * 3 * sizeof(double)) ;
+
+    double margins[4];
+    double clipRegion[4];
+    int clipRegionSet;
+    int firstPlot;
+    int result;
 
     /*
     ** Init Figure Model
@@ -145,6 +157,8 @@ int C2F(graphicsmodels) (void)
   setGraphicObjectProperty(pfiguremdl->UID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
   // immediateDrawingMode
   setGraphicObjectProperty(pfiguremdl->UID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
+  // background
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
   // user data
   setGraphicObjectProperty(pfiguremdl->UID, __GO_USER_DATA__, NULL, jni_string, 0);
   // Size of user data
@@ -186,13 +200,64 @@ int C2F(graphicsmodels) (void)
   ** Init Axes Model
   */
   if ((paxesmdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
-    {
-      strcpy(error_message,_("Default axes cannot be create.\n"));
+  {
+      strcpy(error_message,_("Default axes cannot be created.\n"));
       return 0;
-    }
+  }
+
   // Create default Axes by Asking MVC a new one.
   paxesmdl->UID = createGraphicObject(__GO_AXES__);
 
+  /* Axes Model properties */
+
+  result = InitAxesModel();
+
+  if (result < 0)
+  {
+    strcpy(error_message,_("Default axes cannot be created.\n"));
+    deleteGraphicObject(paxesmdl->UID);
+    return 0;
+  }
+
+  /* Margins and clip region */
+
+  margins[0] = 0.125;
+  margins[1] = 0.125;
+  margins[2] = 0.125;
+  margins[3] = 0.125;
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_MARGINS__, margins, jni_double_vector, 4);
+
+  clipRegion[0] = 0.0;
+  clipRegion[1] = 0.0;
+  clipRegion[2] = 0.0;
+  clipRegion[3] = 0.0;
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+  clipRegionSet = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+  /* add the handle in the handle list */
+  if ( sciAddNewHandle(paxesmdl) == -1 )
+  {
+    return NULL;
+  }
+
+  /*
+   * Specifies that no high-level drawing function has been called yet.
+   */
+  firstPlot = 1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+
+#if 0
+  ppaxesmdl->FirstPlot = TRUE;
+#endif
+
+  /* Sets the parent-child relationship between the default Figure and Axes */
+  setGraphicObjectRelationship(pfiguremdl->UID, paxesmdl->UID);
+
+  /* Commented out: the equivalent MVC operations are done just above */
 #if 0
   sciSetEntityType (paxesmdl, SCI_SUBWIN);
   if ((paxesmdl->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
@@ -208,10 +273,6 @@ int C2F(graphicsmodels) (void)
   {
     return NULL ;
   }
-
-  // Parent
-  setGraphicObjectProperty(paxesmdl->UID, __GO_PARENT__, pfiguremdl->UID, jni_string, 1);
-
 
 
   /* there are properties not initialized bu InitAxesModel */
@@ -237,6 +298,12 @@ int C2F(graphicsmodels) (void)
   return 1;
 }
 
+/*
+ * This function has been adapted to the MVC framework.
+ * Its code ought to be moved to the Java Model implementation,
+ * either within the relevant constructors (Axes, ContouredObject)
+ * or initialization methods.
+ */
 
 /**sciInitGraphicContext
  * Inits the graphic context of this object with the default value. the new graphic object inherits parent's features by sciGetParent()
@@ -244,17 +311,34 @@ int C2F(graphicsmodels) (void)
 int
 sciInitGraphicContext (sciPointObj * pobj)
 {
+  char* type;
+
   /*
    * initialisation du contexte graphique par defaut
    * que l'on peut recuperer sur les structure de base de scilab
    * la colormap des fils est heritee du parent
    */
 
-  switch (sciGetEntityType (pobj))
+  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+
+
+//  switch (sciGetEntityType (pobj))
   {
-  case SCI_FIGURE:
+
+  /*
+   * The GO_FIGURE block is never reached as InitFigureModel
+   * is not called any more.
+   */
+  if (strcmp(type, __GO_FIGURE__) == 0)
+  {
+    /*
+     * The Figure GraphicContext properties (MVC Contoured properties) were not
+     * directly used by the Figure object (except backgroundcolor) but served to
+     * initialize its children Axes' ones.
+     */
     if ( pobj == pfiguremdl )
     {
+#if 0
       (sciGetGraphicContext(pobj))->backgroundcolor = /*-3;*/ 33;  /* F.Leray 29.03.04: Wrong index here: 32+1 (old method) must be changed to -1 new method*/
       (sciGetGraphicContext(pobj))->foregroundcolor = /*-2;*/ 32;  /* F.Leray 29.03.04: Wrong index here: 32+2 (old method) must be changed to -2 new method*/
       (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
@@ -268,28 +352,105 @@ sciInitGraphicContext (sciPointObj * pobj)
       (sciGetGraphicContext(pobj))->markbackground = /*-3;*/ 33; /* New F.Leray 21.01.05 */
       (sciGetGraphicContext(pobj))->markforeground = /*-2;*/ 32; /* New F.Leray 21.01.05 */
       (sciGetGraphicContext(pobj))->marksizeunit = 2; /* New F.Leray 22.02.05 */ /* 1 : points, 2 : tabulated */
+#endif
     }
     else
     {
-      cloneGraphicContext( pfiguremdl, pobj ) ;
+#if 0
+      cloneGraphicContext( pfiguremdl, pobj );
+#endif
     }
     return 0;
-    break;
-  case SCI_SUBWIN:
+  }
+  else if (strcmp(type, __GO_AXES__) == 0)
+  {
+
+    /*
+     * This block is reached as InitGraphicContext is called by InitAxesModel
+     * The property set calls it performs should be moved to the Java Model.
+     * Contoured properties are not copied from the parent Figure any more for now
+     * and are instead explicitely set here, in order to initialize the default
+     * Axes' ones.
+     */
     if ( pobj == paxesmdl )
     {
+      int background = -2;
+      int foreground = -1;
+      double lineWidth = 1.0;
+
+      /* 0: solid */
+      int lineStyle = 0;
+
+      int markMode = 0;
+      int lineMode = 1;
+      int fillMode = 0;
+      int markStyle = 0;
+      int markSize = 0;
+
+      /* 0: point, 1: tabulated */
+      int markSizeUnit = 1;
+
+      setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, &background, jni_int, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+
+      setGraphicObjectProperty(pobj->UID, __GO_LINE_THICKNESS__, &lineWidth, jni_double, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+
+      setGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+
+      setGraphicObjectProperty(pobj->UID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+
+      setGraphicObjectProperty(pobj->UID, __GO_MARK_BACKGROUND__, &background, jni_int, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_MARK_FOREGROUND__, &foreground, jni_int, 1);
+
+
+#if 0
       cloneGraphicContext( sciGetParent (pobj), pobj ) ;
+
       sciGetGraphicContext(pobj)->backgroundcolor = /*-3 ;*/ 33;
       sciGetGraphicContext(pobj)->foregroundcolor = /*-2 ;*/ 32;
       sciGetGraphicContext(pobj)->markbackground  = /*-3*/ 33;
       sciGetGraphicContext(pobj)->markforeground  = /*-2*/ 32;
+#endif
     }
+    /*
+     * This block is never reached since the Axes model
+     * is now cloned within the MVC.
+     */
     else
     {
+#if 0
       cloneGraphicContext( paxesmdl, pobj ) ;
+#endif
     }
     return 0;
-    break;
+  }
+  /*
+   * Copies the parent object's contour properties values
+   */
+  else if (strcmp(type, __GO_POLYLINE__) == 0)
+  {
+    char* parent;
+
+    parent = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string);
+    cloneGraphicContext(parent, pobj->UID);
+
+    /*
+     * Previously done by copying the deprecated C GraphicContext structure.
+     * To be deleted.
+     */
+#if 0
+    cloneGraphicContext( sciGetParent(pobj), pobj );
+#endif
+  }
+
+  /* Deactivated for now */
+  /* This must be implemented within the MVC */
+#if 0
   case SCI_ARC:
   case SCI_SEGS:
   case SCI_FEC:
@@ -340,6 +501,7 @@ sciInitGraphicContext (sciPointObj * pobj)
   default:
     return -1;
     break;
+#endif
   }
 }
 
@@ -353,6 +515,13 @@ int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest )
   return cloneFontContext( pObjSource, pObjDest ) ;
 }
 
+
+
+/*
+ * This function has been partially adapted to the MVC framework.
+ * Its code ought to be moved to the Java Model implementation,
+ * either within the Font constructor or an initialization method.
+ */
 /**sciInitFontContext
  * Inits the graphic context of this object with the default value
  * @param sciPointObj * pobj: the pointer to the entity
@@ -360,6 +529,7 @@ int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest )
 int
 sciInitFontContext (sciPointObj * pobj)
 {
+  char* type;
 
   /*
    * initialisation du contexte font par defaut
@@ -373,7 +543,13 @@ sciInitFontContext (sciPointObj * pobj)
   /* static TCHAR inifontname[] = TEXT ("Times New Roman");*/
 
 
-  switch (sciGetEntityType (pobj))
+  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+
+//  switch (sciGetEntityType (pobj))
+
+/* Deactivated for now */
+/* This must be implemented within the MVC */
+#if 0
   {
   case SCI_TEXT:
   case SCI_LEGEND:
@@ -412,17 +588,44 @@ sciInitFontContext (sciPointObj * pobj)
 
     }
     break;
-  case SCI_SUBWIN:
+#endif
+
+  if (strcmp(type, __GO_AXES__) == 0)
+  {
+    /*
+     * Font properties are not copied from the parent Figure for now
+     * and are instead explicitely set here, in order to initialize the
+     * default Axes' font properties.
+     */
     if (pobj == paxesmdl)
     {
-      initFCfromCopy( sciGetParent( pobj ), pobj ) ;
+      int fontColor = -1;
+      double fontSize = 1.0;
+      int fontFractional = 0;
+      /* 6: Helvetica */
+      int fontStyle = 6;
+
+      setGraphicObjectProperty(pobj->UID, __GO_FONT_COLOR__, &fontColor, jni_int, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_FONT_FRACTIONAL__, &fontFractional, jni_bool, 1);
+      setGraphicObjectProperty(pobj->UID, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
+
+      /* Deactivated for now since it causes a crash */
+#if 0
+      initFCfromCopy( sciGetParent( pobj ), pobj );
+#endif
     }
     else
     {
-      initFCfromCopy( paxesmdl, pobj ) ;
+      /*
+       * This block is never reached at all since since the Axes model
+       * is now cloned within the MVC via a C call.
+       */
+      initFCfromCopy( paxesmdl, pobj );
     }
-    break;
-  case SCI_FIGURE:
+  }
+  else if (strcmp(type, __GO_FIGURE__) == 0)
+  {
     if (pobj == pfiguremdl)
     {
        sciInitFontStyle (pobj, 6); /* set helvetica font */
@@ -435,9 +638,11 @@ sciInitFontContext (sciPointObj * pobj)
     }
     else
     {
-      initFCfromCopy( pfiguremdl, pobj ) ;
+      initFCfromCopy( pfiguremdl, pobj );
     }
-    break;
+  }
+  /* Deactivated for now */
+#if 0
   case SCI_ARC:
   case SCI_SEGS:
   case SCI_FEC:
@@ -451,6 +656,8 @@ sciInitFontContext (sciPointObj * pobj)
     return -1;
     break;
   }
+#endif
+
   return 0;
 }
 
@@ -532,66 +739,382 @@ int InitFigureModel( void )
 }
 
 
+/*
+ * This function has been adapted to the MVC framework, using the
+ * MVC's property set/get calls.
+ */
 
 int InitAxesModel()
 {
+  int cubeScaling;
+  int logFlag;
+  int ticksColor;
+  int axisLocation;
+  int boxType;
+  int filled;
+  int gridColor;
+  int gridPosition;
+  int view;
+  int axisReverse;
+  int axisVisible;
+  int defaultNumberTicks;
+  int autoTicks;
+  int autoSubticks;
+  int nbSubticks;
+  int hiddenAxisColor;
+  int hiddenColor;
+  int isoview;
+  int visible;
+  int clipState;
+  int tightLimits;
+  int arcDrawingMethod;
   int i;
+  int* tmp;
+  double axesBounds[4];
+  double dataBounds[6];
+  double rotationAngles[2];
   double tab[] = {0.,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.}; /* graduations init. tmptab */
-  sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
-  char linLogFlags[3] = {'n','n','n'};
+  /* z-axis initial ticks locations */
+  double tabZTicksLocations[] = {-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6, 0.8, 1.0};
+  char labelBuffer[LABEL_BUFFER_LENGTH];
+  char** stringVector;
 
+  /*
+   * Not needed any more since the MVC equivalent is now used
+   * To be deleted
+   */
+#if 1
+  sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
+#endif
+
+#if 0
+  char linLogFlags[3] = {'n','n','n'};
+#endif
+
+
+  /* These functions have been adapted to the MVC framework */
   sciInitGraphicContext (paxesmdl);
   sciInitGraphicMode (paxesmdl);
   sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
-  ppaxesmdl->cube_scaling = FALSE;
+
+  cubeScaling = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_CUBE_SCALING__, &cubeScaling, jni_bool, 1);
+
+  /* Log flags set to linear for the 3 axes */
+  logFlag = 0;
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
+
+  ticksColor = -1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_TICKS_COLOR__, &ticksColor, jni_int, 1);
+
+  nbSubticks = 1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+
+
+  /* 0 corresponds to bottom position */
+  axisLocation = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+
+  /* 4 corresponds to left position */
+  axisLocation = 4;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+
+  /* 0 corresponds to OFF */
+  boxType = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+
+  filled = 1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_FILLED__, &filled, jni_bool, 1);
+
+  gridColor = -1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
+
+  /* 0: background */
+  gridPosition = 0;
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_GRID_POSITION__, &gridPosition, jni_int, 1);
+
+  rotationAngles[0] = 0.0;
+  rotationAngles[1] = 270.0;
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+
+  /* 0: 2D view */
+  view = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_VIEW__, &view, jni_int, 1);
+
+  axisVisible = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+
+  axisReverse = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
+
+  /* Corresponds to the MVC AUTO_SUBTICKS property (!flagNax is equivalent to AUTO_SUBTICKS) */
+#if 0
+  ppaxesmdl->flagNax = FALSE;
+#endif
+
+  autoSubticks = 1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+
+  /* To be corrected when the equivalent of flagnax is implemented within the MVC */
+  nbSubticks = 1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+
+  /*
+   * The code creating default ticks labels and positions should be put
+   * into the Model. Ticks positions and locations should be computed using the default data bounds
+   * instead of using pre-defined values.
+   * Note that the pre-MVC ticks labels creation code is implemented in the C++ Renderer module
+   * and should be moved to the Java Model's relevant parts (TicksProperty).
+   */
+
+  defaultNumberTicks = 11;
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
+
+  stringVector = createStringArray(defaultNumberTicks);
+
+  if (stringVector == NULL)
+  {
+    return -1;
+  }
+
+  /*
+   * A proper format should be used (ChoixFormatE function)
+   */
+  for (i = 0; i < defaultNumberTicks; i++)
+  {
+    sprintf(labelBuffer, "%.1f", tab[i]);
+    stringVector[i] = strdup(labelBuffer);
+
+    if (stringVector == NULL)
+    {
+      return -1;
+    }
+  }
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
+
+  /*
+   * The same number of ticks is used now for the x,y and z axes.
+   * Previously, the z-axis contained only 3 ticks (-1, 0, 1). However, the renderer module was
+   * overriding this default number (3) by creating an 11-tick z-axis when required (3D view).
+   * Ticks locations and labels are however different for the z-axis (from -1 to +1 instead of 0 to 1).
+   */
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_TICKS_LOCATIONS__, tabZTicksLocations, jni_double_vector, defaultNumberTicks);
+
+  /* ChoixFormatE should be used */
+  for (i = 0; i < defaultNumberTicks; i++)
+  {
+    FREE(stringVector[i]);
+
+    sprintf(labelBuffer, "%.1f", tabZTicksLocations[i]);
+    stringVector[i] = strdup(labelBuffer);
+
+    if (stringVector == NULL)
+    {
+      return -1;
+    }
+  }
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
+
+  destroyStringArray(stringVector, defaultNumberTicks);
+
+  /* Automatic ticks computation activated for the 3 axes */
+  autoTicks = 1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+
+  /*
+   * Indicates the direction of projection (0 for the axis corresponding to the direction,
+   * 1 for the others).
+   * To be implemented within the MVC if determined to be useful.
+   */
+#if 0
+  ppaxesmdl->project[0]= 1;
+  ppaxesmdl->project[1]= 1;
+  ppaxesmdl->project[2]= 0;
+#endif
+
+
+  hiddenAxisColor = 4;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_HIDDEN_AXIS_COLOR__, &hiddenAxisColor, jni_int, 1);
+
+  hiddenColor = 4;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
+
+  isoview = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
+
+  /* Axes bounds set to fill the whole drawing area */
+  axesBounds[0] = 0.0;
+  axesBounds[1] = 0.0;
+  axesBounds[2] = 1.0;
+  axesBounds[3] = 1.0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_AXES_BOUNDS__, axesBounds, jni_double_vector, 4);
+
+  /* xmin, xmax */
+  dataBounds[0] = 0.0;
+  dataBounds[1] = 1.0;
+  /* ymin, ymax */
+  dataBounds[2] = 0.0;
+  dataBounds[3] = 1.0;
+  /* zmin, zmax */
+  dataBounds[4] = -1.0;
+  dataBounds[5] = 1.0;
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+
+  /* visible */
+  tmp = (int*) getGraphicObjectProperty(pfiguremdl->UID, __GO_VISIBLE__, jni_bool);
+
+  visible = *tmp;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+
+  /* 0: clipping off */
+  clipState = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+  /* "real data bounds" and "data bounds" are initially the same */
+  setGraphicObjectProperty(paxesmdl->UID, __GO_REAL_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+
+  tightLimits = 0;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+
+  /* Sets the default arc drawing method to lines (1), which is faster */
+  arcDrawingMethod = 1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
+
+  return 0;
+
+  /*
+   * Former non-MVC property sets
+   * Commented out and not deleted since a few properties are not implemented yet:
+   * project, user_data, alpha_kp and theta_kp (store the last know value of rotation angles when view was == "3d",
+   * user_grads, and Label default properties.
+  */
+
+#if 0
+  ppaxesmdl->axes.ticscolor  = -1;
+#endif
+
+  /* Deactivated for now */
+#if 0
   ppaxesmdl->callback = (char *)NULL;
   ppaxesmdl->callbacklen = 0;
   ppaxesmdl->callbackevent = 100;
+#endif
+
+  /*
+   * subint has apparently been superseded by nbsubtics (set below),
+   * which itself corresponds to the MVC's __GO_{X,Y,Z}_AXIS_SUBTICKS__
+   */
+#if 0
   sciInitLogFlags(paxesmdl, linLogFlags);
   ppaxesmdl->axes.ticscolor  = -1;
   ppaxesmdl->axes.subint[0]  = 1;
   ppaxesmdl->axes.subint[1]  = 1;
   ppaxesmdl->axes.subint[2]  = 1;
+#endif
+
+#if 0
   ppaxesmdl->axes.xdir='d';
   ppaxesmdl->axes.ydir='l';
   ppaxesmdl->axes.rect  = BT_OFF;
   sciInitIsFilled(paxesmdl, TRUE);
+#endif
 
+  /* Not implemented yet within the MVC */
+#if 0
   ppaxesmdl->user_data = (int *) NULL; /* to be complete */
   ppaxesmdl->size_of_user_data = 0;
+#endif
 
+ /*
+  * This has apparently has been useless for a long time
+  * as it is not referred to anywhere else than here.
+  */
+#if 0
   for (i=0 ; i<7 ; i++)
   {
     ppaxesmdl->axes.limits[i] = 0;
   }
+#endif
 
+#if 0
   for (i=0 ; i<3 ; i++)
   {
     ppaxesmdl->grid[i]  = -1;
   }
+#endif
 
+#if 0
 	ppaxesmdl->gridFront = FALSE; /* draw in background */
+#endif
 
+
+#if 0
   ppaxesmdl->alpha  = 0.0;
   ppaxesmdl->theta  = 270.0;
+#endif
+
+  /*
+   * Not implemented yet within the MVC
+   * These store the rotation angles values
+   * which are set when the view is switched
+   * from "2d" to "3d"
+   */
+#if 0
   ppaxesmdl->alpha_kp  = 45.0;
   ppaxesmdl->theta_kp  = 215.0;
+#endif
+
+#if 0
   ppaxesmdl->is3d  = FALSE;
+#endif
 
   /* F.Leray 22.09.04 */
+#if 0
   (ppaxesmdl->axes).axes_visible[0] = FALSE;
   (ppaxesmdl->axes).axes_visible[1] = FALSE;
   (ppaxesmdl->axes).axes_visible[2] = FALSE;
   (ppaxesmdl->axes).reverse[0] = FALSE;
   (ppaxesmdl->axes).reverse[1] = FALSE;
   (ppaxesmdl->axes).reverse[2] = FALSE;
+#endif
+
+  /*
+   * Stores the auto sub-ticks internal state
+   */
+#if 0
   ppaxesmdl->flagNax = FALSE;
 
   /*F.Leray : just for completion : */
   ppaxesmdl->axes.nbsubtics[0] = 1; /* not used at all because needs ppaxesmdl->flagNax = TRUE */
   ppaxesmdl->axes.nbsubtics[1] = 1; /* and when it is TRUE, it means WE have given the corresponding */
   ppaxesmdl->axes.nbsubtics[2] = 1; /* ppaxesmdl->axes.nbsubtics[0,1,2] !! */
+#endif
 
+  /* Former graduations, 11 z-axis ticks are now used for the MVC's default axes */
+#if 0
   (ppaxesmdl->axes).nxgrads = 11; /* computed ticks */
   (ppaxesmdl->axes).nygrads = 11;
   (ppaxesmdl->axes).nzgrads = 3;
@@ -609,7 +1132,10 @@ int InitAxesModel()
   (ppaxesmdl->axes).zgrads[0] = -1.;
   (ppaxesmdl->axes).zgrads[1]  = 0.;
   (ppaxesmdl->axes).zgrads[2]  = 1.;
+#endif
 
+  /* Users grads are not implemented yet */
+#if 0
   (ppaxesmdl->axes).u_xgrads = (double *)NULL;
   (ppaxesmdl->axes).u_ygrads = (double *)NULL;
   (ppaxesmdl->axes).u_zgrads = (double *)NULL;
@@ -619,20 +1145,41 @@ int InitAxesModel()
   (ppaxesmdl->axes).u_xlabels= (char **) NULL;
   (ppaxesmdl->axes).u_ylabels= (char **) NULL;
   (ppaxesmdl->axes).u_zlabels= (char **) NULL;
+#endif
 
+#if 0
   sciInitAutoTicks(paxesmdl, TRUE, TRUE, TRUE);
   /* end 22.09.04 */
+#endif
 
+  /*
+   * The flag array internal state is apparently deprecated.
+   * flag[0] is related to the treatment of hidden parts and apparently deprecated (To be checked).
+   * flag[1] is related to scaling and apparently deprecated (To be checked).
+   * flag[2] corresponds to the MVC's GO_BOX_TYPE property
+   */
+#if 0
   ppaxesmdl->axes.flag[0]= 2;
   ppaxesmdl->axes.flag[1]= 2;
   ppaxesmdl->axes.flag[2]= 4;
   sciInitHiddenAxisColor(paxesmdl, 4);
+#endif
+
+  /*
+   * The project boolean array (internal state) serves to indicate whether projection is parallel
+   * to one of the {X,Y,Z} axes (0 for the axis corresponding to the direction of projection,
+   * 1 for the others). It may still be used by the high-level drawing commands (plot, etc).
+   * To be implemented within the MVC.
+   */
+#if 0
   ppaxesmdl->project[0]= 1;
   ppaxesmdl->project[1]= 1;
   ppaxesmdl->project[2]= 0;
   sciInitHiddenColor(paxesmdl, 4);
   ppaxesmdl->isoview= FALSE;/*TRUE;*/
+#endif
 
+#if 0
   ppaxesmdl->WRect[0]   = 0;
   ppaxesmdl->WRect[1]   = 0;
   ppaxesmdl->WRect[2]   = 1;
@@ -646,7 +1193,9 @@ int InitAxesModel()
   ppaxesmdl->visible = sciGetVisibility(pfiguremdl);
   /* /\*   ppaxesmdl->drawlater = sciGetDrawLater(pfiguremdl); *\/ */
   /*   ppaxesmdl->drawlater = FALSE; */
+#endif
 
+#if 0
   ppaxesmdl->isclip = -1; /* off */
 
   /* Les SRect sont rentres dans l'ordre:
@@ -665,13 +1214,21 @@ int InitAxesModel()
 
   paxesmdl->pObservers = NULL ;
   paxesmdl->pDrawer = NULL ;
+#endif
+
+
+  /*
+   * Label creation is done in the MVC Axes constructor for now.
+   * However, the equivalent of initLabel (which initializes Label
+   * properties default values) must be implemented. 
+   */
 
   /* F.Leray 10.06.04 */
   /* Adding default Labels inside Axes */
   /*---------------------------------------------------------------------------*/
 
    /******************************  title *************************/
-
+#if 0
   ppaxesmdl->mon_title = initLabel( paxesmdl ) ;
 
   if ( ppaxesmdl->mon_title == NULL )
@@ -713,6 +1270,7 @@ int InitAxesModel()
   }
 
   pLABEL_FEATURE( ppaxesmdl->mon_z_label )->ptype = 4 ;
+#endif
 
   return 0;
 }
@@ -780,6 +1338,11 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
 }
 
 
+/*
+ * This function has been adapted to the MVC framework.
+ * Its code ought to be moved to the Java Model implementation,
+ * either within the relevant constructor or an initialization method.
+ */
 
 /**sciInitGraphicMode
  * Inits the graphic mode of this object with the default value
@@ -787,40 +1350,128 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
 int
 sciInitGraphicMode (sciPointObj * pobj)
 {
-  switch (sciGetEntityType (pobj))
+  char* type;
+
+  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+
+//  switch (sciGetEntityType (pobj))
+
+    /*
+     * The GO_FIGURE block is never reached as InitFigureModel
+     * is not called at all (was previously called by
+     * the graphicsmodels function).
+     */
+    if (strcmp(type, __GO_FIGURE__) == 0)
     {
-    case SCI_FIGURE:
+      /* 3: copy pixel drawing mode */
+      int xormode = 3;
+
       if (pobj == pfiguremdl)
 	{
+          /*
+           * These 3 properties are not used by the Figure object proper, but
+           * rather serve to initialize its children Axes' ones.
+           */
+#if 0
 	  (sciGetGraphicMode (pobj))->addplot = TRUE;
 	  (sciGetGraphicMode (pobj))->autoscaling = TRUE;
 	  (sciGetGraphicMode (pobj))->zooming = FALSE;
+#endif
+
+          setGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
+
+#if 0
 	  (sciGetGraphicMode (pobj))->xormode = 3; /* copy */
+#endif
 	}
+      /*
+       * Useless now since the Figure model
+       * is cloned within the MVC via a C call
+       */
       else
 	{
+#if 0
 	  (sciGetGraphicMode (pobj))->addplot = (sciGetGraphicMode (pfiguremdl))->addplot;
 	  (sciGetGraphicMode (pobj))->autoscaling = (sciGetGraphicMode (pfiguremdl))->autoscaling;
 	  (sciGetGraphicMode (pobj))->zooming = (sciGetGraphicMode (pfiguremdl))->zooming;
 	  (sciGetGraphicMode (pobj))->xormode = (sciGetGraphicMode (pfiguremdl))->xormode;
+#endif
 	}
-      break;
-    case SCI_SUBWIN:
+    }
+    else if (strcmp(type, __GO_AXES__) == 0)
+    {
+      /*
+       * Same values as the ones from the Figure model. These values were copied from the parent
+       * Figure but are for now set using the values below.
+       */
+
+      /* autoClear is the logical not of addPlot (autoClear == 0 corresponds to addPlot == TRUE) */
+      int autoClear = 0;
+      int autoScale = 1;
+      int zoom = 0;
+      /* 3: copy */
+      int xormode = 3;
+
       if (pobj == paxesmdl)
 	{
+          setGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
+
+	  /*
+           * Internal state: was possibly used to avoid accessing the parent Figure's pixel drawing mode
+           * or may be entirely useless, as pixel drawing mode is associated to the whole Figure.
+           * As it has no corresponding MVC property, this call will not set anything.
+           */
+          setGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
+
+#if 0
 	  (sciGetGraphicMode (pobj))->addplot =sciGetAddPlot (sciGetParent (pobj));
 	  (sciGetGraphicMode (pobj))->autoscaling =sciGetAutoScale (sciGetParent (pobj));
 	  (sciGetGraphicMode (pobj))->zooming =sciGetZooming (sciGetParent (pobj));
 	  (sciGetGraphicMode (pobj))->xormode =sciGetXorMode (sciGetParent (pobj));
+#endif
       	}
+      /*
+       * This block is never reached at all since since the Axes model
+       * is now cloned within the MVC via a C call.
+       */
       else
 	{
+          int* tmp;
+
+          tmp = (int*) getGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_CLEAR__, jni_bool);
+          autoClear = *tmp;
+          tmp = (int*) getGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_SCALE__, jni_bool);
+          autoScale = *tmp;
+          tmp = (int*) getGraphicObjectProperty(paxesmdl->UID, __GO_ZOOM_ENABLED__, jni_bool);
+          zoom = *tmp;
+
+          setGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
+
+	  /*
+           * Internal state: used to avoid accessing the parent's pixel drawing mode
+           * obsolete ? Not implemented yet within the MVC
+           */
+
+          tmp = (int*) getGraphicObjectProperty(paxesmdl->UID, __GO_PIXEL_DRAWING_MODE__, jni_bool);
+          xormode = *tmp;
+
+          setGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
+
+#if 0
 	  (sciGetGraphicMode (pobj))->addplot =(sciGetGraphicMode (paxesmdl))->addplot;
 	  (sciGetGraphicMode (pobj))->autoscaling = (sciGetGraphicMode (paxesmdl))->autoscaling;
 	  (sciGetGraphicMode (pobj))->zooming =(sciGetGraphicMode (paxesmdl))->zooming;
 	  (sciGetGraphicMode (pobj))->xormode =(sciGetGraphicMode (paxesmdl))->xormode;
+#endif
       	}
-      break;
+    }
+
+    /* Deactivated */
+#if 0
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
@@ -838,7 +1489,8 @@ sciInitGraphicMode (sciPointObj * pobj)
       sciprint (_("This object has not any graphic mode\n"));
       return -1;
       break;
-    }
+#endif
+
   return 0;
 }
 
