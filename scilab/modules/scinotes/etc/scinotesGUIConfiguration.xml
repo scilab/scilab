@@ -49,6 +49,10 @@
       <menuitem action="IndentAction" label="Correct Indentation"/>
       <menuitem action="RemoveTrailingWhiteAction" label="Remove trailing spaces"/>
       <menuitem action="GenerateHelpFromFunctionAction" label="Generate comments for help_from_sci"/>
+      <separator/>
+      <menuitem action="ToUpperCaseAction" label="Make Selection Uppercase"/>
+      <menuitem action="ToLowerCaseAction" label="Make Selection Lowercase"/>
+      <menuitem action="CapitalizeAction" label="Capitalize Selection;Capitalize character"/>
     </menu>
 
     <menu label="Search" mnemonic="H">
