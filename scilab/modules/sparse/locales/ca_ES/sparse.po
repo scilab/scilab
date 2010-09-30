@@ -132,6 +132,10 @@ msgstr ""
 "%s: L'argument d'entrada té un número incorrecte: Ha de ser com a mínim %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
@@ -172,6 +176,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
@@ -198,12 +206,8 @@ msgstr ""
 "transposada de la funció %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for size argument #%d: Same size as input argument #%d "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de tenir la "
-"mateixa mida que l'argument d'entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"

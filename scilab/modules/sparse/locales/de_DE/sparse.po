@@ -132,6 +132,10 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: falsche Anzahl an Eingangsargumenten: mindestens %d erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
 
@@ -165,6 +169,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Spaltenvektor erwartet.\n"
 
@@ -185,9 +193,7 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for size argument #%d: Same size as input argument #%d "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
 
 #, c-format

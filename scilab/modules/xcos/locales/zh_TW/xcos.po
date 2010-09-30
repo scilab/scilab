@@ -206,6 +206,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr ""
 
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+
 msgid "?"
 msgstr "?"
 
@@ -283,6 +287,12 @@ msgstr "編譯執行中, 結果將存在 'scicos_cpr' 變數"
 msgid "Compile"
 msgstr "編譯"
 
+msgid "Compiling"
+msgstr ""
+
+msgid "Computing"
+msgstr ""
+
 msgid "Continuous time systems"
 msgstr "連續的 time systems"
 
@@ -329,8 +339,14 @@ msgid ""
 "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Diagram已經異動 從上一次存檔.<br/> 你想要儲存嗎?"
 
+msgid "Diff. States"
+msgstr ""
+
 msgid "Discontinuities"
 msgstr "不連續性"
+
+msgid "Discrete"
+msgstr "離散"
 
 msgid "Discrete time systems"
 msgstr "離散時間系統"
@@ -356,6 +372,12 @@ msgstr "電力"
 msgid "Enable"
 msgstr ""
 
+msgid "Equations"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
 msgid "Event handling"
 msgstr "事件處理"
 
@@ -379,6 +401,9 @@ msgstr ""
 msgid "Export to XML"
 msgstr "匯出至 XML 檔案"
 
+msgid "Extended"
+msgstr ""
+
 msgid "Failed to load Diagram"
 msgstr "載入圖框失敗"
 
@@ -393,6 +418,18 @@ msgstr "最後的整合時間"
 
 msgid "Fit diagram to view"
 msgstr "將圖框展成全景"
+
+msgid "Fix derivatives"
+msgstr ""
+
+msgid "Fix states"
+msgstr ""
+
+msgid "Fixed parameters"
+msgstr ""
+
+msgid "Fixed variables"
+msgstr ""
 
 msgid "Flip"
 msgstr "翻轉"
@@ -412,6 +449,9 @@ msgstr "格式"
 msgid "From %s"
 msgstr "寄件者 %s"
 
+msgid "Generate Jacobian"
+msgstr ""
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr "產生 SuperBlock, 請稍待 ..."
 
@@ -420,6 +460,9 @@ msgstr "轉 SuperBlock 成 C 程式碼"
 
 msgid "Get infos"
 msgstr "取得資訊"
+
+msgid "Global"
+msgstr ""
 
 msgid "Goto %s"
 msgstr "Goto %s"
@@ -449,6 +492,12 @@ msgstr "不明確資料的輸出埠必須連接到不明確資料的輸入埠"
 
 msgid "Import from XML"
 msgstr "從 XML 檔案匯入"
+
+msgid "Initial computing method"
+msgstr ""
+
+msgid "Input"
+msgstr ""
 
 msgid "Insert"
 msgstr "插入"
@@ -513,6 +562,9 @@ msgstr "鏡象"
 msgid "Modelica initialize"
 msgstr ""
 
+msgid "Modelica settings"
+msgstr ""
+
 msgid "Move Down"
 msgstr "下移"
 
@@ -552,8 +604,14 @@ msgstr ""
 msgid "Palettes"
 msgstr "調色盤"
 
+msgid "Parameter embedding"
+msgstr ""
+
 msgid "Per block execution trace and Debug block calls"
 msgstr "每一block 執行trace和 Debug block calls"
+
+msgid "Please take a look into the Scilab console"
+msgstr ""
 
 msgid "Port & Subsystem"
 msgstr "Port & 子系統"
@@ -574,8 +632,17 @@ msgstr "即時延展"
 msgid "Recent Files"
 msgstr "最近存取的檔案"
 
+msgid "Reduced"
+msgstr ""
+
 msgid "Region to superblock"
 msgstr "邊界定至 superblock"
+
+msgid "Relaxed parameters"
+msgstr ""
+
+msgid "Relaxed variables"
+msgstr ""
 
 msgid "Remove"
 msgstr "移除"
@@ -659,6 +726,12 @@ msgstr "模擬處理中"
 
 msgid "Sinks"
 msgstr "下陷"
+
+msgid "Solve"
+msgstr ""
+
+msgid "Solver"
+msgstr ""
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "求解器 0 (CVODE) - 100 (IDA)"
@@ -755,6 +828,12 @@ msgstr "無法模擬 %s"
 msgid "Unknown Diagram Version : "
 msgstr "未知的 Diagram版本 : "
 
+msgid "Unknowns"
+msgstr ""
+
+msgid "Unknowns not equals to Equations"
+msgstr ""
+
 msgid "Untitled"
 msgstr "無標題"
 
@@ -831,8 +910,49 @@ msgstr ""
 msgid "Zero crossing detection"
 msgstr "Zero crossing 偵測"
 
+msgid "comment"
+msgstr ""
+
 msgid "control port must be connected to command port"
 msgstr "控制埠必須連接到命令埠"
 
+msgid "fixed"
+msgstr ""
+
+msgid "id"
+msgstr ""
+
+msgid "initial"
+msgstr ""
+
+msgid "kind"
+msgstr ""
+
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+
+msgid "max"
+msgstr ""
+
 msgid "maximum step size (0 means no limit)"
 msgstr "最大步階數 (0 表示無限)"
+
+msgid "min"
+msgstr ""
+
+msgid "model is not valid"
+msgstr ""
+
+msgid "name"
+msgstr ""
+
+msgid "nominal"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "weight"
+msgstr ""

@@ -240,9 +240,6 @@ msgstr ""
 msgid "Unknown Release"
 msgstr "Lançamento desconhecido."
 
-msgid "Updating, please wait"
-msgstr "Atualizando. Por favor, aguard."
-
 msgid "Variable too long.\n"
 msgstr "Variável muito longa.\n"
 

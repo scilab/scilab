@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-15 16:12+0000\n"
-"Last-Translator: Maciej Jędrusik <Unknown>\n"
+"PO-Revision-Date: 2010-09-29 12:24+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -647,7 +647,7 @@ msgid "&Colors"
 msgstr "&Kolory"
 
 msgid "&Command History"
-msgstr ""
+msgstr "Historia poleceń"
 
 msgid "&Contributions"
 msgstr "Weź &udział"
@@ -755,7 +755,7 @@ msgid "&Save..."
 msgstr "&Zapisz..."
 
 msgid "&SciNotes"
-msgstr ""
+msgstr "&SciNotes"
 
 msgid "&Scilab Help"
 msgstr "&Pomoc Scilab"
@@ -779,7 +779,7 @@ msgid "&UnZoom"
 msgstr "&Oddal"
 
 msgid "&Variable Browser"
-msgstr ""
+msgstr "Przeglądarka zmiennych"
 
 msgid "&Vectorial export"
 msgstr "&Eksportowanie wektorowe"
@@ -857,7 +857,7 @@ msgid "Application"
 msgstr "Program"
 
 msgid "Attributes"
-msgstr ""
+msgstr "Własności"
 
 msgid ""
 "Authors:\n"
@@ -872,7 +872,7 @@ msgid "Back"
 msgstr "Powrót"
 
 msgid "Bold"
-msgstr ""
+msgstr "Pogrubiony"
 
 msgid "C&lose"
 msgstr "Zam&knij"
@@ -935,7 +935,7 @@ msgid "Copyright (c) 1989-2010 (INRIA)"
 msgstr "Copyright (c) 1989-2010 (INRIA)"
 
 msgid "Could not open: "
-msgstr ""
+msgstr "Nie mogę otworzyć: "
 
 msgid "Cut"
 msgstr "Wytnij"
@@ -1001,10 +1001,10 @@ msgid "File already exists"
 msgstr "Plik już istnieje"
 
 msgid "Font"
-msgstr ""
+msgstr "Czcionka"
 
 msgid "Font Chooser"
-msgstr ""
+msgstr "Wybór czcionki"
 
 msgid "Forward"
 msgstr "Do przodu"
@@ -1031,13 +1031,13 @@ msgid "Impossible to get current look and feel"
 msgstr "Nie można uzyskać bieżącego wyglądu i czucia"
 
 msgid "Italic"
-msgstr ""
+msgstr "Kursywa"
 
 msgid "JPEG image"
 msgstr "Obraz JPEG"
 
 msgid "Launch SciNotes"
-msgstr ""
+msgstr "Uruchom SciNotes"
 
 msgid "Launch plot2d"
 msgstr "Uruchom plot2d"
@@ -1076,7 +1076,7 @@ msgid "Module manager - ATOMS"
 msgstr "Moduł zarządzania - ATOMS"
 
 msgid "Monospaced"
-msgstr ""
+msgstr "Maszynowa"
 
 msgid "No"
 msgstr "Nie"
@@ -1166,7 +1166,7 @@ msgid "Save and execute"
 msgstr "Zapisz i wykonaj"
 
 msgid "SciNotes compatible"
-msgstr ""
+msgstr "Kompatybilny ze SciNotes"
 
 msgid "Scicos files"
 msgstr "Pliki Scicos"
@@ -1207,7 +1207,7 @@ msgid "Scilab Contributors..."
 msgstr "Uczestnicy projektu"
 
 msgid "Scilab Demo files"
-msgstr ""
+msgstr "Pliki demonstracyjne Scilab"
 
 msgid "Scilab Demonstrations"
 msgstr "Przykłady"
@@ -1225,7 +1225,7 @@ msgid "Scilab Multiple Values Request"
 msgstr "Wprowadzenie wartości wejściowych Scilab"
 
 msgid "Scilab Quit files"
-msgstr ""
+msgstr "Scilab Quit files"
 
 msgid "Scilab SCE files"
 msgstr "SCE-pliki Scilab"
@@ -1234,7 +1234,7 @@ msgid "Scilab SCI files"
 msgstr "SCE-pliki Scilab"
 
 msgid "Scilab Start files"
-msgstr ""
+msgstr "Scilab Start files"
 
 msgid "Scilab binary files"
 msgstr "Plik binarny Scilab"
@@ -1255,7 +1255,7 @@ msgid "Select a file to load"
 msgstr "Wybierz plik do załadowania"
 
 msgid "Select a file to open with SciNotes"
-msgstr ""
+msgstr "Zaznacz plik do otwarcia razem ze SciNotes"
 
 msgid "Select a file to write"
 msgstr "Wybierz plik do zapisania"
@@ -1302,7 +1302,7 @@ msgid "Sub-menu 2-2"
 msgstr "Pod-menu 2-2"
 
 msgid "Test files"
-msgstr ""
+msgstr "Test files"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab Konsorcjom (DIGITEO)"
@@ -1314,7 +1314,7 @@ msgid "Uicontrols demo"
 msgstr "Przykład interfejsu graficznego (uicontrols)"
 
 msgid "Uicontrols demo with LaTeX"
-msgstr ""
+msgstr "Demo uicontrols z LaTeX"
 
 msgid "Unrecognized extension '"
 msgstr "Nierozpoznane rozszerzenie '"

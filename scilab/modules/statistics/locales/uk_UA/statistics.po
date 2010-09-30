@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-01-17 09:06+0000\n"
+"PO-Revision-Date: 2010-09-15 15:42+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -288,6 +288,10 @@ msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "Здається, значення відповіді перевищує верхню межу пошуку %f\n"
 
 #, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr "Значення відповіді перевищує найбільшу межу пошуку %s\n"
+
+#, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr "Здається, значення відповіді лежить нижче за нижню межу пошуку %f\n"
 
@@ -323,14 +327,6 @@ msgstr "F, Dfn і Dfd"
 
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr "F, Dfn, Dfd і Pnonc"
-
-#, c-format
-msgid ""
-"Input argument %c is out of range.\n"
-"Bound exceeded: %f\n"
-msgstr ""
-"Значення вхідного параметра %c перевищує обмеження.\n"
-"Перевищення обмежень: %f\n"
 
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"
