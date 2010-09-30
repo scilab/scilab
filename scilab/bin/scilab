@@ -281,7 +281,7 @@ detect_java_vm() {
                     # Apple thinks and does things different (it would be too easy otherwise)
 		    # They provide a script which returns the JAVA_HOME path
 		    JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
-                    LD_LIBRARY_PATH="$JAVA_HOME/../Libraries:$LD_LIBRARY_PATH"
+            LD_LIBRARY_PATH="$JAVA_HOME/../Libraries${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 		    if test $SCIVERBOSE -ne 0; then
 			echo "Using default Mac OS X vm: $JAVA_HOME"
 			echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
@@ -460,7 +460,7 @@ fi
             CLASSPATH="$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar"
 		# @TODO This is the default path of the official sun JVM. 
 		# It is different for other implementation of the JVM....
-		    LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH"
+		    LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 		fi
 	else
 		if test $SCIVERBOSE -ne 0; then
@@ -519,19 +519,19 @@ LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 case $OS in
     *darwin* | *Darwin*) # MacOS X
         # When using some packaging tools like fink which are storing the info in /sw/lib
-        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/sw/lib/"
+        LD_LIBRARY_PATH="/sw/lib/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 	# Export the path to the Scilab lib when Scilab has been install ...
 	# to a Mac os x specific variable used by the linker before LD_LIBRARY_PATH
-		DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/../../lib/scilab/
+		DYLD_LIBRARY_PATH=$SCI/../../lib/scilab/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}:
 		# Crappy workaround for the dynamic load of sundials under Mac OS X
 		# in the source tree version. This does not occur in the binary
 		# thanks to the previous declaration on ../../lib/scilab
 		# See bug #4949
 		if test -d "$SCI/modules/scicos_blocks/.libs/"; then
-			DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/modules/scicos_blocks/.libs/
+			DYLD_LIBRARY_PATH=$SCI/modules/scicos_blocks/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
 		fi
 		if test -d "$SCI/modules/scicos/.libs/"; then
-			DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/modules/scicos/.libs/
+			DYLD_LIBRARY_PATH=$SCI/modules/scicos/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
 		fi
 		export DYLD_LIBRARY_PATH
         ;;
