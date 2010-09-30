@@ -25,6 +25,8 @@ SciNotes:
 
 * bug 8095 fixed - The Set Colors window was too height with OpenJDK.
 
+* bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
+
 
 Bug Fixes:
 ==========
