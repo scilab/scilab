@@ -768,9 +768,23 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @return the file picked up by the user
      */
     public String chooseFileToSave(String title) {
+        return chooseFileToSave(title, null);
+    }
+
+    /**
+     * Return through a file selector the name of the selected
+     * file.
+     * @param title the title for JFileChooser
+     * @param path the path where to open the filechooser
+     * @return the file picked up by the user
+     */
+    public String chooseFileToSave(String title, String path) {
         String extension = new String();
 
-        String initialDirectoryPath = getTextPane().getName();
+        String initialDirectoryPath = path;
+        if (initialDirectoryPath == null) {
+           initialDirectoryPath = getTextPane().getName();
+        }
         if (initialDirectoryPath == null) {
             initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
         }
@@ -871,10 +885,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
     /**
      * Save a file.
+     * @param path the initial path where the filechooser will be open
      * @return execution status
      */
-    public boolean saveAs() {
-        String filename = chooseFileToSave(SciNotesMessages.SAVE_AS);
+    public boolean saveAs(String path) {
+        String filename = chooseFileToSave(SciNotesMessages.SAVE_AS, path);
         if (filename == null || filename.length() == 0) {
             return true;
         }

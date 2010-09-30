@@ -31,6 +31,9 @@ SciNotes:
 
 * Incremental search added with the shortcut: the F2 key.
 
+* Add a "Save file in..." menu which gives the possibility to save a file
+  in favorite directories.
+
 * bug 7806 fixed - Blocks elseif...end and else...end were not highlighted.
 
 * bug 8095 fixed - The Set Colors window was too height with OpenJDK.
