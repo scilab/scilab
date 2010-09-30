@@ -21,9 +21,7 @@
 #include "BOOL.h"
 #include "localization.h"
 #include "Scierror.h"
-#ifdef _MSC_VER
 #include "os_strdup.h"
-#endif
 #include "freeArrayOfString.h"
 #include "mgetl.h"
 #include "mopen.h"
