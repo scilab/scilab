@@ -121,6 +121,9 @@ Bug Fixes:
 
 * bug 8128 fixed - A warning was displayed on 'Save' action in a graphic window.
 
+* bug 8129 fixed - The error message was not clear in tlbx_builder_src if you did
+                   not have a compiler.
+
 * bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
                    taken into account for "text" uicontrols.
 
