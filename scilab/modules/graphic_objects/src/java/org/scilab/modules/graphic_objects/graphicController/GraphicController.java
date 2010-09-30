@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.graphicController;
 
 import java.rmi.server.UID;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -205,7 +206,7 @@ public class GraphicController {
 
             if (!oldParentId.equals("")) {
                 String[] children = (String[]) GraphicController.getController().getProperty(oldParentId, GraphicObjectProperties.__GO_CHILDREN__);
-                List list = Arrays.asList(children);
+                List<String> list = new ArrayList(Arrays.asList(children));
                 list.remove(childId);
                 setProperty(oldParentId, GraphicObjectProperties.__GO_CHILDREN__, list);
             }
