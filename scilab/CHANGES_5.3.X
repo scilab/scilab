@@ -42,7 +42,7 @@ Bug Fixes:
 
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
 
-* bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni 
+* bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni
                    mode on Linux and MacOS X.
 
 * bug 8079 fixed - When the max number of variable available has been reached,
@@ -62,6 +62,8 @@ Bug Fixes:
                    was not deleted even if it was empty.
 
 * bug 8124 fixed - Some translations were not up to date.
+
+* bug 8128 fixed - A warning was displayed on 'Save' action in a graphic window.
 
 * bug 8164 fixed - Typo in the fileparts help page.
 
