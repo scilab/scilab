@@ -71,6 +71,8 @@ Bug Fixes:
 
 * bug 8124 fixed - Some translations were not up to date.
 
+* bug 8126 fixed - Some demos from the GUI modules where hanging.
+
 * bug 8128 fixed - A warning was displayed on 'Save' action in a graphic window.
 
 * bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
