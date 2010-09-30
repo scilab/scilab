@@ -185,19 +185,18 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/special_functions/libscispecial_functions.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/sparse/libscisparse.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
-
+	$(top_builddir)/modules/hdf5/libscihdf5.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/pvm/libscipvm.la \
+	$(top_builddir)/modules/fftw/libscifftw.la
+	
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -215,7 +214,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
+	$(top_builddir)/modules/helptools/libscihelptools.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
+
 
 # Core modules
 libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

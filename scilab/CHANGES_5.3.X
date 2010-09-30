@@ -51,6 +51,9 @@ Bug Fixes:
 
 * bug 7768 fixed - for cdfgam, the Scale parameter was, in fact, the Rate.
 
+* bug 7970 fixed - The eager loading of openmp support library was crashing
+                   on Linux with unsupported configuration for openmp.
+
 * bug 7997 fixed - Function getfreememory adapted for FreeBSD. Thanks to Rob
                    Farmer.
 
