@@ -92,6 +92,7 @@ import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
 import org.scilab.modules.scinotes.actions.EndOfLineAction;
+import org.scilab.modules.scinotes.actions.IncrementalSearchAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
@@ -183,6 +184,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     if (getTextPane() != null) {
                         updateUI();
                         getTextPane().updateInfosWhenFocused();
+                        getTextPane().requestFocus();
 
                         // Update encoding menu
                         EncodingAction.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
@@ -455,6 +457,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void closeSciNotes() {
         FindAction.close();
+        IncrementalSearchAction.close(this);
         SetColorsAction.closeSetColorsWindow();
         OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
 
