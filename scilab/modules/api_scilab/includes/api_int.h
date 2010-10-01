@@ -16,7 +16,8 @@
 extern "C" {
 #endif
 
-
+/* These values are also used in:
+ * modules/core/includes/sci_types.h */
 #define SCI_INT8	1
 #define SCI_INT16	2
 #define SCI_INT32	4

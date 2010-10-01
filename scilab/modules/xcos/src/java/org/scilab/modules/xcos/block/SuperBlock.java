@@ -27,6 +27,7 @@ import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
@@ -309,8 +310,14 @@ public final class SuperBlock extends BasicBlock {
 		if (child == null) {
 			child = new SuperBlockDiagram(this);
 			child.installListeners();
+			
+			final DiagramElement element = new DiagramElement();
+			if (!element.canDecode(getRealParameters())) {
+				return false;
+			}
+			
 			try {
-				new DiagramElement().decode(getRealParameters(), child, false);
+				element.decode(getRealParameters(), child, false);
 			} catch (ScicosFormatException e) {
 				LogFactory.getLog(SuperBlock.class).error(e);
 				return false;

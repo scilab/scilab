@@ -75,7 +75,7 @@
       <menuitem action="AutoIndentAction" label="Enable Auto Reformat"/>
       <menuitem action="HighlightCurrentLineAction" label="Highlight current line"/>
       <separator/>
-      <menuitem action="SetColorsAction" label="Set Colors"/>
+      <menuitem action="SetColorsAction" label="Set Colors ..."/>
       <menuitem action="SetFontAction" label="Set Font"/>
       <menuitem action="ResetFontAction" label="Reset default font"/>
       <separator/>

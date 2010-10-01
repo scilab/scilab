@@ -41,6 +41,8 @@ typedef enum {
 } sci_types;
 
 
+/* These values are also used in:
+ * modules/api_scilab/includes/api_int.h */
 typedef enum {
     sci_int8 = 1,
     sci_int16 = 2,

@@ -2,7 +2,7 @@
 // Copyright (C) 2010 Samuel GOUGEON
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 // See http://bugzilla.scilab.org/show_bug.cgi?id=6070
 

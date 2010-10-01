@@ -122,10 +122,12 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
         final MenuItem menuitem = createMenu(label, null, new GenerateHelpFromFunctionAction(label, editor), key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
-                    Element root = editor.getTextPane().getDocument().getDefaultRootElement();
-                    int pos = editor.getTextPane().getCaretPosition();
-                    ScilabDocument.ScilabLeafElement elem = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
-                    menuitem.setEnabled(elem.isFunction());
+                    if (editor.getTextPane() != null) {
+                        Element root = editor.getTextPane().getDocument().getDefaultRootElement();
+                        int pos = editor.getTextPane().getCaretPosition();
+                        ScilabDocument.ScilabLeafElement elem = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
+                        menuitem.setEnabled(elem.isFunction());
+                    }
                 }
             });
 

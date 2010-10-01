@@ -855,7 +855,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		/*
 		 * Update the children ports
 		 */
-		updateChildren(modifiedBlock);
+		if (children != null) {
+			updateChildren(modifiedBlock);
+		}
 
 		/*
 		 * If the block is in a superblock then update it.

@@ -407,8 +407,9 @@ if (next.toString().equals(path[categoryCounter])
 		graph.installListeners();
 		graph.getModel().beginUpdate();
 		graph.addCell(block);
-		BlockPositioning.updateBlockView(block);
 		graph.getModel().endUpdate();
+		graph.selectAll();
+		graph.updateCellSize(block);
 
 		/*
 		 * Render

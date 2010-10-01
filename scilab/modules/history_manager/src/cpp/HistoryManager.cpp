@@ -24,7 +24,6 @@ extern "C"
 #include <stdlib.h>
 #include "sciprint.h"
 #include "SCIHOME.h"
-#include "inffic.h"
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"
 #include "freeArrayOfString.h"

@@ -15,10 +15,12 @@ package org.scilab.modules.scinotes.actions;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -41,6 +43,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultCaret;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -150,7 +153,6 @@ public final class SetColorsAction extends DefaultAction {
         frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setTitle(SciNotesMessages.SET_COLORS);
-        frame.setResizable(false);
 
         /* Main content pane */
         contentPanel = new JPanel();
@@ -348,21 +350,21 @@ public final class SetColorsAction extends DefaultAction {
         previewPanel.setBorder(BorderFactory.createTitledBorder(SciNotesMessages.PREVIEW));
         previewEditorPane = new ScilabEditorPane(getEditor());
         previewEditorPane.setEditorKit(new ScilabEditorKit());
-        previewEditorPane.setText("// A comment with whites    and tabulations \t\t\n"
-                                  + "// Email: <scilab.support@scilab.org>\n"
-                                  + "// Scilab editor: http://www.scilab.org/\n"
-                                  + "function [a, b] = myfunction(d, e, f)\n"
-                                  + "\ta = 2.71828 + %pi + f($, :);\n"
-                                  + "\tb = cos(a) + cosh(a);\n"
-                                  + "\tif d == e then\n"
-                                  + "\t\tb = 10 - e.field;\n"
-                                  + "\telse\n"
-                                  + "\t\tb = \"\t\ttest     \" + home\n"
-                                  + "\t\treturn\n"
-                                  + "\tend\n"
-                                  + "\tmyvar = 1.23e-45;\n"
-                                  + "endfunction");
-
+        String codeSample = "// A comment with whites    and tabulations \t\t\n"
+            + "// Email: <scilab.support@scilab.org>\n"
+            + "// Scilab editor: http://www.scilab.org/\n"
+            + "function [a, b] = myfunction(d, e, f)\n"
+            + "\ta = 2.71828 + %pi + f($, :);\n"
+            + "\tb = cos(a) + cosh(a);\n"
+            + "\tif d == e then\n"
+            + "\t\tb = 10 - e.field;\n"
+            + "\telse\n"
+            + "\t\tb = \"\t\ttest     \" + home\n"
+            + "\t\treturn\n"
+            + "\tend\n"
+            + "\tmyvar = 1.23e-45;\n"
+            + "endfunction";
+        previewEditorPane.setText(codeSample);
         previewEditorPane.setBackground(bgColorButton.getBackground());
         previewEditorPane.setFont(ConfigSciNotesManager.getFont());
         previewEditorPane.setCaret(new DefaultCaret() {
@@ -457,6 +459,7 @@ public final class SetColorsAction extends DefaultAction {
         buttonsPanel.add(defaultButton);
 
         contentPanel.add(buttonsPanel);
+        contentPanel.doLayout();
 
         frame.setContentPane(contentPanel);
         frame.addWindowListener(new WindowListener() {
@@ -483,8 +486,16 @@ public final class SetColorsAction extends DefaultAction {
 
         frame.pack();
         frame.setLocationRelativeTo(getEditor());
+        frame.setResizable(false);
         frame.setVisible(true);
 
+        /* Bug 8095: the previewEditorPane size is mis-calculated under OpenJDK,
+           so I recalculate it correctly. */
+        try {
+            Rectangle r = previewEditorPane.modelToView(codeSample.length());
+            previewEditorPane.setMaximumSize(new Dimension(previewEditorPane.getSize().width, r.y + r.height));
+            frame.pack();
+        } catch (BadLocationException e) { }
     }
 
     /**

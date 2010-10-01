@@ -1,9 +1,66 @@
+            Changes between version 5.3.0-beta-4 and 5.3.0 of Scilab
+            ========================================================
+
+License:
+========
+
+The license of all demos and examples have been changed to the 3-clause BSD
+license. The domain public license was not valid in some countries.
+
+Known incompatibilities:
+========================
+
+* Due to bug 7364 fix, "Checked" uimenus have to be manually managed, these
+  uimenus are no more (un)checked on mouse click. Moreover, they can now have
+  a callback.
+
+Xcos:
+=====
+
+* bug 8081 fixed - The context was not checked before being set.
+
+
+SciNotes:
+=========
+
+* bug 8095 fixed - The Set Colors window was too height with OpenJDK.
+
+* bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
+
+
+Bug Fixes:
+==========
+
+* bug 7364 fixed - The "Checked" property misworked for uimenus and they could
+                   not have a callback.
+
+* bug 8068 fixed - Figures were not all closed at the end of a demonstration.
+
+* bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni 
+                   mode on Linux and MacOS X.
+
+* bug 8079 fixed - When the max number of variable available has been reached,
+                   it was not possible to leave Scilab.
+
+* bug 8081 fixed - msprintf did not manage tabulation as format.
+
+* bug 8087 fixed - prettyprint did not handle %inf and %nan.
+
+
+* bug 8108 fixed - ATOMS: Modules that start by the letter "n" were not well
+                   managed by ATOMS. The cause of the issue is the behaviour of
+                   the msprintf function, which considers "\n" in file paths as
+                   a new line insertion.
+
+* bug 8110 fixed - ATOMS: When removing a module, its main directory
+                   was not deleted even if it was empty.
+
+
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
 
-
 Due to a critical bug from an underlying library of Scilab, a new beta release
-of Scilab has been decided. This will allow further testing and avoid potential 
+of Scilab has been decided. This will allow further testing and avoid potential
 side effects in the future stable release.
 
 Xcos:
@@ -23,7 +80,7 @@ Xcos:
 * bug 7445 fixed - The Kalman filter and the Cont-Plant-Hybrid-Observer demos
                    did not simulate.
 
-* bug 7716 fixed - Block inter-functions were not loaded after using the 
+* bug 7716 fixed - Block inter-functions were not loaded after using the
                    xcosPal API and then starting Xcos.
 
 * bug 7770 fixed - It was not possible to compile a diagram with Modelica
@@ -57,10 +114,10 @@ Xcos:
 
 * bug 8052 fixed - The I/O block value was used for computational purpose.
 
-* bug 8071 fixed - The PROD_f block in the Fibonacci demo was not well 
+* bug 8071 fixed - The PROD_f block in the Fibonacci demo was not well
                    rendered.
 
-* bug 8073 fixed - The child context could not be used to specify masked 
+* bug 8073 fixed - The child context could not be used to specify masked
                    super-blocks parameters.
 
 
@@ -125,7 +182,7 @@ The integer matrices are now handled.
 
 In a cell of editvar, expressions such as =2+2 are now accepted. See bug #7319.
 
-A refresh button to synchronise the variable from Scilab has been added. 
+A refresh button to synchronise the variable from Scilab has been added.
 See bug #7321
 
 * bug 7325 fixed - An error message did not respect the standard format.
@@ -194,7 +251,7 @@ Bug Fixes:
 
 * bug 7690 fixed - Long lines removed in the parallel_run help page.
 
-* bug 7748 fixed - The help page of rcond was wrong: only one output 
+* bug 7748 fixed - The help page of rcond was wrong: only one output
                    argument is provided.
 
 * bug 7862 fixed - "savematfile" only saved the first string in the vector
@@ -222,7 +279,7 @@ Bug Fixes:
 
 * bug 7950 fixed - spec crashed on Windows.
 
-* bug 7951 fixed - strcat crashed with the row concatenation option on 
+* bug 7951 fixed - strcat crashed with the row concatenation option on
                    GNU/Linux.
 
 * bug 7952 fixed - libraryinfo did not check size of the input argument.
