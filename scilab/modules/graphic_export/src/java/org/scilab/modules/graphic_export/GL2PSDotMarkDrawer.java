@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * desc : Class specialized in drawing filled diamond marks
+ * Copyright (C) 2010 - Calixte Denizet
+ * desc : Class specialized in drawing dot marks
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,38 +12,36 @@
  */
 
 
-package org.scilab.modules.renderer.utils.MarkDrawing;
+package org.scilab.modules.graphic_export;
 
 import javax.media.opengl.GL;
 
 /**
- * Class specialized in drawing filled diamond marks
- * @author Jean-Baptiste Silvy
+ * Class specialized in drawing dot marks 
+ * @author Calixte Denizet
  */
-public class FilledDiamondMarkDrawer extends JOGLMarkDrawingStrategy {
+public class GL2PSDotMarkDrawer extends GL2PSMarkDrawingStrategy {
 
-	/**
+       	/**
 	 * Default constructor
 	 */
-	public FilledDiamondMarkDrawer() {
-		super();
+	public GL2PSDotMarkDrawer() {
+	    super();
 	}
 	
 	/**
-	 * Draw a filled diamond
+	 * Draw a dot
 	 * @param gl OpenGL pipeline to use
 	 * @param backColor RGB color of mark background
 	 * @param frontColor RGB color of mark foreground
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
-		if (!isFrontTransparent) {
-			gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-			gl.glBegin(GL.GL_QUADS);
-			gl.glVertex3d(-1.0,  0.0, 0.0);
-			gl.glVertex3d(0.0 ,  1.0, 0.0);
-			gl.glVertex3d(1.0 ,  0.0, 0.0);
-			gl.glVertex3d(0.0 , -1.0, 0.0);
-			gl.glEnd();
+	    if(!isFrontTransparent)
+		{
+		    gl.glBegin(GL.GL_POINTS);
+		    gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
+		    gl.glVertex3f(0f, 0f, 0f);
+		    gl.glEnd();
 		}
 	}
 }

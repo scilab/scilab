@@ -34,6 +34,9 @@ in the status bar of Scinotes.
 Graphics:
 =========
 
+* bug 4818 fixed - It was not possible to export a figure with a lot of circle
+                   marks.
+
 * bug 7509 fixed - Update of the legend help page regarding some previous
                    changes.
 
