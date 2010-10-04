@@ -251,21 +251,59 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         return ((ScilabDocument) getDocument()).getView() instanceof ScilabView && !edComponent.isSplited();
     }
 
+    /**
+     * @return true if the pane is in OverWrite mode (insert)
+     */
     public boolean getOverwriteMode() {
         return this.overwriteMode;
     }
 
+    /**
+     * @param overwriteMode true if the pane is in OverWrite mode (insert)
+     */
     public void setOverwriteMode(boolean overwriteMode) {
         this.overwriteMode = overwriteMode;
         ((ScilabCaret) getCaret()).setOverwriteMode(overwriteMode);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void replaceSelection(String content) {
         if (overwriteMode && getSelectionStart() == getSelectionEnd()) {
             int pos = getCaretPosition();
             select(pos, pos + content.length());
         }
-        super.replaceSelection(content);
+
+        if (((SciNotesCaret) getCaret()).isEmptySelection()) {
+            super.replaceSelection(content);
+        } else {
+            SciNotesCaret caret = (SciNotesCaret) getCaret();
+            int[][] pos = caret.getSelectedPositions();
+            List<Object> sels = caret.getSelections();
+            int len = content.length();
+            int res = 0;
+            int sres;
+            ScilabDocument doc = (ScilabDocument) getDocument();
+            ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(true);
+            doc.mergeEditsBegin();
+            caret.protectHighlights(true);
+            for (int i = 0; i < pos.length; i++) {
+                if (sels.get(i) != null) {
+                    sres = pos[i][0] + res;
+                    try {
+                        doc.replace(sres, pos[i][1] - pos[i][0], content, null);
+                    } catch (BadLocationException e) { }
+                    res = sres + len - pos[i][1];
+                    pos[i][0] = sres + len;
+                    pos[i][1] = sres + len;
+                }
+            }
+            doc.mergeEditsEnd();
+            ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(false);
+            caret.protectHighlights(false);
+            caret.updateHighlights();
+        }
     }
 
     /**
@@ -437,7 +475,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * @return the String which must be displayed in the infobar
+     * @param text String which must be displayed in the infobar
      */
     public void setInfoBarText(String text) {
         this.infoBar = text;
@@ -709,20 +747,26 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public String getCodeToExecute() {
         String selection;
-        int start = getSelectionStart();
-        int end = getSelectionEnd();
-        try {
-            if (start == end) {
-                selection = getDocument().getText(0, start);
-            } else {
-                selection = getDocument().getText(start, end - start);
+        if (((SciNotesCaret) getCaret()).isEmptySelection()) {
+            int start = getSelectionStart();
+            int end = getSelectionEnd();
+            try {
+                if (start == end) {
+                    selection = getDocument().getText(0, start);
+                } else {
+                    selection = getSelectedText();
+                }
+            } catch (BadLocationException e) {
+                selection = "";
             }
-            if (suppressCom) {
-                selection = selection.replaceAll("[ \t]*//[^\n]*", "");
-            }
-        } catch (BadLocationException e) {
-            selection = "";
+        } else {
+            selection = getSelectedText();
         }
+
+        if (suppressCom) {
+            selection = selection.replaceAll("[ \t]*//[^\n]*", "");
+        }
+
         return selection;
     }
 
@@ -1095,6 +1139,55 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * @return true if something has been copied
+     */
+    public boolean copyColumnSelectionInClipBoard() {
+        return ((SciNotesCaret) getCaret()).copyPositionsInClipboard();
+    }
+
+    /**
+     * @return true if something has been removed
+     */
+    public boolean removeColumnSelection() {
+        return ((SciNotesCaret) getCaret()).removePositions();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getSelectedText() {
+        String str = ((SciNotesCaret) getCaret()).getSelectedText();
+        if (str == null) {
+            return super.getSelectedText();
+        } else {
+            return str;
+        }
+    }
+
+    /**
+     * @param pos the position int the text
+     * @return null if no column selection on the same line and an array of
+     * integer (of size 2) containing the position of the selection
+     */
+    public int[] isNearColumnSelection(int pos) {
+        if (((SciNotesCaret) getCaret()).isEmptySelection()) {
+            return null;
+        }
+
+        Element root = getDocument().getDefaultRootElement();
+        int[][] positions = ((SciNotesCaret) getCaret()).getSelectedPositions();
+        int line = root.getElementIndex(pos);
+        int min = root.getElementIndex(positions[0][0]);
+        int max = root.getElementIndex(positions[positions.length - 1][0]);
+
+        if (line >= min && line <= max) {
+            return positions[line - min];
+        }
+
+        return null;
+    }
+
+    /**
      * Remove the highlight putted to show the line (for editor('foo',123))
      */
     private void removeHighlightForLine() {
@@ -1111,7 +1204,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * Add a the ScilabCaret
      */
     private void updateCaret() {
-        Caret caret = new ScilabCaret(this);
+        Caret caret = new SciNotesCaret(this);
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaretColor(getCaretColor());
         setCaret(caret);

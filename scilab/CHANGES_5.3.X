@@ -71,6 +71,9 @@ in the status bar of Scinotes.
 
 * Replace CTRL key by META key under Mac OS.
 
+* A rectangular selection tool is now available. CTRL+selection will enable it.
+  This improves the selection (of data for example).
+
 * bug 8095 fixed - With OpenJDK, the size of the dialog 'Set colors' was bad.
 
 * bug 8697 fixed - An exception was thrown when an empty document was reload.

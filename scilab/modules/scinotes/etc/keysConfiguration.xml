@@ -23,6 +23,8 @@
   <entry key="CopyAsHTMLAction">OSSCKEY C</entry>
   <entry key="CutAction">OSSCKEY X</entry>
   <entry key="PasteAction">OSSCKEY V</entry>
+  <entry key="PasteColumnAction">control shift V</entry>
+  <entry key="RepeatSelectionOnColumnAction">control shift Z</entry>
   <entry key="UndoAction">OSSCKEY Z</entry>
   <entry key="RedoAction">OSSCKEY Y</entry>
 
@@ -66,5 +68,7 @@
 
   <entry key="NextTabAction">ctrl UP</entry>
   <entry key="PreviousTabAction">ctrl DOWN</entry>
+
+  <entry key="DeleteAction">DELETE</entry>
 
 </properties>
