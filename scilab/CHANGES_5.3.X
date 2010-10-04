@@ -65,6 +65,9 @@ Bug Fixes:
 
 * bug 8128 fixed - A warning was displayed on 'Save' action in a graphic window.
 
+* bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
+                   taken into account for "text" uicontrols.
+
 * bug 8164 fixed - Typo in the fileparts help page.
 
 
