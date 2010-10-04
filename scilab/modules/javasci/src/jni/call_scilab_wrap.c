@@ -193,7 +193,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "../../../call_scilab/includes/call_scilab.h"
 #include "../../../call_scilab/includes/fromjava.h"
 #include "../../../api_scilab/includes/api_scilab.h"
-#include "../../../output_stream/includes/lasterror.h"
+#include "../../../system_env/includes/lasterror.h"
 #include "../../../modules/graphics/includes/WindowList.h"
 #include "../../../core/includes/sci_types.h"
 
@@ -911,7 +911,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_GetLastE
   
   (void)jenv;
   (void)jcls;
-  result = (int)getLastErrorValue();
+  result = (int)getLastErrorNumber();
   jresult = (jint)result; 
   return jresult;
 }
@@ -945,7 +945,7 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getLa
   
   (void)jenv;
   (void)jcls;
-  result = (char *)getLastErrorMessageSingle();
+  result = (char *)getLastErrorMessage();
   {
     if (result != NULL)
     {

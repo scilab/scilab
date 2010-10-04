@@ -219,7 +219,6 @@ sci_gateway/c/sci_dispbpt.c \
 sci_gateway/c/sci_intppty.c \
 sci_gateway/c/sci_ieee.c \
 sci_gateway/c/sci_gstacksize.c \
-sci_gateway/c/sci_lasterror.c \
 sci_gateway/c/sci_funptr.c \
 sci_gateway/c/sci_return.c \
 sci_gateway/c/sci_getmd5.c \
@@ -273,7 +272,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_getscilabmode.cpp \
 	sci_gateway/cpp/sci_getos.cpp \
 	sci_gateway/cpp/sci_exists.cpp \
-	sci_gateway/cpp/sci_with_module.cpp
+	sci_gateway/cpp/sci_with_module.cpp \
+	sci_gateway/cpp/sci_lasterror.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \

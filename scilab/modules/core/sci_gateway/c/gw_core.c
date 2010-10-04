@@ -59,7 +59,7 @@ static gw_generic_table Tab[]=
 {NULL, ""}, //isglobal
 {C2F(sci_gstacksize),"gstacksize"},
 {C2F(sci_intppty),"intppty"},
-{NULL, ""}, // "last_error"
+{NULL, ""}, //lasterror
 {NULL, ""}, //getversion
 {C2F(sci_macr2tree),"macr2tree"},
 {NULL, ""}, //getos

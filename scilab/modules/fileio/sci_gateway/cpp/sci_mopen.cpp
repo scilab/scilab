@@ -39,14 +39,14 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
     {//filename
         if(in[0]->getType() != InternalType::RealString)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mopen", 1);
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mopen", 1);
             return Function::Error;
         }
 
         String* pS1 = in[0]->getAsString();
         if(pS1->size_get() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "mopen" , 1);
+            ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A string expected.\n"), L"mopen" , 1);
             return Function::Error;
         }
 
@@ -56,14 +56,14 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
         {//mode
             if(in[1]->getType() != InternalType::RealString)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mopen", 2);
+                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mopen", 2);
                 return Function::Error;
             }
 
             String* pS2 = in[1]->getAsString();
             if(pS2->size_get() != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "mopen" , 2);
+                ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A string expected.\n"), L"mopen" , 2);
                 return Function::Error;
             }
 
@@ -73,14 +73,14 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
             {//swap
                 if(in[2]->getType() != InternalType::RealDouble)
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), "mopen" , 3);
+                    ScierrorW(999, _W("%ls: Wrong type for input argument #%d: An integer expected.\n"), L"mopen" , 3);
                     return Function::Error;
                 }
 
                 Double* pD3 = in[2]->getAsDouble();
                 if(pD3->size_get() != 1 || pD3->isComplex())
                 {
-                    Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), "mopen", 3);
+                    ScierrorW(999, _W("%ls: Wrong size for input argument #%d: An integer expected.\n"), L"mopen", 3);
                     return Function::Error;
                 }
 
@@ -92,7 +92,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
 
                 if(in.size() >= 4)
                 {
-                    Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mopen" , 1, 3);
+                    ScierrorW(999, _W("%ls: Wrong number of input arguments: %d to %d expected.\n"), L"mopen" , 1, 3);
                     return Function::Error;
                 }
 
@@ -101,7 +101,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
     }
     else
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mopen" , 1, 3);
+        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d to %d expected.\n"), L"mopen" , 1, 3);
         return Function::Error;
     }
 

@@ -26,7 +26,7 @@
 #include "../../../call_scilab/includes/call_scilab.h"
 #include "../../../call_scilab/includes/fromjava.h"
 #include "../../../api_scilab/includes/api_scilab.h"
-#include "../../../output_stream/includes/lasterror.h"
+#include "../../../system_env/includes/lasterror.h"
 #include "../../../modules/graphics/includes/WindowList.h"
 #include "../../../core/includes/sci_types.h"
 %}
@@ -118,13 +118,13 @@ void SetFromJavaToON(void);
 BOOL sciHasFigures( void );
 
 // Direct access to the Scilab function (no helper)
-%rename(GetLastErrorCode) getLastErrorValue;
-int getLastErrorValue(void);
+%rename(GetLastErrorCode) getLastErrorNumber;
+int getLastErrorNumber(void);
 
 BOOL isExistingVariable(char* varname);
 
-%rename(getLastErrorMessage) getLastErrorMessageSingle;
-const char* getLastErrorMessageSingle();
+%rename(getLastErrorMessage) getLastErrorMessage;
+const char* getLastErrorMessage();
 
 sci_types getVariableType(char *varname);
 

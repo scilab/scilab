@@ -46,6 +46,7 @@ $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 $(top_builddir)/modules/io/libsciio.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 $(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la

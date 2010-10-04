@@ -17,8 +17,6 @@
 #include <string>
 #include "dynlib_system_env.h"
 
-#include "file.hxx"
-
 using namespace std;
 class EXTERN_SYSTEM_ENV ConfigVariable
 {
@@ -112,6 +110,68 @@ public :
     static void setHOME(wstring& _m_HOME);
     static wstring getHOME();
 
+    //Clear last error information
+public :
+    static void setLastErrorClear(void);
+
+    //Clear last error information
+private :
+    static bool m_bLastErrorCall;
+public :
+    static void setLastErrorCall(void);
+    static void clearLastError(void);
+
+    //Last Error Message
+private :
+    static wstring m_wstError;
+
+public :
+    static void setLastErrorMessage(wstring _wstError);
+    static wstring getLastErrorMessage();
+
+    //Last Error ID
+private :
+    static int m_iError;
+
+public :
+    static void setLastErrorNumber(int _iError);
+    static int getLastErrorNumber();
+
+    //Last Error Line
+private :
+    static int m_iErrorLine;
+
+public :
+    static void setLastErrorLine(int _iLine);
+    static int getLastErrorLine();
+
+    //Last Error Function
+private :
+    static wstring m_wstErrorFunction;
+
+public :
+    static void setLastErrorFunction(wstring _wstFunction);
+    static wstring getLastErrorFunction();
+
+    //Prompt Mode
+public :
+    enum PromptMode
+    {
+        normal = 0,
+        silent = -1,
+        prompt = 2,
+        exec = 1,
+        exec3 = 3,
+        step = 4,
+        step7 = 7
+    };    
+private :
+    static PromptMode m_ePromptMode;
+
+public :
+    static void setPromptMode(PromptMode _ePromptMode);
+    static void setPromptMode(int _iPromptMode);
+    static PromptMode getPromptMode(void);
 };
 
 #endif /* __CONFIGVARIABLE_HXX__ */

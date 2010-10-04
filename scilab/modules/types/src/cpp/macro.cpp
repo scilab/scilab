@@ -17,6 +17,7 @@
 #include "context.hxx"
 #include "localization.h"
 #include "yaspio.hxx"
+#include "scilabexception.hxx"
 
 extern "C"
 {
@@ -195,11 +196,15 @@ namespace types
                 }
             }
         }
-        catch(wstring sz)
+        catch(ast::ScilabError se)
         {
-            YaspWriteW(sz.c_str());
-            YaspWriteW(L"\n");
-            RetVal = Callable::Error;
+            //close the current scope
+            pContext->scope_end();
+            for (int j = 0; j < out.size(); ++j)
+            {
+                out[j]->DecreaseRef();
+            }
+            throw se;
         }
 
         //close the current scope

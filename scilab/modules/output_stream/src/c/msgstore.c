@@ -21,24 +21,24 @@
 /*--------------------------------------------------------------------------*/
 int C2F(linestore)(int *n)
 {
-    setLastErrorLinePosition(*n);
+    //setLastErrorLinePosition(*n);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(funnamestore)(char *str, int *n, int lenstr)
 {
-    char *functionName = os_strdup(str);
-    if ( (functionName) && (*n >= 0) )
-    {
-        functionName[*n] = 0;
-        setLastErrorFunctionName(functionName);
-    }
+    //char *functionName = os_strdup(str);
+    //if ( (functionName) && (*n >= 0) )
+    //{
+    //    functionName[*n] = 0;
+    //    setLastErrorFunctionName(functionName);
+    //}
 
-    if (functionName)
-    {
-        FREE(functionName);
-        functionName = NULL;
-    }
+    //if (functionName)
+    //{
+    //    FREE(functionName);
+    //    functionName = NULL;
+    //}
 
     return 0;
 }
@@ -46,25 +46,26 @@ int C2F(funnamestore)(char *str, int *n, int lenstr)
 int C2F(msgstore)(char *str, int *n)
 {
     int iRes = 0;
-    char *msg = os_strdup(str);
-    if (msg)
-    {
-        msg[*n] = 0;
-    }
-    iRes = appendStringToLastErrorMessage(msg);
+    //char *msg = os_strdup(str);
+    //if (msg)
+    //{
+    //    msg[*n] = 0;
+    //}
+    //iRes = appendStringToLastErrorMessage(msg);
 
-    if (msg)
-    {
-        FREE(msg);
-        msg = NULL;
-    }
+    //if (msg)
+    //{
+    //    FREE(msg);
+    //    msg = NULL;
+    //}
 
     return iRes;
 }
 /*--------------------------------------------------------------------------*/
 int GetLastErrorCode(void)
 {
-    return getLastErrorValue();
+    //return getLastErrorValue();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 

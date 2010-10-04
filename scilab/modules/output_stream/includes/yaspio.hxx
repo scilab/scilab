@@ -15,6 +15,12 @@
 
 #include "dynlib_output_stream.h"
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+
 typedef void (*YASP_OUTPUT)(char *text);
 typedef char *(*YASP_INPUT)(void);
 
@@ -27,5 +33,9 @@ OUTPUT_STREAM_IMPEXP char *YaspRead();
 OUTPUT_STREAM_IMPEXP void YaspWrite(const char* text);
 
 OUTPUT_STREAM_IMPEXP void YaspWriteW(const wchar_t* text);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __YASPIO_HXX__ */

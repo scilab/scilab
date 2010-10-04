@@ -196,7 +196,9 @@ am__DEPENDENCIES_2 = $(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
 	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-	$(top_builddir)/modules/io/libsciio.la $(am__DEPENDENCIES_1)
+	$(top_builddir)/modules/io/libsciio.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(am__DEPENDENCIES_1)
 scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_LIB)
 scilab_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -607,6 +609,7 @@ $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 $(top_builddir)/modules/io/libsciio.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 $(LTLIBINTL)
 
 SCILAB_LIB = $(top_builddir)/modules/libscilab.la

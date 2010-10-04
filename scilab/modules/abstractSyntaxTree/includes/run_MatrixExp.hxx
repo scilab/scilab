@@ -86,8 +86,8 @@ void visitprivate(const MatrixExp &e)
                     {
                         std::wostringstream os;
                         os << L"inconsistent row/column dimensions";
-                        os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
-                        throw os.str();
+                        //os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
+                        throw ScilabError(os.str(), 999, (*row)->location_get());
                     }
 
                     InternalType *pResult = execMe->result_get();
@@ -114,8 +114,8 @@ void visitprivate(const MatrixExp &e)
                     {
                         std::wostringstream os;
                         os << L"inconsistent row/column dimensions";
-                        os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
-                        throw os.str();
+                        //os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
+                        throw ScilabError(os.str(), 999, (*row)->location_get());
                     }
 
                     iRows += iCurRow;
@@ -186,8 +186,8 @@ void visitprivate(const MatrixExp &e)
 
         result_set(poResult);
     }
-    catch(wstring sz)
+    catch(ScilabError error)
     {
-        throw sz;
+        throw error;
     }
 }

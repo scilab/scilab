@@ -35,8 +35,7 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/error.c \
 				src/c/error_internal.c \
 				src/c/do_xxprintf.c \
-				src/c/set_xxprintf.c \
-				src/c/lasterror.c
+				src/c/set_xxprintf.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/wmdsp.f \

@@ -12,6 +12,7 @@
 
 
 #include "yaspio.hxx"
+#include "promptmode.h"
 
 extern "C"
 {
@@ -44,7 +45,12 @@ void YaspWrite(const char* text)
 
 void YaspWriteW(const wchar_t* text)
 {
-    char* pstTemp = wide_string_to_UTF8(text);
-    (*_writer)(pstTemp);
-    FREE(pstTemp);
+    int iMode =  getPromptMode();
+
+    if(iMode != PROMPTMODE_SILENT)
+    {
+        char* pstTemp = wide_string_to_UTF8(text);
+        (*_writer)(pstTemp);
+        FREE(pstTemp);
+    }
 }

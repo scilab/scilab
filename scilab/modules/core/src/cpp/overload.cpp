@@ -11,11 +11,13 @@
  */
 extern "C"
 {
+#include "stdarg.h"
 #include "localization.h"
 }
 
 #include "overload.hxx"
 #include "context.hxx"
+#include "scilabexception.hxx"
 
 std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount)
 {
@@ -28,7 +30,7 @@ std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::ty
     case 2:
         return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
     default :
-        throw L"Don't know how to overload " + _stFunctionName;
+        throw ast::ScilabError(L"Don't know how to overload " + _stFunctionName, 999, *new Location());
     }
     return _stFunctionName;
 }
@@ -44,7 +46,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
 
     if(pIT == NULL || pIT->isCallable() == false)
     {
-        throw _W("check or define function ") + _stOverloadingFunctionName + _W(" for overloading.");
+        throw ast::ScilabError(_W("check or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n\n"), 999, *new Location());
     }
 
     return pIT->getAsCallable()->call(in, _iRetCount, out, _execMe);
@@ -113,4 +115,15 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
     default :
         return std::wstring(L"???");
     }
+}
+
+wstring formatString(const wstring& wstFormat, ...)
+{
+    wchar_t pwstTemp[1024];
+    va_list arglist;
+    va_start(arglist, wstFormat);
+    int iLen = vswprintf(pwstTemp, 1024, wstFormat.c_str(), arglist);
+    va_end(arglist);
+
+    return wstring(pwstTemp, iLen);
 }

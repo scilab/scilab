@@ -500,7 +500,8 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/operations/includes
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/operations/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/system_env/includes
 
 @JAVASCI_TRUE@libjavasci2_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \

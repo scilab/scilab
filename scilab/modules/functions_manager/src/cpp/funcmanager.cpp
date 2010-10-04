@@ -365,10 +365,9 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
     {
         parser.getTree()->accept(execStart);
     }
-    catch(wstring sz)
+    catch(ast::ScilabError error)
     {
-        YaspWriteW(sz.c_str());
-        YaspWriteW(L"\n");
+        YaspWriteW(error.GetErrorMessage().c_str());
         parser.freeTree();
         return false;
     }

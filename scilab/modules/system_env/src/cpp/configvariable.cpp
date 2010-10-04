@@ -240,3 +240,134 @@ wstring ConfigVariable::getHOME()
 /*
 ** \}
 */
+
+/*
+** Clear last error information
+** \{
+*/
+bool ConfigVariable::m_bLastErrorCall = false;
+
+void ConfigVariable::setLastErrorCall(void)
+{
+    m_bLastErrorCall = true;
+}
+
+void ConfigVariable::clearLastError(void)
+{
+    if(m_bLastErrorCall == false)
+    {
+        m_wstError          = L"";
+        m_iError            = 0;
+        m_iErrorLine        = 0;
+        m_wstErrorFunction  = L"";
+    }
+    m_bLastErrorCall = false;
+}
+/*
+** \}
+*/
+
+/*
+** Last Error Message
+** \{
+*/
+
+wstring ConfigVariable::m_wstError;
+
+void ConfigVariable::setLastErrorMessage(wstring _wstError)
+{
+    m_wstError = _wstError;
+}
+
+wstring ConfigVariable::getLastErrorMessage()
+{
+    return m_wstError;
+}
+/*
+** \}
+*/
+
+/*
+** Last Error ID
+** \{
+*/
+int ConfigVariable::m_iError = 0;
+
+void ConfigVariable::setLastErrorNumber(int _iError)
+{
+    m_iError = _iError;
+}
+
+int ConfigVariable::getLastErrorNumber(void)
+{
+    return m_iError;
+}
+/*
+** \}
+*/
+
+/*
+** Last Error Line
+** \{
+*/
+int ConfigVariable::m_iErrorLine = 0;
+
+void ConfigVariable::setLastErrorLine(int _iErrorLine)
+{
+    m_iErrorLine = _iErrorLine;
+}
+
+int ConfigVariable::getLastErrorLine(void)
+{
+    return m_iErrorLine;
+}
+/*
+** \}
+*/
+
+/*
+** Last Error Function
+** \{
+*/
+
+wstring ConfigVariable::m_wstErrorFunction;
+
+void ConfigVariable::setLastErrorFunction(wstring _wstErrorFunction)
+{
+    m_wstErrorFunction = _wstErrorFunction;
+}
+
+wstring ConfigVariable::getLastErrorFunction()
+{
+    return m_wstErrorFunction;
+}
+
+/*
+** \}
+*/
+
+/*
+** Prompt Mode
+** \{
+*/
+
+ConfigVariable::PromptMode ConfigVariable::m_ePromptMode = ConfigVariable::normal;
+
+void ConfigVariable::setPromptMode(ConfigVariable::PromptMode _ePromptMode)
+{
+    m_ePromptMode = _ePromptMode;
+}
+
+void ConfigVariable::setPromptMode(int _iPromptMode)
+{
+    m_ePromptMode = static_cast<ConfigVariable::PromptMode>(_iPromptMode);
+}
+
+ConfigVariable::PromptMode ConfigVariable::getPromptMode(void)
+{
+    return m_ePromptMode;
+}
+
+/*
+** \}
+*/

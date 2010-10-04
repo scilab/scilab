@@ -41,7 +41,8 @@ int sci_errclear(char *fname, int *_piKey)
         {
             double dValue = 0.;
             int iValue = 0;
-            int iLastErrorValue = getLastErrorValue();
+            int iLastErrorValue = 0;
+            //int iLastErrorValue = getLastErrorValue();
 
             if (!isScalar(_piKey, piAddressVarOne))
             {
@@ -64,7 +65,7 @@ int sci_errclear(char *fname, int *_piKey)
                 C2F(errgst).err2 = 0;
 
                 /* clear last error buffer (C) */
-                clearLastError();
+                //clearLastError();
              }
         }
         else
@@ -79,7 +80,7 @@ int sci_errclear(char *fname, int *_piKey)
         C2F(errgst).err2 = 0;
 
         /* clear last error buffer (C) */
-        clearLastError();
+        //clearLastError();
     }
     LhsVar(1) = 0;
     C2F(putlhsvar)();

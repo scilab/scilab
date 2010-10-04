@@ -41,5 +41,6 @@ CPP_GATEWAY_PROTOTYPE(sci_isglobal);
 CPP_GATEWAY_PROTOTYPE(sci_getscilabmode);
 CPP_GATEWAY_PROTOTYPE(sci_getos);
 CPP_GATEWAY_PROTOTYPE(sci_with_module);
+CPP_GATEWAY_PROTOTYPE(sci_lasterror);
 
 #endif /* __CORE_GW_HXX__ */

@@ -155,11 +155,11 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
     try
     {
         tree->accept(*exec);
+        ConfigVariable::clearLastError();
     }
-    catch(wstring sz)
+    catch(ast::ScilabMessage sm)
     {
-        YaspWriteW(sz.c_str());
-        YaspWriteW(L"\n");
+        YaspWriteW(sm.GetErrorMessage().c_str());
     }
 
     delete exec;

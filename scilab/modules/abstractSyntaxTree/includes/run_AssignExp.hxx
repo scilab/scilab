@@ -52,8 +52,8 @@ void visitprivate(const AssignExp  &e)
                 {//never append ?
                     std::wostringstream os;
                     os << _W("Unable to extract left part expression.\n");
-                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
                 }
             }
             else
@@ -92,8 +92,8 @@ void visitprivate(const AssignExp  &e)
                     //manage error
                     std::wostringstream os;
                     os << _W("Indexes must be positive .\n");
-                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
                 }
             }
 
@@ -149,8 +149,8 @@ void visitprivate(const AssignExp  &e)
                 //manage error
                 std::wostringstream os;
                 os << _W("Submatrix incorrectly defined.\n");
-                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
             delete piMaxDim;
             delete[] piDimSize;
@@ -179,8 +179,8 @@ void visitprivate(const AssignExp  &e)
                 {//never append ?
                     std::wostringstream os;
                     os << _W("Unable to extract left part expression.\n");
-                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
                 }
             }
             else
@@ -219,8 +219,8 @@ void visitprivate(const AssignExp  &e)
                     //manage error
                     std::wostringstream os;
                     os << _W("Indexes must be positive .\n");
-                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
                 }
             }
 
@@ -334,8 +334,8 @@ void visitprivate(const AssignExp  &e)
                 //manage error
                 std::wostringstream os;
                 os << _W("Submatrix incorrectly defined.\n");
-                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
             delete piMaxDim;
             delete[] piDimSize;
@@ -350,8 +350,8 @@ void visitprivate(const AssignExp  &e)
             {
                 std::wostringstream os;
                 os << L"Lhs != Rhs";
-                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 				
             InternalType *pIT	=	execMeR.result_get();
@@ -398,7 +398,7 @@ void visitprivate(const AssignExp  &e)
             {
                 std::wostringstream os;
                 os << L"Lhs != Rhs";
-                throw os.str();
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
 
@@ -455,8 +455,8 @@ void visitprivate(const AssignExp  &e)
             {
                 std::wostringstream os;
                 os << L"Lhs != Rhs";
-                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
             InternalType *pIT = execMeR.result_get();
@@ -494,7 +494,7 @@ void visitprivate(const AssignExp  &e)
                 {
                     std::wostringstream os;
                     os << L"Field must be exist";
-                    throw os.str();
+                    throw ScilabError(os.str(), 999, pVar->location_get());
                 }
             }
             else if(pHead->isMList())
@@ -516,12 +516,12 @@ void visitprivate(const AssignExp  &e)
         {//Houston ...
             std::wostringstream os;
             os << L"unknow script form";
-            os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-            throw os.str();
+            //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+            throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
         }
     }
-    catch(wstring sz)
+    catch(ScilabError error)
     {
-        throw sz;
+        throw error;
     }
 }

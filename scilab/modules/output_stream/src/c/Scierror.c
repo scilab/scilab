@@ -13,10 +13,10 @@
 #include <string.h>
 #include <stdio.h>
 #include "Scierror.h"
-#include "stack-def.h" /* bsiz */
-#include "error_internal.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
+#include "yaspio.hxx"
+#include "lasterror.h"
 
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -45,8 +45,8 @@ int  Scierror(int iv,const char *fmt,...)
 	lstr = (int) strlen(s_buf);
 	va_end(ap);
 
-	error_internal(&iv,s_buf,ERROR_FROM_C);
-
+    YaspWrite(s_buf);
+    YaspWrite("\n");
 	return retval;
 }
 
@@ -69,11 +69,10 @@ int ScierrorW(int iv, const wchar_t *fmt,...)
 	lstr = (int) wcslen(s_buf);
 	va_end(ap);
 
-    {
-        char* pstTemp = wide_string_to_UTF8(s_buf);
-        error_internal(&iv, pstTemp, ERROR_FROM_C);
-        FREE(pstTemp);
-    }
+
+    setLastError(iv, s_buf, 0, NULL);
+    YaspWriteW(s_buf);
+    YaspWriteW(L"\n");
 
 	return retval;
 }

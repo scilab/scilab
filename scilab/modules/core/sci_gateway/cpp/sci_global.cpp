@@ -14,6 +14,7 @@
 #include "context.hxx"
 #include "types.hxx"
 #include "double.hxx"
+#include "core_gw.hxx"
 
 extern "C"
 {

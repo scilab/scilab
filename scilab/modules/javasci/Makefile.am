@@ -86,7 +86,8 @@ libjavasci2_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/operations/includes
+			-I$(top_srcdir)/modules/operations/includes \
+			-I$(top_srcdir)/modules/system_env/includes
 
 libjavasci2_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \

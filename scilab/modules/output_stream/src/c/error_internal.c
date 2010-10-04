@@ -29,71 +29,71 @@ extern int C2F(whatln)(int *lpt1,int *lpt2,int *lpt6,int *nct,int *idebut,int *i
 /*--------------------------------------------------------------------------*/ 
 int error_internal(int *n,char *buffer,int mode)
 {
-    int num = 0;
-    int lct1 = 0;
-    int imode = 0;
-    int imess = 0;
-    int errtyp = 0;
+    //int num = 0;
+    //int lct1 = 0;
+    //int imode = 0;
+    //int imess = 0;
+    //int errtyp = 0;
 
-    /* extract error modes out of errct variable */
-    C2F(errmds)(&num, &imess, &imode);
+    ///* extract error modes out of errct variable */
+    //C2F(errmds)(&num, &imess, &imode);
 
-    /* de-activate output control */
-    lct1 = C2F(iop).lct[0];
-    C2F(iop).lct[0] = 0;
+    ///* de-activate output control */
+    //lct1 = C2F(iop).lct[0];
+    //C2F(iop).lct[0] = 0;
 
-    /* errors are recoverable */
-    errtyp = 0;
+    ///* errors are recoverable */
+    //errtyp = 0;
 
-    if (C2F(errgst).err1 == 0) 
-    {
-        BOOL trace = ! ((num < 0 || num == *n) && imess != 0);
-        /* locate the error in the current statement */
-        if (trace) 
-        {
-            C2F(errloc)(n);
-        }
-        else
-        {
-            /* get the number of the line where the error occurs */
-            int nlc = 0;
-            int l1 = 0;
-            int ifin = 0;
-            C2F(whatln)(C2F(iop).lpt,C2F(iop).lpt+1,C2F(iop).lpt+5,&nlc,&l1,&ifin);
-            C2F(iop).lct[7] = C2F(iop).lct[7]-nlc;
-            /* disable error display */
-            C2F(iop).lct[0] = -1;
-        }
+    //if (C2F(errgst).err1 == 0) 
+    //{
+    //    BOOL trace = ! ((num < 0 || num == *n) && imess != 0);
+    //    /* locate the error in the current statement */
+    //    if (trace) 
+    //    {
+    //        C2F(errloc)(n);
+    //    }
+    //    else
+    //    {
+    //        /* get the number of the line where the error occurs */
+    //        int nlc = 0;
+    //        int l1 = 0;
+    //        int ifin = 0;
+    //        C2F(whatln)(C2F(iop).lpt,C2F(iop).lpt+1,C2F(iop).lpt+5,&nlc,&l1,&ifin);
+    //        C2F(iop).lct[7] = C2F(iop).lct[7]-nlc;
+    //        /* disable error display */
+    //        C2F(iop).lct[0] = -1;
+    //    }
 
-        if (mode == ERROR_FROM_FORTRAN)
-        {
-            /* output and store error message */
-            C2F(errmsg)(n, &errtyp);
-        }
-        else /* ERROR_FROM_C */
-        {
-            int len = (int) strlen(buffer);
+    //    if (mode == ERROR_FROM_FORTRAN)
+    //    {
+    //        /* output and store error message */
+    //        C2F(errmsg)(n, &errtyp);
+    //    }
+    //    else /* ERROR_FROM_C */
+    //    {
+    //        int len = (int) strlen(buffer);
 
-            /* free message table */
-            clearLastError();
+    //        /* free message table */
+    //        clearLastError();
 
-            /* store error number */
-            setLastErrorValue(*n);
+    //        /* store error number */
+    //        setLastErrorValue(*n);
 
-            /* store message */
-            C2F(msgstore)(buffer,&len);
+    //        /* store message */
+    //        C2F(msgstore)(buffer,&len);
 
-            /* display error */
-            if (C2F(iop).lct[0] != -1) sciprint(buffer);
-        }
-        C2F(iop).lct[0] = 0;
-    }
-    C2F(errcontext)(); 
-    /* handle the error */
-    C2F(errmgr)(n, &errtyp);
+    //        /* display error */
+    //        if (C2F(iop).lct[0] != -1) sciprint(buffer);
+    //    }
+    //    C2F(iop).lct[0] = 0;
+    //}
+    //C2F(errcontext)(); 
+    ///* handle the error */
+    //C2F(errmgr)(n, &errtyp);
 
-    /* re-activate output control */
-    C2F(iop).lct[0] = lct1;
+    ///* re-activate output control */
+    //C2F(iop).lct[0] = lct1;
 
     return 0;
 }
