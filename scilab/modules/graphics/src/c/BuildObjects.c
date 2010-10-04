@@ -984,10 +984,16 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 #endif
 
   /* To be deleted */
-  /* To be implemented within the MVC */
 #if 0
   sciSetParent( pobj, pparentsubwin );
 #endif
+
+  /*
+   * Sets the polyline's parent in order to initialize the former's Contoured properties
+   * with the latter's values (sciInitGraphicContext call below)
+   */
+  setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+
 
   barWidth = 0.0;
   setGraphicObjectProperty(pobj->UID, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);
@@ -1014,13 +1020,17 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 
   /* Clip state and region */
   /* To be checked for consistency */
-  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, jni_int);
-  clipState = *tmp;
 
-  setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
-
-  clipRegion = (double*) getGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, jni_double_vector);
+  clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
   setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+  tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
+  int clipRegionSet = *tmp;
+  setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+  tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
+  clipState = *tmp;
+  setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
 
   arrowSizeFactor = 1.0;
@@ -1141,10 +1151,13 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   setGraphicObjectProperty(pobj->UID, __GO_POLYLINE_STYLE__, &plot, jni_int, 1);
 
   /*
-   * InitGraphicContext initializes the contour properties (background, foreground, etc)
-   * to the default values
-   * Commented out until implemented within the MVC
+   * Initializes the contour properties (background, foreground, etc)
+   * to the default values (those of the parent Axes).
    */
+
+  sciInitGraphicContext(pobj);
+
+  /* To be deleted */
 #if 0
   if (sciInitGraphicContext (pobj) == -1)
   {
@@ -1231,6 +1244,9 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   sciGetRelationship(pobj)->plastsons    = NULL ;
   sciGetRelationship(pobj)->pSelectedSon = NULL ;
 #endif
+
+  /* Parent reset to the null object */
+  setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
 
   visible = 1;
   setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
