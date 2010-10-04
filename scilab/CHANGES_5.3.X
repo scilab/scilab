@@ -126,6 +126,9 @@ Bug Fixes:
 
 * bug 8154 fixed - It was not possible to cancel a messagebox with ESC key.
 
+* bug 8160 fixed - The derivative function did not check for input
+                   argument #1, if it was a list.
+
 * bug 8164 fixed - Typo in the fileparts help page.
 
 * bug 8174 fixed - ss2tf produced bad results if applied to a complex
