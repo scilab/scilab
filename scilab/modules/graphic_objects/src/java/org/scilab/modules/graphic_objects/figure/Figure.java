@@ -12,9 +12,9 @@
 
 package org.scilab.modules.graphic_objects.figure;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 /**
  * Figure class
  * @author Manuel JULIACHS
@@ -219,10 +219,10 @@ public class Figure extends GraphicObject {
 	private String infoMessage;
 
 	/**
-	 * Default colormap: (3 x N) matrix, where N is the
+	 * Default ColorMap: (3 x N) matrix, where N is the
 	 * number of colors and 3 the number of color channels
 	 */
-	private double[][] colorMap;
+	private ColorMap colorMap;
 
 	/** Rendering mode */
 	private RenderingMode renderingMode;
@@ -246,11 +246,7 @@ public class Figure extends GraphicObject {
 		canvas = new Canvas();
 		figureName = new FigureName();
 		infoMessage = null;
-		colorMap = new double[3][];
-
-		for(int i = 0; i < colorMap.length; i++) {
-			colorMap[i] = new double[0];
-		}
+		colorMap = new ColorMap();
 
 		renderingMode = new RenderingMode();
 		background = 0;
@@ -344,9 +340,9 @@ public class Figure extends GraphicObject {
 		} else if (property == FigureProperty.INFOMESSAGE) {
 			return getInfoMessage();
 		} else if (property == FigureProperty.COLORMAP) {
-			return getColorMap();
+			return getColorMap().getData();
 		} else if (property == FigureProperty.COLORMAPSIZE) {
-			return getColorMapSize();
+			return getColorMap().getSize();
 		} else if (property == RenderingModeProperty.PIXMAP) {
 			return getPixmap();
 		} else if (property == RenderingModeProperty.PIXELDRAWINGMODE) {
@@ -394,7 +390,7 @@ public class Figure extends GraphicObject {
 		} else if (property == FigureProperty.INFOMESSAGE) {
 			setInfoMessage((String) value);
 		} else if (property == FigureProperty.COLORMAP) {
-			setColorMap((Double[]) value);
+			getColorMap().setData((Double[]) value);
 		} else if (property == RenderingModeProperty.PIXMAP) {
 			setPixmap((Boolean) value);
 		} else if (property == RenderingModeProperty.PIXELDRAWINGMODE) {
@@ -505,61 +501,8 @@ public class Figure extends GraphicObject {
 	/**
 	 * @return the colorMap
 	 */
-	public Double[] getColorMap() {
-		Double[] colorMap = new Double[getColorMapSize()];
-		int channelLength = getColorMapChannelLength();
-
-		for(int i = 0; i < this.colorMap.length; i++) {
-			for (int j = 0; j < channelLength; j++) {
-				colorMap[i*channelLength + j] = this.colorMap[i][j];
-			}
-		}
-
+	public ColorMap getColorMap() {
 		return colorMap;
-	}
-
-	/**
-	 * @param colorMap the colorMap to set
-	 */
-	public void setColorMap(Double[] colorMap) {
-		int colorMapSize;
-		int numChannels = getColorMapNumChannels();
-		int channelLength = colorMap.length / numChannels;
-
-		colorMapSize = getColorMapSize();
-
-		if (colorMap.length != colorMapSize) {
-			for(int j = 0; j < numChannels; j++) {
-				this.colorMap[j] = new double[channelLength];
-			}
-		}
-
-		for(int i = 0; i < numChannels; i++) {
-			for (int j = 0; j < channelLength; j++) {
-				this.colorMap[i][j] = colorMap[i*channelLength + j];
-			}
-		}
-	}
-
-	/**
-	 * @return the colormap size
-	 */
-	public Integer getColorMapSize() {
-		return colorMap.length * this.colorMap[0].length;
-	}
-
-	/**
-	 * @return the colormap's number of channels
-	 */
-	public int getColorMapNumChannels() {
-		return colorMap.length;
-	}
-
-	/**
-	 * @return the size of the array corresponding to a single channel
-	 */
-	public int getColorMapChannelLength() {
-		return colorMap[0].length;
 	}
 
 	/**
