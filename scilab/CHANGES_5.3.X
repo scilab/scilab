@@ -104,6 +104,9 @@ Bug Fixes:
 
 * bug 8087 fixed - prettyprint did not handle %inf and %nan.
 
+* bug 8107 fixed - sum(a,1), cumsum(a,1), .. made Scilab 5.0.3-beta-4 crash 
+                   in some particular context.
+
 * bug 8108 fixed - ATOMS: Modules that start by the letter "n" were not well
                    managed by ATOMS. The cause of the issue is the behaviour of
                    the msprintf function, which considers "\n" in file paths as
