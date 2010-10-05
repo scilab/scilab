@@ -107,6 +107,8 @@ Bug Fixes:
 * bug 4827 fixed - The test_run function did not work properly with modules begining
                    with a "n".
 
+* bug 6942 fixed - Explicit dependency on the libX11 on scilab-cli was existing.
+
 * bug 7364 fixed - The "Checked" property misworked for uimenus and they could
                    not have a callback.
 
