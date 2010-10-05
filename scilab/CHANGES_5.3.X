@@ -67,7 +67,12 @@ SciNotes:
 Compilation:
 ============
 
+* bug 7489 fixed - VPATH was failing on scicos_blocks generation headers.
+
+* bug 7606 fixed - Build option -Wold-style-cast removed for C++.
+
 * bug 8013 fixed - In some cases, the build of the compiler of modelica failed.
+
 
 Bug Fixes:
 ==========
@@ -82,8 +87,6 @@ Bug Fixes:
 
 * bug 7566 fixed - The handling of immediate_drawing had been broken in zgrid by
                    bug 6395 fix in 5.3.0-beta-4 version
-
-* bug 7606 fixed - Build option -Wold-style-cast removed for C++.
 
 * bug 7768 fixed - for cdfgam, the Scale parameter was, in fact, the Rate.
 
