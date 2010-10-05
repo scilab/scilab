@@ -207,12 +207,12 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_console_DropFilesJNI_dropFil
   {
     int i = 0;
     size1 = (*jenv)->GetArrayLength(jenv, jarg1);
-    arg1 = (char **) MALLOC((size1+1)*sizeof(char *));
+    arg1 = (char **) malloc((size1+1)*sizeof(char *));
     /* make a copy of each string */
     for (i = 0; i<size1; i++) {
       jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, jarg1, i);
       const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-      arg1[i] = MALLOC((strlen(c_string)+1)*sizeof(const char *));
+      arg1[i] = malloc((strlen(c_string)+1)*sizeof(const char *));
       strcpy(arg1[i], c_string);
       (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
       (*jenv)->DeleteLocalRef(jenv, j_string);
@@ -227,8 +227,8 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_console_DropFilesJNI_dropFil
   {
     int i;
     for (i=0; i<size1-1; i++)
-    FREE(arg1[i]);
-    FREE(arg1);
+    free(arg1[i]);
+    free(arg1);
   }
   return jresult;
 }
