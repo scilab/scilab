@@ -31,6 +31,8 @@ SciNotes:
 
 * Incremental search added with the shortcut: the F2 key.
 
+* bug 7806 fixed - Blocks elseif...end and else...end were not highlighted.
+
 * bug 8095 fixed - The Set Colors window was too height with OpenJDK.
 
 * bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
