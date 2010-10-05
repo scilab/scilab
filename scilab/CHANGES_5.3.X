@@ -51,6 +51,9 @@ Bug Fixes:
 
 * bug 7768 fixed - for cdfgam, the Scale parameter was, in fact, the Rate.
 
+* bug 7997 fixed - Function getfreememory adapted for FreeBSD. Thanks to Rob
+                   Farmer.
+
 * bug 8046 fixed - msprintf did not manage tabulation as format.
 
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
