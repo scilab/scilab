@@ -1351,7 +1351,14 @@ ELSEIF condition then thenBody						{
 									}
 | ELSEIF condition then thenBody else elseBody				{
 										ast::exps_t *tmp = new ast::exps_t;
-										tmp->push_front( new ast::IfExp(@$, *$2, *$4, *$6) );
+										if( $6 == NULL)
+                                        {
+                                            tmp->push_front( new ast::IfExp(@$, *$2, *$4) );
+                                        }
+                                        else
+                                        {
+                                            tmp->push_front( new ast::IfExp(@$, *$2, *$4, *$6) );
+                                        }
 										$$ = new ast::SeqExp(@$, *tmp);
 
 									}
