@@ -48,13 +48,13 @@ public class ColorMap {
     /**
      * Return the color corresponding to the given Scilab index.
      *
-     * The first color in scilab ColorMap have index 1.
-     * If index is 0, it will be considered has 1.
+     * The first color in scilab ColorMap has index 1.
+     * If index is 0, it will be considered as 1.
      * If index is -1 the color is black.
      * If index is -2 the color is white.
-     * If index is last scilab index + 1, it will be considered has -1.
-     * If index is last scilab index + 2, it will be considered has -2.
-     * Other value should not be possible.
+     * If index is last scilab index + 1, it will be considered as -1.
+     * If index is last scilab index + 2, it will be considered as -2.
+     * Other values should not be possible.
      * By the way we consider the nearest value.
      *
      * @param index the given Scilab index.
@@ -95,7 +95,7 @@ public class ColorMap {
      */
     void setData(Double[] data) {
         int length = data.length;
-        length -= length %3;
+        length -= length % CHANNELS_NUMBER;
         
         this.data = new Double[length];
         System.arraycopy(data, 0, this.data, 0, length);

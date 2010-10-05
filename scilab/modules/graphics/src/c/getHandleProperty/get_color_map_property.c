@@ -41,6 +41,6 @@ int get_color_map_property( sciPointObj * pobj )
         return -1;
     }
 
-    return sciReturnMatrix (colorMap, cmapSize[0]/3, 3);
+    return sciReturnMatrix (colorMap, cmapSize[0], 3);
 }
 /*--------------------------------------------------------------------------*/
