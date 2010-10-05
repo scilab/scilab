@@ -186,6 +186,9 @@ Bug Fixes:
 
 * bug 8164 fixed - Typo in the fileparts help page.
 
+* bug 8166 fixed - All the checkboxes in SciNotes 'Preferences' menu were
+                   inefficient.
+
 * bug 8174 fixed - ss2tf produced bad results if applied to a complex
                    state space system.
 

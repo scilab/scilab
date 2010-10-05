@@ -286,7 +286,7 @@ public class CallScilabBridge {
      * @return the ID of the menu in the UIElementMapper
      */
     public static int newMenu() {
-        MenuItem menuItem = ScilabMenuItem.createMenuItem();
+        MenuItem menuItem = ScilabMenuItem.createMenuItem(false);
         return UIElementMapper.add(menuItem);
     }
 
