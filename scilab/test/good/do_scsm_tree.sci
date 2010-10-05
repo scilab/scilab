@@ -33,15 +33,15 @@ function tt=scs_m_TreeView(scs_m)
 tt=["set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
     "if {[lsearch $auto_path $BWpath]==-1} {"
     "    set auto_path [linsert $auto_path 0 $BWpath]"
-    "}" 
+    "}"
     "package require BWidget 1.8.0"
     'set wyy .palettes'
     'proc ppxs {label} {global blko; set blko $label;ScilabEval '"Cmenu=''XcosMenuPlaceinDiagram'''"}'
     'proc qqxs {label} {global blko; set blko $label;ScilabEval '"Cmenu=''XcosMenuTkPopup'''"}'
     'catch {destroy $wyy}'
     'toplevel $wyy'
-    'Tree $wyy.t -xscrollcommand {$wyy.xsb set} -yscrollcommand {$wyy.ysb set} "+...
-    "-deltax 10 -deltay 10 -width 30 -bg white'
+    "Tree $wyy.t -xscrollcommand {$wyy.xsb set} -yscrollcommand {$wyy.ysb set} "+...
+    "-deltax 10 -deltay 10 -width 30 -bg white"
     'scrollbar $wyy.ysb -command {$wyy.t yview}'
     'scrollbar $wyy.xsb -command {$wyy.t xview} -orient horizontal'
     'grid $wyy.t $wyy.ysb -sticky nsew'
@@ -58,7 +58,7 @@ tt=crlist2(scs_m,Path,tt);
 tt=[tt;' $wyy.t bindText <Double-1> {ppxs}'];
 tt=[tt;' $wyy.t bindText <3> {qqxs}'];
 endfunction
- 
+
 //TCL_EvalStr('$wyy.t opentree node1')
 //   pa=TCL_GetVar('x');pa=part(pa,6:length(pa));
 //   execstr('pa=list('+pa+')');       o=scs_m(scs_full_path(pa))
@@ -85,6 +85,6 @@ function tt=crlist2(scs_m,Path,tt)
       end
     end
   end
-  
+
 endfunction
 

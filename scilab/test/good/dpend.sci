@@ -10,6 +10,7 @@ th1=z(1);th2=z(2);th1d=z(3);th2d=z(4);
    res=mat\vec;
    th1dd=res(1);th2dd=res(2);
    zdot=[th1d;th2d;th1dd;th2dd];
+endfunction
 
 function []=pp(z)
 // Copyright INRIA
@@ -22,5 +23,5 @@ for k=1:maxi(size(th1));
     plot2d([0 rs1(k) rs12(k)]',-[0 rc1(k) rc12(k)]',...
     [-1],"011",' ',rect,[10,3,10,3]);
 end;
-
+endfunction
 
