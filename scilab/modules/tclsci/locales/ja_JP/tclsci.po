@@ -384,11 +384,6 @@ msgid "Unknown Release"
 msgstr "リリースが見つかりません"
 
 #
-# File: macros/editvar_get.sci, line: 27
-msgid "Updating, please wait"
-msgstr "変更中、しばらくお待ちください"
-
-#
 # File: src/c/setvar.c, line: 50
 msgid "Variable too long.\n"
 msgstr "長すぎる変数です。\n"

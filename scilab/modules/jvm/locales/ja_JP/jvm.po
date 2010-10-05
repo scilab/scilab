@@ -225,9 +225,6 @@ msgstr "JNI: メモリが足りません"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "JVMインターフェイスは -nogui または -nwni モードでは無効です.\n"
 
-msgid "Scilab Console"
-msgstr "Scilabコンソール"
-
 #
 # File: src/nojvm/nojvm.c, line: 27
 msgid "Scilab Java module not installed.\n"

@@ -7,6 +7,12 @@ License:
 The license of all demos and examples have been changed to the 3-clause BSD
 license. The domain public license was not valid in some countries.
 
+Security issue:
+===============
+
+* Fix a (minor) security issue. CVE-2010-3378
+See: http://security-tracker.debian.org/tracker/CVE-2010-3378
+
 Known incompatibilities:
 ========================
 
@@ -23,6 +29,8 @@ Xcos:
 SciNotes:
 =========
 
+* Incremental search added with the shortcut: the F2 key.
+
 * bug 8095 fixed - The Set Colors window was too height with OpenJDK.
 
 * bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
@@ -31,12 +39,17 @@ SciNotes:
 Bug Fixes:
 ==========
 
+* bug 3175 fixed - There were no shortcuts in the console menus.
+
+* bug 4827 fixed - The test_run function did not work properly with modules begining
+                   with a "n".
+
 * bug 7364 fixed - The "Checked" property misworked for uimenus and they could
                    not have a callback.
 
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
 
-* bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni 
+* bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni
                    mode on Linux and MacOS X.
 
 * bug 8079 fixed - When the max number of variable available has been reached,
@@ -54,6 +67,15 @@ Bug Fixes:
 
 * bug 8110 fixed - ATOMS: When removing a module, its main directory
                    was not deleted even if it was empty.
+
+* bug 8124 fixed - Some translations were not up to date.
+
+* bug 8128 fixed - A warning was displayed on 'Save' action in a graphic window.
+
+* bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
+                   taken into account for "text" uicontrols.
+
+* bug 8164 fixed - Typo in the fileparts help page.
 
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab

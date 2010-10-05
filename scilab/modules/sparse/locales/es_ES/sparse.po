@@ -132,6 +132,10 @@ msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
@@ -171,6 +175,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Tipo incorrecto para el argumento de entrada #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un vector "
@@ -196,12 +204,8 @@ msgstr ""
 "de la función %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for size argument #%d: Same size as input argument #%d "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Tipo incorrecto para el tamaño del argumento #%d: Se esperaba el mismo "
-"tamaño que el argumento #%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"

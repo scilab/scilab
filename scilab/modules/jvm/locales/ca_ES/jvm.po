@@ -195,9 +195,6 @@ msgstr "JNI: No hi ha prou memòria"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "La interfície JVM no està habilitada en els modes -nogui o -nwni.\n"
 
-msgid "Scilab Console"
-msgstr "Consola de l'Scilab"
-
 msgid "Scilab Java module not installed.\n"
 msgstr "El mòdul Java del Scilab no està instal·lat.\n"
 
