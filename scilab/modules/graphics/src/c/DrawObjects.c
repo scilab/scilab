@@ -23,6 +23,13 @@
  *    The main functions is sciDrawObj that draws the objects recursively.
  ------------------------------------------------------------------------/-*/
 
+#include <stdio.h>
+#include <string.h>
+
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
+
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
@@ -44,11 +51,23 @@
 #include "localization.h"
 
 #include "math.h" /* fabs, floor, log10, pow */
+#include "BasicAlgos.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
+//#include "../../../tclsci/includes/GedManagement.h"
 
 
 #define round(a)  (int)(((a)<0.0)?(a)-.5:(a)+.5)
 
+/* Specifies the ticks labels buffer size */
+#define LABEL_BUFFER_LENGTH    128
 
+
+static void computeCoordinatesFromLogExponents(double* coordinates, int numCoordinates);
+static void printLabels(char** stringVector, double* ticksLocations, int numTicks, BOOL logFlag);
 
 static BOOL subwinNeedsDisplay(sciPointObj * pSubwin);
 
@@ -108,35 +127,41 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
                             double      * zmin   ,
                             double      * zmax    )
 {
-  sciSubWindow * ppsubwin =  pSUBWIN_FEATURE ( pSubWin ) ;
     /*****************************************************************
      * get initial bounds
    *****************************************************************/
-  if( sciGetZooming( pSubWin ) )
+
+  int* tmp;
+  int* zoomEnabled;
+  double* bounds;
+  int logFlag;
+
+  zoomEnabled = (int*) getGraphicObjectProperty(pSubWin->UID, __GO_ZOOM_ENABLED__, jni_bool);
+
+  if (*zoomEnabled)
   {
-    *xmin = ppsubwin->ZRect[0] ;
-    *ymin = ppsubwin->ZRect[2] ;
-    *xmax = ppsubwin->ZRect[1] ;
-    *ymax = ppsubwin->ZRect[3] ;
-    *zmin = ppsubwin->ZRect[4] ;
-    *zmax = ppsubwin->ZRect[5] ;
+    bounds = (double*) getGraphicObjectProperty(pSubWin->UID, __GO_ZOOM_BOX__, jni_double_vector);
   }
   else
   {
-    *xmin = ppsubwin->SRect[0] ;
-    *ymin = ppsubwin->SRect[2] ;
-    *xmax = ppsubwin->SRect[1] ;
-    *ymax = ppsubwin->SRect[3] ;
-    *zmin = ppsubwin->SRect[4] ;
-    *zmax = ppsubwin->SRect[5] ;
+    bounds = (double*) getGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, jni_double_vector);
   }
 
-
+  *xmin = bounds[0];
+  *xmax = bounds[1];
+  *ymin = bounds[2];
+  *ymax = bounds[3];
+  *zmin = bounds[4];
+  *zmax = bounds[5];
 
   /*****************************************************************
    * modify  bounds and aaint  if using log scaling X axis
    *****************************************************************/
-  if ( ppsubwin->logflags[0] == 'l' )
+
+  tmp = (int*) getGraphicObjectProperty(pSubWin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+  logFlag = *tmp;
+
+  if (logFlag == 1)
   {
     if ( sciGetLogExponent( *xmin, *xmax, xmin, xmax ) != 0 )
     {
@@ -147,7 +172,11 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
   /*****************************************************************
    * modify  bounds and aaint  if using log scaling Y axis
    *****************************************************************/
-  if ( ppsubwin->logflags[1] == 'l' )
+
+  tmp = (int*) getGraphicObjectProperty(pSubWin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+  logFlag = *tmp;
+
+  if (logFlag == 1)
   {
     if ( sciGetLogExponent( *ymin, *ymax, ymin, ymax ) != 0 )
     {
@@ -158,7 +187,11 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
   /*****************************************************************
    * modify  bounds and aaint  if using log scaling Z axis
    *****************************************************************/
-  if ( ppsubwin->logflags[2] == 'l' )
+
+  tmp = (int*) getGraphicObjectProperty(pSubWin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool);
+  logFlag = *tmp;
+
+  if (logFlag == 1)
   {
     if ( sciGetLogExponent( *zmin, *zmax, zmin, zmax ) != 0 )
     {
@@ -172,82 +205,219 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
 /*** F.Leray 02.04.04 */
 /* FUNCTION FOR 2D UPDATE ONLY !!!!! <=> beginning of axis_3ddraw (in 2d HERE of course! ) */
 /* Copy on update_frame_bounds */
+/*
+ * This function has been adapted to the MVC framework.
+ */
 BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
 {
   double xmax, xmin, ymin, ymax, zmin, zmax ;
   double hx,hy,hx1,hy1;
   int i;
 
-  sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj);
-  double FRect[4],WRect[4],ARect[4];
+  double FRect[4],WRect[4],ARect[4]; 
   char logscale[2];
 
   /* Temp variables only used when called from update_specification_bounds */
   /* to know if we have to redraw all the figure */
-  double ExistingFRect[4]; /* the Existing FRect at start to be compared at the end of this routine */
-  /* in order to determine wheter or not the bounds have changed... */
+
+  double* previousDataBounds;
+  double updatedDataBounds[6];
+  int logFlags[2];
+
+  int tightLimits;
+  int isoview;
+
+  /* in order to determine whether or not the bounds have changed... */
   int nbsubtics[2];
   int nbgrads[2];
+  int updatedNbsubtics[2];
+
+  /* Temporary variables for ticks computation */
+  double xGrads[20];
+  double yGrads[20];
+
+  int updatedNxgrads;
+  int updatedNygrads;
+
+  int nbxsubticks;
+  int nbysubticks;
+
+  /* Used to print labels */
+  char** stringVector;
+
+  int* tmp;
   /* End of Temp variables */
 
-  for(i=0;i<4;i++) ExistingFRect[i] =  ppsubwin->FRect[i]; /* store old initial bounds*/
+  /* Get the initial data bounds, number of ticks and number of subticks */
 
-  for(i=0;i<2;i++) nbsubtics[i] = ppsubwin->axes.nbsubtics[i];
-  nbgrads[0] = ppsubwin->axes.nxgrads;
-  nbgrads[1] = ppsubwin->axes.nygrads;
+  /* Formerly FRect */
+  previousDataBounds = (double*) getGraphicObjectProperty(pobj->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector);
 
-  /* nbtics on z put to 0 */
-  /*   ppsubwin->axes.nzgrads = 0; */
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int);
+  nbsubtics[0] = *tmp;
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int);
+  nbsubtics[1] = *tmp;
 
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_NUMBER_TICKS__, jni_int);
+  nbgrads[0] = *tmp;
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_NUMBER_TICKS__, jni_int);
+  nbgrads[1] = *tmp;
+
+  /* Sets the z-axis number of ticks to 0 */
+  setGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_TICKS_LOCATIONS__, NULL, jni_double_vector, 0);
 
   sciGetDisplayedBounds( pobj, &xmin, &xmax, &ymin, &ymax, &zmin, &zmax ) ;
 
-
   /* _grad Init. to 0. */
-  for(i=0;i<20;i++)
-    {
-      ppsubwin->axes.xgrads[i] = 0.;
-      ppsubwin->axes.ygrads[i] = 0.;
-    }
-
-
-  if ( ppsubwin->logflags[0]=='n') { /* x-axis */
-    TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads, FALSE);
-    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'n',NULL,ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
-  }
-  else{ /* log. case */
-    GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads, FALSE );
-    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
+  for(i = 0; i < 20; i++)
+  {
+    xGrads[i] = 0.0;
+    yGrads[i] = 0.0;
   }
 
-  if ( ppsubwin->logflags[1]=='n') { /* y-axis */
-    TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads, FALSE);
-    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+  /*
+   * The code generating labels should be moved inside the Java Model.
+   * Ticks labels were previously generated in the C++ Renderer module
+   * (see AutomaticTicksComputer and AutoLogTicksComputer)
+   * using the C-computed locations.
+   * This is temporarily done here in order to get updated labels according
+   * to the data bounds.
+   */
+
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+  logFlags[0] = *tmp;
+
+  /* x-axis */
+  if (logFlags[0] == 0)
+  {
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int);
+    nbxsubticks = *tmp;
+
+    TheTicks(&xmin, &xmax, &xGrads[0], &updatedNxgrads, FALSE);
+
+    /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+    nbxsubticks = ComputeNbSubTics(pobj,updatedNxgrads,'n',NULL, nbxsubticks);
+
+    stringVector = createStringArray(updatedNxgrads);
+    printLabels(stringVector, xGrads, updatedNxgrads, 0);
   }
-  else{ /* log. case */
-    GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads, FALSE );
-    ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
+  else
+  {
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int);
+    nbxsubticks = *tmp;
+
+    GradLog(xmin, xmax, &xGrads[0], &updatedNxgrads, FALSE);
+
+    /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+    nbxsubticks = ComputeNbSubTics(pobj, updatedNxgrads, 'l', xGrads, 0);
+
+    stringVector = createStringArray(updatedNxgrads);
+    printLabels(stringVector, xGrads, updatedNxgrads, TRUE);
+
+    /* Transform back exponents to non-log coordinates to set positions */
+    computeCoordinatesFromLogExponents(xGrads, updatedNxgrads);
   }
 
-  if(ppsubwin->tight_limits == FALSE )
-    {
-      xmin = ppsubwin->axes.xgrads[0];
-      xmax = ppsubwin->axes.xgrads[ ppsubwin->axes.nxgrads - 1];
-      ymin = ppsubwin->axes.ygrads[0];
-      ymax = ppsubwin->axes.ygrads[ ppsubwin->axes.nygrads - 1];
-    }
+  setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LOCATIONS__, xGrads, jni_double_vector, updatedNxgrads);
+  setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNxgrads);
+
+  setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, &nbxsubticks, jni_int, 1);
+
+  destroyStringArray(stringVector, updatedNxgrads);
+
+
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+  logFlags[1] = *tmp;
+
+  /* y-axis */
+  if (logFlags[1] == 0)
+  {
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int);
+    nbysubticks = *tmp;
+
+    TheTicks(&ymin, &ymax, &yGrads[0], &updatedNygrads, FALSE);
+
+    /* Nb of subtics computation and storage */
+    /* F.Leray 07.10.04 */
+    nbysubticks = ComputeNbSubTics(pobj,updatedNygrads,'n',NULL, nbysubticks);
+
+    stringVector = createStringArray(updatedNygrads);
+    printLabels(stringVector, yGrads, updatedNygrads, 0);
+  }
+  else
+  {
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int);
+    nbysubticks = *tmp;
+
+    GradLog(ymin, ymax, &yGrads[0], &updatedNygrads, FALSE);
+
+    /* Nb of subtics computation and storage */
+    /* F.Leray 07.10.04 */
+    nbysubticks = ComputeNbSubTics(pobj, updatedNygrads, 'l', yGrads, 0);
+
+    stringVector = createStringArray(updatedNygrads);
+    printLabels(stringVector, yGrads, updatedNygrads, TRUE);
+
+    /* Transform back exponents to non-log coordinates to set positions */
+    computeCoordinatesFromLogExponents(yGrads, updatedNygrads);
+  }
+
+  setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LOCATIONS__, yGrads, jni_double_vector, updatedNygrads);
+  setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNygrads);
+
+  setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, &nbysubticks, jni_int, 1);
+
+  destroyStringArray(stringVector, updatedNygrads);
+
+
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_TIGHT_LIMITS__, jni_bool);
+  tightLimits = *tmp;
+
+  if (tightLimits == FALSE)
+  {
+    xmin = xGrads[0];
+    xmax = xGrads[updatedNxgrads - 1];
+    ymin = yGrads[0];
+    ymax = yGrads[updatedNygrads - 1];
+  }
 
   /*****************************************************************
    * modify  bounds if  isoview requested
    *****************************************************************/
-  if ( ppsubwin->isoview == TRUE) {
-    int wdim[2];
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_ISOVIEW__, jni_bool);
+  isoview = *tmp;
 
+  /*
+   * Depending on the high-level function calling update_specification_bounds, this section
+   * may not be useful. Considering for example Plo2dn, the isoview property is initialized within
+   * the strflag2properties function, called from Plo2dn after update_specification_bounds has returned.
+   * Furthermore, in the previous version of the renderer, the C++ part recomputes the "real" data bounds
+   * and sets them again.
+   */
+  if (isoview)
+  {
+    int wdim[2];
+    char* parentId;
+    int* figureDimensions;
+
+    parentId = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string);
+
+    /*
+     * Window width and height are currently 0 (default Figure values)
+     * To be implemented within the MVC (by copying the Figure model's values)
+     */
+    figureDimensions = (int*) getGraphicObjectProperty(parentId, __GO_SIZE__, jni_int_vector);
+    wdim[0] = figureDimensions[0];
+    wdim[1] = figureDimensions[1];
+
+#if 0
     wdim[0] = sciGetWindowWidth(sciGetParentFigure(pobj));
     wdim[1] = sciGetWindowHeight(sciGetParentFigure(pobj));
+#endif
 
     hx=xmax-xmin;
     hy=ymax-ymin;
+
     getscale2d(WRect,FRect,logscale,ARect);
 
     wdim[0]=linint((double)wdim[0] *WRect[2]);
@@ -267,59 +437,109 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
     /* F.Leray 28.09.04 */
     /* I need to recompute the correct xgrads and ygrads vector to have a good display */
 
-    if ( ppsubwin->logflags[0]=='n') { /* x-axis */
-      TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads, FALSE);
-      ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'n',NULL, ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+    /* x-axis */
+    if (logFlags[0] == 0)
+    {
+      TheTicks(&xmin, &xmax, xGrads, &updatedNxgrads, FALSE);
+      /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+      nbxsubticks = ComputeNbSubTics(pobj, updatedNxgrads, 'n', NULL, nbxsubticks);
+
+      stringVector = createStringArray(updatedNxgrads);
+      printLabels(stringVector, xGrads, updatedNxgrads, FALSE);
     }
     else{ /* log. case */
-      GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads, FALSE);
-      ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
+      GradLog(xmin, xmax, xGrads, &updatedNxgrads, FALSE);
+      nbxsubticks = ComputeNbSubTics(pobj, updatedNxgrads, 'l',xGrads,0);
+
+      stringVector = createStringArray(updatedNxgrads);
+      printLabels(stringVector, xGrads, updatedNxgrads, TRUE);
+
+      /* Transform back exponents to non-log coordinates to set positions */
+      computeCoordinatesFromLogExponents(xGrads, updatedNxgrads);
     }
 
+    setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LOCATIONS__, xGrads, jni_double_vector, updatedNxgrads);
+    setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNxgrads);
 
+    setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, &nbxsubticks, jni_int, 1);
 
-    if ( ppsubwin->logflags[1]=='n') { /* y-axis */
-      TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads, FALSE);
-      ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+    destroyStringArray(stringVector, updatedNxgrads);
+
+    /* y-axis */
+    if (logFlags[1] == 0)
+    {
+      TheTicks(&ymin, &ymax, yGrads, &updatedNygrads, FALSE);
+      /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+      nbysubticks = ComputeNbSubTics(pobj, updatedNygrads, 'n', NULL, nbysubticks);
+
+      stringVector = createStringArray(updatedNygrads);
+      printLabels(stringVector, yGrads, updatedNygrads, FALSE);
     }
     else{ /* log. case */
-      GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads, FALSE );
-      ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
+      GradLog(ymin, ymax, yGrads, &updatedNygrads, FALSE);
+      nbysubticks = ComputeNbSubTics(pobj, updatedNygrads, 'l',yGrads,0);
+
+      stringVector = createStringArray(updatedNygrads);
+      printLabels(stringVector, yGrads, updatedNygrads, TRUE);
+
+      /* Transform back exponents to non-log coordinates to set positions */
+      computeCoordinatesFromLogExponents(yGrads, updatedNygrads);
     }
 
+    setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LOCATIONS__, yGrads, jni_double_vector, updatedNygrads);
+    setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNygrads);
+
+    setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, &nbysubticks, jni_int, 1);
+
+    destroyStringArray(stringVector, updatedNygrads);
 
     /* END ISO if */
   }
 
-
-
-
   /*****************************************************************
-   * set the actual bounds in subwindow data structure
+   * set the actual bounds in the Axes object
    *****************************************************************/
 
+  updatedDataBounds[0] = xmin;
+  updatedDataBounds[1] = xmax;
+  updatedDataBounds[2] = ymin;
+  updatedDataBounds[3] = ymax;
+  updatedDataBounds[4] = zmin;
+  updatedDataBounds[5] = zmax;
 
-  ppsubwin->FRect[0]=xmin;
-  ppsubwin->FRect[2]=xmax;
-  ppsubwin->FRect[1]=ymin;
-  ppsubwin->FRect[3]=ymax;
-
+  setGraphicObjectProperty(pobj->UID, __GO_REAL_DATA_BOUNDS__, updatedDataBounds, jni_double_vector, 6);
 
   for(i=0;i<4;i++)
-    if(ppsubwin->FRect[i] != ExistingFRect[i]){
+  {
+    if (updatedDataBounds[i] != previousDataBounds[i])
+    {
       return TRUE;
       break;
     }
+  }
 
-  for(i=0;i<2;i++)
-    if(nbsubtics[i] != ppsubwin->axes.nbsubtics[i]){
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int);
+  updatedNbsubtics[0] = *tmp;
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int);
+  updatedNbsubtics[1] = *tmp;
+   
+  for(i=0;i<2;i++) 
+  {
+    if(nbsubtics[i] != updatedNbsubtics[i])
+    {
       return TRUE;
       break;
     }
+  }
 
-  if(nbgrads[0] != ppsubwin->axes.nxgrads) return TRUE;
-  if(nbgrads[1] != ppsubwin->axes.nygrads) return TRUE;
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_NUMBER_TICKS__, jni_int);
+  updatedNxgrads = *tmp;
+  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_NUMBER_TICKS__, jni_int);
+  updatedNygrads = *tmp;
 
+  if(nbgrads[0] != updatedNxgrads) return TRUE;
+  if(nbgrads[1] != updatedNygrads) return TRUE;
+   
   return FALSE;
 }
 
@@ -470,7 +690,11 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
   double grads_diff;        /* Used for computing spacing between major ticks. */
   int nbtics_safe = nbtics; /* nbtics clamped to the range 0 to subticsval_len-1. Safe as an index into subticsval. */
 
+#if 0
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+#endif
+
+  int* autoSubticks;
 
   if (nbtics_safe < 0 )
   {
@@ -540,7 +764,14 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
   }
   else /* linear scaling case */
   {
+    autoSubticks = (int*) getGraphicObjectProperty(pobj->UID, __GO_AUTO_SUBTICKS__, jni_bool);
+
+#if 0
     if(ppsubwin->flagNax == FALSE) /* if auto subtics mode == ON */
+#endif
+
+    /* if auto subtics mode == ON */
+    if (*autoSubticks)
     {
       double intbase10 = 0.;
       /* Without graduations, use the heuristic */
@@ -779,6 +1010,67 @@ static BOOL subwinNeedsDisplay(sciPointObj * pSubwin)
     /* apparently no need to display the axes */
     return FALSE;
   }
+}
+/*---------------------------------------------------------------------------------*/
+/*
+ * Utility function which transforms back positions (logarithmic exponents) to non-log coordinates
+ * Required to be able to display correct coordinate values in the console.
+ */
+static void computeCoordinatesFromLogExponents(double* coordinates, int numCoordinates)
+{
+    int i;
+    double loginit = 1.0;
+
+    for (i = 0; i < coordinates[0]; i++)
+    {
+      loginit *= 10.0;
+    }
+
+    for (i = 0; i < numCoordinates; i++)
+    {
+      coordinates[i] = loginit;
+      loginit *= 10.0;
+    }
+}
+/*---------------------------------------------------------------------------------*/
+/*
+ * Utility function which generates label strings
+ * Its code is equivalent to that of the renderer module's TicksComputers' getTicksPosition
+ * methods. It is temporarily located there, in order to be able to initialize labels strings,
+ * and should reside within the Java Model.
+ */
+static void printLabels(char** stringVector, double* ticksLocations, int numTicks, BOOL logFlag)
+{
+    char labelBuffer[LABEL_BUFFER_LENGTH];
+    char format[5];
+    char* logPrefix = "10e";
+    int i;
+    int prefixLength;
+
+    ChoixFormatE(format, ticksLocations[0], ticksLocations[numTicks-1],
+        (ticksLocations[numTicks-1] - ticksLocations[0]) / (numTicks-1));
+
+    if (logFlag == FALSE)
+    {
+        for (i = 0; i < numTicks; i++)
+        {
+            sprintf(labelBuffer, format, ticksLocations[i]);
+            stringVector[i] = strdup(labelBuffer);
+        }
+    }
+    else
+    {
+        prefixLength = strlen(logPrefix);
+
+        for (i = 0; i < numTicks; i++)
+        {
+            strcpy(labelBuffer, logPrefix);
+
+            sprintf(labelBuffer+prefixLength, format, ticksLocations[i]);
+            stringVector[i] = strdup(labelBuffer);
+        }
+    }
+
 }
 /*---------------------------------------------------------------------------------*/
 #undef round

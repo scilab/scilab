@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -39,6 +40,10 @@
 #include "get_ticks_utils.h"
 #include "HandleManagement.h"
 #include "freeArrayOfString.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
@@ -98,21 +103,52 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
   int with_leg;
   double drect[6];
   char dataflag;
+  /* To be removed */
+#if 0
   sciSubWindow * ppsubwin = NULL;
+#endif
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
 
+  double rotationAngles[2];
+  int clipState;
+  int autoScale;
+  int logFlags[3];
+  int* tmp;
+  char textLogFlags[3];
+  int firstPlot;
+  int newFirstPlot;
+  int autoSubticks;
+
+  /* Deactivated since it uses synchronization */
+#if 0
   startGraphicDataWriting();
+#endif
+
   curFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();
+
+#if 0
   ppsubwin = pSUBWIN_FEATURE(psubwin);
+#endif
+
+#if 0
   endGraphicDataWriting();
-
   startFigureDataWriting(curFigure);
+#endif
+  /*
+   * Check if the auto_clear property is on and then erase everything
+   * To be implemented
+   */
+  checkRedrawing();
 
-  /* check if the auto_clear property is on and then erase everything */
-  checkRedrawing() ;
-  
+  /*
+   * Deactivated for now
+   * Searches the object hierarchy until it finds a Surface object
+   * in order to specify the view type (2D or 3D)
+   * To be implemented
+   */
+#if 0
   if (sciGetSurface(psubwin) == (sciPointObj *) NULL) /* F.Leray 18.05.04 */
     {
       ppsubwin->is3d = FALSE;
@@ -123,24 +159,37 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       ppsubwin->theta_kp=ppsubwin->theta;
       ppsubwin->alpha_kp=ppsubwin->alpha;
     }
-  
-  ppsubwin->alpha  = 0.0;
-  ppsubwin->theta  = 270.0;
+#endif
 
-  /* Force psubwin->logflags to those given by argument*/
-  if ( ppsubwin->FirstPlot )
+  rotationAngles[0] = 0.0;
+  rotationAngles[1] = 270.0;
+
+  setGraphicObjectProperty(psubwin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+
+  /* Force logflags to those given by argument */
+
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool);
+  firstPlot = *tmp;
+
+  /* Reset x and y logflags */
+  if (firstPlot)
   {
-    char newLogFlags[3];
-    sciGetLogFlags(psubwin, newLogFlags);
-    newLogFlags[0] = logflags[1];
-    newLogFlags[1] = logflags[2];
-    sciSetLogFlags(psubwin, newLogFlags);
+    logFlags[0] = getBooleanLogFlag(logflags[1]);
+    logFlags[1] = getBooleanLogFlag(logflags[2]);
+
+    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, &logFlags[0], jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, &logFlags[1], jni_bool, 1);
   }
 
-  /* Force "cligrf" clipping */
-  sciSetIsClipping (psubwin,0); 
+  /* Forces "clipgrf" clipping (1) */
+  clipState = 1;
+  setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-  if (sciGetGraphicMode (psubwin)->autoscaling) {
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool);
+  autoScale = *tmp;
+
+  if (autoScale)
+  {
     /* compute and merge new specified bounds with psubwin->Srect */
     switch (strflag[1])  {
     case '0': 
@@ -153,64 +202,116 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
     case '2' : case '4' : case '6' : case '8': case '9':
       /* Force psubwin->Srect to the x and y bounds */
       if ( (int)strlen(logflags) < 1) dataflag='g' ; else dataflag=logflags[0];
-      compute_data_bounds2(0,dataflag,ppsubwin->logflags,x,y,*n1,*n2,drect);
+
+      tmp = getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+      logFlags[0] = *tmp;
+      tmp = getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+      logFlags[1] = *tmp;
+      tmp = getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool);
+      logFlags[2] = *tmp;
+
+      /* Conversion required by compute_data_bounds2 */
+      textLogFlags[0] = getTextLogFlag(logFlags[0]);
+      textLogFlags[1] = getTextLogFlag(logFlags[1]);
+      textLogFlags[2] = getTextLogFlag(logFlags[2]);
+
+      compute_data_bounds2(0,dataflag,textLogFlags,x,y,*n1,*n2,drect);
+
       break;
     }
-    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 
-	(strflag[1] == '5' || strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
-      
-      drect[0] = Min(ppsubwin->SRect[0],drect[0]); /*xmin*/
-      drect[2] = Min(ppsubwin->SRect[2],drect[2]); /*ymin*/
-      drect[1] = Max(ppsubwin->SRect[1],drect[1]); /*xmax*/
-      drect[3] = Max(ppsubwin->SRect[3],drect[3]); /*ymax*/
-      
+
+    /* merge psubwin->Srect and drect */
+    if ( !firstPlot &&
+        (strflag[1] == '5' || strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
+    {
+      double* dataBounds = (double*) getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector);
+
+      drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
+      drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
+      drect[1] = Max(dataBounds[1],drect[1]); /*xmax*/
+      drect[3] = Max(dataBounds[3],drect[3]); /*ymax*/
     }
+
     if (strflag[1] != '0')
+    {
       bounds_changed = update_specification_bounds(psubwin, drect,2);
-  } 
-  
-  if(ppsubwin->FirstPlot == TRUE) bounds_changed = TRUE;
-  
+    }
+  }
+
+  if (firstPlot)
+  {
+    bounds_changed = TRUE;
+  }
+
+  /* Adapted to the MVC */
   axes_properties_changed = strflag2axes_properties(psubwin, strflag);
-     
-  ppsubwin->FirstPlot = FALSE; /* just after strflag2axes_properties */
-   
+
+  /* just after strflag2axes_properties */
+  newFirstPlot = 0;
+  setGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, &newFirstPlot, jni_bool, 1);
+
   with_leg= (strflag[0] == '1');
 
   /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
      u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
-  
-  ppsubwin->flagNax = flagNax; /* store new value for flagNax */
 
-  if(ppsubwin->flagNax == TRUE){
-    if(ppsubwin->logflags[0] == 'n' && ppsubwin->logflags[1] == 'n')
+  /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
+  autoSubticks = !flagNax;
+  setGraphicObjectProperty(psubwin->UID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+
+  if (flagNax == TRUE)
+  {
+      tmp = getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+      logFlags[0] = *tmp;
+      tmp = getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+      logFlags[1] = *tmp;
+
+      if (logFlags[0] == 0 && logFlags[1] == 0)
       {
-        BOOL autoTicks[3];
-        sciGetAutoTicks(psubwin, autoTicks);
-        /* x and y graduations are imposed by Nax */
-        sciSetAutoTicks(psubwin, FALSE, FALSE, autoTicks[2]);
-	
-	CreatePrettyGradsFromNax(psubwin,aaint);
+          int autoTicks;
+
+          autoTicks = 0;
+          setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+          setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+
+          /*
+           * Creates user-defined ticks using the Nax values
+           * The MVC does not distinguish yet between automatically computed ticks
+           * and user-defined ones.
+           * To be implemented using the MVC framework
+           */
+#if 0
+	  CreatePrettyGradsFromNax(psubwin,aaint);
+#endif
       }
-    else
-    {
-      sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
-    }
+      else
+      {
+          sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
+      }
+
   }
+
+  /* Deactivated (synchronization) */
+#if 0
   endFigureDataWriting(curFigure);
-  
+#endif
+
+  /*
+   * This was already commented out
+   * To be removed.
+   */
   /*if(bounds_changed == TRUE || axes_properties_changed == TRUE)
   {
     
     sciDrawObj(sciGetCurrentFigure());
   }*/
-  
+
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
 	  if ((hdltab = MALLOC ((*n1+1) * sizeof (long))) == NULL) {
 		  Scierror(999, _("%s: No more memory.\n"),"plot2d");
 		  return -1;
-    }
+          }
     if (with_leg) {
       /* tabofhandles allocated for legends */
       if ((tabofhandles = MALLOC((*n1)*sizeof(long long))) == NULL) {
@@ -220,9 +321,17 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       }
     }
 
+    /* Deactivated */
+#if 0
     startFigureDataWriting(curFigure);
-    for (jj = 0;jj < *n1; jj++) {/*A.Djalel 3D axes*/
+#endif
+
+
+    /*A.Djalel 3D axes*/
+    for (jj = 0;jj < *n1; jj++)
+    {
       sciPointObj * pobj = NULL;
+
       if (style[jj] > 0) { 
 	BOOL isline = TRUE;
 	if (ptype==3)
@@ -247,9 +356,8 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       }
       else
       {
-        
         sciSetCurrentObj(pobj);
-      
+
         /*sciDrawObjIfRequired(pobj);*/
         hdl=sciGetHandle(pobj);
         if (with_leg)
@@ -262,10 +370,20 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       }
       
     }
+
+    /* Deactivated since it involves drawing */
+#if 0
     endFigureDataWriting(curFigure);
     forceRedraw(psubwin);
+#endif
     
     /*---- Drawing the Legends ----*/
+    /*
+     * Deactivated for now, the Legend is not fully implemented yet
+     * within the MVC
+     * To be implemented
+     */
+#if 0
     startFigureDataWriting(curFigure);
 
     if (with_leg) {
@@ -288,11 +406,12 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
 	    sciSetCurrentObj (Leg); 
 	  }
 
-    freeArrayOfString(Str, nleg);  
+      freeArrayOfString(Str, nleg);
 
 	FREE(tabofhandles);
 	/* }*/
     }
+#endif
 
     /*---- construct Compound ----*/
     if (cmpt > 0)
@@ -300,11 +419,22 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       sciSetCurrentObj(ConstructCompound (hdltab, cmpt));
     }
     FREE(hdltab);
+
+    /* Deactivated (synchronization) */
+#if 0
     endFigureDataWriting(curFigure);
-    
+#endif
+
   }
-  
+  /* End of the curves and legend block */
+
+  /*
+   * Deactivated since it involves drawing operations
+   * To be implemented
+   */
+#if 0
   sciDrawObj(curFigure);
+#endif
   return(0);
 }
 
@@ -388,24 +518,29 @@ void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,do
 
 BOOL update_specification_bounds(sciPointObj  *psubwin,double rect[6],int flag)
 {
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
   BOOL haschanged = FALSE;
-  
-  ppsubwin->SRect[0] = rect[0];
-  ppsubwin->SRect[1] = rect[1];
-  ppsubwin->SRect[2] = rect[2];
-  ppsubwin->SRect[3] = rect[3];
-  if (flag==3) {
-    ppsubwin->SRect[4] = rect[4];
-    ppsubwin->SRect[5] = rect[5];
+  double* dataBounds;
+
+  /*
+   * 2D: keep the existing zmin and zmax
+   * which is why they must be fetched
+   */
+  if (flag != 3)
+  {
+    dataBounds = (double*) getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector);
+
+    rect[4] = dataBounds[4];
+    rect[5] = dataBounds[5];
   }
-  
+
+  setGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
+
+  /* To be modified */
   if(flag != 3)
     haschanged = sci_update_frame_bounds_2d(psubwin);
   else
     haschanged = sci_update_frame_bounds_3d(psubwin);
-  
-  
+
   return haschanged;
 }
 
@@ -427,18 +562,52 @@ int re_index_brect(double * brect, double * drect)
 /* F.Leray 07.05.04 */
 /* Dispatch info contained in strflag to all the flag available in
    sciSubwin object (tight_limits, isoview, isaxes...) */
+/*
+ * This function has been adapted to the MVC framework
+ */
 BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
 {
   BOOL haschanged = FALSE;
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
-	BOOL axesVisiblePrev[3] = {ppsubwin->axes.axes_visible[0],
-	                           ppsubwin->axes.axes_visible[1],
-	                           ppsubwin->axes.axes_visible[2]};
-	EAxesBoxType boxPrev = ppsubwin->axes.rect;
-	char xLocPrev = ppsubwin->axes.xdir;
-	char yLocPrev = ppsubwin->axes.ydir;
-	BOOL tightLimitsPrev = ppsubwin->tight_limits;
-	BOOL isoviewPrev = ppsubwin->isoview;
+  BOOL tightLimitsPrev;
+  BOOL isoviewPrev;
+  char xLocPrev;
+  char yLocPrev;
+  int boxPrev;
+  int tightLimits;
+  int firstPlot;
+  int axisVisible;
+  int boxType;
+  int xLocationPrev;
+  int yLocationPrev;
+  int xLocation;
+  int yLocation;
+  int isoview;
+  int axesVisiblePrev[3];
+  int axesVisible[3];
+
+  int* tmp;
+
+
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, jni_bool);
+  axesVisiblePrev[0] = *tmp;
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, jni_bool);
+  axesVisiblePrev[1] = *tmp;
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, jni_bool);
+  axesVisiblePrev[2] = *tmp;
+
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, jni_int);
+  boxPrev = *tmp;
+
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOCATION__, jni_int);
+  xLocationPrev = *tmp;
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOCATION__, jni_int);
+  yLocationPrev = *tmp;
+
+
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_TIGHT_LIMITS__, jni_bool);
+  tightLimitsPrev = *tmp;
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_ISOVIEW__, jni_bool);
+  isoviewPrev = *tmp;
 
   /* F.Leray 07.05.04 */
   /* strflag[1] Isoview & tight_limits flags management*/
@@ -447,90 +616,157 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
     /* no changes */
     break;
   case '1' : case '2' : case '7' : case '8' :
-    ppsubwin->tight_limits = TRUE;
+    tightLimits = 1;
+    setGraphicObjectProperty(psubwin->UID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
     break;
   case '3' : case '4' :
-    ppsubwin->isoview = TRUE;
+    isoview = 1;
+    setGraphicObjectProperty(psubwin->UID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
     break;
   case '5' : case '6' :
-    ppsubwin->tight_limits = FALSE; /* pretty axes */
+    /* pretty axes */
+    tightLimits = 0;
+    setGraphicObjectProperty(psubwin->UID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
     break;
   }
-      
+
   /* F.Leray 07.05.04 */
   /* strflag[2] */
   switch (strflag[2])  {
-  case '0': 
-    if(ppsubwin->FirstPlot == TRUE){
-      ppsubwin->axes.axes_visible[0] = FALSE;
-      ppsubwin->axes.axes_visible[1] = FALSE;
-      ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
-      ppsubwin->axes.rect = BT_OFF;
+
+  case '0':
+    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool);
+    firstPlot = *tmp;
+
+    if(firstPlot)
+    {
+      axisVisible = 0;
+      /* 0: OFF */
+      boxType = 0;
+
+      setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+      setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+      /* also trigger z axis */
+      setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+      setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
     }
     /*else no changes : the isaxes properties is driven by the previous plot */
     break;
   case '1' : 
-    ppsubwin->axes.axes_visible[0] = TRUE;
-    ppsubwin->axes.axes_visible[1] = TRUE;
-    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-    ppsubwin->axes.ydir ='l';
-    ppsubwin->axes.rect = BT_ON;
+    axisVisible = 1;
+    /* 1: ON */
+    boxType = 1;
+    /* 4: LEFT */
+    yLocation = 4;
+
+    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+
     break;
   case '2' : 
-    ppsubwin->axes.axes_visible[0] = FALSE;
-    ppsubwin->axes.axes_visible[1] = FALSE;
-    ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
-    ppsubwin->axes.rect = BT_ON;
+    axisVisible = 0;
+    boxType = 1;
+
+    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    /* also trigger z axis */
+    setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+
     break;
   case '3' : 
-    ppsubwin->axes.axes_visible[0] = TRUE;
-    ppsubwin->axes.axes_visible[1] = TRUE;
-    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-		ppsubwin->axes.rect = BT_OFF;
-    ppsubwin->axes.ydir ='r';
+    axisVisible = 1;
+    boxType = 0;
+    /* 5: RIGHT */
+    yLocation = 5;
+
+    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+
     break;
   case '4' :
-    ppsubwin->axes.axes_visible[0] = TRUE;
-    ppsubwin->axes.axes_visible[1] = TRUE;
-    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-		ppsubwin->axes.xdir ='c';
-    ppsubwin->axes.ydir ='c';
-		ppsubwin->axes.rect = BT_OFF;
+    axisVisible = 1;
+    /* 2: MIDDLE */
+    xLocation = 2;
+    yLocation = 2;
+    boxType = 0;
+
+    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    /* also trigger z axis */
+    setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOCATION__, &xLocation, jni_int, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+
     break;
   case '5' :
-    ppsubwin->axes.axes_visible[0] = TRUE;
-    ppsubwin->axes.axes_visible[1] = TRUE;
-    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-    ppsubwin->axes.xdir ='c';
-    ppsubwin->axes.ydir ='c';
-    ppsubwin->axes.rect = BT_ON;
+    axisVisible = 1;
+    xLocation = 2;
+    yLocation = 2;
+    boxType = 1;
+
+    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    /* also trigger z axis */
+    setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOCATION__, &xLocation, jni_int, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOCATION__, &yLocation, jni_int, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+
     break;
   case '9' :
-    ppsubwin->axes.axes_visible[0] = TRUE;
-    ppsubwin->axes.axes_visible[1] = TRUE;
-    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+    axisVisible = 1;
+
+    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+    /* also trigger z axis */
+    setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
   }
 
-	/* Find if something has changed */
-	if (   ppsubwin->axes.axes_visible[0] != axesVisiblePrev[0]
-	    || ppsubwin->axes.axes_visible[1] != axesVisiblePrev[1]
-			|| ppsubwin->axes.axes_visible[2] != axesVisiblePrev[2]
-			|| ppsubwin->axes.rect != boxPrev
-			|| ppsubwin->axes.xdir != xLocPrev
-			|| ppsubwin->axes.ydir != yLocPrev
-			|| ppsubwin->tight_limits != tightLimitsPrev
-			|| ppsubwin->isoview != isoviewPrev)
-	{
-		haschanged = TRUE;
-	}
-	else
-	{
-		haschanged = FALSE;
-	}
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, jni_bool);
+  axesVisible[0] = *tmp;
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, jni_bool);
+  axesVisible[1] = *tmp;
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, jni_bool);
+  axesVisible[2] = *tmp;
 
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, jni_int);
+  boxType = *tmp;
+
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOCATION__, jni_int);
+  xLocation = *tmp;
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOCATION__, jni_int);
+  yLocation = *tmp;
+
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_TIGHT_LIMITS__, jni_bool);
+  tightLimits = *tmp;
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_ISOVIEW__, jni_bool);
+  isoview = *tmp;
+
+  /* Find if something has changed */
+  if (axesVisible[0] != axesVisiblePrev[0]
+    || axesVisible[1] != axesVisiblePrev[1]
+    || axesVisible[2] != axesVisiblePrev[2]
+    || xLocation != xLocationPrev
+    || yLocation != yLocationPrev
+    || boxType != boxPrev
+    || tightLimits != tightLimitsPrev
+    || isoview != isoviewPrev)
+  {
+    haschanged = TRUE;
+  }
+  else
+  {
+    haschanged = FALSE;
+  }
 
   return haschanged;
 }
-
-
 

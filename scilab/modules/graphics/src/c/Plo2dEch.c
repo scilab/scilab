@@ -5,6 +5,7 @@
  * Copyright (C) 2002 - INRIA - Serge Steer
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,8 +31,12 @@
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
+#include "Axes.h"
 
 #include "MALLOC.h" /* MALLOC */
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*-------------------------------------------
  * setscale2d 
@@ -129,24 +134,33 @@ int setscale2d(double WRect[4],
 int getscale2d( double WRect[4], double FRect[4], char logscale[2], double ARect[4] )
 {
   int i;
-	sciPointObj * curSubwin = sciGetCurrentSubWin();
-	
-	char logFlags[3];
-	sciGetLogFlags(curSubwin, logFlags);
-	logscale[0] = logFlags[0];
-	logscale[1] = logFlags[1];
-  
-	for ( i=0; i < 4 ; i++) 
+  int* tmp;
+  double* axesBounds;
+  double* margins;
+  double* realDataBounds;
+  sciPointObj * curSubwin = sciGetCurrentSubWin();
+
+  tmp = (int*) getGraphicObjectProperty(curSubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+  logscale[0] = getTextLogFlag(*tmp);
+
+  tmp = (int*) getGraphicObjectProperty(curSubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+  logscale[1] = getTextLogFlag(*tmp);
+
+  axesBounds = (double*) getGraphicObjectProperty(curSubwin->UID, __GO_AXES_BOUNDS__, jni_double_vector);
+  margins = (double*) getGraphicObjectProperty(curSubwin->UID, __GO_MARGINS__, jni_double_vector);
+  realDataBounds = (double*) getGraphicObjectProperty(curSubwin->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector);
+
+  for ( i=0; i < 4 ; i++)
   {
-		WRect[i] = pSUBWIN_FEATURE(curSubwin)->WRect[i];
-    ARect[i] = pSUBWIN_FEATURE(curSubwin)->ARect[i];
+    WRect[i] = axesBounds[i];
+    ARect[i] = margins[i];
   }
 
-	/* Frect is [xMin, yMin, xMax, yMax] */
-	FRect[0] = pSUBWIN_FEATURE(curSubwin)->FRect[0];
-	FRect[1] = pSUBWIN_FEATURE(curSubwin)->FRect[2];
-	FRect[2] = pSUBWIN_FEATURE(curSubwin)->FRect[1];
-	FRect[3] = pSUBWIN_FEATURE(curSubwin)->FRect[3];
+  /* Frect is [xMin, yMin, xMax, yMax] whereas data bounds are [xmin, xmax, ymin, ymax] */
+  FRect[0] = realDataBounds[0];
+  FRect[1] = realDataBounds[2];
+  FRect[2] = realDataBounds[1];
+  FRect[3] = realDataBounds[3];
 
   return(0);
 }
