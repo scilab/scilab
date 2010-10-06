@@ -37,6 +37,9 @@ public class TicksProperty {
 	/** Ticks labels */
 	private ArrayList <FormattedText> labels;
 
+	/** Number of ticks */
+	private int number;
+
 	/** Number of subticks between two main ticks */
 	private int subticks;
 
@@ -50,6 +53,7 @@ public class TicksProperty {
 			labels.add(new FormattedText());
 		}
 
+		number = DEFAULT_NUMBER_OF_TICKS;
 		subticks = 0;
 	}
 
@@ -91,9 +95,9 @@ public class TicksProperty {
 	 * @return the labels strings
 	 */
 	public String[] getLabelsStrings() {
-		String[] labelsStrings = new String[labels.size()];
+		String[] labelsStrings = new String[number];
 
-		for (int i = 0; i < labels.size(); i++) {
+		for (int i = 0; i < number; i++) {
 			labelsStrings[i] = new String(labels.get(i).getText());
 		}
 
@@ -101,10 +105,16 @@ public class TicksProperty {
 	}
 
 	/**
+	 * Sets the ticks labels strings
+	 * Requires the corresponding ticks locations to have previously been set
 	 * @param labels the labels to set
 	 */
 	public void setLabelsStrings(String[] labels) {
-		for (int i = 0; i < labels.length; i++) {
+		if (labels.length != number) {
+			return;
+		}
+
+		for (int i = 0; i < number; i++) {
 			this.labels.get(i).setText(labels[i]);
 		}
 	}
@@ -113,15 +123,15 @@ public class TicksProperty {
 	 * @return the number of ticks
 	 */
 	public Integer getNumber() {
-		return locations.length;
+		return number;
 	}
 
 	/**
 	 * @return the locations
 	 */
 	public Double[] getLocations() {
-		Double[] retLocations = new Double[locations.length];
-		for (int i = 0; i < locations.length; i++) {
+		Double[] retLocations = new Double[number];
+		for (int i = 0; i < number; i++) {
 			retLocations[i] = locations[i];
 		}
 
@@ -129,12 +139,20 @@ public class TicksProperty {
 	}
 
 	/**
+	 * Sets the ticks locations
+	 * Also sets the current number of ticks to the size of the locations array
 	 * @param locations the locations to set
 	 */
 	public void setLocations(Double[] locations) {
+		if (locations.length > DEFAULT_NUMBER_OF_TICKS) {
+			return;
+		}
+
 		for (int i = 0; i < locations.length; i++) {
 			this.locations[i] = locations[i];
 		}
+
+		number = locations.length;
 	}
 
 	/**
