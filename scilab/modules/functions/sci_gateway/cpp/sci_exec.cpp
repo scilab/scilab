@@ -15,10 +15,11 @@
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "functions_gw.hxx"
-#include "setenvvar.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
 #include "yaspio.hxx"
+#include "scilabexception.hxx"
+#include "configvariable.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -29,6 +30,8 @@ extern "C"
 #include "os_wcsicmp.h"
 #include "expandPathVariable.h"
 #include "prompt.h"
+#include "Scierror.h"
+#include "localization.h"
 }
 
 
@@ -47,88 +50,61 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    int iErr        = 0;
 	bool bErrCatch	= false;
-	int iMode				= EXEC_MODE_VERBOSE;
-	Exp* pExp				= NULL;
+	int iMode		= EXEC_MODE_VERBOSE;
+	Exp* pExp		= NULL;
     Parser parser;
 
 	if(in.size() < 1 || in.size() > 3)
 	{
-		return Function::Error;
+        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d to %d expected.\n"), L"exec" , 1, 3);
+        return Function::Error;
 	}
 
 	if(in.size() > 1)
 	{//errcatch or mode
-		if(in[1]->getType() == InternalType::RealString)
+        if(in[1]->getType() == InternalType::RealString && in[1]->getAsString() ->size_get() == 1)
 		{//errcatch
 			String* pS = in[1]->getAsString();
-			if(pS->size_get() != 1)
-			{
-				return Function::Error;
-			}
-
 			if(os_wcsicmp(pS->string_get(0), L"errcatch") == 0)
 			{
 				bErrCatch = true;
 			}
 			else
 			{
-				wchar_t stErr[1024];
-#ifdef _MSC_VER
-				swprintf_s(stErr, 1024, L"\"%s\" value is not a valid value for exec function", pS->string_get(0));
-#else
-				swprintf(stErr, 1024, L"\"%ls\" value is not a valid value for exec function", pS->string_get(0));
-#endif
-				YaspWriteW(stErr);
+                ScierrorW(999, _W("%ls: Wrong value for input argument #%d: 'errcatch' expected.\n"), L"execstr", 2);
 				return Function::Error;
 			}
 
 			if(in.size() > 2)
 			{
-				if(in[2]->getType() == InternalType::RealDouble)
+                if(in[2]->getType() != InternalType::RealDouble || in[2]->getAsDouble()->size_get() != 1)
 				{//mode
-					Double* pD = in[2]->getAsDouble();
-					if(pD->size_get() != 1 || pD->isComplex())
-					{
-						return Function::Error;
-					}
-
-					iMode = (int)pD->real_get()[0];
+                    ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"exec", 3);
+                    return Function::Error;
 				}
-			}
-			else
-			{
-				YaspWriteW(L"Bad 3rd parameter type in exec call");
-				return Function::Error;
+
+				iMode = (int)in[2]->getAsDouble()->real_get()[0];
 			}
 		}
-		else if(in[1]->getType() == InternalType::RealDouble)
-		{//mode
-			Double* pD = in[1]->getAsDouble();
-			if(pD->size_get() != 1 || pD->isComplex())
-			{
-				return Function::Error;
-			}
-
-			iMode = (int)pD->real_get()[0];
+		else if(in[1]->getType() == InternalType::RealDouble && in[1]->getAsDouble()->size_get() == 1)
+        {//mode
+            iMode = (int)in[1]->getAsDouble()->real_get()[0];
 		}
 		else
 		{//not managed
-			YaspWriteW(L"Bad 2nd parameter type in exec call");
-			return Function::Error;
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer or string expected.\n"), L"exec", 2);
+            return Function::Error;
 		}
 	}
 
-	if(in[0]->getType() == InternalType::RealString)
+    if(in[0]->getType() == InternalType::RealString && in[0]->getAsString()->size_get() == 1)
 	{//1st argument is a path, parse file and execute it
 		int iParsePathLen		= 0;
 		String* pS = in[0]->getAsString();
-		if(pS->size_get() != 1)
-		{
-			return Function::Error;
-		}
 
-		wchar_t* pstFile = pS->string_get(0);
+        wchar_t* pstFile = pS->string_get(0);
         wchar_t *expandedPath = expandPathVariableW(pstFile);
         parser.parseFile(expandedPath, L"exec");
         FREE(expandedPath);
@@ -149,12 +125,14 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	{//1st argument is a macro name, parse and execute it in the current environnement
 		if(in[0]->getAsMacroFile()->parse() == false)
 		{
+            ScierrorW(999, _W("%ls: Unable to parse macro '%s'"), "exec", in[0]->getAsMacroFile()->getName());
 			return Function::Error;
 		}
 		pExp = in[0]->getAsMacroFile()->macro_get()->body_get();
 	}
 	else
 	{
+        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"exec", 1);
 		return Function::Error;
 	}
 
@@ -171,6 +149,10 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 	char str[1024];
 	int iCurrentLine = -1; //no data in str
+
+    //save current prompt mode
+    ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+
 	for(j = LExp.begin() ; j != LExp.end() ; j++)
 	{
 		try
@@ -187,16 +169,77 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 				printExp(&file, *j, stPrompt, &iCurrentLine, str, iMode);
 			}
 
-			//excecute script
-			ExecVisitor execMe;
-			(*j)->accept(execMe);
+            //excecute script
+            ExecVisitor execMe;
+            (*j)->accept(execMe);
 
-			//update ans variable.
+            bool bImplicitCall = false;
+            
+            //to manage call without ()
+            if(execMe.result_get() != NULL && execMe.result_get()->getAsCallable())
+            {
+                Callable *pCall = execMe.result_get()->getAsCallable();
+                types::typed_list out;
+                types::typed_list in;
+
+                ExecVisitor execCall;
+                Function::ReturnValue Ret = pCall->call(in, 1, out, &execCall);
+
+                if(Ret == Callable::OK)
+                {
+                    if(out.size() == 0)
+                    {
+                        execMe.result_set(NULL);
+                    }
+                    else if(out.size() == 1)
+                    {
+                        out[0]->DecreaseRef();
+                        execMe.result_set(out[0]);
+                    }
+                    else
+                    {
+                        for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                        {
+                            out[i]->DecreaseRef();
+                            execMe.result_set(i, out[i]);
+                        }
+                    }
+
+                    bImplicitCall = true;
+                }
+                else if(Ret == Callable::Error)
+                {
+                    if(ConfigVariable::getLastErrorFunction() == L"")
+                    {
+                        ConfigVariable::setLastErrorFunction(pCall->getName());
+                    }
+
+                    if(pCall->isMacro() || pCall->isMacroFile())
+                    {
+                        wchar_t szError[bsiz];
+#ifdef _MSC_VER
+                        swprintf_s(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
+#else
+                        swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
+#endif
+                        throw ScilabMessage(szError);
+                    }
+                    else
+                    {
+                        throw ScilabMessage();
+                    }
+                }
+            }
+
+            //update ans variable.
 			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
 			{
 				wstring varName = L"ans";
 				symbol::Context::getInstance()->put(varName, *execMe.result_get());
-				if((*j)->is_verbose() && !checkPrompt(iMode, EXEC_MODE_MUTE) && checkPrompt(iMode, EXEC_MODE_VERBOSE))
+				if( (*j)->is_verbose() && 
+                    !checkPrompt(iMode, EXEC_MODE_MUTE) && 
+                    checkPrompt(iMode, EXEC_MODE_VERBOSE) && 
+                    bErrCatch == false)
 				{
 					std::wostringstream ostr;
 					ostr << L"ans = " << std::endl;
@@ -206,26 +249,49 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 				}
 			}
 
-			if(!checkPrompt(iMode, EXEC_MODE_MUTE) && checkPrompt(iMode, EXEC_MODE_VERBOSE))
+			if( !checkPrompt(iMode, EXEC_MODE_MUTE) && 
+                checkPrompt(iMode, EXEC_MODE_VERBOSE) && 
+                bErrCatch == false)
 			{
 				YaspWriteW(L"\n");
 			}
 
 		}
-		catch(std::wstring st)
+		catch(ScilabError se)
 		{
 			//print last line
-			if(checkPrompt(iMode, EXEC_MODE_MUTE))
+			if(!checkPrompt(iMode, EXEC_MODE_MUTE))
 			{
 				printExp(&file, *j, stPrompt, &iCurrentLine, str, iMode);
 			}
 
-			//print error
-			YaspWriteW(st.c_str());
-			file.close();
-			return Function::Error;
+            if(bErrCatch)
+            {
+                //set mode silent for errors
+                ConfigVariable::setPromptMode(ConfigVariable::silent);
+            }
+
+            //store message
+            ScierrorW(se.GetErrorNumber(), L"%s", se.GetErrorMessage().c_str());
+            iErr = se.GetErrorNumber();
+            if(bErrCatch == false)
+            {
+                file.close();
+			    return Function::Error;
+            }
+            break;
 		}
 	}
+
+    //restore previous prompt mode
+    ConfigVariable::setPromptMode(oldVal);
+
+    if(bErrCatch)
+    {
+        out.push_back(new Double(iErr));
+        //to lock last error information
+        ConfigVariable::setLastErrorCall();
+    }
 
 	parser.freeTree();
 	file.close();

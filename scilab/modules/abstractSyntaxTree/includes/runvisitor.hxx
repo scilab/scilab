@@ -1073,17 +1073,11 @@ namespace ast
 
                             if(Ret == Callable::OK)
                             {
-                                if(expected_size_get() == 1 && out.size() == 0) //to manage ans
+                                if(out.size() == 0)
                                 {
-                                    if(static_cast<int>(out.size()) < expected_size_get())
-                                    {
-                                        std::wostringstream os;
-                                        os << L"bad lhs, expected : " << expected_size_get() << L" returned : " << out.size() << std::endl;
-                                        throw ScilabError(os.str(), 999, (*itExp)->location_get());
-                                    }
+                                    execMe.result_set(NULL);
                                 }
-
-                                if(out.size() == 1)
+                                else if(out.size() == 1)
                                 {
                                     out[0]->DecreaseRef();
                                     execMe.result_set(out[0]);
@@ -1096,6 +1090,7 @@ namespace ast
                                         execMe.result_set(i, out[i]);
                                     }
                                 }
+
                                 bImplicitCall = true;
                             }
                             else if(Ret == Callable::Error)
@@ -1124,7 +1119,7 @@ namespace ast
 
 
                         SimpleVar* pVar = dynamic_cast<SimpleVar*>(*itExp);
-                        //don't output Silplevar and empty result
+                        //don't output Simplevar and empty result
                         if(execMe.result_get() != NULL && (pVar == NULL || bImplicitCall))
                         {
                             symbol::Context::getInstance()->put(L"ans", *execMe.result_get());
