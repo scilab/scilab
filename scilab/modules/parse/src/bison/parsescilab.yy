@@ -1142,7 +1142,8 @@ matrixOrCellLines matrixOrCellLine	{
 matrixOrCellLineBreak :
 SEMI                            { /* !! Do Nothing !! */ }
 | EOL                           { /* !! Do Nothing !! */ }
-| SEMI EOL                      { /* !! Do Nothing !! */ }
+| matrixOrCellLineBreak EOL     { /* !! Do Nothing !! */ }
+| matrixOrCellLineBreak SEMI    { /* !! Do Nothing !! */ }
 ;
 
 /*

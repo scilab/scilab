@@ -514,7 +514,7 @@ assign			"="
   return scan_throw(DOT);
 }
 
-<INITIAL,MATRIX>{next}			{
+<INITIAL>{next}                 {
     ParserSingleInstance::pushControlStatus(Parser::WithinDots);
     yy_push_state(LINEBREAK);
 }
@@ -702,64 +702,66 @@ assign			"="
   }
 
   {spaces}({plus}|{minus}){number}	{
-   int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
+      int i;
+      for (i = yyleng - 1 ; i >= 0 ; --i)
       {
-	unput(yytext[i]);
+          unput(yytext[i]);
       }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
+      yy_push_state(MATRIXMINUSID);
+      if (last_token != LBRACK
+          && last_token != EOL
+          && last_token != SEMI)
       {
-	return scan_throw(COMMA);
+          return scan_throw(COMMA);
       }
   }
 
   {spaces}({plus}|{minus}){floating}	{
-   int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
+      int i;
+      for (i = yyleng - 1 ; i >= 0 ; --i)
       {
-	unput(yytext[i]);
+          unput(yytext[i]);
       }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
+      yy_push_state(MATRIXMINUSID);
+      if (last_token != LBRACK
+          && last_token != EOL
+          && last_token != SEMI)
       {
-	return scan_throw(COMMA);
+          return scan_throw(COMMA);
       }
   }
 
   {spaces}({plus}|{minus}){little}	{
-   int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
+      int i;
+      for (i = yyleng - 1 ; i >= 0 ; --i)
       {
-	unput(yytext[i]);
+          unput(yytext[i]);
       }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
+      yy_push_state(MATRIXMINUSID);
+      if (last_token != LBRACK
+          && last_token != EOL
+          && last_token != SEMI)
       {
-	return scan_throw(COMMA);
+          return scan_throw(COMMA);
       }
   }
 
   {spaces}({minus}|{plus}){id}		{
-    int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
+      int i;
+      for (i = yyleng - 1 ; i >= 0 ; --i)
       {
-	unput(yytext[i]);
+          unput(yytext[i]);
       }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
+      yy_push_state(MATRIXMINUSID);
+      if (last_token != LBRACK
+          && last_token != EOL
+          && last_token != SEMI
+          )
       {
-	return scan_throw(COMMA);
+          return scan_throw(COMMA);
       }
   }
+
   .					{
     std::string str = "unexpected token '";
     str += yytext;
@@ -767,6 +769,11 @@ assign			"="
     exit_status = SCAN_ERROR;
     scan_error(str);
     yyterminate();
+  }
+
+  {next}{spaces}*{newline}          {
+      /* Just do nothing */
+      scan_throw(EOL);
   }
 
   <<EOF>>       {
@@ -1035,11 +1042,6 @@ assign			"="
     delete pstBuffer;
     FREE(pwstBuffer);
     return scan_throw(STR);
-  }
-
-  {next}					{
-    //yylloc.last_line += 1;
-    scan_step();
   }
 
   {dquote}                  {
