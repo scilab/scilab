@@ -43,10 +43,10 @@ were completely clipped.
 quadrants.
 * Improved H&V positionning of angular labels
 * Polar frame drawn in grey instead of black for a better data visibility.
-* if the basic radius is >= 10^4 or <=10^-4, LaTeX is used to display smart 
+* if the basic radius is >= 10^4 or <=10^-4, LaTeX is used to display smart
 $..10^p$ exponents instead of the D+/-## console style display.
 * Finally, their positioning is still improved in order to avoid their mutual
-overlaying for big values. 
+overlaying for big values.
 
 
 SciNotes:
@@ -104,7 +104,7 @@ Bug Fixes:
 
 * bug 8087 fixed - prettyprint did not handle %inf and %nan.
 
-* bug 8107 fixed - sum(a,1), cumsum(a,1), .. made Scilab 5.0.3-beta-4 crash 
+* bug 8107 fixed - sum(a,1), cumsum(a,1), .. made Scilab 5.0.3-beta-4 crash
                    in some particular context.
 
 * bug 8108 fixed - ATOMS: Modules that start by the letter "n" were not well
@@ -127,6 +127,9 @@ Bug Fixes:
 * bug 8154 fixed - It was not possible to cancel a messagebox with ESC key.
 
 * bug 8164 fixed - Typo in the fileparts help page.
+
+* bug 8174 fixed - ss2tf produced bad results if applied to a complex
+                   state space system.
 
 * bug 8177 fixed - format mode was modified by some macros and not restored.
 
