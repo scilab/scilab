@@ -2,6 +2,7 @@
 // Copyright (C) 2008 INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2008-2010 DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+// Copyright (C) 2010 DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -1037,8 +1038,10 @@ function xmlfiles = x2f_get_xml_files(directory)
 
     if xmlpaths<>[] then
         infos = fileinfo(xmlpaths);
+        ft = format();
         format(20);
         lmt   = string(infos(:,7));
+        format(ft(2),ft(1));
     else
         lmt   = [];
     end

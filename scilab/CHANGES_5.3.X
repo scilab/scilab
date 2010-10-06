@@ -121,6 +121,8 @@ Bug Fixes:
 
 * bug 8164 fixed - Typo in the fileparts help page.
 
+* bug 8177 fixed - format mode was modified by some macros and not restored.
+
 * bug 8202 fixed - Typo in the the localization.
 
 
