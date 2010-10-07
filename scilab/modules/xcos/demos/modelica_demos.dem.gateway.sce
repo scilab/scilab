@@ -1,22 +1,20 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009-2010 - DIGITEO
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 if with_modelica_compiler() then
 
-  demopath = get_absolute_file_path("modelica_demos.dem.gateway.sce");
+  subdemolist = [_("Ball on a Platform")     , "ModelicaBlocks/ball_platform.dem.sce"           ; ..
+                 _("Bouncing Ball")          , "ModelicaBlocks/modelica_bouncing_ball.dem.sce"  ; ..
+                 _("Chaos Modelica")         , "ModelicaBlocks/modelica_chaos.dem.sce"          ; ..
+                 _("Hydraulics blocks")      , "ModelicaBlocks/modelica_hydraulics.dem.sce"     ; ..
+                 _("RLC circuit")            , "ModelicaBlocks/modelica_rlc_circuit.dem.sce"
+                 ];
 
-  subdemolist = ["Ball on a Platform"                       , "ModelicaBlocks/ball_platform.dem.sce"           ; ..
-               "Bouncing Ball     "                       , "ModelicaBlocks/modelica_bouncing_ball.dem.sce"  ; ..
-               "Chaos Modelica"                           , "ModelicaBlocks/modelica_chaos.dem.sce"          ; ..
-               "Hydraulics blocks"                        , "ModelicaBlocks/modelica_hydraulics.dem.sce"     ; ..
-               "RLC circuit"                              , "ModelicaBlocks/modelica_rlc_circuit.dem.sce"  
-              ];
-
-  subdemolist(:,2) = demopath + subdemolist(:,2);
-  
-  clear demopath;
+  subdemolist(:,2) = SCI + "/modules/xcos/demos/" + subdemolist(:,2);
 
 end
+
+clear with_modelica_compiler;

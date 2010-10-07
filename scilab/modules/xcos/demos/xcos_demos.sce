@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,21 +11,22 @@
 //
 //
 
-//load("SCI/modules/demo_tools/macros/lib");
+function demo_xcos()
+  // Launch Scilab standard demo GUI
+  demo_gui();
 
-// Launch Scilab standard demo GUI
-demo_gui();
+  // Get main list
+  frame1 = findobj("tag", "listbox_1");
 
-// Get main list
-frame1 = findobj("tag", "listbox_1");
+  // Select Xcos
+  allitems = frame1.string;
+  xcosItem = find(allitems==gettext("Xcos"));
+  frame1.value = xcosItem;
 
-// Select Xcos
-allitems = frame1.string;
-xcosItem = find(allitems==gettext("Xcos"));
-frame1.value = xcosItem;
+  // Exec callback to display Xcos demos list
+  gcbo = frame1;
+  execstr(frame1.callback, "errcatch");
+endfunction
 
-// Exec callback to display Xcos demos list
-gcbo = frame1;
-execstr(frame1.callback, "errcatch");
-
-clear frame1 allitems xcosItem gcbo
+demo_xcos();
+clear demo_xcos;
