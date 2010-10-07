@@ -718,6 +718,44 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * Retrieve from scinotesConfiguration.xml the infos about a tabulation
+     * @return a Tabulation containing infos
+     */
+    public static void saveDefaultTabulation(TabManager.Tabulation cfg) {
+        /* <style name="Tabulation" rep="vertical" value="4" white="false"> */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+        NodeList styles = root.getElementsByTagName(STYLE);
+
+        for (int i = 0; i < styles.getLength(); ++i) {
+            Element style = (Element) styles.item(i);
+            if ("Tabulation".equals(style.getAttribute(NAME))) {
+		String type = "none";
+		switch (cfg.type) {
+		case ScilabView.TABVERTICAL:
+		    type = "vertical";
+		    break;
+		case ScilabView.TABHORIZONTAL:
+		    type = "horizontal";
+		    break;
+		case ScilabView.TABDOUBLECHEVRONS:
+		    type = "doublechevrons";
+		    break;
+		default:
+		    break;
+		}
+
+		style.setAttribute("rep", type);
+		style.setAttribute(VALUE, Integer.toString(cfg.number));
+		style.setAttribute("white", Boolean.toString(cfg.tab == ' '));
+		writeDocument();
+		return;
+            }
+        }
+    }
+
+    /**
      * Retrieve form scinotesConfiguration.xml the infos the matchers
      * @param kind should be "KeywordsHighlighter" or "OpenCloseHighlighter"
      * @return an Object containing infos

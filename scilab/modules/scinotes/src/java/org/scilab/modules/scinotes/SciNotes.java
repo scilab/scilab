@@ -55,6 +55,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.EditorKit;
+import javax.swing.text.View;
 import javax.swing.undo.UndoManager;
 
 import org.apache.commons.logging.LogFactory;
@@ -82,6 +83,7 @@ import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.scinotes.actions.ConfigTabulationsAction;
 import org.scilab.modules.scinotes.actions.ExitAction;
 import org.scilab.modules.scinotes.actions.FindAction;
 import org.scilab.modules.scinotes.actions.SetColorsAction;
@@ -468,6 +470,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         IncrementalSearchAction.close(this);
         SetColorsAction.closeSetColorsWindow();
         OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
+        ConfigTabulationsAction.closeConfTabWindow();
 
         while (getTabPane().getTabCount() > 0) {
             closeTabAt(0, true);
@@ -1436,6 +1439,30 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 sep.activateHelpOnTyping();
                 if (sep.getOtherPaneInSplit() != null) {
                     sep.getOtherPaneInSplit().activateHelpOnTyping();
+                }
+            }
+        }
+    }
+
+    /**
+     * Set the color of the highlighted line in this editor
+     * @param c Color
+     */
+    public static void setDefaultTabulation(TabManager.Tabulation tab) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                sep.getTabManager().setTabulation(tab);
+                View view = ((ScilabDocument) sep.getDocument()).getView();
+                if (view != null) {
+                    if (view instanceof ScilabView) {
+                        ((ScilabView) view).setTabRepresentation(tab);
+                        ((ScilabView) view).reinitialize();
+                    } else {
+                        ((ScilabPlainView) view).setTabRepresentation(tab);
+                        ((ScilabPlainView) view).reinitialize();
+                    }
                 }
             }
         }

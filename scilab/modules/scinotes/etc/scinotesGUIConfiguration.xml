@@ -84,6 +84,7 @@
       <menuitem action="SetColorsAction" label="Set Colors ..."/>
       <menuitem action="SetFontAction" label="Set Font"/>
       <menuitem action="ResetFontAction" label="Reset default font"/>
+      <menuitem action="ConfigTabulationsAction" label="Configure Tabulation"/>
       <separator/>
       <menuitem action="RestoreOpenedFilesAction" label="Restore opened files on start-up"/>
     </menu>

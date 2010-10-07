@@ -19,7 +19,7 @@ Documentation:
 * Documentation of trigonometry functions moved in a dedicated documentation
   section.
 
-* bug 7048 fixed - Documentation of color managements in graphics functions 
+* bug 7048 fixed - Documentation of color managements in graphics functions
                    moved in a dedicated section.
 
 * bug 7052 fixed - Documentation of floating point functions moved in
@@ -95,6 +95,8 @@ SciNotes:
   in favorite directories.
 
 * Add a completion on the fields name of a mlist or a tlist.
+
+* bugs 5321, 7760 fixed - It was not easy to configure the tabulation.
 
 * bug 7762 fixed - A keyword was not fully helpable depending on the caret
                    position.
