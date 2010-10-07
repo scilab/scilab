@@ -18,6 +18,7 @@
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "returnanan.h"
+#include "os_swprintf.h"
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
 #define FILEINFO_ARRAY_SIZE 13
@@ -135,7 +136,7 @@ static double *fileinfo_Windows(char *filepathname,int *ierr)
 		return NULL;
 	}
 
-	swprintf(DriveTemp, wcslen(wcpath)+1, L"%s", wcpath);
+	os_swprintf(DriveTemp, wcslen(wcpath)+1, L"%s", wcpath);
 	if ( (DriveTemp[wcslen(DriveTemp)-1] == L'/') || (DriveTemp[wcslen(DriveTemp)-1] == L'\\') )
 	{
 		DriveTemp[wcslen(DriveTemp)-1] = L'\0';

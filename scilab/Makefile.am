@@ -64,6 +64,7 @@ COMMON_CPPFLAGS = 		-I$(top_srcdir)/modules/shell/includes/ \
 						-I$(top_srcdir)/modules/operations/includes/ \
 						-I$(top_srcdir)/modules/elementary_functions/includes/ \
 						-I$(top_srcdir)/modules/fileio/includes/ \
+						-I$(top_srcdir)/modules/string/includes/
 						-I$(top_srcdir)/modules/history_manager/includes/
 
 scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \

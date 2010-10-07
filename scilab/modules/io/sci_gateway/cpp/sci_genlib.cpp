@@ -40,6 +40,7 @@ extern "C"
 #include "findfiles.h"
 #include "FileExist.h"
 #include "deleteafile.h"
+#include "os_swprintf.h"
 }
 
 
@@ -111,19 +112,11 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 	wchar_t* pstFile = pS->string_get(0);
     pstParsePath = expandPathVariableW(pstFile);
 
-#ifdef _MSC_VER
-	swprintf_s(pstParseFile, PATH_MAX + FILENAME_MAX, L"%s%slib", pstParsePath, FILE_SEPARATOR);
-#else
-	swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%Slib", pstParsePath, FILE_SEPARATOR);
-#endif
+	os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%s%slib", pstParsePath, FILE_SEPARATOR);
 
     if(bVerbose)
     {
-#ifdef _MSC_VER
-        swprintf_s(pstVerbose, 65535, _W("-- Creation of [%s] (Macros) --\n"), pstLibName);
-#else
-        swprintf(pstVerbose, 65535, _W("-- Creation of [%ls] (Macros) --\n"), pstLibName);
-#endif
+        os_swprintf(pstVerbose, 65535, _W("-- Creation of [%s] (Macros) --\n"), pstLibName);
         YaspWriteW(pstVerbose);
     }
 
@@ -136,11 +129,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
     if(pWriter == NULL)
     {
-#ifdef _MSC_VER
-        swprintf_s(pstVerbose, 65535, _W("%s: Cannot open file ''%s''.\n"), L"genlib", pstParseFile);
-#else
-        swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n"), L"genlib", pstParseFile);
-#endif
+        os_swprintf(pstVerbose, 65535, _W("%s: Cannot open file ''%s''.\n"), L"genlib", pstParseFile);
         YaspWriteW(pstVerbose);
 
         out.push_back(new Bool(0));
@@ -163,11 +152,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 			parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
             if(parser.getExitStatus() !=  Parser::Succeded)
             {
-#ifdef _MSC_VER
-                swprintf_s(pstVerbose, 65535, _W("%s: Warning: Error in file %s : %s. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
-#else
-                swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
-#endif
+                os_swprintf(pstVerbose, 65535, _W("%s: Warning: Error in file %s : %s. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
                 YaspWriteW(pstVerbose);
                 parser.freeTree();
                 continue;
@@ -183,11 +168,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 				{
 					if(AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get(), pstPath[k])) == false)
                     {
-#ifdef _MSC_VER
-                        swprintf_s(pstVerbose, 65535, _W("%s: Warning: %s information cannot be added to file %s. File ignored\n"), L"genlib", pFD->name_get() , pstPath[k]);
-#else
-                        swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
-#endif
+                        os_swprintf(pstVerbose, 65535, _W("%s: Warning: %s information cannot be added to file %s. File ignored\n"), L"genlib", pFD->name_get() , pstPath[k]);
                         YaspWriteW(pstVerbose);
                     }
 				}

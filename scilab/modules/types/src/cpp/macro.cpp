@@ -22,6 +22,7 @@
 extern "C"
 {
     #include "Scierror.h"
+    #include "os_swprintf.h"
 }
 
 namespace types
@@ -187,11 +188,7 @@ namespace types
                 else
                 {
                     wchar_t sz[bsiz];
-#ifdef _MSC_VER
-                    swprintf_s(sz, bsiz, _W("Undefined variable %s.\n"), (*i).c_str());
-#else
-                    swprintf(sz, bsiz, _W("Undefined variable %ls.\n"), (*i).c_str());
-#endif
+                    os_swprintf(sz, bsiz, _W("Undefined variable %s.\n"), (*i).c_str());
                     YaspWriteW(sz);
                 }
             }

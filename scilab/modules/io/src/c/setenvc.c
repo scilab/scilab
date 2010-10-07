@@ -20,6 +20,7 @@
 #include "../../../core/src/c/dynamic_tclsci.h"
 #include "MALLOC.h" /* MALLOC */
 #include "charEncoding.h"
+#include "os_swprintf.h"
 /*--------------------------------------------------------------------------*/
 BOOL setenvc(char *stringIn,char *valueIn)
 {
@@ -50,7 +51,7 @@ BOOL setenvc(char *stringIn,char *valueIn)
 			wchar_t *env = (wchar_t*) MALLOC(len_env * sizeof(wchar_t));
 			if (env)
 			{
-				swprintf(env, len_env, L"%s=%s", wstringIn, wvalueIn);
+				os_swprintf(env, len_env, L"%s=%s", wstringIn, wvalueIn);
 				if(_wputenv(env))
 				{
 					ret = FALSE;

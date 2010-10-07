@@ -123,11 +123,7 @@ void visitprivate(const CallExp &e)
             if(pCall->isMacro() || pCall->isMacroFile())
             {
                 wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                swprintf_s(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-#else
-                swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-#endif
+                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
                 throw ScilabMessage(szError);
             }
             else

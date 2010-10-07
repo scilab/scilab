@@ -1098,10 +1098,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\overload.hxx"
 				>
 			</File>

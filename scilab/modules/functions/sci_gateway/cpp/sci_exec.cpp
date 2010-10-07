@@ -32,6 +32,7 @@ extern "C"
 #include "prompt.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "os_swprintf.h"
 }
 
 
@@ -217,11 +218,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                     if(pCall->isMacro() || pCall->isMacroFile())
                     {
                         wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                        swprintf_s(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
-#else
-                        swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
-#endif
+                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
                         throw ScilabMessage(szError);
                     }
                     else

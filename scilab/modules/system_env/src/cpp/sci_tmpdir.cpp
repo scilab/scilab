@@ -33,6 +33,7 @@ extern "C"
 #include "localization.h"
 #include <errno.h>
 #include "removedir.h"
+#include "os_swprintf.h"
 }
 
 char* getTMPDIR(void)
@@ -155,7 +156,7 @@ char* computeTMPDIR()
         wchar_t wctmp_dir[PATH_MAX+FILENAME_MAX + 1];
         static wchar_t bufenv[PATH_MAX + 16];
         char *TmpDir = NULL;
-        swprintf(wctmp_dir, PATH_MAX+FILENAME_MAX + 1, L"%sSCI_TMP_%d_", wcTmpDirDefault, _getpid());
+        os_swprintf(wctmp_dir, PATH_MAX+FILENAME_MAX + 1, L"%sSCI_TMP_%d_", wcTmpDirDefault, _getpid());
         if( CreateDirectoryW(wctmp_dir, NULL) == FALSE)
         {
             DWORD attribs = GetFileAttributesW(wctmp_dir);
@@ -182,7 +183,7 @@ char* computeTMPDIR()
             }
         }
 
-        swprintf(bufenv, PATH_MAX + 16, L"TMPDIR=%s", wctmp_dir);
+        os_swprintf(bufenv, PATH_MAX + 16, L"TMPDIR=%s", wctmp_dir);
         _wputenv(bufenv);
 
         TmpDir = wide_string_to_UTF8(wctmp_dir);

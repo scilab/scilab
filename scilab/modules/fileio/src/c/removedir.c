@@ -30,6 +30,7 @@
 #include "isdir.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
+#include "os_swprintf.h"
 /*--------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory);
@@ -92,7 +93,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 	wchar_t	*strFilePath	= NULL;
 
 	strPattern = (wchar_t*)MALLOC(sizeof(wchar_t)*((int)wcslen(refcstrRootDirectory) + (int)wcslen(DEFAULT_PATTERN) + 1));
-	swprintf(strPattern,((int)wcslen(refcstrRootDirectory) + (int)wcslen(DEFAULT_PATTERN) + 1), DEFAULT_PATTERN, refcstrRootDirectory);
+	os_swprintf(strPattern,((int)wcslen(refcstrRootDirectory) + (int)wcslen(DEFAULT_PATTERN) + 1), DEFAULT_PATTERN, refcstrRootDirectory);
 
 	hFile = FindFirstFileW(strPattern, &FileInformation);
 	if (strPattern) { FREE(strPattern);strPattern=NULL;}
@@ -104,7 +105,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 			if ( (wcscmp(FileInformation.cFileName,L".") != 0) && (wcscmp(FileInformation.cFileName,L"..") != 0) )
 			{
 				strFilePath = (wchar_t*)MALLOC(sizeof(wchar_t)*(wcslen(refcstrRootDirectory)+5+wcslen((wchar_t*)(FileInformation.cFileName))));
-				swprintf(strFilePath,wcslen(refcstrRootDirectory)+5+wcslen((wchar_t*)(FileInformation.cFileName)),L"%s\\%s",refcstrRootDirectory,FileInformation.cFileName);
+				os_swprintf(strFilePath,wcslen(refcstrRootDirectory)+5+wcslen((wchar_t*)(FileInformation.cFileName)),L"%s\\%s",refcstrRootDirectory,FileInformation.cFileName);
 
 				if(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 				{

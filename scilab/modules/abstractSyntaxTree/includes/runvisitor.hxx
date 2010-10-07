@@ -41,6 +41,7 @@
 extern "C" {
 #include "doublecomplex.h"
 #include "matrix_transpose.h"
+#include "os_swprintf.h"
 }
 
 #include "timer.hxx"
@@ -525,11 +526,7 @@ namespace ast
             else
             {
                 wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                swprintf_s(szError, bsiz, _W("Undefined variable: %s\n"), e.name_get().c_str());
-#else
-                swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().c_str());
-#endif
+                os_swprintf(szError, bsiz, _W("Undefined variable: %s\n"), e.name_get().c_str());
                 throw ScilabError(szError, 999, e.location_get());
                 //Err, SimpleVar doesn't exist in Scilab scopes.
             }
@@ -609,22 +606,14 @@ namespace ast
                     else
                     {
                         wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                        swprintf_s(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
-#else
-                        swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
-#endif
+                        os_swprintf(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
                         throw ScilabError(szError, 999, psvRightMember->location_get());
                     }
                 }
                 else
                 {
                     wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                    swprintf_s(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-#else
-                    swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-#endif
+                    os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
                     throw ScilabError(szError, 999, e.location_get());
                 }
             }
@@ -642,33 +631,21 @@ namespace ast
                     else
                     {
                         wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                        swprintf_s(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
-#else
-                        swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
-#endif
+                        os_swprintf(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
                         throw ScilabError(szError, 999, psvRightMember->location_get());
                     }
                 }
                 else
                 {
                     wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                    swprintf_s(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-#else
-                    swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-#endif
+                    os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
                     throw ScilabError(szError, 999, e.location_get());
                 }
             }
             else
             {
                 wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                swprintf_s(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
-#else
-                swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
-#endif
+                os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
                 throw ScilabError(szError, 999, e.location_get());
             }
         }
@@ -1103,11 +1080,7 @@ namespace ast
                                 if(pCall->isMacro() || pCall->isMacroFile())
                                 {
                                     wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                                    swprintf_s(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*itExp)->location_get().first_line, pCall->getName().c_str());
-#else
-                                    swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*itExp)->location_get().first_line, pCall->getName().c_str());
-#endif
+                                    os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*itExp)->location_get().first_line, pCall->getName().c_str());
                                     throw ScilabMessage(szError);
                                 }
                                 else
@@ -1524,11 +1497,7 @@ namespace ast
             catch(int iPos)
             {
                 wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                swprintf_s(szError, bsiz, _W("%ls: Wrong type for argument %d: Scalar expected.\n"), L":", iPos);
-#else
-                swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Scalar expected.\n"), L":", iPos);
-#endif
+                os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Scalar expected.\n"), L":", iPos);
                 throw ScilabError(szError, 999, e.location_get());
             }
             catch(ScilabError error)
