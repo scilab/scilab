@@ -26,6 +26,25 @@ Xcos:
 * bug 8081 fixed - The context was not checked before being set.
 
 
+Graphics:
+=========
+
+Thanks to Samuel Gougeon, many improvements on the polarplot function:
+* Clipping was missing. See bug #7007.
+* In some common cases, values of radial labels were wrong with respect to the
+plotted radial frame or/and were lacking of digits.
+* When the plot was centered around an angle far from 45°, the radial labels
+were completely clipped.
+* Sampling of the angular frame is improved according to the number of drawn
+quadrants.
+* Improved H&V positionning of angular labels
+* Polar frame drawn in grey instead of black for a better data visibility.
+* if the basic radius is >= 10^4 or <=10^-4, LaTeX is used to display smart 
+$..10^p$ exponents instead of the D+/-## console style display.
+* Finally, their positioning is still improved in order to avoid their mutual
+overlaying for big values. 
+
+
 SciNotes:
 =========
 

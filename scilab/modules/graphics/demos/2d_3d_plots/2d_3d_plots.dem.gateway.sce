@@ -28,6 +28,7 @@ subdemolist = [                                   ..
     "fchamp"         , "fchamp.dem.sce"          ; ..
     "grayplot"       , "grayplot.dem.sce"        ; ..
     "fgrayplot"      , "fgrayplot.dem.sce"       ; ..
+    "polarplot"      , "polarplot.dem.sce"       ; ..
     "errbar"         , "errbar.dem.sce"          ; ..
     "abaque"         , "abaque.dem.sce"          ; ..
     "zgrid"          , "zgrid.dem.sce"           ; ..
