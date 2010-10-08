@@ -38,8 +38,9 @@ function []=fplot2d(xr,f,style,strf,leg,rect,nax,void)
 	if exists('logflag','local')==1 then opts=[opts,'logflag=logflag'],end
 	if exists('frameflag','local')==1 then opts=[opts,'frameflag=frameflag'],end
 	if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
-	if size(opts,2)<rhs-2 then  error('invalid named arguments'),end
-	
+	if size(opts,2)<rhs-2 then  
+	    error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"fplot2d","style","strf","leg","rect","nax",'logflag','frameflag','axesflag'));
+    end
 	execstr('plot2d(xr,feval(xr,f),'+strcat(opts,',')+')')
 	
 endfunction

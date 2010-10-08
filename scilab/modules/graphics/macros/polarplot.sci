@@ -43,7 +43,7 @@ function polarplot(theta,rho,style,strf,leg,rect)
     opts=[opts,'rect=rect']
   end
   if isstrf& isframeflag then
-    error('frameflag  cannot be used with strf')
+    error(msprintf(gettext("%s: ''%s'' cannot be used with ''%s''.\n"),"polarplot","frameflag","strf"));
   end
   if ~(isstrf) then
     axesflag=0
