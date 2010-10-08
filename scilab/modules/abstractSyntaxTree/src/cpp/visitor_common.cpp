@@ -59,7 +59,7 @@ bool bConditionState(types::InternalType *_pITResult)
 	return true;
 }
 
-void ExpandList(size_t ** _piList, size_t *_piListSize, size_t _iListSizeSize, size_t *_piResultList)
+void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList)
 {
 #define ORIGINAL_IMPLEM
 #ifdef ORIGINAL_IMPLEM
@@ -101,22 +101,22 @@ void ExpandList(size_t ** _piList, size_t *_piListSize, size_t _iListSizeSize, s
 		}
 	}
 #else
-	size_t iPreOcc= 1;
-	size_t iPostOcc= std::accumulate(_piListSize, _piListSize + _iListSizeSize, 1, multiplies<size_t>());
-	for(size_t i =0; i!= _iListSizeSize;++i)
+	int iPreOcc= 1;
+	int iPostOcc= std::accumulate(_piListSize, _piListSize + _iListSizeSize, 1, multiplies<int>());
+	for(int i =0; i!= _iListSizeSize;++i)
 	{
-		size_t const iSize = _piListSize[i];
-		size_t const delta(iPostOcc * _iListSizeSize);
-		size_t* ptr = _piResultList + i;
+		int const iSize = _piListSize[i];
+		int const delta(iPostOcc * _iListSizeSize);
+		int* ptr = _piResultList + i;
 
 		iPostOcc /= iSize;
 
-		for(size_t m(0); m != iSize; ++m,ptr += delta)
+		for(int m(0); m != iSize; ++m,ptr += delta)
 		{
-			size_t const data=_piList[i][m];
-			for(size_t j1(0); j1 != iPreOcc; ++j1, ptr +=  delta * iSize)
+			int const data=_piList[i][m];
+			for(int j1(0); j1 != iPreOcc; ++j1, ptr +=  delta * iSize)
 			{
-				for(size_t j2(0); j2!= iPostOcc ; ++j2, ptr+=  _iListSizeSize)
+				for(int j2(0); j2!= iPostOcc ; ++j2, ptr+=  _iListSizeSize)
 				{
 					*ptr= data;
 				}
@@ -127,7 +127,7 @@ void ExpandList(size_t ** _piList, size_t *_piListSize, size_t _iListSizeSize, s
 #endif
 }
 
-int GetVarMaxDim(types::InternalType *_pIT, size_t _iCurrentDim, size_t _iMaxDim)
+int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim)
 {
 	if(_pIT == NULL)
 	{
@@ -157,7 +157,7 @@ int GetVarMaxDim(types::InternalType *_pIT, size_t _iCurrentDim, size_t _iMaxDim
 /*
  * Generate destination variable from _poSource type and size parameters
  */
-types::InternalType* allocDest(types::InternalType* _poSource, size_t _iRows, size_t _iCols)
+types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _iCols)
 {
     types::InternalType* poResult = NULL;
     switch(_poSource->getType())
@@ -176,8 +176,8 @@ types::InternalType* allocDest(types::InternalType* _poSource, size_t _iRows, si
         break;
     case types::GenericType::RealPoly :
         {
-            size_t* piRank = new size_t[_iRows * _iCols];
-            for(size_t i = 0 ; i < _iRows * _iCols ; i++)
+            int* piRank = new int[_iRows * _iCols];
+            for(int i = 0 ; i < _iRows * _iCols ; i++)
             {
                 piRank[i] = 1;
             }
@@ -194,13 +194,13 @@ types::InternalType* allocDest(types::InternalType* _poSource, size_t _iRows, si
     return poResult;
 }
 
-types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, size_t _iRows, size_t _iCols, size_t *_piCols)
+types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
 {
     types::InternalType *poResult	            = NULL;
     types::InternalType::RealType TypeSource	= _poSource->getType();
     types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
-    size_t iCurRow                                 = _iRows;
-    size_t iCurCol                                 = _iCols;
+    int iCurRow                                 = _iRows;
+    int iCurCol                                 = _iCols;
 
 
     if(_poDest == NULL)
@@ -241,13 +241,13 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
     return NULL;
 }
 
-types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, size_t _iRows, size_t _iCols, size_t *_piRows)
+types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
 {
 	types::InternalType *poResult	            = NULL;
 	types::InternalType::RealType TypeSource	= _poSource->getType();
 	types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
-	size_t iCurRow                                 = _iRows;
-	size_t iCurCol                                 = _iCols;
+	int iCurRow                                 = _iRows;
+	int iCurCol                                 = _iCols;
 
     if(_poDest == NULL)
     {//First call, alloc _poSource
@@ -293,13 +293,13 @@ types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, t
 _iRows : Position if _poDest allready initialized else size of the matrix
 _iCols : Position if _poDest allready initialized else size of the matrix
 */
-types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, size_t _iRows, size_t _iCols, size_t *_piRows, size_t *_piCols)
+types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows, int *_piCols)
 {
 	types::InternalType *poResult	= NULL;
 	types::InternalType::RealType TypeSource	= _poSource->getType();
 	types::InternalType::RealType TypeDest		=	types::InternalType::RealInternal;
-	size_t iCurRow = _iRows;
-	size_t iCurCol = _iCols;
+	int iCurRow = _iRows;
+	int iCurCol = _iCols;
 
 	if(_poDest == NULL)
 	{
@@ -319,8 +319,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 			break;
 		case types::GenericType::RealPoly :
 			{
-				size_t* piRank = new size_t[_iRows * _iCols];
-				for(size_t i = 0 ; i < _iRows * _iCols ; i++)
+				int* piRank = new int[_iRows * _iCols];
+				for(int i = 0 ; i < _iRows * _iCols ; i++)
 				{
 					piRank[i] = 1;
 				}
@@ -354,8 +354,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 			{
 				types::Double *poDest = _poDest->getAsDouble();
 				//Convert Dest to RealPoly
-				size_t *piRank = new size_t[poDest->size_get()];
-				for(size_t i = 0 ; i < poDest->size_get() ; i++)
+				int *piRank = new int[poDest->size_get()];
+				for(int i = 0 ; i < poDest->size_get() ; i++)
 				{
 					piRank[i] = 1;
 				}
@@ -364,7 +364,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
 				double *pR = poDest->real_get();
 				double *pI = poDest->img_get();
-				for(size_t i = 0 ; i < poDest->size_get() ; i++)
+				for(int i = 0 ; i < poDest->size_get() ; i++)
 				{
 					types::Double *pdbl = NULL;
 					if(poDest->isComplex())

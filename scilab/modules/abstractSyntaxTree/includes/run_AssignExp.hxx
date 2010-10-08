@@ -78,10 +78,10 @@ void visitprivate(const AssignExp  &e)
                 }
             }
 
-            size_t *piIndexSeq     = NULL;
-            size_t *piMaxDim       = NULL;
-            size_t *piDimSize      = new size_t[iProductElem];
-            size_t iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+            int *piIndexSeq     = NULL;
+            int *piMaxDim       = NULL;
+            int *piDimSize      = new int[iProductElem];
+            int iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
             /*We have the indexlist expanded and the max index*/
 
             //check we don't have bad indexes like "< 1"
@@ -205,14 +205,14 @@ void visitprivate(const AssignExp  &e)
                 }
             }
 
-            size_t *piIndexSeq     = NULL;
-            size_t *piMaxDim       = NULL;
-            size_t *piDimSize      = new size_t[iProductElem];
-            size_t iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+            int *piIndexSeq     = NULL;
+            int *piMaxDim       = NULL;
+            int *piDimSize      = new int[iProductElem];
+            int iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
             /*We have the indexlist expanded and the max index*/
 
             //check we don't have bad indexes like "< 1"
-            for(size_t i = 0 ; i < iTotalCombi * iProductElem; i++)
+            for(int i = 0 ; i < iTotalCombi * iProductElem; i++)
             {
                 if(piIndexSeq[i] < 1)
                 {
@@ -243,25 +243,25 @@ void visitprivate(const AssignExp  &e)
             {//call static insert function
                 switch(execMeR.result_get()->getType())
                 {
-                case InternalType::RealDouble :
+                case InternalType::RealDouble : 
                     pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsDouble(), bSeeAsVector);
                     break;
-                case InternalType::RealBool :
+                case InternalType::RealBool : 
                     pOut = Bool::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsBool(), bSeeAsVector);
                     break;
-                case InternalType::RealString :
+                case InternalType::RealString : 
                     pOut = String::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsString(), bSeeAsVector);
                     break;
-                case InternalType::RealInt :
+                case InternalType::RealInt : 
                     pOut = Int::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsInt(), bSeeAsVector);
                     break;
-                case InternalType::RealList :
+                case InternalType::RealList : 
                     //never occur !
                     break;
-                case InternalType::RealCell :
+                case InternalType::RealCell : 
                     //never occur !
                     break;
-                default :
+                default : 
                     //TOTO YaSp : overlaoding insertion
                     break;
                 }
@@ -270,25 +270,25 @@ void visitprivate(const AssignExp  &e)
             {//call type insert function
                 switch(pIT->getType())
                 {
-                case InternalType::RealDouble :
+                case InternalType::RealDouble : 
                     bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
-                case InternalType::RealBool :
+                case InternalType::RealBool : 
                     bRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
-                case InternalType::RealString :
+                case InternalType::RealString : 
                     bRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
-                case InternalType::RealInt :
+                case InternalType::RealInt : 
                     bRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
-                case InternalType::RealList :
+                case InternalType::RealList : 
                     bRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
                     break;
-                case InternalType::RealTList :
+                case InternalType::RealTList : 
                     bRet = pIT->getAsTList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
                     break;
-                case InternalType::RealCell :
+                case InternalType::RealCell : 
                     if(execMeR.result_list_get()->size() ==1)
                     {
                         bRet = pIT->getAsCell()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
@@ -298,7 +298,7 @@ void visitprivate(const AssignExp  &e)
                         bRet = false;
                     }
                     break;
-                default :
+                default : 
                     //TOTO YaSp : overlaoding insertion
                     break;
                 }
@@ -353,7 +353,7 @@ void visitprivate(const AssignExp  &e)
                 //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
-
+				
             InternalType *pIT	=	execMeR.result_get();
             if(pIT->isImplicitList())
             {

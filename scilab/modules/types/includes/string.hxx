@@ -23,32 +23,32 @@ namespace types
     class String : public GenericType
     {
     public :
-                                String(size_t _iRows, size_t _iCols);
-                                String(size_t _iRows, size_t _iCols, wchar_t** _pstData);
+                                String(int _iRows, int _iCols);
+                                String(int _iRows, int _iCols, wchar_t** _pstData);
                                 String(const wchar_t *_pstData);
                             	String(const char *_pstData);
         virtual                 ~String();
 
-        GenericType*            get_col_value(size_t _iPos);
+        GenericType*            get_col_value(int _iPos);
 
         wchar_t**               string_get() const;
-        wchar_t*                string_get(size_t _iRows, size_t _iCols) const;
-        wchar_t*                string_get(size_t _iPos) const;
+        wchar_t*                string_get(int _iRows, int _iCols) const;
+        wchar_t*                string_get(int _iPos) const;
 
         bool                    string_set(wchar_t **_pstData);
-        bool                    string_set(size_t _iRows, size_t _iCols, const wchar_t *_pstData);
-        bool                    string_set(size_t _iPos, const wchar_t *_pstData);
+        bool                    string_set(int _iRows, int _iCols, const wchar_t *_pstData);
+        bool                    string_set(int _iPos, const wchar_t *_pstData);
 
         void                    whoAmI();
 
         String*                 getAsString(void);
         wstring                  toString(int _iPrecision, int _iLineLen);
 
-        bool                    resize(size_t _iNewRows, size_t _iNewCols);
-        bool                    insert(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-        static String*          insert_new(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, String* _poSource, bool _bAsVector);
-        String*                 extract(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector);
-        bool                    append(size_t _iRows, size_t _iCols, String *_poSource);
+        bool                    resize(int _iNewRows, int _iNewCols);
+        bool                    insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+        static String*          insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, String* _poSource, bool _bAsVector);
+        String*                 extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+        bool                    append(int _iRows, int _iCols, String *_poSource);
 
         bool                    operator==(const InternalType& it);
         bool                    operator!=(const InternalType& it);
@@ -66,10 +66,10 @@ namespace types
         wchar_t**               m_pstData;
 
         void                    all_delete();
-        void                    string_delete(size_t _iRows, size_t _iCols);
-        void                    string_delete(size_t _iPos);
+        void                    string_delete(int _iRows, int _iCols);
+        void                    string_delete(int _iPos);
 
-        void                    CreateString(size_t _iRows, size_t _iCols);
+        void                    CreateString(int _iRows, int _iCols);
     };
 }
 #endif /* !__STRING_HH__ */

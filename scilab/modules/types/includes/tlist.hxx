@@ -37,10 +37,10 @@ namespace types
 
         bool                            exists(const std::wstring& _sKey);
         InternalType*                   get(const std::wstring& _sKey);
-        InternalType*                   get(const size_t _iIndex);
-        size_t                          getIndexFromString(const std::wstring _sKey);
+        InternalType*                   get(const int _iIndex);
+        int                             getIndexFromString(const std::wstring _sKey);
         bool                            set(const std::wstring& _sKey, InternalType* _pIT);
-        bool                            set(const size_t _iIndex, InternalType* _pIT);
+        bool                            set(const int _iIndex, InternalType* _pIT);
 
         std::vector<InternalType*>      extract_string(list<wstring> _stFields);
 

@@ -48,21 +48,21 @@ void Add_Space(std::wostringstream *_postr, int _iSpace);
 */
 
 template <typename T>
-void GetUnsignedIntFormat(T _TVal, size_t *_piWidth)
+void GetUnsignedIntFormat(T _TVal, int *_piWidth)
 {
-    *_piWidth = static_cast<size_t>(log10(static_cast<long double>(_TVal)) + 1);
+    *_piWidth = static_cast<int>(log10(static_cast<long double>(_TVal)) + 1);
 }
 
 template <typename T>
-void GetSignedIntFormat(T _TVal, size_t *_piWidth)
+void GetSignedIntFormat(T _TVal, int *_piWidth)
 {
 	if(_TVal < 0)
 	{
-		*_piWidth = static_cast<size_t>(log10(static_cast<long double>(_abs64(_TVal))) + 1);
+		*_piWidth = static_cast<int>(log10(static_cast<long double>(_abs64(_TVal))) + 1);
 	}
 	else
 	{
-		*_piWidth = static_cast<size_t>(log10(static_cast<long double>(_TVal)) + 1);
+		*_piWidth = static_cast<int>(log10(static_cast<long double>(_TVal)) + 1);
 	}
 }
 

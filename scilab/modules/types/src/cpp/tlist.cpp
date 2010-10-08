@@ -33,13 +33,13 @@ namespace types
         std::vector<InternalType *>::iterator itValues;
         m_plData = new std::vector<InternalType *>;
 
-        for(size_t i = 0 ; i < _oTListCopyMe->getData()->size() ; i++)
+        for(int i = 0 ; i < _oTListCopyMe->getData()->size() ; i++)
         {
             InternalType* pIT = (*_oTListCopyMe->getData())[i];
             append(pIT);
         }
 
-        m_iSize = m_plData->size();
+        m_iSize = static_cast<int>(m_plData->size());
     }
 
     /**
@@ -61,7 +61,7 @@ namespace types
         String* pS = (*m_plData)[0]->getAsString();
 
         //first field is the tlist type
-        for(size_t i = 1 ; i < pS->size_get() ; i++)
+        for(int i = 1 ; i < pS->size_get() ; i++)
         {
             if(wstring(pS->string_get(i)) == _sKey)
             {
@@ -76,7 +76,7 @@ namespace types
         return get(getIndexFromString(_sKey));
     }
 
-    InternalType* TList::get(const size_t _iIndex)
+    InternalType* TList::get(const int _iIndex)
     {
         if(size_get() < 2)
         {
@@ -90,7 +90,7 @@ namespace types
         return NULL;
     }
 
-    size_t TList::getIndexFromString(const std::wstring _sKey)
+    int TList::getIndexFromString(const std::wstring _sKey)
     {
         if(size_get() < 1)
         {
@@ -99,7 +99,7 @@ namespace types
 
         String* pS = (*m_plData)[0]->getAsString();
         //first field is the tlist type
-        for(size_t i = 1 ; i < pS->size_get() ; i++)
+        for(int i = 1 ; i < pS->size_get() ; i++)
         {
             if(wstring(pS->string_get(i)) == _sKey)
             {
@@ -149,7 +149,7 @@ namespace types
         return set(getIndexFromString(_sKey), _pIT);
     }
 
-    bool TList::set(const size_t _iIndex, InternalType* _pIT)
+    bool TList::set(const int _iIndex, InternalType* _pIT)
     {
         if(_iIndex < 0)
         {

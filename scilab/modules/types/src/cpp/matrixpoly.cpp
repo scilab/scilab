@@ -25,7 +25,7 @@ namespace types
 	{
 	}
 
-	MatrixPoly::MatrixPoly(wstring _szVarName, size_t _iRows, size_t _iCols, size_t *_piRank)
+	MatrixPoly::MatrixPoly(wstring _szVarName, int _iRows, int _iCols, int *_piRank)
 	{
 		m_iRows			= _iRows;
 		m_iCols			= _iCols;
@@ -34,7 +34,7 @@ namespace types
 		m_bComplex	= false;
 
 		m_poPolyMatrix = new Poly[_iRows * _iCols];
-		for(size_t i = 0 ; i < m_iSize ; i++)
+		for(int i = 0 ; i < m_iSize ; i++)
 		{
 			m_poPolyMatrix[i].CreatePoly(NULL, NULL, _piRank[i]);
 		}
@@ -48,7 +48,7 @@ namespace types
 		}
 	}
 
-	Poly* MatrixPoly::poly_get(size_t _iRows, size_t _iCols)
+	Poly* MatrixPoly::poly_get(int _iRows, int _iCols)
 	{
 		if(m_poPolyMatrix == NULL || _iRows >= m_iRows || _iCols >= m_iCols)
 		{
@@ -60,7 +60,7 @@ namespace types
 		}
 	}
 
-	Poly* MatrixPoly::poly_get(size_t _iIdx)
+	Poly* MatrixPoly::poly_get(int _iIdx)
 	{
 		if(m_poPolyMatrix == NULL || _iIdx >= m_iSize)
 		{
@@ -72,12 +72,12 @@ namespace types
 		}
 	}
 
-	bool MatrixPoly::poly_set(size_t _iRows, size_t _iCols, Double *_pdblCoef)
+	bool MatrixPoly::poly_set(int _iRows, int _iCols, Double *_pdblCoef)
 	{
 		return poly_set(_iCols * m_iRows + _iRows, _pdblCoef);
 	}
 
-	bool MatrixPoly::poly_set(size_t _iIdx, Double *_pdblCoef)
+	bool MatrixPoly::poly_set(int _iIdx, Double *_pdblCoef)
 	{
 		if(_iIdx < m_iSize)
 		{
@@ -94,14 +94,14 @@ namespace types
 		return true;
 	}
 
-	bool MatrixPoly::rank_get(size_t *_piRank)
+	bool MatrixPoly::rank_get(int *_piRank)
 	{
 		if(_piRank == NULL || m_poPolyMatrix == NULL)
 		{
 			return false;
 		}
 
-		for(size_t i = 0 ; i < m_iSize ; i++)
+		for(int i = 0 ; i < m_iSize ; i++)
 		{
 			_piRank[i] = m_poPolyMatrix[i].rank_get();
 		}
@@ -137,7 +137,7 @@ namespace types
 	{
 		if(_bComplex != m_bComplex)
 		{
-			for(size_t i = 0 ; i < m_iSize ; i++)
+			for(int i = 0 ; i < m_iSize ; i++)
 			{
 				m_poPolyMatrix[i].complex_set(_bComplex);
 			}
@@ -152,13 +152,13 @@ namespace types
 		m_iSize			= m_iRows * m_iCols;
 		m_szVarName	= (&poPoly)->var_get();
 
-		size_t *piRank = new size_t[m_iSize];
+		int *piRank = new int[m_iSize];
 		m_bComplex	= false;
 
 		(&poPoly)->rank_get(piRank);
 
 		m_poPolyMatrix = new Poly[m_iRows * m_iCols];
-		for(size_t i = 0 ; i < m_iSize ; i++)
+		for(int i = 0 ; i < m_iSize ; i++)
 		{
 			m_poPolyMatrix[i].CreatePoly(NULL, NULL, piRank[i]);
 			if(m_poPolyMatrix[i].isComplex())
@@ -186,8 +186,8 @@ namespace types
 */
 		double *pR	= _pdblValue->real_get();
 		double *pI	= _pdblValue->img_get();
-		size_t iRows		= _pdblValue->rows_get();
-		size_t iCols		= _pdblValue->cols_get();
+		int iRows		= _pdblValue->rows_get();
+		int iCols		= _pdblValue->cols_get();
 
 		double *pReturnR	= NULL;
 		double *pReturnI	= NULL;
@@ -203,13 +203,13 @@ namespace types
 
 		int i = 0;
 		//all lines of the matrix remplacement
-		for(size_t iCol = 0 ; iCol < iCols ; iCol++)
+		for(int iCol = 0 ; iCol < iCols ; iCol++)
 		{
-			for(size_t iPolyCol = 0 ; iPolyCol < m_iCols ; iPolyCol++)
+			for(int iPolyCol = 0 ; iPolyCol < m_iCols ; iPolyCol++)
 			{
-				for(size_t iRow = 0 ; iRow < iRows ; iRow++)
+				for(int iRow = 0 ; iRow < iRows ; iRow++)
 				{
-					for(size_t iPolyRow = 0 ; iPolyRow < m_iRows ; iPolyRow++)
+					for(int iPolyRow = 0 ; iPolyRow < m_iRows ; iPolyRow++)
 					{
 						double OutR	= 0;
 						double OutI	= 0;
@@ -236,19 +236,19 @@ namespace types
 
 	void MatrixPoly::update_rank(void)
 	{
-		for(size_t i = 0 ; i < m_iSize ; i++)
+		for(int i = 0 ; i < m_iSize ; i++)
 		{
 			Poly *pPoly = poly_get(i);
 			pPoly->update_rank();
 		}
 	}
 
-	size_t MatrixPoly::rank_max_get(void)
+	int MatrixPoly::rank_max_get(void)
 	{
-		size_t *piRank = new size_t[size_get()];
+		int *piRank = new int[size_get()];
 		rank_get(piRank);
-		size_t iMaxRank = 0;
-		for(size_t i = 0 ; i < size_get() ; i++)
+		int iMaxRank = 0;
+		for(int i = 0 ; i < size_get() ; i++)
 		{
 			iMaxRank = Max(iMaxRank, piRank[i]);
 		}
@@ -257,7 +257,7 @@ namespace types
 
 	Double* MatrixPoly::coef_get(void)
 	{
-		size_t iMaxRank = rank_max_get();
+		int iMaxRank = rank_max_get();
 		Double *pCoef = new Double(rows_get(), cols_get() * iMaxRank, false);
 		if(isComplex())
 		{
@@ -267,9 +267,9 @@ namespace types
 		double *pCoefR	= pCoef->real_get();
 		double *pCoefI	= pCoef->img_get();
 
-		for(size_t iRank = 0 ; iRank < iMaxRank ; iRank++)
+		for(int iRank = 0 ; iRank < iMaxRank ; iRank++)
 		{
-			for(size_t i = 0 ; i < size_get() ; i++)
+			for(int i = 0 ; i < size_get() ; i++)
 			{
 				Poly *pPoly	= poly_get(i);
 				if(iRank > pPoly->rank_get())
@@ -298,22 +298,22 @@ namespace types
 
 	void MatrixPoly::coef_set(Double *_pCoef)
 	{
-		size_t iMaxRank = rank_max_get();
+		int iMaxRank = rank_max_get();
 
 		complex_set(_pCoef->isComplex());
 		double *pR = _pCoef->real_get();
 		double *pI = _pCoef->img_get();
-		for(size_t i = 0 ; i < size_get() ; i++)
+		for(int i = 0 ; i < size_get() ; i++)
 		{
 			Double *pTemp = new Double(1, iMaxRank, _pCoef->isComplex());
 			Poly *pPoly = poly_get(i);
-			for(size_t iRank = 0 ; iRank < iMaxRank ; iRank++)
+			for(int iRank = 0 ; iRank < iMaxRank ; iRank++)
 			{
 				pTemp->real_get()[iRank] = pR[iRank * size_get() + i];
 			}
 			if(isComplex())
 			{
-				for(size_t iRank = 0 ; iRank < iMaxRank ; iRank++)
+				for(int iRank = 0 ; iRank < iMaxRank ; iRank++)
 				{
 					pTemp->img_get()[iRank] = pI[iRank * size_get() + i];
 				}
@@ -426,9 +426,9 @@ namespace types
 		memset(piMaxLen, 0x00, sizeof(int) * m_iCols);
 
 		//find the largest row for each col
-		for(size_t iCols1 = 0 ; iCols1 < m_iCols ; iCols1++)
+		for(int iCols1 = 0 ; iCols1 < m_iCols ; iCols1++)
 		{
-			for(size_t iRows1 = 0 ; iRows1 < m_iRows ; iRows1++)
+			for(int iRows1 = 0 ; iRows1 < m_iRows ; iRows1++)
 			{
 				// FIXME : iLen shadow previous declaration
                 int iLen = 0;
@@ -469,10 +469,10 @@ namespace types
 			if(static_cast<int>(iLen + piMaxLen[iCols1]) >= _iLineLen && iLen != 0)
 			{//if the max length exceeded
 				wostringstream ostemp;
-				for(size_t iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
+				for(int iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
 				{
 					bool bMultiLine = false;
-					for(size_t iCols2 = iLastCol ; iCols2 < iCols1; iCols2++)
+					for(int iCols2 = iLastCol ; iCols2 < iCols1; iCols2++)
 					{
 						if(_bComplex)
 						{
@@ -551,9 +551,9 @@ namespace types
 			ostr << endl << L"         Column " << iLastCol + 1 << L" to " << m_iCols << endl << endl;
 		}
 		//print the end
-		for(size_t iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
+		for(int iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
 		{
-			for(size_t iCols2 = iLastCol ; iCols2 < m_iCols ; iCols2++)
+			for(int iCols2 = iLastCol ; iCols2 < m_iCols ; iCols2++)
 			{
 				if(_bComplex)
 				{
@@ -618,7 +618,7 @@ namespace types
 		list<wstring>::const_iterator it_Coef;
 		list<wstring> listExpR, listCoefR, listExpI, listCoefI;
 
-		for(size_t i = 0 ; i < m_iSize ; i++)
+		for(int i = 0 ; i < m_iSize ; i++)
 		{
 			wstring szExp, szCoef;
 
@@ -701,7 +701,7 @@ namespace types
 		list<wstring>::const_iterator it_Coef;
 		list<wstring> listExpR, listCoefR, listExpI, listCoefI;
 
-		for(size_t i = 0 ; i < m_iSize ; i++)
+		for(int i = 0 ; i < m_iSize ; i++)
 		{
 			wstring szExp, szCoef;
 
@@ -725,32 +725,32 @@ namespace types
 		return ostr.str();
 	}
 
-	bool MatrixPoly::insert(size_t _iRows, size_t _iCols, MatrixPoly *_poSource)
+	bool MatrixPoly::insert(int _iRows, int _iCols, MatrixPoly *_poSource)
 	{
-		size_t iRows = _poSource->rows_get();
-		size_t iCols = _poSource->cols_get();
+		int iRows = _poSource->rows_get();
+		int iCols = _poSource->cols_get();
 
 		if(_iRows + iRows > m_iRows || _iCols + iCols > m_iCols)
 		{
 			return false;
 		}
 
-		for(size_t iRow = 0 ; iRow < iRows ; iRow++)
+		for(int iRow = 0 ; iRow < iRows ; iRow++)
 		{
-			for(size_t iCol = 0 ; iCol < iCols ; iCol++)
+			for(int iCol = 0 ; iCol < iCols ; iCol++)
 			{
 				poly_set(_iRows + iRow, _iCols + iCol, _poSource->poly_get(iRow, iCol)->coef_get());
 			}
 		}
 		return true;
 	}
-	Double* MatrixPoly::extract_coef(size_t _iRank)
+	Double* MatrixPoly::extract_coef(int _iRank)
 	{
 		Double *pdbl	= new Double(m_iRows, m_iCols, m_bComplex);
 		double *pReal	= pdbl->real_get();
 		double *pImg	= pdbl->img_get();
 
-		for(size_t i = 0 ; i < m_iSize ; i++)
+		for(int i = 0 ; i < m_iSize ; i++)
 		{
 			Poly *pPoly = poly_get(i);
 
@@ -774,12 +774,12 @@ namespace types
 
 		return pdbl;
 	}
-	bool MatrixPoly::insert_coef(size_t _iRank, Double* _pCoef)
+	bool MatrixPoly::insert_coef(int _iRank, Double* _pCoef)
 	{
 		double *pReal	= _pCoef->real_get();
 		double *pImg	= _pCoef->img_get();
 
-		for(size_t i = 0 ; i < m_iSize ; i++)
+		for(int i = 0 ; i < m_iSize ; i++)
 		{
 			Poly *pPoly = poly_get(i);
 			if(pPoly->rank_get() <= _iRank)
@@ -815,7 +815,7 @@ namespace types
 			return false;
 		}
 
-		for(size_t i = 0 ; i < size_get() ; i++)
+		for(int i = 0 ; i < size_get() ; i++)
 		{
 			Poly* p1 = poly_get(i);
 			Poly* p2 = pM->poly_get(i);
@@ -833,19 +833,19 @@ namespace types
 		return !(*this == it);
 	}
 
-	GenericType* MatrixPoly::get_col_value(size_t _iPos)
+	GenericType* MatrixPoly::get_col_value(int _iPos)
 	{
 		MatrixPoly* pMP = NULL;
 		if(_iPos < cols_get())
 		{
-			size_t *piRank = new size_t[rows_get()];
-			for(size_t i = 0 ; i < rows_get() ; i++)
+			int *piRank = new int[rows_get()];
+			for(int i = 0 ; i < rows_get() ; i++)
 			{
 				piRank[i] = poly_get(i, _iPos)->rank_get();
 			}
 
 			pMP = new MatrixPoly(var_get(), rows_get(), 1, piRank);
-			for(size_t i = 0 ; i < rows_get() ; i++)
+			for(int i = 0 ; i < rows_get() ; i++)
 			{
 				pMP->poly_set(i, 0, poly_get(i, _iPos)->coef_get());
 			}

@@ -3,11 +3,11 @@
 * Copyright (C) 2006 - INRIA - Allan CORNET
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
 * ...
-*
+* 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at
+* are also available at    
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -70,7 +70,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
         iFile = static_cast<int>(in[2]->getAsDouble()->real_get()[0]);
     }
 
-    Double* pD = new Double(static_cast<size_t>(1), iSize);
+    Double* pD = new Double(1, iSize);
     pData = pD->real_get();
 
     C2F(mget)(&iFile, pData, &iSize, pstType, &iErr);
@@ -86,7 +86,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
         int iNewSize = (-iErr) - 1;
         if(iNewSize < iSize)
         {//read data are smaller then excepted size
-            Double* pNewD = new Double(static_cast<size_t>(1), iNewSize);
+            Double* pNewD = new Double(1, iNewSize);
             double* pNewData = pNewD->real_get();
             for(int i = 0 ; i < iNewSize ; i++)
             {

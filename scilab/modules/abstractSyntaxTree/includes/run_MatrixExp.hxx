@@ -25,10 +25,10 @@ void visitprivate(const MatrixExp &e)
     {
 //			int iRows = e.lines_get().size();
 //			int iCols	= -1;
-        size_t iRows = 0;
-        size_t iCols	= -1;
-        size_t iCurRow = -1;
-        size_t iCurCol = 0;
+        int iRows = 0;
+        int iCols	= -1;
+        int iCurRow = -1;
+        int iCurCol = 0;
         InternalType *poResult = NULL;
 
         std::list<MatrixLineExp *>::const_iterator	row;
@@ -132,12 +132,12 @@ void visitprivate(const MatrixExp &e)
             list<list<InternalType*> >::const_iterator it_ML;
             list<InternalType*>::const_iterator it_RL;
 
-            size_t iAddRow = 0;
+            int iAddRow = 0;
             iCurRow			= 0;
             iCurCol			= 0;
             for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
             {
-                size_t iAddCol = 0;
+                int iAddCol = 0;
                 for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
                 {
                     if((*it_RL)->isDouble() && (*it_RL)->getAsDouble()->isEmpty())

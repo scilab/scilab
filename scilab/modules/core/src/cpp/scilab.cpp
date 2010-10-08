@@ -106,7 +106,7 @@ void Add_WITH_DEMOS(void); //temporary variable
 void Add_All_Variables(void);
 
 void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex);
-void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, size_t _iRank, Double *_pdblReal);
+void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double *_pdblReal);
 void Add_Boolean_Constant(wstring _szName, bool _bBool);
 void Add_String_Constant(wstring _szName, const char* _pstString);
 
@@ -583,23 +583,23 @@ void Add_i(void)
 
 void Add_s(void)
 {
-    Double dblCoef(static_cast<size_t>(1), 2);
+    Double dblCoef(1,2);
     dblCoef.val_set(0, 0, 0);
     dblCoef.val_set(0, 1, 1);
 
-    Add_Poly_Constant(L"%s",L"s", static_cast<size_t>(2), &dblCoef);
+    Add_Poly_Constant(L"%s",L"s", 2, &dblCoef);
 }
 
 void Add_z(void)
 {
-    Double dblCoef(static_cast<size_t>(1), 2);
+    Double dblCoef(1,2);
     dblCoef.val_set(0, 0, 0);
     dblCoef.val_set(0, 1, 1);
 
-    Add_Poly_Constant(L"%z",L"z", static_cast<size_t>(2), &dblCoef);
+    Add_Poly_Constant(L"%z",L"z", 2, &dblCoef);
 }
 
-void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, size_t _iRank, Double *_pdbl)
+void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double *_pdbl)
 {
     types::MatrixPoly *pVar = new types::MatrixPoly(_szPolyVar, 1, 1, &_iRank);
     Poly *poPoly = pVar->poly_get(0,0);

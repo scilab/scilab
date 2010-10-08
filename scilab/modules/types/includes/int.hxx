@@ -39,24 +39,24 @@ namespace types
         virtual                 ~Int() {};
 
     public :
-        static Int*             createInt(size_t _iRows, size_t _iCols, IntType _iIntType);
-        static Int*             insert_new(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, Int* _poSource, bool _bAsVector);
+        static Int*             createInt(int _iRows, int _iCols, IntType _iIntType);
+        static Int*             insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Int* _poSource, bool _bAsVector);
 
         Int*                    getAsInt(void) { return this; }
         virtual IntType         getIntType() = 0;
         RealType                getType(void);
 
         virtual bool            data_set(Int* _pData) = 0;
-        virtual bool            data_set(size_t _iRows, size_t _iCols, long long _llData) = 0;
-        virtual bool            data_set(size_t _iPos, long long _llData) = 0;
-        virtual long long       data_get(size_t _iPos) = 0;
-        virtual long long       data_get(size_t _iRows, size_t _iCols) = 0;
+        virtual bool            data_set(int _iRows, int _iCols, long long _llData) = 0;
+        virtual bool            data_set(int _iPos, long long _llData) = 0;
+        virtual long long       data_get(int _iPos) = 0;
+        virtual long long       data_get(int _iRows, int _iCols) = 0;
         virtual void*           data_get() = 0;
-        virtual bool            resize(size_t _iNewRows, size_t _iNewCols) = 0;
-        virtual GenericType*    get_col_value(size_t _iPos) = 0;
-        virtual Int*            extract(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector) = 0;
-        virtual bool            insert(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-        bool                    append(size_t _iRows, size_t _iCols, Int *_poSource);
+        virtual bool            resize(int _iNewRows, int _iNewCols) = 0;
+        virtual GenericType*    get_col_value(int _iPos) = 0;
+        virtual Int*            extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) = 0;
+        virtual bool            insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+        bool                    append(int _iRows, int _iCols, Int *_poSource);
 
 
         virtual wstring         toString(int _iPrecision, int _iLineLen) = 0;
@@ -68,7 +68,7 @@ namespace types
         virtual wstring         getShortTypeStr() {return L"i";}
     protected :
         /* Only used by Int8,16, ... */
-        bool                    extract_size_get(size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector, size_t* _piRows, size_t* _piCols);
+        bool                    extract_size_get(int* _piMaxDim, int* _piDimSize, bool _bAsVector, int* _piRows, int* _piCols);
 
     protected :
         IntType                 m_iIntType;

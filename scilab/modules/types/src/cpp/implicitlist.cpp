@@ -379,7 +379,7 @@ namespace types
             }
             else //RealDouble
             {
-                Double* pD = new Double(static_cast<size_t>(1), m_iSize);
+                Double* pD = new Double(1, static_cast<int>(m_iSize));
                 extract_matrix(pD->real_get());
                 pIT = pD;
             }

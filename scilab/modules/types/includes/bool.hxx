@@ -23,18 +23,18 @@ namespace types
     {
     public :
                                 Bool(int _bReal);
-                                Bool(size_t _iRows, size_t _iCols);
-                                Bool(size_t _iRows, size_t _iCols, int **_piData);
+                                Bool(int _iRows, int _iCols);
+                                Bool(int _iRows, int _iCols, int **_piData);
                                 ~Bool();
 
 		Bool*                   clone();
 
 		/*data management*/
 		int*                    bool_get() const;
-		int                     bool_get(size_t _iRows, size_t _iCols) const;
+		int                     bool_get(int _iRows, int _iCols) const;
 
 		bool                    bool_set(int *_piData);
-		bool                    bool_set(size_t _iRows, size_t _iCols, int _iData);
+		bool                    bool_set(int _iRows, int _iCols, int _iData);
 
 
 		/*zero or one set filler*/
@@ -48,10 +48,10 @@ namespace types
         Bool*                   getAsBool(void);
 		wstring                 toString(int _iPrecision, int _iLineLen);
 
-		bool                    resize(size_t _iNewRows, size_t _iNewCols);
-		bool                    insert(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-		static Bool*            insert_new(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, Bool* _poSource, bool _bAsVector);
-		Bool*                   extract(size_t _iSeqCount, size_t* _piSeqCoord, size_t* _piMaxDim, size_t* _piDimSize, bool _bAsVector);
+		bool                    resize(int _iNewRows, int _iNewCols);
+		bool                    insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+		static Bool*            insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Bool* _poSource, bool _bAsVector);
+		Bool*                   extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
 		bool                    operator==(const InternalType& it);
 		bool                    operator!=(const InternalType& it);
@@ -67,7 +67,7 @@ namespace types
     private :
 		/*clean values array*/
 		void                    all_delete();
-		void                    CreateBool(size_t _iRows, size_t _iCols, int **_ibData);
+		void                    CreateBool(int _iRows, int _iCols, int **_ibData);
 
 
     private :

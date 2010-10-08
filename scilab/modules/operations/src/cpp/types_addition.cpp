@@ -136,7 +136,7 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 		{
 			(*_pDoubleOut)	= new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal);
 			iAddRealScalarToRealMatrix(
-					_pDouble1->real_get()[0],
+					_pDouble1->real_get()[0], 
 					_pDouble2->real_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
 					(*_pDoubleOut)->real_get());
 		}
@@ -171,7 +171,7 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 		{
 			(*_pDoubleOut)	= new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal);
 			iAddRealScalarToRealMatrix(
-					_pDouble2->real_get()[0],
+					_pDouble2->real_get()[0], 
 					_pDouble1->real_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
 					(*_pDoubleOut)->real_get());
 		}
@@ -206,7 +206,7 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 		{
 			(*_pDoubleOut)	= new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal);
 			iAddRealMatrixToRealMatrix(
-					_pDouble1->real_get(),
+					_pDouble1->real_get(), 
 					_pDouble2->real_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
 					(*_pDoubleOut)->real_get());
 		}
@@ -235,7 +235,7 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 	}
-	else
+	else 
 	{
 		return 1;
 	}
@@ -253,10 +253,10 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 	double *pInDblR			= _pDouble->real_get();
 	double *pInDblI			= _pDouble->img_get();
 
-	if(bScalar1)
+	if(bScalar1) 
 	{//cas balaise
-		size_t *piRank = new size_t[_pDouble->size_get()];
-		for(size_t i = 0 ; i < _pDouble->size_get() ; i++)
+		int *piRank = new int[_pDouble->size_get()];
+		for(int i = 0 ; i < _pDouble->size_get() ; i++)
 		{
 			piRank[i] = _pPoly->poly_get(0)->rank_get();
 		}
@@ -267,7 +267,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 			(*_pPolyOut)->complex_set(true);
 		}
 
-		for(size_t i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
+		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(0);
 			Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
@@ -276,7 +276,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 
 			pOutPolyR[0] = pInDblR[i] + pInPolyR[0];
 
-			for(size_t j = 1 ; j < pInPoly->rank_get() ; j++)
+			for(int j = 1 ; j < pInPoly->rank_get() ; j++)
 			{
 				pOutPolyR[j] = pInPolyR[j];
 			}
@@ -284,7 +284,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 
 		if((*_pPolyOut)->isComplex())
 		{
-			for(size_t i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
+			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
 				Poly *pInPoly			= _pPoly->poly_get(0);
 				Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
@@ -293,7 +293,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 
 				pOutPolyI[0] = (pInDblI != NULL ? pInDblI[i] : 0) + (pInPolyI != NULL ? pInPolyI[0] : 0);
 
-				for(size_t j = 1 ; j < pInPoly->rank_get() ; j++)
+				for(int j = 1 ; j < pInPoly->rank_get() ; j++)
 				{
 					pOutPolyI[j] = (pInPolyI != NULL ? pInPolyI[j] : 0);
 				}
@@ -307,7 +307,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 		//Copy the old one ( rank, size, ... but not coefficients
 		**_pPolyOut = *_pPoly;
 
-		for(size_t i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
+		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(i);
 			Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
@@ -320,7 +320,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 		if(bComplex1 || bComplex2)
 		{
 			(*_pPolyOut)->complex_set(true);
-			for(size_t i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
+			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
 				Poly *pInPoly			= _pPoly->poly_get(i);
 				Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
@@ -337,7 +337,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 		//Create new Poly
 		**_pPolyOut = *_pPoly;
 
-		for(size_t i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
+		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(i);
 			Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
@@ -350,7 +350,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 		if(bComplex1 || bComplex2)
 		{
 			(*_pPolyOut)->complex_set(true);
-			for(size_t i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
+			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
 				Poly *pInPoly			= _pPoly->poly_get(i);
 				Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
@@ -365,7 +365,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 	{
 		return 1;
 	}
-	return 0;
+	return 0;	
 }
 
 int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPolyOut)
@@ -379,17 +379,17 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 	bool bComplex2 			= _pPoly2->isComplex();
 	bool bScalar1				= _pPoly1->rows_get() == 1 && _pPoly1->cols_get() == 1;
 	bool bScalar2				= _pPoly2->rows_get() == 1 && _pPoly2->cols_get() == 1;
-	//3 cases :
+	//3 cases : 
 	//size(p1) == size(P2)
 	if(_pPoly1->rows_get() == _pPoly2->rows_get() && _pPoly1->cols_get() == _pPoly2->cols_get())
 	{
-		size_t *pRank	= new size_t[_pPoly1->size_get()];
-		size_t *pRank1	= new size_t[_pPoly1->size_get()];
-		size_t *pRank2	= new size_t[_pPoly2->size_get()];
+		int *pRank	= new int[_pPoly1->size_get()];
+		int *pRank1	= new int[_pPoly1->size_get()];
+		int *pRank2	= new int[_pPoly2->size_get()];
 
 		_pPoly1->rank_get(pRank1);
 		_pPoly2->rank_get(pRank2);
-		for(size_t i = 0 ; i < _pPoly1->size_get() ; i++)
+		for(int i = 0 ; i < _pPoly1->size_get() ; i++)
 		{
 			pRank[i] = Max(pRank1[i], pRank2[i]);
 		}
@@ -402,7 +402,7 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 
 		if(bComplex1 == false && bComplex2 == false)
 		{
-			for(size_t i = 0 ; i < _pPoly1->size_get() ; i++)
+			for(int i = 0 ; i < _pPoly1->size_get() ; i++)
 			{
 				iAddRealPolyToRealPoly(
 					_pPoly1->poly_get(i)->coef_get()->real_get(), pRank1[i],
@@ -412,7 +412,7 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 		}
 		else if(bComplex1 == false && bComplex2 == true)
 		{
-			for(size_t i = 0 ; i < _pPoly1->size_get() ; i++)
+			for(int i = 0 ; i < _pPoly1->size_get() ; i++)
 			{
 				iAddRealPolyToComplexPoly(
 					_pPoly1->poly_get(i)->coef_get()->real_get(), pRank1[i],
@@ -422,7 +422,7 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 		}
 		else if(bComplex1 == true && bComplex2 == false)
 		{
-			for(size_t i = 0 ; i < _pPoly1->size_get() ; i++)
+			for(int i = 0 ; i < _pPoly1->size_get() ; i++)
 			{
 				iAddRealPolyToComplexPoly(
 					_pPoly2->poly_get(i)->coef_get()->real_get(), pRank2[i],
@@ -432,7 +432,7 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 		}
 		else if(bComplex1 == true && bComplex2 == true)
 		{
-			for(size_t i = 0 ; i < _pPoly1->size_get() ; i++)
+			for(int i = 0 ; i < _pPoly1->size_get() ; i++)
 			{
 				iAddComplexPolyToComplexPoly(
 					_pPoly1->poly_get(i)->coef_get()->real_get(), _pPoly1->poly_get(i)->coef_get()->img_get(), pRank1[i],
@@ -446,14 +446,14 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 	}
 	else if(bScalar1)
 	{//size(p1) == 1
-		size_t *pRank	= new size_t[_pPoly2->size_get()];
-		size_t *pRank1	= new size_t[_pPoly2->size_get()];
-		size_t *pRank2	= new size_t[_pPoly2->size_get()];
-		memset(pRank1, 0x00, _pPoly2->size_get() * sizeof(size_t));
+		int *pRank	= new int[_pPoly2->size_get()];
+		int *pRank1	= new int[_pPoly2->size_get()];
+		int *pRank2	= new int[_pPoly2->size_get()];
+		memset(pRank1, 0x00, _pPoly2->size_get() * sizeof(int));
 
 		_pPoly1->rank_get(pRank1);
 		_pPoly2->rank_get(pRank2);
-		for(size_t i = 0 ; i < _pPoly2->size_get() ; i++)
+		for(int i = 0 ; i < _pPoly2->size_get() ; i++)
 		{
 			pRank[i] = Max(pRank1[0], pRank2[i]);
 		}
@@ -468,7 +468,7 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 		Double *pCoef1	= _pPoly1->poly_get(0)->coef_get();
 		double *p1R			= pCoef1->real_get();
 		double *p1I			= pCoef1->img_get();
-		for(size_t i = 0 ; i < _pPoly2->size_get() ; i++)
+		for(int i = 0 ; i < _pPoly2->size_get() ; i++)
 		{
 			Double *pCoef2	= _pPoly2->poly_get(i)->coef_get();
 			double *p2R			= pCoef2->real_get();
@@ -478,26 +478,26 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 			double *pRR			= pCoefR->real_get();
 			double *pRI			= pCoefR->img_get();
 
-			for(size_t j = 0 ; j < Min(pRank1[0], pRank2[i]) ; j++)
+			for(int j = 0 ; j < Min(pRank1[0], pRank2[i]) ; j++)
 			{
 				pRR[j] = p1R[j] + p2R[j];
 			}
 
 			double *pTemp = (pRank1[0] > pRank2[i] ? p1R : p2R);
-			for(size_t j = Min(pRank1[0], pRank2[i]) ; j < Max(pRank1[0], pRank2[i]) ; j++)
+			for(int j = Min(pRank1[0], pRank2[i]) ; j < Max(pRank1[0], pRank2[i]) ; j++)
 			{
 				pRR[j] = pTemp[j];
 			}
 
 			if((*_pPolyOut)->isComplex())
 			{
-				for(size_t j = 0 ; j < Min(pRank1[0], pRank2[i]) ; j++)
+				for(int j = 0 ; j < Min(pRank1[0], pRank2[i]) ; j++)
 				{
 					pRI[j] = (p1I == NULL ? 0 : p1I[j]) + (p2I == NULL ? 0 : p2I[j]);
 				}
 
 				double *pTemp = (pRank1[0] > pRank2[i] ? p1I : p2I);
-				for(size_t j = Min(pRank1[0], pRank2[i]) ; j < Max(pRank1[0], pRank2[i]); j++)
+				for(int j = Min(pRank1[0], pRank2[i]) ; j < Max(pRank1[0], pRank2[i]); j++)
 				{
 					pRI[j] = pTemp == NULL ? 0 : pTemp[j];
 				}
@@ -510,14 +510,14 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 	}
 	else if(bScalar2)
 	{//size(p2) == 1
-		size_t *pRank	= new size_t[_pPoly1->size_get()];
-		size_t *pRank1	= new size_t[_pPoly1->size_get()];
-		size_t *pRank2	= new size_t[_pPoly1->size_get()];
-		memset(pRank2, 0x00, _pPoly1->size_get() * sizeof(size_t));
+		int *pRank	= new int[_pPoly1->size_get()];
+		int *pRank1	= new int[_pPoly1->size_get()];
+		int *pRank2	= new int[_pPoly1->size_get()];
+		memset(pRank2, 0x00, _pPoly1->size_get() * sizeof(int));
 
 		_pPoly1->rank_get(pRank1);
 		_pPoly2->rank_get(pRank2);
-		for(size_t i = 0 ; i < _pPoly1->size_get() ; i++)
+		for(int i = 0 ; i < _pPoly1->size_get() ; i++)
 		{
 			pRank[i] = Max(pRank1[i], pRank2[0]);
 		}
@@ -533,7 +533,7 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 		double *p2R			= pCoef2->real_get();
 		double *p2I			= pCoef2->img_get();
 
-		for(size_t i = 0 ; i < _pPoly1->size_get() ; i++)
+		for(int i = 0 ; i < _pPoly1->size_get() ; i++)
 		{
 			Double *pCoef1	= _pPoly1->poly_get(i)->coef_get();
 			double *p1R			= pCoef1->real_get();
@@ -543,26 +543,26 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 			double *pRR			= pCoefR->real_get();
 			double *pRI			= pCoefR->img_get();
 
-			for(size_t j = 0 ; j < Min(pRank1[i], pRank2[0]) ; j++)
+			for(int j = 0 ; j < Min(pRank1[i], pRank2[0]) ; j++)
 			{
 				pRR[j] = p1R[j] + p2R[j];
 			}
 
 			double *pTemp = (pRank1[i] > pRank2[0] ? p1R : p2R);
-			for(size_t j = Min(pRank1[i], pRank2[0]) ; j < Max(pRank1[i], pRank2[0]) ; j++)
+			for(int j = Min(pRank1[i], pRank2[0]) ; j < Max(pRank1[i], pRank2[0]) ; j++)
 			{
 				pRR[j] = pTemp[j];
 			}
 
 			if((*_pPolyOut)->isComplex())
 			{
-				for(size_t j = 0 ; j < Min(pRank1[i], pRank2[0]) ; j++)
+				for(int j = 0 ; j < Min(pRank1[i], pRank2[0]) ; j++)
 				{
 					pRI[j] = (p1I == NULL ? 0 : p1I[j]) + (p2I == NULL ? 0 : p2I[j]);
 				}
 
 				double *pTemp = (pRank1[i] > pRank2[0] ? p1I : p2I);
-				for(size_t j = Min(pRank1[i], pRank2[0]) ; j < Max(pRank1[i], pRank2[0]); j++)
+				for(int j = Min(pRank1[i], pRank2[0]) ; j < Max(pRank1[i], pRank2[0]); j++)
 				{
 					pRI[j] = pTemp == NULL ? 0 : pTemp[j];
 				}
@@ -598,9 +598,9 @@ int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut
 		(*_pStringOut)  = new String(_pString2->rows_get(), _pString2->cols_get());
 		int iCommonLen	=	(int)wcslen(_pString1->string_get(0,0));
 
-		for(size_t i = 0 ; i < _pString2->rows_get() ; i++)
+		for(int i = 0 ; i < _pString2->rows_get() ; i++)
 		{
-			for(size_t j = 0 ; j < _pString2->cols_get() ; j++)
+			for(int j = 0 ; j < _pString2->cols_get() ; j++)
 			{
 				int iLen	= (int)wcslen(_pString2->string_get(i, j));
 				wchar_t* psz = new wchar_t[iLen + iCommonLen + 1];
@@ -617,9 +617,9 @@ int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut
 		(*_pStringOut)  = new String(_pString1->rows_get(), _pString1->cols_get());
 		int iCommonLen	=	(int)wcslen(_pString2->string_get(0,0));
 
-		for(size_t i = 0 ; i < _pString1->rows_get() ; i++)
+		for(int i = 0 ; i < _pString1->rows_get() ; i++)
 		{
-			for(size_t j = 0 ; j < _pString1->cols_get() ; j++)
+			for(int j = 0 ; j < _pString1->cols_get() ; j++)
 			{
 				int iLen = (int)wcslen(_pString1->string_get(i, j));
 				wchar_t* psz = new wchar_t[iLen + iCommonLen + 1];
@@ -636,9 +636,9 @@ int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut
 	else if(_pString1->rows_get() == _pString2->rows_get() && _pString1->cols_get() == _pString2->cols_get())
 	{//concat pL with pR element wise
 		(*_pStringOut) = new String(_pString1->rows_get(), _pString1->cols_get());
-		for(size_t i = 0 ; i < _pString1->rows_get() ; i++)
+		for(int i = 0 ; i < _pString1->rows_get() ; i++)
 		{
-			for(size_t j = 0 ; j < _pString1->cols_get() ; j++)
+			for(int j = 0 ; j < _pString1->cols_get() ; j++)
 			{
 				int iLenL	= (int)wcslen(_pString1->string_get(i, j));
 				int iLenR	= (int)wcslen(_pString2->string_get(i, j));
