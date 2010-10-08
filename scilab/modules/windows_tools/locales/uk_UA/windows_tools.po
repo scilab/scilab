@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2010-06-29 12:45+0000\n"
+"PO-Revision-Date: 2010-08-17 13:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -102,6 +102,9 @@ msgstr "Будь ласка, перевірте вашу команду powershe
 
 msgid "Powershell 1.0 not found."
 msgstr "Не виявлено Powershell 1.0."
+
+msgid "Scilab Console"
+msgstr "Консоль Scilab"
 
 msgid "see help"
 msgstr "див. довідку"

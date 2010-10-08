@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ )
  * Copyright (C) DIGITEO - Allan CORNET - 2009
  * 
- * This file is released into the public domain
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
  */
 #include "stack-c.h"
 #include "Scierror.h"

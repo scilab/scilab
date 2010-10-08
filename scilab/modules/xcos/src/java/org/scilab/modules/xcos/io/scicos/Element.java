@@ -12,7 +12,7 @@
 
 package org.scilab.modules.xcos.io.scicos;
 
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabType;
 
 /**
  * Define the methods used by any *Element to read/write Scicos elements.

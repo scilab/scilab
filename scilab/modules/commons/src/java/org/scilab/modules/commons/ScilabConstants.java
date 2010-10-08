@@ -26,8 +26,15 @@ public class ScilabConstants {
     
     /**
      * The tmp directory
+     * This code used to be System.getenv("TMPDIR").
+     * However, this was failing with Javasci to due architecture constraints
+     * Javasci (Java) => Call_scilab (C) => Scilab engine (C) 
+     * => Java VM (graphics, xcos, etc).
+     * In this case, the Java VM is started by Javasci. 
+     * Since, the TMPDIR env variable is set by Call_Scilab (the second step),
+     * the environnement in the Java world has not TMPDIR
      */
-    public static final File TMPDIR = new File(System.getenv("TMPDIR"));
+    public static final File TMPDIR = new File(ScilabCommons.getTMPDIR());
     
     /**
      * The SCI directory (Scilab root directory)
@@ -44,4 +51,5 @@ public class ScilabConstants {
     
     /** This class is a static singleton, thus it must not be instantiated */
     protected ScilabConstants() { }
+
 }

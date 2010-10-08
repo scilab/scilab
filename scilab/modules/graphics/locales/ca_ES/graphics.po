@@ -1005,6 +1005,9 @@ msgstr "Número de color"
 msgid "Colormap"
 msgstr "Mapa de colors"
 
+msgid "Common X axis"
+msgstr ""
+
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 "Les modificacions de coordenades només es poden aplicar a objectes eix.\n"
@@ -1089,6 +1092,9 @@ msgstr "Finestra gràfica número %d"
 msgid "Graphics"
 msgstr "Gràfics"
 
+msgid "Graphics with 2 different Y-scales"
+msgstr ""
+
 msgid "Gray"
 msgstr "Gris"
 
@@ -1134,11 +1140,17 @@ msgstr "Error intern: Hi ha un bucle a graduate1\n"
 msgid "Jet"
 msgstr "Jet"
 
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr ""
+
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Feu clic amb el botó esquerra en una corba per crear un datatip, el botó "
 "dret obre el menú contextual"
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1206,6 +1218,9 @@ msgstr "Rosa"
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Envieu l'error a dev@lists.scilab.org\n"
 
+msgid "Plot with 3 different Y scales at shared X"
+msgstr ""
+
 msgid "Problem with sciInitFontContext\n"
 msgstr "Hi ha hagut un problema amb sciInitFontContext\n"
 
@@ -1214,6 +1229,9 @@ msgstr "Arc de Sant Martí"
 
 msgid "Redraw all datatips"
 msgstr "Torna a dibuixar tots els datatips"
+
+msgid "Scale n1"
+msgstr ""
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "El mòdul gràfic de Scilab no està instal·lat.\n"
@@ -1229,6 +1247,9 @@ msgstr "Primavera"
 
 msgid "Summer"
 msgstr "Estiu"
+
+msgid "Tcl/Tk interface not installed."
+msgstr ""
 
 #, c-format
 msgid "The font size must be greater than %d.\n"

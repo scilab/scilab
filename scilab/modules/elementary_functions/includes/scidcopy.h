@@ -29,6 +29,6 @@
  * @param incy  
  * @return <ReturnValue>
  */
-ELEMENTARY_FUNCTIONS_IMPEXP int C2F(scidcopy)(int *n, long long *dx, int *incx, long long *dy, int *incy);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(scidcopy)(int *n, const long long *dx, int *incx, long long *dy, int *incy);
 
 #endif /* __SCIDCOPY_H__ */

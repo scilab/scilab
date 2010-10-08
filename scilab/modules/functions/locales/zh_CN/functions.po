@@ -89,10 +89,6 @@ msgid "%s: The function has not been built for profiling"
 msgstr "%s：该函数没有被为 profiling 生成。"
 
 #, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr "%s：没有文件名为 %s.sci 存在于库目录 %s 中。\n"
-
-#, c-format
 msgid "%s: Undefined variable %s.\n"
 msgstr "%s：没定义的变量 %s。\n"
 
@@ -111,6 +107,10 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个标量。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"

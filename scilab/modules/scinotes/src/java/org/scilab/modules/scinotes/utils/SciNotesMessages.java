@@ -238,7 +238,7 @@ public class SciNotesMessages {
     public static final String ABSOLUTE = Messages.gettext("Absolute");
     public static final String RELATIVE = Messages.gettext("Relative");
     public static final String GO_TO_LINE = Messages.gettext("Go to line: ");
-    public static final String NUMEROTATION = Messages.gettext("Numerotation");
+    public static final String NUMEROTATION = Messages.gettext("Numeration");
     public static final String ALPHABETIC_ORDER = Messages.gettext("Alphabetic order");
     public static final String NATURAL_ORDER = Messages.gettext("Natural order");
     public static final String ORDER = Messages.gettext("Order");

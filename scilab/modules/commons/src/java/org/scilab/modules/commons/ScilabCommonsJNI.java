@@ -45,4 +45,5 @@ public class ScilabCommonsJNI {
   }
 
   public final static native String getSCIHOME();
+  public final static native String getTMPDIR();
 }

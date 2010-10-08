@@ -15,25 +15,16 @@ package org.scilab.modules.ui_data.variableeditor;
 
 import org.scilab.modules.gui.tab.Tab;
 
-
 /**
  * Interface for Variable editor.
  */
-
 public interface SimpleVariableEditor extends Tab {
 
-	/**
-	 * Set data to be displayed
-	 * @param data : the data displayed in JTable
-	 */
-	void setData(Object[][] data);
-
-	/**
-	 * Sets the value in the cell at row and col to value. 
-	 * @param value : the new value
-	 * @param row : the row whose value is to be changed
-	 * @param col : the column whose value is to be changed
-	 */
-	void setValueAt(Object value, int row, int col);
-
+    /**
+     * Set data to be displayed
+     * @param name the variable name
+     * @param type the variable type
+     * @param data : the data displayed in JTable
+     */
+    void setData(String name, String type, Object[][] data);
 }

@@ -41,17 +41,14 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應在區間 [%d, %d] 內\n"
 
-msgid "// Begin Session : "
-msgstr "//紀錄開始 "
-
-msgid "// End Session   : "
-msgstr "//紀錄結束 "
-
 msgid "Apr"
 msgstr "四月"
 
 msgid "Aug"
 msgstr "八月"
+
+msgid "Begin Session : "
+msgstr ""
 
 msgid "Dec"
 msgstr "十二月"
@@ -88,9 +85,6 @@ msgstr "十月"
 
 msgid "Sat"
 msgstr "星期六"
-
-msgid "Scilab history_manager module not installed.\n"
-msgstr "未安裝 Scilab history_manager 模組\n"
 
 msgid "Sep"
 msgstr "九月"

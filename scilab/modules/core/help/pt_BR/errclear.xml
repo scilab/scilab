@@ -28,20 +28,26 @@
     <para>Limpa a ação (manipulador de erros) conectada ao erro de tipo
     <literal>n</literal>.</para>
 
-    <para>Se <literal>n</literal> é positivo, é o número do erro limpo; caso
-    contrário, todos os erros são limpos (caso padrão).</para>
+    <para>Se <literal>n</literal> &gt; 0 é positivo, é o número do erro limpo;
+    caso contrário (n &lt;= 0), todos os erros são limpos (caso
+    padrão).</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
 
-    <programlisting role = "example"><![CDATA[
-a=1;
-b=undefinedvariable+a;
+    <programlisting role="example">a = 1;
+b = undefinedvariable + a;
 lasterror()
-b=undefinedvariable+a;
+b = undefinedvariable + a;
 errclear()
 lasterror()
-]]></programlisting>
+b = undefinedvariable + a;
+errclear(5) 
+lasterror()
+b = undefinedvariable + a;
+errclear(4)
+lasterror()</programlisting>
   </refsection>
 
   <refsection>

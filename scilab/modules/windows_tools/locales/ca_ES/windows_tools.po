@@ -104,5 +104,8 @@ msgstr "Verifiqueu la vostra ordre de Powershell sense l'Scilab."
 msgid "Powershell 1.0 not found."
 msgstr "No s'ha trobat el Powershell 1.0."
 
+msgid "Scilab Console"
+msgstr ""
+
 msgid "see help"
 msgstr "Veieu l'ajuda"

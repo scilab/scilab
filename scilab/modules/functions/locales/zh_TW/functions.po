@@ -89,10 +89,6 @@ msgid "%s: The function has not been built for profiling"
 msgstr "%s: 此函數尚未被特徵建立"
 
 #, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr "%s: 沒有檔名叫做 %s.sci 在函式庫的的目錄 %s 下.\n"
-
-#, c-format
 msgid "%s: Undefined variable %s.\n"
 msgstr "%s: %s 變數未被定義.\n"
 
@@ -111,6 +107,10 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"

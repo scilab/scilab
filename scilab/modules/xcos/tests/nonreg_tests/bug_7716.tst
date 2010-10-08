@@ -1,0 +1,40 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Clément DAVID
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH XCOS -->
+//
+// <-- Non-regression test for bug 7761 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=7716
+//
+// <-- Short Description -->
+// Block inter-functions were not loaded after using the xcosPal API and then
+// starting Xcos.
+
+exec(SCI + "/modules/scicos/macros/scicos_scicos/standard_define.sci", -1);
+exec(SCI + "/modules/scicos/macros/scicos_scicos/scicos_model.sci", -1);
+exec(SCI + "/modules/scicos/macros/scicos_scicos/scicos_graphics.sci", -1);
+exec(SCI + "/modules/scicos/macros/scicos_scicos/scicos_block.sci", -1);
+
+// loading only the SUM_f block
+exec(SCI + "/modules/scicos_blocks/macros/Linear/SUM_f.sci", -1);
+
+scs_m = SUM_f("define");
+export_to_hdf5(TMPDIR + "/sum.h5", "scs_m");
+pal = xcosPal("SamplePal");
+blockstyle = struct();
+pal = xcosPalAddBlock(pal, TMPDIR + "/sum.h5", SCI + "/modules/xcos/images/palettes/SUM_f.png", blockstyle);
+xcosPalExport(pal, TMPDIR + "/mypal.h5");
+
+clear all; // emulate a scilab restart
+xcosPalAdd(TMPDIR + "/mypal.h5");
+
+xcos();
+
+if ~isdef("BIGSOM_f") then pause, end
+

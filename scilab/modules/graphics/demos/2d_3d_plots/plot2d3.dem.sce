@@ -1,22 +1,30 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-my_handle             = scf(100001);
-clf(my_handle,"reset");
-demo_viewCode("plot2d3.dem.sce");
+function demo_plot2d3()
 
-// DEMO START
+  my_handle             = scf(100001);
+  clf(my_handle,"reset");
+  demo_viewCode("plot2d3.dem.sce");
 
-my_plot_desc          = "plot2d3 (vbar plot)";
-my_handle.figure_name = my_plot_desc;
+  // DEMO START
 
-n = 32-1;
-t = (0:n)/n;
-u = sin(80*%pi*t)+sin(100*%pi*t);
+  my_plot_desc          = "plot2d3 (vbar plot)";
+  my_handle.figure_name = my_plot_desc;
 
-plot2d3('enn',1,abs(fft(u,-1))'/n);
-xtitle(my_plot_desc,"t","f(t)");
+  n = 32-1;
+  t = (0:n)/n;
+  u = sin(80*%pi*t)+sin(100*%pi*t);
 
-// DEMO END
+  plot2d3('enn',1,abs(fft(u,-1))'/n);
+  xtitle(my_plot_desc,"t","f(t)");
+
+  // DEMO END
+  
+endfunction
+
+demo_plot2d3();
+clear demo_plot2d3;

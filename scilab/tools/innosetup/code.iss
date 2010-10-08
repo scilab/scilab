@@ -93,14 +93,21 @@ function DoTasksJustAfterInstall: Boolean;
 
     end;
 //------------------------------------------------------------------------------
+function haveProgramFiles64(): Boolean;
+    var
+        strEnv : String;
+    begin
+        strEnv := GetEnv('ProgramW6432');
+        result := DirExists(strEnv);
+    end;
+//------------------------------------------------------------------------------
 function isWow64(): Boolean;
     begin
         result := false;
-         if RegKeyExists(HKLM, 'SOFTWARE\Wow6432Node') then
-            begin
-                result := true;
-            end;
-
+        if (RegKeyExists(HKLM, 'SOFTWARE\Wow6432Node') = true) and (haveProgramFiles64() = true) then
+          begin
+              result := true;
+          end;
     end;
 //------------------------------------------------------------------------------
 function GetJREVersion(): String;

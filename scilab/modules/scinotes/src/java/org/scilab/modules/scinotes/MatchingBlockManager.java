@@ -66,6 +66,13 @@ public class MatchingBlockManager {
     }
 
     /**
+     * @return the scanner used by thhis manager
+     */
+    public MatchingBlockScanner getScanner() {
+        return scanner;
+    }
+
+    /**
      * Set the painter for the matching open/close keywords (such as '('/')' or '['/']').
      * The contents between the matchings is highlighted.
      * @param filled true if a filled rectangle must be used to highlight

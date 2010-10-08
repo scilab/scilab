@@ -208,7 +208,9 @@ function display_truck_trajectory(state)
   rect=matrix(a.data_bounds',-1,1)
   xpoly(rect([1 3 3 1]),rect([2,2,4,4]),'lines',1)
   C=build_truck()
-  Cinit=[];Cend=[];Cinter=[];
+  Cinit=[];
+  Cend=[];
+  Cinter=[];
   for k=1:size(C,'*')
     Cinit=[Cinit copy(C(k))];
     Cinter=[Cinter,copy(C(k))];

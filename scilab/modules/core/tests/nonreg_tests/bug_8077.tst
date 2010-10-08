@@ -1,0 +1,22 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- Non-regression test for bug 8077 -->
+//
+// <-- JVM NOT MANDATORY -->
+// 
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=8077
+//
+// <-- Short Description -->
+// browsevar, scinotes, xcos functions were not disabled in -nwni mode on Linux and MacOS X.
+
+if execstr("browsevar()", "errcatch") <> 999 then pause,end
+if execstr("editvar()", "errcatch") <> 999 then pause,end
+if execstr("scinotes()", "errcatch") <> 999 then pause,end
+if execstr("xcos()", "errcatch") <> 999 then pause,end
+

@@ -53,6 +53,10 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: No s'ha pogut exportar %s a %s.\n"
 
 #, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: No s'ha pogut exportar la paleta a hdf5.\n"
 
@@ -63,6 +67,10 @@ msgstr "%s: No s'ha pogut generar la imatge %s.\n"
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
 msgstr "%s: No s'ha pogut generar la icona de la paleta: Ja existeix %s.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to import xcos file %s.\n"
@@ -237,6 +245,10 @@ msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un vector de "
 "text.\n"
 
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+
 msgid "?"
 msgstr "?"
 
@@ -316,6 +328,12 @@ msgstr "S'està compilant, el resultat es desarà a la variable 'scicos_cpr'"
 msgid "Compile"
 msgstr "Compila"
 
+msgid "Compiling"
+msgstr ""
+
+msgid "Computing"
+msgstr ""
+
 msgid "Continuous time systems"
 msgstr "Sistemes temporals continus"
 
@@ -364,8 +382,14 @@ msgstr ""
 "S'ha modificat el diagrama des de l'últim que es va desar.<br/> El voleu "
 "desar?"
 
+msgid "Diff. States"
+msgstr ""
+
 msgid "Discontinuities"
 msgstr "Discontinuitats"
+
+msgid "Discrete"
+msgstr "Discret"
 
 msgid "Discrete time systems"
 msgstr "Sistemes temporals discrets"
@@ -390,6 +414,12 @@ msgstr "Elèctric"
 
 msgid "Enable"
 msgstr "Activa"
+
+msgid "Equations"
+msgstr ""
+
+msgid "Error"
+msgstr ""
 
 msgid "Event handling"
 msgstr "Tractaments d'esdeveniments"
@@ -418,9 +448,8 @@ msgstr "S'està exportant"
 msgid "Export to XML"
 msgstr "Exporta a XML"
 
-#, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "Ha fallat l'exportació: %s\n"
+msgid "Extended"
+msgstr ""
 
 msgid "Failed to load Diagram"
 msgstr "No s'ha pogut carregar el diagrama"
@@ -436,6 +465,18 @@ msgstr "Temps total d'integració"
 
 msgid "Fit diagram to view"
 msgstr "Ajusta el diagrama a la vista"
+
+msgid "Fix derivatives"
+msgstr ""
+
+msgid "Fix states"
+msgstr ""
+
+msgid "Fixed parameters"
+msgstr ""
+
+msgid "Fixed variables"
+msgstr ""
 
 msgid "Flip"
 msgstr "Volteja"
@@ -455,6 +496,9 @@ msgstr "Format"
 msgid "From %s"
 msgstr "De %s"
 
+msgid "Generate Jacobian"
+msgstr ""
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr "S'està generant el SuperBlock, espereu ..."
 
@@ -463,6 +507,9 @@ msgstr "S'està generant el codi C per al SuperBlock"
 
 msgid "Get infos"
 msgstr "Informació"
+
+msgid "Global"
+msgstr ""
 
 msgid "Goto %s"
 msgstr "Vés a %s"
@@ -497,6 +544,12 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importa de XML"
 
+msgid "Initial computing method"
+msgstr ""
+
+msgid "Input"
+msgstr ""
+
 msgid "Insert"
 msgstr "Insereix"
 
@@ -530,6 +583,9 @@ msgstr "S'està carregant el diagrama"
 msgid "Loading palettes"
 msgstr "S'està carregant les paletes"
 
+msgid "Loading the block"
+msgstr ""
+
 msgid "Loading user defined palettes"
 msgstr "S'està carregant les paletes d'usuari"
 
@@ -556,6 +612,9 @@ msgstr "Inverteix"
 
 msgid "Modelica initialize"
 msgstr "Inicialitza la modelica"
+
+msgid "Modelica settings"
+msgstr ""
 
 msgid "Move Down"
 msgstr "Avall"
@@ -596,8 +655,14 @@ msgstr "Nom de la paleta"
 msgid "Palettes"
 msgstr "Paletes"
 
+msgid "Parameter embedding"
+msgstr ""
+
 msgid "Per block execution trace and Debug block calls"
 msgstr "Crides a traces i depuracions per execucions de blocs"
+
+msgid "Please take a look into the Scilab console"
+msgstr ""
 
 msgid "Port & Subsystem"
 msgstr "Port i subsistema"
@@ -620,8 +685,17 @@ msgstr "Escalat en temps real"
 msgid "Recent Files"
 msgstr "Fitxers recents"
 
+msgid "Reduced"
+msgstr ""
+
 msgid "Region to superblock"
 msgstr "Regió a superbloc"
+
+msgid "Relaxed parameters"
+msgstr ""
+
+msgid "Relaxed variables"
+msgstr ""
 
 msgid "Remove"
 msgstr "Elimina"
@@ -708,6 +782,12 @@ msgstr "S'està realitzant la simulació"
 msgid "Sinks"
 msgstr "Destins"
 
+msgid "Solve"
+msgstr ""
+
+msgid "Solver"
+msgstr ""
+
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Solver 0 (CVODE) - 100 (IDA)"
 
@@ -788,11 +868,9 @@ msgstr ""
 "Ha de ser la versió %s ; Hi ha la versió %s ."
 
 msgid ""
-"Unable to load the HDF5 library. \n"
+"Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
-"No s'ha pogut carregar la llibreria HDF5. \n"
-"Ha de ser la versió %s ; Hi ha la versió %s ."
 
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -800,6 +878,9 @@ msgid ""
 msgstr ""
 "No s'ha pogut carregar la llibreria jgraphx. \n"
 "Ha de ser la versió %s ; Hi ha la versió %s ."
+
+msgid "Unable to load the native HDF5 library."
+msgstr ""
 
 #, c-format
 msgid "Unable to open %s"
@@ -811,6 +892,12 @@ msgstr "No s'ha pogut fer la simulació %s"
 
 msgid "Unknown Diagram Version : "
 msgstr "Diagrama de versió desconegut: "
+
+msgid "Unknowns"
+msgstr ""
+
+msgid "Unknowns not equals to Equations"
+msgstr ""
 
 msgid "Untitled"
 msgstr "Sense títol"
@@ -854,6 +941,10 @@ msgstr "WinTitle"
 msgid "Window title"
 msgstr "Títol de la finestra"
 
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
+msgstr ""
+
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr "L'argument d'entrada \"%s\" és incorrecte: No és un camí vàlid.\n"
 
@@ -887,8 +978,49 @@ msgstr ""
 msgid "Zero crossing detection"
 msgstr "Detecció d'encreuament pel zero"
 
+msgid "comment"
+msgstr ""
+
 msgid "control port must be connected to command port"
 msgstr "Un port de control ha d'estar connectat a un port de comanda"
 
+msgid "fixed"
+msgstr ""
+
+msgid "id"
+msgstr ""
+
+msgid "initial"
+msgstr ""
+
+msgid "kind"
+msgstr ""
+
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+
+msgid "max"
+msgstr ""
+
 msgid "maximum step size (0 means no limit)"
 msgstr "mida màxima del pas (0 indica que no hi ha límit)"
+
+msgid "min"
+msgstr ""
+
+msgid "model is not valid"
+msgstr ""
+
+msgid "name"
+msgstr ""
+
+msgid "nominal"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "weight"
+msgstr ""

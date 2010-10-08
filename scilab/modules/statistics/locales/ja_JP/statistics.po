@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-04 15:36+0000\n"
+"PO-Revision-Date: 2010-09-17 13:08+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -229,6 +229,10 @@ msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "解が探索範囲の上限 %f よりも大きくなっています.\n"
 
 #, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr "探索範囲の上限 %s よりも大きな解が得られました\n"
+
+#, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr "解が探索範囲の下限 %f よりも小さくなっています.\n"
 
@@ -287,25 +291,6 @@ msgstr "F,Dfn と Dfd"
 # File: sci_gateway/c/sci_cdffnc.c, line: 41
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr "F,Dfn,Dfd と Pnonc"
-
-#
-# File: sci_gateway/c/sci_cdfbet.c, line: 83
-# File: sci_gateway/c/sci_cdfbin.c, line: 82
-# File: sci_gateway/c/sci_cdfchi.c, line: 75
-# File: sci_gateway/c/sci_cdfchn.c, line: 78
-# File: sci_gateway/c/sci_cdffnc.c, line: 85
-# File: sci_gateway/c/sci_cdfgam.c, line: 80
-# File: sci_gateway/c/sci_cdfnbn.c, line: 83
-# File: sci_gateway/c/sci_cdfnor.c, line: 80
-# File: sci_gateway/c/sci_cdfpoi.c, line: 78
-# File: sci_gateway/c/sci_cdft.c, line: 71
-#, c-format
-msgid ""
-"Input argument %c is out of range.\n"
-"Bound exceeded: %f\n"
-msgstr ""
-"入力引数 %c は範囲外です。\n"
-"境界線を想定します: %f\n"
 
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"

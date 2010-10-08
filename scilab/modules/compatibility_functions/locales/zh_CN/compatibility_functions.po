@@ -161,6 +161,14 @@ msgid "%s: Wrong size for ''%s'': Vector expected.\n"
 msgstr "%s：“%s”的大小出错：应该为向量。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
 msgstr "%s：输入参数 #%d 的大小出错：应该为 Matlab 字符串向量。\n"
@@ -220,6 +228,10 @@ msgstr "%s：输入参数 #%d 的值出错：应该为“%s”，“%s”或“%
 msgid ""
 "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为一个正整数值。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"

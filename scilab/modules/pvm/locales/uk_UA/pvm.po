@@ -38,17 +38,9 @@ msgid "%s: Unknown or not yet implemented type.\n"
 msgstr "%s: невідомий або ще не реалізований тип.\n"
 
 #, c-format
-msgid "%s: Unknown type or not yet implemented.\n"
-msgstr "%s: невідомий або ще не реалізований тип.\n"
-
-#, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилковий перший параметр: слід використовувати «%s» або «%s».\n"
-
-#, c-format
-msgid "%s: work space (stacksize) is too small.\n"
-msgstr "%s: занадто малий робочий простір (розмір стека).\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"

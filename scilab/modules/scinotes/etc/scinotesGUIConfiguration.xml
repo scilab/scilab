@@ -27,7 +27,7 @@
       <menuitem action="ExitAction" label="Exit"/>
     </menu>
 
-    <menu label="Edition" mnemonic="E">
+    <menu label="Edit" mnemonic="E">
       <menuitem action="UndoAction" label="Undo"/>
       <menuitem action="RedoAction" label="Redo"/>
       <separator/>
@@ -37,6 +37,7 @@
       <menuitem action="DeleteAction" label="Delete"/>
       <separator/>
       <menuitem action="SelectAllAction" label="Select All"/>
+      <menuitem action="SelectBlockAction" label="Select current block"/>
       <separator/>
       <menuitem action="TabifyAction" label="Shift Right"/>
       <menuitem action="UnTabifyAction" label="Shift Left"/>
@@ -53,6 +54,7 @@
       <menuitem action="FindAction" label="Find/Replace"/>
       <menuitem action="FindNextAction" label="Find Next"/>
       <menuitem action="FindPreviousAction" label="Find Previous"/>
+      <menuitem action="IncrementalSearchAction" label="Incremental Search"/>
       <separator/>
       <menuitem action="SetAnchorAction" label="Set anchor"/>
       <menuitem action="RemoveAnchorAction" label="Remove anchor"/>
@@ -74,7 +76,7 @@
       <menuitem action="AutoIndentAction" label="Enable Auto Reformat"/>
       <menuitem action="HighlightCurrentLineAction" label="Highlight current line"/>
       <separator/>
-      <menuitem action="SetColorsAction" label="Set Colors"/>
+      <menuitem action="SetColorsAction" label="Set Colors ..."/>
       <menuitem action="SetFontAction" label="Set Font"/>
       <menuitem action="ResetFontAction" label="Reset default font"/>
       <separator/>
@@ -109,11 +111,12 @@
     <menuitem action="SciNotesCompletionAction" label="Complete"/>
     <separator/>
     <menuitem action="SelectAllAction" label="Select All"/>
+    <menuitem action="SelectBlockInPopupAction" label="Select current block"/>
     <menuitem action="CopyAction" label="Copy"/>
     <menuitem action="CutAction" label="Cut"/>
     <menuitem action="PasteAction" label="Paste"/>
     <separator/>
-    <menuitem action="HelpOnKeywordAction" label="Help on ;Help on selection"/>
+    <menuitem action="HelpOnKeywordInPopupAction" label="Help on ;Help on selection"/>
     <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
     <menuitem action="OpenURLAction" label="Open URL"/>
   </RightClickMenu>
@@ -141,6 +144,7 @@
     <button action="PasteAction" tooltip="Paste" icon="edit-paste.png"/>
     <separator/>
     <button action="FindAction" tooltip="Find/Replace" icon="edit-find-replace.png"/>
+    <button action="IncrementalSearchAction" tooltip="Incremental Search" icon="16x16/actions/go-bottom.png"/>
     <separator/>
     <button action="ExecuteFileIntoScilabAction" tooltip="Execute" icon="media-playback-start.png"/>
   </ToolBar>

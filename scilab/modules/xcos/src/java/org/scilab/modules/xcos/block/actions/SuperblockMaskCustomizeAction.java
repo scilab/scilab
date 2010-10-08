@@ -16,6 +16,8 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -37,11 +39,12 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -89,8 +92,9 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
 				.getSelectionCell();
-
-		CustomizeFrame frame = new CustomizeFrame();
+		block.createChildDiagram(); // assert that diagram is an xcos one
+		
+		CustomizeFrame frame = new CustomizeFrame(block.getChild());
 		CustomizeFrame.CustomizeFrameModel model = frame.getController()
 				.getModel();
 		model.setBlock(block);
@@ -104,7 +108,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	 */
 	// CSOFF: ClassDataAbstractionCoupling
 	private class CustomizeFrame extends JFrame {
-		private CustomizeFrameControler controler;
+		private final CustomizeFrameControler controler;
 
 		private javax.swing.JPanel buttonBlob;
 		private javax.swing.JButton cancelButton;
@@ -127,15 +131,17 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		private javax.swing.JPanel validationPanel;
 		private javax.swing.JTable varCustomizeTable;
 		private javax.swing.JPanel varSettings;
+		private String defaultVariableName;
 
 		/**
 		 * Constructor
+		 * @param superBlockDiagram the diagram
 		 */
-		public CustomizeFrame() {
+		public CustomizeFrame(SuperBlockDiagram superBlockDiagram) {
 			setTitle(XcosMessages.MASK_TITLE);
 			setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 			controler = new CustomizeFrameControler();
-			initComponents();
+			initComponents(superBlockDiagram);
 		}
 
 		/**
@@ -147,10 +153,11 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 		/**
 		 * Construct the UI and install the listeners.
+		 * @param superBlockDiagram the diagram
 		 */
 		// CSOFF: JavaNCSS
 		// CSOFF: MagicNumber
-		private void initComponents() {
+		private void initComponents(SuperBlockDiagram superBlockDiagram) {
 
 			/* Construct the components */
 			mainPanel = new javax.swing.JPanel();
@@ -290,12 +297,19 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			/* Evaluate the context and set up the variable name selection */
 			TableColumn vars = varCustomizeTable.getColumnModel().getColumn(1);
 			JComboBox validVars = new JComboBox();
-			XcosDiagram graph = (XcosDiagram) getGraph(null);
-			Map<String, String> context = graph.evaluateContext();
+			Map<String, String> context = superBlockDiagram.evaluateContext();
 			for (String key : context.keySet()) {
 				validVars.addItem(key);
 			}
 			vars.setCellEditor(new DefaultCellEditor(validVars));
+			
+			insert.setEnabled(validVars.getModel().getSize() != 0);
+			final Iterator<String> it = context.keySet().iterator();
+			if (it.hasNext()) {
+				defaultVariableName = it.next();
+			} else {
+				defaultVariableName = "";
+			}
 		}
 		// CSON: JavaNCSS
 		// CSON: MagicNumber
@@ -392,6 +406,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				/* We have one content that is not a variable : Window Title */
 				final int nbOfVar = valuesModel.size() - 1;
 
+				
+				
 				final String[][] values = new String[nbOfVar][1];
 				final String[][] varNames = new String[nbOfVar][1];
 				final String[][] varDesc = new String[nbOfVar + 1][1];
@@ -410,28 +426,51 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 							.get(i + 1)).get(2);
 
 					/*
-					 * reconstruct pol fields.
+					 * reconstruct pol fields. The default types of the values.
 					 * 
 					 * This field indicate the dimension of each entry (-1.0 is
 					 * automatic).
+					 * FIXME: type the data there instead of using the generic "pol".
 					 */
 					polFields.add(new ScilabString("pol"));
 					polFields.add(new ScilabDouble(-1.0));
 				}
 
 				/* Construct fields from data */
-				ScilabList exprs = new ScilabList(
-					Arrays.asList(
-						new ScilabString(values),
-						new ScilabList(
-							Arrays.asList(
-								new ScilabString(varNames),
-								new ScilabString(varDesc),
-								polFields
+				final ScilabList exprs;
+				if (nbOfVar == 0) {
+					/* Set default values */
+					exprs = new ScilabList(
+						Arrays.asList(
+							new ScilabDouble(),
+							new ScilabList(
+								Arrays.asList(
+									new ScilabDouble(),
+									new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME),
+									new ScilabList(
+										Arrays.asList(
+											new ScilabDouble()
+										)
+									)
+								)
 							)
 						)
-					)
-				);
+					);
+				} else {
+					/* set the values */
+					exprs = new ScilabList(
+						Arrays.asList(
+							new ScilabString(values),
+							new ScilabList(
+								Arrays.asList(
+									new ScilabString(varNames),
+									new ScilabString(varDesc),
+									polFields)
+							)
+						)
+					);
+				}
+				
 
 				getBlock().setExprs(exprs);
 				
@@ -540,7 +579,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		 * Implement the action listeners for the frame
 		 */
 		private class CustomizeFrameControler {
-			private CustomizeFrameModel model;
+			private final CustomizeFrameModel model;
 
 			private final ActionListener cancelActionListener = new ActionListener() {
 				@Override
@@ -689,7 +728,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					model.customizeTableModel.addRow(new Object[] {
-							model.customizeTableModel.getRowCount() + 1, "",
+							model.customizeTableModel.getRowCount() + 1, defaultVariableName,
 							"", true });
 					varCustomizeTable.changeSelection(model.customizeTableModel
 							.getRowCount() - 1, 1, false, false);
@@ -715,6 +754,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 					moveUp.setEnabled(!isFirst);
 					moveDown.setEnabled(!isLast);
+					
+					delete.setEnabled(!isFirst);
 				}
 			};
 
@@ -786,20 +827,4 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		}
 	}
 	// CSON: ClassDataAbstractionCoupling
-
-	/**
-	 * Ease the development of the UI (debug).
-	 * 
-	 * @param args
-	 *            Unused
-	 */
-	public static void main(String[] args) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new SuperblockMaskCustomizeAction(null).new CustomizeFrame()
-					.setVisible(true);
-			}
-		});
-	}
 }

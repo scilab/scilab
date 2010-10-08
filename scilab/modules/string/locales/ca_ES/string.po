@@ -105,6 +105,10 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
 
@@ -351,6 +355,10 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s o %s.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser '%s' o '%s'.\n"
@@ -406,13 +414,6 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
 "caràcters, no un patró regexp.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''r'',''l'' "
-"or ''c''.\n"
 
 #, c-format
 msgid ""

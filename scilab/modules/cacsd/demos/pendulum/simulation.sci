@@ -10,7 +10,7 @@
 function [xdot]=ivpd(t,x)
 //ydot=ivpd(t,y) non linear equations of the pendulum
 // y=[x;d(x)/dt,teta,d(teta)/dt].
-// mb, mc, l must be predefined 
+// mb, mc, l must be predefined
 //!
 g=9.81;
 u=0

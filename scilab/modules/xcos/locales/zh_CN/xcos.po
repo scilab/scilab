@@ -51,6 +51,10 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr ""
 
@@ -60,6 +64,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to import data from %s"
 msgstr ""
 
 #, c-format
@@ -194,6 +202,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr ""
 
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+
 msgid "?"
 msgstr ""
 
@@ -271,6 +283,12 @@ msgstr ""
 msgid "Compile"
 msgstr "编译"
 
+msgid "Compiling"
+msgstr ""
+
+msgid "Computing"
+msgstr ""
+
 msgid "Continuous time systems"
 msgstr ""
 
@@ -317,7 +335,13 @@ msgid ""
 "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 
+msgid "Diff. States"
+msgstr ""
+
 msgid "Discontinuities"
+msgstr ""
+
+msgid "Discrete"
 msgstr ""
 
 msgid "Discrete time systems"
@@ -344,6 +368,12 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
+msgid "Equations"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
 msgid "Event handling"
 msgstr ""
 
@@ -367,9 +397,8 @@ msgstr ""
 msgid "Export to XML"
 msgstr "导出到XML"
 
-#, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "导出失败：%s\n"
+msgid "Extended"
+msgstr ""
 
 msgid "Failed to load Diagram"
 msgstr "载入图表失败"
@@ -385,6 +414,18 @@ msgstr ""
 
 msgid "Fit diagram to view"
 msgstr "适合视图"
+
+msgid "Fix derivatives"
+msgstr ""
+
+msgid "Fix states"
+msgstr ""
+
+msgid "Fixed parameters"
+msgstr ""
+
+msgid "Fixed variables"
+msgstr ""
 
 msgid "Flip"
 msgstr "翻转"
@@ -404,6 +445,9 @@ msgstr "格式"
 msgid "From %s"
 msgstr ""
 
+msgid "Generate Jacobian"
+msgstr ""
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr ""
 
@@ -412,6 +456,9 @@ msgstr ""
 
 msgid "Get infos"
 msgstr "获取信息"
+
+msgid "Global"
+msgstr ""
 
 msgid "Goto %s"
 msgstr ""
@@ -441,6 +488,12 @@ msgstr "隐式的数据输出端口必须跟隐式的数据数入端口相连"
 
 msgid "Import from XML"
 msgstr "从XML导入"
+
+msgid "Initial computing method"
+msgstr ""
+
+msgid "Input"
+msgstr ""
 
 msgid "Insert"
 msgstr ""
@@ -475,6 +528,9 @@ msgstr ""
 msgid "Loading palettes"
 msgstr ""
 
+msgid "Loading the block"
+msgstr ""
+
 msgid "Loading user defined palettes"
 msgstr ""
 
@@ -500,6 +556,9 @@ msgid "Mirror"
 msgstr ""
 
 msgid "Modelica initialize"
+msgstr ""
+
+msgid "Modelica settings"
 msgstr ""
 
 msgid "Move Down"
@@ -541,7 +600,13 @@ msgstr ""
 msgid "Palettes"
 msgstr "组件盘"
 
+msgid "Parameter embedding"
+msgstr ""
+
 msgid "Per block execution trace and Debug block calls"
+msgstr ""
+
+msgid "Please take a look into the Scilab console"
 msgstr ""
 
 msgid "Port & Subsystem"
@@ -563,7 +628,16 @@ msgstr ""
 msgid "Recent Files"
 msgstr ""
 
+msgid "Reduced"
+msgstr ""
+
 msgid "Region to superblock"
+msgstr ""
+
+msgid "Relaxed parameters"
+msgstr ""
+
+msgid "Relaxed variables"
 msgstr ""
 
 msgid "Remove"
@@ -649,6 +723,12 @@ msgstr ""
 msgid "Sinks"
 msgstr ""
 
+msgid "Solve"
+msgstr ""
+
+msgid "Solver"
+msgstr ""
+
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr ""
 
@@ -723,13 +803,16 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Unable to load the HDF5 library. \n"
+"Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
+msgstr ""
+
+msgid "Unable to load the native HDF5 library."
 msgstr ""
 
 #, c-format
@@ -741,6 +824,12 @@ msgid "Unable to simulate %s"
 msgstr ""
 
 msgid "Unknown Diagram Version : "
+msgstr ""
+
+msgid "Unknowns"
+msgstr ""
+
+msgid "Unknowns not equals to Equations"
 msgstr ""
 
 msgid "Untitled"
@@ -785,6 +874,10 @@ msgstr ""
 msgid "Window title"
 msgstr ""
 
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
+msgstr ""
+
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 
@@ -813,8 +906,49 @@ msgstr ""
 msgid "Zero crossing detection"
 msgstr ""
 
+msgid "comment"
+msgstr ""
+
 msgid "control port must be connected to command port"
 msgstr "控制端口必须跟命令端口相连"
 
+msgid "fixed"
+msgstr ""
+
+msgid "id"
+msgstr ""
+
+msgid "initial"
+msgstr ""
+
+msgid "kind"
+msgstr ""
+
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+
+msgid "max"
+msgstr ""
+
 msgid "maximum step size (0 means no limit)"
+msgstr ""
+
+msgid "min"
+msgstr ""
+
+msgid "model is not valid"
+msgstr ""
+
+msgid "name"
+msgstr ""
+
+msgid "nominal"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "weight"
 msgstr ""

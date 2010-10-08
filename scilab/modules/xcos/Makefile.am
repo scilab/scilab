@@ -116,6 +116,7 @@ INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
 
 libscixcos_la_LIBADD =  \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/jvm/libscijvm.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
@@ -382,6 +383,7 @@ images/palettes/SWITCH_f.png \
 images/palettes/Switch.png \
 images/palettes/TANBLK_f.png \
 images/palettes/TCLSS.png \
+images/palettes/TEXT_f.png \
 images/palettes/TIME_DELAY.png \
 images/palettes/TIME_f.png \
 images/palettes/TKSCALE.png \

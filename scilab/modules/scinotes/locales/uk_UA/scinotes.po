@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2010-04-13 09:23+0000\n"
+"PO-Revision-Date: 2010-09-15 15:41+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -44,9 +44,24 @@ msgstr ""
 "значень.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
+"значень або рядок «readonly».\n"
+
+#, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю з рядків.\n"
+
+msgid "... file with echo"
+msgstr "…файл з виведенням"
+
+msgid "... file with no echo"
+msgstr "…файл без виведення"
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr "…позначене з виведенням;…до курсора з виведенням"
 
 msgid "?"
 msgstr "Довідка"
@@ -54,17 +69,47 @@ msgstr "Довідка"
 msgid "About"
 msgstr "Про програму"
 
+msgid "Absolute"
+msgstr "Абсолютний"
+
 msgid "All"
 msgstr "Всі"
 
-msgid "Are you sure that you want to close Text Editor ?"
-msgstr "Ви справді бажаєте завершити роботу текстового редактора?"
+msgid "Alphabetic order"
+msgstr "За абеткою"
+
+msgid "Anchor's name: "
+msgstr "Назва прив’язки: "
+
+msgid "Anchor: "
+msgstr "Прив’язка: "
+
+msgid "Anchors"
+msgstr "Прив’язки"
+
+msgid "Are you sure that you want to close SciNotes ?"
+msgstr "Ви справді бажаєте завершити роботу SciNotes?"
 
 msgid "Auto (Default)"
 msgstr "Автоматично (типово)"
 
+msgid "Auto-completion on (,&quot;,..."
+msgstr "Автодоповнення для (, &quot;…"
+
+msgid "Auto-completion on if,function,..."
+msgstr "Автодоповнення для if, function…"
+
+msgid "Background Color"
+msgstr "Колір тла"
+
 msgid "Backward"
 msgstr "Назад"
+
+msgid "Binary file: read-only mode"
+msgstr "Бінарний файл: режим лише читання"
+
+msgid "Bold"
+msgstr "Жирний"
 
 msgid "Cancel"
 msgstr "Скасувати"
@@ -81,6 +126,15 @@ msgstr "Змінити колір"
 msgid "Change Colors"
 msgstr "Змінити кольори"
 
+msgid "Circular search"
+msgstr "Циклічний пошук"
+
+msgid "Clone and close tab in a new window"
+msgstr "Клонувати і закрити вкладку у новому вікні"
+
+msgid "Clone tab in a new window"
+msgstr "Клонувати вкладку у новому вікні"
+
 msgid "Close"
 msgstr "Закрити"
 
@@ -90,20 +144,35 @@ msgstr "Закрити всі"
 msgid "Close All But This"
 msgstr "Закрити всі крім поточної"
 
+msgid "Code Navigator"
+msgstr "Навігація кодом"
+
+msgid "Color"
+msgstr "Колір"
+
 msgid "Colorization canceled"
 msgstr "Розфарбування скасовано"
 
 msgid "Colorize"
-msgstr "Розфарбування"
+msgstr "Розфарбовування"
 
 msgid "Comment Selection"
 msgstr "Закоментувати позначене"
 
-msgid "Continue?"
+msgid "Complete"
+msgstr "Завершити"
+
+msgid "Continue ?"
 msgstr "Продовжити?"
 
 msgid "Copy"
 msgstr "Копіювати"
+
+msgid "Copy selection in a new tab"
+msgstr "Копіювати позначене до нової вкладки"
+
+msgid "Copy tab in new window"
+msgstr "Копіювати вкладку у окреме вікно"
 
 msgid "Copyright (c)"
 msgstr "Авторські права належать ©"
@@ -117,6 +186,9 @@ msgstr "Не вдалося виявити консолі або InterpreterMana
 msgid "Could not find the temporary file."
 msgstr "Не вдалося виявити тимчасовий файл."
 
+msgid "Cursor Color"
+msgstr "Колір курсора"
+
 msgid "Cut"
 msgstr "Вирізати"
 
@@ -125,6 +197,9 @@ msgstr "Типовий"
 
 msgid "Delete"
 msgstr "Вилучити"
+
+msgid "Detach tab in new window"
+msgstr "Від’єднати вкладку у окреме вікно"
 
 msgid "Direction"
 msgstr "Напрямок"
@@ -135,15 +210,6 @@ msgstr "Документ"
 msgid "Edit"
 msgstr "Правка"
 
-msgid "Edit selection in a new tab"
-msgstr "Редагувати позначене у новій вкладці"
-
-msgid "Editor"
-msgstr "Редактор"
-
-msgid "Editor error"
-msgstr "Помилка редактора"
-
 msgid "Enable Auto Reformat"
 msgstr "Увімкнути автоматичну зміну формату"
 
@@ -153,11 +219,20 @@ msgstr "Кодування"
 msgid "Enter line number"
 msgstr "Введіть номер рядка"
 
+msgid "Error while reading the String"
+msgstr "Помилка під час спроби читання рядка"
+
 msgid "Evaluate Selection"
 msgstr "Обчислити позначене"
 
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr "Обчислити позначене з виведенням;Обчислити до курсора з виведенням"
+
+msgid "Evaluate from beginning..."
+msgstr "Обчислити з початку…"
+
 msgid "Execute"
-msgstr "Виконання"
+msgstr "Виконати"
 
 msgid "Execute File Into Scilab"
 msgstr "Виконати файл у Scilab"
@@ -189,26 +264,62 @@ msgstr "Знайти:"
 msgid "Forward"
 msgstr "Вперед"
 
+msgid "Functions"
+msgstr "Функції"
+
+msgid "Generate comments for help_from_sci"
+msgstr "Створити записи коментарів для help_from_sci"
+
+msgid "Generate help from function"
+msgstr "Створити довідку на основі функції"
+
+msgid "Go to line: "
+msgstr "Перейти до рядка: "
+
+msgid "Go to next anchor"
+msgstr "Перейти до наступної прив’язки"
+
+msgid "Go to previous anchor"
+msgstr "Перейти до попередньої прив’язки"
+
 msgid "Goto line"
 msgstr "Перейти до рядка"
 
 msgid "Help about '"
 msgstr "Довідка щодо «"
 
-msgid "Help about a selected text"
+msgid "Help on ;Help on selection"
+msgstr "Довідка щодо ;Довідка щодо позначеного"
+
+msgid "Help on selected text or keyword"
+msgstr "Довідка щодо позначеного фрагмента тексту або слова"
+
+msgid "Help on the current keyword"
+msgstr "Довідка щодо поточного ключового слова"
+
+msgid "Help on the selected text"
 msgstr "Довідка щодо позначеного фрагмента тексту"
+
+msgid "Help on typing"
+msgstr "Довідка при введенні"
 
 msgid "Highlight current line"
 msgstr "Підсвічувати поточний рядок"
 
+msgid "Ignore"
+msgstr "Ігнорувати"
+
 msgid "Invalid regular expression : %s"
 msgstr "Некоректний формальний вираз: %s"
+
+msgid "Italic"
+msgstr "Курсив"
 
 msgid "Line Endings"
 msgstr "Завершення рядків"
 
-msgid "Line Numbers"
-msgstr "Номери рядків"
+msgid "Line numbering;Off;Normal;Whereami compatible"
+msgstr "Нумерація рядків;Вимкнено;Звичайна;Сумісна з Whereami"
 
 msgid "Load Into Scilab"
 msgstr "Завантажити до Scilab"
@@ -219,14 +330,35 @@ msgstr "Завантаження"
 msgid "Mac Classic (CR)"
 msgstr "Класичний для Mac (CR)"
 
+msgid "Mail to "
+msgstr "Надіслати листа до "
+
+msgid "Natural order"
+msgstr "Природній порядок"
+
 msgid "New"
 msgstr "Створити"
 
 msgid "Next tab"
 msgstr "Наступна вкладка"
 
-msgid "No text selected"
-msgstr "Не позначено жодного фрагмента тексту"
+msgid "No Line Numbering"
+msgstr "Без нумерації рядків"
+
+msgid "No split"
+msgstr "Без поділу"
+
+msgid "No text selected."
+msgstr "Не позначено жодного фрагмента тексту."
+
+msgid "No text to execute."
+msgstr "Немає тексту для обробки."
+
+msgid "Normal Line Numbering"
+msgstr "Звичайна нумерація рядків"
+
+msgid "Numerotation"
+msgstr "Нумерація"
 
 msgid "Ok"
 msgstr "Гаразд"
@@ -234,14 +366,52 @@ msgstr "Гаразд"
 msgid "Open"
 msgstr "Відкрити"
 
+msgid "Open URL"
+msgstr "Відкрити URL"
+
+msgid "Open file in ...;Add a directory;Remove last directory"
+msgstr "Відкрити файл у…;Додати каталог;Вилучити останній каталог"
+
+msgid "Open function source file"
+msgstr "Відкрити файл коду функції"
+
+msgid "Open in the navigator the URL "
+msgstr "Відкрити у програмі для перегляду адресу "
+
+msgid "Open source"
+msgstr "Відкрити файл з кодом"
+
+msgid "Open source file of the function:"
+msgstr "Відкрити початковий код функції:"
+
+msgid "Open the source of the macro "
+msgstr "Відкрити початковий код макросу "
+
 msgid "Options"
 msgstr "Параметри"
+
+msgid "Order"
+msgstr "Порядок"
+
+msgid "Overwrite"
+msgstr "Перезаписати"
 
 msgid "Page Setup"
 msgstr "Налаштування сторінки"
 
 msgid "Paste"
 msgstr "Вставити"
+
+msgid "Preferences"
+msgstr "Параметри"
+
+msgid "Press CTRL and move the mouse over the link to activate it"
+msgstr ""
+"Натисніть клавішу CTRL і пересуньте вказівник миші на посилання, щоб задіяти "
+"його"
+
+msgid "Preview"
+msgstr "Перегляд"
 
 msgid "Previous tab"
 msgstr "Попередня вкладка"
@@ -252,6 +422,9 @@ msgstr "Надрукувати"
 msgid "Print Preview"
 msgstr "Перегляд друку"
 
+msgid "Read-only mode"
+msgstr "Режим тільки для читання"
+
 msgid "Recent Files"
 msgstr "Нещодавні файли"
 
@@ -260,6 +433,21 @@ msgstr "Повторити"
 
 msgid "Regular expressions"
 msgstr "Формальні вирази"
+
+msgid "Relative"
+msgstr "Відносний"
+
+msgid "Reload"
+msgstr "Перезавантажити"
+
+msgid "Remove anchor"
+msgstr "Вилучити прив’язку"
+
+msgid "Remove trailing spaces"
+msgstr "Вилучати кінцеві пробіли"
+
+msgid "Remove trailing whitespaces"
+msgstr "Вилучити кінцеві пробіли"
 
 msgid "Replace"
 msgstr "Замінити"
@@ -279,6 +467,18 @@ msgstr "Замінити/Знайти"
 msgid "Reset default font"
 msgstr "Відновити типовий шрифт"
 
+msgid "Restart the search from the beginning"
+msgstr "Поновити пошук з початку"
+
+msgid "Restore files from your last SciNotes session ?"
+msgstr "Відкрити файли з вашого попереднього сеансу у SciNotes?"
+
+msgid "Restore opened files on start-up"
+msgstr "Відкривати попередні файли під час запуску"
+
+msgid "Restore the last sessions"
+msgstr "Відновлення попереднього сеансу"
+
 msgid "Save"
 msgstr "Зберегти"
 
@@ -287,6 +487,15 @@ msgstr "Зберегти всі"
 
 msgid "Save as"
 msgstr "Зберегти як"
+
+msgid "SciNotes"
+msgstr "SciNotes"
+
+msgid "SciNotes error"
+msgstr "Помилка SciNotes"
+
+msgid "SciNotes help"
+msgstr "Довідка SciNotes"
 
 msgid "Scilab"
 msgstr "Scilab"
@@ -299,12 +508,6 @@ msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимк�
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
 
-msgid "Scilab text editor"
-msgstr "Текстовий редактор Scilab"
-
-msgid "Scilab text editor help"
-msgstr "Довідка щодо текстового редактора Scilab"
-
 msgid "Scope"
 msgstr "Область"
 
@@ -312,7 +515,10 @@ msgid "Search"
 msgstr "Пошук"
 
 msgid "Select All"
-msgstr "Позначити все"
+msgstr "Вибрати все"
+
+msgid "Select current block"
+msgstr "Позначити поточний блок"
 
 msgid "Selected lines"
 msgstr "Позначені рядки"
@@ -323,14 +529,41 @@ msgstr "Вказати кольори"
 msgid "Set Font"
 msgstr "Вказати шрифт"
 
+msgid "Set an anchor"
+msgstr "Встановити прив’язку"
+
+msgid "Set anchor"
+msgstr "Встановити прив’язку"
+
+msgid "Settings"
+msgstr "Параметри"
+
 msgid "Shift Left"
 msgstr "Зсунути ліворуч"
 
 msgid "Shift Right"
 msgstr "Зсунути праворуч"
 
+msgid "Show the definition of the macro "
+msgstr "Показати місце визначення макросу "
+
 msgid "Show/Hide ToolBar"
 msgstr "Показати/Сховати панель інструментів"
+
+msgid "Source of '"
+msgstr "Джерело «"
+
+msgid "Split View;Off;Horizontally;Vertically"
+msgstr "Розділений перегляд;Вимкнено;Горизонтально;Вертикально"
+
+msgid "Split horizontally"
+msgstr "Розділити горизонтально"
+
+msgid "Split vertically"
+msgstr "Розділити вертикально"
+
+msgid "Strike Through"
+msgstr "Перекреслити"
 
 msgid "String %s not found"
 msgstr "Рядка %s не знайдено"
@@ -368,12 +601,18 @@ msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
 msgstr ""
-"Цей файл є занадто об’ємним. Краще скористатися пунктом «Виконати файл у "
+"Цей файл є занадто довгим. Краще скористатися командою «Завантажити до "
 "Scilab».\n"
-"Ви справді бажаєте завантажити цей файл?"
+"Ви справді бажаєте виконати обчислення?"
+
+msgid "Tools"
+msgstr "Інструменти"
 
 msgid "Uncomment Selection"
 msgstr "Зняти позначки коментаря з позначеного"
+
+msgid "Underline"
+msgstr "Підкреслити"
 
 msgid "Undo"
 msgstr "Вернути"
@@ -387,17 +626,23 @@ msgstr "Без назви "
 msgid "View"
 msgstr "Перегляд"
 
+msgid "Warning: the file has been modified by another program !"
+msgstr "Попередження: до файла було внесено зміни сторонньою програмою!"
+
+msgid "Whereami Line Numbering"
+msgstr "Нумерація рядків Whereami"
+
 msgid "Whole word"
 msgstr "Цілі слова"
+
+msgid "Window"
+msgstr "Вікно"
 
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
 msgid "Word Wrap"
 msgstr "Перенесення слів"
-
-msgid "Wrap search"
-msgstr "Циклічний пошук"
 
 msgid "You have passed the beginning of the document"
 msgstr "Перехід за початок документа"

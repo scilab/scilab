@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-23 11:10+0100\n"
-"PO-Revision-Date: 2010-04-30 08:36+0000\n"
-"Last-Translator: Sebastian_Sławski <Unknown>\n"
+"PO-Revision-Date: 2010-06-19 12:19+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-04 21:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -25,12 +24,12 @@ msgstr "%s: Wystąpił błąd: %s\n"
 msgid ""
 "%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
 msgstr ""
-"%s: Niezgodny argumenty wejściowe '#%d oraz '#%d': Oczekiwany ten sam "
+"%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: Oczekiwany ten sam "
 "rozmiar.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: Brak pamieci.\n"
+msgstr "%s: Brak pamięci.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d not expected.\n"
@@ -38,50 +37,52 @@ msgstr "%s: Niewłaściwa liczba argumentów wejściowych:%d nie oczekiwana.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Niewłaściwy rozmiar argumentu wejściowy #% d.\n"
+msgstr "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego #%d.\n"
+msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
 msgstr ""
-"%s: Zły typ argumentu wejściowego #%d: Oczekiwany typ rzeczywisty lub "
-"zespolony.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwany typ "
+"rzeczywisty lub zespolony.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwany łańcuch "
-"znaków.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr ""
-"%s: Zły typ argumentu wejściowego #%d: Oczekiwany wektor N-wymiarowy.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwany wektor N-"
+"wymiarowy.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
 msgstr ""
-"%s: Zły typ argumentu wejściowego #%d: Oczekiwana macierz typu int.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana macierz typu "
+"int.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d.\n"
-msgstr "%s: Nieprawidłowa wartość dla argumentu wejściowego #%d.\n"
+msgstr "%s: Nieprawidłowe wartości dla argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
 msgstr ""
-"%s: Błędne wartości argumentu wejściowegot #%d: Oczekiwano flagi FFTW.\n"
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: oczekiwano flagi "
+"FFTW.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: Nieprawidłowe wartości argumentu wejściowego #%d: Oczekiwana nieujemna "
-"wartość integer.\n"
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: oczekiwano "
+"nieujemnych wartości całkowitych.\n"
 
 #, c-format
 msgid "FFTW Library %s not found.\n"
@@ -91,7 +92,8 @@ msgid "FFTW Library not found.\n"
 msgstr "Biblioteki FFTW nie odnaleziono.\n"
 
 msgid "FFTW can't read wisdom."
-msgstr "Biblioteka FFTW nie może odczytać struktury."
+msgstr ""
+"Biblioteka FFTW nie może odczytać pliku optymalizacji (patrz fftw-wizdom)."
 
 msgid "Scilab FFTW module not installed.\n"
-msgstr "Nie zainstalowano w Scilab modułu FFTW.\n"
+msgstr "Modułu Scilab FFTW nie zainstalowano.\n"

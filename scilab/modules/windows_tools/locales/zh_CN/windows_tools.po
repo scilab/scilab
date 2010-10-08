@@ -91,5 +91,8 @@ msgstr ""
 msgid "Powershell 1.0 not found."
 msgstr ""
 
+msgid "Scilab Console"
+msgstr ""
+
 msgid "see help"
 msgstr "请参考帮助"

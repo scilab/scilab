@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -28,7 +28,9 @@
       <varlistentry>
         <term>H</term>
         <listitem>
-          <para>list (linear system <literal>syslin</literal>)</para>
+          <para>SISO linear system given by a transfer or a state
+          space representation (see:<link
+          linkend="syslin">syslin</link>).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,40 +43,49 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Gives the Evans root locus for a linear system in state-space or
-    transfer form H(s) (<literal>syslin</literal> list). This is the locus of the
-    roots of <literal>1+k*H(s)=1+k*N(s)/D(s)</literal>, in the complex plane. For a
-    selected sample of gains <literal>k &lt;= kmax</literal>, the imaginary part of
-    the roots of <literal>D(s)+k*N(s)</literal> is plotted vs the real part.</para>
-    <para>To obtain the gain at a given point of the locus you can simply execute
-    the following instruction :
-    <literal>k=-1/real(horner(h,[1,%i]*locate(1)))</literal> and click the desired
-    point on the root locus. If the coordinates of the selected point are in
-    the real 2 x 1 vector <literal>P=locate(1)</literal> this <literal>k</literal> solves
-    the equation <literal> k*N(w) + D(w) =0</literal> with
-    <literal>w=P(1)+%i*P(2)=[1,%i]*P</literal>.</para>
+    <para>
+    Gives the Evans root locus for a SISO linear system in state-space or
+    transfer form H(s) (<link linkend="syslin">syslin</link>). This is
+    the locus of the roots of
+    <literal>1+k*H(s)=1+k*N(s)/D(s)</literal>, in the complex
+    plane. For a selected sample of gains <literal>k &lt;=
+    kmax</literal>, the imaginary part of the roots of
+    <literal>D(s)+k*N(s)</literal> is plotted vs the real part.</para>
+    <para>To obtain the gain at a given point of the locus you can
+    activate the <link linkend="datatips">datatips</link> manager and
+    click the desired point on the root locus.
+   </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
-evans(H,100)
-P=3.0548543 - 8.8491842*%i;    //P=selected point
-k=-1/real(horner(H,P));
-Ns=H('num');Ds=H('den');
-roots(Ds+k*Ns)     //contains P as particular root
-// Another one
-clf();s=poly(0,'s');n=1+s;
-d=real(poly([-1 -2 -%i %i],'s'));
-evans(n,d,100);
-//
-clf();n=real(poly([0.1-%i 0.1+%i,-10],'s'));
-evans(n,d,80);
- ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+    H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+    clf();evans(H,100);sgrid()
+    [Ki,s]=kpure(H) // Gains that give pure imaginary closed loop poles
+    plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
+
+    [Kr,s]=krac2(H)
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../images/evans.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="sgrid">sgrid</link>
+      </member>
+      <member>
+        <link linkend="zgrid">zgrid</link>
+      </member>
       <member>
         <link linkend="kpure">kpure</link>
       </member>
@@ -82,7 +93,7 @@ evans(n,d,80);
         <link linkend="krac2">krac2</link>
       </member>
       <member>
-        <link linkend="locate">locate</link>
+        <link linkend="datatips">datatips</link>
       </member>
     </simplelist>
   </refsection>

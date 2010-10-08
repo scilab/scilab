@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-07-13 12:53+0000\n"
+"PO-Revision-Date: 2010-09-01 22:06+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -164,7 +164,7 @@ msgstr "%s: È stato trovato un ciclo in due ordini.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -1142,7 +1142,7 @@ msgid "Undefined operation for the given operands.\n"
 msgstr "C'è una operazione non definita per gli operandi forniti.\n"
 
 msgid "Undefined variable.\n"
-msgstr ""
+msgstr "Variabile non definita.\n"
 
 #, c-format
 msgid "Undefined variable: %s\n"

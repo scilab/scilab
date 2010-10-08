@@ -2,19 +2,21 @@
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2009 - DIGITEO
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 if with_modelica_compiler() then
 
-demopath = get_absolute_file_path("modelica_demos.dem.gateway.sce");
+  demopath = get_absolute_file_path("modelica_demos.dem.gateway.sce");
 
-subdemolist = ["Ball on a Platform"                       , "ModelicaBlocks/ball_platform.dem.sce"           ; ..
+  subdemolist = ["Ball on a Platform"                       , "ModelicaBlocks/ball_platform.dem.sce"           ; ..
                "Bouncing Ball     "                       , "ModelicaBlocks/modelica_bouncing_ball.dem.sce"  ; ..
                "Chaos Modelica"                           , "ModelicaBlocks/modelica_chaos.dem.sce"          ; ..
                "Hydraulics blocks"                        , "ModelicaBlocks/modelica_hydraulics.dem.sce"     ; ..
                "RLC circuit"                              , "ModelicaBlocks/modelica_rlc_circuit.dem.sce"  
               ];
 
-subdemolist(:,2) = demopath + subdemolist(:,2);
+  subdemolist(:,2) = demopath + subdemolist(:,2);
+  
+  clear demopath;
 
 end

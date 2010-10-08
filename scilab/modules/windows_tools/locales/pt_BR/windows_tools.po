@@ -101,5 +101,8 @@ msgstr "Por favor, verifique seu comando Powershell sem o Scilab."
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 não foi encontrado."
 
+msgid "Scilab Console"
+msgstr ""
+
 msgid "see help"
 msgstr "veja a ajuda"

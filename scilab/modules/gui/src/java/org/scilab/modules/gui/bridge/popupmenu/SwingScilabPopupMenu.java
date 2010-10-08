@@ -261,11 +261,11 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 			}
 			StringTokenizer strTok = new StringTokenizer(text[0], "|");
 			while (strTok.hasMoreTokens()) {
-				addItem(strTok.nextToken());
+				addItem(new SwingScilabPopupMenuItem(strTok.nextToken()));
 			}
 		} else {
 			for (int i = 0; i < text.length; i++) {
-				addItem(text[i]);
+				addItem(new SwingScilabPopupMenuItem(text[i]));
 			}
 		}
 
@@ -309,4 +309,38 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Class created as a workaround for bug: http://bugzilla.scilab.org/show_bug.cgi?id=7898
+	 * This bug is a Java bug: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4133743
+	 * 
+	 * This workaround has been proposed by a user on Java bug tracker.
+	 * 
+	 * The toString method will be used to display the elements, but because the class inherits its
+	 * equals method from Object instead of String, none of the elements are considered duplicates.
+	 * 
+	 */
+	private class SwingScilabPopupMenuItem {
+		
+		private String textOfItem;
+	    
+		/**
+		 * Constructor
+		 * @param text the text displayed in the item
+		 */
+		public SwingScilabPopupMenuItem(String text) {
+			textOfItem = text;
+	    }
+	    
+		/**
+		 * Overload Object toString() method
+		 * @return the item converted to String
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+	        return textOfItem;
+	    }
+	}
 }
+
+

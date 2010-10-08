@@ -47,6 +47,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
+#include "GiwsException.hxx"
+
 #ifndef _MSC_VER /* Defined anyway with Visual */
 #if !defined(byte)
 typedef signed char byte;
@@ -68,11 +70,13 @@ jmethodID voidopenVariableEditorComplexjobjectArray__jobjectArray__jstringID; //
 jmethodID voidopenVariableEditorStringjobjectArray__jstringID; // cache method id
 jclass stringArrayClass;
 jmethodID voidopenVariableEditorBooleanjobjectArray__jstringID; // cache method id
+jmethodID voidopenVariableEditorInteger8jobjectArray__jstringID; // cache method id
+jmethodID voidopenVariableEditorUInteger8jobjectArray__jstringID; // cache method id
+jmethodID voidopenVariableEditorInteger16jobjectArray__jstringID; // cache method id
+jmethodID voidopenVariableEditorUInteger16jobjectArray__jstringID; // cache method id
+jmethodID voidopenVariableEditorInteger32jobjectArray__jstringID; // cache method id
+jmethodID voidopenVariableEditorUInteger32jobjectArray__jstringID; // cache method id
 jmethodID voidcloseVariableEditorID; // cache method id
-jmethodID voidupdateVariableEditorDoublejstringjintjintjdoublejintID; // cache method id
-jmethodID voidupdateVariableEditorComplexjstringjintjintjdoublejdoublejintID; // cache method id
-jmethodID voidupdateVariableEditorBooleanjstringjintjintjintjintID; // cache method id
-jmethodID voidupdateVariableEditorStringjstringjintjintjstringjintID; // cache method id
 
 
 /**
@@ -122,15 +126,19 @@ static void openVariableEditorString(JavaVM * jvm_, char *** data, int dataSize,
 
 static void openVariableEditorBoolean(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, char * variableName);
 
+static void openVariableEditorInteger8(JavaVM * jvm_, byte** data, int dataSize, int dataSizeCol, char * variableName);
+
+static void openVariableEditorUInteger8(JavaVM * jvm_, short** data, int dataSize, int dataSizeCol, char * variableName);
+
+static void openVariableEditorInteger16(JavaVM * jvm_, short** data, int dataSize, int dataSizeCol, char * variableName);
+
+static void openVariableEditorUInteger16(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, char * variableName);
+
+static void openVariableEditorInteger32(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, char * variableName);
+
+static void openVariableEditorUInteger32(JavaVM * jvm_, long long** data, int dataSize, int dataSizeCol, char * variableName);
+
 static void closeVariableEditor(JavaVM * jvm_);
-
-static void updateVariableEditorDouble(JavaVM * jvm_, char * variableName, int row, int col, double newValue, int errCode);
-
-static void updateVariableEditorComplex(JavaVM * jvm_, char * variableName, int row, int col, double realValue, double imgValue, int errCode);
-
-static void updateVariableEditorBoolean(JavaVM * jvm_, char * variableName, int row, int col, int newValue, int errCode);
-
-static void updateVariableEditorString(JavaVM * jvm_, char * variableName, int row, int col, char * newValue, int errCode);
 
 
                         /**

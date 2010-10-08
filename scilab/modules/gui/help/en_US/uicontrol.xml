@@ -38,11 +38,7 @@
     are set with the corresponding values. It is equivalent to create the
     uicontrol, and then set its properties with the <literal>set()</literal>
     command. Nevertheless, it generally more efficient to set the properties
-    in the call to <literal>uicontrol()</literal>. This is particularly true
-    concerning the "Style" property. Indeed, the default value for this
-    property is "Pushbutton". So if you do not set it at creation time, a
-    button will be created, and will be transformed to another uicontrol when
-    you call the <literal>set(h, "Style", ... )</literal> instruction. Scilab
+    in the call to <literal>uicontrol()</literal>. Scilab
     and all the graphic objects communicate through the property mechanism.
     Thus, to create adapted uicontrol, one has to know the use of the property
     fields.</para>
@@ -364,7 +360,7 @@
           <para>{pushbutton} | radiobutton | checkbox | edit | text | slider |
           frame | listbox | popupmenu</para>
 
-          <para>Style of the uicontrol. Here is a short description of each
+          <para>Style of the uicontrol. This property has to be set at creation time and can not be changed once the uicontrol is created. Here is a short description of each
           one:</para>
 
           <itemizedlist>

@@ -2,7 +2,7 @@
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) ENPC
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function [y]=Poisson(m,n,pmean) 
 	// P{n} = exp(-lambda)lambda^n/n!

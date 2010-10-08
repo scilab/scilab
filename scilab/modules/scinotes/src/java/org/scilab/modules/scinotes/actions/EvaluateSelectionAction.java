@@ -73,11 +73,13 @@ public final class EvaluateSelectionAction extends DefaultAction {
         }
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
-                    String select = editor.getTextPane().getSelectedText();
-                    if (select == null) {
-                        menuitem.setText(label2);
-                    } else {
-                        menuitem.setText(label1);
+                    if (editor.getTextPane() != null) {
+                        String select = editor.getTextPane().getSelectedText();
+                        if (select == null) {
+                            menuitem.setText(label2);
+                        } else {
+                            menuitem.setText(label1);
+                        }
                     }
                 }
             });

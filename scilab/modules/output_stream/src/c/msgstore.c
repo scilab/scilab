@@ -63,11 +63,6 @@ int C2F(msgstore)(char *str, int *n)
     return iRes;
 }
 /*--------------------------------------------------------------------------*/
-void C2F(freemsgtable)()
-{
-    clearLastError();
-}
-/*--------------------------------------------------------------------------*/
 int GetLastErrorCode(void)
 {
     return getLastErrorValue();

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - 2009-2010 - Vincent COUVERT <vincent.couvert@scilab.org>
  * Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,6 +27,7 @@ extern "C"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
+#include "scilabmode.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
@@ -35,17 +37,21 @@ int sci_closeXcosFromScilab(char *fname, unsigned long fname_len)
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
-    try
+    // only if xcos was already opened and with supported mode
+    if ((getScilabMode() != SCILAB_NWNI) && xcosStarted())
     {
-        Xcos::closeXcosFromScilab(getScilabJavaVM());
-    } catch (GiwsException::JniCallMethodException exception)
-    {
-        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
-        return 0;
-    } catch (GiwsException::JniException exception)
-    {
-        Scierror(999, "%s: %s\n", fname, exception.what());
-        return 0;
+        try
+        {
+            Xcos::closeXcosFromScilab(getScilabJavaVM());
+        } catch (GiwsException::JniCallMethodException exception)
+        {
+            Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+            return 0;
+        } catch (GiwsException::JniException exception)
+        {
+            Scierror(999, "%s: %s\n", fname, exception.what());
+            return 0;
+        }
     }
 
     LhsVar(1) = 0;

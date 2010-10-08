@@ -282,6 +282,10 @@ msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "La resposta són major que el límit superior de la cerca %f\n"
 
 #, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr ""
+
+#, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr "La resposta és menor que el límit inferior de la cerca %f\n"
 
@@ -317,14 +321,6 @@ msgstr "F,Dfn i Dfd"
 
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr "F,Dfn,Dfd i Pnonc"
-
-#, c-format
-msgid ""
-"Input argument %c is out of range.\n"
-"Bound exceeded: %f\n"
-msgstr ""
-"L'argument d'entrada %c és fora del rang.\n"
-"S'ha excedit els límits: %f\n"
 
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"

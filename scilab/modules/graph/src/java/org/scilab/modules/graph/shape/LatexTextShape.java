@@ -26,8 +26,8 @@ import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import com.mxgraph.canvas.mxGraphics2DCanvas;
 import com.mxgraph.shape.mxITextShape;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
+import com.mxgraph.view.mxCellState;
 
 /**
  * Implement a text shape that can draw LaTEX text. 
@@ -39,16 +39,16 @@ public class LatexTextShape implements mxITextShape {
 	 * 
 	 * @param canvas the current canvas
 	 * @param text the text to render
-	 * @param bounds the current bounds
+	 * @param state the current state
 	 * @param style the current style
 	 * @see com.mxgraph.shape.mxITextShape#paintShape(com.mxgraph.canvas.mxGraphics2DCanvas, java.lang.String, com.mxgraph.util.mxRectangle, java.util.Map)
 	 */
 	@Override
 	public void paintShape(mxGraphics2DCanvas canvas, String text,
-			mxRectangle bounds, Map<String, Object> style) {
+			mxCellState state, Map<String, Object> style) {
 		
 		CellRendererPane rendererPane = canvas.getRendererPane();
-		Rectangle rect = bounds.getRectangle();
+		Rectangle rect = state.getRectangle();
 		Graphics2D g = canvas.getGraphics();
 		
 		if (rendererPane != null

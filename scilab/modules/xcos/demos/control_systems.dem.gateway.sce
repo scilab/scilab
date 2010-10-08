@@ -2,7 +2,7 @@
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2009 - DIGITEO
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 demopath = get_absolute_file_path("control_systems.dem.gateway.sce");
 
@@ -20,3 +20,4 @@ subdemolist = ["Basic controller"                     , "basic_controller.dem.sc
 //               "Animated Inv.Pendulum"                , "inv_pend_anim.dem.sce"  ; ..
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 demopath = get_absolute_file_path("cmplxfunc.dem.gateway.sce");
 
@@ -21,5 +21,4 @@ subdemolist = ["log"       ,"demo_log.dem.sce"    ; ..
                "custom"    ,"demo_custom.dem.sce" ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
-
-exec(demopath+"/MacCmplx.sci");
+clear demopath;

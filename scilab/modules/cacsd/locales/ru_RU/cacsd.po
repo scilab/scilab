@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-10 21:01+0000\n"
+"PO-Revision-Date: 2010-09-18 21:11+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -316,6 +316,10 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: Вычисленное значение || G || может быть неточным.\n"
 
 #, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr "%s: Заданная система не имеет полюсов и нулей.\n"
+
+#, c-format
 msgid "%s: Undefined type ''%s''.\n"
 msgstr "%s: Тип «%s» не определён.\n"
 
@@ -438,6 +442,13 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного параметра №%d: количество столбцов не "
 "соответствует %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался массив действительных "
+"чисел с плавающей точкой\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -771,6 +782,9 @@ msgstr "Im(h(2if))"
 msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
+msgid "Imaginary Axis"
+msgstr "Мнимая ось"
+
 msgid "Imaginary axis"
 msgstr "Мнимая ось"
 
@@ -812,6 +826,9 @@ msgstr "Re(h(2if))"
 msgid "Re(h(exp(2if*dt)))"
 msgstr "Re(h(exp(2if*dt)))"
 
+msgid "Real Axis"
+msgstr "Действительная ось"
+
 msgid "Real axis"
 msgstr "Вещественная ось"
 
@@ -836,6 +853,13 @@ msgstr "асимптотические направления"
 msgid "dB"
 msgstr "дБ"
 
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+"Места с постоянным затуханием и постоянной собственной частотой\n"
+"в дискретной плоскости"
+
 msgid "magnitude(y) (Db)"
 msgstr "амплитуда (у) (дБ)"
 
@@ -850,3 +874,6 @@ msgstr "нули разомкнутой системы"
 
 msgid "phase(y) (degree)"
 msgstr "фаза (y) (градус)"
+
+msgid "rad/sec"
+msgstr "рад/с"

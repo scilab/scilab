@@ -37,17 +37,9 @@ msgid "%s: Unknown or not yet implemented type.\n"
 msgstr "%s: Aquest tipus és desconegut o encara no s'ha implementat.\n"
 
 #, c-format
-msgid "%s: Unknown type or not yet implemented.\n"
-msgstr "%s: Aquest tipus és desconegut o no s'ha implementat.\n"
-
-#, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: El primer argument d'entrada és incorrecte: Ha de ser '%s' o '%s'.\n"
-
-#, c-format
-msgid "%s: work space (stacksize) is too small.\n"
-msgstr "%s: La mida de la pila és massa petita.\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"

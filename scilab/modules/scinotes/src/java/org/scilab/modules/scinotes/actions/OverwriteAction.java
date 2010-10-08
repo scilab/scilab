@@ -47,7 +47,9 @@ public final class OverwriteAction extends DefaultAction {
         final MenuItem menuitem = createMenu(label, null, new OverwriteAction(label, editor), key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
-                    menuitem.setEnabled(editor.getTextPane().checkExternalModif());
+                    if (editor.getTextPane() != null) {
+                        menuitem.setEnabled(editor.getTextPane().checkExternalModif());
+                    }
                 }
             });
 

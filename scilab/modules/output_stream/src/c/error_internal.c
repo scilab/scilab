@@ -75,7 +75,7 @@ int error_internal(int *n,char *buffer,int mode)
             int len = (int) strlen(buffer);
 
             /* free message table */
-            C2F(freemsgtable)();
+            clearLastError();
 
             /* store error number */
             setLastErrorValue(*n);

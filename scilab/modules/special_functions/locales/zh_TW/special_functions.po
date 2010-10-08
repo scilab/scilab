@@ -59,3 +59,18 @@ msgstr "%s: 錯誤的數字%d\n"
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s: 在延伸的數字裏溢位或不足位\n"
+
+#, c-format
+msgid "Function %s is obsolete."
+msgstr ""
+
+#, c-format
+msgid "Please use %s instead."
+msgstr ""
+
+#, c-format
+msgid "This function will be permanently removed in Scilab %s"
+msgstr ""
+
+msgid "Warning: "
+msgstr ""

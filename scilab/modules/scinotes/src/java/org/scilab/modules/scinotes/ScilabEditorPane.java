@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.MouseListener;
@@ -75,6 +76,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean highlightEnable;
     private Object highlightCL;
     private boolean matchingEnable;
+    private boolean overwriteMode;
     private ScilabLexer lexer;
     private SciNotes editor;
     private IndentManager indent;
@@ -86,6 +88,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private String infoBar = "";
     private String shortName = "";
     private String title = "";
+
+    private Point mousePoint;
 
     private long lastModified;
 
@@ -234,6 +238,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         return split == null;
     }
 
+    public boolean getOverwriteMode() {
+        return this.overwriteMode;
+    }
+
+    public void setOverwriteMode(boolean overwriteMode) {
+        this.overwriteMode = overwriteMode;
+        ((ScilabCaret) getCaret()).setOverwriteMode(overwriteMode);
+    }
+
+    public void replaceSelection(String content) {
+        if (overwriteMode && getSelectionStart() == getSelectionEnd()) {
+            int pos = getCaretPosition();
+            select(pos, pos + content.length());
+        }
+        super.replaceSelection(content);
+    }
+
     /**
      * Nothing !
      * @param e the event
@@ -284,10 +305,30 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * {@inheritDoc}
      */
     public void setName(String name) {
+        setNameInSuper(name);
+        setShortNameAndTitle(name);
+        ScilabEditorPane pane = getOtherPaneInSplit();
+        if (pane != null) {
+            // I don't call pane.setName since we will enter in an infinite loop
+            pane.setNameInSuper(name);
+            pane.setShortNameAndTitle(name);
+        }
+    }
+
+    /**
+     * @param name the name
+     */
+    private void setNameInSuper(String name) {
         super.setName(name);
+    }
+
+    /**
+     * @param name the name
+     */
+    private void setShortNameAndTitle(String name) {
         if (name != null) {
             File f = new File(name);
-            this.shortName = f.getName();
+            setShortName(f.getName());
             title =  shortName + " (" + f.getAbsolutePath() + ")" + TIRET + SciNotesMessages.SCILAB_EDITOR;
         }
     }
@@ -378,6 +419,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * @return the String which must be displayed in the infobar
+     */
+    public void setInfoBarText(String text) {
+        this.infoBar = text;
+        editor.getInfoBar().setText(getInfoBarText());
+    }
+
+    /**
      * @param readonly true to set Read-Only mode
      */
     public void setReadOnly(boolean readonly) {
@@ -444,6 +493,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void setLastModified(long time) {
         this.lastModified = time;
+        ScilabEditorPane pane = getOtherPaneInSplit();
+        if (pane != null) {
+            pane.lastModified = time;
+        }
     }
 
     /**
@@ -547,6 +600,22 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     }
                 });
         }
+    }
+
+    /**
+     * @return the width of a white
+     */
+    public int getWhiteWidth() {
+        View view = ((ScilabDocument) getDocument()).getView();
+        if (view != null) {
+            if (view instanceof ScilabView) {
+                return ((ScilabView) view).getWhiteWidth();
+            } else {
+                return ((ScilabPlainView) view).getWhiteWidth();
+            }
+        }
+
+        return 0;
     }
 
     /**
@@ -821,6 +890,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * Get a keyword at the current position in the document.
+     * @param caret if true the position is the current caret position in the doc else
+     * the position is the mouse pointer position projected in the document.
+     * @param strict if true the char just after the caret is ignored
+     * @return the KeywordEvent containing infos about keyword.
+     */
+    public KeywordEvent getKeywordEvent(boolean caret, boolean strict) {
+        int tok;
+        if (caret) {
+            tok = lexer.getKeyword(getCaretPosition(), strict);
+        } else {
+            tok = lexer.getKeyword(viewToModel(mousePoint), strict);
+        }
+        return new KeywordEvent(this, null, tok, lexer.start + lexer.yychar(), lexer.yylength());
+    }
+
+    /**
      * Prevents the different KeywordListener that a MouseEvent occured
      * @param position of the mouse
      * @param ev the event which occured
@@ -880,7 +966,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void mouseMoved(MouseEvent e) {
-        preventConcernedKeywordListener(viewToModel(e.getPoint()), e, KeywordListener.ONMOUSEOVER);
+        this.mousePoint = e.getPoint();
+        preventConcernedKeywordListener(viewToModel(mousePoint), e, KeywordListener.ONMOUSEOVER);
     }
 
     /**
@@ -894,6 +981,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (highlightEnable) {
             repaint();
         }
+    }
+
+    /**
+     * @return the current mouse poisition in this pane
+     */
+    public Point getMousePoint() {
+        return mousePoint;
     }
 
     /**

@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JToggleButton.ToggleButtonModel;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -61,6 +62,7 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Si
 				BlockingResult.getInstance().setResult(((SwingScilabCheckBoxMenuItem) arg0.getSource()).getText());
 			}
 		});
+		setModel(new ScilabCheckBoxMenuItemModel());
 	}
 	
 	/**
@@ -275,7 +277,7 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Si
 	 * @param status true if the menu item is checked
 	 */
 	public void setChecked(boolean status) {
-		setState(status);
+		((ScilabCheckBoxMenuItemModel) getModel()).forceSelected(status);
 	}
 	
 	/**
@@ -283,7 +285,7 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Si
 	 * @return true if the menu item is checked
 	 */
 	public boolean isChecked() {
-		return getState();
+		return isSelected();
 	}
 	
 	/**
@@ -313,4 +315,39 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Si
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Overload default Model so that automatic check/uncheck is disabled
+	 * Checking is only managed by the user
+	 * See bug #7364
+	 * @author Vincent COUVERT
+	 */
+	private class ScilabCheckBoxMenuItemModel extends ToggleButtonModel {
+	
+		private static final long serialVersionUID = 1L;
+
+		/**
+		 * Constructor
+		 */
+		public ScilabCheckBoxMenuItemModel() {
+			super();
+		}
+		
+		/**
+		 * Using this method is forbidden
+		 * Use forceSelected instead
+		 * @param status the new selection status
+		 * @see javax.swing.JToggleButton.ToggleButtonModel#setSelected(boolean)
+		 */
+		public void setSelected(boolean status) {
+			// Does nothing
+		}
+		
+		/**
+		 * Set checked status	
+		 * @param status the new selection status
+		 */
+		public void forceSelected(boolean status) {
+			super.setSelected(status);
+		}
+	}
 }

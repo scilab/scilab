@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 demopath = get_absolute_file_path("standard.dem.gateway.sce");
 
@@ -21,5 +21,4 @@ subdemolist = ["Simple Demo"                          , "simple_demo.dem.sce"   
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
 
-//**               "Bouncing Ball"                        , "bouncing_ball.dem.sce"  ; ..
-//**               "Space Balls"                          , "bounce.dem.sce"            ; ..
+clear demopath;

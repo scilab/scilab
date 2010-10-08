@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2010-05-28 01:02+0000\n"
+"PO-Revision-Date: 2010-08-15 18:52+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,8 +38,21 @@ msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该是实数矩阵。\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该为字符串矩阵。\n"
+
+msgid "... file with echo"
+msgstr ""
+
+msgid "... file with no echo"
+msgstr ""
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr ""
 
 msgid "?"
 msgstr "？"
@@ -47,17 +60,47 @@ msgstr "？"
 msgid "About"
 msgstr "关于"
 
+msgid "Absolute"
+msgstr ""
+
 msgid "All"
 msgstr "全部"
 
-msgid "Are you sure that you want to close Text Editor ?"
+msgid "Alphabetic order"
+msgstr ""
+
+msgid "Anchor's name: "
+msgstr ""
+
+msgid "Anchor: "
+msgstr ""
+
+msgid "Anchors"
+msgstr ""
+
+msgid "Are you sure that you want to close SciNotes ?"
 msgstr ""
 
 msgid "Auto (Default)"
 msgstr ""
 
+msgid "Auto-completion on (,&quot;,..."
+msgstr ""
+
+msgid "Auto-completion on if,function,..."
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
 msgid "Backward"
 msgstr "向后"
+
+msgid "Binary file: read-only mode"
+msgstr ""
+
+msgid "Bold"
+msgstr ""
 
 msgid "Cancel"
 msgstr "取消"
@@ -74,6 +117,15 @@ msgstr ""
 msgid "Change Colors"
 msgstr ""
 
+msgid "Circular search"
+msgstr ""
+
+msgid "Clone and close tab in a new window"
+msgstr ""
+
+msgid "Clone tab in a new window"
+msgstr ""
+
 msgid "Close"
 msgstr "关闭"
 
@@ -82,6 +134,12 @@ msgstr "关闭所有文档"
 
 msgid "Close All But This"
 msgstr "关闭其他文档"
+
+msgid "Code Navigator"
+msgstr ""
+
+msgid "Color"
+msgstr ""
 
 msgid "Colorization canceled"
 msgstr ""
@@ -92,11 +150,20 @@ msgstr "加彩色"
 msgid "Comment Selection"
 msgstr "注释选区"
 
-msgid "Continue?"
-msgstr "继续？"
+msgid "Complete"
+msgstr ""
+
+msgid "Continue ?"
+msgstr ""
 
 msgid "Copy"
 msgstr "复制"
+
+msgid "Copy selection in a new tab"
+msgstr ""
+
+msgid "Copy tab in new window"
+msgstr ""
 
 msgid "Copyright (c)"
 msgstr "版权所有 (c)"
@@ -110,6 +177,9 @@ msgstr ""
 msgid "Could not find the temporary file."
 msgstr ""
 
+msgid "Cursor Color"
+msgstr ""
+
 msgid "Cut"
 msgstr "剪切"
 
@@ -118,6 +188,9 @@ msgstr "默认"
 
 msgid "Delete"
 msgstr "删除"
+
+msgid "Detach tab in new window"
+msgstr ""
 
 msgid "Direction"
 msgstr "方向"
@@ -128,15 +201,6 @@ msgstr "文档"
 msgid "Edit"
 msgstr "编辑"
 
-msgid "Edit selection in a new tab"
-msgstr "在新标签页中编辑选择区"
-
-msgid "Editor"
-msgstr "编辑器"
-
-msgid "Editor error"
-msgstr ""
-
 msgid "Enable Auto Reformat"
 msgstr ""
 
@@ -146,8 +210,17 @@ msgstr ""
 msgid "Enter line number"
 msgstr "输入行号"
 
+msgid "Error while reading the String"
+msgstr ""
+
 msgid "Evaluate Selection"
 msgstr "执行选择部分"
+
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr ""
+
+msgid "Evaluate from beginning..."
+msgstr ""
 
 msgid "Execute"
 msgstr "执行"
@@ -182,26 +255,62 @@ msgstr "查找:"
 msgid "Forward"
 msgstr "向前"
 
+msgid "Functions"
+msgstr ""
+
+msgid "Generate comments for help_from_sci"
+msgstr ""
+
+msgid "Generate help from function"
+msgstr ""
+
+msgid "Go to line: "
+msgstr ""
+
+msgid "Go to next anchor"
+msgstr ""
+
+msgid "Go to previous anchor"
+msgstr ""
+
 msgid "Goto line"
 msgstr "转到行"
 
 msgid "Help about '"
 msgstr ""
 
-msgid "Help about a selected text"
+msgid "Help on ;Help on selection"
+msgstr ""
+
+msgid "Help on selected text or keyword"
+msgstr ""
+
+msgid "Help on the current keyword"
+msgstr ""
+
+msgid "Help on the selected text"
+msgstr ""
+
+msgid "Help on typing"
 msgstr ""
 
 msgid "Highlight current line"
 msgstr "高亮显示当前行"
 
+msgid "Ignore"
+msgstr ""
+
 msgid "Invalid regular expression : %s"
 msgstr "不正确的正则表达式：%s"
+
+msgid "Italic"
+msgstr ""
 
 msgid "Line Endings"
 msgstr ""
 
-msgid "Line Numbers"
-msgstr "行号"
+msgid "Line numbering;Off;Normal;Whereami compatible"
+msgstr ""
 
 msgid "Load Into Scilab"
 msgstr "载入Scilab"
@@ -212,13 +321,34 @@ msgstr ""
 msgid "Mac Classic (CR)"
 msgstr ""
 
+msgid "Mail to "
+msgstr ""
+
+msgid "Natural order"
+msgstr ""
+
 msgid "New"
 msgstr "新建"
 
 msgid "Next tab"
 msgstr "下一个标签"
 
-msgid "No text selected"
+msgid "No Line Numbering"
+msgstr ""
+
+msgid "No split"
+msgstr ""
+
+msgid "No text selected."
+msgstr ""
+
+msgid "No text to execute."
+msgstr ""
+
+msgid "Normal Line Numbering"
+msgstr ""
+
+msgid "Numerotation"
 msgstr ""
 
 msgid "Ok"
@@ -227,14 +357,50 @@ msgstr "确定"
 msgid "Open"
 msgstr "打开"
 
+msgid "Open URL"
+msgstr ""
+
+msgid "Open file in ...;Add a directory;Remove last directory"
+msgstr ""
+
+msgid "Open function source file"
+msgstr ""
+
+msgid "Open in the navigator the URL "
+msgstr ""
+
+msgid "Open source"
+msgstr ""
+
+msgid "Open source file of the function:"
+msgstr ""
+
+msgid "Open the source of the macro "
+msgstr ""
+
 msgid "Options"
 msgstr "选项"
+
+msgid "Order"
+msgstr ""
+
+msgid "Overwrite"
+msgstr ""
 
 msgid "Page Setup"
 msgstr "页面设置"
 
 msgid "Paste"
 msgstr "粘贴"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Press CTRL and move the mouse over the link to activate it"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
 
 msgid "Previous tab"
 msgstr "上一个标签"
@@ -245,6 +411,9 @@ msgstr "打印"
 msgid "Print Preview"
 msgstr "打印预览"
 
+msgid "Read-only mode"
+msgstr ""
+
 msgid "Recent Files"
 msgstr "最近的文件"
 
@@ -253,6 +422,21 @@ msgstr "重做"
 
 msgid "Regular expressions"
 msgstr "正则表达式"
+
+msgid "Relative"
+msgstr ""
+
+msgid "Reload"
+msgstr ""
+
+msgid "Remove anchor"
+msgstr ""
+
+msgid "Remove trailing spaces"
+msgstr ""
+
+msgid "Remove trailing whitespaces"
+msgstr ""
 
 msgid "Replace"
 msgstr "替换"
@@ -272,6 +456,18 @@ msgstr "替换/查找"
 msgid "Reset default font"
 msgstr "重置缺省字体"
 
+msgid "Restart the search from the beginning"
+msgstr ""
+
+msgid "Restore files from your last SciNotes session ?"
+msgstr ""
+
+msgid "Restore opened files on start-up"
+msgstr ""
+
+msgid "Restore the last sessions"
+msgstr ""
+
 msgid "Save"
 msgstr "保存"
 
@@ -280,6 +476,15 @@ msgstr ""
 
 msgid "Save as"
 msgstr "另存为"
+
+msgid "SciNotes"
+msgstr ""
+
+msgid "SciNotes error"
+msgstr ""
+
+msgid "SciNotes help"
+msgstr ""
 
 msgid "Scilab"
 msgstr "Scilab"
@@ -292,12 +497,6 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
 
-msgid "Scilab text editor"
-msgstr ""
-
-msgid "Scilab text editor help"
-msgstr ""
-
 msgid "Scope"
 msgstr "范围"
 
@@ -306,6 +505,9 @@ msgstr "搜索"
 
 msgid "Select All"
 msgstr "全选"
+
+msgid "Select current block"
+msgstr ""
 
 msgid "Selected lines"
 msgstr "选择的区域"
@@ -316,14 +518,41 @@ msgstr "设置颜色"
 msgid "Set Font"
 msgstr "设置字体"
 
+msgid "Set an anchor"
+msgstr ""
+
+msgid "Set anchor"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
 msgid "Shift Left"
 msgstr ""
 
 msgid "Shift Right"
 msgstr ""
 
+msgid "Show the definition of the macro "
+msgstr ""
+
 msgid "Show/Hide ToolBar"
 msgstr "显示/隐藏工具栏"
+
+msgid "Source of '"
+msgstr ""
+
+msgid "Split View;Off;Horizontally;Vertically"
+msgstr ""
+
+msgid "Split horizontally"
+msgstr ""
+
+msgid "Split vertically"
+msgstr ""
+
+msgid "Strike Through"
+msgstr ""
 
 msgid "String %s not found"
 msgstr "没有发现字符串 %s"
@@ -362,8 +591,14 @@ msgid ""
 "Are you sure to continue ?"
 msgstr ""
 
+msgid "Tools"
+msgstr ""
+
 msgid "Uncomment Selection"
 msgstr "取消选区注释"
+
+msgid "Underline"
+msgstr ""
 
 msgid "Undo"
 msgstr "撤销"
@@ -377,17 +612,23 @@ msgstr "未命名 "
 msgid "View"
 msgstr "查看"
 
+msgid "Warning: the file has been modified by another program !"
+msgstr ""
+
+msgid "Whereami Line Numbering"
+msgstr ""
+
 msgid "Whole word"
 msgstr "全词匹配"
+
+msgid "Window"
+msgstr ""
 
 msgid "Windows/DOS (CR + LF)"
 msgstr ""
 
 msgid "Word Wrap"
 msgstr "文字换行"
-
-msgid "Wrap search"
-msgstr "回到文档开始处继续搜寻"
 
 msgid "You have passed the beginning of the document"
 msgstr ""

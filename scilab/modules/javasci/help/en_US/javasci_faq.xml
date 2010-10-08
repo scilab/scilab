@@ -40,10 +40,24 @@
 
         <answer>
           <para>javasci.jar is probably not defined in the CLASSPATH. See
+<link linkend="compile_and_run_javasci">Compile and run with javasci</link>
+          </para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>The native library javasci does not exist or cannot be found.</para>
+        </question>
+
+        <answer>
+          <para>java.library.path has not been set or cannot be found.
+<link linkend="compile_and_run_javasci">Compile and run with javasci</link>
           </para>
         </answer>
       </qandaentry>
     </qandaset>
+
   </refsection>
 
   <refsection>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-08-17 12:09+0100\n"
+"Revision-Date: 2010-09-15 14:22+0100\n"
 
 # File: src/c/scicos.c, line: 3061
 msgid ""
@@ -246,8 +246,8 @@ msgstr ""
 msgid "%s : First argument must be a scicos_block typed list.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_coserror.c, line: 67
 # File: sci_gateway/c/sci_getscicosvars.c, line: 171
+# File: sci_gateway/c/sci_coserror.c, line: 67
 #, c-format
 msgid "%s : First argument must be a string.\n"
 msgstr ""
@@ -281,10 +281,10 @@ msgstr ""
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_scicosim.c, line: 1778
 # File: sci_gateway/c/sci_buildouttb.c, line: 171
 # File: sci_gateway/c/sci_buildouttb.c, line: 178
 # File: sci_gateway/c/sci_buildouttb.c, line: 465
+# File: sci_gateway/c/sci_scicosim.c, line: 1778
 #, c-format
 msgid "%s : No more free memory.\n"
 msgstr ""
@@ -512,7 +512,7 @@ msgstr ""
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 254
+# File: macros/scicos_auto/scicos.sci, line: 245
 #, c-format
 msgid "%s: First argument must be a Scicos diagram data structure\n"
 msgstr ""
@@ -651,12 +651,12 @@ msgstr ""
 msgid "%s: error %d. Undefined error.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_phase_simulation.c, line: 38
-# File: sci_gateway/c/sci_coserror.c, line: 59
-# File: sci_gateway/c/sci_set_blockerror.c, line: 41
 # File: sci_gateway/c/sci_set_xproperty.c, line: 38
 # File: sci_gateway/c/sci_pointer_xproperty.c, line: 43
+# File: sci_gateway/c/sci_phase_simulation.c, line: 38
+# File: sci_gateway/c/sci_coserror.c, line: 59
 # File: sci_gateway/c/sci_end_scicosim.c, line: 43
+# File: sci_gateway/c/sci_set_blockerror.c, line: 41
 #, c-format
 msgid "%s: scicosim is not running.\n"
 msgstr ""
@@ -777,11 +777,11 @@ msgstr ""
 msgid "An Atomic Superblock cannot contain sample clocks"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 297
+# File: macros/scicos_auto/scicos.sci, line: 288
 msgid "An error occur when evaluating context:"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 554
+# File: macros/scicos_auto/scicos.sci, line: 545
 #, c-format
 msgid ""
 "An unexpected  error occurred while executing the menu\n"
@@ -1327,7 +1327,7 @@ msgstr ""
 msgid "Flip"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 713
+# File: macros/scicos_auto/scicos.sci, line: 704
 msgid "Following palette(s) ignored (associated file(s) no more exist):"
 msgstr ""
 #
@@ -1805,14 +1805,14 @@ msgstr ""
 msgid "No"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuRemoveMask.sci, line: 33
 # File: macros/scicos_menus/XcosMenuCreateMask.sci, line: 36
-# File: macros/scicos_menus/XcosMenuRemoveAtomic.sci, line: 35
-# File: macros/scicos_menus/XcosMenuCreateAtomic.sci, line: 37
 # File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 32
+# File: macros/scicos_menus/XcosMenuCreateAtomic.sci, line: 37
+# File: macros/scicos_menus/XcosMenuRemoveAtomic.sci, line: 35
+# File: macros/scicos_menus/XcosMenuRemoveMask.sci, line: 33
+# File: macros/scicos_scicos/do_CodeGen.sci, line: 38
 # File: macros/scicos_scicos/do_icon_edit.sci, line: 29
 # File: macros/scicos_scicos/do_block.sci, line: 37
-# File: macros/scicos_scicos/do_CodeGen.sci, line: 38
 msgid "No selected block in the current Scicos window."
 msgstr ""
 #
@@ -1821,16 +1821,16 @@ msgstr ""
 msgid "Only  blocks can be selected for this operation."
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuRemoveMask.sci, line: 37
 # File: macros/scicos_menus/XcosMenuCreateMask.sci, line: 40
-# File: macros/scicos_menus/XcosMenuRemoveAtomic.sci, line: 39
-# File: macros/scicos_menus/XcosMenuCreateAtomic.sci, line: 41
 # File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 36
+# File: macros/scicos_menus/XcosMenuCreateAtomic.sci, line: 41
+# File: macros/scicos_menus/XcosMenuRemoveAtomic.sci, line: 39
+# File: macros/scicos_menus/XcosMenuRemoveMask.sci, line: 37
 # File: macros/scicos_scicos/do_resize.sci, line: 42
-# File: macros/scicos_scicos/do_ident.sci, line: 37
-# File: macros/scicos_scicos/do_icon_edit.sci, line: 34
-# File: macros/scicos_scicos/do_block.sci, line: 42
 # File: macros/scicos_scicos/do_CodeGen.sci, line: 42
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 34
+# File: macros/scicos_scicos/do_ident.sci, line: 37
+# File: macros/scicos_scicos/do_block.sci, line: 42
 msgid "Only one block can be selected in current window for this operation."
 msgstr ""
 #
@@ -1883,7 +1883,7 @@ msgstr ""
 msgid "PlaceinDiagram"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 558
+# File: macros/scicos_auto/scicos.sci, line: 549
 msgid "Please report"
 msgstr ""
 #
@@ -1897,7 +1897,7 @@ msgid ""
 "Press left mouse button, drag region and release (right button to cancel)"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 653
+# File: macros/scicos_auto/scicos.sci, line: 644
 msgid "Problem saving a backup; I cannot activate Scilab\n"
 msgstr ""
 #
@@ -1942,7 +1942,7 @@ msgstr ""
 msgid "Replot"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 583
+# File: macros/scicos_auto/scicos.sci, line: 574
 #, c-format
 msgid "Requested action: %s is not available"
 msgstr ""
@@ -2147,12 +2147,12 @@ msgstr ""
 msgid "TkPopup "
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 717
+# File: macros/scicos_auto/scicos.sci, line: 708
 #, c-format
 msgid "To avoid this message, please update the %s.scicos_pal file."
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 669
+# File: macros/scicos_auto/scicos.sci, line: 660
 msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
 msgstr ""
 #
@@ -2222,7 +2222,7 @@ msgid ""
 "interface to regenerate the XML file  with new parameters."
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 673
+# File: macros/scicos_auto/scicos.sci, line: 664
 msgid "Your diagram is not saved. Do not quit Scilab or "
 msgstr ""
 #

@@ -20,12 +20,24 @@
   <refsynopsisdiv>
     <title> Seqüência de Chamamento</title>
 
-    <synopsis>version=getversion()
-[version,opts]=getversion()
-ver=getversion('scilab')
-versioninfo=getversion('scilab','string_info')
-ver=getversion('&lt;module&gt;')
-versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
+    <synopsis>getversion()
+
+[version, opts] = getversion()
+COMPILER = opts(1)
+ARCH = opts(2)
+or(opts == 'modelicac')
+or(opts == 'pvm')
+or(opts == 'tk')
+or(opts == 'atlas')
+RELEASE_MODE = opts($-2)
+RELEASE_DATE = opts($-1)
+RELEASE_TIME = opts($)
+
+version = getversion('scilab')
+versionstr = getversion('scilab','string_info')
+version = getversion('overloading')
+versionstr = getversion('overloading','string_info')
+</synopsis>
   </refsynopsisdiv>
 
   <refsection>

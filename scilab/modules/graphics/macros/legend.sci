@@ -32,7 +32,6 @@ options_codes=[1;2;3;
   opt      = 1;
   with_box = %T;
 
-
   while type(varargin(k0))==9 then //a handle that could be an Axes, Agreg. or Polyline handle.
     tmpH=varargin(k0)
     if tmpH.type=='Axes' then

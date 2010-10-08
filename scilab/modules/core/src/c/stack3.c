@@ -1973,26 +1973,26 @@ int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen,
 	return 0;
 }
 
-void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
+void vGetPointerFromDoubleComplex(const doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
 
 	int iTwo	= 2;
 	int iOne	= 1;
-	double *pReal = &_poComplex[0].r;
-	double *pImg = &_poComplex[0].i;
+	const double *pReal = &_poComplex[0].r;
+	const double *pImg = &_poComplex[0].i;
 
 	if(_pdblReal != NULL && _pdblImg != NULL)
 	{
-		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
-		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
+		C2F(scidcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
+		C2F(scidcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
 	}
 	else if(_pdblReal != NULL && _pdblImg == NULL)
 	{
-		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
+		C2F(scidcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
 	}
 	else if(_pdblReal == NULL && _pdblImg != NULL)
 	{
-		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
+		C2F(scidcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
 	}
 }
 doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize)

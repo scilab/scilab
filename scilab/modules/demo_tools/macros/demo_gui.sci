@@ -179,7 +179,7 @@ function create_frame(my_fig_handle,fr_position,fr_title,fr_items)
 		"fontsize"            , 12,...
 		"horizontalalignment" , "left", ...
 		"BackgroundColor"     , [255/255 , 255/255 , 255/255 ], ...
-		"callback"            , "script_path = demo_gui_update();exec(script_path,-1);",...
+		"callback"            , "script_path = demo_gui_update();exec(script_path,-1);clear script_path;",...
 		"visible"             , my_visible, ...
 		"user_data"           , fr_items, ...
 		"tag"                 , "listbox_"+string(fr_position));
@@ -221,11 +221,15 @@ function script_path = demo_gui_update()
 	my_selframe     = get(gcbo,"tag");
 	
 	// Suppression d'une figure précédemment dessiné, si figure il y a ...
-	fig_to_del = get_figure_handle(100001);
-	if fig_to_del <> [] then
-		delete(fig_to_del);
-	end
-	
+    all_figs = winsid();
+    all_figs = all_figs(all_figs >= 100001); // All Scilab graphic windows opened for demos
+    for fig_index = 1:size(all_figs, "*")
+        fig_to_del = get_figure_handle(all_figs(fig_index));
+        if ~isempty(fig_to_del) then
+            delete(fig_to_del);
+        end
+    end
+    
 	// Handle de la figure
 	demo_fig        = gcbo.parent;
 

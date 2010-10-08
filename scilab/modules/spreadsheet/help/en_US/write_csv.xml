@@ -57,7 +57,7 @@
         <term>sep</term>
 
         <listitem>
-          <para>column separator mark, by default a tabulation: ascii(9)</para>
+          <para>column separator mark, by default a tabulation: ascii(9) or "\t".</para>
         </listitem>
       </varlistentry>
 

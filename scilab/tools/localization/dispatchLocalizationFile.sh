@@ -34,7 +34,8 @@ if test ! -d $LAUNCHPAD_DIRECTORY; then
 fi
 
 # Don't know why but launchpad is placing some files in some sub dirs
-/bin/cp -fi $LAUNCHPAD_DIRECTORY/*/*.po $LAUNCHPAD_DIRECTORY/
+FILES=$(find $LAUNCHPAD_DIRECTORY/ -mindepth 2 -iname '*.po' -type f)
+/bin/cp -fiu $FILES $LAUNCHPAD_DIRECTORY/
 
 for file in $LAUNCHPAD_DIRECTORY/*.po; do 
     file=`echo $file|awk -F / '{print $NF}'` # get only the filename

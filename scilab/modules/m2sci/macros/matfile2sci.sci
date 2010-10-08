@@ -28,7 +28,7 @@ end
 
 //--file opening
 fdi=matfile_open(pathconvert(mat_file_path, %F, %T), "r");
-fdo=mopen(pathconvert(result_file_path, %F, %T),"w") 
+fdo=mopen(pathconvert(result_file_path, %F, %T),"w+b") 
 
 //-- Read first variable
 ierr = execstr("[Name, Matrix, Class] = matfile_varreadnext(fdi);", "errcatch");

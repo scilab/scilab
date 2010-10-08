@@ -24,12 +24,12 @@
 %typemap(in) char ** (jint size) {
     int i = 0;
     size = (*jenv)->GetArrayLength(jenv, $input);
-    $1 = (char **) MALLOC((size+1)*sizeof(char *));
+    $1 = (char **) malloc((size+1)*sizeof(char *));
     /* make a copy of each string */
     for (i = 0; i<size; i++) {
         jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, $input, i);
         const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-        $1[i] = MALLOC((strlen(c_string)+1)*sizeof(const char *));
+        $1[i] = malloc((strlen(c_string)+1)*sizeof(const char *));
         strcpy($1[i], c_string);
         (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
         (*jenv)->DeleteLocalRef(jenv, j_string);
@@ -41,8 +41,8 @@
 %typemap(freearg) char ** {
     int i;
     for (i=0; i<size$argnum-1; i++)
-      FREE($1[i]);
-    FREE($1);
+      free($1[i]);
+    free($1);
 }
 
 /* This allows a C function to return a char ** as a Java String array */
@@ -62,10 +62,10 @@
       temp_string = (*jenv)->NewStringUTF(jenv, $1[i]);
       (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
       (*jenv)->DeleteLocalRef(jenv, temp_string);
-      FREE($1[i]);
+      free($1[i]);
       $1[i] = NULL;
     }
-    FREE($1);
+    free($1);
     $1 = NULL;
   }       
 }
@@ -122,7 +122,7 @@
   if ($1 != NULL)
   {
     jresult = (*jenv)->NewStringUTF(jenv, (const char *)$1);
-    FREE($1);
+    free($1);
     $1 = NULL;
   }       
 }

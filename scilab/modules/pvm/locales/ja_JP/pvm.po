@@ -43,16 +43,8 @@ msgid "%s: Unknown or not yet implemented type.\n"
 msgstr "%s: 未知または未実装の型です.\n"
 
 #, c-format
-msgid "%s: Unknown type or not yet implemented.\n"
-msgstr "%s: 未知の型または未実装です.\n"
-
-#, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr "%s: 最初の入力引数が間違っています: '%s' または '%s' を指定してください.\n"
-
-#, c-format
-msgid "%s: work space (stacksize) is too small.\n"
-msgstr "%s: ワークスペース (stacksize) が小さすぎます.\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"

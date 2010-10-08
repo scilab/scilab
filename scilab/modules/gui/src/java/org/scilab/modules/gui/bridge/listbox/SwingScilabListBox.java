@@ -169,6 +169,16 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	}
 	
 	/**
+	 * Sets the enable status of an UIElement
+	 * @param newEnableState the enable status we want to set for the UIElement
+	 *                      (true if the UIElement is enabled, false if not)
+	 */
+	public void setEnabled(boolean newEnableState) {
+		super.setEnabled(newEnableState);
+		getList().setEnabled(newEnableState);
+	}
+	
+	/**
 	 * Add a callback to the CheckBox
 	 * @param cb the callback to set.
 	 */

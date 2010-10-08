@@ -17,5 +17,8 @@
 - Under Linux, the binary requires at least the GLIBC version 2.7. This should
   be fixed in the beta 3.
 
+- The accuracy of inversion of most distribution functions is increased: see
+  bug #7569 for details.
+
 Besides these points, do not hesitate to report bugs on:
 http://bugzilla.scilab.org/

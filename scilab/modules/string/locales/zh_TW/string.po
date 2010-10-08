@@ -160,6 +160,10 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 輸出參數之數目錯誤: 應為 %d.\n"
 
@@ -467,6 +471,10 @@ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 %s 或 %s.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'%s' 或 '%s'\n"
 
@@ -516,13 +524,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: a string expected, not a regexp "
 "pattern.\n"
 msgstr "%s: 輸入參數值有誤#%d:字串才對.不是正規表達示的樣式.\n"
-
-#
-# File: macros/justify.sci, line: 29
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
-msgstr "%s: Wrong values for input argument #%d: 應為 ''r'',''l'' 或 ''c''.\n"
 
 #
 # File: macros/blanks.sci, line: 29

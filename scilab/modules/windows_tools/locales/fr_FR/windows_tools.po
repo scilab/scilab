@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2010-07-05 11:56+0000\n"
+"PO-Revision-Date: 2010-09-16 11:10+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "%s: Ne peut pas renseigner la valeur de ce type.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr "%s: Erreur allocation de mémoire.\n"
+msgstr "%s : Erreur d'allocation de mémoire.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -101,6 +101,9 @@ msgstr "Veuillez vérifier la commande powershell sans Scilab."
 
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 non trouvé."
+
+msgid "Scilab Console"
+msgstr "Console Scilab"
 
 msgid "see help"
 msgstr "voir l'aide"

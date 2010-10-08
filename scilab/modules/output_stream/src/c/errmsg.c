@@ -1696,7 +1696,7 @@ static void resetLastError(void)
     /* reset lasterror */
     C2F(linestore)(&zero);
     C2F(funnamestore)(SPACE_CHAR, &zero, lenspace);
-    C2F(freemsgtable)();
+    clearLastError();
 }
 /*--------------------------------------------------------------------------*/
 static char *defaultStringError(void)

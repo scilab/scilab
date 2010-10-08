@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 demopath = get_absolute_file_path("live.dem.gateway.sce");
 
@@ -13,3 +13,4 @@ subdemolist = ["Simple block construction"                , "tut1.dem.sce"   ; .
                "The Cblock2 block"                        , "tut6.dem.sce"   ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

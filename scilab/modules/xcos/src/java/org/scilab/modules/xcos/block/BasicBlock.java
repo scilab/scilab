@@ -56,10 +56,10 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.hdf5.write.H5Write;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.EditFormatAction;
@@ -855,7 +855,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		/*
 		 * Update the children ports
 		 */
-		updateChildren(modifiedBlock);
+		if (children != null) {
+			updateChildren(modifiedBlock);
+		}
 
 		/*
 		 * If the block is in a superblock then update it.
@@ -1490,6 +1492,19 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	protected PropertyChangeSupport getParametersPCS() {
 		return parametersPCS;
 	}
+	
+    /*
+     * Overriden methods from jgraphx
+     */
+    
+    /**
+     * @return always false
+     * @see com.mxgraph.model.mxCell#isConnectable()
+     */
+    @Override
+    public boolean isConnectable() {
+    	return false;
+    }
 	
 	/**
 	 * Re-associate fields with the new instance.

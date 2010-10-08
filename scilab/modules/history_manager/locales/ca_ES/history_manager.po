@@ -49,17 +49,14 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha d'estar a l'interval "
 "[%d,%d].\n"
 
-msgid "// Begin Session : "
-msgstr "// Inici de sessió : "
-
-msgid "// End Session   : "
-msgstr "// Final de sessió  : "
-
 msgid "Apr"
 msgstr "Abr"
 
 msgid "Aug"
 msgstr "Ago"
+
+msgid "Begin Session : "
+msgstr ""
 
 msgid "Dec"
 msgstr "Des"
@@ -96,9 +93,6 @@ msgstr "Oct"
 
 msgid "Sat"
 msgstr "Ds"
-
-msgid "Scilab history_manager module not installed.\n"
-msgstr "No s'ha instal·lat el mòdul history_manager de Scilab.\n"
 
 msgid "Sep"
 msgstr "Set"

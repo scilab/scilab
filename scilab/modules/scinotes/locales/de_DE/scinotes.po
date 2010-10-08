@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2010-04-13 10:55+0000\n"
-"Last-Translator: Tim Schulze-Hartung <Unknown>\n"
+"PO-Revision-Date: 2010-08-15 18:49+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,9 +42,22 @@ msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr "%s: falscher Typ für Argument %d: reelle Matrix erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
 "%s: falscher Typ für Argument %d: Matrix von Zeichenketten erwartet.\n"
+
+msgid "... file with echo"
+msgstr ""
+
+msgid "... file with no echo"
+msgstr ""
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr ""
 
 msgid "?"
 msgstr "?"
@@ -52,23 +65,53 @@ msgstr "?"
 msgid "About"
 msgstr "Über"
 
+msgid "Absolute"
+msgstr ""
+
 msgid "All"
 msgstr "Alle"
 
-msgid "Are you sure that you want to close Text Editor ?"
-msgstr "Sind Sie sicher, daß Sie den Text Editor schließen wollen?"
+msgid "Alphabetic order"
+msgstr ""
+
+msgid "Anchor's name: "
+msgstr ""
+
+msgid "Anchor: "
+msgstr ""
+
+msgid "Anchors"
+msgstr ""
+
+msgid "Are you sure that you want to close SciNotes ?"
+msgstr ""
 
 msgid "Auto (Default)"
 msgstr "Auto"
 
+msgid "Auto-completion on (,&quot;,..."
+msgstr ""
+
+msgid "Auto-completion on if,function,..."
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
 msgid "Backward"
 msgstr "Rückwärts"
+
+msgid "Binary file: read-only mode"
+msgstr ""
+
+msgid "Bold"
+msgstr ""
 
 msgid "Cancel"
 msgstr "Abbrechen"
 
 msgid "Cannot load \"scinotesConfiguration.xml\""
-msgstr "Kann \"scinotesConfiguration.xml\" nicht laden"
+msgstr ""
 
 msgid "Case sensitive"
 msgstr "Groß-/Kleinschreibung beachten"
@@ -79,6 +122,15 @@ msgstr "Farbe ändern"
 msgid "Change Colors"
 msgstr "Farben ändern"
 
+msgid "Circular search"
+msgstr ""
+
+msgid "Clone and close tab in a new window"
+msgstr ""
+
+msgid "Clone tab in a new window"
+msgstr ""
+
 msgid "Close"
 msgstr "Schließen"
 
@@ -87,6 +139,12 @@ msgstr "Alle Schließen"
 
 msgid "Close All But This"
 msgstr "Schließe alle aber dies"
+
+msgid "Code Navigator"
+msgstr ""
+
+msgid "Color"
+msgstr ""
 
 msgid "Colorization canceled"
 msgstr "Färbung abgebrochen"
@@ -97,11 +155,20 @@ msgstr "Einfärben"
 msgid "Comment Selection"
 msgstr "Auswahl kommentieren"
 
-msgid "Continue?"
-msgstr "Fortsetzen?"
+msgid "Complete"
+msgstr ""
+
+msgid "Continue ?"
+msgstr ""
 
 msgid "Copy"
 msgstr "kopieren"
+
+msgid "Copy selection in a new tab"
+msgstr ""
+
+msgid "Copy tab in new window"
+msgstr ""
 
 msgid "Copyright (c)"
 msgstr "Copyright (c)"
@@ -115,6 +182,9 @@ msgstr "Konnte weder die Konsole noch Interpreter Managment finden"
 msgid "Could not find the temporary file."
 msgstr "konnte temporäre Datei nicht finden"
 
+msgid "Cursor Color"
+msgstr ""
+
 msgid "Cut"
 msgstr "Ausschneiden"
 
@@ -123,6 +193,9 @@ msgstr "Standard"
 
 msgid "Delete"
 msgstr "Löschen"
+
+msgid "Detach tab in new window"
+msgstr ""
 
 msgid "Direction"
 msgstr "Ausrichtung"
@@ -133,15 +206,6 @@ msgstr "Dokument"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-msgid "Edit selection in a new tab"
-msgstr "Auswahl in neuem Tab editieren"
-
-msgid "Editor"
-msgstr "Editor"
-
-msgid "Editor error"
-msgstr "Fehler beim Editor"
-
 msgid "Enable Auto Reformat"
 msgstr "schalte automatische Formatierung ein"
 
@@ -151,8 +215,17 @@ msgstr "Zeichenkodierung"
 msgid "Enter line number"
 msgstr "Zeilenzahl eingeben"
 
+msgid "Error while reading the String"
+msgstr ""
+
 msgid "Evaluate Selection"
 msgstr "Auswahl evaluieren"
+
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr ""
+
+msgid "Evaluate from beginning..."
+msgstr ""
 
 msgid "Execute"
 msgstr "Anwenden"
@@ -187,26 +260,62 @@ msgstr "Suchen:"
 msgid "Forward"
 msgstr "Weiter"
 
+msgid "Functions"
+msgstr ""
+
+msgid "Generate comments for help_from_sci"
+msgstr ""
+
+msgid "Generate help from function"
+msgstr ""
+
+msgid "Go to line: "
+msgstr ""
+
+msgid "Go to next anchor"
+msgstr ""
+
+msgid "Go to previous anchor"
+msgstr ""
+
 msgid "Goto line"
 msgstr "Gehe zu Zeile"
 
 msgid "Help about '"
 msgstr "Hilfe über '"
 
-msgid "Help about a selected text"
-msgstr "Hilfe zum ausgewählten Text"
+msgid "Help on ;Help on selection"
+msgstr ""
+
+msgid "Help on selected text or keyword"
+msgstr ""
+
+msgid "Help on the current keyword"
+msgstr ""
+
+msgid "Help on the selected text"
+msgstr ""
+
+msgid "Help on typing"
+msgstr ""
 
 msgid "Highlight current line"
 msgstr "Aktuelle Zeile hervorheben"
 
+msgid "Ignore"
+msgstr ""
+
 msgid "Invalid regular expression : %s"
 msgstr "ungültiger regulärer Ausdruck: %s"
+
+msgid "Italic"
+msgstr ""
 
 msgid "Line Endings"
 msgstr "Zeilenende"
 
-msgid "Line Numbers"
-msgstr "Zeilenzahl"
+msgid "Line numbering;Off;Normal;Whereami compatible"
+msgstr ""
 
 msgid "Load Into Scilab"
 msgstr "Nach Scilab laden"
@@ -217,14 +326,35 @@ msgstr "Laden"
 msgid "Mac Classic (CR)"
 msgstr "Mac Classic (CR)"
 
+msgid "Mail to "
+msgstr ""
+
+msgid "Natural order"
+msgstr ""
+
 msgid "New"
 msgstr "Neu"
 
 msgid "Next tab"
 msgstr "Nächster Reiter"
 
-msgid "No text selected"
-msgstr "kein Text ausgewählt"
+msgid "No Line Numbering"
+msgstr ""
+
+msgid "No split"
+msgstr ""
+
+msgid "No text selected."
+msgstr ""
+
+msgid "No text to execute."
+msgstr ""
+
+msgid "Normal Line Numbering"
+msgstr ""
+
+msgid "Numerotation"
+msgstr ""
 
 msgid "Ok"
 msgstr "Ok"
@@ -232,14 +362,50 @@ msgstr "Ok"
 msgid "Open"
 msgstr "Öffnen"
 
+msgid "Open URL"
+msgstr ""
+
+msgid "Open file in ...;Add a directory;Remove last directory"
+msgstr ""
+
+msgid "Open function source file"
+msgstr ""
+
+msgid "Open in the navigator the URL "
+msgstr ""
+
+msgid "Open source"
+msgstr ""
+
+msgid "Open source file of the function:"
+msgstr ""
+
+msgid "Open the source of the macro "
+msgstr ""
+
 msgid "Options"
 msgstr "Einstellungen"
+
+msgid "Order"
+msgstr ""
+
+msgid "Overwrite"
+msgstr ""
 
 msgid "Page Setup"
 msgstr "Seite einrichten"
 
 msgid "Paste"
 msgstr "Einfügen"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Press CTRL and move the mouse over the link to activate it"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
 
 msgid "Previous tab"
 msgstr "Voriger Reiter"
@@ -250,6 +416,9 @@ msgstr "Drucken"
 msgid "Print Preview"
 msgstr "Druckvorschau"
 
+msgid "Read-only mode"
+msgstr ""
+
 msgid "Recent Files"
 msgstr "Zuletzt geöffnete Dateien"
 
@@ -258,6 +427,21 @@ msgstr "Wiederholen"
 
 msgid "Regular expressions"
 msgstr "Reguläre Ausdrücke"
+
+msgid "Relative"
+msgstr ""
+
+msgid "Reload"
+msgstr ""
+
+msgid "Remove anchor"
+msgstr ""
+
+msgid "Remove trailing spaces"
+msgstr ""
+
+msgid "Remove trailing whitespaces"
+msgstr ""
 
 msgid "Replace"
 msgstr "Ersetzen"
@@ -277,6 +461,18 @@ msgstr "Suchen/Ersetzen"
 msgid "Reset default font"
 msgstr "voreingestellte Schriftart zurücksetzen"
 
+msgid "Restart the search from the beginning"
+msgstr ""
+
+msgid "Restore files from your last SciNotes session ?"
+msgstr ""
+
+msgid "Restore opened files on start-up"
+msgstr ""
+
+msgid "Restore the last sessions"
+msgstr ""
+
 msgid "Save"
 msgstr "Speichern"
 
@@ -285,6 +481,15 @@ msgstr "Alles sichern"
 
 msgid "Save as"
 msgstr "Speichern als"
+
+msgid "SciNotes"
+msgstr ""
+
+msgid "SciNotes error"
+msgstr ""
+
+msgid "SciNotes help"
+msgstr ""
 
 msgid "Scilab"
 msgstr "Scilab"
@@ -297,12 +502,6 @@ msgstr "Scilab '%s' Modul in Modus -nogui ider -nmwi deaktiviert.\n"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' Modul nicht installiert.\n"
 
-msgid "Scilab text editor"
-msgstr "Scilab Text Editor"
-
-msgid "Scilab text editor help"
-msgstr "Hilfe für Scilab Text Editor"
-
 msgid "Scope"
 msgstr "Gültigkeit"
 
@@ -311,6 +510,9 @@ msgstr "Suchen"
 
 msgid "Select All"
 msgstr "Alle auswählen"
+
+msgid "Select current block"
+msgstr ""
 
 msgid "Selected lines"
 msgstr "ausgewählte Zeilen"
@@ -321,14 +523,41 @@ msgstr "Farben einstellen"
 msgid "Set Font"
 msgstr "Schriftart wählen"
 
+msgid "Set an anchor"
+msgstr ""
+
+msgid "Set anchor"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
 msgid "Shift Left"
 msgstr "Umschalttaste links"
 
 msgid "Shift Right"
 msgstr "Umschalttaste rechts"
 
+msgid "Show the definition of the macro "
+msgstr ""
+
 msgid "Show/Hide ToolBar"
 msgstr "Zusatzleiste zeigen/verstecken"
+
+msgid "Source of '"
+msgstr ""
+
+msgid "Split View;Off;Horizontally;Vertically"
+msgstr ""
+
+msgid "Split horizontally"
+msgstr ""
+
+msgid "Split vertically"
+msgstr ""
+
+msgid "Strike Through"
+msgstr ""
 
 msgid "String %s not found"
 msgstr "Zeichenkette %s nicht gefunden"
@@ -371,8 +600,14 @@ msgstr ""
 "Alternative sein.\n"
 "Sind Sie sicher, daß Sie fortfahren möchten?"
 
+msgid "Tools"
+msgstr ""
+
 msgid "Uncomment Selection"
 msgstr "Auswahl nicht kommentieren"
+
+msgid "Underline"
+msgstr ""
 
 msgid "Undo"
 msgstr "Rückgängig machen"
@@ -386,17 +621,23 @@ msgstr "Unbenannt "
 msgid "View"
 msgstr "Ansicht"
 
+msgid "Warning: the file has been modified by another program !"
+msgstr ""
+
+msgid "Whereami Line Numbering"
+msgstr ""
+
 msgid "Whole word"
 msgstr "Ganzes Wort"
+
+msgid "Window"
+msgstr ""
 
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
 msgid "Word Wrap"
 msgstr "Zeilenumbruch"
-
-msgid "Wrap search"
-msgstr "Suche am Anfang fortsetzen"
 
 msgid "You have passed the beginning of the document"
 msgstr "Sie haben den Anfang des Dokuments passiert"

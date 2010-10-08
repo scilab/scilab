@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2009-10-08 15:58+0000\n"
+"PO-Revision-Date: 2010-08-17 14:47+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -57,16 +57,6 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正な値: [%d、%d] 間隔であるべきです。\n"
 
 #
-# File: src/c/getCommentDateSession.c, line: 25
-msgid "// Begin Session : "
-msgstr "// セッションの開始 : "
-
-#
-# File: src/c/getCommentDateSession.c, line: 26
-msgid "// End Session   : "
-msgstr "// セッションの終わり : "
-
-#
 # File: src/c/getCommentDateSession.c, line: 129
 msgid "Apr"
 msgstr "4月"
@@ -75,6 +65,9 @@ msgstr "4月"
 # File: src/c/getCommentDateSession.c, line: 133
 msgid "Aug"
 msgstr "8月"
+
+msgid "Begin Session : "
+msgstr "空白文字を意味します。翻訳で等しい位置に空白を入れてください。 "
 
 #
 # File: src/c/getCommentDateSession.c, line: 137
@@ -135,11 +128,6 @@ msgstr "10月"
 # File: src/c/getCommentDateSession.c, line: 114
 msgid "Sat"
 msgstr "土"
-
-#
-# File: src/nohistory_manager/nohistory_manager.c, line: 23
-msgid "Scilab history_manager module not installed.\n"
-msgstr "Scilabモジュール history_manager はインストールされていません。\n"
 
 #
 # File: src/c/getCommentDateSession.c, line: 134

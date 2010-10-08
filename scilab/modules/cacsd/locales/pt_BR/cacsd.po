@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-09 14:53+0000\n"
+"PO-Revision-Date: 2010-09-22 10:59+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -317,6 +317,10 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: O valor computado de || G || pode ser impreciso.\n"
 
 #, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr "%s: o sistema fornecido não possui polos nem zeros.\n"
+
+#, c-format
 msgid "%s: Undefined type ''%s''.\n"
 msgstr "%s: o tipo \"%s\" é indefinido.\n"
 
@@ -450,6 +454,13 @@ msgid ""
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: a quantidade de "
 "colunas é incompatível com %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de números reais\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -794,6 +805,9 @@ msgstr "Im(h(2if))"
 msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
+msgid "Imaginary Axis"
+msgstr "Eixo imaginário"
+
 msgid "Imaginary axis"
 msgstr "Eixo imaginário"
 
@@ -834,6 +848,9 @@ msgstr "Re(h(2if))"
 msgid "Re(h(exp(2if*dt)))"
 msgstr "Re(h(exp(2if*dt)))"
 
+msgid "Real Axis"
+msgstr "Eixo real"
+
 msgid "Real axis"
 msgstr "Eixo real"
 
@@ -858,6 +875,13 @@ msgstr "direções assintóticas"
 msgid "dB"
 msgstr "dB"
 
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+"loci com amortecimento e frequência natural constantes\n"
+"no plano discreto"
+
 msgid "magnitude(y) (Db)"
 msgstr "magnitude(y) (dB)"
 
@@ -872,3 +896,6 @@ msgstr "zeros de malha aberta"
 
 msgid "phase(y) (degree)"
 msgstr "fase(y) (grau)"
+
+msgid "rad/sec"
+msgstr "rad/s"

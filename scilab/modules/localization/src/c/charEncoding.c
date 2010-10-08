@@ -22,20 +22,18 @@
 #ifndef _MSC_VER
 int wcsicmp_others(const wchar_t* s1, const wchar_t* s2)
 {
-	wchar_t c1 = *s1, c2 = *s2;
-	while (c1 != 0 && c2 != 0) 
-	{ 
-		if (c1 >= 'a' && c1 <= 'z') c1 -= 'a' + 'A';
-		if (c2 >= 'a' && c2 <= 'z') c2 -= 'a' + 'A';
-		if (c2 < c1) return -1; else if (c2 > c1) return 1;
-		c1 = *(++s1); c2 = *(++s2); 
-	} 
-	return 0; 
+    while (towlower(*s1) == towlower(*s2))
+    {
+        if (*s1 == 0) return 0;
+        s1++;
+        s2++;
+    }
+    return towlower(*s1) - towlower(*s2);
 }
 #endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-char *wide_string_to_UTF8(wchar_t *_wide)
+char *wide_string_to_UTF8(const wchar_t *_wide)
 {
 	char *buf = NULL;
 	DWORD size = 0;
@@ -58,7 +56,7 @@ char *wide_string_to_UTF8(wchar_t *_wide)
 	return buf;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *to_wide_string(char *_UTFStr)
+wchar_t *to_wide_string(const char *_UTFStr)
 {
 	int nwide = 0;
 	wchar_t *_buf = NULL;
@@ -97,7 +95,7 @@ int wcstat(char* filename, struct _stat *st)
 }
 /*--------------------------------------------------------------------------*/
 #else //Linux check for MAC OS X
-char *wide_string_to_UTF8(wchar_t *_wide)
+char *wide_string_to_UTF8(const wchar_t *_wide)
 {
 	size_t iCharLen = 0;
 	wchar_t *pwstr = _wide;
@@ -126,7 +124,7 @@ char *wide_string_to_UTF8(wchar_t *_wide)
 	return pchar;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *to_wide_string(char *_UTFStr)
+wchar_t *to_wide_string(const char *_UTFStr)
 {
 	wchar_t *_buf = NULL;
 	size_t pszLen = 0;

@@ -1,6 +1,6 @@
 // =============================================================================
 // Allan CORNET - DIGITEO - 2009
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 // =============================================================================
 files=['sci_call_scifunc.c'];
 ilib_build('callscifunc',['call_scifunc','sci_call_scifunc'],files,[]);

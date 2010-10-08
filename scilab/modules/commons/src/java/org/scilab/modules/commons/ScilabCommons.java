@@ -31,4 +31,8 @@ public static String getSCIHOME() {
     return ScilabCommonsJNI.getSCIHOME();
   }
 
+  public static String getTMPDIR() {
+    return ScilabCommonsJNI.getTMPDIR();
+  }
+
 }

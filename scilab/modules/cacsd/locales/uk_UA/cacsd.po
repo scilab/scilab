@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-06-29 11:59+0000\n"
+"PO-Revision-Date: 2010-09-15 15:25+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -315,6 +315,10 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: обчислене значення || G || може бути неточним.\n"
 
 #, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr "%s: у вказаній системі немає полюсів і нулів.\n"
+
+#, c-format
 msgid "%s: Undefined type ''%s''.\n"
 msgstr "%s: невизначений тип «%s».\n"
 
@@ -454,6 +458,13 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: кількість стовпчиків "
 "несумісна з %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано масив "
+"дійсних значень з плаваючою крапкою\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -795,6 +806,9 @@ msgstr "Im(h(2if))"
 msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
+msgid "Imaginary Axis"
+msgstr "Вісь уявних значень"
+
 msgid "Imaginary axis"
 msgstr "Вісь уявних значень"
 
@@ -836,6 +850,9 @@ msgstr "Re(h(2if))"
 msgid "Re(h(exp(2if*dt)))"
 msgstr "Re(h(exp(2if*dt)))"
 
+msgid "Real Axis"
+msgstr "Вісь дійсних значень"
+
 msgid "Real axis"
 msgstr "Вісь дійсних значень"
 
@@ -860,6 +877,13 @@ msgstr "асимптотичні напрямки"
 msgid "dB"
 msgstr "дБ"
 
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+"точки зі сталим демпфуванням та сталою натуральною частотою\n"
+"на дискретній площині"
+
 msgid "magnitude(y) (Db)"
 msgstr "амплітуда (y) (дБ)"
 
@@ -874,3 +898,6 @@ msgstr "нулі розімкненої системи"
 
 msgid "phase(y) (degree)"
 msgstr "фаза (y) (у градусах)"
+
+msgid "rad/sec"
+msgstr "рад/с"
