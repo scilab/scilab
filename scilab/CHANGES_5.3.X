@@ -25,6 +25,10 @@ Xcos:
 
 * bug 8081 fixed - The context was not checked before being set.
 
+Graphic export:
+===============
+
+* Decrease the amount of messages when exporting a graphic.
 
 Graphics:
 =========

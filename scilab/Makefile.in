@@ -612,6 +612,7 @@ $(top_srcdir)/etc/toolboxes.xml \
 $(top_builddir)/etc/jvm_options.xml \
 $(top_builddir)/etc/modules.xml \
 $(top_builddir)/etc/classpath.xml \
+$(top_builddir)/etc/logging.properties \
 $(top_builddir)/etc/librarypath.xml
 
 infofilesdir = $(pkgdatadir)/
