@@ -41,6 +41,7 @@ import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
 
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -64,7 +65,7 @@ public class EncodingAction extends DefaultCheckAction {
      */
     private static final long serialVersionUID = -5421313717126859924L;
 
-    private static final String CHECKICON = System.getenv("SCI") + "/modules/gui/images/icons/check-icon.png";
+    private static final String CHECKICON = ScilabConstants.SCI.getPath() + "/modules/gui/images/icons/check-icon.png";
 
     private static Map<String, String> encodings = new HashMap();
     private static Map<String, List<String>> language = new HashMap();
@@ -72,6 +73,18 @@ public class EncodingAction extends DefaultCheckAction {
     private static Menu[] menuLang;
 
     static {
+        encodings.put("x-MacArabic", "Arabic");
+        encodings.put("x-MacCentralEurope", "Central European");
+        encodings.put("x-MacCroatian", "Central European");
+        encodings.put("x-MacCyrillic", "Cyrillic");
+        encodings.put("x-MacGreek", "Greek");
+        encodings.put("x-MacHebrew", "Hebrew");
+        encodings.put("x-MacIceland", "Western European");
+        encodings.put("x-MacRoman", "Western European");
+        encodings.put("x-MacRomania", "Central European");
+        encodings.put("x-MacThai", "Thai");
+        encodings.put("x-MacTurkish", "Turkish");
+        encodings.put("x-MacUkraine", "Cyrillic");
         encodings.put("ASMO-708", "Arabic");
         encodings.put("cp866", "Cyrillic");
         encodings.put("windows-874", "Thai");
