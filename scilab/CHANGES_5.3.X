@@ -57,6 +57,8 @@ Bug Fixes:
 * bug 7997 fixed - Function getfreememory adapted for FreeBSD. Thanks to Rob
                    Farmer.
 
+* bug 8016 fixed - An error in a german translation gave an error message.
+
 * bug 8046 fixed - msprintf did not manage tabulation as format.
 
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
