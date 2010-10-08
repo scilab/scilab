@@ -27,7 +27,7 @@ X0 = inistate(A,C,Y);
 [x0,V,rcnd] = inistate(SYS,Y,U,TOL,PRINTW)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>SYS</term>

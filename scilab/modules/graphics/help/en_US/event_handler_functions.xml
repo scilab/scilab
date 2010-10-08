@@ -25,7 +25,7 @@
     <synopsis>envent_handler_function(win,x,y,ibut)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>win</term>

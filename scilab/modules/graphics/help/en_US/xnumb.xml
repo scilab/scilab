@@ -23,7 +23,7 @@
     <synopsis>xnumb(x,y,nums,[box,angle])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y,nums</term>

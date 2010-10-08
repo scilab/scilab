@@ -23,7 +23,7 @@
     <synopsis>[N,M,X,Y,NT,MT,XT,YT]=dcf(G,[polf,polc,[tol]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>G</term>

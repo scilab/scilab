@@ -12,7 +12,7 @@
     <synopsis>[Ct,p] = taucs_chget(C_ptr)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>C_ptr  </term>

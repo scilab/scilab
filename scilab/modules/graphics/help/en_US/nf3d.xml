@@ -23,7 +23,7 @@
     <synopsis>[xx,yy,zz]=nf3d(x,y,z)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y,x,xx,yy,zz</term>

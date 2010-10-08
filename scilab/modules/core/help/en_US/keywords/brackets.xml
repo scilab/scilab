@@ -13,7 +13,7 @@
 [s1,s2,...]=func(...)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a11,a12,...  </term>

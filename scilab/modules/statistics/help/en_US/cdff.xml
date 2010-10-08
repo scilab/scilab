@@ -26,7 +26,7 @@
 [Dfd]=cdff("Dfd",P,Q,F,Dfn)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,F,Dfn,Dfd</term>

@@ -12,7 +12,7 @@
     <synopsis>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>desc</term>

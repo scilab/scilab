@@ -24,7 +24,7 @@
 [Obs,U,m]=observer(Sys [,flag,alfa])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sys</term>

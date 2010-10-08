@@ -24,7 +24,7 @@
     <synopsis>rect=xstringl(x,y,str,[fontId,fontSize])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>rect</term>

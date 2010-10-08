@@ -23,7 +23,7 @@
     <synopsis>rgb=name2rgb(name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>name</term>

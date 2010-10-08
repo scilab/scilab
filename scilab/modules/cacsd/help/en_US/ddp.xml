@@ -24,7 +24,7 @@
 [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sys</term>

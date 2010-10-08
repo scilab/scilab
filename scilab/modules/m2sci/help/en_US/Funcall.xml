@@ -23,7 +23,7 @@
     <synopsis>fc=Funcall(name,lhsnb,rhslist,lhslist)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>name</term>

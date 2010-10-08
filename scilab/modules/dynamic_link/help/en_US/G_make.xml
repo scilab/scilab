@@ -23,7 +23,7 @@
     <synopsis>Rfiles=G_make(files,dllname)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>files</term>

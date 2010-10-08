@@ -23,7 +23,7 @@
     <synopsis>namelib = lib('lib-dir')</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lib-dir</term>

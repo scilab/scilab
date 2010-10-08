@@ -23,7 +23,7 @@
     <synopsis>[kf,kc]=lqg_ltr(sl,mu,ro)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl</term>

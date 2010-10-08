@@ -24,7 +24,7 @@
     <synopsis>res = strcmpi(string_one,string_two)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>string_one</term>

@@ -24,7 +24,7 @@
 names=rgb2name(rgb)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r,g,b</term>

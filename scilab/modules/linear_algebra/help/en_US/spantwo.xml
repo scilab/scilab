@@ -23,7 +23,7 @@
     <synopsis>[Xp,dima,dimb,dim]=spantwo(A,B, [tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A, B</term>

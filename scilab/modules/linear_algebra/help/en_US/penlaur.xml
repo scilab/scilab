@@ -24,7 +24,7 @@
 [Si,Pi,Di,order]=penlaur(E,A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Fs</term>

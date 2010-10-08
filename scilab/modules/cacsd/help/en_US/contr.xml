@@ -25,7 +25,7 @@
 [n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A, B</term>

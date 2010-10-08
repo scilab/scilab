@@ -36,7 +36,7 @@ txt=strcat(vector_of_strings [,string_added, ["flag"]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

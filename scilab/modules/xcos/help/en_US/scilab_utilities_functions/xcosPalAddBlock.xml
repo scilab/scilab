@@ -20,7 +20,7 @@ pal = xcosPalAddBlock(pal, block, [], style);
 pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>pal:</term>

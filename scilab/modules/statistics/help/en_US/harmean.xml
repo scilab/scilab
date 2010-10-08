@@ -25,7 +25,7 @@ hm=harmean(x,'r')(or, equivalently, hm=harmean(x,1))
 hm=harmean(x,'c')(or, equivalently, hm=harmean(x,2))</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

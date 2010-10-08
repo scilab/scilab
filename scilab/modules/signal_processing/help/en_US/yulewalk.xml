@@ -12,7 +12,7 @@
     <synopsis>Hz = yulewalk(N,frq,mag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>N</term>

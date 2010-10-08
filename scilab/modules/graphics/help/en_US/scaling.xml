@@ -23,7 +23,7 @@
     <synopsis>xy1=scaling(xy,scalingFactor,[orig])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>xy1</term>

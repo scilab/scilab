@@ -23,7 +23,7 @@
     <synopsis>new=addcolor(c)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>new</term>

@@ -37,7 +37,7 @@
          <synopsis>SciErr createNamedMList(void* _pvCtx, const char* _pstName, int _iNbItem, int** _piAddress)</synopsis>
      </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>

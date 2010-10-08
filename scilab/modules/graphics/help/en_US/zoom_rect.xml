@@ -28,7 +28,7 @@ zoom_rect(h,rect)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>rect</term>

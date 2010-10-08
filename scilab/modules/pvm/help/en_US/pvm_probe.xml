@@ -23,7 +23,7 @@
     <synopsis>[buffid] = pvm_probe(tid, msgtag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>tid</term>

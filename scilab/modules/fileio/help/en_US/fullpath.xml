@@ -24,7 +24,7 @@
     <synopsis>res = fullpath(relative_path)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>res</term>

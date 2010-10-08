@@ -23,7 +23,7 @@
     <synopsis>status = matfile_varreadnext(fd, name, value, compressionflag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fd</term>

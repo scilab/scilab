@@ -32,7 +32,7 @@
         <synopsis>SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
 			<varlistentry>
 				<term>_pvCtx</term>

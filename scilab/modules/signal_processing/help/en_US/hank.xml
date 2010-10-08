@@ -12,7 +12,7 @@
     <synopsis>[hk]=hank(m,n,cov)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>m</term>

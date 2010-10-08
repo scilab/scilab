@@ -14,7 +14,7 @@ t=A**b
 t=A.^b</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A,t</term>

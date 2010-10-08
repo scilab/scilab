@@ -33,7 +33,7 @@
         <synopsis>int isNamedVarComplex(void* _pvCtx, const char *_pstName)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>

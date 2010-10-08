@@ -23,7 +23,7 @@
     <synopsis>isoview(xmin,xmax,ymin,ymax)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>xmin,xmax,ymin,ymax</term>

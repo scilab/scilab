@@ -12,7 +12,7 @@
     <synopsis>[hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
