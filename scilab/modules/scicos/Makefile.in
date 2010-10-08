@@ -2370,6 +2370,8 @@ distclean-local:
 @OCAML_TRUE@@SCICOS_TRUE@generate-parser: $(PARSER_SRC)
 @OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLYACC) $(<)
 @OCAML_TRUE@@SCICOS_TRUE@	$(RM) -f $(<:.mly=.mli)
+# Crappy workaround to avoid bug 8013
+@OCAML_TRUE@@SCICOS_TRUE@	touch src/modelica_compiler/scicosCodeGeneration.mli
 
 # Call the lexer
 @OCAML_TRUE@@SCICOS_TRUE@generate-lexer: $(LEXER_SRC)
@@ -2386,7 +2388,9 @@ distclean-local:
 # call the ocaml/Yacc
 @OCAML_TRUE@@SCICOS_TRUE@generate-parser_modelicat: $(PARSER_SRC_modelicat)
 @OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLYACC) $(<)
-@OCAML_TRUE@@SCICOS_TRUE@	$(RM) -f $(<:.mly=.mli)
+@OCAML_TRUE@@SCICOS_TRUE@	$(RM) -f $(<:.mly=.ml)i
+# Crappy workaround to avoid bug 8013
+@OCAML_TRUE@@SCICOS_TRUE@	touch $(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
 
 # Call the lexer
 @OCAML_TRUE@@SCICOS_TRUE@generate-lexer_modelicat: $(LEXER_SRC_modelicat)

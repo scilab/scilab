@@ -41,6 +41,11 @@ SciNotes:
 * bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
 
 
+Compilation:
+============
+
+* bug 8013 fixed - In some cases, the build of the compiler of modelica failed.
+
 Bug Fixes:
 ==========
 
