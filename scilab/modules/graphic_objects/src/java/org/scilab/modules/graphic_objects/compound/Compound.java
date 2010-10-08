@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.compound;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 
 /**
  * Compound object class
@@ -25,7 +26,12 @@ public class Compound extends GraphicObject {
 		super();
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * @return Type as String
 	 */
 	public String getType() {

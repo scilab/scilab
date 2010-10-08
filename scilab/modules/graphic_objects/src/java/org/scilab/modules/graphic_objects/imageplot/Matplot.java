@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.imageplot;
 
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+
 /**
  * Matplot class
  * @author Manuel JULIACHS
@@ -24,7 +26,12 @@ public class Matplot extends Imageplot {
 		super();
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * @return Type as String
 	 */
 	public String getType() {

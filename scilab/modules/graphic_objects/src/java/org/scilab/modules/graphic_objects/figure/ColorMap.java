@@ -77,16 +77,16 @@ public class ColorMap {
         }
 
         if (index==-1) {
-            return BLACK_COLOR.clone();
+            return BLACK_COLOR;
         } else if (index==-2) {
-            return WHITE_COLOR.clone();
+            return WHITE_COLOR;
         } else {
             index = index - 1;
-            float[] returned = new float[CHANNELS_NUMBER];
-            for (int i = 0 ; i<CHANNELS_NUMBER ; i++) {
-                returned[i] = data[index + getSize() * i].floatValue();
-            }
-            return returned;
+            return new float[]{
+                data[index].floatValue(),
+                data[index + getSize()].floatValue(),
+                data[index + getSize() * 2].floatValue()
+            };
         }
     }
 

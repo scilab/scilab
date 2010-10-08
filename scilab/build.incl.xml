@@ -106,6 +106,8 @@
 		<pathelement location="${jhall.jar}"/>
 		
 		<pathelement location="${jgraphx.jar}"/>
+		
+		<pathelement location="${scirenderer.jar}"/>
 
 	<!-- Only usefull for the documentation -->	
 		<pathelement location="${library.helptools.dir}/${library.helptools.name}"/>

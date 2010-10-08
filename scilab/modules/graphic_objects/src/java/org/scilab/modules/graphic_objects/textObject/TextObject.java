@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.textObject;
 
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 import org.scilab.modules.graphic_objects.textObject.Font.FontProperty;
 import org.scilab.modules.graphic_objects.textObject.FormattedText.FormattedTextProperty;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -48,7 +49,12 @@ public class TextObject extends ContouredObject {
 		text[0] = new FormattedText();
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

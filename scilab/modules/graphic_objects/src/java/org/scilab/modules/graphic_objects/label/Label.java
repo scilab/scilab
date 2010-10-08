@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.label;
 
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 import org.scilab.modules.graphic_objects.textObject.TextObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -50,7 +51,12 @@ public class Label extends TextObject {
 		setTextStrings(textStrings);
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

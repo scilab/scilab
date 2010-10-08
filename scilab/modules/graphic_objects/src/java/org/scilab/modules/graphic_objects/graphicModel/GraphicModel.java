@@ -69,7 +69,7 @@ public class GraphicModel {
      * @param id the id of the object to get
      * @return the object
      */
-    public Object getObjectFromId(String id) {
+    public GraphicObject getObjectFromId(String id) {
     	return allObjects.get(id);
     }
 
@@ -150,6 +150,7 @@ public class GraphicModel {
      * @return the created typed object
      */
     private GraphicObject createTypedObject(Type type) {
+        try {
 		switch (type) {
 
 		case ARC:
@@ -191,6 +192,10 @@ public class GraphicModel {
 		default:
 		    return null;
 		}
+        } catch (Throwable t) {
+            t.printStackTrace();
+            return null;
+        }
     }
 
     /**

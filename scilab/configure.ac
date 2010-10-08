@@ -698,6 +698,13 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_SUBST(JGRAPHX)
 
 				AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+				
+				# scirenderer
+				AC_JAVA_CHECK_PACKAGE([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer])
+				SCIRENDERER=$PACKAGE_JAR_FILE
+				AC_SUBST(SCIRENDERER)
+				
+        AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.1.2],[PackageInfo.VERSION],[],[=])
 
 				# Docking system
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
@@ -1984,6 +1991,7 @@ echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
+echo "  SciRenderer ......... = $SCIRENDERER"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi
 

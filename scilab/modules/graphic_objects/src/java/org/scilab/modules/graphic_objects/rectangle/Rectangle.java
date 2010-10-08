@@ -13,6 +13,8 @@
 package org.scilab.modules.graphic_objects.rectangle;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
@@ -40,7 +42,12 @@ public class Rectangle extends ClippableContouredObject {
 		height = 0.0;
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

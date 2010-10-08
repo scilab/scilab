@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.figure;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 /**
@@ -20,7 +21,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * @author Manuel JULIACHS
  */
 public class Figure extends GraphicObject {
-	/** Figure properties names */
+
+    /** Figure properties names */
 	private enum FigureProperty {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE,
 		BACKGROUND, TAG, ROTATIONTYPE
@@ -267,8 +269,13 @@ public class Figure extends GraphicObject {
         //}	    
 	    return copy;
 	}
-	
-	/**
+
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

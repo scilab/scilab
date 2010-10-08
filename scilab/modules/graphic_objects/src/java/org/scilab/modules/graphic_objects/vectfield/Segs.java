@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+
 /**
  * Segs class
  * @author Manuel JULIACHS
@@ -24,7 +26,12 @@ public class Segs extends VectField {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * @return Type as String
 	 */
 	public String getType() {

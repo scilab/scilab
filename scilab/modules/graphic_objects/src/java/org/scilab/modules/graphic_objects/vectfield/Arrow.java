@@ -13,6 +13,8 @@
 package org.scilab.modules.graphic_objects.vectfield;
 
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 
@@ -41,7 +43,12 @@ public class Arrow extends ContouredObject {
 		arrowSize = 0.0;
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

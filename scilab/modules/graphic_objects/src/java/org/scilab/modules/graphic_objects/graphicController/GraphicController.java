@@ -12,18 +12,17 @@
 
 package org.scilab.modules.graphic_objects.graphicController;
 
-import java.rmi.server.UID;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
-import org.scilab.modules.graphic_objects.graphicView.LogView;
+
+import javax.swing.event.EventListenerList;
+import java.rmi.server.UID;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -31,20 +30,14 @@ import org.scilab.modules.graphic_objects.graphicView.LogView;
  * @author Bruno JOFRET
  */
 public class GraphicController {
-
-
-    private Set<GraphicView> allViews = new HashSet<GraphicView>();
-
+    //TODO
+    private static EventListenerList allViews = new EventListenerList();
     private static GraphicController me = null;
 
     /**
      * Default constructor
      */
     private GraphicController() {
-        /**
-         * Debug Only !
-         */
-        this.register(LogView.createLogView());
     }
 
     /**
@@ -65,7 +58,7 @@ public class GraphicController {
      * @param view The view to register.
      */
     public void register(GraphicView view) {
-        allViews.add(view);
+        allViews.add(GraphicView.class, view);
     }
 
     /**
@@ -81,11 +74,8 @@ public class GraphicController {
      * @param id the object id
      * @return the object
      */
-    public Object getObjectFromId(String id) {
-    	Object object;
-    	object = GraphicModel.getModel().getObjectFromId(id);
-
-    	return object;
+    public GraphicObject getObjectFromId(String id) {
+    	return GraphicModel.getModel().getObjectFromId(id);
     }
 
     /**
@@ -163,8 +153,8 @@ public class GraphicController {
      * @param id the created object's id
      */
     public void objectCreated(String id) {
-        for (GraphicView allView : allViews) {
-            allView.createObject(id);
+        for (GraphicView gw : allViews.getListeners(GraphicView.class)) {
+            gw.createObject(id);
         }
     }
 
@@ -174,8 +164,8 @@ public class GraphicController {
      * @param prop the property that has been updated
      */
     public void objectUpdate(String id, String prop) {
-        for (GraphicView allView : allViews) {
-            allView.updateObject(id, prop);
+        for (GraphicView gw : allViews.getListeners(GraphicView.class)) {
+            gw.updateObject(id, prop);
         }
     }
 
@@ -184,8 +174,8 @@ public class GraphicController {
      * @param id the deleted object's id
      */
     public void objectDeleted(String id) {
-        for (GraphicView allView : allViews) {
-            allView.deleteObject(id);
+        for (GraphicView gw : allViews.getListeners(GraphicView.class)) {
+            gw.deleteObject(id);
         }
     }
 

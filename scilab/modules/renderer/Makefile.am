@@ -303,6 +303,10 @@ libscirenderer_la_CFLAGS=	-I$(srcdir)/includes/
 libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
+                
+if SWIG
+  BUILT_SOURCES=swig
+endif
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
@@ -316,7 +320,8 @@ libscirenderer_la_LIBADD =  $(top_builddir)/libs/doublylinkedlist/libscidoublyli
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 
 
-GIWS_WRAPPERS=src/jni/ArcFillDrawerGL.giws.xml \
+GIWS_WRAPPERS= \
+src/jni/ArcFillDrawerGL.giws.xml \
 src/jni/ArcLineDrawerGL.giws.xml \
 src/jni/BackTrihedronDrawerGL.giws.xml \
 src/jni/CenteredTextDrawerGL.giws.xml \

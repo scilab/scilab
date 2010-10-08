@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.surface;
 
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+
 /**
  * Plot3d class
  * @author Manuel JULIACHS
@@ -26,7 +28,12 @@ public class Plot3d extends Surface {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * @return Type as String
 	 */
 	public String getType() {

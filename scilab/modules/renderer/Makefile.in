@@ -563,6 +563,7 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCIRENDERER = @SCIRENDERER@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -943,6 +944,11 @@ libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 
+# Provides macros compilation, Java compilation, cleaning
+# If you want Makefile to call ant, added USEANT=1
+@GIWS_TRUE@BUILT_SOURCES = giws
+@SWIG_TRUE@BUILT_SOURCES = swig
+
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
@@ -951,7 +957,8 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 libscirenderer_la_LIBADD = $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
-GIWS_WRAPPERS = src/jni/ArcFillDrawerGL.giws.xml \
+GIWS_WRAPPERS = \
+src/jni/ArcFillDrawerGL.giws.xml \
 src/jni/ArcLineDrawerGL.giws.xml \
 src/jni/BackTrihedronDrawerGL.giws.xml \
 src/jni/CenteredTextDrawerGL.giws.xml \
@@ -996,10 +1003,6 @@ src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml \
 src/jni/SubwinBackgroundDrawerGL.giws.xml
 
-
-# Provides macros compilation, Java compilation, cleaning
-# If you want Makefile to call ant, added USEANT=1
-@GIWS_TRUE@BUILT_SOURCES = giws
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@pkglib_LTLIBRARIES = libscirenderer.la
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)

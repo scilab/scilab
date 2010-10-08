@@ -30,6 +30,7 @@
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "callJoGLView.h"
 
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
@@ -56,6 +57,7 @@ sciPointObj * sciGetCurrentFigure( void )
       int iZero = 0;
       pFigure = sciCloneObj(getFigureModel());
       setGraphicObjectProperty(pFigure->UID, __GO_ID__, &iZero, jni_int, 1);
+      createJoGLView(pFigure->UID);
 
       /*
        * Clones a new Axes object using the Axes model which is then

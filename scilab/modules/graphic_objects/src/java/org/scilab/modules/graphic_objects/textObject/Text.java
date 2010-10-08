@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.textObject;
 
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
@@ -101,7 +103,12 @@ public class Text extends ClippableTextObject {
 		autoDimensioning = false;
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

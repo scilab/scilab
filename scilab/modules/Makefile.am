@@ -30,6 +30,7 @@ localization \
 commons \
 jvm \
 action_binding \
+graphic_objects \
 renderer \
 shell \
 completion \
@@ -84,7 +85,6 @@ types \
 hdf5 \
 graph\
 xcos \
-graphic_objects \
 scinotes \
 parallel \
 modules_manager \

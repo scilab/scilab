@@ -31,7 +31,7 @@ BUILT_SOURCES = 	includes/graphicObjectsProperties.h
 
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 
-GRAPHIC_OBJECTS_C_SOURCES =
+GRAPHIC_OBJECTS_C_SOURCES = src/jni/NativeGL_wrap.c
 
 GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
@@ -39,6 +39,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/deleteGraphicObject.cpp \
 								src/cpp/dataModel.cpp \
 								src/cpp/Data3D.cpp \
+								src/cpp/NativeGL.cpp \
 								src/cpp/NgonData.cpp \
 								src/cpp/NgonGeneralData.cpp \
 								src/cpp/NgonPolylineData.cpp
@@ -88,7 +89,7 @@ if GUI
 pkglib_LTLIBRARIES += libscigraphic_objects.la
 endif
 
-libscigraphic_objects_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscigraphic_objects_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_GEN_SOURCES) $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GRAPHIC_OBJECTS_CPP_SOURCES)
 
@@ -98,14 +99,13 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS =
+SWIG_WRAPPERS = src/jni/NativeGL.i
 
 if SWIG
-BUILT_SOURCES += swig
+  BUILT_SOURCES += swig
 endif
 
-libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
+libscigraphic_objects_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

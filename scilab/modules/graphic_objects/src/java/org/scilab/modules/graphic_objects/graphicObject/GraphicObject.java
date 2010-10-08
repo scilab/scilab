@@ -12,10 +12,10 @@
 
 package org.scilab.modules.graphic_objects.graphicObject;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * GraphicObject class
@@ -30,7 +30,7 @@ public abstract class GraphicObject implements Cloneable {
 		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, UNKNOWNOBJECT };
 	
 	/** GraphicObject properties */
-	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, UNKNOWNPROPERTY };
+	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -58,7 +58,7 @@ public abstract class GraphicObject implements Cloneable {
 		identifier = null;
 		parent = "";
 		children = new ArrayList<String>(0);
-		visible = false;
+		visible = true;
 		userData = null;
 		valid = true;
 		referenced = false;
@@ -88,6 +88,8 @@ public abstract class GraphicObject implements Cloneable {
 
 	    return (GraphicObject) copy;
 	}
+
+    abstract public void accept(IVisitor visitor);
 	
 	/**
      * Returns the enum associated to a type name
@@ -158,6 +160,8 @@ public abstract class GraphicObject implements Cloneable {
 			return GraphicObjectPropertyType.VALID;
 		} else if (propertyName.equals(__GO_TYPE__)) {
 			return GraphicObjectPropertyType.TYPE;
+		}  else if (propertyName.equals(__GO_DATA_MODEL__)) {
+			return GraphicObjectPropertyType.DATA;
 		}  else {
 			return GraphicObjectPropertyType.UNKNOWNPROPERTY;
 		}
@@ -183,6 +187,8 @@ public abstract class GraphicObject implements Cloneable {
 			return getUserDataSize();
 		} else if (property == GraphicObjectPropertyType.TYPE) {
             return getType();
+        }  else if (property == GraphicObjectPropertyType.DATA) {
+			return getIdentifier();
         }  else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
 			return null;
 		} else {
@@ -207,6 +213,8 @@ public abstract class GraphicObject implements Cloneable {
 			setUserData(value);
 		} else if (property == GraphicObjectPropertyType.USERDATASIZE) {
 			return false;
+        } else if (property == GraphicObjectPropertyType.DATA) {
+			return true;
 		} else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
 			return false;
 		}

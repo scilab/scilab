@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.legend;
 
 import java.util.ArrayList;
 
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.textObject.ClippableTextObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -83,7 +84,12 @@ public class Legend extends ClippableTextObject {
 		position = new double[2];
 	}
 
-	/**
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

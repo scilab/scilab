@@ -53,7 +53,10 @@ src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/messageboxoptions.c
 
-GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
+GUI_CPP_SOURCES = \
+src/cpp/callJoGLView.cpp \
+src/jni/CallGraphicJoGLView.cpp \
+src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
 src/cpp/DestroyUimenu.cpp \
@@ -147,6 +150,7 @@ src/jni/ScilabDisplayTree.cpp
 
 
 GIWS_WRAPPERS = \
+src/jni/JoGLView.giws.xml \
 src/jni/CallScilabBridge.giws.xml \
 src/jni/Jxclick.giws.xml \
 src/jni/Jxgetmouse.giws.xml \

@@ -12,7 +12,9 @@
 
 package org.scilab.modules.graphic_objects.graphicView;
 
-public interface GraphicView {
+import java.util.EventListener;
+
+public interface GraphicView extends EventListener {
 
     /**
      * Notify an object with ID : id

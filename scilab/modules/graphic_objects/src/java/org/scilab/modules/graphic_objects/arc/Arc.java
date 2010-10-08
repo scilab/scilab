@@ -13,6 +13,8 @@
 package org.scilab.modules.graphic_objects.arc;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
@@ -78,8 +80,13 @@ public class Arc extends ClippableContouredObject {
 	    Object copy = super.clone();
 	    return (Arc) copy;
 	}
-	
-	/**
+
+    @Override
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

@@ -57,6 +57,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "callJoGLView.h"
 
 /*-----------------------------------------------------------------------------*/
 
@@ -1288,7 +1289,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
    * its parent's list of children.
    */
   setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID); 
-
   if (sciAddNewHandle(pobj) == -1)
   {
     deleteGraphicObject(pobj->UID);
@@ -2641,6 +2641,7 @@ sciPointObj * createFullFigure(int * winNum)
     sciPointObj *pNewFigure = MALLOC(sizeof(sciPointObj));
     pNewFigure->UID = createGraphicObject(__GO_FIGURE__);
     setGraphicObjectProperty(pNewFigure->UID, __GO_ID__, winNum, jni_int, 1);
+    createJoGLView(pNewFigure->UID);
     sciAddNewHandle(pNewFigure);
     return pNewFigure;
 

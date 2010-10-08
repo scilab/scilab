@@ -167,7 +167,8 @@ am__objects_4 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
 	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo \
 	libscigui_la-sci_about.lo
-am__objects_5 = libscigui_la-InitUIMenu.lo \
+am__objects_5 = libscigui_la-callJoGLView.lo \
+	libscigui_la-CallGraphicJoGLView.lo libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallScilabBridge.lo libscigui_la-Jxclick.lo \
 	libscigui_la-DestroyUimenu.lo libscigui_la-DestroyUicontrol.lo \
 	libscigui_la-DestroyJavaUiobject.lo \
@@ -433,6 +434,7 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCIRENDERER = @SCIRENDERER@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -621,7 +623,10 @@ src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/messageboxoptions.c
 
-GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
+GUI_CPP_SOURCES = \
+src/cpp/callJoGLView.cpp \
+src/jni/CallGraphicJoGLView.cpp \
+src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
 src/cpp/DestroyUimenu.cpp \
@@ -714,6 +719,7 @@ src/cpp/displaytree.cpp \
 src/jni/ScilabDisplayTree.cpp
 
 GIWS_WRAPPERS = \
+src/jni/JoGLView.giws.xml \
 src/jni/CallScilabBridge.giws.xml \
 src/jni/Jxclick.giws.xml \
 src/jni/Jxgetmouse.giws.xml \
@@ -969,6 +975,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallColorChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFontChooser.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallGraphicJoGLView.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallHelpBrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJuigetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxclick.Plo@am__quote@
@@ -1062,6 +1069,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-callJoGLView.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-exportUserInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getMainWindowTitle.Plo@am__quote@
@@ -1489,6 +1497,20 @@ libscigui_la-sci_about.lo: sci_gateway/cpp/sci_about.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_about.cpp' object='libscigui_la-sci_about.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_about.lo `test -f 'sci_gateway/cpp/sci_about.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_about.cpp
+
+libscigui_la-callJoGLView.lo: src/cpp/callJoGLView.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-callJoGLView.lo -MD -MP -MF $(DEPDIR)/libscigui_la-callJoGLView.Tpo -c -o libscigui_la-callJoGLView.lo `test -f 'src/cpp/callJoGLView.cpp' || echo '$(srcdir)/'`src/cpp/callJoGLView.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-callJoGLView.Tpo $(DEPDIR)/libscigui_la-callJoGLView.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/callJoGLView.cpp' object='libscigui_la-callJoGLView.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-callJoGLView.lo `test -f 'src/cpp/callJoGLView.cpp' || echo '$(srcdir)/'`src/cpp/callJoGLView.cpp
+
+libscigui_la-CallGraphicJoGLView.lo: src/jni/CallGraphicJoGLView.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallGraphicJoGLView.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallGraphicJoGLView.Tpo -c -o libscigui_la-CallGraphicJoGLView.lo `test -f 'src/jni/CallGraphicJoGLView.cpp' || echo '$(srcdir)/'`src/jni/CallGraphicJoGLView.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-CallGraphicJoGLView.Tpo $(DEPDIR)/libscigui_la-CallGraphicJoGLView.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CallGraphicJoGLView.cpp' object='libscigui_la-CallGraphicJoGLView.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallGraphicJoGLView.lo `test -f 'src/jni/CallGraphicJoGLView.cpp' || echo '$(srcdir)/'`src/jni/CallGraphicJoGLView.cpp
 
 libscigui_la-InitUIMenu.lo: src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-InitUIMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitUIMenu.Tpo -c -o libscigui_la-InitUIMenu.lo `test -f 'src/cpp/InitUIMenu.cpp' || echo '$(srcdir)/'`src/cpp/InitUIMenu.cpp
