@@ -235,7 +235,7 @@ public abstract class ContouredObject extends GraphicObject {
 	 * @return the lineStyle
 	 */
 	public Integer getLineStyle() {
-		return getLineStyleAsEnum().ordinal();
+		return getLineStyleAsEnum().asScilabIndex();
 	}
 
 	/**
@@ -251,7 +251,7 @@ public abstract class ContouredObject extends GraphicObject {
 	 * @param lineStyle the lineStyle to set
 	 */
 	public void setLineStyle(Integer lineStyle) {
-		setLineStyleAsEnum(LineType.intToEnum(lineStyle));
+		setLineStyleAsEnum(LineType.fromScilabIndex(lineStyle));
 	}
 
 	/**

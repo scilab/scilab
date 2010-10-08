@@ -21,33 +21,70 @@ public class Line {
 	public enum LinePropertyType { MODE, LINESTYLE, THICKNESS, COLOR };
 	
 	/** Line style */
-	public enum LineType { SOLID, STYLE1, STYLE2, STYLE3, STYLE4, STYLE5, STYLE6;
+	public enum LineType { SOLID, STYLE1, STYLE2, STYLE3, STYLE4, STYLE5, STYLE6, STYLE7;
 
 		/**
-		 * Converts an integer to the corresponding enum
-		 * @param intValue the integer value
-		 * @return the line type enum
+		 * Converts a scilab line style index to the corresponding line type.
+		 * @param sciIndex the scilab index.
+		 * @return the line type as enum.
 		 */
-		public static LineType intToEnum(Integer intValue) {
-			switch (intValue) {
-				case 0:
-					return LineType.SOLID;
+		public static LineType fromScilabIndex(Integer sciIndex) {
+			switch (sciIndex) {
 				case 1:
-					return LineType.STYLE1;
+					return SOLID;
 				case 2:
-					return LineType.STYLE2;
+					return STYLE1;
 				case 3:
-					return LineType.STYLE3;
+					return STYLE2;
 				case 4:
-					return LineType.STYLE4;
+					return STYLE3;
 				case 5:
-					return LineType.STYLE5;
+					return STYLE4;
 				case 6:
-					return LineType.STYLE6;
+					return STYLE5;
+				case 7:
+					return STYLE6;
+				case 8:
+					return STYLE7;
 				default:
-					return null;
+					return SOLID;
 			}
 		}
+
+        /**
+         * Converts the line type to the corresponding scilab line style index.
+         * @return  the scilab line style index corresponding to this line type.
+         */
+        public int asScilabIndex() {
+            return ordinal() + 1;
+        }
+
+        /**
+         * Converts the line type to a 16-bit pattern.
+         * @return the 16-bit pattern corresponding to the line type.
+         */
+        public short asPattern() {
+            switch (this) {
+                case STYLE1:
+                    return (short) 0x07FF; // 5 blanks, 11 solids
+                case STYLE2:
+                    return (short) 0x0F0F; // 4 blanks, 4 solids, 4 blanks, 4 solids
+                case STYLE3:
+                    return (short) 0x1FC2; // 3 blanks, 3 solids, 3 blanks, 7 solids
+                case STYLE4:
+                    return (short) 0x3FC9; // 2 blanks, 8 solids, 2 blanks, 1 solid, 2 blanks, 1 solid
+                case STYLE5:
+                    return (short) 0x3FC6; // 3 blanks, 8 solids, 3 blanks, 2 solids
+                case STYLE6:
+                    return (short) 0x5555; // (1 blank, 1 solid) x 8
+		case STYLE7:
+                    return (short) 0x3333; // (2 blanks, 2 solids) x 4
+
+                default:
+                case SOLID:
+                    return (short) 0xFFFF; // 16 solids, unused equivalent to no stipple
+            }
+        }
 	}
 	
 	/** Specifies whether the line is drawn or not */

@@ -1290,14 +1290,14 @@ public class Axes extends GraphicObject {
 	 * @return the line style
 	 */
 	public Integer getLineStyle() {
-		return line.getLineStyle().ordinal();
+		return line.getLineStyle().asScilabIndex();
 	}
 
 	/**
 	 * @param lineStyle the line style to set
 	 */
 	public void setLineStyle(Integer lineStyle) {
-		line.setLineStyle(LineType.intToEnum(lineStyle));
+		line.setLineStyle(LineType.fromScilabIndex(lineStyle));
 	}
 
 	/**
