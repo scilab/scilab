@@ -79,12 +79,12 @@ msgid "%s: No more memory.\n"
 msgstr "%s: No more memory.\n"
 
 #, c-format
-msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
-msgstr "%s: No results founded for property ''%s'' and value ''%s''.\n"
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
+msgstr "%s: No results found for property ''%s'' and value ''%s''.\n"
 
 #, c-format
-msgid "%s: No results founded.\n"
-msgstr "%s: No results founded.\n"
+msgid "%s: No results found.\n"
+msgstr "%s: No results found.\n"
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"

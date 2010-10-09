@@ -115,7 +115,7 @@ function nodeList = uiFindNode(tree, node, value)
 			warning(msprintf(gettext("%s:  #%d matching nodes.\n"), "uiFindNode",size(nodeList)));	
 			return;
 		elseif (size(nodeList) == 0) then
-			warning(msprintf(gettext("%s: No results founded.\n"), "uiFindNode"));
+			warning(msprintf(gettext("%s: No results found.\n"), "uiFindNode"));
 			return;
 		end
 	end
@@ -135,7 +135,7 @@ function nodeList = uiFindNode(tree, node, value)
 		// List of matching nodes
 		nodeList = findProperty(myTree, myProperty, myValue, r)
 		if size(nodeList) == 0 then 
-			warning(msprintf(gettext("%s: No results founded for property ''%s'' and value ''%s''.\n"), "uiFindNode",myProperty, myValue));
+			warning(msprintf(gettext("%s: No results found for property ''%s'' and value ''%s''.\n"), "uiFindNode",myProperty, myValue));
 			return;
 		else	
 			if (size(nodeList) > 1) then
