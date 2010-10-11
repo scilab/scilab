@@ -269,7 +269,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             }
 
             //store message
-            ScierrorW(se.GetErrorNumber(), L"%s", se.GetErrorMessage().c_str());
+            ScierrorW(se.GetErrorNumber(), L"%ls", se.GetErrorMessage().c_str());
             iErr = se.GetErrorNumber();
             if(bErrCatch == false)
             {
