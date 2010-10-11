@@ -73,12 +73,12 @@ utf3            ({utf31}|{utf32}|{utf33}|{utf34})
 utf4            ({utf41}|{utf42}|{utf43})
 
 utf             ({utf2}|{utf3}|{utf4})
-id              (([a-zA-Z_%#?]|{utf})([a-zA-Z_0-9#?]|{utf})*)
+id              (([a-zA-Z_%#?$]|{utf})([a-zA-Z_0-9#?$]|{utf})*)
 
 
-newline			("\n"|"\r\n"|"\r")
-blankline		^[ \t\v\f]+{newline}
-emptyline       ^[ \t\v\f,;]+{newline}
+newline			("\r"|"\n"|"\r\n")
+blankline		{spaces}+{newline}
+emptyline       ({spaces}|[,;])+{newline}
 next			(".."|"...")
 
 boolnot			("@"|"~")
@@ -331,7 +331,6 @@ assign			"="
             std::string str = "can not convert'";
             str += yytext;
             str += "' to UTF-8";
-            std::cerr << "[ERROR] " << str << std::endl;
             exit_status = SCAN_ERROR;
             scan_error("can not convert string to UTF-8");
             yyterminate();
@@ -567,7 +566,6 @@ assign			"="
         std::string str = "can not convert'";
         str += yytext;
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -633,6 +631,7 @@ assign			"="
   if (last_token != EOL) {
       return scan_throw(EOL);
   }
+
 }
 
 
@@ -640,6 +639,10 @@ assign			"="
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
+  if (last_token != EOL)
+  {
+      return scan_throw(EOL);
+  }
   scan_throw(EOL);
 }
 
@@ -647,6 +650,10 @@ assign			"="
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
+  if (last_token != EOL)
+  {
+      return scan_throw(EOL);
+  }
   scan_throw(EOL);
 }
 .					{
@@ -776,6 +783,12 @@ assign			"="
       scan_throw(EOL);
   }
 
+  {next}{spaces}*{startcomment}          {
+      /* Just do nothing */
+      pstBuffer = new std::string();
+      yy_push_state(LINECOMMENT);
+  }
+
   <<EOF>>       {
       yy_pop_state();
   }
@@ -840,7 +853,6 @@ assign			"="
         std::string str = "can not convert'";
         str += yytext;
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -889,7 +901,7 @@ assign			"="
   }
 
   {spaces}				{
-    /* Do nothing... */
+      /* Do nothing... */
   }
 
   <<EOF>>	{
@@ -914,7 +926,10 @@ assign			"="
     //yylloc.last_column = 1;
     //scan_step();
     yy_pop_state();
-    unput('\n');
+    for (int i = yyleng - 1 ; i >= 0 ; --i)
+    {
+        unput(yytext[i]);
+    }
     /*
     ** To forgot comments after lines break
     */
@@ -929,7 +944,6 @@ assign			"="
             std::string str = "can not convert'";
             str += pstBuffer->c_str();
             str += "' to UTF-8";
-            std::cerr << "[ERROR] " << str << std::endl;
             exit_status = SCAN_ERROR;
             scan_error("can not convert string to UTF-8");
             yyterminate();
@@ -949,7 +963,6 @@ assign			"="
         std::string str = "can not convert'";
         str += pstBuffer->c_str();
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -1033,7 +1046,6 @@ assign			"="
         std::string str = "can not convert'";
         str += pstBuffer->c_str();
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -1104,7 +1116,6 @@ assign			"="
         std::string str = "can not convert'";
         str += pstBuffer->c_str();
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -1130,11 +1141,6 @@ assign			"="
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     yyterminate();
-  }
-
-  {next} {
-    //yylloc.last_line += 1;
-    scan_step();
   }
 
   <<EOF>>   {
