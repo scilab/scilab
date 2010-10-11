@@ -112,11 +112,11 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 	wchar_t* pstFile = pS->string_get(0);
     pstParsePath = expandPathVariableW(pstFile);
 
-	os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%s%slib", pstParsePath, FILE_SEPARATOR);
+	os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%lslib", pstParsePath, FILE_SEPARATOR);
 
     if(bVerbose)
     {
-        os_swprintf(pstVerbose, 65535, _W("-- Creation of [%s] (Macros) --\n"), pstLibName);
+        os_swprintf(pstVerbose, 65535, _W("-- Creation of [%ls] (Macros) --\n"), pstLibName);
         YaspWriteW(pstVerbose);
     }
 
@@ -129,7 +129,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
     if(pWriter == NULL)
     {
-        os_swprintf(pstVerbose, 65535, _W("%s: Cannot open file ''%s''.\n"), L"genlib", pstParseFile);
+        os_swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n"), L"genlib", pstParseFile);
         YaspWriteW(pstVerbose);
 
         out.push_back(new Bool(0));
@@ -152,7 +152,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 			parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
             if(parser.getExitStatus() !=  Parser::Succeded)
             {
-                os_swprintf(pstVerbose, 65535, _W("%s: Warning: Error in file %s : %s. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
+                os_swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
                 YaspWriteW(pstVerbose);
                 parser.freeTree();
                 continue;
@@ -168,7 +168,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 				{
 					if(AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get(), pstPath[k])) == false)
                     {
-                        os_swprintf(pstVerbose, 65535, _W("%s: Warning: %s information cannot be added to file %s. File ignored\n"), L"genlib", pFD->name_get() , pstPath[k]);
+                        os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"), L"genlib", pFD->name_get() , pstPath[k]);
                         YaspWriteW(pstVerbose);
                     }
 				}
