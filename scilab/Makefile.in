@@ -626,7 +626,8 @@ COMMON_CPPFLAGS = -I$(top_srcdir)/modules/shell/includes/ \
 						-I$(top_srcdir)/modules/operations/includes/ \
 						-I$(top_srcdir)/modules/elementary_functions/includes/ \
 						-I$(top_srcdir)/modules/fileio/includes/ \
-						-I$(top_srcdir)/modules/string/includes/
+						-I$(top_srcdir)/modules/string/includes/ \
+						-I$(top_srcdir)/modules/history_manager/includes/
 
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
@@ -1741,7 +1742,6 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	uninstall-infofilesDATA uninstall-pkgconfigDATA \
 	uninstall-rootDATA uninstall-valgrindDATA
 
-						-I$(top_srcdir)/modules/history_manager/includes/
 
 # Don't do it for scilab_cli_bin. We want to be able to call it without
 # the java libs
