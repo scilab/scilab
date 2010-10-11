@@ -1220,7 +1220,7 @@ function st = st_run(st)
 
     if (st.error_output == "check") & (testsuite.error_output == "check") then
 
-	if getOS() == "macosx" then
+	if getos() == "macosx" then
 	    tmp_errfile_info = fileinfo(st.tmp_err);
 	    msg = "JavaVM: requested Java version (1.5) not available. Using Java at ""/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home"" instead."
 
