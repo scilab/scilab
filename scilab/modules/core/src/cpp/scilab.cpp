@@ -238,6 +238,7 @@ static int batchMain (void)
 ** -*- PARSING -*-
 */
     Parser *parser = new Parser();
+    parser->setParseTrace(parseTrace);
     parseFileTask(parser, timed, file_name, prog_name);
 
 /*
