@@ -118,7 +118,8 @@
      HIGHLEVEL = 333,
      UPLEVEL = 334,
      LISTABLE = 335,
-     FUNCTIONCALL = 336
+     CONTROLBREAK = 336,
+     FUNCTIONCALL = 337
    };
 #endif
 /* Tokens.  */
@@ -201,7 +202,8 @@
 #define HIGHLEVEL 333
 #define UPLEVEL 334
 #define LISTABLE 335
-#define FUNCTIONCALL 336
+#define CONTROLBREAK 336
+#define FUNCTIONCALL 337
 
 
 

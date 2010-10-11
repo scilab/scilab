@@ -285,6 +285,8 @@
 %nonassoc UPLEVEL
 %nonassoc LISTABLE
 
+%nonassoc CONTROLBREAK
+
 %left OR OROR
 %left AND ANDAND
 
@@ -1448,36 +1450,12 @@ CASE variable caseControlBreak caseBody							{
 																  $$ = new ast::cases_t;
 																  $$->push_back(new ast::CaseExp(@$, *$3, *$5));
 																}
-| CASE variable COMMENT EOL caseBody							{
-																  $$ = new ast::cases_t;
-																  $$->push_back(new ast::CaseExp(@$, *$2, *$5));
-																}
-| CASE functionCall COMMENT EOL caseBody						{
-																  $$ = new ast::cases_t;
-																  $$->push_back(new ast::CaseExp(@$, *$2, *$5));
-																}
-| comments CASE variable COMMENT EOL caseBody					{
-																  $$ = new ast::cases_t;
-																  $$->push_back(new ast::CaseExp(@$, *$3, *$6));
-																}
-| comments CASE functionCall COMMENT EOL caseBody				{
-																  $$ = new ast::cases_t;
-																  $$->push_back(new ast::CaseExp(@$, *$3, *$6));
-																}
 | casesControl CASE variable caseControlBreak caseBody			{
 																  $1->push_back(new ast::CaseExp(@$, *$3, *$5));
 																  $$ = $1;
 																}
 | casesControl CASE functionCall caseControlBreak caseBody		{
 																  $1->push_back(new ast::CaseExp(@$, *$3, *$5));
-																  $$ = $1;
-																}
-| casesControl CASE variable COMMENT EOL caseBody				{
-																  $1->push_back(new ast::CaseExp(@$, *$3, *$6));
-																  $$ = $1;
-																}
-| casesControl CASE functionCall COMMENT EOL caseBody			{
-																  $1->push_back(new ast::CaseExp(@$, *$3, *$6));
 																  $$ = $1;
 																}
 ;
@@ -1509,6 +1487,7 @@ THEN						{ /* !! Do Nothing !! */ }
 | THEN COMMA EOL			{ /* !! Do Nothing !! */ }
 | THEN SEMI					{ /* !! Do Nothing !! */ }
 | THEN SEMI EOL				{ /* !! Do Nothing !! */ }
+| /* Epsilon */		%prec CONTROLBREAK		{ /* !! Do Nothing !! */ }
 ;
 
 /*
