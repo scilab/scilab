@@ -129,6 +129,8 @@ Bug Fixes:
 
 * bug 8202 fixed - Typo in the the localization.
 
+* bug 8206 fixed - isnum did not manage blanks.
+
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
