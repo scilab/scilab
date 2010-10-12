@@ -69,7 +69,12 @@ public static final String __GO_DATA_MODEL_Z_COORDINATES_SET__ =       "DataMode
 
 public static final String __GO_DATA_MODEL_COLORS__ =                  "DataModelColors";
 
+public static final String __GO_DATA_MODEL_NUM_VERTICES__ =            "DataModelVertices";
+public static final String __GO_DATA_MODEL_NUM_INDICES__ =             "DataModelNumIndices";
 public static final String __GO_DATA_MODEL_INDICES__ =                 "DataModelIndices";
+public static final String __GO_DATA_MODEL_VALUES__ =                  "DataModelValues";
+
+public static final String __GO_DATA_MODEL_FEC_TRIANGLES__ =           "DataModelFecTriangles";
 
 public static final String __GO_REFERENCED__ =             "Referenced";
 public static final String __GO_VALID__ =                  "Valid";

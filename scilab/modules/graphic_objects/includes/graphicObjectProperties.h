@@ -68,7 +68,12 @@
 
 #define __GO_DATA_MODEL_COLORS__                       "DataModelColors"
 
+#define __GO_DATA_MODEL_NUM_VERTICES__                 "DataModelVertices"
+#define __GO_DATA_MODEL_NUM_INDICES__                  "DataModelNumIndices"
 #define __GO_DATA_MODEL_INDICES__                      "DataModelIndices"
+#define __GO_DATA_MODEL_VALUES__                       "DataModelValues"
+
+#define __GO_DATA_MODEL_FEC_TRIANGLES__                "DataModelFecTriangles"
 
 #define __GO_REFERENCED__                  "Referenced"
 #define __GO_VALID__                       "Valid"

@@ -39,6 +39,11 @@
 #define Z_COORDINATES_SHIFT_SET 14
 #define Z_COORDINATES_SET       15
 
+#define NUM_VERTICES            16
+#define NUM_INDICES             17
+#define INDICES                 18
+#define VALUES                  19
 
+#define FEC_TRIANGLES           20
 
 #endif

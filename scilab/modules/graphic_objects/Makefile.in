@@ -144,7 +144,9 @@ am__objects_6 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-NativeGL.lo \
 	libscigraphic_objects_la-NgonData.lo \
 	libscigraphic_objects_la-NgonGeneralData.lo \
-	libscigraphic_objects_la-NgonPolylineData.lo
+	libscigraphic_objects_la-NgonPolylineData.lo \
+	libscigraphic_objects_la-TriangleMeshData.lo \
+	libscigraphic_objects_la-TriangleMeshFecData.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
 	$(am__objects_6)
@@ -523,7 +525,9 @@ GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/NativeGL.cpp \
 								src/cpp/NgonData.cpp \
 								src/cpp/NgonGeneralData.cpp \
-								src/cpp/NgonPolylineData.cpp
+								src/cpp/NgonPolylineData.cpp \
+								src/cpp/TriangleMeshData.cpp \
+								src/cpp/TriangleMeshFecData.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
@@ -657,6 +661,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGeneralData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonPolylineData.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-createGraphicObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-dataModel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-deleteGraphicObject.Plo@am__quote@
@@ -811,6 +817,20 @@ libscigraphic_objects_la-NgonPolylineData.lo: src/cpp/NgonPolylineData.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/NgonPolylineData.cpp' object='libscigraphic_objects_la-NgonPolylineData.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-NgonPolylineData.lo `test -f 'src/cpp/NgonPolylineData.cpp' || echo '$(srcdir)/'`src/cpp/NgonPolylineData.cpp
+
+libscigraphic_objects_la-TriangleMeshData.lo: src/cpp/TriangleMeshData.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-TriangleMeshData.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Tpo -c -o libscigraphic_objects_la-TriangleMeshData.lo `test -f 'src/cpp/TriangleMeshData.cpp' || echo '$(srcdir)/'`src/cpp/TriangleMeshData.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Tpo $(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/TriangleMeshData.cpp' object='libscigraphic_objects_la-TriangleMeshData.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-TriangleMeshData.lo `test -f 'src/cpp/TriangleMeshData.cpp' || echo '$(srcdir)/'`src/cpp/TriangleMeshData.cpp
+
+libscigraphic_objects_la-TriangleMeshFecData.lo: src/cpp/TriangleMeshFecData.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-TriangleMeshFecData.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Tpo -c -o libscigraphic_objects_la-TriangleMeshFecData.lo `test -f 'src/cpp/TriangleMeshFecData.cpp' || echo '$(srcdir)/'`src/cpp/TriangleMeshFecData.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Tpo $(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/TriangleMeshFecData.cpp' object='libscigraphic_objects_la-TriangleMeshFecData.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-TriangleMeshFecData.lo `test -f 'src/cpp/TriangleMeshFecData.cpp' || echo '$(srcdir)/'`src/cpp/TriangleMeshFecData.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

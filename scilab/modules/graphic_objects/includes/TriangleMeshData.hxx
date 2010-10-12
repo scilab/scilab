@@ -13,31 +13,38 @@
 #ifndef TRIANGLE_MESH_DATA_H
 #define TRIANGLE_MESH_DATA_H
 
-#include <string>
-
 #include "Data3D.hxx"
 
 extern "C" {
 #include "BOOL.h"
-
-#include <stdio.h>
 }
 
 /**
- * Triangle mesh data stub class
- * To be fully implemented
+ * Triangle mesh data class
  */
 
-class TriangleMeshData : public Data3D
+class TriangleMeshData: public Data3D
 {
 
-private :
+protected:
 
-    /** Vertex coordinates array */
+    /**
+     * Vertex coordinates array
+     * Contiguous (x, y, z) triplets
+     */
     double* vertices;
 
-    /** Triangle indices array */
+    /** Triangle indices array
+     * Contiguous (v0, v1, v2) triplets
+     */
     unsigned int* indices;
+
+    /**
+     * Per-vertex or per-facet scalar values
+     * Considered to be per-vertex for now
+     * To be correctly implemented
+     */
+    double* values;
 
     /** Number of vertices */
     unsigned int numberVertices;
@@ -45,49 +52,135 @@ private :
     /** Number of triangles */
     unsigned int numberTriangles;
 
-public :
-    TriangleMeshData(void)
-    {
-        vertices = NULL;
-        indices = NULL;
-
-        numberVertices = 0;
-        numberTriangles = 0;
-    }
+public:
+    TriangleMeshData(void);
 
     /* To be implemented */
-    TriangleMeshData(unsigned int numberVertices, unsigned int numberTriangles)
-    {
-	vertices = new double[3*numberVertices];
+    TriangleMeshData(unsigned int numberVertices, unsigned int numberTriangles);
 
-        indices = new unsigned int[3*numberTriangles];
+    virtual ~TriangleMeshData();
 
-        this->numberVertices = numberVertices;
-        this->numberTriangles = numberTriangles;
-    }
+    /**
+     * Returns the property value (identifier) associated to a name
+     * @return the property identifier
+     */
+    int getPropertyFromName(char* propertyName);
 
-    double* getData(void)
-    {
-        return vertices;
-    }
+    /**
+     * Sets a data property
+     * @param property the property identifier
+     * @param value the property values
+     * @param numElements the number of elements to set
+     * @return 1 if the property has correctly been set, 0 otherwise
+     */
+    int setDataProperty(int property, void* value, int numElements);
 
-    unsigned int* getIndices(void)
-    {
-        return indices;
-    }
+    /**
+     * Returns a data property
+     * @param property the property identifier
+     * @return a pointer to the data property
+     */
+    void* getDataProperty(int property);
 
-    /* To be implemented */
-    void setData(double* data)
-    {
+    /**
+     * Returns the number of vertices composing the mesh
+     * @return the number of vertices
+     */
+    unsigned int getNumVertices();
 
-    }
+    /**
+     * Sets the number of vertices
+     * Resizes the vertex array if required
+     * @param numVertices the number of vertices to set
+     * @return 1 if the number of vertices has been correctly set, 0 otherwise (failed allocation)
+     */
+    int setNumVertices(unsigned int numVertices);
 
-    /* To be implemented */
-    void setIndices(unsigned int* indices)
-    {
+    /**
+     * Returns the number of index triplets (number of triangles)
+     * @return the number of index triplets
+     */
+    unsigned int getNumIndices();
 
-    }
+    /**
+     * Returns the array of vertex coordinates
+     * @return the array of vertex coordinates
+     */
+    double* getVertices(void);
 
+    /**
+     * Sets vertex values
+     * @param vertices the array of vertex {x,y,z} coordinates to set
+     * @param numElements the number of vertices
+     */
+    void setVertices(double* vertices, unsigned int numElements);
+
+    /**
+     * Returns the array of triangle indices
+     * @return the array of triangle indices
+     */
+    unsigned int* getIndices(void);
+
+    /**
+     * Sets the number of index triplets (number of triangles)
+     * Resizes the array of indices if required
+     * @param numIndices the number of index triplets to set
+     * @return 1 if the number of index triplets has been correctly set, 0 otherwise (failed allocation)
+     */
+    int setNumIndices(unsigned int numIndices);
+
+    /**
+     * Sets the array of index triplet values
+     * @param indices the array of index triplet values
+     * @param numElements the number of triplets
+     */
+    void setIndices(unsigned int* indices, unsigned int numElements);
+
+    /**
+     * Sets the x coordinates
+     * @param data the array of x coordinates
+     * @param numElements the number of x coordinates to set
+     */
+    void setDataX(double* data, unsigned int numElements);
+
+    /**
+     * Sets the y coordinates
+     * @param data the array of y coordinates
+     * @param numElements the number of y coordinates to set
+     */
+    void setDataY(double* data, unsigned int numElements);
+
+    /**
+     * Sets the z coordinates
+     * @param data the array of z coordinates
+     * @param numElements the number of z coordinates to set
+     */
+    void setDataZ(double* data, unsigned int numElements);
+
+    /**
+     * Returns the array of per-vertex values
+     * @return the array of per-vertex values
+     */
+    double* getValues(void);
+
+    /**
+     * Sets the array of per-vertex values
+     * @param data the array of per-vertex values
+     * @param numElements the number of values to set
+     */
+    void setValues(double* data, unsigned int numElements);
+
+    /**
+     * Resets the vertex coordinates
+     */
+    void resetCoordinates(void);
+
+    /**
+     * Converts a triangle vertex index as seen by Scilab to an internal format triangle vertex index
+     * @param scilabIndex the Scilab index to convert
+     * @returns the internal format triangle vertex index
+     */
+    static unsigned int scilabIndexToIndex(unsigned int scilabIndex);
 };
 
 #endif

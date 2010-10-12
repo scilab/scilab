@@ -71,7 +71,7 @@ char* DataModel::createDataObject(char* _pstID, char* _sType)
      */
     if (strcmp(_sType, __GO_MATPLOT__) == 0)
     {
-       newObject = new NgonGridData();
+        newObject = new NgonGridData();
     }
     else if (strcmp(_sType, __GO_FAC3D__) == 0)
     {
@@ -87,7 +87,7 @@ char* DataModel::createDataObject(char* _pstID, char* _sType)
     }
     else if (strcmp(_sType, __GO_FEC__) == 0)
     {
-        newObject = new TriangleMeshData();
+        newObject = new TriangleMeshFecData();
     }
     else
     {
