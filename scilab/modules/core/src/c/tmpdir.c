@@ -134,7 +134,7 @@ void createScilabTMPDIR(void)
         sprintf(tmp_dir, "%s/SCI_TMP_%d_XXXXXX", tmp_dir_strdup, (int) getpid());
         free(tmp_dir_strdup);
 
-        if(mkdtemp(tmp_dir) < 0)
+        if(mkdtemp(tmp_dir) == NULL)
         {
                 fprintf(stderr,_("Error: Could not create %s: %s\n"), tmp_dir, strerror(errno));
         }
