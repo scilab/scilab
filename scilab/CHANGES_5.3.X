@@ -157,6 +157,9 @@ Bug Fixes:
 * bug 8208 fixed - Error in creating the temporary directory in function
                    createScilabTMPDIR.
 
+* bug 8218 fixed - file association with filename with accentued characters
+                   did not work.
+
 * bug 8232 fixed - drag and drop of .scg files (on console) used "xload"
                    and not "load".
 
