@@ -338,10 +338,10 @@ scilab -l ja_JP
     </variablelist>
 
     <para>Many more options are available. They can improve the performances,
-    change look and feel, change memory managements... See: <link
-    url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</link>
-    or <link
-    url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</link></para>
+    change look and feel, change memory managements... See: <ulink
+    url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</ulink>
+    or <ulink
+    url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</ulink></para>
   </refsection>
 
   <refsection>
