@@ -158,7 +158,9 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   }
 
   /* To be deleted */
+#if 0
   ppSubWin = pSUBWIN_FEATURE (pobj);
+#endif
 
   // get a copy of current log flags
 #if 0
@@ -208,12 +210,16 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
     return SET_PROPERTY_ERROR ;
   }
 
-  /* To be implemented using the MVC framework */
+  /*
+   * Commented out for now
+   * To be implemented using the MVC framework
+   */
+#if 0
   ppSubWin->axes.u_xlabels = ReBuildUserTicks( curLogFlags[0], flags[0],
                                                ppSubWin->axes.u_xgrads, 
                                                &ppSubWin->axes.u_nxgrads, 
                                                ppSubWin->axes.u_xlabels  );
-
+#endif
 
   curLogFlags[0] = flags[0];
 
@@ -224,11 +230,16 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
       return SET_PROPERTY_ERROR;
   }
 
-  /* To be implemented using the MVC framework */
+  /*
+   * Commented out for now
+   * To be implemented using the MVC framework
+   */
+#if 0
   ppSubWin->axes.u_ylabels = ReBuildUserTicks( curLogFlags[1], flags[1],  
                                                ppSubWin->axes.u_ygrads, 
                                                &ppSubWin->axes.u_nygrads, 
                                                ppSubWin->axes.u_ylabels  );
+#endif
 
   curLogFlags[1] = flags[1];
 
@@ -247,13 +258,18 @@ int set_log_flags_property( sciPointObj * pobj, size_t stackPointer, int valueTy
       return SET_PROPERTY_ERROR;
     }
 
-    /* To be implemented using the MVC framework */
+  /*
+   * Commented out for now
+   * To be implemented using the MVC framework
+   */
+#if 0
     ppSubWin->axes.u_zlabels = ReBuildUserTicks( curLogFlags[2], flags[2],  
                                                  ppSubWin->axes.u_zgrads, 
                                                  &ppSubWin->axes.u_nzgrads, 
                                                  ppSubWin->axes.u_zlabels);
-    curLogFlags[2] = flags[2];
+#endif
 
+    curLogFlags[2] = flags[2];
   }
 
   for (i = 0; i < 3; i++)

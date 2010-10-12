@@ -3308,16 +3308,28 @@ void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
 */
 void sciGetLogFlags(sciPointObj * pObj, char flags[3])
 {
-    switch( sciGetEntityType(pObj) )
+    char* logflagPropertyNames[3] = {__GO_X_AXIS_LOG_FLAG__, __GO_Y_AXIS_LOG_FLAG__, __GO_Z_AXIS_LOG_FLAG__};
+    int i;
+    int* tmp;
+
+    for (i = 0; i < 3; i++)
     {
-    case SCI_SUBWIN:
-        flags[0] = pSUBWIN_FEATURE(pObj)->logflags[0];
-        flags[1] = pSUBWIN_FEATURE(pObj)->logflags[1];
-        flags[2] = pSUBWIN_FEATURE(pObj)->logflags[2];
-        break;
-    default:
-        printSetGetErrorMessage("log_flags");
-        break;
+        tmp = (int*) getGraphicObjectProperty(pObj->UID, logflagPropertyNames[i], jni_bool);
+
+        if (tmp == NULL)
+        {
+            printSetGetErrorMessage("log_flags");
+            return;
+        }
+
+        if (*tmp)
+        {
+            flags[i] = 'l';
+        }
+        else
+        {
+            flags[i] = 'n';
+        }
     }
 }
 /*----------------------------------------------------------------------------------*/
