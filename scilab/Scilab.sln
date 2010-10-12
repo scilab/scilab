@@ -766,6 +766,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm-Ant", "modules\jvm\s
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-Ant", "modules\javasci\src\java\javasci-JAVA.vcproj", "{6182A20D-8111-41C1-9713-CD2A4725057C}"
 	ProjectSection(ProjectDependencies) = postProject
+		{ABCB724E-8534-4420-AC12-7C33A606ABA3} = {ABCB724E-8534-4420-AC12-7C33A606ABA3}
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D} = {0BD503EF-5CB6-4277-BAC4-8955C97F247D}
 	EndProjectSection
 EndProject
