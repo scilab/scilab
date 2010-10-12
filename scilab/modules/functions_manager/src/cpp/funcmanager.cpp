@@ -361,17 +361,26 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
 
     ExecVisitor execStart;
 
+    //save current prompt mode
+    ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+    //set mode silent for errors
+    ConfigVariable::setPromptMode(ConfigVariable::silent);
     try
     {
         parser.getTree()->accept(execStart);
+
     }
-    catch(ast::ScilabError error)
+    catch(ast::ScilabMessage sm)
     {
-        YaspWriteW(error.GetErrorMessage().c_str());
-        parser.freeTree();
-        return false;
+        YaspWriteW(sm.GetErrorMessage().c_str());
+    }
+    catch(ast::ScilabError se)
+    {
+        YaspWriteW(se.GetErrorMessage().c_str());
     }
 
+    //restore previous prompt mode
+    ConfigVariable::setPromptMode(oldVal);
     parser.freeTree();
     return true;
 }

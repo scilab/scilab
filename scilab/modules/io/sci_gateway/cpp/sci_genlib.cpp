@@ -100,7 +100,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
     if(in.size() > 3)
     {//versbose flag
-        pIT = in[2];
+        pIT = in[3];
 	    if(pIT->getType() != InternalType::RealBool)
 	    {
 		    return Function::Error;
@@ -117,7 +117,14 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     if(bVerbose)
     {
         os_swprintf(pstVerbose, 65535, _W("-- Creation of [%ls] (Macros) --\n"), pstLibName);
+
+        //save current prompt mode
+        ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+        //set mode silent for errors
+        ConfigVariable::setPromptMode(ConfigVariable::normal);
         YaspWriteW(pstVerbose);
+        //restore previous prompt mode
+        ConfigVariable::setPromptMode(oldVal);
     }
 
     if(FileExistW(pstParseFile))
