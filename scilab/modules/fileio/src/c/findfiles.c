@@ -44,7 +44,7 @@ wchar_t** findfilesW(wchar_t *path, wchar_t *filespec, int *sizeListReturned, BO
 
 	len = (int)( wcslen(path) + wcslen(filespec) + 8);
 	wcstrPattern = (wchar_t*)MALLOC(sizeof(wchar_t)*len);
-	os_swprintf(wcstrPattern,len,L"%s/%s", path, filespec);
+	os_swprintf(wcstrPattern,len,L"%ls/%ls", path, filespec);
 
 	hFile = FindFirstFileW(wcstrPattern, &FileInformation);
 	if (wcstrPattern) 

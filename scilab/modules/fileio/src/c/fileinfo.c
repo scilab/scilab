@@ -136,7 +136,7 @@ static double *fileinfo_Windows(char *filepathname,int *ierr)
 		return NULL;
 	}
 
-	os_swprintf(DriveTemp, wcslen(wcpath)+1, L"%s", wcpath);
+	os_swprintf(DriveTemp, wcslen(wcpath)+1, L"%ls", wcpath);
 	if ( (DriveTemp[wcslen(DriveTemp)-1] == L'/') || (DriveTemp[wcslen(DriveTemp)-1] == L'\\') )
 	{
 		DriveTemp[wcslen(DriveTemp)-1] = L'\0';

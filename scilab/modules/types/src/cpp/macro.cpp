@@ -188,7 +188,7 @@ namespace types
                 else
                 {
                     wchar_t sz[bsiz];
-                    os_swprintf(sz, bsiz, _W("Undefined variable %s.\n"), (*i).c_str());
+                    os_swprintf(sz, bsiz, _W("Undefined variable %ls.\n"), (*i).c_str());
                     YaspWriteW(sz);
                 }
             }

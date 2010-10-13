@@ -526,7 +526,7 @@ namespace ast
             else
             {
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("Undefined variable: %s\n"), e.name_get().c_str());
+                os_swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().c_str());
                 throw ScilabError(szError, 999, e.location_get());
                 //Err, SimpleVar doesn't exist in Scilab scopes.
             }
@@ -606,7 +606,7 @@ namespace ast
                     else
                     {
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+                        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
                         throw ScilabError(szError, 999, psvRightMember->location_get());
                     }
                 }
@@ -631,7 +631,7 @@ namespace ast
                     else
                     {
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
+                        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
                         throw ScilabError(szError, 999, psvRightMember->location_get());
                     }
                 }

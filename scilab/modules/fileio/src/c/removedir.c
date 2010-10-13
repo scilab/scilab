@@ -83,7 +83,7 @@ BOOL removedirW(wchar_t *pathW)
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 {
-#define DEFAULT_PATTERN L"%s/*.*"
+#define DEFAULT_PATTERN L"%ls/*.*"
 	BOOL bDeleteSubdirectories = TRUE;
 	BOOL bSubdirectory = FALSE;
 	HANDLE hFile;
@@ -105,7 +105,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 			if ( (wcscmp(FileInformation.cFileName,L".") != 0) && (wcscmp(FileInformation.cFileName,L"..") != 0) )
 			{
 				strFilePath = (wchar_t*)MALLOC(sizeof(wchar_t)*(wcslen(refcstrRootDirectory)+5+wcslen((wchar_t*)(FileInformation.cFileName))));
-				os_swprintf(strFilePath,wcslen(refcstrRootDirectory)+5+wcslen((wchar_t*)(FileInformation.cFileName)),L"%s\\%s",refcstrRootDirectory,FileInformation.cFileName);
+				os_swprintf(strFilePath,wcslen(refcstrRootDirectory)+5+wcslen((wchar_t*)(FileInformation.cFileName)),L"%ls\\%ls",refcstrRootDirectory,FileInformation.cFileName);
 
 				if(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 				{
