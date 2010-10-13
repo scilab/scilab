@@ -19,14 +19,14 @@ function state=truck_solve(initial,final)
 // final  :   final position [x,y,theta1,theta2,theta3,phi]
 //        theta1,theta2,theta3  : the car and the trailers angles
 //        phi    : the front wheel angle
-  
+
   bigT = 1 ;//basic time interval for one  smooth motion (s)
-  bigL = 1 ;// car length (m) 
+  bigL = 1 ;// car length (m)
   d1 = 1.5 ; d2 = 1 ; //trailers length
 
-  // computation of  intermediate configuration 
+  // computation of  intermediate configuration
   LL=bigL+d1+d2
-  x0 = max(initial(1),final(2))   ....
+  x0 = max(initial(1),final(2))   ...
        + LL*abs(tan(initial(3))) ...
        + LL*abs(tan(initial(4))) ...
        + LL*abs(tan(initial(5))) ...
@@ -40,20 +40,20 @@ function state=truck_solve(initial,final)
   // second polynomial curve
   state = [ state;
 	    truck_polynomial_curve(final,intermediate,"reverse")	    ]
-	   
+
 endfunction
 
 
 
 function state=truck_polynomial_curve(initial,final,orient)
 
-  nbpt = 40 ; //  sampling of motion 
+  nbpt = 40 ; //  sampling of motion
   phi = initial(6) ;
 
-  theta2 = initial(3) ; 
+  theta2 = initial(3) ;
   theta1 = initial(4)+theta2
   theta0 = initial(5)+theta1
-  
+
   x0=initial(1)+d2*cos(theta2)+d1*cos(theta1) ;
   y0=initial(2)+d2*sin(theta2)+d1*sin(theta1) ;
   if orient<>'reverse' then
@@ -81,7 +81,7 @@ function state=truck_polynomial_curve(initial,final,orient)
     phi = atan(k0*bigL) ;
     x0=aa(i)+d2*cos(theta2)+d1*cos(theta1) ;
     y0=bb+d2*sin(theta2)+d1*sin(theta1) ;
-    state= [ state; 
+    state= [ state;
 	     x0 y0 theta0 theta1 theta2 phi] ;
   end
 endfunction
@@ -90,11 +90,11 @@ function [ff,df,d2f,d3f,d4f,d5f]=cr2Tfjt(a)
 //
 //
   da = a-a0
-  M= [  da^5      da^6      da^7      da^8       da^9 
-      5*da^4    6*da^5    7*da^6    8*da^7     9*da^8 
-     20*da^3   30*da^4   42*da^5   56*da^6    72*da^7 
-     60*da^2  120*da^3  210*da^4  336*da^5   504*da^6 
-    120*da^1  360*da^2  840*da^3 1680*da^4  3024*da^5 
+  M= [  da^5      da^6      da^7      da^8       da^9
+      5*da^4    6*da^5    7*da^6    8*da^7     9*da^8
+     20*da^3   30*da^4   42*da^5   56*da^6    72*da^7
+     60*da^2  120*da^3  210*da^4  336*da^5   504*da^6
+    120*da^1  360*da^2  840*da^3 1680*da^4  3024*da^5
     120       720*da^1 2520*da^2 6720*da^3 15120*da^4]*p ;
   ff  = M(1) + b0 ;
   df  = M(2) ;
@@ -108,10 +108,10 @@ function coef=cr2Tkf(b,theta2,theta12,theta01,phi)
 //
 //
   da = a1-a0
-M = [1*da^5    1*da^6   1*da^7    1*da^8    1*da^9 
-     5*da^4    6*da^5   7*da^6    8*da^7    9*da^8 
-    20*da^3   30*da^4  42*da^5   56*da^6   72*da^7 
-    60*da^2  120*da^3 210*da^4  336*da^5  504*da^6 
+M = [1*da^5    1*da^6   1*da^7    1*da^8    1*da^9
+     5*da^4    6*da^5   7*da^6    8*da^7    9*da^8
+    20*da^3   30*da^4  42*da^5   56*da^6   72*da^7
+    60*da^2  120*da^3 210*da^4  336*da^5  504*da^6
    120*da^1  360*da^2 840*da^3 1680*da^4 3024*da^5] ;
 //
 //
@@ -119,7 +119,7 @@ df = tan(theta2) ;
 //
 // curvatures
 k2=tan(theta12)/d2;k1=tan(theta01)/d1;k0=tan(phi)/bigL;
-// 
+//
 ddf = k2*((1+df*df)^(3/2)) ;
 //
 // derivative of k2
@@ -132,20 +132,20 @@ dddf = dk2 * (1+df*df)^(3/2)  + 3*k2*df*ddf*(1+df*df)^(1/2) ;
 dk1ds1 = ( (1+(d1*k1)^2)/d1 )*( (1+(d1*k1)^2)^(1/2)*k0 - k1 ) ;
 dk1ds2 = dk1ds1 *  (1+(d2*k2)^2)^(1/2) ;
 //
-ddk2ds2 =  ....
-  3*d2*k2*dk2ds2*(1+(d2*k2)^2)^(1/2)*k1 ....
+ddk2ds2 =  ...
+  3*d2*k2*dk2ds2*(1+(d2*k2)^2)^(1/2)*k1 ...
 + (1+(d2*k2)^2)^(3/2)*dk1ds2/d2 ...
 - (1/d2+3*d2*k2*k2)*dk2ds2 ;
 //
-ddk2 = .... 
-   df*ddf*((1+df*df)^(-1/2))*dk2ds2 ....
- + (1+df*df)*ddk2ds2 ; 
+ddk2 = ...
+   df*ddf*((1+df*df)^(-1/2))*dk2ds2 ...
+ + (1+df*df)*ddk2ds2 ;
 //
-ddddf =  ....
-   ddk2 * (1+df*df)^(3/2) ....
- + 6*dk2*df*ddf*(1+df*df)^(1/2) ....
- + 3*k2*ddf*ddf*(1+df*df)^(1/2) ....
- + 3*k2*df*dddf*(1+df*df)^(1/2) ....
+ddddf =  ...
+   ddk2 * (1+df*df)^(3/2) ...
+ + 6*dk2*df*ddf*(1+df*df)^(1/2) ...
+ + 3*k2*ddf*ddf*(1+df*df)^(1/2) ...
+ + 3*k2*df*dddf*(1+df*df)^(1/2) ...
  + 3*k2*(df*ddf)^2*(1+df*df)^(-1/2) ;
 //
 //
@@ -162,16 +162,16 @@ function [k2,k1,k0,dk0]=cr2Tfk(df,d2f,d3f,d4f,d5f)
 g = (1+df^2)^(-1/2);
 dg = - df*d2f*g^3 ;
 d2g = - g*g*(d2f^2*g+df*d3f*g+3*df*d2f*dg) ;
-d3g = ....
-- 2*g*dg*(d2f^2*g+df*d3f*g+3*df*d2f*dg) ....
-- g^2*(3*d2f*d3f*g+df*d4f*g ....
+d3g = ...
+- 2*g*dg*(d2f^2*g+df*d3f*g+3*df*d2f*dg) ...
+- g^2*(3*d2f*d3f*g+df*d4f*g ...
        + 4*d2f^2*dg+4*df*d3f*dg+3*df*d2f*d2g) ;
 //
 k2  = d2f * g^3  ;
 dk2 = d3f*g^3 + 3*d2f*g^2*dg ;
 d2k2 = g^2*(d4f*g+6*d3f*dg+3*d2f*d2g) + 6*g*dg^2*d2f ;
-d3k2 = 2*g*dg*(d4f*g+6*d3f*dg+3*d2f*d2g) ....
- + g^2*(d5f*g+7*d4f*dg+9*d3f*d2g+3*d2f*d3g) ....
+d3k2 = 2*g*dg*(d4f*g+6*d3f*dg+3*d2f*d2g) ...
+ + g^2*(d5f*g+7*d4f*dg+9*d3f*d2g+3*d2f*d3g) ...
  +6*dg^3*d2f+12*g*dg*d2g*d2f+6*g*dg^2*d3f ;
 //
 g2 = (1+(d2*k2)^2)^(-1/2) ;
@@ -180,20 +180,20 @@ d2g2 = -d2^2*g2^2*(dk2^2*g2+k2*d2k2*g2+3*k2*dk2*dg2) ;
 //
 h2 = g2^3*g ;
 dh2 = g2^2*(3*dg2*g+g2*dg);
-d2h2 = 2*g2*dg2*(3*dg2*g+g2*dg) ....
+d2h2 = 2*g2*dg2*(3*dg2*g+g2*dg) ...
      + g2^2*(3*d2g2*g+4*dg2*dg+g2*d2g) ;
 //
 k1 = g2*k2 + d2*h2*dk2 ;
 dk1 = dg2*k2 + g2*dk2 + d2 * (dh2*dk2+h2*d2k2) ;
-d2k1 = d2g2*k2 + 2*dg2*dk2 + g2*d2k2 ....
+d2k1 = d2g2*k2 + 2*dg2*dk2 + g2*d2k2 ...
    + d2 * (d2h2*dk2+2*dh2*d2k2+h2*d3k2) ;
 //
 g1 = (1+(d1*k1)^2)^(-1/2) ;
 dg1 = - d1^2*k1*dk1*g1^3 ;
 //
 k0 = g1*k1 + d1*g1^3*g2*g*dk1 ;
-dk0 = dg1*k1 + g1*dk1 ....
- + d1*g1^2*(3*dg1*g2*g*dk1+g1*dg2*g*dk1 ....
+dk0 = dg1*k1 + g1*dk1 ...
+ + d1*g1^2*(3*dg1*g2*g*dk1+g1*dg2*g*dk1 ...
           +  g1*g2*dg*dk1+g1*g2*g*d2k1) ;
 
 endfunction
@@ -226,41 +226,41 @@ function display_truck_trajectory(state)
 
   t1=polyline([x_lin(1) y_lin(1);x_lin(1) y_lin(1)]) ;
   t2=polyline([state(1,1) state(1,2);state(1,1) state(1,2)]) ;
-  
+
   t1.line_style=2;
   t2.line_style=2;t2.foreground=5
   realtimeinit(0.2)
   for i=1:size(state,1)
-    realtime(i) 
+    realtime(i)
     drawlater()
-    draw_truck(C, state(i,:)) 
+    draw_truck(C, state(i,:))
     t1.data=[t1.data;x_lin(i), y_lin(i)];
     t2.data=[t2.data;state(i,1), state(i,2)];
     drawnow()
-  end 
+  end
   for i=(1:30)+size(state,1),realtime(i),end
 endfunction
 
 
 function C=build_truck()
 //build the graphic object for the truck
-// 
+//
   //the car
   hcar=polyline([-2,7,8,8,7,-2,-2;-2,-2,-1,1,2,2,-2]'/6)
   hcar.foreground=2
   // rear wheels
   hwheel1=polyline([[-1 1]/8; [1 1]/6]')
   hwheel1.thickness=2
-   
+
   hwheel2=polyline([[-1 1]/8; -[1 1]/6]')
   hwheel2.thickness=2
-  
+
   // front wheels
   hwheel3=polyline([[7 9]/8;[1 1]/6]')
   hwheel3.thickness=2
-  hwheel4=polyline([[7 9]/8;-[1 1]/6]') 
+  hwheel4=polyline([[7 9]/8;-[1 1]/6]')
   hwheel4.thickness=2
-  
+
   //Trailer 1
 
   ht1=polyline([-1,1,1,-1,-1;-1,-1,1,1,-1]'*bigL/3)
@@ -309,7 +309,7 @@ function draw_truck(C,pos)
   xy=[(1-cos(phi)/8) (-1/6-sin(phi)/8)
       (1+cos(phi)/8) (-1/6+sin(phi)/8)]
   C(5).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  
+
   //Trailer 1
   Rc=[cos(theta2) sin(theta2);-sin(theta2) cos(theta2)]
   x = x - d1*cos(theta2) ;

@@ -23,8 +23,8 @@ function [%ll,%ierr] = script2var(%txt, %ll)
 //** [%scicos_context, ierr] = script2var(context, %scicos_context)
 
 //**
-//** 10 Jan 2006 
-  %ierr = 0 ; //** init 
+//** 10 Jan 2006
+  %ierr = 0 ; //** init
   %mm = getfield(1,%ll)
   for %mi=%mm(3:$)
     if execstr(%mi+'=%ll(%mi)','errcatch')<>0 then
@@ -33,9 +33,9 @@ function [%ll,%ierr] = script2var(%txt, %ll)
       return
     end
   end
-  
+
   [%ll,%ierr] = getvardef(%txt,%ll)
-  if %ierr<>0 then 
+  if %ierr<>0 then
     return,
   end
 endfunction
@@ -49,7 +49,7 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
   else
     %ierr=execstr(%txt,'errcatch')
   end
-  if %ierr<>0 then 
+  if %ierr<>0 then
     return,
   end
   %mm=who('get')
@@ -58,8 +58,8 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
   for %mi=%mm(:)'
     if type(evstr(%mi)) <> 13 then
       if %mi=="scs_m" then
-	disp('the name scs_m is reseved; it cannot be used as block"+...
-	     " parameter')
+	disp("the name scs_m is reseved; it cannot be used as block"+...
+	     " parameter")
       else
 	%ll(%mi)=evstr(%mi)
       end

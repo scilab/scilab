@@ -24,9 +24,9 @@ function scipad(varargin)
     global LANGUAGE
 
     if with_tk() then
-        if ~TCL_ExistInterp("scipad") then    
+        if ~TCL_ExistInterp("scipad") then
             TCL_EvalStr("interp create scipad")
-            TCL_EvalStr("load {'+gettklib()+'} Tk scipad")
+            TCL_EvalStr("load {"+gettklib()+"} Tk scipad")
             TCL_EvalStr("wm withdraw .","scipad")
             TCL_EvalStr("scipad alias ScilabEval ScilabEval")
         end
@@ -58,7 +58,7 @@ function scipad(varargin)
             for i=1:nfiles
                 validfile=%f;
                 f=varargin(i)
-                select type(f)        
+                select type(f)
                 case 1 then filetoopen=string(f); validfile=%t;
                 case 8 then filetoopen=string(f); validfile=%t;
                 case 10 then filetoopen=f; validfile=%t;
@@ -82,21 +82,21 @@ function scipad(varargin)
                 else
                     warning("Scipad cannot open a "+typeof(f)+" object!")
                 end
-                if validfile then 
+                if validfile then
                     filetoopen=pathconvert(filetoopen,%f,%t);
-                    if MSDOS then 
-                        filetoopen=strsubst(filetoopen,"\","/"); 
+                    if MSDOS then
+                        filetoopen=strsubst(filetoopen,"\","/");
                     end
 //  Given that scipad is open via a ScilabEval as is done above, the initial
 //  opening of files has to be done in the same way, so that the command is sequenced
 //  after scipad is really open
 //                  TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {openfile {"+..
-//                              filetoopen +"}}"")} ""seq"" ")     
+//                              filetoopen +"}}"")} ""seq"" ")
                     TCL_EvalStr("openfile """+filetoopen+"""","scipad")
                 end
             end  // end of "for i=1:nfiles"
         end  // end of "if nfiles>0"
-    else 
+    else
         // with_tk() is %f
         clearglobal SCIPADISSTARTING
         error(" Scilab has not been built with Tcl/Tk: Scipad unavailable")

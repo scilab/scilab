@@ -1522,7 +1522,7 @@ function GetSetValue(h)
   execstr(lhs+'=getvalue(t,labels,typs,ini)')
   if ok then
     for k=1:n
-      execstr("if x'+string(k)+'<>h."+labels(k)+' then h.'+..
+      execstr("if x"+string(k)+"<>h."+labels(k)+' then h.'+..
               labels(k)+'=x'+string(k)+',end')
     end
   end
@@ -2431,7 +2431,7 @@ function ged_copy_entity()
   [xc,yc]=xchange(xc,yc,'f2i')
   r=ged_getobject([xc,yc])
   if r==[] return,end
-  twinkle(r,1);    
+  twinkle(r,1);
   save(TMPDIR+'/G_Clipboard',r)
   //make the axes containning the clicked point the current one
   sca(ged_select_axes(xc,yc))
