@@ -624,7 +624,7 @@ assign			"="
 }
 
 
-<INITIAL,MATRIX>{newline}		{
+<INITIAL>{newline}		{
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
@@ -671,6 +671,17 @@ assign			"="
   {spaces}*{colon}{spaces}* {
       return scan_throw(COLON);
   }
+
+  {newline} {
+      yylloc.last_line += 1;
+      yylloc.last_column = 1;
+      if(last_token != DOTS)
+      {
+          return scan_throw(EOL);
+      }
+      scan_throw(EOL);
+  }
+
 
   {rbrack}				{
     DEBUG("yy_pop_state()");
@@ -790,6 +801,7 @@ assign			"="
       /* Just do nothing */
       pstBuffer = new std::string();
       yy_push_state(LINECOMMENT);
+      scan_throw(DOTS);
   }
 
   <<EOF>>       {
