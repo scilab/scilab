@@ -78,7 +78,7 @@ id              (([a-zA-Z_%#?$]|{utf})([a-zA-Z_0-9#?$]|{utf})*)
 
 newline			("\r"|"\n"|"\r\n")
 blankline		{spaces}+{newline}
-emptyline       ({spaces}|[,;])+{newline}
+emptyline       {newline}({spaces}|[,;])+{newline}
 next			(".."|"...")
 
 boolnot			("@"|"~")
@@ -647,7 +647,7 @@ assign			"="
 }
 
 <INITIAL,MATRIX>{emptyline}		{
-  yylloc.last_line += 1;
+  yylloc.last_line += 2;
   yylloc.last_column = 1;
   scan_step();
   if (last_token != EOL)
@@ -780,6 +780,9 @@ assign			"="
 
   {next}{spaces}*{newline}          {
       /* Just do nothing */
+      yylloc.last_line += 1;
+      yylloc.last_column = 1;
+      scan_step();
       scan_throw(EOL);
   }
 
@@ -1180,6 +1183,9 @@ assign			"="
 
     {newline}                   {
         BEGIN(INITIAL);
+        yylloc.last_line += 1;
+        yylloc.last_column = 1;
+        scan_step();
         return scan_throw(EOL);
     }
 

@@ -482,6 +482,10 @@ namespace ast {
         {
             this->apply_indent();
             (*i)->accept (*this);
+            if(!(*i)->is_verbose())
+            {
+                *ostr << ";";
+            }
             *ostr << std::endl;
         }
     }
