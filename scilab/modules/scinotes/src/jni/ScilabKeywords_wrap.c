@@ -218,10 +218,10 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_scinotes_ScilabKeywordsJ
         temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
-        free(result[i]);
+        FREE(result[i]);
         result[i] = NULL;
       }
-      free(result);
+      FREE(result);
       result = NULL;
     }       
   }
@@ -252,10 +252,10 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_scinotes_ScilabKeywordsJ
         temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
-        free(result[i]);
+        FREE(result[i]);
         result[i] = NULL;
       }
-      free(result);
+      FREE(result);
       result = NULL;
     }       
   }
@@ -286,10 +286,10 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_scinotes_ScilabKeywordsJ
         temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
-        free(result[i]);
+        FREE(result[i]);
         result[i] = NULL;
       }
-      free(result);
+      FREE(result);
       result = NULL;
     }       
   }
