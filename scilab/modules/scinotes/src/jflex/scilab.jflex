@@ -146,7 +146,7 @@ latex = "$"(([^$]*|"\\$")+)"$"
 latexinstring = (\"|\')"$"(([^$]*|"\\$")+)"$"(\"|\')
 
 digit = [0-9]
-exp = [eE][+-]?{digit}+
+exp = [dDeE][+-]?{digit}*
 number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
 %x QSTRING, COMMENT, FIELD, COMMANDS, COMMANDSWHITE, BREAKSTRING
