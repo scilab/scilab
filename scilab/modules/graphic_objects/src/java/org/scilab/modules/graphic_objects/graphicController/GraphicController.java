@@ -17,12 +17,15 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.renderer.JoGLView.JoGLView;
 
-import javax.swing.event.EventListenerList;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -30,8 +33,15 @@ import java.util.List;
  * @author Bruno JOFRET
  */
 public class GraphicController {
-    //TODO
-    private static EventListenerList allViews = new EventListenerList();
+
+    /**
+     * Set of all views attached to this controller.
+     */
+    private static Set<GraphicView> allViews = Collections.synchronizedSet(new HashSet<GraphicView>());
+
+    /**
+     * Graphic controller singleton.
+     */
     private static GraphicController me = null;
 
     /**
@@ -45,11 +55,11 @@ public class GraphicController {
      * @return the controller
      */
     public static GraphicController getController() {
-	if (me == null) {
-	    me = new GraphicController();
-	}
+    if (me == null) {
+        me = new GraphicController();
+    }
 
-	return me;
+    return me;
     }
 
     /**
@@ -58,7 +68,7 @@ public class GraphicController {
      * @param view The view to register.
      */
     public void register(GraphicView view) {
-        allViews.add(GraphicView.class, view);
+        allViews.add(view);
     }
 
     /**
@@ -66,7 +76,7 @@ public class GraphicController {
      * @return the created UID
      */
     public UID createUID() {
-    	return new UID();
+        return new UID();
     }
 
     /**
@@ -75,7 +85,7 @@ public class GraphicController {
      * @return the object
      */
     public GraphicObject getObjectFromId(String id) {
-    	return GraphicModel.getModel().getObjectFromId(id);
+        return GraphicModel.getModel().getObjectFromId(id);
     }
 
     /**
@@ -86,11 +96,11 @@ public class GraphicController {
      * @return true if the property has been set, false otherwise
      */
     public boolean setProperty(String id, String prop, Object value) {
-    	if (GraphicModel.getModel().setProperty(id, prop, value)) {
-    	    objectUpdate(id, prop);
-    	    return true;
-    	}
-    	return false;
+        if (GraphicModel.getModel().setProperty(id, prop, value)) {
+            objectUpdate(id, prop);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -100,7 +110,7 @@ public class GraphicController {
      * @return the property value
      */
     public Object getProperty(String id, String prop) {
-    	return GraphicModel.getModel().getProperty(id, prop);
+        return GraphicModel.getModel().getProperty(id, prop);
     }
 
     /**
@@ -110,20 +120,20 @@ public class GraphicController {
      * @return the null property
      */
     public Object getNullProperty(String id, String prop) {
-    	return GraphicModel.getModel().getNullProperty(id, prop);
+        return GraphicModel.getModel().getNullProperty(id, prop);
     }
 
-	/**
-	 * Asks the model to create a new object
-	 * @param type the object type
-	 * @return the created object's id
-	 */
+    /**
+     * Asks the model to create a new object
+     * @param type the object type
+     * @return the created object's id
+     */
     public String askObject(Type type) {
-    	UID id = createUID();
-    	GraphicModel.getModel().createObject(id.toString(), type);
-    	objectCreated(id.toString());
+        UID id = createUID();
+        GraphicModel.getModel().createObject(id.toString(), type);
+        objectCreated(id.toString());
 
-    	return id.toString();
+        return id.toString();
     }
 
     /**
@@ -153,8 +163,8 @@ public class GraphicController {
      * @param id the created object's id
      */
     public void objectCreated(String id) {
-        for (GraphicView gw : allViews.getListeners(GraphicView.class)) {
-            gw.createObject(id);
+        for (GraphicView view : allViews) {
+            view.createObject(id);
         }
     }
 
@@ -164,8 +174,8 @@ public class GraphicController {
      * @param prop the property that has been updated
      */
     public void objectUpdate(String id, String prop) {
-        for (GraphicView gw : allViews.getListeners(GraphicView.class)) {
-            gw.updateObject(id, prop);
+        for (GraphicView view : allViews) {
+            view.updateObject(id, prop);
         }
     }
 
@@ -174,8 +184,8 @@ public class GraphicController {
      * @param id the deleted object's id
      */
     public void objectDeleted(String id) {
-        for (GraphicView gw : allViews.getListeners(GraphicView.class)) {
-            gw.deleteObject(id);
+        for (GraphicView view : allViews) {
+            view.deleteObject(id);
         }
     }
 
