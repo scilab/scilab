@@ -264,7 +264,7 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
 	int *piAddr				= NULL;
 	int iTotalLen			= 0;
 
-	C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+	C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);

@@ -130,7 +130,7 @@ SciErr createNamedPointer(void* _pvCtx, const char* _pstName, int* _pvPtr)
 	void* pvPtr	= NULL;
 	int *piAddr	= NULL;
 
-	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	int iMemSize = 1;

@@ -180,7 +180,7 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
 	int *piAddr				= NULL;
 	int* piEnd				= NULL;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -464,7 +464,7 @@ SciErr createCommonListInNamedList(void* _pvCtx, const char* _pstName, int* _piP
 	int iVarID[nsiz];
 	int iSaveTop = Top;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	sciErr = createCommonListInList(_pvCtx, Top, _piParent, _iItemPos, _iListType, _iNbItem, _piAddress, 1);
@@ -694,7 +694,7 @@ SciErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstNam
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -742,7 +742,7 @@ SciErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName,
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -967,7 +967,7 @@ SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* 
 	int* piItemAddr		= NULL;
 	int* piEnd				= NULL;
 
-    C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piItemAddr);
@@ -1160,7 +1160,7 @@ SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int*
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -1396,7 +1396,7 @@ SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, i
 	int iTotalLen			= 0;
 	int iItemLen			= 0;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -1703,7 +1703,7 @@ static SciErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, const char* _
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -1968,7 +1968,7 @@ SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, i
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -2219,7 +2219,7 @@ SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, 
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -2457,7 +2457,7 @@ SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piPare
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);

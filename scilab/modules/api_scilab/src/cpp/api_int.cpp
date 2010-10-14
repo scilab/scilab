@@ -479,7 +479,7 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int 
 	int iMod				= (iSize % iRate) == 0 ? 0 : 1;
 	int iTotalSize	= iDouble + iMod;
 
-	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	int iMemSize = iTotalSize + 2;

@@ -240,7 +240,7 @@ SciErr createCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iC
 	double* pdblImg		= NULL;
 
 
-	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	//header + offset

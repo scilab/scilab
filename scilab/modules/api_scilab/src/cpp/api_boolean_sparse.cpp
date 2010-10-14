@@ -148,7 +148,7 @@ SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _i
 	int* piNbItemRow	= NULL;
 	int* piColPos		= NULL;
 
-	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	int iMemSize = (int)( ( (double)iPos / 2) + 0.5);

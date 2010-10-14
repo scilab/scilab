@@ -253,7 +253,7 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -288,7 +288,7 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _
 	double *pdblImg		= NULL;
 	int iOne		= 1;
 
-	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;

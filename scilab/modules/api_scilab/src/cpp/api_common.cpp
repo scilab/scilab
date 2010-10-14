@@ -147,7 +147,7 @@ SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddres
 	int* piAddr				= NULL;
 
 	//get variable id from name
-	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 
 	//define scope of search
   Fin = -1;
