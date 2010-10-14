@@ -22,6 +22,8 @@ Source: etc\scilab.start; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: etc\scilab.quit; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: etc\logging.properties; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
+;
 ; root directory
 Source: RELEASE_NOTES; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: RELEASE_NOTES*.*; DestDir: {app}; Components: {#COMPN_SCILAB}
