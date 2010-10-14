@@ -25,11 +25,39 @@ Xcos:
 
 * bug 8081 fixed - The context was not checked before being set.
 
+Graphic export:
+===============
+
+* Decrease the amount of messages when exporting a graphic.
+
+Graphics:
+=========
+
+Thanks to Samuel Gougeon, many improvements on the polarplot function:
+* Clipping was missing. See bug #7007.
+* In some common cases, values of radial labels were wrong with respect to the
+plotted radial frame or/and were lacking of digits.
+* When the plot was centered around an angle far from 45°, the radial labels
+were completely clipped.
+* Sampling of the angular frame is improved according to the number of drawn
+quadrants.
+* Improved H&V positionning of angular labels
+* Polar frame drawn in grey instead of black for a better data visibility.
+* if the basic radius is >= 10^4 or <=10^-4, LaTeX is used to display smart
+$..10^p$ exponents instead of the D+/-## console style display.
+* Finally, their positioning is still improved in order to avoid their mutual
+overlaying for big values.
+
 
 SciNotes:
 =========
 
 * Incremental search added with the shortcut: the F2 key.
+
+* Add a "Save file in..." menu which gives the possibility to save a file
+  in favorite directories.
+
+* bug 7806 fixed - Blocks elseif...end and else...end were not highlighted.
 
 * bug 8095 fixed - The Set Colors window was too height with OpenJDK.
 
@@ -65,6 +93,14 @@ Bug Fixes:
 * bug 7805 fixed - clear called inside an exec while in pause could
                    have unexpected results.
 
+* bug 7970 fixed - The eager loading of openmp support library was crashing
+                   on Linux with unsupported configuration for openmp.
+
+* bug 7997 fixed - Function getfreememory adapted for FreeBSD. Thanks to Rob
+                   Farmer.
+
+* bug 8016 fixed - An error in a german translation gave an error message.
+
 * bug 8046 fixed - msprintf did not manage tabulation as format.
 
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
@@ -76,6 +112,9 @@ Bug Fixes:
                    it was not possible to leave Scilab.
 
 * bug 8087 fixed - prettyprint did not handle %inf and %nan.
+
+* bug 8107 fixed - sum(a,1), cumsum(a,1), .. made Scilab 5.0.3-beta-4 crash
+                   in some particular context.
 
 * bug 8108 fixed - ATOMS: Modules that start by the letter "n" were not well
                    managed by ATOMS. The cause of the issue is the behaviour of
@@ -93,8 +132,16 @@ Bug Fixes:
 
 * bug 8128 fixed - A warning was displayed on 'Save' action in a graphic window.
 
+* bug 8129 fixed - The error message was not clear in tlbx_builder_src if you did
+                   not have a compiler.
+
 * bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
                    taken into account for "text" uicontrols.
+
+* bug 8154 fixed - It was not possible to cancel a messagebox with ESC key.
+
+* bug 8160 fixed - The derivative function did not check for input
+                   argument #1, if it was a list.
 
 * bug 8164 fixed - Typo in the fileparts help page.
 
