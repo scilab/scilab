@@ -107,6 +107,9 @@ SciNotes:
 
 * bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
 
+* bug 8227 fixed - The commands evaluated with "Evaluate selection" were not
+                   stored in history.
+
 * bug 8229 fixed - There was a problem of selection after an indentation.
 
 * bug 8230 fixed - Save As action did not propose the current file name as default.
