@@ -157,6 +157,9 @@ Bug Fixes:
 * bug 8208 fixed - Error in creating the temporary directory in function
                    createScilabTMPDIR.
 
+* bug 8232 fixed - drag and drop of .scg files (on console) used "xload"
+                   and not "load".
+
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
