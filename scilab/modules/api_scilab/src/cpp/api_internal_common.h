@@ -57,7 +57,7 @@ int checkVarType(void* _pvCtx, int* _piAddress, int _iType);
 * @param[in] _iType type to check
 * @return 1 for true and 0 for false
 */
-int checkNamedVarType(void* _pvCtx, char *_pstName, int _iType);
+int checkNamedVarType(void* _pvCtx, const char *_pstName, int _iType);
 
 #endif /* __INTERNAL_COMMON_API__ */
 

@@ -65,7 +65,7 @@ SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
  * @param[in] _piColPos array of item column positions ( 1 indexed )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos);
+SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos);
 
 /**
  * Read named boolean sparse variable
@@ -77,7 +77,7 @@ SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, 
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-SciErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
+SciErr readNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
 
 /* shortcut functions */
 
@@ -93,7 +93,7 @@ int isBooleanSparseType(void* _pvCtx, int* _piAddress);
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedBooleanSparseType(void* _pvCtx, char* _pstName);
+int isNamedBooleanSparseType(void* _pvCtx, const char* _pstName);
 
 /**
  * Get boolean sparse variable data
@@ -117,7 +117,7 @@ int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
  * @param[out] _piColPos return array of item column positions ( 1 indexed )
  * @return if the operation succeeded (0) or not ( !0 )
  */
-int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Free data allocated by shortcut functions

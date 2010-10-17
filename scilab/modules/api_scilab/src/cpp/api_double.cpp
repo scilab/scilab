@@ -232,17 +232,17 @@ SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iC
 	return sciErr;
 }
 
-SciErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const double* _pdblReal)
+SciErr createNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const double* _pdblReal)
 {
 	return createCommonNamedMatrixOfDouble(_pvCtx, _pstName, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
+SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
 	return createCommonNamedMatrixOfDouble(_pvCtx, _pstName, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
 
-SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const doublecomplex* _pdblData)
+SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const doublecomplex* _pdblData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -253,7 +253,7 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRow
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -276,7 +276,7 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRow
 	return sciErr;
 }
 
-SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
+SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -288,7 +288,7 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iCompl
 	double *pdblImg		= NULL;
 	int iOne		= 1;
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
@@ -324,17 +324,17 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iCompl
 	return sciErr;
 }
 
-SciErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)
+SciErr readNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)
 {
 	return readCommonNamedMatrixOfDouble(_pvCtx, _pstName, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
 	return readCommonNamedMatrixOfDouble(_pvCtx, _pstName, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-SciErr readCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+SciErr readCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr		= NULL;
@@ -379,7 +379,7 @@ int isDoubleType(void* _pvCtx, int* _piAddress)
 	return checkVarType(_pvCtx, _piAddress, sci_matrix);
 }
 /*--------------------------------------------------------------------------*/
-int isNamedDoubleType(void* _pvCtx, char* _pstName)
+int isNamedDoubleType(void* _pvCtx, const char* _pstName)
 {
 	return checkNamedVarType(_pvCtx, _pstName, sci_matrix);
 }
@@ -431,17 +431,17 @@ static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, d
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedScalarDouble(void* _pvCtx, char* _pstName, double* _pdblReal)
+int getNamedScalarDouble(void* _pvCtx, const char* _pstName, double* _pdblReal)
 {
 	return getCommonNamedScalarDouble(_pvCtx, _pstName, 0, _pdblReal, NULL);
 }
 /*--------------------------------------------------------------------------*/
-int getNamedScalarComplexDouble(void* _pvCtx, char* _pstName, double* _pdblReal, double* _pdblImg)
+int getNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double* _pdblReal, double* _pdblImg)
 {
 	return getCommonNamedScalarDouble(_pvCtx, _pstName, 1, _pdblReal, _pdblImg);
 }
 /*--------------------------------------------------------------------------*/
-static int getCommonNamedScalarDouble(void* _pvCtx, char* _pstName, int _iComplex, double* _pdblReal, double* _pdblImg)
+static int getCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double* _pdblReal, double* _pdblImg)
 {
 	SciErr sciErr;
 	int iRows	= 0;
@@ -510,17 +510,17 @@ static int createCommonScalarDouble(void* _pvCtx, int _iVar, int _iComplex, doub
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedScalarDouble(void* _pvCtx, char* _pstName, double _dblReal)
+int createNamedScalarDouble(void* _pvCtx, const char* _pstName, double _dblReal)
 {
 	return createCommonNamedScalarDouble(_pvCtx, _pstName, 0, _dblReal, 0);
 }
 /*--------------------------------------------------------------------------*/
-int createNamedScalarComplexDouble(void* _pvCtx, char* _pstName, double _dblReal, double _dblImg)
+int createNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double _dblReal, double _dblImg)
 {
 	return createCommonNamedScalarDouble(_pvCtx, _pstName, 1, _dblReal, _dblImg);
 }
 /*--------------------------------------------------------------------------*/
-static int createCommonNamedScalarDouble(void* _pvCtx, char* _pstName, int _iComplex, double _dblReal, double _dblImg)
+static int createCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double _dblReal, double _dblImg)
 {
 	SciErr sciErr;
 

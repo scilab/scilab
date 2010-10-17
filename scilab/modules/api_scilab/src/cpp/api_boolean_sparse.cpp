@@ -136,20 +136,20 @@ SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
 	return sciErr;
 }
 
-SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
+SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
-	int iPos					= 0;
+	int iSaveRhs		= Rhs;
+	int iSaveTop		= Top;
+	int iPos		= 0;
 
-	int* piAddr				= NULL;
+	int* piAddr		= NULL;
 	int* piNbItemRow	= NULL;
-	int* piColPos			= NULL;
+	int* piColPos		= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
+	Top = Top + Nbvars + 1;
 
 	int iMemSize = (int)( ( (double)iPos / 2) + 0.5);
 	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
@@ -186,7 +186,7 @@ SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, 
 	return sciErr;
 }
 
-SciErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
+SciErr readNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -228,7 +228,7 @@ int isBooleanSparseType(void* _pvCtx, int* _piAddress)
 	return checkVarType(_pvCtx, _piAddress, sci_boolean_sparse);
 }
 /*--------------------------------------------------------------------------*/
-int isNamedBooleanSparseType(void* _pvCtx, char* _pstName)
+int isNamedBooleanSparseType(void* _pvCtx, const char* _pstName)
 {
 	return checkNamedVarType(_pvCtx, _pstName, sci_boolean_sparse);
 }
@@ -256,7 +256,7 @@ int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
+int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
 	SciErr sciErr;
 

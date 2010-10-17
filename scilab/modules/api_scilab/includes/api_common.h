@@ -69,7 +69,7 @@ SciErr getVarNameFromPosition(void* _pvCtx, int _iVar, char* _pstName);
  * @param[out] _piAddress return variable address
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress);
+SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddress);
 
 /**
  * Get the variable type
@@ -85,7 +85,7 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType);
  * @param[out] _piType return variable type ( sci_matrix, sci_strings, ... )
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType);
+SciErr getNamedVarType(void* _pvCtx, const char* _pstName, int* _piType);
 
 /**
  * Check if the variable type is complex double, complex sparse double or complex polynomial
@@ -99,7 +99,7 @@ int isVarComplex(void* _pvCtx, int* _piAddress);
 * @param[in] _pstName variable name
 * @return if complex 1 otherwise 0
 */
-int isNamedVarComplex(void* _pvCtx, char *_pstName);
+int isNamedVarComplex(void* _pvCtx, const char *_pstName);
 
 /**
  * Get variable dimensions
@@ -117,7 +117,7 @@ SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
  * @param[out] _piCols return number of cols
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _piCols);
+SciErr getNamedVarDimension(void* _pvCtx, const char *_pstName, int* _piRows, int* _piCols);
 
 /**
  * Check if a variable is a matrix form ( row x col )
@@ -131,7 +131,7 @@ int isVarMatrixType(void* _pvCtx, int* _piAddress);
  * @param[in] _pstName variable name
  * @return if matrix form type variable 1 otherwise 0
  */
-int isNamedVarMatrixType(void* _pvCtx, char *_pstName);
+int isNamedVarMatrixType(void* _pvCtx, const char *_pstName);
 
 /**
  * Get process mode from input variable
@@ -156,7 +156,7 @@ SciErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal);
  * @param[out] _piVal return value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr getDimFromNamedVar(void* _pvCtx, char* _pstName, int* _piVal);
+SciErr getDimFromNamedVar(void* _pvCtx, const char* _pstName, int* _piVal);
 
 /**
  * Get Rhs value from variable address
@@ -228,56 +228,56 @@ int createEmptyMatrix(void* _pvCtx, int _iVar);
  * @param[in] _pstName variable name
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedEmptyMatrix(void* _pvCtx, char* _pstName);
+int createNamedEmptyMatrix(void* _pvCtx, const char* _pstName);
 
 /**
  * Check if a named variable exists
  * @param[in] _pstName variable name
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int isNamedVarExist(void* _pvCtx, char* _pstName);
+int isNamedVarExist(void* _pvCtx, const char* _pstName);
 
 /**
  * Check if a named variable is a row vector
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedRowVector(void* _pvCtx, char* _pstName);
+int isNamedRowVector(void* _pvCtx, const char* _pstName);
 
 /**
  * Check if a named variable is a column vector
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedColumnVector(void* _pvCtx, char* _pstName);
+int isNamedColumnVector(void* _pvCtx, const char* _pstName);
 
 /**
  * Check if a named variable is a vector ( row or column )
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedVector(void* _pvCtx, char* _pstName);
+int isNamedVector(void* _pvCtx, const char* _pstName);
 
 /**
  * Check if a named variable is a scalar
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedScalar(void* _pvCtx, char* _pstName);
+int isNamedScalar(void* _pvCtx, const char* _pstName);
 
 /**
  * Check if a named variable is a square matrix
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedSquareMatrix(void* _pvCtx, char* _pstName);
+int isNamedSquareMatrix(void* _pvCtx, const char* _pstName);
 
 /**
  * Check if a named variable is an empty matrix
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedEmptyMatrix(void* _pvCtx, char* _pstName);
+int isNamedEmptyMatrix(void* _pvCtx, const char* _pstName);
 
 #ifdef __cplusplus
 }

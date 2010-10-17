@@ -167,17 +167,17 @@ SciErr fillMatrixOfString(void* _pvCtx, int* _piAddress, int _iRows, int _iCols,
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
-SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)
+SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-	int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
-	int *piAddr				= NULL;
+	int iSaveRhs	= Rhs;
+	int iSaveTop	= Top;
+	int *piAddr	= NULL;
 
 	int iTotalLen	= 0;
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+	C2F(str2name)((char*)_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -203,7 +203,7 @@ SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
-SciErr readNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+SciErr readNamedMatrixOfString(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -380,7 +380,7 @@ SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
-SciErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const wchar_t* const* _pwstStrings)
+SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const wchar_t* const* _pwstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	char **pStrings = NULL;
@@ -404,7 +404,7 @@ SciErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, i
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
-SciErr readNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
+SciErr readNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -433,7 +433,7 @@ int isStringType(void* _pvCtx, int* _piAddress)
 	return checkVarType(_pvCtx, _piAddress, sci_strings);
 }
 /*--------------------------------------------------------------------------*/
-int isNamedStringType(void* _pvCtx, char* _pstName)
+int isNamedStringType(void* _pvCtx, const char* _pstName)
 {
 	return checkNamedVarType(_pvCtx, _pstName, sci_strings);
 }
@@ -590,7 +590,7 @@ int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, 
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getAllocatedNamedSingleString(void* _pvCtx, char* _pstName, char** _pstData)
+int getAllocatedNamedSingleString(void* _pvCtx, const char* _pstName, char** _pstData)
 {
 	SciErr sciErr;
 	int iRows = 0;
@@ -625,7 +625,7 @@ int getAllocatedNamedSingleString(void* _pvCtx, char* _pstName, char** _pstData)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getAllocatedNamedSingleWideString(void* _pvCtx, char* _pstName, wchar_t** _pwstData)
+int getAllocatedNamedSingleWideString(void* _pvCtx, const char* _pstName, wchar_t** _pwstData)
 {
 	SciErr sciErr;
 	int iRows = 0;
@@ -660,7 +660,7 @@ int getAllocatedNamedSingleWideString(void* _pvCtx, char* _pstName, wchar_t** _p
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getAllocatedNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, char*** _pstData)
+int getAllocatedNamedMatrixOfString(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, char*** _pstData)
 {
 	SciErr sciErr;
 	int* piLen	= 0;
@@ -701,7 +701,7 @@ int getAllocatedNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, 
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getAllocatedNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, wchar_t*** _pwstData)
+int getAllocatedNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, wchar_t*** _pwstData)
 {
 	SciErr sciErr;
 	int iRows		= 0;
@@ -774,7 +774,7 @@ int createSingleWideString(void* _pvCtx, int _iVar, const wchar_t* _pwstStrings)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedSingleString(void* _pvCtx, char* _pstName, const char* _pstStrings)
+int createNamedSingleString(void* _pvCtx, const char* _pstName, const char* _pstStrings)
 {
 	SciErr sciErr;
 	
@@ -789,7 +789,7 @@ int createNamedSingleString(void* _pvCtx, char* _pstName, const char* _pstString
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedSingleWideString(void* _pvCtx, char* _pstName, const wchar_t* _pwstStrings)
+int createNamedSingleWideString(void* _pvCtx, const char* _pstName, const wchar_t* _pwstStrings)
 {
 	SciErr sciErr;
 	

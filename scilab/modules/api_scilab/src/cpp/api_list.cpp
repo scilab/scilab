@@ -39,11 +39,11 @@
 //internal functions
 static SciErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNbItem, int** _piAddress);
 static SciErr createCommonListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress, int iNamed);
-static SciErr createCommonNamedList(void* _pvCtx, char* _pstName, int _iListType, int _iNbItem, int** _piAddress);
-static SciErr createCommonListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress);
+static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iListType, int _iNbItem, int** _piAddress);
+static SciErr createCommonListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress);
 static SciErr getCommonListInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
-static SciErr getCommomListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
-static SciErr readCommonNamedList(void* _pvCtx, char* _pstName, int _iListType, int* _piNbItem, int** _piAddress);
+static SciErr getCommomListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
+static SciErr readCommonNamedList(void* _pvCtx, const char* _pstName, int _iListType, int* _piNbItem, int** _piAddress);
 static SciErr fillCommonList(void* _pvCtx, int* _piAddress, int _iListType, int _iNbItem);
 static int isKindOfList(int* _piNode);
 static int getParentList(void* _pvCtx, int* _piStart, int* _piToFind, int* _piDepth, int** _piParent);
@@ -56,19 +56,19 @@ static SciErr allocCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piP
 static SciErr getCommonMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
 static SciErr createCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg);
 static SciErr fillCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
-static SciErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg);
-static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
+static SciErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg);
+static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 static SciErr allocCommonItemInList(void* _pvCtx, int* _piParent, int _iItemPos, int** _piChildAddr);
 static SciErr fillMatrixOfBoolInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool);
 static SciErr getCommonMatrixOfPolyInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 static SciErr createCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg);
-static SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg);
-static SciErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+static SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg);
+static SciErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 static SciErr fillCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg, int* _piTotalLen);
 static SciErr fillCommonMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings, int* _piTotalLen);
-static SciErr readCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+static SciErr readCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
-static SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
+static SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
 
 char* getListTypeName(int _iType)
 {
@@ -156,22 +156,22 @@ SciErr createTList(void* _pvCtx, int _iVar, int _iNbItem, int** _piAddress)
 	return createCommonList(_pvCtx, _iVar, sci_tlist, _iNbItem, _piAddress);
 }
 
-SciErr createNamedList(void* _pvCtx, char* _pstName, int _iNbItem, int** _piAddress)
+SciErr createNamedList(void* _pvCtx, const char* _pstName, int _iNbItem, int** _piAddress)
 {
 	return createCommonNamedList(_pvCtx, _pstName, sci_list, _iNbItem, _piAddress);
 }
 
-SciErr createNamedTList(void* _pvCtx, char* _pstName, int _iNbItem, int** _piAddress)
+SciErr createNamedTList(void* _pvCtx, const char* _pstName, int _iNbItem, int** _piAddress)
 {
 	return createCommonNamedList(_pvCtx, _pstName, sci_tlist, _iNbItem, _piAddress);
 }
 
-SciErr createNamedMList(void* _pvCtx, char* _pstName, int _iNbItem, int** _piAddress)
+SciErr createNamedMList(void* _pvCtx, const char* _pstName, int _iNbItem, int** _piAddress)
 {
 	return createCommonNamedList(_pvCtx, _pstName, sci_mlist, _iNbItem, _piAddress);
 }
 
-static SciErr createCommonNamedList(void* _pvCtx, char* _pstName, int _iListType, int _iNbItem, int** _piAddress)
+static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iListType, int _iNbItem, int** _piAddress)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -180,7 +180,7 @@ static SciErr createCommonNamedList(void* _pvCtx, char* _pstName, int _iListType
 	int *piAddr				= NULL;
 	int* piEnd				= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -251,22 +251,22 @@ SciErr fillCommonList(void* _pvCtx, int* _piAddress, int _iListType, int _iNbIte
 	return sciErr;
 }
 
-SciErr readNamedList(void* _pvCtx, char* _pstName, int* _piNbItem, int** _piAddress)
+SciErr readNamedList(void* _pvCtx, const char* _pstName, int* _piNbItem, int** _piAddress)
 {
 	return readCommonNamedList(_pvCtx, _pstName, sci_list, _piNbItem, _piAddress);
 }
 
-SciErr readNamedTList(void* _pvCtx, char* _pstName, int* _piNbItem, int** _piAddress)
+SciErr readNamedTList(void* _pvCtx, const char* _pstName, int* _piNbItem, int** _piAddress)
 {
 	return readCommonNamedList(_pvCtx, _pstName, sci_tlist, _piNbItem, _piAddress);
 }
 
-SciErr readNamedMList(void* _pvCtx, char* _pstName, int* _piNbItem, int** _piAddress)
+SciErr readNamedMList(void* _pvCtx, const char* _pstName, int* _piNbItem, int** _piAddress)
 {
 	return readCommonNamedList(_pvCtx, _pstName, sci_mlist, _piNbItem, _piAddress);
 }
 
-static SciErr readCommonNamedList(void* _pvCtx, char* _pstName, int _iListType, int* _piNbItem, int** _piAddress)
+static SciErr readCommonNamedList(void* _pvCtx, const char* _pstName, int _iListType, int* _piNbItem, int** _piAddress)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr		= NULL;
@@ -332,22 +332,22 @@ SciErr getCommonListInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iLi
 	return sciErr;
 }
 
-SciErr getListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
+SciErr getListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
 {
 	return getCommomListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_list, _piAddress);
 }
 
-SciErr getTListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
+SciErr getTListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
 {
 	return getCommomListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_tlist, _piAddress);
 }
 
-SciErr getMListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
+SciErr getMListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int** _piAddress)
 {
 	return getCommomListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_mlist, _piAddress);
 }
 
-SciErr getCommomListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
+SciErr getCommomListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr		= NULL;
@@ -443,28 +443,28 @@ static SciErr createCommonListInList(void* _pvCtx, int _iVar, int* _piParent, in
 	return sciErr;
 }
 
-SciErr createListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+SciErr createListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
 {
 	return createCommonListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_list, _iNbItem, _piAddress);
 }
 
-SciErr createTListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+SciErr createTListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
 {
 	return createCommonListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_tlist, _iNbItem, _piAddress);
 }
 
-SciErr createMListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+SciErr createMListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
 {
 	return createCommonListInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, sci_mlist, _iNbItem, _piAddress);
 }
 
-SciErr createCommonListInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress)
+SciErr createCommonListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
 	int iSaveTop = Top;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	sciErr = createCommonListInList(_pvCtx, Top, _piParent, _iItemPos, _iListType, _iNbItem, _piAddress, 1);
@@ -672,17 +672,17 @@ SciErr createCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent,
 	return sciErr;
 }
 
-SciErr createMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal)
+SciErr createMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal)
 {
 	return createCommomMatrixOfDoubleInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-SciErr createComplexMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
+SciErr createComplexMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
 	return createCommomMatrixOfDoubleInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
 
-SciErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const doublecomplex* _pdblData)
+SciErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const doublecomplex* _pdblData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -694,7 +694,7 @@ SciErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -730,7 +730,7 @@ SciErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int
 	return sciErr;
 }
 
-SciErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
+SciErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -742,7 +742,7 @@ SciErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* 
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -782,17 +782,17 @@ SciErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* 
 	return sciErr;
 }
 
-SciErr readMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal)
+SciErr readMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal)
 {
 	return readCommonMatrixOfDoubleInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-SciErr readComplexMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+SciErr readComplexMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
 	return readCommonMatrixOfDoubleInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -956,7 +956,7 @@ SciErr fillCommonMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, i
 	return sciErr;
 }
 
-SciErr createMatrixOfStringInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings)
+SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -967,7 +967,7 @@ SciErr createMatrixOfStringInNamedList(void* _pvCtx, char* _pstName, int* _piPar
 	int* piItemAddr		= NULL;
 	int* piEnd				= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piItemAddr);
@@ -1000,7 +1000,7 @@ SciErr createMatrixOfStringInNamedList(void* _pvCtx, char* _pstName, int* _piPar
 	return sciErr;
 }
 
-SciErr readMatrixOfStringInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+SciErr readMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -1149,7 +1149,7 @@ static SciErr fillMatrixOfBoolInList(void* _pvCtx, int _iVar, int* _piParent, in
 	return sciErr;
 }
 
-SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)
+SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -1160,7 +1160,7 @@ SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piPa
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -1196,7 +1196,7 @@ SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piPa
 	return sciErr;
 }
 
-SciErr readMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piBool)
+SciErr readMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -1374,17 +1374,17 @@ static SciErr fillCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piPare
 }
 
 
-SciErr createMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal)
+SciErr createMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal)
 {
 	return createCommonMatrixOfPolyInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
 }
 
-SciErr createComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
+SciErr createComplexMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
 	return createCommonMatrixOfPolyInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
+SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -1396,7 +1396,7 @@ SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _p
 	int iTotalLen			= 0;
 	int iItemLen			= 0;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -1434,17 +1434,17 @@ SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _p
 	return sciErr;
 }
 
-SciErr readMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
+SciErr readMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
 {
 	return readCommonMatrixOfPolyInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
 }
 
-SciErr readComplexMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+SciErr readComplexMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	return readCommonMatrixOfPolyInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-SciErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+SciErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -1693,7 +1693,7 @@ SciErr getMatrixOfInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, i
 	return getCommonMatrixOfIntegerInList(_pvCtx, _piParent, _iItemPos, SCI_INT32, _piRows, _piCols, (void**)_piData);
 }
 
-static SciErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
+static SciErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -1703,7 +1703,7 @@ static SciErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, char* _pstNam
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -1741,37 +1741,37 @@ static SciErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, char* _pstNam
 	return sciErr;
 }
 
-SciErr createMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned char* _pucData)
+SciErr createMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned char* _pucData)
 {
 	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, _pucData);
 }
 
-SciErr createMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned short* _pusData)
+SciErr createMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned short* _pusData)
 {
 	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, _pusData);
 }
 
-SciErr createMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned int* _puiData)
+SciErr createMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned int* _puiData)
 {
 	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, _puiData);
 }
 
-SciErr createMatrixOfInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* _pcData)
+SciErr createMatrixOfInteger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* _pcData)
 {
 	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
 }
 
-SciErr createMatrixOfInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const short* _psData)
+SciErr createMatrixOfInteger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const short* _psData)
 {
 	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
 }
 
-SciErr createMatrixOfInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piData)
+SciErr createMatrixOfInteger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piData)
 {
 	return createCommonMatrixOfIntegerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
 }
 
-static SciErr readCommonMatrixOfIntgerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void* _pvData)
+static SciErr readCommonMatrixOfIntgerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void* _pvData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -1817,32 +1817,32 @@ static SciErr readCommonMatrixOfIntgerInNamedList(void* _pvCtx, char* _pstName, 
 	return sciErr;
 }
 
-SciErr readMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData)
+SciErr readMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData)
 {
 	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT8, _piRows, _piCols, _pucData);
 }
 
-SciErr readMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData)
+SciErr readMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData)
 {
 	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT16, _piRows, _piCols, _pusData);
 }
 
-SciErr readMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData)
+SciErr readMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData)
 {
 	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_UINT32, _piRows, _piCols, _puiData);
 }
 
-SciErr readMatrixOfIntger8InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData)
+SciErr readMatrixOfIntger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData)
 {
 	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT8, _piRows, _piCols, _pcData);
 }
 
-SciErr readMatrixOfIntger16InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData)
+SciErr readMatrixOfIntger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData)
 {
 	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT16, _piRows, _piCols, _psData);
 }
 
-SciErr readMatrixOfIntger32InNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData)
+SciErr readMatrixOfIntger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData)
 {
 	return readCommonMatrixOfIntgerInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, SCI_INT32, _piRows, _piCols, _piData);
 }
@@ -1957,7 +1957,7 @@ SciErr createComplexSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, 
 	return createCommonSparseMatrixInList(_pvCtx, _iVar, _piParent, _iItemPos, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
+SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -1968,7 +1968,7 @@ SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _p
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -2004,12 +2004,12 @@ SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _p
 	return sciErr;
 }
 
-SciErr createSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal)
+SciErr createSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal)
 {
 	return createCommonSparseMatrixInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-SciErr createComplexSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
+SciErr createComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
 {
 	return createCommonSparseMatrixInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
@@ -2046,7 +2046,7 @@ SciErr getComplexSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos,
 	return getCommonSparseMatrixInList(_pvCtx, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-static SciErr readCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+static SciErr readCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -2112,12 +2112,12 @@ static SciErr readCommonSparseMatrixInNamedList(void* _pvCtx, char* _pstName, in
 	return sciErr;
 }
 
-SciErr readSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
+SciErr readSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
 {
 	return readCommonSparseMatrixInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	return readCommonSparseMatrixInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
@@ -2208,7 +2208,7 @@ SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, 
 	return sciErr;
 }
 
-SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
+SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -2219,7 +2219,7 @@ SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -2276,7 +2276,7 @@ SciErr getBooleanSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos,
 	return sciErr;
 }
 
-SciErr readBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
+SciErr readBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -2408,7 +2408,7 @@ SciErr createPointerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPo
 	return sciErr;
 }
 
-SciErr readPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr)
+SciErr readPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iNbItem				= 0;
@@ -2447,7 +2447,7 @@ SciErr readPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int 
 	return sciErr;
 }
 
-SciErr createPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr)
+SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -2457,7 +2457,7 @@ SciErr createPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, in
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+  C2F(str2name)((char*)_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
