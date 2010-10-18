@@ -25,6 +25,8 @@ Xcos:
 
 * bug 8081 fixed - The context was not checked before being set.
 
+* bug 8195 fixed - Creating implicit links was not working.
+
 Graphic export:
 ===============
 

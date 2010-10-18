@@ -160,7 +160,7 @@ public class XcosDiagram extends ScilabGraph {
 			if (src.getType() == Type.EXPLICIT) {
 				link = new ExplicitLink();
 			} else if (src.getType() == Type.IMPLICIT) {
-				ret = new ImplicitLink();
+				link = new ImplicitLink();
 			} else {
 				link = new CommandControlLink();
 			}
