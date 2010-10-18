@@ -291,6 +291,9 @@ Bug Fixes:
 * bug 8166 fixed - All the checkboxes in SciNotes 'Preferences' menu were
                    inefficient.
 
+* bug 8168 fixed - Adding a datatip in a figure that mix surface and curve  
+                   generated a zero divide error.
+
 * bug 8174 fixed - ss2tf produced bad results if applied to a complex
                    state space system.
 
