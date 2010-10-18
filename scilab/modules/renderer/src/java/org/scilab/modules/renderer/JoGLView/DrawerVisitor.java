@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Pierre Lando
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -55,7 +55,6 @@ import org.scilab.modules.graphic_objects.vectfield.Segs;
  * @author Pierre Lando
  */
 public class DrawerVisitor implements IVisitor {
-    private static final double DEFAULT_ALPHA = 0.0;
     private static final double DEFAULT_THETA = 270.0;
     
     private final IVertexBuffer boxBorderVertices;
@@ -161,7 +160,7 @@ public class DrawerVisitor implements IVisitor {
             }
 
             // Rotate.
-            transformation.times(new Rotation(DEFAULT_ALPHA - axes.getRotationAngles()[0], 1.0, 0.0, 0.0));
+            transformation.times(new Rotation(axes.getRotationAngles()[0], 1.0, 0.0, 0.0));
             transformation.times(new Rotation(DEFAULT_THETA - axes.getRotationAngles()[1], 0.0, 0.0, 1.0));
 
             // If there is no cube scaling, we must take into account the distribution of data.
@@ -209,12 +208,12 @@ public class DrawerVisitor implements IVisitor {
             Box.BoxType boxed = axes.getBox().getBox();
             if (boxed != Box.BoxType.OFF) {
                 /**
-                 * Mirror the cube such that the corner with the minimum Z value was (-1, -1, -1).
+                 * Mirror the cube such that the corner with the maximum Z value was (-1, -1, -1).
                  */
                 canvas.getTransformationsStack().push(new Scale(
-                    matrix[2] < 0  ? -1 : 1,
-                    matrix[6] < 0  ? -1 : 1,
-                    matrix[10] < 0 ? -1 : 1
+                    matrix[2] < 0  ? 1 : -1,
+                    matrix[6] < 0  ? 1 : -1,
+                    matrix[10] < 0 ? 1 : -1
                 ));
 
                 ILines lines = new Lines();
