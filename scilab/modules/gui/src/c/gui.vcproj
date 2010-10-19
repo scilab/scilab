@@ -392,7 +392,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\CallGraphicJoGLView.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallHelpBrowser.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\callJoGLView.cpp"
 				>
 			</File>
 			<File
@@ -974,6 +982,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CallFontChooser.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\CallGraphicJoGLView.hxx"
 				>
 			</File>
 			<File

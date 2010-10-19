@@ -49,6 +49,7 @@ sciPointObj * sciGetCurrentFigure( void )
 {
   /* debug F.Leray 22.07.04 */
   sciPointObj * pFigure = getCurrentPointedFigure();
+  sciPointObj* newaxes = NULL;  
 
   if( !sciHasFigures() )
   {
@@ -63,7 +64,7 @@ sciPointObj * sciGetCurrentFigure( void )
        * Clones a new Axes object using the Axes model which is then
        * attached to the newly created Figure.
        */
-      sciPointObj* newaxes = sciCloneObj(getAxesModel());
+      newaxes = sciCloneObj(getAxesModel());
 
       /* Sets the parent-child relationship within the MVC */
       setGraphicObjectRelationship(pFigure->UID, newaxes->UID);

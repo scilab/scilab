@@ -13,6 +13,8 @@
 #ifndef CALL_JOGL_VIEW_H
 #define CALL_JOGL_VIEW_H
 
-void createJoGLView(char* id);
+#include "dynlib_gui.h"
+
+GUI_IMPEXP void createJoGLView(char* id);
 
 #endif

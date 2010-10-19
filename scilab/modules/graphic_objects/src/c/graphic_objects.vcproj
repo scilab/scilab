@@ -408,6 +408,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\NativeGL.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\NativeGL_wrap.c"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\NgonData.cpp"
 				>
 			</File>
@@ -425,6 +433,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\setGraphicObjectProperty.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\TriangleMeshData.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\TriangleMeshFecData.cpp"
 				>
 			</File>
 		</Filter>
@@ -454,6 +470,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_graphic_objects.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\NativeGL.hxx"
 				>
 			</File>
 			<File
