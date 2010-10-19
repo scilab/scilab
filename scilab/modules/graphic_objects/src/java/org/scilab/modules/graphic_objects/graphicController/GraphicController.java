@@ -17,7 +17,6 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
-import org.scilab.modules.renderer.JoGLView.JoGLView;
 
 import java.rmi.server.UID;
 import java.util.ArrayList;
@@ -214,7 +213,7 @@ public class GraphicController {
 
         if (parentId != null && !parentId.equals("")) {
             String[] children = (String[]) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__);
-            String[] newChildren = new String[children.length + 1]; 
+            String[] newChildren = new String[children.length + 1];
             System.arraycopy(children, 0, newChildren, 0, children.length);
             newChildren[children.length] = childId;
             setProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__, Arrays.asList(newChildren));
