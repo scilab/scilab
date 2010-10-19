@@ -78,7 +78,6 @@ sci_gateway/c/sci_moef.c \
 sci_gateway/c/sci_mputstr.c \
 sci_gateway/c/sci_mseek.c \
 sci_gateway/c/sci_mtell.c \
-sci_gateway/c/sci_fileinfo.c \
 sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
 sci_gateway/c/sci_getrelativefilename.c \
@@ -99,6 +98,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_fileparts.cpp \
 	sci_gateway/cpp/sci_findfiles.cpp \
 	sci_gateway/cpp/sci_basename.cpp \
+	sci_gateway/cpp/sci_fileinfo.cpp \
 	sci_gateway/cpp/sci_isfile.cpp
 
 

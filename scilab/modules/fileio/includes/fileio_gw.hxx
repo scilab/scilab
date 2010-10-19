@@ -49,5 +49,6 @@ CPP_GATEWAY_PROTOTYPE(sci_fileparts);
 CPP_GATEWAY_PROTOTYPE(sci_findfiles);
 CPP_GATEWAY_PROTOTYPE(sci_basename);
 CPP_GATEWAY_PROTOTYPE(sci_isfile);
+CPP_GATEWAY_PROTOTYPE(sci_fileinfo);
 
 #endif /* !__FILEIO_GW_HXX__ */

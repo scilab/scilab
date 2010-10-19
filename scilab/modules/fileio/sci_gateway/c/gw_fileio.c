@@ -51,7 +51,7 @@ static gw_generic_table Tab[]={
 	{sci_createdir,"createdir"},
 	{NULL, ""}, // pwd
 	{NULL, ""}, //chdir
-	{sci_fileinfo,"fileinfo"},
+	{NULL, ""}, //fileinfo
 	{sci_newest,"newest"},
 	{sci_getrelativefilename,"getrelativefilename"},
 	{sci_get_absolute_file_path,"get_absolute_file_path"},
