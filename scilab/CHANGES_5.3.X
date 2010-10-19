@@ -27,6 +27,9 @@ Xcos:
 
 * bug 8195 fixed - Creating implicit links was not working.
 
+* bug 8220 fixed - Improve the link creation with split block adding.
+
+
 Graphic export:
 ===============
 
