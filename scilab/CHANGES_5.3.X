@@ -24,6 +24,9 @@ Documentation:
 
 * bug 8269 fixed - Documentation of adj2sp was not in the sparse help section.
 
+* bug 8270 fixed - Documentation of discrete mathematics functions moved in
+                   a dedicated section.
+
 Known incompatibilities:
 ========================
 
