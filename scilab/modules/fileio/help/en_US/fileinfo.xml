@@ -220,7 +220,7 @@ S_IEXEC = 64; // mask exec permission
 S_IREAD = 256; // mask read permission
 S_IFCHR = 8192; // mask directory permission
 
-if ( bitand( w(2), S_IWRITE ) &lt;&gt; 0) then
+if ( bitand( w(2), S_IWRITE ) <> 0) then
  disp('WRITE PERMISSION on this file.');
 else
  disp('NO WRITE PERMISSION on this file.');

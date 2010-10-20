@@ -185,7 +185,7 @@ x = linspace(0.1,40,5000)';
 y1 = besselj(0.5, x);
 y2 = sqrt(2 ./(%pi*x)).*sin(x);
 er = abs((y1-y2)./y2);
-ind = find(er &gt; 0 &amp; y2 ~= 0);
+ind = find(er > 0 & y2 ~= 0);
 clf()
 subplot(2,1,1)
 plot2d(x,y1,style=2)
