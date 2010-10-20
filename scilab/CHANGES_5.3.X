@@ -16,8 +16,13 @@ See: http://security-tracker.debian.org/tracker/CVE-2010-3378
 Documentation:
 ==============
 
-* bug 8268 fixed - Integer representation functions moved in a dedicated 
-                   documentation section
+* Documentation of trigonometry functions moved in a dedicated documentation
+  section.
+
+* bug 8268 fixed - Documentation of Integer representation functions moved in
+                   a dedicated section.
+
+* bug 8269 fixed - Documentation of adj2sp was not in the sparse help section.
 
 Known incompatibilities:
 ========================
