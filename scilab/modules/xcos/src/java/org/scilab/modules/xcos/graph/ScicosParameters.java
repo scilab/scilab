@@ -74,7 +74,7 @@ public class ScicosParameters {
 	/**
 	 * The current Scicos simulator version.
 	 */
-	public static final String SCICOS_VERSION = "scicos4.2";
+	public static final String SCICOS_VERSION = "scicos4.3";
 
 	/*
 	 * Bean properties

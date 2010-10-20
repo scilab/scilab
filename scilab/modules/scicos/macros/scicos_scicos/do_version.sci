@@ -88,7 +88,7 @@ end
 
 if or(version==["scicos4.3";"scicos4.4"]) then
   ncl=lines(); lines(0);
-  version='scicos4.4';
+  version='scicos4.3';
   scs_m=update_scs_m(scs_m,version);
   scs_m=do_version43(scs_m);
   scs_m.version = version;

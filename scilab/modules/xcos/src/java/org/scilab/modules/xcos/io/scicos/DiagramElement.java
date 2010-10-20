@@ -50,7 +50,7 @@ import com.mxgraph.model.mxIGraphModel;
 public class DiagramElement extends AbstractElement<XcosDiagram> {
 	private static final List<String> BASE_FIELD_NAMES = asList(
 			"diagram", "props", "objs");
-	private static final String VERSION = "scicos4.3";
+	private static final List<String> VERSIONS = Arrays.asList("scicos4.2", "scicos4.3", "scicos4.4");
 	
 	private static final int OBJS_INDEX = 2;
 	private static final int VERSION_INDEX = 3;
@@ -366,7 +366,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		 */
 		if (checkVersion) {
 			String scicosVersion = ((ScilabString) base.get(field)).getData()[0][0];
-			if (!scicosVersion.equals(VERSION)) {
+			if (!VERSIONS.contains(scicosVersion)) {
 				throw new VersionMismatchException(scicosVersion);
 			}
 		}
@@ -397,7 +397,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		 * Check the version if applicable
 		 */
 		final String scicosVersion = ((ScilabString) base.get(VERSION_INDEX)).getData()[0][0];
-		final boolean versionIsValid = !scicosVersion.equals(VERSION);
+		final boolean versionIsValid = VERSIONS.contains(scicosVersion);
 		return typeIsValid && versionIsValid;
 	}
 	
@@ -440,7 +440,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		ScilabMList data = new ScilabMList(BASE_FIELD_NAMES.toArray(new String[0]));
 		data.add(allocatePropsField()); // props
 		data.add(new ScilabList()); // objs
-		data.add(new ScilabString(VERSION)); // version
+		data.add(new ScilabString(VERSIONS.get(0))); // official version
 		return data;
 	}
 

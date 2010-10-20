@@ -1721,12 +1721,19 @@ public class XcosDiagram extends ScilabGraph {
 	    if (getModel().getChildAt(getDefaultParent(), i) instanceof BasicBlock) {
 		final BasicBlock block = (BasicBlock) getModel().getChildAt(getDefaultParent(), i);
 		if (block.getRealParameters() instanceof ScilabMList) {
-		    //we have a hidden SuperBlock, create a real one
-		    final SuperBlock newSP = (SuperBlock) BlockFactory.createBlock("SUPER_f");
-		    newSP.setRealParameters(block.getRealParameters());
-		    newSP.createChildDiagram(true);
-		    newSP.setParentDiagram(this);
-		    block.setRealParameters(new DiagramElement().encode(newSP.getChild()));
+			if (block instanceof SuperBlock) {
+				// generate a child diagram with UID
+				((SuperBlock) block).createChildDiagram(true);
+			} else {
+				// we have a hidden SuperBlock, create a real one
+				final SuperBlock newSP = (SuperBlock) BlockFactory
+						.createBlock("SUPER_f");
+				newSP.setRealParameters(block.getRealParameters());
+				newSP.createChildDiagram(true);
+				newSP.setParentDiagram(this);
+				block.setRealParameters(new DiagramElement()
+						.encode(newSP.getChild()));
+			}
 		} else if (block.getId() == null || block.getId().compareTo("") == 0) {
 		    block.generateId();
 		}

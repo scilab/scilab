@@ -25,6 +25,8 @@ Xcos:
 
 * bug 8081 fixed - The context was not checked before being set.
 
+* bug 8186 fixed - Demos with Superblocks were not simulating.
+
 * bug 8195 fixed - Creating implicit links was not working.
 
 * bug 8220 fixed - Improve the link creation with split block adding.
