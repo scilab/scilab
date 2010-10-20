@@ -19,6 +19,9 @@ Documentation:
 * Documentation of trigonometry functions moved in a dedicated documentation
   section.
 
+* bug 7048 fixed - Documentation of color managements in graphics functions 
+                   moved in a dedicated section.
+
 * bug 7052 fixed - Documentation of floating point functions moved in
                    a dedicated section.
 
