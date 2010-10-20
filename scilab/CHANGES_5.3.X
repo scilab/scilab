@@ -19,6 +19,9 @@ Documentation:
 * Documentation of trigonometry functions moved in a dedicated documentation
   section.
 
+* bug 7052 fixed - Documentation of floating point functions moved in
+                   a dedicated section.
+
 * bug 8268 fixed - Documentation of Integer representation functions moved in
                    a dedicated section.
 
