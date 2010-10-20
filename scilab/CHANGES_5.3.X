@@ -13,6 +13,12 @@ Security issue:
 * Fix a (minor) security issue. CVE-2010-3378
 See: http://security-tracker.debian.org/tracker/CVE-2010-3378
 
+Documentation:
+==============
+
+* bug 8268 fixed - Integer representation functions moved in a dedicated 
+                   documentation section
+
 Known incompatibilities:
 ========================
 
