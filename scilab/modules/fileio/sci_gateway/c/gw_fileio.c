@@ -40,7 +40,7 @@ static gw_generic_table Tab[]={
 	{sci_maxfiles,"maxfiles"},
 	{sci_getdrives,"getdrives"},
 	{sci_fullpath,"fullpath"},
-	{sci_deletefile,"deletefile"},
+	{NULL, ""}, //deletefile
 	{sci_pathsep,"pathsep"},
 	{NULL, ""}, //filesep
 	{sci_getlongpathname,"getlongpathname"},

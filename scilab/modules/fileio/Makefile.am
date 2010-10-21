@@ -62,7 +62,6 @@ sci_gateway/c/sci_fscanfMat.c \
 sci_gateway/c/sci_maxfiles.c \
 sci_gateway/c/sci_getdrives.c \
 sci_gateway/c/sci_fullpath.c \
-sci_gateway/c/sci_deletefile.c \
 sci_gateway/c/sci_pathsep.c \
 sci_gateway/c/sci_getshortpathname.c \
 sci_gateway/c/sci_getlongpathname.c \
@@ -99,7 +98,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_findfiles.cpp \
 	sci_gateway/cpp/sci_basename.cpp \
 	sci_gateway/cpp/sci_fileinfo.cpp \
-	sci_gateway/cpp/sci_isfile.cpp
+	sci_gateway/cpp/sci_isfile.cpp \
+	sci_gateway/cpp/sci_deletefile.cpp
 
 
 FILEIO_CPP_SOURCES = \

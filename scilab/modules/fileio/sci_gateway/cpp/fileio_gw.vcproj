@@ -341,6 +341,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_deletefile.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_fileparts.cpp"
 				>
 			</File>

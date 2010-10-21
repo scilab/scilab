@@ -39,5 +39,6 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"basename", &sci_basename, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"isfile", &sci_isfile, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"fileinfo", &sci_fileinfo, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"deletefile", &sci_deletefile, MODULE_NAME));
     return true;
 }
