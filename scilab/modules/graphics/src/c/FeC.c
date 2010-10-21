@@ -34,6 +34,9 @@
 #include "get_ticks_utils.h"
 #include "HandleManagement.h"
 
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /**
  * Before Scilab 5.1, default colout was [-1, -1].
@@ -77,7 +80,6 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   int n1=1;
   
   /* Fec code */
-  
 
   long hdltab[2];
   int cmpt=0;
@@ -90,13 +92,26 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
 
+  char textLogFlags[3];
+  int clipState;
+  int autoScale;
+  int firstPlot;
+  int logFlags[3];
+  int autoSubticks;
+  int* tmp;
+  double rotationAngles[2];
 
   psubwin = sciGetCurrentSubWin();
 
-  checkRedrawing() ;
+  checkRedrawing();
 
-
-
+  /*
+   * Deactivated for now
+   * Searches the object hierarchy until a Surface object is found
+   * in order to specify the view type (2D or 3D)
+   * To be implemented
+   */
+#if 0
   /* Force psubwin->is3d to FALSE: we are in 2D mode */
   if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
   {
@@ -108,20 +123,31 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
     pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
   }
+#endif
 
-  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
-  pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+  rotationAngles[0] = 0.0;
+  rotationAngles[1] = 270.0;
+
+  setGraphicObjectProperty(psubwin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
   /* Force psubwin->axes.aaint to those given by argument aaint*/
   /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
 
-  /* Force "cligrf" clipping */
-  sciSetIsClipping (psubwin,0); 
+  /* Force "cligrf" clipping (1) */
+  clipState = 1;
+  setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
   /* Force  axes_visible property */
   /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
 
-  if (sciGetGraphicMode (psubwin)->autoscaling) {
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool);
+  firstPlot = *tmp;
+
+  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool);
+  autoScale = *tmp;
+
+  if (autoScale)
+  {
     /* compute and merge new specified bounds with psubwin->Srect */
     switch (strflag[1])  {
       case '0': 
@@ -132,10 +158,24 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
         re_index_brect(brect, drect);
         break;
       case '2' : case '4' : case '6' : case '8':case '9':
-        compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,x,y,n1,*Nnode,drect);
+
+        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+        logFlags[0] = *tmp;
+        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+        logFlags[1] = *tmp;
+        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool);
+        logFlags[2] = *tmp;
+
+        /* Conversion required by compute_data_bounds2 */
+        textLogFlags[0] = getTextLogFlag(logFlags[0]);
+        textLogFlags[1] = getTextLogFlag(logFlags[1]);
+        textLogFlags[2] = getTextLogFlag(logFlags[2]);
+
+        compute_data_bounds2(0,'g',textLogFlags,x,y,n1,*Nnode,drect);
         break;
     }
-    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&
+
+    if (!firstPlot &&
       (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
         drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
         drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
@@ -146,37 +186,67 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
       bounds_changed = update_specification_bounds(psubwin, drect,2);
   } 
 
-  if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+  if (firstPlot)
+  {
+    bounds_changed = TRUE;
+  }
 
   axes_properties_changed = strflag2axes_properties(psubwin, strflag);
 
-  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
+  /* just after strflag2axes_properties */
+  firstPlot = 0;
+  setGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
   /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
   u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
 
-  pSUBWIN_FEATURE(psubwin)->flagNax = flagNax; /* store new value for flagNax */
+  /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
+  /* store new value for flagNax */
+  autoSubticks = !flagNax;
+  setGraphicObjectProperty(psubwin->UID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
-  if(pSUBWIN_FEATURE(psubwin)->flagNax == TRUE){
-    if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
+  if (flagNax == TRUE)
+  {
+    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
+    logFlags[0] = *tmp;
+    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
+    logFlags[1] = *tmp;
+
+    if (logFlags[0] == 0 && logFlags[1] == 0)
     {
-      BOOL autoTicks[3];
-      sciGetAutoTicks(psubwin, autoTicks);
-      /* x and y graduations are imposed by Nax */
-      sciSetAutoTicks(psubwin, FALSE, FALSE, autoTicks[2]);
+      int autoTicks;
 
+      autoTicks = 0;
+      setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+      setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+
+      /*
+       * Creates user-defined ticks using the Nax values
+       * The MVC does not distinguish yet between automatically computed ticks
+       * and user-defined ones.
+       * To be implemented using the MVC framework
+       */
+#if 0
       CreatePrettyGradsFromNax(psubwin,aaint);
+#endif
     }
-    else{
+    else
+    {
       sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
     }
   }
 
   if(bounds_changed || axes_properties_changed )
   {
+  /*
+   * Deactivated since it tells the renderer module that the object has changed
+   * To be implemented
+   */
+#if 0
     forceRedraw(psubwin);
+#endif
   }
-  
+
   /* Construct the object */
 	/* Patch on colout */
 	/* For coherence with other properties, default colout is [0, 0] for fec handles instead of  */
@@ -198,13 +268,19 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   /* retrieve the created object : fec */
   pptabofpointobj = pFec;
   hdltab[cmpt] = sciGetHandle(pptabofpointobj);   
-  cmpt++;   
+  cmpt++;
   
   parentCompound = ConstructCompound (hdltab, cmpt);
   sciSetCurrentObj(parentCompound);  /** construct Compound **/
 
+  /*
+   * Deactivated since it involves drawing via the renderer module
+   * To be implemented
+   */
   /* draw every one */
+#if 0
   sciDrawObj(parentCompound);
+#endif
    
   return(0);
    

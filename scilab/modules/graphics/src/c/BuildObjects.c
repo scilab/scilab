@@ -575,10 +575,10 @@ ConstructSubWin(sciPointObj * pparentfigure)
                  * To be implemented.
                  */
 #if 0
-		cloneGraphicContext( ppaxesmdl->mon_x_label, ppsubwin->mon_x_label );
-		cloneGraphicContext( ppaxesmdl->mon_y_label, ppsubwin->mon_y_label );
-		cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label );
-		cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   );
+                cloneGraphicContext( ppaxesmdl->mon_x_label, ppsubwin->mon_x_label );
+                cloneGraphicContext( ppaxesmdl->mon_y_label, ppsubwin->mon_y_label );
+                cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label );
+                cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   );
 #endif
 
 		endFigureDataWriting(pparentfigure);
@@ -952,6 +952,7 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   int visible;
   int zCoordinatesSet;
   int* tmp;
+  int clipRegionSet;
 
   type = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
 
@@ -972,8 +973,8 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 
   if (polylineID == NULL)
   {
-    FREE(pobj);
     deleteGraphicObject(pobj->UID);
+    FREE(pobj);
     return (sciPointObj*) NULL;
   }
 
@@ -1025,7 +1026,7 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
   tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
-  int clipRegionSet = *tmp;
+  clipRegionSet = *tmp;
   setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
   tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
@@ -1060,9 +1061,9 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 
     if (result == FALSE)
     {
-        FREE(pobj);
         deleteGraphicObject(pobj->UID);
         deleteDataObject(pobj->UID);
+        FREE(pobj);
         return (sciPointObj *) NULL;
     }
 
@@ -1070,9 +1071,9 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 
     if (dataVector == NULL)
     {
-        FREE(pobj);
         deleteGraphicObject(pobj->UID);
         deleteDataObject(pobj->UID);
+        FREE(pobj);
         return (sciPointObj *) NULL;
     }
 
@@ -1131,9 +1132,9 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 
       if (result == FALSE)
       {
-          FREE(pobj);
           deleteGraphicObject(pobj->UID);
           deleteDataObject(pobj->UID);
+          FREE(pobj);
           return (sciPointObj *) NULL;
       }
   }
@@ -1312,6 +1313,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
    * its parent's list of children.
    */
   setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID); 
+
   if (sciAddNewHandle(pobj) == -1)
   {
     deleteGraphicObject(pobj->UID);
@@ -2058,7 +2060,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 
 /********************** 21/05/2002 *****
  **ConstructFec
- * This function creates Grayplot
+ * This function creates Fec
  * @author Djalel.ABDEMOUCHE
  * @see sciSetCurrentObj
  */
@@ -2067,119 +2069,145 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	      double *pfun, int Nnode, int Ntr, double *zminmax, int *colminmax,
 	      int *colout, BOOL with_mesh)
 {
-	sciPointObj *pobj = (sciPointObj *) NULL;
-	sciFec *pfec = (sciFec *) NULL;
-	int i = 0;
+    sciPointObj *pobj = (sciPointObj *) NULL;
+    char* fecId = NULL;
+    int result;
 
-	if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-	{
-		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-			return (sciPointObj *) NULL;
-		sciSetEntityType (pobj, SCI_FEC);
-		if ((pobj->pfeatures = MALLOC ((sizeof (sciFec)))) == NULL)
-		{
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
+    char* parentType;
+    int* parentVisible;
+    int lineMode;
 
-		if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-		{
-			FREE( pobj->pfeatures ) ;
-			FREE( pobj ) ;
-			return NULL ;
-		}
+    double* clipRegion;
+    int clipRegionSet;
+    int clipState;
+    int* tmp;
 
-		pFEC_FEATURE (pobj)->callback = (char *)NULL;
-		pFEC_FEATURE (pobj)->callbacklen = 0;
-		pFEC_FEATURE (pobj)->callbackevent = 100;
+    parentType = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
 
-		pFEC_FEATURE (pobj)->isselected = TRUE;
-		pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+    /* test using sciGetEntityType replaced by a test on the type string */
+    if (strcmp(parentType, __GO_AXES__) != 0)
+    {
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (sciPointObj *) NULL;
+    }
 
-		sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
-		sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+        return (sciPointObj *) NULL;
+    }
 
-		pfec = pFEC_FEATURE (pobj);
+    pobj->UID = createGraphicObject(__GO_FEC__);
+    fecId = (char*) createDataObject(pobj->UID, __GO_FEC__);
 
+    if (fecId == NULL)
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
 
-		if ((pfec->pvecx = MALLOC (Nnode * sizeof (double))) == NULL)
-		{
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(pFEC_FEATURE(pobj));
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		if ((pfec->pvecy = MALLOC (Nnode * sizeof (double))) == NULL)
-		{
-			FREE(pFEC_FEATURE (pobj)->pvecx);
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(pFEC_FEATURE(pobj));
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		if ((pfec->pnoeud = MALLOC ((5*Ntr) * sizeof (double))) == NULL)
-		{
-			FREE(pFEC_FEATURE (pobj)->pvecx);
-			FREE(pFEC_FEATURE (pobj)->pvecy);
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(pFEC_FEATURE(pobj));
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		if ((pfec->pfun = MALLOC (Nnode * sizeof (double))) == NULL)
-		{
-			FREE(pFEC_FEATURE (pobj)->pvecx);
-			FREE(pFEC_FEATURE (pobj)->pvecy);
-			FREE(pFEC_FEATURE (pobj)->pnoeud);
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(pFEC_FEATURE(pobj));
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
+    /* To be implemented */
+#if 0
+    pFEC_FEATURE (pobj)->callback = (char *)NULL;
+    pFEC_FEATURE (pobj)->callbacklen = 0;
+    pFEC_FEATURE (pobj)->callbackevent = 100;
 
-		for (i = 0; i < Nnode; i++)
-		{
-			pfec->pvecx[i] = pvecx[i];
-			pfec->pvecy[i] = pvecy[i];
-			pfec->pfun[i] = pfun[i];
-		}
-		for (i = 0; i < (5*Ntr); i++)
-		{
-			pfec->pnoeud[i] = pnoeud[i];
-		}
-		for (i = 0; i < 2; i++)
-		{
-			pfec->zminmax[i] = zminmax[i];
-			pfec->colminmax[i] = colminmax[i];
-			pfec->colout[i] = colout[i];
-		}
-		pfec->Nnode = Nnode;
-		pfec->Ntr = Ntr;
-		if (sciInitGraphicContext (pobj) == -1)
-		{
-			FREE(pFEC_FEATURE (pobj)->pvecx);
-			FREE(pFEC_FEATURE (pobj)->pvecy);
-			FREE(pFEC_FEATURE (pobj)->pnoeud);
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(pFEC_FEATURE(pobj));
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		/* sline mdoe is set using with_mesh */
-		sciInitIsLine(pobj, with_mesh);
+    pFEC_FEATURE (pobj)->isselected = TRUE;
+#endif
 
-		return pobj;
-	}
-	else
-	{
-		Scierror(999, _("The parent has to be a SUBWIN\n"));
-		return (sciPointObj *) NULL;
-	}
+    /* Allocates the coordinates array */
+    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
+
+    if (result == 0)
+    {
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    /* Allocates the triangle indices and values array */
+    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_INDICES__, &Ntr, jni_int, 1);
+
+    if (result == 0)
+    {
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, Nnode);
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, Nnode);
+
+    /* Fec-specific property: triangle indices plus special values (triangle number and flag) */
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, Ntr);
+
+    /* Function values */
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_VALUES__, pfun, jni_double_vector, Nnode);
+
+    setGraphicObjectProperty(pobj->UID, __GO_Z_BOUNDS__, zminmax, jni_double_vector, 2);
+    setGraphicObjectProperty(pobj->UID, __GO_COLOR_RANGE__, colminmax, jni_int_vector, 2);
+    setGraphicObjectProperty(pobj->UID, __GO_OUTSIDE_COLOR__, colout, jni_int_vector, 2);
+
+    /*
+     * Adding a new handle and setting the parent-child relationship is now
+     * done after data initialization in order to avoid additional
+     * clean-up.
+     */
+    if (sciAddNewHandle(pobj) == -1)
+    {
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+
+#if 0
+    pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+#endif
+
+    parentVisible = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
+    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, parentVisible, jni_bool, 1);
+
+    /* Clipping: to be checked */
+#if 0
+    sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
+    sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
+#endif
+
+   /*
+    * Clip state and region
+    * To be checked for consistency
+    */
+    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
+    clipRegionSet = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
+    clipState = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+    if (sciInitGraphicContext (pobj) == -1)
+    {
+        setGraphicObjectRelationship("", pobj->UID);
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        sciDelHandle(pobj);
+
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+    }
+
+    /* line mode is set using with_mesh */
+    setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &with_mesh, jni_bool, 1);
+
+    return pobj;
 }
 
 

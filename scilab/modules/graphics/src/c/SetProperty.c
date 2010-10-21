@@ -2599,36 +2599,30 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       }
   }
   else if (strcmp(type, __GO_FEC__) == 0)
-    {
-	double *pvecx,*pvecy,*pfun;
-	int Nnode;
-	if (*numcol != 3) {
-	  Scierror(999, _("Number of columns must be %d.\n"),2);
-	  return -1;}
+  {
+      BOOL result;
+      int Nnode;
+      if (*numcol != 3)
+      {
+          Scierror(999, _("Number of columns must be %d.\n"),3);
+          return -1;
+      }
 
-	Nnode = *numrow;
-	if (pFEC_FEATURE (pthis)->Nnode!=Nnode) {
-	  if ((pvecx = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  if ((pvecy = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    FREE(pvecx);
-	    return -1;}
-	  if ((pfun = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    FREE(pvecx);FREE(pvecy);
-	    return -1;}
-	  FREE( pFEC_FEATURE (pthis)->pvecx); pFEC_FEATURE (pthis)->pvecx=pvecx;
-	  FREE( pFEC_FEATURE (pthis)->pvecy); pFEC_FEATURE (pthis)->pvecy=pvecy;
-	  FREE( pFEC_FEATURE (pthis)->pfun); pFEC_FEATURE (pthis)->pfun=pfun;
-	}
-	for (i=0;i < Nnode;i++) {
-	  pFEC_FEATURE (pthis)->pvecx[i]=tab[i];
-	  pFEC_FEATURE (pthis)->pvecy[i]=tab[Nnode+i];
-	  pFEC_FEATURE (pthis)->pfun[i]=tab[2*Nnode+i];
-	}
-    }
+      Nnode = *numrow;
+
+      /* Resizes the data coordinates array if required */
+      result = setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
+
+      if (result == FALSE)
+      {
+          Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+          return -1;
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
+      setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
+      setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_VALUES__, &tab[2*Nnode], jni_double_vector, Nnode);
+  }
   else if (strcmp(type, __GO_FIGURE__) == 0)
   {
       printSetGetErrorMessage("data");

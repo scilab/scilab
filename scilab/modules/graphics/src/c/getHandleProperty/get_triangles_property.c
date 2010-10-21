@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,16 +25,35 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_triangles_property( sciPointObj * pobj )
 {
-  if ( sciGetEntityType (pobj) != SCI_FEC )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles") ;
-    return -1;
-  }
-  
-  return sciReturnMatrix( pFEC_FEATURE (pobj)->pnoeud, pFEC_FEATURE (pobj)->Ntr, 5 ) ;
+    double* triangles;
+    int* tmp;
+    int numTriangles;
 
+#if 0
+    if ( sciGetEntityType (pobj) != SCI_FEC )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles");
+        return -1;
+    }
+#endif
+
+    triangles = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector);
+
+    if (triangles == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles");
+        return -1;
+    }
+
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_INDICES__, jni_int);
+    numTriangles = *tmp;
+
+    return sciReturnMatrix(triangles, numTriangles , 5);
 }
 /*------------------------------------------------------------------------*/

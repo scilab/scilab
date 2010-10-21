@@ -2137,7 +2137,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     {
         return (double*)NULL;
     }
-    else if (strcmp(type, __GO_COMPOUND__) == 0)
+    else if (strcmp(type, __GO_TEXT__) == 0)
     {
         *numrow = 1;
         *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 3: 2;
@@ -2253,8 +2253,15 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_FEC__) == 0)
     {
+        double* coordinates;
+        double* values;
+        int* tmp;
+
         *numcol = 3;
-        *numrow = pFEC_FEATURE (pthis)->Nnode;
+
+        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_VERTICES__, jni_int);
+        *numrow = *tmp;
+
         if ((tab = CALLOC(*numrow * 3,sizeof(double))) == NULL)
         {
             *numrow = -1;
@@ -2262,18 +2269,18 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             return (double*)NULL;
         }
 
-        for (i=0;i < *numrow;i++) {
-            tab[i] = pFEC_FEATURE (pthis)->pvecx[i];
-            tab[*numrow+i] = pFEC_FEATURE (pthis)->pvecy[i];
-            tab[*numrow*2+i] = pFEC_FEATURE (pthis)->pfun[i];
+        coordinates = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_COORDINATES__, jni_double_vector);
+        values = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_VALUES__, jni_double_vector);
+
+        for (i=0;i < *numrow;i++)
+        {
+            tab[i] = coordinates[3*i];
+            tab[*numrow+i] = coordinates[3*i+1];
+            tab[*numrow*2+i] = values[i];
+
         }
+
         return (double*)tab;
-    }
-    else if (strcmp(type, __GO_FEC__) == 0)
-    {
-        *numrow = -2;
-        *numcol = -2;
-        return (double*)NULL;
     }
     else if (strcmp(type, __GO_LEGEND__) == 0)
     {
