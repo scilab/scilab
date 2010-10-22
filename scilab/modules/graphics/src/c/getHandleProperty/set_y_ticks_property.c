@@ -77,7 +77,7 @@ int set_y_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( tlist == NULL )
   {
-    return SET_PROPERTY_ERROR ;
+    return SET_PROPERTY_ERROR;
   }
 
   /* locations */
@@ -136,7 +136,7 @@ int set_y_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
   {
     userLabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
     /* Check if we should load LaTex / MathML Java libraries */
-    loadTextRenderingAPI(ppSubWin->axes.u_ylabels, nbTicsCol, nbTicsRow);
+    loadTextRenderingAPI(userLabels, nbTicsCol, nbTicsRow);
 
     setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LABELS__, userLabels, jni_string_vector, nbTicsRow*nbTicsCol);
   }

@@ -71,26 +71,30 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   }
   else if (strcmp(type, __GO_AXES__) == 0)
   {
-    int i ;
+    int autoSubticks;
+    int i;
     double * values = getDoubleMatrixFromStack( stackPointer );
-
-    /* To be deleted, see the flagNax line below */
-#if 0
-    sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj);
-#endif
 
     result = SET_PROPERTY_SUCCEED;
 
     if ( (nbCol != 3 ) && (nbCol != 2) )
     {
       Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "sub_tics", 2, 3);
-      return  SET_PROPERTY_ERROR ;
+      return SET_PROPERTY_ERROR;
     }
 
-    /* To be implemented within the MVC framework (sub-tics automatic mode) */
-#if 0
-    ppSubWin->flagNax = TRUE;
-#endif
+    /*
+     * The AUTO_SUBTICKS property is shared by the 3 axes for now.
+     * To be modified.
+     */
+    autoSubticks = 0;
+    status = setGraphicObjectProperty(pobj->UID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+
+    if (status == FALSE)
+    {
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+      return SET_PROPERTY_ERROR;
+    }
 
     for ( i = 0; i < nbCol ; i++ )
     {
