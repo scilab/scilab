@@ -191,8 +191,12 @@ public class SetContextDialog extends JDialog {
 					// Execute the context to alert the user against wrong settings
 					String ctx = contextArea.getText();
 					if (!ctx.replaceAll("[^\\p{Graph}]*", "").isEmpty()) {
+						// We need to remove some blanks and convert to a one line expression
+						// The '\n' is used on JTextArea for new lines.
 						ScilabInterpreterManagement
-								.putCommandInScilabQueue(ctx.trim() + ";");
+								.putCommandInScilabQueue(ctx
+										.trim()
+										.replaceAll("\n", "; ") + ";");
 					}
 					
 					dispose();
