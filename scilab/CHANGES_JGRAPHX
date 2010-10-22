@@ -5,7 +5,33 @@ On the merge commit please remove this file and uncomment the
 "AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx]" line on configure.ac with the right
 version.
 
-Xcos:
-=====
+JGraphX:
+========
 
+19-OCT-2010: 1.4.2.0
+
+- Improves edge routing in hierarchical layout
+- Fixes in-place change of translate in mxBasicCanvas.setTranslate
+- Adds mxMultiplicity.checkTerminal, checkNeighbors hooks
+
+12-OCT-2010: 1.4.1.4
+
+08-OCT-2010: 1.4.1.3
+
+- Changes signature of mxConnectorShape.paintMarker
+- Adds mxMarkerRegistry and pluggable markers
+
+01-OCT-2010: 1.4.1.2
+
+30-SEP-2010: 1.4.1.1
+
+- Adds mxCodec.setDocument
+- Changes various methods in the sharing package
+- Deprecates changes parameter for change and notify events in mxGraphModel
+- Adds edit parameter for change and notify event in mxGraphModel
+- Wraps sequence of changes in  node in mxSession
+- Adds accessors for fields in atomic changes for mxGraphModel
+- Adds mxCodec.insertIntoGraph hook
+- Ensures correct ordering of cells decoded in mxCodec
+- mxUtils.getXml omits XML declaration
 
