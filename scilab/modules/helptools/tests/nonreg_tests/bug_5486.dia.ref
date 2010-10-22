@@ -1,0 +1,27 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - Calixte DENIZET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- JVM NOT MANDATORY -->
+//
+// <-- Non-regression test for bug 5486 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/5486
+//
+// <-- Short Description -->
+// help_from_sci function didn't handle text in link
+pp = get_function_path("prettyprint");
+// No regression
+out = help_from_sci(pp);
+if find(strstr(out, "<link linkend=""math_rendering_features_in_graphic"">math_rendering_features_in_graphic</link>") <> "") == [] then bugmes();quit;end;
+// Feature added
+tmpfile = TMPDIR + "/bug_5486.sci";
+str = mgetl(pp);
+str = strsubst(str, "math_rendering_features_in_graphic", "math_rendering_features_in_graphic LaTeX or MathML expression");
+mputl(str, tmpfile);
+out = help_from_sci(tmpfile);
+if find(strstr(out, "<link linkend=""math_rendering_features_in_graphic"">LaTeX or MathML expression</link>") <> "") == [] then bugmes();quit;end;
