@@ -25,6 +25,9 @@ Xcos:
 
 * bug 8081 fixed - The context was not checked before being set.
 
+* bug 8140 fixed - Masked suberblock became empty when copied and pasted
+                   between two xcos schemes.
+
 * bug 8186 fixed - Demos with Superblocks were not simulating.
 
 * bug 8195 fixed - Creating implicit links was not working.
