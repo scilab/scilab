@@ -124,11 +124,12 @@ public final class HelpOnTypingManager implements KeyListener {
                             if ("if".equals(kw)) {
                                 doc.insertString(pos + 1, " then\nend", null);
                                 ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 9);
-                            } else {
+                                textPane.setCaretPosition(ret[0]);
+                            } else if (!"end".equals(kw)) {
                                 doc.insertString(pos + 1, "\nend", null);
                                 ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 4);
+                                textPane.setCaretPosition(ret[0]);
                             }
-                            textPane.setCaretPosition(ret[0]);
                             break;
                         case ScilabLexerConstants.SKEYWORD :
                             kw = doc.getText(kwe.getStart(), kwe.getLength());
