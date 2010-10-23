@@ -831,10 +831,14 @@ public class SciNotes extends SwingScilabTab implements Tab {
         fileChooser.setFileFilter(sceFilter);
         fileChooser.setTitle(title);
 
-        String name = ((ScilabDocument) getTextPane().getDocument()).getFirstFunctionName();
-        if (name != null) {
-            fileChooser.setSelectedFile(new File(name + SCI_EXTENSION));
+        String name = getTextPane().getName();
+        if (name == null) {
+            name = ((ScilabDocument) getTextPane().getDocument()).getFirstFunctionName();
+            if (name != null) {
+                name += SCI_EXTENSION;
+            }
         }
+        fileChooser.setSelectedFile(new File(name));
 
         int retval = fileChooser.showSaveDialog(this);
 
