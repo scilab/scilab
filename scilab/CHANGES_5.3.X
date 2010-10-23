@@ -65,6 +65,9 @@ SciNotes:
 
 * bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
 
+* bug 8277 fixed - Under Windows, exceptions were thrown when a key was hit on
+                   a keyboard in chinese mode.
+
 
 Compilation:
 ============
