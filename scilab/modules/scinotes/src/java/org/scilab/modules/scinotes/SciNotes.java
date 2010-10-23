@@ -432,15 +432,19 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         if (filePath == null) {
             addEmptyTab();
-            ConfigSciNotesManager.saveToOpenFiles(getTextPane().getName(), this, getTextPane());
             return;
         }
 
         File f = fileToCanonicalFile(new File(filePath));
+        if (!f.getParentFile().exists()) {
+            JOptionPane.showMessageDialog(SciNotes.this, SciNotesMessages.OPEN_ERROR);
+            addEmptyTab();
+            return;
+        }
+
         if (f.isDirectory()) { /* Bug 5131 */
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             addEmptyTab();
-            ConfigSciNotesManager.saveToOpenFiles(getTextPane().getName(), this, getTextPane());
             return;
         }
 

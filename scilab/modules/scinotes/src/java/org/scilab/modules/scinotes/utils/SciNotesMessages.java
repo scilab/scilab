@@ -40,6 +40,8 @@ public class SciNotesMessages {
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    public static final String OPEN_ERROR = Messages.gettext("The file could not be created, check the path");
+
     /**
      * "Save All" message
      */
