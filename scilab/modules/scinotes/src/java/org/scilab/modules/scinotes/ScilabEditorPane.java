@@ -912,6 +912,35 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * Get an helpable keyword at the current position in the document.
+     * @param caret if true the position is the current caret position in the doc else
+     * the position is the mouse pointer position projected in the document.
+     * @return the helpable keyword.
+     */
+    public String getHelpableKeyword(boolean caret) {
+        int tok;
+        int pos;
+        if (caret) {
+            pos = getCaretPosition();
+        } else {
+            pos = viewToModel(mousePoint);
+        }
+
+        tok = lexer.getKeyword(pos, true);
+        if (!ScilabLexerConstants.isHelpable(tok)) {
+            tok = lexer.getKeyword(pos + 1, true);
+        }
+
+        if (ScilabLexerConstants.isHelpable(tok)) {
+            try {
+                return getDocument().getText(lexer.start + lexer.yychar(), lexer.yylength());
+            } catch (BadLocationException e) { }
+        }
+
+        return null;
+    }
+
+    /**
      * Prevents the different KeywordListener that a MouseEvent occured
      * @param position of the mouse
      * @param ev the event which occured
