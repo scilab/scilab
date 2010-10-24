@@ -40,6 +40,8 @@ l =  gsort(librarieslist(),'r','i')
     <simplelist type="inline">
       <member>
         <link linkend="libraryinfo">libraryinfo</link>
+      </member>
+      <member>
         <link linkend="gsort">gsort</link>
       </member>
     </simplelist>

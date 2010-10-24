@@ -127,11 +127,30 @@ SendScilabJob("disp(B);"); /* Display A */
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,
-<link linkend="Double_management_reading_API">API_Scilab: Double reading</link>,<link linkend="Double_management_writing_API">API_Scilab: Double writing</link>, <link linkend="SendScilabJob">SendScilabJob</link>, <link
-      linkend="StartScilab">StartScilab</link>, <link
-      linkend="DoubleManagement_callscilab">Double Management</link>, <link
-      linkend="creadmat">creadmat</link></member>
+      <member>
+	<link linkend="call_scilab">Call_Scilab</link>
+       </member>
+       <member>
+	<link linkend="api_scilab">api Scilab</link>
+       </member>
+       <member>
+	<link linkend="Double_management_reading_API">API_Scilab: Double reading</link>
+       </member>
+       <member>
+	<link linkend="Double_management_writing_API">API_Scilab: Double writing</link>
+       </member>
+       <member>
+	<link linkend="SendScilabJob">SendScilabJob</link>
+       </member>
+       <member>
+	<link linkend="StartScilab">StartScilab</link>
+       </member>
+       <member>
+	<link linkend="DoubleManagement_callscilab">Double Management</link>
+       </member>
+       <member>
+	<link linkend="creadmat">creadmat</link>
+      </member>
     </simplelist>
   </refsection>
 
