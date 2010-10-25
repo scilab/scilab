@@ -96,4 +96,32 @@ public class ScilabListCodec  extends ScilabObjectCodec {
 		return obj;
 	}
 	
+	/**
+	 * Workaround for a jgraphx bug on deserialization with a possible abstract
+	 * array and default value.
+	 * 
+	 * @param dec
+	 *            the current decoder instance
+	 * @param node
+	 *            the current node
+	 * @param into
+	 *            the object decode into (may be a wrongly typed instance)
+	 * @return a valid (right typed) instance
+	 * @see com.mxgraph.io.mxObjectCodec#decode(com.mxgraph.io.mxCodec,
+	 *      org.w3c.dom.Node, java.lang.Object)
+	 * @see http://www.jgraph.org/bugzilla/show_bug.cgi?id=55
+	 * @see http://bugzilla.scilab.org/show_bug.cgi?id=8141
+	 */
+	@Override
+	public Object decode(mxCodec dec, Node node, Object into) {
+		// Workaround case selection :
+		// - node is an "Array"
+		// - into (the default template) is not.
+		if (node.getNodeName().equals("Array") && into != null
+				&& !into.getClass().isArray()) {
+			return super.decode(dec, node, null);
+		} else {
+			return super.decode(dec, node, into);
+		}
+	}
 }

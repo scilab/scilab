@@ -28,6 +28,8 @@ Xcos:
 * bug 8140 fixed - Masked suberblock became empty when copied and pasted
                    between two xcos schemes.
 
+* bug 8141 fixed - Superblock mask became empty when reopening a file.
+
 * bug 8186 fixed - Demos with Superblocks were not simulating.
 
 * bug 8195 fixed - Creating implicit links was not working.
