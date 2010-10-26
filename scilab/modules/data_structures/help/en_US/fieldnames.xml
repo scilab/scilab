@@ -75,7 +75,7 @@ fieldnames(obj)
         <link linkend="mlist">mlist</link>
       </member>
       <member>
-        <link linkend="mlist">struct</link>
+        <link linkend="struct">struct</link>
       </member>
     </simplelist>
   </refsection>
