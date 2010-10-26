@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,6 +30,7 @@
 //CHECKSTYLE:OFF
  /**
    * @author Allan CORNET - DIGITEO 2009
+   * @author Calixte DENIZET
    */
 public class%}
 
@@ -64,6 +66,7 @@ public class%}
 %pragma(java) moduleclassmodifiers="
  /**
    * @author Allan CORNET - DIGITEO 2009
+   * @author Calixte DENIZET
    */
 public class";
 
@@ -103,3 +106,13 @@ char **GetFunctionsName(void);
 */
 public";
 char **GetMacrosName(void);
+
+/* JavaDoc */
+%javamethodmodifiers GetFieldsName() "
+/**
+* get the fields name of a named list
+* @param arg0 the name of the list
+* @return a array of chars
+*/
+public";
+char **GetFieldsName(char*);

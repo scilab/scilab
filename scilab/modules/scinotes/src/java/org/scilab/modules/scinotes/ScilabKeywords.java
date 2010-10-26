@@ -11,6 +11,7 @@ package org.scilab.modules.scinotes;
 
  /**
    * @author Allan CORNET - DIGITEO 2009
+   * @author Calixte DENIZET
    */
 public class ScilabKeywords {
 
@@ -30,6 +31,10 @@ public class ScilabKeywords {
 
   public static String[] GetMacrosName() {
     return ScilabKeywordsJNI.GetMacrosName();
+  }
+
+  public static String[] GetFieldsName(String arg0) {
+    return ScilabKeywordsJNI.GetFieldsName(arg0);
   }
 
 }

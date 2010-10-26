@@ -74,6 +74,8 @@ SciNotes:
 * Add a "Save file in..." menu which gives the possibility to save a file
   in favorite directories.
 
+* Add a completion on the fields name of a mlist or a tlist.
+
 * bug 7806 fixed - Blocks elseif...end and else...end were not highlighted.
 
 * bug 8095 fixed - The Set Colors window was too height with OpenJDK.
