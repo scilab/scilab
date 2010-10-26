@@ -656,6 +656,32 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     }
 
     /**
+     * @return the expression as a object array
+     */
+    public String[] getExprsFormat() {
+    	// evaluate emptiness
+		if (getExprs() == null || getExprs().isEmpty()
+				|| getExprs().getHeight() == 0 || getExprs().getWidth() == 0) {
+			return new String[0];
+		}
+    	
+		// only ScilabString is handled
+		if (!(getExprs() instanceof ScilabString)) {
+			return new String[0];
+		}
+		String[][] scilabData = ((ScilabString) getExprs()).getData();
+		
+    	// normal case
+		final String[] array = new String[getExprs().getHeight() * getExprs().getWidth()];
+		final int width = scilabData[0].length;
+		for (int i = 0; i < scilabData.length; ++i) {
+			System.arraycopy(scilabData[i], 0, array, i * width, width);
+		}
+		
+		return array;
+    }
+    
+    /**
      * @return zero crossing value
      */
     public ScilabType getNbZerosCrossing() {

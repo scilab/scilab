@@ -650,7 +650,6 @@ public class XcosDiagram extends ScilabGraph {
 	addListener(mxEvent.CELLS_RESIZED, new CellResizedTracker());
 	
 	// Track when we have to force a Block value
-	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, new ForceCellValueUpdate());
 	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, getEngine());
 	
 	// Update the blocks view on undo/redo
@@ -715,44 +714,6 @@ public class XcosDiagram extends ScilabGraph {
 		fireEvent(new mxEventObject(XcosEvent.FORCE_CELL_VALUE_UPDATE, "cells", firedCells));
 	    }
 	    getModel().endUpdate();
-	}
-    }
-    /**
-     * ForceCellValueUpdate
-     * Called when we want a block content to update.
-     */
-    private class ForceCellValueUpdate implements mxIEventListener {
-	/**
-	 * Constructor
-	 */
-	public ForceCellValueUpdate() {
-	    super();
-	}
-
-	/**
-	 * Handle cell value update on force cell value (update size and value)
-	 * @param source the source instance
-	 * @param evt the event data
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
-	 */
-	@Override
-	public void invoke(final Object source, final mxEventObject evt) {
-	    final Object[] cells = (Object[]) evt.getProperty("cells");
-
-	    getModel().beginUpdate();
-
-	    for (int i = 0; i < cells.length; ++i) {
-		
-		final Object cell = cells[i];
-		
-		if (cell instanceof BasicBlock) {
-		    if (getCellStyle(cell).get("displayedLabel") != null) {
-			((mxCell) cell).setValue("<html><body> " + getCellStyle(cell).get("displayedLabel") + " </body></html>");
-		    }
-		}
-	    }
-	    getModel().endUpdate();
-	    refresh();
 	}
     }
     
@@ -1093,7 +1054,41 @@ public class XcosDiagram extends ScilabGraph {
     public boolean isCellEditable(final Object cell) {
     	return (cell instanceof TextBlock) && super.isCellDeletable(cell);
     }
-
+	
+	/**
+	 * Get the label for the cell according to its style. 
+	 * 
+	 * @param cell the cell object
+	 * @return a representative the string (block name) or a style specific style.
+	 * @see com.mxgraph.view.mxGraph#convertValueToString(java.lang.Object)
+	 */
+	@Override
+	public String convertValueToString(Object cell) {
+		final StringBuilder str = new StringBuilder();
+		str.append("<html><body> ");
+		
+		if (cell != null) {
+			final Map<String, Object> style = getCellStyle(cell);
+			
+			final String customLabel = (String) style.get("displayedLabel");
+			if (customLabel != null && cell instanceof BasicBlock) {
+				str.append(String.format(customLabel,
+						(Object[]) ((BasicBlock) cell).getExprsFormat()));
+			} else {
+				final String label = super.convertValueToString(cell);
+				if (label.isEmpty() && cell instanceof BasicBlock) {
+					str.append(((BasicBlock) cell).getInterfaceFunctionName());
+				} else {
+					str.append(label);
+				}
+			}
+			
+		}
+		
+		str.append(" </html></body>");
+		return str.toString();
+	}
+	
 	/**
 	 * Return true if auto sized
 	 * @param cell the cell
