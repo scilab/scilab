@@ -31,7 +31,8 @@ libscioperations_la_CXXFLAGS = 	-I$(top_srcdir)/modules/operations/includes \
 						-I$(top_srcdir)/modules/types/includes \
 						-I$(top_srcdir)/modules/symbol/includes \
 						-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
-						-I$(top_srcdir)/modules/core/includes
+						-I$(top_srcdir)/modules/core/includes \
+						$(EIGEN_CPPFLAGS)
 
 
 libscioperations_la_SOURCES = $(OPERATIONS_C_SOURCES) $(OPERATIONS_CPP_SOURCES)

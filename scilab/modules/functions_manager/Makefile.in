@@ -42,9 +42,9 @@ DIST_COMMON = $(libscifunctions_manager_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
@@ -168,6 +168,7 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
+EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -397,6 +398,7 @@ libscifunctions_manager_la_CXXFLAGS = -I$(top_builddir)/modules/types/includes/ 
 						-I$(top_builddir)/modules/output_stream/includes/ \
 						-Iincludes/ \
 						-Isrc/cpp \
+						$(EIGEN_CPPFLAGS) \
 						$(XML_FLAGS)
 
 libscifunctions_manager_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \

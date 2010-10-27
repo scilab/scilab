@@ -578,7 +578,7 @@ case "$F77" in
 	esac
 	CC="$CC -arch $MAC_DETECTED_ARCH"
 	CXX="$CXX -arch $MAC_DETECTED_ARCH"
-	LDFLAGS="-L$FINK_PREFIX/lib/ $LDFLAGS"
+	LDFLAGS="-L$FINK_PREFIX/lib/ $LDFLAGS -lgfortran"
 	CFLAGS=" $CFLAGS -I$FINK_PREFIX/include "
 	CPPFLAGS=" $CPPFLAGS -I$FINK_PREFIX/include "
 	;;
@@ -1252,6 +1252,11 @@ fi
 AC_SUBST(FFTW_ENABLE)
 AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 
+#################
+## EIGEN
+#################
+
+AC_EIGEN()
 
 #################
 ## MPI
@@ -1919,6 +1924,10 @@ if test $FFTW_ENABLE = yes;  then
 else
    echo "Not using FFTW"
 fi
+
+echo ""
+echo "Eigen3 Configuration:"
+echo "  EIGEN CPPFLAGS ...... = $EIGEN_CPPFLAGS"
 
 echo ""
 if test $MATIO_ENABLE = yes;  then

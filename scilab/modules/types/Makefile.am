@@ -91,6 +91,9 @@ libscitypes_la_CPPFLAGS = 	-Iincludes/ \
 				-I ../functions_manager/includes \
 				-I ../string/includes \
 				-I src/cpp
+				-I src/cpp \
+				$(EIGEN_CPPFLAGS)
+
 
 pkglib_LTLIBRARIES = libscitypes.la
 
