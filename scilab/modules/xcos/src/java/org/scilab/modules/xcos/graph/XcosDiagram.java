@@ -194,6 +194,11 @@ public class XcosDiagram extends ScilabGraph {
 	public Object addCell(Object cell, Object parent, Integer index,
 			Object source, Object target) {
 		
+		// already connected edge or normal block
+		if (source == null && target == null) {
+			return super.addCell(cell, parent, index, source, target);
+		}
+		
     	// Command -> Control
     	if (source instanceof CommandPort && target instanceof ControlPort && cell instanceof CommandControlLink) {
     			return super.addCell(cell, parent, index, source, target);
