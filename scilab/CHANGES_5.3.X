@@ -102,6 +102,8 @@ Bug Fixes:
 
 * bug 3175 fixed - There were no shortcuts in the console menus.
 
+* bug 4738 fixed - The number of columns in the console was badly calculated.
+
 * bug 4827 fixed - The test_run function did not work properly with modules begining
                    with a "n".
 
