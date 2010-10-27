@@ -1070,7 +1070,7 @@ public class XcosDiagram extends ScilabGraph {
 	@Override
 	public String convertValueToString(Object cell) {
 		final StringBuilder str = new StringBuilder();
-		str.append("<html><body> ");
+		str.append("<html><body>");
 		
 		if (cell != null) {
 			final Map<String, Object> style = getCellStyle(cell);
@@ -1081,8 +1081,13 @@ public class XcosDiagram extends ScilabGraph {
 						(Object[]) ((BasicBlock) cell).getExprsFormat()));
 			} else {
 				final String label = super.convertValueToString(cell);
-				if (label.isEmpty() && cell instanceof BasicBlock) {
-					str.append(((BasicBlock) cell).getInterfaceFunctionName());
+				if (label.isEmpty()) {
+					if (cell instanceof BasicBlock) {
+						str.append(((BasicBlock) cell).getInterfaceFunctionName());
+					} else {
+						// empty label should not contains html tags
+						return label;
+					}
 				} else {
 					str.append(label);
 				}
@@ -1090,7 +1095,7 @@ public class XcosDiagram extends ScilabGraph {
 			
 		}
 		
-		str.append(" </html></body>");
+		str.append("</body></html>");
 		return str.toString();
 	}
 	
