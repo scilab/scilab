@@ -17,14 +17,15 @@
 #include "dynlib_output_stream.h"
 
 #define VPTR void * 
-#define RET_END -2
-#define RET_BUG -1 
-#define FAIL 0
-#define OK 1
-#define MEM_LACK -3
-#define MISMATCH -4
-#define NOT_ENOUGH_ARGS -5
+#define DO_XXPRINTF_RET_END -2
+#define DO_XXPRINTF_RET_BUG -1 
+#define DO_XXPRINTF_FAIL 0
+#define DO_XXPRINTF_OK 1
+#define DO_XXPRINTF_MEM_LACK -3
+#define DO_XXPRINTF_MISMATCH -4
+#define DO_XXPRINTF_NOT_ENOUGH_ARGS -5
 
 OUTPUT_STREAM_IMPEXP int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcnt, int lcount, char **strv);
+OUTPUT_STREAM_IMPEXP int do_xxprintfW(wchar_t* _pwstName, FILE* _fp, wchar_t* _pwstFormat, int _iArgs, int _iArgCount, int _iLcount, wchar_t** _pwstV);
 
 #endif /* __DO_XXPRINTF_H__ */

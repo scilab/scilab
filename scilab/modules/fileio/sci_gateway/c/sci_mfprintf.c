@@ -150,7 +150,7 @@ int sci_mfprintf(char *fname,unsigned long fname_len)
 		lcount++;
 		if (lcount > mx) break;
 	}
-	if (rval == RET_BUG) return 0;
+	if (rval == DO_XXPRINTF_RET_BUG) return 0;
 	LhsVar(1) = 0; /** No return value **/
 	PutLhsVar();
 	return 0;

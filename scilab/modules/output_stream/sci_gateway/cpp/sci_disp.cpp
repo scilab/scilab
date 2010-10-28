@@ -14,6 +14,7 @@
 #include "funcmanager.hxx"
 #include "yaspio.hxx"
 #include "configvariable.hxx"
+#include "output_stream_gw.hxx"
 
 extern "C"
 {

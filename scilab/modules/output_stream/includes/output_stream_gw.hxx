@@ -14,11 +14,14 @@
 #define __OUTPUTSTREAM_GW_HXX__
 
 
-#include "dynlib_output_stream_gw.h"
 
 #include "funcmanager.hxx"
 #include "context.hxx"
 
+extern "C"
+{
+#include "dynlib_output_stream_gw.h"
+}
 
 class OutputStreamModule
 {
@@ -31,5 +34,6 @@ public :
 };
 
 Function::ReturnValue sci_disp(types::typed_list &in, int _iRetCount, types::typed_list &out);
+Function::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
 #endif /* !__OUTPUTSTREAM_GW_HXX__ */

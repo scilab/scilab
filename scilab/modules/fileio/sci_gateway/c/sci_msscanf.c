@@ -87,7 +87,7 @@ int sci_sscanf(char *fname,unsigned long fname_len)
 		{
 			switch (err)
 			{
-			case MISMATCH:
+			case DO_XXPRINTF_MISMATCH:
 				if (maxrow>=0)
 				{
 					Free_Scan(rowcount,ncol,type_s,&data);
@@ -96,21 +96,21 @@ int sci_sscanf(char *fname,unsigned long fname_len)
 				}
 				break;
 
-			case MEM_LACK:
+			case DO_XXPRINTF_MEM_LACK:
 				Free_Scan(rowcount,ncol,type_s,&data);
 				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 				break;
 			}
 
-			if (err==MISMATCH) break;
+			if (err==DO_XXPRINTF_MISMATCH) break;
 		}
 	} /* while */
 
 	/* create Scilab variables with each column of data */
 	err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
 	Free_Scan(rowcount,ncol,type_s,&data);
-	if (err==MEM_LACK) { Scierror(999,_("%s: No more memory.\n"),fname);}
+	if (err==DO_XXPRINTF_MEM_LACK) { Scierror(999,_("%s: No more memory.\n"),fname);}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

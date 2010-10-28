@@ -30,7 +30,7 @@ int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
   /* create Scilab variable with each column of data */
   if (ncol+Rhs > intersiz ){
     Scierror(998,_("%s: Too many directives in scanf.\n"),"Sci_Store");
-    return RET_BUG;
+    return DO_XXPRINTF_RET_BUG;
   }
   iarg=Rhs;
   if (Lhs > 1) {
@@ -54,7 +54,7 @@ int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 
     for ( i=0 ; i < ncol ; i++) {
       if ( (type[i] == SF_C) || (type[i] == SF_S) ) {
-	if( (temp = (char **) MALLOC(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
+	if( (temp = (char **) MALLOC(nrow*ncol*sizeof(char **)))==NULL) return DO_XXPRINTF_MEM_LACK;
 	k=0;
 	for (j=0;j<nrow;j++) temp[k++]=data[i+ncol*j].s;
 	CreateVarFromPtr(++iarg,MATRIX_OF_STRING_DATATYPE, &nrow, &one, temp);
@@ -107,7 +107,7 @@ int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 	  if (nrow==0) {
 	    CreateVar(++iarg,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);}
 	  else if ( (cur_type == SF_C) || (cur_type == SF_S) ) {
-	    if( (temp = (char **) MALLOC(nrow*colcount*sizeof(char **)))==NULL) return MEM_LACK;
+	    if( (temp = (char **) MALLOC(nrow*colcount*sizeof(char **)))==NULL) return DO_XXPRINTF_MEM_LACK;
 	    k=0;
 	    for (i1=cur_i;i1<i;i1++)
 	      for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
@@ -143,7 +143,7 @@ int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
       if (nrow==0) {
 	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &l);}
       else if ( (cur_type == SF_C) || (cur_type == SF_S) ) {
-	if( (temp = (char **) MALLOC(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
+	if( (temp = (char **) MALLOC(nrow*ncol*sizeof(char **)))==NULL) return DO_XXPRINTF_MEM_LACK;
 	k=0;
 	for (i1=0;i1<ncol;i1++)
 	  for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
@@ -193,7 +193,7 @@ int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, in
       return 0;
     }
     if ( (*data = (entry *) MALLOC(nc*nr*sizeof(entry)))==NULL) {
-      err= MEM_LACK;
+      err= DO_XXPRINTF_MEM_LACK;
       goto bad1;
     }
     for ( i=0 ; i < nc ; i++) type_s[i]=type[i];
@@ -202,13 +202,13 @@ int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, in
   else {
     /* check if number of data read match with previous number */
     if ( (n !=nc ) || (*retval_s != *retval) ){
-      err=MISMATCH;
+      err=DO_XXPRINTF_MISMATCH;
       goto bad2;
     }
     /* check if types of data read match with previous types */
     for ( i=0 ; i < nc ; i++)
       if (type[i] != type_s[i]) {
-	err=MISMATCH;
+	err=DO_XXPRINTF_MISMATCH;
 	goto bad2;
       }
 
@@ -218,7 +218,7 @@ int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, in
       nr=nr+blk;
       *nrow=nr;
       if ( (*data = (entry *) REALLOC(*data,nc*nr*sizeof(entry)))==NULL) {
-	err= MEM_LACK;
+	err= DO_XXPRINTF_MEM_LACK;
 	goto bad2;
       }
     }

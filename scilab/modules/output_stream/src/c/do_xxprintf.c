@@ -253,7 +253,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 					if (target > sprintf_limit)	/* over sprintf_limit */
 					{
 						Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Buffer too small."));
-						return RET_BUG;
+						return DO_XXPRINTF_RET_BUG;
 					}
 					else
 					{
@@ -299,10 +299,10 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 
 			if (rval <= 0) 
 			{
-				if (rval== NOT_ENOUGH_ARGS) 
+				if (rval== DO_XXPRINTF_NOT_ENOUGH_ARGS) 
 				{
 					error_on_rval(xxprintf,flush,target);
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 				return rval;
 			}
@@ -320,10 +320,10 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			{
 				rval=GetScalarInt(fname,&prev,&arg_count,nargs,&ccount,lcount,&ival);
 				if (rval <= 0) {
-					if (rval== NOT_ENOUGH_ARGS)
+					if (rval== DO_XXPRINTF_NOT_ENOUGH_ARGS)
 					{
 						error_on_rval(xxprintf,flush,target);
-						return RET_BUG;
+						return DO_XXPRINTF_RET_BUG;
 					}
 					return rval;
 				}
@@ -369,10 +369,10 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 
 				if (rval <= 0) 
 				{
-					if (rval== NOT_ENOUGH_ARGS) 
+					if (rval== DO_XXPRINTF_NOT_ENOUGH_ARGS) 
 					{
 						error_on_rval(xxprintf,flush,target);
-						return RET_BUG;
+						return DO_XXPRINTF_RET_BUG;
 					}
 					return rval;
 				}
@@ -394,10 +394,10 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			rval = GetScalarDouble(fname, &prev, &arg_count, nargs, &ccount, lcount, &dval);
 			if (rval <= 0) 
 			{
-				if (rval== NOT_ENOUGH_ARGS) 
+				if (rval== DO_XXPRINTF_NOT_ENOUGH_ARGS) 
 				{
 					error_on_rval(xxprintf, flush, target);
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 				return rval;
 			}
@@ -409,10 +409,10 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			rval=GetScalarDouble(fname, &prev, &arg_count, nargs, &ccount, lcount, &dval);
 			if (rval <= 0) 
 			{
-				if (rval== NOT_ENOUGH_ARGS)
+				if (rval== DO_XXPRINTF_NOT_ENOUGH_ARGS)
 				{
 					error_on_rval(xxprintf, flush, target);
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 				return rval;
 			}
@@ -427,15 +427,15 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			if (high_flag + low_flag)
 			{
 				Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
-				return RET_BUG;
+				return DO_XXPRINTF_RET_BUG;
 			}
 			rval = GetScalarDouble(fname, &prev, &arg_count, nargs, &ccount, lcount, &dval);
 			if (rval <= 0) 
 			{
-				if (rval== NOT_ENOUGH_ARGS)
+				if (rval== DO_XXPRINTF_NOT_ENOUGH_ARGS)
 				{
 					error_on_rval(xxprintf,flush,target);
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 				return rval;
 			}
@@ -447,10 +447,10 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				rval = GetScalarDouble(fname, &prev, &arg_count, nargs, &ccount, lcount, &dval);
 				if (rval <= 0) 
 				{
-					if (rval== NOT_ENOUGH_ARGS) 
+					if (rval== DO_XXPRINTF_NOT_ENOUGH_ARGS) 
 					{
 						error_on_rval(xxprintf, flush, target);
-						return RET_BUG;
+						return DO_XXPRINTF_RET_BUG;
 					}
 					return rval;
 				}
@@ -460,7 +460,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 
 		default:
 			Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
-			return RET_BUG;
+			return DO_XXPRINTF_RET_BUG;
 		}
 
 		tmpcurrentchar=NULL;
@@ -577,16 +577,16 @@ static int GetScalarInt(char *fname, int *prev, int *arg, int narg, int *ic, int
 	{
 		*arg=*arg+1;
 		if (*arg > narg ) {
-			return NOT_ENOUGH_ARGS;
+			return DO_XXPRINTF_NOT_ENOUGH_ARGS;
 		}
 		*ic=1;
 		GetRhsVar(*arg,MATRIX_OF_INTEGER_DATATYPE,&mx,&nx,&lx);
 	}
 
-	if (ir>mx) return RET_END;
+	if (ir>mx) return DO_XXPRINTF_RET_END;
 	*ival =  *(istk(lx+ir-1+mx*(*ic-1)));
 	*ic=*ic+1;
-	return OK;
+	return DO_XXPRINTF_OK;
 }
 /*--------------------------------------------------------------------------*/
 static int GetString(char *fname, int *prev, int *arg, int narg, int *ic, int ir, char **sval)
@@ -602,7 +602,7 @@ static int GetString(char *fname, int *prev, int *arg, int narg, int *ic, int ir
 	lw = *arg + Top - Rhs;
 
 	if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild,(unsigned long)strlen(fname))) {
-		return RET_BUG;
+		return DO_XXPRINTF_RET_BUG;
 	}
 	else 
 	{
@@ -610,25 +610,25 @@ static int GetString(char *fname, int *prev, int *arg, int narg, int *ic, int ir
 		{
 			*arg=*arg+1;
 			if (*arg>narg ) {
-				return NOT_ENOUGH_ARGS;
+				return DO_XXPRINTF_NOT_ENOUGH_ARGS;
 			}
 			*ic=1;
 			lw = *arg + Top - Rhs;
 			if (! C2F(getwsmat)(fname,&Top,&lw,&mx,&nx,&il,&ild,(unsigned long) strlen(fname))) {
-				return RET_BUG;
+				return DO_XXPRINTF_RET_BUG;
 			}
 		}
 	}
 	if (ir>mx) {
-		return RET_END;
+		return DO_XXPRINTF_RET_END;
 	}
 	k=ir-1+mx*(*ic-1);
 	if (SciStrtoStr(istk(il-1+*istk(ild+k)),&one,istk(ild+k),&p) < 0) {
-		return MEM_LACK;
+		return DO_XXPRINTF_MEM_LACK;
 	}
 	*ic=*ic+1;
 	*sval = p;
-	return OK;
+	return DO_XXPRINTF_OK;
 }
 /*--------------------------------------------------------------------------*/
 static int GetScalarDouble(char *fname, int *prev, int *arg, int narg, int *ic, int ir, double *dval)
@@ -646,17 +646,17 @@ static int GetScalarDouble(char *fname, int *prev, int *arg, int narg, int *ic, 
 	{
 		*arg=*arg+1;
 		if (*arg > narg ) {
-			return NOT_ENOUGH_ARGS;
+			return DO_XXPRINTF_NOT_ENOUGH_ARGS;
 		}
 		*ic=1;
 		GetRhsVar(*arg,MATRIX_OF_DOUBLE_DATATYPE,&mx,&nx,&lx);
 	}
 	if (ir>mx) {
-		return RET_END;
+		return DO_XXPRINTF_RET_END;
 	}
 	*dval =  *(stk(lx+ir-1+mx*(*ic-1)));
 	*ic=*ic+1;
-	return OK;
+	return DO_XXPRINTF_OK;
 }
 /*--------------------------------------------------------------------------*/
 #ifndef signbit

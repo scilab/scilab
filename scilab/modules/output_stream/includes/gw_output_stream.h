@@ -20,7 +20,6 @@ OUTPUT_STREAM_IMPEXP int gw_output_stream(void);
 /*--------------------------------------------------------------------------*/
 OUTPUT_STREAM_IMPEXP int sci_print(char *fname,unsigned long fname_len);
 OUTPUT_STREAM_IMPEXP int sci_mprintf(char *fname,unsigned long fname_len);
-OUTPUT_STREAM_IMPEXP int sci_msprintf(char *fname,unsigned long fname_len);
 OUTPUT_STREAM_IMPEXP int sci_disp(char *fname,unsigned long fname_len);
 
 //YaSp

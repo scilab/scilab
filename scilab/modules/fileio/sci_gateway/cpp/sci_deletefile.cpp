@@ -47,7 +47,7 @@ Function::ReturnValue sci_deletefile(typed_list &in, int _iRetCount, typed_list 
         pOut = new Bool(0);
     }
 
-    out.push_back(pOut);
+    out.push_back(pOut); 
     return Function::OK;
 	//CheckRhs(1,1);
 	//CheckLhs(1,1);

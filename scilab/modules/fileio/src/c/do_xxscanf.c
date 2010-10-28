@@ -138,7 +138,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 			if ( *currentchar1 == '\0')
 			{
 				Scierror(998,_("%s: An error occurred: %s\n"),fname,_("unclosed [ directive."));
-				return RET_BUG;
+				return DO_XXPRINTF_RET_BUG;
 			}
 
 			if ( currentchar1 == currentchar +1 || strncmp(currentchar,"[^]",3)==0 )
@@ -149,7 +149,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				if ( *currentchar1 == '\0')
 				{
 					Scierror(998,_("%s: An error occurred: %s\n"),fname,_("unclosed [ directive."));
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 			}
 
@@ -166,7 +166,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 			if ( num_conversion >= MAXSCAN )
 			{
 				Scierror(998,_("%s: An error occurred: too many (> %d) conversion required.\n"),fname,MAXSCAN);
-				return RET_BUG;
+				return DO_XXPRINTF_RET_BUG;
 			}
 
 			switch (directive )
@@ -177,10 +177,10 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				if (width_flag == 1 && width_val > MAX_STR-1 )
 				{
 					Scierror(998,_("%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"),fname,width_val,MAX_STR-1);
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 
-				if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
+				if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return DO_XXPRINTF_MEM_LACK;
 				ptrtab[num_conversion] =  buf[num_conversion].c;
 				type[num_conversion] = SF_S;
 				break;
@@ -189,17 +189,17 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				if (l_flag + h_flag)
 				{
 					Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 
 				if (width_flag == 0 ) str_width_flag = 1;
 				if (width_flag == 1 && width_val > MAX_STR-1 )
 				{
 					Scierror(998,_("%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"),fname,width_val,MAX_STR-1);
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 
-				if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
+				if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return DO_XXPRINTF_MEM_LACK;
 
 				ptrtab[num_conversion] =  buf[num_conversion].c;
 				type[num_conversion] = SF_S;
@@ -209,7 +209,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				if (l_flag + h_flag)
 				{
 					Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 
 				if ( width_flag == 1 ) nc[num_conversion ] = width_val;
@@ -218,10 +218,10 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				if (width_flag == 1 && width_val > MAX_STR-1 )
 				{
 					Scierror(998,_("%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"),fname,width_val,MAX_STR-1);
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 
-				if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return MEM_LACK;
+				if ((buf[num_conversion].c=MALLOC(MAX_STR))==NULL) return DO_XXPRINTF_MEM_LACK;
 
 				ptrtab[num_conversion] =  buf[num_conversion].c;
 				type[num_conversion] = SF_C;
@@ -275,7 +275,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				if (h_flag)
 				{
 					Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
-					return RET_BUG;
+					return DO_XXPRINTF_RET_BUG;
 				}
 				else if (l_flag)
 				{
@@ -291,7 +291,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 			default:
 				Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
-				return RET_BUG;
+				return DO_XXPRINTF_RET_BUG;
 				break;
 			}
 			*currentchar = backupcurrrentchar;
@@ -319,7 +319,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 			if ( f2 == slast )
 			{
 				Scierror(998,_("%s: An error occurred: format is too long (> %d).\n"),fname,MAX_STR-1);
-				return RET_BUG;
+				return DO_XXPRINTF_RET_BUG;
 			}
 		}
 
