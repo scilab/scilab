@@ -56,7 +56,7 @@
     <para>The online definition as well as the short syntax of the commands
     <literal>exec</literal> and <literal>deff</literal> generate compiled
     functions. So comp has to be used in very particular cases. To produce
-    uncompiled functions one must use ><link linkend="exec">exec</link> or
+    uncompiled functions one must use <link linkend="exec">exec</link> or
     <link linkend="deff">deff</link> with the option <literal>"n"</literal>.</para>
 
     <para>The value opt==2 causes the function to be compiled "for profiling".
