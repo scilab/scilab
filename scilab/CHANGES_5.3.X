@@ -317,6 +317,9 @@ Bug Fixes:
 
 * bug 8296 fixed - size( M,3) crashed scilab 5.3.0-beta-4.
 
+* bug 8299 fixed - ilib_compile did not return enough feedback on Windows when
+                   compilaion failed.
+
 * bug 8300 fixed - a(48400, 48400) = 0 crashed scilab.
 
 * bug 8318 fixed - help window was not brought up to front when already opened.
