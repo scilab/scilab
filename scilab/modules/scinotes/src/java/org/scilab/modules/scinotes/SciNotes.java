@@ -550,6 +550,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
             }
         }
 
+        textPaneAt.close();
+
         if (textPaneAt.getName() == null) {
             String closedTabName = tabPane.getTitleAt(indexTab);
             String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());

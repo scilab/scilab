@@ -376,7 +376,12 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     /**
      * Close this pane
      */
-    public void close() { }
+    public void close() {
+        FocusListener[] l = getFocusListeners();
+        for (int i = 0; i < l.length; i++) {
+            removeFocusListener(l[i]);
+        }
+    }
 
     /**
      * Update infos

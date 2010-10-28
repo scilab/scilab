@@ -83,6 +83,7 @@ SciNotes:
 * bug 8277 fixed - Under Windows, exceptions were thrown when a key was hit on
                    a keyboard in chinese mode.
 
+* bug 8304 fixed - A Java exception was thrown on Exit menu.
 
 Compilation:
 ============
