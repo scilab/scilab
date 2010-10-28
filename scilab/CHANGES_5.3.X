@@ -87,6 +87,9 @@ SciNotes:
 
 * bug 8304 fixed - A Java exception was thrown on Exit menu.
 
+* bug 8309 fixed - Bad display of the line number in whereami mode with broken lines.
+
+
 Compilation:
 ============
 
@@ -97,7 +100,7 @@ Compilation:
 * bug 8013 fixed - In some cases, the build of the compiler of modelica failed.
 
 * bug 8274 fixed - Improve detection of Java regarding Apple changes:
-      	           Java for Mac OS X 10.6 Update 3 and 10.5 Update 8 Release
+                   Java for Mac OS X 10.6 Update 3 and 10.5 Update 8 Release
                    Notes
 
 Bug Fixes:
