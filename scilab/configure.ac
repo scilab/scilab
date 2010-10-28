@@ -327,6 +327,13 @@ else
    enable_debug_CXX=no
 fi
 
+if test "$enable_debug_java" = yes; then
+   LOGGING_LEVEL="ALL"
+else
+   LOGGING_LEVEL="INFO"
+fi
+AC_SUBST(LOGGING_LEVEL)
+
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
@@ -1799,6 +1806,7 @@ scilab.pc
 etc/modules.xml
 etc/classpath.xml
 etc/Info.plist
+etc/logging.properties
 scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties
