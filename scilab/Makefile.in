@@ -1656,11 +1656,11 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (English) --"; \
-@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
-@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
+@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
+@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (French) --"; \
-@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
-@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
+@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab-adv-cli binary"; \
 @BUILD_HELP_TRUE@	fi

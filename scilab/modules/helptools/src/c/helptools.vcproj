@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -34,6 +34,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -115,6 +118,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -193,6 +199,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -278,6 +287,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -375,6 +387,14 @@
 				RelativePath="..\..\sci_gateway\cpp\sci_buildDoc.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_buildDocv2.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\SciDocMain.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -398,6 +418,10 @@
 			</File>
 			<File
 				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\SciDocMain.hxx"
 				>
 			</File>
 		</Filter>

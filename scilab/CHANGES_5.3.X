@@ -1,6 +1,17 @@
             Changes between version 5.3.0-beta-4 and 5.3.0 of Scilab
             ========================================================
 
+Documentation:
+==============
+
+Massive improvement of the documentation system:
+* Improved navigation in the help browser and the web interface.
+* Improved look and feel in the help browser and the web interface.
+* Colorisation of the Scilab code.
+* In the examples, functions can be clicked to see their help pages.
+* Improved maintainability.
+* Faster build process (30 to 60 minutes => less than 30 seconds)
+
 License:
 ========
 

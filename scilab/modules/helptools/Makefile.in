@@ -124,16 +124,20 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_DEPENDENCIES = $(top_builddir)/modules/jvm/libscijvm.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/nogui/nogui.c \
 	sci_gateway/c/gw_helptools.c src/jni/BuildDocObject.cpp \
-	src/jni/GiwsException.cpp sci_gateway/cpp/sci_buildDoc.cpp
+	src/jni/SciDocMain.cpp src/jni/GiwsException.cpp \
+	sci_gateway/cpp/sci_buildDoc.cpp \
+	sci_gateway/cpp/sci_buildDocv2.cpp
 @BUILD_HELP_FALSE@@GUI_TRUE@am__objects_1 =  \
 @BUILD_HELP_FALSE@@GUI_TRUE@	libscihelptools_la-nogui.lo
 @BUILD_HELP_TRUE@@GUI_TRUE@am__objects_1 =  \
 @BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_la-gw_helptools.lo
 @GUI_FALSE@am__objects_1 = libscihelptools_la-nogui.lo
 @BUILD_HELP_TRUE@@GUI_TRUE@am__objects_2 = libscihelptools_la-BuildDocObject.lo \
+@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_la-SciDocMain.lo \
 @BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_la-GiwsException.lo
 @BUILD_HELP_TRUE@@GUI_TRUE@am__objects_3 =  \
-@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_la-sci_buildDoc.lo
+@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_la-sci_buildDoc.lo \
+@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_la-sci_buildDocv2.lo
 am_libscihelptools_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscihelptools_la_OBJECTS = $(am_libscihelptools_la_OBJECTS)
@@ -424,13 +428,14 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 @BUILD_HELP_TRUE@@GUI_TRUE@USEANT = 1
 @BUILD_HELP_TRUE@@GUI_TRUE@HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
+@BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/SciDocMain.cpp \
 @BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/GiwsException.cpp
 
 @BUILD_HELP_FALSE@@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
 @BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 @GUI_FALSE@GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
-@BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
-@BUILD_HELP_TRUE@@GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
+@BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp sci_gateway/cpp/sci_buildDocv2.cpp
+@BUILD_HELP_TRUE@@GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml src/jni/BuildDocObjectv2.giws.xml
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 @BUILD_HELP_TRUE@@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 pkglib_LTLIBRARIES = libscihelptools.la
@@ -684,9 +689,11 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-BuildDocObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-GiwsException.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-SciDocMain.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-gw_helptools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-nogui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-sci_buildDoc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-sci_buildDocv2.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -751,6 +758,13 @@ libscihelptools_la-BuildDocObject.lo: src/jni/BuildDocObject.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-BuildDocObject.lo `test -f 'src/jni/BuildDocObject.cpp' || echo '$(srcdir)/'`src/jni/BuildDocObject.cpp
 
+libscihelptools_la-SciDocMain.lo: src/jni/SciDocMain.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-SciDocMain.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-SciDocMain.Tpo -c -o libscihelptools_la-SciDocMain.lo `test -f 'src/jni/SciDocMain.cpp' || echo '$(srcdir)/'`src/jni/SciDocMain.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihelptools_la-SciDocMain.Tpo $(DEPDIR)/libscihelptools_la-SciDocMain.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SciDocMain.cpp' object='libscihelptools_la-SciDocMain.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-SciDocMain.lo `test -f 'src/jni/SciDocMain.cpp' || echo '$(srcdir)/'`src/jni/SciDocMain.cpp
+
 libscihelptools_la-GiwsException.lo: src/jni/GiwsException.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-GiwsException.Tpo -c -o libscihelptools_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihelptools_la-GiwsException.Tpo $(DEPDIR)/libscihelptools_la-GiwsException.Plo
@@ -764,6 +778,13 @@ libscihelptools_la-sci_buildDoc.lo: sci_gateway/cpp/sci_buildDoc.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_buildDoc.cpp' object='libscihelptools_la-sci_buildDoc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
+
+libscihelptools_la-sci_buildDocv2.lo: sci_gateway/cpp/sci_buildDocv2.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-sci_buildDocv2.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-sci_buildDocv2.Tpo -c -o libscihelptools_la-sci_buildDocv2.lo `test -f 'sci_gateway/cpp/sci_buildDocv2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDocv2.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihelptools_la-sci_buildDocv2.Tpo $(DEPDIR)/libscihelptools_la-sci_buildDocv2.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_buildDocv2.cpp' object='libscihelptools_la-sci_buildDocv2.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-sci_buildDocv2.lo `test -f 'sci_gateway/cpp/sci_buildDocv2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDocv2.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
