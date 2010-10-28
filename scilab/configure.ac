@@ -1974,6 +1974,7 @@ echo "  JAVA_JNI_INCLUDE .... = $JAVA_JNI_INCLUDE"
 echo "  JAVA_JNI_LIBS ....... = $JAVA_JNI_LIBS"
 echo "  JAVA_JNI_LIBS_PRELOAD = $JAVA_JNI_LIBS_PRELOAD"
 echo "  JAVA ................ = $JAVA"
+echo "  JAVADOC ............. = $JAVADOC"
 echo "  JAR ................. = $JAR"
 echo "  ANT ................. = $ANT"
 else
