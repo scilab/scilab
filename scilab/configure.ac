@@ -690,6 +690,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 		AC_JAVA_TOOLS
 		AC_JAVA_ANT
 
+		case "$host_os" in
+                     *darwin*)
+		        JAVA_HOME="";;
+		esac
+
+
 		if test "$with_gui" != no; then
 
 				# jgraphx
