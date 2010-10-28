@@ -21,6 +21,7 @@
 #include "configvariable.hxx"
 
 #include "yaspio.hxx"
+#include "runner.hxx"
 
 #define SCILAB_START L"/etc/scilab.start"
 
@@ -154,7 +155,8 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
 
     try
     {
-        tree->accept(*exec);
+        Runner engine;
+        engine.execAndWait(tree, exec);
         ConfigVariable::clearLastError();
     }
     catch(ast::ScilabMessage sm)

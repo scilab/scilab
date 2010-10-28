@@ -260,13 +260,13 @@ static int batchMain (void)
 /*
 ** -*- EXECUTING TREE -*-
 */
-    if (execAst == true) 
-    { 
+    if (execAst == true)
+    {
         //save current prompt mode
         ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
         //set mode silent for errors
         ConfigVariable::setPromptMode(ConfigVariable::silent);
-        execAstTask(parser->getTree(), timed, ASTtimed); 
+        execAstTask(parser->getTree(), timed, ASTtimed);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
     }
