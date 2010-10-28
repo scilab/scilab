@@ -28,9 +28,9 @@
     <refsynopsisdiv>
       <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piBool)</synopsis>
+        <synopsis>SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, const int* _piBool)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piBool)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piBool)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>

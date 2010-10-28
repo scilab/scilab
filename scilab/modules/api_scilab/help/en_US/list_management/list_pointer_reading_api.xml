@@ -30,7 +30,7 @@
         <para>Input argument profile:</para>
         <synopsis>SciErr getPointerInList(void* _pvCtx, int* _piParent, int _iItemPos, void** _pvPtr)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr readPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr)</synopsis>
+        <synopsis>SciErr readPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void** _pvPtr)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>

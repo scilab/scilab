@@ -30,7 +30,7 @@
         <para>Input argument profile:</para>
         <synopsis>SciErr createPointerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, void* _pvPtr)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr createPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr)</synopsis>
+        <synopsis>SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>

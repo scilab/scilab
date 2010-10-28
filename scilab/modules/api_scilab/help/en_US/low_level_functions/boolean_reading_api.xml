@@ -30,7 +30,7 @@
         <para>Input argument profile:</para>
         <synopsis>SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int** _piBool)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr readNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piBool)</synopsis>
+        <synopsis>SciErr readNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piBool)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>

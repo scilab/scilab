@@ -30,7 +30,7 @@
         <para>Input argument profile:</para>
         <synopsis>SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _piCols)</synopsis>
+        <synopsis>SciErr getNamedVarDimension(void* _pvCtx, const char *_pstName, int* _piRows, int* _piCols)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>

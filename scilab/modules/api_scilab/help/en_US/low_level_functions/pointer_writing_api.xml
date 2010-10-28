@@ -32,7 +32,7 @@
         <para>Input argument profile:</para>
         <synopsis>SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr createNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr)</synopsis>
+        <synopsis>SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)</synopsis>
     </refsynopsisdiv>
 	<refsection>
         <title>Parameters</title>

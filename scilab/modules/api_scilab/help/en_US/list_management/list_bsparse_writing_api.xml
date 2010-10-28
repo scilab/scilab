@@ -28,9 +28,9 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)</synopsis>
+        <synopsis>SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)</synopsis>
+        <synopsis>SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>

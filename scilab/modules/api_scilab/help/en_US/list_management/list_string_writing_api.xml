@@ -28,9 +28,9 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>SciErr createMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+        <synopsis>SciErr createMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr createMatrixOfStringInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+        <synopsis>SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>

@@ -32,22 +32,22 @@
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
         <para>Signed integer :</para>
-        <synopsis>SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, char* _pcData8)</synopsis>
-        <synopsis>SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, short* _psData16)</synopsis>
-        <synopsis>SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piData32)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const char* _pcData8)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const short* _psData16)</synopsis>
+        <synopsis>SciErr createMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const int* _piData32)</synopsis>
         <para>Unsigned integer :</para>
-        <synopsis>SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
-        <synopsis>SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
-        <synopsis>SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned char* _pucData8)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned short* _pusData16)</synopsis>
+        <synopsis>SciErr createMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, const unsigned int* _puiData32)</synopsis>
         <para>Named variable profile:</para>
         <para>Signed integer :</para>
-        <synopsis>SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char* _pcData8)</synopsis>
-        <synopsis>SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, short* _psData16)</synopsis>
-        <synopsis>SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piData32)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* _pcData8)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const short* _psData16)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piData32)</synopsis>
         <para>Unsigned integer :</para>
-        <synopsis>SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned char* _pucData8)</synopsis>
-        <synopsis>SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned short* _pusData16)</synopsis>
-        <synopsis>SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, unsigned int* _puiData32)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned short* _pusData16)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned int* _puiData32)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>

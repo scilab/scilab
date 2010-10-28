@@ -30,7 +30,7 @@
         <para>Input argument profile:</para>
         <synopsis>SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)</synopsis>
+        <synopsis>SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddress)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
