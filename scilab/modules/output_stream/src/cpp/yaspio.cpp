@@ -18,6 +18,8 @@ extern "C"
 {
 #include "charEncoding.h"
 #include "MALLOC.h"
+#include "diary.h"
+#include "prompt.h"
 }
 
 static YASP_OUTPUT _writer;
@@ -35,22 +37,38 @@ void setYaspInputMethod(YASP_INPUT reader)
 
 char *YaspRead()
 {
-    return (*_reader)();
+    char* pstTemp = (*_reader)();
+
+    //add prompt to diary
+    static char pstPrompt[PROMPT_SIZE_MAX];
+    GetCurrentPrompt(pstPrompt);
+    wchar_t* pwstPrompt = to_wide_string(pstPrompt);
+    diaryWrite(pwstPrompt, TRUE);
+    FREE(pwstPrompt);
+
+    //add input to diary
+    wchar_t* pwstIn = to_wide_string(pstTemp);
+    diaryWriteln(pwstIn, TRUE);
+    FREE(pwstIn);
+
+    return pstTemp;
 }
 
 void YaspWrite(const char* text)
 {
-    (*_writer)(const_cast<char*>(text));
+    int iMode =  getPromptMode();
+    if(iMode != PROMPTMODE_SILENT)
+    {
+        wchar_t* pwstTemp = to_wide_string(text);
+        diaryWrite(pwstTemp, TRUE);
+        FREE(pwstTemp);
+        (*_writer)(const_cast<char*>(text));
+    }
 }
 
 void YaspWriteW(const wchar_t* text)
 {
-    int iMode =  getPromptMode();
-
-    if(iMode != PROMPTMODE_SILENT)
-    {
-        char* pstTemp = wide_string_to_UTF8(text);
-        (*_writer)(pstTemp);
-        FREE(pstTemp);
-    }
+    char* pstTemp = wide_string_to_UTF8(text);
+    YaspWrite(pstTemp);
+    FREE(pstTemp);
 }

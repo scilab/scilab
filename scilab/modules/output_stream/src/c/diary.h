@@ -25,14 +25,14 @@ extern "C" {
 * @param[in] string to write
 * @param[in] string is a input
 */
-int diaryWrite(wchar_t *wstr, BOOL bInput);
+int diaryWrite(const wchar_t *wstr, BOOL bInput);
 
 /*
 * same as diaryWrite but add carriage return
 * @param[in] string to write
 * @param[in] string is a input
 */
-int diaryWriteln(wchar_t *wstr, BOOL bInput);
+int diaryWriteln(const wchar_t *wstr, BOOL bInput);
 
 #ifdef  __cplusplus
 }

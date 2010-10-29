@@ -448,7 +448,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-OUTPUT_STREAM_CPP_SOURCES = src/cpp/Diary.cpp \
+OUTPUT_STREAM_CPP_SOURCES = \
+	src/cpp/Diary.cpp \
 	src/cpp/yaspio.cpp \
 	src/cpp/DiaryList.cpp \
 	src/cpp/diary_manager.cpp \
@@ -456,6 +457,8 @@ OUTPUT_STREAM_CPP_SOURCES = src/cpp/Diary.cpp \
 	src/cpp/getFullFilename.cpp \
 	src/cpp/scilab_sprintf.cpp
 
+
+#
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_diary.cpp \
 	sci_gateway/cpp/sci_disp.cpp \
@@ -463,68 +466,75 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_msprintf.cpp \
 	sci_gateway/cpp/sci_mprintf.cpp
 
-OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
-				src/c/cerro.c \
-				src/c/Scierror.c \
-				src/c/msgstore.c \
-				src/c/msgout.c \
-				src/c/msgs.c \
-				src/c/msgstxt.c \
-				src/c/basout.c \
-				src/c/sciprint.c \
-				src/c/sciprint_full.c \
-				src/c/errmds.c \
-				src/c/errmsg.c \
-				src/c/error.c \
-				src/c/error_internal.c \
-				src/c/do_xxprintf.c \
-				src/c/set_xxprintf.c
+OUTPUT_STREAM_C_SOURCES = \
+	src/c/erro.c \
+	src/c/cerro.c \
+	src/c/Scierror.c \
+	src/c/msgstore.c \
+	src/c/msgout.c \
+	src/c/msgs.c \
+	src/c/msgstxt.c \
+	src/c/basout.c \
+	src/c/sciprint.c \
+	src/c/sciprint_full.c \
+	src/c/errmds.c \
+	src/c/errmsg.c \
+	src/c/error.c \
+	src/c/error_internal.c \
+	src/c/do_xxprintf.c \
+	src/c/set_xxprintf.c
 
-OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
-		src/fortran/wmdsp.f \
-		src/fortran/strdsp.f \
-		src/fortran/prntid.f \
-		src/fortran/print.f \
-		src/fortran/lspdsp.f \
-		src/fortran/fmttyp.f \
-		src/fortran/fmt.f \
-		src/fortran/dspdsp.f \
-		src/fortran/dmrdsp.f \
-		src/fortran/dmpdsp.f \
-		src/fortran/dmdspf.f \
-		src/fortran/dmdsp.f \
-		src/fortran/dldsp.f \
-		src/fortran/basouttofile.f \
-		src/fortran/formatnumber.f
+OUTPUT_STREAM_FORTRAN_SOURCES = \
+	src/fortran/wspdsp.f \
+	src/fortran/wmdsp.f \
+	src/fortran/strdsp.f \
+	src/fortran/prntid.f \
+	src/fortran/print.f \
+	src/fortran/lspdsp.f \
+	src/fortran/fmttyp.f \
+	src/fortran/fmt.f \
+	src/fortran/dspdsp.f \
+	src/fortran/dmrdsp.f \
+	src/fortran/dmpdsp.f \
+	src/fortran/dmdspf.f \
+	src/fortran/dmdsp.f \
+	src/fortran/dldsp.f \
+	src/fortran/basouttofile.f \
+	src/fortran/formatnumber.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
-		sci_gateway/c/sci_print.c
+GATEWAY_C_SOURCES = \
+	sci_gateway/c/gw_output_stream.c \
+	sci_gateway/c/sci_print.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f \
-			sci_gateway/fortran/intdisp.f
+GATEWAY_FORTRAN_SOURCES = \
+	sci_gateway/fortran/intprint.f \
+	sci_gateway/fortran/intdisp.f
 
-libscioutput_stream_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/core/includes \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/shell/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/operations/includes
+libscioutput_stream_la_CFLAGS = \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/shell/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/operations/includes
 
-libscioutput_stream_la_CPPFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/core/includes \
--I$(srcdir)/src/cpp/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/types/includes \
--I$(top_srcdir)/modules/functions_manager/includes \
--I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/abstractSyntaxTree/includes \
--I$(top_srcdir)/modules/system_env/includes
+libscioutput_stream_la_CPPFLAGS = \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(srcdir)/src/cpp/ \
+	-I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/shell/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 @GUI_TRUE@USEANT = 1
