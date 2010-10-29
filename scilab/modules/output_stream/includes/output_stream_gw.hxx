@@ -33,7 +33,8 @@ public :
   OUTPUT_STREAM_IMPEXP_GW static bool Load();
 };
 
-Function::ReturnValue sci_disp(types::typed_list &in, int _iRetCount, types::typed_list &out);
-Function::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount, types::typed_list &out);
+CPP_GATEWAY_PROTOTYPE(sci_disp);
+CPP_GATEWAY_PROTOTYPE(sci_msprintf);
+CPP_GATEWAY_PROTOTYPE(sci_mprintf);
 
 #endif /* !__OUTPUTSTREAM_GW_HXX__ */

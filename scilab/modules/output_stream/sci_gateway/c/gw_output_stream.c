@@ -21,7 +21,7 @@
 static gw_generic_table Tab[]=
 { 
 	{sci_print, "print"},
-	{sci_mprintf, "mprintf"},
+	{NULL, ""}, //mprintf
 	{NULL, ""}, //msprintf
 	{NULL, ""}, //disp
 	{NULL, ""} //diary

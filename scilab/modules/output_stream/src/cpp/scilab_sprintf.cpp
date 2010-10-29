@@ -56,6 +56,13 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 if(pwstEnd[1] == L'%')
                 {//manage "%%"
                     pwstEnd = wcsstr(pwstEnd + 2, L"%");
+                    if(pwstEnd == NULL)
+                    {//end of string
+                        iStart  = pwstStart - _pwstInput;
+                        iEnd = wcslen(_pwstInput);
+                        bFinish = true;
+                        continue;
+                    }
                 }
 
                 iStart  = pwstStart - _pwstInput;

@@ -18,5 +18,6 @@ bool OutputStreamModule::Load()
 {
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"disp", &sci_disp, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"msprintf", &sci_msprintf, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mprintf", &sci_mprintf, MODULE_NAME));
   return true;
 }

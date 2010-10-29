@@ -20,7 +20,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_diary.cpp \
 	sci_gateway/cpp/sci_disp.cpp \
 	sci_gateway/cpp/output_stream_gw.cpp \
-	sci_gateway/cpp/sci_msprintf.cpp
+	sci_gateway/cpp/sci_msprintf.cpp \
+	sci_gateway/cpp/sci_mprintf.cpp
 
 OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/cerro.c \
@@ -58,8 +59,7 @@ OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
-		sci_gateway/c/sci_print.c \
-		sci_gateway/c/sci_mprintf.c
+		sci_gateway/c/sci_print.c
 
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f \
