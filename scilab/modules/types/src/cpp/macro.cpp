@@ -18,6 +18,8 @@
 #include "localization.h"
 #include "yaspio.hxx"
 #include "scilabexception.hxx"
+#include "configvariable.hxx"
+#include "mutevisitor.hxx"
 
 extern "C"
 {
@@ -168,6 +170,11 @@ namespace types
 
         try
         {
+
+            m_body->mute();
+            MuteVisitor mute;
+            m_body->accept(mute);
+
             m_body->returnable_set();
             m_body->accept(*execFunc);
             if(m_body->is_return())
