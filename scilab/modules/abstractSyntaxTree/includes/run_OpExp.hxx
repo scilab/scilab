@@ -67,7 +67,7 @@ void visitprivate(const OpExp &e)
                     if(iResult != 0)
                     {
                         std::wostringstream os;
-                        os << L"inconsistent row/column dimensions";
+                        os << L"inconsistent row/column dimensions\n";
                         //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                         throw ScilabError(os.str(), 999, e.right_get().location_get());
                     }
@@ -87,7 +87,7 @@ void visitprivate(const OpExp &e)
                     if(iResult != 0)
                     {
                         std::wostringstream os;
-                        os << L"inconsistent row/column dimensions";
+                        os << L"inconsistent row/column dimensions\n";
                         //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                         throw ScilabError(os.str(), 999, e.right_get().location_get());
                     }
@@ -105,7 +105,7 @@ void visitprivate(const OpExp &e)
                     if(iResult != 0)
                     {
                         std::wostringstream os;
-                        os << L"inconsistent row/column dimensions";
+                        os << L"inconsistent row/column dimensions\n";
                         //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                         throw ScilabError(os.str(), 999, e.right_get().location_get());
                     }
@@ -120,7 +120,7 @@ void visitprivate(const OpExp &e)
                     if(iResult != 0)
                     {
                         std::wostringstream os;
-                        os << L"inconsistent row/column dimensions";
+                        os << L"inconsistent row/column dimensions\n";
                         //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                         throw ScilabError(os.str(), 999, e.right_get().location_get());
                     }
@@ -137,7 +137,7 @@ void visitprivate(const OpExp &e)
                         if(iResult == 1)
                         {
                             std::wostringstream os;
-                            os << L"inconsistent row/column dimensions";
+                            os << L"inconsistent row/column dimensions\n";
                             //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
                             throw ScilabError(os.str(), 999, e.right_get().location_get());
                         }

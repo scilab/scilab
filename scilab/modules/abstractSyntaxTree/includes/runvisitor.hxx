@@ -425,7 +425,7 @@ namespace ast
                 if(iColMax != static_cast<int>((*row)->columns_get().size()))
                 {
                     std::wostringstream os;
-                    os << L"inconsistent row/column dimensions";
+                    os << L"inconsistent row/column dimensions\n";
                     //os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
                     throw ScilabError(os.str(), 999, (*row)->location_get());
                 }
@@ -697,7 +697,7 @@ namespace ast
                     if(ResultList.size() == 0)
                     {
                         std::wostringstream os;
-                        os << L"inconsistent row/column dimensions";
+                        os << L"inconsistent row/column dimensions\n";
                         //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
                         throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                     }

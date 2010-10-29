@@ -34,6 +34,13 @@ void visitprivate(const CallExp &e)
         for (j = 0, itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp,j++)
         {
             (*itExp)->accept (execVar[j]);
+
+            if(execVar[j].result_get() == NULL)
+            {
+                //special case for empty extraction of list ( list()(:) )
+                continue;
+            }
+
             if(execVar[j].result_get()->getType() == InternalType::RealImplicitList)
             {
                 ImplicitList* pIL = execVar[j].result_get()->getAsImplicitList();
@@ -99,7 +106,10 @@ void visitprivate(const CallExp &e)
 
             for (unsigned int k = 0; k < e.args_get().size(); k++)
             {
-                execVar[k].result_get()->DecreaseRef();
+                if(execVar[k].result_get() != NULL)
+                {
+                    execVar[k].result_get()->DecreaseRef();
+                }
             }
 
             //std::cout << "before delete[]" << std::endl;
@@ -331,7 +341,7 @@ void visitprivate(const CallExp &e)
             if(pOut == NULL)
             {
                 std::wostringstream os;
-                os << L"inconsistent row/column dimensions";
+                os << L"inconsistent row/column dimensions\n";
                 //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
                 throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
             }
@@ -341,10 +351,17 @@ void visitprivate(const CallExp &e)
         {
             if(ResultList.size() == 0)
             {
-                std::wostringstream os;
-                os << L"inconsistent row/column dimensions";
-                //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
-                throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                if(pIT->isList())
+                {
+                    result_set(NULL);
+                }
+                else
+                {
+                    std::wostringstream os;
+                    os << L"inconsistent row/column dimensions\n";
+                    //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                }
             }
         }
     }

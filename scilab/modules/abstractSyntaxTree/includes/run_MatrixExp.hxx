@@ -85,7 +85,7 @@ void visitprivate(const MatrixExp &e)
                     else if(iCurRow != ((GenericType*)execMe->result_get())->rows_get() && ((GenericType*)execMe->result_get())->rows_get() != 0)
                     {
                         std::wostringstream os;
-                        os << L"inconsistent row/column dimensions";
+                        os << L"inconsistent row/column dimensions\n";
                         //os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
                         throw ScilabError(os.str(), 999, (*row)->location_get());
                     }
@@ -113,7 +113,7 @@ void visitprivate(const MatrixExp &e)
                     else if(iCols != 0 && iCols != iCurCol)
                     {
                         std::wostringstream os;
-                        os << L"inconsistent row/column dimensions";
+                        os << L"inconsistent row/column dimensions\n";
                         //os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
                         throw ScilabError(os.str(), 999, (*row)->location_get());
                     }
