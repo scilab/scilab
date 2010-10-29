@@ -368,7 +368,7 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
          else
 		case "$host_os" in
 		     *darwin* ) 
-		     	      ac_java_jvm_jni_include_flags="-I$ac_java_jvm_dir/Headers/"
+		     	      ac_java_jvm_jni_include_flags="-I/System/Library/Frameworks/JavaVM.framework/Headers"
 			      ;;
 		      *)
 	                   AC_MSG_ERROR([Could not locate Java's jni.h include file])
@@ -401,7 +401,7 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
             #include <jni.h>
         ],[return 0;],
         ac_cv_java_jvm_jni_working=yes,
-        AC_MSG_ERROR([could not compile file that includes jni.h]))
+        AC_MSG_ERROR([could not compile file that includes jni.h. If you run Mac OS X please make sure you have 'Java developer package'. This is available on http://connect.apple.com/ ]))
         AC_LANG_POP()
         CFLAGS=$ac_saved_cflags
     ])
@@ -558,15 +558,16 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
             AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
                 AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
-				libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
+		libSymbolToTest="JNI_CreateJavaVM"
+
 
                 D=`dirname $ac_java_jvm_dir/$F`
                 ac_java_jvm_jni_lib_runtime_path=$D
-                ac_java_jvm_jni_lib_flags="-L$D -ljvm"
+                ac_java_jvm_jni_lib_flags="-framework JavaVM"
 
                 D=$ac_java_jvm_dir/jre/lib/i386/server
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
-                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -framework JavaVM"
             fi
         fi
 

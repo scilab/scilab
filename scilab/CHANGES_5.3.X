@@ -90,6 +90,9 @@ Compilation:
 
 * bug 8013 fixed - In some cases, the build of the compiler of modelica failed.
 
+* bug 8274 fixed - Improve detection of Java regarding Apple changes:
+      	           Java for Mac OS X 10.6 Update 3 and 10.5 Update 8 Release
+                   Notes
 
 Bug Fixes:
 ==========
