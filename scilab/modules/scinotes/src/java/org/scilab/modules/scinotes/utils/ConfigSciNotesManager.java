@@ -59,6 +59,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 /**
@@ -1407,7 +1408,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
 
         return files;
@@ -1435,7 +1436,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
 
         return dirsList;
@@ -1453,7 +1454,7 @@ public final class ConfigSciNotesManager {
         newDir.setAttribute(PATH, path);
         root.appendChild((Node) newDir);
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1470,7 +1471,7 @@ public final class ConfigSciNotesManager {
             root.removeChild(dirs.item(dirs.getLength() - 1));
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1503,7 +1504,7 @@ public final class ConfigSciNotesManager {
         newFile.setAttribute(PATH, filePath);
         root.appendChild((Node) newFile);
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1545,6 +1546,8 @@ public final class ConfigSciNotesManager {
         } else {
             restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
         }
+
+        clean(root);
         writeDocument();
     }
 
@@ -1567,7 +1570,6 @@ public final class ConfigSciNotesManager {
                 if (temp.exists()) {
                     count++;
                 }
-                writeDocument();
             }
         }
         return count;
@@ -1603,7 +1605,8 @@ public final class ConfigSciNotesManager {
                     }
                 }
             }
-            /* Save any changes */
+
+            clean(root);
             writeDocument();
         }
         return files;
@@ -1660,7 +1663,7 @@ public final class ConfigSciNotesManager {
         newFile.setAttribute(PANEINST_EX, nil.toString());
         root.appendChild((Node) newFile);
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1706,7 +1709,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1814,7 +1817,8 @@ public final class ConfigSciNotesManager {
             Element style = (Element) openFiles.item(i);
             root.removeChild((Node) style);
         }
-        /* Save changes */
+
+        clean(root);
         writeDocument();
     }
 
@@ -1946,7 +1950,7 @@ public final class ConfigSciNotesManager {
         newSearch.setAttribute(EXPRESSION, exp);
         recents.appendChild((Node) newSearch);
 
-        /* Save changes */
+        clean(recents);
         writeDocument();
     }
 
@@ -1969,7 +1973,8 @@ public final class ConfigSciNotesManager {
                 break;
             }
         }
-        /* Save changes */
+
+        clean(recent);
         writeDocument();
 
     }
@@ -2029,7 +2034,7 @@ public final class ConfigSciNotesManager {
         newReplace.setAttribute(EXPRESSION, exp);
         recent.appendChild((Node) newReplace);
 
-        /* Save changes */
+        clean(recent);
         writeDocument();
     }
 
@@ -2054,7 +2059,8 @@ public final class ConfigSciNotesManager {
             }
 
         }
-        /* Save changes */
+
+        clean(recent);
         writeDocument();
 
     }
@@ -2270,5 +2276,20 @@ public final class ConfigSciNotesManager {
             }
         }
         return null;
+    }
+
+    /**
+     * Remove text at the beginning and at the end
+     * @param r the element to clean
+     */
+    private static void clean(Node r) {
+        Node n = r.getFirstChild();
+        if (n != null && n instanceof Text) {
+            r.removeChild(n);
+        }
+        n = r.getLastChild();
+        if (n != null && n instanceof Text) {
+            r.removeChild(n);
+        }
     }
 }
