@@ -199,6 +199,9 @@ Bug Fixes:
 
 * bug 8300 fixed - a(48400, 48400) = 0 crashed scilab.
 
+* bug 8318 fixed - help window was not brought up to front when already opened.
+
+
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
 
