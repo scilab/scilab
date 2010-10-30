@@ -407,6 +407,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     }
                 }
             }
+        } else {
+            final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, getEditor().getTabPane());
+            window.setVisible(true);
+            window.toFront();
         }
 
         return editor;
