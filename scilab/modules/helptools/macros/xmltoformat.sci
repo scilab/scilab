@@ -1175,7 +1175,7 @@ function desc_out = x2f_read_CHAPTER(file_in)
 
         // Second case : Current field continuation
         if (regexp(FILETOPARSE(i),"/^\s/","o") == 1) & (current_field <> "") then
-            current_value = part(CHAPTER(i),2:length(CHAPTER(i)));
+            current_value = part(FILETOPARSE(i),2:length(FILETOPARSE(i)));
             desc_out(current_field) = [ desc_out(current_field) ; current_value ];
             continue;
         end
