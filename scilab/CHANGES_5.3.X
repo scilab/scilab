@@ -326,6 +326,9 @@ Bug Fixes:
 
 * bug 8318 fixed - help window was not brought up to front when already opened.
 
+* bug 8321 fixed - in some cases, configure_msvc failed and returned a wrong 
+                   error message.
+
 * bug 8332 fixed - Some use of clipboard function crashed Scilab.
 
 
