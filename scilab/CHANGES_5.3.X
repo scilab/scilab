@@ -38,6 +38,8 @@ Xcos:
 
 * bug 8291 fixed - Some blocks (PDE, SQRT) did not display any label.
 
+* bug 8322 fixed - Rotated shape had 2 different bounds (icon and shape).
+
 * bug 8326 fixed - Region to superblock action did not work with OUT_f blocks.
 
 Graphic export:
