@@ -36,8 +36,9 @@ Xcos:
 
 * bug 8220 fixed - Improve the link creation with split block adding.
 
-
 * bug 8291 fixed - Some blocks (PDE, SQRT) did not display any label.
+
+* bug 8326 fixed - Region to superblock action did not work with OUT_f blocks.
 
 Graphic export:
 ===============
