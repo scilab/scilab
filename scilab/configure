@@ -11446,7 +11446,7 @@ public class conftest {
         String minVersion="1.4.1.0";
 
                             System.out.println(mxGraph.VERSION);
-                                  if (minVersion.compareTo(mxGraph.VERSION) < 0) {
+                                  if (minVersion.compareTo(mxGraph.VERSION) > 0) {
                                    System.exit(-1);
                                 }
 
@@ -11664,7 +11664,7 @@ public class conftest {
         String minVersion="0.5.2";
 
                             System.out.println(Utilities.VERSION);
-                                  if (minVersion.compareTo(Utilities.VERSION) < 0) {
+                                  if (minVersion.compareTo(Utilities.VERSION) > 0) {
                                    System.exit(-1);
                                 }
 
@@ -13330,7 +13330,7 @@ public class conftest {
         String minVersion="1.7";
 
                             System.out.println(Version.getVersion());
-                                  if (minVersion.compareTo(Version.getVersion()) < 0) {
+                                  if (minVersion.compareTo(Version.getVersion()) > 0) {
                                    System.exit(-1);
                                 }
 
@@ -14194,7 +14194,7 @@ public class conftest {
         String minVersion="0.9.3";
 
                             System.out.println(TeXFormula.VERSION);
-                                  if (minVersion.compareTo(TeXFormula.VERSION) < 0) {
+                                  if (minVersion.compareTo(TeXFormula.VERSION) > 0) {
                                    System.exit(-1);
                                 }
 
@@ -19032,7 +19032,7 @@ public class conftest {
                 String ver = vers[0] + "."+ vers[1] +"."+vers[2];
 
                             System.out.println(ver);
-                                  if (minVersion.compareTo(ver) < 0) {
+                                  if (minVersion.compareTo(ver) > 0) {
                                    System.exit(-1);
                                 }
 
