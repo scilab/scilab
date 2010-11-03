@@ -247,6 +247,7 @@ Bug Fixes:
 
 * bug 8318 fixed - help window was not brought up to front when already opened.
 
+* bug 8332 fixed - Some use of clipboard function crashed Scilab.
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
