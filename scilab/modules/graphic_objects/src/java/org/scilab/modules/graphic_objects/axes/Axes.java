@@ -13,6 +13,8 @@
 
 package org.scilab.modules.graphic_objects.axes;
 
+import java.util.ArrayList;
+
 import org.scilab.modules.graphic_objects.arc.Arc.ArcDrawingMethod;
 import org.scilab.modules.graphic_objects.arc.Arc.ArcProperty;
 import org.scilab.modules.graphic_objects.axes.AxisProperty.AxisLocation;
@@ -30,9 +32,8 @@ import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipSt
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
-
-import java.util.ArrayList;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -41,8 +42,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * @author Manuel JULIACHS
  */
 public class Axes extends GraphicObject {
-
-    /** Axes properties names */
+	/** Axes properties names */
 	private enum AxesProperty {
 		XAXISVISIBLE, XAXISREVERSE, XAXISGRIDCOLOR, XAXISLABEL, XAXISLOCATION, XAXISLOGFLAG,
 		XAXISTICKS, XAXISAUTOTICKS, XAXISNUMBERTICKS, XAXISTICKSLOCATIONS, XAXISTICKSLABELS, XAXISSUBTICKS,
@@ -158,22 +158,52 @@ public class Axes extends GraphicObject {
 	}
 
 	public Axes clone() {
-	    Axes copy = (Axes) super.clone();
+		Axes copy = (Axes) super.clone();
 
-	    for (int i = 0; i < axes.length; i++) {
-	        String label = GraphicController.getController().cloneObject(axes[i].getLabel());
-	        copy.axes[i].setLabel(label);
-	    }
+		AxisProperty [] newAxes = new AxisProperty[3];
 
-	    return copy;
+		for (int i = 0; i < axes.length; i++) {
+			newAxes[i] = new AxisProperty(axes[i]);
+		}
+
+		copy.axes = newAxes;
+
+		String newTitle = GraphicController.getController().cloneObject(title);
+		copy.setTitle(newTitle);
+
+		copy.camera = new Camera(this.camera);
+		copy.box = new Box(this.box);
+
+		double [] newMargins = new double[4];
+
+		for (int i = 0; i < this.margins.length; i++) {
+			newMargins[i] = this.margins[i];
+		}
+
+		copy.margins = newMargins;
+
+		double [] newAxesBounds = new double[4];
+
+		for(int i = 0; i < this.axesBounds.length; i++) {
+			newAxesBounds[i] = this.axesBounds[i];
+		}
+
+		copy.axesBounds = newAxesBounds;
+
+		copy.line = new Line(this.line);
+		copy.mark = new Mark(this.mark);
+
+		copy.clipProperty = new ClippableProperty(this.clipProperty);
+
+		return copy;
 	}
 
-    @Override
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
+	@Override
+	public void accept(IVisitor visitor) {
+		visitor.visit(this);
+	}
 
-    /**
+	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum
@@ -1444,13 +1474,13 @@ public class Axes extends GraphicObject {
 		this.hiddenColor = hiddenColor;
 	}
 
-    /**
-     * Return the lines propeties.
-     * @return the lines propeties.
-     */
-    public Line getLine() {
-        return line;
-    }
+	/**
+	 * Returns the line property
+	 * @return the line property
+	 */
+	public Line getLine() {
+		return line;
+	}
 
 	/**
 	 * @return the line mode

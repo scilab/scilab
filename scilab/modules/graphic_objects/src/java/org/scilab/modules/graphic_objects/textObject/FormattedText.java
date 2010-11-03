@@ -28,7 +28,7 @@ public class FormattedText {
 
 	/** Constructor */
 	public FormattedText() {
-		text = null;
+		text = "";
 		font = new Font();
 	}
 
@@ -38,7 +38,7 @@ public class FormattedText {
 	 */
 	public FormattedText(FormattedText formText) {
 		this.text = new String(formText.getText());
-		this.font = formText.getFont();
+		this.font = new Font(formText.getFont());
 	}
 
 	/**

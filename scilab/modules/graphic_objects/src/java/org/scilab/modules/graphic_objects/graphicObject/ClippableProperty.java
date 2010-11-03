@@ -61,6 +61,22 @@ public class ClippableProperty {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param clippableProperty the ClippableProperty to copy
+	 */
+	public ClippableProperty(ClippableProperty clippableProperty) {
+		clipState = clippableProperty.clipState;
+
+		clipBox = new double[4];
+
+		for(int i = 0; i < clipBox.length; i++) {
+			clipBox[i] = clippableProperty.clipBox[i];
+		}
+
+		clipBoxSet = clippableProperty.clipBoxSet;
+	}
+
+	/**
 	 * @return the clipBox
 	 */
 	public Double[] getClipBox() {

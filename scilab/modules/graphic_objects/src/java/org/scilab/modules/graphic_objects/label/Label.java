@@ -51,12 +51,26 @@ public class Label extends TextObject {
 		setTextStrings(textStrings);
 	}
 
-    @Override
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
+	/**
+	 * Clone method
+	 */
+        public Label clone() {
+                Label copy = (Label) super.clone();
 
-    /**
+		copy.position = new double[3];
+		for (int i = 0; i < position.length; i++) {
+			copy.position[i] = position[i];
+		}
+
+		return copy;
+	}
+
+	@Override
+	public void accept(IVisitor visitor) {
+		visitor.visit(this);
+	}
+
+	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

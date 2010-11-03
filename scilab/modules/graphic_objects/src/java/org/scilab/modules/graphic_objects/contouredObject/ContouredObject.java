@@ -48,8 +48,12 @@ public abstract class ContouredObject extends GraphicObject {
 	}
 
 	public ContouredObject clone() {
-	    ContouredObject copy = (ContouredObject) super.clone();
-	    return copy;
+		ContouredObject copy = (ContouredObject) super.clone();
+
+		copy.line = new Line(line);
+		copy.mark = new Mark(mark);
+
+		return copy;
 	}
 	
 	/**

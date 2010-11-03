@@ -65,7 +65,7 @@ public class AxisProperty {
 			}
 		}
 	}
-	
+
 	/** Specifies whether the axis is visible or not */
 	private boolean visible;
 	
@@ -101,7 +101,24 @@ public class AxisProperty {
 		ticks = new TicksProperty();
 		logFlag = false;
 	}
-	
+
+	/**
+	 * Copy constructor
+	 * @param axisProperty the AxisProperty to copy
+	 */
+	public AxisProperty(AxisProperty axisProperty) {
+		visible = axisProperty.visible;
+		reverse = axisProperty.reverse;
+		gridColor = axisProperty.gridColor;
+
+		String newLabel = GraphicController.getController().cloneObject(axisProperty.label);
+		label = newLabel;
+
+		axisLocation = axisProperty.axisLocation;
+		ticks = new TicksProperty(axisProperty.ticks);
+		logFlag = axisProperty.logFlag;
+	}
+
 	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name

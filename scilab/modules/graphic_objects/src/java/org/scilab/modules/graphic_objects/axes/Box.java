@@ -88,6 +88,39 @@ public class Box {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param box the Box to copy
+	 */
+	public Box(Box box) {
+		this.box = box.box;
+		hiddenAxisColor = box.hiddenAxisColor;
+		tightLimits = box.tightLimits;
+
+		dataBounds = new double[6];
+
+		for (int i = 0; i < dataBounds.length; i++) {
+			dataBounds[i] = box.dataBounds[i];
+		}
+
+		realDataBounds = new double[6];
+
+		for (int i = 0; i < realDataBounds.length; i++) {
+			realDataBounds[i] = box.realDataBounds[i];
+		}
+
+		zoomEnabled = box.zoomEnabled;
+
+		zoomBox = new double[6];
+
+		for (int i = 0; i < zoomBox.length; i++) {
+			zoomBox[i] = box.zoomBox[i];
+		}
+
+		autoScale = box.autoScale;
+		firstPlot = box.firstPlot;
+	}
+
+	/**
 	 * @return the autoScale
 	 */
 	public Boolean getAutoScale() {

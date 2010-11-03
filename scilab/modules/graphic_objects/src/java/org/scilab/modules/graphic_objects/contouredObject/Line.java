@@ -77,7 +77,7 @@ public class Line {
                     return (short) 0x3FC6; // 3 blanks, 8 solids, 3 blanks, 2 solids
                 case STYLE6:
                     return (short) 0x5555; // (1 blank, 1 solid) x 8
-                case STYLE7:
+		case STYLE7:
                     return (short) 0x3333; // (2 blanks, 2 solids) x 4
 
                 default:
@@ -105,6 +105,17 @@ public class Line {
 		lineStyle = LineType.SOLID;
 		thickness = 0.0;
 		color = 0;
+	}
+
+	/**
+         * Copy constructor
+	 * @param line the Line to copy
+	 */
+	public Line(Line line) {
+		mode = line.mode;
+		lineStyle = line.lineStyle;
+		thickness = line.thickness;
+		color = line.color;
 	}
 
 	/**

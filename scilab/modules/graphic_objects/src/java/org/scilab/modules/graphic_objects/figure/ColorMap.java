@@ -30,6 +30,21 @@ public class ColorMap {
     Double[] data = new Double[0];
 
     /**
+     * Default constructor
+     */
+    public ColorMap() {
+
+    }
+
+    /**
+     * Copy constructor
+     * @param colorMap the ColorMap to copy
+     */
+    public ColorMap(ColorMap colorMap) {
+        setData(colorMap.data);
+    }
+
+    /**
      * Return a copy of the data of this color map.
      * @return a copy of the data of this color map.
      */

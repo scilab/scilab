@@ -49,12 +49,29 @@ public class TextObject extends ContouredObject {
 		text[0] = new FormattedText();
 	}
 
-    @Override
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
+	/**
+	 * Clone method
+	 */
+        public TextObject clone() {
+		TextObject copy = (TextObject) super.clone();
 
-    /**
+		copy.dimensions = new int[2];
+		copy.dimensions[0] = dimensions[0];
+		copy.dimensions[1] = dimensions[1];
+		copy.text = new FormattedText[dimensions[0]*dimensions[1]];
+
+		/* Actually copies the FormattedText objects */
+		copy.setText(text);
+
+		return copy;
+	}
+
+	@Override
+	public void accept(IVisitor visitor) {
+		visitor.visit(this);
+	}
+
+	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

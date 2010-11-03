@@ -43,6 +43,17 @@ public class Font {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param
+	 */
+	public Font(Font font) {
+		style = font.style;
+		size = font.size;
+		color = font.color;
+		fractional = font.fractional;
+	}
+
+	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum

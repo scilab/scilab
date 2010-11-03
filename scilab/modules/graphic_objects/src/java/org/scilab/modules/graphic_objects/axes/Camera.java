@@ -61,6 +61,21 @@ public class Camera {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param camera the Camera to copy
+	 */
+	public Camera(Camera camera) {
+		view = camera.view;
+		isoview = camera.isoview;
+		cubeScaling = camera.cubeScaling;
+
+		rotationAngles = new double[2];
+
+		rotationAngles[0] = camera.rotationAngles[0];
+		rotationAngles[1] = camera.rotationAngles[1];
+	}
+
+	/**
 	 * @return the cubeScaling
 	 */
 	public Boolean getCubeScaling() {

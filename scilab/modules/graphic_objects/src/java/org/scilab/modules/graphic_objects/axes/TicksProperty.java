@@ -58,6 +58,28 @@ public class TicksProperty {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param ticksProperty the TicksProperty to copy
+	 */
+	public TicksProperty(TicksProperty ticksProperty) {
+		auto = ticksProperty.auto;
+
+		locations = new double[ticksProperty.locations.length];
+
+		for (int i = 0; i < locations.length; i++) {
+			locations[i] = ticksProperty.locations[i];
+		}
+
+		labels = new ArrayList<FormattedText>(0);
+
+		/* Copies the ticksProperty.labels ArrayList into the new TicksProperty's one */
+		setLabels(ticksProperty.labels);
+
+		number = ticksProperty.number;
+		subticks = ticksProperty.subticks;
+	}
+
+	/**
 	 * @return the auto
 	 */
 	public Boolean getAuto() {

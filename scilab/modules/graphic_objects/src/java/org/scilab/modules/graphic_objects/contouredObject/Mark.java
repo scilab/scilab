@@ -70,6 +70,18 @@ public class Mark {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param mark the Mark to copy
+	 */
+	public Mark(Mark mark) {
+		mode = mark.mode;
+		style = mark.style;
+		markSizeUnit = mark.markSizeUnit;
+		foreground = mark.foreground;
+		background = mark.background;
+	}
+
+	/**
 	 * @return the background
 	 */
 	public Integer getBackground() {

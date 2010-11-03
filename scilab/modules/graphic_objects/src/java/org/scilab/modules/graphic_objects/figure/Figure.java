@@ -21,8 +21,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * @author Manuel JULIACHS
  */
 public class Figure extends GraphicObject {
-
-    /** Figure properties names */
+	/** Figure properties names */
 	private enum FigureProperty {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE,
 		BACKGROUND, TAG, ROTATIONTYPE
@@ -117,6 +116,20 @@ public class Figure extends GraphicObject {
 			position = new int[2];
 			size = new int[2];
 		}
+
+		/**
+		 * Copy constructor
+		 * @param figureDimensions the FigureDimensions to copy
+		 */
+		public FigureDimensions(FigureDimensions figureDimensions) {
+			this.position = new int[2];
+			this.position[0] = figureDimensions.position[0];
+			this.position[1] = figureDimensions.position[1];
+
+			this.size = new int[2];
+			this.size[0] = figureDimensions.size[0];
+			this.size[1] = figureDimensions.size[1];
+		}
 	}
 
 	/** CanvasProperty properties names */
@@ -143,6 +156,24 @@ public class Figure extends GraphicObject {
 			viewport = new int[2];
 			axesSize = new int[2];
 		}
+
+		/**
+		 * Copy constructor
+		 * @param canvas the Canvas to copy
+		 */
+		public Canvas(Canvas canvas) {
+			this.autoResize = canvas.autoResize;
+
+			this.viewport = new int[2];
+
+			this.viewport[0] = canvas.viewport[0];
+			this.viewport[1] = canvas.viewport[1];
+
+			this.axesSize = new int[2];
+
+			this.axesSize[0] = canvas.axesSize[0];
+			this.axesSize[1] = canvas.axesSize[1];
+		}
 	}
 
 	/** FigureName properties names */
@@ -159,8 +190,35 @@ public class Figure extends GraphicObject {
 		private int id;
 
 		public FigureName clone() throws CloneNotSupportedException {
-		    return (FigureName) super.clone();
+			FigureName copy;
+
+		//    return (FigureName) super.clone();
+
+			copy = (FigureName) super.clone();
+
+			copy.name = new String(this.name);
+			copy.id = this.id;
+
+			return copy;
 		}
+
+		/**
+		 * Default constructor
+		 */
+		public FigureName() {
+			name = "";
+			id = 0;
+		}
+
+		/**
+		 * Copy constructor
+		 * @param figureName the FigureName to copy
+		 */
+		public FigureName(FigureName figureName) {
+			name = new String(figureName.name);
+			id = figureName.id;
+		}
+
 	}
 
 	/** RenderingMode properties names */
@@ -192,6 +250,17 @@ public class Figure extends GraphicObject {
 			immediateDrawing = true;
 		}
 
+		/**
+		 * Copy constructor
+		 * @param renderingMode the RenderingMode to copy
+		 */
+		public RenderingMode(RenderingMode renderingMode) {
+			pixmap = renderingMode.pixmap;
+			pixelDrawingMode = renderingMode.pixelDrawingMode;
+			antialiasing = renderingMode.antialiasing;
+			immediateDrawing = renderingMode.immediateDrawing;
+		}
+
 	}
 
 	/** EventHandler properties names */
@@ -206,6 +275,23 @@ public class Figure extends GraphicObject {
 
 		/** Specifies whether the event handler is enabled or not */
 		private Boolean eventHandlerEnabled = false;
+
+		/**
+		 * Default constructor
+		 */
+		public EventHandler() {
+			eventHandler = "";
+			eventHandlerEnabled = false;
+		}
+
+		/**
+		 * Copy constructor
+		 * @param eventHandler the EventHandler to copy
+		 */
+		public EventHandler(EventHandler eventHandler) {
+			this.eventHandler = eventHandler.eventHandler;
+			this.eventHandlerEnabled = eventHandler.eventHandlerEnabled;
+		}
 	}
 
 	/** Figure dimensions */
@@ -266,16 +352,25 @@ public class Figure extends GraphicObject {
 	    //copy.figureName = (FigureName) this.figureName.clone();
 	    //} catch (CloneNotSupportedException e) {
         //    e.printStackTrace();
-        //}	    
+        //}
+
+
+	    copy.dimensions = new FigureDimensions(this.dimensions);
+	    copy.canvas = new Canvas(this.canvas);
+	    copy.figureName = new FigureName(this.figureName);
+	    copy.colorMap = new ColorMap(this.colorMap);
+	    copy.renderingMode = new RenderingMode(this.renderingMode);
+	    copy.eventHandler = new EventHandler(this.eventHandler);
+
 	    return copy;
 	}
 
-    @Override
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
+	@Override
+	public void accept(IVisitor visitor) {
+		visitor.visit(this);
+	}
 
-    /**
+	/**
 	 * Returns the enum associated to a property name
 	 * @param propertyName the property name
 	 * @return the property enum
