@@ -338,16 +338,16 @@ scilab -l ja_JP
     </variablelist>
 
     <para>Many more options are available. They can improve the performances,
-    change look and feel, change memory managements... See: <link
-    url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</link>
-    or <link
-    url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</link></para>
+    change look and feel, change memory managements... See: <ulink
+    url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</ulink>
+    or <ulink
+    url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</ulink></para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 # Let's start Scilab in profiling mode without attaching a gdb one a SIGSEGV is meet.
 # We are under Bash shell
 export SCILAB_VALGRIND_OPT="--deb-attach=no --log-file=myfile.txt"
@@ -355,14 +355,14 @@ scilab -profiling
 
 # Let's start Scilab in debug mode without stopping after each SIGSEGV
 # First, we write a small command file
-echo "handle SIGSEGV nostop" &amp;gt; debug.txt
+echo "handle SIGSEGV nostop" &> debug.txt
 # Now set the custom option
 # We are under Bash shell
 export SCILAB_GDB_OPT="--command=debug.txt"
 # Start Scilab in debug mode
-scilab -debug</programlisting>
+scilab -debug]]></programlisting>
 
-    <programlisting role="example-cli">
+    <programlisting role="example-cli"><![CDATA[
 # Under GNU/Linux, Mac OS X or Unix:
 $ echo "disp(%pi)"|scilab-cli
 or
@@ -375,8 +375,8 @@ $ scilab -nw -e "help()"
 
 
 # Scilab can be used for scripting aspects:
-echo "if 1&lt;&gt;2 then exit(99) end"|scilab-cli
-echo $? </programlisting>
+echo "if 1<>2 then exit(99) end"|scilab-cli
+echo $? ]]></programlisting>
   </refsection>
 
   <refsection>

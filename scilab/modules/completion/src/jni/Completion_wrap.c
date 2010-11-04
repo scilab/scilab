@@ -573,9 +573,12 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_completion_CompletionJNI_getC
   }
   {
     int i;
-    for (i=0; i<size1-1; i++)
-    FREE(arg1[i]);
+    for (i=0; i<size1-1; i++) {
+      FREE(arg1[i]);
+      arg1[i] = NULL;
+    }
     FREE(arg1);
+    arg1 = NULL;
   }
   return jresult;
 }

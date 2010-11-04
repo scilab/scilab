@@ -41,6 +41,7 @@ import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
+import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
@@ -50,6 +51,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
@@ -618,5 +620,24 @@ public final class SuperBlock extends BasicBlock {
 			}
 		}
 		return cFunctionName.toString();
+	}
+	
+	/**
+	 * Clone the child safely.
+	 * 
+	 * @return a new clone instance
+	 * @throws CloneNotSupportedException never
+	 * @see org.scilab.modules.xcos.block.BasicBlock#clone()
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		SuperBlock clone = (SuperBlock) super.clone();
+		
+		// Clear then generate the child.
+		clone.child = null;
+		clone.generateId();
+		
+		return clone;
+		
 	}
 }

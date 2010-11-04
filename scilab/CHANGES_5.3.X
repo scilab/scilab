@@ -25,16 +25,77 @@ Xcos:
 
 * bug 8081 fixed - The context was not checked before being set.
 
+* bug 8140 fixed - Masked suberblock became empty when copied and pasted
+                   between two xcos schemes.
+
+* bug 8141 fixed - Superblock mask became empty when reopening a file.
+
+* bug 8186 fixed - Demos with Superblocks were not simulating.
+
+* bug 8195 fixed - Creating implicit links was not working.
+
+* bug 8220 fixed - Improve the link creation with split block adding.
+
+* bug 8291 fixed - Some blocks (PDE, SQRT) did not display any label.
+
+* bug 8322 fixed - Rotated shape had 2 different bounds (icon and shape).
+
+* bug 8326 fixed - Region to superblock action did not work with OUT_f blocks.
+
+Graphic export:
+===============
+
+* Decrease the amount of messages when exporting a graphic.
+
+Graphics:
+=========
+
+Thanks to Samuel Gougeon, many improvements on the polarplot function:
+* Clipping was missing. See bug #7007.
+* In some common cases, values of radial labels were wrong with respect to the
+plotted radial frame or/and were lacking of digits.
+* When the plot was centered around an angle far from 45°, the radial labels
+were completely clipped.
+* Sampling of the angular frame is improved according to the number of drawn
+quadrants.
+* Improved H&V positionning of angular labels
+* Polar frame drawn in grey instead of black for a better data visibility.
+* if the basic radius is >= 10^4 or <=10^-4, LaTeX is used to display smart
+$..10^p$ exponents instead of the D+/-## console style display.
+* Finally, their positioning is still improved in order to avoid their mutual
+overlaying for big values.
+
 
 SciNotes:
 =========
 
 * Incremental search added with the shortcut: the F2 key.
 
+* Add a "Save file in..." menu which gives the possibility to save a file
+  in favorite directories.
+
+* bug 7806 fixed - Blocks elseif...end and else...end were not highlighted.
+
 * bug 8095 fixed - The Set Colors window was too height with OpenJDK.
 
 * bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
 
+* bug 8277 fixed - Under Windows, exceptions were thrown when a key was hit on
+                   a keyboard in chinese mode.
+
+
+Compilation:
+============
+
+* bug 7489 fixed - VPATH was failing on scicos_blocks generation headers.
+
+* bug 7606 fixed - Build option -Wold-style-cast removed for C++.
+
+* bug 8013 fixed - In some cases, the build of the compiler of modelica failed.
+
+* bug 8274 fixed - Improve detection of Java regarding Apple changes:
+      	           Java for Mac OS X 10.6 Update 3 and 10.5 Update 8 Release
+                   Notes
 
 Bug Fixes:
 ==========
@@ -47,6 +108,24 @@ Bug Fixes:
 * bug 7364 fixed - The "Checked" property misworked for uimenus and they could
                    not have a callback.
 
+* bug 7566 fixed - The handling of immediate_drawing had been broken in zgrid by
+                   bug 6395 fix in 5.3.0-beta-4 version
+
+* bug 7768 fixed - for cdfgam, the Scale parameter was, in fact, the Rate.
+
+* bug 7805 fixed - clear called inside an exec while in pause could
+                   have unexpected results.
+
+* bug 7970 fixed - The eager loading of openmp support library was crashing
+                   on Linux with unsupported configuration for openmp.
+
+* bug 7997 fixed - Function getfreememory adapted for FreeBSD. Thanks to Rob
+                   Farmer.
+
+* bug 8016 fixed - An error in a german translation gave an error message.
+
+* bug 8046 fixed - msprintf did not manage tabulation as format.
+
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
 
 * bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni
@@ -55,10 +134,11 @@ Bug Fixes:
 * bug 8079 fixed - When the max number of variable available has been reached,
                    it was not possible to leave Scilab.
 
-* bug 8081 fixed - msprintf did not manage tabulation as format.
-
 * bug 8087 fixed - prettyprint did not handle %inf and %nan.
 
+
+* bug 8107 fixed - sum(a,1), cumsum(a,1), .. made Scilab 5.0.3-beta-4 crash
+                   in some particular context.
 
 * bug 8108 fixed - ATOMS: Modules that start by the letter "n" were not well
                    managed by ATOMS. The cause of the issue is the behaviour of
@@ -68,15 +148,52 @@ Bug Fixes:
 * bug 8110 fixed - ATOMS: When removing a module, its main directory
                    was not deleted even if it was empty.
 
+* bug 8115 fixed - DisableInteractiveMode() (call_scilab) did not work.
+
+* bug 8122 fixed - help of write_csv said that it reads file and not that it writes.
+
 * bug 8124 fixed - Some translations were not up to date.
 
+* bug 8126 fixed - Some demos from the GUI modules where hanging.
+
 * bug 8128 fixed - A warning was displayed on 'Save' action in a graphic window.
+
+* bug 8129 fixed - The error message was not clear in tlbx_builder_src if you did
+                   not have a compiler.
 
 * bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
                    taken into account for "text" uicontrols.
 
+* bug 8154 fixed - It was not possible to cancel a messagebox with ESC key.
+
+* bug 8160 fixed - The derivative function did not check for input
+                   argument #1, if it was a list.
+
 * bug 8164 fixed - Typo in the fileparts help page.
 
+* bug 8174 fixed - ss2tf produced bad results if applied to a complex
+                   state space system.
+
+* bug 8177 fixed - format mode was modified by some macros and not restored.
+
+* bug 8202 fixed - Typo in the the localization.
+
+* bug 8206 fixed - isnum did not manage blanks.
+
+* bug 8208 fixed - Error in creating the temporary directory in function
+                   createScilabTMPDIR.
+
+* bug 8218 fixed - file association with filename with accentued characters
+                   did not work.
+
+* bug 8232 fixed - drag and drop of .scg files (on console) used "xload"
+                   and not "load".
+
+* bug 8283 fixed - file graphics/help/en_US/datatips datatipLookfor.xml removed.
+                   datatipLookfor is an internal function that has not be used
+                   directly.
+
+* bug 8300 fixed - a(48400, 48400) = 0 crashed scilab.
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
@@ -141,6 +258,9 @@ Xcos:
 
 * bug 8073 fixed - The child context could not be used to specify masked
                    super-blocks parameters.
+
+* bug 8097 fixed - Scilab crashed when plotting on a figure with "Units"
+                   property set to "pixels".
 
 
 Statistics:

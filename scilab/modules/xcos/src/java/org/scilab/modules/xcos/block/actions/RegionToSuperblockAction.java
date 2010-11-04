@@ -609,7 +609,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	for (ScilabGraphUniqueObject cell : blocks) {
 	    if (cell instanceof ContextUpdate) {
 	    if (cell instanceof ExplicitOutBlock) {
-		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
+		if (!items.containsKey(IOBlocks.ExplicitOutBlock)) {
 		    items.put(IOBlocks.ExplicitOutBlock, new ArrayList<BasicBlock>());
 		}
 		items.get(IOBlocks.ExplicitOutBlock).add((BasicBlock) cell);

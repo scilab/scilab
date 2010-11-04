@@ -427,44 +427,44 @@ SciErr fillCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision,
 	return sciErr;
 }
 
-SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8)
+SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT8, _iRows, _iCols, _pucData8);
 }
 
-SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned short* _pusData16)
+SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned short* _pusData16)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT16, _iRows, _iCols, _pusData16);
 }
 
-SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned int* _puiData32)
+SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned int* _puiData32)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT32, _iRows, _iCols, _puiData32);
 }
 
-SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const char* _pcData8)
+SciErr createNamedMatrixOfInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* _pcData8)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT8, _iRows, _iCols, _pcData8);
 }
 
-SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const short* _psData16)
+SciErr createNamedMatrixOfInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const short* _psData16)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT16, _iRows, _iCols, _psData16);
 }
 
-SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const int* _piData32)
+SciErr createNamedMatrixOfInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piData32)
 {
 	return createCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT32, _iRows, _iCols, _piData32);
 }
 
 #ifdef __SCILAB_INT64__
-SciErr createNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const long long* _pllData64)
+SciErr createNamedMatrixOfInteger64(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const long long* _pllData64)
 {
 	return -1;
 }
 #endif
 
-SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
+SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -510,7 +510,7 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrec
 	return sciErr;
 }
 
-SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, char* _pstName, int* _piPrecision)
+SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, const char* _pstName, int* _piPrecision)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -533,44 +533,44 @@ SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, char* _pstName, int* _piPr
 	return sciErr;
 }
 
-SciErr readNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned char* _pucData8)
+SciErr readNamedMatrixOfUnsignedInteger8(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned char* _pucData8)
 {
 	return readCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT8, _piRows, _piCols, _pucData8);
 }
 
-SciErr readNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned short* _pusData16)
+SciErr readNamedMatrixOfUnsignedInteger16(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned short* _pusData16)
 {
 	return readCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT16, _piRows, _piCols, _pusData16);
 }
 
-SciErr readNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned int* _puiData32)
+SciErr readNamedMatrixOfUnsignedInteger32(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned int* _puiData32)
 {
 	return readCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_UINT32, _piRows, _piCols, _puiData32);
 }
 
-SciErr readNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, char* _pcData8)
+SciErr readNamedMatrixOfInteger8(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, char* _pcData8)
 {
 	return readCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT8, _piRows, _piCols, _pcData8);
 }
 
-SciErr readNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, short* _psData16)
+SciErr readNamedMatrixOfInteger16(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, short* _psData16)
 {
 	return readCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT16, _piRows, _piCols, _psData16);
 }
 
-SciErr readNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piData32)
+SciErr readNamedMatrixOfInteger32(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piData32)
 {
 	return readCommonNamedMatrixOfInteger(_pvCtx, _pstName, SCI_INT32, _piRows, _piCols, _piData32);
 }
 
 #ifdef __SCILAB_INT64__
-SciErr readNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, long long* _pllData64)
+SciErr readNamedMatrixOfInteger64(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, long long* _pllData64)
 {
 	return 1;
 }
 #endif
 
-SciErr readCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecision, int* _piRows, int* _piCols, void* _pvData)
+SciErr readCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int _iPrecision, int* _piRows, int* _piCols, void* _pvData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -608,7 +608,7 @@ int isIntegerType(void* _pvCtx, int* _piAddress)
 	return checkVarType(_pvCtx, _piAddress, sci_ints);
 }
 /*--------------------------------------------------------------------------*/
-int isNamedIntegerType(void* _pvCtx, char* _pstName)
+int isNamedIntegerType(void* _pvCtx, const char* _pstName)
 {
 	return checkNamedVarType(_pvCtx, _pstName, sci_ints);
 }
@@ -753,7 +753,7 @@ static int getCommonScalarInteger(void* _pvCtx, int* _piAddress, int _iPrec, voi
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedScalarInteger8(void* _pvCtx, char* _pstName, char* _pcData)
+int getNamedScalarInteger8(void* _pvCtx, const char* _pstName, char* _pcData)
 {
 	char* pcData = NULL;
 
@@ -767,7 +767,7 @@ int getNamedScalarInteger8(void* _pvCtx, char* _pstName, char* _pcData)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedScalarInteger16(void* _pvCtx, char* _pstName, short* _psData)
+int getNamedScalarInteger16(void* _pvCtx, const char* _pstName, short* _psData)
 {
 	short* psData = NULL;
 
@@ -781,7 +781,7 @@ int getNamedScalarInteger16(void* _pvCtx, char* _pstName, short* _psData)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedScalarInteger32(void* _pvCtx, char* _pstName, int* _piData)
+int getNamedScalarInteger32(void* _pvCtx, const char* _pstName, int* _piData)
 {
 	int* piData = NULL;
 
@@ -796,7 +796,7 @@ int getNamedScalarInteger32(void* _pvCtx, char* _pstName, int* _piData)
 }
 /*--------------------------------------------------------------------------*/
 #ifdef __SCILAB_INT64__
-int getNamedScalarInteger64(void* _pvCtx, char* _pstName, long long* _pllData)
+int getNamedScalarInteger64(void* _pvCtx, const char* _pstName, long long* _pllData)
 {
 	long long* pllData = NULL;
 
@@ -811,7 +811,7 @@ int getNamedScalarInteger64(void* _pvCtx, char* _pstName, long long* _pllData)
 }
 #endif
 /*--------------------------------------------------------------------------*/
-int getNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char* _pucData)
+int getNamedScalarUnsignedInteger8(void* _pvCtx, const char* _pstName, unsigned char* _pucData)
 {
 	unsigned char* pucData = NULL;
 
@@ -825,7 +825,7 @@ int getNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char* 
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short* _pusData)
+int getNamedScalarUnsignedInteger16(void* _pvCtx, const char* _pstName, unsigned short* _pusData)
 {
 	unsigned short* pusData = NULL;
 
@@ -839,7 +839,7 @@ int getNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int* _puiData)
+int getNamedScalarUnsignedInteger32(void* _pvCtx, const char* _pstName, unsigned int* _puiData)
 {
 	unsigned int* puiData = NULL;
 
@@ -854,7 +854,7 @@ int getNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int* 
 }
 /*--------------------------------------------------------------------------*/
 #ifdef __SCILAB_INT64__
-int getNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long* _pullData)
+int getNamedScalarUnsignedInteger64(void* _pvCtx, const char* _pstName, unsigned long long* _pullData)
 {
 	unsigned long long* pullData = NULL;
 
@@ -869,7 +869,7 @@ int getNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long 
 }
 #endif
 /*--------------------------------------------------------------------------*/
-static int getCommandNamedScalarInteger(void* _pvCtx, char* _pstName, int _iPrec, void** _pvData)
+static int getCommandNamedScalarInteger(void* _pvCtx, const char* _pstName, int _iPrec, void** _pvData)
 {
 	SciErr sciErr;
 	int iRows	= 0;
@@ -1018,7 +1018,7 @@ int createScalarUnsignedInteger64(void* _pvCtx, int _iVar, unsigned long long _u
 }
 #endif
 /*--------------------------------------------------------------------------*/
-int createNamedScalarInteger8(void* _pvCtx, char* _pstName, char _cData)
+int createNamedScalarInteger8(void* _pvCtx, const char* _pstName, char _cData)
 {
 	SciErr sciErr;
 
@@ -1033,7 +1033,7 @@ int createNamedScalarInteger8(void* _pvCtx, char* _pstName, char _cData)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedScalarInteger16(void* _pvCtx, char* _pstName, short _sData)
+int createNamedScalarInteger16(void* _pvCtx, const char* _pstName, short _sData)
 {
 	SciErr sciErr;
 
@@ -1048,7 +1048,7 @@ int createNamedScalarInteger16(void* _pvCtx, char* _pstName, short _sData)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedScalarInteger32(void* _pvCtx, char* _pstName, int _iData)
+int createNamedScalarInteger32(void* _pvCtx, const char* _pstName, int _iData)
 {
 	SciErr sciErr;
 
@@ -1064,7 +1064,7 @@ int createNamedScalarInteger32(void* _pvCtx, char* _pstName, int _iData)
 }
 /*--------------------------------------------------------------------------*/
 #ifdef __SCILAB_INT64__
-int createNamedScalarInteger64(void* _pvCtx, char* _pstName, long long _llData)
+int createNamedScalarInteger64(void* _pvCtx, const char* _pstName, long long _llData)
 {
 	SciErr sciErr;
 
@@ -1080,7 +1080,7 @@ int createNamedScalarInteger64(void* _pvCtx, char* _pstName, long long _llData)
 }
 #endif
 /*--------------------------------------------------------------------------*/
-int createNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char _ucData)
+int createNamedScalarUnsignedInteger8(void* _pvCtx, const char* _pstName, unsigned char _ucData)
 {
 	SciErr sciErr;
 
@@ -1095,7 +1095,7 @@ int createNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned cha
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short _usData)
+int createNamedScalarUnsignedInteger16(void* _pvCtx, const char* _pstName, unsigned short _usData)
 {
 	SciErr sciErr;
 
@@ -1110,7 +1110,7 @@ int createNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned sh
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int _uiData)
+int createNamedScalarUnsignedInteger32(void* _pvCtx, const char* _pstName, unsigned int _uiData)
 {
 	SciErr sciErr;
 
@@ -1126,7 +1126,7 @@ int createNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned in
 }
 /*--------------------------------------------------------------------------*/
 #ifdef __SCILAB_INT64__
-int createNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long _ullData)
+int createNamedScalarUnsignedInteger64(void* _pvCtx, const char* _pstName, unsigned long long _ullData)
 {
 	SciErr sciErr;
 

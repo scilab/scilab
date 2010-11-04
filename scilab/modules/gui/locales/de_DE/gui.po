@@ -79,11 +79,11 @@ msgid "%s: No more memory.\n"
 msgstr "%s: kein weiterer Speicher verfügbar\n"
 
 #, c-format
-msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr "%s: keine Ergebnisse für Eigenschaft '%s' und Wert '%s'.\n"
 
 #, c-format
-msgid "%s: No results founded.\n"
+msgid "%s: No results found.\n"
 msgstr "%s: keine Ergebnisse gefunden.\n"
 
 #, c-format
@@ -1558,7 +1558,7 @@ msgid ""
 msgstr ""
 "disp(\"Warnung: auf Grund Ihrer Einschränkungen bei der Konfiguration, hat "
 "Scilab in einen Modus geschaltet, in dem Uicontrols und Grafik nicht "
-"verfügbar sind. Geben Sie \"Help Usecanvas\" für weitere Information ein.\")"
+"verfügbar sind. Geben Sie \"\"Help Usecanvas\"\" für weitere Information ein.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "

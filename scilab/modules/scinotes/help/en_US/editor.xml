@@ -659,7 +659,7 @@
       <varlistentry>
         <term>Bugs:</term>
         <listitem>
-          <para>You can reported bugs in the Bugzilla <link url="http://bugzilla.scilab.org">http://bugzilla.scilab.org</link></para>
+          <para>You can reported bugs in the Bugzilla <ulink url="http://bugzilla.scilab.org">http://bugzilla.scilab.org</ulink></para>
 
           <para>There are still a few bugs that we are trying to fix, details
           can be found in the given link by filtering entries with the

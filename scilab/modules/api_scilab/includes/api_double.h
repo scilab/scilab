@@ -81,7 +81,7 @@ SciErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCol
  * @param[in] _pdblReal pointer to real data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal);
+SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const double* _pdblReal);
 
 /**
  * Create a complex double variable
@@ -92,7 +92,7 @@ SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, dou
  * @param[in] _pdblImg pointer to imaginary data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg);
 
 /**
  * Create a complex double variable
@@ -102,7 +102,7 @@ SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCo
  * @param[in] _pdblData pointer to Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData);
+SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const doublecomplex* _pdblData);
 
 /**
  * Create a named double variable
@@ -112,7 +112,7 @@ SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iC
  * @param[in] _pdblReal pointer to real data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal);
+SciErr createNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const double* _pdblReal);
 
 /**
  * Create a named complex double variable
@@ -123,7 +123,7 @@ SciErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _
  * @param[in] _pdblImg pointer to imaginary data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg);
 
 /**
  * Create a named complex double variable
@@ -133,7 +133,7 @@ SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows
  * @param[in] _pdblData pointer to Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData);
+SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const doublecomplex* _pdblData);
 
 /**
  * Get double named variable data
@@ -143,7 +143,7 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRow
  * @param[out] _pdblReal return real data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal);
+SciErr readNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, double* _pdblReal);
 
 /**
  * Get double named variable data
@@ -154,7 +154,7 @@ SciErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* 
  * @param[out] _pdblImg return imaginary data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
+SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
 /*shortcut functions*/
 
@@ -171,7 +171,7 @@ int isDoubleType(void* _pvCtx, int* _piAddress);
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedDoubleType(void* _pvCtx, char* _pstName);
+int isNamedDoubleType(void* _pvCtx, const char* _pstName);
 
 /**
  * Get scalar double value
@@ -196,7 +196,7 @@ int getScalarComplexDouble(void* _pvCtx, int* _piAddress, double* _pdblReal, dou
  * @param[out] _pdblReal return real value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarDouble(void* _pvCtx, char* _pstName, double* _pdblReal);
+int getNamedScalarDouble(void* _pvCtx, const char* _pstName, double* _pdblReal);
 
 /**
  * Get scalar complex double value from a named variable
@@ -205,7 +205,7 @@ int getNamedScalarDouble(void* _pvCtx, char* _pstName, double* _pdblReal);
  * @param[out] _pdblImg return imaginary part
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarComplexDouble(void* _pvCtx, char* _pstName, double* _pdblReal, double* _pdblImg);
+int getNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double* _pdblReal, double* _pdblImg);
 
 /**
  * Create a scalar double variable
@@ -230,7 +230,7 @@ int createScalarComplexDouble(void* _pvCtx, int _iVar, double _dblReal, double _
  * @param[in] _dblReal real value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarDouble(void* _pvCtx, char* _pstName, double _dblReal);
+int createNamedScalarDouble(void* _pvCtx, const char* _pstName, double _dblReal);
 
 /**
  * Create a named scalar complex double variable
@@ -239,7 +239,7 @@ int createNamedScalarDouble(void* _pvCtx, char* _pstName, double _dblReal);
  * @param[in] _dblImg imaginary part
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarComplexDouble(void* _pvCtx, char* _pstName, double _dblReal, double _dblImg);
+int createNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double _dblReal, double _dblImg);
 
 #ifdef __cplusplus
 }

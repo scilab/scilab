@@ -86,7 +86,7 @@ SciErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
  * @param[in] _pdblReal pointer to real data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal);
 
 /**
  * Create a complex sparse double variable
@@ -100,7 +100,7 @@ SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _
  * @param[in] _pdblImg pointer to imaginary parts
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
 
 /**
  * Create a named sparse double variable
@@ -113,7 +113,7 @@ SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
  * @param[in] _pdblReal pointer to real data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+SciErr createNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal);
 
 /**
  * Create a named complex sparse double variable
@@ -127,7 +127,7 @@ SciErr createNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iC
  * @param[int] _pdblImg pointer to imaginary parts
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+SciErr createNamedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
 
 /**
  * Read named sparse double variable
@@ -140,7 +140,7 @@ SciErr createNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, 
  * @param[out] _pdblReal pointer to real data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+SciErr readNamedSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Read a named complex sparse double variable
@@ -154,7 +154,7 @@ SciErr readNamedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _p
  * @param[out] _pdblImg pointer to imaginary parts
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+SciErr readNamedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 /* shortcut functions */
 
@@ -170,7 +170,7 @@ int isSparseType(void* _pvCtx, int* _piAddress);
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedSparseType(void* _pvCtx, char* _pstName);
+int isNamedSparseType(void* _pvCtx, const char* _pstName);
 
 /**
  * Get sparse variable data
@@ -210,7 +210,7 @@ int getAllocatedComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
  * @param[out] _pdblReal return pointer to real data
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedAllocatedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
+int getNamedAllocatedSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
 
 /**
  * Get named complex sparse variable data
@@ -224,7 +224,7 @@ int getNamedAllocatedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, in
  * @param[out] _pdblImg return pointer to imaginary parts
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedAllocatedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+int getNamedAllocatedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 
 
 /**

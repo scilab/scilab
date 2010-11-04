@@ -116,11 +116,11 @@ msgid "%s: No more memory.\n"
 msgstr "%s: これ以上メモリがありません。\n"
 
 #, c-format
-msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr "%s: いかなる結果もプロパティ ''%s'' と ''%s'' 値に基づきません。\n"
 
 #, c-format
-msgid "%s: No results founded.\n"
+msgid "%s: No results found.\n"
 msgstr "%s: いかなる結果もありません。\n"
 
 #

@@ -57,7 +57,7 @@ int sci_check_properties_1(char * fname)
   // Getting second argument //
   /////////////////////////////
 
-  GetRhsVar(2, "d", &amp;m2, &amp;n2, &amp;l2);
+  GetRhsVar(2, "d", &m2, &n2, &l2);
 
   CheckRow(2,m2,n2); // Checks that second argument is a row vector
                      // CheckColumn can also be used

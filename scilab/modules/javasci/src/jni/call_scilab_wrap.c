@@ -190,6 +190,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "BOOL.h"
 #define ENABLE_HELPERS
 #include "javasci2_helper.h"
+#include "MALLOC.h"
 #include "../../../call_scilab/includes/call_scilab.h"
 #include "../../../call_scilab/includes/fromjava.h"
 #include "../../../api_scilab/includes/api_scilab.h"
@@ -858,12 +859,12 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_SendScil
   {
     int i = 0;
     size1 = (*jenv)->GetArrayLength(jenv, jarg1);
-    arg1 = (char **) malloc((size1+1)*sizeof(char *));
+    arg1 = (char **) MALLOC((size1+1)*sizeof(char *));
     /* make a copy of each string */
     for (i = 0; i<size1; i++) {
       jstring j_string = (jstring)(*jenv)->GetObjectArrayElement(jenv, jarg1, i);
       const char * c_string = (*jenv)->GetStringUTFChars(jenv, j_string, 0);
-      arg1[i] = malloc((strlen(c_string)+1)*sizeof(const char *));
+      arg1[i] = MALLOC((strlen(c_string)+1)*sizeof(const char *));
       strcpy(arg1[i], c_string);
       (*jenv)->ReleaseStringUTFChars(jenv, j_string, c_string);
       (*jenv)->DeleteLocalRef(jenv, j_string);
@@ -875,9 +876,12 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_SendScil
   jresult = (jint)result; 
   {
     int i;
-    for (i=0; i<size1-1; i++)
-    free(arg1[i]);
-    free(arg1);
+    for (i=0; i<size1-1; i++) {
+      FREE(arg1[i]);
+      arg1[i] = NULL;
+    }
+    FREE(arg1);
+    arg1 = NULL;
   }
   return jresult;
 }
@@ -950,7 +954,7 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_getLa
     if (result != NULL)
     {
       jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-      free(result);
+      FREE(result);
       result = NULL;
     }       
   }

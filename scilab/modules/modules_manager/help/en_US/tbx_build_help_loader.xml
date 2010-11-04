@@ -53,8 +53,12 @@ tbx_build_help_loader("Toolbox Example", get_absolute_file_path('build_help.sce'
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="tbx_builder_help_lang">tbx_builder_help_lang</link>, 
-        <link linkend="tbx_builder_help">tbx_builder_help</link>, 
+        <link linkend="tbx_builder_help_lang">tbx_builder_help_lang</link>
+      </member>
+      <member>
+        <link linkend="tbx_builder_help">tbx_builder_help</link>
+      </member>
+      <member>
         <link linkend="tbx_build_help">tbx_build_help</link>
       </member>
     </simplelist>

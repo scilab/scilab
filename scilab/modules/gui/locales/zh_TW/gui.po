@@ -81,11 +81,11 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體耗盡.\n"
 
 #, c-format
-msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr "%s: 找不到 \"%s\" 屬性 和 \"%s\" 數值 的結果.\n"
 
 #, c-format
-msgid "%s: No results founded.\n"
+msgid "%s: No results found.\n"
 msgstr "%s: 找不到任何的結果值.\n"
 
 #, c-format

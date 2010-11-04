@@ -118,9 +118,11 @@ operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | 
 
 functionKwds = "function" | "endfunction"
 
-structureKwds = "then" | "else" | "elseif" | "end" | "do" | "catch" | "case"
+structureKwds = "then" | "do" | "catch" | "case"
 
-openstructureKwds = "if" | "for" | "while" | "try" | "select"
+elseif = "elseif" | "else"
+
+openCloseStructureKwds = "if" | "for" | "while" | "try" | "select" | "end"
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
@@ -168,7 +170,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.FKEYWORD;
                                  }
 
-  {openstructureKwds}            {
+  {openCloseStructureKwds}       {
                                    transposable = false;
                                    return ScilabLexerConstants.OSKEYWORD;
                                  }
@@ -176,6 +178,11 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
   {structureKwds}                {
                                    transposable = false;
                                    return ScilabLexerConstants.SKEYWORD;
+                                 }
+
+  {elseif}                       {
+                                   transposable = false;
+                                   return ScilabLexerConstants.ELSEIF;
                                  }
 
   {controlKwds}                  {
@@ -227,7 +234,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.OPERATOR;
                                  }
 
- {latexinstring}                 {
+  {latexinstring}                {
                                    return ScilabLexerConstants.LATEX;
                                  }
 

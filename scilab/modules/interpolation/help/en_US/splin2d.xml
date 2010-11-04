@@ -203,7 +203,7 @@ a = 0; b = 1; c = 0.25; d = 0.75;
 // create interpolation grid
 n = 11;
 x = linspace(a,b,n);
-ind = find(c &lt;= x &amp; x &lt;= d); 
+ind = find(c <= x & x <= d); 
 z = zeros(n,n); z(ind,ind) = 1;  // a step inside a square
 // create evaluation grid
 np = 220;

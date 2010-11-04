@@ -8,6 +8,7 @@
       <menuitem action="NewAction" label="New"/>
       <menuitem action="OpenAction" label="Open"/>
       <menuitem action="OpenFileInAction" label="Open file in ...;Add a directory;Remove last directory"/>
+      <menuitem action="SaveFileInAction" label="Save file in favorite directory ..."/>
       <menuitem action="ReloadAction" label="Reload"/>
       <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
       <menuitem action="OpenURLAction" label="Open URL"/>

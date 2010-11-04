@@ -288,7 +288,7 @@ msgid "Help about '"
 msgstr "Aide sur ..."
 
 msgid "Help on ;Help on selection"
-msgstr "Aide sur: Aide sur la sélection"
+msgstr "Aide sur ;Aide sur la sélection"
 
 msgid "Help on selected text or keyword"
 msgstr "Aide sur le texte sélectionné ou sur le mot clé"

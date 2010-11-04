@@ -635,6 +635,15 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    protected void insertUpdate(DefaultDocumentEvent chng, AttributeSet attr) {
+        // Fix bug 8277 in putting attr=null
+        // Java, by default, highlights the chinese chars when entered on keyboard
+        super.insertUpdate(chng, null);
+    }
+
+    /**
      * @param ev the DocumentEvent to handle
      */
     private void handleEvent(DocumentEvent ev) {

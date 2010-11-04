@@ -369,9 +369,6 @@ fi
 							proc="i386"
 						fi
 						;;
-					"ia64")
-						proc="i64"
-						;;
 					"alpha")
 						proc="alpha"
 						;;
