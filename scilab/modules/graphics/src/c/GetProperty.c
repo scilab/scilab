@@ -1983,16 +1983,17 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_POLYLINE__) == 0)
     {
+        char* parentAxes;
         double* dataX = NULL;
         double* dataY = NULL;
         double* dataZ = NULL;
         int* tmp;
-        int view = 0;
+        int view;
 
         /*
          * Testing whether data properties exist for this object
          * is currently done only for this property. The type comparison already
-         * ensure that this is the case, though doing so is awkward
+         * ensures that this is the case, though doing so is awkward.
          */
         tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int);
 
@@ -2024,14 +2025,9 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             return NULL;
         }
 
-        /*
-         * The is3d test must be corrected using the parent Axes' MVC GO_VIEW property,
-         * the view variable used within the condition is currently set to 0 (2D view)
-         * To be implemented when GetParentSubwin works
-         */
-#if 0
-        if(*numcol==2 && pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-#endif
+	parentAxes = (char*) getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string);
+	tmp = (int*) getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int);
+	view = *tmp;
 
         dataX = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_X__, jni_double_vector);
         dataY = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Y__, jni_double_vector);
@@ -2059,7 +2055,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             {
                 *numrow = -1;
                 *numcol = -1;
-                return NULL ;
+                return NULL;
             }
 
             if (*numcol == 3)
