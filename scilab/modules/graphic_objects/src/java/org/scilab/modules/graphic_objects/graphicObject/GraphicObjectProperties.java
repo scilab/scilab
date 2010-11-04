@@ -46,6 +46,8 @@ public static final String __GO_USER_DATA_SIZE__ =         "UserDataSize";
 public static final String __GO_VISIBLE__ =                "Visible";
 public static final String __GO_TYPE__ =                   "Type";
 public static final String __GO_DATA_MODEL__ =             "DataModel";
+public static final String __GO_PARENT_FIGURE__ =          "ParentFigure";
+public static final String __GO_PARENT_AXES__ =            "ParentAxes";
 
 public static final String __GO_DATA_MODEL_COORDINATES__ =            "DataModelCoordinates";
 public static final String __GO_DATA_MODEL_X__ =		           "DataModelX";

@@ -45,6 +45,8 @@
 #define __GO_VISIBLE__                     "Visible"
 #define __GO_TYPE__                        "Type"
 #define __GO_DATA_MODEL__                  "DataModel"
+#define __GO_PARENT_FIGURE__               "ParentFigure"
+#define __GO_PARENT_AXES__                 "ParentAxes"
 
 #define __GO_DATA_MODEL_COORDINATES__                 "DataModelCoordinates"
 #define __GO_DATA_MODEL_X__     		           "DataModelX"

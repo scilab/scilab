@@ -17,6 +17,10 @@ import java.util.List;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.axes.Axes;
+
 /**
  * GraphicObject class
  * @author Manuel JULIACHS
@@ -30,7 +34,8 @@ public abstract class GraphicObject implements Cloneable {
 		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, UNKNOWNOBJECT };
 	
 	/** GraphicObject properties */
-	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA, UNKNOWNPROPERTY };
+	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
+		PARENT_FIGURE, PARENT_AXES, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -158,6 +163,10 @@ public abstract class GraphicObject implements Cloneable {
 			return GraphicObjectPropertyType.REFERENCED;
 		} else if (propertyName.equals(__GO_VALID__)) {
 			return GraphicObjectPropertyType.VALID;
+		} else if (propertyName.equals(__GO_PARENT_FIGURE__)) {
+			return GraphicObjectPropertyType.PARENT_FIGURE;
+		} else if (propertyName.equals(__GO_PARENT_AXES__)) {
+			return GraphicObjectPropertyType.PARENT_AXES;
 		} else if (propertyName.equals(__GO_TYPE__)) {
 			return GraphicObjectPropertyType.TYPE;
 		}  else if (propertyName.equals(__GO_DATA_MODEL__)) {
@@ -185,6 +194,10 @@ public abstract class GraphicObject implements Cloneable {
 			return getUserData();
 		} else if (property == GraphicObjectPropertyType.USERDATASIZE) {
 			return getUserDataSize();
+		} else if (property == GraphicObjectPropertyType.PARENT_FIGURE) {
+			return getParentFigure();
+		} else if (property == GraphicObjectPropertyType.PARENT_AXES) {
+			return getParentAxes();
 		} else if (property == GraphicObjectPropertyType.TYPE) {
             return getType();
         }  else if (property == GraphicObjectPropertyType.DATA) {
@@ -317,6 +330,52 @@ public abstract class GraphicObject implements Cloneable {
 	 */
 	public Integer getUserDataSize() {
 		return 0;
+	}
+
+	/**
+	 * Get parent Figure method
+	 * Returns the identifier of the object's parent Figure
+	 * If the object is a Figure, then returns its own identifier.
+	 * To be done: use a member variable storing the up-to-date current parent Figure,
+	 * returned instead of recursively ascending the hierarchy at each call.
+	 * @return the parent Figure identifier
+	 */
+	public String getParentFigure() {
+                if (this instanceof Figure) {
+                        return getIdentifier();
+                }
+                else
+                {
+                	if(getParent() != null && GraphicController.getController().getObjectFromId(getParent()) != null) {
+                		return GraphicController.getController().getObjectFromId(getParent()).getParentFigure();
+                	}
+                	else {
+                		return null;
+                	}
+                }
+	}
+
+	/**
+	 * Get parent Axes method
+	 * Returns the identifier of the object's parent Axes
+	 * If the object is an Axes, then returns its own identifier.
+	 * To be done: use a member variable storing the up-to-date current parent Axes,
+	 * returned instead of recursively ascending the hierarchy at each call.
+	 * @return the parent Axes identifier
+	 */
+	public String getParentAxes() {
+                if (this instanceof Axes) {
+                        return getIdentifier();
+                }
+                else
+                {
+                	if (getParent() != null && GraphicController.getController().getObjectFromId(getParent()) != null) {
+                		return GraphicController.getController().getObjectFromId(getParent()).getParentAxes();
+                	}
+                	else {
+                		return null;
+                	}
+                }
 	}
 
 	/**
