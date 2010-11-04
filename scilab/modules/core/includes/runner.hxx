@@ -31,8 +31,14 @@ public :
     {
         m_theProgram = _theProgram;
         m_visitor = _visitor;
+
+#ifdef _MSC_VER
+        //It seems libxml crash with multithread under Windows
+        Runner::launch(this);
+#else
         __CreateThreadWithParams(&m_threadId, &Runner::launch, this);
         __WaitThreadDie(m_threadId);
+#endif
     }
 
     void exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
