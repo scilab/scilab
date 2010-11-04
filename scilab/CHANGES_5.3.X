@@ -77,6 +77,8 @@ Xcos:
 
 * bug 8326 fixed - Region to superblock action did not work with OUT_f blocks.
 
+* bug 8331 fixed - Block.doc was not cleared on superblock diagrams.
+
 Graphic export:
 ===============
 

@@ -110,6 +110,11 @@ function scs_m_new=do_version43(scs_m)
     if typeof(o)=='Block' then
       omod=o.model;
 
+      // Clear the doc fields if it contains a function pointer
+      if type(o.doc) == 15 & size(o.doc) > 1 & (type(o.doc(1)) == 11 | type(o.doc(1)) == 13) then
+        scs_m_new.objs(j).doc = list();
+      end
+
       //@@ sbloc
       if omod.sim=='super'|omod.sim=='csuper'|omod.sim(1)=='asuper' then
         rpar=do_version43(omod.rpar)
