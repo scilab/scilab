@@ -410,7 +410,7 @@ namespace types
         return vectRet;
     }
 
-    bool Cell::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+    InternalType* Cell::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
     {
         int iNewRows = rows_get();
         int iNewCols = cols_get();
@@ -439,7 +439,7 @@ namespace types
                 }
                 else
                 {
-                    return false;
+                    return NULL;
                 }
             }
         }
@@ -447,18 +447,18 @@ namespace types
         //check if the size of _poSource is compatible with the size of the variable
         if(_bAsVector == false && (iNewRows < _poSource->rows_get() || iNewCols < _poSource->cols_get()))
         {
-            return false;
+            return NULL;
         }
         else if(_bAsVector == true && (iNewRows * iNewCols < _poSource->size_get()))
         {
-            return false;
+            return NULL;
         }
 
 
         //check if the count of values is compatible with indexes
         if(_poSource->size_get() != 1 && _poSource->size_get() != _iSeqCount)
         {
-            return false;
+            return NULL;
         }
 
 
@@ -469,7 +469,7 @@ namespace types
             //Only resize after all tests !
             if(resize(iNewRows, iNewCols) == false)
             {
-                return false;
+                return NULL;
             }
 
             ////variable can receive new values.
@@ -516,9 +516,9 @@ namespace types
         }
         else
         {
-            return false;
+            return NULL;
         }
-        return true;
+        return this;
     }
 
     Cell* Cell::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)

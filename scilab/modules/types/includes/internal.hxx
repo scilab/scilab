@@ -238,4 +238,5 @@ namespace types
   typedef std::vector<InternalType *>   typed_list;
 
 }
+
 #endif /* !__INTERNAL_HXX__ */

@@ -36,6 +36,9 @@ namespace types
                                     GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0) {}
         virtual                     ~GenericType() {}
 
+        bool                        hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount);
+        bool                        hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount);
+
     public :
         void                        whoAmI(void) { std::cout << "types::GenericType"; }
 
@@ -63,6 +66,10 @@ namespace types
         virtual wstring             getShortTypeStr() {return L"";}
 
         virtual GenericType*        clone(void) = 0;
+
     };
+
+    static bool isCoordIndex(int _iIndex, int* _piCoord, int _iCoordCount);
+
 }
 #endif /* !__TYPES_HXX__ */

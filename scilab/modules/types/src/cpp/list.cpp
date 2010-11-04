@@ -140,18 +140,18 @@ namespace types
         return outList;
     }
 
-    bool List::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector)
+    InternalType* List::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector)
     {
         //check input param
         if(_bAsVector == false)
         {
             std::cout << "Insertion in list must be \"as vector\"" << std::endl;
-            return false;
+            return NULL;
         }
 
         if(_poSource->size() != _iSeqCount)
         {
-            return false;
+            return NULL;
         }
 
 
@@ -186,7 +186,7 @@ namespace types
             else
             {
                 while(m_plData->size() < _piSeqCoord[i])
-                {//incease list size and fill with "Undefined"
+                {//increase list size and fill with "Undefined"
                     m_plData->push_back(new ListUndefined());
                     m_iSize = size_get();
                 }
@@ -202,6 +202,6 @@ namespace types
                 (*m_plData)[_piSeqCoord[i] - 1] = (*_poSource)[i];
             }
         }
-        return true;
+        return this;
     }
 }

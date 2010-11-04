@@ -725,14 +725,14 @@ namespace types
 		return ostr.str();
 	}
 
-	bool MatrixPoly::insert(int _iRows, int _iCols, MatrixPoly *_poSource)
+	InternalType* MatrixPoly::insert(int _iRows, int _iCols, MatrixPoly *_poSource)
 	{
 		int iRows = _poSource->rows_get();
 		int iCols = _poSource->cols_get();
 
 		if(_iRows + iRows > m_iRows || _iCols + iCols > m_iCols)
 		{
-			return false;
+			return NULL;
 		}
 
 		for(int iRow = 0 ; iRow < iRows ; iRow++)
@@ -742,7 +742,7 @@ namespace types
 				poly_set(_iRows + iRow, _iCols + iCol, _poSource->poly_get(iRow, iCol)->coef_get());
 			}
 		}
-		return true;
+		return this;
 	}
 	Double* MatrixPoly::extract_coef(int _iRank)
 	{

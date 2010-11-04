@@ -159,7 +159,6 @@ void visitprivate(const AssignExp  &e)
         {//x(?) = ?
             T execVar;
             InternalType *pIT;
-            bool bRet           = true;
             bool bNew           = false;
             bool bSeeAsVector   = false;
             int iProductElem    = (int)pCall->args_get().size();
@@ -268,34 +267,31 @@ void visitprivate(const AssignExp  &e)
             }
             else
             {//call type insert function
+                InternalType* pRet = NULL;
                 switch(pIT->getType())
                 {
                 case InternalType::RealDouble : 
-                    bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    pRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
                 case InternalType::RealBool : 
-                    bRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    pRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
                 case InternalType::RealString : 
-                    bRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    pRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
                 case InternalType::RealInt : 
-                    bRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    pRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
                 case InternalType::RealList : 
-                    bRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
+                    pRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
                     break;
                 case InternalType::RealTList : 
-                    bRet = pIT->getAsTList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
+                    pRet = pIT->getAsTList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
                     break;
                 case InternalType::RealCell : 
                     if(execMeR.result_list_get()->size() ==1)
                     {
-                        bRet = pIT->getAsCell()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
-                    }
-                    else
-                    {
-                        bRet = false;
+                        pRet = pIT->getAsCell()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     }
                     break;
                 default : 
@@ -303,10 +299,21 @@ void visitprivate(const AssignExp  &e)
                     break;
                 }
 
-                pOut = pIT;
+                if(pRet && pRet != pIT)
+                {
+                    //variable change
+                    pIT->DecreaseRef();
+                    if(pIT->isDeletable())
+                    {
+                        delete pIT;
+                    }
+                    pRet->IncreaseRef();
+                }
+                
+                pOut = pRet;
             }
 
-            if(pOut != NULL && bRet == true)
+            if(pOut != NULL)
             {
                 if(bNew)
                 {
