@@ -242,6 +242,9 @@ Bug Fixes:
 
 * bug 8177 fixed - format mode was modified by some macros and not restored.
 
+* bug 8181 fixed - uicontrol did not handle color where composants are outside
+                   the range 0-255.
+
 * bug 8202 fixed - Typo in the the localization.
 
 * bug 8206 fixed - isnum did not manage blanks.
