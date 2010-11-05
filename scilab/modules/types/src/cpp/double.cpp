@@ -1200,7 +1200,7 @@ namespace types
 
 
 		//check if the count of values is compatible with indexes
-		if(_poSource->size_get() != 1 && _poSource->size_get() != _iSeqCount)
+		if(_poSource->size_get() != 1 && _poSource->size_get() != 0 && _poSource->size_get() != _iSeqCount)
 		{
 			return NULL;
 		}
@@ -1209,118 +1209,289 @@ namespace types
 		switch(_poSource->getType())
 		{
 		case InternalType::RealDouble :
-			{
-				Double *pIn = _poSource->getAsDouble();
+            {
+                Double *pIn = _poSource->getAsDouble();
 
-				//Only resize after all tests !
-				if(resize(iNewRows, iNewCols) == false)
-				{
-					return NULL;
-				}
+                if(pIn->size_get() != 0)
+                {// []
+                    //Only resize after all tests !
+                    if(resize(iNewRows, iNewCols) == false)
+                    {
+                        return NULL;
+                    }
 
-				//variable can receive new values.
-				if(pIn->size_get() == 1)
-				{//a(?) = x
-					if(pIn->isComplex())
-					{//a(?) = C
-						double* pInR = pIn->real_get();
-						double* pInI = pIn->img_get();
+                    //variable can receive new values.
+                    if(pIn->size_get() == 1)
+                    {//a(?) = x
+                        if(pIn->isComplex())
+                        {//a(?) = C
+                            double* pInR = pIn->real_get();
+                            double* pInI = pIn->img_get();
 
-						complex_set(true);//do nothing if variable is already complex
+                            complex_set(true);//do nothing if variable is already complex
 
-						if(_bAsVector)
-						{//a([]) = C
-							for(int i = 0 ; i < _iSeqCount ; i++)
-							{
-								m_pdblReal[_piSeqCoord[i] - 1]	= pInR[0];
-								m_pdblImg[_piSeqCoord[i] - 1]		= pInI[0];
-							}
-						}
-						else
-						{//a([],[]) = C
-							for(int i = 0 ; i < _iSeqCount ; i++)
-							{
-								int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-								m_pdblReal[iPos]	= pInR[0];
-								m_pdblImg[iPos]		= pInI[0];
-							}
-						}
-					}
-					else
-					{//a(?) = R
-						double* pInR = pIn->real_get();
+                            if(_bAsVector)
+                            {//a([]) = C
+                                for(int i = 0 ; i < _iSeqCount ; i++)
+                                {
+                                    m_pdblReal[_piSeqCoord[i] - 1]	= pInR[0];
+                                    m_pdblImg[_piSeqCoord[i] - 1]		= pInI[0];
+                                }
+                            }
+                            else
+                            {//a([],[]) = C
+                                for(int i = 0 ; i < _iSeqCount ; i++)
+                                {
+                                    int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+                                    m_pdblReal[iPos]	= pInR[0];
+                                    m_pdblImg[iPos]		= pInI[0];
+                                }
+                            }
+                        }
+                        else
+                        {//a(?) = R
+                            double* pInR = pIn->real_get();
 
-						if(_bAsVector)
-						{//a([]) = R
-							for(int i = 0 ; i < _iSeqCount ; i++)
-							{
-								m_pdblReal[_piSeqCoord[i] - 1]	= pInR[0];
-							}
-						}
-						else
-						{//a([],[]) = R
-							for(int i = 0 ; i < _iSeqCount ; i++)
-							{
-								int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-								m_pdblReal[iPos]	= pInR[0];
-							}
-						}
-					}
-				}
-				else
-				{//a(?) = [x]
-					if(pIn->isComplex())
-					{//a(?) = [C]
-						double* pInR = pIn->real_get();
-						double* pInI = pIn->img_get();
+                            if(_bAsVector)
+                            {//a([]) = R
+                                for(int i = 0 ; i < _iSeqCount ; i++)
+                                {
+                                    m_pdblReal[_piSeqCoord[i] - 1]	= pInR[0];
+                                }
+                            }
+                            else
+                            {//a([],[]) = R
+                                for(int i = 0 ; i < _iSeqCount ; i++)
+                                {
+                                    int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+                                    m_pdblReal[iPos]	= pInR[0];
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {//a(?) = [x]
+                        if(pIn->isComplex())
+                        {//a(?) = [C]
+                            double* pInR = pIn->real_get();
+                            double* pInI = pIn->img_get();
 
-						complex_set(true);//do nothing if variable is already complex
+                            complex_set(true);//do nothing if variable is already complex
 
-						if(_bAsVector)
-						{//a([]) = [C]
-							for(int i = 0 ; i < _iSeqCount ; i++)
-							{
-								m_pdblReal[_piSeqCoord[i] - 1]	= pInR[i];
-								m_pdblImg[_piSeqCoord[i] - 1]		= pInI[i];
-							}
-						}
-						else
-						{//a([],[]) = [C]
-							for(int i = 0 ; i < _iSeqCount ; i++)
-							{
-								int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-								m_pdblReal[iPos]	= pInR[i];
-								m_pdblImg[iPos]		= pInI[i];
-							}
-						}
-					}
-					else
-					{//a(?) = [R]
-						double* pInR = pIn->real_get();
+                            if(_bAsVector)
+                            {//a([]) = [C]
+                                for(int i = 0 ; i < _iSeqCount ; i++)
+                                {
+                                    m_pdblReal[_piSeqCoord[i] - 1]	= pInR[i];
+                                    m_pdblImg[_piSeqCoord[i] - 1]		= pInI[i];
+                                }
+                            }
+                            else
+                            {//a([],[]) = [C]
+                                for(int i = 0 ; i < _iSeqCount ; i++)
+                                {
+                                    int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+                                    m_pdblReal[iPos]	= pInR[i];
+                                    m_pdblImg[iPos]		= pInI[i];
+                                }
+                            }
+                        }
+                        else
+                        {//a(?) = [R]
+                            double* pInR = pIn->real_get();
 
-						if(_bAsVector)
-						{//a([]) = [R]
-							for(int i = 0 ; i < _iSeqCount ; i++)
-							{
-								m_pdblReal[_piSeqCoord[i] - 1]	= pInR[i];
-							}
-						}
-						else
-						{//a([],[]) = [R]
-							for(int i = 0 ; i < _iSeqCount ; i++)
-							{
-								int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-								int iTempR = i / pIn->cols_get();
-								int iTempC = i % pIn->cols_get();
-								int iNew_i = iTempR + iTempC * pIn->rows_get();
+                            if(_bAsVector)
+                            {//a([]) = [R]
+                                for(int i = 0 ; i < _iSeqCount ; i++)
+                                {
+                                    m_pdblReal[_piSeqCoord[i] - 1]	= pInR[i];
+                                }
+                            }
+                            else
+                            {//a([],[]) = [R]
+                                for(int i = 0 ; i < _iSeqCount ; i++)
+                                {
+                                    int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+                                    int iTempR = i / pIn->cols_get();
+                                    int iTempC = i % pIn->cols_get();
+                                    int iNew_i = iTempR + iTempC * pIn->rows_get();
 
-								m_pdblReal[iPos]	= pInR[iNew_i];
-							}
-						}
-					}
-				}
-			break;
-			}
+                                    m_pdblReal[iPos]	= pInR[iNew_i];
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {// manage delete by assignation of []
+                    int iNewSize = 0;
+                    int iNewCols = 0;
+                    int iNewRows = 0;
+
+                    if(_bAsVector == false)
+                    {
+                        //use hard coded iDims in algo to futur updated with generic algo to N dims.
+                        int iDims = 2;
+                        //Convert piSeqCoord to 1-dim indexes
+                        for(int i = 0 ; i < _iSeqCount ; i++)
+                        {
+                            //+1 to keep 1 based indexes
+                            _piSeqCoord[i] = ((_piSeqCoord[i * iDims] - 1) + ((_piSeqCoord[i * iDims + 1] - 1) * rows_get())) + 1;
+                        }
+
+                        //create ordered list of index to not shit input data
+                        for(int i = _iSeqCount - 1 ; i > 0 ; i--)
+                        {
+                            for(int j = 1 ; j <= i ; j++)
+                            {
+                                if(_piSeqCoord[j - 1] > _piSeqCoord[j])
+                                {
+                                    int iIdx            = _piSeqCoord[j - 1];
+                                    _piSeqCoord[j - 1]  = _piSeqCoord[j];
+                                    _piSeqCoord[j]      = iIdx;
+                                }
+                            }
+                        }
+
+                        //check if indexes are on full row or column
+                        int iDeleteRow      = 0;
+                        int iDeleteCol      = 0;
+
+                        //check for rows
+                        for(int i = 0 ; i < rows_get() ; i++)
+                        {
+                            if(hasAllIndexesOfRow(i, _piSeqCoord, _iSeqCount))
+                            {
+                                iDeleteRow++;
+                            }
+                        }
+
+                        //check for cols
+                        for(int i = 0 ; i < cols_get() ; i++)
+                        {
+                            if(hasAllIndexesOfCol(i, _piSeqCoord, _iSeqCount))
+                            {
+                                iDeleteCol++;
+                            }
+                        }
+
+                        if(iDeleteRow == 0 && iDeleteCol == 0)
+                        {//nothing to delete, bad call
+                            return NULL;
+                        }
+
+                        if(iDeleteRow && iDeleteCol)
+                        {//the only way to delete row and col is to delete all
+                            return Double::Empty();
+                        }
+
+                        iNewRows = rows_get() - iDeleteRow;
+                        iNewCols = cols_get() - iDeleteCol;
+                        iNewSize = iNewRows * iNewCols;
+                    }
+                    else
+                    {
+                        //create ordered list of index to not shit input data
+                        for(int i = _iSeqCount - 1 ; i > 0 ; i--)
+                        {
+                            for(int j = 1 ; j <= i ; j++)
+                            {
+                                if(_piSeqCoord[j - 1] > _piSeqCoord[j])
+                                {
+                                    int iIdx            = _piSeqCoord[j - 1];
+                                    _piSeqCoord[j - 1]  = _piSeqCoord[j];
+                                    _piSeqCoord[j]      = iIdx;
+                                }
+                            }
+                        }
+
+                        int iDuplicates = 0;
+                        for(int i = 0 ; i < _iSeqCount - 1 ; i++)
+                        {
+                            if(_piSeqCoord[i] == _piSeqCoord[i + 1])
+                            {
+                                iDuplicates++;
+                            }
+                        }
+
+                        iNewSize = size_get() - (_iSeqCount - iDuplicates);
+                    }
+
+                    if(iNewSize == 0)
+                    {//delete all data, in this case return  []
+                        return Double::Empty();
+                    }
+
+                    double* pdblReal = new double[iNewSize];
+                    double* pdblImg = NULL;
+                    if(isComplex())
+                    {
+                        pdblImg = new double[iNewSize];
+                    }
+
+                    int iOffset = 0;
+                    //copy data before the first SeqCoord
+                    memcpy(pdblReal, m_pdblReal, (_piSeqCoord[0] - 1) * sizeof(double));
+                    if(isComplex())
+                    {
+                        memcpy(pdblImg, m_pdblImg, (_piSeqCoord[0] - 1) * sizeof(double));
+                    }
+                    iOffset = _piSeqCoord[0] - 1;
+
+                    for(int i = 0 ; i < _iSeqCount - 1 ; i++)
+                    {
+                        if(_piSeqCoord[i] == _piSeqCoord[i + 1])
+                        {//by pass duplicates coordinates
+                            continue;
+                        }
+                        //copy data between two SeqCoord
+                        int iLen = _piSeqCoord[i + 1] - _piSeqCoord[i] - 1;
+                        memcpy(pdblReal + iOffset, m_pdblReal + _piSeqCoord[i], iLen * sizeof(double));
+                        if(isComplex())
+                        {
+                            memcpy(pdblImg + iOffset, m_pdblImg + _piSeqCoord[i], iLen * sizeof(double));
+                        }
+                        iOffset += iLen;
+                    }
+
+                    //copy data after the last SeqCoord
+                    memcpy(pdblReal + iOffset, m_pdblReal + _piSeqCoord[_iSeqCount - 1], (size_get() - _piSeqCoord[_iSeqCount - 1]) * sizeof(double));
+                    if(isComplex())
+                    {
+                        memcpy(pdblImg + iOffset, m_pdblImg + _piSeqCoord[_iSeqCount - 1], (size_get() - _piSeqCoord[_iSeqCount - 1]) * sizeof(double));
+                    }
+
+                    //set new dimension
+
+                    if(_bAsVector)
+                    {
+                        if(rows_get() == 1)
+                        {
+                            m_iCols = iNewSize;
+                        }
+                        else
+                        {
+                            m_iCols = 1;
+                            m_iRows = iNewSize;
+                        }
+                    }
+                    else
+                    {
+                        m_iRows = iNewRows;
+                        m_iCols = iNewCols;
+                    }
+
+                    delete[] m_pdblReal;
+                    m_pdblReal = pdblReal;
+                    if(isComplex())
+                    {
+                        delete[] m_pdblImg;
+                        m_pdblImg = pdblImg;
+                    }
+                    m_iSize = rows_get() * cols_get();
+                }
+                break;
+            }
 		default :
 			return NULL;
 			break;
