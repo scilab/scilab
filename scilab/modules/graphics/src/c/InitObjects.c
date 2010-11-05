@@ -448,6 +448,13 @@ sciInitGraphicContext (sciPointObj * pobj)
     cloneGraphicContext( sciGetParent(pobj), pobj );
 #endif
   }
+  else if (strcmp(type, __GO_RECTANGLE__) == 0)
+  {
+    char* parent;
+
+    parent = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string);
+    cloneGraphicContext(parent, pobj->UID);
+  }
 
   /* Deactivated for now */
   /* This must be implemented within the MVC */

@@ -66,25 +66,30 @@ void Objrect ( double * x         ,
                BOOL     isline    ,
                long   * hdl       )
 {
-  sciPointObj * newObj = NULL ;
+  sciPointObj * newObj = NULL;
   sciPointObj *psubwin;
   sciPointObj * pFigure = sciGetCurrentFigure();
 
   psubwin = sciGetCurrentSubWin();
   /* check if the auto_clear property is on and then erase everything */
-  checkRedrawing() ;
+  checkRedrawing();
   newObj = ConstructRectangle(psubwin ,*x,*y,*height, *width,
-                              foreground, background, isfilled, isline) ;
+                              foreground, background, isfilled, isline);
 
   if ( newObj == NULL )
   {
+    /* Deactivated for now (synchronization) */
+#if 0
     endFigureDataWriting(pFigure);
+#endif
     /* an error occured */
-    *hdl = -1 ;
-    return ;
+
+    *hdl = -1;
+    return;
   }
-  sciSetCurrentObj( newObj ) ;
-  *hdl=sciGetHandle( newObj ) ;
+
+  sciSetCurrentObj( newObj );
+  *hdl=sciGetHandle( newObj );
 
 }
 

@@ -2078,26 +2078,49 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_RECTANGLE__) == 0)
     {
+        char* parentAxes;
+        double* upperLeftPoint;
+        double* tmpDouble;
+        double width;
+        double height;
+        int* tmp;
+        int view;
+
         *numrow = 1;
-        *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 5: 4;
+
+        parentAxes = (char*) getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string);
+        tmp = (int*) getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int);
+        view = *tmp;
+
+        *numcol = view ? 5: 4;
+
         if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
         {
             *numrow = -1;
             *numcol = -1;
             return NULL;
         }
-        tab[0] = pRECTANGLE_FEATURE (pthis)->x;
-        tab[1] = pRECTANGLE_FEATURE (pthis)->y;
-        if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
+
+        upperLeftPoint = (double*) getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector);
+
+        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_WIDTH__, jni_double);
+        width = *tmpDouble;
+        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, jni_double);
+        height = *tmpDouble;
+
+        tab[0] = upperLeftPoint[0];
+        tab[1] = upperLeftPoint[1];
+
+        if (view)
         {
-            tab[2] = pRECTANGLE_FEATURE (pthis)->z;
-            tab[3] = pRECTANGLE_FEATURE (pthis)->width;
-            tab[4] = pRECTANGLE_FEATURE (pthis)->height;
+            tab[2] = upperLeftPoint[2];
+            tab[3] = width;
+            tab[4] = height;
         }
         else
         {
-            tab[2] = pRECTANGLE_FEATURE (pthis)->width;
-            tab[3] = pRECTANGLE_FEATURE (pthis)->height;
+            tab[2] = width;
+            tab[3] = height;
         }
         return (double*)tab;
     }

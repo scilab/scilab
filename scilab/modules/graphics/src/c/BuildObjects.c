@@ -1308,11 +1308,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
   }
 #endif
 
-  /*
-   * Sets the Axes as the polyline's parent and adds the polyline to
-   * its parent's list of children.
-   */
-  setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID); 
 
   if (sciAddNewHandle(pobj) == -1)
   {
@@ -1321,6 +1316,12 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
     FREE(pobj);
     return NULL;
   }
+
+  /*
+   * Sets the Axes as the polyline's parent and adds the polyline to
+   * its parent's list of children.
+   */
+  setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
   return pobj;
 
@@ -1426,76 +1427,132 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 		    double height, double width,  int *foreground, int *background,
 		    int isfilled, int isline)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
+    char* type;
+    double upperLeftPoint[3];
+    double* clipRegion;
+    int visible;
+    int* tmp;
+    int clipRegionSet;
+    int clipState;
 
-  if ( height < 0.0 || width < 0.0 )
-  {
-    Scierror(999,_("Width and height must be positive.\n"));
-    return NULL ;
-  }
+    sciPointObj *pobj = (sciPointObj *) NULL;
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
+    if ( height < 0.0 || width < 0.0 )
     {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_RECTANGLE);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciRectangle)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+        Scierror(999,_("Width and height must be positive.\n"));
+        return NULL;
+    }
 
+    type = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
 
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
+    if (strcmp(type, __GO_AXES__) != 0)
+    {
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (sciPointObj *) NULL;
+    }
 
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+        return (sciPointObj *) NULL;
+    }
+
+    pobj->UID = (char*) createGraphicObject(__GO_RECTANGLE__);
+
+    /*
+     * Sets the rectangle's parent in order to initialize the former's Contoured properties
+     * with the latter's values (sciInitGraphicContext call below)
+     */
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+
+      /* To be implemented */
+#if 0
       pRECTANGLE_FEATURE (pobj)->callback = (char *)NULL;
       pRECTANGLE_FEATURE (pobj)->callbacklen = 0;
       pRECTANGLE_FEATURE (pobj)->callbackevent = 100;
+#endif
 
+    upperLeftPoint[0] = x;
+    upperLeftPoint[1] = y;
+    upperLeftPoint[2] = 0.0;
 
-      pRECTANGLE_FEATURE (pobj)->x = x;
-      pRECTANGLE_FEATURE (pobj)->y = y;
-      pRECTANGLE_FEATURE (pobj)->z = 0.0;
-      pRECTANGLE_FEATURE (pobj)->height = height;
-      pRECTANGLE_FEATURE (pobj)->width = width;
-      pRECTANGLE_FEATURE (pobj)->isselected = TRUE;
-      pRECTANGLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+    setGraphicObjectProperty(pobj->UID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
 
-      pRECTANGLE_FEATURE (pobj)->clip_region_set = 0;
-      sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+    setGraphicObjectProperty(pobj->UID, __GO_HEIGHT__, &height, jni_double, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_WIDTH__, &width, jni_double, 1);
 
+      /* To be implemented */
+#if 0
+    pRECTANGLE_FEATURE (pobj)->isselected = TRUE;
+#endif
 
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pRECTANGLE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
+    visible = *tmp;
 
-      sciInitIsLine(pobj,isline);
-      sciInitIsFilled(pobj,isfilled);
+    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
-      if(foreground != NULL)
-	sciInitForeground(pobj,(*foreground));
+    /* Clipping: to be checked */
+#if 0
+    pRECTANGLE_FEATURE (pobj)->clip_region_set = 0;
+    sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
+    sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+#endif
 
-      if(background != NULL)
-	sciInitBackground(pobj,(*background));
+    /* Clip state and region */
+    /* To be checked for consistency */
 
-      return pobj;
-    }
-  else
+    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
+    clipRegionSet = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
+    clipState = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+    /*
+     * Initializes the contour properties (background, foreground, etc)
+     * to the default values (those of the parent Axes).
+     */
+    if (sciInitGraphicContext (pobj) == -1)
     {
-      Scierror(999, _("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj *) NULL;
     }
+
+    /* Contour settings */
+    setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &isline, jni_bool, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
+
+    if(foreground != NULL)
+    {
+        setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, foreground, jni_int, 1);
+    }
+
+    if(background != NULL)
+    {
+        setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, background, jni_int, 1);
+    }
+
+    /* Parent reset to the null object */
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
+
+    if (sciAddNewHandle(pobj) == -1)
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return NULL;
+    }
+
+    /*
+     * Sets the Axes as the rectangle's parent and adds the rectangle to
+     * its parent's list of children.
+     */
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID); 
+
+    return pobj;
 }
 
 

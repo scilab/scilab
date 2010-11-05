@@ -2310,22 +2310,36 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
   }
   else if (strcmp(type, __GO_RECTANGLE__) == 0)
   {
-      int widthIndex = 2 ;
-      int size = *numrow * *numcol ;
+      double* currentUpperLeftPoint;
+      double upperLeftPoint[3];
+      int widthIndex = 2;
+      int size = *numrow * *numcol;
+
       if ( size != 5 && size != 4 )
       {
-        Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),4,5,"z");
-        return -1;
+          Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),4,5,"z");
+          return -1;
       }
 
-      pRECTANGLE_FEATURE (pthis)->x = tab[0] ;
-      pRECTANGLE_FEATURE (pthis)->y = tab[1] ;
+      upperLeftPoint[0] = tab[0];
+      upperLeftPoint[1] = tab[1];
 
       if ( size == 5 )
       {
-        pRECTANGLE_FEATURE (pthis)->z = tab[2] ;
-        widthIndex = 3 ;
+          upperLeftPoint[2] = tab[2];
+          widthIndex = 3;
       }
+      else
+      {
+          /*
+           * Needed in order to set the z coordinate if size == 4
+           * Being able to set only the point's x and y coordinates values would avoid doing this.
+           */
+          currentUpperLeftPoint = (double*) getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector);
+          upperLeftPoint[2] = currentUpperLeftPoint[2];
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
 
       /* check that the height and width are positive */
       if ( tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0 )
@@ -2333,8 +2347,9 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
         Scierror(999,"Width and height must be positive.\n") ;
         return -1 ;
       }
-      pRECTANGLE_FEATURE (pthis)->width  = tab[widthIndex    ] ;
-      pRECTANGLE_FEATURE (pthis)->height = tab[widthIndex + 1] ;
+
+      setGraphicObjectProperty(pthis->UID, __GO_WIDTH__, &tab[widthIndex], jni_double, 1);
+      setGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, &tab[widthIndex + 1], jni_double, 1);
 
       return 0;
   }
