@@ -18,9 +18,6 @@
 #include "BOOL.h"
 #include "ScilabKeywords.h"
 #include "MALLOC.h"
-#include "Scierror.h"
-#include "api_scilab.h"
-#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 char **GetVariablesName(void)
 {
@@ -69,65 +66,5 @@ char **GetMacrosName(void)
                 MacrosName[returnedArraySize] = NULL;
         }
         return MacrosName;
-}
-/*--------------------------------------------------------------------------*/
-char **GetFieldsName(char *var)
-{
-        SciErr sciErr;
-        int *piAddr = NULL;
-        int *piLen = NULL;
-        int piType = 0;
-        int nbItem = 0;
-        int rows = 0;
-        int cols = 0;
-        int rc = 0;
-        int i;
-        char **pstData = NULL;
-
-        sciErr = getNamedVarType(pvApiCtx, var, &piType);
-        if (sciErr.iErr && piType != sci_mlist && piType != sci_tlist)
-        {
-                return NULL;
-        }
-
-        getVarAddressFromName(pvApiCtx, var, &piAddr);
-        if (sciErr.iErr)
-        {
-                return NULL;
-        }
-
-        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &rows, &cols, NULL, NULL);
-        if (sciErr.iErr)
-        {
-                return NULL;
-        }
-
-        rc = rows * cols;
-        piLen = (int*)MALLOC(sizeof(int) * rc);
-        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &rows, &cols, piLen, NULL);
-        if (sciErr.iErr)
-        {
-                FREE(piLen);
-                return NULL;
-        }
-
-        pstData = (char**)MALLOC(sizeof(char*) * (rc + 1));
-        for (i = 0 ; i < rc ; i++)
-        {
-                pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));
-        }
-
-        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &rows, &cols, piLen, pstData);
-        if (sciErr.iErr)
-        {
-                FREE(piLen);
-                FREE(pstData);
-                return NULL;
-        }
-
-        pstData[rc] = NULL;
-        FREE(piLen);
-
-        return pstData;
 }
 /*--------------------------------------------------------------------------*/

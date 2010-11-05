@@ -33,8 +33,4 @@ public class ScilabKeywords {
     return ScilabKeywordsJNI.GetMacrosName();
   }
 
-  public static String[] GetFieldsName(String arg0) {
-    return ScilabKeywordsJNI.GetFieldsName(arg0);
-  }
-
 }

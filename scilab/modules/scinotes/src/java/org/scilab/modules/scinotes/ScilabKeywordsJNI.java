@@ -43,5 +43,4 @@ public class ScilabKeywordsJNI {
   public final static native String[] GetVariablesName();
   public final static native String[] GetFunctionsName();
   public final static native String[] GetMacrosName();
-  public final static native String[] GetFieldsName(String jarg1);
 }

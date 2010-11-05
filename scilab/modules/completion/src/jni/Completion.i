@@ -140,6 +140,17 @@ public";
 char **searchFilesDictionary(char *somechars);
 
 /* JavaDoc */
+%javamethodmodifiers searchFieldsDictionary(char *lineBeforeCaret, char *pattern) "
+/**
+* completion function on files for scilab
+* @param[in] the line before the caret
+* @param[in] the part
+* @return a array of chars 
+*/
+public";
+char **searchFieldsDictionary(char *lineBeforeCaret, char *pattern);
+
+/* JavaDoc */
 %javamethodmodifiers searchHandleGraphicsPropertiesDictionary(char *somechars) "
 /**
 * completion handle graphics properties for scilab

@@ -297,47 +297,6 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_scinotes_ScilabKeywordsJ
 }
 
 
-SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_scinotes_ScilabKeywordsJNI_GetFieldsName(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jobjectArray jresult = 0 ;
-  char *arg1 = (char *) 0 ;
-  char **result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = 0;
-  if (jarg1) {
-    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return 0;
-  }
-  result = (char **)GetFieldsName(arg1);
-  {
-    if (result != NULL)
-    {
-      int i;
-      int len=0;
-      jstring temp_string;
-      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
-      
-      while (result[len]) len++;    
-      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
-      /* exception checking omitted */
-      
-      for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
-        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
-        (*jenv)->DeleteLocalRef(jenv, temp_string);
-        FREE(result[i]);
-        result[i] = NULL;
-      }
-      FREE(result);
-      result = NULL;
-    }       
-  }
-  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  return jresult;
-}
-
-
 #ifdef __cplusplus
 }
 #endif

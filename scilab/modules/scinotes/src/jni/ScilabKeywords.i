@@ -106,13 +106,3 @@ char **GetFunctionsName(void);
 */
 public";
 char **GetMacrosName(void);
-
-/* JavaDoc */
-%javamethodmodifiers GetFieldsName() "
-/**
-* get the fields name of a named list
-* @param arg0 the name of the list
-* @return a array of chars
-*/
-public";
-char **GetFieldsName(char*);

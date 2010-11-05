@@ -38,12 +38,5 @@ char **GetFunctionsName(void);
 */
 char **GetMacrosName(void);
 
-/**
-* get the fields name of a named variable in scilab
-* @param the variable name
-* @return char array
-*/
-char **GetFieldsName(char*);
-
 #endif /* __SCILABKEYWORDS_H__ */
 /*--------------------------------------------------------------------------*/

@@ -16,8 +16,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
@@ -36,10 +34,6 @@ import com.artenum.rosetta.interfaces.core.HistoryManager;
 import com.artenum.rosetta.interfaces.core.GenericInterpreter;
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 import com.artenum.rosetta.interfaces.core.CompletionManager;
-import com.artenum.rosetta.interfaces.core.CompletionItem;
-import com.artenum.rosetta.core.CompletionItemImpl;
-
-import org.scilab.modules.localization.Messages;
 
 import org.scilab.modules.completion.Completion;
 import org.scilab.modules.console.CompletionAction;
@@ -265,69 +259,10 @@ public final class SciNotesCompletionAction extends CompletionAction {
      * Inner class which implements interface ConsoleConfiguration.
      * Only use to be compatible with the way to complete in the console
      */
-    class SciNotesCompletionManager extends SciCompletionManager {
-
-        private InputParsingManager inputParsingManager;
-
-        /**
-         * {@inheritDoc}
-         */
-        public SciNotesCompletionManager() {
-            super();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public void setInputParsingManager(InputParsingManager inputParsingManager) {
-            super.setInputParsingManager(inputParsingManager);
-            this.inputParsingManager = inputParsingManager;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public List<CompletionItem> getCompletionItems() {
-            String commandLine = inputParsingManager.getCommandLine();
-            String part = Completion.getPartLevel(commandLine);
-            commandLine = commandLine.substring(0, commandLine.length() - part.length());
-            if (commandLine.endsWith(".")) {
-                String mlist = Completion.getPartLevel(commandLine.substring(0, commandLine.length() - 1));
-                String[] fieldsName = ScilabKeywords.GetFieldsName(mlist);
-                if (fieldsName == null) {
-                    return super.getCompletionItems();
-                }
-                int start = 1;
-                if (fieldsName[0].equals("st")) {
-                    start = 2;
-                }
-                List<CompletionItem> dictionnary = new ArrayList();
-                String type = Messages.gettext("Field of ") + mlist;
-                for (int i = start; i < fieldsName.length; i++) {
-                    if (fieldsName[i].startsWith(part)) {
-                        dictionnary.add(new CompletionItemImpl(type, fieldsName[i] + " (" + type + ")", fieldsName[i], Messages.gettext("No help")));
-                    }
-                }
-
-                if (dictionnary.isEmpty()) {
-                    return super.getCompletionItems();
-                }
-
-                return dictionnary;
-            } else {
-                return super.getCompletionItems();
-            }
-        }
-    }
-
-    /**
-     * Inner class which implements interface ConsoleConfiguration.
-     * Only use to be compatible with the way to complete in the console
-     */
     class SciNotesCompletionConfiguration implements ConsoleConfiguration {
 
         private SciNotesInputParsingManager xipm = new SciNotesInputParsingManager();
-        private SciNotesCompletionManager scm = new SciNotesCompletionManager();
+        private SciCompletionManager scm = new SciCompletionManager();
         private SciNotesCompletionWindow cwi;
 
         /**
