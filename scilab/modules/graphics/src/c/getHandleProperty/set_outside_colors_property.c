@@ -33,6 +33,7 @@
 int set_outside_colors_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
+    char* parentFigure;
     int  values[2];
     int nbColors = 0;
 
@@ -58,8 +59,8 @@ int set_outside_colors_property( sciPointObj * pobj, size_t stackPointer, int va
 
     copyDoubleVectorToIntFromStack(stackPointer, values, 2);
 
-    /* To be implemented using the MVC framework */
-    nbColors = sciGetNumColors(sciGetParentFigure(pobj));
+    /* Returns the number of colors of pobj's parent Figure */
+    nbColors = sciGetNumColors(pobj);
 
     if (   values[0] > nbColors || values[0] < -1
       || values[1] > nbColors || values[1] < -1)

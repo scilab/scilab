@@ -59,8 +59,8 @@ int set_color_range_property( sciPointObj * pobj, size_t stackPointer, int value
 
     copyDoubleVectorToIntFromStack(stackPointer, values, 2);
 
-    /* To be implemented using the MVC framework */
-    nbColors = sciGetNumColors(sciGetParentFigure(pobj));
+    /* Returns the number of colors of pobj's parent Figure */
+    nbColors = sciGetNumColors(pobj);
 
     if (   values[0] > nbColors || values[0] < 0
       || values[1] > nbColors || values[1] < 0)

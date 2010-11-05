@@ -277,6 +277,16 @@ sciGetNumColors (sciPointObj * pobj)
 {
     if (pobj)
     {
+        char* parentFigure;
+        int* numColors;
+
+        parentFigure = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT_FIGURE__, jni_string);
+        numColors = (int*) getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int);
+
+        return *numColors;
+
+        /* To be deleted */
+#if 0
         /* modified jb Silvy 06/2006 */
         switch (sciGetEntityType (pobj))
         {
@@ -285,8 +295,9 @@ sciGetNumColors (sciPointObj * pobj)
         default:
             return sciGetNumColors( sciGetParentFigure( pobj ) ) ;
         }
+#endif
     }
-    return -1 ;
+    return -1;
 }
 
 
