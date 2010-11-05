@@ -209,6 +209,9 @@ Bug Fixes:
 * bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
                    taken into account for "text" uicontrols.
 
+* bug 8148 fixed - fscanfMat did not read matrix file with tabulation as
+                   default separator.
+
 * bug 8154 fixed - It was not possible to cancel a messagebox with ESC key.
 
 * bug 8160 fixed - The derivative function did not check for input
