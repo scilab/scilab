@@ -208,6 +208,11 @@ void visitprivate(const AssignExp  &e)
             int *piMaxDim       = NULL;
             int *piDimSize      = new int[iProductElem];
             int iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+
+            if(iTotalCombi == 0)
+            {//nothing to do
+                return;
+            }
             /*We have the indexlist expanded and the max index*/
 
             //check we don't have bad indexes like "< 1"
