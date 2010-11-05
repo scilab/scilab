@@ -116,12 +116,9 @@ Function::ReturnValue sci_mprintf(typed_list &in, int _piRetCount, typed_list &o
     int iOutputRows = 0;
     wchar_t** pwstOutput = scilab_sprintf(L"mprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows);
 
-
-
     for(int i = 0 ; i < iOutputRows ; i++)
     {
         YaspWriteW(pwstOutput[i]);
-        YaspWriteW(L"\n");
         FREE(pwstOutput[i]);
     }
     FREE(pwstOutput);

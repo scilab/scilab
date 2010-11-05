@@ -61,12 +61,13 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                         iStart  = pwstStart - _pwstInput;
                         iEnd = wcslen(_pwstInput);
                         bFinish = true;
-                        continue;
                     }
                 }
-
-                iStart  = pwstStart - _pwstInput;
-                iEnd    = pwstEnd - _pwstInput;
+                else
+                {
+                    iStart  = pwstStart - _pwstInput;
+                    iEnd    = pwstEnd - _pwstInput;
+                }
             }
             else
             {//end of string
@@ -241,7 +242,8 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
     //\n \n\r \r to string
     //find number of lines
     *_piOutputRows = 1;
-    for(int i = 0 ; i < wcslen(pwstFirstOutput) - 2 ; i++)
+    int iLen = wcslen(pwstFirstOutput) - 2;
+    for(int i = 0 ; i < iLen ; i++)
     {
         if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'r' && pwstFirstOutput[i + 2] != L'\0')
         {
@@ -288,17 +290,28 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
 
         if(bNewLine || pwstPtr[i + 1] == L'\0')
         {
-            if(pwstPtr[i + 1] == L'\0')
+            if(pwstPtr[i + 1] == L'\0' && !bNewLine)
             {//to copy end of data in a new lines
                 idx = wcslen(pwstPtr);
+                i = idx ;
+            }
+            else if(bNewLine)
+            {//to insert '\0'
+                idx++;
             }
 
             pwstOutput[iRows] = (wchar_t*)MALLOC(sizeof(wchar_t) * (idx + 1));
             wcsncpy(pwstOutput[iRows], pwstPtr, idx);
+
+            if(bNewLine)
+            {
+                pwstOutput[iRows][idx - 1] = L'\n';
+            }
+
             pwstOutput[iRows][idx] = L'\0';
             pwstPtr += i;
             iRows++;
-            i = 0;
+            i = -1;
         }
     }
 
