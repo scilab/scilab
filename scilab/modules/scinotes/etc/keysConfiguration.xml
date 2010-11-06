@@ -18,13 +18,15 @@
   <entry key="SelectAllAction">control A</entry>
   <entry key="SelectBlockAction">control B</entry>
   <entry key="OpenTabInNewWindowAction">control shift T</entry>
-  <entry key="CCloseTabInNewWindowAction">control shift C</entry>
+  <entry key="CCloseTabInNewWindowAction">control shift X</entry>
 
-  <entry key="CopyAction">control C</entry>
+  <entry key="CopyAsHTMLAction">control C</entry>
   <entry key="CutAction">control X</entry>
   <entry key="PasteAction">control V</entry>
   <entry key="UndoAction">control Z</entry>
   <entry key="RedoAction">control Y</entry>
+
+  <entry key="CopyAsHTMLWithLineNumberAction">control shift C</entry>
 
   <entry key="NewAction">control N</entry>
   <entry key="OpenAction">control O</entry>

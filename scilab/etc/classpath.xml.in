@@ -130,6 +130,7 @@ The option is "disableUnderMode" and can be:
 <!-- helptools module doc generation -->
 <path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="copyAsHTMLinScinotes"/>
 </path>
 
 <!-- Mandatory on startup -->

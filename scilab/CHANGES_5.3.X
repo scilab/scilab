@@ -140,6 +140,8 @@ SciNotes:
 
 * bugs 5321, 7760 fixed - It was not easy to configure the tabulation.
 
+* bug 7263 fixed - Scilab code could not be copy as HTML to keep the formatting.
+
 * bug 7762 fixed - A keyword was not fully helpable depending on the caret
                    position.
 

@@ -50,6 +50,7 @@ import javax.swing.event.CaretListener;
 
 import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.scinotes.actions.CopyAsHTMLAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
@@ -227,6 +228,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             });
 
         addKeyListener(this);
+        setTransferHandler(new CopyAsHTMLAction.HTMLTransferHandler());
+    }
+
+    /**
+     * @return the lexer
+     */
+    public ScilabLexer getLexer() {
+        return lexer;
     }
 
     /**

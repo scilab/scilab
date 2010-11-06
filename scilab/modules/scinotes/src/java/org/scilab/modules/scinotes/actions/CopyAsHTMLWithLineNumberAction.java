@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,38 +13,25 @@
 package org.scilab.modules.scinotes.actions;
 
 import javax.swing.KeyStroke;
-import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 
 /**
- * CopyAction Class
- * @author Bruno JOFRET
- *
+ * CopyAsHTMLWithLineNumberAction Class
+ * @author Calixte Denizet
  */
-public final class CopyAction extends DefaultAction {
-
-    /**
-     * serialVersionUID
-     */
-    private static final long serialVersionUID = -8858655782952121924L;
+public class CopyAsHTMLWithLineNumberAction extends CopyAsHTMLAction {
 
     /**
      * Constructor
      * @param name the name of the action
      * @param editor SciNotes
      */
-    public CopyAction(String name, SciNotes editor) {
+    public CopyAsHTMLWithLineNumberAction(String name, SciNotes editor) {
         super(name, editor);
-    }
-
-    /**
-     * doAction
-     */
-    public void doAction() {
-        getEditor().getTextPane().getActionMap().get(DefaultEditorKit.copyAction).actionPerformed(null);
+        printLineNumber = true;
     }
 
     /**
@@ -55,7 +42,7 @@ public final class CopyAction extends DefaultAction {
      * @return createMenu
      */
     public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        return createMenu(label, null, new CopyAction(label, editor), key);
+        return createMenu(label, null, new CopyAsHTMLWithLineNumberAction(label, editor), key);
     }
 
     /**
@@ -66,6 +53,6 @@ public final class CopyAction extends DefaultAction {
      * @return PushButton
      */
     public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
-        return createButton(tooltip, icon, new CopyAction(tooltip, editor));
+        return createButton(tooltip, icon, new CopyAsHTMLWithLineNumberAction(tooltip, editor));
     }
 }
