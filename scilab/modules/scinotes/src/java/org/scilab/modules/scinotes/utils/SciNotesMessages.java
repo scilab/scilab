@@ -215,6 +215,10 @@ public class SciNotesMessages {
     public static final String COMPLETE = Messages.gettext("Complete");
     public static final String EDIT_SELECTION = Messages.gettext("Copy selection in a new tab");
 
+    public static final String DIFFERENT_ENCODINGS = Messages.gettext("The file encoding is actually %s and it will be saved in using %s. Continue ?");
+    public static final String DIFFERENT_ENCODINGS_TITLE = Messages.gettext("Encoding problems");
+    public static final String CANNOT_GUESS_ENCODING = Messages.gettext("Cannot guess the file encoding.");
+
     /**
      * "Change Colors" message
      */

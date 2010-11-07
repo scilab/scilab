@@ -694,7 +694,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         File newSavedFile = new File(fileToSave);
 
-        if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
+        if (!SaveFile.doSave(textPaneAt, indexTab, newSavedFile, editorKit)) {
             return false;
         }
 
@@ -737,7 +737,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             return true;
         }
 
-        if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
+        if (!SaveFile.doSave(textPaneAt, indexTab, newSavedFile, editorKit)) {
             return false;
         }
 
@@ -917,7 +917,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         File f = new File(filename);
         ScilabDocument styledDocument = (ScilabDocument) getTextPane().getDocument();
 
-        if (!SaveFile.doSave(getTextPane(), f, editorKit)) {
+        if (!SaveFile.doSave(getTextPane(), getTabPane().getSelectedIndex(), f, editorKit)) {
             return false;
         }
 
@@ -1145,7 +1145,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 newTitle.append(textPaneName);
             }
         }
-        getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newTitle.toString());
+        getTabPane().setTitleAt(getTabPane().getSelectedIndex(), newTitle.toString());
     }
 
     /**
@@ -1628,25 +1628,12 @@ public class SciNotes extends SwingScilabTab implements Tab {
             styleDocument.disableUndoManager();
             theTextPane.setLastModified(f.lastModified());
 
-            FileInputStream fis = null;
-            InputStreamReader isr = null;
-            BufferedReader br = null;
-
             try {
                 styleDocument.setUpdater(false);
                 boolean indentMode = styleDocument.getAutoIndent();
                 styleDocument.setAutoIndent(false);
-                fis = new FileInputStream(f);
                 try {
-                    try {
-                        isr = new InputStreamReader(fis, styleDocument.getEncoding());
-                        br = new BufferedReader(isr);
-                        editorKit.read(br, styleDocument, 0);
-                    } catch (ChangedCharSetException e) {
-                        isr = new InputStreamReader(fis, e.getCharSetSpec());
-                        br = new BufferedReader(isr);
-                        editorKit.read(br, styleDocument, 0);
-                    }
+                    ((ScilabEditorKit) editorKit).read(this, f, styleDocument, 0);
                 } catch (BadLocationException e) {
                     e.printStackTrace();
                 }
@@ -1654,18 +1641,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 styleDocument.setUpdater(true);
             } catch (IOException ioex) {
                 ioex.printStackTrace();
-            } finally {
-                try {
-                    if (fis != null) {
-                        fis.close();
-                    }
-                    if (isr != null) {
-                        isr.close();
-                    }
-                    if (br != null) {
-                        br.close();
-                    }
-                } catch (IOException e) { }
             }
 
             theTextPane.setName(f.getAbsolutePath());

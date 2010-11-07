@@ -184,7 +184,7 @@ public class EncodingAction extends DefaultCheckAction {
                 group.add(radioTypes[psize + i]);
                 ((JMenu) menuLang[k].getAsSimpleMenu()).add(radioTypes[psize + i]);
 
-                if (encodingList.get(i).toUpperCase().equals(Charset.defaultCharset().toString().toUpperCase())) {
+                if (encodingList.get(i).equalsIgnoreCase(Charset.defaultCharset().toString())) {
                     radioTypes[psize + i].setSelected(true);
                 }
             }
@@ -195,6 +195,10 @@ public class EncodingAction extends DefaultCheckAction {
         return encodingTypeMenu;
     }
 
+    public static Set<String> getSupportedEncodings() {
+        return encodings.keySet();
+    }
+
     /**
      * Update the selected item in the encoding pull down menu of the document.
      * @param scilabDocument the document for which the encoding menu should
@@ -203,9 +207,9 @@ public class EncodingAction extends DefaultCheckAction {
     public static void updateEncodingMenu(ScilabDocument scilabDocument) {
         if (radioTypes != null) {
             for (int i = 0; i < radioTypes.length; i++) {
-                if (scilabDocument.getEncoding().equals(radioTypes[i].getText())) {
+                if (scilabDocument.getEncoding().equalsIgnoreCase(radioTypes[i].getText())) {
                     radioTypes[i].setSelected(true);
-                    updateIcon(scilabDocument.getEncoding());
+                    updateIcon(radioTypes[i].getText());
                     return;
                 }
             }
@@ -214,7 +218,7 @@ public class EncodingAction extends DefaultCheckAction {
 
     /**
      * getEncodings
-     * @return Map : Language -> {enc1, enc2, ...}
+     * @return Map : Language -&gt; {enc1, enc2, ...}
      */
     public static Map<String, List<String>> getEncodings() {
         if (!language.isEmpty()) {
@@ -277,7 +281,7 @@ public class EncodingAction extends DefaultCheckAction {
         styleDocument.setAutoIndent(false);
 
         styleDocument.setEncoding(encoding);
-        ConfigSciNotesManager.saveDefaultEncoding(encoding);
+        //ConfigSciNotesManager.saveDefaultEncoding(encoding);
 
         //Update the menu
         updateIcon(encoding);

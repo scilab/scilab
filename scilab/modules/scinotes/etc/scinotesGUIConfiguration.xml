@@ -71,7 +71,8 @@
 
     <menu label="Preferences" mnemonic="P">
       <menuitem action="LineNumbersAction" label="Line numbering;Off;Normal;Whereami compatible"/>
-      <menuitem action="EncodingAction" label="Encoding"/>
+      <menuitem action="EncodingAction" label="Current file encoding"/>
+      <menuitem action="DefaultEncodingAction" label="Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"/>
       <menuitem action="EndOfLineAction" label="Line Endings"/>
       <menuitem action="PageSetupAction" label="Page Setup"/>
       <separator/>
