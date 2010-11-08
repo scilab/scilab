@@ -1337,84 +1337,134 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 	      double height, double width, double alphabegin, double alphaend,
 	      int *foreground, int *background, BOOL isfilled, BOOL isline)
 {
-  sciPointObj * pobj  = (sciPointObj *) NULL;
-  sciArc      * ppArc = NULL ;
+    char* type;
+    double upperLeftPoint[3];
+    double* clipRegion;
+    int* tmp;
+    int visible;
+    int arcDrawingMethod;
+    int clipRegionSet;
+    int clipState;
+    sciPointObj * pobj  = (sciPointObj *) NULL;
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
+    type = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+
+    if (strcmp(type, __GO_AXES__) != 0)
     {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_ARC);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciArc)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (sciPointObj *) NULL;
+    }
 
-      /* get the pointer to features */
-      ppArc = pobj->pfeatures ;
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+        return (sciPointObj *) NULL;
+    }
 
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
+    pobj->UID = (char*) createGraphicObject(__GO_ARC__);
 
-      ppArc->callback = (char *)NULL;
-      ppArc->callbacklen = 0;
-      ppArc->callbackevent = 100;
+    /*
+     * Sets the arc's parent in order to initialize the former's Contoured properties
+     * with the latter's values (sciInitGraphicContext call below)
+     */
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
 
-      ppArc->x = x;
-      ppArc->y = y;
-      ppArc->z = 0;
-      ppArc->height = height;
-      ppArc->width = width;
-      ppArc->alphabegin = alphabegin;
-      ppArc->alphaend = alphaend;
-      ppArc->isselected = TRUE;
-      ppArc->visible = sciGetVisibility(pparentsubwin);
-      /* By default use nurbs drawing */
-      sciInitUseNurbs(pobj, sciGetUseNurbs(pparentsubwin));
+    /* To be implemented */
+#if 0
+    ppArc->callback = (char *)NULL;
+    ppArc->callbacklen = 0;
+    ppArc->callbackevent = 100;
+#endif
 
+    upperLeftPoint[0] = x;
+    upperLeftPoint[1] = y;
+    upperLeftPoint[2] = 0.0;
 
+    setGraphicObjectProperty(pobj->UID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
+
+    setGraphicObjectProperty(pobj->UID, __GO_HEIGHT__, &height, jni_double, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_WIDTH__, &width, jni_double, 1);
+
+    setGraphicObjectProperty(pobj->UID, __GO_START_ANGLE__, &alphabegin, jni_double, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_END_ANGLE__, &alphaend, jni_double, 1);
+
+    /* To be implemented */
+#if 0
+    ppArc->isselected = TRUE;
+#endif
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
+    visible = *tmp;
+
+    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_ARC_DRAWING_METHOD__, jni_int);
+    arcDrawingMethod = *tmp;
+
+    setGraphicObjectProperty(pobj->UID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
+
+    /* To be checked for consistency */
+#if 0
       ppArc->clip_region_set = 0;
       /*ppArc->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
       sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
       sciSetClipping(pobj,sciGetClipping(pparentsubwin));
       /*      pARC_FEATURE (pobj)->clip_region = (double *) NULL; */
+#endif
+
+    /*
+     * Clip state and region
+     * To be checked for consistency
+     */
+    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
+    clipRegionSet = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
+    clipState = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
 
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppArc);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      sciInitIsFilled(pobj,isfilled);
-      /* should be put after graphicContext initialization */
-      sciInitIsLine(pobj,isline);
-
-      if(foreground != NULL)
-      {
-	sciInitForeground(pobj,(*foreground));
-      }
-
-      if(background != NULL)
-      {
-	sciInitBackground(pobj,(*background));
-      }
-
-      return pobj;
-    }
-  else
+    if (sciInitGraphicContext (pobj) == -1)
     {
-      Scierror(999, _("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj *) NULL;
     }
+
+    /* Contour settings */
+    setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &isline, jni_bool, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
+
+    if(foreground != NULL)
+    {
+        setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, foreground, jni_int, 1);
+    }
+
+    if(background != NULL)
+    {
+        setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, background, jni_int, 1);
+    }
+
+    /* Parent reset to the null object */
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
+
+    if (sciAddNewHandle(pobj) == -1)
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return NULL;
+    }
+
+    /*
+     * Sets the Axes as the arc's parent and adds the arc to
+     * its parent's list of children.
+     */
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID); 
+
+    return pobj;
 }
 
 

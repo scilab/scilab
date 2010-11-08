@@ -430,6 +430,13 @@ sciInitGraphicContext (sciPointObj * pobj)
     }
     return 0;
   }
+  else if (strcmp(type, __GO_ARC__) == 0)
+  {
+    char* parent;
+
+    parent = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string);
+    cloneGraphicContext(parent, pobj->UID);
+  }
   /*
    * Copies the parent object's contour properties values
    */

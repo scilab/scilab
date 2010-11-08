@@ -2355,29 +2355,59 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
   }
   else if (strcmp(type, __GO_ARC__) == 0)
   {
-      if ((*numrow * *numcol != 7)&&(*numrow * *numcol != 6))
-	{
-	  Scierror(999, _("Number of elements must be %d (%d if z coordinate )\n"),6,7);
-	  return -1;
-	}
+      double startAngle;
+      double endAngle;
+      double upperLeftPoint[3];
+      double width;
+      double height;
+      double* currentUpperLeftPoint;
+      int size;
 
-      pARC_FEATURE (pthis)->x          = tab[0];
-      pARC_FEATURE (pthis)->y          = tab[1];
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	{
-	  pARC_FEATURE (pthis)->z          = tab[2];
-	  pARC_FEATURE (pthis)->width      = tab[3];
-	  pARC_FEATURE (pthis)->height     = tab[4];
-	  pARC_FEATURE (pthis)->alphabegin = DEG2RAD(tab[5]);
-	  pARC_FEATURE (pthis)->alphaend   = DEG2RAD(tab[6]);
-	}
+      size = *numrow * *numcol;
+
+      if ((size != 7) && (size != 6))
+      {
+          Scierror(999, _("Number of elements must be %d (%d if z coordinate )\n"),6,7);
+          return -1;
+      }
+
+      upperLeftPoint[0] = tab[0];
+      upperLeftPoint[1] = tab[1];
+
+      /*
+       * Setting the data has been made consistent with how it is done for the Rectangle:
+       * it takes into account the size of the input array instead of the parent Axes'
+       * view property. Using the latter led to incorrectly set values when size and view
+       * were not corresponding (for example when size==7, and view==2d).
+       */
+      if (size == 7)
+      {
+          upperLeftPoint[2] = tab[2];
+          width = tab[3];
+          height = tab[4];
+          startAngle = DEG2RAD(tab[5]);
+          endAngle = DEG2RAD(tab[6]);
+      }
       else
-	{
-	  pARC_FEATURE (pthis)->width      = tab[2];
-	  pARC_FEATURE (pthis)->height     = tab[3];
-	  pARC_FEATURE (pthis)->alphabegin = DEG2RAD(tab[4]);
-	  pARC_FEATURE (pthis)->alphaend   = DEG2RAD(tab[5]);
-	}
+      {
+          /* Needed in order to set the z coordinate if size == 6 */
+          currentUpperLeftPoint = (double*) getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector);
+
+          upperLeftPoint[2] = currentUpperLeftPoint[2];
+          width = tab[2];
+          height = tab[3];
+          startAngle = DEG2RAD(tab[4]);
+          endAngle = DEG2RAD(tab[5]);
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
+
+      setGraphicObjectProperty(pthis->UID, __GO_WIDTH__, &width, jni_double, 1);
+      setGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, &height, jni_double, 1);
+
+      setGraphicObjectProperty(pthis->UID, __GO_START_ANGLE__, &startAngle, jni_double, 1);
+      setGraphicObjectProperty(pthis->UID, __GO_END_ANGLE__, &endAngle, jni_double, 1);
+
       return 0;
   }
   else if (strcmp(type, __GO_TEXT__) == 0)

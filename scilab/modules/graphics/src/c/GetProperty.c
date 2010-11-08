@@ -2137,32 +2137,62 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_ARC__) == 0)
     {
+        char* parentAxes;
+        double* upperLeftPoint;
+        double* tmpDouble;
+        double width;
+        double height;
+        double startAngle;
+        double endAngle;
+        int* tmp;
+        int view;
+
         *numrow = 1;
-        *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 7: 6;
+
+        parentAxes = (char*) getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string);
+        tmp = (int*) getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int);
+        view = *tmp;
+
+        *numcol = view ? 7: 6;
+
         if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
         {
             *numrow = -1;
             *numcol = -1;
             return NULL;
         }
-        tab[0] = pARC_FEATURE (pthis)->x;
-        tab[1] =  pARC_FEATURE (pthis)->y;
-        if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
+
+        upperLeftPoint = (double*) getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector);
+
+        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_WIDTH__, jni_double);
+        width = *tmpDouble;
+        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, jni_double);
+        height = *tmpDouble;
+
+        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_START_ANGLE__, jni_double);
+        startAngle = *tmpDouble;
+        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_END_ANGLE__, jni_double);
+        endAngle = *tmpDouble;
+
+        tab[0] = upperLeftPoint[0];
+        tab[1] = upperLeftPoint[1];
+
+        if (view)
         {
-            tab[2] = pARC_FEATURE (pthis)->z;
-            tab[3] = pARC_FEATURE (pthis)->width;
-            tab[4] = pARC_FEATURE (pthis)->height;
-            tab[5] = RAD2DEG(pARC_FEATURE (pthis)->alphabegin);
-            tab[6] = RAD2DEG(pARC_FEATURE (pthis)->alphaend);
+            tab[2] = upperLeftPoint[2];
+            tab[3] = width;
+            tab[4] = height;
+            tab[5] = RAD2DEG(startAngle);
+            tab[6] = RAD2DEG(endAngle);
         }
         else
         {
-            tab[2] = pARC_FEATURE (pthis)->width;
-            tab[3] = pARC_FEATURE (pthis)->height;
-            tab[4] = RAD2DEG(pARC_FEATURE (pthis)->alphabegin);
-            tab[5] = RAD2DEG(pARC_FEATURE (pthis)->alphaend);
-
+            tab[2] = width;
+            tab[3] = height;
+            tab[4] = RAD2DEG(startAngle);
+            tab[5] = RAD2DEG(endAngle);
         }
+
         return (double*)tab;
     }
     else if (strcmp(type, __GO_COMPOUND__) == 0)
