@@ -107,6 +107,9 @@ SciNotes:
 
 * Add a completion on the fields name of a mlist or a tlist.
 
+* bug 4399 fixed - It was not possible to distinguish lines from inner functions
+                   and from normal functions.
+
 * bugs 5321, 7760 fixed - It was not easy to configure the tabulation.
 
 * bug 7762 fixed - A keyword was not fully helpable depending on the caret

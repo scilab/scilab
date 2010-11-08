@@ -90,7 +90,6 @@ public final class ConfigSciNotesManager {
     private static final String MAINWINPOSITION = "MainWindowPosition";
     private static final String MAINWINSIZE = "MainWindowSize";
     private static final String AUTOINDENT = "AutoIndent";
-    private static final String AUTOCOLORIZE = "AutoColorize";
     private static final String DEFAULTENCONDING = "DefaultEncoding";
     private static final String LINEHIGHLIGHTER = "LineHighlighter";
     private static final String HELPONTYPING = "HelpOnTyping";
@@ -99,6 +98,9 @@ public final class ConfigSciNotesManager {
 
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
+    private static final String ALTERNCOLORS = "AlternColors";
+    private static final String COLOR1 = "color1";
+    private static final String COLOR2 = "color2";
     private static final String LINECOLOR = "linecolor";
     private static final String CONTOURCOLOR = "contourcolor";
     private static final String COLORPREFIX = "#";
@@ -446,6 +448,40 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * @return the color the altern colors for inner function
+     */
+    public static Color[] getAlternColors() {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(ALTERNCOLORS);
+        Element alternColors = (Element) allSizeElements.item(0);
+        Color[] arr = new Color[2];
+
+        Color c;
+        if (NULL.equals(alternColors.getAttribute(COLOR1))) {
+            c = null;
+        } else {
+            c = Color.decode(alternColors.getAttribute(COLOR1));
+        }
+
+        arr[0] = c;
+
+        if (NULL.equals(alternColors.getAttribute(COLOR2))) {
+            c = null;
+        } else {
+            c = Color.decode(alternColors.getAttribute(COLOR2));
+        }
+
+        arr[1] = c;
+        return arr;
+    }
+
+    /**
      * Get all font style
      * @return true if the font style is bold , false otherwise
      */
@@ -731,26 +767,26 @@ public final class ConfigSciNotesManager {
         for (int i = 0; i < styles.getLength(); ++i) {
             Element style = (Element) styles.item(i);
             if ("Tabulation".equals(style.getAttribute(NAME))) {
-		String type = "none";
-		switch (cfg.type) {
-		case ScilabView.TABVERTICAL:
-		    type = "vertical";
-		    break;
-		case ScilabView.TABHORIZONTAL:
-		    type = "horizontal";
-		    break;
-		case ScilabView.TABDOUBLECHEVRONS:
-		    type = "doublechevrons";
-		    break;
-		default:
-		    break;
-		}
+                String type = "none";
+                switch (cfg.type) {
+                case ScilabView.TABVERTICAL:
+                    type = "vertical";
+                    break;
+                case ScilabView.TABHORIZONTAL:
+                    type = "horizontal";
+                    break;
+                case ScilabView.TABDOUBLECHEVRONS:
+                    type = "doublechevrons";
+                    break;
+                default:
+                    break;
+                }
 
-		style.setAttribute("rep", type);
-		style.setAttribute(VALUE, Integer.toString(cfg.number));
-		style.setAttribute("white", Boolean.toString(cfg.tab == ' '));
-		writeDocument();
-		return;
+                style.setAttribute("rep", type);
+                style.setAttribute(VALUE, Integer.toString(cfg.number));
+                style.setAttribute("white", Boolean.toString(cfg.tab == ' '));
+                writeDocument();
+                return;
             }
         }
     }
@@ -963,60 +999,6 @@ public final class ConfigSciNotesManager {
             return new Boolean(autoIndent.getAttribute(VALUE));
         }
     }
-
-
-    /**
-     * Save SciNotes autoColorize or not
-     * @param activated if autoIndent should be used or not
-     */
-    public static void saveAutoColorize(boolean activated) {
-
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(AUTOCOLORIZE);
-        Element scinotesAutoIndent = (Element) allSizeElements.item(0);
-        if (scinotesAutoIndent == null) {
-            Element autoColorize = document.createElement(AUTOCOLORIZE);
-
-            autoColorize.setAttribute(VALUE, new Boolean(activated).toString());
-
-            scinotesProfile.appendChild((Node) autoColorize);
-        } else {
-            scinotesAutoIndent.setAttribute(VALUE, new Boolean(activated).toString());
-        }
-        /* Save changes */
-        writeDocument();
-    }
-
-
-    /**
-     * @return a boolean to say if the doc is autocolorize
-     */
-    public static boolean getAutoColorize() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(AUTOCOLORIZE);
-        Element autoColorize = (Element) allSizeElements.item(0);
-
-        if (autoColorize == null) {
-            return true;
-        } else {
-            return new Boolean(autoColorize.getAttribute(VALUE));
-        }
-    }
-
 
     /**
      * @param encoding the default encoding for the files
