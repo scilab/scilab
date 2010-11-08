@@ -45,7 +45,6 @@ void visitprivate(const CallExp &e)
             {
                 ImplicitList* pIL = execVar[j].result_get()->getAsImplicitList();
                 execVar[j].result_set(pIL->extract_matrix());
-                delete pIL;
             }
 
             if(execVar[j].is_single_result())

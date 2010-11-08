@@ -577,16 +577,6 @@ namespace types
             }
         }
 
-        //check if the size of _poSource is compatible with the size of the variable
-        if(_bAsVector == false && (iNewRows < _poSource->rows_get() || iNewCols < _poSource->cols_get()))
-        {
-            return false;
-        }
-        else if(_bAsVector == true && (iNewRows * iNewCols < _poSource->size_get()))
-        {
-            return false;
-        }
-
         //Only resize after all tests !
         if(resize(iNewRows, iNewCols) == false)
         {

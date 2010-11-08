@@ -294,9 +294,17 @@ void visitprivate(const AssignExp  &e)
                     pRet = pIT->getAsTList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
                     break;
                 case InternalType::RealCell : 
-                    if(execMeR.result_list_get()->size() ==1)
+                    if(execMeR.result_get()->isCell() == true)
                     {
                         pRet = pIT->getAsCell()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    }
+                    else
+                    {
+                        //manage error
+                        std::wostringstream os;
+                        os << _W("Right hand argument must be a cell.\n");
+                        //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                        throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
                     }
                     break;
                 default : 
