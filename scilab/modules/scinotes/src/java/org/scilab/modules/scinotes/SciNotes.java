@@ -1031,6 +1031,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void splitTab(boolean vertical) {
         ScilabEditorPane pane = getTextPane();
+        int state = pane.getXln().getState();
         ScilabEditorPane leftPane = new ScilabEditorPane(editor);
         ScilabEditorPane rightPane = new ScilabEditorPane(editor);
         NavigatorWindow.changePaneOnSplit(pane, leftPane);
@@ -1053,6 +1054,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
         leftPane.setSplitPane(split);
         rightPane.setSplitPane(split);
+        leftPane.getXln().setWhereamiLineNumbering(state);
+        rightPane.getXln().setWhereamiLineNumbering(state);
         tabPane.setComponentAt(tabPane.getSelectedIndex(), split);
         split.setLeftComponent(leftPane.getScrollPane());
         split.setRightComponent(rightPane.getScrollPane());
