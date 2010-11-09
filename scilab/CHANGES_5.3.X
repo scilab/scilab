@@ -102,6 +102,8 @@ $..10^p$ exponents instead of the D+/-## console style display.
 * Finally, their positioning is still improved in order to avoid their mutual
 overlaying for big values.
 
+* bug 7492 fixed - If its "data_mapping" property was set to "direct", the Grayplot
+                   object's data seemed to be transposed when displayed.
 
 SciNotes:
 =========
