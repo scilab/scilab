@@ -24,7 +24,7 @@
     <synopsis>list_keywords=getscilabkeywords()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>list_keywords</term>

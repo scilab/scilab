@@ -1553,7 +1553,16 @@ public class ScilabBridge {
 	 * @return the created MenuItem
 	 */
 	public static SimpleMenuItem createMenuItem() {
-		return ScilabMenuItemBridge.createMenuItem();
+		return createMenuItem(true);
+	}
+	
+	/**
+	 * Creates a new MenuItem
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 * @return the created MenuItem
+	 */
+	public static SimpleMenuItem createMenuItem(boolean autoCheckedMode) {
+		return ScilabMenuItemBridge.createMenuItem(autoCheckedMode);
 	}
 	
 	/**
@@ -1790,7 +1799,16 @@ public class ScilabBridge {
 	 * @return the created CheckBoxMenuItem
 	 */
 	public static SimpleCheckBoxMenuItem createCheckBoxMenuItem() {
-		return ScilabCheckBoxMenuItemBridge.createCheckBoxMenuItem();
+		return createCheckBoxMenuItem(true);
+	}
+	
+	/**
+	 * Creates a new CheckBoxMenuItem
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 * @return the created CheckBoxMenuItem
+	 */
+	public static SimpleCheckBoxMenuItem createCheckBoxMenuItem(boolean autoCheckedMode) {
+		return ScilabCheckBoxMenuItemBridge.createCheckBoxMenuItem(autoCheckedMode);
 	}
 	
 	/**

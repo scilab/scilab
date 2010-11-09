@@ -35,7 +35,7 @@ typedef struct {
 } fscanfMatResult;
 
 
-#define DEFAULT_FSCANFMAT_FORMAT "%lf"
+#define DEFAULT_FSCANFMAT_FORMAT "%lg"
 #define DEFAULT_FSCANFMAT_SEPARATOR " "
 
 /**

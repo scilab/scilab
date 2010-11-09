@@ -24,7 +24,7 @@
     <synopsis>[x,y]=geom3d(x1,y1,z1)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x1,y1,z1</term>

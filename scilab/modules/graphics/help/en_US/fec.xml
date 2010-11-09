@@ -24,7 +24,7 @@
 fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>

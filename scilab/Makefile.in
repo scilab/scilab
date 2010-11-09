@@ -98,11 +98,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -1655,11 +1656,11 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (English) --"; \
-@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
-@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
+@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
+@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (French) --"; \
-@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
-@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
+@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab-adv-cli binary"; \
 @BUILD_HELP_TRUE@	fi

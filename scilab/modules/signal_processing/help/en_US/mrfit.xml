@@ -15,7 +15,7 @@ sys=mrfit(w,mag,order,weight)
 [num,den]=mrfit(w,mag,order,weight)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>w</term>

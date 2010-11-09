@@ -1,6 +1,17 @@
             Changes between version 5.3.0-beta-4 and 5.3.0 of Scilab
             ========================================================
 
+Documentation:
+==============
+
+Massive improvement of the documentation system:
+* Improved navigation in the help browser and the web interface.
+* Improved look and feel in the help browser and the web interface.
+* Colorisation of the Scilab code.
+* In the examples, functions can be clicked to see their help pages.
+* Improved maintainability.
+* Faster build process (30 to 60 minutes => less than 30 seconds)
+
 License:
 ========
 
@@ -12,6 +23,26 @@ Security issue:
 
 * Fix a (minor) security issue. CVE-2010-3378
 See: http://security-tracker.debian.org/tracker/CVE-2010-3378
+
+Documentation:
+==============
+
+* Documentation of trigonometry functions moved in a dedicated documentation
+  section.
+
+* bug 7048 fixed - Documentation of color managements in graphics functions
+                   moved in a dedicated section.
+
+* bug 7052 fixed - Documentation of floating point functions moved in
+                   a dedicated section.
+
+* bug 8268 fixed - Documentation of Integer representation functions moved in
+                   a dedicated section.
+
+* bug 8269 fixed - Documentation of adj2sp was not in the sparse help section.
+
+* bug 8270 fixed - Documentation of discrete mathematics functions moved in
+                   a dedicated section.
 
 Known incompatibilities:
 ========================
@@ -74,15 +105,40 @@ SciNotes:
 * Add a "Save file in..." menu which gives the possibility to save a file
   in favorite directories.
 
+* Add a completion on the fields name of a mlist or a tlist.
+
+* bug 4399 fixed - It was not possible to distinguish lines from inner functions
+                   and from normal functions.
+
+* bugs 5321, 7760 fixed - It was not easy to configure the tabulation.
+
+* bug 7762 fixed - A keyword was not fully helpable depending on the caret
+                   position.
+
 * bug 7806 fixed - Blocks elseif...end and else...end were not highlighted.
 
 * bug 8095 fixed - The Set Colors window was too height with OpenJDK.
 
 * bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
 
+* bug 8227 fixed - The commands evaluated with "Evaluate selection" were not
+                   stored in history.
+
+* bug 8229 fixed - There was a problem of selection after an indentation.
+
+* bug 8230 fixed - Save As action did not propose the current file name as default.
+
 * bug 8277 fixed - Under Windows, exceptions were thrown when a key was hit on
                    a keyboard in chinese mode.
 
+* bug 8304 fixed - A Java exception was thrown on Exit menu.
+
+* bug 8309 fixed - Bad display of the line number in whereami mode with broken lines.
+
+Completion:
+===========
+
+* Add completion on fields of mlist, tlist, struct and graphic handles in console.
 
 Compilation:
 ============
@@ -94,7 +150,7 @@ Compilation:
 * bug 8013 fixed - In some cases, the build of the compiler of modelica failed.
 
 * bug 8274 fixed - Improve detection of Java regarding Apple changes:
-      	           Java for Mac OS X 10.6 Update 3 and 10.5 Update 8 Release
+                   Java for Mac OS X 10.6 Update 3 and 10.5 Update 8 Release
                    Notes
 
 Bug Fixes:
@@ -102,8 +158,15 @@ Bug Fixes:
 
 * bug 3175 fixed - There were no shortcuts in the console menus.
 
+* bug 4738 fixed - The number of columns in the console was badly calculated.
+
 * bug 4827 fixed - The test_run function did not work properly with modules begining
                    with a "n".
+
+* bug 5486 fixed - It was not possible to precise the text of a link in
+                   help_from_sci.
+
+* bug 6942 fixed - Explicit dependency on the libX11 on scilab-cli was existing.
 
 * bug 7364 fixed - The "Checked" property misworked for uimenus and they could
                    not have a callback.
@@ -164,6 +227,9 @@ Bug Fixes:
 * bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
                    taken into account for "text" uicontrols.
 
+* bug 8148 fixed - fscanfMat did not read matrix file with tabulation as
+                   default separator.
+
 * bug 8154 fixed - It was not possible to cancel a messagebox with ESC key.
 
 * bug 8160 fixed - The derivative function did not check for input
@@ -171,10 +237,16 @@ Bug Fixes:
 
 * bug 8164 fixed - Typo in the fileparts help page.
 
+* bug 8166 fixed - All the checkboxes in SciNotes 'Preferences' menu were
+                   inefficient.
+
 * bug 8174 fixed - ss2tf produced bad results if applied to a complex
                    state space system.
 
 * bug 8177 fixed - format mode was modified by some macros and not restored.
+
+* bug 8181 fixed - uicontrol did not handle color where composants are outside
+                   the range 0-255.
 
 * bug 8202 fixed - Typo in the the localization.
 
@@ -189,11 +261,20 @@ Bug Fixes:
 * bug 8232 fixed - drag and drop of .scg files (on console) used "xload"
                    and not "load".
 
+* bug 8240 fixed - Demo of polarplot improved (Thanks to Samuel Gougeon).
+
 * bug 8283 fixed - file graphics/help/en_US/datatips datatipLookfor.xml removed.
                    datatipLookfor is an internal function that has not be used
                    directly.
 
+* bug 8296 fixed - size( M,3) crashed scilab 5.3.0-beta-4.
+
 * bug 8300 fixed - a(48400, 48400) = 0 crashed scilab.
+
+* bug 8318 fixed - help window was not brought up to front when already opened.
+
+* bug 8332 fixed - Some use of clipboard function crashed Scilab.
+
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================

@@ -23,7 +23,7 @@
     <synopsis>xfpolys(xpols,ypols,[fill])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>xpols,ypols</term>

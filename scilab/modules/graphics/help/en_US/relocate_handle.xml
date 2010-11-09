@@ -24,7 +24,7 @@
     <synopsis>relocate_handle( movedHandles, parent )</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>movedHandles</term>

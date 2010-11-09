@@ -34,13 +34,15 @@ static int cmpPos(char *str1,char *str2)
 		char *s2 = NULL;
 		int lenstr1 = (int) strlen(str1);
 		int lenstr2 = (int) strlen(str2);
+		int slen;
 
 		if (lenstr1 > lenstr2) 
 		{
 			s1 = str2;
 			s2 = str1;
-			lenstr1 = (int) strlen(str1);
-			lenstr2 = (int) strlen(str2);
+			slen = lenstr1;
+			lenstr1 = lenstr2;
+			lenstr2 = slen;
 		}
 		else
 		{
@@ -77,7 +79,7 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
 		for (i = 1; i < sizeDictionary - 1; i++)
 		{
 			int current_r = cmpPos(currentstr, dictionary[i+1]);
-			if (r > current_r  )
+			if (r > current_r)
 			{
 				r = current_r;
 				currentstr = dictionary[i+1];
@@ -85,7 +87,7 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
 		}
 		
 		commonpart = strdup(currentstr);
-		if (r>0) commonpart[r] = '\0';
+		commonpart[r] = '\0';
 	}
 	return commonpart;
 }

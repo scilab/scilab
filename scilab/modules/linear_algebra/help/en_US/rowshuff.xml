@@ -23,7 +23,7 @@
     <synopsis>[Ws,Fs1]=rowshuff(Fs, [alfa])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Fs</term>

@@ -1,0 +1,96 @@
+.comment {
+ font-style: italic;
+ color: #01a801
+}
+
+.default {
+ font-style: normal;
+ color: #000000
+}
+
+.special {
+ font-style: normal;
+ color: #ffaa00
+}
+
+.constants {
+ font-style: normal;
+ color: #da70d6
+}
+
+.operator {
+ font-style: normal;
+ color: #5c5c5c
+}
+
+.number {
+ font-style: normal;
+ color: #bc8f8f
+}
+
+.fkeyword {
+ font-style: normal;
+ color: #b01813
+}
+
+.skeyword {
+ font-style: normal;
+ color: #a020f0
+}
+
+.ckeyword {
+ font-style: normal;
+ color: #5f9ea0
+}
+
+.command {
+ font-style: normal;
+ color: #32b9b9
+}
+
+.macro {
+ font-style: normal;
+ color: #ae5cb0
+}
+
+a.command {
+ font-style: normal;
+ text-decoration: underline;
+ color: #32b9b9
+}
+
+a.macro {
+ font-style: normal;
+ text-decoration: underline;
+ color: #ae5cb0
+}
+
+.string {
+ font-style: normal;
+ color: #bc8f8f
+}
+
+.id {
+ font-style: normal;
+ color: #000000
+}
+
+.inputoutputargs {
+ font-weight: bold;
+ color: #834310
+}
+
+.functionid {
+ font-weight: bold;
+ color: #000000
+}
+
+.field {
+ font-style: normal;
+ color: #aaaaaa
+}
+
+.openclose {
+ font-style: normal;
+ color: #4a55db
+}

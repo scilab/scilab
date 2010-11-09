@@ -26,7 +26,7 @@ s=variance(x,'c') or m=variance(x,2)
 </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

@@ -67,7 +67,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

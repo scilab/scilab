@@ -24,7 +24,7 @@
     <synopsis>TCL_SetVar(varname, value [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>varname</term>

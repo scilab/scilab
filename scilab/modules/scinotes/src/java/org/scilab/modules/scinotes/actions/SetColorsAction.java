@@ -36,19 +36,21 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultCaret;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import org.scilab.modules.gui.bridge.colorchooser.SwingScilabColorChooser;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.ScilabEditorKit;
 import org.scilab.modules.scinotes.ScilabEditorPane;
@@ -60,7 +62,7 @@ import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
- * Action called to customize SciNotes fonts & styles
+ * Action called to customize SciNotes fonts and styles
  * @author Vincent COUVERT
  * @author Bruno JOFRET
  * @author Calixte DENIZET
@@ -77,7 +79,7 @@ public final class SetColorsAction extends DefaultAction {
     private static boolean windowAlreadyExist;
 
     /* List of all components */
-    private static JFrame frame;
+    private static JDialog dialog;
 
     private JPanel contentPanel;
     private JPanel settingsPanel;
@@ -123,7 +125,7 @@ public final class SetColorsAction extends DefaultAction {
             windowAlreadyExist = true;
             changeColorsBox();
         } else {
-            frame.setVisible(true);
+            dialog.setVisible(true);
         }
     }
 
@@ -149,10 +151,10 @@ public final class SetColorsAction extends DefaultAction {
         allAttributes = ConfigSciNotesManager.getAllAttributes();
 
         /* Main frame = Window */
-        frame = new JFrame();
-        frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.setTitle(SciNotesMessages.SET_COLORS);
+        dialog = new JDialog((SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, getEditor().getTabPane()), true);
+        dialog.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        dialog.setTitle(SciNotesMessages.SET_COLORS);
 
         /* Main content pane */
         contentPanel = new JPanel();
@@ -214,7 +216,7 @@ public final class SetColorsAction extends DefaultAction {
                         settingsUpdate();
                     }
 
-                    frame.setFocusable(true);
+                    dialog.setFocusable(true);
                 }
             });
 
@@ -248,7 +250,7 @@ public final class SetColorsAction extends DefaultAction {
                         bgColorButton.setBackground(newColor);
                     }
 
-                    frame.setFocusable(true);
+                    dialog.setFocusable(true);
                 }
             });
 
@@ -276,7 +278,7 @@ public final class SetColorsAction extends DefaultAction {
                         fgColorButton.setBackground(newColor);
                     }
 
-                    frame.setFocusable(true);
+                    dialog.setFocusable(true);
                 }
             });
 
@@ -434,7 +436,7 @@ public final class SetColorsAction extends DefaultAction {
                     ConfigSciNotesManager.saveSciNotesBackground(bgColorButton.getBackground());
                     ConfigSciNotesManager.saveSciNotesForeground(fgColorButton.getBackground());
                     windowAlreadyExist = false;
-                    frame.dispose();
+                    dialog.dispose();
                 }
             });
 
@@ -442,7 +444,7 @@ public final class SetColorsAction extends DefaultAction {
         cancelButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     windowAlreadyExist = false;
-                    frame.dispose();
+                    dialog.dispose();
                 }
             });
 
@@ -461,8 +463,8 @@ public final class SetColorsAction extends DefaultAction {
         contentPanel.add(buttonsPanel);
         contentPanel.doLayout();
 
-        frame.setContentPane(contentPanel);
-        frame.addWindowListener(new WindowListener() {
+        dialog.setContentPane(contentPanel);
+        dialog.addWindowListener(new WindowListener() {
                 public void windowClosed(WindowEvent arg0) {
                 }
                 public void windowDeiconified(WindowEvent arg0) {
@@ -471,7 +473,7 @@ public final class SetColorsAction extends DefaultAction {
                 }
                 public void windowClosing(WindowEvent arg0) {
                     SetColorsAction.windowAlreadyExist = false;
-                    frame.dispose();
+                    dialog.dispose();
                 }
                 public void windowDeactivated(WindowEvent arg0) {
                 }
@@ -484,17 +486,17 @@ public final class SetColorsAction extends DefaultAction {
         /* Select the default style */
         stylesList.setSelectedIndex(0);
 
-        frame.pack();
-        frame.setLocationRelativeTo(getEditor());
-        frame.setResizable(false);
-        frame.setVisible(true);
+        dialog.pack();
+        dialog.setLocationRelativeTo(getEditor());
+        dialog.setResizable(false);
+        dialog.setVisible(true);
 
         /* Bug 8095: the previewEditorPane size is mis-calculated under OpenJDK,
            so I recalculate it correctly. */
         try {
             Rectangle r = previewEditorPane.modelToView(codeSample.length());
             previewEditorPane.setMaximumSize(new Dimension(previewEditorPane.getSize().width, r.y + r.height));
-            frame.pack();
+            dialog.pack();
         } catch (BadLocationException e) { }
     }
 
@@ -503,8 +505,8 @@ public final class SetColorsAction extends DefaultAction {
      */
     public static void closeSetColorsWindow() {
         SetColorsAction.windowAlreadyExist = false;
-        if (frame != null) {
-            frame.dispose();
+        if (dialog != null) {
+            dialog.dispose();
         }
     }
 

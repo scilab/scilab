@@ -52,7 +52,7 @@ This function returns a vector that informs the type (algebraic or differential)
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_pointer_xproperty">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para>

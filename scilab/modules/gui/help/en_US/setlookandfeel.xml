@@ -13,7 +13,7 @@
 bok=setlookandfeel(lnf)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lnf</term>

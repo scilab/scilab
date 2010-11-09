@@ -51,6 +51,7 @@ src/c/InitWaitBar.c \
 src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
+src/c/checkColorRange.c \
 src/c/messageboxoptions.c 
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \

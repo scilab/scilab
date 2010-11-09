@@ -54,9 +54,9 @@ public class HelpOnKeywordAction extends DefaultAction {
         int end = getEditor().getTextPane().getSelectionEnd();
         try {
             if (start == end) {
-                KeywordEvent kwe = ((ScilabEditorPane) getEditor().getTextPane()).getKeywordEvent(!isPopup, true);
-                if (ScilabLexerConstants.isHelpable(kwe.getType())) {
-                    selection = getEditor().getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());
+                String kw = ((ScilabEditorPane) getEditor().getTextPane()).getHelpableKeyword(!isPopup);
+                if (kw != null) {
+                    selection = kw;
                 }
             } else {
                 selection = getEditor().getTextPane().getDocument().getText(start, end - start);
@@ -95,13 +95,10 @@ public class HelpOnKeywordAction extends DefaultAction {
                     if (editor.getTextPane() != null) {
                         String select = editor.getTextPane().getSelectedText();
                         if (select == null) {
-                            KeywordEvent kwe = ((ScilabEditorPane) editor.getTextPane()).getKeywordEvent(!hoka.isPopup, true);
-                            if (ScilabLexerConstants.isHelpable(kwe.getType())) {
-                                try {
-                                    String kw = editor.getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());
-                                    menuitem.setText(label1 + SciNotesMessages.QUOTE + kw + SciNotesMessages.QUOTE);
-                                    menuitem.setEnabled(true);
-                                } catch (BadLocationException ex) { }
+                            String kw = ((ScilabEditorPane) editor.getTextPane()).getHelpableKeyword(!hoka.isPopup);
+                            if (kw != null) {
+                                menuitem.setText(label1 + SciNotesMessages.QUOTE + kw + SciNotesMessages.QUOTE);
+                                menuitem.setEnabled(true);
                             } else {
                                 menuitem.setText(label1 + SciNotesMessages.DOTS);
                                 menuitem.setEnabled(false);

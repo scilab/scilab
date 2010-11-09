@@ -23,7 +23,7 @@
     <synopsis>[ns, [nc, [,U [,Slo] ]]]=st_ility(Sl [,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>

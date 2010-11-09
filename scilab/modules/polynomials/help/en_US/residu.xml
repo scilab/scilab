@@ -23,7 +23,7 @@
     <synopsis>[V]=residu(P,Q1,Q2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P, Q1, Q2</term>

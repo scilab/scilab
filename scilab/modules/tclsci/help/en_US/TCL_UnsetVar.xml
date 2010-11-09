@@ -24,7 +24,7 @@
     <synopsis>OK=TCL_UnsetVar(varname [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>varname</term>

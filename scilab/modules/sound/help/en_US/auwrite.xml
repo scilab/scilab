@@ -26,7 +26,7 @@ auwrite(y,Fs,bits,aufile)
 auwrite(y,Fs,bits,method,aufile)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>y</term>

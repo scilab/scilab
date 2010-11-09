@@ -24,7 +24,7 @@
     <synopsis>res = strchr(haystack,char)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>haystack</term>

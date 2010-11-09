@@ -42,7 +42,7 @@ r = completion(beginning_of_a_word,dictionary)
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

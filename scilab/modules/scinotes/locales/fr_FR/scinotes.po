@@ -374,7 +374,7 @@ msgstr ""
 "répertoire"
 
 msgid "Open function source file"
-msgstr "Ouvrir le fichier source de fonction"
+msgstr "Ouvrir le fichier source d''une fonction"
 
 msgid "Open in the navigator the URL "
 msgstr "Ouvrir l'URL dans le navigateur "

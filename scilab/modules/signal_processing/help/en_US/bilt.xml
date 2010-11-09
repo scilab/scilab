@@ -12,7 +12,7 @@
     <synopsis>[npl,nzr,ngn] = bilt(pl,zr,gn,num,den)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>pl</term>

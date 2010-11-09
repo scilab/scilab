@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Vincent Couvert
+ * Copyright (C) 2009-2010 - DIGITEO - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -47,11 +47,21 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Si
 	private CallBack callback;
 	
 	private Menu meAsAMenu;
+	
+	private boolean autoCheckedMode = true;
 
 	/**
 	 * Constructor
 	 */
 	public SwingScilabCheckBoxMenuItem() {
+		this(true);
+	}
+	
+	/**
+	 * Constructor
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 */
+	public SwingScilabCheckBoxMenuItem(boolean autoCheckedMode) {
 		super();
 		addActionListener(new ActionListener() {
 			/**
@@ -62,7 +72,10 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Si
 				BlockingResult.getInstance().setResult(((SwingScilabCheckBoxMenuItem) arg0.getSource()).getText());
 			}
 		});
-		setModel(new ScilabCheckBoxMenuItemModel());
+		this.autoCheckedMode = autoCheckedMode;
+		if (!autoCheckedMode) {
+			setModel(new ScilabCheckBoxMenuItemModel());
+		}
 	}
 	
 	/**
@@ -277,7 +290,11 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Si
 	 * @param status true if the menu item is checked
 	 */
 	public void setChecked(boolean status) {
-		((ScilabCheckBoxMenuItemModel) getModel()).forceSelected(status);
+		if (autoCheckedMode) {
+			setSelected(status);
+		} else {
+			((ScilabCheckBoxMenuItemModel) getModel()).forceSelected(status);
+		}
 	}
 	
 	/**

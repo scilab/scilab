@@ -136,11 +136,11 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/xcos/libscixcos.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
-	$(top_builddir)/modules/commons/libscicommons.la
+	$(top_builddir)/modules/commons/libscicommons.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la
 
 if HDF5
 GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
@@ -193,7 +193,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/fftw/libscifftw.la
 	
@@ -207,6 +206,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/xcos/libscixcos.la \
 	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \

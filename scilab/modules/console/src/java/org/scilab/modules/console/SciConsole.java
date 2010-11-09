@@ -194,8 +194,9 @@ public abstract class SciConsole extends JPanel {
 		int[] charsWidth = ((JTextPane) outputView).getFontMetrics(((JTextPane) outputView).getFont()).getWidths();
 
 		// This loop is not needed for monospaced fonts !
-		int maxCharWidth = charsWidth[0];
-		for (int i = 1; i < charsWidth.length; i++) {
+		int maxCharWidth = charsWidth[33];
+                // The range 33--126 corresponds to the usual characters in ASCII
+		for (int i = 34; i < 126; i++) {
 			if (charsWidth[i] > maxCharWidth) {
 				maxCharWidth = charsWidth[i];
 			}

@@ -23,7 +23,7 @@
     <synopsis>[x1,y1,rect]=xchange(x,y,dir)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>

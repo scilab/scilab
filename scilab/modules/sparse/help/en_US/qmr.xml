@@ -23,7 +23,7 @@
     <synopsis>[x,flag,err,iter,res] = qmr(A,b,x0,M1,M1p,M2,M2p,maxi,tol)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>

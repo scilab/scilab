@@ -670,6 +670,12 @@ AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
 ###########################
 
 if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
+   # Need MacosX Version to specify some path.
+   case "$host_os" in
+                   *Darwin* | *darwin*)
+                   AC_GET_MACOSX_VERSION;;
+  esac
+
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -691,7 +697,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 		AC_JAVA_ANT
 
 		case "$host_os" in
-                     *darwin*)
+                     *Darwin* | *darwin*)
 		        JAVA_HOME="";;
 		esac
 
@@ -2088,6 +2094,7 @@ echo "  hostname ....... = $ac_hostname"
 echo "  CPU 64 bits .... = $IS_64_BITS_CPU"
 if test -n "$MAC_DETECTED_ARCH"; then
 echo "  Mac OS X arch .. = $MAC_DETECTED_ARCH"
+echo "  Mac OS X version = $macosx_version"
 fi
 
 echo ""

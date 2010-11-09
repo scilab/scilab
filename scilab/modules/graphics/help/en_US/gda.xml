@@ -25,7 +25,7 @@
 a = get("default_axes")</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a</term>

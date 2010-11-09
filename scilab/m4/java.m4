@@ -368,7 +368,7 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
          else
 		case "$host_os" in
 		     *darwin* )
-		     	      ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Headers"
+		     	      ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers"
 			      ;;
 		      *)
 	                   AC_MSG_ERROR([Could not locate Java's jni.h include file])
@@ -566,7 +566,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 #ac_java_jvm_jni_lib_flags="-L$D -ljvm"
 
                 #D=$ac_java_jvm_dir/jre/lib/i386/server
-		D=/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Libraries
+		D=/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Libraries
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
                 ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
             fi

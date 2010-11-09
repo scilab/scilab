@@ -74,6 +74,16 @@ char **searchFilesDictionary(char *somechars)
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/
+char **searchFieldsDictionary(char *lineBeforeCaret, char *pattern)
+{
+	int nbrElements = 0;
+	if ( (lineBeforeCaret) && (strcmp(lineBeforeCaret,"")) ) 
+	{
+	        return completionOnFields(lineBeforeCaret, pattern, &nbrElements);
+	}
+	return NULL;
+}
+/*--------------------------------------------------------------------------*/
 char **searchHandleGraphicsPropertiesDictionary(char *somechars)
 {
 	int nbrElements = 0;

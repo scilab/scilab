@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
 # Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -31,7 +31,7 @@ libscixcos_la_etc_DATA =	etc/xcos.quit \
 				etc/PaletteConfiguration.xsd \
 				etc/Modelica.xsd
 
-XCOS_C_SOURCES = 
+XCOS_C_SOURCES =
 
 XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
@@ -40,7 +40,8 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Palette.hxx \
 			src/jni/Modelica.cpp \
 			src/jni/Modelica.hxx \
-			src/jni/GiwsException.cpp
+			src/jni/GiwsException.cpp \
+			src/cpp/xcosUtilities.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
 			src/jni/Palette.giws.xml \
@@ -60,7 +61,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
 	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
 	sci_gateway/cpp/sci_xcosDiagramClose.cpp \
-	sci_gateway/cpp/xcosUtilities.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \
@@ -76,7 +76,7 @@ libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes	
+			-I$(top_srcdir)/modules/api_scilab/includes
 
 libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -90,7 +90,7 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
-# Without the xcos module 
+# Without the xcos module
 libscixcos_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
@@ -101,7 +101,7 @@ libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscixcos-disable.la
 
 if GUI
-pkglib_LTLIBRARIES += libscixcos.la 
+pkglib_LTLIBRARIES += libscixcos.la
 endif
 
 libscixcos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)

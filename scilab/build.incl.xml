@@ -15,7 +15,7 @@
   <property name="build.dir" location="build/"/>
   
   <!-- The building test directory -->
-  <property name="build.test.dir" location="build/test"/>
+  <property name="build.test.dir" location="${build.dir}/test"/>
   
   <!-- Where builded classes will be generated -->
   <property name="classes.dir" location="${build.dir}/classes" />

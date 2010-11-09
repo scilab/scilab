@@ -31,12 +31,12 @@
         </refsection>
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)</synopsis>
+        <synopsis>SciErr createMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)</synopsis>
+        <synopsis>SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piBool)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>
@@ -130,7 +130,7 @@
         <synopsis>SciErr allocComplexMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>

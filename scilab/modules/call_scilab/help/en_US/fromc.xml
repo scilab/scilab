@@ -12,7 +12,7 @@
     <synopsis>r=fromc()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>

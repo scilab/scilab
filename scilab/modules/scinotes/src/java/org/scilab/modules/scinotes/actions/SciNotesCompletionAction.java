@@ -44,6 +44,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 
+import org.scilab.modules.scinotes.ScilabKeywords;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.utils.SciNotesCompletionWindow;
@@ -211,7 +212,7 @@ public final class SciNotesCompletionAction extends CompletionAction {
          * Return an empty string to be sure that word won't be completed
          * into filename.
          * @param level an unused int
-	 * @return a String
+         * @return a String
          */
         public String getFilePartLevel(int level) {
             return "";
@@ -266,7 +267,7 @@ public final class SciNotesCompletionAction extends CompletionAction {
 
         /**
          * Constructor
-	 * @param textPane where to complete
+         * @param textPane where to complete
          */
         public SciNotesCompletionConfiguration(JComponent textPane) {
             scm.setInputParsingManager(xipm);
