@@ -32,6 +32,7 @@ namespace types
         int                         m_iRows;
         int                         m_iCols;
         int                         m_iSize;
+        int                         m_iSizeMax;
 
                                     GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0) {}
         virtual                     ~GenericType() {}

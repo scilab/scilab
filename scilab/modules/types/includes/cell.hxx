@@ -72,7 +72,7 @@ namespace types
         virtual std::wstring getShortTypeStr() {return L"ce";};
 
     private :
-        InternalType**      m_plData;
+        vector<InternalType*>*   m_vectData;
     };
 }
 
