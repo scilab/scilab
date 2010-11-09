@@ -139,6 +139,8 @@ SciNotes:
 
 * bug 8309 fixed - Bad display of the line number in whereami mode with broken lines.
 
+* bug 8359 fixed - An exception was thrown on Save As action.
+
 Completion:
 ===========
 

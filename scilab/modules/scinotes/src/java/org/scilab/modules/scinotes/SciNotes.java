@@ -841,7 +841,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 name += SCI_EXTENSION;
             }
         }
-        fileChooser.setSelectedFile(new File(name));
+
+        if (name != null) {
+            fileChooser.setSelectedFile(new File(name));
+        }
 
         int retval = fileChooser.showSaveDialog(this);
 
