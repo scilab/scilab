@@ -44,6 +44,8 @@ Documentation:
 * bug 8270 fixed - Documentation of discrete mathematics functions moved in
                    a dedicated section.
 
+* bugs 8357, 8358 fixed - There was an encoding problem under Windows.
+
 Known incompatibilities:
 ========================
 
