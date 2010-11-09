@@ -968,7 +968,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * Implements mouseEntered in MouseListener
      * @param e event
      */
-    public void mouseEntered(MouseEvent e) { }
+    public void mouseEntered(MouseEvent e) {
+        this.mousePoint = e.getPoint();
+    }
 
     /**
      * Implements mouseExited in MouseListener
