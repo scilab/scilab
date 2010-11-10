@@ -625,10 +625,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_getshortpathname.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_maxfiles.c"
 				>
 			</File>
