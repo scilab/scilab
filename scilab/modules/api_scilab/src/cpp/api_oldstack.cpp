@@ -17,7 +17,7 @@
 #include "api_oldstack.h"
 #include "function.hxx"
 #include "sciprint.h"
-#include "scierror.h" 
+#include "Scierror.h" 
 #include "localization.h" 
 #include "charEncoding.h" 
 
