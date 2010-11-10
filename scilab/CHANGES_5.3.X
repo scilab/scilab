@@ -311,6 +311,8 @@ Bug Fixes:
 
 * bug 8240 fixed - Demo of polarplot improved (Thanks to Samuel Gougeon).
 
+* bug 8257, 8258 fixed - fscanfMat did not read matrix file not formated by fprintfMat.
+
 * bug 8283 fixed - file graphics/help/en_US/datatips datatipLookfor.xml removed.
                    datatipLookfor is an internal function that has not be used
                    directly.

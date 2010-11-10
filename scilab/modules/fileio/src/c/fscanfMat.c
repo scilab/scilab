@@ -63,6 +63,8 @@ static double returnINF(BOOL bPositive);
 static double returnNAN(void);
 static BOOL checkFscanfMatFormat(char *format);
 static char *getCleanedFormat(char *format);
+static char **removeEmptyLinesAtTheEnd(char **lines, int *sizelines);
+static BOOL isValidLineWithOnlyOneNumber(char *line);
 /*--------------------------------------------------------------------------*/
 fscanfMatResult *fscanfMat(char *filename, char *format, char *separator, BOOL asDouble)
 {
@@ -135,6 +137,8 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator, BOOL a
         }
         return resultFscanfMat;
     }
+
+    lines = removeEmptyLinesAtTheEnd(lines, &nblines);
 
     nbLinesTextDetected = getNumbersLinesOfText(lines, nblines, format, separator);
     nbRows = nblines - nbLinesTextDetected;
@@ -377,6 +381,13 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
     int curr_str = 0;
     char last_char = 0xFF;
 
+    *toks = 0;
+
+    if ((sep == NULL) || (str == NULL))
+    {
+        return NULL;
+    }
+
     sep_end = sep + strlen(sep);
     end = str + strlen(str);
 
@@ -385,8 +396,19 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
 
     if (strstr(str, sep) == NULL)
     {
-        *toks = 0;
-        return NULL;
+        if ((int)strlen(str) > 0)
+        {
+            if (isValidLineWithOnlyOneNumber(str))
+            {
+                retstr = (char **) MALLOC(sizeof(char *));
+                if (retstr)
+                {
+                    retstr[0] = strdup(str);
+                    *toks = 1;
+                }
+            }
+        }
+        return retstr;
     }
 
     retstr = (char **) MALLOC((sizeof(char *) * (int)strlen(str)));
@@ -643,6 +665,65 @@ static char *getCleanedFormat(char *format)
         }
     }
     return cleanedFormat;
+}
+/*--------------------------------------------------------------------------*/
+static char **removeEmptyLinesAtTheEnd(char **lines, int *sizelines)
+{
+    int i = 0;
+    int nbLinesToRemove = 0;
+    if (lines)
+    {
+        for (i = *sizelines - 1; i >= 0; i--)
+        {
+            if (lines[i])
+            {
+                if (strcmp(lines[i], "") == 0) 
+                {
+                    FREE(lines[i]);
+                    lines[i] = NULL;
+                    nbLinesToRemove++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        if (nbLinesToRemove > 0)
+        {
+            lines = (char**)REALLOC(lines, sizeof(char*) * (*sizelines - nbLinesToRemove));
+            *sizelines = *sizelines - nbLinesToRemove;
+        }
+    }
+    else
+    {
+        *sizelines = 0;
+    }
+    return lines;
+}
+/*--------------------------------------------------------------------------*/
+static BOOL isValidLineWithOnlyOneNumber(char *line)
+{
+    if (line)
+    {
+        char *pEnd = NULL;
+        double dValue = strtod(line, &pEnd);
+        if ((pEnd) && ((int)strlen(pEnd) == 0))
+        {
+            return TRUE;
+        }
+        else
+        {
+            if ((strncmp(line, NanString, (int)strlen(NanString)) == 0) ||
+            (strncmp(line, NegInfString, (int)strlen(NegInfString)) == 0) ||
+            (strncmp(line, InfString, (int)strlen(InfString)) == 0))
+            {
+                return TRUE;
+            }
+        }
+    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 
