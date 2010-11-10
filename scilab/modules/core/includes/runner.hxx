@@ -70,15 +70,13 @@ private :
     {
         try
         {
-            //std::cerr << "-*- static void * Runner::launch() THREAD START -*-" << std::endl;
             Runner *me = (Runner *)args;
             me->getProgram()->accept(*(me->getVisitor()));
-            //std::cerr << "-*- static void * Runner::launch() THREAD END -*-" << std::endl;
+            ConfigVariable::clearLastError();
         }
         catch(ScilabException se)
         {
             YaspWriteW(se.GetErrorMessage().c_str());
-            throw se;
         }
         return NULL;
     }

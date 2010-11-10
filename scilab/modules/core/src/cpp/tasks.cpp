@@ -153,18 +153,8 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
         exec = new ast::ExecVisitor();
     }
 
-    try
-    {
-        Runner engine;
-        engine.execAndWait(tree, exec);
-        ConfigVariable::clearLastError();
-    }
-    catch(ast::ScilabException se)
-    {
-        //excpetion already manage in execAndWait function.
-        //catch is only to bypass clearLastError call
-    }
-
+    Runner engine;
+    engine.execAndWait(tree, exec);
     delete exec;
 
     if(timed)
