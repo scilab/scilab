@@ -17,6 +17,9 @@
 #include "api_oldstack.h"
 #include "function.hxx"
 #include "sciprint.h"
+#include "scierror.h" 
+#include "localization.h" 
+#include "charEncoding.h" 
 
 using namespace types;
 
@@ -63,25 +66,41 @@ int api_Lhs(int* _piKey)
 
 int api_CheckRhs(int _iMin, int _iMax, int* _piKey)
 {
-	int iRhs = api_Rhs(_piKey);
+    GatewayStruct *pStr = (GatewayStruct*)_piKey;
+    int iRhs            = api_Rhs(_piKey);
 
-	if(iRhs > _iMax || iRhs < _iMin)
-	{
-		return 0;
-	}
-
-	return 1;
+    if(iRhs > _iMax || iRhs < _iMin)
+    {
+        if (_iMin == _iMax)
+        {/* No optional argument */
+            ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), pStr->m_pstName, _iMax);
+        }
+        else
+        {
+            ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), pStr->m_pstName, _iMin, _iMax);
+        }
+        return 0;
+    }
+    return 1;
 }
 
 int api_CheckLhs(int _iMin, int _iMax, int* _piKey)
 {
+    GatewayStruct *pStr = (GatewayStruct*)_piKey;
 	int iLhs = api_Lhs(_piKey);
 
 	if(iLhs > _iMax || iLhs < _iMin)
 	{
-		return 0;
+        if (_iMin == _iMax)
+        {/* No optional argument */
+            ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), pStr->m_pstName, _iMax);
+        }
+        else
+        {
+            ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), pStr->m_pstName, _iMin, _iMax);
+        }
+        return 0;
 	}
-
 	return 1;
 }
 
