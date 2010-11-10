@@ -1069,34 +1069,23 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	@Override
 	public String convertValueToString(Object cell) {
-		final StringBuilder str = new StringBuilder();
-		str.append("<html><body>");
-		
 		if (cell != null) {
 			final Map<String, Object> style = getCellStyle(cell);
 			
 			final String customLabel = (String) style.get("displayedLabel");
 			if (customLabel != null && cell instanceof BasicBlock) {
-				str.append(String.format(customLabel,
-						(Object[]) ((BasicBlock) cell).getExprsFormat()));
+				return String.format(customLabel,
+						(Object[]) ((BasicBlock) cell).getExprsFormat());
 			} else {
 				final String label = super.convertValueToString(cell);
-				if (label.isEmpty()) {
-					if (cell instanceof BasicBlock) {
-						str.append(((BasicBlock) cell).getInterfaceFunctionName());
-					} else {
-						// empty label should not contains html tags
-						return label;
-					}
-				} else {
-					str.append(label);
+				if (label.isEmpty() && cell instanceof BasicBlock) {
+					return ((BasicBlock) cell).getInterfaceFunctionName();
 				}
+				return label;
 			}
 			
 		}
-		
-		str.append("</body></html>");
-		return str.toString();
+		return null;
 	}
 	
 	/**
