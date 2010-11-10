@@ -159,9 +159,10 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
         engine.execAndWait(tree, exec);
         ConfigVariable::clearLastError();
     }
-    catch(ast::ScilabMessage sm)
+    catch(ast::ScilabException se)
     {
-        YaspWriteW(sm.GetErrorMessage().c_str());
+        //excpetion already manage in execAndWait function.
+        //catch is only to bypass clearLastError call
     }
 
     delete exec;

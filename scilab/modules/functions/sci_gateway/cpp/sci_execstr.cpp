@@ -144,17 +144,16 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 		return Function::Error;
 	}
 
+    //save current prompt mode
+    ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
     if(bMute)
     {
-	    MuteVisitor mute;
-	    pExp->accept(mute);
+        ConfigVariable::setPromptMode(ConfigVariable::silent);
     }
 
 	std::list<Exp *>::iterator j;
 	std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
 
-    //save current prompt mode
-    ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
 	for(j = LExp.begin() ; j != LExp.end() ; j++)
 	{
 		try
@@ -172,8 +171,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             }
 
             //store message
-            ScierrorW(se.GetErrorNumber(), L"%ls", se.GetErrorMessage().c_str());
-            iErr = se.GetErrorNumber();
+            ScierrorW(ConfigVariable::getLastErrorNumber(), L"%ls", ConfigVariable::getLastErrorMessage().c_str());
+            iErr = ConfigVariable::getLastErrorNumber();
             if(bErrCatch == false)
             {
             	parser.freeTree();

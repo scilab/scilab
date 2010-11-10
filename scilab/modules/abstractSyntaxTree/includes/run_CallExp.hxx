@@ -137,7 +137,7 @@ void visitprivate(const CallExp &e)
             }
             else
             {
-                throw ScilabMessage();
+                throw sm;
             }
         }
     }

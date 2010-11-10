@@ -1131,8 +1131,7 @@ namespace ast
                         T execFunc;
                         pCall->name_get().accept(execFunc);
 
-                        if(execFunc.result_get() != NULL &&
-                            (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
+                        if(execFunc.result_get() != NULL && execFunc.result_get()->isCallable())
                         {
                             wostringstream os;
                             PrintVisitor printMe(os);

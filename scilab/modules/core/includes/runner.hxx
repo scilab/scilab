@@ -29,16 +29,23 @@ public :
 public :
     void execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
     {
-        m_theProgram = _theProgram;
-        m_visitor = _visitor;
+        try
+        {
+            m_theProgram = _theProgram;
+            m_visitor = _visitor;
 
-#ifdef _MSC_VER
-        //It seems libxml crash with multithread under Windows
-        Runner::launch(this);
-#else
-        __CreateThreadWithParams(&m_threadId, &Runner::launch, this);
-        __WaitThreadDie(m_threadId);
-#endif
+    #ifdef _MSC_VER
+            //It seems libxml crash with multithread under Windows
+            Runner::launch(this);
+    #else
+            __CreateThreadWithParams(&m_threadId, &Runner::launch, this);
+            __WaitThreadDie(m_threadId);
+    #endif
+        }
+        catch(ScilabException se)
+        {
+            throw se;
+        }
     }
 
     void exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
@@ -71,6 +78,7 @@ private :
         catch(ScilabException se)
         {
             YaspWriteW(se.GetErrorMessage().c_str());
+            throw se;
         }
         return NULL;
     }

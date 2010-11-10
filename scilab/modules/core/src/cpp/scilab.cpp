@@ -102,6 +102,8 @@ void Add_s(void);
 void Add_z(void);
 void Add_true(void);
 void Add_false(void);
+void Add_Nan(void);
+void Add_Inf(void);
 void Add_WITH_DEMOS(void); //temporary variable
 void Add_All_Variables(void);
 
@@ -564,12 +566,28 @@ void Add_All_Variables(void)
     Add_z();
     Add_true();
     Add_false();
+    Add_Nan();
+    Add_Inf();
     Add_WITH_DEMOS();
 }
 
 void Add_WITH_DEMOS(void)
 {
     Add_Boolean_Constant(L"WITH_DEMOS", false);
+}
+
+void Add_Nan(void)
+{
+    double dbl1 = 1.0;
+    double dbl0 = dbl1 - dbl1;
+    Add_Double_Constant(L"%nan", dbl0/dbl0, 0, false);
+}
+
+void Add_Inf(void)
+{
+    double dbl1 = 1.0;
+    double dbl0 = dbl1 - dbl1;
+    Add_Double_Constant(L"%inf", dbl1/dbl0, 0, false);
 }
 
 void Add_false(void)
