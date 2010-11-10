@@ -46,6 +46,8 @@ Documentation:
 
 * bugs 8357, 8358 fixed - There was an encoding problem under Windows.
 
+* bug 8367 fixed - In function synopsis, &apos were displayed rather than '.
+
 Known incompatibilities:
 ========================
 
