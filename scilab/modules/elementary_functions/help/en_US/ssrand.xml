@@ -115,7 +115,7 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
 
     <para>The complete description of the <literal>Sys</literal> is given in
     the code of the <literal>ssrand</literal> function (in
-    <literal>SCIDIR/macros/util</literal>). For example with
+    <literal>SCI/modules/cacsd/macros/</literal>). For example with
     <literal>flag=list('co',dim_cont_subs)</literal> a non-controllable system
     is return and <literal>dim_cont_subs</literal> is the dimension of the
     controllable subspace of <literal>Sys</literal>. The character strings
