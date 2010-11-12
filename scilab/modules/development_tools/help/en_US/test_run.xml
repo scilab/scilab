@@ -55,37 +55,37 @@
           <para>A string array</para>
           <itemizedlist>
             <listitem>
-              <para>no_check_ref : does not check if the .dia and .dia.ref are equal</para>
+              <para>no_check_ref: does not check if the .dia and .dia.ref are equal</para>
             </listitem>
             <listitem>
-              <para>no_check_error_output</para>
+              <para>no_check_error_output: The error output stream is not checked. This option can be used when Scilab complains about the localization being not available.</para>
             </listitem>
             <listitem>
-              <para>create_ref : create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
+              <para>create_ref: create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
             </listitem>
             <listitem>
-              <para>list : does not perform the tests but displays a list of available tests</para>
+              <para>list: does not perform the tests but displays a list of available tests</para>
             </listitem>
             <listitem>
-              <para>help : display some examples about how to use this command</para>
+              <para>help: display some examples about how to use this command</para>
             </listitem>
             <listitem>
-              <para>mode_nw : add the "-nw" option to the launch</para>
+              <para>mode_nw: add the "-nw" option to the launch</para>
             </listitem>
             <listitem>
-              <para>mode_nwni : add the "-nwni" option to the launch</para>
+              <para>mode_nwni: add the "-nwni" option to the launch</para>
             </listitem>
             <listitem>
-              <para>nonreg_test : runs only the non-regression tests, skipping unit tests</para>
+              <para>nonreg_test: runs only the non-regression tests, skipping unit tests</para>
             </listitem>
             <listitem>
-              <para>unit_test : runs only the unit tests, skipping non-regression tests</para>
+              <para>unit_test: runs only the unit tests, skipping non-regression tests</para>
             </listitem>
             <listitem>
               <para>skip_tests</para>
             </listitem>
             <listitem>
-              <para>enable_lt : Enable long-time execution tests</para>
+              <para>enable_lt: Enable long-time execution tests</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -110,7 +110,7 @@
    control the processing of the corresponding test. These tags
    are expected to be found in Scilab comments.
    </para>
-    <para>These are the available tags :</para>
+    <para>These are the available tags:</para>
    <itemizedlist>
      <listitem>
        <para>
@@ -181,19 +181,19 @@
      <listitem>
        <para>
 	 &#60;-- UNIX ONLY --&#62;
-	 If the operating system isn't an unix OS, the test is skipped.
+	 If the operating system isn't an Unix OS, the test is skipped.
        </para>
      </listitem>
      <listitem>
        <para>
 	 &#60;-- LINUX ONLY --&#62;
-	 If the operating system isn't Linux, the test is skipped.
+	 If the operating system isn't GNU/Linux, the test is skipped.
        </para>
      </listitem>
      <listitem>
        <para>
 	 &#60;-- MACOSX ONLY --&#62;
-	 If the operating system isn't MacOSX, the test is skipped.
+	 If the operating system isn't Mac OS X, the test is skipped.
        </para>
      </listitem>
      <listitem>
@@ -236,7 +236,7 @@
 
        <listitem>
        <para>
-       <literal>.linux..diaref</literal> for Linux platform,
+       <literal>.linux..diaref</literal> for GNU/Linux platform,
        </para>
        </listitem>
        
@@ -264,7 +264,7 @@
 
        <listitem>
        <para>
-       on windows platforms: <literal>.win.dia.ref</literal>,
+       on Windows platforms: <literal>.win.dia.ref</literal>,
        </para>
        </listitem>
 
@@ -276,7 +276,7 @@
        
        <listitem>
        <para>
-       on Linux platforms: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>.
+       on GNU/Linux platforms: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>.
        </para>
        </listitem>
       
