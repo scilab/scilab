@@ -141,6 +141,7 @@
 #include <stdlib.h>
 #include "stack-c.h"
 #include "getval.h"
+#include "parserConstant.h"
 
 /* Table of constant values */
 #define EXPMAX 309
@@ -150,9 +151,6 @@
 #define EXPLIM 22
 
 /* Scilab character encoding*/
-#define dot   51
-#define plus  45
-#define minus 46
 #define D 13
 #define E 14
 
