@@ -13,7 +13,7 @@
 #ifndef __CALLFUNCTIONFROMGATEWAY_H__
 #define __CALLFUNCTIONFROMGATEWAY_H__
 
-#define SIZE_CURRENT_GENERIC_TABLE(tab) sizeof(tab) / sizeof(gw_generic_table)
+#define SIZE_CURRENT_GENERIC_TABLE(tab) (sizeof(tab) / sizeof(gw_generic_table))
 
 typedef int (*function_Interf)(char *fname,unsigned long l);
 
