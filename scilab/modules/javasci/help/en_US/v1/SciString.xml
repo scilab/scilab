@@ -15,7 +15,7 @@
     <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</pubdate>
   </info>
   <refnamediv>
-    <refname>javasci.SciString</refname>
+    <refname>javasci.SciString (deprecated)</refname>
     <refpurpose>Map a Java String into a Scilab string.</refpurpose>
   </refnamediv>
   <refsection>

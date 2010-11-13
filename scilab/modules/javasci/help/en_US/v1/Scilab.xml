@@ -22,7 +22,7 @@
   </info>
 
   <refnamediv>
-    <refname>javasci.Scilab</refname>
+    <refname>javasci.Scilab (deprecated)</refname>
 
     <refpurpose>This class provides the basic methods to execute Scilab code
     and scripts.</refpurpose>
