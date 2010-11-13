@@ -22,6 +22,9 @@ improve the Scilab documentation.
 * Documentation of trigonometry functions moved in a dedicated documentation
   section.
 
+* Documentation of profiling functions moved in a dedicated documentation
+  section.
+
 * Documentation of color managements in graphics functions moved in a dedicated
   section. See bug 7048.
 
