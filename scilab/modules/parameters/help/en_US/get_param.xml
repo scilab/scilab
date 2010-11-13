@@ -65,7 +65,7 @@
         <term>res</term>
 
         <listitem>
-          <para>the value of the parameter. If the parameter doesn't exist,
+          <para>the value of the parameter. If the parameter does not exist,
           res = [].</para>
         </listitem>
       </varlistentry>

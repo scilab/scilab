@@ -48,7 +48,7 @@ a.x_ticks.labels=[mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
 
     <para>The rendering engine is based on the Java library JLaTeXMath.
     JLaTeXMath is an implementation of the mathematic mode of LaTeX. All LaTeX
-    base commands are handle (don't hesitate to submit a bug report if
+    base commands are handle (do not hesitate to submit a bug report if
     missing). Few TeX commands, like <literal>\over are supported.</literal></para>
     
     <para>Since Scilab 5.2.1, greek, cyrillic and complete unicode for latin alphabets characters are handled in the Scilab graphics</para>

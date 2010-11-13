@@ -116,7 +116,7 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
         <term>-1</term>
         <listitem>
           <para>in this case the same color than in the neighbouring zone is used (CAUTION: 
-                  you don't see that the corresponding limit is crossed), this is the
+                  you do not see that the corresponding limit is crossed), this is the
                   default case.</para>
         </listitem>
       </varlistentry>
@@ -134,7 +134,7 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
         </listitem>
       </varlistentry>
     </variablelist>
-    <para>If you don't want to use the complete colormap you may use the <literal>colminmax</literal>
+    <para>If you do not want to use the complete colormap you may use the <literal>colminmax</literal>
     argument with <emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis> (nc being the number of colors 
     of the current colormap) so as to use only the [colmin,colmax]  sub-part of the colormap.
     (by default all the colors of the colormap are used).

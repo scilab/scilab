@@ -49,7 +49,7 @@
 
         <listitem>
           <para>a string. The name of the parameter to be removed from the
-          list of parameters. If the parameter doesn't exist, nothing
+          list of parameters. If the parameter does not exist, nothing
           happens.</para>
         </listitem>
       </varlistentry>

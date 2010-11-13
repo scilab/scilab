@@ -229,7 +229,7 @@ endfunction
 r = 0.04257794928862307 ;
 dt = 10;
 
-[x,v,info]=fsolve(r,list(feuler,r),dFdx); // fsolve don't find the solution
+[x,v,info]=fsolve(r,list(feuler,r),dFdx); // fsolve do not find the solution
 disp(v); // The residual
 disp(info); // The termination indicator
 

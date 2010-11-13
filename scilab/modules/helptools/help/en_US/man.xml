@@ -75,7 +75,7 @@
      directory). <emphasis role="bold">Finally</emphasis> note that some tag pairs <literal>&lt;TAG&gt;</literal>, 
      <literal>&lt;/TAG&gt;</literal> have been renamed here <literal>&lt;ATAG&gt;</literal>, 
      <literal>&lt;/ATAG&gt;</literal>. This is because some scilab scripts which do some work
-     on or from the xml files don't verify if a tag is inside a <literal>VERBATIM</literal> entry.
+     on or from the xml files do not verify if a tag is inside a <literal>VERBATIM</literal> entry.
      </para>
     <para>
       The 3 first lines of the file are mandatory, the second precises the path to the

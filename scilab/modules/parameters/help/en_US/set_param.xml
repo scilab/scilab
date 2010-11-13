@@ -83,7 +83,7 @@
   <refsection>
     <title>Description</title>
         <para>This function sets the value of an already existing parameter.
-        If the parameter doesn't exist, err is set to %T. If the err output
+        If the parameter does not exist, err is set to %T. If the err output
         parameter is not present, when an error occurs, a message is printed
         in the console.</para>
   </refsection>

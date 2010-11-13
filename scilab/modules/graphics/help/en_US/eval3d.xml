@@ -49,7 +49,7 @@
     <title>Description</title>
     <para>
     This function returns a matrix <literal>z(n1,n2)</literal>. <literal>z(i,j)=fun(x(i),y(j))</literal>. 
-    If the function <literal>fun</literal> doesn't accept arguments of type vector use the
+    If the function <literal>fun</literal> does not accept arguments of type vector use the
     primitive <literal>feval</literal>.</para>
   </refsection>
   <refsection>
