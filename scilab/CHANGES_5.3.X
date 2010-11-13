@@ -1,5 +1,9 @@
-            Changes between version 5.3.0-beta-4 and 5.3.0 of Scilab
-            ========================================================
+            Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
+            ===============================================================
+
+Due to an important change from Apple in the Java environnement, a new beta
+release of Scilab has been decided. This will allow further testing for 
+this architecture.
 
 Documentation:
 ==============
@@ -12,6 +16,41 @@ Massive improvement of the documentation system:
 * Improved maintainability.
 * Faster build process (30 to 60 minutes => less than 30 seconds)
 
+In the meantime, a work of categorisation has been started in order to 
+improve the Scilab documentation.
+
+* Documentation of trigonometry functions moved in a dedicated documentation
+  section.
+
+* Documentation of color managements in graphics functions moved in a dedicated
+  section. See bug 7048.
+
+* Documentation of floating point functions moved in a dedicated section. 
+  See bug 7052.
+
+* Documentation of Integer representation functions moved in a dedicated 
+  section. See bug 8268.
+
+* Documentation of adj2sp was not in the sparse help section. See bug 8269.
+
+* Documentation of discrete mathematics functions moved in a dedicated section.
+  See bug 8270.
+
+* bugs 8357, 8358 fixed - There was an encoding problem under Windows.
+
+* bug 8367 fixed - In function synopsis, &apos were displayed rather than '.
+
+
+Javasci:
+========
+
+A new version of the Java => Scilab API called Javasci v2 is now included into
+the Scilab distribution.
+This version fixes most the issues and limitations of the previous version.
+Please note that previous version of Javasci remains available and shipped
+into the Scilab distribution.
+
+
 License:
 ========
 
@@ -23,30 +62,6 @@ Security issue:
 
 * Fix a (minor) security issue. CVE-2010-3378
 See: http://security-tracker.debian.org/tracker/CVE-2010-3378
-
-Documentation:
-==============
-
-* Documentation of trigonometry functions moved in a dedicated documentation
-  section.
-
-* bug 7048 fixed - Documentation of color managements in graphics functions
-                   moved in a dedicated section.
-
-* bug 7052 fixed - Documentation of floating point functions moved in
-                   a dedicated section.
-
-* bug 8268 fixed - Documentation of Integer representation functions moved in
-                   a dedicated section.
-
-* bug 8269 fixed - Documentation of adj2sp was not in the sparse help section.
-
-* bug 8270 fixed - Documentation of discrete mathematics functions moved in
-                   a dedicated section.
-
-* bugs 8357, 8358 fixed - There was an encoding problem under Windows.
-
-* bug 8367 fixed - In function synopsis, &apos were displayed rather than '.
 
 Known incompatibilities:
 ========================
@@ -104,8 +119,8 @@ $..10^p$ exponents instead of the D+/-## console style display.
 * Finally, their positioning is still improved in order to avoid their mutual
 overlaying for big values.
 
-* bug 7492 fixed - If its "data_mapping" property was set to "direct", the Grayplot
-                   object's data seemed to be transposed when displayed.
+* bug 7492 fixed - If its "data_mapping" property was set to "direct", the
+  Grayplot object's data seemed to be transposed when displayed.
 
 SciNotes:
 =========
@@ -178,8 +193,8 @@ Bug Fixes:
 
 * bug 4738 fixed - The number of columns in the console was badly calculated.
 
-* bug 4827 fixed - The test_run function did not work properly with modules begining
-                   with a "n".
+* bug 4827 fixed - The test_run function did not work properly with modules
+                   begining with a "n".
 
 * bug 5486 fixed - It was not possible to precise the text of a link in
                    help_from_sci.
