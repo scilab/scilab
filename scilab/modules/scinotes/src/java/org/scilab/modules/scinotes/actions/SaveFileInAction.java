@@ -16,18 +16,14 @@ import java.io.File;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
-import org.scilab.modules.gui.filechooser.ScilabFileChooser;
-import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 

@@ -7,8 +7,11 @@
       <menuitem action="RecentFileAction" label="Recent Files"/>
       <menuitem action="NewAction" label="New"/>
       <menuitem action="OpenAction" label="Open"/>
-      <menuitem action="OpenFileInAction" label="Open file in ...;Add a directory;Remove last directory"/>
-      <menuitem action="SaveFileInAction" label="Save file in favorite directory ..."/>
+      <separator/>
+      <menuitem action="RegisterFavoriteDirsAction" label="Working directories;Add a directory;Remove last directory"/>
+      <menuitem action="OpenFileInAction" label="Open file in ..."/>
+      <menuitem action="SaveFileInAction" label="Save file in ..."/>
+      <separator/>
       <menuitem action="ReloadAction" label="Reload"/>
       <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
       <menuitem action="OpenURLAction" label="Open URL"/>
