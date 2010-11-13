@@ -15,19 +15,19 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>intersci</refname>
-    <refpurpose> scilab tool to interface C of Fortran functions with scilab</refpurpose>
+    <refname>intersci (obsolete)</refname>
+    <refpurpose>Scilab tool to interface C of Fortran functions with scilab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
     All scilab primitive functions are defined in a set of interface
     routines. For each function the interfacing code checks first number of
-    rhs and lhs arguments. Then  it get pointers on input arguments in the
+    rhs and lhs arguments. Then it get pointers on input arguments in the
     Scilab data base and checks their types. After that it calls procedure
     associated with Scilab functions, checks returned errors flags and set
     the results in the data base.</para>
-    <para><literal>intersci</literal>\ is a program which permits to interface automatically FORTRAN
+    <para><literal>intersci</literal> is a program which permits to interface automatically FORTRAN
     subroutines or C functions to Scilab</para>
     <para>
     With <literal>intersci</literal>, a user can group all his FORTRAN or C code into a same set,
@@ -35,9 +35,9 @@
     is made by creating a FORTRAN subroutine which has to be linked to
     Scilab  together
     with the user code. This complex FORTRAN subroutine is automatically generated
-    by <literal>intersci</literal>\ from a description file of the interface.</para>
-    <para>
-    Refer to intersci documentation for more details.</para>
+    by <literal>intersci</literal> from a description file of the interface.</para>
+    <para>Refer to intersci documentation for more details.</para>
+    <para>Note that this feature is obsolete and unsupported and will be replaced by a Scilab SWIG wrapper in an upcoming version.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
