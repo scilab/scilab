@@ -26,7 +26,7 @@
 
     <para>LaTeX texts must start and end by $ (dollar symbol) while MathML
     texts must start by &lt; and end by &gt; and being syntactically
-    valide.</para>
+    valid.</para>
 
     <para>On the first use (these libraries are loading on the fly only when
     needed), note that the MathML engine is slower to load than LaTeX.</para>
