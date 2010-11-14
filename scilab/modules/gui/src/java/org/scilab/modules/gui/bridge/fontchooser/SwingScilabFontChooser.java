@@ -169,6 +169,8 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 		});
 		
 		if (calledFromScinotes) {
+			boldCheckbox.setEnabled(false);
+			italicCheckbox.setEnabled(false);
 			scinotesCompatibleCheckbox = new JCheckBox(Messages.gettext("SciNotes compatible"), false);
 			attributes.add(scinotesCompatibleCheckbox);
 			scinotesCompatibleCheckbox.addItemListener(new ItemListener() {
