@@ -1684,6 +1684,23 @@ doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	fi
 @BUILD_HELP_FALSE@	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 
+doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
+@BUILD_HELP_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
+@BUILD_HELP_TRUE@		cd $(top_builddir);\
+@BUILD_HELP_TRUE@		echo "-- Building documentation (English) --"; \
+@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'en_US');exit;\"";\
+@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltoweb([],[],'en_US');exit;";\
+@BUILD_HELP_TRUE@		echo "-- Building documentation (French) --"; \
+@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'fr_FR');exit;\""; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltoweb([],[],'fr_FR');exit;"; \
+@BUILD_HELP_TRUE@		echo "-- Building documentation (portugues do Brasil) --"; \
+@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'pt_BR');exit;\""; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltoweb([],[],'pt_BR');exit;"; \
+@BUILD_HELP_TRUE@	else \
+@BUILD_HELP_TRUE@		echo "Cannot find Scilab-adv-cli binary"; \
+@BUILD_HELP_TRUE@	fi
+@BUILD_HELP_FALSE@	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
+
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		echo "-- Checking documentation (English) --"; \

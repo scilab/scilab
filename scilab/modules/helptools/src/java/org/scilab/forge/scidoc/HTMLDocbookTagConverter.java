@@ -45,7 +45,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
 
     private static final String LATEXBASENAME = "Equation_LaTeX_";
 
-    private StringBuilder buffer = new StringBuilder(8192);
+    private StringBuffer buffer = new StringBuffer(8192);
     private int latexCompt;
     private String imageDir;
     private String outName;
@@ -109,7 +109,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * @return the buffer used
      */
-    public StringBuilder getBuffer() {
+    public StringBuffer getBuffer() {
         return buffer;
     }
 

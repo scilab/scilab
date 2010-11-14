@@ -441,13 +441,16 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // -- scilab internal toolbox (example: scicos)
     // =========================================================================
 
-    if output_format=="javaHelp" then
+    select output_format
+    case "javaHelp" then
         output_format_ext = "jar";
+    case "web"
+        output_format_ext = "html";
     else
         output_format_ext = output_format;
     end
 
-    is_html = (output_format == "html");
+    is_html = (output_format == "html" | output_format == "web");
     is_chm = (output_format == "chm");
 
     if all_scilab_help then
@@ -455,7 +458,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         mprintf(_("Building the scilab manual file ["+output_format+"]\n"));
 
         // Define and create the final output directory if does not exist
-        final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
+		if output_format == "web" then
+		   final_output_dir = pathconvert(SCI+"/modules/helptools/web",%f,%f);
+		else
+		   // Define and create the final output directory if does not exist
+           final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
+		end
 
         if ~isdir(final_output_dir) then
             mkdir(final_output_dir);
@@ -508,7 +516,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
         // process the build
-        if output_format=="javaHelp" | output_format=="html" | output_format=="chm" then
+        if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
           buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
         else
           buildDoc(output_format,modules_tree("master_document"), my_wanted_language);
@@ -606,7 +614,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" then
+            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
               buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             else
               buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
@@ -729,7 +737,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" then
+            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
               buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
             else
               buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
