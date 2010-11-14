@@ -1661,6 +1661,9 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@		echo "-- Building documentation (French) --"; \
 @BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
 @BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
+@BUILD_HELP_TRUE@		echo "-- Building documentation (portugues do Brasil) --"; \
+@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'pt_BR');exit;\""; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'pt_BR');exit;"; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab-adv-cli binary"; \
 @BUILD_HELP_TRUE@	fi
