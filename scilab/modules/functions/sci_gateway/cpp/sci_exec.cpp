@@ -126,7 +126,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	{//1st argument is a macro name, parse and execute it in the current environnement
 		if(in[0]->getAsMacroFile()->parse() == false)
 		{
-            ScierrorW(999, _W("%ls: Unable to parse macro '%s'"), "exec", in[0]->getAsMacroFile()->getName());
+            ScierrorW(999, _W("%ls: Unable to parse macro '%s'"), "exec", in[0]->getAsMacroFile()->getName().c_str());
 			return Function::Error;
 		}
 		pExp = in[0]->getAsMacroFile()->macro_get()->body_get();
