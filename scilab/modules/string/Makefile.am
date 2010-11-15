@@ -32,7 +32,6 @@ src/c/scistrtostr.c
 STRING_FORTRAN_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
-sci_gateway/c/sci_ascii.c \
 sci_gateway/c/sci_code2str.c \
 sci_gateway/c/sci_convstr.c \
 sci_gateway/c/sci_str2code.c \
@@ -63,7 +62,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_part.cpp \
 	sci_gateway/cpp/sci_length.cpp \
 	sci_gateway/cpp/sci_strindex.cpp \
-	sci_gateway/cpp/sci_strsubst.cpp
+	sci_gateway/cpp/sci_strsubst.cpp \
+	sci_gateway/cpp/sci_ascii.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f

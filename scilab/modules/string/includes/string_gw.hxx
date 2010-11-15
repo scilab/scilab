@@ -34,6 +34,7 @@ CPP_GATEWAY_PROTOTYPE(sci_part);
 CPP_GATEWAY_PROTOTYPE(sci_length);
 CPP_GATEWAY_PROTOTYPE(sci_strindex);
 CPP_GATEWAY_PROTOTYPE(sci_strsubst);
+CPP_GATEWAY_PROTOTYPE(sci_ascii);
 
 
 #endif /* !__STRING_GW_HXX__ */

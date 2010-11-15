@@ -29,7 +29,7 @@ static gw_generic_table Tab[] =
 	{sci_strcat,"strcat"},
 	{NULL, ""}, //strindex
 	{NULL, ""}, //strsubst
-	{sci_ascii,"ascii"},
+	{NULL, ""}, //ascii
 	{NULL, ""}, //grep
 	{sci_tokens,"tokens"},
 	{NULL, ""}, //strsplit
