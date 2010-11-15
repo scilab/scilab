@@ -176,7 +176,7 @@ static BOOL Is_a_correct_function_name(char *functionname)
 {
     if (functionname)
     {
-        if ( (strlen(functionname) > 0) && (strlen(functionname) < 24) )
+        if ( (strlen(functionname) > 0) && (strlen(functionname) <  nlgh) )
         {
             int i = 0;
             if (isdigit(functionname[0])) return FALSE;
