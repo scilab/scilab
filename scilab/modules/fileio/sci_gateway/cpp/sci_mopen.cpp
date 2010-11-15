@@ -1,13 +1,13 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
- * 
+ *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
+ *
  */
 
 #include "alltypes.hxx"
@@ -33,6 +33,13 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
     wchar_t* pstFilename    = NULL;
     wchar_t* pstMode        = L"wb";
     int iSwap               = 0;
+
+    //check output parameters
+    if(_iRetCount != 1 && _iRetCount != 2)
+    {
+        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"mopen", 1, 2);
+        return Function::Error;
+    }
 
     //check input parameters
     if(in.size() >= 1)
@@ -105,11 +112,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-
-	std::wcout << L"mode : " << pstMode << std::endl;
     iErr = mopen(pstFilename, pstMode, iSwap, &iID);
-
-
     if(iErr != MOPEN_NO_ERROR)
     {//mange file open errors
         if(_iRetCount == 1)
@@ -143,5 +146,11 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
 
     Double* pD = new Double(static_cast<double>(iID));
     out.push_back(pD);
+
+    if(_iRetCount == 2)
+    {
+        Double* pD2 = new Double(iErr);
+        out.push_back(pD2);
+    }
     return Function::OK;
 }
