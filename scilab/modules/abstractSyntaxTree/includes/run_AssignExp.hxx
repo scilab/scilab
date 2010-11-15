@@ -320,7 +320,7 @@ void visitprivate(const AssignExp  &e)
                     {
                         delete pIT;
                     }
-                    pRet->IncreaseRef();
+                    bNew = true;
                 }
                 
                 pOut = pRet;
