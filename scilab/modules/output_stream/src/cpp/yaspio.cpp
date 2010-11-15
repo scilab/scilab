@@ -60,7 +60,7 @@ void YaspWrite(const char* text)
     if(iMode != PROMPTMODE_SILENT)
     {
         wchar_t* pwstTemp = to_wide_string(text);
-        diaryWrite(pwstTemp, TRUE);
+        diaryWrite(pwstTemp, FALSE);
         FREE(pwstTemp);
         (*_writer)(const_cast<char*>(text));
     }
