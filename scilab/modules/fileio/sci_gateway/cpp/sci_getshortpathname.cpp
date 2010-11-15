@@ -33,7 +33,7 @@ Function::ReturnValue sci_getshortpathname(typed_list &in, int _iRetCount, typed
 
     if(_iRetCount != 1 && _iRetCount != 2)
     {
-         ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"getshortpathname", 1, 2);
+        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"getshortpathname", 1, 2);
         return Function::Error;
     }
 
