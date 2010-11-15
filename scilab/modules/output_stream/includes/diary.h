@@ -15,6 +15,7 @@
 
 #include <wchar.h>
 #include "BOOL.h"
+#include "dynlib_output_stream.h"
 
 #ifdef  __cplusplus
 extern "C" {
@@ -25,14 +26,14 @@ extern "C" {
 * @param[in] string to write
 * @param[in] string is a input
 */
-int diaryWrite(const wchar_t *wstr, BOOL bInput);
+OUTPUT_STREAM_IMPEXP int diaryWrite(const wchar_t *wstr, BOOL bInput);
 
 /*
 * same as diaryWrite but add carriage return
 * @param[in] string to write
 * @param[in] string is a input
 */
-int diaryWriteln(const wchar_t *wstr, BOOL bInput);
+OUTPUT_STREAM_IMPEXP int diaryWriteln(const wchar_t *wstr, BOOL bInput);
 
 #ifdef  __cplusplus
 }

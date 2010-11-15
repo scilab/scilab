@@ -517,6 +517,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\diary.h"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\Diary.hxx"
 				>
 			</File>
