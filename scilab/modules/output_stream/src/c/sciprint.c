@@ -21,6 +21,7 @@
 #endif
 #include "MALLOC.h"
 #include "charEncoding.h"
+#include "yaspio.hxx"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
@@ -74,7 +75,7 @@ int scivprintW(wchar_t* fmt,va_list args)
         s_buf[MAXPRINTF - 1]= L'\0';
     }
 
-	printf_scilabW(s_buf);
+	YaspWriteW(s_buf);
 
 	va_end(savedargs);
 
@@ -97,7 +98,7 @@ int scivprint(char *fmt,va_list args)
 
 	if (count == -1) s_buf[MAXPRINTF-1]='\0';
 
-	printf_scilab(s_buf);
+	YaspWrite(s_buf);
 
 	va_end(savedargs);
 
