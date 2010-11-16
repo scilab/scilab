@@ -290,12 +290,19 @@ public class XcosDiagram extends ScilabGraph {
     	
     	// ImplicitLink -> ImplicitOutputPort
     	if (source instanceof ImplicitLink && target instanceof ImplicitOutputPort && cell instanceof ImplicitLink) {
-    			return null;
+    		final BasicLink current = (BasicLink) cell;
+			final SplitBlock split = addSplitEdge(current.getGeometry()
+					.getTargetPoint(), (BasicLink) source, (BasicPort) target);
+			return addCell(cell, parent, index, split.getOut2(), source);
     	}
     	// ImplicitOutputPort -> ImplicitLink
     	// Switch source and target !
     	if (target instanceof ImplicitLink && source instanceof ImplicitOutputPort && cell instanceof ImplicitLink) {
-    			return null;
+			final BasicLink current = (BasicLink) cell;
+			final SplitBlock split = addSplitEdge(current.getGeometry()
+					.getTargetPoint(), (ImplicitLink) target,
+					(ImplicitOutputPort) source);
+			return addCell(cell, parent, index, split.getOut2(), source);
     	}
 
     	// CommandControlLink -> ControlPort
@@ -946,8 +953,8 @@ public class XcosDiagram extends ScilabGraph {
 			 * Remove split blocks
 			 */
 			if (cell instanceof BasicLink) {
-				final BasicBlock src = (BasicBlock) ((BasicLink) cell).getSource().getParent();
-				final BasicBlock target = (BasicBlock) ((BasicLink) cell).getTarget().getParent();
+				final mxICell src = ((BasicLink) cell).getSource().getParent();
+				final mxICell target = ((BasicLink) cell).getTarget().getParent();
 				
 				if (src instanceof SplitBlock) {
 					removedCells.add(src);
