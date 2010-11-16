@@ -28,15 +28,15 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // if dirs is not specified or [] then standard scilab man are assumed and
     // titles are searched in %helps
     // =========================================================================
+    
+    my_wanted_language  = getlanguage(); // This variable is only need when
+                                         // build all scilab help
 
     global %helps;
     global %helps_modules;
 
     if %helps_modules == [] then
-      moduleslist = getmodules();
-      for i = 1:size(moduleslist,'*')
-        add_module_help_chapter(moduleslist(i));
-      end
+       x2f_reset_help_mod_var(my_wanted_language);
     end
 
     %HELPS = [%helps_modules; %helps];
@@ -55,8 +55,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     generated_files = [];
 
     all_scilab_help     = %F;
-    my_wanted_language  = getlanguage(); // This variable is only need when
-                                         // build all scilab help
 
     [lhs,rhs] = argn(0);
 
@@ -83,7 +81,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         if rhs == 4 then
             my_wanted_language = directory_language;
             x2f_reset_help_mod_var(my_wanted_language);
-            %HELPS=[%helps_modules;%helps];
+            %HELPS = [%helps_modules; %helps];
         end
 
         dirs_to_build          = %HELPS;
@@ -487,7 +485,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         if is_chm then
             final_help_file = pathconvert(buildDoc_dir + "htmlhelp.hhp",%f,%f);
         elseif is_html then
-            final_help_file = pathconvert(final_output_dir+"/index.html",%f,%f); 
+            final_help_file = pathconvert(final_output_dir+"/index.html",%f,%f);
        else
             final_help_file = pathconvert(final_output_dir+"/scilab_" + my_wanted_language + "_help." + output_format_ext,%f,%f);
         end
@@ -515,7 +513,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         else
           buildDoc(output_format,modules_tree("master_document"), my_wanted_language);
         end
-        
+
         // Check if the help file has been generated
         if fileinfo(buildDoc_file)==[] then
             error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
@@ -613,7 +611,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             else
               buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             end
-            
+
             // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
                 error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
@@ -836,15 +834,39 @@ function x2f_reset_help_mod_var(language)
 
     // Reset the variable in hand
     %helps_modules = [];
+    
+    modules_ordered_list = mgetl(SCI + "/modules/helptools/etc/MAIN_CHAPTERS");
+    // remove empty lines in MAIN_CHAPTERS
+    modules_ordered_list(modules_ordered_list == "") = [];
+      
+    // get current modules used by scilab
+    default_modules_list = getmodules();
+      
+    // windows_tools module only on Windows
+    if ~with_module("windows_tools") then
+      // remove windows_tools in modules_ordered_list
+      modules_ordered_list(modules_ordered_list == "windows_tools") = [];
+    end
 
-    // Get module list
-    module_list = getmodules();
+    // check size
+    if size(default_modules_list, "*") <> size(modules_ordered_list, "*") then
+      error(msprintf(gettext("%s: Please check %s, number of modules is invalid.\n"), "xmltoformat", SCI + "/modules/helptools/etc/MAIN_CHAPTERS"));
+    end
 
+    // check modules names
+    commons_modules = intersect(modules_ordered_list, default_modules_list);
+    if size(commons_modules, "*") <> size(default_modules_list, "*") then
+      error(msprintf(gettext("%s: Please check %s, there is (at least) a invalid module name.\n"), "xmltoformat", SCI + "/modules/helptools/etc/MAIN_CHAPTERS"));
+    end
+
+    clear commons_modules;
+    clear default_modules_list;
+    
     // Loop on modules
-    for k=1:size(module_list,'*');
-        addchapter_path = getlongpathname(SCI+"/modules/"+module_list(k)+"/help/"+language+"/addchapter.sce");
+    for k=1:size(modules_ordered_list, "*");
+        addchapter_path = getlongpathname(SCI+"/modules/" + modules_ordered_list(k) + "/help/" + language + "/addchapter.sce");
         if fileinfo(addchapter_path)<>[] then
-            exec(addchapter_path,-1);
+           exec(addchapter_path, -1);
         end
     end
 

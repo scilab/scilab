@@ -471,7 +471,7 @@ libscihelptools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
-libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
+libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS
 
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
