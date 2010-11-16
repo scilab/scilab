@@ -102,7 +102,8 @@ $(top_builddir)/etc/jvm_options.xml \
 $(top_builddir)/etc/modules.xml \
 $(top_builddir)/etc/classpath.xml \
 $(top_builddir)/etc/logging.properties \
-$(top_builddir)/etc/librarypath.xml
+$(top_builddir)/etc/librarypath.xml \
+$(top_builddir)/Version.incl
 
 
 infofilesdir=$(pkgdatadir)/

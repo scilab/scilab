@@ -38,6 +38,7 @@ Source: COPYING-FR; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: Readme_Visual.txt; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: README_Windows.txt; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: ACKNOWLEDGEMENTS; DestDir: {app}; Components: {#COMPN_SCILAB}
+Source: Version.incl; DestDir: {app}; Components: {#COMPN_SCILAB}
 ;
 ; bin directory
 #include BinariesSourcePath + "\bin\bin.iss"
