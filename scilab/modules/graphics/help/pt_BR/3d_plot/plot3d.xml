@@ -602,7 +602,7 @@ xtitle('A standard rabbit set of patches');
 
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../images/plot3d_patch.png" />
+        <imagedata align="center" fileref="../../images/plot3d_patch.png" />
       </imageobject>
     </mediaobject>
 
@@ -671,7 +671,7 @@ a.view = '2d';
 
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../images/plot3d_patch_vertex.png" />
+        <imagedata align="center" fileref="../../images/plot3d_patch_vertex.png" />
       </imageobject>
     </mediaobject>
 
