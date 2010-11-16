@@ -52,7 +52,7 @@
   <entry key="FindAction">control F</entry>
   <entry key="FindNextAction">control K</entry>
   <entry key="FindPreviousAction">control shift K</entry>
-  <entry key="IncrementalSearchAction">F2</entry>
+  <entry key="IncrementalSearchAction">F3</entry>
   <entry key="SetAnchorAction">control M</entry>
   <entry key="RemoveAnchorAction">control shift M</entry>
   <entry key="GotoNextAnchorAction">control shift LESS</entry>

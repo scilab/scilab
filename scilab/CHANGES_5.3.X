@@ -170,6 +170,9 @@ SciNotes:
 
 * bug 8359 fixed - An exception was thrown on Save As action.
 
+* bug 8368 fixed - Incremental search did not highlight correctly the pattern
+                   under Windows.
+
 * bug 8381 fixed - It was not logical to add favorite dirs only in "Open file in"
                    action. 
 
