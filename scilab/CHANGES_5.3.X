@@ -574,6 +574,9 @@ Bug Fixes:
 
 * bug 6942 fixed - Explicit dependency on the libX11 on scilab-cli was existing.
 
+* bug 7242 fixed - API Scilab returned bad address for named variables 
+                   when name was provided by input arguments.
+
 * bug 7364 fixed - The "Checked" property misworked for uimenus and they could
                    not have a callback.
 
