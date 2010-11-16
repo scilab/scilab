@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>intersci (obsolete)</refname>
-    <refpurpose>Scilab tool to interface C of Fortran functions with scilab</refpurpose>
+    <refpurpose>Scilab tool to interface C or Fortran functions with scilab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
