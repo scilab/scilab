@@ -99,6 +99,8 @@ Xcos:
 
 * bug 8331 fixed - Block.doc was not cleared on superblock diagrams.
 
+* bug 8397 fixed - the simulation was blocked on a Modelica translator error.
+
 Graphic export:
 ===============
 
