@@ -151,6 +151,9 @@ SciNotes:
 
 * bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
 
+* bug 8170 fixed - Loading HDF5 files in non-Scilab format causes crash
+                   of application.
+
 * bug 8227 fixed - The commands evaluated with "Evaluate selection" were not
                    stored in history.
 
@@ -2210,4 +2213,3 @@ Bug fixes:
 * bug 7278 fixed - strsplit did not work with some particular inputs.
 
 * bug 7312 fixed - isnum() diplayed warnings when using some unusual parameters.
-
