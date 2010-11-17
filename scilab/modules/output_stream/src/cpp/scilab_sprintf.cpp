@@ -242,13 +242,13 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
     //\n \n\r \r to string
     //find number of lines
     *_piOutputRows = 1;
-    int iLen = wcslen(pwstFirstOutput) - 2;
+    int iLen = wcslen(pwstFirstOutput) - 1;
     for(int i = 0 ; i < iLen ; i++)
     {
         if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'r' && pwstFirstOutput[i + 2] != L'\0')
         {
             (*_piOutputRows)++;
-            i += 2;
+            i += 1;
             if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'n' && pwstFirstOutput[i + 2] != L'\0')
             {
                 i += 2;
@@ -257,7 +257,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
         else if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'n' && pwstFirstOutput[i + 2] != L'\0')
         {
             (*_piOutputRows)++;
-            i += 2;
+            i += 1;
         }
     }
 
