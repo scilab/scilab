@@ -40,7 +40,9 @@ namespace ast
             _bBreak(false),
             _bBreakable(false),
             _bReturn(false),
-            _bReturnable(false)
+            _bReturnable(false),
+            _bContinue(false),
+            _bContinuable(false)
             {
             }
         /** \brief Destroys an Expression node. */
@@ -128,12 +130,43 @@ namespace ast
                 return _bReturnable;
             }
 
+        void continue_set(void)
+            {
+                _bContinue = true;
+            }
+
+        void continue_reset(void)
+            {
+                _bContinue = false;
+            }
+
+        bool is_continue(void) const
+            {
+                return _bContinue;
+            }
+
+        void continuable_set(void)
+            {
+                _bContinuable = true;
+            }
+
+        void continuable_reset(void)
+            {
+                _bContinuable = false;
+            }
+
+        bool is_continuable(void) const
+            {
+                return _bContinuable;
+            }
     private:
         bool _verbose;
         bool _bBreak;
         bool _bBreakable;
         bool _bReturn;
         bool _bReturnable;
+        bool _bContinue;
+        bool _bContinuable;
     };
 
     /** \brief Define a shorthand for list of Exp* manipulation. */

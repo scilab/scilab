@@ -185,6 +185,7 @@
 %token WHILE		"while"
 %token DO		"do"
 %token BREAK		"break"
+%token CONTINUE     "continue"
 
 %token TRY		"try"
 %token CATCH		"catch"
@@ -414,6 +415,7 @@ functionDeclaration				{ $$ = $1; }
 | variable			%prec TOPLEVEL	{ $$ = $1; }
 | implicitFunctionCall		%prec TOPLEVEL	{ $$ = $1; }
 | BREAK						{ $$ = new ast::BreakExp(@$); }
+| CONTINUE						{ $$ = new ast::ContinueExp(@$); }
 | returnControl					{ $$ = $1; }
 | COMMENT					{ $$ = new ast::CommentExp(@$, $1); }
 | error						{

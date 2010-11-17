@@ -110,8 +110,8 @@ namespace ast {
 
 	void MuteVisitor::visit(const OpExp &e)
 	{
-		const_cast<Exp&>(e.left_get()).mute();			
-		const_cast<Exp&>(e.right_get()).mute();			
+		const_cast<Exp&>(e.left_get()).mute();
+		const_cast<Exp&>(e.right_get()).mute();
 
 		MuteVisitor mute;
 		e.left_get().accept(mute);
@@ -120,8 +120,8 @@ namespace ast {
 
 	void MuteVisitor::visit(const LogicalOpExp &e)
 	{
-		const_cast<Exp&>(e.left_get()).mute();			
-		const_cast<Exp&>(e.right_get()).mute();			
+		const_cast<Exp&>(e.left_get()).mute();
+		const_cast<Exp&>(e.right_get()).mute();
 
 		MuteVisitor mute;
 		e.left_get().accept(mute);
@@ -130,8 +130,8 @@ namespace ast {
 
 	void MuteVisitor::visit (const AssignExp  &e)
 	{
-		const_cast<Exp&>(e.left_exp_get()).mute();			
-		const_cast<Exp&>(e.right_exp_get()).mute();			
+		const_cast<Exp&>(e.left_exp_get()).mute();
+		const_cast<Exp&>(e.right_exp_get()).mute();
 
 		MuteVisitor mute;
 		e.left_exp_get().accept(mute);
@@ -162,11 +162,11 @@ namespace ast {
 
 	void MuteVisitor::visit (const IfExp  &e)
 	{
-		const_cast<Exp&>(e.test_get()).mute();			
-		const_cast<Exp&>(e.then_get()).mute();			
+		const_cast<Exp&>(e.test_get()).mute();
+		const_cast<Exp&>(e.then_get()).mute();
 		if(e.has_else())
 		{
-			const_cast<Exp&>(e.else_get()).mute();			
+			const_cast<Exp&>(e.else_get()).mute();
 		}
 
 		MuteVisitor mute;
@@ -180,8 +180,8 @@ namespace ast {
 
 	void MuteVisitor::visit (const TryCatchExp  &e)
 	{
-		const_cast<SeqExp&>(e.try_get()).mute();			
-		const_cast<SeqExp&>(e.catch_get()).mute();			
+		const_cast<SeqExp&>(e.try_get()).mute();
+		const_cast<SeqExp&>(e.catch_get()).mute();
 
 		MuteVisitor mute;
 		e.try_get().accept(mute);
@@ -190,8 +190,8 @@ namespace ast {
 
 	void MuteVisitor::visit (const WhileExp  &e)
 	{
-		const_cast<Exp&>(e.test_get()).mute();			
-		const_cast<Exp&>(e.body_get()).mute();			
+		const_cast<Exp&>(e.test_get()).mute();
+		const_cast<Exp&>(e.body_get()).mute();
 
 		MuteVisitor mute;
 		e.test_get().accept(mute);
@@ -200,13 +200,17 @@ namespace ast {
 
 	void MuteVisitor::visit (const ForExp  &e)
 	{
-		const_cast<Exp&>(e.body_get()).mute();			
+		const_cast<Exp&>(e.body_get()).mute();
 
 		MuteVisitor mute;
 		e.body_get().accept(mute);
 	}
 
 	void MuteVisitor::visit (const BreakExp &e)
+	{
+	}
+
+	void MuteVisitor::visit (const ContinueExp &e)
 	{
 	}
 
@@ -221,7 +225,7 @@ namespace ast {
 	void MuteVisitor::visit (const CaseExp &e)
 	{
 	}
-	
+
 	void MuteVisitor::visit (const SeqExp  &e)
 	{
 		std::list<Exp *>::const_iterator seq;
@@ -262,7 +266,7 @@ namespace ast {
 
 	void MuteVisitor::visit (const FunctionDec  &e)
 	{
-		const_cast<Exp&>(e.body_get()).mute();			
+		const_cast<Exp&>(e.body_get()).mute();
 
 		MuteVisitor mute;
 		e.body_get().accept(mute);

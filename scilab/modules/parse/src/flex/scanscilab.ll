@@ -299,6 +299,11 @@ assign			"="
         return scan_throw(BREAK);
 }
 
+<INITIAL,BEGINID>"continue"		{
+    	BEGIN(INITIAL);
+        return scan_throw(CONTINUE);
+}
+
 <INITIAL,BEGINID>"try" {
 	ParserSingleInstance::pushControlStatus(Parser::WithinTry);
 	BEGIN(INITIAL);

@@ -737,6 +737,12 @@ namespace ast
                     const_cast<Exp*>(&e.then_get())->breakable_set();
                 }
 
+                if(e.is_continuable())
+                {
+                    const_cast<IfExp*>(&e)->continue_reset();
+                    const_cast<Exp*>(&e.then_get())->continuable_set();
+                }
+
                 if(e.is_returnable())
                 {
                     const_cast<Exp*>(&e.then_get())->returnable_set();
@@ -752,6 +758,12 @@ namespace ast
                     if(e.is_breakable())
                     {
                         const_cast<Exp*>(&e.else_get())->breakable_set();
+                    }
+
+                    if(e.is_continuable())
+                    {
+                        const_cast<IfExp*>(&e)->continue_reset();
+                        const_cast<Exp*>(&e.else_get())->continuable_set();
                     }
 
                     if(e.is_returnable())
@@ -770,6 +782,15 @@ namespace ast
                 const_cast<IfExp*>(&e)->break_set();
                 const_cast<Exp*>(&e.else_get())->break_reset();
                 const_cast<Exp*>(&e.then_get())->break_reset();
+            }
+
+            if(e.is_continuable()
+                && ( (&e.else_get())->is_continue()
+                || (&e.then_get())->is_continue() ))
+            {
+                const_cast<IfExp*>(&e)->continue_set();
+                const_cast<Exp*>(&e.else_get())->continue_reset();
+                const_cast<Exp*>(&e.then_get())->continue_reset();
             }
 
             if(e.is_returnable()
@@ -813,8 +834,9 @@ namespace ast
             T execMeTest;
             T execMeAction;
 
-            //allow break operation
+            //allow break and continue operations
             const_cast<Exp*>(&e.body_get())->breakable_set();
+            const_cast<Exp*>(&e.body_get())->continuable_set();
             //allow return operation
             if(e.is_returnable())
             {
@@ -836,6 +858,15 @@ namespace ast
                     const_cast<WhileExp*>(&e)->return_set();
                     break;
                 }
+
+                if(e.body_get().is_continue())
+                {
+                    const_cast<WhileExp*>(&e)->continue_set();
+                    const_cast<Exp*>(&(e.body_get()))->continue_reset();
+                    e.test_get().accept(execMeTest);
+                    continue;
+                }
+
                 e.test_get().accept(execMeTest);
             }
         }
@@ -846,8 +877,9 @@ namespace ast
             T execVar;
             e.vardec_get().accept(execVar);
 
-            //allow break operation
+            //allow break and continue operations
             const_cast<Exp*>(&e.body_get())->breakable_set();
+            const_cast<Exp*>(&e.body_get())->continuable_set();
             //allow return operation
             if(e.is_returnable())
             {
@@ -889,6 +921,12 @@ namespace ast
                         break;
                     }
 
+                    if(e.body_get().is_continue())
+                    {
+                        const_cast<Exp*>(&(e.body_get()))->continue_reset();
+                        continue;
+                    }
+
                     if(e.body_get().is_return())
                     {
                         const_cast<ForExp*>(&e)->return_set();
@@ -912,6 +950,11 @@ namespace ast
                         break;
                     }
 
+                    if(e.body_get().is_continue())
+                    {
+                        continue;
+                    }
+
                     if(e.body_get().is_return())
                     {
                         const_cast<ForExp*>(&e)->return_set();
@@ -927,6 +970,10 @@ namespace ast
             const_cast<BreakExp*>(&e)->break_set();
         }
 
+        void visitprivate(const ContinueExp &e)
+        {
+            const_cast<ContinueExp*>(&e)->continue_set();
+        }
 
         void visitprivate(const ReturnExp &e)
         {
@@ -1027,6 +1074,12 @@ namespace ast
                     (*itExp)->breakable_set();
                 }
 
+                if(e.is_continuable())
+                {
+                    (*itExp)->continue_reset();
+                    (*itExp)->continuable_set();
+                }
+
                 if(e.is_returnable())
                 {
                     (*itExp)->returnable_set();
@@ -1111,6 +1164,12 @@ namespace ast
                     if((&e)->is_breakable() && (*itExp)->is_break())
                     {
                         const_cast<SeqExp *>(&e)->break_set();
+                        break;
+                    }
+
+                    if((&e)->is_continuable() && (*itExp)->is_continue())
+                    {
+                        const_cast<SeqExp *>(&e)->continue_set();
                         break;
                     }
 

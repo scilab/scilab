@@ -149,6 +149,11 @@ namespace ast
             visitprivate(e);
         }
 
+        void visit (const ContinueExp &e)
+        {
+            visitprivate(e);
+        }
+
         void visit (const ReturnExp &e)
         {
             visitprivate(e);

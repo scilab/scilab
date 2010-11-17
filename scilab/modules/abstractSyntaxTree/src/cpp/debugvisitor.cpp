@@ -324,11 +324,17 @@ namespace ast
         DEBUG_END_NODE();
     }
 
+    void DebugVisitor::visit (const ContinueExp &e)
+    {
+        DEBUG_START_NODE();
+        DEBUG(L"Exec ContinueExp", e);
+        DEBUG_END_NODE();
+    }
+
     void DebugVisitor::visit (const BreakExp &e)
     {
         DEBUG_START_NODE();
         DEBUG(L"Exec BreakExp", e);
-        // FIXME
         DEBUG_END_NODE();
     }
 

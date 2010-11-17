@@ -114,6 +114,7 @@
 #define SCI_FOR			L"for"
 #define SCI_ENDFOR		L"end"
 #define SCI_BREAK		L"break"
+#define SCI_CONTINUE    L"continue"
 
 // Syntax to have try/catch control structure
 #define SCI_TRY			L"try"

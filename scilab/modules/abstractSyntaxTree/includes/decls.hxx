@@ -54,6 +54,7 @@ namespace ast
   class WhileExp;
   class ForExp;
   class BreakExp;
+  class ContinueExp;
   class FieldExp;
   class TryCatchExp;
   class ReturnExp;

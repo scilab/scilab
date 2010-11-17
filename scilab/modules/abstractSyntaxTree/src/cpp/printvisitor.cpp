@@ -428,6 +428,11 @@ namespace ast {
         *ostr << SCI_BREAK;
     }
 
+    void PrintVisitor::visit (const ContinueExp &e)
+    {
+        *ostr << SCI_CONTINUE;
+    }
+
     void PrintVisitor::visit (const ReturnExp &e)
     {
         *ostr << SCI_RETURN;

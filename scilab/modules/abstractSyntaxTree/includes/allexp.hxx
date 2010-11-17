@@ -46,6 +46,7 @@
 #include "forexp.hxx"
 #include "trycatchexp.hxx"
 #include "breakexp.hxx"
+#include "continueexp.hxx"
 #include "returnexp.hxx"
 #include "selectexp.hxx"
 #include "caseexp.hxx"
