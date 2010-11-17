@@ -532,7 +532,6 @@ endfunction
 function dia_out = remove_headers(dia_in)
 
 	dia_out = dia_in;
-
 	body_start = grep(dia_out,"// <-- HEADER END -->");
 
 	if body_start<>[] then
@@ -542,7 +541,7 @@ function dia_out = remove_headers(dia_in)
 	body_end   = grep(dia_out,"// <-- FOOTER START -->");
 
 	if body_end<>[] then
-		[dia_nl,dia_nc] = size(dia);
+		[dia_nl,dia_nc] = size(dia_out);
 		dia_out(body_end(1):dia_nl) = [];
 	end
 
@@ -1070,7 +1069,6 @@ function st = st_run(st)
 	end
 
 	head = [head ; "diary(''"+st.tmp_dia+"'');" ;  "disp(tmpdirToPrint);" ; "// <-- HEADER END -->"];
-	head = [head ; "// <-- HEADER END -->"];
 
 	// Test footer
 
@@ -1176,8 +1174,6 @@ function st = st_run(st)
 	// =========================================================================
 	host(st.cmd);
 
-
-
 	// First Check : error output
 	// =========================================================================
 
@@ -1265,7 +1261,7 @@ function st = st_run(st)
 	if ( (st.reference=="check") & (testsuite.reference=="check") ) | (testsuite.reference=="create") then
 
 		//  Do some modification in  dia file
-		dia(grep(dia,"write(%io(2),tmpdirToPrint"))= [];
+		dia(grep(dia,"disp(tmpdirToPrint)"))= [];
 		dia(grep(dia,"TMPDIR1"))                   = [];
 		dia(grep(dia,"diary(0)"))                  = [];
 
