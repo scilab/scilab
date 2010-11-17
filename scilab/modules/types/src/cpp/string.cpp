@@ -552,6 +552,9 @@ namespace types
                     {
                         for(int j = 1 ; j <= i ; j++)
                         {
+                            //force index are <= to size_get()
+                            _piSeqCoord[j] = Min(_piSeqCoord[j], size_get());
+
                             if(_piSeqCoord[j - 1] > _piSeqCoord[j])
                             {
                                 int iIdx            = _piSeqCoord[j - 1];
@@ -604,6 +607,9 @@ namespace types
                     {
                         for(int j = 1 ; j <= i ; j++)
                         {
+                            //force index are <= to size_get()
+                            _piSeqCoord[j] = Min(_piSeqCoord[j], size_get());
+
                             if(_piSeqCoord[j - 1] > _piSeqCoord[j])
                             {
                                 int iIdx            = _piSeqCoord[j - 1];
