@@ -126,6 +126,9 @@ $..10^p$ exponents instead of the D+/-## console style display.
 * Finally, their positioning is still improved in order to avoid their mutual
 overlaying for big values.
 
+* bug 7110 fixed - When inserting a structure in a handle, the handle was
+  overwritten.
+
 * bug 7492 fixed - If its "data_mapping" property was set to "direct", the
   Grayplot object's data seemed to be transposed when displayed.
 
@@ -328,7 +331,7 @@ Bug Fixes:
 
 * bug 8318 fixed - help window was not brought up to front when already opened.
 
-* bug 8321 fixed - in some cases, configure_msvc failed and returned a wrong 
+* bug 8321 fixed - in some cases, configure_msvc failed and returned a wrong
                    error message.
 
 * bug 8332 fixed - Some use of clipboard function crashed Scilab.
