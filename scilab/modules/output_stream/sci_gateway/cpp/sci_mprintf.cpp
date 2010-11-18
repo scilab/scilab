@@ -23,7 +23,7 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_mprintf(typed_list &in, int _piRetCount, typed_list &out)
+Function::ReturnValue sci_mprintf(typed_list &in, int _iRetCount, typed_list &out)
 {
     //Structure to store, link between % and input value
     ArgumentPosition* pArgs = NULL;
@@ -36,7 +36,7 @@ Function::ReturnValue sci_mprintf(typed_list &in, int _piRetCount, typed_list &o
 
     if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
     {
-        ScierrorW(999, _W("l%s: Wrong type for input argument #%d: A string expected.\n"), L"mprintf" ,1);
+        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mprintf" ,1);
         return Function::Error;
     }
 
