@@ -292,11 +292,12 @@ bool FuncManager::CreateModuleList(void)
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"functions", &FunctionsModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"output_stream", &OutputStreamModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"matio", &MatioModule::Load));
-        m_ModuleMap.insert(pair<wstring, GW_MOD>(L"fileio", &FileioModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"fileio", &FileioModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"gui", &GuiModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"time", &TimeModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
 	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scinotes", &ScinotesModule::Load));
+	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"localization", &LocalizationModule::Load));
 	return true;
 }
 

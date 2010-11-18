@@ -27,5 +27,6 @@
 #include "../../time/includes/time_gw.hxx"
 #include "../../string/includes/string_gw.hxx"
 #include "../../scinotes/includes/scinotes_gw.hxx"
+#include "../../localization/includes/localization_gw.hxx"
 
 #endif /* !__MODULE_DECLARATION_HXX__ */

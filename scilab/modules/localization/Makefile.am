@@ -21,25 +21,41 @@ if IS_MACOSX
 LOCALIZATION_C_SOURCES += src/c/getLocaleInfo_Apple.c
 endif
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
-sci_gateway/c/sci_gettext.c \
-sci_gateway/c/sci_dgettext.c \
-sci_gateway/c/sci_setlanguage.c \
-sci_gateway/c/sci_getdefaultlanguage.c \
-sci_gateway/c/sci_getlanguage.c \
-sci_gateway/c/sci_setdefaultlanguage.c
+GATEWAY_C_SOURCES = \
+	sci_gateway/c/gw_localization.c \
+	sci_gateway/c/sci_dgettext.c \
+	sci_gateway/c/sci_setlanguage.c \
+	sci_gateway/c/sci_getdefaultlanguage.c \
+	sci_gateway/c/sci_getlanguage.c \
+	sci_gateway/c/sci_setdefaultlanguage.c
 
-libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
-				-I/sw/include \
-				-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-    			-I$(top_srcdir)/modules/system_env/includes
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/localization_gw.cpp \
+	sci_gateway/cpp/sci_gettext.cpp
+	
+
+libscilocalization_la_CFLAGS=  	\
+	$(JAVA_JNI_INCLUDE) \
+	-I/sw/include \
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+    	-I$(top_srcdir)/modules/system_env/includes
+
+libscilocalization_la_CPPFLAGS = \
+	-I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscilocalization.la
 
@@ -50,7 +66,7 @@ libscilocalization_la_LDFLAGS += -lintl -framework Cocoa
 libscilocalization_la_CFLAGS += -lintl -framework Cocoa
 endif
 
-libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
+libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libscilocalization_la_SOURCES)

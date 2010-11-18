@@ -30,5 +30,6 @@
     <module name="string" activate="yes"/>
     <module name="scinotes" activate="yes"/>
     <module name="data_structures" activate="yes"/>
+    <module name="localization" activate="yes"/>
 </modules>
 
