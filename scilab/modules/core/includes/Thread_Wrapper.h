@@ -61,8 +61,16 @@ typedef HANDLE				__threadSignal;
 
 #define __StaticInitThreadSignal            NULL
 
+#define __GetCurrentThreadId                    GetCurrentThread
+
+#define __SuspendThread( ThreadId)              SuspendThread(ThreadId)
+
+#define __ResumeThread( ThreadId)               ResumeThread(ThreadId)
+
 #else
+
 #include <pthread.h>
+#include <signal.h>
 
 typedef pthread_t __threadId;
 typedef pthread_mutex_t __threadLock;
@@ -110,9 +118,15 @@ Linux uses PTHREAD_MUTEX_ERRORCHECK_NP other Posix use PTHREAD_MUTEX_ERRORCHECK
 
 #define __Terminate(threadId)			pthread_cancel(threadId)
 
-#define __StaticInitLock                   PTHREAD_MUTEX_INITIALIZER
+#define __StaticInitLock                PTHREAD_MUTEX_INITIALIZER
 
-#define __StaticInitThreadSignal            PTHREAD_COND_INITIALIZER
+#define __StaticInitThreadSignal        PTHREAD_COND_INITIALIZER
+
+#define __GetCurrentThreadId            pthread_self
+
+#define __SuspendThread(ThreadId)       pthread_kill(ThreadId, SIGUSR1)
+
+#define __ResumeThread( ThreadId)       pthread_kill(ThreadId, SIGUSR2)
 
 #endif //_MSC_VER
 

@@ -365,6 +365,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\threadId.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\tlist.cpp"
 				>
 			</File>
@@ -484,6 +488,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\struct.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\threadId.hxx"
 				>
 			</File>
 			<File

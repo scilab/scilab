@@ -59,7 +59,8 @@ namespace types
           RealListInsertOperation,
           RealListDeleteOperation,
           RealListUndefinedOperation,
-          RealFile
+          RealFile,
+          RealThreadId
       };
 
   protected :
@@ -204,6 +205,10 @@ namespace types
       /* File */
       bool                              isFile(void) { return (getType() == RealFile); }
       virtual File*                     getAsFile(void) { return NULL; }
+
+      /* ThreadId */
+      bool                              isThreadId(void) { return (getType() == RealThreadId); }
+      virtual ThreadId*                 getAsThreadId(void) { return NULL; }
 
       /**
       ** List Operations

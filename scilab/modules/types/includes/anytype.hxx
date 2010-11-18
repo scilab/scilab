@@ -43,6 +43,7 @@ namespace types
     class TList;
     class MList;
     class File;
+    class ThreadId;
 }
 
 #endif /* !__ANY_TYPES_HXX__ */

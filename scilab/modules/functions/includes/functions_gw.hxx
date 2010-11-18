@@ -31,6 +31,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::typed_list &out);
 Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types::typed_list &out);
 Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::typed_list &out);
+Function::ReturnValue sci_getCurrentThreadId(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
 #endif /* __FUNCTIONS_GW_HXX__ */
 

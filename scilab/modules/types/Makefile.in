@@ -141,7 +141,8 @@ am__objects_3 = libscitypes_la-types.lo libscitypes_la-int.lo \
 	libscitypes_la-listoperation.lo \
 	libscitypes_la-listundefined.lo libscitypes_la-struct.lo \
 	libscitypes_la-cell.lo libscitypes_la-tlist.lo \
-	libscitypes_la-file.lo libscitypes_la-mlist.lo
+	libscitypes_la-file.lo libscitypes_la-mlist.lo \
+	libscitypes_la-threadId.lo
 am_libscitypes_la_OBJECTS = $(am__objects_1) $(am__objects_1) \
 	$(am__objects_1) $(am__objects_2) $(am__objects_3)
 libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
@@ -524,7 +525,8 @@ TYPES_CPP_SOURCES = \
 			src/cpp/cell.cpp \
 			src/cpp/tlist.cpp \
 			src/cpp/file.cpp \
-			src/cpp/mlist.cpp
+			src/cpp/mlist.cpp \
+			src/cpp/threadId.cpp
 
 GIWS_WRAPPERS = 
 @GIWS_TRUE@BUILT_SOURCES = giws
@@ -700,6 +702,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-sci_usertype.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-struct.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-threadId.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-tlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-tostring_common.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-types.Plo@am__quote@
@@ -964,6 +967,13 @@ libscitypes_la-mlist.lo: src/cpp/mlist.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/mlist.cpp' object='libscitypes_la-mlist.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-mlist.lo `test -f 'src/cpp/mlist.cpp' || echo '$(srcdir)/'`src/cpp/mlist.cpp
+
+libscitypes_la-threadId.lo: src/cpp/threadId.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-threadId.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-threadId.Tpo -c -o libscitypes_la-threadId.lo `test -f 'src/cpp/threadId.cpp' || echo '$(srcdir)/'`src/cpp/threadId.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscitypes_la-threadId.Tpo $(DEPDIR)/libscitypes_la-threadId.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/threadId.cpp' object='libscitypes_la-threadId.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-threadId.lo `test -f 'src/cpp/threadId.cpp' || echo '$(srcdir)/'`src/cpp/threadId.cpp
 
 testTypes-test-types.o: src/cpp/test-types.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testTypes_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT testTypes-test-types.o -MD -MP -MF $(DEPDIR)/testTypes-test-types.Tpo -c -o testTypes-test-types.o `test -f 'src/cpp/test-types.cpp' || echo '$(srcdir)/'`src/cpp/test-types.cpp
