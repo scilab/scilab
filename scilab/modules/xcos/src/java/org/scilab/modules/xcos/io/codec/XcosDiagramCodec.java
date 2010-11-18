@@ -13,9 +13,15 @@
 package org.scilab.modules.xcos.io.codec;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.io.ScilabGraphCodec;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -25,6 +31,8 @@ import org.w3c.dom.NodeList;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
+import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxGraphModel;
 
 /**
  * Codec for an {@link org.scilab.modules.xcos.graph.XcosDiagram} instance.
@@ -33,6 +41,9 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 	private static final String SCICOS_PARAMETERS = "scicosParameters";
 	private static final String AS_ATTRIBUTE = "as";
 	
+	private static final String INCOMPATIBILITY_DETECTED = Messages.gettext("Incompatibility detected");
+	private static final String PLEASE_CHECK_THE_DIAGRAM = Messages.gettext("Please check the diagram, before trying to simulate it.");
+	private static final String SOME_BLOCKS_HAVE_BEEN_REMOVED = Messages.gettext("Some blocks have been removed to ensure compatibility.");
 	
 	// The non saved fields are hardcoded and can have the same name.
 	// CSOFF: MultipleStringLiterals
@@ -194,6 +205,29 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 		// unlock it
 		diag.setReadOnly(false);
 		
+		// 5.3.0-beta diagrams may contains invalid default parents, remove them.
+		{
+			final mxCell root = (mxCell) diag.getModel().getRoot();
+			final mxGraphModel model = (mxGraphModel) diag.getModel();
+			final ArrayList<Object> parents = new ArrayList<Object>(
+					Arrays.asList(mxGraphModel.getChildren(model, root)));
+			
+			if (parents.size() > 1) {
+				LogFactory.getLog(XcosDiagramCodec.class).debug("Removing misplaced cells");
+				showUpdateDialog();
+				// the last is always the right one so keep it
+				parents.remove(parents.size() - 1);
+				// remove the others
+				diag.removeCells(parents.toArray(), true);
+			}
+		}
+		
 		return super.afterDecode(dec, node, obj);
+	}
+
+	private void showUpdateDialog() {
+		ScilabModalDialog.show(null, new String[] {
+				SOME_BLOCKS_HAVE_BEEN_REMOVED, "", PLEASE_CHECK_THE_DIAGRAM },
+				INCOMPATIBILITY_DETECTED, IconType.WARNING_ICON);
 	}
 }

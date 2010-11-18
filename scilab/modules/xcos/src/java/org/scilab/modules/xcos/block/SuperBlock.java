@@ -197,7 +197,8 @@ public final class SuperBlock extends BasicBlock {
 		 * In this case child was null and we need to reconstruct child diagram
 		 * from scs_m.
 		 */
-		if (getChild() == null) {
+		if (getChild() == null || getChild().getChildVertices(getChild().getDefaultParent()).length == 0) {
+			child = null;
 			createChildDiagram();
 		} else {
 			// reassociate (useful on clone and load operation)

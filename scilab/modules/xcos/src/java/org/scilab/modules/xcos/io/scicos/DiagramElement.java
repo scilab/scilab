@@ -55,7 +55,7 @@ import com.mxgraph.model.mxIGraphModel;
 public class DiagramElement extends AbstractElement<XcosDiagram> {
 	private static final List<String> BASE_FIELD_NAMES = asList(
 			"diagram", "props", "objs");
-	private static final List<String> VERSIONS = Arrays.asList("scicos4.2", "scicos4.3", "scicos4.4");
+	private static final List<String> VERSIONS = Arrays.asList("", "scicos4.2", "scicos4.3", "scicos4.4");
 	
 	private static final int OBJS_INDEX = 2;
 	private static final int VERSION_INDEX = 3;
