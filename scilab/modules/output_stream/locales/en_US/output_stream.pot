@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-09-15 14:22+0100\n"
+"Revision-Date: 2010-11-18 15:38+0100\n"
 
 # File: src/c/msgs.c, line: 922
 #, c-format
@@ -195,15 +195,15 @@ msgstr ""
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_msprintf.c, line: 155
+# File: sci_gateway/c/sci_msprintf.c, line: 167
+# File: sci_gateway/c/sci_msprintf.c, line: 185
+# File: sci_gateway/c/sci_msprintf.c, line: 217
+# File: sci_gateway/c/sci_msprintf.c, line: 231
+# File: sci_gateway/c/sci_msprintf.c, line: 246
+# File: sci_gateway/c/sci_msprintf.c, line: 264
 # File: src/c/sciprint_full.c, line: 50
 # File: src/c/sciprint_full.c, line: 60
-# File: sci_gateway/c/sci_msprintf.c, line: 125
-# File: sci_gateway/c/sci_msprintf.c, line: 130
-# File: sci_gateway/c/sci_msprintf.c, line: 140
-# File: sci_gateway/c/sci_msprintf.c, line: 164
-# File: sci_gateway/c/sci_msprintf.c, line: 171
-# File: sci_gateway/c/sci_msprintf.c, line: 178
-# File: sci_gateway/c/sci_msprintf.c, line: 189
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -250,7 +250,7 @@ msgid ""
 "   previous order computed solution returned.\n"
 msgstr ""
 #
-# File: macros/prettyprint.sci, line: 564
+# File: macros/prettyprint.sci, line: 593
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr ""
@@ -280,19 +280,19 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d to %d expected"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msprintf.c, line: 41
+# File: sci_gateway/c/sci_msprintf.c, line: 42
 # File: sci_gateway/c/sci_mprintf.c, line: 35
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msprintf.c, line: 71
+# File: sci_gateway/c/sci_msprintf.c, line: 78
 # File: sci_gateway/c/sci_mprintf.c, line: 66
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msprintf.c, line: 88
+# File: sci_gateway/c/sci_msprintf.c, line: 100
 # File: sci_gateway/c/sci_mprintf.c, line: 93
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -504,7 +504,7 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msprintf.c, line: 106
+# File: sci_gateway/c/sci_msprintf.c, line: 123
 #, c-format
 msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
 msgstr ""
