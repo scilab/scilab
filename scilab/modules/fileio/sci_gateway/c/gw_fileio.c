@@ -45,7 +45,7 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //filesep
 	{sci_getlongpathname,"getlongpathname"},
 	{NULL ,""}, //getshortpathname
-	{sci_fileext,"fileext"},
+	{NULL, ""}, //fileext
 	{NULL, ""}, //isdir
 	{sci_removedir,"removedir"},
 	{sci_createdir,"createdir"},
