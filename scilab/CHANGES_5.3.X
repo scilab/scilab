@@ -2,7 +2,7 @@
             ===============================================================
 
 Due to an important change from Apple in the Java environnement, a new beta
-release of Scilab has been decided. This will allow further testing for 
+release of Scilab has been decided. This will allow further testing for
 this architecture.
 
 Documentation:
@@ -16,7 +16,7 @@ Massive improvement of the documentation system:
 * Improved maintainability.
 * Faster build process (30 to 60 minutes => less than 30 seconds)
 
-In the meantime, a work of categorisation has been started in order to 
+In the meantime, a work of categorisation has been started in order to
 improve the Scilab documentation.
 
 * Documentation of trigonometry functions moved in a dedicated documentation
@@ -28,10 +28,10 @@ improve the Scilab documentation.
 * Documentation of color managements in graphics functions moved in a dedicated
   section. See bug 7048.
 
-* Documentation of floating point functions moved in a dedicated section. 
+* Documentation of floating point functions moved in a dedicated section.
   See bug 7052.
 
-* Documentation of Integer representation functions moved in a dedicated 
+* Documentation of Integer representation functions moved in a dedicated
   section. See bug 8268.
 
 * Documentation of adj2sp was not in the sparse help section. See bug 8269.
@@ -100,6 +100,8 @@ Xcos:
 * bug 8331 fixed - Block.doc was not cleared on superblock diagrams.
 
 * bug 8397 fixed - the simulation was blocked on a Modelica translator error.
+
+* bug 8400 fixed - start demos from Xcos menu (? --> Xcos demos) did not work.
 
 Graphic export:
 ===============
@@ -179,7 +181,7 @@ SciNotes:
                    under Windows.
 
 * bug 8381 fixed - It was not logical to add favorite dirs only in "Open file in"
-                   action. 
+                   action.
 
 Completion:
 ===========
