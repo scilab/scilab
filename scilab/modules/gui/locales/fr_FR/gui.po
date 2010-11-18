@@ -85,11 +85,10 @@ msgstr "%s : Plus de mémoire disponible.\n"
 #, c-format
 msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr ""
-"%s: Pas de résultats trouvés pour la propriété ''%s'' et la valeur ''%s''.\n"
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr "%s: Pas de résultats trouvés.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"

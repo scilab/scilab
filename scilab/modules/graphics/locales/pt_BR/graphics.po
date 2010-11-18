@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-09-22 10:51+0000\n"
-"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"PO-Revision-Date: 2010-11-16 21:42+0000\n"
+"Last-Translator: Adriano Steffler <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1033,6 +1033,8 @@ msgid ""
 "Data tips cannot be attached to this curve,\n"
 "the user_data field is already used"
 msgstr ""
+"Dtatips não podem ser ligadas a esta curva,\n"
+"o campo user_data já está utilizado"
 
 msgid "Default axes cannot be create.\n"
 msgstr "Os eixos padrões não podem ser criados.\n"
@@ -1041,22 +1043,22 @@ msgid "Default figure cannot be create.\n"
 msgstr "A figura padrão não pode ser criada.\n"
 
 msgid "Delete all datatips"
-msgstr ""
+msgstr "Deletar todos os datatips"
 
 msgid "Delete all datatips for the selected curve"
-msgstr ""
+msgstr "Deletar todos os datatips da curva selecionada"
 
 msgid "Delete last datatip"
-msgstr ""
+msgstr "Deletar o último datatip"
 
 msgid "Delete nearest datatip"
-msgstr ""
+msgstr "Deletar datatip mais próximo"
 
 msgid "Disable interpolation"
 msgstr "Desabilitar a interpolação"
 
 msgid "Edit the curve tip display function"
-msgstr ""
+msgstr "Editar a função de visualização do tip de curva"
 
 msgid "Enable interpolation"
 msgstr "Habilitar a interpolação"
@@ -1152,10 +1154,14 @@ msgstr "Jato"
 
 msgid "Left click on a curve to create a datatip, right opens"
 msgstr ""
+"Clique com o botão da esquerda sobre a curva para criar um datatip; o botão "
+"da direita abre-o"
 
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
+"Clique com o botão da esquerda sobre a curva para criar um datatip; o botão "
+"da direita abre um menu de contexto"
 
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
@@ -1170,7 +1176,7 @@ msgid "Misc"
 msgstr "Miscelânea"
 
 msgid "Multiple datatips mode"
-msgstr ""
+msgstr "Modo de datatips múltiplos"
 
 msgid "Name"
 msgstr "Nome"
@@ -1236,10 +1242,10 @@ msgid "Rainbow"
 msgstr "Arco-íris"
 
 msgid "Redraw all datatips"
-msgstr ""
+msgstr "Redesenhar todos os datatips"
 
 msgid "Scale n1"
-msgstr ""
+msgstr "Escala nº 1"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "O módulo Gráfico do Scilab não foi instalado.\n"
@@ -1248,7 +1254,7 @@ msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "O módulo gráfico do Scilab desabilitou o modo -nogui ou o -nwni.\n"
 
 msgid "Select tip orientation"
-msgstr ""
+msgstr "Selecione a orientação do tip"
 
 msgid "Spring"
 msgstr "Primavera"
@@ -1346,7 +1352,7 @@ msgid "Unhandled data field\n"
 msgstr "Campo de dados não manipulado\n"
 
 msgid "Unique datatip mode"
-msgstr ""
+msgstr "Modo de datatip único"
 
 #, c-format
 msgid "Unknown property: %s.\n"
@@ -1612,7 +1618,7 @@ msgid "lower right"
 msgstr "inferior direito"
 
 msgid "select the curve tip display function"
-msgstr ""
+msgstr "Selecione a função de exibição do tip da curva"
 
 msgid "upper left"
 msgstr "superior esquerdo"

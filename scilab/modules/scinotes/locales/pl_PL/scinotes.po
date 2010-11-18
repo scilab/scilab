@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2010-09-29 13:12+0000\n"
+"PO-Revision-Date: 2010-11-01 20:23+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,27 +40,28 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu %d: Oczekiwana jest macierz liczb "
+"%s: Nieprawidłowy typ argumentu nr %d: Oczekiwana jest macierz liczb "
 "rzeczywistych.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu %d: Oczekiwano macierzy liczb rzeczywistych\n"
+"%s: Nieprawidłowy typ argumentu nr %d: Oczekiwano macierz liczb "
+"rzeczywistych\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru %d: Oczekiwana macierz ciągów znaków.\n"
+"%s: Nieprawidłowy typ parametru nr %d: Oczekiwana macierz ciągów znaków.\n"
 
 msgid "... file with echo"
-msgstr ""
+msgstr "... plik, z echem"
 
 msgid "... file with no echo"
-msgstr ""
+msgstr "... plik, bez echa"
 
 msgid "... the selection with echo;... until the caret, with echo"
-msgstr ""
+msgstr ".. zaznaczenie z echem;... do kursoru, z echem"
 
 msgid "?"
 msgstr "?"
@@ -84,7 +85,7 @@ msgid "Anchor: "
 msgstr "Kotwica "
 
 msgid "Anchors"
-msgstr "Kotwicy"
+msgstr "Kotwice"
 
 msgid "Are you sure that you want to close SciNotes ?"
 msgstr "Jesteś pewny, że chcesz zamknąć SciNotes?"
@@ -120,7 +121,7 @@ msgid "Case sensitive"
 msgstr "Rozróżniaj wielkość liter"
 
 msgid "Change Color"
-msgstr "Zmienić kolor"
+msgstr "Zmień kolor"
 
 msgid "Change Colors"
 msgstr "Zmienić kolory"
@@ -219,16 +220,16 @@ msgid "Enter line number"
 msgstr "Wprowadź numer linii"
 
 msgid "Error while reading the String"
-msgstr ""
+msgstr "Błąd przy odczytywaniu łańcucha"
 
 msgid "Evaluate Selection"
 msgstr "Oblicz zaznaczone"
 
 msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr ""
+msgstr "Oblicz zaznaczenie z echem;Oblicz do pozycji kursora, z echem"
 
 msgid "Evaluate from beginning..."
-msgstr "Oblicz od początku"
+msgstr "Oblicz od początku..."
 
 msgid "Execute"
 msgstr "Wykonaj"
@@ -267,10 +268,10 @@ msgid "Functions"
 msgstr "Funkcje"
 
 msgid "Generate comments for help_from_sci"
-msgstr "Generuj komentarze dla help_from_sci"
+msgstr "Generuj komentarz dla pliku pomocy Scilab"
 
 msgid "Generate help from function"
-msgstr ""
+msgstr "Generuj plik pomocy dla funkcji"
 
 msgid "Go to line: "
 msgstr "Idź do linii: "
@@ -288,10 +289,10 @@ msgid "Help about '"
 msgstr "Pomoc o '"
 
 msgid "Help on ;Help on selection"
-msgstr ""
+msgstr "Pomoc dla ;Pomoc dla zaznaczenia"
 
 msgid "Help on selected text or keyword"
-msgstr "Pomoc na temat zaznaczenia"
+msgstr "Pomoc dla zaznaczonego tekstu lub słowa kluczowego"
 
 msgid "Help on the current keyword"
 msgstr "Pomoc dt. bierzącego słowa kluczowego"
@@ -471,10 +472,10 @@ msgid "Restore files from your last SciNotes session ?"
 msgstr "Odczytać pliki z ostatniej sesji SciNotes?"
 
 msgid "Restore opened files on start-up"
-msgstr ""
+msgstr "Odczytaj edytowane pliki po starcie"
 
 msgid "Restore the last sessions"
-msgstr ""
+msgstr "Wznów ostatnie sesje"
 
 msgid "Save"
 msgstr "Zapisz"
@@ -524,7 +525,7 @@ msgid "Set Colors"
 msgstr "Ustaw kolory"
 
 msgid "Set Font"
-msgstr "Ustawienie czcionki"
+msgstr "Ustaw czcionkę"
 
 msgid "Set an anchor"
 msgstr "Ustaw kotwicę"
@@ -542,10 +543,10 @@ msgid "Shift Right"
 msgstr "Prawy Shift"
 
 msgid "Show the definition of the macro "
-msgstr ""
+msgstr "Pokaż definicję makra "
 
 msgid "Show/Hide ToolBar"
-msgstr "Pokaż / ukryj pasek narzędzi"
+msgstr "Pokaż/ukryj pasek narzędzi"
 
 msgid "Source of '"
 msgstr "Źródło '"
@@ -632,7 +633,7 @@ msgid "Whole word"
 msgstr "Całe słowo"
 
 msgid "Window"
-msgstr ""
+msgstr "Okno"
 
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
@@ -641,10 +642,10 @@ msgid "Word Wrap"
 msgstr "Zawijanie wierszy"
 
 msgid "You have passed the beginning of the document"
-msgstr "Przekazałeś początek dokumentu"
+msgstr "Przekroczyleś początek dokumentu"
 
 msgid "You have passed the end of the document"
-msgstr "Przekazałeś koniec dokumentu"
+msgstr "Przekroczyleś koniec dokumentu"
 
 msgid "You have reached the beginning of the document"
 msgstr "Jesteś na początku dokumentu"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2010-07-26 17:14+0000\n"
+"PO-Revision-Date: 2010-11-04 09:55+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr "%s: Niewłaściwa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: Niewłaściwa liczba parametrów wejściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -354,6 +354,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
+"%s: Niewłaściwa wartość parametru wejściowego nr %d: oczekiwano %s, %s lub "
+"%s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"

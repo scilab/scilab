@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-27 11:52+0000\n"
+"PO-Revision-Date: 2010-11-04 09:51+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "%s: Nie udało się eksportować %s do %s.\n"
 
 #, c-format
 msgid "%s: Unable to export ''XX'' to %s"
-msgstr ""
+msgstr "%s: Brak mozliwości eksportu ''XX'' do %s"
 
 #, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
@@ -70,7 +70,7 @@ msgstr "%s: Nie udało się wygenerować ikonę palety : %s już istnieje.\n"
 
 #, c-format
 msgid "%s: Unable to import data from %s"
-msgstr ""
+msgstr "%s: Brak mozliwości importu danych z %s"
 
 #, c-format
 msgid "%s: Unable to import xcos file %s.\n"
@@ -183,6 +183,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument %s: full path string expected.\n"
 msgstr ""
+"%s: Niewłaściwy typ argumentu wejściowego %s: Oczekiwana pełna ścieżka.\n"
 
 #, c-format
 msgid ""
@@ -240,6 +241,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
+"%s: Niewłaściwa wartość argumentu wejściowego %s: Oczekiwano nazwę "
+"istniejącego pliku.\n"
 
 msgid "?"
 msgstr "?"
@@ -322,10 +325,10 @@ msgid "Compile"
 msgstr "Skompiluj"
 
 msgid "Compiling"
-msgstr ""
+msgstr "Kompilacja"
 
 msgid "Computing"
-msgstr ""
+msgstr "Obliczenia"
 
 msgid "Continuous time systems"
 msgstr "Systemy czasu ciągłego"
@@ -381,7 +384,7 @@ msgid "Discontinuities"
 msgstr "Nieciągłości"
 
 msgid "Discrete"
-msgstr ""
+msgstr "Dyskretny"
 
 msgid "Discrete time systems"
 msgstr "Systemy czasu dyskretnego"
@@ -408,10 +411,10 @@ msgid "Enable"
 msgstr "Włącz"
 
 msgid "Equations"
-msgstr ""
+msgstr "Równania"
 
 msgid "Error"
-msgstr ""
+msgstr "Błąd"
 
 msgid "Event handling"
 msgstr "Obsługa zdarzeń"
@@ -441,7 +444,7 @@ msgid "Export to XML"
 msgstr "Exportuj do XML"
 
 msgid "Extended"
-msgstr ""
+msgstr "Rozszerzony"
 
 msgid "Failed to load Diagram"
 msgstr "Nie udało się załadować schematu"
@@ -501,7 +504,7 @@ msgid "Get infos"
 msgstr "Pobierz informacje"
 
 msgid "Global"
-msgstr ""
+msgstr "Globalny"
 
 msgid "Goto %s"
 msgstr "Idź do %s"
@@ -537,10 +540,10 @@ msgid "Import from XML"
 msgstr "Importuj z XML"
 
 msgid "Initial computing method"
-msgstr ""
+msgstr "Wstępna metoda obliczeniowa"
 
 msgid "Input"
-msgstr ""
+msgstr "Wejście"
 
 msgid "Insert"
 msgstr "Wstaw"
@@ -608,7 +611,7 @@ msgid "Modelica initialize"
 msgstr "Inicjalizacja Modelica"
 
 msgid "Modelica settings"
-msgstr ""
+msgstr "Ustawienia Modelica"
 
 msgid "Move Down"
 msgstr "Przesuń w dół"
@@ -656,7 +659,7 @@ msgid "Per block execution trace and Debug block calls"
 msgstr "Wykonanie śledzenia i analizy połączenia bloku za blokiem"
 
 msgid "Please take a look into the Scilab console"
-msgstr ""
+msgstr "Proszę zwrócić uwagę na komynikat w konsoli Scilab"
 
 msgid "Port & Subsystem"
 msgstr "Port & Podsystem"
@@ -864,6 +867,8 @@ msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
+"Nie udało się załadować bibliotekę hdf5-java (jhdf5). \n"
+"Wersja oczekiwana: %s ; Wersja odczytana %s ."
 
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -873,7 +878,7 @@ msgstr ""
 "Oczekiwana wersja %s ; Otrzymana wersja %s ."
 
 msgid "Unable to load the native HDF5 library."
-msgstr ""
+msgstr "Nie udało się załadować oryginalna bibliotekę HDF5"
 
 #, c-format
 msgid "Unable to open %s"
@@ -887,10 +892,10 @@ msgid "Unknown Diagram Version : "
 msgstr "Nieznana wersja schematu: "
 
 msgid "Unknowns"
-msgstr ""
+msgstr "Niewiadome"
 
 msgid "Unknowns not equals to Equations"
-msgstr ""
+msgstr "Ilość niewiadomych nie jest równa ilości równań"
 
 msgid "Untitled"
 msgstr "Bez nazwy"
@@ -972,7 +977,7 @@ msgid "Zero crossing detection"
 msgstr "Wykrywanie przekroczenia zera"
 
 msgid "comment"
-msgstr ""
+msgstr "komentarz"
 
 msgid "control port must be connected to command port"
 msgstr "Port kontroli musi być połaczony z portem poleceń"
@@ -993,21 +998,23 @@ msgid ""
 "lets the user change the parameters and call the solver without regenerating "
 "code."
 msgstr ""
+"pozwala użytkownikowi na zmianę parametrów i uruchomienie solver'a bez "
+"ponownej generacji kodu."
 
 msgid "max"
-msgstr ""
+msgstr "max"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "Maksymalny rozmiar kroku (0 oznacza brak limitu)"
 
 msgid "min"
-msgstr ""
+msgstr "min"
 
 msgid "model is not valid"
-msgstr ""
+msgstr "model jest niepoprawny"
 
 msgid "name"
-msgstr ""
+msgstr "nazwa"
 
 msgid "nominal"
 msgstr ""
@@ -1016,4 +1023,4 @@ msgid "selected"
 msgstr ""
 
 msgid "weight"
-msgstr ""
+msgstr "waga"

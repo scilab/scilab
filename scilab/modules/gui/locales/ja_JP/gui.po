@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-17 13:10+0000\n"
+"PO-Revision-Date: 2010-11-06 03:24+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -98,30 +98,17 @@ msgstr "%s: 無効なオプション %s です。\n"
 msgid "%s: No matching node.\n"
 msgstr "%s: 一致するノードがありません。\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 160
-# File: sci_gateway/c/sci_uicontrol.c, line: 141
-# File: sci_gateway/c/sci_uicontrol.c, line: 241
-# File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 62
-# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 54
-# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 52
-# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 81
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 49
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 76
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 252
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 286
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 58
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: これ以上メモリがありません。\n"
+msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
-msgstr "%s: いかなる結果もプロパティ ''%s'' と ''%s'' 値に基づきません。\n"
+msgstr "%s: プロパティ \"%s\" および値 \"%s\" に関する結果が見つかりません.\n"
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr "%s: いかなる結果もありません。\n"
+msgstr "%s: 結果が見つかりません.\n"
 
 #
 # File: src/nogui/nogui.c, line: 36
@@ -135,11 +122,9 @@ msgstr "%s: 'STANDARD'モードでのみ可能です。\n"
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: ファイル %s は存在しません。\n"
 
-#
-# File: macros/getvalue.sci, line: 184
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
-msgstr "%s: 型 %s は装備されていません。\n"
+msgstr "%s: %s 型は実装されていません.\n"
 
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 265
@@ -147,115 +132,71 @@ msgstr "%s: 型 %s は装備されていません。\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%1$s: 未知のプロパティ: %3$s ハンドルのための '%2$s'\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 201
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
-msgstr "%s: 不正な入力引数 #%d : '%s' または '%s' を想定します。"
+msgstr "%s: 入力引数 #%d が間違っています: '%s'または'%s'を指定してください."
 
-#
-# File: macros/addmenu.sci, line: 94
 #, c-format
 msgid "%s: Wrong input arguments: %s or %s expected.\n"
-msgstr "%s: 不正な入力引数です: %s または %s を想定します。\n"
+msgstr "%s: 入力引数が間違っています: %sまたは%sを指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 156
 #, c-format
 msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
-msgstr "%s: 不正な入力引数です: %s, %s または %s を想定します。\n"
+msgstr "%s: 入力引数が間違っています: %s,%s または %s を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_progressionbar.c, line: 103
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
-msgstr "%s: 不正な入力引数です: '%s' が想定されます。\n"
+msgstr "%s: 入力引数が間違っています: '%s' を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_setmenu.c, line: 91
-# File: sci_gateway/c/sci_unsetmenu.c, line: 91
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
-msgstr "%s: 不正な入力引数です:  '%s' または '%s' を想定します。\n"
+msgstr "%s: 入力引数が間違っています: '%s'または'%s'を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_waitbar.c, line: 142
 #, c-format
 msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 不正な入力引数です: '%s', '%s' または '%s' を想定します。\n"
+msgstr "%s: 入力引数が間違っています: '%s','%s'または'%s'を指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 180
-# File: macros/clipboard.sci, line: 47
-# File: macros/xgetfile.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: 少なくとも %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 27
-# File: macros/addmenu.sci, line: 47
-# File: macros/addmenu.sci, line: 65
-# File: macros/addmenu.sci, line: 104
-# File: macros/findobj.sci, line: 14
-# File: macros/x_choices.sci, line: 29
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 143
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d または %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 180
-# File: macros/clipboard.sci, line: 47
-# File: macros/xgetfile.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%1$s: 入力引数の数が不正です: %3$d への %2$d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uigetcolor.c, line: 38
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: 出力引数の数が不正です: %d または %d を想定します。\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
 
-#
-# File: macros/x_choices.sci, line: 75
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
-msgstr "%s: %s で不正なサイズ: 実を想定します。\n"
+msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
 
-#
-# File: macros/x_choices.sci, line: 66
 #, c-format
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
-msgstr "%s: %s で不正なサイズ: 文字列の列ベクトルを想定します。\n"
+msgstr "%s: %sの大きさが間違っています: 文字列の行ベクトルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_x_mdialog.c, line: 117
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列の %d x %d 行列を想定します。\n"
+msgstr "%s: 入力引数 #%dの大きさが間違っています: 文字列の %d x %d 行列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_waitbar.c, line: 113
-# File: sci_gateway/c/sci_waitbar.c, line: 130
-# File: sci_gateway/c/sci_waitbar.c, line: 178
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: '%s' ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%dの大きさが間違っています: '%s'ハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 194
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: '%s' または '%s' ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%dの大きさが間違っています: '%s'または'%s'ハンドルを指定してください.\n"
 
 #
 # File: macros/figure.sci, line: 26
@@ -266,594 +207,272 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズです: '' 図形'' ハンドル、または 実数を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_uigetcolor.c, line: 50
-# File: sci_gateway/c/sci_uigetcolor.c, line: 95
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 1 x %d 実行ベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%dの大きさが間違っています:  1 x %d 実数行ベクトルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_exportUI.c, line: 43
-# File: sci_gateway/c/sci_exportUI.c, line: 60
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 実スカラー、または '図形'ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%dの大きさが間違っています:  実数スカラーまたは'Figure'のハンドルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: ブーリアンを想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
 
-#
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 196
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: ブーリアン行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値行列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_progressionbar.c, line: 47
-# File: sci_gateway/c/sci_progressionbar.c, line: 89
-# File: sci_gateway/c/sci_toolbar.c, line: 75
-# File: sci_gateway/c/sci_uicontrol.c, line: 99
-# File: sci_gateway/c/sci_uicontrol.c, line: 178
-# File: sci_gateway/c/sci_uimenu.c, line: 80
-# File: sci_gateway/c/sci_uiwait.c, line: 51
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: グラフィック・ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: グラフィックのハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 235
-# File: sci_gateway/c/sci_delmenu.c, line: 69
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 36
-# File: sci_gateway/c/sci_setmenu.c, line: 67
-# File: sci_gateway/c/sci_setmenu.c, line: 83
-# File: sci_gateway/c/sci_setmenu.c, line: 103
-# File: sci_gateway/c/sci_setmenu.c, line: 129
-# File: sci_gateway/c/sci_toolbar.c, line: 49
-# File: sci_gateway/c/sci_uigetcolor.c, line: 143
-# File: sci_gateway/c/sci_uigetcolor.c, line: 159
-# File: sci_gateway/c/sci_uigetcolor.c, line: 175
-# File: sci_gateway/c/sci_uigetfont.c, line: 67
-# File: sci_gateway/c/sci_unsetmenu.c, line: 67
-# File: sci_gateway/c/sci_unsetmenu.c, line: 83
-# File: sci_gateway/c/sci_unsetmenu.c, line: 103
-# File: sci_gateway/c/sci_unsetmenu.c, line: 130
-# File: sci_gateway/c/sci_waitbar.c, line: 48
-# File: sci_gateway/c/sci_waitbar.c, line: 87
-# File: sci_gateway/c/sci_waitbar.c, line: 106
-# File: sci_gateway/c/sci_waitbar.c, line: 153
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 45
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 実を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数を指定してください.\n"
 
-#
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 134
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 158
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_delmenu.c, line: 51
-# File: sci_gateway/c/sci_helpbrowser.c, line: 66
-# File: sci_gateway/c/sci_helpbrowser.c, line: 92
-# File: sci_gateway/c/sci_helpbrowser.c, line: 107
-# File: sci_gateway/c/sci_messagebox.c, line: 64
-# File: sci_gateway/c/sci_messagebox.c, line: 150
-# File: sci_gateway/c/sci_setmenu.c, line: 52
-# File: sci_gateway/c/sci_toolbar.c, line: 107
-# File: sci_gateway/c/sci_uigetcolor.c, line: 59
-# File: sci_gateway/c/sci_uigetcolor.c, line: 79
-# File: sci_gateway/c/sci_uigetcolor.c, line: 123
-# File: sci_gateway/c/sci_uigetdir.c, line: 46
-# File: sci_gateway/c/sci_uigetdir.c, line: 65
-# File: sci_gateway/c/sci_uigetdir.c, line: 82
-# File: sci_gateway/c/sci_uigetfont.c, line: 48
-# File: sci_gateway/c/sci_unsetmenu.c, line: 52
-# File: sci_gateway/c/sci_x_choose.c, line: 78
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 77
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 61
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 88
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
-#
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 111
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: It must have same dimensions that "
 "argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: それは入力引数 #%d と同じ次元を持っていなくてはいけません。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 引数 #%d と同じ次元を有する必要があります.\n"
 
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 48
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列の行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 67
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_x_choice.c, line: 92
-# File: sci_gateway/c/sci_x_mdialog.c, line: 68
-# File: sci_gateway/c/sci_x_mdialog.c, line: 87
-# File: sci_gateway/c/sci_x_mdialog.c, line: 97
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列のベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してください.\n"
 
-#
-# File: macros/x_choices.sci, line: 51
 #, c-format
 msgid "%s: Wrong type for %s: A list expected.\n"
-msgstr "%s: %s で不正な型: リストを想定します。\n"
+msgstr "%s: %s の型が間違っています: リストを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A real expected.\n"
-msgstr "%s: %s で不正な型 :実を想定します。\n"
+msgstr "%s: %s の型が間違っています: 実数を指定してください.\n"
 
-#
-# File: macros/x_choices.sci, line: 62
 #, c-format
 msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
-msgstr "%s: %s で不正な型: 文字列の列ベクトルを想定します。\n"
+msgstr "%s: %s の型が間違っています: 文字列の列ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A string expected.\n"
-msgstr "%s: %s で不正な型 :文字を想定します。\n"
+msgstr "%s: %s の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 314
 #, c-format
 msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
-msgstr "%s: ''%s'' プロパティの不正な型: 文字を想定します。\n"
+msgstr "%s: \"%s \"プロパティの型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/xgetfile.sci, line: 39
-# File: macros/xgetfile.sci, line: 47
-# File: macros/xgetfile.sci, line: 61
-# File: macros/xgetfile.sci, line: 69
-# File: macros/xgetfile.sci, line: 82
-# File: macros/xgetfile.sci, line: 88
-# File: macros/xgetfile.sci, line: 96
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 157
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 169
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d または #%d で不正な型: 文字を想定します。\n"
+msgstr "%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uiwait.c, line: 63
-# File: sci_gateway/c/sci_waitbar.c, line: 184
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: '%s' ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: '%s'ハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uimenu.c, line: 86
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: '%s' または '%s' ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: '%s'または'%s'ハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 170
-# File: sci_gateway/c/sci_uicontrol.c, line: 184
-# File: sci_gateway/c/sci_uicontrol.c, line: 200
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: '%s' または '%s' ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: '%s'または'%s'ハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 131
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: '%s', '%s'' または '%s' ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: '%s','%s'または'%s'ハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uigetcolor.c, line: 101
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 1 x %d 実行ベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 1 x %d 実数行ベクトルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_exportUI.c, line: 48
-# File: sci_gateway/c/sci_exportUI.c, line: 66
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実スカラー、または '図形'ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーまたは'Figure'のハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 128
-# File: sci_gateway/c/sci_uigetfont.c, line: 93
-# File: sci_gateway/c/sci_uigetfont.c, line: 113
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 40
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 90
-# File: sci_gateway/c/sci_uimenu.c, line: 71
-# File: sci_gateway/c/sci_uiwait.c, line: 69
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: グラフィック・ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルを指定してください.\n"
 
-#
-# File: macros/close.sci, line: 33
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: グラフィック・ハンドル、または実を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは実数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_progressionbar.c, line: 57
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a string "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: グラフィック・ハンドル、または文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは文字列を指定してください.\n"
 
-#
-# File: macros/x_choices.sci, line: 38
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: リストを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: リストを指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 84
-# File: macros/addmenu.sci, line: 108
-# File: macros/addmenu.sci, line: 125
-# File: macros/addmenu.sci, line: 142
-# File: macros/addmenu.sci, line: 164
-# File: macros/x_matrix.sci, line: 11
-# File: sci_gateway/c/sci_delmenu.c, line: 62
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 43
-# File: sci_gateway/c/sci_setmenu.c, line: 109
-# File: sci_gateway/c/sci_setmenu.c, line: 135
-# File: sci_gateway/c/sci_uigetcolor.c, line: 149
-# File: sci_gateway/c/sci_uigetcolor.c, line: 165
-# File: sci_gateway/c/sci_uigetcolor.c, line: 181
-# File: sci_gateway/c/sci_uigetfont.c, line: 73
-# File: sci_gateway/c/sci_unsetmenu.c, line: 109
-# File: sci_gateway/c/sci_unsetmenu.c, line: 136
-# File: sci_gateway/c/sci_waitbar.c, line: 159
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 71
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型です: 実を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 96
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実、または図形・ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 88
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実、または図形・ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uigetcolor.c, line: 65
-# File: sci_gateway/c/sci_uigetcolor.c, line: 129
-# File: sci_gateway/c/sci_waitbar.c, line: 58
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実、または文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または文字列を指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 31
-# File: macros/addmenu.sci, line: 37
-# File: macros/addmenu.sci, line: 51
-# File: macros/addmenu.sci, line: 69
-# File: macros/addmenu.sci, line: 88
-# File: macros/addmenu.sci, line: 129
-# File: macros/addmenu.sci, line: 146
-# File: macros/addmenu.sci, line: 168
-# File: macros/x_choices.sci, line: 34
-# File: sci_gateway/c/sci_ClipBoard.c, line: 74
-# File: sci_gateway/c/sci_ClipBoard.c, line: 216
-# File: sci_gateway/c/sci_ClipBoard.c, line: 283
-# File: sci_gateway/c/sci_delmenu.c, line: 43
-# File: sci_gateway/c/sci_delmenu.c, line: 75
-# File: sci_gateway/c/sci_helpbrowser.c, line: 72
-# File: sci_gateway/c/sci_helpbrowser.c, line: 98
-# File: sci_gateway/c/sci_helpbrowser.c, line: 113
-# File: sci_gateway/c/sci_messagebox.c, line: 52
-# File: sci_gateway/c/sci_messagebox.c, line: 76
-# File: sci_gateway/c/sci_messagebox.c, line: 156
-# File: sci_gateway/c/sci_setlookandfeel.c, line: 68
-# File: sci_gateway/c/sci_setmenu.c, line: 44
-# File: sci_gateway/c/sci_setmenu.c, line: 119
-# File: sci_gateway/c/sci_toolbar.c, line: 123
-# File: sci_gateway/c/sci_uicontrol.c, line: 227
-# File: sci_gateway/c/sci_uicontrol.c, line: 280
-# File: sci_gateway/c/sci_uigetcolor.c, line: 85
-# File: sci_gateway/c/sci_uigetdir.c, line: 53
-# File: sci_gateway/c/sci_uigetdir.c, line: 72
-# File: sci_gateway/c/sci_uigetdir.c, line: 89
-# File: sci_gateway/c/sci_uigetfont.c, line: 54
-# File: sci_gateway/c/sci_uimenu.c, line: 117
-# File: sci_gateway/c/sci_unsetmenu.c, line: 44
-# File: sci_gateway/c/sci_unsetmenu.c, line: 120
-# File: sci_gateway/c/sci_waitbar.c, line: 169
-# File: sci_gateway/c/sci_x_choose.c, line: 84
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 83
-# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 86
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 214
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 73
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 96
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 125
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 149
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 187
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で、不正な型: 文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 86
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 289
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字、または実を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または実数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_messagebox.c, line: 114
-# File: sci_gateway/c/sci_messagebox.c, line: 137
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A string or a string vector "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字、または文字ベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または文字列のベクトルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_mpopup.c, line: 46
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字ベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 73
-# File: macros/addmenu.sci, line: 114
-# File: macros/addmenu.sci, line: 150
-# File: macros/addmenu.sci, line: 174
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 二項目リストを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 項目数2のリストを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 128
-# File: sci_gateway/c/sci_uigetfont.c, line: 93
-# File: sci_gateway/c/sci_uigetfont.c, line: 113
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 40
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 54
-# File: sci_gateway/c/sci_x_mdialog.c, line: 124
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 93
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 99
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 負ではない整数を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 負ではない整数を指定してください.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 207
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
-msgstr "%s: 入力引数 #%d で不正な型: 負ではない整数を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 負ではない整数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_x_choice.c, line: 62
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実、または複素ベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してください.\n"
 
-#
-# File: macros/xgetfile.sci, line: 39
-# File: macros/xgetfile.sci, line: 47
-# File: macros/xgetfile.sci, line: 61
-# File: macros/xgetfile.sci, line: 69
-# File: macros/xgetfile.sci, line: 82
-# File: macros/xgetfile.sci, line: 88
-# File: macros/xgetfile.sci, line: 96
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 157
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 169
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/xgetfile.sci, line: 39
-# File: macros/xgetfile.sci, line: 47
-# File: macros/xgetfile.sci, line: 61
-# File: macros/xgetfile.sci, line: 69
-# File: macros/xgetfile.sci, line: 82
-# File: macros/xgetfile.sci, line: 88
-# File: macros/xgetfile.sci, line: 96
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 157
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 169
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字、または図表を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはツリーを指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 84
-# File: macros/addmenu.sci, line: 108
-# File: macros/addmenu.sci, line: 125
-# File: macros/addmenu.sci, line: 142
-# File: macros/addmenu.sci, line: 164
-# File: macros/x_matrix.sci, line: 11
-# File: sci_gateway/c/sci_delmenu.c, line: 62
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 43
-# File: sci_gateway/c/sci_setmenu.c, line: 109
-# File: sci_gateway/c/sci_setmenu.c, line: 135
-# File: sci_gateway/c/sci_uigetcolor.c, line: 149
-# File: sci_gateway/c/sci_uigetcolor.c, line: 165
-# File: sci_gateway/c/sci_uigetcolor.c, line: 181
-# File: sci_gateway/c/sci_uigetfont.c, line: 73
-# File: sci_gateway/c/sci_unsetmenu.c, line: 109
-# File: sci_gateway/c/sci_unsetmenu.c, line: 136
-# File: sci_gateway/c/sci_waitbar.c, line: 159
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 71
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 図表を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ツリーを指定してください.\n"
 
-#
-# File: macros/xgetfile.sci, line: 39
-# File: macros/xgetfile.sci, line: 47
-# File: macros/xgetfile.sci, line: 61
-# File: macros/xgetfile.sci, line: 69
-# File: macros/xgetfile.sci, line: 82
-# File: macros/xgetfile.sci, line: 88
-# File: macros/xgetfile.sci, line: 96
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 157
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 169
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 図表 または 文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ツリーまたは文字列を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_x_choice.c, line: 73
-# File: sci_gateway/c/sci_x_choice.c, line: 99
-# File: sci_gateway/c/sci_x_choose.c, line: 45
-# File: sci_gateway/c/sci_x_choose.c, line: 55
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 44
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 54
-# File: sci_gateway/c/sci_x_dialog.c, line: 45
-# File: sci_gateway/c/sci_x_dialog.c, line: 65
-# File: sci_gateway/c/sci_x_mdialog.c, line: 50
-# File: sci_gateway/c/sci_x_mdialog.c, line: 75
-# File: sci_gateway/c/sci_x_mdialog.c, line: 105
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列のベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 131
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
 "''callback''.\n"
 msgstr ""
-"%s: 入力引数 #%d で不正な型: ''label'', ''icon'' または ''callback'' でなければなりません。\n"
+"%s: 入力引数 #%d の型が間違っています: 'label'', ''icon'' または ''callback''を指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 84
-# File: macros/addmenu.sci, line: 108
-# File: macros/addmenu.sci, line: 125
-# File: macros/addmenu.sci, line: 142
-# File: macros/addmenu.sci, line: 164
-# File: macros/x_matrix.sci, line: 11
-# File: sci_gateway/c/sci_delmenu.c, line: 62
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 43
-# File: sci_gateway/c/sci_setmenu.c, line: 109
-# File: sci_gateway/c/sci_setmenu.c, line: 135
-# File: sci_gateway/c/sci_uigetcolor.c, line: 149
-# File: sci_gateway/c/sci_uigetcolor.c, line: 165
-# File: sci_gateway/c/sci_uigetcolor.c, line: 181
-# File: sci_gateway/c/sci_uigetfont.c, line: 73
-# File: sci_gateway/c/sci_unsetmenu.c, line: 109
-# File: sci_gateway/c/sci_unsetmenu.c, line: 136
-# File: sci_gateway/c/sci_waitbar.c, line: 159
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 71
 #, c-format
 msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型です: 図表を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ツリーを指定してください.\n"
 
-#
-# File: src/cpp/InitUIMenu.cpp, line: 99
-# File: src/cpp/InitUIMenu.cpp, line: 112
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
-msgstr "%s: 親で不正な型: 図形、またはUIメニューを想定します。\n"
+msgstr "%s 親の型が間違っています: Figure または uimenu を指定してください.\n"
 
-#
-# File: src/cpp/UnitsConversion.cpp, line: 108
-# File: src/cpp/UnitsConversion.cpp, line: 184
 #, c-format
 msgid ""
 "%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
 "or pixels expected.\n"
-msgstr "%s: '%s' プロパティで不正な値: ポイント、ノーマライズ、インチ、センチ、またはピクセルを想定します。\n"
+msgstr ""
+"%s: '%s'プロパティの値が間違っています: points, normalized, inches, centimeters または "
+"pixels　を指定してください.\n"
 
-#
-# File: macros/addmenu.sci, line: 309
 #, c-format
 msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
-msgstr "%s: ''%s'' プロパティの不正な値: %d, %d または %d を想定します。\n"
+msgstr "%s: \"%s\"プロパティの値が間違っています: %d, %d または %d を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 68
-# File: sci_gateway/c/sci_ClipBoard.c, line: 89
-# File: sci_gateway/c/sci_ClipBoard.c, line: 210
-# File: sci_gateway/c/sci_ClipBoard.c, line: 276
-# File: sci_gateway/c/sci_toolbar.c, line: 117
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '%s' または '%s' を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ’%s' または '%s' を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 123
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s' または '%s' を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s', '%s' または '%s' を指定してください.\n"
 
-#
-# File: macros/clipboard.sci, line: 42
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または ''%s'' を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\" または \"%s'\" を指定してください.\n"
 
-#
-# File: macros/clipboard.sci, line: 34
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: ''%s'', ''%s'' または ''%s'' を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'', ''%s''  または ''%s'' を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 64
@@ -868,18 +487,13 @@ msgid ""
 "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 明確な '%s' ハンドルを想定します。\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 56
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値:  > %d と想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d より大きな値を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 269
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 65
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: >= %d と想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d 以上の値を指定してください.\n"
 
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 87
@@ -1164,10 +778,8 @@ msgstr "現在の構成として選択(&S)"
 msgid "&Start datatip manager"
 msgstr "データtip マネージャwo(&S)  tart datatip manager"
 
-#
-# File: scilab_fake_localization_file.c, line: 32
 msgid "&Start entity picker"
-msgstr "実体摘出の開始(&S)"
+msgstr "エンティティ選択を開始(&S)"
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
@@ -1183,10 +795,8 @@ msgstr "ズームしない(&U)"
 msgid "&Variable Browser"
 msgstr "変数ブラウザ(&V)"
 
-#
-# File: scilab_fake_localization_file.c, line: 11
 msgid "&Vectorial export"
-msgstr "方向をエクスポート"
+msgstr "ベクトル形式でエクスポート(&V)"
 
 #
 # File: scilab_fake_localization_file.c, line: 76
@@ -1208,12 +818,10 @@ msgid ""
 " Please specify a valid file format."
 msgstr ""
 "'.\n"
-"どうぞ妥当なファイル形式を明確にしてください。"
+"有効なファイル形式を指定してください."
 
-#
-# File: scilab_fake_localization_file.c, line: 25
 msgid "2D/3D &Rotation"
-msgstr "2D/3D循環(&R)"
+msgstr "2D/3D回転(&R)"
 
 msgid "<Enter color name here>"
 msgstr "<色名をここに入力してください>"
@@ -1238,7 +846,7 @@ msgid "All Scilab files"
 msgstr "全てのScilabファイル"
 
 msgid "All files"
-msgstr "ファイル全て"
+msgstr "全てのファイル"
 
 msgid "An error occured: "
 msgstr "エラーが発生しました: "

@@ -162,7 +162,7 @@ msgid ""
 "%s: No default options available: the function ''%s'' does not exist on the "
 "path."
 msgstr ""
-"%s: keine voreingestellten Optionen verfügbar: die Funktion '%s' existiert "
+"%s: keine voreingestellten Optionen verfügbar: die Funktion ''%s'' existiert "
 "im Pfad nicht."
 
 #, c-format
@@ -408,13 +408,13 @@ msgstr ""
 msgid ""
 "%s: The value of the ''OutputFcn'' option is neither a function nor a list."
 msgstr ""
-"%s: der Wert von 'OutputFcn' Option ist weder eine Funktion noch eine Liste."
+"%s: der Wert von ''OutputFcn'' Option ist weder eine Funktion noch eine Liste."
 
 #, c-format
 msgid ""
 "%s: The value of the ''PlotFcns'' option is neither a function nor a list."
 msgstr ""
-"%s: der Wert von 'PlotFcns' Option ist weder eine Funktion noch eine Liste."
+"%s: der Wert von ''PlotFcns'' Option ist weder eine Funktion noch eine Liste."
 
 #, c-format
 msgid ""
@@ -585,11 +585,11 @@ msgstr "%s: unbekannter Wert %s für -simplex0method Option."
 
 #, c-format
 msgid "%s: Unrecognized parameter name ''%s''."
-msgstr "%s: nicht erkannter Parameter Name '%s'."
+msgstr "%s: nicht erkannter Parameter Name ''%s''."
 
 #, c-format
 msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
-msgstr "%s: nicht erkannter Wert '%s' für 'Display' Option."
+msgstr "%s: nicht erkannter Wert ''%s'' für 'Display' Option."
 
 #, c-format
 msgid "%s: Weighting matrix must be square.\n"
