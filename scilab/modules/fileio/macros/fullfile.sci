@@ -12,7 +12,7 @@ function f = fullfile(varargin)
 
     // Build a full filename from parts
 
-    if lstsize(varargin) < 1 then
+    if size(varargin) < 1 then
         error(msprintf("%s: Wrong number of input argument(s): At least %d expected.\n", "fullfile",1));
     end
 
@@ -30,7 +30,7 @@ function f = fullfile(varargin)
         f = stripblanks(f);
     end
 
-    for k = 2 : lstsize(varargin)
+    for k = 2 : size(varargin)
         arg = varargin(k);
         if isempty(f) | isempty(arg)
             if ~isempty(arg) then
