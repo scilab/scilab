@@ -13,10 +13,6 @@
 // <-- Short Description -->
 //    Implicit vector in for loop are allocated
 
-S=stacksize();
-
 function test(),for k=1:3d5,end,endfunction
 
-stacksize(2d5)
 if execstr('test()','errcatch') <> 0  then pause,end
-stacksize(S(1))

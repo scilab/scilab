@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//  <-- NOT FIXED -->
-//
 // <-- Non-regression test for bug 1529 -->
 //
 // <-- Bugzilla URL -->
