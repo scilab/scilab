@@ -73,6 +73,9 @@ Known incompatibilities:
   uimenus are no more (un)checked on mouse click. Moreover, they can now have
   a callback.
 
+* The graph of the nyquist function (CACSD module) has been symetrized.
+
+
 Xcos:
 =====
 
@@ -239,6 +242,9 @@ Bug Fixes:
 * bug 8016 fixed - An error in a german translation gave an error message.
 
 * bug 8046 fixed - msprintf did not manage tabulation as format.
+
+* bug 8067 fixed - Nyquist unitary test failed due to a change of the nyquist function
+                   the graph has been symetrized.
 
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
 
