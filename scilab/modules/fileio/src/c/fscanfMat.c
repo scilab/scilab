@@ -232,22 +232,33 @@ void freeFscanfMatResult(fscanfMatResult *resultStruct)
 /*--------------------------------------------------------------------------*/
 static BOOL itCanBeMatrixLine(char *line, char *format, char *separator)
 {
-#define SIZEKEYWORD 4 /* -Inf */
-    char str[SIZEKEYWORD];
-    double dValue = 0.;
-    int ierr = 0;
-
     if (line)
     {
+        int ierr = 0;
+        double dValue = 0.;
+
         ierr = sscanf(line, format, &dValue);
+
         if ((ierr == EOF) || (ierr == 0))
         {
-            ierr = sscanf(line, "%4s", str);
-            if ((ierr != 0) && (ierr != EOF))
+            char *str = strdup(line);
+            if (str)
             {
-                if (strncmp(str, NanString, (int)strlen(NanString)) == 0) return TRUE;
-                if (strncmp(str, NegInfString, (int)strlen(NegInfString)) == 0) return TRUE;
-                if (strncmp(str, InfString, (int)strlen(InfString)) == 0) return TRUE;
+                ierr = sscanf(line, "%4s", str);
+
+                if ((ierr != 0) && (ierr != EOF))
+                {
+                    if ((strncmp(str, NanString, (int)strlen(NanString)) == 0) ||
+                        (strncmp(str, NegInfString, (int)strlen(NegInfString)) == 0) ||
+                        (strncmp(str, InfString, (int)strlen(InfString)) == 0))
+                    {
+                        FREE(str);
+                        str = NULL;
+                        return TRUE;
+                    }
+                }
+                FREE(str);
+                str = NULL;
             }
         }
         else
@@ -337,10 +348,11 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                 }
                 else
                 {
-#define SIZEKEYWORD 4 /* -Inf */
-                    char str[SIZEKEYWORD];
+                    char *str = strdup(splittedStr[i]);
                     strcpy(str, "");
+
                     ierr = sscanf(splittedStr[i], "%4s", str);
+
                     if ((ierr != 0) && (ierr != EOF))
                     {
                         if ( (strcmp(str, NanString) == 0) ||
@@ -354,14 +366,21 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                             freeArrayOfString(splittedStr, nbTokens);
                             /* bug 6889 */
                             if (nbColums) nbColums--;
+                            FREE(str);
+                            str = NULL;
                             return nbColums;
                         }
                     }
                     else
                     {
+                        FREE(str);
+                        str = NULL;
                         freeArrayOfString(splittedStr, nbTokens);
                         return nbColums;
                     }
+
+                    FREE(str);
+                    str = NULL;
                 }
             }
             freeArrayOfString(splittedStr, nbTokens);
@@ -543,8 +562,7 @@ static double *getDoubleValuesInLine(char *line,
                 }
                 else
                 {
-#define SIZEKEYWORD 4 /* -Inf */
-                    char str[SIZEKEYWORD];
+                    char *str = strdup(line);
                     strcpy(str, "");
                     ierr = sscanf(splittedStr[i], "%4s", str);
                     if ((ierr != 0) && (ierr != EOF))
@@ -572,6 +590,7 @@ static double *getDoubleValuesInLine(char *line,
                         {
                             freeArrayOfString(splittedStr, nbTokens);
                             FREE(dValues); dValues = NULL;
+                            FREE(str); str = NULL;
                             return NULL;
                         }
                     }
@@ -579,8 +598,10 @@ static double *getDoubleValuesInLine(char *line,
                     {
                         freeArrayOfString(splittedStr, nbTokens);
                         FREE(dValues); dValues = NULL;
+                        FREE(str); str = NULL;
                         return NULL;
                     }
+                    FREE(str); str = NULL;
                 }
             }
             freeArrayOfString(splittedStr, nbTokens);

@@ -345,6 +345,8 @@ Bug Fixes:
 
 * bug 8332 fixed - Some use of clipboard function crashed Scilab.
 
+* bug 8413 fixed - fscanfMat crashed when file included text lines at the beginning.
+
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
