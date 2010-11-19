@@ -1393,6 +1393,20 @@ namespace ast
 
                 result_set(pReturn);
             }
+            else if(execMe.result_get()->isString())
+            {
+                String *pS      = execMe.result_get()->getAsString();
+                String* pReturn = new String(pS->cols_get(), pS->rows_get());
+
+                for(int i = 0 ; i < pS->rows_get() ; i++)
+                {
+                    for(int j = 0 ; j < pS->cols_get() ; j++)
+                    {
+                        pReturn->string_set(j,i, pS->string_get(i,j));
+                    }
+                }
+                result_set(pReturn);
+            }
         }
         /** \} */
 
