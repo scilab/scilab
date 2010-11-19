@@ -25,9 +25,7 @@
 #include "IsAScalar.h"
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 int sci_ClipBoard(char *fname,unsigned long l)
 {
@@ -171,7 +169,7 @@ int sci_ClipBoard(char *fname,unsigned long l)
                                 for (j=0; j<n2; j++)
                                 {
                                     SizeofTextToSendInClipboard = SizeofTextToSendInClipboard + (int)strlen(Str[j*m2+i]) + (int)strlen("\n") + (int)strlen(" ");
-                                    buffer[i*n2+j] = strdup(Str[j*m2+i]);
+                                    buffer[i*n2+j] = os_strdup(Str[j*m2+i]);
                                 }
                             }
 

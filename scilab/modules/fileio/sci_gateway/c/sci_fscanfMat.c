@@ -20,10 +20,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
-
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 #include "fscanfMat.h"
 /*--------------------------------------------------------------------------*/
 int sci_fscanfMat(char *fname, int* _piKey)
@@ -138,7 +135,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
     }
     else
     {
-        Format = strdup(DEFAULT_FSCANFMAT_FORMAT);
+        Format = os_strdup(DEFAULT_FSCANFMAT_FORMAT);
     }
 
     sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
@@ -257,7 +254,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
                     }
                     else
                     {
-                        char *emptryStr = strdup("");
+                        char *emptryStr = os_strdup("");
                         if (emptryStr)
                         {
                             createSingleString(_piKey, Rhs + 2, emptryStr);
