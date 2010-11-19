@@ -26,7 +26,7 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //emptystr
 	{sci_str2code,"str2code"},
 	{sci_code2str,"code2str"},
-	{sci_strcat,"strcat"},
+	{NULL ,""}, //strcat
 	{NULL, ""}, //strindex
 	{NULL, ""}, //strsubst
 	{NULL, ""}, //ascii

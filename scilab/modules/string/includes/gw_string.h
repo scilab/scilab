@@ -24,7 +24,6 @@ STRING_IMPEXP int sci_string(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_convstr(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_str2code(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_code2str(char *fname,unsigned long fname_len);
-STRING_IMPEXP int sci_strcat(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_tokens(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strcmp(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_isletter(char *fname,unsigned long fname_len);

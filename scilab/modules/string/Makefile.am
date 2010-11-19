@@ -35,7 +35,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_code2str.c \
 sci_gateway/c/sci_convstr.c \
 sci_gateway/c/sci_str2code.c \
-sci_gateway/c/sci_strcat.c \
 sci_gateway/c/sci_string.c \
 sci_gateway/c/sci_strsplit.c \
 sci_gateway/c/sci_tokens.c \
@@ -63,7 +62,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_length.cpp \
 	sci_gateway/cpp/sci_strindex.cpp \
 	sci_gateway/cpp/sci_strsubst.cpp \
-	sci_gateway/cpp/sci_ascii.cpp
+	sci_gateway/cpp/sci_ascii.cpp \
+	sci_gateway/cpp/sci_strcat.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f

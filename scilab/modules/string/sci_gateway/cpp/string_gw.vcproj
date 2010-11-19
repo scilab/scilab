@@ -349,6 +349,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_strcat.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_strindex.cpp"
 				>
 			</File>
