@@ -33,7 +33,6 @@ FILEIO_IMPEXP int sci_getdrives(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_fullpath(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_pathsep(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_getlongpathname(char *fname,unsigned long fname_len);
-FILEIO_IMPEXP int sci_createdir(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_removedir(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_newest(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_getrelativefilename(char *fname, unsigned long l);

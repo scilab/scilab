@@ -65,7 +65,6 @@ sci_gateway/c/sci_fullpath.c \
 sci_gateway/c/sci_pathsep.c \
 sci_gateway/c/sci_getlongpathname.c \
 sci_gateway/c/sci_removedir.c \
-sci_gateway/c/sci_createdir.c \
 sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_mclearerr.c \
@@ -99,7 +98,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_isfile.cpp \
 	sci_gateway/cpp/sci_deletefile.cpp \
 	sci_gateway/cpp/sci_getshortpathname.cpp \
-	sci_gateway/cpp/sci_fileext.cpp
+	sci_gateway/cpp/sci_fileext.cpp \
+	sci_gateway/cpp/sci_createdir.cpp
 
 
 FILEIO_CPP_SOURCES = \

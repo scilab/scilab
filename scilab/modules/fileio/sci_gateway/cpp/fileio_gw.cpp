@@ -42,5 +42,6 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"deletefile", &sci_deletefile, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getshortpathname", &sci_getshortpathname, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"fileext", &sci_fileext, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"createdir", &sci_createdir, MODULE_NAME));
     return true;
 }

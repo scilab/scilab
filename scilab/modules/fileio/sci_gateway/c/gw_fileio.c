@@ -48,7 +48,7 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //fileext
 	{NULL, ""}, //isdir
 	{sci_removedir,"removedir"},
-	{sci_createdir,"createdir"},
+	{NULL,""}, //createdir
 	{NULL, ""}, // pwd
 	{NULL, ""}, //chdir
 	{NULL, ""}, //fileinfo
