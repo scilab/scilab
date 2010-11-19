@@ -41,6 +41,8 @@ in the status bar of Scinotes.
 Xcos:
 =====
 
+* The demos has been updated to use the latest features.
+
 * bug 7424 fixed - Integer parameters could be modified when loading a diagram.
 
 * bug 7639 fixed - Generating code for scilab function block was failing with
