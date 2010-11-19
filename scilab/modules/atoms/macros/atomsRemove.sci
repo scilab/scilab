@@ -232,7 +232,7 @@ function result = atomsRemove(packages,section)
         // Check if the parent directory (directory name == toolbox name ) is empty
         // If yes, delete it
         // =====================================================================
-        this_package_root_dir = part(this_package_directory,1:length(pathconvert(this_package_directory)) - length(this_package_version) - 1 );
+        this_package_root_dir = part(this_package_directory,1:length(pathconvert(this_package_directory,%t,%f)) - length(this_package_version) - 1 );
 
         if isdir(this_package_root_dir) & listfiles(this_package_root_dir)==[] then
             stat = rmdir(this_package_root_dir);

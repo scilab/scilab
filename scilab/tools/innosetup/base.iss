@@ -27,6 +27,8 @@ Source: etc\yasp_modules.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\modules.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 ;
+Source: etc\logging.properties; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
+;
 ; root directory
 Source: RELEASE_NOTES; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: RELEASE_NOTES*.*; DestDir: {app}; Components: {#COMPN_SCILAB}

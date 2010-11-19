@@ -52,7 +52,7 @@ var2vec / vec2var functions are used inside the interfacing functions of Scilab 
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_var2vec">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">var :</emphasis> Input parameter. Can be any types of Scilab objects.</para>

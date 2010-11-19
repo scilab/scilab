@@ -23,7 +23,7 @@
     <synopsis>[tid] = pvm_gettid(group, inum)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>group</term>

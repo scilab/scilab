@@ -23,7 +23,7 @@
     <synopsis>libn=ilib_compile(lib_name,makename [,files,ldflags,cflags,fflags,cc])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lib_name</term>

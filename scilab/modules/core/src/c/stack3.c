@@ -606,29 +606,26 @@ int Name2where(char *namex)
  *             since it can be wrong (ex when name is transmited
  *             by fort (intfort : function )
  *----------------------------------------------------------------*/
-int C2F(str2name)(char *namex, int *id, unsigned long name_len)
+int C2F(str2name)(const char *namex, int *id, unsigned long name_len)
 {
 	int ix = 0;
-	int lon = 0;
+    int i = 0;
+	char* temp = 0;
 
-	for (ix = 0 ; ix < (int)  name_len ; ix++ )
-	{
-		if ( namex[ix] == '\0') break;
-		lon++;
-	}
+    /* initialize id array */
+    for (i = 0; i < nsiz;i++) id[i] = 0;
 
-	lon = (int)strlen(namex);
-	/* remove blanks in namex */
-	for (ix = 0; ix < lon; ix++)
-	{
-		if ( namex[ix] == ' ')
-		{
-			namex[ix] = '\0';
-			lon = (int)strlen(namex);
-			break;
-		}
-	}
-	C2F(cvname)(id, namex, &cx0, lon);
+	for (ix = 0; namex[ix] != ' ' && namex[ix] != '\0'; ix++);
+
+	temp = (char*)MALLOC((ix + 1) * sizeof(char) );
+    if (temp)
+    {
+	    memcpy(temp, namex, ix);
+	    temp[ix] = '\0';
+        /* cx0 = 0 convert name to ID */
+	    C2F(cvname)(id, temp, &cx0, ix);
+        FREE(temp);
+    }
 	return 0;
 }
 /*----------------------------------------------------------------
@@ -990,7 +987,7 @@ void GetRhsStringVar(int _iVarNum, int* _piRows, int* _piCols, int* _piLen, char
 		return;
 	}
 	code2str(&_pstData, (int*) cstk(iAddrData), iArraySum(_piLen, 0, *_piRows * *_piCols));
-	
+
 	C2F(intersci).ntypes[_iVarNum - 1] = '$' ;
 	C2F(intersci).iwhere[_iVarNum - 1] = *Lstk(_iVarNum);
 }
@@ -1342,7 +1339,7 @@ Arguments
 */
 int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData)
 {
-	if(_iPos + 1 > Bot) 
+	if(_iPos + 1 > Bot)
 		return 10;//Too many names
 
 	return _iAllocMatrixDoubleOrComplex(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
@@ -1972,6 +1969,7 @@ int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen,
 	*_piString			= _piAddr + (5 + (*_piRows) * (*_piCols));
 	return 0;
 }
+
 /*
 Create a list in scilab stack
 This function only "reserves" VarNum
@@ -2318,7 +2316,7 @@ int *GetLengthStringMatrixByName(char *name_, int *m, int *n)
 	int mn = 0;
 	int lp = 0;
 	int j = 0;
-	
+
 	int iposx = 0, iposy = 0;
 	int lengthAtiposxiposy = 0;
 
@@ -2341,7 +2339,7 @@ int *GetLengthStringMatrixByName(char *name_, int *m, int *n)
 	j = 0;
 	for (x = 1; x <= *m;x++)
 	{
-		for (y = 1; y <= *n;y++) 
+		for (y = 1; y <= *n;y++)
 		{
 			if ( !C2F(cmatsptr)  (name_, m,n, &x, &y, &lp, &lengthAtiposxiposy, name_len) )
 			{

@@ -12,7 +12,7 @@
     <synopsis>[zeros,poles,gain]=zpell(epsilon,A,omegac,omegar)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>epsilon</term>

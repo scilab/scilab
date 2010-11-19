@@ -23,7 +23,7 @@
     <synopsis>[info] = pvm_exit()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>info</term>

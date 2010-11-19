@@ -15,7 +15,8 @@ ilib_name  = "completion_c";
 files      = ["sci_completeline.c"    , ..
               "sci_getpartlevel.c"    , ..
               "sci_getfilepartlevel.c", ..
-              "sci_getcommonpart.c"   ];
+              "sci_getcommonpart.c"   , ..
+	      "sci_getfields.c" ];
 
 if getos() == "Windows" then
     libs   = SCI   + "/bin/scicompletion";
@@ -38,7 +39,8 @@ end
 table = ["completeline"    ,"sci_completeline"    ;
          "getpartlevel"    ,"sci_getpartlevel"    ;
          "getfilepartlevel","sci_getfilepartlevel";
-         "getcommonpart"   ,"sci_getcommonpart"   ];
+         "getcommonpart"   ,"sci_getcommonpart"   ;
+	 "getfields"       ,"sci_getfields" ];
 
 
 libname = ilib_build(ilib_name,table,files,libs,[],"",cflags);

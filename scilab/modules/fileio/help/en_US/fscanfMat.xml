@@ -36,7 +36,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -53,7 +53,7 @@
 
         <listitem>
           <para>a character string giving the format. This is an optional
-          parameter, the default value is <literal>"%lf"</literal>.</para>
+          parameter, the default value is <literal>"%lg"</literal>.</para>
 
           <para>supported format: %[width].[precision]type or %type</para>
           <para><literal>width</literal>: Optional number that specifies the minimum number of characters output.</para>
@@ -91,7 +91,7 @@
     will follow the number of columns found in the file and the number of
     lines is fetched by detecting eof in the input file. This function can be
     used to read back numerical data saved with the
-    <literal>fprintfMat</literal>.</para>
+    <literal>fprintfMat</literal> (default separator used is a space).</para>
   </refsection>
 
   <refsection>

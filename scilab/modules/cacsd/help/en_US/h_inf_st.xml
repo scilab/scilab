@@ -23,7 +23,7 @@
     <synopsis>[Kopt,gamaopt]=h_inf_stat(D,r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>D</term>

@@ -81,11 +81,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -129,6 +130,7 @@ libscixcos_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscixcos_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscixcos_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 =
 am__objects_3 = libscixcos_la-gw_xcos.lo
@@ -138,7 +140,6 @@ am__objects_4 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_xcosDiagramToHDF5.lo \
 	libscixcos_la-sci_xcosDiagramOpen.lo \
 	libscixcos_la-sci_xcosDiagramClose.lo \
-	libscixcos_la-xcosUtilities.lo \
 	libscixcos_la-sci_xcosPalLoad.lo \
 	libscixcos_la-sci_xcosPalCategoryAdd.lo \
 	libscixcos_la-sci_xcosPalDelete.lo \
@@ -149,7 +150,7 @@ am__objects_4 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_xcosConfigureXmlFile.lo
 am__objects_5 = libscixcos_la-callxcos.lo libscixcos_la-Xcos.lo \
 	libscixcos_la-Palette.lo libscixcos_la-Modelica.lo \
-	libscixcos_la-GiwsException.lo
+	libscixcos_la-GiwsException.lo libscixcos_la-xcosUtilities.lo
 am_libscixcos_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
@@ -466,7 +467,8 @@ XCOS_CPP_SOURCES = src/cpp/callxcos.cpp \
 			src/jni/Palette.hxx \
 			src/jni/Modelica.cpp \
 			src/jni/Modelica.hxx \
-			src/jni/GiwsException.cpp
+			src/jni/GiwsException.cpp \
+			src/cpp/xcosUtilities.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
 			src/jni/Palette.giws.xml \
@@ -481,7 +483,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
 	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
 	sci_gateway/cpp/sci_xcosDiagramClose.cpp \
-	sci_gateway/cpp/xcosUtilities.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \
@@ -532,6 +533,7 @@ CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
 libscixcos_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/jvm/libscijvm.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
@@ -1077,13 +1079,6 @@ libscixcos_la-sci_xcosDiagramClose.lo: sci_gateway/cpp/sci_xcosDiagramClose.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosDiagramClose.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramClose.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramClose.cpp
 
-libscixcos_la-xcosUtilities.lo: sci_gateway/cpp/xcosUtilities.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-xcosUtilities.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-xcosUtilities.Tpo -c -o libscixcos_la-xcosUtilities.lo `test -f 'sci_gateway/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/xcosUtilities.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-xcosUtilities.Tpo $(DEPDIR)/libscixcos_la-xcosUtilities.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/xcosUtilities.cpp' object='libscixcos_la-xcosUtilities.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-xcosUtilities.lo `test -f 'sci_gateway/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/xcosUtilities.cpp
-
 libscixcos_la-sci_xcosPalLoad.lo: sci_gateway/cpp/sci_xcosPalLoad.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalLoad.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Tpo -c -o libscixcos_la-sci_xcosPalLoad.lo `test -f 'sci_gateway/cpp/sci_xcosPalLoad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalLoad.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Plo
@@ -1174,6 +1169,13 @@ libscixcos_la-GiwsException.lo: src/jni/GiwsException.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscixcos_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+
+libscixcos_la-xcosUtilities.lo: src/cpp/xcosUtilities.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-xcosUtilities.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-xcosUtilities.Tpo -c -o libscixcos_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-xcosUtilities.Tpo $(DEPDIR)/libscixcos_la-xcosUtilities.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/xcosUtilities.cpp' object='libscixcos_la-xcosUtilities.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

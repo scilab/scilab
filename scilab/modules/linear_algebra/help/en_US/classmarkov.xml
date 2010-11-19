@@ -23,7 +23,7 @@
     <synopsis>[perm,rec,tr,indsRec,indsT]=classmarkov(M)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>M</term>

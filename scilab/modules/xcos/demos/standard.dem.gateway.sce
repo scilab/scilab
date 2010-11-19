@@ -1,24 +1,20 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009-2010 - DIGITEO
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-demopath = get_absolute_file_path("standard.dem.gateway.sce");
-
-subdemolist = ["Simple Demo"                          , "simple_demo.dem.sce"    ; ..
-               "Bouncing Balls"                       , "bounce.dem.sce"            ; ..
-               "Simple Thermostat"                    , "simple_thermostat.dem.sce" ; ..
-               "Table Lookup"                         , "table_lookup.dem.sce"      ; ..
-               "Signal Builder"                       , "signal_builder.dem.sce"    ; ..
-               "Fibonacci Numbers"                    , "fibonacci.dem.sce"         ; ..
-               "Scilab block"                         , "scilab_block.dem.sce"      ; ..
-               "Scicos data types"                    , "data_type.dem.sce"         ; ..
-               "Zero Crossing"                        , "zero_crossing.dem.sce"     ; .. 
-               "_IF_ Scicos block"                    , "if_scicos_block.dem.sce"   ; ..
-               "Goto/From blocks"                     , "goto_from.dem.sce"         ; ..
+subdemolist = [_("Simple Demo")                          , "simple_demo.dem.sce"    ; ..
+               _("Bouncing Balls")                       , "bounce.dem.sce"            ; ..
+               _("Simple Thermostat")                    , "simple_thermostat.dem.sce" ; ..
+               _("Table Lookup")                         , "table_lookup.dem.sce"      ; ..
+               _("Signal Builder")                       , "signal_builder.dem.sce"    ; ..
+               _("Fibonacci Numbers")                    , "fibonacci.dem.sce"         ; ..
+               _("Scilab block")                         , "scilab_block.dem.sce"      ; ..
+               _("Scicos data types")                    , "data_type.dem.sce"         ; ..
+               _("Zero Crossing")                        , "zero_crossing.dem.sce"     ; ..
+               _("_IF_ Scicos block")                    , "if_scicos_block.dem.sce"   ; ..
+               _("Goto/From blocks")                     , "goto_from.dem.sce"         ; ..
               ];
 
-subdemolist(:,2) = demopath + subdemolist(:,2);
-
-clear demopath;
+subdemolist(:,2) = SCI + "/modules/xcos/demos/" + subdemolist(:,2);

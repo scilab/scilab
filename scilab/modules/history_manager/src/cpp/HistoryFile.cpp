@@ -23,11 +23,11 @@ extern "C"
 #include <stdlib.h>
 #include "sciprint.h"
 #include "PATH_MAX.h"
-#include "inffic.h"
+#include "sci_home.h"
+#include "machine.h"
 #include "getCommentDateSession.h"
 #include "scilabDefaults.h"
 #include "charEncoding.h"
-#include "sci_home.h"
 };
 /*------------------------------------------------------------------------*/
 HistoryFile::HistoryFile()

@@ -40,6 +40,21 @@ namespace types
 		}
 	}
 
+	MatrixPoly::MatrixPoly(wstring _szVarName, int _iRows, int _iCols, const int *_piRank)
+	{
+		m_iRows			= _iRows;
+		m_iCols			= _iCols;
+		m_iSize			= m_iRows * m_iCols;
+		m_szVarName	= _szVarName;
+		m_bComplex	= false;
+
+		m_poPolyMatrix = new Poly[_iRows * _iCols];
+		for(int i = 0 ; i < m_iSize ; i++)
+		{
+			m_poPolyMatrix[i].CreatePoly(NULL, NULL, _piRank[i]);
+		}
+	}
+
 	MatrixPoly::~MatrixPoly()
 	{
 		if(isDeletable() == true)

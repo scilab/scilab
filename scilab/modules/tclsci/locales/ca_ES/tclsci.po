@@ -247,9 +247,6 @@ msgstr ""
 msgid "Unknown Release"
 msgstr "Versió desconeguda"
 
-msgid "Updating, please wait"
-msgstr "S'està actualitzant, espereu"
-
 msgid "Variable too long.\n"
 msgstr "La variable és massa llarga.\n"
 

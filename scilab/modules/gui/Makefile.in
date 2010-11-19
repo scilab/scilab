@@ -22,11 +22,11 @@
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # Copyright (C) DIGITEO - 2010 - Clément DAVID
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -72,7 +72,7 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 
 # With --enable-compilation-tests, launch java unitary tests
 @COMPILATION_TESTS_TRUE@am__append_2 = test
-@GUI_TRUE@am__append_3 = libscigui.la 
+@GUI_TRUE@am__append_3 = libscigui.la
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -84,11 +84,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -143,6 +144,7 @@ am__objects_3 = libscigui_la-TerminateGui.lo \
 	libscigui_la-InitWaitBar.lo libscigui_la-InitProgressionBar.lo \
 	libscigui_la-CreateUIContextMenu.lo \
 	libscigui_la-UicontrolStyleToString.lo \
+	libscigui_la-checkColorRange.lo \
 	libscigui_la-messageboxoptions.lo
 am__objects_4 = libscigui_la-sci_x_choice.lo libscigui_la-gw_gui.lo \
 	libscigui_la-sci_x_mdialog.lo libscigui_la-sci_x_dialog.lo \
@@ -625,6 +627,7 @@ src/c/InitWaitBar.c \
 src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
+src/c/checkColorRange.c \
 src/c/messageboxoptions.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
@@ -851,6 +854,9 @@ libscigui_la_iconsdir = $(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
+images/icons/16x16/actions/go-bottom.png \
+images/icons/16x16/actions/go-top.png \
+images/icons/16x16/actions/view-refresh.png \
 images/icons/aboutscilab.png \
 images/icons/accessories-text-editor.png \
 images/icons/applications-system.png \
@@ -1076,6 +1082,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-checkColorRange.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-exportUserInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getMainWindowTitle.Plo@am__quote@
@@ -1231,6 +1238,13 @@ libscigui_la-UicontrolStyleToString.lo: src/c/UicontrolStyleToString.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/UicontrolStyleToString.c' object='libscigui_la-UicontrolStyleToString.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-UicontrolStyleToString.lo `test -f 'src/c/UicontrolStyleToString.c' || echo '$(srcdir)/'`src/c/UicontrolStyleToString.c
+
+libscigui_la-checkColorRange.lo: src/c/checkColorRange.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-checkColorRange.lo -MD -MP -MF $(DEPDIR)/libscigui_la-checkColorRange.Tpo -c -o libscigui_la-checkColorRange.lo `test -f 'src/c/checkColorRange.c' || echo '$(srcdir)/'`src/c/checkColorRange.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-checkColorRange.Tpo $(DEPDIR)/libscigui_la-checkColorRange.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/checkColorRange.c' object='libscigui_la-checkColorRange.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-checkColorRange.lo `test -f 'src/c/checkColorRange.c' || echo '$(srcdir)/'`src/c/checkColorRange.c
 
 libscigui_la-messageboxoptions.lo: src/c/messageboxoptions.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-messageboxoptions.lo -MD -MP -MF $(DEPDIR)/libscigui_la-messageboxoptions.Tpo -c -o libscigui_la-messageboxoptions.lo `test -f 'src/c/messageboxoptions.c' || echo '$(srcdir)/'`src/c/messageboxoptions.c

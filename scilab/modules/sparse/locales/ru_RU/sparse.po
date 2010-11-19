@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-05 22:08+0000\n"
+"PO-Revision-Date: 2010-09-18 21:46+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -131,6 +131,10 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
@@ -166,6 +170,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Неверный тип входного параметра №%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался вектор-столбец.\n"
 
@@ -187,12 +195,9 @@ msgstr ""
 "%s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for size argument #%d: Same size as input argument #%d "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался одинаковый размер с "
-"входным параметром №%d.\n"
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"

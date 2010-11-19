@@ -23,7 +23,7 @@
     <synopsis>[tids, numt] = pvm_spawn(task, ntask, [nw], [where])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>task : string, which is the file name of the scilab script (see exec) to be</term>

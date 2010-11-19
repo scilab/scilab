@@ -23,7 +23,7 @@
     <synopsis>ged(action, fignum)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>action</term>

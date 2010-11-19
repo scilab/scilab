@@ -23,7 +23,7 @@
     <synopsis>[K,X]=lqe(P21)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P21</term>

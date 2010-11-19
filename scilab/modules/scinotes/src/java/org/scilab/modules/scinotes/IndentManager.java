@@ -136,6 +136,7 @@ public class IndentManager {
                     e = t;
                 }
                 doc.getText(t, e - t, seg);
+                ret[0] = start;
                 if (e > t + 1) {
                     char[] str = new char[tabs[lineNumber - lineStart]];
                     for (int i = 0; i < str.length; i++) {

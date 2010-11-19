@@ -13,7 +13,7 @@
 setmenu(gwin,button [,nsub])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>button</term>

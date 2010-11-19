@@ -39,8 +39,10 @@ namespace types
         double                      img_get(int _iRows, int _iCols) const;
 
         bool                        real_set(double *_pdblReal);
+        bool                        real_set(const double *_pdblReal);
         bool                        real_set(int* _piReal); //to translate int to double matrix
         bool                        img_set(double *_pdblImg);
+        bool                        img_set(const double *_pdblImg);
 
         bool                        val_set(int _iRows, int _iCols, double _dblReal);
         bool                        val_set(int _iRows, int _iCols, double _dblReal, double _dblImg);

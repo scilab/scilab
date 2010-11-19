@@ -12,7 +12,7 @@
     <synopsis>[xf]=dft(x,flag);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

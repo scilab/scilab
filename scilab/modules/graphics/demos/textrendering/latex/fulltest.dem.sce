@@ -2,7 +2,7 @@
 // Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU
 // Copyright (C) 2009 - Calixte DENIZET
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function demo_fulltest()
 

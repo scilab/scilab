@@ -131,6 +131,10 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s：输入参数的个数错误：应该至少有%d个。\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 
@@ -161,6 +165,10 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：输入参数#%d的类型错误。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为列向量。\n"
 
@@ -179,9 +187,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for size argument #%d: Same size as input argument #%d "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
 
 #, c-format

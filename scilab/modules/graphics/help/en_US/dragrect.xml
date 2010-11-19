@@ -23,7 +23,7 @@
     <synopsis>[final_rect,btn]=dragrect(initial_rect)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>initial_rect</term>

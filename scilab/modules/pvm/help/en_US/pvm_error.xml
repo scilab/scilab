@@ -23,7 +23,7 @@
     <synopsis>[errmsg] = pvm_error(err)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>err</term>

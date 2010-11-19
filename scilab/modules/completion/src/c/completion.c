@@ -20,10 +20,13 @@
 #include "completion_generic.h"
 #include "getfulldictionary.h"
 #include "getfilesdictionary.h"
+#include "getfieldsdictionary.h"
 #include "getDictionarySetProperties.h"
 #include "getDictionaryGetProperties.h"
 #include "toolsdictionary.h"
-#include "os_strdup.h"
+#if _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 char **completionOnDictionary(char **dictionary,int sizedictionary,char *somechars,int *sizearrayreturned);
 /*--------------------------------------------------------------------------*/
@@ -215,7 +218,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 					/* do a copy of dictionary of Variables */
 					for ( i = 0; i < sizedictionaryVariables; i++)
 					{
-						ListWordsTmp[i] = os_strdup(dictionaryVariables[i]);
+						ListWordsTmp[i] = strdup(dictionaryVariables[i]);
 					}
 
 					for ( i = 0; i < sizedictionaryVariables; i++)
@@ -237,7 +240,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 						{
 							if (ListWordsTmp[i])
 							{
-								ListWords[k] = os_strdup(ListWordsTmp[i]);
+								ListWords[k] = strdup(ListWordsTmp[i]);
 								if (k <= sizeListWords) k++;
 							}
 						}
@@ -288,6 +291,26 @@ char **completionOnFiles(char *somechars, int *sizeArrayReturned)
 	int sizedictionary = 0;
 
 	dictionary = getfilesdictionary(somechars,&sizedictionary,FALSE);
+
+	if (dictionary)
+	{
+		ListWords = dictionary;
+		*sizeArrayReturned = sizedictionary;
+	}
+	else
+	{
+		*sizeArrayReturned = 0;
+	}
+	return ListWords;
+}
+/*--------------------------------------------------------------------------*/
+char **completionOnFields(char *lineBeforeCaret, char *pattern, int *sizeArrayReturned)
+{
+	char **ListWords = NULL;
+	char **dictionary = NULL;
+	int sizedictionary = 0;
+
+	dictionary = getfieldsdictionary(lineBeforeCaret, pattern, &sizedictionary);
 
 	if (dictionary)
 	{

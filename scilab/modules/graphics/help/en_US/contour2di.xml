@@ -23,7 +23,7 @@
     <synopsis>[xc,yc]=contour2di(x,y,z,nz)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>

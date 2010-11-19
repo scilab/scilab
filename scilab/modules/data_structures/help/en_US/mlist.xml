@@ -24,7 +24,7 @@
     <synopsis>mlist(typ,a1,....an )</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>typ</term>

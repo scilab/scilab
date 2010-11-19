@@ -23,7 +23,7 @@
     <synopsis>txt=sd2sci(sd [,sz [,orig]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sd</term>

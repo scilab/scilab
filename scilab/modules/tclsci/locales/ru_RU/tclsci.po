@@ -233,9 +233,6 @@ msgstr ""
 msgid "Unknown Release"
 msgstr "Неизвестная версия"
 
-msgid "Updating, please wait"
-msgstr "Идёт обновление, пожалуйста, подождите"
-
 msgid "Variable too long.\n"
 msgstr "Слишком длинная переменная.\n"
 

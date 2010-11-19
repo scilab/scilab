@@ -19,25 +19,14 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "PATH_MAX.h"
-#include "charEncoding.h"
-#include "StringConvert.h"
-#include "os_strdup.h"
+#include "expandPathVariable.h"
+
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "fscanfMat.h"
 /*--------------------------------------------------------------------------*/
-#define INFOSIZE 1024
-#define DEFAULT_FORMAT_FSCANFMAT "%lf"
-#define NUMTOKENS_ERROR -1
-/*--------------------------------------------------------------------------*/
-static int  Info_size = 0;
-static char *Info = NULL;
-/*--------------------------------------------------------------------------*/
-static int ReadLine(FILE *fd,int *mem);
-static BOOL checkFormat(char *fmt);
-static BOOL checkLineHaveSeparator(char *line);
-static int NumTokens(char *string);
-/*--------------------------------------------------------------------------*/
-int sci_fscanfMat(char *fname, int *_piKey)
+int sci_fscanfMat(char *fname, int* _piKey)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -48,6 +37,7 @@ int sci_fscanfMat(char *fname, int *_piKey)
     char *expandedFilename = NULL;
     char *Format = NULL;
     char *separator = NULL;
+    BOOL bIsDefaultSeparator = TRUE;
 
     fscanfMatResult *results = NULL;
 
@@ -94,10 +84,11 @@ int sci_fscanfMat(char *fname, int *_piKey)
             Scierror(999,_("%s: Memory allocation error.\n"), fname);
             return 0;
         }
+        bIsDefaultSeparator = FALSE;
     }
     else
     {
-        separator = os_strdup(DEFAULT_FSCANFMAT_SEPARATOR);
+        bIsDefaultSeparator = TRUE;
     }
 
     if (Rhs >= 2)
@@ -147,7 +138,7 @@ int sci_fscanfMat(char *fname, int *_piKey)
     }
     else
     {
-        Format = os_strdup(DEFAULT_FSCANFMAT_FORMAT);
+        Format = strdup(DEFAULT_FSCANFMAT_FORMAT);
     }
 
     sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
@@ -195,7 +186,29 @@ int sci_fscanfMat(char *fname, int *_piKey)
     }
 
     expandedFilename = expandPathVariable(filename);
-    results = fscanfMat(expandedFilename, Format, " ", TRUE);
+    if (bIsDefaultSeparator)
+    {
+        #define NB_DEFAULT_SUPPORTED_SEPARATORS 2
+
+        /* bug 8148 */
+        /* default separator can be a space or a tabulation */
+        char *supportedSeparators[NB_DEFAULT_SUPPORTED_SEPARATORS] = {DEFAULT_FSCANFMAT_SEPARATOR, "\t"};
+        int i = 0;
+
+        for (i = 0; i < NB_DEFAULT_SUPPORTED_SEPARATORS; i++)
+        {
+            results = fscanfMat(expandedFilename, Format, supportedSeparators[i], TRUE);
+            if (results && results->err == FSCANFMAT_NO_ERROR)
+            {
+                break;
+            }
+        }
+    }
+    else
+    {
+        results = fscanfMat(expandedFilename, Format, separator, TRUE);
+    }
+
     if (expandedFilename) {FREE(expandedFilename); expandedFilename = NULL;}
     if (Format) {FREE(Format); Format = NULL;}
     if (separator) {FREE(separator); separator = NULL;}
@@ -244,7 +257,7 @@ int sci_fscanfMat(char *fname, int *_piKey)
                     }
                     else
                     {
-                        char *emptryStr = os_strdup("");
+                        char *emptryStr = strdup("");
                         if (emptryStr)
                         {
                             createSingleString(_piKey, Rhs + 2, emptryStr);

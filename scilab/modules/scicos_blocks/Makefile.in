@@ -79,11 +79,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -5063,27 +5064,30 @@ distclean-local:
 
 .PHONY: macros java swig giws
 
-@SCICOS_TRUE@build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
+@SCICOS_TRUE@$(top_builddir)/modules/scicos_blocks/build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
 @SCICOS_TRUE@	@echo "-- Generates build/Cblocknames --"
-@SCICOS_TRUE@	@if test ! -d build; then mkdir build; fi
+@SCICOS_TRUE@	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
-@SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
+@SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/Cblocknames
 
-@SCICOS_TRUE@build/CPPblocknames:Makefile.am $(SCICOS_BLOCKS_CPP_SOURCES)
+@SCICOS_TRUE@$(top_builddir)/modules/scicos_blocks/build/CPPblocknames:Makefile.am $(SCICOS_BLOCKS_CPP_SOURCES)
 @SCICOS_TRUE@	@echo "-- Generates build/CPPblocknames --"
-@SCICOS_TRUE@	@if test ! -d build; then mkdir build; fi
+@SCICOS_TRUE@	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
-@SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > build/CPPblocknames
+@SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 
-@SCICOS_TRUE@build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
+@SCICOS_TRUE@$(top_builddir)/modules/scicos_blocks/build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
 @SCICOS_TRUE@	@echo "-- Generates build/Fblocknames --"
-@SCICOS_TRUE@	@if test ! -d build; then mkdir build; fi
+@SCICOS_TRUE@	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
-@SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
+@SCICOS_TRUE@	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > $(top_builddir)/modules/scicos_blocks/build/Fblocknames
 
-@SCICOS_TRUE@includes/blocks.h: build/Cblocknames build/Fblocknames build/CPPblocknames
+@SCICOS_TRUE@includes/blocks.h: $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 @SCICOS_TRUE@	@echo "-- Building includes/blocks.h --"
-@SCICOS_TRUE@	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/build/CPPblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h
+@SCICOS_TRUE@	@if test ! -d $(top_builddir)/modules/scicos_blocks/includes/; then \
+@SCICOS_TRUE@		mkdir $(top_builddir)/modules/scicos_blocks/includes/; \
+@SCICOS_TRUE@	fi
+@SCICOS_TRUE@	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h
 
 .NOTPARALLEL: build/Fblocknames build/Cblocknames
 

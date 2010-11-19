@@ -20,6 +20,7 @@ src/c/completion_generic.c \
 src/c/getfilesdictionary.c \
 src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
+src/c/getfieldsdictionary.c \
 src/c/toolsdictionary.c \
 src/c/completion_wrap_java.c \
 src/c/getPartLine.c \

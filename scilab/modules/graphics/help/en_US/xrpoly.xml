@@ -23,7 +23,7 @@
     <synopsis>xrpoly(orig,n,r,[theta])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>orig</term>

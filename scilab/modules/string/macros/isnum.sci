@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007 - INRIA - Pierre MARECHAL
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -14,26 +15,30 @@
 
 function res = isnum(str)
 
-    // Check input argument
+  // Check input argument
 
-    if argn(2) <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"isnum",1));
+  if argn(2) <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "isnum", 1));
+  end
+
+  if type(str) <> 10 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A string array expected.\n"), "isnum", 1));
+  end
+
+  // bug 8206 isnum did not manage blanks
+  str = stripblanks(str);
+  
+  // Loop on input argument entries
+  for i=1:size(str, "*") do
+    res(i) = %F;
+    if execstr("v = evstr(str(i))" , "errcatch") == 0 then
+      if type(v) == 1 & v <> [] then
+        res(i) = %T;
+      end
     end
+  end
 
-    if type(str) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string array expected.\n"),"isnum",1));
-    end
-
-    // Loop on input argument entries
-    for i=1:size(str,"*") do
-        if execstr("r = type(evstr(str(i)))","errcatch") == 0 & r==1 then
-            res(i) = %T;
-        else
-            res(i) = %F;
-        end
-    end
-
-    // Reshape the resulting matrix
-    res = matrix(res,size(str));
+  // Reshape the resulting matrix
+  res = matrix(res, size(str));
 
 endfunction

@@ -24,7 +24,7 @@
 ncl=lines()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>nl : an integer, the number of lines for vertical paging control. If 0</term>

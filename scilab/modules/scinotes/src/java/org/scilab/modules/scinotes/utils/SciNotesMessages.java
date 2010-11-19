@@ -40,6 +40,8 @@ public class SciNotesMessages {
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    public static final String OPEN_ERROR = Messages.gettext("The file could not be created, check the path");
+
     /**
      * "Save All" message
      */
@@ -170,6 +172,7 @@ public class SciNotesMessages {
     public static final String FILE_ALREADY_EXIST = Messages.gettext("File already exists");
     public static final String UNTITLED = Messages.gettext("Untitled ");
     public static final String OK = Messages.gettext("Ok");
+    public static final String APPLYREINDENT = Messages.gettext("Apply & Reindent");
     public static final String CANCEL = Messages.gettext("Cancel");
     public static final String DEFAULT = Messages.gettext("Default");
     public static final String NEXT_TAB = Messages.gettext("Next tab");
@@ -238,7 +241,7 @@ public class SciNotesMessages {
     public static final String ABSOLUTE = Messages.gettext("Absolute");
     public static final String RELATIVE = Messages.gettext("Relative");
     public static final String GO_TO_LINE = Messages.gettext("Go to line: ");
-    public static final String NUMEROTATION = Messages.gettext("Numerotation");
+    public static final String NUMEROTATION = Messages.gettext("Numeration");
     public static final String ALPHABETIC_ORDER = Messages.gettext("Alphabetic order");
     public static final String NATURAL_ORDER = Messages.gettext("Natural order");
     public static final String ORDER = Messages.gettext("Order");
@@ -268,4 +271,16 @@ public class SciNotesMessages {
      */
     public static final String RESTORE_FILES_QUERY = Messages.gettext("Restore files from your last SciNotes session ?");
     public static final String RESTORE_FILES_TITLE = Messages.gettext("Restore the last sessions");
+
+    /**
+     * Tabulations configuration
+     */
+    public static final String CONFIGTAB = Messages.gettext("Configure Tabulation");
+    public static final String TABSTYLE = Messages.gettext("Tab style");
+    public static final String TABUSEWHITES = Messages.gettext("Use spaces");
+    public static final String TABLENGTH = Messages.gettext("Length");
+    public static final String TABREPRESENTATION = Messages.gettext("Tab representation");
+    public static final String TABHRULE = Messages.gettext("Horizontal rule");
+    public static final String TABVRULE = Messages.gettext("Vertical rule");
+    public static final String TABDOUBLECHEVRONS = Messages.gettext("Double chevrons");
 }

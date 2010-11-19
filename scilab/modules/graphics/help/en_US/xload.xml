@@ -23,7 +23,7 @@
     <synopsis>xload(file_name,[win_num])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>file_name</term>

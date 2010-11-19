@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - Calixte DENIZET
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function latex_callback()
 messagebox("LaTeX is beautiful !", "", "info", "modal");
@@ -15,7 +15,6 @@ endfunction
 f = figure("figure_name", gettext("Uicontrols demo with LaTeX"),...
     "Position",[50 50 300 195],...
     "BackgroundColor",[0.9 0.9 0.9],...
-    "Units", "pixels",..
     "Tag", "uicontrols_LaTeX_demo_figure");
 
 // Remove Scilab 'standard' menus

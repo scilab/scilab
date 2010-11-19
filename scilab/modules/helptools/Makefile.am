@@ -9,13 +9,14 @@ if BUILD_HELP
 USEANT=1
 
 HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
+	src/jni/SciDocMain.cpp \
 	src/jni/GiwsException.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp sci_gateway/cpp/sci_buildDocv2.cpp
 
-GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
+GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml src/jni/BuildDocObjectv2.giws.xml
 
 libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 

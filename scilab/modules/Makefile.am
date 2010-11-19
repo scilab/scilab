@@ -142,11 +142,11 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/xcos/libscixcos.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
-	$(top_builddir)/modules/commons/libscicommons.la
+	$(top_builddir)/modules/commons/libscicommons.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la
 
 if HDF5
 GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
@@ -191,8 +191,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/special_functions/libscispecial_functions.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/sparse/libscisparse.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
@@ -208,7 +206,9 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+	$(top_builddir)/modules/pvm/libscipvm.la
+
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -222,6 +222,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/xcos/libscixcos.la \
 	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
@@ -229,7 +230,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
+	$(top_builddir)/modules/helptools/libscihelptools.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
+
 
 # Core modules
 libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

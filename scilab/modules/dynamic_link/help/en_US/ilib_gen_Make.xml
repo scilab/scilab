@@ -23,7 +23,7 @@
     <synopsis>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags,cc])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lib_name</term>

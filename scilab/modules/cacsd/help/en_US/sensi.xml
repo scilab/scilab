@@ -24,7 +24,7 @@
 [Si,Ri,Ti]=sensi(G,K,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>G</term>

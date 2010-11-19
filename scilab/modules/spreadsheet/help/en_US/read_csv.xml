@@ -34,7 +34,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,10 @@
 
         <listitem>
           <para>a character string. Field separator used, default value is
-          ","</para>
+          ",".</para>
+
+          <para>ascii(9) or "\t" for a tabulation separator are
+          accepted.</para>
         </listitem>
       </varlistentry>
 

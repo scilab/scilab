@@ -23,7 +23,7 @@
     <synopsis>[Stmp,Ws]=colregul(Sl,alfa,beta)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sl,Stmp</term>

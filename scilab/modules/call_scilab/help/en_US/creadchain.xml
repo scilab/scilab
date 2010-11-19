@@ -33,7 +33,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -125,11 +125,30 @@ printf("Display of A (size %d): %s\n", length_myStringFromScilab, myStringFromSc
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link linkend="String_management_reading_API">API_Scilab: String reading</link>, <link linkend="String_management_writing_API">API_Scilab: String writing</link>,
-	  <link linkend="SendScilabJob">SendScilabJob</link>, <link
-      linkend="StartScilab">StartScilab</link>, <link
-      linkend="cwritechain">cwritechain</link>, <link
-      linkend="StringManagement_callscilab">String Management</link></member>
+      <member>
+	<link linkend="call_scilab">Call_Scilab</link>
+      </member>
+      <member>
+	<link linkend="api_scilab">api Scilab</link>
+      </member>
+      <member>
+	<link linkend="String_management_reading_API">API_Scilab: String reading</link>
+      </member>
+      <member>
+	<link linkend="String_management_writing_API">API_Scilab: String writing</link>
+      </member>
+      <member>
+	<link linkend="SendScilabJob">SendScilabJob</link>
+      </member>
+      <member>
+	<link linkend="StartScilab">StartScilab</link>
+      </member>
+      <member>
+	<link linkend="cwritechain">cwritechain</link>
+      </member>
+      <member>
+	<link linkend="StringManagement_callscilab">String Management</link>
+      </member>
     </simplelist>
   </refsection>
 

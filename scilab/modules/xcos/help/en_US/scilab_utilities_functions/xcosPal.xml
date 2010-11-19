@@ -37,7 +37,7 @@
 </refsynopsisdiv>
 
 <refsection>
-   <title>Parameters</title>
+   <title>Arguments</title>
    <variablelist>
    <varlistentry><term>name:</term>
       <listitem><para> string; the optional palette name</para></listitem></varlistentry>

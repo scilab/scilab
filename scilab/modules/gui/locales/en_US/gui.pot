@@ -122,12 +122,12 @@ msgstr ""
 #
 # File: macros/tree/uiFindNode.sci, line: 138
 #, c-format
-msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr ""
 #
 # File: macros/tree/uiFindNode.sci, line: 118
 #, c-format
-msgid "%s: No results founded.\n"
+msgid "%s: No results found.\n"
 msgstr ""
 #
 # File: src/nogui/nogui.c, line: 61

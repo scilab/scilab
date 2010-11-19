@@ -24,7 +24,7 @@
 [Q]=pdiv(P1,P2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P1</term>

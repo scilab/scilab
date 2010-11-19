@@ -23,7 +23,7 @@
     <synopsis>[n,d]=cmndred(num,den)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>num, den</term>

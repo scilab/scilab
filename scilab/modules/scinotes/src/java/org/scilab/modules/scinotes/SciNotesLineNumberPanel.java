@@ -65,8 +65,9 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     private boolean isHighlighted;
     private Color currentLineForeground;
     private Color foreground = Color.BLACK;
-    private Color alternColor = new Color(250, 251, 164);
-    private Color currentColor = Color.GRAY;
+    private Color anchorColor = new Color(250, 251, 164);
+    private Color alternColor1 = new Color(246, 191, 246);
+    private Color alternColor2 = new Color(246, 101, 246);
 
     private int numbers;
     private int lastLine;
@@ -78,6 +79,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     private int availableWidth;
 
     private int[] lineNumber;
+    private byte[] lineLevel;
     private boolean whereami;
     private boolean display;
 
@@ -92,6 +94,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
         setFont(textPane.getFont());
         setBorderGap(PANELGAPSIZE);
         setCurrentLineForeground(Color.RED);
+        setAlternColors(ConfigSciNotesManager.getAlternColors());
         updateFont(ConfigSciNotesManager.getFont());
         textPane.addCaretListener(this);
         addMouseMotionListener(this);
@@ -128,6 +131,22 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
      */
     public boolean getWhereamiLineNumbering() {
         return whereami;
+    }
+
+    /**
+     * @param colors an array of size 2 containing the two alternative colors for inner function
+     */
+    public void setAlternColors(Color[] colors) {
+        if (colors[0] == null) {
+            this.alternColor1 = getBackground();
+        } else {
+            this.alternColor1 = colors[0];
+        }
+        if (colors[1] == null) {
+            this.alternColor2 = getBackground();
+        } else {
+            this.alternColor2 = colors[1];
+        }
     }
 
     /**
@@ -201,24 +220,41 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             pt.y += clip.height;
             int endOffset = textPane.viewToModel(pt);
             int lineEnd = root.getElementIndex(endOffset);
+            int red = getBackground().getRed();
+            boolean colorChanged;
 
             for (int line = root.getElementIndex(rowStartOffset); line <= lineEnd; line++) {
                 String str;
+                colorChanged = false;
                 if (whereami && lineNumber != null) {
                     if (lineNumber[line] != -1) {
                         str = Integer.toString(lineNumber[line]);
+                        if ((lineLevel[line] % 3) == 1) {
+                            g.setColor(alternColor1);
+                            colorChanged = true;
+                        } else if ((lineLevel[line] % 3) == 2) {
+                            g.setColor(alternColor2);
+                            colorChanged = true;
+                        }
                     } else {
                         str = "";
                     }
-                    //g.fillRect(0, view.getLineAllocation(line), availableWidth, metrics.getHeight());
                 } else {
                     str = Integer.toString(line + 1);
                 }
 
                 Element elem = root.getElement(line);
                 if (((ScilabDocument.ScilabLeafElement) elem).isAnchor()) {
-                    g.setColor(alternColor);
-                    g.fillRect(0, ((ScilabView) view).getLineAllocation(line), availableWidth, metrics.getHeight());
+                    g.setColor(anchorColor);
+                    colorChanged = true;
+                }
+
+                if (colorChanged) {
+                    if (view instanceof ScilabView) {
+                        g.fillRect(0, ((ScilabView) view).getLineAllocation(line), availableWidth, metrics.getHeight());
+                    } else {
+                        g.fillRect(0, ((ScilabPlainView) view).getLineAllocation(line), availableWidth, metrics.getHeight());
+                    }
                 }
 
                 if (line != lastLine) {
@@ -266,37 +302,34 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             Element root = doc.getDefaultRootElement();
             int nlines = root.getElementCount();
             lineNumber = new int[nlines + 1];
+            lineLevel = new byte[nlines + 1];
             lineNumber[0] = 1;
             int current = 1;
-            boolean previousBroken = false;
             ScilabDocument.ScilabLeafElement elem;
             for (int i = 0; i < nlines; i++) {
                 elem = (ScilabDocument.ScilabLeafElement) root.getElement(i);
                 int type = elem.getType();
-                if (!previousBroken) {
-                    switch (type) {
-                    case ScilabDocument.ScilabLeafElement.NOTHING :
-                        lineNumber[i] = current++;
-                        break;
-                    case ScilabDocument.ScilabLeafElement.FUN :
-                        stk.push(new Integer(current));
-                        current = 2;
-                        lineNumber[i] = 1;
-                        break;
-                    case ScilabDocument.ScilabLeafElement.ENDFUN :
-                        lineNumber[i] = current++;
-                        if (!stk.empty()) {
-                            current = stk.pop().intValue() + lineNumber[i];
-                        }
-                        break;
-                    default :
-                        break;
+                switch (type) {
+                case ScilabDocument.ScilabLeafElement.NOTHING :
+                    lineNumber[i] = current++;
+                    lineLevel[i] = (byte) stk.size();
+                    break;
+                case ScilabDocument.ScilabLeafElement.FUN :
+                    stk.push(new Integer(current));
+                    lineLevel[i] = (byte) stk.size();
+                    current = 2;
+                    lineNumber[i] = 1;
+                    break;
+                case ScilabDocument.ScilabLeafElement.ENDFUN :
+                    lineNumber[i] = current++;
+                    lineLevel[i] = (byte) stk.size();
+                    if (!stk.empty()) {
+                        current = stk.pop().intValue() + lineNumber[i];
                     }
-                } else {
-                    lineNumber[i] = -1;
+                    break;
+                default :
+                    break;
                 }
-
-                previousBroken = elem.isBroken();
             }
         }
     }
@@ -355,7 +388,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             if (chg == null) {
                 // change occured only in one line
                 ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(e.getOffset()));
-                if (line.isFunction() || line.isBroken()) {
+                if (line.isFunction()) {
                     updateLineNumber();
                     repaint();
                 }

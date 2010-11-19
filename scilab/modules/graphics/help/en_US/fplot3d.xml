@@ -25,7 +25,7 @@
 fplot3d(xr,yr,f,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>xr</term>

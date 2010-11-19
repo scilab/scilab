@@ -2,12 +2,9 @@
 // Copyright (C) 2009 - INRIA
 // Copyright (C) 2010 - DIGITEO - Yann COLLETTE
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-demopath = get_absolute_file_path("simulated_annealing.dem.gateway.sce");
+subdemolist = [_("Simulated Annealing"),                   "SAdemo.sce"; ..
+	           _("Simulated Annealing and Ising problem"), "SAIsing2ddemo.sce"];
 
-subdemolist = ["Simulated Annealing",                   "SAdemo.sce"; ...
-	       "Simulated Annealing and Ising problem", "SAIsing2ddemo.sce"];
-
-subdemolist(:,2) = demopath + subdemolist(:,2)
-clear demopath;
+subdemolist(:,2) = SCI + "/modules/simulated_annealing/demos/" + subdemolist(:,2)

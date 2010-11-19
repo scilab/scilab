@@ -14,7 +14,7 @@ package org.scilab.modules.graph.actions.base;
 
 import org.scilab.modules.graph.ScilabGraph;
 
-import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 
@@ -33,7 +33,8 @@ public final class MinimalNumberOfCellsConstraint extends ActionConstraint {
 	public MinimalNumberOfCellsConstraint(int minimalCount) {
 		numberOfCells = 0;
 		
-		this.minimalCount = minimalCount;
+		// add the root and the default parent to the minimal count
+		this.minimalCount = minimalCount + 2;
 	}
 
 	/**
@@ -59,27 +60,8 @@ public final class MinimalNumberOfCellsConstraint extends ActionConstraint {
 	 *      com.mxgraph.util.mxEventObject)
 	 */
 	public void invoke(Object sender, mxEventObject evt) {
-		final String name = evt.getName();
-		
-		if (name.equals(mxEvent.ROOT)) {
-			/*
-			 * After diagram loading
-			 */
-			numberOfCells = ((mxCell) ((ScilabGraph) sender).getModel()
-					.getRoot()).getChildCount();
-			
-		} else if (name.equals(mxEvent.CELLS_ADDED) || name.equals(mxEvent.CELLS_REMOVED)) {
-			/*
-			 * After any an add/remove operation
-			 */
-			Object[] cells = (Object[]) evt.getProperty("cells");
-			
-			if (evt.getName().compareTo(mxEvent.CELLS_ADDED) == 0) {
-				numberOfCells += cells.length;
-			} else {
-				numberOfCells -= cells.length;
-			}
-		}
+		final mxGraphModel model = (mxGraphModel) ((ScilabGraph) sender).getModel();
+		numberOfCells = model.getCells().size();
 		
 		setEnabled(numberOfCells >= minimalCount);
 	}

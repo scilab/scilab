@@ -40,7 +40,8 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Palette.hxx \
 			src/jni/Modelica.cpp \
 			src/jni/Modelica.hxx \
-			src/jni/GiwsException.cpp
+			src/jni/GiwsException.cpp \
+			src/cpp/xcosUtilities.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
 			src/jni/Palette.giws.xml \
@@ -60,7 +61,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
 	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
 	sci_gateway/cpp/sci_xcosDiagramClose.cpp \
-	sci_gateway/cpp/xcosUtilities.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \
@@ -120,6 +120,7 @@ INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
 
 libscixcos_la_LIBADD =  \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/jvm/libscijvm.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

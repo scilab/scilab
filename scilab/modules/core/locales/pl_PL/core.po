@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-06-30 11:09+0000\n"
+"PO-Revision-Date: 2010-09-29 13:19+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -319,6 +319,8 @@ msgstr "%s: Niewłaściwy rozmiar parametru %d: oczekiwano przynajmniej %d.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
+"%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wartości "
+"logicznej.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -335,6 +337,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
 msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano liczby "
+"całkowitej.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -534,6 +538,8 @@ msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego #%d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wartości "
+"logicznej.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -819,7 +825,7 @@ msgid "A non square matrix!\n"
 msgstr "Macierz nie kwadratowa!\n"
 
 msgid "Bytes"
-msgstr ""
+msgstr "Bajtów"
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Nieodnaleziono katalogu tymczasowego systemu Windows (1)."
@@ -971,7 +977,7 @@ msgid "List full.\n"
 msgstr "Lista pełna.\n"
 
 msgid "Name"
-msgstr ""
+msgstr "Nazwa"
 
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Brak pamięci dla stosu programu Scilab.\n"
@@ -992,7 +998,7 @@ msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP: przerywanie bieżących obliczeń\n"
 
 msgid "Scilab Console"
-msgstr ""
+msgstr "Konsola Scilab"
 
 msgid "Scilab Version Info."
 msgstr "Informacja o wersji Scilab."
@@ -1010,7 +1016,7 @@ msgstr ""
 "%s\n"
 
 msgid "Size"
-msgstr ""
+msgstr "Rozmiar"
 
 msgid "Startup execution:"
 msgstr "Wykonanie rozruchu:"
@@ -1025,7 +1031,7 @@ msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Próbuję zatrzymać program Scilab w czasie pracy.\n"
 
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #, c-format
 msgid "Undefined variable %s.\n"

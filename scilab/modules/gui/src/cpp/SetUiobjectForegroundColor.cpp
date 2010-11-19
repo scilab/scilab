@@ -41,6 +41,12 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, size_t stackPointer, int val
           return SET_PROPERTY_ERROR;
         }
 
+      if (!checkColorRange(redDouble, greenDouble, blueDouble))
+        {
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: Numbers between 0 and 1 expected.\n")), "BackgroundColor");
+          return SET_PROPERTY_ERROR;
+        }
+
       redInt = (int) (redDouble * 255);
       greenInt = (int) (greenDouble * 255);
       blueInt = (int) (blueDouble * 255);
@@ -78,6 +84,13 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, size_t stackPointer, int val
         }
 
        allcolors = getDoubleMatrixFromStack(stackPointer);
+
+       if (!checkColorRange(allcolors[0], allcolors[1], allcolors[2]))
+	 {
+	   Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: Numbers between 0 and 1 expected.\n")), "BackgroundColor");
+	   return SET_PROPERTY_ERROR;
+	 }
+
        redInt = (int) (allcolors[0] * 255);
        greenInt = (int) (allcolors[1] * 255);
        blueInt = (int) (allcolors[2] * 255);

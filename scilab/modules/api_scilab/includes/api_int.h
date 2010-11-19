@@ -19,6 +19,8 @@ extern "C" {
 #include "version.h"
 #include "dynlib_api_scilab.h"
 
+/* These values are also used in:
+ * modules/core/includes/sci_types.h */
 #define SCI_INT8	1
 #define SCI_INT16	2
 #define SCI_INT32	4
@@ -221,7 +223,7 @@ SciErr createMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int 
  * @param[in] _pcData8 array of 8-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const char* _pcData8);
+SciErr createNamedMatrixOfInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* _pcData8);
 
 /**
  * Create named 8-bit unsigned integer variable
@@ -231,7 +233,7 @@ SciErr createNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int _iRows, int
  * @param[in] _pucData8 array of 8-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8);
+SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned char* _pucData8);
 
 /**
  * Create named 16-bit integer variable
@@ -241,7 +243,7 @@ SciErr createNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int _iR
  * @param[in] _psData16 array of 16-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const short* _psData16);
+SciErr createNamedMatrixOfInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const short* _psData16);
 
 /**
  * Create named 16-bit unsigned integer variable
@@ -251,7 +253,7 @@ SciErr createNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int _iRows, in
  * @param[in] _pusData16 array of 16-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned short* _pusData16);
+SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned short* _pusData16);
 
 /**
  * Create named 32-bit integer variable
@@ -261,7 +263,7 @@ SciErr createNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int _i
  * @param[in] _piData32 array of 32-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const int* _piData32);
+SciErr createNamedMatrixOfInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piData32);
 
 /**
  * Create named 32-bit unsigned integer variable
@@ -271,7 +273,7 @@ SciErr createNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int _iRows, in
  * @param[in] _puiData32 array of 32-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned int* _puiData32);
+SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned int* _puiData32);
 
 #ifdef __SCILAB_INT64__
 
@@ -283,7 +285,7 @@ SciErr createNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int _i
  * @param[in] _pllData64 array of 64-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const long long* _pllData64);
+SciErr createNamedMatrixOfInteger64(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const long long* _pllData64);
 
 /**
  * Create named 64-bit unsigned integer variable
@@ -293,7 +295,7 @@ SciErr createNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int _iRows, in
  * @param[in] _pullData64 array of 64-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedMatrixOfUnsignedInteger64(void* _pvCtx, char* _pstName, int _iRows, int _iCols, const unsigned long long* _pullData64);
+SciErr createNamedMatrixOfUnsignedInteger64(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const unsigned long long* _pullData64);
 
 #endif
 
@@ -386,7 +388,7 @@ SciErr allocMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _
  * @param[in] _pstName variable name
  * @param[out] _piPrecison return integer precision ( SCI_xINTx )
  */
-SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, char* _pstName, int* _piPrecision);
+SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, const char* _pstName, int* _piPrecision);
 
 /**
  * Read named 8-bit integer variable data
@@ -396,7 +398,7 @@ SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, char* _pstName, int* _piPr
  * @param[out] _pcData8 return array of 8-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, char* _pcData8);
+SciErr readNamedMatrixOfInteger8(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, char* _pcData8);
 
 /**
  * Read named 8-bit unsigned integer variable data
@@ -406,7 +408,7 @@ SciErr readNamedMatrixOfInteger8(void* _pvCtx, char* _pstName, int* _piRows, int
  * @param[out] _pucData8 return array of 8-bit unsigned integer
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned char* _pucData8);
+SciErr readNamedMatrixOfUnsignedInteger8(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned char* _pucData8);
 
 /**
  * Read named 16-bit integer variable data
@@ -416,7 +418,7 @@ SciErr readNamedMatrixOfUnsignedInteger8(void* _pvCtx, char* _pstName, int* _piR
  * @param[out] _psData16 return array of 16-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, short* _psData16);
+SciErr readNamedMatrixOfInteger16(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, short* _psData16);
 
 /**
  * Read named 16-bit unsigned integer variable data
@@ -426,7 +428,7 @@ SciErr readNamedMatrixOfInteger16(void* _pvCtx, char* _pstName, int* _piRows, in
  * @param[out] _pusData16 return array of 16-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned short* _pusData16);
+SciErr readNamedMatrixOfUnsignedInteger16(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned short* _pusData16);
 
 /**
  * Read named 32-bit integer variable data
@@ -436,7 +438,7 @@ SciErr readNamedMatrixOfUnsignedInteger16(void* _pvCtx, char* _pstName, int* _pi
  * @param[out] _piData32 return array of 32-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piData32);
+SciErr readNamedMatrixOfInteger32(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piData32);
 
 /**
  * Read named 32-bit unsigned integer variable data
@@ -446,7 +448,7 @@ SciErr readNamedMatrixOfInteger32(void* _pvCtx, char* _pstName, int* _piRows, in
  * @param[out] _puiData32 return array of 32-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned int* _puiData32);
+SciErr readNamedMatrixOfUnsignedInteger32(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned int* _puiData32);
 
 #ifdef __SCILAB_INT64__
 
@@ -458,7 +460,7 @@ SciErr readNamedMatrixOfUnsignedInteger32(void* _pvCtx, char* _pstName, int* _pi
  * @param[out] _pllData64 return array of 64-bit integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, long long* _pllData64);
+SciErr readNamedMatrixOfInteger64(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, long long* _pllData64);
 
 /**
  * Read named 64-bit unsigned integer variable data
@@ -468,7 +470,7 @@ SciErr readNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int* _piRows, in
  * @param[out] _pullData64 return array of 64-bit unsigned integers
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedMatrixOfUnsignedInteger64(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned long long* _pullData64);
+SciErr readNamedMatrixOfUnsignedInteger64(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned long long* _pullData64);
 
 #endif
 
@@ -486,7 +488,7 @@ int isIntegerType(void* _pvCtx, int* _piAddress);
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedIntegerType(void* _pvCtx, char* _pstName);
+int isNamedIntegerType(void* _pvCtx, const char* _pstName);
 
 /**
  * Get scalar 8-bit integer value
@@ -562,7 +564,7 @@ int getScalarUnsignedInteger64(void* _pvCtx, int* _piAddress, unsigned long long
  * @param[out] _pcData return integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarInteger8(void* _pvCtx, char* _pstName, char* _pcData);
+int getNamedScalarInteger8(void* _pvCtx, const char* _pstName, char* _pcData);
 
 /**
  * Get named scalar 8-bit unsigned integer value
@@ -570,7 +572,7 @@ int getNamedScalarInteger8(void* _pvCtx, char* _pstName, char* _pcData);
  * @param[out] _pucData return integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char* _pucData);
+int getNamedScalarUnsignedInteger8(void* _pvCtx, const char* _pstName, unsigned char* _pucData);
 
 /**
  * Get named scalar 16-bit integer value
@@ -578,7 +580,7 @@ int getNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char* 
  * @param[out] _psData return integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarInteger16(void* _pvCtx, char* _pstName, short* _psData);
+int getNamedScalarInteger16(void* _pvCtx, const char* _pstName, short* _psData);
 
 /**
  * Get named scalar 16-bit unsigned integer value
@@ -586,7 +588,7 @@ int getNamedScalarInteger16(void* _pvCtx, char* _pstName, short* _psData);
  * @param[out] _pusData return integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short* _pusData);
+int getNamedScalarUnsignedInteger16(void* _pvCtx, const char* _pstName, unsigned short* _pusData);
 
 /**
  * Get named scalar 32-bit integer value
@@ -594,7 +596,7 @@ int getNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short
  * @param[out] _piData return integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarInteger32(void* _pvCtx, char* _pstName, int* _piData);
+int getNamedScalarInteger32(void* _pvCtx, const char* _pstName, int* _piData);
 
 /**
  * Get named scalar 32-bit unsigned integer value
@@ -602,7 +604,7 @@ int getNamedScalarInteger32(void* _pvCtx, char* _pstName, int* _piData);
  * @param[out] _puiData return integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int* _puiData);
+int getNamedScalarUnsignedInteger32(void* _pvCtx, const char* _pstName, unsigned int* _puiData);
 
 #ifdef __SCILAB_INT64__
 
@@ -612,7 +614,7 @@ int getNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int* 
  * @param[out] _pllData return integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarInteger64(void* _pvCtx, char* _pstName, long long* _pllData);
+int getNamedScalarInteger64(void* _pvCtx, const char* _pstName, long long* _pllData);
 
 /**
  * Get named scalar 64-bit unsigned integer value
@@ -620,7 +622,7 @@ int getNamedScalarInteger64(void* _pvCtx, char* _pstName, long long* _pllData);
  * @param[out] _pullData return integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int getNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long* _pullData);
+int getNamedScalarUnsignedInteger64(void* _pvCtx, const char* _pstName, unsigned long long* _pullData);
 
 #endif
 
@@ -698,7 +700,7 @@ int createScalarUnsignedInteger64(void* _pvCtx, int _iVar, unsigned long long _u
  * @param[in] _cData 8-bit integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarInteger8(void* _pvCtx, char* _pstName, char _cData);
+int createNamedScalarInteger8(void* _pvCtx, const char* _pstName, char _cData);
 
 /**
  * Create named scalar 8-bit unsigned integer variable
@@ -706,7 +708,7 @@ int createNamedScalarInteger8(void* _pvCtx, char* _pstName, char _cData);
  * @param[in] _ucData 8-bit unsigned integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char _ucData);
+int createNamedScalarUnsignedInteger8(void* _pvCtx, const char* _pstName, unsigned char _ucData);
 
 /**
  * Create named scalar 16-bit integer variable
@@ -714,7 +716,7 @@ int createNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned cha
  * @param[in] _sData 16-bit integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarInteger16(void* _pvCtx, char* _pstName, short _sData);
+int createNamedScalarInteger16(void* _pvCtx, const char* _pstName, short _sData);
 
 /**
  * Create named scalar 16-bit unsigned integer variable
@@ -722,7 +724,7 @@ int createNamedScalarInteger16(void* _pvCtx, char* _pstName, short _sData);
  * @param[in] _usData 16-bit unsigned integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short _usData);
+int createNamedScalarUnsignedInteger16(void* _pvCtx, const char* _pstName, unsigned short _usData);
 
 /**
  * Create named scalar 32-bit integer variable
@@ -730,7 +732,7 @@ int createNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned sh
  * @param[in] _iData 32-bit integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarInteger32(void* _pvCtx, char* _pstName, int _iData);
+int createNamedScalarInteger32(void* _pvCtx, const char* _pstName, int _iData);
 
 /**
  * Create named scalar 32-bit unsigned integer variable
@@ -738,7 +740,7 @@ int createNamedScalarInteger32(void* _pvCtx, char* _pstName, int _iData);
  * @param[in] _uiData 32-bit unsigned integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int _uiData);
+int createNamedScalarUnsignedInteger32(void* _pvCtx, const char* _pstName, unsigned int _uiData);
 
 #ifdef __SCILAB_INT64__
 
@@ -748,7 +750,7 @@ int createNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned in
  * @param[in] _llData 64-bit integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarInteger64(void* _pvCtx, char* _pstName, long long _llData);
+int createNamedScalarInteger64(void* _pvCtx, const char* _pstName, long long _llData);
 
 /**
  * Create named scalar 64-bit unsigned integer variable
@@ -756,7 +758,7 @@ int createNamedScalarInteger64(void* _pvCtx, char* _pstName, long long _llData);
  * @param[in] _ullData 64-bit unsigned integer value
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-int createNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long _ullData);
+int createNamedScalarUnsignedInteger64(void* _pvCtx, const char* _pstName, unsigned long long _ullData);
 
 #endif
 

@@ -27,7 +27,7 @@ clf(h,&lt;opt_job_arg&gt;)
 clf(num,&lt;opt_job_arg&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>h</term>

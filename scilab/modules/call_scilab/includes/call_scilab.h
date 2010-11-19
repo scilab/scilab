@@ -372,7 +372,7 @@ int C2F(cwritechain)  (char *name__, int *m, char *chai, unsigned long name_len,
  */
 int C2F(cwritebmat)(char *namex, int *m, int *n, int *mat, unsigned long name_len);
 
-int C2F(str2name)  (char *name__, int *id, unsigned long name_len);
+int C2F(str2name)  (const char *name__, int *id, unsigned long name_len);
 int C2F(objptr)  (char *name__, int *lp, int *fin, unsigned long name_len);
 
 #ifdef __cplusplus

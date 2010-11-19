@@ -24,7 +24,7 @@
 [Eb,Ab,X,Y]=balanc(E,A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A:  </term>

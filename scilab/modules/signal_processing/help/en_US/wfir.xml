@@ -12,7 +12,7 @@
     <synopsis>[wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>ftype</term>

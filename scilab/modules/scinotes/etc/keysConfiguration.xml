@@ -38,7 +38,9 @@
   <entry key="CloseAction">control W</entry>
   <entry key="ExitAction">control Q</entry>
 
-  <entry key="HighlightCurrentLineAction">control J</entry>
+  <entry key="ToLowerCaseAction">control J</entry>
+  <entry key="ToUpperCaseAction">control shift J</entry>
+  <entry key="CapitalizeAction">control shift A</entry>
   <entry key="HelpOnKeywordAction">control F1</entry>
 
   <entry key="LoadIntoScilabAction">control L</entry>
@@ -48,6 +50,7 @@
   <entry key="FindAction">control F</entry>
   <entry key="FindNextAction">control K</entry>
   <entry key="FindPreviousAction">control shift K</entry>
+  <entry key="IncrementalSearchAction">F2</entry>
   <entry key="SetAnchorAction">control M</entry>
   <entry key="RemoveAnchorAction">control shift M</entry>
   <entry key="GotoNextAnchorAction">control shift LESS</entry>

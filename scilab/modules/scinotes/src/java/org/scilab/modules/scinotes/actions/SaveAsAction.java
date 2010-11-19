@@ -26,12 +26,25 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * @author Bruno JOFRET
  *
  */
-public final class SaveAsAction extends DefaultAction {
+public class SaveAsAction extends DefaultAction {
 
     /**
      * serialVersionUID
      */
     private static final long serialVersionUID = 8327808176820789884L;
+
+    private String path;
+
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param path the default path where to open the filechooser
+     * @param editor SciNotes
+     */
+    public SaveAsAction(String name, String path, SciNotes editor) {
+        super(name, editor);
+        this.path = path;
+    }
 
     /**
      * Constructor
@@ -46,7 +59,7 @@ public final class SaveAsAction extends DefaultAction {
      * DoAction
      */
     public void doAction() {
-        if (!getEditor().saveAs()) {
+        if (!getEditor().saveAs(path)) {
             ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_SAVE_FILE,
                                    SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
         }
@@ -59,8 +72,8 @@ public final class SaveAsAction extends DefaultAction {
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        return createMenu(label, null, new SaveAsAction(label, editor), key);
+    public static Object createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SaveAsAction(label, null, editor), key);
     }
 
     /**
@@ -71,6 +84,6 @@ public final class SaveAsAction extends DefaultAction {
      * @return PushButton
      */
     public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
-        return createButton(tooltip, icon, new SaveAsAction(tooltip, editor));
+        return createButton(tooltip, icon, new SaveAsAction(tooltip, null, editor));
     }
 }

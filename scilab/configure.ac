@@ -474,7 +474,7 @@ case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3"
+	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
@@ -700,6 +700,12 @@ AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
 ###########################
 
 if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
+   # Need MacosX Version to specify some path.
+   case "$host_os" in
+                   *Darwin* | *darwin*)
+                   AC_GET_MACOSX_VERSION;;
+  esac
+
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -719,6 +725,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 		JAVA_CLASSPATH=$ac_java_classpath
 		AC_JAVA_TOOLS
 		AC_JAVA_ANT
+
+		case "$host_os" in
+                     *Darwin* | *darwin*)
+		        JAVA_HOME="";;
+		esac
+
 
 		if test "$with_gui" != no; then
 
@@ -2133,6 +2145,7 @@ echo "  hostname ....... = $ac_hostname"
 echo "  CPU 64 bits .... = $IS_64_BITS_CPU"
 if test -n "$MAC_DETECTED_ARCH"; then
 echo "  Mac OS X arch .. = $MAC_DETECTED_ARCH"
+echo "  Mac OS X version = $macosx_version"
 fi
 
 echo ""

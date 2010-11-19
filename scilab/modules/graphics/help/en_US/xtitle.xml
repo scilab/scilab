@@ -24,7 +24,7 @@
     <synopsis>xtitle(title,[x_label,[y_label,[z_label]]],&lt;opts_args&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>title,x_label,y_label, z_label</term>
@@ -80,6 +80,8 @@ xtitle( 'My surface is blue', 'X axis', '$Y axis$', mathml );
     <simplelist type="inline">
       <member>
         <link linkend="titlepage">titlepage</link>
+      </member>
+      <member>
         <link linkend="label_properties">label_properties</link>
       </member>
     </simplelist>

@@ -25,7 +25,7 @@
 f = get("default_figure")</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>f</term>

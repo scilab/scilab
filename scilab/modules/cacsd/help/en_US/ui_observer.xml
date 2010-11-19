@@ -24,7 +24,7 @@
 [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sys</term>

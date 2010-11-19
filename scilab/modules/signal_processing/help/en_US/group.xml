@@ -12,7 +12,7 @@
     <synopsis>[tg,fr]=group(npts,a1i,a2i,b1i,b2i)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>npts</term>

@@ -24,7 +24,7 @@
     <synopsis>OK=TCL_ExistArray(arrayname [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>arrayname</term>

@@ -12,7 +12,7 @@
     <synopsis>y=fftshift(x [,job])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

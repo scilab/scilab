@@ -194,9 +194,6 @@ msgstr "JNI: nicht genug Speicher"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "JVM Schnittstelle in -nogui oder -nwni Modus hinzufügen.\n"
 
-msgid "Scilab Console"
-msgstr "Scilab-Konsole"
-
 msgid "Scilab Java module not installed.\n"
 msgstr "Scilab Java Modul nicht installiert.\n"
 

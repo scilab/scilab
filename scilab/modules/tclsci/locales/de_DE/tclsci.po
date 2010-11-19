@@ -236,9 +236,6 @@ msgstr ""
 msgid "Unknown Release"
 msgstr "unbekannte Veröffentlichung"
 
-msgid "Updating, please wait"
-msgstr "Aktualisiere, bitte warten"
-
 msgid "Variable too long.\n"
 msgstr "Variabel zu lang.\n"
 

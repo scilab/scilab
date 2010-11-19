@@ -221,6 +221,22 @@ namespace types
 		return true;
 	}
 
+	bool Double::real_set(const double *_pdblReal)
+	{
+		if(_pdblReal != NULL)
+		{
+			if(m_pdblReal == NULL)
+			{
+				m_pdblReal = new double[m_iSize];
+			}
+
+			memcpy(m_pdblReal, _pdblReal, m_iSize * sizeof(double));
+		}
+		else
+			return false;
+
+		return true;
+	}
 	/*------------*/
 	/*	real_set  */
 	/*------------*/
@@ -265,6 +281,23 @@ namespace types
 	/*	img_set		*/
 	/*------------*/
 	bool Double::img_set(double *_pdblImg)
+	{
+		if(_pdblImg != NULL)
+		{
+			if(m_pdblImg == NULL)
+			{
+				m_pdblImg = new double[m_iSize];
+			}
+
+			memcpy(m_pdblImg, _pdblImg, m_iSize * sizeof(double));
+		}
+		else
+			return false;
+
+		return true;
+	}
+
+    bool Double::img_set(const double *_pdblImg)
 	{
 		if(_pdblImg != NULL)
 		{
@@ -881,14 +914,14 @@ namespace types
 							m_pdblReal[(i * _iNewRows) + j] = m_pdblReal[(i * rows_get()) + j];
 							m_pdblImg[(i * _iNewRows) + j] 	= m_pdblImg[(i * rows_get()) + j];
 						}
-						
+
 						//fill zero at the end of column
 						memset(m_pdblReal + (i * _iNewRows) + rows_get(), 0x00, sizeof(double) * (_iNewRows - rows_get()));
 						memset(m_pdblImg + (i * _iNewRows) + rows_get(), 0x00, sizeof(double) * (_iNewRows - rows_get()));
 					}
 				}
-			}	
-			
+			}
+
 		}
 		else
 		{
@@ -896,7 +929,7 @@ namespace types
 			{
 				//alloc 10% bigger than asked to prevent future resize
 				m_iSizeMax = static_cast<int>(_iNewRows * _iNewCols * 1.1);
-				
+
 				pdblReal	= new double[m_iSizeMax];
 				memset(pdblReal, 0x00, sizeof(double) * m_iSizeMax);
 
@@ -922,12 +955,12 @@ namespace types
 						{
 							m_pdblReal[(i * _iNewRows) + j] = m_pdblReal[(i * rows_get()) + j];
 						}
-						
+
 						//fill zero at the end of column
 						memset(m_pdblReal + (i * _iNewRows) + rows_get(), 0x00, sizeof(double) * (_iNewRows - rows_get()));
 					}
 				}
-			}	
+			}
 		}
 
 		m_iRows = _iNewRows;
@@ -988,7 +1021,7 @@ namespace types
             for(int i = 0 ; i < iCols ; i++)
             {
                 //memcpy version
-/*                
+/*
                 int iDestOffset = i * m_iRows + _iRows;
                 int iOrigOffset = i * _poSource->rows_get();
                 if(_poSource->rows_get() == 1)
@@ -999,7 +1032,7 @@ namespace types
                 {
                     memcpy(m_pdblReal + iDestOffset, _poSource->real_get() + iOrigOffset, _poSource->rows_get() * sizeof(double));
                 }
-*/                
+*/
                 //loop version
 /*
                 int iDestOffset = i * m_iRows + _iRows;
@@ -1507,8 +1540,8 @@ namespace types
 
 	Double* Double::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector)
 	{
-		Double* pdbl	= NULL ; 
-		
+		Double* pdbl	= NULL ;
+
 		if(_bAsVector)
 		{
 			if(_poSource->cols_get() == 1)
@@ -1619,7 +1652,7 @@ namespace types
 				}
 			}
 		}
-		
+
 		return pOut;
 	}
 }

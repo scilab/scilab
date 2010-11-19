@@ -38,6 +38,7 @@ public class CompoundUndoManager extends UndoManager {
     private int nbEdits;
     private char[] breaks;
     private int prevLine;
+    private boolean oneShot;
 
     /**
      * Constructor
@@ -78,6 +79,15 @@ public class CompoundUndoManager extends UndoManager {
             compoundEdit.end();
             compoundEdit = null;
         }
+    }
+
+    /**
+     * Enable one shot, i.e. if several modifs on one char occured then they
+     * can be added in the same CompoundEdit.
+     * @param true if one shot must be enabled
+     */
+    public void enableOneShot(boolean b) {
+        this.oneShot = b;
     }
 
     /**
@@ -163,7 +173,7 @@ public class CompoundUndoManager extends UndoManager {
     public void undoableEditHappened(UndoableEditEvent e) {
         DocumentEvent event = (AbstractDocument.DefaultDocumentEvent) e.getEdit();
 
-        if (event.getLength() == 1) {
+        if (!oneShot && event.getLength() == 1) {
             if (!remove && event.getType() == DocumentEvent.EventType.REMOVE) {
                 endCompoundEdit();
                 remove = true;

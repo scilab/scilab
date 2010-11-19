@@ -24,7 +24,7 @@
     <synopsis>xpoly(xv,yv [,dtype [,close]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>xv,yv</term>

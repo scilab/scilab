@@ -27,6 +27,7 @@ namespace types
     public :
                                 MatrixPoly();
                                 MatrixPoly(wstring _szVarName, int _iRows, int _iCols, int *_piRank);
+                                MatrixPoly(wstring _szVarName, int _iRows, int _iCols, const int *_piRank);
         virtual                 ~MatrixPoly();
 
         // FIXME : Should not return NULL

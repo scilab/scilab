@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Simon LIPP <simon.lipp@scilab.org>
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -36,7 +37,7 @@ function tbx_builder_gateway(module)
     // Check the compiler
 
     if ~haveacompiler() then
-        error(msprintf(gettext("%s: This module (%s) compiler has been found.\n"),"tbx_builder_gateway",module));
+        error(msprintf(gettext("%s: This module required a C compiler and it has not been found.\n"),"tbx_builder_gateway"));
     end
 
 

@@ -244,6 +244,10 @@ msgstr ""
 "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un vector de "
 "strings.\n"
 
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+
 msgid "?"
 msgstr "¿?"
 
@@ -325,6 +329,12 @@ msgstr ""
 msgid "Compile"
 msgstr "Compilar"
 
+msgid "Compiling"
+msgstr ""
+
+msgid "Computing"
+msgstr ""
+
 msgid "Continuous time systems"
 msgstr "Sistemas de tiempo continuo"
 
@@ -372,8 +382,14 @@ msgid ""
 msgstr ""
 "El diagrama fue modificado desde la última vez.<br/> ¿Desea guardarlo?"
 
+msgid "Diff. States"
+msgstr ""
+
 msgid "Discontinuities"
 msgstr "Discontinuidades"
+
+msgid "Discrete"
+msgstr "Discreto"
 
 msgid "Discrete time systems"
 msgstr "Sistemas de tiempo discreto"
@@ -398,6 +414,12 @@ msgstr "Eléctrica"
 
 msgid "Enable"
 msgstr "Activar"
+
+msgid "Equations"
+msgstr ""
+
+msgid "Error"
+msgstr ""
 
 msgid "Event handling"
 msgstr "Gestión de eventos"
@@ -426,6 +448,9 @@ msgstr "Realizando exportación"
 msgid "Export to XML"
 msgstr "Exportar a XML"
 
+msgid "Extended"
+msgstr ""
+
 msgid "Failed to load Diagram"
 msgstr "Fallo al cargar el Diagrama"
 
@@ -440,6 +465,18 @@ msgstr "Tiempo final de integración"
 
 msgid "Fit diagram to view"
 msgstr "Ajustar el diagrama a la vista"
+
+msgid "Fix derivatives"
+msgstr ""
+
+msgid "Fix states"
+msgstr ""
+
+msgid "Fixed parameters"
+msgstr ""
+
+msgid "Fixed variables"
+msgstr ""
 
 msgid "Flip"
 msgstr "Voltear"
@@ -459,6 +496,9 @@ msgstr "Formato"
 msgid "From %s"
 msgstr "Desde %s"
 
+msgid "Generate Jacobian"
+msgstr ""
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Generando SuperBloque, por favor espere ..."
 
@@ -467,6 +507,9 @@ msgstr "Generando código de C para el Super-Bloque"
 
 msgid "Get infos"
 msgstr "Obtener información"
+
+msgid "Global"
+msgstr ""
 
 msgid "Goto %s"
 msgstr "Ir a %s"
@@ -500,6 +543,12 @@ msgstr ""
 
 msgid "Import from XML"
 msgstr "Importar de XML"
+
+msgid "Initial computing method"
+msgstr ""
+
+msgid "Input"
+msgstr ""
 
 msgid "Insert"
 msgstr "Insertar"
@@ -564,6 +613,9 @@ msgstr "Reflejar"
 msgid "Modelica initialize"
 msgstr "Inicializar Modelica"
 
+msgid "Modelica settings"
+msgstr ""
+
 msgid "Move Down"
 msgstr "Bajar"
 
@@ -603,8 +655,14 @@ msgstr "Nombre de la paleta"
 msgid "Palettes"
 msgstr "Paletas"
 
+msgid "Parameter embedding"
+msgstr ""
+
 msgid "Per block execution trace and Debug block calls"
 msgstr "Ejecución de traza y depuración por bloque"
+
+msgid "Please take a look into the Scilab console"
+msgstr ""
 
 msgid "Port & Subsystem"
 msgstr "Puerto y Subsistema"
@@ -627,8 +685,17 @@ msgstr "Escalamiento en tiempo real"
 msgid "Recent Files"
 msgstr "Archivos Recientes"
 
+msgid "Reduced"
+msgstr ""
+
 msgid "Region to superblock"
 msgstr "Región al superbloque"
+
+msgid "Relaxed parameters"
+msgstr ""
+
+msgid "Relaxed variables"
+msgstr ""
 
 msgid "Remove"
 msgstr "Quitar"
@@ -713,6 +780,12 @@ msgstr "Simulación en progreso"
 
 msgid "Sinks"
 msgstr "Sinks"
+
+msgid "Solve"
+msgstr ""
+
+msgid "Solver"
+msgstr ""
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Solver 0 (CVODE) - 100 (IDA)"
@@ -821,6 +894,12 @@ msgstr "No se puede simular %s"
 msgid "Unknown Diagram Version : "
 msgstr "Versión de diagrama desconocida: "
 
+msgid "Unknowns"
+msgstr ""
+
+msgid "Unknowns not equals to Equations"
+msgstr ""
+
 msgid "Untitled"
 msgstr "Sin título"
 
@@ -901,8 +980,49 @@ msgstr ""
 msgid "Zero crossing detection"
 msgstr "Detección de cruce por cero"
 
+msgid "comment"
+msgstr ""
+
 msgid "control port must be connected to command port"
 msgstr "Un puerto de control debe estar conectado a un puerto de comandos"
 
+msgid "fixed"
+msgstr ""
+
+msgid "id"
+msgstr ""
+
+msgid "initial"
+msgstr ""
+
+msgid "kind"
+msgstr ""
+
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+
+msgid "max"
+msgstr ""
+
 msgid "maximum step size (0 means no limit)"
 msgstr "tamaño máximo del paso (0 significa sin límites)"
+
+msgid "min"
+msgstr ""
+
+msgid "model is not valid"
+msgstr ""
+
+msgid "name"
+msgstr ""
+
+msgid "nominal"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "weight"
+msgstr ""

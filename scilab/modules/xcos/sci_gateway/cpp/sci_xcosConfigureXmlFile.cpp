@@ -12,6 +12,7 @@
 
 #include "Modelica.hxx"
 #include "GiwsException.hxx"
+#include "xcosUtilities.hxx"
 
 extern "C"
 {
@@ -24,8 +25,6 @@ extern "C"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
 }
-
-extern int readSingleString(int *_piKey, int rhsPosition, char** out, const char* fname);
 
 using namespace org_scilab_modules_xcos_modelica;
 
