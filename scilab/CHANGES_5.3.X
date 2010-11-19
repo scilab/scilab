@@ -222,6 +222,9 @@ Graphics:
 * bug 7990 fixed - Box thickness was badly exported in vectorial formats (svg/pdf/...)
                    Thanks to Paul Griffiths for the patch.
 
+* bug 8163 fixed - datatipToggle could not be called without argument as 
+                   stated in the help page.
+
 * bug 8518 fixed - When graphic export failed, some error messages were not
                    clear.
 
@@ -855,7 +858,6 @@ Bug Fixes:
 
 * bug 8413 fixed - fscanfMat crashed when file included text lines at the
                    beginning.
-
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
