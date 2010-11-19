@@ -24,7 +24,7 @@
 boolean_out = saveconsecutivecommands()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>boolean_in</term>

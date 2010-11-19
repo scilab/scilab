@@ -23,7 +23,7 @@
     <synopsis>xarc(x,y,w,h,a1,a2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y,w,h</term>

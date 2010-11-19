@@ -40,7 +40,7 @@ blk=curblock()
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_curblock">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">blk :</emphasis> the current block number in the compiled structure.</para>

@@ -23,7 +23,7 @@
     <synopsis>slb=minreal(sl [,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl,slb</term>

@@ -8,7 +8,7 @@
     <refpurpose> close a figure</refpurpose>
   </refnamediv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>h</term>

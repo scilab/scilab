@@ -16,6 +16,8 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -129,6 +131,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		private javax.swing.JPanel validationPanel;
 		private javax.swing.JTable varCustomizeTable;
 		private javax.swing.JPanel varSettings;
+		private String defaultVariableName;
 
 		/**
 		 * Constructor
@@ -299,6 +302,14 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				validVars.addItem(key);
 			}
 			vars.setCellEditor(new DefaultCellEditor(validVars));
+			
+			insert.setEnabled(validVars.getModel().getSize() != 0);
+			final Iterator<String> it = context.keySet().iterator();
+			if (it.hasNext()) {
+				defaultVariableName = it.next();
+			} else {
+				defaultVariableName = "";
+			}
 		}
 		// CSON: JavaNCSS
 		// CSON: MagicNumber
@@ -395,6 +406,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				/* We have one content that is not a variable : Window Title */
 				final int nbOfVar = valuesModel.size() - 1;
 
+				
+				
 				final String[][] values = new String[nbOfVar][1];
 				final String[][] varNames = new String[nbOfVar][1];
 				final String[][] varDesc = new String[nbOfVar + 1][1];
@@ -413,28 +426,51 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 							.get(i + 1)).get(2);
 
 					/*
-					 * reconstruct pol fields.
+					 * reconstruct pol fields. The default types of the values.
 					 * 
 					 * This field indicate the dimension of each entry (-1.0 is
 					 * automatic).
+					 * FIXME: type the data there instead of using the generic "pol".
 					 */
 					polFields.add(new ScilabString("pol"));
 					polFields.add(new ScilabDouble(-1.0));
 				}
 
 				/* Construct fields from data */
-				ScilabList exprs = new ScilabList(
-					Arrays.asList(
-						new ScilabString(values),
-						new ScilabList(
-							Arrays.asList(
-								new ScilabString(varNames),
-								new ScilabString(varDesc),
-								polFields
+				final ScilabList exprs;
+				if (nbOfVar == 0) {
+					/* Set default values */
+					exprs = new ScilabList(
+						Arrays.asList(
+							new ScilabDouble(),
+							new ScilabList(
+								Arrays.asList(
+									new ScilabDouble(),
+									new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME),
+									new ScilabList(
+										Arrays.asList(
+											new ScilabDouble()
+										)
+									)
+								)
 							)
 						)
-					)
-				);
+					);
+				} else {
+					/* set the values */
+					exprs = new ScilabList(
+						Arrays.asList(
+							new ScilabString(values),
+							new ScilabList(
+								Arrays.asList(
+									new ScilabString(varNames),
+									new ScilabString(varDesc),
+									polFields)
+							)
+						)
+					);
+				}
+				
 
 				getBlock().setExprs(exprs);
 				
@@ -692,7 +728,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					model.customizeTableModel.addRow(new Object[] {
-							model.customizeTableModel.getRowCount() + 1, "",
+							model.customizeTableModel.getRowCount() + 1, defaultVariableName,
 							"", true });
 					varCustomizeTable.changeSelection(model.customizeTableModel
 							.getRowCount() - 1, 1, false, false);
@@ -718,6 +754,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 					moveUp.setEnabled(!isFirst);
 					moveDown.setEnabled(!isLast);
+					
+					delete.setEnabled(!isFirst);
 				}
 			};
 

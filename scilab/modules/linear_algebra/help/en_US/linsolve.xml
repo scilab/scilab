@@ -23,7 +23,7 @@
     <synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>

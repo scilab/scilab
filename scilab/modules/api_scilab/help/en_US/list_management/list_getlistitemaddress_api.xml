@@ -30,7 +30,7 @@
       <synopsis>SciErr getListItemAddress(void* _pvCtx, int* _piAddress, int _iItemNum, int** _piItemAddress)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>

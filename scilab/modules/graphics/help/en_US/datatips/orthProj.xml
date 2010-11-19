@@ -21,7 +21,7 @@
     <synopsis>[d,ptp,ind,c] = orthProj(data,pt)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>data</term>

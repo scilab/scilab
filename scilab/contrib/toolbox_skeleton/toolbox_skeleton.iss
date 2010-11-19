@@ -2,7 +2,7 @@
 ; Script d'installation Inno Setup (5.2.2) pour scilab
 ; Allan CORNET
 ; Version TRUNK
-; This file is released into the public domain
+; This file is released under the 3-clause BSD license. See COPYING-BSD.
 ;##############################################################################################################
 ;--------------------------------------------------------------------------------------------------------------
 ; toolbox_skeleton

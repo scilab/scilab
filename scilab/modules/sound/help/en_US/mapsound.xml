@@ -23,7 +23,7 @@
     <synopsis>mapsound (w,dt,fmin,fmax,simpl,rate)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dt,fmin,fmax,simpl,rate</term>

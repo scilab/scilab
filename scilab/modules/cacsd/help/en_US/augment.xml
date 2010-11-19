@@ -25,7 +25,7 @@
 [P,r]=augment(G,flag1,flag2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>G</term>

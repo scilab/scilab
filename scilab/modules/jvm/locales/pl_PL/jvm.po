@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-26 09:32+0000\n"
-"Last-Translator: ErnestŻyciński <Unknown>\n"
+"PO-Revision-Date: 2010-07-02 12:33+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-04 21:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -59,7 +58,7 @@ msgid ""
 "Incorrect version JNI (needs at least JDK 1.4).\n"
 msgstr ""
 "\n"
-"Nieprawidłowa wersja JNI (potrzeba najnowszego JDK 1.4).\n"
+"Nieprawidłowa wersja JNI (potrzeba co najmniej JDK 1.4).\n"
 
 #, c-format
 msgid ""
@@ -77,9 +76,9 @@ msgid ""
 "available).\n"
 msgstr ""
 "\n"
-"Program Scilab nie mógł utworzyć Scilab Java Main-Class (nie udało się "
-"odnaleźć głównej klasy programu Scilab. Sprawdź czy program Scilab i "
-"zewnętrzne pakiety są dostępne.).\n"
+"Scilab nie mógł utworzyć Scilab Java Main-Class (nie udało się odnaleźć "
+"głównej klasy programu Scilab. Sprawdź czy Scilab i dodatkowe moduły są "
+"dostępne.).\n"
 
 #, c-format
 msgid ""
@@ -110,12 +109,13 @@ msgstr "%s: Nie udało się dodać ścieżki do java.library.path: %s.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego #%d lub #%d: Oczekiwano typu string.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d lub nr %d : oczekiwano "
+"ciągu znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego #%d: Oczekiwano typu string.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr "Nie uzyskano dostępu do Main Scilab Class:\n"
@@ -134,14 +134,14 @@ msgid ""
 "Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"Błąd : Nieprawidłowy plik classpath %s (nie kodowanie 'utf-8') Znaleziono "
-"kodowanie '%s'\n"
+"Błąd : Nieprawidłowy plik classpath %s (kodowanie inne niż 'utf-8') "
+"Znaleziono kodowanie '%s'\n"
 
 #, c-format
 msgid ""
 "Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
 msgstr ""
-"Błąd : Nieprawidłowy plik ścieżki %s (nie kodowanie 'utf-8') Znaleziono "
+"Błąd : Nieprawidłowy plik ścieżki %s (kodowanie inne niż 'utf-8') Znaleziono "
 "kodowanie '%s'\n"
 
 #, c-format
@@ -154,19 +154,21 @@ msgstr "Błąd: %s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
-msgstr "Błąd: Nie udało się sparować pliku %s.\n"
+msgstr ""
+"Błąd: nie udało się przeprowadzić analizę gramatyczną (parse) pliku %s\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
 "found.\n"
 msgstr ""
-"Błąd: Nieprawidłowy plik konfiguracji %s (nie kodowanie '%s') Znaleziono "
-"kodowanie '%s' .\n"
+"Błąd: Nieprawidłowy plik konfiguracji %s (kodowanie inne niż '%s') "
+"Znaleziono kodowanie '%s' .\n"
 
 #, c-format
 msgid "Error: could not parse file %s\n"
-msgstr "Błąd: nie udało się sparować pliku %s.\n"
+msgstr ""
+"Błąd: nie udało się przeprowadzić analizę gramatyczną (parse) pliku %s\n"
 
 #, c-format
 msgid ""
@@ -195,9 +197,6 @@ msgstr "JNI: za mało pamięci"
 
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Interfejs JVM  wyłączony w trybach in -nogui lub -nwni.\n"
-
-msgid "Scilab Console"
-msgstr "Konsola Scilab"
 
 msgid "Scilab Java module not installed.\n"
 msgstr "Moduł Java programu Scilab nie jest zainstalowany.\n"

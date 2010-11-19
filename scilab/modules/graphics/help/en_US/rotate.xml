@@ -23,7 +23,7 @@
     <synopsis>xy1=rotate(xy,[theta,orig])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>xy</term>

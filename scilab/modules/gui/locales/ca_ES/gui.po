@@ -82,13 +82,13 @@ msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
-msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr ""
 "%s: No s'ha trobat cap resultat per a la propietat ''%s'' i el valor "
 "''%s''.\n"
 
 #, c-format
-msgid "%s: No results founded.\n"
+msgid "%s: No results found.\n"
 msgstr "%s: No s'ha trobat cap resultat.\n"
 
 #, c-format

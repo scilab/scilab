@@ -24,7 +24,7 @@
     <synopsis>TCL_CreateSlave(slaveName[, isSafe])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>slaveName</term>

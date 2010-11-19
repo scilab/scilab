@@ -164,14 +164,14 @@ public class CallScilabBridge {
 
 
     private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
-    
+
     private static final String FIGURE_TITLE = "Graphic window number ";
-    
+
     private static final String SCIDIR = System.getenv("SCI");
-    
+
     private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
     private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
-    
+
     private static final String CONSOLE = "Console";
 
     /**
@@ -292,7 +292,7 @@ public class CallScilabBridge {
      * @return the ID of the menu in the UIElementMapper
      */
     public static int newMenu() {
-        MenuItem menuItem = ScilabMenuItem.createMenuItem();
+        MenuItem menuItem = ScilabMenuItem.createMenuItem(false);
         return UIElementMapper.add(menuItem);
     }
 
@@ -639,15 +639,15 @@ public class CallScilabBridge {
      */
     public static int newWindow(int figureIndex) {
         Window newWindow = ScilabWindow.createWindow();
-        
+
         newWindow.setTitle(FIGURE_TITLE + figureIndex);
         /* MENUBAR */
         MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
         /* TOOLBAR */
         ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
-        
+
         TextBox infoBar = ScilabTextBox.createTextBox();
-        
+
         // create a tab able to display a figure handle
         Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex, figureIndex);
         /* Destroy the graphic figure when the tab is closed */
@@ -660,7 +660,7 @@ public class CallScilabBridge {
         //   // destroy the figure
         //   delete(get_figure_handle(fid));
         // end
-        String closingCommand = 
+        String closingCommand =
             "if (get_figure_handle(" + figureIndex + ") <> []) then"
             +      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
             +      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)', 'errcatch', 'm');"
@@ -674,13 +674,13 @@ public class CallScilabBridge {
 	((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
 										   + "/modules/gui/images/icons/graphic-window.png").getImage());
         newWindow.addTab(graphicTab);
-        
+
         // link the tab and canvas with their figure
         DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
         //associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
         associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null, figureIndex));
         // don't draw now, figure will show itself when all its parameters will be set
-        
+
         return 0;
     }
 
@@ -1099,7 +1099,7 @@ public class CallScilabBridge {
             } else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
                 parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
             }
-        } 
+        }
     }
 
     /*******************/
@@ -1231,8 +1231,8 @@ public class CallScilabBridge {
     /*                     */
     /***********************/
 
-    
-    
+
+
     /**
      * Create a new Graphic Export File Chooser in Scilab GUIs
      * @param figureId id of the figure to export
@@ -1421,6 +1421,20 @@ public class CallScilabBridge {
     /************************/
 
     /**
+     * Builds a color with composants between 0 and 255
+     * @param red the red value for the color
+     * @param green the green value for the color
+     * @param blue the blue value for the color
+     */
+    public static Color getGoodColor(int red, int green, int blue) {
+        int r = Math.max(0, Math.min(red, 255));
+        int g = Math.max(0, Math.min(green, 255));
+        int b = Math.max(0, Math.min(blue, 255));
+
+        return new Color(r, g, b);
+    }
+
+    /**
      * Set the background color of a Widget
      * @param id the id of the Widget
      * @param red the red value for the color
@@ -1428,7 +1442,7 @@ public class CallScilabBridge {
      * @param blue the blue value for the color
      */
     public static void setWidgetBackgroundColor(int id, int red, int green, int blue) {
-        ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setBackground(new Color(red, green, blue));
+        ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setBackground(getGoodColor(red, green, blue));
     }
 
     /**
@@ -1453,7 +1467,7 @@ public class CallScilabBridge {
      * @param blue the blue value for the color
      */
     public static void setWidgetForegroundColor(int id, int red, int green, int blue) {
-        ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
+        ((Widget) UIElementMapper.getCorrespondingUIElement(id)).setForeground(getGoodColor(red, green, blue));
     }
 
     /**
@@ -1478,7 +1492,7 @@ public class CallScilabBridge {
      * @param blue the blue value for the color
      */
     public static void setFrameBackgroundColor(int id, int red, int green, int blue) {
-        ((Frame) UIElementMapper.getCorrespondingUIElement(id)).setBackground(new Color(red, green, blue));
+        ((Frame) UIElementMapper.getCorrespondingUIElement(id)).setBackground(getGoodColor(red, green, blue));
     }
 
     /**
@@ -1503,7 +1517,7 @@ public class CallScilabBridge {
      * @param blue the blue value for the color
      */
     public static void setFrameForegroundColor(int id, int red, int green, int blue) {
-        ((Frame) UIElementMapper.getCorrespondingUIElement(id)).setForeground(new Color(red, green, blue));
+        ((Frame) UIElementMapper.getCorrespondingUIElement(id)).setForeground(getGoodColor(red, green, blue));
     }
 
     /**
@@ -1910,7 +1924,7 @@ public class CallScilabBridge {
     public static void setListBoxText(int id, String[] text) {
         ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setText(text);
     }
-    
+
     /**
      * Adjusts the view so that the element given by index is displayed at the top of the ListBox.
      * @param id the id of the ListBox
@@ -1919,7 +1933,7 @@ public class CallScilabBridge {
     public static void setListBoxListBoxTop(int id, int index) {
         ((ListBox) UIElementMapper.getCorrespondingUIElement(id)).setListBoxTop(index);
     }
-    
+
     /**
      * Gets the index of the element displayed at the top of the ListBox
      * @param id the id of the ListBox
@@ -2290,7 +2304,7 @@ public class CallScilabBridge {
     public static void selectAllConsoleContents() {
         ScilabConsole.getConsole().selectAll();
     }
-    
+
     /**
      * Select all the console contents
      */
@@ -2368,7 +2382,7 @@ public class CallScilabBridge {
                 SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
                 if (consoleTab != null) {
                     Window helpWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
-                
+
                     ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
                     ConfigManager.saveHelpWindowSize(helpWindow.getDims());
                 }
@@ -2423,12 +2437,12 @@ public class CallScilabBridge {
         SciConsole scilabConsole = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole());
         StyledDocument doc = scilabConsole.getConfiguration().getOutputViewStyledDocument();
         String textToPrint = null;
-        
+
         /* Text selected in the input */
         String strInputSelected = ((JTextPane) scilabConsole.getConfiguration().getInputCommandView()).getSelectedText();
         /* Text selected in the output */
         String strOutputSelected = ((JTextPane) scilabConsole.getConfiguration().getOutputView()).getSelectedText();
-            
+
         try {
             textToPrint = doc.getText(0, doc.getLength());
         } catch (BadLocationException e) {
@@ -2442,7 +2456,7 @@ public class CallScilabBridge {
             printString(textToPrint, new String(CONSOLE));
         }
     }
-    
+
     /**
      * Print a character string
      * @param theString the string to print
@@ -2453,7 +2467,7 @@ public class CallScilabBridge {
         /* TODO use pageHeader */
         return PrinterHelper.printString(theString);
     }
-    
+
     /**
      * Display a dialog to print a file
      * @param fileName the name of the file
@@ -3025,7 +3039,7 @@ public class CallScilabBridge {
     public static boolean useCanvasForDisplay() {
         return SwingScilabCanvasImpl.isGLCanvasEnabled();
     }
-    
+
     /**
      * Display Scilab about box
      */

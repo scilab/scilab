@@ -23,7 +23,7 @@
     <synopsis>getd(path)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>path</term>

@@ -280,6 +280,10 @@ msgstr ""
 "La respuesta parece ser mayor que el límite superior de búsqueda %f\n"
 
 #, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr ""
+
+#, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr ""
 "La respuesta parece ser menor que el límite inferior de búsqueda %f\n"
@@ -316,14 +320,6 @@ msgstr "F,Dfn y Dfd"
 
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr "F,Dfn,Dfd y Pnonc"
-
-#, c-format
-msgid ""
-"Input argument %c is out of range.\n"
-"Bound exceeded: %f\n"
-msgstr ""
-"El argumento de entrada %c está fuera de rango.\n"
-"Límite excedido: %f\n"
 
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"

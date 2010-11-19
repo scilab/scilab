@@ -36,17 +36,32 @@ public class ScilabMenuItem extends ScilabMenu implements MenuItem {
 	 * Constructor
 	 */
 	protected ScilabMenuItem() {
-        component = ScilabBridge.createMenuItem();
+        this(true);
 	}
 
+	/**
+	 * Constructor
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 */
+	protected ScilabMenuItem(boolean autoCheckedMode) {
+        component = ScilabBridge.createMenuItem(autoCheckedMode);
+	}
 	/**
 	 * Creates a Scilab MenuItem object
 	 * @return the created MenuItem
 	 */
 	public static MenuItem createMenuItem() {
-		return new ScilabMenuItem();
+		return createMenuItem(true);
 	}
 	
+	/**
+	 * Creates a Scilab MenuItem object
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 * @return the created MenuItem
+	 */
+	public static MenuItem createMenuItem(boolean autoCheckedMode) {
+		return new ScilabMenuItem(autoCheckedMode);
+	}
 	/**
 	 * Gets this Bridge component object
 	 * @return this Bridge component object

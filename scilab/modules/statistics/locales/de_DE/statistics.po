@@ -261,6 +261,10 @@ msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "Antwort scheint größer als die höchste Suchgrenze zu sein %f\n"
 
 #, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr ""
+
+#, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr "Antwort scheint kleiner als kleinste Suchgrenze zu sein %f\n"
 
@@ -296,14 +300,6 @@ msgstr "F,Dfn und Dfd"
 
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr "F,Dfn,Dfd und Pnonc"
-
-#, c-format
-msgid ""
-"Input argument %c is out of range.\n"
-"Bound exceeded: %f\n"
-msgstr ""
-"Eingangsargument %c ist außerhalb der Grenze.\n"
-"Schranken überschritten %f\n"
 
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"

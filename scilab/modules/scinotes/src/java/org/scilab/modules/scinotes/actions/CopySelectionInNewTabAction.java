@@ -59,8 +59,10 @@ public final class CopySelectionInNewTabAction extends DefaultAction {
         final MenuItem menuitem = createMenu(label, null, new CopySelectionInNewTabAction(label, editor), key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
-                    String selection = editor.getTextPane().getSelectedText();
-                    menuitem.setEnabled(selection != null);
+                    if (editor.getTextPane() != null) {
+                        String selection = editor.getTextPane().getSelectedText();
+                        menuitem.setEnabled(selection != null);
+                    }
                 }
             });
 

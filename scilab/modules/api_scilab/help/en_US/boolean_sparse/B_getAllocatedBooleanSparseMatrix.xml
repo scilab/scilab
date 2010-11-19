@@ -30,7 +30,7 @@
 		<synopsis>int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)</synopsis>
 	</refsynopsisdiv>
 	<refsection>
-		<title>Parameters</title>
+		<title>Arguments</title>
 		<variablelist>
 			<varlistentry>
 				<term>_pvCtx</term>

@@ -99,10 +99,12 @@ public class SelectBlockAction extends DefaultAction {
         final MenuItem menuitem = createMenu(label, null, sba, key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
-                    ScilabEditorPane sep = editor.getTextPane();
-                    boolean block = ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, false).getType());
-                    block = block || ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, true).getType());
-                    menuitem.setEnabled(block);
+                    if (editor.getTextPane() != null) {
+                        ScilabEditorPane sep = editor.getTextPane();
+                        boolean block = ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, false).getType());
+                        block = block || ScilabLexerConstants.isMatchable(sep.getKeywordEvent(!sba.isPopup, true).getType());
+                        menuitem.setEnabled(block);
+                    }
                 }
             });
 

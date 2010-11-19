@@ -37,6 +37,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     char *expandedFilename = NULL;
     char *Format = NULL;
     char *separator = NULL;
+    BOOL bIsDefaultSeparator = TRUE;
 
     fscanfMatResult *results = NULL;
 
@@ -83,10 +84,11 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
             Scierror(999,_("%s: Memory allocation error.\n"), fname);
             return 0;
         }
+        bIsDefaultSeparator = FALSE;
     }
     else
     {
-        separator = strdup(DEFAULT_FSCANFMAT_SEPARATOR);
+        bIsDefaultSeparator = TRUE;
     }
 
     if (Rhs >= 2)
@@ -184,7 +186,29 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     }
 
     expandedFilename = expandPathVariable(filename);
-    results = fscanfMat(expandedFilename, Format, " ", TRUE);
+    if (bIsDefaultSeparator)
+    {
+        #define NB_DEFAULT_SUPPORTED_SEPARATORS 2
+
+        /* bug 8148 */
+        /* default separator can be a space or a tabulation */
+        char *supportedSeparators[NB_DEFAULT_SUPPORTED_SEPARATORS] = {DEFAULT_FSCANFMAT_SEPARATOR, "\t"};
+        int i = 0;
+
+        for (i = 0; i < NB_DEFAULT_SUPPORTED_SEPARATORS; i++)
+        {
+            results = fscanfMat(expandedFilename, Format, supportedSeparators[i], TRUE);
+            if (results && results->err == FSCANFMAT_NO_ERROR)  
+            {
+                break;
+            }
+        }
+    }
+    else
+    {
+        results = fscanfMat(expandedFilename, Format, separator, TRUE);
+    }
+
     if (expandedFilename) {FREE(expandedFilename); expandedFilename = NULL;}
     if (Format) {FREE(Format); Format = NULL;}
     if (separator) {FREE(separator); separator = NULL;}
@@ -281,7 +305,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     }
 
     if (filename) {FREE(filename); filename = NULL;}
-    
+
 
     return 0;
 }

@@ -27,7 +27,7 @@ copy(h,h_axes)
 h_copy=copy(h)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>h</term>

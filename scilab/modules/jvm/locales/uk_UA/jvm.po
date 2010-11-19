@@ -201,9 +201,6 @@ msgstr "JNI: не вистачає пам’яті"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Інтерфейс JVM у режимі -nogui або -nwni вимкнено.\n"
 
-msgid "Scilab Console"
-msgstr "Консоль Scilab"
-
 msgid "Scilab Java module not installed.\n"
 msgstr "Модуль Java Scilab не встановлено.\n"
 

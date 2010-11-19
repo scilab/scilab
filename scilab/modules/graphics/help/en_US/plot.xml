@@ -26,7 +26,7 @@ plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,
 plot(&lt;axes_handle&gt;,...)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

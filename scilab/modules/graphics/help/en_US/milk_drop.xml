@@ -23,7 +23,7 @@
     <synopsis>z=milk_drop(x,y)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>

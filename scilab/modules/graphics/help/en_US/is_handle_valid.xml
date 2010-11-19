@@ -23,7 +23,7 @@
     <synopsis>isValid = is_handle_valid(h)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>h</term>

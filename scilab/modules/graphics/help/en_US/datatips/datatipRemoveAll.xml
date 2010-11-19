@@ -21,7 +21,7 @@
     <synopsis>datatipRemoveAll(curve_handles)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>curve_handles</term>

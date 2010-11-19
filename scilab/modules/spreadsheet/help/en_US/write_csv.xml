@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>write_csv</refname>
 
-    <refpurpose>Read comma-separated value file</refpurpose>
+    <refpurpose>Write comma-separated value file</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -34,7 +34,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -57,7 +57,8 @@
         <term>sep</term>
 
         <listitem>
-          <para>column separator mark, by default a tabulation: ascii(9)</para>
+          <para>column separator mark, by default a tabulation: ascii(9) or
+          "\t".</para>
         </listitem>
       </varlistentry>
 
@@ -68,8 +69,6 @@
           <para>decimal mark '.' or ',' by default a ','</para>
         </listitem>
       </varlistentry>
-
-      
     </variablelist>
   </refsection>
 
@@ -78,6 +77,7 @@
 
     <para>write_csv(M, filename) writes matrix M into filename as
     comma-separated values. The filename input is a string.</para>
+
     <para>if the file 'filename' already exists, it is overwritten.</para>
   </refsection>
 
@@ -111,7 +111,7 @@ mgetl(TMPDIR+'/foo.csv')
       <member><link linkend="evstr">evstr</link></member>
 
       <member><link linkend="mgetl">mgetl</link></member>
-      
+
       <member><link linkend="format">format</link></member>
     </simplelist>
   </refsection>

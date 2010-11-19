@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Vincent Couvert
+ * Copyright (C) 2009-2010 - DIGITEO - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,7 +37,16 @@ public class ScilabCheckBoxMenuItemBridge {
 	 * @return the created MenuItem
 	 */
 	public static SimpleCheckBoxMenuItem createCheckBoxMenuItem() {
-		return new SwingScilabCheckBoxMenuItem();
+		return createCheckBoxMenuItem(true);
+	}
+	
+	/**
+	 * Creates a Scilab MenuItem
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 * @return the created MenuItem
+	 */
+	public static SimpleCheckBoxMenuItem createCheckBoxMenuItem(boolean autoCheckedMode) {
+		return new SwingScilabCheckBoxMenuItem(autoCheckedMode);
 	}
 	
 	/**

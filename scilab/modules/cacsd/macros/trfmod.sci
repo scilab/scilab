@@ -1,15 +1,15 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 
-// 
+// Copyright (C) INRIA -
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function h=trfmod(h,job)
 // hm=trfmod(h [,job])
-// To visualize the pole-zero structure of a SISO transfer function h 
+// To visualize the pole-zero structure of a SISO transfer function h
 //     job='p' : visualization of polynomials (default)
 //     job='f' : visualization of natural frequencies and damping
 //
@@ -41,19 +41,21 @@ function h=trfmod(h,job)
   else
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"trfmod",1))
   end
-  
-  
+
+
   //
-  format('v',15)
+  ft = format();
+  format('v', 15);
+  
   [lhs,rhs]=argn(0)
   if rhs==1 then job='p',end
   //
   if type(h('num'))==1 then h('num')=poly(h('num'),varn(h('den')),'c'),end
   if type(h('den'))==1 then h('den')=poly(h('den'),varn(h('num')),'c'),end
-  
+
   var=varn(h('num')),nv=length(var);
   while part(var,nv)==' ' then nv=nv-1,end;var=part(var,1:nv);
-  
+
   fnum=polfact(h('num'))
   fden=polfact(h('den'))
   g=coeff(fnum(1))/coeff(fden(1))
@@ -67,12 +69,12 @@ function h=trfmod(h,job)
       num=[num;pol2str(p)]
     else
       if degree(p)==2 then
-	p=coeff(p)
-	omeg=sqrt(p(1))
-	xsi=p(2)/(2*omeg)
-	num=[num;string(omeg)+'    '+string(xsi)]
+    p=coeff(p)
+    omeg=sqrt(p(1))
+    xsi=p(2)/(2*omeg)
+    num=[num;string(omeg)+'    '+string(xsi)]
       else
-	num=[num;string(-coeff(p,0))]
+    num=[num;string(-coeff(p,0))]
       end
     end
   end
@@ -84,18 +86,18 @@ function h=trfmod(h,job)
       den=[den;pol2str(p)]
     else
       if degree(p)==2 then
-	p=coeff(p)
-	omeg=sqrt(p(1))
-	xsi=p(2)/(2*omeg)
-	den=[den;string(omeg)+'    '+string(xsi)]
+    p=coeff(p)
+    omeg=sqrt(p(1))
+    xsi=p(2)/(2*omeg)
+    den=[den;string(omeg)+'    '+string(xsi)]
       else
-	den=[den;string(-coeff(p,0))]
+    den=[den;string(-coeff(p,0))]
       end
     end
   end
-  
+
   txt=[_("Gain :");string(g);_("Numerator :");num;_("Denominator :");den]
-  
+
   id=[]
   if job=='p' then
     tit=[gettext("Irreducible Factors of transfer function (click below)")]
@@ -107,7 +109,7 @@ function h=trfmod(h,job)
     id=find(t==_("Denominator :"))
   end
   txt=t;
-  
+
   tgain=txt(2)
   tnum=txt(4:id-1)
   tden=txt(id+1:prod(size(txt)))
@@ -119,23 +121,23 @@ function h=trfmod(h,job)
     if job=='p' then
       t=' ';
       for k=1:length(txt),
-	tk=part(txt,k),
-	if tk<>' ' then t=t+tk,end
+    tk=part(txt,k),
+    if tk<>' ' then t=t+tk,end
       end
       f=1;if t<>' ' then f=evstr(t),end
     else
       if txt==part(' ',1:length(txt)) then
-	f=1
+    f=1
       else
-	f=evstr(txt)
-	select prod(size(f))
-	case 1 then
-	  f=poly(f,var)
-	case 2 then
-	  f=poly([f(1)*f(1), 2*f(1)*f(2),1],var,'c')
-	else 
-	  error(msprintf(gettext("%s: Incorrect answer.\n"),"trfmod"))
-	end
+    f=evstr(txt)
+    select prod(size(f))
+    case 1 then
+      f=poly(f,var)
+    case 2 then
+      f=poly([f(1)*f(1), 2*f(1)*f(2),1],var,'c')
+    else
+      error(msprintf(gettext("%s: Incorrect answer.\n"),"trfmod"))
+    end
       end
     end
     num=num*f
@@ -148,23 +150,23 @@ function h=trfmod(h,job)
     if job=='p' then
       t=' ';
       for k=1:length(txt),
-	tk=part(txt,k),
-	if tk<>' ' then t=t+tk,end
+    tk=part(txt,k),
+    if tk<>' ' then t=t+tk,end
       end
       f=1;if t<>' ' then f=evstr(t),end
     else
       if txt==part(' ',1:length(txt)) then
-	f=1
+    f=1
       else
-	f=evstr(txt)
-	select prod(size(f))
-	case 1 then
-	  f=poly(f,var)
-	case 2 then
-	  f=poly([f(1)*f(1), 2*f(1)*f(2),1],var,'c')
-	else 
-	  error(msprintf(gettext("%s: Incorrect answer.\n"),"trfmod"))
-	end
+    f=evstr(txt)
+    select prod(size(f))
+    case 1 then
+      f=poly(f,var)
+    case 2 then
+      f=poly([f(1)*f(1), 2*f(1)*f(2),1],var,'c')
+    else
+      error(msprintf(gettext("%s: Incorrect answer.\n"),"trfmod"))
+    end
       end
     end
     den=den*f
@@ -172,6 +174,6 @@ function h=trfmod(h,job)
   x=evstr(tgain)/coeff(den,degree(den))
   h('num')=num*x
   h('den')=den/coeff(den,degree(den))
-  format(10)
+  format(ft(2),ft(1));
   if flag=='lss' then h=tf2ss(h),end
 endfunction

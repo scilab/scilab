@@ -14,12 +14,16 @@ package org.scilab.modules.graph.shape;
 
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 
 import org.apache.batik.ext.awt.RenderingHintsKeyExt;
 import org.scilab.modules.graph.ScilabCanvas;
 
 import com.mxgraph.canvas.mxGraphics2DCanvas;
 import com.mxgraph.shape.mxImageShape;
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
 
 /**
@@ -47,7 +51,7 @@ public class SvgShape extends mxImageShape {
 			canvas.getGraphics().setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
 			canvas.getGraphics().setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING, RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
 			
-			final Rectangle rect = state.getRectangle();
+			final Rectangle rect = getImageBounds(canvas, state);
 			canvas.getGraphics().translate(rect.x, rect.y);
 			
 			((ScilabCanvas) canvas).paintSvgBackgroundImage(rect.width, rect.height);
@@ -55,5 +59,25 @@ public class SvgShape extends mxImageShape {
 		} else {
 			super.paintShape(canvas, state);
 		}
+	}
+	
+	/**
+	 * Get the image bounds for an SVG image
+	 * 
+	 * @param canvas the current canvas
+	 * @param state the current state
+	 * @return the bounds of the image
+	 * @see com.mxgraph.shape.mxImageShape#getImageBounds(com.mxgraph.canvas.mxGraphics2DCanvas, com.mxgraph.view.mxCellState)
+	 */
+	@Override
+	public Rectangle getImageBounds(mxGraphics2DCanvas canvas, mxCellState state) {
+		final double rotation = mxUtils.getDouble(state.getStyle(),
+				mxConstants.STYLE_ROTATION, 0);
+		final AffineTransform transform = new AffineTransform();
+		transform.rotate(Math.toRadians(rotation), state.getCenterX(),
+				state.getCenterY());
+		final Shape shape = transform.createTransformedShape(state
+				.getRectangle());
+		return shape.getBounds();
 	}
 }

@@ -24,7 +24,7 @@
 fgrayplot(x,y,f,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>

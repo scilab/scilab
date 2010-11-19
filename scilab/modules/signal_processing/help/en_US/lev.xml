@@ -12,7 +12,7 @@
     <synopsis>[ar,sigma2,rc]=lev(r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>

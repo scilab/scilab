@@ -12,7 +12,7 @@
     <synopsis>[an]=remezb(nc,fg,ds,wt)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>nc</term>

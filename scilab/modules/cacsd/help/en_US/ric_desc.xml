@@ -24,7 +24,7 @@
 [X1,X2,zero]=ric_desc(H [,E])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>H,E</term>

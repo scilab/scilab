@@ -12,7 +12,7 @@
     <synopsis>rep=x_choices(title,items)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>title</term>

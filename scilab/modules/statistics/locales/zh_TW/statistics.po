@@ -220,6 +220,10 @@ msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "答案似乎大於最大搜索界限 %f\n"
 
 #, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr ""
+
+#, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr "答案似乎小於最小搜索界限 %f\n"
 
@@ -255,14 +259,6 @@ msgstr "F,Dfn 及 Dfd"
 
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr "F,Dfn,Dfd 及 Pnonc"
-
-#, c-format
-msgid ""
-"Input argument %c is out of range.\n"
-"Bound exceeded: %f\n"
-msgstr ""
-"輸入參數 %c 超過限制.\n"
-"超過界限: %f\n"
 
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"

@@ -25,7 +25,7 @@
 plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X, Y, Z:</term>

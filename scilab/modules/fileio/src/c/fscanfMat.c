@@ -42,7 +42,7 @@
 /*--------------------------------------------------------------------------*/
 #define NB_FORMAT_SUPPORTED 7 
 static char *supportedFormat[NB_FORMAT_SUPPORTED] = 
-                {"lf", "lg", "d", "i", "e", "f", "g"};
+{"lf", "lg", "d", "i", "e", "f", "g"};
 /*--------------------------------------------------------------------------*/
 static BOOL itCanBeMatrixLine(char *line, char *format, char *separator);
 static int getNbColumnsInLine(char *line, char *format, char *separator);
@@ -141,9 +141,9 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator, BOOL a
     nbColumns = getNumbersColumnsInLines(lines, nblines, nbLinesTextDetected, format, separator);
 
     dValues = getDoubleValuesFromLines(lines, nblines,
-                                       nbLinesTextDetected,
-                                       format, separator,
-                                       nbColumns, nbRows);
+        nbLinesTextDetected,
+        format, separator,
+        nbColumns, nbRows);
     if (dValues)
     {
         resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
@@ -228,7 +228,7 @@ void freeFscanfMatResult(fscanfMatResult *resultStruct)
 /*--------------------------------------------------------------------------*/
 static BOOL itCanBeMatrixLine(char *line, char *format, char *separator)
 {
-    #define SIZEKEYWORD 4 /* -Inf */
+#define SIZEKEYWORD 4 /* -Inf */
     char str[SIZEKEYWORD];
     double dValue = 0.;
     int ierr = 0;
@@ -333,21 +333,23 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                 }
                 else
                 {
-                    #define SIZEKEYWORD 4 /* -Inf */
+#define SIZEKEYWORD 4 /* -Inf */
                     char str[SIZEKEYWORD];
                     strcpy(str, "");
                     ierr = sscanf(splittedStr[i], "%4s", str);
                     if ((ierr != 0) && (ierr != EOF))
                     {
                         if ( (strcmp(str, NanString) == 0) ||
-                             (strcmp(str, NegInfString) == 0) ||
-                             (strcmp(str, InfString) == 0) )
+                            (strcmp(str, NegInfString) == 0) ||
+                            (strcmp(str, InfString) == 0) )
                         {
                             nbColums++;
                         }
                         else
                         {
                             freeArrayOfString(splittedStr, nbTokens);
+                            /* bug 6889 */
+                            if (nbColums) nbColums--;
                             return nbColums;
                         }
                     }
@@ -519,7 +521,7 @@ static double *getDoubleValuesInLine(char *line,
                 }
                 else
                 {
-                    #define SIZEKEYWORD 4 /* -Inf */
+#define SIZEKEYWORD 4 /* -Inf */
                     char str[SIZEKEYWORD];
                     strcpy(str, "");
                     ierr = sscanf(splittedStr[i], "%4s", str);

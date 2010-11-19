@@ -24,7 +24,7 @@
 // options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dir=string</term>

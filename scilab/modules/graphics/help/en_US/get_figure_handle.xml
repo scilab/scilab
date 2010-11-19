@@ -23,7 +23,7 @@
     <synopsis>f = get_figure_handle(figure_id)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>figure_id</term>

@@ -23,7 +23,7 @@
     <synopsis>res = pvm_config()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>res</term>

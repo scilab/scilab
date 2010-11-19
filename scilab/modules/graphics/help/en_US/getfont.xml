@@ -40,7 +40,7 @@ fnt=getfont(S=str,font=[fId,fSize])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

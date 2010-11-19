@@ -39,7 +39,16 @@ public class ScilabMenuItemBridge {
 	 * @return the created MenuItem
 	 */
 	public static SimpleMenuItem createMenuItem() {
-		return new SwingScilabMenuItem();
+		return createMenuItem(true);
+	}
+	
+	/**
+	 * Creates a Scilab MenuItem
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 * @return the created MenuItem
+	 */
+	public static SimpleMenuItem createMenuItem(boolean autoCheckedMode) {
+		return new SwingScilabMenuItem(autoCheckedMode);
 	}
 	
 	/**

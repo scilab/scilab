@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Vincent Couvert
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -37,8 +37,11 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 
 import org.scilab.modules.localization.Messages;
+
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
 /**
  * Create a menuBar from an XML file
@@ -47,10 +50,10 @@ import org.scilab.modules.localization.Messages;
 public final class MenuBarBuilder {
 
 	private static final String FILE_NOT_FOUND = "Could not find file: ";
-	
+
 	private static final String CANNOT_CREATE_MENUBAR = "Cannot create MenuBar.\n"
 								+ "Check if file *_menubar.xml is available and valid.";
-	
+
 	private static int figureIndex;
 
 	/**
@@ -70,9 +73,9 @@ public final class MenuBarBuilder {
 	 * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
 	 */
 	public static Object buildMenuBar(Class[] resultClass, String fileToLoad) throws SAXException, IOException, ParserConfigurationException {
-		
+
 		InvocationHandler invocationHandler = new MenuBarConfigurationHandler(fileToLoad);
-		
+
 		return Proxy.newProxyInstance(invocationHandler.getClass().getClassLoader(), resultClass, invocationHandler);
 	}
 
@@ -84,7 +87,7 @@ public final class MenuBarBuilder {
 	public static MenuBar buildMenuBar(String fileToLoad) {
 		return buildMenuBar(fileToLoad, 0);
 	}
-	
+
 	/**
 	 * Create a Scilab menubar from data in a XML file
 	 * @param fileToLoad XML file to load
@@ -92,13 +95,13 @@ public final class MenuBarBuilder {
 	 * @return the menubar created
 	 */
 	public static MenuBar buildMenuBar(String fileToLoad, int figureIndex) {
-		
+
 		MenuBarBuilder.figureIndex = figureIndex;
-		
+
 		MenuBar menubar = ScilabMenuBar.createMenuBar();
-		
+
 		try {
-			MenuBarConfiguration menuBarConfig = 
+			MenuBarConfiguration menuBarConfig =
 					(MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
 			menuBarConfig.addMenus(menubar);
 		} catch (IllegalArgumentException e) {
@@ -114,12 +117,12 @@ public final class MenuBarBuilder {
 			System.err.println(CANNOT_CREATE_MENUBAR);
 			System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
 		}
-		
+
 		return menubar;
-	}	
+	}
 
 	/**
-	 * Class used to read the XMl file 
+	 * Class used to read the XMl file
 	 */
 	private static class MenuBarConfigurationHandler implements InvocationHandler {
 		protected static final String LABEL = "label";
@@ -128,6 +131,7 @@ public final class MenuBarBuilder {
 		protected static final String SUBMENU = "submenu";
 		protected static final String SEPARATOR = "separator";
 		protected static final String ENABLED = "enabled";
+	        protected static final String ACCELERATOR = "accelerator";
 		protected static final String CALLBACK = "callback";
 		protected static final String TYPE = "type";
 		protected static final String INSTRUCTION = "instruction";
@@ -146,7 +150,7 @@ public final class MenuBarBuilder {
 		 * @throws ParserConfigurationException can be thrown when an error occurs while parsing the file
 		 */
 		public MenuBarConfigurationHandler(String xmlFile) throws SAXException, IOException, ParserConfigurationException {
-			
+
 			if (!new File(xmlFile).exists()) {
 				throw new java.io.IOException();
 			}
@@ -173,7 +177,7 @@ public final class MenuBarBuilder {
 		 * @throws NoSuchMethodException thrown when invoking a non-existing method
 		 * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[])
 		 */
-		public Object invoke(Object proxy, Method method, Object[] args) 
+		public Object invoke(Object proxy, Method method, Object[] args)
 			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 			if (internalMethodNames.contains(method.getName())) {
 				return getClass().getMethod(method.getName(), method.getParameterTypes()).invoke(this, args);
@@ -191,19 +195,19 @@ public final class MenuBarBuilder {
 
 			NodeList menus = dom.getElementsByTagName(MENU);
 			Menu menu = ScilabMenu.createMenu();
-			for (int i = 0; i < menus.getLength(); i++) {				
-				menu = ScilabMenu.createMenu();				
+			for (int i = 0; i < menus.getLength(); i++) {
+				menu = ScilabMenu.createMenu();
 				menu.setText(Messages.gettext(menus.item(i).getAttributes().getNamedItem(LABEL).getNodeValue()));
 				if (menus.item(i).getAttributes().getNamedItem(MNEMONIC) != null) {
 					menu.setMnemonic(menus.item(i).getAttributes().getNamedItem(MNEMONIC).getNodeValue().charAt(0));
 				}
 				if (menus.item(i).getAttributes().getNamedItem(ENABLED) != null) {
 					menu.setEnabled(menus.item(i).getAttributes().getNamedItem(ENABLED).getNodeValue().equals(TRUE));
-				}			
+				}
 				addSubMenus(menu, i);
 				mb.add(menu);
 			}
-			
+
 		}
 
 		/**
@@ -214,30 +218,33 @@ public final class MenuBarBuilder {
 		public void addSubMenus(Menu menu, int index) {
 			Node submenu = dom.getElementsByTagName(MENU).item(index).getFirstChild();
 			//Menu menuChild = ScilabMenu.createMenu();
-			
-			while (submenu != null) {				
+
+			while (submenu != null) {
 				if (submenu.getNodeName() == SEPARATOR) {
 					// Add a separator
 					menu.addSeparator();
-				} else if (submenu.getNodeName() == SUBMENU) {					
-					// Add a submenu					
+				} else if (submenu.getNodeName() == SUBMENU) {
+					// Add a submenu
 					MenuItem menuItem = ScilabMenuItem.createMenuItem();
 					// Add the submenu to the parent menu
 					menu.add(menuItem);
 
 					// First we have to read its attributes
-					NamedNodeMap attributes = submenu.getAttributes();					
-					
+					NamedNodeMap attributes = submenu.getAttributes();
+
 					for (int i = 0; i < attributes.getLength(); i++) {
 						if (attributes.item(i).getNodeName() == LABEL) {
 							menuItem.setText(Messages.gettext(attributes.item(i).getNodeValue()));
 						} else if (attributes.item(i).getNodeName() == MNEMONIC) {
 							menuItem.setMnemonic(attributes.item(i).getNodeValue().charAt(0));
-						} else if (attributes.item(i).getNodeName() == ENABLED) {
-							menuItem.setEnabled(attributes.item(i).getNodeValue().equals(TRUE));
-						}
+                                                } else if (attributes.item(i).getNodeName() == ENABLED) {
+                                                        menuItem.setEnabled(attributes.item(i).getNodeValue().equals(TRUE));
+                                                } else if (attributes.item(i).getNodeName() == ACCELERATOR) {
+                                                        SwingScilabMenuItem smenuitem = (SwingScilabMenuItem) menuItem.getAsSimpleMenuItem();
+                                                        smenuitem.setAccelerator(ScilabKeyStroke.getKeyStroke((String) attributes.item(i).getNodeValue()));
+                                                }
 					}
-					
+
 					// Then we get its callback (if exists)
 					Node callback = submenu.getFirstChild();
 					while (callback != null) {
@@ -257,27 +264,27 @@ public final class MenuBarBuilder {
 							}
 						} else if (callback.getNodeName() == SUBMENU) {
 							addSubMenuItem(menuItem, callback);
-						}						
+						}
 						// Read next child
 						callback = callback.getNextSibling();
-					}					
-					
+					}
+
 				}
 				// Read next child
 				submenu = submenu.getNextSibling();
 			}
 		}
-		
+
 		/**
 		 * Add submenu for menu
 		 * @param menuItem will become a menu with subMenuItems
 		 * @param node to get attributs of the menu
 		 */
-		public void addSubMenuItem(MenuItem menuItem, Node node) {				
+		public void addSubMenuItem(MenuItem menuItem, Node node) {
 
 			NamedNodeMap attributes = node.getAttributes();
 			MenuItem subMenuItem = ScilabMenuItem.createMenuItem();
-			
+
 			for (int i = 0; i < attributes.getLength(); i++) {
 				if (attributes.item(i).getNodeName() == LABEL) {
 					subMenuItem.setText(Messages.gettext(attributes.item(i).getNodeValue()));
@@ -308,15 +315,15 @@ public final class MenuBarBuilder {
 					}
 				} else if (callback.getNodeName() == SUBMENU) {
 					addSubMenuItem(subMenuItem, callback);
-				}						
+				}
 				// Read next child
 				callback = callback.getNextSibling();
-			}				
+			}
 			menuItem.add(subMenuItem);
-			
-		}		
-		
-		
+
+		}
+
+
 		/**
 		 * Replace pattern [SCILAB_FIGURE_ID] by the figure index
 		 * @param initialString string read in XML file

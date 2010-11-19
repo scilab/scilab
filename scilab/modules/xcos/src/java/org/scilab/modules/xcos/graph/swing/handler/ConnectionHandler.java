@@ -84,8 +84,12 @@ public class ConnectionHandler extends mxConnectionHandler {
 			}
 			
 			// scale and set the point
-			mxPoint pt = graphComponent.getPointForEvent(e);
-			points.add(pt);
+			// extracted from mxConnectPreview#transformScreenPoint
+			{
+				final mxPoint tr = graph.getView().getTranslate();
+				final double scale = graph.getView().getScale();
+				points.add(new mxPoint(x / scale - tr.getX(), y / scale - tr.getY()));
+			}
 
 			// update the preview and set the flag
 			connectPreview.update(e, null, x, y);

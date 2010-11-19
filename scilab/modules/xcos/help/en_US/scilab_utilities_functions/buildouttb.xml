@@ -51,7 +51,7 @@ Build an initialized outtb list.
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_buildouttb">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">outtb :</emphasis> a list of size n.</para>

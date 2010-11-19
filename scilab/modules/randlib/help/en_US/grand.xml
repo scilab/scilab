@@ -29,7 +29,7 @@
       S=grand(action [,q1,....,ql])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>m, n</term>

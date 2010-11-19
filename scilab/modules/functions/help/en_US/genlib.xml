@@ -24,7 +24,7 @@
 genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lib_name:  </term>

@@ -12,7 +12,7 @@
     <synopsis>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>h, f, g</term>

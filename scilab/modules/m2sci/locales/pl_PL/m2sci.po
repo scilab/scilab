@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-05-04 19:01+0000\n"
-"Last-Translator: Kamil Strojek <Unknown>\n"
+"PO-Revision-Date: 2010-07-07 12:06+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-04 21:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -27,7 +26,7 @@ msgstr " --Plik %s zawiera więcej niż jedną funkcję-- "
 
 #, c-format
 msgid " -- Temporary files put in: %s -- "
-msgstr " --Tymczasowe pliki umieścić w: %s-- "
+msgstr " --Tymczasowe pliki umieszczono w: %s-- "
 
 msgid " may be replaced by:"
 msgstr " może być zastąpiony przez:"
@@ -36,22 +35,21 @@ msgstr " może być zastąpiony przez:"
 msgid ""
 "%d Matlab Function(s) not yet converted, original calling sequence used:"
 msgstr ""
-"%d: Funkcja(-e) programu Matlab jeszcze nie zaimplementowane: użyj "
-"oryginalnej kolejności połączeń:"
+"%d: Konwersja tej(tych) funkcji Matlab jeszcze nie zrealizowana: "
+"pozostawiono kod wejściowy:"
 
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
 msgstr ""
-"%d: Funkcje toolbox(-ów) programu Matlab, użyj oryginalnej kolejności "
-"połączeń:"
+"%d: Funkcje toolbox(-ów) programu Matlab, pozostawiono kod wejściowy:"
 
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
-msgstr "%d: Nieznana funkcja(-e). użyj oryginalnej kolejności połączeń:"
+msgstr "%d: Nieznana funkcja(-e). pozostawiono kod wejściowy:"
 
 #, c-format
 msgid "%graphicswindow set to default value Handle."
-msgstr "%gOkno grafiki  ustawione na domyślną wartość funkcji handle."
+msgstr "%graphicswindow  ustawione na domyślną wartość Handle."
 
 #, c-format
 msgid "%s (See fileinfo() function)."
@@ -83,7 +81,7 @@ msgstr "%s opcja."
 
 #, c-format
 msgid "%s when called with three outputs."
-msgstr "%s wywołoanie z trzech wyjść."
+msgstr "%s kiedy wywołuje się z trzema parametrami wyjściowymi."
 
 #, c-format
 msgid "%s will be ignored at run time."
@@ -91,7 +89,7 @@ msgstr "%s będą ignorowane w czasie wykonywania."
 
 #, c-format
 msgid "%s with two outputs."
-msgstr "%s z dwoma wyjściami."
+msgstr "%s z dwoma parametrami wyjściowymi."
 
 #, c-format
 msgid "%s() called with skip parameter."
@@ -99,15 +97,15 @@ msgstr "%s() wywołany z pominiętym parametrem."
 
 #, c-format
 msgid "%s, flag IGNORED."
-msgstr "%s, oznaczenie zignorowane."
+msgstr "%s, flag zignorowany."
 
 #, c-format
 msgid "%s: %s module is not installed.\n"
-msgstr "%s: %s moduł nie jest zainstalowany.\n"
+msgstr "%s: moduł %s nie jest zainstalowany.\n"
 
 #, c-format
 msgid "%s: Output value set to ''on''."
-msgstr "%s: Wartość wyjściowa ustawiona na  \"włączony\""
+msgstr "%s: Wartość wyjściowa ustawiona na  \"on\""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -134,7 +132,7 @@ msgstr "(Znajdź tę funkcje w matlab/%s)."
 
 #, c-format
 msgid "(Warning name conflict: function name changed from %s to %s)."
-msgstr "(Uwaga wystąpił konflikt nazw: zmieniono nazwę z %s do %s)."
+msgstr "(Uwaga wystąpił konflikt nazw: zmieniono nazwę z %s na %s)."
 
 #, c-format
 msgid "****** %s: Functions of mfile2sci() session ******"
@@ -151,13 +149,13 @@ msgid "-- Creation of [%s] (Macros) --\n"
 msgstr "-- Tworzenie [%s] (Makra) --\n"
 
 msgid "-all option ignored."
-msgstr "-wszystkie opcje zignorowane."
+msgstr "opcja -all zignorowana."
 
 msgid "//  dims(i,:) is the ith output argument dimensions vector"
-msgstr "// dims(i,:) jest i-tym argumentem wektora wyjściowego"
+msgstr "// dims(i,:) jest wektorem wymiarów i-tego argumentu wyjściowego"
 
 msgid "//  prop(i) is the ith output argument property"
-msgstr "//prop(i) jest i-tym argumentem wyjściowym własności"
+msgstr "//  prop(i) jest własnością i-tego argumentu wyjściowego"
 
 #, c-format
 msgid ""
@@ -166,9 +164,13 @@ msgid ""
 "// Input: tree = Matlab funcall tree\n"
 "// Output: tree = Scilab equivalent for tree"
 msgstr ""
+"// Copyright INRIA (wygenerowany przez M2SCI)\n"
+"// Funkcja konwersji plików Matlab %s()\n"
+"// Wejście: drzewo wywołań funkcji w Matlab\n"
+"// Wyjście: odpowiednik go w Scilab"
 
 msgid "// Display mode"
-msgstr "//Funkcje wyświetlania"
+msgstr "//Tryb wyświetlania"
 
 msgid "// Display warning for floating point exception"
 msgstr "// Wyświetl ostrzeżenie o wyjątkach zmiennoprzecinkowych"
@@ -180,9 +182,13 @@ msgid ""
 "// Input: tree = Matlab funcall tree\n"
 "// Output: tree = Scilab equivalent for tree"
 msgstr ""
+"// Wygenerowano przez M2SCI\n"
+"// Funkcja konwersji plików Matlab %s()\n"
+"// Wejście: drzewo wywołań funkcji w Matlab\n"
+"// Wyjście: odpowiednik go w Scilab"
 
 msgid "// Inference for varargout"
-msgstr "// Wnioskowanie do varargout"
+msgstr "// Wyjście do varargout"
 
 msgid "// Number of arguments in function call"
 msgstr "// Liczba argumentów w wywołaniu funkcji"
@@ -205,7 +211,7 @@ msgid "3"
 msgstr "3"
 
 msgid ": The 24 first characters of the files names are equal: "
-msgstr ": 24 pierwsze znaki nazw plików są równe: "
+msgstr ": 24 pierwsze znaki nazw plików są jednakowe: "
 
 msgid "<enter a file name>"
 msgstr "<wprowadz nazwę pliku>"
@@ -217,12 +223,14 @@ msgid "About M2SCI tools..."
 msgstr "O narzędziach M2SCI..."
 
 msgid "About_M2SCI_tools"
-msgstr "O_narzędziach_M2SCI"
+msgstr "About_M2SCI_tools"
 
 msgid ""
 "All children will be deleted, no HandleVisibility property in Scilab "
 "graphics."
 msgstr ""
+"Wszystkie dzieci zostaną usunięte, nie ma własności grafiki HandleVisibility "
+"w Scilab."
 
 msgid "All properties will be reset."
 msgstr "Wszystkie ustawienia zostaną zresetowane."
@@ -256,10 +264,10 @@ msgid "Browse"
 msgstr "Przeglądaj"
 
 msgid "Call to chol() with 2 outputs."
-msgstr "Wezwanie do chol() z 2 wyjściami."
+msgstr "Wywołanie funkcji chol() z 2 parametrami wyjściowymi."
 
 msgid "Call to sparse(): nzmax option ignored."
-msgstr "Wezwanie do sparse(): zignorowana opcja nzmax."
+msgstr "Wywołanie funkcji sparse(): zignorowana opcja nzmax."
 
 msgid "Cancel"
 msgstr "Anuluj"
@@ -280,7 +288,7 @@ msgid "Convert"
 msgstr "Konwertuj"
 
 msgid "Convert a single file"
-msgstr "Konwertuj sygnał"
+msgstr "Konwertuj pojedyczy plik"
 
 msgid "Convert a whole directory"
 msgstr "Konwertuj cały katalog"
@@ -292,16 +300,16 @@ msgid ""
 "   Current dimension: %s\n"
 "   m2scideclare IGNORED"
 msgstr ""
-"Wymiary bieżącej wartości i oświadczenie konfliktu m2scideclare dla: %s\n"
-"   biorąc pod uwagę wymiar m2scideclare: %s\n"
-"   aktualny wymiar: %s\n"
+"Konflikt wymiarów bieżącej wartości i m2scideclare dla: %s\n"
+"   wymiar ustawiony w m2scideclare: %s\n"
+"   wymiar bieżącej wartości: %s\n"
 "   m2scideclare zignorowano"
 
 msgid "Directory name: "
 msgstr "Nazwa katalogu: "
 
 msgid "Drawing events are not queued in Scilab."
-msgstr "Rysowanie zdarzeń nie jest kolejkowane w Scilab."
+msgstr "Zdarzenia powiązane z rysowaniem nie są obrabiane w Scilab."
 
 #, c-format
 msgid "Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."
@@ -315,17 +323,17 @@ msgstr ""
 #, c-format
 msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
 msgstr ""
-"Rozpakowywanie od %s z''%s'' lista nie jest jeszcze zaimplementowana."
+"Rozpakowywanie %s z tlist'y ''%s'' jeszcze nie jest zaimplementowane."
 
 msgid "File"
 msgstr "Plik"
 
 #, c-format
 msgid "File %s is an empty file ! Nothing done..."
-msgstr "Plik %s jest pusty ! Nie wykonano..."
+msgstr "Plik %s jest pusty ! Nie ma nic do roboty..."
 
 msgid "File contains no instruction, no translation made..."
-msgstr "Plik nie zawiera instrukcji, nie dokonano tłumaczenia..."
+msgstr "Plik nie zawiera instrukcji, nie dokonano konwersji..."
 
 msgid "File name: "
 msgstr "Nazwa pliku: "
@@ -337,14 +345,14 @@ msgid ""
 "For Scilab sparse(), input values must have the same size, not sure they "
 "have."
 msgstr ""
-"Dla sparse () programu Scilab, wartości wejściowe muszą mieć ten sam "
-"rozmiar, a na pewno nie mają"
+"Dla funkcji sparse () Scilab, wartości wejściowe muszą mieć ten sam rozmiar, "
+"proszę to sprawdzić"
 
 msgid "Generate formated code:"
 msgstr "Generowanie sformatowanego kodu:"
 
 msgid "Generate pretty printed code: "
-msgstr "Wygeneruj ładny kod drukowany: "
+msgstr "Formatowanie kodu do ładnego wydruku: "
 
 #, c-format
 msgid "Global variable %s added to M2SCI variable list."
@@ -356,7 +364,17 @@ msgid ""
 "   complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
 "Jeśli %s jest po za [-1 1]\n"
-"   Złożona część wyjścia z %s będzie przeciwieństwem jedynki Matlab."
+"   Zespolona część parametru wejściowego %s będzie przeciwieństwem tego, co "
+"daje Matlab."
+
+#, c-format
+msgid ""
+"If %s is outside [-1,1]\n"
+"   real part of output of %s will be the opposite of Matlab one."
+msgstr ""
+"Jeśli %s jest po za [-1 1]\n"
+"   Rzeczywista część parametru wejściowego %s będzie przeciwieństwem tego, "
+"co daje Matlab."
 
 #, c-format
 msgid ""
@@ -374,25 +392,25 @@ msgstr "Plik wejściowy"
 
 #, c-format
 msgid "L.%d: Unknown variable %s is a M-file (sci_%s exists)."
-msgstr "L.%d: nieznana zmienna %s jest plikiem m-file (sci_%s istnieje)."
+msgstr "L.%d: nieznana zmienna %s jest M-plikiem (sci_%s istnieje)."
 
 #, c-format
 msgid "L.%d: Unknown variable %s is a M-file."
-msgstr "L.%d: nieznana zmienna %s jest plikiem M-file"
+msgstr "L.%d: nieznana zmienna %s jest M-plikiem"
 
 #, c-format
 msgid "L.%d: Unknown variable %s."
 msgstr "L.%d: nieznana zmienna %s."
 
 msgid "M-file reading..."
-msgstr "Odczytywanie pliku M-file"
+msgstr "Odczytywanie M-pliku"
 
 msgid "M-file reading: Done"
-msgstr "Odczytywanie pliku M-file: zakończone"
+msgstr "Odczytywanie M-pliku zakończone"
 
 #, c-format
 msgid "M2SCI bug: extraction from unknown variable %s in varslist."
-msgstr "Błąd M2SCI: ekstrakcja z nieznanych zmiennych%s w varlist."
+msgstr "Błąd M2SCI: ekstrakcja z nieznanej zmiennej %s w varlist."
 
 #, c-format
 msgid ""
@@ -403,23 +421,23 @@ msgstr ""
 "więc wynik jest ustawiony na 1."
 
 msgid "Macro to tree conversion..."
-msgstr "Konwersja Macro do drzewa..."
+msgstr "Konwersja macro do drzewa..."
 
 msgid "Macro to tree conversion: Done"
-msgstr "Konwersja Macro do drzewa: zakończona"
+msgstr "Konwersja macro do drzewa: zakończona"
 
 msgid "Matlab exist(), mtlb_exist() is called."
-msgstr "Matlab exist(), mtlb_exist() jest wywoływana."
+msgstr "Jest wywoływana funkcja Matlab exist(), mtlb_exist()."
 
 #, c-format
 msgid "Matlab function %s not yet converted, original calling sequence used."
 msgstr ""
-"Funkcja %s programu Matlab nie jest jeszcze przerobiona, użyj oryginalnej "
-"kolejności połączeń."
+"Funkcja Matlab %s jeszcze nie jest skonwertowana, używa się oryginalna "
+"sekwencja wywoływania."
 
 #, c-format
 msgid "Matlab function %s not yet converted."
-msgstr "Funkcja %s programu Matlab nie jest jeszcze przerobiona."
+msgstr "Funkcja Matlab %s jeszcze nie jest skonwertowana."
 
 msgid "Matlab to Scilab conversion tool"
 msgstr "Narzędzie konwersji z Matlab do Scilab"
@@ -428,18 +446,18 @@ msgstr "Narzędzie konwersji z Matlab do Scilab"
 msgid ""
 "Matlab toolbox(es) function %s not converted, original calling sequence used"
 msgstr ""
-"Funkcja %s toolbox(-ów) programu Matlab nie jest przekonwertowana, użyj "
-"oryginalnej kolejności połączeń"
+"Funkcja %s toolboxa(-ów)  Matlab nie jest skonwertowana, użyto oryginalnej "
+"sekwencji wywołań."
 
 #, c-format
 msgid ""
 "Matlab toolbox(es) function %s not converted, original calling sequence used."
 msgstr ""
-"Funkcja %s toolbox(-ów) programu Matlab nie jest przekonwertowana, użyj "
-"oryginalnej kolejności połączeń."
+"Funkcja %s toolboxa(-ów)  Matlab nie jest skonwertowana, użyto oryginalnej "
+"sekwencji wywołań."
 
 msgid "Mfile2sci help page"
-msgstr "Mfile2sci strona pomocy"
+msgstr "Strona pomocy Mfile2sci"
 
 msgid "NO"
 msgstr "NIE"
@@ -480,10 +498,10 @@ msgid "One operand is an empty matrix in : %s, result set to []."
 msgstr "Jeden argument jest pustą matrycą w %s, wynik ustawiony na []."
 
 msgid "Only double values used in M-file:"
-msgstr "Użyte tylko podwujne wartości w M-file;"
+msgstr "W M-pliku użyte tylko wartości rzeczywiste (typ double);"
 
 msgid "Only double values used: "
-msgstr "Użyte tylko podwujne wartości: "
+msgstr "Użyte tylko wartości rzeczywiste (typ double) "
 
 msgid "Option -append not yet handled: will be ignored."
 msgstr ""
@@ -506,9 +524,9 @@ msgid ""
 "   current type: %s\n"
 "   m2scideclare IGNORED"
 msgstr ""
-"Aktualne ważne wartości i m2scideclare świadczą o konflikcie dla: %s\n"
-"   m2scideclare danego typu: %s\n"
-"   bieżący typ: %s\n"
+"Konflikt pomiędzy wartością bieżącą i m2scideclaredla: %s\n"
+"   typ m2scideclare: %s\n"
+"   typ bieżącej wartości: %s\n"
 "   m2scideclare ZIGNOROWANY"
 
 msgid "Recursive conversion: "
@@ -518,15 +536,15 @@ msgid "Recursive mode:"
 msgstr "Tryb rekursywny:"
 
 msgid "Result file path:"
-msgstr "Ścieżka do pliku ynikowego:"
+msgstr "Ścieżka do pliku wynikowego:"
 
 #, c-format
 msgid ""
 "Scilab %s() does not work when dim input argument is greater than number of "
 "dims of first rhs..."
 msgstr ""
-"Funkcja Scilab% s () nie działa, gdy wielkość argument wejściowy jest "
-"większa od liczby wymiarów pierwszego rhs ..."
+"Funkcja Scilab %s() nie działa, gdy wymiar argumentu wejściowego jest "
+"większy od liczby wymiarów pierwszego rhs ..."
 
 #, c-format
 msgid "Scilab %s() does not work with Complex values: %s() call IGNORED."
@@ -547,7 +565,7 @@ msgstr ""
 "wielowymiarowymi"
 
 msgid "See msprintf for solutions."
-msgstr "Dla rozwiązań zobacz msprintf."
+msgstr "Dla rozwiązania problemu zobacz msprintf."
 
 msgid "Select the directory for generated files"
 msgstr "Wybierz katalog dla wygenerowanych plików"
@@ -556,7 +574,7 @@ msgid "Select the directory to convert"
 msgstr "Wybierz katalog do konwersji"
 
 msgid "Select the file to convert"
-msgstr "Wybierz plik do konwersacji"
+msgstr "Wybierz plik do konwersji"
 
 msgid "Syntax modification..."
 msgstr "Zmiana składni..."
@@ -568,7 +586,7 @@ msgid "TESTING M2SCI: creating varslist file..."
 msgstr "TESTOWANIE M2SCI: tworzenie pliku  varslist..."
 
 msgid "Translatepaths help page"
-msgstr "Tłumacz ścieżek strony pomocy"
+msgstr "Strona pomocy Translatepaths"
 
 msgid ""
 "Translation may be improved: see the //! comments and for all mtlb_<funname> "
@@ -576,13 +594,13 @@ msgid ""
 "  Type help mtlb_<funname> in Scilab command window to get information about "
 "improvements."
 msgstr ""
-"Tłumaczenie może być ulepszone: patrz //! uwagi i dla wszystkich "
-"mtlb_<funname> wywołanie funkcji\n"
-"  Typ pomocy mtlb_<funname> w Scilab okno poleceń aby uzyskać informacje na "
-"temat zmian."
+"Konwersja może być ulepszona: patrz komentarze oznaczone //! dla wszystkich "
+"wywołań funkcji mtlb_<funname> \n"
+"  Więcej informacji na temat polepszeń można znaleźć na stronie pomocy "
+"mtlb_<funname>."
 
 msgid "Translation may be wrong (see the //!! comments)."
-msgstr "Tłumaczenie może być nieprawidłowe ( zobacz komentarze ??!!)."
+msgstr "Tłumaczenie może być nieprawidłowe ( zobacz komentarze //!!)."
 
 #, c-format
 msgid ""
@@ -591,9 +609,9 @@ msgid ""
 "   current type: %s\n"
 "   m2scideclare IGNORED"
 msgstr ""
-"Typ wartości bieżącej i m2scideclare świadczy o konflikcie dla: %s\n"
-"   m2scideclare danego typu: %s\n"
-"   bieżący typ: %s\n"
+"Konflikt pomiędzy typem wartości bieżącej i m2scideclare dla: %s\n"
+"   typ nadany m2scideclare: %s\n"
+"   typ wartości bieżącej: %s\n"
 "   m2scideclare ZIGNOROWANY"
 
 #, c-format
@@ -607,12 +625,11 @@ msgstr "Nieznany typ danych %s."
 #, c-format
 msgid "Unknown function %s not converted, original calling sequence used."
 msgstr ""
-"Nieznana funkcja %s nie przekonwetowana, użyj oryginalnej sekwencji "
-"wywoływania."
+"Nieznana funkcja %s nie skonwetowana, użyto oryginalnej sekwencji wywoływań."
 
 #, c-format
 msgid "Unknown property %s."
-msgstr "Nieznane ustawienia %s."
+msgstr "Nieznana właściwość %s."
 
 msgid "Unknown type for input parameter: consider fclose(fid)."
 msgstr "Nieznany typ parametru wejściowego: rozważ fclose(fid)."
@@ -622,29 +639,30 @@ msgid "Variable %s supposed to be the Imaginary unit."
 msgstr "Zmienna %s ma być jednostka urojoną."
 
 msgid "Verbose mode:"
-msgstr "Tryb werbalny:"
+msgstr "Tryb wyściowy rozszerzony:"
 
 msgid "Verbose mode: "
-msgstr "Tryb werbalny: "
+msgstr "Tryb wyściowy rozszerzony: "
 
 msgid "Verify that expression evaluated by execstr() is Scilab compatible."
 msgstr ""
-"Sprawdź, czy wyrażenie ocenione przez execstr() jest kompatybilne z Scilab."
+"Sprawdź, czy wyrażenie wyznaczone przez execstr() jest kompatybilne z Scilab."
 
 msgid ""
 "Verify that overloading functions have been written for inputs in display()."
 msgstr ""
-"Sprawdź, czy funkcje przeciążenia zostały napisane dla wejścia w display()."
+"Sprawdź, czy funkcje przeciążenia zostały napisane dla parametrów "
+"wejściowych w display()."
 
 msgid "W and A permission parameters."
-msgstr "Parametry zgody W i A."
+msgstr "Prawa dostępu W i A."
 
 msgid ""
 "WARNING: Matlab reshape() suppresses singleton higher dimension, it is not "
 "the case for matrix."
 msgstr ""
-"OSTRZEŻENIE: przekształcenie Matlab() pomijanie pojedynczych wymiarów "
-"wyższych, nie w przypadku macierzy."
+"WARNING: Matlab reshape() suppresses singleton higher dimension, it is not "
+"the case for matrix."
 
 #, c-format
 msgid ""
@@ -652,7 +670,7 @@ msgid ""
 "         %s.sci, %s.cat and sci_%s.sci will be generated !"
 msgstr ""
 "Ostrzeżenie: plik %s definiuje funkcje %s zamiast %s\n"
-"         Wygenerowany zostanie %s.sci, %s.cat oraz sci_%s.sci !"
+"         Wygenerowane zostaną %s.sci, %s.cat oraz sci_%s.sci !"
 
 msgid "Wrong dimensions user data."
 msgstr "Złe wymiary danych użytkownika."
@@ -662,7 +680,7 @@ msgstr ""
 "Nieprawidłowy argument wejściowy w getrhs() (Musi być ''funcall'' tlist)."
 
 msgid "Wrong number of inputs."
-msgstr "Nieprawidłowa liczba wejść."
+msgstr "Nieprawidłowa liczba parametrów wejściowych."
 
 msgid "YES"
 msgstr "TAK"
@@ -672,21 +690,22 @@ msgstr "Tak"
 
 #, c-format
 msgid "contents must be a ''contents'' tlist instead of a: %s."
-msgstr "zawartość musi być \"zawartość\" tlist zamiast z :%s."
+msgstr "zawartością musi być tlist'a \"contents\" zamiast :%s."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling może być użyte tylko w trybie 3d."
 
 #, c-format
 msgid "destination variable is not a cell: %s is of type %s."
-msgstr "zmienna przekształcenia nie jest komórką: %s jest typu %s."
+msgstr "zmienna docelową nie jest komórką (cell): %s jest typu %s."
 
 #, c-format
 msgid "dims must be a list instead of a: %s."
-msgstr "dims muszą być listą zamiast: %s"
+msgstr "dims musi być listą zamiast: %s"
 
 msgid "eig() with 2 inputs: consider generalized eigen. Check."
-msgstr "eig() z 2 wejściami: rozważ ogólne eigena. Sprawdż."
+msgstr ""
+"eig() z 2 wejściami: rozważ ogólne uogulnione wartosci własne. Sprawdż."
 
 #, c-format
 msgid "endsymbol should be a character string and not a: %s."
@@ -697,7 +716,7 @@ msgid "expression can not be a: %s."
 msgstr "wyrażenie nie może być: %s."
 
 msgid "fopen used with three outputs."
-msgstr "fopen wykozystany z trzema wejściammi."
+msgstr "fopen wykozystana z trzema parametrami wejściowymi."
 
 msgid "fopen(''all'') has no translation."
 msgstr "fopen(\"all\") nie ma tłumaczenia."
@@ -711,10 +730,10 @@ msgstr "indeks musi być listą zamiast: %s."
 
 #, c-format
 msgid "infer must be an ''infer'' tlist instead of a: %s."
-msgstr "wniosek musi być \"wniosek\" tlist zamiast :%s."
+msgstr "infer musi być tlistą ''infer'' zamiast: %s."
 
 msgid "input argument must be an ''operation'' tlist."
-msgstr "argument wejściowy musi być 'operation'' tlist."
+msgstr "argument wejściowy musi być tlist'a \"operation''."
 
 msgid "is Real."
 msgstr "jest typu real."
@@ -723,12 +742,13 @@ msgid "is a scalar."
 msgstr "jest skalarem."
 
 msgid "is not a character string matrix."
-msgstr "nie jest matrycą ciągu znaków."
+msgstr "nie jest macirzą łańcuchów."
 
 msgid ""
 "isequal requires fields are in the same order for structs to be equal."
 msgstr ""
-"isequal wymaga pól w takiej kolejności, w strukturach, które mają być równe."
+"isequal wymaga, żeby pola w strukturach, które mają być równe byli w tej "
+"samej kolejności."
 
 #, c-format
 msgid "lhs cannot be a %s operation."
@@ -751,7 +771,7 @@ msgid "lhsnb must be a constant instead of a: %s."
 msgstr "lhsnb musi być stałą zamiast: %s."
 
 msgid "list of properties is not yet implemented."
-msgstr "lista właściwości nie jest jeszcze wprowadziona."
+msgstr "lista właściwości nie jest jeszcze zaimplementowana."
 
 msgid ""
 "loginfos: verb_mode 0 should not be used in this context, information "
@@ -765,17 +785,17 @@ msgstr "m2sciassume jest przestarzała, zamiast niej użyj m2scideclare."
 
 #, c-format
 msgid "matname must be a string instead of a: %s."
-msgstr "matname musi być łańuchem zamiast: %s."
+msgstr "matname musi być łańcuchem zamiast: %s."
 
 msgid "message_id ignored in following line."
-msgstr "message_id zignorowana w kolejnym wierszu."
+msgstr "message_id zignorowana w następnym wierszu."
 
 #, c-format
 msgid ""
 "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
-"mtlb(%s) może być zastąpiona przez %s() lub %s,  czy %s jest M-plikiem czy "
-"nie."
+"mtlb(%s) może być zastąpiona przez %s() lub %s,  bez względu na to, czy %s "
+"jest M-plikiem czy nie."
 
 msgid "mtlb_exist() is just a partial emulation of Matlab exist() function."
 msgstr "mtlb_exist() jest tylko częściową emulacją funkcji exist() Matlaba."
@@ -807,7 +827,7 @@ msgstr "operator musi być łańcuchem zamiast: %s."
 
 #, c-format
 msgid "out must be a list instead of a: %s."
-msgstr ""
+msgstr "obecnie należy zamiast listy: %s."
 
 #, c-format
 msgid "recursive extraction from a variable %s of type %s."
@@ -838,7 +858,7 @@ msgstr "rhslist musi być listą zamiast : %s."
 
 #, c-format
 msgid "sciname must be a string instead of a: %s."
-msgstr "sciname musi być łańcuchem znaków zamiast : %s."
+msgstr "sciname musi być łańcuchem zamiast : %s."
 
 msgid "second output argument will be ignored."
 msgstr "drugi argument wyjściowy zostanie zignorowany."
@@ -858,7 +878,7 @@ msgid "type must be a ''type'' tlist instead of a: %s."
 msgstr "typ  musi być ''type'' tlist zmiast: %s"
 
 msgid "unitfile.dat"
-msgstr "nieznanyPlik.dat"
+msgstr "unitfile.dat"
 
 #, c-format
 msgid "unknown clause type: %s."
@@ -870,7 +890,7 @@ msgstr "nieznany typ instrukcji: %s."
 
 #, c-format
 msgid "wrong property %s."
-msgstr "nieprawidłowe właściwośći %s."
+msgstr "nieprawidłowa właściwość %s."
 
 msgid "wrong type of input."
 msgstr "Nieprawidłowy typ wejścia."

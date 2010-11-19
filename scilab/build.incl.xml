@@ -1,256 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Common definitions of Java compilation for Scilab --> 
 <project name="common">
-	
-	<!-- Base of Scilab source tree -->
-	<property name="base.dir"  location="../../" />
-	
-	<!-- Where the module should be created (modules/xxx/jar) -->
-	<property name="build.jar.dir"  value="jar/" />
-	
-	<!-- Where the thirdparty libraries could be found -->
-	<property name="thirdparty.dir" location="${base.dir}/thirdparty/" />
-	
-	<!-- The building directory -->
-	<property name="build.dir" location="build/"/>
-	
-	<!-- The building test directory -->
-	<property name="build.test.dir" location="build/test"/>
-	
-	<!-- Where builded classes will be generated -->
-	<property name="classes.dir" location="${build.dir}/classes" />
-	
-	<!-- Where builded test classes will be generated -->
-	<property name="classes.test.dir" location="${build.test.dir}/classes" />
-	
-	<!-- Where we store cache files -->
-	<property name="cache.dir" location="${build.dir}/cachefile" />
-	
-	<!-- Where we can find the sources -->
-	<property name="src.dir"  location="src/java/" />
+  
+  <!-- Base of Scilab source tree -->
+  <property name="base.dir"  location="../../" />
+  
+  <!-- Where the module should be created (modules/xxx/jar) -->
+  <property name="build.jar.dir"  value="jar/" />
+  
+  <!-- Where the thirdparty libraries could be found -->
+  <property name="thirdparty.dir" location="${base.dir}/thirdparty/" />
+  
+  <!-- The building directory -->
+  <property name="build.dir" location="build/"/>
+  
+  <!-- The building test directory -->
+  <property name="build.test.dir" location="${build.dir}/test"/>
+  
+  <!-- Where builded classes will be generated -->
+  <property name="classes.dir" location="${build.dir}/classes" />
+  
+  <!-- Where builded test classes will be generated -->
+  <property name="classes.test.dir" location="${build.test.dir}/classes" />
+  
+  <!-- Where we store cache files -->
+  <property name="cache.dir" location="${build.dir}/cachefile" />
+  
+  <!-- Where we can find the sources -->
+  <property name="src.dir"  location="src/java/" />
 
-	<!-- Where we can find the test sources -->
-	<property name="src.test.dir"  location="tests/java/" />
-	
-	<!-- Check style definitions -->
-	<property name = "checkstyle.config.file"      value = "${base.dir}/checkstyle/scilab_checkstyle_convention.xml" />
-	<property name = "checkstyle.stylesheet"       value = "${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl" />
-	<property name = "checkstyle.report.dir"       value = "${build.dir}/checkstyle" />
-	<property name = "checkstyle.xml.report.file"  value = "${checkstyle.report.dir}/checkstyle_errors.xml" />
-	<property name = "checkstyle.html.report.file" value = "${checkstyle.report.dir}/checkstyle_errors.htm" />
-	
-	<property name="modules.dir"                 value="${base.dir}/modules" />
-	
-	<property file="${base.dir}/scilab-lib.properties"/>
+  <!-- Where we can find the test sources -->
+  <property name="src.test.dir"  location="tests/java/" />
+  
+  <!-- Check style definitions -->
+  <property name = "checkstyle.config.file"      value = "${base.dir}/checkstyle/scilab_checkstyle_convention.xml" />
+  <property name = "checkstyle.stylesheet"       value = "${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl" />
+  <property name = "checkstyle.report.dir"       value = "${build.dir}/checkstyle" />
+  <property name = "checkstyle.xml.report.file"  value = "${checkstyle.report.dir}/checkstyle_errors.xml" />
+  <property name = "checkstyle.html.report.file" value = "${checkstyle.report.dir}/checkstyle_errors.htm" />
+  
+  <property name="modules.dir"                 value="${base.dir}/modules" />
+  
+  <property file="${base.dir}/scilab-lib.properties"/>
 
-	<property file="${base.dir}/scilab-lib-doc.properties"/>
-	
+  <property file="${base.dir}/scilab-lib-doc.properties"/>
+  
 
-	<path id="checkstyle.classpath">
-		<pathelement location="${checkstyle.jar}"/>
-                <pathelement location="${commons-logging.jar}"/>
-                <pathelement location="${commons-beanutils.jar}"/>
-                <pathelement location="${antlr.jar}"/>
-	</path>
+  <path id="checkstyle.classpath">
+    <pathelement location="${checkstyle.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    <pathelement location="${commons-beanutils.jar}"/>
+    <pathelement location="${antlr.jar}"/>
+  </path>
 
-	<path id="unittest.classpath">
-		<pathelement location="${testng.jar}"/>
-		<pathelement location="${bsh.jar}"/> 
-		<pathelement location="${junit.jar}"/>
-		<pathelement location="${qdox.jar}"/>
-	</path>
+  <path id="unittest.classpath">
+    <pathelement location="${testng.jar}"/>
+    <pathelement location="${bsh.jar}"/> 
+    <pathelement location="${junit.jar}"/>
+    <pathelement location="${qdox.jar}"/>
+  </path>
   
 
 
-	<path id="compile.classpath">
-		<pathelement location="${library.types.dir}/${library.types.name}"/>
-		<pathelement location="${library.types.dir}/${library.output_stream.name}"/>		
-		<pathelement location="${library.graph.dir}/${library.graph.name}"/>
-		<pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
-		<pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
-		<pathelement location="${library.scinotes.dir}/${library.scinotes.name}"/>
-		<pathelement location="${library.localization.dir}/${library.localization.name}"/>
-		<pathelement location="${library.shell.dir}/${library.shell.name}"/>
-		<pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
-		<pathelement location="${library.completion.dir}/${library.completion.name}"/>
-		<pathelement location="${library.console.dir}/${library.console.name}"/>
-		<pathelement location="${library.action_binding.dir}/${library.action_binding.name}"/>
-		
-		<pathelement location="${library.gui.dir}/${library.gui.name}"/>
-		<pathelement location="${library.commons.dir}/${library.commons.name}"/>
-		<pathelement location="${library.jvm.dir}/${library.jvm.name}"/>
-		<pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
-		<pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
-		<pathelement location="${library.core.dir}/${library.core.name}"/>
-		
-<!-- Not use at build time but used for unitary tests -->
-		<pathelement location="${library.javasci.dir}/${library.javasci.name}"/>
-		<pathelement location="${library.javasci.dir}/${library.javasci-v1.name}"/>
+  <path id="compile.classpath">
+    <pathelement location="${library.types.dir}/${library.types.name}"/>
+    <pathelement location="${library.types.dir}/${library.output_stream.name}"/>        
+    <pathelement location="${library.graph.dir}/${library.graph.name}"/>
+    <pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
+    <pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
+    <pathelement location="${library.scinotes.dir}/${library.scinotes.name}"/>
+    <pathelement location="${library.localization.dir}/${library.localization.name}"/>
+    <pathelement location="${library.shell.dir}/${library.shell.name}"/>
+    <pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
+    <pathelement location="${library.completion.dir}/${library.completion.name}"/>
+    <pathelement location="${library.console.dir}/${library.console.name}"/>
+    <pathelement location="${library.action_binding.dir}/${library.action_binding.name}"/>
+    
+    <pathelement location="${library.gui.dir}/${library.gui.name}"/>
+    <pathelement location="${library.commons.dir}/${library.commons.name}"/>
+    <pathelement location="${library.jvm.dir}/${library.jvm.name}"/>
+    <pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
+    <pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
+    <pathelement location="${library.core.dir}/${library.core.name}"/>
+    
+    <!-- Not use at build time but used for unitary tests -->
+    <pathelement location="${library.javasci.dir}/${library.javasci.name}"/>
+    <pathelement location="${library.javasci.dir}/${library.javasci-v1.name}"/>
 
 
-		<pathelement location="${commons-logging.jar}"/>
-		
-		<pathelement location="${flexdock.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
+    
+    <pathelement location="${flexdock.jar}"/>
 
-		<pathelement location="${gluegen.jar}"/>
-		
-		<pathelement location="${jrosetta-API.jar}"/>
-		
-		<pathelement location="${jrosetta-engine.jar}"/>
+    <pathelement location="${gluegen.jar}"/>
+    
+    <pathelement location="${jrosetta-API.jar}"/>
+    
+    <pathelement location="${jrosetta-engine.jar}"/>
 
-		<pathelement location="${jogl.jar}"/>
+    <pathelement location="${jogl.jar}"/>
 
-		<pathelement location="${jhdf5.jar}"/>
-		
-		<pathelement location="${jhall.jar}"/>
-		
-		<pathelement location="${jgraphx.jar}"/>
+    <pathelement location="${jhdf5.jar}"/>
+    
+    <pathelement location="${jhall.jar}"/>
+    
+    <pathelement location="${jgraphx.jar}"/>
 
-	<!-- Only usefull for the documentation -->	
-		<pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
-		<pathelement location="${batik.jar}"/>
+    <!-- Only usefull for the documentation -->    
+    <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
+    <pathelement location="${batik.jar}"/>
 
-		<pathelement location="${saxon.jar}"/>
+    <pathelement location="${saxon.jar}"/>
 
-		<pathelement location="${fop.jar}"/>
+    <pathelement location="${fop.jar}"/>
 
-		<pathelement location="${jlatexmath-fop.jar}"/>
+    <pathelement location="${jlatexmath-fop.jar}"/>
 
-		<pathelement location="${avalon-framework.jar}"/>
+    <pathelement location="${avalon-framework.jar}"/>
 
-		<pathelement location="${avalon-framework-impl.jar}"/>
+    <pathelement location="${avalon-framework-impl.jar}"/>
 
-		<pathelement location="${jeuclid-core.jar}"/>
+    <pathelement location="${jeuclid-core.jar}"/>
 
-		<pathelement location="${jlatexmath.jar}"/>
-	</path>
+    <pathelement location="${jlatexmath.jar}"/>
+  </path>
 
-	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
-	
-	<!-- Checkstyle process -->
-	
-	<target
-		name        = "checkstyle"
-		depends     = "checkstyle-init"
-		description = "Generates a report of code convention violations.">
-		<checkstyle
-			config          = "${checkstyle.config.file}"
-			failOnViolation = "false">
-			<fileset
-				dir      = "${src.dir}"
-				includes = "**/*.java"/>
-			<!-- Location of cache-file. -->
-			<property
-				key  = "checkstyle.cache.file"
-				file = "${cache.dir}"/>
-			<formatter type="plain"/>
-			<formatter
-				type   = "xml"
-				toFile = "${checkstyle.xml.report.file}"/>
-		</checkstyle>
-		<xslt
-			in     = "${checkstyle.xml.report.file}"
-			out    = "${checkstyle.html.report.file}"
-			style  = "${checkstyle.stylesheet}" />
-	</target>
-	
-	<!-- Create the build directory -->
-	
-	<target name="checkstyle-init">
-		<mkdir dir="${checkstyle.report.dir}"/>
-	</target>
-	
-	<!-- Delete the build directory -->
-	
-	<target name="checkstyle-clean">
-		<delete dir="${checkstyle.report.dir}"/>
-	</target>
+  <taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
+  
+  <!-- Checkstyle process -->
+  
+  <target
+      name        = "checkstyle"
+      depends     = "checkstyle-init"
+      description = "Generates a report of code convention violations.">
+    <checkstyle
+        config          = "${checkstyle.config.file}"
+        failOnViolation = "false">
+      <fileset
+          dir      = "${src.dir}"
+          includes = "**/*.java"/>
+      <!-- Location of cache-file. -->
+      <property
+          key  = "checkstyle.cache.file"
+          file = "${cache.dir}"/>
+      <formatter type="plain"/>
+      <formatter
+          type   = "xml"
+          toFile = "${checkstyle.xml.report.file}"/>
+    </checkstyle>
+    <xslt
+        in     = "${checkstyle.xml.report.file}"
+        out    = "${checkstyle.html.report.file}"
+        style  = "${checkstyle.stylesheet}" />
+  </target>
+  
+  <!-- Create the build directory -->
+  
+  <target name="checkstyle-init">
+    <mkdir dir="${checkstyle.report.dir}"/>
+  </target>
+  
+  <!-- Delete the build directory -->
+  
+  <target name="checkstyle-clean">
+    <delete dir="${checkstyle.report.dir}"/>
+  </target>
 
-	<target name="test" depends="existing-tests, compile-test, validate" if="test-present">
-        <taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
-	    <testng verbose="2"  haltonfailure="true">
-		  <classpath>
-		      <path refid="unittest.classpath" />
-		      <path refid="compile.classpath" />
-		      <pathelement location="${classes.test.dir}" />
-		    </classpath>
-		  <classfileset dir="${build.test.dir}" includes="**/*.class"/>
-          <jvmarg value="-DdisableLoadJNIScilab=1"/>
-	   </testng>
-	 </target>
+  <target name="test" depends="existing-tests, compile-test, validate" if="test-present">
+    <taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
+    <testng verbose="2"  haltonfailure="true">
+      <classpath>
+        <path refid="unittest.classpath" />
+        <path refid="compile.classpath" />
+        <pathelement location="${classes.test.dir}" />
+      </classpath>
+      <classfileset dir="${build.test.dir}" includes="**/*.class"/>
+      <jvmarg value="-DdisableLoadJNIScilab=1"/>
+      <jvmarg value="-DSCI=${base.dir}"/>
+      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/"/>
+    </testng>
+  </target>
 
-	<target name="validate">
-	<!-- Empty target to be override by other build.xml -->
-	</target>
+  <target name="validate">
+    <!-- Empty target to be override by other build.xml -->
+  </target>
 
-	<target name="init">
-		<mkdir dir="${classes.dir}"/>
-		<mkdir dir="${classes.test.dir}"/>
-		<mkdir dir="${build.jar.dir}"/>
-			<!-- Create the time stamp -->
-		<tstamp/>
-	</target>
-	
-	<!-- Clean sources -->
-	<target name="clean" description="Clean built files" depends="clean-test">
-		<delete dir="${build.dir}"/>
-		<delete dir="${build.jar.dir}"/>
-		<delete file="${build.jar.dir}/${library.name}"/>
-	</target>
+  <target name="init">
+    <mkdir dir="${classes.dir}"/>
+    <mkdir dir="${classes.test.dir}"/>
+    <mkdir dir="${build.jar.dir}"/>
+    <!-- Create the time stamp -->
+    <tstamp/>
+  </target>
+  
+  <!-- Clean sources -->
+  <target name="clean" description="Clean built files" depends="clean-test">
+    <delete dir="${build.dir}"/>
+    <delete dir="${build.jar.dir}"/>
+    <delete file="${build.jar.dir}/${library.name}"/>
+  </target>
 
-	<!-- Clean test -->
-	<target name="clean-test" description="Clean test files">
-		<delete dir="${build.test.dir}"/>
-	</target>
+  <!-- Clean test -->
+  <target name="clean-test" description="Clean test files">
+    <delete dir="${build.test.dir}"/>
+  </target>
 
-	<!-- Compile sources -->
-	<target name="compile" description="Build sources" depends="init">
-		<javac
-			srcdir="${src.dir}" 
-			destdir="${classes.dir}" 
-			classpathref="compile.classpath" 
-			deprecation="on"
-			debug="off"
-			verbose="off"
-			listfiles="on"
-			includeAntRuntime="no"
-			source="5"
-			/>
-	</target>
+  <!-- Compile sources -->
+  <target name="compile" description="Build sources" depends="init">
+    <javac
+        srcdir="${src.dir}" 
+        destdir="${classes.dir}" 
+        classpathref="compile.classpath" 
+        deprecation="on"
+        debug="off"
+        verbose="off"
+        listfiles="on"
+        includeAntRuntime="no"
+        source="5"
+        />
+  </target>
 
-	<target name="existing-tests">
-		<available property="test-present"
-			file="${src.test.dir}"
-		/>	
-	</target>
+  <target name="existing-tests">
+    <available property="test-present"
+               file="${src.test.dir}"
+               />    
+  </target>
 
-	<!-- Compile test sources -->
-	<target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
+  <!-- Compile test sources -->
+  <target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
     <!-- clean the test to make sure it will build properly -->
-		<javac
-			srcdir="${src.test.dir}" 
-			destdir="${classes.test.dir}" 
-			deprecation="on"
-			debug="off"
-			verbose="off"
-			listfiles="on"
-			includeAntRuntime="no"
-			source="5"
-			>
-		  <classpath>
-		      <path refid="unittest.classpath" />
-			  <path refid="compile.classpath" />
-		    </classpath>
-			</javac>
-	</target>
+    <javac
+        srcdir="${src.test.dir}" 
+        destdir="${classes.test.dir}" 
+        deprecation="on"
+        debug="off"
+        verbose="off"
+        listfiles="on"
+        includeAntRuntime="no"
+        source="5"
+        >
+      <classpath>
+        <path refid="unittest.classpath" />
+        <path refid="compile.classpath" />
+      </classpath>
+    </javac>
+  </target>
 
-	<!-- Create the jar -->
-	<target name="jar" description="Build the jar file" depends="compile">
-	
-		<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
-		<manifest>
-		</manifest>
-		</jar>
-	</target>
+  <!-- Create the jar -->
+  <target name="jar" description="Build the jar file" depends="compile">
+    
+    <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
+      <manifest>
+      </manifest>
+    </jar>
+  </target>
 
 </project>

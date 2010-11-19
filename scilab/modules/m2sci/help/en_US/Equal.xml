@@ -23,7 +23,7 @@
     <synopsis>eq=Equal(lhslist,expression)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lhslist</term>

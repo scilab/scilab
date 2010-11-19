@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -40,6 +40,7 @@ import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.types.ScilabTypeEnum;
@@ -62,6 +63,7 @@ import org.scilab.modules.ui_data.actions.SparseFilteringAction;
 import org.scilab.modules.ui_data.actions.StringFilteringAction;
 import org.scilab.modules.ui_data.actions.TListFilteringAction;
 import org.scilab.modules.ui_data.actions.UncompiledFunctionFilteringAction;
+import org.scilab.modules.ui_data.variableeditor.actions.RefreshAction;
 import org.scilab.modules.ui_data.datatable.SwingTableModel;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.actions.CloseAction;
@@ -113,6 +115,10 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         buildMenuBar();
 
         addMenuBar(menuBar);
+
+        ToolBar toolBar = ScilabToolBar.createToolBar();
+        toolBar.add(RefreshAction.createButton(UiDataMessages.REFRESH));
+        addToolBar(toolBar);
 
         dataModel = new SwingTableModel<Object>(columnsName);
 
@@ -213,41 +219,41 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
                 String variableName = ((JTable) e.getSource()).getValueAt(((JTable) e.getSource()).getSelectedRow(), 1).toString();
                 final ActionListener action = new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
+                        public void actionPerformed(ActionEvent e) {
 
-                    }
-                };
+                        }
+                    };
 
                 String variableVisibility = ((JTable) e.getSource())
-                        .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
+                    .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
 
                 // Global variables are not editable yet
                 if (variableVisibility.equals("global")) {
                     ScilabModalDialog.show(getBrowserTab(),
-                                UiDataMessages.GLOBAL_NOT_EDITABLE,
-                                UiDataMessages.VARIABLE_EDITOR,
-                                IconType.ERROR_ICON);
+                                           UiDataMessages.GLOBAL_NOT_EDITABLE,
+                                           UiDataMessages.VARIABLE_EDITOR,
+                                           IconType.ERROR_ICON);
                     return;
                 }
 
                 try {
-                    asynchronousScilabExec(action, 
-                          "if exists(\"" + variableName + "\") == 1 then "
-                        + "  try "
-                        + "    editvar(\"" + variableName + "\"); "
-                        + "  catch "
-                        + "    messagebox(\"Variables of type \"\"\" + typeof ("
-                        + variableName + ") + \"\"\" can not be edited.\""
-                        + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                        + "    clear ans;"   // clear return value of messagebox
-                        + "  end "
-                        + "else "
-                        + "  messagebox(\"Variable \"\""
-                        + variableName + "\"\" no more exists.\""
-                        + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                        + "  clear ans;"  // clear return value of messagebox
-                        + "  browsevar();" // Reload browsevar to remove cleared variables
-                        + "end");
+                    asynchronousScilabExec(action,
+                                           "if exists(\"" + variableName + "\") == 1 then "
+                                           + "  try "
+                                           + "    editvar(\"" + variableName + "\"); "
+                                           + "  catch "
+                                           + "    messagebox(\"Variables of type \"\"\" + typeof ("
+                                           + variableName + ") + \"\"\" can not be edited.\""
+                                           + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                           + "    clear ans;"   // clear return value of messagebox
+                                           + "  end "
+                                           + "else "
+                                           + "  messagebox(\"Variable \"\""
+                                           + variableName + "\"\" no more exists.\""
+                                           + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                           + "  clear ans;"  // clear return value of messagebox
+                                           + "  browsevar();" // Reload browsevar to remove cleared variables
+                                           + "end");
                 } catch (InterpreterException e1) {
                     System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
                 }

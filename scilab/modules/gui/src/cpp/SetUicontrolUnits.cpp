@@ -21,6 +21,12 @@ int SetUicontrolUnits(sciPointObj* sciObj, size_t stackPointer, int valueType, i
 
   char * units = NULL; 
 
+  if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
+    {
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Units");
+      return SET_PROPERTY_ERROR;
+    }
+
   if (valueType == sci_strings)
     {
       if(nbCol != 1 || nbRow == 0)

@@ -23,7 +23,7 @@
     <synopsis>errbar(x,y,em,ep)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y,em,ep</term>

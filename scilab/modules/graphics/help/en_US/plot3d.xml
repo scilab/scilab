@@ -41,7 +41,7 @@ plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

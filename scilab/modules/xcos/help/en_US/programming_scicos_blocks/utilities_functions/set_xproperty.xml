@@ -52,7 +52,7 @@ set_xproperty(xprop)
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_set_xproperty">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para>

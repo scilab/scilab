@@ -23,7 +23,7 @@
     <synopsis>[Des]=sm2des(Sm);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sm</term>

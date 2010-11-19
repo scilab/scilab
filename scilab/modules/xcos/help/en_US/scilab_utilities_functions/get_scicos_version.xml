@@ -52,7 +52,7 @@ scicos_ver = get_scicos_version
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_get_scicos_version">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scicos_ver :</emphasis> a string given the current number version of Scicos.</para>

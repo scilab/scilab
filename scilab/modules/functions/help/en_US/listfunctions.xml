@@ -13,7 +13,7 @@
     <synopsis>[flist,compiled,profilable,called] = listfunctions([scope])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>scope</term>

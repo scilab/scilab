@@ -1,9 +1,12 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-mode(7)
+m = mode();
+mode(7);
+
 // This is a small introduction to the polynomials objects in 
 // Scilab.
 // 1. Define the polynomial
@@ -82,3 +85,16 @@ denom(p9)
 [n,d]=simp((x+1)*(x+2),(x+1)*(x-2))
 
 
+mode(m);
+
+// clear variables
+ 
+clear       n; clear         d; clear     denom; clear numer;
+clear  typeof; clear       p11; clear        p9; clear %p_r_p; 
+clear    lnum; clear         g; clear   factors; clear roots1;
+clear   comp1; clear companion; clear  theroots; clear p10;
+clear derivat; clear    coeff1; clear are12diff; clear are12equal;
+clear      p8; clear        p7; clear        p6; clear p5;
+clear      p4; clear  mymatrix; clear        p3; clear myroots;
+clear      p2; clear   mycoeff; clear        p1; clear x;
+clear       m;

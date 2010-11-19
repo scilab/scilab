@@ -23,7 +23,7 @@
     <synopsis>[X,dims,F,U,k,Z]=abinv(Sys,alpha,beta,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sys</term>

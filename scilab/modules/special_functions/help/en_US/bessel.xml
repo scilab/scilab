@@ -67,7 +67,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -237,7 +237,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
    y1 = besselj(0.5, x);
    y2 = sqrt(2 ./(%pi*x)).*sin(x);
    er = abs((y1-y2)./y2);
-   ind = find(er &gt; 0 &amp; y2 ~= 0);
+   ind = find(er < 0 & y2 ~= 0);
    clf()
    subplot(2,1,1)
    plot2d(x,y1,style=2)
@@ -261,7 +261,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
 
 // besselY functions
 // =================
-   x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -&gt; 0+
+   x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
    clf()
    plot2d(x,bessely(0:4,x), style=0:4, rect=[0,-1.5,40,0.6])
    legend('Y'+string(0:4),4);

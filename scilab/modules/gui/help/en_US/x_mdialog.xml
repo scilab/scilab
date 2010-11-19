@@ -13,7 +13,7 @@
 result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>title</term>

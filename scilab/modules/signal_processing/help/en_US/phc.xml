@@ -12,7 +12,7 @@
     <synopsis>[H,F,G]=phc(hk,d,r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>hk</term>

@@ -24,7 +24,7 @@
     <synopsis>Matplot1(a,rect)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a</term>

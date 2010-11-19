@@ -24,7 +24,7 @@
 [xi,xa,np]=graduate( xmi, xma)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>xmi,xma</term>

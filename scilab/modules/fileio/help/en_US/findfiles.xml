@@ -27,7 +27,7 @@ f=findfiles(path)
 f=findfiles(path,filespec)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>path</term>

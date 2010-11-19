@@ -234,6 +234,11 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 * @param h background height
 	 */
 	public void paintSvgBackgroundImage(int w, int h) {
+		if (svgBackgroundImage == null) {
+			LogFactory.getLog(ScilabCanvas.class).error("background image not set");
+			return;
+		}
+		
 		GraphicsNode background = ScilabGraphUtils
 				.getSVGComponent(svgBackgroundImage);
 

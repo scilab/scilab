@@ -21,7 +21,7 @@
     <synopsis>datatipMove(tip_handle)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>tip_handle</term>

@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-05-04 19:30+0000\n"
-"Last-Translator: Kamil Strojek <Unknown>\n"
+"PO-Revision-Date: 2010-07-08 10:54+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-04 21:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -22,7 +21,7 @@ msgid ""
 "    primal obj.  dual obj.  dual. gap \n"
 msgstr ""
 "\n"
-"    pierwotny obj.  podwójny obj.  podwójna. luka \n"
+"    primal obj.  dual obj.  dual. gap \n"
 
 #, c-format
 msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
@@ -35,16 +34,15 @@ msgstr "%s: %s"
 #, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
 msgstr ""
-"%s: Zbyt mała dokładność by zostało spełnione kryterium zbieżności.\n"
+"%s: Dokładność niewystarczająca do spełnienia kryterium zbieżności.\n"
 
 #, c-format
 msgid "%s: Ambiguous property name %s matches several fields : %s"
-msgstr ""
-"%s: Niejasna nazwa właściwości %s nazwa pasuje do wielu dziedzin : %s"
+msgstr "%s: Niejasna nazwa właściwości %s. Nazwa pasuje do wielu pól : %s"
 
 #, c-format
 msgid "%s: Argument 3: wrong number of columns %d expected\n"
-msgstr "%s: Argument 3: zły numer kolumny %d oczekiwano\n"
+msgstr "%s: Argument 3: nieprawidłowa liczba kolumn, oczekiwano %d\n"
 
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
@@ -52,108 +50,107 @@ msgstr "%s: Nie można przydzielić więcej pamięci.\n"
 
 #, c-format
 msgid "%s: Cannot check cost function when x0 is empty"
-msgstr "%s: Nie można sprawdzić funkcji cost kiedy x0 jest niepodane"
+msgstr "%s: Nie można sprawdzić funkcji kosztów kiedy x0 jest puste"
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,1)."
-msgstr "%s: Nie można ocenić funkcji cost pochodzącej od costf(x0,1)."
+msgstr "%s: Nie można ocenić funkcji kosztów z costf(x0,1)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,2)."
-msgstr "%s: Nie można ocenić funkcji cost pochodzącej od costf(x0,2)."
+msgstr "%s: Nie można ocenić funkcji kosztów z costf(x0,2)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,3)."
-msgstr "%s: Nie można ocenić funkcji cost pochodzącej od costf(x0,3)."
+msgstr "%s: Nie można ocenić funkcji kosztów z costf(x0,3)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,4)."
-msgstr "%s: Nie można ocenić funkcji cost pochodzącej od costf(x0,4)."
+msgstr "%s: Nie można ocenić funkcji kosztów z costf(x0,4)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,5)."
-msgstr "%s: Nie można ocenić funkcji cost pochodzącej od costf(x0,5)."
+msgstr "%s: Nie można ocenić funkcji kosztów z costf(x0,5)."
 
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,6)."
-msgstr "%s: Nie można ocenić funkcji cost pochodzącej od costf(x0,6)."
+msgstr "%s: Nie można ocenić funkcji kosztów z costf(x0,6)."
 
 #, c-format
 msgid "%s: Empty function (use -function option)."
-msgstr "%s: Funkcja pusta (urzyć -ustawień funkcji)."
+msgstr "%s: Funkcja pusta (urzyj opcje -function)."
 
 #, c-format
 msgid ""
 "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
-"%s: Oczekiwano wartości logicznej dla zmiennej %s na wejściu #%d, zamiast "
-"wartości logicznej otrzymano%s"
+"%s: Oczekiwano wartości logicznej dla zmiennej %s (parametr wejściowy nr "
+"%d), zamiast tego otrzymano %s"
 
 #, c-format
 msgid ""
 "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
-"%s: Oczekiwano funkcji dla zmiennej %s na wejściu #%d, zamiast funkcji "
-"otrzymano%s"
+"%s: Oczekiwano funkcji dla zmiennej %s (parametr wejściowy nr %d), zamiast "
+"tego otrzymano %s"
 
 #, c-format
 msgid ""
 "%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
-"%s: Oczekiwano wartości typu real dla zmiennej %s na wejściu #%d, ale "
-"zamiast tej wartości otrzymano %s"
+"%s: Oczekiwano wartości typu real dla zmiennej %s (parametr wejściowy nr "
+"%d), zamiast tego otrzymano %s"
 
 #, c-format
 msgid ""
 "%s: Expected string variable for variable %s at input #%d, but got %s "
 "instead."
 msgstr ""
-"%s: Oczekiwano wartości typu string dla zmiennej %s na wejściu #%d, ale "
-"zamiast wartości typu string otrzymano %s"
+"%s: Oczekiwano wartości typu string dla zmiennej %s (parametr wejściowy nr "
+"%d), zamiast tego otrzymano %s"
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
-msgstr "%s: Historia  nieaktywna; aktywuj -funkcje zapisywania historii."
+msgstr "%s: Historia  nieaktywna; aktywuj opcje -storehistory."
 
 #, c-format
 msgid "%s: History disabled ; turn on -storehistory option."
-msgstr "%s: Historia nieaktywna; włącz -funkcje zapisywania historii."
+msgstr "%s: Historia nieaktywna; włącz opcje -storehistory."
 
 #, c-format
 msgid ""
 "%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
 msgstr ""
-"%s: Nie możliwe przeskalowanie wierzchołka  #%d/%d w [%s] do ograniczenia "
-"nierówności"
+"%s: Nie możliwe przeskalowanie wierzchołka nr %d/%d w [%s] w ograniczenia w "
+"postaci nierówności"
 
 #, c-format
 msgid "%s: Initial guess [%s] is not feasible."
-msgstr "%s: Wstępne zagadnienie [%s] nie jest wykonalne."
+msgstr "%s: Wstępna wartość [%s] nie jest dopuszczalna."
 
 #, c-format
 msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: Wstępne zagadnienie nie jest wykonalne.\n"
+msgstr "%s: Wstępna wartość  nie jest dopuszczalna.\n"
 
 #, c-format
 msgid "%s: Length of working array is too short.\n"
-msgstr "%s: długość obszaru roboczego jest zbyt krótka.\n"
+msgstr "%s: Zbyt mały rozmiar tablicy roboczej\n"
 
 #, c-format
 msgid "%s: Log file handle non zero while starting up the logging."
-msgstr ""
-"%s: Wartość pliku handle nie jest zerowa podczas uruchomienia logowania"
+msgstr "%s: Niezerowy deskryptor log-pliku podczas jego uruchomienia"
 
 #, c-format
 msgid "%s: Logging already started."
-msgstr "%s: Logowanie rozpoczęte."
+msgstr "%s: Log-plik uruchomiony"
 
 #, c-format
 msgid "%s: Logging not started."
-msgstr "%s: Logowanie nie rozpoczęte."
+msgstr "%s: Log-plik nie został uruchomiony."
 
 #, c-format
 msgid "%s: Negative iteration index %d is not allowed."
-msgstr "%s: Negatywny indeks interacji %d nie jest dozwolony."
+msgstr "%s: Ujemny indeks iteracji %d nie jest dozwolony."
 
 #, c-format
 msgid "%s: Negative iteration index are not allowed."
@@ -164,6 +161,7 @@ msgid ""
 "%s: No default options available: the function ''%s'' does not exist on the "
 "path."
 msgstr ""
+"%s: Domyślne opcje nie dostępne: brak funkcji ''%s'' nie podanej ścieżce."
 
 #, c-format
 msgid "%s: No output command is defined."
@@ -202,25 +200,30 @@ msgstr ""
 
 #, c-format
 msgid "%s: Order must be 1, 2 or 4.\n"
-msgstr "%s: zamówienia musi być 1, 2 lub 4.\n"
+msgstr "%s: rząd musi być 1, 2 lub 4.\n"
 
 #, c-format
 msgid "%s: Problem has constraints, but fixed algorithm ignores them."
-msgstr "%s: Problem ma ograniczenia, poprawiony algorytm zignoruje je."
+msgstr ""
+"%s: Zagadnienie ma ograniczenia, ale algorytm ze stałym simpleksem je "
+"ignoruje."
 
 #, c-format
 msgid "%s: Problem has constraints, but variable algorithm ignores them."
-msgstr "%s: Problem ma ograniczenia, algorytm zmiennej zignoruje je."
+msgstr ""
+"%s: Zagadnienie ma ograniczenia, ale algorytm ze zmiennym simpleksem je "
+"ignoruje."
 
 #, c-format
 msgid ""
 "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
-"%s: Problem nie ma ograniczeń, ale algorytm Box jest zaprojektowany dla nich."
+"%s: Zagadnienie nie ma ograniczeń, ale algorytm Box jest zaprojektowany dla "
+"nich."
 
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
-msgstr "%s: Q nie jest określone jako pozytywne symetrycznie.\n"
+msgstr "%s: Q nie jest symetryczna dodatnio określona.\n"
 
 #, c-format
 msgid ""
@@ -233,31 +236,31 @@ msgid ""
 "%s: The -withderivatives option is true but all algorithms in neldermead are "
 "derivative-free."
 msgstr ""
-"%s: Opcja -withderivatives jest prawdziwa, ale wszystkie algorytmy są w "
-"neldermead bez pochodnych."
+"%s: Opcja -withderivatives jest prawdziwa, ale wszystkie algorytmy z "
+"neldermead nie uzywają pochodnych."
 
 #, c-format
 msgid ""
 "%s: The boundsmax vector is expected to be a row matrix, but current shape "
 "is %d x %d"
 msgstr ""
-"%s: Wektor graniczny maksymalny jest przewidywany jako rząd macierzy, ale "
-"obecny kształt jest %d x %d"
+"%s: Oczekiwano się, że wektor boundsmax będzie macierzą (jedno)wierszową, "
+"ale obecny kształt jest %d x %d"
 
 #, c-format
 msgid ""
 "%s: The boundsmax vector is expected to have %d columns, but current shape "
 "is %d x %d"
 msgstr ""
-"%s: Oczekuje się że wektor graniczny maksymalny zawiera %d kolumny, ale "
-"obecny kształt jest %d x %d"
+"%s: Oczekuje się że wektor boundsmax zawiera %d kolumn, ale obecny kształt "
+"jest %d x %d"
 
 #, c-format
 msgid ""
 "%s: The boundsmin vector is expected to be a row matrix, but current shape "
 "is %d x %d"
 msgstr ""
-"%s: Wektor graniczny minimalny jest przewidywany jako rząd macierzy, ale "
+"%s: Oczekuje się, że wektor boundsmin jest macierzą (jedno)wierszową, ale "
 "obecny kształt jest %d x %d"
 
 #, c-format
@@ -265,8 +268,8 @@ msgid ""
 "%s: The boundsmin vector is expected to have %d columns, but current shape "
 "is %d x %d"
 msgstr ""
-"%s: Oczekuje się że wektor graniczny minimalny zawiera %d kolumny, ale "
-"obecny kształt jest %d x %d"
+"%s: Oczekuje się że wektor boundsmin zawiera %d kolumn, ale obecny kształt "
+"jest %d x %d"
 
 #, c-format
 msgid "%s: The constraints are inconsistent.\n"
@@ -274,38 +277,40 @@ msgstr "%s: Ograniczenia są niespójne.\n"
 
 #, c-format
 msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
-msgstr "%s: Elementy argumentu #%d muszą być w [%d %d].\n"
+msgstr "%s: Elementy argumentu nr %d muszą być w [%d %d].\n"
 
 #, c-format
 msgid "%s: The exclusion index vector has %d rows instead of 1."
-msgstr "%s: Wykluczony wskaźnik wektora ma %d wiersz zamiast 1."
+msgstr "%s: Wektor indeksu wykluczeń ma %d wierszy zamiast 1."
 
 #, c-format
 msgid ""
 "%s: The gradient can be applied only with a simplex made of n+1 points, but "
 "the dimension is %d and the number of vertices is %d"
 msgstr ""
-"%s: Gradient może być stosowany tylko z simplex wykonanych z n+1 punktów, "
-"ale wymiar wynosi %d i liczba wierzchołków wynosi %d"
+"%s: Gradient może być stosowany tylko z simpleksem, który składa się z n+1 "
+"punktów, ale wymiar wynosi %d a liczba wierzchołków %d"
 
 #, c-format
 msgid ""
 "%s: The len vector is expected to be a row matrix, but current shape is %d x "
 "%d."
-msgstr "%s: Wektor len ma być rzędu macierzy, ale obecna forma jest %d x %d."
+msgstr ""
+"%s: Wektor len ma być macierzą (jedno)wierszową, ale obecnie jego wymiary %d "
+"x %d."
 
 #, c-format
 msgid ""
 "%s: The len vector is expected to be a scalar, but current shape is %d x %d"
-msgstr "%s: Wektor len ma być skalarny, ale obecnie jest %d x %d"
+msgstr "%s: Wektor len ma być skalarem, ale obecnie jego wymiary %d x %d"
 
 #, c-format
 msgid ""
 "%s: The len vector is not consistent with the x0 point. Current shape of x0 "
 "is %d x %d while current shape of len is %d x %d."
 msgstr ""
-"%s: Wektor len nie jest zgodny z punktem x0. Obecnie forma x0 jest %d x %d "
-"podczas gdy obecna forma wektora len jest %d x %d."
+"%s: Niezgodne wymiary wektora len i punktu x0. Wymiary x0 to %d x %d podczas "
+"gdy wymiary len to %d x %d."
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
@@ -317,7 +322,7 @@ msgstr "%s: Macierz %s z costf(x0,%d) ma %d wiersze, zamiast %d."
 
 #, c-format
 msgid "%s: The minimization problem has no solution.\n"
-msgstr "%s: Problem minimalizacji nie został rozwiązany.\n"
+msgstr "%s: Zagadnienie minimalizacji nie ma rozwiązania.\n"
 
 #, c-format
 msgid ""
@@ -358,15 +363,35 @@ msgstr ""
 msgid ""
 "%s: The numbers of columns of coords is %d but is expected to be at least %d"
 msgstr ""
-"%s: Liczba kolumn z układu jest %d ale oczekiwana jest co najmniej %d"
+"%s: Liczba kolumn współrzędnych jest %d ale oczekiwana jest co najmniej %d"
 
 #, c-format
 msgid ""
 "%s: The oriented simplex can be computed only with a simplex made of n+1 "
 "points, but the dimension is %d and the number of vertices is %d"
 msgstr ""
-"%s: Zorientowany simplex można obliczyć tylko wykonując simplex z n+1 "
-"punktów, ale wymiar jest %d i liczba wierzchołków jest %d"
+"%s: Zorientowany simpleks można obliczyć tylko dla simpleksu z n+1 punktów, "
+"ale wymiar jest %d i liczba wierzchołków jest %d"
+
+#, c-format
+msgid ""
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
+msgstr ""
+
+#, c-format
+msgid "%s: The restarteps option is expected to be positive"
+msgstr ""
+
+#, c-format
+msgid "%s: The restartstep vector is expected to be positive"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The restartstep vector is expected to have %d x %d shape, but current "
+"shape is %d x %d"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -383,123 +408,123 @@ msgid ""
 "%s: The x0 vector is expected to be a column matrix, but current shape is %d "
 "x %d"
 msgstr ""
-"%s: Wektor x0 ma być macierzą kolumnową, ale jego obecna forma jest %d x %d"
+"%s: Wektor x0 ma być macierzą kolumnową, ale jego obecne wymiary %d x %d"
 
 #, c-format
 msgid ""
 "%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
 "%d"
 msgstr ""
-"%s: Wektor x0 ma być macierzą wierszową, ale jego obecna forma jest  %d x %d"
+"%s: Wektor x0 ma być macierzą wierszową, ale jego obecne wymiary %d x %d"
 
 #, c-format
 msgid ""
 "%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
 "%d."
-msgstr "%s: Wektor x0 ma być rzędu macierzy, ale jego forma jest %d x %d."
+msgstr ""
+"%s: Wektor x0 ma być macierzą wierszową, ale jego obecne wymiary %d x %d."
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
-msgstr "%s: Za dużo powtórzeń (więcej na %d).\n"
+msgstr "%s: Za dużo powtórzeń (więcej niż %d).\n"
 
 #, c-format
 msgid "%s: Unbounded problem!"
-msgstr "%s: Nieokreślony problem!"
+msgstr "%s: Brak ograniczeń dla zagadnienia!"
 
 #, c-format
 msgid "%s: Unexpected maximum number of function evaluations %s."
-msgstr "%s: Nieoczekiwana liczba maksymalna z  funkcji oceny  %s."
+msgstr "%s: Nieprawidłowa maksymalna liczba obliczeń funkcji %s."
 
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
-msgstr "%s: Nieoczekiwana maksymalna liczba powtórzeń %s."
+msgstr "%s: Nieprawidłowa maksymalna liczba iteracji %s."
 
 #, c-format
 msgid "%s: Unexpected negative value %s for %s option"
-msgstr "%s: Nieoczekiwana wartość negatywna %s z %s opcji"
+msgstr "%s: Nieprawidłowa wartość ujemna %s dla opcji %s"
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
 "expected."
 msgstr ""
-"%s: Nieoczekiwana liczba argumentów wejściowych : %d natomiast oczekiwanymi "
-"warunkami są od 0 do 7."
+"%s: Nieprawidłowa liczba argumentów wejściowych : jest %d, oczekiwano od 0 "
+"do 7."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 1 to 3 are "
 "expected."
 msgstr ""
-"%s: Nieoczekiwana liczba argumentów wejściowych : %d natomiast oczekiwanymi "
-"warunkami są od 1 do 3."
+"%s: Nieprawidłowa liczba argumentów wejściowych : jest %d, oczekiwano od 1 "
+"do 3."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
 msgstr ""
-"%s: Nieoczekiwana liczba argumentów wejściowych : %d natomiast oczekiwanym "
-"warunkiem jest 2."
+"%s: Nieprawidłowa liczba argumentów wejściowych : jest %d, oczekiwano 2."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
 "expected."
 msgstr ""
-"%s: Nieoczekiwana liczba argumentów wejściowych : %d natomiast oczekiwanymi "
-"warunkami są 2 lub 3."
+"%s: Nieprawidłowa liczba argumentów wejściowych : jest %d, oczekiwano 2 lub "
+"7."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
 "expected."
 msgstr ""
-"%s: Nieoczekiwana liczba argumentów wejściowych : %d natomiast oczekiwanymi "
-"warunkami są od 2 do 4."
+"%s: Nieprawidłowa liczba argumentów wejściowych : jest %d, oczekiwano od 2 "
+"do 4."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 5 are "
 "expected."
 msgstr ""
-"%s: Nieoczekiwana liczba argumentów wejściowych : %d natomiast oczekiwanymi "
-"warunkami są od 2 do 5."
+"%s: Nieprawidłowa liczba argumentów wejściowych : jest %d, oczekiwano od 2 "
+"do 5."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 6 are "
 "expected."
 msgstr ""
-"%s: Nieoczekiwana liczba argumentów wejściowych : %d natomiast oczekiwanymi "
-"warunkami są od 2 do 6."
+"%s: Nieprawidłowa liczba argumentów wejściowych : jest %d, oczekiwano od 2 "
+"do 6."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 6 to 7 are "
 "expected."
 msgstr ""
-"%s: Nieoczekiwana liczba argumentów wejściowych : %d natomiast oczekiwanymi "
-"warunkami są od 6 do 7."
+"%s: Nieprawidłowa liczba argumentów wejściowych : jest %d, oczekiwano 6 lub "
+"7."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of output arguments : %d provided while 3 to 5 are "
 "expected."
 msgstr ""
-"%s: Nieoczekiwana liczba argumentów wyjściowych : %d natomiast oczekiwanymi "
-"warunkami są od 3 do 5."
+"%s: Nieprawidłowa liczba argumentów wyjściowych : jest %d, oczekiwano od 3 "
+"do 5."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of variables %d. Cannot draw contour plot for "
 "functions which do not have two parameters."
 msgstr ""
-"%s: Nieoczekiwane liczby zmiennych %d. Nie można wykorzystać konturu "
-"podziałki dla funkcji która nie ma dwóch parametrów."
+"%s: Nieprawidłowa liczba zmiennych %d. Nie można otworzyć wykres warstwicowy "
+"dla funkcji, która nie mają 2 parametrów."
 
 #, c-format
 msgid "%s: Unknown -method %s"
-msgstr "%s: Nieznana -metoda %s"
+msgstr "%s: Nieznana wartość -method %s"
 
 #, c-format
 msgid "%s: Unknown key %s"
@@ -519,7 +544,7 @@ msgstr "%s: Nieznana metoda restartu simplex %s"
 
 #, c-format
 msgid "%s: Unknown simplex size method %s"
-msgstr "%s: Nieznana metoda rozmiaru simplex  %s"
+msgstr "%s: Nieznana metoda wyznaczenia rozmiaru simpleksu  %s"
 
 #, c-format
 msgid "%s: Unknown status %s"
@@ -539,28 +564,27 @@ msgstr "%s: Nieznana wartość %s dla opcji -scalingsimplex0"
 
 #, c-format
 msgid "%s: Unknown value %s for -simplex0method option"
-msgstr "%s: Nieznana wartość %s dla opcji simplex0method"
+msgstr "%s: Nieznana wartość %s dla opcji -simplex0method"
 
 #, c-format
 msgid "%s: Unrecognized parameter name ''%s''."
-msgstr "%s: Nie rozpoznaje parametrów nazwy ''%s''."
+msgstr "%s: Nie rozpoznana nazwa parametru ''%s''."
 
 #, c-format
 msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
-msgstr "%s: Nie rozpoznaje wartości ''%s'' dla opcji ''Wyświetlanie''."
+msgstr "%s: Nie rozpoznana wartość ''%s'' dla opcji ''Display''."
 
 #, c-format
 msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: Wykładnik macierzy musi być kwadratowy.\n"
+msgstr "%s: Macierz wag musi być kwadratowa.\n"
 
 #, c-format
 msgid "%s: Wrong number of arguments : %d expected while %d given"
-msgstr ""
-"%s: Nieprawidłowa liczba argumentów : %d oczekiwano podczas gdy %d dany"
+msgstr "%s: Nieprawidłowa liczba argumentów : oczekiwano %d, jest %d"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Zła liczba parametru(-ów) wejściowego(-ych).\n"
+msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -569,41 +593,42 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
-msgstr "%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d."
+msgstr "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: oczekiwany wektor "
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwany wektor "
 "kolumnowy.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: oczekiwana liczba "
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwana liczba "
 "kolumn %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
-"%s:  Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano funkcji.\n"
+"%s:  Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwano funkcji.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: oczekiwana tablica N-"
-"dimensionnal.\n"
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana tablica N-"
+"wymiarowa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%s: oczekiwany zewnętrzny.\n"
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %s: oczekiwano funkcję "
+"zewnętrzną.\n"
 
 #, c-format
 msgid "%s: x0 is not feasible."
-msgstr "%s: x0 nie jest wykonalny."
+msgstr "%s: niedopuszczlny x0."
 
 #, c-format
 msgid "Error in dgels, info = %d.\n"
@@ -626,13 +651,13 @@ msgid "Error in dtrcon, info = %d.\n"
 msgstr "Błąd w dtrcon, info = %d.\n"
 
 msgid "F(x)*Z has a negative eigenvalue.\n"
-msgstr "F(x)*Z ma ujemne wartości własne.\n"
+msgstr "F(x)*Z ma ujemną wartość własną.\n"
 
 msgid "L must be at least one.\n"
-msgstr "L musi być przynajmniej jeden raz.\n"
+msgstr "L musi być nie mniej niż jeden.\n"
 
 msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
-msgstr "Matryce Fi, i=1,...,m są liniowo zależne.\n"
+msgstr "Macierze Fi, i=1,...,m są liniowo zależne.\n"
 
 msgid "Optimization and Simulation"
 msgstr "Optymalizacja i Symulacja"
@@ -641,20 +666,20 @@ msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
 "are very badly conditioned).\n"
 msgstr ""
-"Matryce F_i, i=1,...,m są liniowo zależne (albo początkowe punkty są bardzo "
+"Macierze F_i, i=1,...,m są liniowo zależne (albo początkowe punkty są bardzo "
 "źle uwarunkowane).\n"
 
 #, c-format
 msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
 msgstr ""
-"Obszar roboczy jest zbyt mały. Potrzeba go co najmniej %d* zwiększyć "
-"(dwukrotnie).\n"
+"Roboczy obszar pamięci jest zbyt mały. Musi być co najmniej "
+"%d*sizeof(double).\n"
 
 msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
 msgstr "Z0 nie spełnia warunków równości dla dwóch możliwości.\n"
 
 msgid "Z0 is not positive definite.\n"
-msgstr "Z0 nie jest określony pozytywnie.\n"
+msgstr "Z0 nie jest dodatnio określony.\n"
 
 #, c-format
 msgid "blck_szs[%d] must be at least one.\n"

@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - INRIA - Michael Baudin
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -174,10 +174,10 @@ for i = 1 : ntests
   q = table(i,6);
   // Caution: this is the rate !
   rate = 1/scale;
-  [p1,q1]=cdfgam("PQ",x,shape,rate);
-  x1     = cdfgam("X",shape,rate,p,q);
-  shape1 = cdfgam("Shape",rate,p,q,x);
-  rate1 = cdfgam("Scale",p,q,x,shape);
+  [p1,q1] = cdfgam("PQ",x,shape,rate);
+  x1      = cdfgam("X",shape,rate,p,q);
+  shape1  = cdfgam("Shape",rate,p,q,x);
+  rate1   = cdfgam("Rate",p,q,x,shape);
   if ( %t ) then
     assert_close ( p1 , p , precision );
     assert_close ( q1 , q , precision );

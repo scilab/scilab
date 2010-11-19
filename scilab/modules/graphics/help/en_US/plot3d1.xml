@@ -28,7 +28,7 @@ plot3d1(x,y,z,&lt;opts_args&gt;)
 plot3d1(xf,yf,zf,&lt;opts_args&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>

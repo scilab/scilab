@@ -248,6 +248,10 @@ msgstr ""
 "%s: L'argomento in ingresso %s è sbagliato: era atteso un vettore di "
 "stringhe.\n"
 
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+
 msgid "?"
 msgstr "?"
 
@@ -329,6 +333,12 @@ msgstr ""
 msgid "Compile"
 msgstr "Compila"
 
+msgid "Compiling"
+msgstr ""
+
+msgid "Computing"
+msgstr ""
+
 msgid "Continuous time systems"
 msgstr "Sistemi di tempo continuo"
 
@@ -377,8 +387,14 @@ msgstr ""
 "Il diagramma è stato modificato dall'ultimo salvataggio.<br/> Salvarlo "
 "adesso?"
 
+msgid "Diff. States"
+msgstr ""
+
 msgid "Discontinuities"
 msgstr "Discontinuità"
+
+msgid "Discrete"
+msgstr "Discreto"
 
 msgid "Discrete time systems"
 msgstr "Sistemi di tempo discreto"
@@ -403,6 +419,12 @@ msgstr "Elettrico"
 
 msgid "Enable"
 msgstr "Abilita"
+
+msgid "Equations"
+msgstr ""
+
+msgid "Error"
+msgstr ""
 
 msgid "Event handling"
 msgstr "Gestione dell'evento"
@@ -431,6 +453,9 @@ msgstr "Esportazione in corso"
 msgid "Export to XML"
 msgstr "Esporta in XML"
 
+msgid "Extended"
+msgstr ""
+
 msgid "Failed to load Diagram"
 msgstr "Fallito il caricamento del diagramma"
 
@@ -445,6 +470,18 @@ msgstr "Tempo di integrazione finale"
 
 msgid "Fit diagram to view"
 msgstr "Riempi il diagramma da visualizzare"
+
+msgid "Fix derivatives"
+msgstr ""
+
+msgid "Fix states"
+msgstr ""
+
+msgid "Fixed parameters"
+msgstr ""
+
+msgid "Fixed variables"
+msgstr ""
 
 msgid "Flip"
 msgstr "Ribalta"
@@ -464,6 +501,9 @@ msgstr "Formatta"
 msgid "From %s"
 msgstr "Da %s"
 
+msgid "Generate Jacobian"
+msgstr ""
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Generazione di SuperBlock in corso..."
 
@@ -472,6 +512,9 @@ msgstr "Generazione di codice C per SuperBlock"
 
 msgid "Get infos"
 msgstr "Ottieni informazioni"
+
+msgid "Global"
+msgstr ""
 
 msgid "Goto %s"
 msgstr "Vai a %s"
@@ -505,6 +548,12 @@ msgstr ""
 
 msgid "Import from XML"
 msgstr "Importa da XML"
+
+msgid "Initial computing method"
+msgstr ""
+
+msgid "Input"
+msgstr ""
 
 msgid "Insert"
 msgstr "Inserisci"
@@ -569,6 +618,9 @@ msgstr ""
 msgid "Modelica initialize"
 msgstr "Inizializza modelica"
 
+msgid "Modelica settings"
+msgstr ""
+
 msgid "Move Down"
 msgstr "Sposta in basso"
 
@@ -608,7 +660,13 @@ msgstr "Nome della tavolozza"
 msgid "Palettes"
 msgstr "Pannelli"
 
+msgid "Parameter embedding"
+msgstr ""
+
 msgid "Per block execution trace and Debug block calls"
+msgstr ""
+
+msgid "Please take a look into the Scilab console"
 msgstr ""
 
 msgid "Port & Subsystem"
@@ -632,7 +690,16 @@ msgstr "Riduzione in tempo reale"
 msgid "Recent Files"
 msgstr "File _recenti"
 
+msgid "Reduced"
+msgstr ""
+
 msgid "Region to superblock"
+msgstr ""
+
+msgid "Relaxed parameters"
+msgstr ""
+
+msgid "Relaxed variables"
 msgstr ""
 
 msgid "Remove"
@@ -718,6 +785,12 @@ msgstr "Simulazione in corso"
 
 msgid "Sinks"
 msgstr "Stabilizzatori"
+
+msgid "Solve"
+msgstr ""
+
+msgid "Solver"
+msgstr ""
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Risolutore 0 (CVODE) - 100 (IDA)"
@@ -816,6 +889,12 @@ msgstr "Impossibile simulare %s"
 msgid "Unknown Diagram Version : "
 msgstr "Versione di diagramma sconosciuta : "
 
+msgid "Unknowns"
+msgstr ""
+
+msgid "Unknowns not equals to Equations"
+msgstr ""
+
 msgid "Untitled"
 msgstr "Senza titolo"
 
@@ -890,8 +969,49 @@ msgstr ""
 msgid "Zero crossing detection"
 msgstr ""
 
+msgid "comment"
+msgstr ""
+
 msgid "control port must be connected to command port"
 msgstr "una porta di controllo deve essere connessa a una porta di comando"
 
+msgid "fixed"
+msgstr ""
+
+msgid "id"
+msgstr ""
+
+msgid "initial"
+msgstr ""
+
+msgid "kind"
+msgstr ""
+
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+
+msgid "max"
+msgstr ""
+
 msgid "maximum step size (0 means no limit)"
 msgstr "dimensione massima del passo (0 significa nessun limite)"
+
+msgid "min"
+msgstr ""
+
+msgid "model is not valid"
+msgstr ""
+
+msgid "name"
+msgstr ""
+
+msgid "nominal"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "weight"
+msgstr ""

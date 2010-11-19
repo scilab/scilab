@@ -35,7 +35,7 @@ xs2svg(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

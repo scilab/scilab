@@ -225,9 +225,6 @@ msgstr ""
 msgid "Unknown Release"
 msgstr "未知版本"
 
-msgid "Updating, please wait"
-msgstr "更新中,  請等一下"
-
 msgid "Variable too long.\n"
 msgstr "變數太長.\n"
 

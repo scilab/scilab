@@ -23,7 +23,7 @@
     <synopsis>a = gca()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a</term>

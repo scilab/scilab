@@ -12,7 +12,7 @@
     <synopsis>[K2, lm, vm, lM, vM] = cond2sp(A, C_ptr [, rtol, itermax, verb])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>

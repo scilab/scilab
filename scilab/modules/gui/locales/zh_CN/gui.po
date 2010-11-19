@@ -79,11 +79,11 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
 
 #, c-format
-msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr "%s：属性‘’%s‘’和值‘’%s''无结果。\n"
 
 #, c-format
-msgid "%s: No results founded.\n"
+msgid "%s: No results found.\n"
 msgstr "%s：无结果。\n"
 
 #, c-format

@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<Setting version="0.22">
+<Setting version="0.27">
   <!-- SCINOTES configuration -->
   <Profile name="scinotes">
 
@@ -22,11 +22,14 @@
     <VerticalWrapAllowed useCache="true" value="false"/>
     <HorizontalWrapAllowed useCache="true" value="false"/>
     <AutoIndent default="true" useCache="true" value="true"/>
-    <AutoColorize default="true" useCach="true" value="true"/>
     <DefaultEncoding value="utf-8"/> <!-- Initialized to system default at first launch -->
 
     <!-- linecolor or contourcolor can be "null" to be transparent -->
     <LineHighlighter value="false" linecolor="#e4e9f4" contourcolor="#323232"/>
+
+    <!-- colors to use in the left panel to indicate you're a in a function (color1)
+	 or in a inner function (color2) (only available in whereami mode)-->
+    <AlternColors color1="#f6bff6" color2="#f665f6"/>
 
     <!-- Activate or not the help on typing for openers such as '(', '[', '"',... -->
     <HelpOnTypingOpeners value="true"/>

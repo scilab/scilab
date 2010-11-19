@@ -24,7 +24,7 @@
     <synopsis>fprintf(file,format,value_1,..,value_n)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>format</term>

@@ -25,7 +25,7 @@
 seteventhandler('')</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sfun_name</term>

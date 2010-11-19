@@ -23,7 +23,7 @@
     <synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>E, A</term>

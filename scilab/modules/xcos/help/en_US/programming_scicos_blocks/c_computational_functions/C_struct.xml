@@ -641,7 +641,7 @@ The event output register must be only written for </para>
 </para>
   </refsection>
   <refsection id="Parameters_C_struct">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <para>
 
 </para>

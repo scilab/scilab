@@ -30,4 +30,5 @@
 -->
 
 <PRIMITIVE gatewayId="60" primitiveId="1" primitiveName="buildDoc" />
+<PRIMITIVE gatewayId="60" primitiveId="2" primitiveName="buildDocv2" />
 </GATEWAY>

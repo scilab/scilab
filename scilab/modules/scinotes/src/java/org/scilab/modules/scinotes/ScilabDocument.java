@@ -74,7 +74,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private boolean updater = true;
     private boolean binary;
     private boolean autoIndent;
-    private boolean autoColorize;
     private boolean shouldMergeEdits;
     private boolean undoManagerEnabled;
     private CompoundUndoManager undo;
@@ -92,7 +91,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         setAsynchronousLoadPriority(2);
 
         autoIndent = ConfigSciNotesManager.getAutoIndent();
-        autoColorize = ConfigSciNotesManager.getAutoColorize();
         encoding = ConfigSciNotesManager.getDefaultEncoding();
 
         undo = new CompoundUndoManager(this);
@@ -268,22 +266,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void mergeEditsEnd() {
         undo.endCompoundEdit();
-    }
-
-    /**
-     * getColorize
-     * @return boolean
-     */
-    public boolean getColorize() {
-        return autoColorize;
-    }
-
-    /**
-     * setColorize
-     * @param b boolean
-     */
-    public void setColorize(boolean b) {
-        autoColorize = b;
     }
 
     /**
@@ -632,6 +614,15 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void removeUpdate(DocumentEvent e) {
         handleEvent(e);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected void insertUpdate(DefaultDocumentEvent chng, AttributeSet attr) {
+        // Fix bug 8277 in putting attr=null
+        // Java, by default, highlights the chinese chars when entered on keyboard
+        super.insertUpdate(chng, null);
     }
 
     /**

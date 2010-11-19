@@ -30,7 +30,7 @@
         <synopsis>void freeAllocatedSparseMatrix(int* _piNbItemRows, int* _piColPos, double* _pdblReal)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_piNbItemRows</term>

@@ -55,7 +55,7 @@ sys= lincos(scs_m [,x0,u0 [,param] ])
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_lincos">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scs_m :</emphasis> a xcos data structure</para>

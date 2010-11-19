@@ -23,7 +23,7 @@
     <synopsis>[info] = pvm_start(["hostfile"])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>hostfile</term>

@@ -428,6 +428,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\checkColorRange.c"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\ContextMenu.cpp"
 				>
 			</File>

@@ -28,7 +28,7 @@ ScilabEval instruction "sync" "seq"
 ScilabEval "flush"</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>instruction</term>

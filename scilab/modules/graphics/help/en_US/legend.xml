@@ -37,7 +37,7 @@ hl=legend([h,] strings [,pos] [,boxed])
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

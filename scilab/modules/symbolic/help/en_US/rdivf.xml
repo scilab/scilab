@@ -23,7 +23,7 @@
     <synopsis>["r"]=ldivf("d","c")</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>"d","c","r"  </term>

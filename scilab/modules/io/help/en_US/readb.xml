@@ -23,7 +23,7 @@
     <synopsis>x=readb(file-name,m,n [,rec])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>file-name</term>

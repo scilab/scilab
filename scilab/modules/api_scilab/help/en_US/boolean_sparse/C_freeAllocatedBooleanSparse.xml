@@ -30,7 +30,7 @@
 		<synopsis>void freeAllocatedBooleanSparse(int* _piNbItemRow, int* _piColPos)</synopsis>
 	</refsynopsisdiv>
 	<refsection>
-		<title>Parameters</title>
+		<title>Arguments</title>
 		<variablelist>
 			<varlistentry>
 				<term>_piNbItemRow</term>

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-08-22 05:10+0000\n"
+"PO-Revision-Date: 2010-09-17 00:36+0000\n"
 "Last-Translator: feen <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #, c-format
 msgid "%s is not a valid field name."
-msgstr ""
+msgstr "%s não é um nome de campo válido."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -55,7 +55,7 @@ msgid "Incorrect assignment.\n"
 msgstr "Atribuição incorreta.\n"
 
 msgid "Invalid field name."
-msgstr ""
+msgstr "Nome de campo inválido."
 
 msgid "Invalid index.\n"
 msgstr "Índice inválido.\n"

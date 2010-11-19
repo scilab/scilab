@@ -22,7 +22,7 @@
     datatipRemove(datatip_handle)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>polyline_handle</term>

@@ -35,7 +35,7 @@
         <synopsis xml:id="getScalarUnsignedInteger32">int getScalarUnsignedInteger32(void* _pvCtx, int* _piAddress, unsigned int* _puiData)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>

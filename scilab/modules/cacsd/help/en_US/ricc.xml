@@ -24,7 +24,7 @@
 [X,RCOND,FERR]=ricc(F,G,H,"disc","method")</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A,B,C</term>

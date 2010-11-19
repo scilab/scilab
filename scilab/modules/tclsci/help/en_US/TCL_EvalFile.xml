@@ -24,7 +24,7 @@
     <synopsis>TCL_EvalFile(filename [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>

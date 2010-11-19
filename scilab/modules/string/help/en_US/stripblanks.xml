@@ -24,7 +24,7 @@
     <synopsis>txt=stripblanks(txt[,tabs])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>txt</term>

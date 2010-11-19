@@ -32,8 +32,8 @@ function [d,ptp,ind,c]=orthProj(data,pt)
   X = X(nz,:); Y = Y(nz,:);
   P = sum(X.*Y,2)./L(nz)
 ;
-  //the projected point lies in the segment nz(i) if 0< = P(i)<1
-  i_in = find(P> = 0&P<1); //find segments the projected point falls in
+  //the projected point lies in the segment nz(i) if 0 <= P(i)<1
+  i_in = find(P >= 0 & P<1); //find segments the projected point falls in
   if i_in<>[] then
     //find the segment that realizes the min distance
     [d,k] = min(sum((X(i_in,:).*(P(i_in)*ones(1,m))-Y(i_in,:)).^2,2))

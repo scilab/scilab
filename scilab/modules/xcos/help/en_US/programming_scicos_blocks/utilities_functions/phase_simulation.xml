@@ -52,7 +52,7 @@ That function says if the Scicos simulator is realizing the time domain integrat
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_phase_simulation">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">psim :</emphasis> get the current phase of the simulation</para>

@@ -79,6 +79,7 @@ public class ScilabContext implements ViewFactory {
     public void genAttribute(String keyword, int type) {
         tokenAttrib[ScilabLexerConstants.TOKENS.get(keyword)] = type;
         tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
+        tokenAttrib[ScilabLexerConstants.ELSEIF] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
         if (ScilabLexerConstants.TOKENS.get(keyword) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
                 tokenAttrib[i] = tokenAttrib[0];
@@ -102,6 +103,7 @@ public class ScilabContext implements ViewFactory {
             tokenAttrib[i] = tokenAttrib[0];
         }
         tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
+        tokenAttrib[ScilabLexerConstants.ELSEIF] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
@@ -129,6 +131,7 @@ public class ScilabContext implements ViewFactory {
         /* Special case : Scilab's developers in comments */
         tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
         tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
+        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
@@ -145,6 +148,7 @@ public class ScilabContext implements ViewFactory {
         tokenColors[ScilabLexerConstants.TOKENS.get(name)] = color;
         tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
         tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
+        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
 
         if (ScilabLexerConstants.TOKENS.get(name) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
@@ -179,6 +183,7 @@ public class ScilabContext implements ViewFactory {
 
         tokenFonts[ScilabLexerConstants.TOKENS.get(name)] = font;
         tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
+        tokenFonts[ScilabLexerConstants.ELSEIF] = tokenFonts[ScilabLexerConstants.SKEYWORD];
         if (ScilabLexerConstants.TOKENS.get(name) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
                 tokenFonts[i] = tokenFonts[0];
@@ -237,6 +242,7 @@ public class ScilabContext implements ViewFactory {
         }
 
         tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
+        tokenFonts[ScilabLexerConstants.ELSEIF] = tokenFonts[ScilabLexerConstants.SKEYWORD];
     }
 
     /**

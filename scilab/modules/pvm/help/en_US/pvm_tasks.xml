@@ -23,7 +23,7 @@
     <synopsis>res = pvm_tasks([where])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>where</term>

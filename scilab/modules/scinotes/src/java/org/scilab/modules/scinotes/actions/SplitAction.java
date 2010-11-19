@@ -100,17 +100,19 @@ public final class SplitAction extends DefaultAction {
 
         ((JMenu) menu.getAsSimpleMenu()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
-                    JComponent c = editor.getTextPane().getParentComponent();
-                    int state = 0;
-                    if (c instanceof JSplitPane) {
-                        JSplitPane split = (JSplitPane) c;
-                        if (split.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
-                            state = 1;
-                        } else {
-                            state = 2;
+                    if (editor.getTextPane() != null) {
+                        JComponent c = editor.getTextPane().getParentComponent();
+                        int state = 0;
+                        if (c instanceof JSplitPane) {
+                            JSplitPane split = (JSplitPane) c;
+                            if (split.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
+                                state = 1;
+                            } else {
+                                state = 2;
+                            }
                         }
+                        arr[state].setSelected(true);
                     }
-                    arr[state].setSelected(true);
                 }
             });
 

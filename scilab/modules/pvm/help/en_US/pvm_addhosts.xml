@@ -23,7 +23,7 @@
     <synopsis>[infos] = pvm_addhosts(hosts)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>hosts</term>

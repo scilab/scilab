@@ -23,7 +23,7 @@
     <synopsis>Y=mtlb_sparse(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>

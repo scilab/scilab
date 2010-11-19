@@ -12,7 +12,7 @@
     <synopsis>[x] = taucs_chsolve(C_ptr, b [, A])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>C_ptr  </term>

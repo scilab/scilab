@@ -400,6 +400,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getfieldsdictionary.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getfilesdictionary.c"
 				>
 			</File>
@@ -458,6 +462,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\getCommonPart.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getfieldsdictionary.h"
 				>
 			</File>
 			<File

@@ -108,7 +108,7 @@ function atomsDESCRIPTIONwrite(description_in,file_out)
                     elseif(this_field=="PackagingVersion")
                         continue;
                     else
-                        str_mat = [ str_mat ; sprintf("%s: %s",this_field,this_value(1)) ];
+                        str_mat = [ str_mat ; this_field+": "+this_value(1) ];
                     end
 
                     if size(this_value,"*") == 1 then
@@ -116,7 +116,7 @@ function atomsDESCRIPTIONwrite(description_in,file_out)
                     end
 
                     for l=2:size(this_value,"*")
-                        str_mat = [ str_mat ; sprintf(" %s",this_value(l)) ];
+                        str_mat = [ str_mat ; " "+this_value(l) ];
                     end
 
                 end

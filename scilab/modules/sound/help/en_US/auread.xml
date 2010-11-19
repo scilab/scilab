@@ -26,7 +26,7 @@ y=auread(aufile,ext)
 [y,Fs,bits]=auread(aufile,ext)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>aufile</term>

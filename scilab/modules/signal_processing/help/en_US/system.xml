@@ -12,7 +12,7 @@
     <synopsis>[x1,y]=system(x0,f,g,h,q,r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x0</term>

@@ -22,7 +22,7 @@
 P = mtlb_legendre(n,X[,normflag])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>

@@ -24,7 +24,7 @@
     <synopsis>[Value,TextInd] = xls_read(fd,Sheetpos)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fd</term>

@@ -23,7 +23,7 @@
     <synopsis>xarrows(nx,ny,[arsize,style])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>nx,ny</term>

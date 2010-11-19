@@ -24,7 +24,7 @@
 [m]=secto3d(seclist ,x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>seclist</term>

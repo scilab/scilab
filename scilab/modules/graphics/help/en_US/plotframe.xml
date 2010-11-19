@@ -37,7 +37,7 @@ plotframe(rect,&lt;opts_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

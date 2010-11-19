@@ -23,7 +23,7 @@
     <synopsis>[K,X,err]=leqr(P12,Vx)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P12</term>

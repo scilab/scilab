@@ -27,7 +27,7 @@
 [Pnonc]=cdffnc("Pnonc",P,Q,F,Dfn,Dfd);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,F,Dfn,Dfd,Pnonc</term>

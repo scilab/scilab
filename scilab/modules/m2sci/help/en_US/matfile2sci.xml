@@ -24,7 +24,7 @@
     <synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>mat_file_path</term>

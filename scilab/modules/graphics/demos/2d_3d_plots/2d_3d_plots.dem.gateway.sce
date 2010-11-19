@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 demopath = get_absolute_file_path("2d_3d_plots.dem.gateway.sce");
 
@@ -28,6 +28,7 @@ subdemolist = [                                   ..
     "fchamp"         , "fchamp.dem.sce"          ; ..
     "grayplot"       , "grayplot.dem.sce"        ; ..
     "fgrayplot"      , "fgrayplot.dem.sce"       ; ..
+    "polarplot"      , "polarplot.dem.sce"       ; ..
     "errbar"         , "errbar.dem.sce"          ; ..
     "abaque"         , "abaque.dem.sce"          ; ..
     "zgrid"          , "zgrid.dem.sce"           ; ..

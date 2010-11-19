@@ -30,7 +30,7 @@
         <synopsis>int createScalarComplexDouble(void* _pvCtx, int _iVar, double _dblReal, double _dblImg)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>

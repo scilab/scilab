@@ -23,7 +23,7 @@
     <synopsis>[str]=pol2str(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>p</term>

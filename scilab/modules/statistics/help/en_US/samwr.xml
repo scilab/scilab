@@ -23,7 +23,7 @@
     <synopsis>s = samwr(sizam,numsamp,X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sizam</term>

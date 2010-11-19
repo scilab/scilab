@@ -31,7 +31,7 @@
     <synopsis>str = mgetstr(n, [fd])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>

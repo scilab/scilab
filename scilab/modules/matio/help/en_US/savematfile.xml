@@ -32,7 +32,7 @@ savematfile(..., '-v7.3')
 savematfile filename var1 var2 ...</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>

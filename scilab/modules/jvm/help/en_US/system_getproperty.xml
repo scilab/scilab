@@ -24,7 +24,7 @@
     <synopsis>res=system_getproperty(key)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>res</term>

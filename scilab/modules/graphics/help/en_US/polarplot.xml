@@ -25,7 +25,7 @@
 polarplot(theta,rho,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>rho</term>
@@ -231,12 +231,29 @@ polarplot(theta,rho,&lt;opt_args&gt;)</synopsis>
     to be reflected across the origin.</para>
   </refsection>
   <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <title>Example 1</title>
+    <programlisting role="example1"><![CDATA[ 
 t= 0:.01:2*%pi;
 clf();polarplot(sin(7*t),cos(8*t))
 
 clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Example 2</title>
+    <programlisting role="example2"><![CDATA[ 
+t= 0:.01:2*%pi;
+
+clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Example 3</title>
+    <programlisting role="example3"><![CDATA[ 
+t = 0:0.01:2*%pi;
+
+polarplot(t, -1 + sin(t));
+
  ]]></programlisting>
   </refsection>
 </refentry>

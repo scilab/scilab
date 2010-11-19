@@ -12,7 +12,7 @@
     <synopsis>[x]=filt_sinc(n,fl)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>

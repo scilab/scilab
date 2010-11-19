@@ -23,7 +23,7 @@
     <synopsis>P = proj(X1,X2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X1,X2</term>

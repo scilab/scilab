@@ -24,7 +24,7 @@
     <synopsis>files= listfiles(paths [,flag,flagexpand])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>paths</term>

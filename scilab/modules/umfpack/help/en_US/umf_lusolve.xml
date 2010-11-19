@@ -12,7 +12,7 @@
     <synopsis>[x] = umf_lusolve(LU_ptr, b [, st, A])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>LU_ptr  </term>

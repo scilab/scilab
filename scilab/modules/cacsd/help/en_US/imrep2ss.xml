@@ -23,7 +23,7 @@
     <synopsis>[sl]=imrep2ss(v [,deg])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>v</term>

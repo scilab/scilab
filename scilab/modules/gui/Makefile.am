@@ -51,6 +51,7 @@ src/c/InitWaitBar.c \
 src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
+src/c/checkColorRange.c \
 src/c/messageboxoptions.c 
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
@@ -298,6 +299,9 @@ libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
+images/icons/16x16/actions/go-bottom.png \
+images/icons/16x16/actions/go-top.png \
+images/icons/16x16/actions/view-refresh.png \
 images/icons/aboutscilab.png \
 images/icons/accessories-text-editor.png \
 images/icons/applications-system.png \

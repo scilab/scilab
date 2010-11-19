@@ -25,7 +25,7 @@ m=nanmedian(x,'r') (or m=nanmedian(x,1))
 m=nanmedian(x,'c') (or m=nanmedian(x,2))</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

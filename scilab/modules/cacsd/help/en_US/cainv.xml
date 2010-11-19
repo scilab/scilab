@@ -23,7 +23,7 @@
     <synopsis>[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>

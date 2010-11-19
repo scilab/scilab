@@ -25,7 +25,7 @@
 line=gethistory(N)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>matstr</term>

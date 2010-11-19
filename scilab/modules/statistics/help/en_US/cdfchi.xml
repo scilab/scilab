@@ -25,7 +25,7 @@
 [Df]=cdfchi("Df",P,Q,X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,Xn,Df</term>

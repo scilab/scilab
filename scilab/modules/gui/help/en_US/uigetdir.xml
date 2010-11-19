@@ -10,7 +10,7 @@
 directory = uigetdir(start_path [,title])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>start_path</term>

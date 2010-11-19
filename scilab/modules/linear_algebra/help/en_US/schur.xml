@@ -31,7 +31,7 @@
 [Z,dim]= schur(A,E,extern2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>

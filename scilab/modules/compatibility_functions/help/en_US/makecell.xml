@@ -23,7 +23,7 @@
     <synopsis>s = makecell(dims,a1,a2,...an)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dims</term>

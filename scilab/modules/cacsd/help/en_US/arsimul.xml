@@ -24,7 +24,7 @@
 [z]=arsimul(ar,u,[up,yp,ep])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>ar</term>

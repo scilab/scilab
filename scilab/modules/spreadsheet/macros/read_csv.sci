@@ -9,32 +9,36 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function mat = read_csv(fname,sep)
+function mat = read_csv(fname, sep)
 // Given an ascii  file created by Excel using "Text and comma" format
 // read_csv(fname) returns the corresponding Scilab matrix of strings.
 
   if (type(fname) <> 10) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), 'read_csv', 1));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "read_csv", 1));
   end
   
-  if (size(fname,'*')<> 1) then
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), 'read_csv', 1));  
+  if (size(fname,"*")<> 1) then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "read_csv", 1));  
   end
   
   if argn(2)<2 then 
-    sep = ',';
+    sep = ",";
+  end
+  
+  if sep == "\t" then
+    sep = ascii(9);
   end
   
   if ~isfile(fname) then
-    error(msprintf(gettext("%s: file %s does not exist.\n"), 'read_csv', fname));
+    error(msprintf(gettext("%s: file %s does not exist.\n"), "read_csv", fname));
   end
   
   v = mgetl(fname);
-  v(v == '') = [];
+  v(v == "") = [];
   ns = length(sep);
   mat = [];
   ki = 1;
-  for i = 1 : size(v,'*')
+  for i = 1 : size(v,"*")
     line = v(i);
     K = [strindex(line, sep)];
     ki = 1;
@@ -46,9 +50,9 @@ function mat = read_csv(fname,sep)
     row = [row, part(line, ki:length(line))];
     if (i > 1) then
       if size(row,2) > size(mat,2) then
-        mat($,size(row,2)) = '';
+        mat($,size(row,2)) = "";
       elseif size(row,2) < size(mat,2) then
-        row(1, size(mat,2)) = '';
+        row(1, size(mat,2)) = "";
       end
     end
     mat = [mat; row];

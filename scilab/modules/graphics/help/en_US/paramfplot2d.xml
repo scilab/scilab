@@ -25,7 +25,7 @@ paramfplot2d(f,x,theta,flag)
 paramfplot2d(f,x,theta,flagrect)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

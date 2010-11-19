@@ -34,37 +34,7 @@ sci_int_types getIntegerPrecision(char* variableName) {
             printError(&sciErr, 0);
             return sciErr.iErr;
         }
-
-    switch(iPrec)
-        {
-            case SCI_INT8:
-                return sci_int8;
-                break;
-            case SCI_INT16:
-                return sci_int16;
-                break;
-            case SCI_INT32:
-                return sci_int32;
-                break;
-            case SCI_INT64:
-                return sci_int64;
-                break;
-            /* Now, the unsigned int */
-            case SCI_UINT8:
-                return sci_uint8;
-                break;
-            case SCI_UINT16:
-                return sci_uint16;
-                break;
-            case SCI_UINT32:
-                return sci_uint32;
-                break;
-            case SCI_UINT64:
-                return sci_uint64;
-                break;
-
-        }
-    return -1;
+    return iPrec;
 }
 
 double * getDouble(char* variableName, int *nbRow, int *nbCol) {

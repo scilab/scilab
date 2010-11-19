@@ -24,7 +24,7 @@
     <synopsis>[rep [,win]]=xgetmouse([sel])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sel</term>

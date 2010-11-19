@@ -30,7 +30,11 @@
 #include <sys/sysctl.h>
 #define ARRAY_SIZE(a) (sizeof (a) / sizeof ((a)[0]))
 #define PAGESHIFT_UNDEF -100
+#elif defined(__FreeBSD__)
+#include <sys/param.h>
+#include <sys/sysctl.h>
 #endif
+
 
 #include <stdio.h>
 #define kooctet 1024
@@ -165,6 +169,12 @@ int getfreememory(void)
 
     return 0;
   }
+#elif defined(__FreeBSD__)
+  int avphys_pages;
+  size_t oldlenp = sizeof (avphys_pages);
+  sysctlbyname("vm.stats.vm.v_free_count", &avphys_pages, &oldlenp, NULL, NULL);
+  return (avphys_pages / kooctet) * sysconf(_SC_PAGESIZE); 
+
 #else
   /* Solaris and others assumed*/
   return (sysconf(_SC_AVPHYS_PAGES)/kooctet)*sysconf(_SC_PAGESIZE);

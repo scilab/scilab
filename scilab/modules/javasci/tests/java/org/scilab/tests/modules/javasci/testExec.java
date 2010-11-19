@@ -117,10 +117,20 @@ assert b3.equals(b2);
     public void execFromNonExistingFileTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
 		sci.close();
 
-        File nonExistingFile = new File("/wrong/path/file");
+		File nonExistingFile = new File("/wrong/path/file");
 
-        sci.open(nonExistingFile);
-    }
+		sci.open(nonExistingFile);
+	}
+
+	@Test(sequential = true)
+	public void execExecstrTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
+		sci.exec("execstr('toto = 111')");
+
+		ScilabType a = sci.get("toto");
+		double[][] aReal = ((ScilabDouble)a).getRealPart();
+		
+		assert ((ScilabDouble)a).getRealPart()[0][0] == 111.0;
+	}
 
 	/**
 	 * See #open()

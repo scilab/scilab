@@ -23,7 +23,7 @@
     <synopsis>[buff, info] = pvm_reduce(func, buff, msgtag, group, rootginst)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>func :  string, defines the  operation performed  on  the global</term>

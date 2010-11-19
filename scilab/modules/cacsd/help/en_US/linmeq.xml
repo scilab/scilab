@@ -12,7 +12,7 @@
     <synopsis>[X(,sep)] = linmeq(task,A,(B,)C,flag,trans(,schur))</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>task</term>

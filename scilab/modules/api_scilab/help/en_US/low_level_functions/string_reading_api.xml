@@ -30,11 +30,11 @@
 		<synopsis>SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)</synopsis>
 		<synopsis>SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings)</synopsis>
 		<para>Named variable profile:</para>
-		<synopsis>SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char** _pstStrings)</synopsis>
-		<synopsis>SciErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)</synopsis>
+		<synopsis>SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+		<synopsis>SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)</synopsis>
 	</refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
 			<varlistentry>
 				<term>_pvCtx</term>

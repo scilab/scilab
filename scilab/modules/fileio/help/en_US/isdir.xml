@@ -24,7 +24,7 @@
     <synopsis>r=isdir(path)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>path</term>

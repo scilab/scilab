@@ -77,7 +77,10 @@ function []=zgrid(varargin)
   end
   wn=wn(wn>0&wn<=1);
   zeta=zeta(zeta>=0&zeta<=1);
-
+  
+  fig = gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing = "off";
   axes=gca();drawlater(); show_window();
   if new&axes.children<>[] then
     delete(axes.children)
@@ -155,7 +158,8 @@ function []=zgrid(varargin)
     swap_handles(axes.children(k),axes.children(k+1))
   end
 
-  drawnow()
+  fig.immediate_drawing = immediate_drawing;
+  
 endfunction
 function str=formatZgridFreqTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip

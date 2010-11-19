@@ -25,7 +25,7 @@
 rect = stringbox( Handle )</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>rect</term>

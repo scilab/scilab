@@ -23,7 +23,7 @@
     <synopsis>xstringb(x,y,str,w,h,[option])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y,w,h</term>

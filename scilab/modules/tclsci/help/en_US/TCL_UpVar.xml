@@ -24,7 +24,7 @@
     <synopsis>OK=TCL_UpVar(varname1,varname2,[interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>varname1</term>

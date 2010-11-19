@@ -218,6 +218,10 @@ msgstr "%s: Неверный тип входного параметра %s: ож
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr "%s: Неверный тип входного параметра %s: ожидался вектор строк.\n"
 
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+
 msgid "?"
 msgstr "Справка"
 
@@ -298,6 +302,12 @@ msgstr ""
 msgid "Compile"
 msgstr "Компилировать"
 
+msgid "Compiling"
+msgstr ""
+
+msgid "Computing"
+msgstr ""
+
 msgid "Continuous time systems"
 msgstr "Системы с непрерывным временем"
 
@@ -344,8 +354,14 @@ msgid ""
 "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Диаграмма была изменена.<br/> Сохранить изменения?"
 
+msgid "Diff. States"
+msgstr ""
+
 msgid "Discontinuities"
 msgstr "Системы с разрывами"
+
+msgid "Discrete"
+msgstr "Дискретные блоки"
 
 msgid "Discrete time systems"
 msgstr "Системы с дискретным временем"
@@ -370,6 +386,12 @@ msgstr "Электрические блоки"
 
 msgid "Enable"
 msgstr "Включить"
+
+msgid "Equations"
+msgstr ""
+
+msgid "Error"
+msgstr ""
 
 msgid "Event handling"
 msgstr "Обработка событий"
@@ -398,6 +420,9 @@ msgstr "Идёт экспорт"
 msgid "Export to XML"
 msgstr "Экспортировать в XML"
 
+msgid "Extended"
+msgstr ""
+
 msgid "Failed to load Diagram"
 msgstr "Не удалось загрузить диаграмму"
 
@@ -412,6 +437,18 @@ msgstr "Конечное время интегрирования"
 
 msgid "Fit diagram to view"
 msgstr "Уместить диаграмму в окне"
+
+msgid "Fix derivatives"
+msgstr ""
+
+msgid "Fix states"
+msgstr ""
+
+msgid "Fixed parameters"
+msgstr ""
+
+msgid "Fixed variables"
+msgstr ""
 
 msgid "Flip"
 msgstr "Отразить по вертикали"
@@ -431,6 +468,9 @@ msgstr "Формат"
 msgid "From %s"
 msgstr "От %s"
 
+msgid "Generate Jacobian"
+msgstr ""
+
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Формируется суперблок..."
 
@@ -439,6 +479,9 @@ msgstr "Формируется код на C для суперблока..."
 
 msgid "Get infos"
 msgstr "Получить информацию"
+
+msgid "Global"
+msgstr ""
 
 msgid "Goto %s"
 msgstr "Перейти к %s"
@@ -472,6 +515,12 @@ msgstr ""
 
 msgid "Import from XML"
 msgstr "Импортировать из XML"
+
+msgid "Initial computing method"
+msgstr ""
+
+msgid "Input"
+msgstr ""
 
 msgid "Insert"
 msgstr "Вставить"
@@ -536,6 +585,9 @@ msgstr "Отразить по горизонтали"
 msgid "Modelica initialize"
 msgstr "Запускается Modelica"
 
+msgid "Modelica settings"
+msgstr ""
+
 msgid "Move Down"
 msgstr "Переместить вниз"
 
@@ -575,8 +627,14 @@ msgstr "Имя палитры"
 msgid "Palettes"
 msgstr "Палитры"
 
+msgid "Parameter embedding"
+msgstr ""
+
 msgid "Per block execution trace and Debug block calls"
 msgstr "Трассировка всех блоков и вызовы блока отладки"
+
+msgid "Please take a look into the Scilab console"
+msgstr ""
 
 msgid "Port & Subsystem"
 msgstr "Порты и подсистемы"
@@ -598,8 +656,17 @@ msgstr "Количество секунд в единице времени"
 msgid "Recent Files"
 msgstr "Недавние файлы"
 
+msgid "Reduced"
+msgstr ""
+
 msgid "Region to superblock"
 msgstr "Выделение в суперблок"
+
+msgid "Relaxed parameters"
+msgstr ""
+
+msgid "Relaxed variables"
+msgstr ""
 
 msgid "Remove"
 msgstr "Удалить"
@@ -684,6 +751,12 @@ msgstr "Выполняется моделирование"
 
 msgid "Sinks"
 msgstr "Регистрирующие устройства"
+
+msgid "Solve"
+msgstr ""
+
+msgid "Solver"
+msgstr ""
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Метод решения"
@@ -792,6 +865,12 @@ msgstr "Не удалось моделировать %s"
 msgid "Unknown Diagram Version : "
 msgstr "Неизвестная версия диаграммы: "
 
+msgid "Unknowns"
+msgstr ""
+
+msgid "Unknowns not equals to Equations"
+msgstr ""
+
 msgid "Untitled"
 msgstr "Безымянная диаграмма"
 
@@ -873,8 +952,49 @@ msgstr ""
 msgid "Zero crossing detection"
 msgstr "Обнаружение перехода через нуль"
 
+msgid "comment"
+msgstr ""
+
 msgid "control port must be connected to command port"
 msgstr "Управляющий порт должен быть подключён к командному порту"
 
+msgid "fixed"
+msgstr ""
+
+msgid "id"
+msgstr ""
+
+msgid "initial"
+msgstr ""
+
+msgid "kind"
+msgstr ""
+
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+
+msgid "max"
+msgstr ""
+
 msgid "maximum step size (0 means no limit)"
 msgstr "Максимальный размер шага (0 - без ограничений)"
+
+msgid "min"
+msgstr ""
+
+msgid "model is not valid"
+msgstr ""
+
+msgid "name"
+msgstr ""
+
+msgid "nominal"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "weight"
+msgstr ""

@@ -24,7 +24,7 @@
     <synopsis>f = fullfile(varargin)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>varargin</term>

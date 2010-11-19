@@ -24,7 +24,7 @@
 [Sk,rk,ro]=h_inf(P,r,romin,romax,nmax)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P</term>
