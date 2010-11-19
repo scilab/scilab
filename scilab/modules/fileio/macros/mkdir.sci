@@ -47,12 +47,12 @@ function [status,msg]=mkdir(varargin)
 		error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'mkdir'));
 	end
 	
-	if (fileinfo(NewDirectory)==[]) then
+	if isdir(NewDirectory) == %f & isfile(NewDirectory) == %f then
 		// The directory does not exist
 		status = 1;
 	else
 		// The directory or file exists
-		if (isdir(NewDirectory)) then
+		if isdir(NewDirectory) then
 			// it is a directory
 			status = 2;
 		else
