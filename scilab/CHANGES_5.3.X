@@ -138,7 +138,12 @@ Xcos:
 
 * bug 8397 fixed - the simulation was blocked on a Modelica translator error.
 
+
 * bug 8400 fixed - start demos from Xcos menu (? --> Xcos demos) did not work.
+
+
+* bug 8417 fixed - An h5 diagram open a new diagram before the end of the
+                   decoding.
 
 
 Graphic export:
