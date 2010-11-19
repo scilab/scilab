@@ -1044,6 +1044,7 @@ namespace ast
                             T execBody;
                             pCase->body_get()->accept(execBody);
                             bCase = true;
+                            break;
                         }
                     }
                 }
