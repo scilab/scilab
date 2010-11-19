@@ -243,8 +243,13 @@ void visitprivate(const AssignExp  &e)
                 execMeR.result_set(pIL);
             }
 
-            if(pIT == NULL)
+            if(pIT == NULL || (pIT->isDouble() && pIT->getAsDouble()->size_get() == 0))
             {//call static insert function
+                if(pIT->isDouble() && pIT->getAsDouble()->size_get() == 0)
+                {
+                    bNew = true;
+                }
+
                 switch(execMeR.result_get()->getType())
                 {
                 case InternalType::RealDouble : 
@@ -308,7 +313,7 @@ void visitprivate(const AssignExp  &e)
                     }
                     break;
                 default : 
-                    //TOTO YaSp : overlaoding insertion
+                    //TODO YaSp : overlaoding insertion
                     break;
                 }
 
