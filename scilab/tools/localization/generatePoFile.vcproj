@@ -47,8 +47,8 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="&quot;$(SolutionDir)bin\YaSp.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
-				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex.exe&quot; -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;"
+				BuildCommandLine="&quot;$(SolutionDir)bin\Yasp.exe&quot; -nb -nwni -f generatePoFile.sce&#x0D;&#x0A;"
+				ReBuildCommandLine="IF EXIST &quot;$(SolutionDir)locale&quot; rmdir /s /q  &quot;$(SolutionDir)locale&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\Yasp.exe&quot; -nb -nwni -f generatePoFile.sce&#x0D;&#x0A;"
 				CleanCommandLine="rmdir /s /q  &quot;$(SolutionDir)locale&quot;"
 				Output=""
 				PreprocessorDefinitions="WIN32;_DEBUG"
