@@ -61,6 +61,7 @@ Scilab.sln_old
 *.lib
 *.exp
 *.vcdef
+*.pdb
 Scilab.suo
 Scilab.ncb
 Release
