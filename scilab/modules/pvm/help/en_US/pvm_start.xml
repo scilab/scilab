@@ -77,8 +77,8 @@ pvm_start()
     <para>
     Error -1 means: missing environment variables.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvmd3">pvmd3</link>

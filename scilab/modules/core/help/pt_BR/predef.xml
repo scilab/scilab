@@ -65,8 +65,8 @@ oldnew=predef('clear')</synopsis>
     /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt; </para>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="clear">clear</link></member>

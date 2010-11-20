@@ -43,8 +43,8 @@ function [y1,...,yn]=foo(x1,...,xm)
     to <literal>z=x*y</literal> when <literal>x</literal> and <literal>z</literal> are rationals 
     (i.e. <literal>x=list('r',n,d,[])</literal> with <literal>n</literal> and <literal>d</literal> polynomials).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="deff">deff</link>

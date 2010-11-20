@@ -56,8 +56,8 @@ s=sin(2*%pi*440*t);
 analyze(s,200,600,22050);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="playsnd">playsnd</link>

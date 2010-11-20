@@ -61,8 +61,8 @@ r=dragrect([10;10;30;10])
 xrect(r)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xrect">xrect</link>

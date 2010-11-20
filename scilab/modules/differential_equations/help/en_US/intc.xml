@@ -46,8 +46,8 @@
     computes the integral from <literal>a</literal> to <literal>b</literal> of <literal>f(z)dz</literal> along the  
     straight line <literal>a b</literal> of the complex plane.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="intg">intg</link>

@@ -107,8 +107,8 @@ plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
 legend(["histogramme d''un échantillon E(lambda)" "densité exacte"]);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="hist3d">hist3d</link>

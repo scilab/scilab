@@ -231,8 +231,8 @@ ss2tf(closed)       // Closed loop is zero
 spec(closed('A'))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cainv">cainv</link>

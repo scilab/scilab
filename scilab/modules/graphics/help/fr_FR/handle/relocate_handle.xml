@@ -64,8 +64,8 @@ poly2bis = copy( poly2 ) ; // copie de la polyline pour la déplacer ensuite
 relocate_handle( poly2bis, axes1 ) ;
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="graphics_entities">graphics_entities</link>

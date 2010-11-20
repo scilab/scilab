@@ -74,8 +74,8 @@ nextpow2(0:10)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="frexp">frexp</link></member>

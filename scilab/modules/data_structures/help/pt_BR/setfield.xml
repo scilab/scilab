@@ -85,8 +85,8 @@ setfield(3,1:8,a);a // ajusta o valor de campo para 1:8
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="insertion">insertion</link></member>

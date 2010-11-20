@@ -68,8 +68,8 @@ P=genmarkov([2,1],2,'perm')
 P(perm,perm)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="classmarkov">classmarkov</link>

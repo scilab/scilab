@@ -84,8 +84,8 @@ e.children(1).mark_style = mark;
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="ged">ged</link></member>

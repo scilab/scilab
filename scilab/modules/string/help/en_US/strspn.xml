@@ -84,8 +84,8 @@ i = strspn(["129th","130th"],["1234567890","130t"])
  ]]>  </programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="strcspn">strcspn</link></member>

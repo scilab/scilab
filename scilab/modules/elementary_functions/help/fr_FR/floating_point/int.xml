@@ -35,8 +35,8 @@
     <para><literal>int(X)</literal> renvoie une matrice d'entiers dont les éléments sont les arrondis vers zéro des éléments de x. Cette fonction est la même que la fonction <literal>fix</literal>.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="round">round</link>

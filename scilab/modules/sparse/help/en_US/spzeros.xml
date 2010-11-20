@@ -96,8 +96,8 @@ sum(spzeros(1000,1000))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>

@@ -184,8 +184,8 @@ cumprod(B,"native") //similar to or(B)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="prod">prod</link></member>
       <member><link linkend="cumsum">cumsum</link></member>

@@ -34,8 +34,8 @@ E=[1/s,0;s,1/(s+1)]
 E=['A11','A12';'A21','A22']
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

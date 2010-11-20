@@ -53,8 +53,8 @@ size(wr), w1=ss2tf(wr), size(w1)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="matrices">matrices</link></member>

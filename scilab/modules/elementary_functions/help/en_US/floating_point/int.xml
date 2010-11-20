@@ -44,8 +44,8 @@
     <para><literal>int(X)</literal> returns the integer part of the real matrix <literal>X</literal>.
     Same as <literal>fix</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="round">round</link>

@@ -47,8 +47,8 @@
     </para>
     <para>Attention : <literal>mstr2sci</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="Chaines_de_caracteres_MatlabScilab">Chaines_de_caracteres_Matlab-Scilab</link>

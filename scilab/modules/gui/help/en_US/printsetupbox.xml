@@ -43,8 +43,8 @@
     <para>Displays the built-in printing dialogbox and configure the printer.</para>
   </refsection>
   
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="toprint">toprint</link>

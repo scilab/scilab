@@ -189,8 +189,8 @@ h=fact*(b0+b1*%z+b2*%z^2)./(c0+c1*%z+%z^2)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="eqiir">eqiir</link></member>

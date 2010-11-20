@@ -77,8 +77,8 @@ scf(2);
 pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xfpolys">xfpolys</link>

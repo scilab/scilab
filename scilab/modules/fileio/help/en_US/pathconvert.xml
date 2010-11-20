@@ -87,8 +87,8 @@ pathconvert("c:/tmp",%f,%t,"u")
 pathconvert("/cygdrive/c/tmp",%f,%f,"w")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="basename">basename</link>

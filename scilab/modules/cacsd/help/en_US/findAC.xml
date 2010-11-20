@@ -166,8 +166,8 @@ METH=3;TOL=-1;
 [A,C] = findAC(S,N,L,R,METH,TOL);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findABCD">findABCD</link>

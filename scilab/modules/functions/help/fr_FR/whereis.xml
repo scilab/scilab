@@ -19,8 +19,8 @@
     Le chemin d'accès à la bibliothèque peut être obtenu avec la fonction <literal>"librname"</literal>.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="lib">lib</link>

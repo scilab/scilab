@@ -27,8 +27,8 @@ a=[1,2,3;4,5,6];
 a=1,b=1;c=2
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="semicolon">semicolon</link>

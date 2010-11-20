@@ -92,8 +92,8 @@ genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])<
       they are made known to Scilab only after the function <literal>foo</literal>
       had been referenced.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getd">getd</link>

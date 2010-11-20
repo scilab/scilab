@@ -178,8 +178,8 @@ a.data_bounds=[-5,-5;5,5];
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="set">set</link></member>

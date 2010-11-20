@@ -54,8 +54,8 @@ a(1) // le terme a(1,1,1)
 getfield(1,a) // le premier champ de la mlist
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="extraction">extraction</link>

@@ -144,8 +144,8 @@ closed=syslin('c',A+B2*F,B1+B2*G,C1+D12*F,D11+D12*G);
 ss2tf(closed)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="abinv">abinv</link>

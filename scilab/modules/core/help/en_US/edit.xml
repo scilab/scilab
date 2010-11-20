@@ -73,8 +73,8 @@ edit('/home/foo/bar.sci') //opens the file bar.sci
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="manedit">manedit</link></member>

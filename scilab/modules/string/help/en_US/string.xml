@@ -76,8 +76,8 @@ disp('/'+string(int16(-123))+'/')
 disp('/'+string(1+%s+%s^3)+'/')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="part">part</link>

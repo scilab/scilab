@@ -95,8 +95,8 @@ plot2d(sin(t),cos(t))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="gdf">gdf</link></member>
