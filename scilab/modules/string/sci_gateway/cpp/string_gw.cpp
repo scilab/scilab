@@ -30,5 +30,6 @@ bool StringModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"strsplit", &sci_strsplit, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"ascii", &sci_ascii, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"strcat", &sci_strcat, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"string", &sci_string, MODULE_NAME));
     return true;
 }

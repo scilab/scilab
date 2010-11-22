@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -469,10 +469,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_strcspn.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_string.c"
 				>
 			</File>
 			<File

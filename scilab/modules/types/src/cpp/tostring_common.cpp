@@ -159,7 +159,6 @@ void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 	if(!R aa C	-> Ci
 	*/
 
-	int iSignLen = 0;
 //	*_postr << "|%" << _iTotalWitdh << "%|";
 	if(_dblR == 0)
 	{//no real part
@@ -170,7 +169,6 @@ void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 			ostemp << (_dblI < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
 			ostemp << left << 0;
-			iSignLen = SIGN_LENGTH;
 		}
 		else
 		{//imaginary part
@@ -183,7 +181,6 @@ void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 				PrintDoubleVar(&ostemp, _dblI);
 			}
 			ostemp << left << SYMBOL_I;
-			iSignLen = SIGN_LENGTH;
 		}
 	}
 	else
@@ -195,7 +192,6 @@ void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
 			PrintDoubleVar(&ostemp, _dblR);
-			iSignLen = SIGN_LENGTH;
 		}
 		else
 		{//imaginary part
@@ -214,7 +210,6 @@ void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 				PrintDoubleVar(&ostemp, _dblI);
 			}
 			ostemp << left << SYMBOL_I;
-			iSignLen = SIGN_LENGTH * 2;
 		}
 	}
 
@@ -238,7 +233,7 @@ void PrintDoubleVar(wostringstream *_postr,  double _dblVal)
 	{//Inf
 		Config_Stream(_postr, 0, 0, ' ');
 		*_postr << left << "Inf";
-	}	
+	}
 
 }
 void Add_Space(wostringstream *_postr, int _iSpace)
