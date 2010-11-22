@@ -39,6 +39,12 @@ Graphics:
 * bug 7836 fixed - The sub_tics property was not correctly tracking the number
                    of displayed sub-ticks. Thanks to Paul Griffiths.
 
+GUI:
+====
+
+* bug 8203 fixed - It was not possible to close the fontchooser or the 
+                   colorchooser with the escape key.
+
 Quality assurance:
 ==================
 
