@@ -112,16 +112,19 @@ namespace symbol
 
         void remove(const wstring& key)
         {
-            InternalType *pOld = (*_scope)[key];
-            
-            if(pOld)
+            if((*_scope).find(key) != (*_scope).end())
             {
-                _scope->erase(key);
-                pOld->DecreaseRef();
-                if(pOld->isDeletable() == true)
+                InternalType *pOld = (*_scope)[key];
+                
+                if(pOld)
                 {
-                    delete pOld;
-                    pOld = NULL;
+                    _scope->erase(key);
+                    pOld->DecreaseRef();
+                    if(pOld->isDeletable() == true)
+                    {
+                        delete pOld;
+                        pOld = NULL;
+                    }
                 }
             }
         }
