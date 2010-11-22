@@ -513,11 +513,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\diary.h"
+				RelativePath="..\..\includes\diary.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\diary.h"
+				RelativePath=".\diary.h"
 				>
 			</File>
 			<File
@@ -706,7 +706,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\..\libs\types.lib"
+			RelativePath="..\..\..\..\bin\types.lib"
 			>
 		</File>
 	</Files>

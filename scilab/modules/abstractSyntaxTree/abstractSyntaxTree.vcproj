@@ -631,10 +631,6 @@
 			RelativePath=".\ReadMe.txt"
 			>
 		</File>
-		<File
-			RelativePath="..\..\libs\types.lib"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
