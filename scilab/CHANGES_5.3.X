@@ -1,7 +1,7 @@
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
             ===============================================================
 
-Due to an important change from Apple in the Java environnement, a new beta
+Due to an important change from Apple in the Java environment, a new beta
 release of Scilab has been decided. This will allow further testing for
 this architecture.
 
@@ -27,7 +27,7 @@ versions of Scilab.
 * Documentation of profiling functions moved in a dedicated documentation
   section.
 
-* Documentation of color managements in graphics functions moved in a dedicated
+* Documentation of color management in graphics functions moved in a dedicated
   section. See bug 7048.
 
 * Documentation of floating point functions moved in a dedicated section.
@@ -43,7 +43,7 @@ versions of Scilab.
 
 * bugs 8357, 8358 fixed - There was an encoding problem under Windows.
 
-* bug 8367 fixed - In function synopsis, &apos were displayed rather than '.
+* bug 8367 fixed - In synopsis function, &apos were displayed rather than '.
 
 
 Javasci:
@@ -53,7 +53,7 @@ A new version of the Java => Scilab API called Javasci v2 is now included into
 the Scilab distribution.
 This version fixes most the issues and limitations of the previous version. 
 This API is automatically fully tested through unitary tests and code coverage.
-Please note that previous version of Javasci remains available and shipped
+Please, note that previous version of Javasci remains available and shipped
 into the Scilab distribution.
 Advanced documentation and examples will be provided in the stable release of
 Scilab 5.3.0.
@@ -202,7 +202,7 @@ SciNotes:
 
 * bug 8359 fixed - An exception was thrown on Save As action.
 
-* bug 8368 fixed - Incremental search did not highlight correctly the pattern
+* bug 8368 fixed - Incremental search did not correctly highlight the pattern
                    under Windows.
 
 * bug 8381 fixed - It was not logical to add favorite dirs only in "Open file
@@ -241,7 +241,7 @@ Bug Fixes:
 
 * bug 4738 fixed - The number of columns in the console was badly calculated.
 
-* bug 4827 fixed - The test_run function did not work properly with modules
+* bug 4827 fixed - The test_run function did not properly work with modules
                    begining with a "n".
 
 * bug 5486 fixed - It was not possible to precise the text of a link in
@@ -263,7 +263,7 @@ Bug Fixes:
 * bug 7970 fixed - The eager loading of openmp support library was crashing
                    on Linux with unsupported configuration for openmp.
 
-* bug 7997 fixed - Function getfreememory adapted for FreeBSD. Thanks to Rob
+* bug 7997 fixed - getfreememory function adapted for FreeBSD. Thanks to Rob
                    Farmer.
 
 * bug 8016 fixed - An error in a german translation gave an error message.
@@ -271,7 +271,7 @@ Bug Fixes:
 * bug 8046 fixed - msprintf did not manage tabulation as format.
 
 * bug 8067 fixed - Nyquist unitary test failed due to a change of the nyquist
-                   function the graph has been symetrized.
+                   function. The graph has been symetrized.
 
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
 
@@ -297,7 +297,7 @@ Bug Fixes:
 * bug 8115 fixed - DisableInteractiveMode() (call_scilab) did not work.
 
 * bug 8122 fixed - help of write_csv said that it reads file and not that it
-                   writes.
+                   wrotes.
 
 * bug 8124 fixed - Some translations were not up to date.
 
@@ -305,7 +305,7 @@ Bug Fixes:
 
 * bug 8128 fixed - A warning was displayed on 'Save' action in a graphic window.
 
-* bug 8129 fixed - The error message was not clear in tbx_builder_src if you
+* bug 8129 fixed - The error message was not cleared in tbx_builder_src if you
                    did not have a compiler.
 
 * bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
@@ -321,7 +321,7 @@ Bug Fixes:
 
 * bug 8164 fixed - Typo in the fileparts help page.
 
-* bug 8170 fixed - Loading HDF5 files in non-Scilab format causes crash
+* bug 8170 fixed - Loading HDF5 files in non-Scilab format caused crash
                    of application.
 
 * bug 8174 fixed - ss2tf produced bad results if applied to a complex
@@ -329,10 +329,10 @@ Bug Fixes:
 
 * bug 8177 fixed - Format mode was modified by some macros and not restored.
 
-* bug 8181 fixed - uicontrol did not handle color where composants are outside
+* bug 8181 fixed - uicontrol did not handle color where composants were outside
                    the range 0-255.
 
-* bug 8202 fixed - Typo in the the localization.
+* bug 8202 fixed - Typo in the localization.
 
 * bug 8206 fixed - isnum did not manage blanks.
 
@@ -359,7 +359,7 @@ Bug Fixes:
 * bug 8296 fixed - size( M,3) crashed scilab 5.3.0-beta-4.
 
 * bug 8299 fixed - ilib_compile did not return enough feedback on Windows when
-                   compilaion failed.
+                   compilation failed.
 
 * bug 8300 fixed - a(48400, 48400) = 0 crashed scilab.
 
