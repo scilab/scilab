@@ -114,14 +114,14 @@ quote			"'"
 dot             "."
 dotquote		".'"
 dottimes		".*"
-dotdivide		"./"
-dotrdivide		".\\"
+dotrdivide		"./"
+dotldivide		".\\"
 dotpower		(".^"|".**")
 
 plus			"+"
 minus			"-"
-divide			"/"
-rdivide			"\\"
+rdivide			"/"
+ldivide			"\\"
 times			"*"
 power			("^"|"**")
 
@@ -133,12 +133,12 @@ lowerequal		"<="
 greaterequal		">="
 
 krontimes		".*."
-krondivide		"./."
-kronrdivide		".\\."
+kronrdivide		"./."
+kronldivide		".\\."
 
 controltimes    ("*."[^0-9])
-controldivide	("/."[^0-9])
-controlrdivide  ("\\."[^0-9])
+controlrdivide	("/."[^0-9])
+controlldivide  ("\\."[^0-9])
 
 assign			"="
 
@@ -422,11 +422,11 @@ assign			"="
 <INITIAL,MATRIX>{dottimes}		{
   return scan_throw(DOTTIMES);
 }
-<INITIAL,MATRIX>{dotdivide}		{
-  return scan_throw(DOTDIVIDE);
-}
 <INITIAL,MATRIX>{dotrdivide}		{
   return scan_throw(DOTRDIVIDE);
+}
+<INITIAL,MATRIX>{dotldivide}		{
+  return scan_throw(DOTLDIVIDE);
 }
 <INITIAL,MATRIX>{dotpower}		{
   return scan_throw(DOTPOWER);
@@ -442,11 +442,11 @@ assign			"="
 <INITIAL,MATRIX>{times}			{
   return scan_throw(TIMES);
 }
-<INITIAL,MATRIX>{divide}		{
-  return scan_throw(DIVIDE);
-}
 <INITIAL,MATRIX>{rdivide}		{
   return scan_throw(RDIVIDE);
+}
+<INITIAL,MATRIX>{ldivide}		{
+  return scan_throw(LDIVIDE);
 }
 <INITIAL,MATRIX>{power}			{
   return scan_throw(POWER);
@@ -455,11 +455,11 @@ assign			"="
 <INITIAL,MATRIX>{krontimes}		{
   return scan_throw(KRONTIMES);
 }
-<INITIAL,MATRIX>{krondivide}		{
-  return scan_throw(KRONDIVIDE);
-}
 <INITIAL,MATRIX>{kronrdivide}		{
   return scan_throw(KRONRDIVIDE);
+}
+<INITIAL,MATRIX>{kronldivide}		{
+  return scan_throw(KRONLDIVIDE);
 }
 
 
@@ -467,13 +467,13 @@ assign			"="
     unput(yytext[yyleng - 1]);
     return scan_throw(CONTROLTIMES);
 }
-<INITIAL,MATRIX>{controldivide}		{
-    unput(yytext[yyleng - 1]);
-    return scan_throw(CONTROLDIVIDE);
-}
 <INITIAL,MATRIX>{controlrdivide}		{
     unput(yytext[yyleng - 1]);
     return scan_throw(CONTROLRDIVIDE);
+}
+<INITIAL,MATRIX>{controlldivide}		{
+    unput(yytext[yyleng - 1]);
+    return scan_throw(CONTROLLDIVIDE);
 }
 
 

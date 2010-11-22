@@ -63,34 +63,34 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
         return std::wstring(L"s");
     case OpExp::times :
         return std::wstring(L"m");
-    case OpExp::divide :
-        return std::wstring(L"r");
     case OpExp::rdivide :
+        return std::wstring(L"r");
+    case OpExp::ldivide :
         return std::wstring(L"l");
     case OpExp::power :
         return std::wstring(L"p");
         /* dot operators */
     case OpExp::dottimes :
         return std::wstring(L"x");
-    case OpExp::dotdivide :
-        return std::wstring(L"d");
     case OpExp::dotrdivide :
+        return std::wstring(L"d");
+    case OpExp::dotldivide :
         return std::wstring(L"q");
     case OpExp::dotpower :
         return std::wstring(L"j");
         /* Kron operators */
     case OpExp::krontimes :
         return std::wstring(L"k");
-    case OpExp::krondivide :
-        return std::wstring(L"y");
     case OpExp::kronrdivide :
+        return std::wstring(L"y");
+    case OpExp::kronldivide :
         return std::wstring(L"z");
         /* Control Operators ??? */
     case OpExp::controltimes :
         return std::wstring(L"u");
-    case OpExp::controldivide :
-        return std::wstring(L"v");
     case OpExp::controlrdivide :
+        return std::wstring(L"v");
+    case OpExp::controlldivide :
         return std::wstring(L"w");
     case OpExp::eq :
         return std::wstring(L"o");

@@ -3,7 +3,80 @@ Terminals unused in grammar
    "line break"
    "spaces"
    "block comment"
+   CONTRORDIVIDE
    FUNCTIONCALL
+
+
+State 59 conflicts: 1 shift/reduce
+State 60 conflicts: 1 shift/reduce
+State 75 conflicts: 1 shift/reduce
+State 76 conflicts: 1 shift/reduce
+State 77 conflicts: 1 shift/reduce
+State 78 conflicts: 1 shift/reduce
+State 241 conflicts: 1 shift/reduce
+State 242 conflicts: 1 shift/reduce
+State 264 conflicts: 1 shift/reduce
+State 265 conflicts: 1 shift/reduce
+State 267 conflicts: 1 shift/reduce
+State 268 conflicts: 1 shift/reduce
+State 269 conflicts: 1 shift/reduce
+State 270 conflicts: 1 shift/reduce
+State 271 conflicts: 1 shift/reduce
+State 272 conflicts: 1 shift/reduce
+State 273 conflicts: 1 shift/reduce
+State 274 conflicts: 1 shift/reduce
+State 275 conflicts: 1 shift/reduce
+State 276 conflicts: 1 shift/reduce
+State 277 conflicts: 1 shift/reduce
+State 278 conflicts: 1 shift/reduce
+State 279 conflicts: 1 shift/reduce
+State 280 conflicts: 1 shift/reduce
+State 281 conflicts: 1 shift/reduce
+State 282 conflicts: 1 shift/reduce
+State 283 conflicts: 31 shift/reduce
+State 284 conflicts: 31 shift/reduce
+State 285 conflicts: 1 shift/reduce
+State 286 conflicts: 1 shift/reduce
+State 287 conflicts: 1 shift/reduce
+State 288 conflicts: 1 shift/reduce
+State 289 conflicts: 1 shift/reduce
+State 290 conflicts: 1 shift/reduce
+State 291 conflicts: 1 shift/reduce
+State 292 conflicts: 1 shift/reduce
+State 293 conflicts: 1 shift/reduce
+State 294 conflicts: 1 shift/reduce
+State 295 conflicts: 1 shift/reduce
+State 296 conflicts: 1 shift/reduce
+State 297 conflicts: 1 shift/reduce
+State 298 conflicts: 1 shift/reduce
+State 300 conflicts: 1 shift/reduce
+State 301 conflicts: 1 shift/reduce
+State 303 conflicts: 1 shift/reduce
+State 304 conflicts: 1 shift/reduce
+State 306 conflicts: 1 shift/reduce
+State 307 conflicts: 1 shift/reduce
+State 309 conflicts: 1 shift/reduce
+State 310 conflicts: 1 shift/reduce
+State 312 conflicts: 1 shift/reduce
+State 313 conflicts: 1 shift/reduce
+State 315 conflicts: 1 shift/reduce
+State 316 conflicts: 1 shift/reduce
+State 318 conflicts: 1 shift/reduce
+State 319 conflicts: 1 shift/reduce
+State 321 conflicts: 1 shift/reduce
+State 322 conflicts: 1 shift/reduce
+State 324 conflicts: 1 shift/reduce
+State 325 conflicts: 1 shift/reduce
+State 327 conflicts: 1 shift/reduce
+State 328 conflicts: 1 shift/reduce
+State 341 conflicts: 1 shift/reduce
+State 342 conflicts: 1 shift/reduce
+State 343 conflicts: 1 shift/reduce
+State 344 conflicts: 1 shift/reduce
+State 359 conflicts: 1 shift/reduce
+State 360 conflicts: 1 shift/reduce
+State 432 conflicts: 1 shift/reduce
+State 433 conflicts: 1 shift/reduce
 
 
 Grammar
@@ -573,78 +646,79 @@ HIGHLEVEL (334)
 UPLEVEL (335)
 LISTABLE (336)
 CONTROLBREAK (337)
-FUNCTIONCALL (338)
+CONTRORDIVIDE (338)
+FUNCTIONCALL (339)
 
 
 Nonterminals, with rules where they appear
 
-$accept (84)
+$accept (85)
     on left: 0
-program (85)
+program (86)
     on left: 1 2 3, on right: 0
-expressions (86)
+expressions (87)
     on left: 4 5 6 7 8, on right: 1 2 101 271 273 321 347 350 371 372
-recursiveExpression (87)
+recursiveExpression (88)
     on left: 9 10 11 12, on right: 4 5 6 9 10
-expressionLineBreak (88)
+expressionLineBreak (89)
     on left: 13 14 15 16 17 18, on right: 9 10 11 12 16 17 18
-expression (89)
+expression (90)
     on left: 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33, on right:
     5 6 7 8 9 10 11 12
-implicitFunctionCall (90)
+implicitFunctionCall (91)
     on left: 34 35, on right: 28 34
-implicitCallable (91)
+implicitCallable (92)
     on left: 36 37 38 39 40 41 42 43 44 45 46 47 48, on right: 34 35
     44 45 47
-functionCall (92)
+functionCall (93)
     on left: 49 50 51, on right: 20 45 51 57 62 103 106 108 111 114
     117 120 123 126 129 132 135 138 140 142 144 145 146 148 149 150
     153 154 156 158 160 162 164 166 168 170 172 174 176 178 180 182
     184 186 189 192 193 194 195 197 213 215 217 218 219 240 242 245
     250 251 252 254 256 259 260 261 262 266 309 316 318 320 337
-specificFunctionCall (93)
+specificFunctionCall (94)
     on left: 52 53, on right: 50
-simpleFunctionCall (94)
+simpleFunctionCall (95)
     on left: 54 55, on right: 46 49
-functionArgs (95)
+functionArgs (96)
     on left: 56 57 58 59 60 61 62 63 64 65, on right: 52 53 54 55 61
     62 63 64 65 212 213 265 266
-functionDeclaration (96)
+functionDeclaration (97)
     on left: 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83
     84 85 86 87 88 89, on right: 19
-functionDeclarationReturns (97)
+functionDeclarationReturns (98)
     on left: 90, on right: 67 71 75 79 83 87
-functionDeclarationArguments (98)
+functionDeclarationArguments (99)
     on left: 91 92 93, on right: 66 67 68 69 70 71 72 73 74 75 76 77
     78 79 80 81 82 83 84 85 86 87 88 89
-idList (99)
+idList (100)
     on left: 94 95, on right: 90 91 94
-functionDeclarationBreak (100)
+functionDeclarationBreak (101)
     on left: 96 97 98 99 100, on right: 66 67 68 69 70 71 72 73 74
     75 76 77 78 79 80 81 82 83 84 85 86 87 88 89
-functionBody (101)
+functionBody (102)
     on left: 101 102, on right: 66 67 68 69 70 71 72 73 74 75 76 77
     78 79 80 81 82 83 84 85 86 87 88 89
-condition (102)
+condition (103)
     on left: 103 104, on right: 268 269 270 292 293 294 349
-comparison (103)
+comparison (104)
     on left: 105 106, on right: 211
-rightComparable (104)
+rightComparable (105)
     on left: 107 108 109 110 111 112 113 114 115 116 117 118 119 120
     121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136,
     on right: 105 106
-operation (105)
+operation (106)
     on left: 137 138 139 140 141 142 143 144 145 146 147 148 149 150
     151 152 153 154, on right: 200
-rightOperand (106)
+rightOperand (107)
     on left: 155 156 157 158 159 160 161 162 163 164 165 166 167 168
     169 170 171 172 173 174 175 176 177 178 179 180 181 182, on right:
     47 137 138
-listableBegin (107)
+listableBegin (108)
     on left: 183 184, on right: 185 186 187
-listableEnd (108)
+listableEnd (109)
     on left: 185 186 187, on right: 196 197
-variable (109)
+variable (110)
     on left: 188 189 190 191 192 193 194 195 196 197 198 199 200 201
     202 203 204 205 206 207 208 209 210 211 212 213, on right: 27 56
     61 104 105 107 110 113 116 119 122 125 128 131 134 137 139 141
@@ -652,89 +726,89 @@ variable (109)
     171 173 175 177 179 181 183 185 188 190 191 192 193 196 209 212
     214 216 218 219 239 241 244 249 251 257 258 259 260 265 308 315
     317 319 338 376
-variableFields (110)
+variableFields (111)
     on left: 214 215 216 217 218 219, on right: 210 214 215
-cell (111)
+cell (112)
     on left: 220 221 222 223, on right: 199
-matrix (112)
+matrix (113)
     on left: 224 225 226 227 228 229 230, on right: 198
-matrixOrCellLines (113)
+matrixOrCellLines (114)
     on left: 231 232, on right: 220 221 224 225 226 227 231
-matrixOrCellLineBreak (114)
+matrixOrCellLineBreak (115)
     on left: 233 234 235 236, on right: 235 236 237 238
-matrixOrCellLine (115)
+matrixOrCellLine (116)
     on left: 237 238, on right: 231 232
-matrixOrCellColumns (116)
+matrixOrCellColumns (117)
     on left: 239 240 241 242 243 244 245 246, on right: 221 222 226
     227 228 229 237 238 239 240 241 242 243 267
-matrixOrCellColumnsBreak (117)
+matrixOrCellColumnsBreak (118)
     on left: 247 248, on right: 238 239 240 247
-variableDeclaration (118)
+variableDeclaration (119)
     on left: 249 250 251 252 253 254 255 256, on right: 21 59 64
-assignable (119)
+assignable (120)
     on left: 257 258 259 260 261 262 263 264 265 266, on right: 249
     250 253 255
-multipleResults (120)
+multipleResults (121)
     on left: 267, on right: 264
-ifControl (121)
+ifControl (122)
     on left: 268 269 270, on right: 22
-thenBody (122)
+thenBody (123)
     on left: 271 272, on right: 268 269 270 292 293 294
-elseBody (123)
+elseBody (124)
     on left: 273 274, on right: 269 293 296 298
-ifConditionBreak (124)
+ifConditionBreak (125)
     on left: 275 276 277 278 279, on right: 281 282 283 284
-then (125)
+then (126)
     on left: 280 281 282 283 284 285, on right: 268 269 270 292 293
     294
-else (126)
+else (127)
     on left: 286 287 288 289 290 291, on right: 269 293 301
-elseIfControl (127)
+elseIfControl (128)
     on left: 292 293 294, on right: 270 294
-selectControl (128)
+selectControl (129)
     on left: 295 296 297 298, on right: 23
-select (129)
+select (130)
     on left: 299 300, on right: 295 296 297 298
-defaultCase (130)
+defaultCase (131)
     on left: 301 302 303 304 305 306 307, on right: 296 298
-selectable (131)
+selectable (132)
     on left: 308 309, on right: 295 296 297 298
-selectConditionBreak (132)
+selectConditionBreak (133)
     on left: 310 311 312 313 314, on right: 295 296 297 298
-casesControl (133)
+casesControl (134)
     on left: 315 316 317 318 319 320, on right: 295 296 297 298 319
     320
-caseBody (134)
+caseBody (135)
     on left: 321 322, on right: 315 316 317 318 319 320
-caseControlBreak (135)
+caseControlBreak (136)
     on left: 323 324 325 326 327 328 329 330 331 332 333 334, on right:
     315 316 317 318 319 320
-forControl (136)
+forControl (137)
     on left: 335 336, on right: 24
-forIterator (137)
+forIterator (138)
     on left: 337 338, on right: 335 336
-forConditionBreak (138)
+forConditionBreak (139)
     on left: 339 340 341 342 343 344 345 346, on right: 335 336
-forBody (139)
+forBody (140)
     on left: 347 348, on right: 335 336
-whileControl (140)
+whileControl (141)
     on left: 349, on right: 25
-whileBody (141)
+whileBody (142)
     on left: 350 351, on right: 349
-whileConditionBreak (142)
+whileConditionBreak (143)
     on left: 352 353 354 355 356 357 358 359 360 361 362 363 364 365
     366 367 368 369, on right: 349
-tryControl (143)
+tryControl (144)
     on left: 370, on right: 26
-catchBody (144)
+catchBody (145)
     on left: 371 372 373 374, on right: 370
-returnControl (145)
+returnControl (146)
     on left: 375 376, on right: 31 255 256
-comments (146)
+comments (147)
     on left: 377 378, on right: 317 318 378
-lineEnd (147)
+lineEnd (148)
     on left: 379 380, on right: 96
-keywords (148)
+keywords (149)
     on left: 381 382 383 384 385 386 387 388 389 390 391 392 393 394
     395 396 397 398 399 400, on right: 191 194 258 261
 
@@ -3502,8 +3576,10 @@ state 59
   197         | functionCall . listableEnd
   213         | functionCall . "(" functionArgs ")"
 
-    "("  shift, and go to state 173
+    "("   shift, and go to state 173
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 189 (variable)]
     $default  reduce using rule 189 (variable)
 
     rightComparable  go to state 148
@@ -3524,7 +3600,6 @@ state 59
     Conflict between rule 189 and token "*." resolved as reduce ("*." < NOT).
     Conflict between rule 189 and token "/" resolved as reduce ("/" < NOT).
     Conflict between rule 189 and token "./" resolved as reduce ("./" < NOT).
-    Conflict between rule 189 and token "/." resolved as reduce ("/." < NOT).
     Conflict between rule 189 and token "./." resolved as reduce ("./." < NOT).
     Conflict between rule 189 and token "\\" resolved as reduce ("\\" < NOT).
     Conflict between rule 189 and token ".\\" resolved as reduce (".\\" < NOT).
@@ -3624,8 +3699,10 @@ state 60
   196         | variable . listableEnd
   212         | variable . "(" functionArgs ")"
 
-    "("  shift, and go to state 175
+    "("   shift, and go to state 175
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 188 (variable)]
     $default  reduce using rule 188 (variable)
 
     rightComparable  go to state 158
@@ -3646,7 +3723,6 @@ state 60
     Conflict between rule 188 and token "*." resolved as reduce ("*." < NOT).
     Conflict between rule 188 and token "/" resolved as reduce ("/" < NOT).
     Conflict between rule 188 and token "./" resolved as reduce ("./" < NOT).
-    Conflict between rule 188 and token "/." resolved as reduce ("/." < NOT).
     Conflict between rule 188 and token "./." resolved as reduce ("./." < NOT).
     Conflict between rule 188 and token "\\" resolved as reduce ("\\" < NOT).
     Conflict between rule 188 and token ".\\" resolved as reduce (".\\" < NOT).
@@ -4786,7 +4862,7 @@ state 75
   135                | . "<=" functionCall
   136                | . "<=" ":"
   138 operation: functionCall . rightOperand
-  142          | "+" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  142          | "+" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "/.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   145          | functionCall . "** or ^" variable
   146          | functionCall . "** or ^" functionCall
   149          | functionCall . ".^" variable
@@ -4851,6 +4927,7 @@ state 75
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 142 (operation)]
     $default  reduce using rule 142 (operation)
 
     rightComparable  go to state 148
@@ -4871,7 +4948,6 @@ state 75
     Conflict between rule 142 and token "*." resolved as shift (PLUS < "*.").
     Conflict between rule 142 and token "/" resolved as shift (PLUS < "/").
     Conflict between rule 142 and token "./" resolved as shift (PLUS < "./").
-    Conflict between rule 142 and token "/." resolved as shift (PLUS < "/.").
     Conflict between rule 142 and token "./." resolved as shift (PLUS < "./.").
     Conflict between rule 142 and token "\\" resolved as shift (PLUS < "\\").
     Conflict between rule 142 and token ".\\" resolved as shift (PLUS < ".\\").
@@ -4925,7 +5001,7 @@ state 76
   135                | . "<=" functionCall
   136                | . "<=" ":"
   137 operation: variable . rightOperand
-  141          | "+" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  141          | "+" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "/.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   143          | variable . "** or ^" variable
   144          | variable . "** or ^" functionCall
   147          | variable . ".^" variable
@@ -4990,6 +5066,7 @@ state 76
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 141 (operation)]
     $default  reduce using rule 141 (operation)
 
     rightComparable  go to state 158
@@ -5010,7 +5087,6 @@ state 76
     Conflict between rule 141 and token "*." resolved as shift (PLUS < "*.").
     Conflict between rule 141 and token "/" resolved as shift (PLUS < "/").
     Conflict between rule 141 and token "./" resolved as shift (PLUS < "./").
-    Conflict between rule 141 and token "/." resolved as shift (PLUS < "/.").
     Conflict between rule 141 and token "./." resolved as shift (PLUS < "./.").
     Conflict between rule 141 and token "\\" resolved as shift (PLUS < "\\").
     Conflict between rule 141 and token ".\\" resolved as shift (PLUS < ".\\").
@@ -5064,7 +5140,7 @@ state 77
   135                | . "<=" functionCall
   136                | . "<=" ":"
   138 operation: functionCall . rightOperand
-  140          | "-" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  140          | "-" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "/.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   145          | functionCall . "** or ^" variable
   146          | functionCall . "** or ^" functionCall
   149          | functionCall . ".^" variable
@@ -5129,6 +5205,7 @@ state 77
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 140 (operation)]
     $default  reduce using rule 140 (operation)
 
     rightComparable  go to state 148
@@ -5149,7 +5226,6 @@ state 77
     Conflict between rule 140 and token "*." resolved as shift (MINUS < "*.").
     Conflict between rule 140 and token "/" resolved as shift (MINUS < "/").
     Conflict between rule 140 and token "./" resolved as shift (MINUS < "./").
-    Conflict between rule 140 and token "/." resolved as shift (MINUS < "/.").
     Conflict between rule 140 and token "./." resolved as shift (MINUS < "./.").
     Conflict between rule 140 and token "\\" resolved as shift (MINUS < "\\").
     Conflict between rule 140 and token ".\\" resolved as shift (MINUS < ".\\").
@@ -5203,7 +5279,7 @@ state 78
   135                | . "<=" functionCall
   136                | . "<=" ":"
   137 operation: variable . rightOperand
-  139          | "-" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  139          | "-" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "/.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   143          | variable . "** or ^" variable
   144          | variable . "** or ^" functionCall
   147          | variable . ".^" variable
@@ -5268,6 +5344,7 @@ state 78
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 139 (operation)]
     $default  reduce using rule 139 (operation)
 
     rightComparable  go to state 158
@@ -5288,7 +5365,6 @@ state 78
     Conflict between rule 139 and token "*." resolved as shift (MINUS < "*.").
     Conflict between rule 139 and token "/" resolved as shift (MINUS < "/").
     Conflict between rule 139 and token "./" resolved as shift (MINUS < "./").
-    Conflict between rule 139 and token "/." resolved as shift (MINUS < "/.").
     Conflict between rule 139 and token "./." resolved as shift (MINUS < "./.").
     Conflict between rule 139 and token "\\" resolved as shift (MINUS < "\\").
     Conflict between rule 139 and token ".\\" resolved as shift (MINUS < ".\\").
@@ -13753,7 +13829,7 @@ state 241
   182             | . "\\." functionCall
   183 listableBegin: . ":" variable
   184              | . ":" functionCall
-  184              | ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  184              | ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   185 listableEnd: . listableBegin ":" variable
   186            | . listableBegin ":" functionCall
   187            | . listableBegin
@@ -13790,6 +13866,7 @@ state 241
     ">"         shift, and go to state 141
     ">="        shift, and go to state 142
 
+    "/."      [reduce using rule 184 (listableBegin)]
     $default  reduce using rule 184 (listableBegin)
 
     rightComparable  go to state 148
@@ -13810,7 +13887,6 @@ state 241
     Conflict between rule 184 and token "*." resolved as shift (COLON < "*.").
     Conflict between rule 184 and token "/" resolved as shift (COLON < "/").
     Conflict between rule 184 and token "./" resolved as shift (COLON < "./").
-    Conflict between rule 184 and token "/." resolved as shift (COLON < "/.").
     Conflict between rule 184 and token "./." resolved as shift (COLON < "./.").
     Conflict between rule 184 and token "\\" resolved as shift (COLON < "\\").
     Conflict between rule 184 and token ".\\" resolved as shift (COLON < ".\\").
@@ -13899,7 +13975,7 @@ state 242
   181             | . "\\." variable
   182             | . "\\." functionCall
   183 listableBegin: . ":" variable
-  183              | ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  183              | ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   184              | . ":" functionCall
   185 listableEnd: . listableBegin ":" variable
   186            | . listableBegin ":" functionCall
@@ -13937,6 +14013,7 @@ state 242
     ">"         shift, and go to state 141
     ">="        shift, and go to state 142
 
+    "/."      [reduce using rule 183 (listableBegin)]
     $default  reduce using rule 183 (listableBegin)
 
     rightComparable  go to state 158
@@ -13957,7 +14034,6 @@ state 242
     Conflict between rule 183 and token "*." resolved as shift (COLON < "*.").
     Conflict between rule 183 and token "/" resolved as shift (COLON < "/").
     Conflict between rule 183 and token "./" resolved as shift (COLON < "./").
-    Conflict between rule 183 and token "/." resolved as shift (COLON < "/.").
     Conflict between rule 183 and token "./." resolved as shift (COLON < "./.").
     Conflict between rule 183 and token "\\" resolved as shift (COLON < "\\").
     Conflict between rule 183 and token ".\\" resolved as shift (COLON < ".\\").
@@ -14212,8 +14288,10 @@ state 264
   213         | functionCall . "(" functionArgs ")"
   262 assignable: functionCall "." functionCall .  ["="]
 
-    "("  shift, and go to state 173
+    "("   shift, and go to state 173
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 195 (variable)]
     "="       reduce using rule 262 (assignable)
     $default  reduce using rule 195 (variable)
 
@@ -14235,7 +14313,6 @@ state 264
     Conflict between rule 195 and token "*." resolved as reduce ("*." < DOT).
     Conflict between rule 195 and token "/" resolved as reduce ("/" < DOT).
     Conflict between rule 195 and token "./" resolved as reduce ("./" < DOT).
-    Conflict between rule 195 and token "/." resolved as reduce ("/." < DOT).
     Conflict between rule 195 and token "./." resolved as reduce ("./." < DOT).
     Conflict between rule 195 and token "\\" resolved as reduce ("\\" < DOT).
     Conflict between rule 195 and token ".\\" resolved as reduce (".\\" < DOT).
@@ -14336,8 +14413,10 @@ state 265
   212         | variable . "(" functionArgs ")"
   260 assignable: functionCall "." variable .  ["="]
 
-    "("  shift, and go to state 175
+    "("   shift, and go to state 175
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 193 (variable)]
     "="       reduce using rule 260 (assignable)
     $default  reduce using rule 193 (variable)
 
@@ -14359,7 +14438,6 @@ state 265
     Conflict between rule 193 and token "*." resolved as reduce ("*." < DOT).
     Conflict between rule 193 and token "/" resolved as reduce ("/" < DOT).
     Conflict between rule 193 and token "./" resolved as reduce ("./" < DOT).
-    Conflict between rule 193 and token "/." resolved as reduce ("/." < DOT).
     Conflict between rule 193 and token "./." resolved as reduce ("./." < DOT).
     Conflict between rule 193 and token "\\" resolved as reduce ("\\" < DOT).
     Conflict between rule 193 and token ".\\" resolved as reduce (".\\" < DOT).
@@ -14430,7 +14508,7 @@ state 267
   154          | functionCall . ".'"
   155 rightOperand: . "+" variable
   156             | . "+" functionCall
-  156             | "+" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  156             | "+" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "/.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   157             | . "-" variable
   158             | . "-" functionCall
   159             | . "*" variable
@@ -14487,6 +14565,7 @@ state 267
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 156 (rightOperand)]
     $default  reduce using rule 156 (rightOperand)
 
     rightComparable  go to state 148
@@ -14507,7 +14586,6 @@ state 267
     Conflict between rule 156 and token "*." resolved as shift (PLUS < "*.").
     Conflict between rule 156 and token "/" resolved as shift (PLUS < "/").
     Conflict between rule 156 and token "./" resolved as shift (PLUS < "./").
-    Conflict between rule 156 and token "/." resolved as shift (PLUS < "/.").
     Conflict between rule 156 and token "./." resolved as shift (PLUS < "./.").
     Conflict between rule 156 and token "\\" resolved as shift (PLUS < "\\").
     Conflict between rule 156 and token ".\\" resolved as shift (PLUS < ".\\").
@@ -14568,7 +14646,7 @@ state 268
   151          | variable . "'"
   152          | variable . ".'"
   155 rightOperand: . "+" variable
-  155             | "+" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  155             | "+" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "/.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   156             | . "+" functionCall
   157             | . "-" variable
   158             | . "-" functionCall
@@ -14626,6 +14704,7 @@ state 268
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 155 (rightOperand)]
     $default  reduce using rule 155 (rightOperand)
 
     rightComparable  go to state 158
@@ -14646,7 +14725,6 @@ state 268
     Conflict between rule 155 and token "*." resolved as shift (PLUS < "*.").
     Conflict between rule 155 and token "/" resolved as shift (PLUS < "/").
     Conflict between rule 155 and token "./" resolved as shift (PLUS < "./").
-    Conflict between rule 155 and token "/." resolved as shift (PLUS < "/.").
     Conflict between rule 155 and token "./." resolved as shift (PLUS < "./.").
     Conflict between rule 155 and token "\\" resolved as shift (PLUS < "\\").
     Conflict between rule 155 and token ".\\" resolved as shift (PLUS < ".\\").
@@ -14710,7 +14788,7 @@ state 269
   156             | . "+" functionCall
   157             | . "-" variable
   158             | . "-" functionCall
-  158             | "-" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  158             | "-" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "/.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   159             | . "*" variable
   160             | . "*" functionCall
   161             | . ".*" variable
@@ -14765,6 +14843,7 @@ state 269
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 158 (rightOperand)]
     $default  reduce using rule 158 (rightOperand)
 
     rightComparable  go to state 148
@@ -14785,7 +14864,6 @@ state 269
     Conflict between rule 158 and token "*." resolved as shift (MINUS < "*.").
     Conflict between rule 158 and token "/" resolved as shift (MINUS < "/").
     Conflict between rule 158 and token "./" resolved as shift (MINUS < "./").
-    Conflict between rule 158 and token "/." resolved as shift (MINUS < "/.").
     Conflict between rule 158 and token "./." resolved as shift (MINUS < "./.").
     Conflict between rule 158 and token "\\" resolved as shift (MINUS < "\\").
     Conflict between rule 158 and token ".\\" resolved as shift (MINUS < ".\\").
@@ -14848,7 +14926,7 @@ state 270
   155 rightOperand: . "+" variable
   156             | . "+" functionCall
   157             | . "-" variable
-  157             | "-" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  157             | "-" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "/.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   158             | . "-" functionCall
   159             | . "*" variable
   160             | . "*" functionCall
@@ -14904,6 +14982,7 @@ state 270
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 157 (rightOperand)]
     $default  reduce using rule 157 (rightOperand)
 
     rightComparable  go to state 158
@@ -14924,7 +15003,6 @@ state 270
     Conflict between rule 157 and token "*." resolved as shift (MINUS < "*.").
     Conflict between rule 157 and token "/" resolved as shift (MINUS < "/").
     Conflict between rule 157 and token "./" resolved as shift (MINUS < "./").
-    Conflict between rule 157 and token "/." resolved as shift (MINUS < "/.").
     Conflict between rule 157 and token "./." resolved as shift (MINUS < "./.").
     Conflict between rule 157 and token "\\" resolved as shift (MINUS < "\\").
     Conflict between rule 157 and token ".\\" resolved as shift (MINUS < ".\\").
@@ -15028,9 +15106,11 @@ state 271
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 160 (rightOperand)]
     $default  reduce using rule 160 (rightOperand)
 
     rightComparable  go to state 148
@@ -15051,7 +15131,6 @@ state 271
     Conflict between rule 160 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 160 and token "/" resolved as reduce (%left "/").
     Conflict between rule 160 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 160 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 160 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 160 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 160 and token ".\\" resolved as reduce (%left ".\\").
@@ -15155,9 +15234,11 @@ state 272
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 159 (rightOperand)]
     $default  reduce using rule 159 (rightOperand)
 
     rightComparable  go to state 158
@@ -15178,7 +15259,6 @@ state 272
     Conflict between rule 159 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 159 and token "/" resolved as reduce (%left "/").
     Conflict between rule 159 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 159 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 159 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 159 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 159 and token ".\\" resolved as reduce (%left ".\\").
@@ -15282,9 +15362,11 @@ state 273
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 162 (rightOperand)]
     $default  reduce using rule 162 (rightOperand)
 
     rightComparable  go to state 148
@@ -15305,7 +15387,6 @@ state 273
     Conflict between rule 162 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 162 and token "/" resolved as reduce (%left "/").
     Conflict between rule 162 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 162 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 162 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 162 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 162 and token ".\\" resolved as reduce (%left ".\\").
@@ -15409,9 +15490,11 @@ state 274
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 161 (rightOperand)]
     $default  reduce using rule 161 (rightOperand)
 
     rightComparable  go to state 158
@@ -15432,7 +15515,6 @@ state 274
     Conflict between rule 161 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 161 and token "/" resolved as reduce (%left "/").
     Conflict between rule 161 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 161 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 161 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 161 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 161 and token ".\\" resolved as reduce (%left ".\\").
@@ -15536,9 +15618,11 @@ state 275
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 164 (rightOperand)]
     $default  reduce using rule 164 (rightOperand)
 
     rightComparable  go to state 148
@@ -15559,7 +15643,6 @@ state 275
     Conflict between rule 164 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 164 and token "/" resolved as reduce (%left "/").
     Conflict between rule 164 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 164 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 164 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 164 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 164 and token ".\\" resolved as reduce (%left ".\\").
@@ -15663,9 +15746,11 @@ state 276
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 163 (rightOperand)]
     $default  reduce using rule 163 (rightOperand)
 
     rightComparable  go to state 158
@@ -15686,7 +15771,6 @@ state 276
     Conflict between rule 163 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 163 and token "/" resolved as reduce (%left "/").
     Conflict between rule 163 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 163 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 163 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 163 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 163 and token ".\\" resolved as reduce (%left ".\\").
@@ -15790,9 +15874,11 @@ state 277
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 166 (rightOperand)]
     $default  reduce using rule 166 (rightOperand)
 
     rightComparable  go to state 148
@@ -15813,7 +15899,6 @@ state 277
     Conflict between rule 166 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 166 and token "/" resolved as reduce (%left "/").
     Conflict between rule 166 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 166 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 166 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 166 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 166 and token ".\\" resolved as reduce (%left ".\\").
@@ -15917,9 +16002,11 @@ state 278
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 165 (rightOperand)]
     $default  reduce using rule 165 (rightOperand)
 
     rightComparable  go to state 158
@@ -15940,7 +16027,6 @@ state 278
     Conflict between rule 165 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 165 and token "/" resolved as reduce (%left "/").
     Conflict between rule 165 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 165 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 165 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 165 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 165 and token ".\\" resolved as reduce (%left ".\\").
@@ -16044,9 +16130,11 @@ state 279
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 168 (rightOperand)]
     $default  reduce using rule 168 (rightOperand)
 
     rightComparable  go to state 148
@@ -16054,37 +16142,36 @@ state 279
     listableBegin    go to state 150
     listableEnd      go to state 151
 
-    Conflict between rule 168 and token "'" resolved as shift (DIVIDE < "'").
-    Conflict between rule 168 and token ":" resolved as reduce (":" < DIVIDE).
-    Conflict between rule 168 and token "(" resolved as shift (DIVIDE < "(").
-    Conflict between rule 168 and token "." resolved as shift (DIVIDE < ".").
-    Conflict between rule 168 and token ".'" resolved as shift (DIVIDE < ".'").
-    Conflict between rule 168 and token "+" resolved as reduce ("+" < DIVIDE).
-    Conflict between rule 168 and token "-" resolved as reduce ("-" < DIVIDE).
+    Conflict between rule 168 and token "'" resolved as shift (RDIVIDE < "'").
+    Conflict between rule 168 and token ":" resolved as reduce (":" < RDIVIDE).
+    Conflict between rule 168 and token "(" resolved as shift (RDIVIDE < "(").
+    Conflict between rule 168 and token "." resolved as shift (RDIVIDE < ".").
+    Conflict between rule 168 and token ".'" resolved as shift (RDIVIDE < ".'").
+    Conflict between rule 168 and token "+" resolved as reduce ("+" < RDIVIDE).
+    Conflict between rule 168 and token "-" resolved as reduce ("-" < RDIVIDE).
     Conflict between rule 168 and token "*" resolved as reduce (%left "*").
     Conflict between rule 168 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 168 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 168 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 168 and token "/" resolved as reduce (%left "/").
     Conflict between rule 168 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 168 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 168 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 168 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 168 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 168 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 168 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 168 and token "** or ^" resolved as shift (DIVIDE < "** or ^").
-    Conflict between rule 168 and token ".^" resolved as shift (DIVIDE < ".^").
-    Conflict between rule 168 and token "==" resolved as reduce ("==" < DIVIDE).
-    Conflict between rule 168 and token "<> or ~=" resolved as reduce ("<> or ~=" < DIVIDE).
-    Conflict between rule 168 and token "<" resolved as reduce ("<" < DIVIDE).
-    Conflict between rule 168 and token "<=" resolved as reduce ("<=" < DIVIDE).
-    Conflict between rule 168 and token ">" resolved as reduce (">" < DIVIDE).
-    Conflict between rule 168 and token ">=" resolved as reduce (">=" < DIVIDE).
-    Conflict between rule 168 and token "&" resolved as reduce ("&" < DIVIDE).
-    Conflict between rule 168 and token "&&" resolved as reduce ("&&" < DIVIDE).
-    Conflict between rule 168 and token "|" resolved as reduce ("|" < DIVIDE).
-    Conflict between rule 168 and token "||" resolved as reduce ("||" < DIVIDE).
+    Conflict between rule 168 and token "** or ^" resolved as shift (RDIVIDE < "** or ^").
+    Conflict between rule 168 and token ".^" resolved as shift (RDIVIDE < ".^").
+    Conflict between rule 168 and token "==" resolved as reduce ("==" < RDIVIDE).
+    Conflict between rule 168 and token "<> or ~=" resolved as reduce ("<> or ~=" < RDIVIDE).
+    Conflict between rule 168 and token "<" resolved as reduce ("<" < RDIVIDE).
+    Conflict between rule 168 and token "<=" resolved as reduce ("<=" < RDIVIDE).
+    Conflict between rule 168 and token ">" resolved as reduce (">" < RDIVIDE).
+    Conflict between rule 168 and token ">=" resolved as reduce (">=" < RDIVIDE).
+    Conflict between rule 168 and token "&" resolved as reduce ("&" < RDIVIDE).
+    Conflict between rule 168 and token "&&" resolved as reduce ("&&" < RDIVIDE).
+    Conflict between rule 168 and token "|" resolved as reduce ("|" < RDIVIDE).
+    Conflict between rule 168 and token "||" resolved as reduce ("||" < RDIVIDE).
 
 
 state 280
@@ -16171,9 +16258,11 @@ state 280
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 167 (rightOperand)]
     $default  reduce using rule 167 (rightOperand)
 
     rightComparable  go to state 158
@@ -16181,37 +16270,36 @@ state 280
     listableBegin    go to state 150
     listableEnd      go to state 160
 
-    Conflict between rule 167 and token "'" resolved as shift (DIVIDE < "'").
-    Conflict between rule 167 and token ":" resolved as reduce (":" < DIVIDE).
-    Conflict between rule 167 and token "(" resolved as shift (DIVIDE < "(").
-    Conflict between rule 167 and token "." resolved as shift (DIVIDE < ".").
-    Conflict between rule 167 and token ".'" resolved as shift (DIVIDE < ".'").
-    Conflict between rule 167 and token "+" resolved as reduce ("+" < DIVIDE).
-    Conflict between rule 167 and token "-" resolved as reduce ("-" < DIVIDE).
+    Conflict between rule 167 and token "'" resolved as shift (RDIVIDE < "'").
+    Conflict between rule 167 and token ":" resolved as reduce (":" < RDIVIDE).
+    Conflict between rule 167 and token "(" resolved as shift (RDIVIDE < "(").
+    Conflict between rule 167 and token "." resolved as shift (RDIVIDE < ".").
+    Conflict between rule 167 and token ".'" resolved as shift (RDIVIDE < ".'").
+    Conflict between rule 167 and token "+" resolved as reduce ("+" < RDIVIDE).
+    Conflict between rule 167 and token "-" resolved as reduce ("-" < RDIVIDE).
     Conflict between rule 167 and token "*" resolved as reduce (%left "*").
     Conflict between rule 167 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 167 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 167 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 167 and token "/" resolved as reduce (%left "/").
     Conflict between rule 167 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 167 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 167 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 167 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 167 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 167 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 167 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 167 and token "** or ^" resolved as shift (DIVIDE < "** or ^").
-    Conflict between rule 167 and token ".^" resolved as shift (DIVIDE < ".^").
-    Conflict between rule 167 and token "==" resolved as reduce ("==" < DIVIDE).
-    Conflict between rule 167 and token "<> or ~=" resolved as reduce ("<> or ~=" < DIVIDE).
-    Conflict between rule 167 and token "<" resolved as reduce ("<" < DIVIDE).
-    Conflict between rule 167 and token "<=" resolved as reduce ("<=" < DIVIDE).
-    Conflict between rule 167 and token ">" resolved as reduce (">" < DIVIDE).
-    Conflict between rule 167 and token ">=" resolved as reduce (">=" < DIVIDE).
-    Conflict between rule 167 and token "&" resolved as reduce ("&" < DIVIDE).
-    Conflict between rule 167 and token "&&" resolved as reduce ("&&" < DIVIDE).
-    Conflict between rule 167 and token "|" resolved as reduce ("|" < DIVIDE).
-    Conflict between rule 167 and token "||" resolved as reduce ("||" < DIVIDE).
+    Conflict between rule 167 and token "** or ^" resolved as shift (RDIVIDE < "** or ^").
+    Conflict between rule 167 and token ".^" resolved as shift (RDIVIDE < ".^").
+    Conflict between rule 167 and token "==" resolved as reduce ("==" < RDIVIDE).
+    Conflict between rule 167 and token "<> or ~=" resolved as reduce ("<> or ~=" < RDIVIDE).
+    Conflict between rule 167 and token "<" resolved as reduce ("<" < RDIVIDE).
+    Conflict between rule 167 and token "<=" resolved as reduce ("<=" < RDIVIDE).
+    Conflict between rule 167 and token ">" resolved as reduce (">" < RDIVIDE).
+    Conflict between rule 167 and token ">=" resolved as reduce (">=" < RDIVIDE).
+    Conflict between rule 167 and token "&" resolved as reduce ("&" < RDIVIDE).
+    Conflict between rule 167 and token "&&" resolved as reduce ("&&" < RDIVIDE).
+    Conflict between rule 167 and token "|" resolved as reduce ("|" < RDIVIDE).
+    Conflict between rule 167 and token "||" resolved as reduce ("||" < RDIVIDE).
 
 
 state 281
@@ -16298,9 +16386,11 @@ state 281
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 170 (rightOperand)]
     $default  reduce using rule 170 (rightOperand)
 
     rightComparable  go to state 148
@@ -16308,37 +16398,36 @@ state 281
     listableBegin    go to state 150
     listableEnd      go to state 151
 
-    Conflict between rule 170 and token "'" resolved as shift (DOTDIVIDE < "'").
-    Conflict between rule 170 and token ":" resolved as reduce (":" < DOTDIVIDE).
-    Conflict between rule 170 and token "(" resolved as shift (DOTDIVIDE < "(").
-    Conflict between rule 170 and token "." resolved as shift (DOTDIVIDE < ".").
-    Conflict between rule 170 and token ".'" resolved as shift (DOTDIVIDE < ".'").
-    Conflict between rule 170 and token "+" resolved as reduce ("+" < DOTDIVIDE).
-    Conflict between rule 170 and token "-" resolved as reduce ("-" < DOTDIVIDE).
+    Conflict between rule 170 and token "'" resolved as shift (DOTRDIVIDE < "'").
+    Conflict between rule 170 and token ":" resolved as reduce (":" < DOTRDIVIDE).
+    Conflict between rule 170 and token "(" resolved as shift (DOTRDIVIDE < "(").
+    Conflict between rule 170 and token "." resolved as shift (DOTRDIVIDE < ".").
+    Conflict between rule 170 and token ".'" resolved as shift (DOTRDIVIDE < ".'").
+    Conflict between rule 170 and token "+" resolved as reduce ("+" < DOTRDIVIDE).
+    Conflict between rule 170 and token "-" resolved as reduce ("-" < DOTRDIVIDE).
     Conflict between rule 170 and token "*" resolved as reduce (%left "*").
     Conflict between rule 170 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 170 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 170 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 170 and token "/" resolved as reduce (%left "/").
     Conflict between rule 170 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 170 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 170 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 170 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 170 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 170 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 170 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 170 and token "** or ^" resolved as shift (DOTDIVIDE < "** or ^").
-    Conflict between rule 170 and token ".^" resolved as shift (DOTDIVIDE < ".^").
-    Conflict between rule 170 and token "==" resolved as reduce ("==" < DOTDIVIDE).
-    Conflict between rule 170 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTDIVIDE).
-    Conflict between rule 170 and token "<" resolved as reduce ("<" < DOTDIVIDE).
-    Conflict between rule 170 and token "<=" resolved as reduce ("<=" < DOTDIVIDE).
-    Conflict between rule 170 and token ">" resolved as reduce (">" < DOTDIVIDE).
-    Conflict between rule 170 and token ">=" resolved as reduce (">=" < DOTDIVIDE).
-    Conflict between rule 170 and token "&" resolved as reduce ("&" < DOTDIVIDE).
-    Conflict between rule 170 and token "&&" resolved as reduce ("&&" < DOTDIVIDE).
-    Conflict between rule 170 and token "|" resolved as reduce ("|" < DOTDIVIDE).
-    Conflict between rule 170 and token "||" resolved as reduce ("||" < DOTDIVIDE).
+    Conflict between rule 170 and token "** or ^" resolved as shift (DOTRDIVIDE < "** or ^").
+    Conflict between rule 170 and token ".^" resolved as shift (DOTRDIVIDE < ".^").
+    Conflict between rule 170 and token "==" resolved as reduce ("==" < DOTRDIVIDE).
+    Conflict between rule 170 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTRDIVIDE).
+    Conflict between rule 170 and token "<" resolved as reduce ("<" < DOTRDIVIDE).
+    Conflict between rule 170 and token "<=" resolved as reduce ("<=" < DOTRDIVIDE).
+    Conflict between rule 170 and token ">" resolved as reduce (">" < DOTRDIVIDE).
+    Conflict between rule 170 and token ">=" resolved as reduce (">=" < DOTRDIVIDE).
+    Conflict between rule 170 and token "&" resolved as reduce ("&" < DOTRDIVIDE).
+    Conflict between rule 170 and token "&&" resolved as reduce ("&&" < DOTRDIVIDE).
+    Conflict between rule 170 and token "|" resolved as reduce ("|" < DOTRDIVIDE).
+    Conflict between rule 170 and token "||" resolved as reduce ("||" < DOTRDIVIDE).
 
 
 state 282
@@ -16425,9 +16514,11 @@ state 282
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 169 (rightOperand)]
     $default  reduce using rule 169 (rightOperand)
 
     rightComparable  go to state 158
@@ -16435,37 +16526,36 @@ state 282
     listableBegin    go to state 150
     listableEnd      go to state 160
 
-    Conflict between rule 169 and token "'" resolved as shift (DOTDIVIDE < "'").
-    Conflict between rule 169 and token ":" resolved as reduce (":" < DOTDIVIDE).
-    Conflict between rule 169 and token "(" resolved as shift (DOTDIVIDE < "(").
-    Conflict between rule 169 and token "." resolved as shift (DOTDIVIDE < ".").
-    Conflict between rule 169 and token ".'" resolved as shift (DOTDIVIDE < ".'").
-    Conflict between rule 169 and token "+" resolved as reduce ("+" < DOTDIVIDE).
-    Conflict between rule 169 and token "-" resolved as reduce ("-" < DOTDIVIDE).
+    Conflict between rule 169 and token "'" resolved as shift (DOTRDIVIDE < "'").
+    Conflict between rule 169 and token ":" resolved as reduce (":" < DOTRDIVIDE).
+    Conflict between rule 169 and token "(" resolved as shift (DOTRDIVIDE < "(").
+    Conflict between rule 169 and token "." resolved as shift (DOTRDIVIDE < ".").
+    Conflict between rule 169 and token ".'" resolved as shift (DOTRDIVIDE < ".'").
+    Conflict between rule 169 and token "+" resolved as reduce ("+" < DOTRDIVIDE).
+    Conflict between rule 169 and token "-" resolved as reduce ("-" < DOTRDIVIDE).
     Conflict between rule 169 and token "*" resolved as reduce (%left "*").
     Conflict between rule 169 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 169 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 169 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 169 and token "/" resolved as reduce (%left "/").
     Conflict between rule 169 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 169 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 169 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 169 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 169 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 169 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 169 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 169 and token "** or ^" resolved as shift (DOTDIVIDE < "** or ^").
-    Conflict between rule 169 and token ".^" resolved as shift (DOTDIVIDE < ".^").
-    Conflict between rule 169 and token "==" resolved as reduce ("==" < DOTDIVIDE).
-    Conflict between rule 169 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTDIVIDE).
-    Conflict between rule 169 and token "<" resolved as reduce ("<" < DOTDIVIDE).
-    Conflict between rule 169 and token "<=" resolved as reduce ("<=" < DOTDIVIDE).
-    Conflict between rule 169 and token ">" resolved as reduce (">" < DOTDIVIDE).
-    Conflict between rule 169 and token ">=" resolved as reduce (">=" < DOTDIVIDE).
-    Conflict between rule 169 and token "&" resolved as reduce ("&" < DOTDIVIDE).
-    Conflict between rule 169 and token "&&" resolved as reduce ("&&" < DOTDIVIDE).
-    Conflict between rule 169 and token "|" resolved as reduce ("|" < DOTDIVIDE).
-    Conflict between rule 169 and token "||" resolved as reduce ("||" < DOTDIVIDE).
+    Conflict between rule 169 and token "** or ^" resolved as shift (DOTRDIVIDE < "** or ^").
+    Conflict between rule 169 and token ".^" resolved as shift (DOTRDIVIDE < ".^").
+    Conflict between rule 169 and token "==" resolved as reduce ("==" < DOTRDIVIDE).
+    Conflict between rule 169 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTRDIVIDE).
+    Conflict between rule 169 and token "<" resolved as reduce ("<" < DOTRDIVIDE).
+    Conflict between rule 169 and token "<=" resolved as reduce ("<=" < DOTRDIVIDE).
+    Conflict between rule 169 and token ">" resolved as reduce (">" < DOTRDIVIDE).
+    Conflict between rule 169 and token ">=" resolved as reduce (">=" < DOTRDIVIDE).
+    Conflict between rule 169 and token "&" resolved as reduce ("&" < DOTRDIVIDE).
+    Conflict between rule 169 and token "&&" resolved as reduce ("&&" < DOTRDIVIDE).
+    Conflict between rule 169 and token "|" resolved as reduce ("|" < DOTRDIVIDE).
+    Conflict between rule 169 and token "||" resolved as reduce ("||" < DOTRDIVIDE).
 
 
 state 283
@@ -16528,7 +16618,7 @@ state 283
   172             | . "./." functionCall
   173             | . "/." variable
   174             | . "/." functionCall
-  174             | "/." functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  174             | "/." functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "'", "~ or @", "$", ",", ":", ";", "(", ")", "[", "]", "{", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   175             | . "\\" variable
   176             | . "\\" functionCall
   177             | . ".\\" variable
@@ -16548,51 +16638,75 @@ state 283
   197         | functionCall . listableEnd
   213         | functionCall . "(" functionArgs ")"
 
-    "'"        shift, and go to state 116
-    "("        shift, and go to state 173
-    "."        shift, and go to state 174
-    ".'"       shift, and go to state 120
-    "** or ^"  shift, and go to state 135
-    ".^"       shift, and go to state 136
+    "'"         shift, and go to state 116
+    ":"         shift, and go to state 117
+    "("         shift, and go to state 173
+    "."         shift, and go to state 174
+    ".'"        shift, and go to state 120
+    "+"         shift, and go to state 121
+    "-"         shift, and go to state 122
+    "*"         shift, and go to state 123
+    ".*"        shift, and go to state 124
+    ".*."       shift, and go to state 125
+    "*."        shift, and go to state 126
+    "/"         shift, and go to state 127
+    "./"        shift, and go to state 128
+    "/."        shift, and go to state 129
+    "./."       shift, and go to state 130
+    "\\"        shift, and go to state 131
+    ".\\"       shift, and go to state 132
+    "\\."       shift, and go to state 133
+    ".\\."      shift, and go to state 134
+    "** or ^"   shift, and go to state 135
+    ".^"        shift, and go to state 136
+    "=="        shift, and go to state 137
+    "<> or ~="  shift, and go to state 138
+    "<"         shift, and go to state 139
+    "<="        shift, and go to state 140
+    ">"         shift, and go to state 141
+    ">="        shift, and go to state 142
+    "&"         shift, and go to state 143
+    "&&"        shift, and go to state 144
+    "|"         shift, and go to state 145
+    "||"        shift, and go to state 146
 
-    $default  reduce using rule 174 (rightOperand)
+    "'"         [reduce using rule 174 (rightOperand)]
+    ":"         [reduce using rule 174 (rightOperand)]
+    "("         [reduce using rule 174 (rightOperand)]
+    "."         [reduce using rule 174 (rightOperand)]
+    ".'"        [reduce using rule 174 (rightOperand)]
+    "+"         [reduce using rule 174 (rightOperand)]
+    "-"         [reduce using rule 174 (rightOperand)]
+    "*"         [reduce using rule 174 (rightOperand)]
+    ".*"        [reduce using rule 174 (rightOperand)]
+    ".*."       [reduce using rule 174 (rightOperand)]
+    "*."        [reduce using rule 174 (rightOperand)]
+    "/"         [reduce using rule 174 (rightOperand)]
+    "./"        [reduce using rule 174 (rightOperand)]
+    "/."        [reduce using rule 174 (rightOperand)]
+    "./."       [reduce using rule 174 (rightOperand)]
+    "\\"        [reduce using rule 174 (rightOperand)]
+    ".\\"       [reduce using rule 174 (rightOperand)]
+    "\\."       [reduce using rule 174 (rightOperand)]
+    ".\\."      [reduce using rule 174 (rightOperand)]
+    "** or ^"   [reduce using rule 174 (rightOperand)]
+    ".^"        [reduce using rule 174 (rightOperand)]
+    "=="        [reduce using rule 174 (rightOperand)]
+    "<> or ~="  [reduce using rule 174 (rightOperand)]
+    "<"         [reduce using rule 174 (rightOperand)]
+    "<="        [reduce using rule 174 (rightOperand)]
+    ">"         [reduce using rule 174 (rightOperand)]
+    ">="        [reduce using rule 174 (rightOperand)]
+    "&"         [reduce using rule 174 (rightOperand)]
+    "&&"        [reduce using rule 174 (rightOperand)]
+    "|"         [reduce using rule 174 (rightOperand)]
+    "||"        [reduce using rule 174 (rightOperand)]
+    $default    reduce using rule 174 (rightOperand)
 
     rightComparable  go to state 148
     rightOperand     go to state 149
     listableBegin    go to state 150
     listableEnd      go to state 151
-
-    Conflict between rule 174 and token "'" resolved as shift (CONTROLDIVIDE < "'").
-    Conflict between rule 174 and token ":" resolved as reduce (":" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "(" resolved as shift (CONTROLDIVIDE < "(").
-    Conflict between rule 174 and token "." resolved as shift (CONTROLDIVIDE < ".").
-    Conflict between rule 174 and token ".'" resolved as shift (CONTROLDIVIDE < ".'").
-    Conflict between rule 174 and token "+" resolved as reduce ("+" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "-" resolved as reduce ("-" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "*" resolved as reduce (%left "*").
-    Conflict between rule 174 and token ".*" resolved as reduce (%left ".*").
-    Conflict between rule 174 and token ".*." resolved as reduce (%left ".*.").
-    Conflict between rule 174 and token "*." resolved as reduce (%left "*.").
-    Conflict between rule 174 and token "/" resolved as reduce (%left "/").
-    Conflict between rule 174 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 174 and token "/." resolved as reduce (%left "/.").
-    Conflict between rule 174 and token "./." resolved as reduce (%left "./.").
-    Conflict between rule 174 and token "\\" resolved as reduce (%left "\\").
-    Conflict between rule 174 and token ".\\" resolved as reduce (%left ".\\").
-    Conflict between rule 174 and token "\\." resolved as reduce (%left "\\.").
-    Conflict between rule 174 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 174 and token "** or ^" resolved as shift (CONTROLDIVIDE < "** or ^").
-    Conflict between rule 174 and token ".^" resolved as shift (CONTROLDIVIDE < ".^").
-    Conflict between rule 174 and token "==" resolved as reduce ("==" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "<> or ~=" resolved as reduce ("<> or ~=" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "<" resolved as reduce ("<" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "<=" resolved as reduce ("<=" < CONTROLDIVIDE).
-    Conflict between rule 174 and token ">" resolved as reduce (">" < CONTROLDIVIDE).
-    Conflict between rule 174 and token ">=" resolved as reduce (">=" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "&" resolved as reduce ("&" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "&&" resolved as reduce ("&&" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "|" resolved as reduce ("|" < CONTROLDIVIDE).
-    Conflict between rule 174 and token "||" resolved as reduce ("||" < CONTROLDIVIDE).
 
 
 state 284
@@ -16654,7 +16768,7 @@ state 284
   171             | . "./." variable
   172             | . "./." functionCall
   173             | . "/." variable
-  173             | "/." variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  173             | "/." variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "'", "~ or @", "$", ",", ":", ";", "(", ")", "[", "]", "{", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   174             | . "/." functionCall
   175             | . "\\" variable
   176             | . "\\" functionCall
@@ -16675,51 +16789,75 @@ state 284
   196         | variable . listableEnd
   212         | variable . "(" functionArgs ")"
 
-    "'"        shift, and go to state 152
-    "("        shift, and go to state 175
-    "."        shift, and go to state 176
-    ".'"       shift, and go to state 155
-    "** or ^"  shift, and go to state 156
-    ".^"       shift, and go to state 157
+    "'"         shift, and go to state 152
+    ":"         shift, and go to state 117
+    "("         shift, and go to state 175
+    "."         shift, and go to state 176
+    ".'"        shift, and go to state 155
+    "+"         shift, and go to state 121
+    "-"         shift, and go to state 122
+    "*"         shift, and go to state 123
+    ".*"        shift, and go to state 124
+    ".*."       shift, and go to state 125
+    "*."        shift, and go to state 126
+    "/"         shift, and go to state 127
+    "./"        shift, and go to state 128
+    "/."        shift, and go to state 129
+    "./."       shift, and go to state 130
+    "\\"        shift, and go to state 131
+    ".\\"       shift, and go to state 132
+    "\\."       shift, and go to state 133
+    ".\\."      shift, and go to state 134
+    "** or ^"   shift, and go to state 156
+    ".^"        shift, and go to state 157
+    "=="        shift, and go to state 137
+    "<> or ~="  shift, and go to state 138
+    "<"         shift, and go to state 139
+    "<="        shift, and go to state 140
+    ">"         shift, and go to state 141
+    ">="        shift, and go to state 142
+    "&"         shift, and go to state 143
+    "&&"        shift, and go to state 144
+    "|"         shift, and go to state 145
+    "||"        shift, and go to state 146
 
-    $default  reduce using rule 173 (rightOperand)
+    "'"         [reduce using rule 173 (rightOperand)]
+    ":"         [reduce using rule 173 (rightOperand)]
+    "("         [reduce using rule 173 (rightOperand)]
+    "."         [reduce using rule 173 (rightOperand)]
+    ".'"        [reduce using rule 173 (rightOperand)]
+    "+"         [reduce using rule 173 (rightOperand)]
+    "-"         [reduce using rule 173 (rightOperand)]
+    "*"         [reduce using rule 173 (rightOperand)]
+    ".*"        [reduce using rule 173 (rightOperand)]
+    ".*."       [reduce using rule 173 (rightOperand)]
+    "*."        [reduce using rule 173 (rightOperand)]
+    "/"         [reduce using rule 173 (rightOperand)]
+    "./"        [reduce using rule 173 (rightOperand)]
+    "/."        [reduce using rule 173 (rightOperand)]
+    "./."       [reduce using rule 173 (rightOperand)]
+    "\\"        [reduce using rule 173 (rightOperand)]
+    ".\\"       [reduce using rule 173 (rightOperand)]
+    "\\."       [reduce using rule 173 (rightOperand)]
+    ".\\."      [reduce using rule 173 (rightOperand)]
+    "** or ^"   [reduce using rule 173 (rightOperand)]
+    ".^"        [reduce using rule 173 (rightOperand)]
+    "=="        [reduce using rule 173 (rightOperand)]
+    "<> or ~="  [reduce using rule 173 (rightOperand)]
+    "<"         [reduce using rule 173 (rightOperand)]
+    "<="        [reduce using rule 173 (rightOperand)]
+    ">"         [reduce using rule 173 (rightOperand)]
+    ">="        [reduce using rule 173 (rightOperand)]
+    "&"         [reduce using rule 173 (rightOperand)]
+    "&&"        [reduce using rule 173 (rightOperand)]
+    "|"         [reduce using rule 173 (rightOperand)]
+    "||"        [reduce using rule 173 (rightOperand)]
+    $default    reduce using rule 173 (rightOperand)
 
     rightComparable  go to state 158
     rightOperand     go to state 159
     listableBegin    go to state 150
     listableEnd      go to state 160
-
-    Conflict between rule 173 and token "'" resolved as shift (CONTROLDIVIDE < "'").
-    Conflict between rule 173 and token ":" resolved as reduce (":" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "(" resolved as shift (CONTROLDIVIDE < "(").
-    Conflict between rule 173 and token "." resolved as shift (CONTROLDIVIDE < ".").
-    Conflict between rule 173 and token ".'" resolved as shift (CONTROLDIVIDE < ".'").
-    Conflict between rule 173 and token "+" resolved as reduce ("+" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "-" resolved as reduce ("-" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "*" resolved as reduce (%left "*").
-    Conflict between rule 173 and token ".*" resolved as reduce (%left ".*").
-    Conflict between rule 173 and token ".*." resolved as reduce (%left ".*.").
-    Conflict between rule 173 and token "*." resolved as reduce (%left "*.").
-    Conflict between rule 173 and token "/" resolved as reduce (%left "/").
-    Conflict between rule 173 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 173 and token "/." resolved as reduce (%left "/.").
-    Conflict between rule 173 and token "./." resolved as reduce (%left "./.").
-    Conflict between rule 173 and token "\\" resolved as reduce (%left "\\").
-    Conflict between rule 173 and token ".\\" resolved as reduce (%left ".\\").
-    Conflict between rule 173 and token "\\." resolved as reduce (%left "\\.").
-    Conflict between rule 173 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 173 and token "** or ^" resolved as shift (CONTROLDIVIDE < "** or ^").
-    Conflict between rule 173 and token ".^" resolved as shift (CONTROLDIVIDE < ".^").
-    Conflict between rule 173 and token "==" resolved as reduce ("==" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "<> or ~=" resolved as reduce ("<> or ~=" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "<" resolved as reduce ("<" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "<=" resolved as reduce ("<=" < CONTROLDIVIDE).
-    Conflict between rule 173 and token ">" resolved as reduce (">" < CONTROLDIVIDE).
-    Conflict between rule 173 and token ">=" resolved as reduce (">=" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "&" resolved as reduce ("&" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "&&" resolved as reduce ("&&" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "|" resolved as reduce ("|" < CONTROLDIVIDE).
-    Conflict between rule 173 and token "||" resolved as reduce ("||" < CONTROLDIVIDE).
 
 
 state 285
@@ -16806,9 +16944,11 @@ state 285
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 172 (rightOperand)]
     $default  reduce using rule 172 (rightOperand)
 
     rightComparable  go to state 148
@@ -16816,37 +16956,36 @@ state 285
     listableBegin    go to state 150
     listableEnd      go to state 151
 
-    Conflict between rule 172 and token "'" resolved as shift (KRONDIVIDE < "'").
-    Conflict between rule 172 and token ":" resolved as reduce (":" < KRONDIVIDE).
-    Conflict between rule 172 and token "(" resolved as shift (KRONDIVIDE < "(").
-    Conflict between rule 172 and token "." resolved as shift (KRONDIVIDE < ".").
-    Conflict between rule 172 and token ".'" resolved as shift (KRONDIVIDE < ".'").
-    Conflict between rule 172 and token "+" resolved as reduce ("+" < KRONDIVIDE).
-    Conflict between rule 172 and token "-" resolved as reduce ("-" < KRONDIVIDE).
+    Conflict between rule 172 and token "'" resolved as shift (KRONRDIVIDE < "'").
+    Conflict between rule 172 and token ":" resolved as reduce (":" < KRONRDIVIDE).
+    Conflict between rule 172 and token "(" resolved as shift (KRONRDIVIDE < "(").
+    Conflict between rule 172 and token "." resolved as shift (KRONRDIVIDE < ".").
+    Conflict between rule 172 and token ".'" resolved as shift (KRONRDIVIDE < ".'").
+    Conflict between rule 172 and token "+" resolved as reduce ("+" < KRONRDIVIDE).
+    Conflict between rule 172 and token "-" resolved as reduce ("-" < KRONRDIVIDE).
     Conflict between rule 172 and token "*" resolved as reduce (%left "*").
     Conflict between rule 172 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 172 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 172 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 172 and token "/" resolved as reduce (%left "/").
     Conflict between rule 172 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 172 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 172 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 172 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 172 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 172 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 172 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 172 and token "** or ^" resolved as shift (KRONDIVIDE < "** or ^").
-    Conflict between rule 172 and token ".^" resolved as shift (KRONDIVIDE < ".^").
-    Conflict between rule 172 and token "==" resolved as reduce ("==" < KRONDIVIDE).
-    Conflict between rule 172 and token "<> or ~=" resolved as reduce ("<> or ~=" < KRONDIVIDE).
-    Conflict between rule 172 and token "<" resolved as reduce ("<" < KRONDIVIDE).
-    Conflict between rule 172 and token "<=" resolved as reduce ("<=" < KRONDIVIDE).
-    Conflict between rule 172 and token ">" resolved as reduce (">" < KRONDIVIDE).
-    Conflict between rule 172 and token ">=" resolved as reduce (">=" < KRONDIVIDE).
-    Conflict between rule 172 and token "&" resolved as reduce ("&" < KRONDIVIDE).
-    Conflict between rule 172 and token "&&" resolved as reduce ("&&" < KRONDIVIDE).
-    Conflict between rule 172 and token "|" resolved as reduce ("|" < KRONDIVIDE).
-    Conflict between rule 172 and token "||" resolved as reduce ("||" < KRONDIVIDE).
+    Conflict between rule 172 and token "** or ^" resolved as shift (KRONRDIVIDE < "** or ^").
+    Conflict between rule 172 and token ".^" resolved as shift (KRONRDIVIDE < ".^").
+    Conflict between rule 172 and token "==" resolved as reduce ("==" < KRONRDIVIDE).
+    Conflict between rule 172 and token "<> or ~=" resolved as reduce ("<> or ~=" < KRONRDIVIDE).
+    Conflict between rule 172 and token "<" resolved as reduce ("<" < KRONRDIVIDE).
+    Conflict between rule 172 and token "<=" resolved as reduce ("<=" < KRONRDIVIDE).
+    Conflict between rule 172 and token ">" resolved as reduce (">" < KRONRDIVIDE).
+    Conflict between rule 172 and token ">=" resolved as reduce (">=" < KRONRDIVIDE).
+    Conflict between rule 172 and token "&" resolved as reduce ("&" < KRONRDIVIDE).
+    Conflict between rule 172 and token "&&" resolved as reduce ("&&" < KRONRDIVIDE).
+    Conflict between rule 172 and token "|" resolved as reduce ("|" < KRONRDIVIDE).
+    Conflict between rule 172 and token "||" resolved as reduce ("||" < KRONRDIVIDE).
 
 
 state 286
@@ -16933,9 +17072,11 @@ state 286
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 171 (rightOperand)]
     $default  reduce using rule 171 (rightOperand)
 
     rightComparable  go to state 158
@@ -16943,37 +17084,36 @@ state 286
     listableBegin    go to state 150
     listableEnd      go to state 160
 
-    Conflict between rule 171 and token "'" resolved as shift (KRONDIVIDE < "'").
-    Conflict between rule 171 and token ":" resolved as reduce (":" < KRONDIVIDE).
-    Conflict between rule 171 and token "(" resolved as shift (KRONDIVIDE < "(").
-    Conflict between rule 171 and token "." resolved as shift (KRONDIVIDE < ".").
-    Conflict between rule 171 and token ".'" resolved as shift (KRONDIVIDE < ".'").
-    Conflict between rule 171 and token "+" resolved as reduce ("+" < KRONDIVIDE).
-    Conflict between rule 171 and token "-" resolved as reduce ("-" < KRONDIVIDE).
+    Conflict between rule 171 and token "'" resolved as shift (KRONRDIVIDE < "'").
+    Conflict between rule 171 and token ":" resolved as reduce (":" < KRONRDIVIDE).
+    Conflict between rule 171 and token "(" resolved as shift (KRONRDIVIDE < "(").
+    Conflict between rule 171 and token "." resolved as shift (KRONRDIVIDE < ".").
+    Conflict between rule 171 and token ".'" resolved as shift (KRONRDIVIDE < ".'").
+    Conflict between rule 171 and token "+" resolved as reduce ("+" < KRONRDIVIDE).
+    Conflict between rule 171 and token "-" resolved as reduce ("-" < KRONRDIVIDE).
     Conflict between rule 171 and token "*" resolved as reduce (%left "*").
     Conflict between rule 171 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 171 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 171 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 171 and token "/" resolved as reduce (%left "/").
     Conflict between rule 171 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 171 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 171 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 171 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 171 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 171 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 171 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 171 and token "** or ^" resolved as shift (KRONDIVIDE < "** or ^").
-    Conflict between rule 171 and token ".^" resolved as shift (KRONDIVIDE < ".^").
-    Conflict between rule 171 and token "==" resolved as reduce ("==" < KRONDIVIDE).
-    Conflict between rule 171 and token "<> or ~=" resolved as reduce ("<> or ~=" < KRONDIVIDE).
-    Conflict between rule 171 and token "<" resolved as reduce ("<" < KRONDIVIDE).
-    Conflict between rule 171 and token "<=" resolved as reduce ("<=" < KRONDIVIDE).
-    Conflict between rule 171 and token ">" resolved as reduce (">" < KRONDIVIDE).
-    Conflict between rule 171 and token ">=" resolved as reduce (">=" < KRONDIVIDE).
-    Conflict between rule 171 and token "&" resolved as reduce ("&" < KRONDIVIDE).
-    Conflict between rule 171 and token "&&" resolved as reduce ("&&" < KRONDIVIDE).
-    Conflict between rule 171 and token "|" resolved as reduce ("|" < KRONDIVIDE).
-    Conflict between rule 171 and token "||" resolved as reduce ("||" < KRONDIVIDE).
+    Conflict between rule 171 and token "** or ^" resolved as shift (KRONRDIVIDE < "** or ^").
+    Conflict between rule 171 and token ".^" resolved as shift (KRONRDIVIDE < ".^").
+    Conflict between rule 171 and token "==" resolved as reduce ("==" < KRONRDIVIDE).
+    Conflict between rule 171 and token "<> or ~=" resolved as reduce ("<> or ~=" < KRONRDIVIDE).
+    Conflict between rule 171 and token "<" resolved as reduce ("<" < KRONRDIVIDE).
+    Conflict between rule 171 and token "<=" resolved as reduce ("<=" < KRONRDIVIDE).
+    Conflict between rule 171 and token ">" resolved as reduce (">" < KRONRDIVIDE).
+    Conflict between rule 171 and token ">=" resolved as reduce (">=" < KRONRDIVIDE).
+    Conflict between rule 171 and token "&" resolved as reduce ("&" < KRONRDIVIDE).
+    Conflict between rule 171 and token "&&" resolved as reduce ("&&" < KRONRDIVIDE).
+    Conflict between rule 171 and token "|" resolved as reduce ("|" < KRONRDIVIDE).
+    Conflict between rule 171 and token "||" resolved as reduce ("||" < KRONRDIVIDE).
 
 
 state 287
@@ -17060,9 +17200,11 @@ state 287
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 176 (rightOperand)]
     $default  reduce using rule 176 (rightOperand)
 
     rightComparable  go to state 148
@@ -17070,37 +17212,36 @@ state 287
     listableBegin    go to state 150
     listableEnd      go to state 151
 
-    Conflict between rule 176 and token "'" resolved as shift (RDIVIDE < "'").
-    Conflict between rule 176 and token ":" resolved as reduce (":" < RDIVIDE).
-    Conflict between rule 176 and token "(" resolved as shift (RDIVIDE < "(").
-    Conflict between rule 176 and token "." resolved as shift (RDIVIDE < ".").
-    Conflict between rule 176 and token ".'" resolved as shift (RDIVIDE < ".'").
-    Conflict between rule 176 and token "+" resolved as reduce ("+" < RDIVIDE).
-    Conflict between rule 176 and token "-" resolved as reduce ("-" < RDIVIDE).
+    Conflict between rule 176 and token "'" resolved as shift (LDIVIDE < "'").
+    Conflict between rule 176 and token ":" resolved as reduce (":" < LDIVIDE).
+    Conflict between rule 176 and token "(" resolved as shift (LDIVIDE < "(").
+    Conflict between rule 176 and token "." resolved as shift (LDIVIDE < ".").
+    Conflict between rule 176 and token ".'" resolved as shift (LDIVIDE < ".'").
+    Conflict between rule 176 and token "+" resolved as reduce ("+" < LDIVIDE).
+    Conflict between rule 176 and token "-" resolved as reduce ("-" < LDIVIDE).
     Conflict between rule 176 and token "*" resolved as reduce (%left "*").
     Conflict between rule 176 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 176 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 176 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 176 and token "/" resolved as reduce (%left "/").
     Conflict between rule 176 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 176 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 176 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 176 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 176 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 176 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 176 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 176 and token "** or ^" resolved as shift (RDIVIDE < "** or ^").
-    Conflict between rule 176 and token ".^" resolved as shift (RDIVIDE < ".^").
-    Conflict between rule 176 and token "==" resolved as reduce ("==" < RDIVIDE).
-    Conflict between rule 176 and token "<> or ~=" resolved as reduce ("<> or ~=" < RDIVIDE).
-    Conflict between rule 176 and token "<" resolved as reduce ("<" < RDIVIDE).
-    Conflict between rule 176 and token "<=" resolved as reduce ("<=" < RDIVIDE).
-    Conflict between rule 176 and token ">" resolved as reduce (">" < RDIVIDE).
-    Conflict between rule 176 and token ">=" resolved as reduce (">=" < RDIVIDE).
-    Conflict between rule 176 and token "&" resolved as reduce ("&" < RDIVIDE).
-    Conflict between rule 176 and token "&&" resolved as reduce ("&&" < RDIVIDE).
-    Conflict between rule 176 and token "|" resolved as reduce ("|" < RDIVIDE).
-    Conflict between rule 176 and token "||" resolved as reduce ("||" < RDIVIDE).
+    Conflict between rule 176 and token "** or ^" resolved as shift (LDIVIDE < "** or ^").
+    Conflict between rule 176 and token ".^" resolved as shift (LDIVIDE < ".^").
+    Conflict between rule 176 and token "==" resolved as reduce ("==" < LDIVIDE).
+    Conflict between rule 176 and token "<> or ~=" resolved as reduce ("<> or ~=" < LDIVIDE).
+    Conflict between rule 176 and token "<" resolved as reduce ("<" < LDIVIDE).
+    Conflict between rule 176 and token "<=" resolved as reduce ("<=" < LDIVIDE).
+    Conflict between rule 176 and token ">" resolved as reduce (">" < LDIVIDE).
+    Conflict between rule 176 and token ">=" resolved as reduce (">=" < LDIVIDE).
+    Conflict between rule 176 and token "&" resolved as reduce ("&" < LDIVIDE).
+    Conflict between rule 176 and token "&&" resolved as reduce ("&&" < LDIVIDE).
+    Conflict between rule 176 and token "|" resolved as reduce ("|" < LDIVIDE).
+    Conflict between rule 176 and token "||" resolved as reduce ("||" < LDIVIDE).
 
 
 state 288
@@ -17187,9 +17328,11 @@ state 288
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 175 (rightOperand)]
     $default  reduce using rule 175 (rightOperand)
 
     rightComparable  go to state 158
@@ -17197,37 +17340,36 @@ state 288
     listableBegin    go to state 150
     listableEnd      go to state 160
 
-    Conflict between rule 175 and token "'" resolved as shift (RDIVIDE < "'").
-    Conflict between rule 175 and token ":" resolved as reduce (":" < RDIVIDE).
-    Conflict between rule 175 and token "(" resolved as shift (RDIVIDE < "(").
-    Conflict between rule 175 and token "." resolved as shift (RDIVIDE < ".").
-    Conflict between rule 175 and token ".'" resolved as shift (RDIVIDE < ".'").
-    Conflict between rule 175 and token "+" resolved as reduce ("+" < RDIVIDE).
-    Conflict between rule 175 and token "-" resolved as reduce ("-" < RDIVIDE).
+    Conflict between rule 175 and token "'" resolved as shift (LDIVIDE < "'").
+    Conflict between rule 175 and token ":" resolved as reduce (":" < LDIVIDE).
+    Conflict between rule 175 and token "(" resolved as shift (LDIVIDE < "(").
+    Conflict between rule 175 and token "." resolved as shift (LDIVIDE < ".").
+    Conflict between rule 175 and token ".'" resolved as shift (LDIVIDE < ".'").
+    Conflict between rule 175 and token "+" resolved as reduce ("+" < LDIVIDE).
+    Conflict between rule 175 and token "-" resolved as reduce ("-" < LDIVIDE).
     Conflict between rule 175 and token "*" resolved as reduce (%left "*").
     Conflict between rule 175 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 175 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 175 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 175 and token "/" resolved as reduce (%left "/").
     Conflict between rule 175 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 175 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 175 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 175 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 175 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 175 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 175 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 175 and token "** or ^" resolved as shift (RDIVIDE < "** or ^").
-    Conflict between rule 175 and token ".^" resolved as shift (RDIVIDE < ".^").
-    Conflict between rule 175 and token "==" resolved as reduce ("==" < RDIVIDE).
-    Conflict between rule 175 and token "<> or ~=" resolved as reduce ("<> or ~=" < RDIVIDE).
-    Conflict between rule 175 and token "<" resolved as reduce ("<" < RDIVIDE).
-    Conflict between rule 175 and token "<=" resolved as reduce ("<=" < RDIVIDE).
-    Conflict between rule 175 and token ">" resolved as reduce (">" < RDIVIDE).
-    Conflict between rule 175 and token ">=" resolved as reduce (">=" < RDIVIDE).
-    Conflict between rule 175 and token "&" resolved as reduce ("&" < RDIVIDE).
-    Conflict between rule 175 and token "&&" resolved as reduce ("&&" < RDIVIDE).
-    Conflict between rule 175 and token "|" resolved as reduce ("|" < RDIVIDE).
-    Conflict between rule 175 and token "||" resolved as reduce ("||" < RDIVIDE).
+    Conflict between rule 175 and token "** or ^" resolved as shift (LDIVIDE < "** or ^").
+    Conflict between rule 175 and token ".^" resolved as shift (LDIVIDE < ".^").
+    Conflict between rule 175 and token "==" resolved as reduce ("==" < LDIVIDE).
+    Conflict between rule 175 and token "<> or ~=" resolved as reduce ("<> or ~=" < LDIVIDE).
+    Conflict between rule 175 and token "<" resolved as reduce ("<" < LDIVIDE).
+    Conflict between rule 175 and token "<=" resolved as reduce ("<=" < LDIVIDE).
+    Conflict between rule 175 and token ">" resolved as reduce (">" < LDIVIDE).
+    Conflict between rule 175 and token ">=" resolved as reduce (">=" < LDIVIDE).
+    Conflict between rule 175 and token "&" resolved as reduce ("&" < LDIVIDE).
+    Conflict between rule 175 and token "&&" resolved as reduce ("&&" < LDIVIDE).
+    Conflict between rule 175 and token "|" resolved as reduce ("|" < LDIVIDE).
+    Conflict between rule 175 and token "||" resolved as reduce ("||" < LDIVIDE).
 
 
 state 289
@@ -17314,9 +17456,11 @@ state 289
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 178 (rightOperand)]
     $default  reduce using rule 178 (rightOperand)
 
     rightComparable  go to state 148
@@ -17324,37 +17468,36 @@ state 289
     listableBegin    go to state 150
     listableEnd      go to state 151
 
-    Conflict between rule 178 and token "'" resolved as shift (DOTRDIVIDE < "'").
-    Conflict between rule 178 and token ":" resolved as reduce (":" < DOTRDIVIDE).
-    Conflict between rule 178 and token "(" resolved as shift (DOTRDIVIDE < "(").
-    Conflict between rule 178 and token "." resolved as shift (DOTRDIVIDE < ".").
-    Conflict between rule 178 and token ".'" resolved as shift (DOTRDIVIDE < ".'").
-    Conflict between rule 178 and token "+" resolved as reduce ("+" < DOTRDIVIDE).
-    Conflict between rule 178 and token "-" resolved as reduce ("-" < DOTRDIVIDE).
+    Conflict between rule 178 and token "'" resolved as shift (DOTLDIVIDE < "'").
+    Conflict between rule 178 and token ":" resolved as reduce (":" < DOTLDIVIDE).
+    Conflict between rule 178 and token "(" resolved as shift (DOTLDIVIDE < "(").
+    Conflict between rule 178 and token "." resolved as shift (DOTLDIVIDE < ".").
+    Conflict between rule 178 and token ".'" resolved as shift (DOTLDIVIDE < ".'").
+    Conflict between rule 178 and token "+" resolved as reduce ("+" < DOTLDIVIDE).
+    Conflict between rule 178 and token "-" resolved as reduce ("-" < DOTLDIVIDE).
     Conflict between rule 178 and token "*" resolved as reduce (%left "*").
     Conflict between rule 178 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 178 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 178 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 178 and token "/" resolved as reduce (%left "/").
     Conflict between rule 178 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 178 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 178 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 178 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 178 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 178 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 178 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 178 and token "** or ^" resolved as shift (DOTRDIVIDE < "** or ^").
-    Conflict between rule 178 and token ".^" resolved as shift (DOTRDIVIDE < ".^").
-    Conflict between rule 178 and token "==" resolved as reduce ("==" < DOTRDIVIDE).
-    Conflict between rule 178 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTRDIVIDE).
-    Conflict between rule 178 and token "<" resolved as reduce ("<" < DOTRDIVIDE).
-    Conflict between rule 178 and token "<=" resolved as reduce ("<=" < DOTRDIVIDE).
-    Conflict between rule 178 and token ">" resolved as reduce (">" < DOTRDIVIDE).
-    Conflict between rule 178 and token ">=" resolved as reduce (">=" < DOTRDIVIDE).
-    Conflict between rule 178 and token "&" resolved as reduce ("&" < DOTRDIVIDE).
-    Conflict between rule 178 and token "&&" resolved as reduce ("&&" < DOTRDIVIDE).
-    Conflict between rule 178 and token "|" resolved as reduce ("|" < DOTRDIVIDE).
-    Conflict between rule 178 and token "||" resolved as reduce ("||" < DOTRDIVIDE).
+    Conflict between rule 178 and token "** or ^" resolved as shift (DOTLDIVIDE < "** or ^").
+    Conflict between rule 178 and token ".^" resolved as shift (DOTLDIVIDE < ".^").
+    Conflict between rule 178 and token "==" resolved as reduce ("==" < DOTLDIVIDE).
+    Conflict between rule 178 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTLDIVIDE).
+    Conflict between rule 178 and token "<" resolved as reduce ("<" < DOTLDIVIDE).
+    Conflict between rule 178 and token "<=" resolved as reduce ("<=" < DOTLDIVIDE).
+    Conflict between rule 178 and token ">" resolved as reduce (">" < DOTLDIVIDE).
+    Conflict between rule 178 and token ">=" resolved as reduce (">=" < DOTLDIVIDE).
+    Conflict between rule 178 and token "&" resolved as reduce ("&" < DOTLDIVIDE).
+    Conflict between rule 178 and token "&&" resolved as reduce ("&&" < DOTLDIVIDE).
+    Conflict between rule 178 and token "|" resolved as reduce ("|" < DOTLDIVIDE).
+    Conflict between rule 178 and token "||" resolved as reduce ("||" < DOTLDIVIDE).
 
 
 state 290
@@ -17441,9 +17584,11 @@ state 290
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 177 (rightOperand)]
     $default  reduce using rule 177 (rightOperand)
 
     rightComparable  go to state 158
@@ -17451,37 +17596,36 @@ state 290
     listableBegin    go to state 150
     listableEnd      go to state 160
 
-    Conflict between rule 177 and token "'" resolved as shift (DOTRDIVIDE < "'").
-    Conflict between rule 177 and token ":" resolved as reduce (":" < DOTRDIVIDE).
-    Conflict between rule 177 and token "(" resolved as shift (DOTRDIVIDE < "(").
-    Conflict between rule 177 and token "." resolved as shift (DOTRDIVIDE < ".").
-    Conflict between rule 177 and token ".'" resolved as shift (DOTRDIVIDE < ".'").
-    Conflict between rule 177 and token "+" resolved as reduce ("+" < DOTRDIVIDE).
-    Conflict between rule 177 and token "-" resolved as reduce ("-" < DOTRDIVIDE).
+    Conflict between rule 177 and token "'" resolved as shift (DOTLDIVIDE < "'").
+    Conflict between rule 177 and token ":" resolved as reduce (":" < DOTLDIVIDE).
+    Conflict between rule 177 and token "(" resolved as shift (DOTLDIVIDE < "(").
+    Conflict between rule 177 and token "." resolved as shift (DOTLDIVIDE < ".").
+    Conflict between rule 177 and token ".'" resolved as shift (DOTLDIVIDE < ".'").
+    Conflict between rule 177 and token "+" resolved as reduce ("+" < DOTLDIVIDE).
+    Conflict between rule 177 and token "-" resolved as reduce ("-" < DOTLDIVIDE).
     Conflict between rule 177 and token "*" resolved as reduce (%left "*").
     Conflict between rule 177 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 177 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 177 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 177 and token "/" resolved as reduce (%left "/").
     Conflict between rule 177 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 177 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 177 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 177 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 177 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 177 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 177 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 177 and token "** or ^" resolved as shift (DOTRDIVIDE < "** or ^").
-    Conflict between rule 177 and token ".^" resolved as shift (DOTRDIVIDE < ".^").
-    Conflict between rule 177 and token "==" resolved as reduce ("==" < DOTRDIVIDE).
-    Conflict between rule 177 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTRDIVIDE).
-    Conflict between rule 177 and token "<" resolved as reduce ("<" < DOTRDIVIDE).
-    Conflict between rule 177 and token "<=" resolved as reduce ("<=" < DOTRDIVIDE).
-    Conflict between rule 177 and token ">" resolved as reduce (">" < DOTRDIVIDE).
-    Conflict between rule 177 and token ">=" resolved as reduce (">=" < DOTRDIVIDE).
-    Conflict between rule 177 and token "&" resolved as reduce ("&" < DOTRDIVIDE).
-    Conflict between rule 177 and token "&&" resolved as reduce ("&&" < DOTRDIVIDE).
-    Conflict between rule 177 and token "|" resolved as reduce ("|" < DOTRDIVIDE).
-    Conflict between rule 177 and token "||" resolved as reduce ("||" < DOTRDIVIDE).
+    Conflict between rule 177 and token "** or ^" resolved as shift (DOTLDIVIDE < "** or ^").
+    Conflict between rule 177 and token ".^" resolved as shift (DOTLDIVIDE < ".^").
+    Conflict between rule 177 and token "==" resolved as reduce ("==" < DOTLDIVIDE).
+    Conflict between rule 177 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTLDIVIDE).
+    Conflict between rule 177 and token "<" resolved as reduce ("<" < DOTLDIVIDE).
+    Conflict between rule 177 and token "<=" resolved as reduce ("<=" < DOTLDIVIDE).
+    Conflict between rule 177 and token ">" resolved as reduce (">" < DOTLDIVIDE).
+    Conflict between rule 177 and token ">=" resolved as reduce (">=" < DOTLDIVIDE).
+    Conflict between rule 177 and token "&" resolved as reduce ("&" < DOTLDIVIDE).
+    Conflict between rule 177 and token "&&" resolved as reduce ("&&" < DOTLDIVIDE).
+    Conflict between rule 177 and token "|" resolved as reduce ("|" < DOTLDIVIDE).
+    Conflict between rule 177 and token "||" resolved as reduce ("||" < DOTLDIVIDE).
 
 
 state 291
@@ -17568,9 +17712,11 @@ state 291
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 182 (rightOperand)]
     $default  reduce using rule 182 (rightOperand)
 
     rightComparable  go to state 148
@@ -17578,37 +17724,36 @@ state 291
     listableBegin    go to state 150
     listableEnd      go to state 151
 
-    Conflict between rule 182 and token "'" resolved as shift (CONTROLRDIVIDE < "'").
-    Conflict between rule 182 and token ":" resolved as reduce (":" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token "(" resolved as shift (CONTROLRDIVIDE < "(").
-    Conflict between rule 182 and token "." resolved as shift (CONTROLRDIVIDE < ".").
-    Conflict between rule 182 and token ".'" resolved as shift (CONTROLRDIVIDE < ".'").
-    Conflict between rule 182 and token "+" resolved as reduce ("+" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token "-" resolved as reduce ("-" < CONTROLRDIVIDE).
+    Conflict between rule 182 and token "'" resolved as shift (CONTROLLDIVIDE < "'").
+    Conflict between rule 182 and token ":" resolved as reduce (":" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token "(" resolved as shift (CONTROLLDIVIDE < "(").
+    Conflict between rule 182 and token "." resolved as shift (CONTROLLDIVIDE < ".").
+    Conflict between rule 182 and token ".'" resolved as shift (CONTROLLDIVIDE < ".'").
+    Conflict between rule 182 and token "+" resolved as reduce ("+" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token "-" resolved as reduce ("-" < CONTROLLDIVIDE).
     Conflict between rule 182 and token "*" resolved as reduce (%left "*").
     Conflict between rule 182 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 182 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 182 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 182 and token "/" resolved as reduce (%left "/").
     Conflict between rule 182 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 182 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 182 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 182 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 182 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 182 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 182 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 182 and token "** or ^" resolved as shift (CONTROLRDIVIDE < "** or ^").
-    Conflict between rule 182 and token ".^" resolved as shift (CONTROLRDIVIDE < ".^").
-    Conflict between rule 182 and token "==" resolved as reduce ("==" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token "<> or ~=" resolved as reduce ("<> or ~=" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token "<" resolved as reduce ("<" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token "<=" resolved as reduce ("<=" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token ">" resolved as reduce (">" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token ">=" resolved as reduce (">=" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token "&" resolved as reduce ("&" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token "&&" resolved as reduce ("&&" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token "|" resolved as reduce ("|" < CONTROLRDIVIDE).
-    Conflict between rule 182 and token "||" resolved as reduce ("||" < CONTROLRDIVIDE).
+    Conflict between rule 182 and token "** or ^" resolved as shift (CONTROLLDIVIDE < "** or ^").
+    Conflict between rule 182 and token ".^" resolved as shift (CONTROLLDIVIDE < ".^").
+    Conflict between rule 182 and token "==" resolved as reduce ("==" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token "<> or ~=" resolved as reduce ("<> or ~=" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token "<" resolved as reduce ("<" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token "<=" resolved as reduce ("<=" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token ">" resolved as reduce (">" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token ">=" resolved as reduce (">=" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token "&" resolved as reduce ("&" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token "&&" resolved as reduce ("&&" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token "|" resolved as reduce ("|" < CONTROLLDIVIDE).
+    Conflict between rule 182 and token "||" resolved as reduce ("||" < CONTROLLDIVIDE).
 
 
 state 292
@@ -17695,9 +17840,11 @@ state 292
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 181 (rightOperand)]
     $default  reduce using rule 181 (rightOperand)
 
     rightComparable  go to state 158
@@ -17705,37 +17852,36 @@ state 292
     listableBegin    go to state 150
     listableEnd      go to state 160
 
-    Conflict between rule 181 and token "'" resolved as shift (CONTROLRDIVIDE < "'").
-    Conflict between rule 181 and token ":" resolved as reduce (":" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token "(" resolved as shift (CONTROLRDIVIDE < "(").
-    Conflict between rule 181 and token "." resolved as shift (CONTROLRDIVIDE < ".").
-    Conflict between rule 181 and token ".'" resolved as shift (CONTROLRDIVIDE < ".'").
-    Conflict between rule 181 and token "+" resolved as reduce ("+" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token "-" resolved as reduce ("-" < CONTROLRDIVIDE).
+    Conflict between rule 181 and token "'" resolved as shift (CONTROLLDIVIDE < "'").
+    Conflict between rule 181 and token ":" resolved as reduce (":" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token "(" resolved as shift (CONTROLLDIVIDE < "(").
+    Conflict between rule 181 and token "." resolved as shift (CONTROLLDIVIDE < ".").
+    Conflict between rule 181 and token ".'" resolved as shift (CONTROLLDIVIDE < ".'").
+    Conflict between rule 181 and token "+" resolved as reduce ("+" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token "-" resolved as reduce ("-" < CONTROLLDIVIDE).
     Conflict between rule 181 and token "*" resolved as reduce (%left "*").
     Conflict between rule 181 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 181 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 181 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 181 and token "/" resolved as reduce (%left "/").
     Conflict between rule 181 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 181 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 181 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 181 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 181 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 181 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 181 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 181 and token "** or ^" resolved as shift (CONTROLRDIVIDE < "** or ^").
-    Conflict between rule 181 and token ".^" resolved as shift (CONTROLRDIVIDE < ".^").
-    Conflict between rule 181 and token "==" resolved as reduce ("==" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token "<> or ~=" resolved as reduce ("<> or ~=" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token "<" resolved as reduce ("<" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token "<=" resolved as reduce ("<=" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token ">" resolved as reduce (">" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token ">=" resolved as reduce (">=" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token "&" resolved as reduce ("&" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token "&&" resolved as reduce ("&&" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token "|" resolved as reduce ("|" < CONTROLRDIVIDE).
-    Conflict between rule 181 and token "||" resolved as reduce ("||" < CONTROLRDIVIDE).
+    Conflict between rule 181 and token "** or ^" resolved as shift (CONTROLLDIVIDE < "** or ^").
+    Conflict between rule 181 and token ".^" resolved as shift (CONTROLLDIVIDE < ".^").
+    Conflict between rule 181 and token "==" resolved as reduce ("==" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token "<> or ~=" resolved as reduce ("<> or ~=" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token "<" resolved as reduce ("<" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token "<=" resolved as reduce ("<=" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token ">" resolved as reduce (">" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token ">=" resolved as reduce (">=" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token "&" resolved as reduce ("&" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token "&&" resolved as reduce ("&&" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token "|" resolved as reduce ("|" < CONTROLLDIVIDE).
+    Conflict between rule 181 and token "||" resolved as reduce ("||" < CONTROLLDIVIDE).
 
 
 state 293
@@ -17822,9 +17968,11 @@ state 293
     "("        shift, and go to state 173
     "."        shift, and go to state 174
     ".'"       shift, and go to state 120
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 135
     ".^"       shift, and go to state 136
 
+    "/."      [reduce using rule 180 (rightOperand)]
     $default  reduce using rule 180 (rightOperand)
 
     rightComparable  go to state 148
@@ -17832,37 +17980,36 @@ state 293
     listableBegin    go to state 150
     listableEnd      go to state 151
 
-    Conflict between rule 180 and token "'" resolved as shift (KRONRDIVIDE < "'").
-    Conflict between rule 180 and token ":" resolved as reduce (":" < KRONRDIVIDE).
-    Conflict between rule 180 and token "(" resolved as shift (KRONRDIVIDE < "(").
-    Conflict between rule 180 and token "." resolved as shift (KRONRDIVIDE < ".").
-    Conflict between rule 180 and token ".'" resolved as shift (KRONRDIVIDE < ".'").
-    Conflict between rule 180 and token "+" resolved as reduce ("+" < KRONRDIVIDE).
-    Conflict between rule 180 and token "-" resolved as reduce ("-" < KRONRDIVIDE).
+    Conflict between rule 180 and token "'" resolved as shift (KRONLDIVIDE < "'").
+    Conflict between rule 180 and token ":" resolved as reduce (":" < KRONLDIVIDE).
+    Conflict between rule 180 and token "(" resolved as shift (KRONLDIVIDE < "(").
+    Conflict between rule 180 and token "." resolved as shift (KRONLDIVIDE < ".").
+    Conflict between rule 180 and token ".'" resolved as shift (KRONLDIVIDE < ".'").
+    Conflict between rule 180 and token "+" resolved as reduce ("+" < KRONLDIVIDE).
+    Conflict between rule 180 and token "-" resolved as reduce ("-" < KRONLDIVIDE).
     Conflict between rule 180 and token "*" resolved as reduce (%left "*").
     Conflict between rule 180 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 180 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 180 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 180 and token "/" resolved as reduce (%left "/").
     Conflict between rule 180 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 180 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 180 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 180 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 180 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 180 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 180 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 180 and token "** or ^" resolved as shift (KRONRDIVIDE < "** or ^").
-    Conflict between rule 180 and token ".^" resolved as shift (KRONRDIVIDE < ".^").
-    Conflict between rule 180 and token "==" resolved as reduce ("==" < KRONRDIVIDE).
-    Conflict between rule 180 and token "<> or ~=" resolved as reduce ("<> or ~=" < KRONRDIVIDE).
-    Conflict between rule 180 and token "<" resolved as reduce ("<" < KRONRDIVIDE).
-    Conflict between rule 180 and token "<=" resolved as reduce ("<=" < KRONRDIVIDE).
-    Conflict between rule 180 and token ">" resolved as reduce (">" < KRONRDIVIDE).
-    Conflict between rule 180 and token ">=" resolved as reduce (">=" < KRONRDIVIDE).
-    Conflict between rule 180 and token "&" resolved as reduce ("&" < KRONRDIVIDE).
-    Conflict between rule 180 and token "&&" resolved as reduce ("&&" < KRONRDIVIDE).
-    Conflict between rule 180 and token "|" resolved as reduce ("|" < KRONRDIVIDE).
-    Conflict between rule 180 and token "||" resolved as reduce ("||" < KRONRDIVIDE).
+    Conflict between rule 180 and token "** or ^" resolved as shift (KRONLDIVIDE < "** or ^").
+    Conflict between rule 180 and token ".^" resolved as shift (KRONLDIVIDE < ".^").
+    Conflict between rule 180 and token "==" resolved as reduce ("==" < KRONLDIVIDE).
+    Conflict between rule 180 and token "<> or ~=" resolved as reduce ("<> or ~=" < KRONLDIVIDE).
+    Conflict between rule 180 and token "<" resolved as reduce ("<" < KRONLDIVIDE).
+    Conflict between rule 180 and token "<=" resolved as reduce ("<=" < KRONLDIVIDE).
+    Conflict between rule 180 and token ">" resolved as reduce (">" < KRONLDIVIDE).
+    Conflict between rule 180 and token ">=" resolved as reduce (">=" < KRONLDIVIDE).
+    Conflict between rule 180 and token "&" resolved as reduce ("&" < KRONLDIVIDE).
+    Conflict between rule 180 and token "&&" resolved as reduce ("&&" < KRONLDIVIDE).
+    Conflict between rule 180 and token "|" resolved as reduce ("|" < KRONLDIVIDE).
+    Conflict between rule 180 and token "||" resolved as reduce ("||" < KRONLDIVIDE).
 
 
 state 294
@@ -17949,9 +18096,11 @@ state 294
     "("        shift, and go to state 175
     "."        shift, and go to state 176
     ".'"       shift, and go to state 155
+    "/."       shift, and go to state 129
     "** or ^"  shift, and go to state 156
     ".^"       shift, and go to state 157
 
+    "/."      [reduce using rule 179 (rightOperand)]
     $default  reduce using rule 179 (rightOperand)
 
     rightComparable  go to state 158
@@ -17959,37 +18108,36 @@ state 294
     listableBegin    go to state 150
     listableEnd      go to state 160
 
-    Conflict between rule 179 and token "'" resolved as shift (KRONRDIVIDE < "'").
-    Conflict between rule 179 and token ":" resolved as reduce (":" < KRONRDIVIDE).
-    Conflict between rule 179 and token "(" resolved as shift (KRONRDIVIDE < "(").
-    Conflict between rule 179 and token "." resolved as shift (KRONRDIVIDE < ".").
-    Conflict between rule 179 and token ".'" resolved as shift (KRONRDIVIDE < ".'").
-    Conflict between rule 179 and token "+" resolved as reduce ("+" < KRONRDIVIDE).
-    Conflict between rule 179 and token "-" resolved as reduce ("-" < KRONRDIVIDE).
+    Conflict between rule 179 and token "'" resolved as shift (KRONLDIVIDE < "'").
+    Conflict between rule 179 and token ":" resolved as reduce (":" < KRONLDIVIDE).
+    Conflict between rule 179 and token "(" resolved as shift (KRONLDIVIDE < "(").
+    Conflict between rule 179 and token "." resolved as shift (KRONLDIVIDE < ".").
+    Conflict between rule 179 and token ".'" resolved as shift (KRONLDIVIDE < ".'").
+    Conflict between rule 179 and token "+" resolved as reduce ("+" < KRONLDIVIDE).
+    Conflict between rule 179 and token "-" resolved as reduce ("-" < KRONLDIVIDE).
     Conflict between rule 179 and token "*" resolved as reduce (%left "*").
     Conflict between rule 179 and token ".*" resolved as reduce (%left ".*").
     Conflict between rule 179 and token ".*." resolved as reduce (%left ".*.").
     Conflict between rule 179 and token "*." resolved as reduce (%left "*.").
     Conflict between rule 179 and token "/" resolved as reduce (%left "/").
     Conflict between rule 179 and token "./" resolved as reduce (%left "./").
-    Conflict between rule 179 and token "/." resolved as reduce (%left "/.").
     Conflict between rule 179 and token "./." resolved as reduce (%left "./.").
     Conflict between rule 179 and token "\\" resolved as reduce (%left "\\").
     Conflict between rule 179 and token ".\\" resolved as reduce (%left ".\\").
     Conflict between rule 179 and token "\\." resolved as reduce (%left "\\.").
     Conflict between rule 179 and token ".\\." resolved as reduce (%left ".\\.").
-    Conflict between rule 179 and token "** or ^" resolved as shift (KRONRDIVIDE < "** or ^").
-    Conflict between rule 179 and token ".^" resolved as shift (KRONRDIVIDE < ".^").
-    Conflict between rule 179 and token "==" resolved as reduce ("==" < KRONRDIVIDE).
-    Conflict between rule 179 and token "<> or ~=" resolved as reduce ("<> or ~=" < KRONRDIVIDE).
-    Conflict between rule 179 and token "<" resolved as reduce ("<" < KRONRDIVIDE).
-    Conflict between rule 179 and token "<=" resolved as reduce ("<=" < KRONRDIVIDE).
-    Conflict between rule 179 and token ">" resolved as reduce (">" < KRONRDIVIDE).
-    Conflict between rule 179 and token ">=" resolved as reduce (">=" < KRONRDIVIDE).
-    Conflict between rule 179 and token "&" resolved as reduce ("&" < KRONRDIVIDE).
-    Conflict between rule 179 and token "&&" resolved as reduce ("&&" < KRONRDIVIDE).
-    Conflict between rule 179 and token "|" resolved as reduce ("|" < KRONRDIVIDE).
-    Conflict between rule 179 and token "||" resolved as reduce ("||" < KRONRDIVIDE).
+    Conflict between rule 179 and token "** or ^" resolved as shift (KRONLDIVIDE < "** or ^").
+    Conflict between rule 179 and token ".^" resolved as shift (KRONLDIVIDE < ".^").
+    Conflict between rule 179 and token "==" resolved as reduce ("==" < KRONLDIVIDE).
+    Conflict between rule 179 and token "<> or ~=" resolved as reduce ("<> or ~=" < KRONLDIVIDE).
+    Conflict between rule 179 and token "<" resolved as reduce ("<" < KRONLDIVIDE).
+    Conflict between rule 179 and token "<=" resolved as reduce ("<=" < KRONLDIVIDE).
+    Conflict between rule 179 and token ">" resolved as reduce (">" < KRONLDIVIDE).
+    Conflict between rule 179 and token ">=" resolved as reduce (">=" < KRONLDIVIDE).
+    Conflict between rule 179 and token "&" resolved as reduce ("&" < KRONLDIVIDE).
+    Conflict between rule 179 and token "&&" resolved as reduce ("&&" < KRONLDIVIDE).
+    Conflict between rule 179 and token "|" resolved as reduce ("|" < KRONLDIVIDE).
+    Conflict between rule 179 and token "||" resolved as reduce ("||" < KRONLDIVIDE).
 
 
 state 295
@@ -18076,7 +18224,9 @@ state 295
     "("   shift, and go to state 173
     "."   shift, and go to state 174
     ".'"  shift, and go to state 120
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 146 (operation)]
     $default  reduce using rule 146 (operation)
 
     rightComparable  go to state 148
@@ -18097,7 +18247,6 @@ state 295
     Conflict between rule 146 and token "*." resolved as reduce ("*." < POWER).
     Conflict between rule 146 and token "/" resolved as reduce ("/" < POWER).
     Conflict between rule 146 and token "./" resolved as reduce ("./" < POWER).
-    Conflict between rule 146 and token "/." resolved as reduce ("/." < POWER).
     Conflict between rule 146 and token "./." resolved as reduce ("./." < POWER).
     Conflict between rule 146 and token "\\" resolved as reduce ("\\" < POWER).
     Conflict between rule 146 and token ".\\" resolved as reduce (".\\" < POWER).
@@ -18201,7 +18350,9 @@ state 296
     "("   shift, and go to state 175
     "."   shift, and go to state 176
     ".'"  shift, and go to state 155
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 145 (operation)]
     $default  reduce using rule 145 (operation)
 
     rightComparable  go to state 158
@@ -18222,7 +18373,6 @@ state 296
     Conflict between rule 145 and token "*." resolved as reduce ("*." < POWER).
     Conflict between rule 145 and token "/" resolved as reduce ("/" < POWER).
     Conflict between rule 145 and token "./" resolved as reduce ("./" < POWER).
-    Conflict between rule 145 and token "/." resolved as reduce ("/." < POWER).
     Conflict between rule 145 and token "./." resolved as reduce ("./." < POWER).
     Conflict between rule 145 and token "\\" resolved as reduce ("\\" < POWER).
     Conflict between rule 145 and token ".\\" resolved as reduce (".\\" < POWER).
@@ -18326,7 +18476,9 @@ state 297
     "("   shift, and go to state 173
     "."   shift, and go to state 174
     ".'"  shift, and go to state 120
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 150 (operation)]
     $default  reduce using rule 150 (operation)
 
     rightComparable  go to state 148
@@ -18347,7 +18499,6 @@ state 297
     Conflict between rule 150 and token "*." resolved as reduce ("*." < DOTPOWER).
     Conflict between rule 150 and token "/" resolved as reduce ("/" < DOTPOWER).
     Conflict between rule 150 and token "./" resolved as reduce ("./" < DOTPOWER).
-    Conflict between rule 150 and token "/." resolved as reduce ("/." < DOTPOWER).
     Conflict between rule 150 and token "./." resolved as reduce ("./." < DOTPOWER).
     Conflict between rule 150 and token "\\" resolved as reduce ("\\" < DOTPOWER).
     Conflict between rule 150 and token ".\\" resolved as reduce (".\\" < DOTPOWER).
@@ -18451,7 +18602,9 @@ state 298
     "("   shift, and go to state 175
     "."   shift, and go to state 176
     ".'"  shift, and go to state 155
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 149 (operation)]
     $default  reduce using rule 149 (operation)
 
     rightComparable  go to state 158
@@ -18472,7 +18625,6 @@ state 298
     Conflict between rule 149 and token "*." resolved as reduce ("*." < DOTPOWER).
     Conflict between rule 149 and token "/" resolved as reduce ("/" < DOTPOWER).
     Conflict between rule 149 and token "./" resolved as reduce ("./" < DOTPOWER).
-    Conflict between rule 149 and token "/." resolved as reduce ("/." < DOTPOWER).
     Conflict between rule 149 and token "./." resolved as reduce ("./." < DOTPOWER).
     Conflict between rule 149 and token "\\" resolved as reduce ("\\" < DOTPOWER).
     Conflict between rule 149 and token ".\\" resolved as reduce (".\\" < DOTPOWER).
@@ -18516,7 +18668,7 @@ state 300
   118                | . "||" ":"
   119                | . "==" variable
   120                | . "==" functionCall
-  120                | "==" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  120                | "==" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   121                | . "==" ":"
   122                | . "<> or ~=" variable
   123                | . "<> or ~=" functionCall
@@ -18607,6 +18759,7 @@ state 300
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 120 (rightComparable)]
     $default  reduce using rule 120 (rightComparable)
 
     rightComparable  go to state 148
@@ -18627,7 +18780,6 @@ state 300
     Conflict between rule 120 and token "*." resolved as shift (EQ < "*.").
     Conflict between rule 120 and token "/" resolved as shift (EQ < "/").
     Conflict between rule 120 and token "./" resolved as shift (EQ < "./").
-    Conflict between rule 120 and token "/." resolved as shift (EQ < "/.").
     Conflict between rule 120 and token "./." resolved as shift (EQ < "./.").
     Conflict between rule 120 and token "\\" resolved as shift (EQ < "\\").
     Conflict between rule 120 and token ".\\" resolved as shift (EQ < ".\\").
@@ -18663,7 +18815,7 @@ state 301
   117                | . "||" functionCall
   118                | . "||" ":"
   119                | . "==" variable
-  119                | "==" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  119                | "==" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   120                | . "==" functionCall
   121                | . "==" ":"
   122                | . "<> or ~=" variable
@@ -18755,6 +18907,7 @@ state 301
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 119 (rightComparable)]
     $default  reduce using rule 119 (rightComparable)
 
     rightComparable  go to state 158
@@ -18775,7 +18928,6 @@ state 301
     Conflict between rule 119 and token "*." resolved as shift (EQ < "*.").
     Conflict between rule 119 and token "/" resolved as shift (EQ < "/").
     Conflict between rule 119 and token "./" resolved as shift (EQ < "./").
-    Conflict between rule 119 and token "/." resolved as shift (EQ < "/.").
     Conflict between rule 119 and token "./." resolved as shift (EQ < "./.").
     Conflict between rule 119 and token "\\" resolved as shift (EQ < "\\").
     Conflict between rule 119 and token ".\\" resolved as shift (EQ < ".\\").
@@ -18822,7 +18974,7 @@ state 303
   121                | . "==" ":"
   122                | . "<> or ~=" variable
   123                | . "<> or ~=" functionCall
-  123                | "<> or ~=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  123                | "<> or ~=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   124                | . "<> or ~=" ":"
   125                | . ">" variable
   126                | . ">" functionCall
@@ -18910,6 +19062,7 @@ state 303
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 123 (rightComparable)]
     $default  reduce using rule 123 (rightComparable)
 
     rightComparable  go to state 148
@@ -18930,7 +19083,6 @@ state 303
     Conflict between rule 123 and token "*." resolved as shift (NE < "*.").
     Conflict between rule 123 and token "/" resolved as shift (NE < "/").
     Conflict between rule 123 and token "./" resolved as shift (NE < "./").
-    Conflict between rule 123 and token "/." resolved as shift (NE < "/.").
     Conflict between rule 123 and token "./." resolved as shift (NE < "./.").
     Conflict between rule 123 and token "\\" resolved as shift (NE < "\\").
     Conflict between rule 123 and token ".\\" resolved as shift (NE < ".\\").
@@ -18969,7 +19121,7 @@ state 304
   120                | . "==" functionCall
   121                | . "==" ":"
   122                | . "<> or ~=" variable
-  122                | "<> or ~=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  122                | "<> or ~=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   123                | . "<> or ~=" functionCall
   124                | . "<> or ~=" ":"
   125                | . ">" variable
@@ -19058,6 +19210,7 @@ state 304
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 122 (rightComparable)]
     $default  reduce using rule 122 (rightComparable)
 
     rightComparable  go to state 158
@@ -19078,7 +19231,6 @@ state 304
     Conflict between rule 122 and token "*." resolved as shift (NE < "*.").
     Conflict between rule 122 and token "/" resolved as shift (NE < "/").
     Conflict between rule 122 and token "./" resolved as shift (NE < "./").
-    Conflict between rule 122 and token "/." resolved as shift (NE < "/.").
     Conflict between rule 122 and token "./." resolved as shift (NE < "./.").
     Conflict between rule 122 and token "\\" resolved as shift (NE < "\\").
     Conflict between rule 122 and token ".\\" resolved as shift (NE < ".\\").
@@ -19131,7 +19283,7 @@ state 306
   127                | . ">" ":"
   128                | . "<" variable
   129                | . "<" functionCall
-  129                | "<" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  129                | "<" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   130                | . "<" ":"
   131                | . ">=" variable
   132                | . ">=" functionCall
@@ -19213,6 +19365,7 @@ state 306
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 129 (rightComparable)]
     $default  reduce using rule 129 (rightComparable)
 
     rightComparable  go to state 148
@@ -19233,7 +19386,6 @@ state 306
     Conflict between rule 129 and token "*." resolved as shift (LT < "*.").
     Conflict between rule 129 and token "/" resolved as shift (LT < "/").
     Conflict between rule 129 and token "./" resolved as shift (LT < "./").
-    Conflict between rule 129 and token "/." resolved as shift (LT < "/.").
     Conflict between rule 129 and token "./." resolved as shift (LT < "./.").
     Conflict between rule 129 and token "\\" resolved as shift (LT < "\\").
     Conflict between rule 129 and token ".\\" resolved as shift (LT < ".\\").
@@ -19278,7 +19430,7 @@ state 307
   126                | . ">" functionCall
   127                | . ">" ":"
   128                | . "<" variable
-  128                | "<" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  128                | "<" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   129                | . "<" functionCall
   130                | . "<" ":"
   131                | . ">=" variable
@@ -19361,6 +19513,7 @@ state 307
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 128 (rightComparable)]
     $default  reduce using rule 128 (rightComparable)
 
     rightComparable  go to state 158
@@ -19381,7 +19534,6 @@ state 307
     Conflict between rule 128 and token "*." resolved as shift (LT < "*.").
     Conflict between rule 128 and token "/" resolved as shift (LT < "/").
     Conflict between rule 128 and token "./" resolved as shift (LT < "./").
-    Conflict between rule 128 and token "/." resolved as shift (LT < "/.").
     Conflict between rule 128 and token "./." resolved as shift (LT < "./.").
     Conflict between rule 128 and token "\\" resolved as shift (LT < "\\").
     Conflict between rule 128 and token ".\\" resolved as shift (LT < ".\\").
@@ -19440,7 +19592,7 @@ state 309
   133                | . ">=" ":"
   134                | . "<=" variable
   135                | . "<=" functionCall
-  135                | "<=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  135                | "<=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   136                | . "<=" ":"
   138 operation: functionCall . rightOperand
   145          | functionCall . "** or ^" variable
@@ -19516,6 +19668,7 @@ state 309
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 135 (rightComparable)]
     $default  reduce using rule 135 (rightComparable)
 
     rightComparable  go to state 148
@@ -19536,7 +19689,6 @@ state 309
     Conflict between rule 135 and token "*." resolved as shift (LE < "*.").
     Conflict between rule 135 and token "/" resolved as shift (LE < "/").
     Conflict between rule 135 and token "./" resolved as shift (LE < "./").
-    Conflict between rule 135 and token "/." resolved as shift (LE < "/.").
     Conflict between rule 135 and token "./." resolved as shift (LE < "./.").
     Conflict between rule 135 and token "\\" resolved as shift (LE < "\\").
     Conflict between rule 135 and token ".\\" resolved as shift (LE < ".\\").
@@ -19587,7 +19739,7 @@ state 310
   132                | . ">=" functionCall
   133                | . ">=" ":"
   134                | . "<=" variable
-  134                | "<=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  134                | "<=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   135                | . "<=" functionCall
   136                | . "<=" ":"
   137 operation: variable . rightOperand
@@ -19664,6 +19816,7 @@ state 310
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 134 (rightComparable)]
     $default  reduce using rule 134 (rightComparable)
 
     rightComparable  go to state 158
@@ -19684,7 +19837,6 @@ state 310
     Conflict between rule 134 and token "*." resolved as shift (LE < "*.").
     Conflict between rule 134 and token "/" resolved as shift (LE < "/").
     Conflict between rule 134 and token "./" resolved as shift (LE < "./").
-    Conflict between rule 134 and token "/." resolved as shift (LE < "/.").
     Conflict between rule 134 and token "./." resolved as shift (LE < "./.").
     Conflict between rule 134 and token "\\" resolved as shift (LE < "\\").
     Conflict between rule 134 and token ".\\" resolved as shift (LE < ".\\").
@@ -19734,7 +19886,7 @@ state 312
   124                | . "<> or ~=" ":"
   125                | . ">" variable
   126                | . ">" functionCall
-  126                | ">" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  126                | ">" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   127                | . ">" ":"
   128                | . "<" variable
   129                | . "<" functionCall
@@ -19819,6 +19971,7 @@ state 312
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 126 (rightComparable)]
     $default  reduce using rule 126 (rightComparable)
 
     rightComparable  go to state 148
@@ -19839,7 +19992,6 @@ state 312
     Conflict between rule 126 and token "*." resolved as shift (GT < "*.").
     Conflict between rule 126 and token "/" resolved as shift (GT < "/").
     Conflict between rule 126 and token "./" resolved as shift (GT < "./").
-    Conflict between rule 126 and token "/." resolved as shift (GT < "/.").
     Conflict between rule 126 and token "./." resolved as shift (GT < "./.").
     Conflict between rule 126 and token "\\" resolved as shift (GT < "\\").
     Conflict between rule 126 and token ".\\" resolved as shift (GT < ".\\").
@@ -19881,7 +20033,7 @@ state 313
   123                | . "<> or ~=" functionCall
   124                | . "<> or ~=" ":"
   125                | . ">" variable
-  125                | ">" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  125                | ">" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   126                | . ">" functionCall
   127                | . ">" ":"
   128                | . "<" variable
@@ -19967,6 +20119,7 @@ state 313
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 125 (rightComparable)]
     $default  reduce using rule 125 (rightComparable)
 
     rightComparable  go to state 158
@@ -19987,7 +20140,6 @@ state 313
     Conflict between rule 125 and token "*." resolved as shift (GT < "*.").
     Conflict between rule 125 and token "/" resolved as shift (GT < "/").
     Conflict between rule 125 and token "./" resolved as shift (GT < "./").
-    Conflict between rule 125 and token "/." resolved as shift (GT < "/.").
     Conflict between rule 125 and token "./." resolved as shift (GT < "./.").
     Conflict between rule 125 and token "\\" resolved as shift (GT < "\\").
     Conflict between rule 125 and token ".\\" resolved as shift (GT < ".\\").
@@ -20043,7 +20195,7 @@ state 315
   130                | . "<" ":"
   131                | . ">=" variable
   132                | . ">=" functionCall
-  132                | ">=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  132                | ">=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   133                | . ">=" ":"
   134                | . "<=" variable
   135                | . "<=" functionCall
@@ -20122,6 +20274,7 @@ state 315
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 132 (rightComparable)]
     $default  reduce using rule 132 (rightComparable)
 
     rightComparable  go to state 148
@@ -20142,7 +20295,6 @@ state 315
     Conflict between rule 132 and token "*." resolved as shift (GE < "*.").
     Conflict between rule 132 and token "/" resolved as shift (GE < "/").
     Conflict between rule 132 and token "./" resolved as shift (GE < "./").
-    Conflict between rule 132 and token "/." resolved as shift (GE < "/.").
     Conflict between rule 132 and token "./." resolved as shift (GE < "./.").
     Conflict between rule 132 and token "\\" resolved as shift (GE < "\\").
     Conflict between rule 132 and token ".\\" resolved as shift (GE < ".\\").
@@ -20190,7 +20342,7 @@ state 316
   129                | . "<" functionCall
   130                | . "<" ":"
   131                | . ">=" variable
-  131                | ">=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  131                | ">=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   132                | . ">=" functionCall
   133                | . ">=" ":"
   134                | . "<=" variable
@@ -20270,6 +20422,7 @@ state 316
     ">"         error (nonassociative)
     ">="        error (nonassociative)
 
+    "/."      [reduce using rule 131 (rightComparable)]
     $default  reduce using rule 131 (rightComparable)
 
     rightComparable  go to state 158
@@ -20290,7 +20443,6 @@ state 316
     Conflict between rule 131 and token "*." resolved as shift (GE < "*.").
     Conflict between rule 131 and token "/" resolved as shift (GE < "/").
     Conflict between rule 131 and token "./" resolved as shift (GE < "./").
-    Conflict between rule 131 and token "/." resolved as shift (GE < "/.").
     Conflict between rule 131 and token "./." resolved as shift (GE < "./.").
     Conflict between rule 131 and token "\\" resolved as shift (GE < "\\").
     Conflict between rule 131 and token ".\\" resolved as shift (GE < ".\\").
@@ -20322,7 +20474,7 @@ state 318
   106 comparison: functionCall . rightComparable
   107 rightComparable: . "&" variable
   108                | . "&" functionCall
-  108                | "&" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  108                | "&" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   109                | . "&" ":"
   110                | . "&&" variable
   111                | . "&&" functionCall
@@ -20425,6 +20577,7 @@ state 318
     ">"         shift, and go to state 141
     ">="        shift, and go to state 142
 
+    "/."      [reduce using rule 108 (rightComparable)]
     $default  reduce using rule 108 (rightComparable)
 
     rightComparable  go to state 148
@@ -20445,7 +20598,6 @@ state 318
     Conflict between rule 108 and token "*." resolved as shift (AND < "*.").
     Conflict between rule 108 and token "/" resolved as shift (AND < "/").
     Conflict between rule 108 and token "./" resolved as shift (AND < "./").
-    Conflict between rule 108 and token "/." resolved as shift (AND < "/.").
     Conflict between rule 108 and token "./." resolved as shift (AND < "./.").
     Conflict between rule 108 and token "\\" resolved as shift (AND < "\\").
     Conflict between rule 108 and token ".\\" resolved as shift (AND < ".\\").
@@ -20469,7 +20621,7 @@ state 319
 
   105 comparison: variable . rightComparable
   107 rightComparable: . "&" variable
-  107                | "&" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  107                | "&" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   108                | . "&" functionCall
   109                | . "&" ":"
   110                | . "&&" variable
@@ -20573,6 +20725,7 @@ state 319
     ">"         shift, and go to state 141
     ">="        shift, and go to state 142
 
+    "/."      [reduce using rule 107 (rightComparable)]
     $default  reduce using rule 107 (rightComparable)
 
     rightComparable  go to state 158
@@ -20593,7 +20746,6 @@ state 319
     Conflict between rule 107 and token "*." resolved as shift (AND < "*.").
     Conflict between rule 107 and token "/" resolved as shift (AND < "/").
     Conflict between rule 107 and token "./" resolved as shift (AND < "./").
-    Conflict between rule 107 and token "/." resolved as shift (AND < "/.").
     Conflict between rule 107 and token "./." resolved as shift (AND < "./.").
     Conflict between rule 107 and token "\\" resolved as shift (AND < "\\").
     Conflict between rule 107 and token ".\\" resolved as shift (AND < ".\\").
@@ -20628,7 +20780,7 @@ state 321
   109                | . "&" ":"
   110                | . "&&" variable
   111                | . "&&" functionCall
-  111                | "&&" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  111                | "&&" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   112                | . "&&" ":"
   113                | . "|" variable
   114                | . "|" functionCall
@@ -20728,6 +20880,7 @@ state 321
     ">"         shift, and go to state 141
     ">="        shift, and go to state 142
 
+    "/."      [reduce using rule 111 (rightComparable)]
     $default  reduce using rule 111 (rightComparable)
 
     rightComparable  go to state 148
@@ -20748,7 +20901,6 @@ state 321
     Conflict between rule 111 and token "*." resolved as shift (ANDAND < "*.").
     Conflict between rule 111 and token "/" resolved as shift (ANDAND < "/").
     Conflict between rule 111 and token "./" resolved as shift (ANDAND < "./").
-    Conflict between rule 111 and token "/." resolved as shift (ANDAND < "/.").
     Conflict between rule 111 and token "./." resolved as shift (ANDAND < "./.").
     Conflict between rule 111 and token "\\" resolved as shift (ANDAND < "\\").
     Conflict between rule 111 and token ".\\" resolved as shift (ANDAND < ".\\").
@@ -20775,7 +20927,7 @@ state 322
   108                | . "&" functionCall
   109                | . "&" ":"
   110                | . "&&" variable
-  110                | "&&" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  110                | "&&" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   111                | . "&&" functionCall
   112                | . "&&" ":"
   113                | . "|" variable
@@ -20876,6 +21028,7 @@ state 322
     ">"         shift, and go to state 141
     ">="        shift, and go to state 142
 
+    "/."      [reduce using rule 110 (rightComparable)]
     $default  reduce using rule 110 (rightComparable)
 
     rightComparable  go to state 158
@@ -20896,7 +21049,6 @@ state 322
     Conflict between rule 110 and token "*." resolved as shift (ANDAND < "*.").
     Conflict between rule 110 and token "/" resolved as shift (ANDAND < "/").
     Conflict between rule 110 and token "./" resolved as shift (ANDAND < "./").
-    Conflict between rule 110 and token "/." resolved as shift (ANDAND < "/.").
     Conflict between rule 110 and token "./." resolved as shift (ANDAND < "./.").
     Conflict between rule 110 and token "\\" resolved as shift (ANDAND < "\\").
     Conflict between rule 110 and token ".\\" resolved as shift (ANDAND < ".\\").
@@ -20934,7 +21086,7 @@ state 324
   112                | . "&&" ":"
   113                | . "|" variable
   114                | . "|" functionCall
-  114                | "|" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  114                | "|" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "/.", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   115                | . "|" ":"
   116                | . "||" variable
   117                | . "||" functionCall
@@ -21033,6 +21185,7 @@ state 324
     "&"         shift, and go to state 143
     "&&"        shift, and go to state 144
 
+    "/."      [reduce using rule 114 (rightComparable)]
     $default  reduce using rule 114 (rightComparable)
 
     rightComparable  go to state 148
@@ -21053,7 +21206,6 @@ state 324
     Conflict between rule 114 and token "*." resolved as shift (OR < "*.").
     Conflict between rule 114 and token "/" resolved as shift (OR < "/").
     Conflict between rule 114 and token "./" resolved as shift (OR < "./").
-    Conflict between rule 114 and token "/." resolved as shift (OR < "/.").
     Conflict between rule 114 and token "./." resolved as shift (OR < "./.").
     Conflict between rule 114 and token "\\" resolved as shift (OR < "\\").
     Conflict between rule 114 and token ".\\" resolved as shift (OR < ".\\").
@@ -21083,7 +21235,7 @@ state 325
   111                | . "&&" functionCall
   112                | . "&&" ":"
   113                | . "|" variable
-  113                | "|" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  113                | "|" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "/.", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   114                | . "|" functionCall
   115                | . "|" ":"
   116                | . "||" variable
@@ -21183,6 +21335,7 @@ state 325
     "&"         shift, and go to state 143
     "&&"        shift, and go to state 144
 
+    "/."      [reduce using rule 113 (rightComparable)]
     $default  reduce using rule 113 (rightComparable)
 
     rightComparable  go to state 158
@@ -21203,7 +21356,6 @@ state 325
     Conflict between rule 113 and token "*." resolved as shift (OR < "*.").
     Conflict between rule 113 and token "/" resolved as shift (OR < "/").
     Conflict between rule 113 and token "./" resolved as shift (OR < "./").
-    Conflict between rule 113 and token "/." resolved as shift (OR < "/.").
     Conflict between rule 113 and token "./." resolved as shift (OR < "./.").
     Conflict between rule 113 and token "\\" resolved as shift (OR < "\\").
     Conflict between rule 113 and token ".\\" resolved as shift (OR < ".\\").
@@ -21244,7 +21396,7 @@ state 327
   115                | . "|" ":"
   116                | . "||" variable
   117                | . "||" functionCall
-  117                | "||" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  117                | "||" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "/.", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   118                | . "||" ":"
   119                | . "==" variable
   120                | . "==" functionCall
@@ -21340,6 +21492,7 @@ state 327
     "&"         shift, and go to state 143
     "&&"        shift, and go to state 144
 
+    "/."      [reduce using rule 117 (rightComparable)]
     $default  reduce using rule 117 (rightComparable)
 
     rightComparable  go to state 148
@@ -21360,7 +21513,6 @@ state 327
     Conflict between rule 117 and token "*." resolved as shift (OROR < "*.").
     Conflict between rule 117 and token "/" resolved as shift (OROR < "/").
     Conflict between rule 117 and token "./" resolved as shift (OROR < "./").
-    Conflict between rule 117 and token "/." resolved as shift (OROR < "/.").
     Conflict between rule 117 and token "./." resolved as shift (OROR < "./.").
     Conflict between rule 117 and token "\\" resolved as shift (OROR < "\\").
     Conflict between rule 117 and token ".\\" resolved as shift (OROR < ".\\").
@@ -21393,7 +21545,7 @@ state 328
   114                | . "|" functionCall
   115                | . "|" ":"
   116                | . "||" variable
-  116                | "||" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  116                | "||" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "/.", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   117                | . "||" functionCall
   118                | . "||" ":"
   119                | . "==" variable
@@ -21490,6 +21642,7 @@ state 328
     "&"         shift, and go to state 143
     "&&"        shift, and go to state 144
 
+    "/."      [reduce using rule 116 (rightComparable)]
     $default  reduce using rule 116 (rightComparable)
 
     rightComparable  go to state 158
@@ -21510,7 +21663,6 @@ state 328
     Conflict between rule 116 and token "*." resolved as shift (OROR < "*.").
     Conflict between rule 116 and token "/" resolved as shift (OROR < "/").
     Conflict between rule 116 and token "./" resolved as shift (OROR < "./").
-    Conflict between rule 116 and token "/." resolved as shift (OROR < "/.").
     Conflict between rule 116 and token "./." resolved as shift (OROR < "./.").
     Conflict between rule 116 and token "\\" resolved as shift (OROR < "\\").
     Conflict between rule 116 and token ".\\" resolved as shift (OROR < ".\\").
@@ -22045,7 +22197,9 @@ state 341
     "("   shift, and go to state 173
     "."   shift, and go to state 174
     ".'"  shift, and go to state 120
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 144 (operation)]
     $default  reduce using rule 144 (operation)
 
     rightComparable  go to state 148
@@ -22066,7 +22220,6 @@ state 341
     Conflict between rule 144 and token "*." resolved as reduce ("*." < POWER).
     Conflict between rule 144 and token "/" resolved as reduce ("/" < POWER).
     Conflict between rule 144 and token "./" resolved as reduce ("./" < POWER).
-    Conflict between rule 144 and token "/." resolved as reduce ("/." < POWER).
     Conflict between rule 144 and token "./." resolved as reduce ("./." < POWER).
     Conflict between rule 144 and token "\\" resolved as reduce ("\\" < POWER).
     Conflict between rule 144 and token ".\\" resolved as reduce (".\\" < POWER).
@@ -22170,7 +22323,9 @@ state 342
     "("   shift, and go to state 175
     "."   shift, and go to state 176
     ".'"  shift, and go to state 155
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 143 (operation)]
     $default  reduce using rule 143 (operation)
 
     rightComparable  go to state 158
@@ -22191,7 +22346,6 @@ state 342
     Conflict between rule 143 and token "*." resolved as reduce ("*." < POWER).
     Conflict between rule 143 and token "/" resolved as reduce ("/" < POWER).
     Conflict between rule 143 and token "./" resolved as reduce ("./" < POWER).
-    Conflict between rule 143 and token "/." resolved as reduce ("/." < POWER).
     Conflict between rule 143 and token "./." resolved as reduce ("./." < POWER).
     Conflict between rule 143 and token "\\" resolved as reduce ("\\" < POWER).
     Conflict between rule 143 and token ".\\" resolved as reduce (".\\" < POWER).
@@ -22295,7 +22449,9 @@ state 343
     "("   shift, and go to state 173
     "."   shift, and go to state 174
     ".'"  shift, and go to state 120
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 148 (operation)]
     $default  reduce using rule 148 (operation)
 
     rightComparable  go to state 148
@@ -22316,7 +22472,6 @@ state 343
     Conflict between rule 148 and token "*." resolved as reduce ("*." < DOTPOWER).
     Conflict between rule 148 and token "/" resolved as reduce ("/" < DOTPOWER).
     Conflict between rule 148 and token "./" resolved as reduce ("./" < DOTPOWER).
-    Conflict between rule 148 and token "/." resolved as reduce ("/." < DOTPOWER).
     Conflict between rule 148 and token "./." resolved as reduce ("./." < DOTPOWER).
     Conflict between rule 148 and token "\\" resolved as reduce ("\\" < DOTPOWER).
     Conflict between rule 148 and token ".\\" resolved as reduce (".\\" < DOTPOWER).
@@ -22420,7 +22575,9 @@ state 344
     "("   shift, and go to state 175
     "."   shift, and go to state 176
     ".'"  shift, and go to state 155
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 147 (operation)]
     $default  reduce using rule 147 (operation)
 
     rightComparable  go to state 158
@@ -22441,7 +22598,6 @@ state 344
     Conflict between rule 147 and token "*." resolved as reduce ("*." < DOTPOWER).
     Conflict between rule 147 and token "/" resolved as reduce ("/" < DOTPOWER).
     Conflict between rule 147 and token "./" resolved as reduce ("./" < DOTPOWER).
-    Conflict between rule 147 and token "/." resolved as reduce ("/." < DOTPOWER).
     Conflict between rule 147 and token "./." resolved as reduce ("./." < DOTPOWER).
     Conflict between rule 147 and token "\\" resolved as reduce ("\\" < DOTPOWER).
     Conflict between rule 147 and token ".\\" resolved as reduce (".\\" < DOTPOWER).
@@ -23015,8 +23171,10 @@ state 359
   197         | functionCall . listableEnd
   213         | functionCall . "(" functionArgs ")"
 
-    "("  shift, and go to state 173
+    "("   shift, and go to state 173
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 195 (variable)]
     $default  reduce using rule 195 (variable)
 
     rightComparable  go to state 148
@@ -23037,7 +23195,6 @@ state 359
     Conflict between rule 195 and token "*." resolved as reduce ("*." < DOT).
     Conflict between rule 195 and token "/" resolved as reduce ("/" < DOT).
     Conflict between rule 195 and token "./" resolved as reduce ("./" < DOT).
-    Conflict between rule 195 and token "/." resolved as reduce ("/." < DOT).
     Conflict between rule 195 and token "./." resolved as reduce ("./." < DOT).
     Conflict between rule 195 and token "\\" resolved as reduce ("\\" < DOT).
     Conflict between rule 195 and token ".\\" resolved as reduce (".\\" < DOT).
@@ -23137,8 +23294,10 @@ state 360
   196         | variable . listableEnd
   212         | variable . "(" functionArgs ")"
 
-    "("  shift, and go to state 175
+    "("   shift, and go to state 175
+    "/."  shift, and go to state 129
 
+    "/."      [reduce using rule 193 (variable)]
     $default  reduce using rule 193 (variable)
 
     rightComparable  go to state 158
@@ -23159,7 +23318,6 @@ state 360
     Conflict between rule 193 and token "*." resolved as reduce ("*." < DOT).
     Conflict between rule 193 and token "/" resolved as reduce ("/" < DOT).
     Conflict between rule 193 and token "./" resolved as reduce ("./" < DOT).
-    Conflict between rule 193 and token "/." resolved as reduce ("/." < DOT).
     Conflict between rule 193 and token "./." resolved as reduce ("./." < DOT).
     Conflict between rule 193 and token "\\" resolved as reduce ("\\" < DOT).
     Conflict between rule 193 and token ".\\" resolved as reduce (".\\" < DOT).
@@ -25625,7 +25783,7 @@ state 432
   184              | . ":" functionCall
   185 listableEnd: . listableBegin ":" variable
   186            | . listableBegin ":" functionCall
-  186            | listableBegin ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  186            | listableBegin ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   187            | . listableBegin
   193 variable: functionCall . "." variable
   194         | functionCall . "." keywords
@@ -25660,6 +25818,7 @@ state 432
     ">"         shift, and go to state 141
     ">="        shift, and go to state 142
 
+    "/."      [reduce using rule 186 (listableEnd)]
     $default  reduce using rule 186 (listableEnd)
 
     rightComparable  go to state 148
@@ -25680,7 +25839,6 @@ state 432
     Conflict between rule 186 and token "*." resolved as shift (COLON < "*.").
     Conflict between rule 186 and token "/" resolved as shift (COLON < "/").
     Conflict between rule 186 and token "./" resolved as shift (COLON < "./").
-    Conflict between rule 186 and token "/." resolved as shift (COLON < "/.").
     Conflict between rule 186 and token "./." resolved as shift (COLON < "./.").
     Conflict between rule 186 and token "\\" resolved as shift (COLON < "\\").
     Conflict between rule 186 and token ".\\" resolved as shift (COLON < ".\\").
@@ -25771,7 +25929,7 @@ state 433
   183 listableBegin: . ":" variable
   184              | . ":" functionCall
   185 listableEnd: . listableBegin ":" variable
-  185            | listableBegin ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  185            | listableBegin ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "/.", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   186            | . listableBegin ":" functionCall
   187            | . listableBegin
   190 variable: variable . "." "identifier"
@@ -25807,6 +25965,7 @@ state 433
     ">"         shift, and go to state 141
     ">="        shift, and go to state 142
 
+    "/."      [reduce using rule 185 (listableEnd)]
     $default  reduce using rule 185 (listableEnd)
 
     rightComparable  go to state 158
@@ -25827,7 +25986,6 @@ state 433
     Conflict between rule 185 and token "*." resolved as shift (COLON < "*.").
     Conflict between rule 185 and token "/" resolved as shift (COLON < "/").
     Conflict between rule 185 and token "./" resolved as shift (COLON < "./").
-    Conflict between rule 185 and token "/." resolved as shift (COLON < "/.").
     Conflict between rule 185 and token "./." resolved as shift (COLON < "./.").
     Conflict between rule 185 and token "\\" resolved as shift (COLON < "\\").
     Conflict between rule 185 and token ".\\" resolved as shift (COLON < ".\\").

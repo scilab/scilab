@@ -1937,13 +1937,13 @@ YY_RULE_SETUP
 case 41:
 YY_RULE_SETUP
 {
-  return scan_throw(DOTDIVIDE);
+  return scan_throw(DOTRDIVIDE);
 }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 {
-  return scan_throw(DOTRDIVIDE);
+  return scan_throw(DOTLDIVIDE);
 }
 	YY_BREAK
 case 43:
@@ -1973,13 +1973,13 @@ YY_RULE_SETUP
 case 47:
 YY_RULE_SETUP
 {
-  return scan_throw(DIVIDE);
+  return scan_throw(RDIVIDE);
 }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
 {
-  return scan_throw(RDIVIDE);
+  return scan_throw(LDIVIDE);
 }
 	YY_BREAK
 case 49:
@@ -1997,13 +1997,13 @@ YY_RULE_SETUP
 case 51:
 YY_RULE_SETUP
 {
-  return scan_throw(KRONDIVIDE);
+  return scan_throw(KRONRDIVIDE);
 }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
 {
-  return scan_throw(KRONRDIVIDE);
+  return scan_throw(KRONLDIVIDE);
 }
 	YY_BREAK
 case 53:
@@ -2019,7 +2019,7 @@ case 54:
 YY_RULE_SETUP
 {
     unput(yytext[yyleng - 1]);
-    return scan_throw(CONTROLDIVIDE);
+    return scan_throw(CONTROLRDIVIDE);
 }
 	YY_BREAK
 case 55:
@@ -2027,7 +2027,7 @@ case 55:
 YY_RULE_SETUP
 {
     unput(yytext[yyleng - 1]);
-    return scan_throw(CONTROLRDIVIDE);
+    return scan_throw(CONTROLLDIVIDE);
 }
 	YY_BREAK
 case 56:

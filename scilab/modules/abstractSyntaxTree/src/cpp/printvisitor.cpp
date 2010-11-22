@@ -221,35 +221,35 @@ namespace ast {
             *ostr << SCI_MINUS; break;
         case OpExp::times:
             *ostr << SCI_TIMES; break;
-        case OpExp::divide:
-            *ostr << SCI_DIVIDE; break;
         case OpExp::rdivide:
             *ostr << SCI_RDIVIDE; break;
+        case OpExp::ldivide:
+            *ostr << SCI_LDIVIDE; break;
         case OpExp::power:
             *ostr << SCI_POWER; break;
             // Element Ways.
         case OpExp::dottimes:
             *ostr << SCI_DOTTIMES; break;
-        case OpExp::dotdivide:
-            *ostr << SCI_DOTDIVIDE; break;
         case OpExp::dotrdivide:
             *ostr << SCI_DOTRDIVIDE; break;
+        case OpExp::dotldivide:
+            *ostr << SCI_DOTLDIVIDE; break;
         case OpExp::dotpower:
             *ostr << SCI_DOTPOWER; break;
             // Kroneckers
         case OpExp::krontimes:
             *ostr << SCI_KRONTIMES; break;
-        case OpExp::krondivide:
-            *ostr << SCI_KRONDIVIDE; break;
         case OpExp::kronrdivide:
             *ostr << SCI_KRONRDIVIDE; break;
+        case OpExp::kronldivide:
+            *ostr << SCI_KRONLDIVIDE; break;
             // Control
         case OpExp::controltimes:
             *ostr << SCI_CONTROLTIMES; break;
-        case OpExp::controldivide:
-            *ostr << SCI_CONTROLDIVIDE; break;
         case OpExp::controlrdivide:
             *ostr << SCI_CONTROLRDIVIDE; break;
+        case OpExp::controlldivide:
+            *ostr << SCI_CONTROLLDIVIDE; break;
             // Comparisons
         case OpExp::eq:
             *ostr << SCI_EQ; break;
