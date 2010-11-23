@@ -5,6 +5,10 @@ body {
     font-size:100%;
     margin:5px;
     padding:0;
+    background          : url("/img/body.png");
+    background-repeat   : repeat-x;
+}
+
 }
 .refname {
     color: #ff6c0a;
@@ -17,6 +21,10 @@ body {
     border: 1px solid black;
     width:80%;
     padding: 0.5em;
+}
+
+.editbar {
+    text-align: right;
 }
 
 .term {
@@ -49,7 +57,7 @@ h3 {
 }
 
 a {
-    color:#355F7C;
+    color: blue;
     text-decoration:none;
 }
 
@@ -84,11 +92,13 @@ pre {
 }
 
 .content {
+    margin-top: 100px;
     margin-left: 196px
 }
 
 .container {
-    width:100%
+    margin: 0 auto;
+    width:1024px;
 }
 
 ul.toc li.list-active {
@@ -131,57 +141,149 @@ ul.toc li {
 /* Top and bottom navigation controls on manual pages --------------------- */
 div.manualnavbar {
     background-color: #E0E0E0;
-	color: inherit;
-	padding: 4px;
-	margin-bottom: 10px;
+        color: inherit;
+        padding: 4px;
+        margin-bottom: 10px;
 }
 div.manualnavbar .prev {
-	padding-right: 4px;
+        padding-right: 4px;
 }
 div.manualnavbar .next {
     text-align: right;
-	padding-left: 4px;
+        padding-left: 4px;
 }
 
 div.manualnavbar .top {
-	text-align: center;
+        text-align: center;
             display: block;
 }
 
 div.manualnavbar hr {
-	color: #cccccc;
-	background-color: #cccccc;
+        color: #cccccc;
+        background-color: #cccccc;
 }
 
 /* Footer navigation area ------------------------------------------------- */
 
 #pagefooter {
-	position: relative;
-	font-size: 75%;
-	color: inherit;
-	background-color: #cccccc;
-	width: 100%;
+        position: relative;
+        font-size: 75%;
+        color: inherit;
+        background-color: #e5e5e5;
+        width: 100%;
 }
 
 #pagefooterleft {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	padding: 6px;
-	margin-right: 30%;
+        top: 0px;
+        left: 0px;
+        padding: 6px;
+        margin-right: 30%;
 }
 
 #pagefooterright {
-	text-align: right;
-	margin-left: 50%;
-	padding: 6px;
+        text-align: right;
+        margin-left: 50%;
+        padding: 6px;
 }
 #footnav {
-	color: inherit;
-	background-color: #9999cc;
-	border-width: 1px 0px;
-	border-color: #333366;
-	border-style: solid;
-	text-align: right;
-	padding-right: 6px;
+        color: inherit;
+        background-color: #9999cc;
+        border-width: 1px 0px;
+        border-color: #333366;
+        border-style: solid;
+        text-align: right;
+        padding-right: 6px;
+}
+
+
+
+
+                #global{
+/*                      width: 90%; */
+                        max-width: 90em;
+/*                      min-width: 850px; */
+                        margin-left: auto;
+                        margin-right: auto;
+                }
+
+                #myHeader{
+                        background-color:#000000;
+                        color:white;
+                        margin-bottom : 10px;
+    position            : relative;
+    text-align: center;
+/*    width               : 1024px;*/
+    height              : 100px;
+    padding-left        : 20px;
+    background          : url("http://atoms.scilab.org/images/homepage/cadre_head.png");
+    background-repeat   : no-repeat;
+    background-position : 0px 0px;
+
+                }
+
+                #myFooter{
+                        background-color:#E5E5E5;
+                        font-color:black;
+/*                      width: 90%;*/
+                        max-width: 90em;
+/*                      min-width: 850px;
+                        margin-left: 5%;
+                        margin-right: 5%;*/
+                        margin-top:10px;
+                        padding:10px;
+                }
+
+                #mainArea{
+                        width: 100%;
+                        overflow: hidden;
+                }
+
+                #myLeftArea{
+                        color:white;
+                        float: left;
+                        width: 180px;
+                        padding:5px;
+                }
+
+                #myMiddleArea{
+                        color:black;
+                        margin-left: 200px;
+                        padding: 10px 20px;
+                }
+
+                #myRightArea{
+                        color:white;
+                        float: right;
+                        width: 200px;
+                        padding: 12px 20px;
+                }
+
+
+div#cadre_head
+{
+    position            : relative;
+    text-align: center;
+/*    width               : 1024px;*/
+    height              : 100px;
+    padding-left        : 20px;
+    background          : url("/img/cadre_head.png");
+    background-repeat   : no-repeat;
+    background-position : 0px 0px;
+}
+
+
+div#slogan{
+    position: absolute;
+    top : 50px;
+    left:251px;
+    color:#0000AA;
+    font: 120%, Georgia,Serif;
+}
+div#cadre_help
+{
+    position: absolute;
+    top:45px;
+    right:0px;
+    font-size:0.8em;
+    color:#0000AA;
 }
