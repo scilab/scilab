@@ -85,6 +85,9 @@ Xcos:
 * bug 7639 fixed - Generating code for scilab function block was failing with
                    a syntax error message.
 
+* bug 8223 fixed - Xcos did not produce a visible error when Saxon is used as
+                   XML DOM implementation.
+
 * bug 8235 fixed - Using masked super-block did not work when parameters are
                    defined on the sub-context.
 
@@ -108,6 +111,7 @@ Module skeleton:
 ================
 
 * New example added (function with copy instead of reference)
+
 
 Localization:
 =============
