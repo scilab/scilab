@@ -44,7 +44,16 @@ void visitprivate(const CallExp &e)
             if(execVar[j].result_get()->getType() == InternalType::RealImplicitList)
             {
                 ImplicitList* pIL = execVar[j].result_get()->getAsImplicitList();
-                execVar[j].result_set(pIL->extract_matrix());
+                if(pIL->computable() == false)
+                {
+                    Double* pVal = new Double(-1, -1);
+                    pVal->real_get()[0] = 1;
+                    execVar[j].result_set(pVal);
+                }
+                else
+                {
+                    execVar[j].result_set(pIL->extract_matrix());
+                }
             }
 
             if(execVar[j].is_single_result())

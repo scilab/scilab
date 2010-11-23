@@ -35,8 +35,8 @@ public :
 	EXTERN_EF_GW static bool Load();
 };
 
-
-Function::ReturnValue sci_isequal(types::typed_list &in, int _iRetCount, types::typed_list &out);
-Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typed_list &out);
+CPP_GATEWAY_PROTOTYPE(sci_isequal);
+CPP_GATEWAY_PROTOTYPE(sci_size);
+CPP_GATEWAY_PROTOTYPE(sci_eye);
 
 #endif /* __ELEM_FUNC_H__ */

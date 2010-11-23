@@ -95,25 +95,28 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             // Special case string([]) == []
             if(iRows == 0 && iCols == 0)
             {
-                out.push_back(new types::Double(0,0));
+                out.push_back(Double::Empty());
                 return Function::OK;
             }
+            else if(iRows == -1 && iCols == -1)
+            {
+                out.push_back(new String(1,1));
+                return Function::OK;
+            }
+            
 
             String *pstOutput = new String(iRows, iCols);
-            for (int i = 0; i < iRows ; ++i)
+            for (int i = 0; i < iRows * iCols; ++i)
             {
-                for (int j = 0 ; j < iCols; ++j)
+                std::wostringstream ostr;
+                double dblReal = in[0]->getAsDouble()->real_get()[i];
+                double dblImg  = 0.0;
+                if (in[0]->getAsDouble()->isComplex() == true)
                 {
-                    std::wostringstream ostr;
-                    double dblReal = in[0]->getAsDouble()->real_get(i, j);
-                    double dblImg  = 0.0;
-                    if (in[0]->getAsDouble()->isComplex() == true)
-                    {
-                        dblImg  = in[0]->getAsDouble()->img_get(i, j);
-                    }
-                    DoubleComplexMatrix2String(&ostr, dblReal, dblImg);
-                    pstOutput->string_set(i, j, ostr.str().c_str());
+                    dblImg  = in[0]->getAsDouble()->img_get()[i];
                 }
+                DoubleComplexMatrix2String(&ostr, dblReal, dblImg);
+                pstOutput->string_set(i, ostr.str().c_str());
             }
             out.push_back(pstOutput);
             break;

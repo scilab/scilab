@@ -37,7 +37,6 @@ ELEMENTARY_FUNCTIONS_IMPEXP int sci_diag(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_dsearch(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_exp(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_expm(char *fname, int* _piKey);
-ELEMENTARY_FUNCTIONS_IMPEXP int sci_eye(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_floor(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_frexp(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_gsort(char *fname, int* _piKey);

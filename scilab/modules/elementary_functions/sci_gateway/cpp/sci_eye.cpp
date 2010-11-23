@@ -10,16 +10,79 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "gw_elementary_functions.h"
-#include "stack-c.h"
-#include "basic_functions.h"
-#include "api_scilab.h"
-#include "api_oldstack.h"
+#include "elem_func_gw.hxx"
+#include "funcmanager.hxx"
+#include "context.hxx"
 
-extern int C2F(inteye) (int *id);
-/*--------------------------------------------------------------------------*/
-int sci_eye(char *fname, int* _piKey)
+extern "C"
 {
+#include "basic_functions.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "charEncoding.h"
+}
+
+/*--------------------------------------------------------------------------*/
+Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::typed_list &out)
+{
+    int iRows = 0;
+    int iCols = 0;
+
+    if(in.size() > 2)
+    {
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"eye", 0, 2);
+        return Function::Error;
+    }
+
+    if(in.size() == 2)
+    {
+        if(in[0]->isDouble() == false || in[0]->getAsDouble()->size_get() != 1)
+        {
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"eye", 1);
+            return Function::Error;
+        }
+
+        if(in[1]->isDouble() == false || in[1]->getAsDouble()->size_get() != 1)
+        {
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"eye", 2);
+            return Function::Error;
+        }
+
+        iRows = in[0]->getAsDouble()->real_get()[0];
+        iCols = in[1]->getAsDouble()->real_get()[0];
+    }
+
+    if(in.size() == 1)
+    {
+        if(in[0]->isGenericType() == false)
+        {
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"eye", 1);
+            return Function::Error;
+        }
+
+        iRows = in[0]->getAsGenericType()->rows_get();
+        iCols = in[0]->getAsGenericType()->cols_get();
+    }
+
+    if(in.size() == 0)
+    {
+        iRows = -1;
+        iCols = -1;
+    }
+
+    Double* pOut = new Double(iRows, iCols);
+    pOut->zero_set();
+    for(int i = 0 ; i < Min(iRows, iCols) ; i++)
+    {
+        pOut->val_set(i,i, 1);
+    }
+
+    if(iRows == -1 && iCols == -1)
+    {
+        pOut->real_get()[0] = 1;
+    }
+    out.push_back(pOut);
+    return Function::OK;
 	//SciErr sciErr;
 	//int iRows							= 0;
 	//int iCols							= 0;
@@ -30,9 +93,9 @@ int sci_eye(char *fname, int* _piKey)
 
 	//double *pdblRealRet		= NULL;
 
-	static int id[6];
-	C2F(inteye)(id);
-	return 0;
+	//static int id[6];
+	//C2F(inteye)(id);
+	//return 0;
 	//CheckRhs(0,2);
 	//CheckLhs(0,1);
 

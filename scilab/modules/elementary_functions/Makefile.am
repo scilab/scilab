@@ -299,7 +299,6 @@ sci_gateway/c/sci_ceil.c \
 sci_gateway/c/sci_imag.c \
 sci_gateway/c/sci_log.c \
 sci_gateway/c/sci_log1p.c \
-sci_gateway/c/sci_eye.c \
 sci_gateway/c/sci_clean.c \
 sci_gateway/c/sci_tan.c \
 sci_gateway/c/sci_atan.c \
@@ -388,7 +387,8 @@ sci_gateway/fortran/sci_f_exp.f
 GATEWAY_CPP_SOURCES =  \
 	sci_gateway/cpp/sci_isequal.cpp \
 	sci_gateway/cpp/elem_func_gw.cpp \
-	sci_gateway/cpp/sci_size.cpp
+	sci_gateway/cpp/sci_size.cpp \
+	sci_gateway/cpp/sci_eye.cpp
 
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
