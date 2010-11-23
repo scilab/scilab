@@ -15,7 +15,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 
 AC_REVISION($Revision$)dnl
-AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
+AC_INIT([Scilab],[6],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.60)
 AC_CONFIG_MACRO_DIR([m4/])
 
@@ -23,7 +23,7 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCILAB_LIBRARY_VERSION=5:3:0
+SCILAB_LIBRARY_VERSION=6:0:0
 AC_SUBST(SCILAB_LIBRARY_VERSION)
 
 #shared library versioning
