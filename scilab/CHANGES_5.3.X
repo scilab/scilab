@@ -79,6 +79,8 @@ documentation with the following syntax:
 * In an example in the documentation, when an undocumented function is used,
 trigger a warning and do not add a link on the function name.
 
+* "See also" links have now the function description shown.
+
 * In the documentation, Java, C, C++ and XML codes are now colorized if the role
   in programlisting is set (role='java', role='c', role='cpp' or role='xml')
 

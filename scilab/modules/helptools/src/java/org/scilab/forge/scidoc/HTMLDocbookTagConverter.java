@@ -26,7 +26,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import org.xml.sax.SAXException;
 
@@ -65,6 +67,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected Map<String, String> tocitem;
     protected HTMLDocbookLinkResolver.TreeId tree;
     protected Map<String, HTMLDocbookLinkResolver.TreeId> mapTreeId;
+    protected Map<String, String> mapIdPurpose;
 
     protected TemplateHandler templateHandler;
 
@@ -111,6 +114,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         tocitem = resolver.getToc();
         tree = resolver.getTree();
         mapTreeId = resolver.getMapTreeId();
+        mapIdPurpose = resolver.getMapIdPurpose();
         scilabLexer = new ScilabLexer(primConf, macroConf);
         this.urlBase = urlBase;
         this.linkToTheWeb = urlBase != null && !urlBase.equals("scilab://");
@@ -523,8 +527,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleBook(Map<String, String> attributes, String contents) throws SAXException {
         String str = encloseContents("ul", "list-part", contents);
-        String title = encloseContents("h3", "book-title", bookTitle);
-        createHTMLFile("index", indexFilename, bookTitle, title + "\n" + str);
+        String btitle = bookTitle.replaceFirst("Scilab", version);
+        String title = encloseContents("h3", "book-title", btitle);
+        createHTMLFile("index", indexFilename, btitle, title + "\n" + str);
 
         if (warnings != 0) {
             System.err.println("Total files without example: " + warnings);
@@ -591,7 +596,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             bookTitle = contents;
         } else if (parent.equals("section")) {
             sectionTitle = contents;
-        } else if (parent.equals("refsection") && contents.toLowerCase().startsWith("example")) {
+        } else if (parent.equals("refsection") && Pattern.matches("^[ \\t]*ex[ea]mpl[eo].*", contents.toLowerCase())) {
             hasExamples = true;
             return encloseContents("h3", clazz, contents);
         } else {
@@ -851,6 +856,18 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             return null;
         }
 
+        Stack<DocbookElement> stack = getStack();
+        int s = stack.size();
+        if (s >= 3) {
+            DocbookElement elem = stack.get(s - 3);
+            if (elem.getName().equals("refsection")) {
+                String role = elem.getAttributes().get("role");
+                if (role != null && role.equals("see also")) {
+                    return encloseContents("a", new String[]{"href", id, "class", "link"}, contents) + " &#8212; " + mapIdPurpose.get(link);
+                }
+            }
+        }
+
         return encloseContents("a", new String[]{"href", id, "class", "link"}, contents);
     }
 
@@ -1098,8 +1115,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         }
 
         try {
-           String path = new File(new URI(currentFileName)).getParent();
-           return ImageConverter.getImageByFile(attributes, path, fileref, outName, imageDir);
+            String path = new File(new URI(currentFileName)).getParent();
+            return ImageConverter.getImageByFile(attributes, path, fileref, outName, imageDir);
         }  catch (URISyntaxException e) {
             System.err.println(e);
         }
