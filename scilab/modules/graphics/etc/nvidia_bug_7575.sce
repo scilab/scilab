@@ -24,8 +24,13 @@ function detect_bug_7575()
     // This part must be improved
     // Here we check IF WE HAVE A Scilab profile but NOT if it is a correct profile
     // TO DO: check that "Threaded optimization" have the good value
+    bOK = %f;
     ierr = execstr("path = winqueryreg(""HKEY_CLASSES_ROOT"", ""VirtualStore\MACHINE\SOFTWARE\NVIDIA Corporation\Global\NVTweak\NvCplAppNamesStored"", ""wscilex.exe"")", "errcatch");
-    bOK = (path <> []) & (ierr == 0);
+    if (ierr == 0) then
+       if (path <> []) then
+         bOK = %t;
+       end
+    end
   endfunction
 
   function bOK = isNvidia()
@@ -44,14 +49,21 @@ function detect_bug_7575()
     ierr = execstr("[nbparams, driverVer1, driverVer2, driverVer3, driverVer4] = msscanf(driversvideocard, ""%d.%d.%d.%d"");", "errcatch");
     VistaSeven_drivers = [8. 17. 12];
     XP_drivers = [6. 14. 12];
-    bOK = and([driverVer1, driverVer2, driverVer3] == XP_drivers) | and([driverVer1, driverVer2, driverVer3] == VistaSeven_drivers) & (driverVer4 >= 6089) & (ierr == 0);
+    if  ierr == 0 then
+      if and([driverVer1, driverVer2, driverVer3] == XP_drivers) | and([driverVer1, driverVer2, driverVer3] == VistaSeven_drivers) then
+          if (driverVer4 >= 6089) then 
+            bOK = %t;
+          end
+      end
+    end
+    
   endfunction
 
   if getos() == "Windows" then
     if isNvidia() & is260Drivers() then
-            if ~haveScilabProfile() then
-              WarningDriversNvidia();
-            end
+      if ~haveScilabProfile() then
+        WarningDriversNvidia();
+      end
     end
   end
 endfunction
