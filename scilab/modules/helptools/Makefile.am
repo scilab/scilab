@@ -90,12 +90,6 @@ libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
 data/css/style.css
 
-#### helptools : css files ####
-libscihelptools_la_cssdir = $(mydatadir)/css
-libscihelptools_la_css_DATA = css/html.css \
-css/htmlhelp.css \
-css/javahelp.css
-
 
 #### helptools : xsl files ####
 libscihelptools_la_xsl_convertdir = $(mydatadir)/xsl/convert
