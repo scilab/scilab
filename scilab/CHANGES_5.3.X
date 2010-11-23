@@ -17,6 +17,13 @@ Removed functions (previously declared as obsolete):
   Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
 
 
+Demonstration:
+==============
+
+* A demonstration (Nonisothermal plug flow reactor model) of ode usage has been
+  added. Thanks to Jakub Kopac.
+
+
 Documentation:
 ==============
 
