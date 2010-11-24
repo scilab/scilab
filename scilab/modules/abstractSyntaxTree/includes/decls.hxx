@@ -16,73 +16,73 @@
  ** (needed by the visitors)
  */
 #ifndef AST_DECLS_HXX
-# define AST_DECLS_HXX
+#define AST_DECLS_HXX
 
-# include <list>
+#include <list>
 
 namespace ast
 {
-  class Ast;
+    class Ast;
 
-  class Exp;
-  typedef std::list<Exp *> exps_t;
-  // Low Level Expressions.
+    class Exp;
+    typedef std::list<Exp *> exps_t;
+    // Low Level Expressions.
 
-  // Const Exp
-  class IntExp;
-  class StringExp;
-  class FloatExp;
-  class DoubleExp;
-  class BoolExp;
-  class CommentExp;
-  class NilExp;
+    // Const Exp
+    class IntExp;
+    class StringExp;
+    class FloatExp;
+    class DoubleExp;
+    class BoolExp;
+    class CommentExp;
+    class NilExp;
 
-  // Var Exp
-  class SimpleVar;
-  class ArrayListVar;
-  class DollarVar;
-  class ColonVar;
+    // Var Exp
+    class SimpleVar;
+    class ArrayListVar;
+    class DollarVar;
+    class ColonVar;
 
-  // Intructions Exp
-  class CallExp;
-  class CellCallExp;
-  class MathExp;
-  class OpExp;
-  class LogicalOpExp;
-  class AssignExp;
-  class IfExp;
-  class WhileExp;
-  class ForExp;
-  class BreakExp;
-  class ContinueExp;
-  class FieldExp;
-  class TryCatchExp;
-  class ReturnExp;
-  class SelectExp;
-  class CaseExp;
+    // Intructions Exp
+    class CallExp;
+    class CellCallExp;
+    class MathExp;
+    class OpExp;
+    class LogicalOpExp;
+    class AssignExp;
+    class IfExp;
+    class WhileExp;
+    class ForExp;
+    class BreakExp;
+    class ContinueExp;
+    class FieldExp;
+    class TryCatchExp;
+    class ReturnExp;
+    class SelectExp;
+    class CaseExp;
 
-  // Single operations expressions
-  class NotExp;
-  class TransposeExp;
+    // Single operations expressions
+    class NotExp;
+    class TransposeExp;
 
-  // List of expressions
-  class SeqExp;
-  class ArrayListExp;
-  class AssignListExp;
+    // List of expressions
+    class SeqExp;
+    class ArrayListExp;
+    class AssignListExp;
 
-  // Matrix expression
-  class MatrixExp;
-  class MatrixLineExp;
+    // Matrix expression
+    class MatrixExp;
+    class MatrixLineExp;
 
-  // Cell expression
-  class CellExp;
+    // Cell expression
+    class CellExp;
 
-  // Decs
-  class VarDec;
-  class FunctionDec;
+    // Decs
+    class VarDec;
+    class FunctionDec;
 
-  // Type dedicated Exp
-  class ListExp;
+    // Type dedicated Exp
+    class ListExp;
 
 } // namespace ast
 

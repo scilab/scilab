@@ -16,36 +16,41 @@
  */
 
 #ifndef AST_VAR_HXX
-# define AST_VAR_HXX
+#define AST_VAR_HXX
 
-# include <list>
+#include <list>
 
-# include "exp.hxx"
+#include "exp.hxx"
 
 namespace ast
 {
-  class Var : public Exp
-  {
-
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct a Declaration node.
-     ** \param location scanner position informations */
-    Var (const Location& location) :
-      Exp (location)
+    class Var : public Exp
     {
-    }
 
-    virtual ~Var()
-    {
-    }
-    /** \} */
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct a Declaration node.
+        ** \param location scanner position informations */
+        Var (const Location& location) 
+            : Exp (location)
+        {
+        }
 
-  };
+        virtual ~Var()
+        {
+        }
+        /** \} */
 
-  /** \brief Define a shorthand for list of Exp* manipulation. */
-  typedef std::list<Var *> vars_t;
+        //virtual Var* clone()
+        //{
+        //    Location* newloc = const_cast<Location*>(&location_get())->clone();
+        //    return new Var(*newloc);
+        //}
+    };
+
+    /** \brief Define a shorthand for list of Exp* manipulation. */
+    typedef std::list<Var *> vars_t;
 
 } // namespace ast
 

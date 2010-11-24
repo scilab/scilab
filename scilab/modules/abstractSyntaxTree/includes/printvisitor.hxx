@@ -11,7 +11,7 @@
  */
 
 #ifndef AST_PRINTVISITOR_HXX
-# define AST_PRINTVISITOR_HXX
+#define AST_PRINTVISITOR_HXX
 
 #include <string.h>
 

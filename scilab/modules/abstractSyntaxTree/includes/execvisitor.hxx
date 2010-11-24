@@ -11,7 +11,7 @@
  */
 
 #ifndef AST_EXECVISITOR_HXX
-# define AST_EXECVISITOR_HXX
+#define AST_EXECVISITOR_HXX
 
 #include "runvisitor.hxx"
 

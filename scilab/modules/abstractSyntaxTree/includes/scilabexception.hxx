@@ -25,7 +25,7 @@ namespace ast
         ScilabException(std::wstring _wstErrorMesssage);
         ScilabException(const Location& _ErrorLocation);
         ScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation);
-	virtual ~ScilabException() throw() {};
+        virtual ~ScilabException() throw() {};
 
         void            SetErrorMessage(std::wstring _wstErrorMesssage);
         std::wstring    GetErrorMessage(void);

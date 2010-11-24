@@ -11,15 +11,15 @@
  */
 
 #ifndef AST_INTEXP_HXX
-# define AST_INTEXP_HXX
+#define AST_INTEXP_HXX
 
 #include "constexp.hxx"
 
 namespace ast
 {
     /** \brief Abstract an Int Expression node.
-     **
-     ** \b Example:  25 */
+    **
+    ** \b Example:  25 */
     class IntExp : public ConstExp
     {
     public :
@@ -32,58 +32,64 @@ namespace ast
             /** \brief 64-bit Integer */ _64_
         };
     public:
-        IntExp (const Location& location, Prec prec, int value) :
-            ConstExp (location),
+        IntExp (const Location& location, Prec prec, int value) 
+            : ConstExp (location),
             _prec (prec),
             _value (value)
-            {
-            }
-        
-        IntExp (const Location& location, int value) :
-            ConstExp (location),
+        {
+        }
+
+        IntExp (const Location& location, int value) 
+            : ConstExp (location),
             _prec (_32_),
             _value (value)
-            {
-            }
+        {
+        }
 
         /** \brief Destroy an Int Expression node.
-         **
-         ** Delete size et init (exp) (see constructor). */
+        **
+        ** Delete size et init (exp) (see constructor). */
         virtual ~IntExp ()
-            {
-            }
+        {
+        }
         /** \} */
 
+        virtual IntExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new IntExp(*newloc, prec_get(), value_get());
+        }
+
         /** \name Visitors entry point.
-         ** \{ */
+        ** \{ */
     public:
         /** \brief Accept a const visitor \a v. */
         virtual void accept (Visitor& v)
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
         /** \brief Accept a non-const visitor \a v. */
         virtual void accept (ConstVisitor& v) const
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
         /** \} */
 
         /** \name Accessors.
-         ** \{ */
+        ** \{ */
     public:
         /** \brief Return the value */
         int value_get() const
-            {
-                return _value;
-            }
-        
+        {
+            return _value;
+        }
+
         Prec prec_get() const
-            {
-                return _prec;
-            }
+        {
+            return _prec;
+        }
         /** \} */
-    
+
     protected:
         Prec	_prec;
         int		_value;

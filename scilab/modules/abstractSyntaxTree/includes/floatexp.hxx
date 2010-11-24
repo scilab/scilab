@@ -11,55 +11,60 @@
  */
 
 #ifndef AST_FLOATEXP_HXX
-# define AST_FLOATEXP_HXX
+#define AST_FLOATEXP_HXX
 
-# include "constexp.hxx"
+#include "constexp.hxx"
 
 namespace ast
 {
     /** \brief Abstract an Float Expression node.
-     **
-     ** \b Example:  42.51 */
+    **
+    ** \b Example:  42.51 */
     class FloatExp : public ConstExp
     {
     public:
-        FloatExp (const Location& location, float value) :
-            ConstExp (location),
+        FloatExp (const Location& location, float value) 
+            : ConstExp (location),
             _value (value)
-            {
-            }
+        {
+        }
         /** \brief Destroy an Float Expression node.
-         **
-         ** Delete size et init (exp) (see constructor). */
+        **
+        ** Delete size et init (exp) (see constructor). */
         virtual ~FloatExp ()
-            {
-            }
+        {
+        }
         /** \} */
 
+        virtual FloatExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new FloatExp(*newloc, value_get());
+        }
         /** \name Visitors entry point.
-         ** \{ */
+        ** \{ */
     public:
         /** \brief Accept a const visitor \a v. */
         virtual void accept (Visitor& v)
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
         /** \brief Accept a non-const visitor \a v. */
         virtual void accept (ConstVisitor& v) const
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
         /** \} */
 
 
         /** \name Accessors.
-         ** \{ */
+        ** \{ */
     public:
         /** \brief Return the value */
         float value_get() const
-            {
-                return _value;
-            }
+        {
+            return _value;
+        }
         /** \} */
 
     protected:

@@ -11,9 +11,9 @@
  */
 
 /**
- ** \file exp.hxx
- ** Define the Expression mother class.
- */
+** \file exp.hxx
+** Define the Expression mother class.
+*/
 
 #ifndef AST_EXP_HXX
 #define AST_EXP_HXX
@@ -24,18 +24,18 @@
 
 namespace ast
 {
-    
+
     /** \brief Abstract an Expression node. */
     class Exp : public Ast
     {
-        
+
         /** \name Ctor & dtor.
-         ** \{ */
+        ** \{ */
     public:
         /** \brief Construct an Expression node.
-         ** \param location scanner position informations */
-        Exp (const Location& location) :
-            Ast (location),
+        ** \param location scanner position informations */
+        Exp (const Location& location) 
+            : Ast (location),
             _verbose(false),
             _bBreak(false),
             _bBreakable(false),
@@ -43,122 +43,161 @@ namespace ast
             _bReturnable(false),
             _bContinue(false),
             _bContinuable(false)
-            {
-            }
+        {
+        }
         /** \brief Destroys an Expression node. */
         virtual ~Exp ()
-            {
-            }
+        {
+        }
         /** \} */
+
+        virtual Exp* clone() = 0;
+        //{
+        //    Location* newloc = const_cast<Location*>(&location_get())->clone();
+        //    Exp* exp = new Exp(location_get());
+        //    exp->set_verbose(is_verbose());
+
+        //    if(is_break())
+        //    {
+        //        exp->break_set();
+        //    }
+
+        //    if(is_breakable())
+        //    {
+        //        exp->breakable_set();
+        //    }
+
+        //    if(is_return())
+        //    {
+        //        exp->return_set();
+        //    }
+
+        //    if(is_returnable())
+        //    {
+        //        exp->returnable_set();
+        //    }
+
+        //    if(is_continue())
+        //    {
+        //        exp->continue_set();
+        //    }
+
+        //    if(is_continuable())
+        //    {
+        //        exp->continuable_set();
+        //    }
+
+        //    return exp;
+        //}
 
     public:
         /** \brief Return if an expression should be displayed or not. */
         void mute(void)
-            {
-                _verbose = false;
-            }
-        
+        {
+            _verbose = false;
+        }
+
         /** \brief Return if an expression should be displayed or not. */
         void set_verbose(bool verbose)
-            {
-                _verbose = verbose;
-            }
+        {
+            _verbose = verbose;
+        }
 
         /** \brief Return if an expression should be displayed or not. */
         bool is_verbose(void) const
-            {
-                return _verbose;
-            }
+        {
+            return _verbose;
+        }
 
         void break_set(void)
-            {
-                _bBreak = true;
-            }
+        {
+            _bBreak = true;
+        }
 
         void break_reset(void)
-            {
-                _bBreak = false;
-            }
+        {
+            _bBreak = false;
+        }
 
         bool is_break(void) const
-            {
-                return _bBreak;
-            }
+        {
+            return _bBreak;
+        }
 
         void breakable_set(void)
-            {
-                _bBreakable = true;
-            }
+        {
+            _bBreakable = true;
+        }
 
         void breakable_reset(void)
-            {
-                _bBreakable = false;
-            }
+        {
+            _bBreakable = false;
+        }
 
         bool is_breakable(void) const
-            {
-                return _bBreakable;
-            }
+        {
+            return _bBreakable;
+        }
 
         void return_set(void)
-            {
-                _bReturn = true;
-            }
+        {
+            _bReturn = true;
+        }
 
         void return_reset(void)
-            {
-                _bReturn = false;
-            }
+        {
+            _bReturn = false;
+        }
 
         bool is_return(void) const
-            {
-                return _bReturn;
-            }
+        {
+            return _bReturn;
+        }
 
         void returnable_set(void)
-            {
-                _bReturnable = true;
-            }
+        {
+            _bReturnable = true;
+        }
 
         void returnable_reset(void)
-            {
-                _bReturnable = false;
-            }
+        {
+            _bReturnable = false;
+        }
 
         bool is_returnable(void) const
-            {
-                return _bReturnable;
-            }
+        {
+            return _bReturnable;
+        }
 
         void continue_set(void)
-            {
-                _bContinue = true;
-            }
+        {
+            _bContinue = true;
+        }
 
         void continue_reset(void)
-            {
-                _bContinue = false;
-            }
+        {
+            _bContinue = false;
+        }
 
         bool is_continue(void) const
-            {
-                return _bContinue;
-            }
+        {
+            return _bContinue;
+        }
 
         void continuable_set(void)
-            {
-                _bContinuable = true;
-            }
+        {
+            _bContinuable = true;
+        }
 
         void continuable_reset(void)
-            {
-                _bContinuable = false;
-            }
+        {
+            _bContinuable = false;
+        }
 
         bool is_continuable(void) const
-            {
-                return _bContinuable;
-            }
+        {
+            return _bContinuable;
+        }
     private:
         bool _verbose;
         bool _bBreak;

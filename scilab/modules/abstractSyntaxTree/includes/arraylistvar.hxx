@@ -11,76 +11,91 @@
  */
 
 /**
- ** \file arraylistvar.hxx
- ** Define the Arraylistuence Varression class.
- */
+** \file arraylistvar.hxx
+** Define the Arraylistuence Varression class.
+*/
 
 #ifndef __ARRAYLISTVAR_HXX__
-# define __ARRAYLISTVAR_HXX__
+#define __ARRAYLISTVAR_HXX__
 
-# include "var.hxx"
+#include "var.hxx"
 
 namespace ast
 {
 
-  /** \brief Abstract an Array List of Variable node.
-   **
-   ** \b Example: a, b, $, : */
-  class ArrayListVar : public Var
-  {
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct an Array List of Variable node.
-     ** \param location scanner position informations
-     ** \param body VAR LIST intruction
-     */
-    ArrayListVar (const Location& location,
-	    std::list<Var *>& vars) :
-      Var (location),
-      _vars (&vars)
+    /** \brief Abstract an Array List of Variable node.
+    **
+    ** \b Example: a, b, $, : */
+    class ArrayListVar : public Var
     {
-    }
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct an Array List of Variable node.
+        ** \param location scanner position informations
+        ** \param body VAR LIST intruction
+        */
+        ArrayListVar (const Location& location,
+            std::list<Var *>& vars) 
+            : Var (location),
+            _vars (&vars)
+        {
+        }
 
-    virtual ~ArrayListVar ()
-    {
-      delete _vars;
-    }
+        virtual ~ArrayListVar ()
+        {
+            delete _vars;
+        }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        virtual ArrayListVar* clone()
+        {
+            std::list<Var *>* vars = new std::list<Var *>;
+            std::list<Var *>::const_iterator it;
+            for(it = vars_get().begin() ; it != vars_get().end() ; it++)
+            {
+                Var* var = dynamic_cast<Var*>((*it)->clone());
+                vars->push_back(var);
+            }
+
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            ArrayListVar* ret = new ArrayListVar(*newloc, *vars);
+            return ret;
+        }
+
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
 
-    /** \name Accessors.
-     ** \{ */
-  public:
-    const std::list<Var *>&	vars_get() const
-    {
-      return *_vars;
-    }
+        /** \name Accessors.
+        ** \{ */
+    public:
+        const std::list<Var *>&	vars_get() const
+        {
+            return *_vars;
+        }
 
-    std::list<Var *>&	vars_get()
-    {
-      return *_vars;
-    }
-    /** \} */
+        std::list<Var *>&	vars_get()
+        {
+            return *_vars;
+        }
+        /** \} */
 
 
-  protected:
-    std::list<Var *>* _vars;
-  };
+    protected:
+        std::list<Var *>* _vars;
+    };
 
 } // namespace ast
 

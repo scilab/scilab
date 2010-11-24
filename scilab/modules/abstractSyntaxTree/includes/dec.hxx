@@ -16,30 +16,35 @@
  */
 
 #ifndef AST_DEC_HXX
-# define AST_DEC_HXX
+#define AST_DEC_HXX
 
-# include "ast.hxx"
-# include "exp.hxx"
+#include "ast.hxx"
+#include "exp.hxx"
 
 namespace ast
 {
 
-  /** \brief Abstract an Declaration node. */
-  class Dec : public Exp
-  {
-
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct a Declaration node.
-     ** \param location scanner position informations */
-    Dec (const Location& location) :
-      Exp (location)
+    /** \brief Abstract an Declaration node. */
+    class Dec : public Exp
     {
-    }
-    /** \} */
 
-  };
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct a Declaration node.
+        ** \param location scanner position informations */
+        Dec (const Location& location) 
+            : Exp (location)
+        {
+        }
+        /** \} */
+
+        //virtual Dec* clone()
+        //{
+        //    Location* newloc = const_cast<Location*>(&location_get())->clone();
+        //    return new Dec(location_get());
+        //}
+    };
 
 } // namespace ast
 

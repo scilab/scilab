@@ -16,99 +16,104 @@
  */
 
 #ifndef AST_FOREXP_HXX
-# define AST_FOREXP_HXX
+#define AST_FOREXP_HXX
 
-# include "controlexp.hxx"
-# include "vardec.hxx"
+#include "controlexp.hxx"
+#include "vardec.hxx"
 
 namespace ast
 {
 
-  /** \brief Abstract a For Expression node.
-   **
-   ** \b Example: for i = 0:2097 do print("WipeOut") */
-  class ForExp : public ControlExp
-  {
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct a For Expression node.
-     ** \param location scanner position informations
-     ** \param vardec implicit variable declaration
-     ** \param body instructions executed in the for loop
-     **
-     ** \b Example: for i = 0:2097 do print("WipeOut")
-     ** \li "i = 0:2097" is the variable declaration
-     ** \li "print("WipeOut")" is the body
-     */
-    ForExp (const Location& location,
-	    VarDec& vardec, Exp& body):
-      ControlExp (location),
-      _vardec (&vardec),
-      _body (&body)
+    /** \brief Abstract a For Expression node.
+    **
+    ** \b Example: for i = 0:2097 do print("WipeOut") */
+    class ForExp : public ControlExp
     {
-    }
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct a For Expression node.
+        ** \param location scanner position informations
+        ** \param vardec implicit variable declaration
+        ** \param body instructions executed in the for loop
+        **
+        ** \b Example: for i = 0:2097 do print("WipeOut")
+        ** \li "i = 0:2097" is the variable declaration
+        ** \li "print("WipeOut")" is the body
+        */
+        ForExp (const Location& location,
+            VarDec& vardec, Exp& body)
+            : ControlExp (location),
+            _vardec (&vardec),
+            _body (&body)
+        {
+        }
 
-    /** \brief Destroy a For Expression node.
-     **
-     ** Delete vardec, hi and body (see constructor). */
-    virtual ~ForExp ()
-    {
-      delete  _vardec;
-      delete  _body;
-    }
-    /** \} */
+        /** \brief Destroy a For Expression node.
+        **
+        ** Delete vardec, hi and body (see constructor). */
+        virtual ~ForExp ()
+        {
+            delete  _vardec;
+            delete  _body;
+        }
+        /** \} */
 
+        virtual ForExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new ForExp(*newloc, *vardec_get().clone(), *body_get().clone());
+        }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
-
-
-    /** \name Accessors.
-     ** \{ */
-  public:
-    /** \brief Return the implicit variable declaration (read only) */
-    const VarDec& vardec_get () const
-    {
-      return *_vardec;
-    }
-    /** \brief Return the implicit variable declaration (read and write) */
-    VarDec& vardec_get ()
-    {
-      return *_vardec;
-    }
-
-    /** \brief Return the body of the loop (read only) */
-    const Exp& body_get () const
-    {
-      return *_body;
-    }
-    /** \brief Return the body of the loop (read and write) */
-    Exp& body_get ()
-    {
-      return *_body;
-    }
-    /** \} */
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
 
-  protected:
-    /** \brief Implicit variable declaration. */
-    VarDec* _vardec;
-    /** \brief Instructions executed in the loop. */
-    Exp* _body;
-  };
+        /** \name Accessors.
+        ** \{ */
+    public:
+        /** \brief Return the implicit variable declaration (read only) */
+        const VarDec& vardec_get () const
+        {
+            return *_vardec;
+        }
+        /** \brief Return the implicit variable declaration (read and write) */
+        VarDec& vardec_get ()
+        {
+            return *_vardec;
+        }
+
+        /** \brief Return the body of the loop (read only) */
+        const Exp& body_get () const
+        {
+            return *_body;
+        }
+        /** \brief Return the body of the loop (read and write) */
+        Exp& body_get ()
+        {
+            return *_body;
+        }
+        /** \} */
+
+
+    protected:
+        /** \brief Implicit variable declaration. */
+        VarDec* _vardec;
+        /** \brief Instructions executed in the loop. */
+        Exp* _body;
+    };
 
 } // namespace ast
 

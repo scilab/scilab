@@ -1233,6 +1233,7 @@ namespace ast
                                 pCall->accept(printMe);
                                 os << std::endl << std::endl;
                                 ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAsCallable()->getName());
+                                YaspWriteW(se.GetErrorMessage().c_str());
                                 throw ScilabMessage(os.str(), 0, (*itExp)->location_get());
                             }
                         }
@@ -1457,9 +1458,11 @@ namespace ast
                 pRetList->push_back(static_cast<SimpleVar*>(*i)->name_get());
             }
 
+//            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            Exp* exp = const_cast<Exp*>(&e.body_get())->clone();
             //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
             types::Macro *pMacro = new types::Macro(e.name_get(), *pVarList, *pRetList,
-                static_cast<SeqExp&>(const_cast<Exp&>(e.body_get())), L"script");
+                static_cast<SeqExp&>(*exp), L"script");
             symbol::Context::getInstance()->AddMacro(pMacro);
         }
         /** \} */

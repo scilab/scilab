@@ -16,27 +16,27 @@
  */
 
 #ifndef AST_LIBAST_HXX
-# define AST_LIBAST_HXX
+#define AST_LIBAST_HXX
 
-# include <iostream>
-# include "all.hxx"
+#include <iostream>
+#include "all.hxx"
 
 namespace ast
 {
-  /** \brief Global root node of abstract syntax tree. */
-  extern Exp* the_program;
+    /** \brief Global root node of abstract syntax tree. */
+    extern Exp* the_program;
 
-  /** \brief Print an abstract syntax tree.
-   ** \param tree abstract syntax tree's root node
-   ** \param ostr output stream  */
-  void print (const Exp &tree, std::wostream &ostr);
+    /** \brief Print an abstract syntax tree.
+    ** \param tree abstract syntax tree's root node
+    ** \param ostr output stream  */
+    void print (const Exp &tree, std::wostream &ostr);
 
-  /** \brief Intercept output stream redirection. */
-  inline std::wostream& operator<< (std::wostream& ostr, const Exp &tree)
-  {
-    print (tree, ostr);
-    return ostr;
-  }
+    /** \brief Intercept output stream redirection. */
+    inline std::wostream& operator<< (std::wostream& ostr, const Exp &tree)
+    {
+        print (tree, ostr);
+        return ostr;
+    }
 
 } // namespace ast
 

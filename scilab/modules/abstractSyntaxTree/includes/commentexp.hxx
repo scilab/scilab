@@ -11,61 +11,67 @@
  */
 
 #ifndef AST_COMMENTEXP_HXX
-# define AST_COMMENTEXP_HXX
+#define AST_COMMENTEXP_HXX
 
-# include "constexp.hxx"
+#include "constexp.hxx"
 
 namespace ast
 {
-  /** \brief Abstract an string Expression node.
-   **
-   ** \b Example: string*/
-  class CommentExp : public ConstExp
-  {
-  public:
-    CommentExp (const Location& location,
-	       std::wstring* comment) :
-      ConstExp (location),
-      _comment (comment)
+    /** \brief Abstract an string Expression node.
+    **
+    ** \b Example: string*/
+    class CommentExp : public ConstExp
     {
-    }
-    /** \brief Destroy an string Exp node.
-     **
-     ** Delete value (see constructor). */
-    virtual ~CommentExp ()
-    {
-      delete _comment;
-    }
-    /** \} */
+    public:
+        CommentExp (const Location& location,
+            std::wstring* comment) 
+            : ConstExp (location),
+            _comment (comment)
+        {
+        }
+        /** \brief Destroy an string Exp node.
+        **
+        ** Delete value (see constructor). */
+        virtual ~CommentExp ()
+        {
+            delete _comment;
+        }
+        /** \} */
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        virtual CommentExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new CommentExp(location_get(), &comment_get());
+        }
+
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
 
-    /** \name Accessors.
-     ** \{ */
-  public:
-    /** \brief Return the comment (read only). */
-    std::wstring &comment_get () const
-    {
-      return *_comment;
-    }
-    /** \} */
-  protected:
-    std::wstring* _comment;
-  };
+        /** \name Accessors.
+        ** \{ */
+    public:
+        /** \brief Return the comment (read only). */
+        std::wstring &comment_get () const
+        {
+            return *_comment;
+        }
+        /** \} */
+    protected:
+        std::wstring* _comment;
+    };
 
 } // namespace ast
 

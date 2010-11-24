@@ -11,48 +11,54 @@
  */
 
 /**
- ** \file ast/breakexp.hxx
- ** Define the Break Expression class.
- */
+** \file ast/breakexp.hxx
+** Define the Break Expression class.
+*/
 
 #ifndef AST_BREAKEXP_HXX
-# define AST_BREAKEXP_HXX
+#define AST_BREAKEXP_HXX
 
-# include "controlexp.hxx"
+#include "controlexp.hxx"
 
 namespace ast
 {
-  /** \brief Abstract an Break Expression node.
-   **
-   ** \b Example:  break ;*/
-  class BreakExp : public ControlExp
-  {
-  public:
-    BreakExp (const Location& location) : ControlExp (location)
+    /** \brief Abstract an Break Expression node.
+    **
+    ** \b Example:  break ;*/
+    class BreakExp : public ControlExp
     {
-    }
+    public:
+        BreakExp (const Location& location) 
+            : ControlExp (location)
+        {
+        }
 
-    /** \brief Destroy an Break Exp node. */
-    virtual ~BreakExp ()
-    {
-    }
-    /** \} */
+        /** \brief Destroy an Break Exp node. */
+        virtual ~BreakExp ()
+        {
+        }
+        /** \} */
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
-  };
+        virtual BreakExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new BreakExp(*newloc);
+        }
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
+    };
 
 } // namespace ast
 

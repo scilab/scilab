@@ -11,76 +11,88 @@
  */
 
 /**
- ** \file arraylistexp.hxx
- ** Define the Sequence Expression class.
- */
+** \file arraylistexp.hxx
+** Define the Sequence Expression class.
+*/
 
 #ifndef __ARRAYLISTEXP_HXX__
-# define __ARRAYLISTEXP_HXX__
+#define __ARRAYLISTEXP_HXX__
 
-# include "exp.hxx"
+#include "exp.hxx"
 
 namespace ast
 {
 
-  /** \brief Abstract an Array List of Expression node.
-   **
-   ** \b Example: foo(a), foo(b) */
-  class ArrayListExp : public Exp
-  {
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct an Array List of Expression node.
-     ** \param location scanner position informations
-     ** \param body EXP LIST intruction
-     */
-    ArrayListExp (const Location& location,
-	    std::list<Exp *>& exps) :
-      Exp (location),
-      _exps (&exps)
+    /** \brief Abstract an Array List of Expression node.
+    **
+    ** \b Example: foo(a), foo(b) */
+    class ArrayListExp : public Exp
     {
-    }
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct an Array List of Expression node.
+        ** \param location scanner position informations
+        ** \param body EXP LIST intruction
+        */
+        ArrayListExp (const Location& location,
+            std::list<Exp *>& exps) 
+            : Exp (location),
+            _exps (&exps)
+        {
+        }
 
-    virtual ~ArrayListExp ()
-    {
-      delete _exps;
-    }
+        virtual ~ArrayListExp ()
+        {
+            delete _exps;
+        }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        virtual ArrayListExp* clone()
+        {
+            std::list<Exp *>* exps = new std::list<Exp *>;
+            std::list<Exp *>::const_iterator it;
+            for(it = _exps->begin() ; it != _exps->end() ; it++)
+            {
+                exps->push_back((*it)->clone());
+            }
 
-
-    /** \name Accessors.
-     ** \{ */
-  public:
-    const std::list<Exp *>&	exps_get() const
-    {
-      return *_exps;
-    }
-
-    std::list<Exp *>&	exps_get()
-    {
-      return *_exps;
-    }
-    /** \} */
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return  new ArrayListExp(*newloc, *exps);
+        }
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
 
-  protected:
-    std::list<Exp *>* _exps;
-  };
+        /** \name Accessors.
+        ** \{ */
+    public:
+        const std::list<Exp *>&	exps_get() const
+        {
+            return *_exps;
+        }
+
+        std::list<Exp *>&	exps_get()
+        {
+            return *_exps;
+        }
+        /** \} */
+
+
+    protected:
+        std::list<Exp *>* _exps;
+    };
 
 } // namespace ast
 

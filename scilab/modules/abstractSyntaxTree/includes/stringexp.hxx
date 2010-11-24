@@ -11,60 +11,65 @@
  */
 
 #ifndef AST_STRINGEXP_HXX
-# define AST_STRINGEXP_HXX
+#define AST_STRINGEXP_HXX
 
-# include "constexp.hxx"
+#include "constexp.hxx"
 
 namespace ast
 {
-  /** \brief Abstract an string Expression node.
-   **
-   ** \b Example: string*/
-  class StringExp : public ConstExp
-  {
-  public:
-    StringExp (const Location& location,
-	       std::wstring value) :
-      ConstExp (location),
-      _value (value)
+    /** \brief Abstract an string Expression node.
+    **
+    ** \b Example: string*/
+    class StringExp : public ConstExp
     {
-    }
-    /** \brief Destroy an string Exp node.
-     **
-     ** Delete value (see constructor). */
-    virtual ~StringExp ()
-    {
-    }
-    /** \} */
+    public:
+        StringExp (const Location& location,
+            std::wstring value) 
+            : ConstExp (location),
+            _value (value)
+        {
+        }
+        /** \brief Destroy an string Exp node.
+        **
+        ** Delete value (see constructor). */
+        virtual ~StringExp ()
+        {
+        }
+        /** \} */
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        virtual StringExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new StringExp(*newloc, value_get());
+        }
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
 
-    /** \name Accessors.
-     ** \{ */
-  public:
-    /** \brief Return the name of the type name (read only). */
-    const std::wstring value_get () const
-    {
-      return _value;
-    }
-    /** \} */
-  protected:
-    const std::wstring _value;
-  };
+        /** \name Accessors.
+        ** \{ */
+    public:
+        /** \brief Return the name of the type name (read only). */
+        const std::wstring value_get () const
+        {
+            return _value;
+        }
+        /** \} */
+    protected:
+        const std::wstring _value;
+    };
 
 } // namespace ast
 

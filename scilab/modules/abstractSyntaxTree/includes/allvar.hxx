@@ -16,16 +16,16 @@
  */
 
 #ifndef AST_ALLVAR_HXX
-# define AST_ALLVAR_HXX
+#define AST_ALLVAR_HXX
 
-# include "var.hxx"
+#include "var.hxx"
 
-# include "simplevar.hxx"
+#include "simplevar.hxx"
 
-# include "arraylistvar.hxx"
+#include "arraylistvar.hxx"
 
-# include "dollarvar.hxx"
-# include "colonvar.hxx"
+#include "dollarvar.hxx"
+#include "colonvar.hxx"
 
 
 #endif // !AST_ALLVAR_HXX

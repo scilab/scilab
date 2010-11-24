@@ -28,9 +28,9 @@
  */
 
 #ifndef AST_VISITOR_HXX
-# define AST_VISITOR_HXX
+#define AST_VISITOR_HXX
 
-# include "decls.hxx"
+#include "decls.hxx"
 
 namespace ast
 {

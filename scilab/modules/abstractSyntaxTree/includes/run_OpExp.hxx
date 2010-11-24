@@ -151,6 +151,30 @@ void visitprivate(const OpExp &e)
                     }
                     result_set(pResult);
                 }
+                else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealString)
+                {
+                    if(execMeL.result_get()->getAsDouble()->size_get() == 0)
+                    {//[] + "" -> ""
+                        result_set(execMeR.result_get()->clone());
+                    }
+                    else
+                    {
+                        // Don't know how to manage this Addition : Call Overloading
+                        result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+                    }
+                }
+                else if(TypeL == GenericType::RealString && TypeR == GenericType::RealDouble)
+                {
+                    if(execMeR.result_get()->getAsDouble()->size_get() == 0)
+                    {//"text" + [] -> ""
+                        result_set(execMeL.result_get()->clone());
+                    }
+                    else
+                    {
+                        // Don't know how to manage this Addition : Call Overloading
+                        result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+                    }
+                }
                 else
                 {
                     // Don't know how to manage this Addition : Call Overloading

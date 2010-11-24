@@ -16,76 +16,89 @@
  */
 
 #ifndef __AST_MATRIXLINEEXP_HXX__
-# define __AST_MATRIXLINEEXP_HXX__
+#define __AST_MATRIXLINEEXP_HXX__
 
-# include "mathexp.hxx"
+#include "mathexp.hxx"
 
 namespace ast
 {
 
-  /** \brief Abstract an Matrix Line Expression node.
-   **
-   ** \b Example: a, b, c, d */
-  class MatrixLineExp : public MathExp
-  {
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct an Matrix Columns node.
-     ** \param location scanner position informations
-     ** \param columns EXP LIST intruction
-     */
-    MatrixLineExp (const Location& location,
-	    std::list<Exp *>& columns) :
-      MathExp (location),
-      _columns (&columns)
+    /** \brief Abstract an Matrix Line Expression node.
+    **
+    ** \b Example: a, b, c, d */
+    class MatrixLineExp : public MathExp
     {
-    }
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct an Matrix Columns node.
+        ** \param location scanner position informations
+        ** \param columns EXP LIST intruction
+        */
+        MatrixLineExp (const Location& location,
+            std::list<Exp *>& columns) 
+            : MathExp (location),
+            _columns (&columns)
+        {
+        }
 
-    virtual ~MatrixLineExp ()
-    {
-			std::list<Exp *>::const_iterator i;
-			for(i = _columns->begin() ; i!= _columns->end() ; i++)
-			{
-				delete *i;
-			}
-      delete _columns;
-    }
+        virtual ~MatrixLineExp ()
+        {
+            std::list<Exp *>::const_iterator i;
+            for(i = _columns->begin() ; i!= _columns->end() ; i++)
+            {
+                delete *i;
+            }
+            delete _columns;
+        }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        virtual MatrixLineExp* clone()
+        {
+            std::list<Exp *>* columns = new std::list<Exp *>;
+            std::list<Exp *>::const_iterator it;
+            for(it = columns_get().begin() ; it != columns_get().end() ; it++)
+            {
+                columns->push_back((*it)->clone());
+            }
 
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return  new MatrixLineExp(*newloc, *columns);
+        }
 
-    /** \name Accessors.
-     ** \{ */
-  public:
-    const std::list<Exp *>&	columns_get() const
-    {
-      return *_columns;
-    }
-
-    std::list<Exp *>&	columns_get()
-    {
-      return *_columns;
-    }
-    /** \} */
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
 
-  protected:
-    std::list<Exp *>* _columns;
-  };
+        /** \name Accessors.
+        ** \{ */
+    public:
+        const std::list<Exp *>&	columns_get() const
+        {
+            return *_columns;
+        }
+
+        std::list<Exp *>&	columns_get()
+        {
+            return *_columns;
+        }
+        /** \} */
+
+
+    protected:
+        std::list<Exp *>* _columns;
+    };
 
 } // namespace ast
 

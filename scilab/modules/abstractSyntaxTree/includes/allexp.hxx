@@ -16,9 +16,9 @@
  */
 
 #ifndef AST_ALLEXP_HXX
-# define AST_ALLEXP_HXX
+#define AST_ALLEXP_HXX
 
-# include "exp.hxx"
+#include "exp.hxx"
 
 /*
 ** Constant Expressions

@@ -421,6 +421,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\continueexp.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\controlexp.hxx"
 				>
 			</File>

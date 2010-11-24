@@ -11,26 +11,32 @@
  */
 
 #ifndef __AST_MATHEXP_HXX__
-# define __AST_MATHEXP_HXX__
+#define __AST_MATHEXP_HXX__
 
 #include "exp.hxx"
 
 namespace ast
 {
-  /** \brief Abstract an Mathematical Expression node.
-   **
-   ** \b Example:  Operations, Transpose, Matrixes... */
-  class MathExp : public Exp
-  {
-  public:
-    MathExp (const Location& location) :
-      Exp (location)
+    /** \brief Abstract an Mathematical Expression node.
+    **
+    ** \b Example:  Operations, Transpose, Matrixes... */
+    class MathExp : public Exp
     {
-    }
+    public:
+        MathExp (const Location& location) 
+            : Exp (location)
+        {
+        }
 
-    virtual ~MathExp ()
-    {
-    }
-  };
+        virtual ~MathExp ()
+        {
+        }
+
+        //virtual MathExp* clone()
+        //{
+        //    Location* newloc = const_cast<Location*>(&location_get())->clone();
+        //    return new MathExp(*newloc);
+        //}
+    };
 } // namespace ast
 #endif /* !__AST_MATHEXP_HXX__ */

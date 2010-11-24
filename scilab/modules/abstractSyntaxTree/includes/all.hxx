@@ -16,7 +16,7 @@
  */
 
 #ifndef AST_ALL_HXX
-# define AST_ALL_HXX
+#define AST_ALL_HXX
 
 #include "allexp.hxx"
 #include "allvar.hxx"

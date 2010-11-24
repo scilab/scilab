@@ -22,79 +22,89 @@
 
 namespace ast
 {
-
     /** \brief Abstract a Return Expression node.
-     **
-     ** \b Example: return or return plop */
+    **
+    ** \b Example: return or return plop */
     class ReturnExp : public ControlExp
     {
         /** \name Ctor & dtor.
-         ** \{ */
+        ** \{ */
     public:
         /** \brief Construct a Return Expression node.
-         ** \param location scanner position informations
-         ** \param exp the returned exp
-         */
-        ReturnExp (const Location& location,
-                   Exp  *exp) :
-            ControlExp (location),
+        ** \param location scanner position informations
+        ** \param exp the returned exp
+        */
+        ReturnExp (const Location& location, Exp  *exp) 
+            : ControlExp (location), 
             _exp (exp),
             _is_global(false)
+        {
+            if(exp)
             {
-                if(exp)
-                {
-                    _is_global = false;
-                }
+                _is_global = false;
             }
+        }
 
-        ReturnExp (const Location& location) :
-            ControlExp (location),
+        ReturnExp (const Location& location) 
+            : ControlExp (location),
             _exp (NULL),
             _is_global(true)
-            {
-            }
+        {
+        }
 
         virtual ~ReturnExp ()
+        {
+            if(_exp != NULL)
             {
-                if(_exp != NULL)
-                {
-                    delete _exp;
-                }
+                delete _exp;
             }
+        }
+
+        virtual ReturnExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            if(is_global())
+            {
+                return new ReturnExp(*newloc);
+            }
+            else
+            {
+                return new ReturnExp(*newloc, exp_get().clone());
+            }
+        }
 
         /** \name Visitors entry point.
-         ** \{ */
+        ** \{ */
     public:
         /** \brief Accept a const visitor \a v. */
         virtual void accept (Visitor& v)
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
         /** \brief Accept a non-const visitor \a v. */
         virtual void accept (ConstVisitor& v) const
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
         /** \} */
 
-
         /** \name Accessors.
-         ** \{ */
+        ** \{ */
     public:
         const Exp &	exp_get() const
-            {
-                return *_exp;
-            }
+        {
+            return *_exp;
+        }
 
         Exp &	exp_get()
-            {
-                return *_exp;
-            }
+        {
+            return *_exp;
+        }
 
         bool is_global() const
-            {
-                return _is_global;
-            }
+        {
+            return _is_global;
+        }
         /** \} */
 
 

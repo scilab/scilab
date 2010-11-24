@@ -16,43 +16,49 @@
  */
 
 #ifndef AST_CONTINUEEXP_HXX
-# define AST_CONTINUEEXP_HXX
+#define AST_CONTINUEEXP_HXX
 
-# include "controlexp.hxx"
+#include "controlexp.hxx"
 
 namespace ast
 {
-  /** \brief Abstract an Continue Expression node.
-   **
-   ** \b Example:  continue ;*/
-  class ContinueExp : public ControlExp
-  {
-  public:
-    ContinueExp (const Location& location) : ControlExp (location)
+    /** \brief Abstract an Continue Expression node.
+    **
+    ** \b Example:  continue ;*/
+    class ContinueExp : public ControlExp
     {
-    }
+    public:
+        ContinueExp (const Location& location) 
+            : ControlExp (location)
+        {
+        }
 
-    /** \brief Destroy an Continue Exp node. */
-    virtual ~ContinueExp ()
-    {
-    }
-    /** \} */
+        /** \brief Destroy an Continue Exp node. */
+        virtual ~ContinueExp ()
+        {
+        }
+        /** \} */
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
-  };
+        virtual ContinueExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new ContinueExp(*newloc);
+        }
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
+    };
 
 } // namespace ast
 

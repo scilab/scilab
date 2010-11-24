@@ -11,7 +11,7 @@
  */
 
 #ifndef AST_DEBUGVISITOR_HXX
-# define AST_DEBUGVISITOR_HXX
+#define AST_DEBUGVISITOR_HXX
 
 #include <iostream>
 #include <sstream>
