@@ -33,6 +33,8 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "os_swprintf.h"
+#include "mopen.h"
+#include "mclose.h"
 }
 
 
@@ -55,7 +57,9 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	bool bErrCatch	= false;
 	int iMode		= EXEC_MODE_VERBOSE;
 	Exp* pExp		= NULL;
+    int iID         = 0;
     Parser parser;
+
 
 	if(in.size() < 1 || in.size() > 3)
 	{
@@ -107,12 +111,21 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
         wchar_t* pstFile = pS->string_get(0);
         wchar_t *expandedPath = expandPathVariableW(pstFile);
+
+        /*fake call to mopen to show file within file()*/
+        if(mopen(expandedPath, L"r", 0, &iID) != MOPEN_NO_ERROR)
+        {
+            ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"exec", expandedPath);
+            return Function::Error;
+        }
+
         parser.parseFile(expandedPath, L"exec");
         FREE(expandedPath);
 		if(parser.getExitStatus() !=  Parser::Succeded)
 		{
 			YaspWriteW(parser.getErrorMessage());
 			parser.freeTree();
+            mclose(iID);
 			return Function::Error;
 		}
 
@@ -127,6 +140,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		if(in[0]->getAsMacroFile()->parse() == false)
 		{
             ScierrorW(999, _W("%ls: Unable to parse macro '%s'"), "exec", in[0]->getAsMacroFile()->getName().c_str());
+            mclose(iID);
 			return Function::Error;
 		}
 		pExp = in[0]->getAsMacroFile()->macro_get()->body_get();
@@ -134,6 +148,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	else
 	{
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"exec", 1);
+        mclose(iID);
 		return Function::Error;
 	}
 
@@ -292,10 +307,12 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                     }
 
 
+                    mclose(iID);
                     throw ScilabMessage(os.str(), 0, (*j)->location_get());
                 }
             }
 
+            mclose(iID);
             throw ScilabMessage((*j)->location_get());
         }
 		catch(ScilabError se)
@@ -316,7 +333,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             iErr = ConfigVariable::getLastErrorNumber();
             if(bErrCatch == false)
             {
-                file.close();
+                mclose(iID);
 			    return Function::Error;
             }
             break;
@@ -334,6 +351,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     }
 
 	parser.freeTree();
+    mclose(iID);
 	file.close();
 	return Function::OK;
 }
