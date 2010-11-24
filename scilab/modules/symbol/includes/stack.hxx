@@ -11,13 +11,13 @@
  */
 
 #ifndef SYMBOL_STACK_HH
-# define SYMBOL_STACK_HH
+#define SYMBOL_STACK_HH
 
-# include <iostream>
-# include <list>
-# include <map>
-# include <cassert>
-# include "table.hxx"
+#include <iostream>
+#include <list>
+#include <map>
+#include <cassert>
+#include "table.hxx"
 #include "export_symbol.h"
 
 namespace symbol

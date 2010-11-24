@@ -11,7 +11,7 @@
  */
 
 #ifndef SYMBOL_HEAP_HH
-# define SYMBOL_HEAP_HH
+#define SYMBOL_HEAP_HH
 
 #include <iostream>
 #include <list>

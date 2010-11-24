@@ -16,7 +16,7 @@
  */
 
 #ifndef CONTEXT_HH
-# define CONTEXT_HH
+#define CONTEXT_HH
 #include "symbol.hxx"
 #include "stack.hxx"
 #include "heap.hxx"

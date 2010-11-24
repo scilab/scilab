@@ -12,7 +12,7 @@
 */
 
 #ifndef SYMBOL_SCOPE_HH
-# define SYMBOL_SCOPE_HH
+#define SYMBOL_SCOPE_HH
 
 #include <iostream>
 #include <map>

@@ -11,7 +11,7 @@
  */
 
 #ifndef SYMBOL_HXX
-# define SYMBOL_HXX
+#define SYMBOL_HXX
 
 #include "symbol.hxx"
 
