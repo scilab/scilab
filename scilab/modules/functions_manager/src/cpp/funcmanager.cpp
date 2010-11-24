@@ -283,22 +283,25 @@ char *GetXmlFileEncoding(string _filename)
 
 bool FuncManager::CreateModuleList(void)
 {
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"elementary_functions", &ElemFuncModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"types", &TypesModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"boolean", &BooleanModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"integer", &IntegerModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"core", &CoreModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"io", &IoModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"functions", &FunctionsModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"output_stream", &OutputStreamModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"matio", &MatioModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"elementary_functions", &ElemFuncModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"types", &TypesModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"boolean", &BooleanModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"integer", &IntegerModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"core", &CoreModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"io", &IoModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"functions", &FunctionsModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"output_stream", &OutputStreamModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"matio", &MatioModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"fileio", &FileioModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"gui", &GuiModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"time", &TimeModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scinotes", &ScinotesModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"localization", &LocalizationModule::Load));
-	return true;
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"gui", &GuiModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"time", &TimeModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scinotes", &ScinotesModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"localization", &LocalizationModule::Load));
+#ifdef _MSC_VER
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"windows_tools", &WindowsToolsModule::Load));
+#endif
+    return true;
 }
 
 bool FuncManager::LoadFuncByModule(void)

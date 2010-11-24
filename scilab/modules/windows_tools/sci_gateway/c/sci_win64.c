@@ -15,29 +15,31 @@
 #include "gw_windows_tools.h"
 #include "MALLOC.h" /* MALLOC */
 #include "stack-c.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
+
 /*--------------------------------------------------------------------------*/
-int sci_win64(char *fname,unsigned long l)
+int sci_win64(char *fname, int* _piKey)
 {
-	int n1 = 0,m1 = 0;
-	int *Status = NULL;
+    int Status = 0;
 
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	Status = (int*)MALLOC(sizeof(int));
-
 #ifdef _WIN64
-	*Status = TRUE;
+	Status = TRUE;
 #else
-	*Status = FALSE;
+	Status = FALSE;
 #endif
 
-	m1 = 1;n1 = 1;
-	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
-	LhsVar(1)=Rhs+1;
+    if(createScalarBoolean(_piKey, Rhs + 1, Status) != 0)
+    {
+        return 1;
+    }
 
-	C2F(putlhsvar)();
-	if (Status) {FREE(Status);Status=NULL;}
+	LhsVar(1) = Rhs+1;
+
+    PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

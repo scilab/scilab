@@ -31,5 +31,6 @@
     <module name="scinotes" activate="yes"/>
     <module name="data_structures" activate="yes"/>
     <module name="localization" activate="yes"/>
+    <module name="windows_tools" activate="yes"/>
 </modules>
 
