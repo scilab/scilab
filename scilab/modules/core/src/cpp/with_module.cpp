@@ -9,26 +9,31 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <list>
+#include <string>
+#include "configvariable.hxx"
+
+extern "C"
+{
 #include <string.h>
 #include "with_module.h"
 #include "getmodules.h"
+}
 /*--------------------------------------------------------------------------*/
-BOOL with_module(char *modulename)
+BOOL with_module(wchar_t* _pwstModule)
 {
-	if (modulename)
+	if(_pwstModule)
 	{
-		struct MODULESLIST *Modules=getmodules();
-		int nrow = Modules->numberofModules;
-		int i = 0;
-
-		for(i=0;i<nrow;i++)
-		{
-			if ( strcmp(Modules->ModuleList[i],modulename) == 0)
-			{
-				return TRUE;
-			}
-		}
-	}
+        std::list<std::wstring> sModuleList = ConfigVariable::getModuleList();
+        std::list<std::wstring>::const_iterator it;
+        for(it = sModuleList.begin() ; it != sModuleList.end() ; it++)
+        {
+            if(wcscmp((*it).c_str(), _pwstModule) == 0)
+            {
+                return TRUE;
+            }
+        }
+    }
 	return FALSE;
 
 }

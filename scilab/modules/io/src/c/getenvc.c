@@ -17,6 +17,7 @@
 #include <Windows.h> /* GetEnvironmentVariable */
 #endif
 #include "os_strdup.h"
+#include "os_wcsdup.h"
 #include "MALLOC.h"
 #include "getenvc.h"
 #include "localization.h"
@@ -191,6 +192,39 @@ char *searchEnv(const char *name,const char *env_var)
 	}
 #endif
 	return buffer;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv)
+{
+    wchar_t* pwstRet = NULL;
+    wchar_t pwstFullpath[PATH_MAX];
+
+    wcscpy(pwstFullpath, L"");
+
+#if _MSC_VER
+    {
+        _wsearchenv(_pwstName, _pwstEnv, pwstFullpath);
+
+        if (wcslen(pwstFullpath) > 0)
+        {
+			pwstRet = os_wcsdup(pwstFullpath);
+		}
+	}
+#else
+    char* pstName   = wide_string_to_UTF8(_pwstName);
+    char* pstEnv    = wide_string_to_UTF8(_pwstEnv);
+	char pstFullpath[PATH_MAX];
+
+	searchenv_others(pstName, pstEnv, pstFullpath);
+	if (strlen(pstFullpath) > 0)
+	{
+		pwstRet = to_wide_string(pstFullpath);
+	}
+
+    FREE(pstName);
+    FREE(pstEnv);
+#endif
+	return pwstRet;
 }
 /*--------------------------------------------------------------------------*/
 

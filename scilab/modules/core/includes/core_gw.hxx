@@ -14,7 +14,7 @@
 #define __CORE_GW_HXX__
 
 #include "function.hxx"
-#include "internal.hxx"
+#include "context.hxx"
 
 #include "dynlib_core_gw.h"
 
@@ -42,5 +42,6 @@ CPP_GATEWAY_PROTOTYPE(sci_getscilabmode);
 CPP_GATEWAY_PROTOTYPE(sci_getos);
 CPP_GATEWAY_PROTOTYPE(sci_with_module);
 CPP_GATEWAY_PROTOTYPE(sci_lasterror);
+CPP_GATEWAY_PROTOTYPE(sci_getversion);
 
 #endif /* __CORE_GW_HXX__ */

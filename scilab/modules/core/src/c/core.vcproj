@@ -673,10 +673,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_getversion.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_gstacksize.c"
 				>
 			</File>
@@ -853,7 +849,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\with_module.c"
+				RelativePath="..\cpp\with_module.cpp"
 				>
 			</File>
 			<File
@@ -1262,7 +1258,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\with_module.h"
+				RelativePath="..\..\includes\with_module.h"
 				>
 			</File>
 			<File

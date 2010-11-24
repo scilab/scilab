@@ -65,7 +65,6 @@ int C2F(sci_newfun)(char *fname, int* _piKey);
 //Yasp
 int sci_type(char *fname, int* _piKey);
 int sci_getdebuginfo(char *fname, int* _piKey);
-int sci_getversion(char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_CORE__ */
 /*--------------------------------------------------------------------------*/

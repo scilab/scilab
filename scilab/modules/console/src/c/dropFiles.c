@@ -19,8 +19,8 @@
 #include "storeCommand.h" /* storecommand */
 #include "FindFileExtension.h"
 #include "URIFileToFilename.h"
-#include "../../../string/includes/stricmp.h"
-#include "../../../core/src/c/with_module.h"
+#include "stricmp.h"
+#include "with_module.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define BIN_EXTENSION_FILE ".bin"
