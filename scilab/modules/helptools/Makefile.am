@@ -61,15 +61,13 @@ INCLUDE_FLAGS = $(libscihelptools_la_CFLAGS)
 #### Target ######
 modulename=helptools
 
-
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(mydatadir)
 libscihelptools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
-libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
+libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS
 
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
@@ -81,7 +79,6 @@ bin/manrev2sci
 libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihelptools_la_sci_gateway_DATA = sci_gateway/helptools_gateway.xml
 
-
 #### New documentation generation system
 libscihelptools_la_data_configurationdir = $(mydatadir)/data/configuration
 libscihelptools_la_data_configuration_DATA = data/configuration/scilab_primitives.txt \
@@ -89,7 +86,6 @@ data/configuration/scilab_macros.txt
 
 libscihelptools_la_data_templatedir = $(mydatadir)/data/template
 libscihelptools_la_data_template_DATA = data/template/template_javahelp.html
-
 libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
 data/css/style.css
