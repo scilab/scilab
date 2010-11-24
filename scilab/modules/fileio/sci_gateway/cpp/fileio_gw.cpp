@@ -24,6 +24,7 @@ using namespace types;
 bool FileioModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"cd", &sci_chdir, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"chdir", &sci_chdir, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"pwd", &sci_pwd, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mopen", &sci_mopen, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mclose", &sci_mclose, MODULE_NAME));
