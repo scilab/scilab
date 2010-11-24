@@ -1,6 +1,11 @@
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
+Xcos:
+=====
+
+* bug 8441 fixed - "xcos_block" abstract block were not removed on the 
+                   compilation.
 
 SciNotes:
 =========
