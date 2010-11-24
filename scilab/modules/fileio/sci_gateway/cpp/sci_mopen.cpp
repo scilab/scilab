@@ -16,12 +16,14 @@
 #include "fileio_gw.hxx"
 extern "C"
 {
+#include <PATH_MAX.h>
 #include "Scierror.h"
 #include "localization.h"
 #include "expandPathVariable.h"
 #include "mopen.h"
 #include "charEncoding.h"
 #include "MALLOC.h"
+#include "fullpath.h"
 }
 
 using namespace types;
@@ -112,7 +114,9 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-    iErr = mopen(pstFilename, pstMode, iSwap, &iID);
+    wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
+    get_full_pathW(pwstTemp, (const wchar_t*)pstFilename, PATH_MAX * 2);
+    iErr = mopen(pwstTemp, pstMode, iSwap, &iID);
     if(iErr != MOPEN_NO_ERROR)
     {//mange file open errors
         if(_iRetCount == 1)
@@ -123,6 +127,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
                 {
                     ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"mopen", pstFilename);
                     FREE(pstFilename);
+                    FREE(pwstTemp);
                     pstFilename = NULL;
                     return Function::Error;
                 }
@@ -130,6 +135,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
                 {
                     ScierrorW(999,_W("%ls: invalid filename.\n"), L"mopen");
                     FREE(pstFilename);
+                    FREE(pwstTemp);
                     pstFilename = NULL;
                     return Function::Error;
                 }
@@ -137,12 +143,16 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
                 {
                     ScierrorW(999,_W("%ls: invalid status.\n"), L"mopen");
                     FREE(pstFilename);
+                    FREE(pwstTemp);
                     pstFilename = NULL;
                     return Function::Error;
                 }
             }
         }
     }
+
+    FREE(pwstTemp);
+    FREE(pstFilename);
 
     Double* pD = new Double(static_cast<double>(iID));
     out.push_back(pD);

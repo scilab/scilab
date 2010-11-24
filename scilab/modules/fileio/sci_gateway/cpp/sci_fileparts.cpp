@@ -114,14 +114,17 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
         case PathPart : 
             {
                 pOut = new String(pwstDrive);
+                break;
             }
         case NamePart : 
             {
                 pOut = new String(pwstName);
+                break;
             }
         case ExtensionPart : 
             {
                 pOut = new String(pwstExtension);
+                break;
             }
         default : 
             {
