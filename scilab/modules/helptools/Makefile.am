@@ -82,6 +82,18 @@ libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihelptools_la_sci_gateway_DATA = sci_gateway/helptools_gateway.xml
 
 
+#### New documentation generation system
+libscihelptools_la_data_configurationdir = $(mydatadir)/data/configuration
+libscihelptools_la_data_configuration_DATA = data/configuration/scilab_primitives.txt \
+data/configuration/scilab_macros.txt
+
+libscihelptools_la_data_templatedir = $(mydatadir)/data/template
+libscihelptools_la_data_template_DATA = data/template/template_javahelp.html
+
+libscihelptools_la_data_cssdir = $(mydatadir)/data/css
+libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
+data/css/style.css
+
 #### helptools : css files ####
 libscihelptools_la_cssdir = $(mydatadir)/css
 libscihelptools_la_css_DATA = css/html.css \
