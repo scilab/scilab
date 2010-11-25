@@ -137,12 +137,17 @@ bool Set_Shell(void)
 #endif
 
 /*--------------------------------------------------------------------------*/
-bool AntislashToSlash(char *pathwindows,char *pathunix)
+bool AntislashToSlash(const char *pathwindows,char *pathunix)
 {
     return convertSlash(pathwindows,pathunix,false);
 }
 /*--------------------------------------------------------------------------*/
-bool convertSlash(char *path_in,char *path_out,bool slashToAntislash)
+bool SlashToAntislash(const char *pathunix, char *pathwindows)
+{
+    return convertSlash(pathunix, pathwindows, true);
+}
+/*--------------------------------------------------------------------------*/
+bool convertSlash(const char *path_in,char *path_out,bool slashToAntislash)
 {
     bool bOK = false;
     if ( (path_in) && (path_out) )
