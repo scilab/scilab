@@ -24,6 +24,7 @@
 #include <libxml/xmlreader.h>
 
 #include "MALLOC.h"
+#include "sci_mode.h"
 #include "funcmanager.hxx"
 #include "configvariable.hxx"
 #include "module_declaration.hxx"
@@ -298,6 +299,10 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scinotes", &ScinotesModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"localization", &LocalizationModule::Load));
+    if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
+    {
+        m_ModuleMap.insert(pair<wstring, GW_MOD>(L"jvm", &JvmModule::Load));
+    }
 #ifdef _MSC_VER
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"windows_tools", &WindowsToolsModule::Load));
 #endif

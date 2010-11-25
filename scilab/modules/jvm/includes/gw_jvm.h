@@ -16,7 +16,6 @@
 #define __GW_JVM_H__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_jvm.h"
-#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 JVM_IMPEXP int gw_jvm(void);
 /*--------------------------------------------------------------------------*/
@@ -24,7 +23,6 @@ JVM_IMPEXP int gw_jvm(void);
 /* used in sci_gateway */
 JVM_IMPEXP int sci_with_embedded_jre(char *fname,unsigned long fname_len);
 JVM_IMPEXP int sci_system_setproperty(char *fname,unsigned long fname_len);
-JVM_IMPEXP int sci_system_getproperty(char *fname,unsigned long fname_len);
 JVM_IMPEXP int sci_javaclasspath(char *fname,unsigned long fname_len);
 JVM_IMPEXP int sci_javalibrarypath(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/

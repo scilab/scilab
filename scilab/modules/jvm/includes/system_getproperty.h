@@ -15,12 +15,13 @@
 #ifndef __SYSTEM_GETPROPERTY_H__
 #define __SYSTEM_GETPROPERTY_H__
 
+#include "dynlib_jvm.h"
 /**
 * get system property
 * @param property name
 * @return property value
 */
-char * system_getproperty(char *property,char *defaultproperty);
+JVM_IMPEXP char * system_getproperty(char *property,char *defaultproperty);
 
 #endif /* __SYSTEM_GETPROPERTY_H__ */
 /*--------------------------------------------------------------------------*/ 
