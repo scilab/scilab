@@ -505,6 +505,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\logicalopexp.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\mathexp.hxx"
 				>
 			</File>
