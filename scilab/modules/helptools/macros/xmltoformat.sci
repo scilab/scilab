@@ -1063,7 +1063,10 @@ function xmlfiles = x2f_get_xml_files(directory)
 
     directory = pathconvert(directory);
 
-    xmlfiles = gsort(basename(listfiles(directory+"*.xml")),"lr","i");
+    // remove duplicated names in current directory (example: case ".xml~")
+    xmlfiles = unique(basename(findfiles(directory, "*.xml")));
+    
+    xmlfiles = gsort(xmlfiles, "lr", "i");
     xmlfiles(grep(xmlfiles,"master_help")) = [];
     xmlfiles(grep(xmlfiles,"master"))      = [];
 
