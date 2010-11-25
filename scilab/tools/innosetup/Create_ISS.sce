@@ -52,7 +52,9 @@ function s = getTestsSize()
     files_unit = [];
     for j = 1:size(files_module, '*')
       info = fileinfo(files_module(j));
-      total = total + info(1);
+      if ~isnan(info(1)) then
+        total = total + info(1);
+      end
     end
   end
   s = total / 10;
@@ -107,7 +109,7 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
      return;
     end;
 
-    w = strsplit(vstr, "-");
+    w = %_strsplit(vstr, "-");
     HTTP_MKL = "http://www.scilab.org/download/master";
     HTTP_MKL_FFTW = "http://www.scilab.org/download/master";
 
@@ -222,7 +224,7 @@ if or(fileAndExt == ["Create_ISS.sce","Create_ISS_nojre.sce"]) then
         chdir(path);
     end
 
-if ~(Update_Script_Innosetup("Scilab.iss") == %T ) then
+    if ~(Update_Script_Innosetup("Scilab.iss") == %T ) then
         printf("\nScript aborted.\n");
     end
     chdir(SaveCurrentPath);

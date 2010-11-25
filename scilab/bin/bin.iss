@@ -85,8 +85,8 @@ Source: bin\LibScilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\scilab_windows.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hashtable.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: bin\YaSpScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;

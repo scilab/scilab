@@ -23,7 +23,6 @@ Source: etc\scilab.start; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\scilab.quit; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 
 ; // These files MUST be generated in final version of Scilab 6
-Source: etc\yasp_modules.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\modules.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 ;
