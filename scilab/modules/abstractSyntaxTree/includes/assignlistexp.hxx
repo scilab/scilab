@@ -16,47 +16,59 @@
  */
 
 #ifndef __ASSIGNLISTEXP_HXX__
-# define __ASSIGNLISTEXP_HXX__
+#define __ASSIGNLISTEXP_HXX__
 
-# include "assignlistexp.hxx"
+#include "assignlistexp.hxx"
 
 namespace ast
 {
-
-  /** \brief Abstract an Assign List of Expression node.
-   **
-   ** \b Example: [a, b, c.d, e(2)] = ... */
-  class AssignListExp : public ArrayListExp
-  {
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct an Assign List of Expression node.
-     ** \param location scanner position informations
-     ** \param body EXP LIST intruction
-     */
-    AssignListExp (const Location& location,
-	    std::list<Exp *>& exps) :
-      ArrayListExp (location, exps)
+    /** \brief Abstract an Assign List of Expression node.
+    **
+    ** \b Example: [a, b, c.d, e(2)] = ... */
+    class AssignListExp : public ArrayListExp
     {
-    }
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct an Assign List of Expression node.
+        ** \param location scanner position informations
+        ** \param body EXP LIST intruction
+        */
+        AssignListExp (const Location& location,
+            std::list<Exp *>& exps) :
+        ArrayListExp (location, exps)
+        {
+        }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        virtual AssignListExp* clone()
+        {
+            std::list<Exp *>* exps = new std::list<Exp *>;
+            std::list<Exp *>::const_iterator it;
+            for(it = _exps->begin() ; it != _exps->end() ; it++)
+            {
+                exps->push_back((*it)->clone());
+            }
 
-  };
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new AssignListExp(*newloc, *exps);
+        }
+ 
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
+
+    };
 
 } // namespace ast
 

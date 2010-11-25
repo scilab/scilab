@@ -381,6 +381,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\assignlistexp.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\ast.hxx"
 				>
 			</File>
