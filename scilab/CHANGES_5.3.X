@@ -8,6 +8,12 @@ SciNotes:
                    middle click.
  
 
+Bug Fixes:
+==========
+
+* bug 8468 fixed - size with 2 input arguments did not work for hypermatrices.
+
+
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
             ===============================================================
 
