@@ -20,6 +20,7 @@
 #include "freeArrayOfString.h"
 #include "BOOL.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 #include "strsplitfunction.h"
 /*----------------------------------------------------------------------------*/
 int sci_strsplit(char *fname, int* _piKey)
@@ -153,7 +154,7 @@ int sci_strsplit(char *fname, int* _piKey)
 		}
 
 		LhsVar(1) = Rhs + 1;
-		C2F(putlhsvar)();
+        PutLhsVar();
 		return 0;
 	}
 
@@ -252,7 +253,7 @@ int sci_strsplit(char *fname, int* _piKey)
 						}
 
 						LhsVar(1) = Rhs + 1;
-						C2F(putlhsvar)();
+                        PutLhsVar();
 
 						freeArrayOfWideString(results, m_out);
 					}
