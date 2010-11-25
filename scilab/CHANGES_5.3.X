@@ -1,6 +1,12 @@
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
+SciNotes:
+=========
+
+* bug 8465 fixed - Under GNU/Linux, it was not possible to paste with the
+                   middle click.
+ 
 
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
             ===============================================================

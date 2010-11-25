@@ -17,6 +17,9 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.im.InputContext;
+import java.io.IOException;
 
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
@@ -164,6 +167,36 @@ public class CopyAsHTMLAction extends DefaultAction {
             } else {
                 return null;
             }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public boolean importData(JComponent c, Transferable t) {
+            if (c instanceof ScilabEditorPane) {
+                DataFlavor[] flavors = t.getTransferDataFlavors();
+                if (flavors != null) {
+                    int i = 0;
+                    for (; i < flavors.length; i++) {
+                        if (flavors[i].equals(DataFlavor.stringFlavor)) {
+                            break;
+                        }
+                    }
+                    if (i != flavors.length) {
+                        InputContext ic = c.getInputContext();
+                        if (ic != null) {
+                            ic.endComposition();
+                        }
+                        try {
+                            String data = (String) t.getTransferData(DataFlavor.stringFlavor);
+                            ((ScilabEditorPane) c).replaceSelection(data);
+                            return true;
+                        } catch (UnsupportedFlavorException e) { }
+                        catch (IOException ex) { }
+                    }
+                }
+            }
+            return false;
         }
 
         /**
