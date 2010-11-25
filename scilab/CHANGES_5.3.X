@@ -6,10 +6,12 @@ SciNotes:
 
 * bug 8465 fixed - Under GNU/Linux, it was not possible to paste with the
                    middle click.
- 
+
 
 Bug Fixes:
 ==========
+
+* bug 8459 fixed - strsplit failed when second input argument was a "/"
 
 * bug 8468 fixed - size with 2 input arguments did not work for hypermatrices.
 
@@ -67,7 +69,7 @@ Javasci:
 
 A new version of the Java => Scilab API called Javasci v2 is now included into
 the Scilab distribution.
-This version fixes most the issues and limitations of the previous version. 
+This version fixes most the issues and limitations of the previous version.
 This API is automatically fully tested through unitary tests and code coverage.
 Please, note that previous version of Javasci remains available and shipped
 into the Scilab distribution.
@@ -160,7 +162,7 @@ overlaying for big values.
 * bug 7492 fixed - If its "data_mapping" property was set to "direct", the
   Grayplot object's data seemed to be transposed when displayed.
 
-* bug 8168 fixed - Adding a datatip in a figure that mix surface and curve  
+* bug 8168 fixed - Adding a datatip in a figure that mix surface and curve
                    generated a zero divide error.
 
 
