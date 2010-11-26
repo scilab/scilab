@@ -8,6 +8,7 @@ SciNotes:
 * bug 8465 fixed - Under GNU/Linux, it was not possible to paste with the
                    middle click.
 
+
 Xcos:
 =====
 
@@ -49,6 +50,8 @@ Bug Fixes:
                    with ATOMS functions.
 
 * bug 8459 fixed - strsplit failed when second input argument was a "/"
+
+* bug 8462 fixed - bvodeS crashed on Windows and did not return a error.
 
 * bug 8468 fixed - size with 2 input arguments did not work for hypermatrices.
 
