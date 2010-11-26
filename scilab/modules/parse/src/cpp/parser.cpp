@@ -22,6 +22,7 @@
 #include "windows.h"
 #include "charEncoding.h"
 #include "MALLOC.h"
+#include "sci_tmpdir.h"
 #endif
 
 extern "C"
@@ -132,11 +133,14 @@ void ParserSingleInstance::parse(char *command)
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
-	wchar_t szFile[] = L"command.temp";
-	fopen_s(&yyin, "command.temp", "w");
+	char szFile[MAX_PATH];
+    char* pstTmpDIr = getTMPDIR();
+    sprintf(szFile, "%s\\%s", pstTmpDIr, "command.temp");
+    FREE(pstTmpDIr);
+	fopen_s(&yyin, szFile, "w");
 	fwrite(command, sizeof(char), strlen(command), yyin);
 	fclose(yyin);
-	fopen_s(&yyin, "command.temp", "r");
+	fopen_s(&yyin, szFile, "r");
 #endif
 
 #ifdef __APPLE__
@@ -163,7 +167,7 @@ void ParserSingleInstance::parse(char *command)
 
     fclose(yyin);
 #ifdef _MSC_VER
-	DeleteFile(szFile);
+	DeleteFileA(szFile);
 #endif
 }
 
