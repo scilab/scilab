@@ -17,7 +17,7 @@
 ;
 #define PARALLEL "parallel"
 ;
-Source: bin\{#PARALLEL}.dll; DestDir: {app}\bin; Components: {#COMPN_PARALLEL}
+;Source: bin\{#PARALLEL}.dll; DestDir: {app}\bin; Components: {#COMPN_PARALLEL}
 ;
 ;Source: modules\{#PARALLEL}\changelog.txt; DestDir: {app}\modules\{#PARALLEL}; Components: {#COMPN_PARALLEL};
 Source: modules\{#PARALLEL}\license.txt; DestDir: {app}\modules\{#PARALLEL}; Components: {#COMPN_PARALLEL}
