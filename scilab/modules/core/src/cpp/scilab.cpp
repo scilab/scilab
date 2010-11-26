@@ -57,6 +57,9 @@ extern "C"
 #include "os_strdup.h"
 #include "localization.h"
 #include "diary.h"
+#include "PATH_MAX.h"
+#include "sci_tmpdir.h"
+#include "deleteafile.h"
 
 #ifdef __APPLE__
 #include "../../../shell/src/c/others/initMacOSXEnv.h"
@@ -97,6 +100,9 @@ bool ASTtimed = false;
 bool consoleMode = false;
 bool noJvm = false;
 bool noStart = false;
+bool noBanner = false;
+bool execCommand = false;
+bool execFile = false;
 
 using symbol::Context;
 using std::string;
@@ -193,6 +199,12 @@ static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
         }
         else if (!strcmp("-f", argv[i])) {
             i++;
+            execFile = true;
+            *_piFileIndex = i;
+        }
+        else if (!strcmp("-e", argv[i])) {
+            i++;
+            execCommand = true;
             *_piFileIndex = i;
         }
         else if (!strcmp("-l", argv[i])) {
@@ -210,6 +222,9 @@ static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
         }
         else if (!strcmp("-ns", argv[i])) {
             noStart = true;
+        }
+        else if (!strcmp("-nb", argv[i])) {
+            noBanner = true;
         }
     }
 
@@ -434,7 +449,10 @@ static int interactiveMain (void)
     Parser *parser = new Parser();
     parser->setParseTrace(parseTrace);
 
-    banner();
+    if(noBanner == false)
+    {
+        banner();
+    }
 
     InitializeHistoryManager();
 /* add date & time @ begin session */
@@ -637,16 +655,34 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
 
 
 
-    if (iFileIndex == INTERACTIVE)
-    {
-        file_name = L"prompt";
-        iMainRet = interactiveMain();
+    if(execCommand)
+    {//-e option, create a file with command and run as batch
+        ConfigVariable::setPromptMode(ConfigVariable::prompt);
+        char szFile[PATH_MAX];
+        sprintf(szFile, "%s\\%s", getTMPDIR(), "execcommand.temp");
+        FILE* fExec = NULL;
+#ifdef _MSC_VER
+        fopen_s(&fExec, szFile, "w");
+#else
+        fExec = fopen(szFile, "w");
+#endif
+        fwrite(argv[iFileIndex], sizeof(char), strlen(argv[iFileIndex]), fExec);
+        fclose(fExec);
+        file_name = to_wide_string(szFile);
+        iMainRet = batchMain();
+        deleteafile(szFile);
     }
-    else
-    {
+    else// if(execFile)
+    {//-f option
+        ConfigVariable::setPromptMode(ConfigVariable::silent);
         file_name = to_wide_string(argv[iFileIndex]);
         iMainRet = batchMain();
     }
+    ConfigVariable::setPromptMode(ConfigVariable::normal);
+
+    //always run as interactiveMain even after -e or -f option
+    file_name = L"prompt";
+    iMainRet = interactiveMain();
 
     //close main scope
     symbol::Context::getInstance()->scope_end();
