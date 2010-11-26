@@ -654,29 +654,36 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
     }
 
 
-
-    if(execCommand)
-    {//-e option, create a file with command and run as batch
-        ConfigVariable::setPromptMode(ConfigVariable::prompt);
-        char szFile[PATH_MAX];
-        sprintf(szFile, "%s\\%s", getTMPDIR(), "execcommand.temp");
-        FILE* fExec = NULL;
-#ifdef _MSC_VER
-        fopen_s(&fExec, szFile, "w");
-#else
-        fExec = fopen(szFile, "w");
-#endif
-        fwrite(argv[iFileIndex], sizeof(char), strlen(argv[iFileIndex]), fExec);
-        fclose(fExec);
-        file_name = to_wide_string(szFile);
-        iMainRet = batchMain();
-        deleteafile(szFile);
+    try
+    {
+        if(execCommand)
+        {//-e option, create a file with command and run as batch
+            ConfigVariable::setPromptMode(ConfigVariable::prompt);
+            char szFile[PATH_MAX];
+            sprintf(szFile, "%s\\%s", getTMPDIR(), "execcommand.temp");
+            FILE* fExec = NULL;
+    #ifdef _MSC_VER
+            fopen_s(&fExec, szFile, "w");
+    #else
+            fExec = fopen(szFile, "w");
+    #endif
+            fwrite(argv[iFileIndex], sizeof(char), strlen(argv[iFileIndex]), fExec);
+            fclose(fExec);
+            file_name = to_wide_string(szFile);
+            iMainRet = batchMain();
+            deleteafile(szFile);
+        }
+        else// if(execFile)
+        {//-f option
+            ConfigVariable::setPromptMode(ConfigVariable::silent);
+            file_name = to_wide_string(argv[iFileIndex]);
+            iMainRet = batchMain();
+        }
     }
-    else// if(execFile)
-    {//-f option
-        ConfigVariable::setPromptMode(ConfigVariable::silent);
-        file_name = to_wide_string(argv[iFileIndex]);
-        iMainRet = batchMain();
+    catch(ScilabException se)
+    {
+        ConfigVariable::setPromptMode(ConfigVariable::normal);
+        YaspWriteW(se.GetErrorMessage().c_str());
     }
     ConfigVariable::setPromptMode(ConfigVariable::normal);
 
