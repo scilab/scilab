@@ -38,7 +38,7 @@ extern "C"
 
 char* getTMPDIR(void)
 {
-    return wide_string_to_UTF8(ConfigVariable::getSCIPath().c_str());
+    return wide_string_to_UTF8(ConfigVariable::getTMPDIR().c_str());
 }
 /*--------------------------------------------------------------------------*/
 wchar_t* getTMPDIRW(void)
