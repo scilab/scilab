@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include <stdio.h>
 #include "Scierror.h"
 #include "localization.h"
 }
@@ -119,6 +120,7 @@ Function::ReturnValue sci_mprintf(typed_list &in, int _iRetCount, typed_list &ou
     for(int i = 0 ; i < iOutputRows ; i++)
     {
         YaspWriteW(pwstOutput[i]);
+        fflush(NULL);
         FREE(pwstOutput[i]);
     }
     FREE(pwstOutput);
