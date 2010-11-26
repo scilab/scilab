@@ -24,6 +24,15 @@ bool TypesModule::Load()
   symbol::Context::getInstance()->AddFunction(Function::createFunction(L"usertype", &sci_usertype, MODULE_NAME));
   symbol::Context::getInstance()->AddFunction(Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
   symbol::Context::getInstance()->AddFunction(Function::createFunction(L"tlist", &sci_tlist, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"sparse", &sci_sparse, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"spones", &sci_spones, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"spget", &sci_spget, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"full", &sci_full, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"sp2adj", &sci_sp2adj, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"adj2sp", &sci_adj2sp, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"nnz", &sci_nnz, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"spcompack", &sci_spcompack, MODULE_NAME));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"bool2s", &sci_bool2s, MODULE_NAME));
 
   return true;
 }

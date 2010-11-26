@@ -29,6 +29,7 @@ private :
 public :
   TYPES_GW_IMPEXP static bool Load();
 };
+
 CPP_GATEWAY_PROTOTYPE(sci_list);
 CPP_GATEWAY_PROTOTYPE(sci_struct);
 CPP_GATEWAY_PROTOTYPE(sci_null);
@@ -38,5 +39,15 @@ CPP_GATEWAY_PROTOTYPE(sci_makecell);
 CPP_GATEWAY_PROTOTYPE(sci_usertype);
 CPP_GATEWAY_PROTOTYPE(sci_typeof);
 CPP_GATEWAY_PROTOTYPE(sci_tlist);
+
+CPP_GATEWAY_PROTOTYPE(sci_sparse);
+CPP_GATEWAY_PROTOTYPE(sci_spones);
+CPP_GATEWAY_PROTOTYPE(sci_spget);
+CPP_GATEWAY_PROTOTYPE(sci_full);
+CPP_GATEWAY_PROTOTYPE(sci_sp2adj);
+CPP_GATEWAY_PROTOTYPE(sci_adj2sp);
+CPP_GATEWAY_PROTOTYPE(sci_nnz);
+CPP_GATEWAY_PROTOTYPE(sci_spcompack);
+CPP_GATEWAY_PROTOTYPE(sci_bool2s);
 
 #endif /* !__TYPES_GW_HXX__ */

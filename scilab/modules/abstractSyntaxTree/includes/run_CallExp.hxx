@@ -312,6 +312,9 @@ void visitprivate(const CallExp &e)
             case InternalType::RealInt :
                 pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
                 break;
+            case InternalType::RealSparse :
+                pOut = pIT->getAsSparse()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                    break;
             case InternalType::RealString :
                 pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
                 break;

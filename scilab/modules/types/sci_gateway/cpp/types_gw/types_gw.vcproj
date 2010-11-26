@@ -374,7 +374,11 @@
 			</File>
 			<File
 				RelativePath="..\sci_usertype.cpp"
-				>
+                >
+			</File>
+			<File
+				RelativePath="..\sci_sparse.cpp"
+                >
 			</File>
 			<File
 				RelativePath="..\types_gw.cpp"

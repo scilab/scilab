@@ -18,6 +18,7 @@
 #include "fieldexp.hxx"
 #include "callexp.hxx"
 #include "simplevar.hxx"
+#include "sparse.hxx"
 
 bool bConditionState(types::InternalType *_pITResult)
 {
@@ -175,15 +176,25 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
         poResult = new types::String(_iRows, _iCols);
         break;
     case types::GenericType::RealPoly :
+    {
+        int* piRank = new int[_iRows * _iCols];
+        for(int i = 0 ; i < _iRows * _iCols ; i++)
         {
-            int* piRank = new int[_iRows * _iCols];
-            for(int i = 0 ; i < _iRows * _iCols ; i++)
-            {
-                piRank[i] = 1;
-            }
-            poResult = new types::MatrixPoly(_poSource->getAsPoly()->var_get(), _iRows, _iCols, piRank);
-            break;
+            piRank[i] = 1;
         }
+        poResult = new types::MatrixPoly(_poSource->getAsPoly()->var_get(), _iRows, _iCols, piRank);
+        break;
+    }
+    case types::InternalType::RealSparse :
+    {
+        poResult = new types::Sparse(_iRows, _iCols,_poSource->getAsSparse()->isComplex());
+        break;
+    }
+    case types::InternalType::RealSparseBool :
+    {
+        poResult = new types::SparseBool(_iRows, _iCols);
+        break;
+    }
     case types::InternalType::RealImplicitList :
         poResult = new types::ImplicitList();
         break;
@@ -292,6 +303,8 @@ types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, t
 /*
 _iRows : Position if _poDest allready initialized else size of the matrix
 _iCols : Position if _poDest allready initialized else size of the matrix
+
+FIXME: the result type should not be set according only to the first element imo.
 */
 types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows, int *_piCols)
 {
@@ -330,6 +343,16 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 		case types::InternalType::RealImplicitList :
 			poResult = new types::ImplicitList();
 			break;
+		case types::InternalType::RealSparse :
+        {
+			poResult = new types::Sparse(_iRows, _iCols,_poSource->getAsSparse()->isComplex());
+			break;
+        }
+		case types::InternalType::RealSparseBool :
+        {
+			poResult = new types::SparseBool(_iRows, _iCols);
+			break;
+        }
         default :
             // FIXME What should we do here ...
             break;
@@ -349,8 +372,36 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 	{//check if source type is compatible with dest type
 		switch(TypeDest)
 		{
+        case types::GenericType::RealSparse :
+            switch(TypeSource)
+            {
+                case types::GenericType::RealDouble :
+                {
+//                    std::cerr<<"appending a RealDouble to a Sparse\n";
+                    poResult->getAsSparse()->append(iCurRow, iCurCol, _poSource->getAsDouble());
+                    *_piRows = _poSource->getAsDouble()->rows_get();
+                    *_piCols = _poSource->getAsDouble()->cols_get();
+                    break;
+                }
+            }
+            break;
+        case types::GenericType::RealSparseBool :
+            switch(TypeSource)
+            {
+                case types::GenericType::RealBool :
+                {
+//                    std::cerr<<"appending a bool to a SparseBool\n";
+                    poResult->getAsSparseBool()->append(iCurRow, iCurCol, _poSource->getAsBool());
+                    *_piRows = _poSource->getAsBool()->rows_get();
+                    *_piCols = _poSource->getAsBool()->cols_get();
+                    break;
+                }
+            }
+            break;
 		case types::GenericType::RealDouble :
-			if(TypeSource == types::GenericType::RealPoly)
+            switch(TypeSource)
+            {
+            case types::GenericType::RealPoly :
 			{
 				types::Double *poDest = _poDest->getAsDouble();
 				//Convert Dest to RealPoly
@@ -381,9 +432,19 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 				}
 
 				poResult->getAsPoly()->poly_set(iCurRow, iCurCol, _poSource->getAsPoly()->poly_get(0)->coef_get());
-			}
+                break;
+            }
+            case types::GenericType::RealSparse :
+            {
+//                std::cerr<<"appending a sparse to a double\n";
+                _poSource->getAsSparse()->fill(* (poResult->getAsDouble()), iCurRow, iCurCol);
+                *_piRows = _poSource->getAsSparse()->rows_get();
+                *_piCols = _poSource->getAsSparse()->cols_get();
+                break;
+            }
 			break;
-		case types::GenericType::RealPoly :
+            }
+            case types::GenericType::RealPoly :
 			if(TypeSource == types::GenericType::RealDouble)
 			{
 				//Add Source like coef of the new element
@@ -393,6 +454,21 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 				pPolyOut->coef_set(_poSource->getAsDouble());
 			}
 			break;
+        case types::GenericType::RealBool :
+        {
+            switch(TypeSource)
+            {
+            case types::GenericType::RealSparseBool :
+            {
+//                std::cerr<<"appending a SparseBool to a Bool\n";
+                _poSource->getAsSparseBool()->fill(* (poResult->getAsBool()), iCurRow, iCurCol);
+                *_piRows = _poSource->getAsSparseBool()->rows_get();
+                *_piCols = _poSource->getAsSparseBool()->cols_get();
+                break;
+            }
+            }
+            break;
+        }
 		default:
 			break;
 		}
@@ -420,6 +496,20 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 			*_piRows = _poSource->getAsDouble()->rows_get();
 			*_piCols = _poSource->getAsDouble()->cols_get();
 			break;
+        case types::GenericType::RealSparse :
+        {
+            poResult->getAsSparse()->append(iCurRow, iCurCol, _poSource->getAsSparse());
+			*_piRows = _poSource->getAsSparse()->rows_get();
+			*_piCols = _poSource->getAsSparse()->cols_get();
+			break;
+        }
+        case types::GenericType::RealSparseBool :
+        {
+            poResult->getAsSparseBool()->append(iCurRow, iCurCol, _poSource->getAsSparseBool());
+			*_piRows = _poSource->getAsSparseBool()->rows_get();
+			*_piCols = _poSource->getAsSparseBool()->cols_get();
+			break;
+        }
 		case types::GenericType::RealPoly :
 			{
 				if(_poSource->getAsPoly()->isComplex())

@@ -35,7 +35,9 @@ namespace types
           RealInt,
           RealString,
           RealDouble,
+          RealSparse,
           RealBool,
+          RealSparseBool,
           RealFloat,
           RealPoly,
           RealSinglePoly,
@@ -74,7 +76,7 @@ namespace types
       virtual RealType                  getType(void) { return RealInternal; }
 
 
-      virtual wstring	                toString(int _iPrecison, int _iLineLen) = 0;
+      virtual wstring                   toString(int _iPrecison, int _iLineLen) = 0;
       virtual InternalType*             clone(void) = 0;
 
 
@@ -91,8 +93,8 @@ namespace types
           }
       }
 
-      bool	                            isDeletable() { return m_iRef == 0; }
-      bool	                            isRef(int _iRef = 0) { return m_iRef > _iRef; }
+      bool                              isDeletable() { return m_iRef == 0; }
+      bool                              isRef(int _iRef = 0) { return m_iRef > _iRef; }
       int                               getRef() { return m_iRef; }
 
       /* return type as string ( double, int, cell, list, ... )*/
@@ -119,6 +121,14 @@ namespace types
       /* Double */
       bool                              isDouble(void) { return (getType() == RealDouble); }
       virtual Double*                   getAsDouble(void) { return NULL; }
+
+      /* Sparse */
+      bool                              isSparse(void) { return (getType() == RealSparse); }
+      virtual Sparse*                   getAsSparse(void) { return NULL; }
+
+      /* SparseBool */
+      bool                              isSparseBool(void) { return (getType() == RealSparseBool); }
+      virtual SparseBool*               getAsSparseBool(void) { return NULL; }
 
       /* Float */
       bool                              isFloat(void) { return (getType() == RealFloat); }
@@ -190,6 +200,11 @@ namespace types
       bool                              isTList(void) { return (getType() == RealTList); }
       virtual TList*                    getAsTList(void) { return NULL; }
 
+      /* User */
+
+/*      virtual User*                     getAsUserType(void) { return NULL; }
+ */
+      bool                              isUserType(void) { return (getType() == RealUserType); }
       /* MList */
       bool                              isMList(void) { return (getType() == RealMList); }
       virtual MList*                    getAsMList(void) { return NULL; }

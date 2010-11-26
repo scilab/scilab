@@ -52,7 +52,7 @@ extern "C" {
 
 #include "all.hxx"
 #include "types.hxx"
-
+#include "sparse.hxx"
 
 namespace ast
 {
@@ -78,9 +78,9 @@ namespace ast
             {
                 if(_result != NULL && _result->isDeletable() == true)
                 {
-                    //					std::cout << "before single delete : " << _result << std::endl;
+                    //                  std::cout << "before single delete : " << _result << std::endl;
                     delete _result;
-                    //					std::cout << "after single delete" << std::endl;
+                    //                  std::cout << "after single delete" << std::endl;
                 }
             }
             else
@@ -194,8 +194,8 @@ namespace ast
         | Attributes.  |
         `-------------*/
     protected:
-        vector<types::InternalType*>	_resultVect;
-        types::InternalType*	_result;
+        vector<types::InternalType*>    _resultVect;
+        types::InternalType*    _result;
         bool m_bSingleResult;
         int _excepted_result;
     };
@@ -292,7 +292,7 @@ namespace ast
                 }
                 else if(execMeArg.result_get()->getType() == InternalType::RealPoly)
                 {
-                    MatrixPoly *pPoly = execMeArg.result_get()->getAsPoly();
+                  MatrixPoly *pPoly = execMeArg.result_get()->getAsPoly();
 
                     if(_pRefVar != NULL)
                     {
@@ -307,6 +307,10 @@ namespace ast
                         pDbl = pPoly->evaluate(&dbl);
 
                     }
+                }
+                else if(execMeArg.result_get()->getType() == InternalType::RealSparse)
+                {
+                    std::cerr<<"runvisitor.hxx @ 319\n";
                 }
                 else if(execMeArg.result_get()->getType() == InternalType::RealString)
                 {
@@ -453,7 +457,7 @@ namespace ast
         }
 
         /** \name Visit Constant Expressions nodes.
-        ** \{ */
+         ** \{ */
 
         void visitprivate(const StringExp &e)
         {
@@ -981,7 +985,6 @@ namespace ast
             {//return(x)
                 T execVar;
                 e.exp_get().accept(execVar);
-
                 if(execVar.result_size_get() == 1)
                 {
                     //protect variable
@@ -1269,8 +1272,7 @@ namespace ast
         /** \} */
 
         /** \name Visit Single Operation nodes.
-        ** \{ */
-
+         ** \{ */
         void visitprivate(const NotExp &e)
         {
             /*
@@ -1347,6 +1349,10 @@ namespace ast
                     vTransposeRealMatrix(pInR, pdbl->rows_get(), pdbl->cols_get(), pOutR);
                 }
                 result_set(pReturn);
+            }
+            else if(execMe.result_get()->isSparse())
+            {
+                result_set(execMe.result_get()->getAsSparse()->newTransposed());
             }
             else if(execMe.result_get()->isPoly())
             {
@@ -1469,7 +1475,6 @@ namespace ast
 
         /** \name Visit Type dedicated Expressions related node.
         ** \{ */
-
         void visitprivate(const ListExp &e)
         {
             T	execMeStart;

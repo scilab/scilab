@@ -308,7 +308,8 @@ libscicore_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			$(EIGEN_CPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK

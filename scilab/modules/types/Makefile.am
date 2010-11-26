@@ -55,7 +55,8 @@ TYPES_CPP_SOURCES = \
 			src/cpp/tlist.cpp \
 			src/cpp/file.cpp \
 			src/cpp/mlist.cpp \
-			src/cpp/threadId.cpp
+			src/cpp/threadId.cpp \
+			src/cpp/sparse.cpp
 
 GIWS_WRAPPERS =
 
@@ -76,7 +77,16 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_usertype.cpp \
 			sci_gateway/cpp/sci_typeof.cpp \
 			sci_gateway/cpp/sci_tlist.cpp \
-			sci_gateway/cpp/sci_mlist.cpp
+			sci_gateway/cpp/sci_mlist.cpp \
+			sci_gateway/cpp/sci_sparse.cpp \
+			sci_gateway/cpp/sci_spones.cpp \
+			sci_gateway/cpp/sci_spget.cpp \
+			sci_gateway/cpp/sci_sp2adj.cpp \
+			sci_gateway/cpp/sci_adj2sp.cpp \
+			sci_gateway/cpp/sci_nnz.cpp \
+			sci_gateway/cpp/sci_spcompack.cpp \
+			sci_gateway/cpp/sci_bool2s.cpp \
+			sci_gateway/cpp/sci_full.cpp
 
 libscitypes_la_CFLAGS=
 
@@ -91,7 +101,6 @@ libscitypes_la_CPPFLAGS = 	-Iincludes/ \
 				-I$(top_srcdir)/modules/system_env/includes \
 				-I$(top_srcdir)/modules/functions_manager/includes \
 				-I$(top_srcdir)/modules/string/includes \
-				-I src/cpp
 				-I src/cpp \
 				$(EIGEN_CPPFLAGS)
 
@@ -109,7 +118,6 @@ INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/sci_types.i
-
 
 if SWIG
 BUILT_SOURCES=swig
