@@ -11,6 +11,8 @@ SciNotes:
 Bug Fixes:
 ==========
 
+* bug 8412 fixed - find returned incorrect values with big vector.
+
 * bug 8459 fixed - strsplit failed when second input argument was a "/"
 
 * bug 8468 fixed - size with 2 input arguments did not work for hypermatrices.
