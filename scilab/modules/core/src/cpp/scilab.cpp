@@ -673,7 +673,7 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
             iMainRet = batchMain();
             deleteafile(szFile);
         }
-        else// if(execFile)
+        else if(execFile)
         {//-f option
             ConfigVariable::setPromptMode(ConfigVariable::silent);
             file_name = to_wide_string(argv[iFileIndex]);
