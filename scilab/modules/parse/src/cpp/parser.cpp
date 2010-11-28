@@ -30,6 +30,9 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "os_swprintf.h"
+#ifdef __APPLE__
+#include "PATH_MAX.h"
+#endif
 }
 
 extern FILE*    yyin;
@@ -144,10 +147,15 @@ void ParserSingleInstance::parse(char *command)
 #endif
 
 #ifdef __APPLE__
-	yyin = fopen("command.temp", "w");
+	char szFile[PATH_MAX];
+    char* pstTmpDIr = "/tmp";
+    //char* pstTmpDIr = NSTemporaryDirectory();
+    sprintf(szFile, "%s/%s", pstTmpDIr, "command.temp");
+    // FREE(pstTmpDIr);
+	yyin = fopen(szFile, "w");
 	fwrite(command, 1, strlen(command), yyin);
 	fclose(yyin);
-	yyin = fopen("command.temp", "r");
+	yyin = fopen(szFile, "r");
 #endif
 
 
