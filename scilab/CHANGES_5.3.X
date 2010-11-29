@@ -17,6 +17,13 @@ Removed functions (previously declared as obsolete):
   Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
 
 
+Scinotes:
+=========
+
+* Name of the current function and position (line, column) are now displayedno
+in the status bar of Scinotes.
+
+
 Graphics:
 =========
 
@@ -57,7 +64,6 @@ SciNotes:
 
 * bug 8465 fixed - Under GNU/Linux, it was not possible to paste with the
                    middle click.
-
 
 Xcos:
 =====
