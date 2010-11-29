@@ -15,6 +15,7 @@ package org.scilab.modules.history_browser.actions;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.KeyStroke;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 
@@ -39,11 +40,22 @@ public final class DeleteAction extends CallBack {
     private static final String ICON = System.getenv("SCI") + "/modules/gui/images/icons/edit-delete.png";
     private static final char MNEMONIC = 'D';
 
+    private static final String KEY = "DELETE";
+    private static final String SUPPR = "Suppr";
+
     /**
      * Constructor
      */
     public DeleteAction() {
         super("");
+    }
+
+    /**
+     * Register the key for the action
+     */
+    public static void registerKeyAction() {
+        CommandHistory.getTree().getActionMap().put(SUPPR, new DeleteAction());
+        CommandHistory.getTree().getInputMap().put(KeyStroke.getKeyStroke(KEY), SUPPR);
     }
 
     /**
