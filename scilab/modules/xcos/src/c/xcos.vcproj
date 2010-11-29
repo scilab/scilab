@@ -492,6 +492,10 @@
 				RelativePath="..\jni\Xcos.hxx"
 				>
 			</File>
+			<File
+				RelativePath="..\..\includes\xcosUtilities.hxx"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"

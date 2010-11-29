@@ -51,12 +51,12 @@ int gw_xcos(void)
         return 0;
     }
 
-    if (!loadedDep                                      // never reload
-        && Tab[Fin-1].f != sci_closeXcosFromScilab)     // do not load on close
-    {
-        loadOnUseClassPath("XCos");
-        loadedDep = TRUE;
-    }
+    //if (!loadedDep                                      // never reload
+    //    && Tab[Fin-1].f != sci_closeXcosFromScilab)     // do not load on close
+    //{
+    //    loadOnUseClassPath("XCos");
+    //    loadedDep = TRUE;
+    //}
     callFunctionFromGateway(Tab,  SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
