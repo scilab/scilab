@@ -11,6 +11,9 @@ SciNotes:
 Bug Fixes:
 ==========
 
+* bug 7695 fixed - Only the first selected line was deleted in command history
+                   browser.
+
 * bug 8412 fixed - find returned incorrect values with big vector.
 
 * bug 8459 fixed - strsplit failed when second input argument was a "/"
