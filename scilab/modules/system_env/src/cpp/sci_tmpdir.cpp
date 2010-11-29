@@ -213,7 +213,9 @@ char* computeTMPDIR()
     }
 
     /* XXXXXX will be randomized by mkdtemp */
-    sprintf(env_dir, "%s/SCI_TMP_%d_XXXXXX", env_dir, (int) getpid());
+    char *env_dir_strdup = strdup(env_dir); /* Copy to avoid to have the same buffer as input and output for sprintf */
+    sprintf(env_dir, "%s/SCI_TMP_%d_XXXXXX", env_dir_strdup, (int) getpid());
+    free(env_dir_strdup);
 
     if(mkdtemp(env_dir) == NULL)
     {
