@@ -21,6 +21,8 @@ Xcos:
 Bug Fixes:
 ==========
 
+* bug 4673 fixed - An example of "addinter" function call was added.
+
 * bug 4821 fixed - help file 'man' was obsolete.
 
 * bug 5686 fixed - Complex number manipulation could crash Scilab.
