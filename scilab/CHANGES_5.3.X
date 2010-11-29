@@ -39,6 +39,9 @@ Bug Fixes:
 * bug 8254 fixed - The nearfloat function did not work properly for near
                    denormalized numbers.
 
+* bug 8390 fixed - a "Warning : redefining function: mputl" displayed if you
+                   did not install fftw on Windows.
+
 * bug 8412 fixed - find returned incorrect values with big vector.
 
 * bug 8448 fixed - 'whereis' function with a string as input argument did not work
