@@ -1,4 +1,3 @@
-
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
@@ -38,6 +37,8 @@ Bug Fixes:
 
 * bug 8254 fixed - The nearfloat function did not work properly for near
                    denormalized numbers.
+
+* bug 8279 fixed - error(144) returned a unexpected message.
 
 * bug 8390 fixed - a "Warning : redefining function: mputl" displayed if you
                    did not install fftw on Windows.
