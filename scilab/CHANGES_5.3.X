@@ -7,6 +7,11 @@ SciNotes:
 * bug 8465 fixed - Under GNU/Linux, it was not possible to paste with the
                    middle click.
 
+Xcos:
+=====
+
+* bug 8556 fixed - Creating a split block from a link did not work.
+
 
 Bug Fixes:
 ==========

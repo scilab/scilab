@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.xcos.block;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.link.BasicLink;
@@ -25,6 +26,7 @@ import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxICell;
 
 /**
  * A SplitBlock is used on a junction between links.
@@ -67,24 +69,6 @@ public final class SplitBlock extends BasicBlock {
 		getChildAt(0).setVisible(false);
 		getChildAt(1).setVisible(false);
 		getChildAt(2).setVisible(false);
-	}
-	
-	/**
-	 * Connect the splitblock to a source and 2 targets.
-	 * 
-	 * @param source
-	 *            source to be connected with
-	 * @param target1
-	 *            first target to be connected with
-	 * @param target2
-	 *            second target to be connected with
-	 * 
-	 * @deprecated use {@link #addConnection(BasicPort)} instead
-	 */
-	@Deprecated
-	public void setConnection(BasicPort source, BasicPort target1,
-			BasicPort target2) {
-		addConnection(source);
 	}
 
 	/**
@@ -144,9 +128,9 @@ public final class SplitBlock extends BasicBlock {
 		Object[] objs = getParentDiagram().getAllEdges(
 				new Object[] {getChildAt(0), getChildAt(1), getChildAt(2)});
 		getParentDiagram().getModel().beginUpdate();
-		for (int i = 0; i < objs.length; i++) {
-			if (objs[i] instanceof BasicLink) {
-				BasicLink link = (BasicLink) objs[i];
+		for (Object obj : objs) {
+			if (obj instanceof BasicLink) {
+				BasicLink link = (BasicLink) obj;
 				getParentDiagram().getModel().remove(link);
 			}
 		}
@@ -179,5 +163,54 @@ public final class SplitBlock extends BasicBlock {
 		}
 		
 		super.setGeometry(geometry);
+	}
+	
+	/**
+	 * @return true if the split is connectable, false otherwise
+	 * @see org.scilab.modules.xcos.block.BasicBlock#isConnectable()
+	 */
+	@Override
+	public boolean isConnectable() {
+		return getChildCount() != 0
+				&& (getIn().getEdgeCount() == 0
+						|| getOut1().getEdgeCount() == 0 || getOut2()
+						.getEdgeCount() == 0);
+	}
+	
+	/**
+	 * Insert edges as children port edges
+	 * 
+	 * @param edge the current edge
+	 * @param isOutgoing if it is an input port or output one
+	 * @return the inserted edges
+	 * @see com.mxgraph.model.mxCell#insertEdge(com.mxgraph.model.mxICell, boolean)
+	 */
+	@Override
+	public mxICell insertEdge(mxICell edge, boolean isOutgoing) {
+		final mxICell ret;
+
+		if (isOutgoing) {
+			if (getOut1().getEdgeCount() == 0) {
+				ret = getOut1().insertEdge(edge, isOutgoing);
+			} else if (getOut2().getEdgeCount() == 0) {
+				ret = getOut2().insertEdge(edge, isOutgoing);
+			} else {
+				ret = null;
+			}
+		} else {
+			if (getIn().getEdgeCount() == 0) {
+				ret = getIn().insertEdge(edge, isOutgoing);
+			} else {
+				ret = null;
+			}
+		}
+
+		if (ret == null) {
+			LogFactory.getLog(SplitBlock.class).error(
+					"Unable to connect : " + edge);
+			return super.insertEdge(edge, isOutgoing);
+		} else {
+			return ret;
+		}
 	}
 }
