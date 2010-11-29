@@ -116,6 +116,11 @@ int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
     setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
   }
 
+  /* Automatic ticks must be first deactivated in order to set user ticks */
+  autoTicks = FALSE;
+
+  setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+
   status = setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LOCATIONS__, userGrads, jni_double_vector, nbTicsRow*nbTicsCol);
 
   if (status == FALSE)
@@ -146,9 +151,6 @@ int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
 #endif
   }
 
-  autoTicks = FALSE;
-
-  setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
   /* To be implemented */
 #if 0

@@ -810,7 +810,7 @@ int InitAxesModel()
   /* These functions have been adapted to the MVC framework */
   sciInitGraphicContext (paxesmdl);
   sciInitGraphicMode (paxesmdl);
-  sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
+//  sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
 
   cubeScaling = 0;
   setGraphicObjectProperty(paxesmdl->UID, __GO_CUBE_SCALING__, &cubeScaling, jni_bool, 1);
@@ -897,6 +897,15 @@ int InitAxesModel()
    * and should be moved to the Java Model's relevant parts (TicksProperty).
    */
 
+  /*
+   * Automatic ticks computation must be activated for the 3 axes before setting ticks values to
+   * ensure that the ticks values set are the automatic ticks' ones.
+   */
+  autoTicks = 1;
+  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+
   defaultNumberTicks = 11;
 
   setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
@@ -952,11 +961,12 @@ int InitAxesModel()
 
   destroyStringArray(stringVector, defaultNumberTicks);
 
-  /* Automatic ticks computation activated for the 3 axes */
-  autoTicks = 1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+  /*
+   * Initializing Font properties must be done after the labels have been set
+   * as it directly sets the Labels' font properties.
+   * To be modified.
+   */
+  sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
 
   /*
    * Indicates the direction of projection (0 for the axis corresponding to the direction,

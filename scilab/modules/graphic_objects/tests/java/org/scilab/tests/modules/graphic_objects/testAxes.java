@@ -356,13 +356,13 @@ public class testAxes {
 		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_X_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getXAxisSubticks());
 	}
-	@Test(groups = { "ReflectSetGetTest" })
+	@Test(groups = { "ReflectSetGetTest" }, dependsOnMethods = { "testReflectSetGetXAxisAutoTicks" })
 	public void testReflectSetGetXAxisTicksLocations() {
 		controller.setProperty(axesID, __GO_X_AXIS_TICKS_LOCATIONS__, initAxes.getXAxisTicksLocations());
 		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_X_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getXAxisTicksLocations());
 	}
-	@Test(groups = { "ReflectSetGetTest" })
+	@Test(groups = { "ReflectSetGetTest" }, dependsOnMethods = { "testReflectSetGetXAxisTicksLocations" })
 	public void testReflectSetGetXAxisTicksLabels() {
 		controller.setProperty(axesID, __GO_X_AXIS_TICKS_LABELS__, initAxes.getXAxisTicksLabels());
 		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_X_AXIS_TICKS_LABELS__);
@@ -419,13 +419,13 @@ public class testAxes {
 		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getYAxisSubticks());
 	}
-	@Test(groups = { "ReflectSetGetTest" })
+	@Test(groups = { "ReflectSetGetTest" }, dependsOnMethods = { "testReflectSetGetYAxisAutoTicks" })
 	public void testReflectSetGetYAxisTicksLocations() {
 		controller.setProperty(axesID, __GO_Y_AXIS_TICKS_LOCATIONS__, initAxes.getYAxisTicksLocations());
 		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_Y_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getYAxisTicksLocations());
 	}
-	@Test(groups = { "ReflectSetGetTest" })
+	@Test(groups = { "ReflectSetGetTest" }, dependsOnMethods = { "testReflectSetGetYAxisTicksLocations" })
 	public void testReflectSetGetYAxisTicksLabels() {
 		controller.setProperty(axesID, __GO_Y_AXIS_TICKS_LABELS__, initAxes.getYAxisTicksLabels());
 		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_Y_AXIS_TICKS_LABELS__);
@@ -482,13 +482,13 @@ public class testAxes {
 		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getZAxisSubticks());
 	}
-	@Test(groups = { "ReflectSetGetTest" })
+	@Test(groups = { "ReflectSetGetTest" }, dependsOnMethods = { "testReflectSetGetZAxisAutoTicks" })
 	public void testReflectSetGetZAxisTicksLocations() {
 		controller.setProperty(axesID, __GO_Z_AXIS_TICKS_LOCATIONS__, initAxes.getZAxisTicksLocations());
 		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_Z_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getZAxisTicksLocations());
 	}
-	@Test(groups = { "ReflectSetGetTest" })
+	@Test(groups = { "ReflectSetGetTest" }, dependsOnMethods = { "testReflectSetGetZAxisTicksLocations" })
 	public void testReflectSetGetZAxisTicksLabels() {
 		controller.setProperty(axesID, __GO_Z_AXIS_TICKS_LABELS__, initAxes.getZAxisTicksLabels());
 		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_Z_AXIS_TICKS_LABELS__);
@@ -782,13 +782,13 @@ public class testAxes {
 		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_X_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getXAxisSubticks());
 	}
-	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" }, dependsOnMethods = { "testFastSetGetXAxisAutoTicks" })
 	public void testFastSetGetXAxisTicksLocations() {
 		controller.setProperty(axesID, __GO_X_AXIS_TICKS_LOCATIONS__, initAxes.getXAxisTicksLocations());
 		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_X_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getXAxisTicksLocations());
 	}
-	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" }, dependsOnMethods = { "testFastSetGetXAxisTicksLocations" })
 	public void testFastSetGetXAxisTicksLabels() {
 		controller.setProperty(axesID, __GO_X_AXIS_TICKS_LABELS__, initAxes.getXAxisTicksLabels());
 		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_X_AXIS_TICKS_LABELS__);
@@ -844,13 +844,13 @@ public class testAxes {
 		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_Y_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getYAxisSubticks());
 	}
-	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" }, dependsOnMethods = { "testFastSetGetYAxisAutoTicks" })
 	public void testFastSetGetYAxisTicksLocations() {
 		controller.setProperty(axesID, __GO_Y_AXIS_TICKS_LOCATIONS__, initAxes.getYAxisTicksLocations());
 		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_Y_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getYAxisTicksLocations());
 	}
-	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" }, dependsOnMethods = { "testFastSetGetYAxisTicksLocations" })
 	public void testFastSetGetYAxisTicksLabels() {
 		controller.setProperty(axesID, __GO_Y_AXIS_TICKS_LABELS__, initAxes.getYAxisTicksLabels());
 		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_Y_AXIS_TICKS_LABELS__);
@@ -906,13 +906,13 @@ public class testAxes {
 		Integer retSubTicks = (Integer) controller.getProperty(axesID, __GO_Z_AXIS_SUBTICKS__);
 		assert retSubTicks.equals(initAxes.getZAxisSubticks());
 	}
-	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" }, dependsOnMethods = { "testFastSetGetZAxisAutoTicks" })
 	public void testFastSetGetZAxisTicksLocations() {
 		controller.setProperty(axesID, __GO_Z_AXIS_TICKS_LOCATIONS__, initAxes.getZAxisTicksLocations());
 		Double[] retTicksLocations = (Double[]) controller.getProperty(axesID, __GO_Z_AXIS_TICKS_LOCATIONS__);
 		assert Arrays.equals(retTicksLocations, initAxes.getZAxisTicksLocations());
 	}
-	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" })
+	@Test(groups = { "FastSetGetTest" }, dependsOnGroups = { "ReflectSetGetTest" }, dependsOnMethods = { "testFastSetGetZAxisTicksLocations" })
 	public void testFastSetGetZAxisTicksLabels() {
 		controller.setProperty(axesID, __GO_Z_AXIS_TICKS_LABELS__, initAxes.getZAxisTicksLabels());
 		String[] retTicksLabels = (String[]) controller.getProperty(axesID, __GO_Z_AXIS_TICKS_LABELS__);
