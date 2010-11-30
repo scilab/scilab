@@ -75,7 +75,7 @@ public final class BuildPDF {
                     FopFactory fopFactory = FopFactory.newInstance();
                         fopFactory.addElementMapping(new JLaTeXMathElementMapping());
                         fopFactory.getXMLHandlerRegistry().addXMLHandler(new JLaTeXMathXMLHandler());
-                        fopFactory.setUserConfig(new File(System.getenv("SCI") + "/modules/helptools/fopconf.xml"));
+                        fopFactory.setUserConfig(new File(System.getenv("SCI") + "/modules/helptools/etc/fopconf.xml"));
                         
                         // Step 3: Construct fop with desired output format
 			OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
