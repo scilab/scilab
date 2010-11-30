@@ -36,6 +36,11 @@ import org.scilab.forge.scidoc.image.MathMLImageConverter;
 import org.scilab.forge.scidoc.image.SVGImageConverter;
 import org.scilab.forge.scidoc.scilab.ScilabLexer;
 import org.scilab.forge.scidoc.scilab.HTMLScilabCodeHandler;
+import org.scilab.forge.scidoc.XML.XMLLexer;
+import org.scilab.forge.scidoc.XML.HTMLXMLCodeHandler;
+import org.scilab.forge.scidoc.c.CLexer;
+import org.scilab.forge.scidoc.c.HTMLCCodeHandler;
+import org.scilab.forge.scidoc.java.JavaLexer;
 
 /**
  * Class to convert DocBook to HTML
@@ -61,6 +66,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected TemplateHandler templateHandler;
 
     protected ScilabLexer scilabLexer;
+    protected XMLLexer xmlLexer;
+    protected CLexer cLexer;
+    protected JavaLexer javaLexer;
 
     protected String bookTitle = "";
     protected String partTitle = "";
@@ -96,6 +104,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         tree = resolver.getTree();
         mapTreeId = resolver.getMapTreeId();
         scilabLexer = new ScilabLexer(primConf, macroConf);
+        xmlLexer = new XMLLexer();
+        cLexer = new CLexer();
+        javaLexer = new JavaLexer();
         File tpl = new File(template);
         templateHandler = new TemplateHandler(this, tpl);
         ImageConverter.registerExternalImageConverter(LaTeXImageConverter.getInstance());
@@ -188,14 +199,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * {@inheritDoc}
      */
     public boolean isEscapable(String tagName) {
-        return !"latex".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
+        return !"latex".equals(tagName) && !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean isTrimable(String tagName) {
-        return !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
+        return !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
     }
 
     /**
@@ -693,7 +704,38 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleProgramlisting(Map<String, String> attributes, String contents) throws SAXException {
         String id = attributes.get("id");
-        String str = encloseContents("div", "programlisting", encloseContents("pre", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, mapId), contents)));
+        String role = attributes.get("role");
+        String str;
+        if (role == null) {
+            str = encloseContents("div", "programlisting", encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, mapId), contents)));
+        } else {
+            if (role.equals("xml")) {
+                str = encloseContents("div", "programlisting", encloseContents("pre", "xmlcode", xmlLexer.convert(HTMLXMLCodeHandler.getInstance(), contents)));
+            } else if (role.equals("c") || role.equals("cpp") || role.equals("code_gateway")) {
+                str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", cLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
+            } else if (role.equals("java")) {
+                str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
+            } else {
+                str = encloseContents("div", "programlisting", encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, mapId), contents)));
+            }
+        }
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + str;
+        } else {
+            return str;
+        }
+    }
+
+    /**
+     * Handle a screen
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleScreen(Map<String, String> attributes, String contents) throws SAXException {
+        String id = attributes.get("id");
+        String str = encloseContents("div", "screen", encloseContents("pre", contents));
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + str;
         } else {

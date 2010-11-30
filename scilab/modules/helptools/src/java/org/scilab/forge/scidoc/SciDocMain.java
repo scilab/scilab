@@ -176,6 +176,8 @@ public final class SciDocMain {
             converter.registerExternalXMLHandler(new HTMLSVGHandler(outputDirectory, imagedir));
             converter.convert();
             Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/scilab_code.css"), new File(outputDirectory + "/scilab_code.css"));
+            Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/xml_code.css"), new File(outputDirectory + "/xml_code.css"));
+            Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/c_code.css"), new File(outputDirectory + "/c_code.css"));
             Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/style.css"), new File(outputDirectory + "/style.css"));
             if (format.equalsIgnoreCase("javahelp")) {
                 BuildJavaHelp.buildJavaHelp(outputDirectory, language); // replace en_US by language
