@@ -121,6 +121,8 @@ Bug fixes:
 * bug 7691 fixed - Giving complex arguments to inverse degree trigonometric
                    functions produced inconsistent results.
 
+* bug 8478 fixed - A searched path was missing for docbook xsl under Gentoo.
+
 * bug 8492 fixed - When the documentation was generated, error messages were not
                    displayed in the console but in the terminal.
 
