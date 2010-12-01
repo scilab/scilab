@@ -24,7 +24,7 @@
 M=genmarkov(rec,tr,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>rec</term>

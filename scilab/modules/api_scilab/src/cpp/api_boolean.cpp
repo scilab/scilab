@@ -110,7 +110,7 @@ SciErr fillMatrixOfBoolean(void* _pvCtx, int* _piAddress, int _iRows, int _iCols
 	return sciErr;
 }
 
-SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piBool)
+SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, const int* _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piBool		= NULL;
@@ -126,7 +126,7 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, in
 	return sciErr;
 }
 
-SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piBool)
+SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -170,7 +170,7 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int 
 	return sciErr;
 }
 
-SciErr readNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piBool)
+SciErr readNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -206,7 +206,7 @@ int isBooleanType(void* _pvCtx, int* _piAddress)
 	return checkVarType(_pvCtx, _piAddress, sci_boolean);
 }
 /*--------------------------------------------------------------------------*/
-int isNamedBooleanType(void* _pvCtx, char* _pstName)
+int isNamedBooleanType(void* _pvCtx, const char* _pstName)
 {
 	return checkNamedVarType(_pvCtx, _pstName, sci_boolean);
 }
@@ -242,7 +242,7 @@ int getScalarBoolean(void* _pvCtx, int* _piAddress, int* _piBool)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getNamedScalarBoolean(void* _pvCtx, char* _pstName, int* _piBool)
+int getNamedScalarBoolean(void* _pvCtx, const char* _pstName, int* _piBool)
 {
 	SciErr sciErr;
 	int iRows	= 0;
@@ -290,7 +290,7 @@ int createScalarBoolean(void* _pvCtx, int _iVar, int _iBool)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedScalarBoolean(void* _pvCtx, char* _pstName, int _iBool)
+int createNamedScalarBoolean(void* _pvCtx, const char* _pstName, int _iBool)
 {
 	SciErr sciErr;
 

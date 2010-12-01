@@ -23,6 +23,7 @@
 #include "charEncoding.h"
 #include "getshortpathname.h"
 #include "os_strdup.h"
+#include "os_swprintf.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 #define LF_STR "\n"
@@ -391,13 +392,13 @@ int CallWindowsShell(char *command)
 
     GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
     TMPDir = getTMPDIRW();
-    swprintf(FileTMPDir, PATH_MAX, L"%s\\DOS.OK", TMPDir);
+    os_swprintf(FileTMPDir, PATH_MAX, L"%ls\\DOS.OK", TMPDir);
     if (TMPDir) {FREE(TMPDir); TMPDir = NULL;}
 
     wcommand = to_wide_string(command);
-    iCmdSize = (wcslen(shellCmd) + wcslen(wcommand) + wcslen(FileTMPDir) + wcslen(L"%s /a /c \"%s\" && echo DOS>%s") + 1);
+    iCmdSize = (wcslen(shellCmd) + wcslen(wcommand) + wcslen(FileTMPDir) + wcslen(L"%ls /a /c \"%ls\" && echo DOS>%ls") + 1);
     CmdLine = (wchar_t*)MALLOC(iCmdSize * sizeof(wchar_t));
-    swprintf(CmdLine, iCmdSize, L"%s /a /c \"%s\" && echo DOS>%s", shellCmd, wcommand, FileTMPDir);
+    os_swprintf(CmdLine, iCmdSize, L"%ls /a /c \"%ls\" && echo DOS>%ls", shellCmd, wcommand, FileTMPDir);
 
     if (CreateProcessW(NULL, CmdLine, NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
     {
@@ -464,16 +465,16 @@ int CallWindowsShellW(wchar_t* _pstCommand)
 
     GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
     TMPDir = getTMPDIRW();
-    swprintf(FileTMPDir, PATH_MAX, L"%s\\DOS.OK", TMPDir);
+    os_swprintf(FileTMPDir, PATH_MAX, L"%ls\\DOS.OK", TMPDir);
     if(TMPDir)
     {
         FREE(TMPDir);
         TMPDir = NULL;
     }
 
-    iCmdSize    = (wcslen(shellCmd) + wcslen(_pstCommand) + wcslen(FileTMPDir) + wcslen(L"%s /a /c \"%s\" && echo DOS>%s") + 1);
+    iCmdSize    = (wcslen(shellCmd) + wcslen(_pstCommand) + wcslen(FileTMPDir) + wcslen(L"%ls /a /c \"%ls\" && echo DOS>%ls") + 1);
     CmdLine     = (wchar_t*)MALLOC(iCmdSize * sizeof(wchar_t));
-    swprintf(CmdLine, iCmdSize, L"%s /a /c \"%s\" && echo DOS>%s", shellCmd, _pstCommand, FileTMPDir);
+    os_swprintf(CmdLine, iCmdSize, L"%ls /a /c \"%ls\" && echo DOS>%ls", shellCmd, _pstCommand, FileTMPDir);
 
     if(CreateProcessW(NULL, CmdLine, NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
     {

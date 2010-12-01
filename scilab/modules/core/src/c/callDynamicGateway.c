@@ -2,11 +2,12 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
- * 
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -36,7 +37,7 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
         wchar_t *wcdynLibName = to_wide_string(dynLibName);
         if (wcdynLibName)
         {
-            *hlib = LoadDynLibraryW(wcdynLibName); 
+            *hlib = LoadDynLibraryW(wcdynLibName);
             FREE(wcdynLibName);
             wcdynLibName = NULL;
         }
@@ -45,18 +46,18 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
             return DYN_GW_LOAD_LIBRARY_ERROR;
         }
 #else
-        *hlib = LoadDynLibrary(dynLibName); 
+        *hlib = LoadDynLibrary(dynLibName);
 
-        if (*hlib == NULL) 
+        if (*hlib == NULL)
         {
             char *previousError = GetLastDynLibError();
 
-            /* Haven't been able to find the lib with dlopen... 
+            /* Haven't been able to find the lib with dlopen...
              * This can happen for two reasons:
              * - the lib must be dynamically linked
              * - Some silly issues under Suse (see bug #2875)
              * Note that we are handling only the "source tree build"
-             * because libraries are split (they are in the same directory 
+             * because libraries are split (they are in the same directory
              * in the binary)
              */
             char *SciPath = getSCI();
@@ -70,8 +71,8 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
             sprintf(pathToLib,"%s%s%s/%s%s",SciPath,PATHTOMODULE,moduleName,LT_OBJDIR,dynLibName);
 
             *hlib = LoadDynLibrary(pathToLib);
-              
-            if (*hlib == NULL) 
+
+            if (*hlib == NULL)
             {
                 if (previousError != NULL)
                 {
@@ -90,10 +91,10 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
     if (*ptrGateway == NULL)
     {
         *ptrGateway = (PROC_GATEWAY) GetDynLibFuncPtr(*hlib,gw_name);
-        if (*ptrGateway == NULL) 
-          {
+        if (*ptrGateway == NULL)
+        {
             return DYN_GW_PTR_FUNCTION_ERROR ;
-          }
+        }
     }
 
     if ( (*hlib) && (*ptrGateway) )
@@ -112,19 +113,19 @@ char *buildModuleDynLibraryName(char *modulename, dynlib_name_format iType)
     switch (iType)
     {
     case DYNLIB_NAME_FORMAT_AUTO: default:
-        #ifdef _MSC_VER
+#ifdef _MSC_VER
         lenName = lenName + (int)strlen(FORMATGATEWAYLIBNAME_1);
-        #else
+#else
         lenName = lenName + (int)strlen(FORMATGATEWAYLIBNAME_3);
-        #endif
+#endif
         dynlibname = (char*)MALLOC(sizeof(char)*(lenName+1));
         if (dynlibname)
         {
-            #ifdef _MSC_VER
+#ifdef _MSC_VER
             sprintf(dynlibname,FORMATGATEWAYLIBNAME_1,modulename,SHARED_LIB_EXT);
-            #else
+#else
             sprintf(dynlibname,FORMATGATEWAYLIBNAME_3,modulename,SHARED_LIB_EXT);
-            #endif
+#endif
         }
         break;
     case DYNLIB_NAME_FORMAT_1:
@@ -158,7 +159,7 @@ char *buildModuleDynLibraryName(char *modulename, dynlib_name_format iType)
 char *buildGatewayName(char *modulename)
 {
     /* example gw_scicos */
-    #define FORMATGATEWAYNAME "gw_%s" 
+#define FORMATGATEWAYNAME "gw_%s"
 
     char *gatewayname = NULL;
     int lenName = (int)(strlen(modulename)+strlen(FORMATGATEWAYNAME));
@@ -189,5 +190,38 @@ void displayErrorGateway(dynamic_gateway_error_code err,char *libraryname,char *
         Scierror(999,_("Impossible to call %s in %s library: %s\n"),functionname,libraryname,GetLastDynLibError());
         break;
     }
+}
+/*--------------------------------------------------------------------------*/
+BOOL freeDynamicGateway(char **dynLibName,
+                        char **gw_name,
+                        DynLibHandle *hlib,
+                        PROC_GATEWAY *ptrGateway)
+{
+    if (*dynLibName)
+    {
+        FREE(*dynLibName);
+        *dynLibName = NULL;
+    }
+
+    if (*gw_name)
+    {
+        FREE(*gw_name);
+        *gw_name = NULL;
+    }
+
+    if (*hlib)
+    {
+        FreeDynLibrary(*hlib);
+        *hlib = NULL;
+    }
+
+    if (*ptrGateway)
+    {
+        *ptrGateway = NULL;
+    }
+
+    if ((*hlib == NULL) && (*ptrGateway == NULL)) return TRUE;
+
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/

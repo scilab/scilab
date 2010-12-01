@@ -11,14 +11,13 @@
  */
 
 #ifndef AST_IFEXP_HXX
-# define AST_IFEXP_HXX
+#define AST_IFEXP_HXX
 
-# include <assert.h>
-# include "controlexp.hxx"
+#include <assert.h>
+#include "controlexp.hxx"
 
 namespace ast
 {
-
     /*
     ** \brief Abstract an If Expression node.
     **
@@ -52,101 +51,114 @@ namespace ast
         ** \param else instruction if test is false
         */
         IfExp(const Location& location,
-              Exp& test, Exp& t, Exp& e) :
-            ControlExp (location),
+            Exp& test, Exp& t, Exp& e) 
+            : ControlExp (location),
             _test (&test),
             _then (&t),
             _else (&e),
             _has_else (true)
-            {
-            }
+        {
+        }
 
         IfExp(const Location& location,
-              Exp& test, Exp& t) :
-            ControlExp (location),
+            Exp& test, Exp& t) 
+            : ControlExp (location),
             _test (&test),
             _then (&t),
             _else (new ast::CommentExp(location, new std::wstring(L"No else !!"))),
             // For first display in order to see what appends
             _has_else (false)
-            {
-            }
+        {
+        }
 
         virtual ~IfExp()
+        {
+            delete _test;
+            delete _then;
+            delete _else;
+        }
+
+        virtual IfExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            if(has_else())
             {
-                delete _test;
-                delete _then;
-                delete _else;
+                return new IfExp(*newloc, *test_get().clone(), *then_get().clone(), *else_get().clone());
             }
+            else
+            {
+                return new IfExp(*newloc, *test_get().clone(), *then_get().clone());
+            }
+        }
 
         // \brief Visitors entry point.
     public:
         virtual void	accept(Visitor& v)
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
         virtual void	accept(ConstVisitor& v) const
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
 
         // \brief Accessors.
     public:
         // \brief Return the select condition of the loop (read only).
         const Exp&	test_get() const
-            {
-                return *_test;
-            }
+        {
+            return *_test;
+        }
         // \brief Return the select condition of the loop (read and write).
         Exp&	test_get()
-            {
-                return *_test;
-            }
+        {
+            return *_test;
+        }
 
         // \brief Return the intructions if test is true (read only).
         const Exp&	then_get() const
-            {
-                return *_then;
-            }
+        {
+            return *_then;
+        }
         // \brief Return the instructions if test is true (read and write).
         Exp& then_get()
-            {
-                return *_then;
-            }
+        {
+            return *_then;
+        }
 
         // \brief Return the instruction if test is false (read only).
         const Exp&	else_get() const
-            {
-                return *_else;
-            }
+        {
+            return *_else;
+        }
         // \brief Return the instruction if test is false (read and write).
         Exp&	else_get()
-            {
-                return *_else;
-            }
+        {
+            return *_else;
+        }
 
         // \brief Return if there is an else body
         bool	has_else()
-            {
-                return _has_else;
-            }
+        {
+            return _has_else;
+        }
         // \brief Return if there is an else body
         bool	has_else() const
-            {
-                return _has_else;
-            }
+        {
+            return _has_else;
+        }
 
         // \brief Return the kind of the If Expression (read only)
         Kind kind_get (void) const
-            {
-                assert (_kind != invalid_kind);
-                return _kind;
-            }
+        {
+            assert (_kind != invalid_kind);
+            return _kind;
+        }
         // \brief Set the kind of the If Expression
         void kind_set (Kind kind)
-            {
-                this->_kind = kind;
-            }
+        {
+            this->_kind = kind;
+        }
 
     protected:
         // \brief "has a value" qualifier.

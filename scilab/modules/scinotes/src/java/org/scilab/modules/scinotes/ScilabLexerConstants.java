@@ -25,7 +25,7 @@ public class ScilabLexerConstants {
     /**
      * Number of known tokens
      */
-    public static final int NUMBEROFTOKENS = 32;
+    public static final int NUMBEROFTOKENS = 33;
 
     /**
      * DEFAULT : tokens which are not recognized
@@ -183,14 +183,19 @@ public class ScilabLexerConstants {
     public static final int TAB_STRING = 30;
 
     /**
+     * ELSEIF : elseif keyword
+     */
+    public static final int ELSEIF = 31;
+
+    /**
      * EOF : End Of File
      */
-    public static final int EOF = 31;
+    public static final int EOF = 32;
 
     /**
      * TOKENS : A Map which contains the names of keywords (useful in scinotesConfiguration.xml)
      */
-    public static final Map<String, Integer> TOKENS = new HashMap(26);
+    public static final Map<String, Integer> TOKENS = new HashMap(27);
 
     private static Map<Integer, String> idTokens;
 
@@ -219,6 +224,7 @@ public class ScilabLexerConstants {
         TOKENS.put("WhiteInString", WHITE_STRING);
         TOKENS.put("Tabulation", TAB);
         TOKENS.put("TabulationInComment", TAB_COMMENT);
+        TOKENS.put("LaTeXInComment", LATEX);
         TOKENS.put("TabulationInString", TAB_STRING);
         TOKENS.put("OpenClose", OPENCLOSE);
     }
@@ -242,10 +248,19 @@ public class ScilabLexerConstants {
         if (rep != null) {
             return rep;
         }
-        if (id == OSKEYWORD) {
+        if (id == OSKEYWORD || id == ELSEIF) {
             return "Structure";
         }
         return "Default";
+    }
+
+    /**
+     * Have we a LaTeX string ?
+     * @param type the type of the keyword
+     * @return true if the keyword is a LaTeX string
+     */
+    public static boolean isLaTeX(int type) {
+        return type == LATEX;
     }
 
     /**
@@ -282,9 +297,8 @@ public class ScilabLexerConstants {
     public static boolean isMatchable(int type) {
         return type == OPENCLOSE
             || type == FKEYWORD
-            || type == CKEYWORD
             || type == OSKEYWORD
-            || type == SKEYWORD;
+            || type == ELSEIF;
     }
 
     /**

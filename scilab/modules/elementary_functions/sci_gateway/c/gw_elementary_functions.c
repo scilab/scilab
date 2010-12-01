@@ -33,8 +33,8 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //eye
 	{NULL, ""}, //rand
 	{NULL ,""}, //ones
-	{NULL ,""}, //maxi
-	{NULL ,""}, //mini
+	{NULL ,""}, //max
+	{NULL ,""}, //min
 	{NULL ,""}, //kron
 	{NULL ,""}, //kron
 	{NULL ,""}, //kron
@@ -69,11 +69,14 @@ static gw_generic_table Tab[] =
 	{sci_spones,"spones"},
 	{NULL, ""}, //gsort
 	{sci_isequalbitwise,"isequalbitwise"},
-	{NULL, ""} //matrix
+    {NULL, ""}, //matrix
+    {NULL, ""}, //rat
+    {sci_maxi, "maxi"},
+    {sci_maxi, "mini"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
-{  
+{
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

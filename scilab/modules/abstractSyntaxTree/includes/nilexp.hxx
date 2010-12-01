@@ -11,43 +11,48 @@
  */
 
 #ifndef __AST_NILEXP_HXX__
-# define __AST_NILEXP_HXX__
+#define __AST_NILEXP_HXX__
 
 #include "constexp.hxx"
 
 namespace ast
 {
-  /** \brief Null expression
-   **
-   **/
-  class NilExp : public ConstExp
-  {
-  public:
-    NilExp (const Location& location) :
-      ConstExp (location)
+    /** \brief Null expression
+    **
+    **/
+    class NilExp : public ConstExp
     {
-    }
+    public:
+        NilExp (const Location& location) 
+            : ConstExp (location)
+        {
+        }
 
-    virtual ~NilExp ()
-    {
-    }
+        virtual ~NilExp ()
+        {
+        }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        virtual NilExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new NilExp(*newloc);
+        }
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
-  };
+    };
 } // namespace ast
 
 #endif /* !__AST_NILEXP_HXX__ */

@@ -34,7 +34,7 @@ static gw_generic_table Tab[]=
 {NULL, ""}, // isdef
 {NULL, ""}, //exists
 {C2F(sci_errcatch),"errcatch"},
-{C2F(sci_errclear),"errclear"},
+{NULL, ""}, // "errclear"
 {C2F(sci_iserror),"iserror"},
 {C2F(sci_predef),"predef"},
 {NULL,""}, //newfun
@@ -59,7 +59,7 @@ static gw_generic_table Tab[]=
 {NULL, ""}, //isglobal
 {C2F(sci_gstacksize),"gstacksize"},
 {C2F(sci_intppty),"intppty"},
-{C2F(sci_lasterror),"lasterror"},
+{NULL, ""}, //lasterror
 {NULL, ""}, //getversion
 {C2F(sci_macr2tree),"macr2tree"},
 {NULL, ""}, //getos
@@ -67,7 +67,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_getmemory),"getmemory"},
 {C2F(sci_getmd5),"getmd5"},
 {NULL,""}, //getmodules
-{C2F(sci_with_module),"with_module"},
+{NULL, ""}, //with_module
 {NULL, ""}, //getdebuginfo
 {C2F(sci_readgateway),"readgateway"},
 {NULL, ""} //exit
@@ -88,7 +88,7 @@ int gw_core(void)
 			Fin = 6;
 		}
 	}
-	
+
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

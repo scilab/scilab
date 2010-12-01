@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
+*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -107,6 +107,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         if(wcslen(pS2->string_get(i)) == 0)
         {
 			Scierror(249,_("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"), "grep", 2);
+            return Function::Error;
         }
     }
 

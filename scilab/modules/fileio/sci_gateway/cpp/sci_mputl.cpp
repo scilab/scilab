@@ -50,7 +50,7 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
     {
         wchar_t *expandedFileName = expandPathVariableW(in[1]->getAsString()->string_get(0));
 
-        iErr = mopen(expandedFileName, L"wb", 0, &iFileID);
+        iErr = mopen(expandedFileName, L"wt", 0, &iFileID);
         FREE(expandedFileName);
 
         if(iErr)

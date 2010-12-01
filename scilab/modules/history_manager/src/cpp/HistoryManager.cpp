@@ -23,7 +23,7 @@ extern "C"
 #include <string.h>
 #include <stdlib.h>
 #include "sciprint.h"
-#include "inffic.h"
+#include "sci_home.h"
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"
 #include "freeArrayOfString.h"
@@ -227,7 +227,7 @@ char **getAllLinesOfScilabHistory(void)
 {
     int nbElements = 0;
     char **lines = NULL;
-    if (ScilabHistory) 
+    if (ScilabHistory)
     {
         lines = ScilabHistory->getAllLines(&nbElements);
         /* SWIG need array finish with NULL */

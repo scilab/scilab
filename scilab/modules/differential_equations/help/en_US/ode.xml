@@ -26,7 +26,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

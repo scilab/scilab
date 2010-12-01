@@ -87,7 +87,7 @@
 /* 63 */						#include "dynamic_gateways.h" /* scinotes */
 /* 64 */						#include "dynamic_gateways.h" /* xcos */
 /* 65 */						#include "dynamic_gateways.h" /* action_binding */
-/* 66 */                        #include "dynamic_gateways.h" /* parallel */
+/* 66 */                        #include "dynamic_parallel.h" /* parallel */
 /* 67 */                        #include "dynamic_gateways.h" /* ui_data */
 
 /*-------------------------------------

@@ -12,13 +12,12 @@
 
 #include <string.h>
 #include "parser.hxx"
-#include "funcmanager.hxx"
-#include "context.hxx"
 #include "functions_gw.hxx"
-#include "setenvvar.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
 #include "yaspio.hxx"
+#include "scilabexception.hxx"
+#include "configvariable.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -27,12 +26,13 @@
 extern "C"
 {
 #include "MALLOC.h"
-
 #include "os_wcsicmp.h"
-#include "PATH_MAX.h"
-#include "prompt.h"
+#include "Scierror.h"
+#include "localization.h"
 }
 
+#define MUTE_FLAG       L"n"
+#define NO_MUTE_FLAG    L"m"
 
 using namespace std;
 using namespace types;
@@ -40,7 +40,9 @@ using namespace ast;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    int iErr            = 0;
 	bool bErrCatch		= false;
+    bool bMute          = true;
 	wchar_t* pstMsg     = NULL;
 	Exp* pExp           = NULL;
 	wchar_t *pstCommand = NULL;
@@ -48,112 +50,106 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
 	if(in.size() < 1 || in.size() > 3)
 	{
-		return Function::Error;
+        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d to %d expected.\n"), L"execstr" , 1, 3);
+        return Function::Error;
 	}
 
+    //2nd parameter
 	if(in.size() > 1)
+	{//errcatch
+        if(in[1]->getType() != InternalType::RealString || in[1]->getAsString()->size_get() != 1)
+        {
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"execstr", 2);
+            return Function::Error;
+        }
+
+        String* pS = in[1]->getAsString();
+        if(os_wcsicmp(pS->string_get(0), L"errcatch") == 0)
+        {
+            bErrCatch = true;
+        }
+        else
+        {
+            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: 'errcatch' expected.\n"), L"execstr", 2);
+            return Function::Error;
+        }
+    }
+
+	//3rd parameter
+	if(in.size() == 3)
 	{
-		if(in[1]->getType() == InternalType::RealString)
-		{//errcatch
-			String* pS = in[1]->getAsString();
-			if(pS->size_get() != 1)
-			{
-				return Function::Error;
-			}
-
-			if(os_wcsicmp(pS->string_get(0), L"errcatch") == 0)
-			{
-				bErrCatch = true;
-			}
-			else
-			{
-				wchar_t stErr[1024];
-#ifdef _MSC_VER
-				swprintf_s(stErr, 1024, L"\"%s\" value is not a valid value for exec function", pS->string_get(0));
-#else
-				swprintf(stErr, 1024, L"\"%ls\" value is not a valid value for exec function", pS->string_get(0));
-#endif
-				YaspWriteW(stErr);
-				return Function::Error;
-			}
-		}
-		else
-		{//not managed
-			YaspWriteW(L"Bad 2nd parameter type in execstr call");
-			return Function::Error;
-		}
-
-		//3rd parameter
-		if(in.size() == 3)
+        if(in[2]->getType() != InternalType::RealString || in[2]->getAsString()->size_get() != 1)
 		{
-			if(in[2]->getType() == InternalType::RealString)
-			{
-				String* pS = in[1]->getAsString();
-				if(pS->size_get() != 1)
-				{
-					return Function::Error;
-				}
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"execstr", 3);
+            return Function::Error;
+        }
 
-				pstMsg = pS->string_get(0);
-			}
-			else
-			{//not managed
-				YaspWriteW(L"Bad 3rd parameter type in execstr call");
-				return Function::Error;
-			}
-		}
+		if(os_wcsicmp(in[2]->getAsString()->string_get(0), MUTE_FLAG) == 0)
+        {
+            bMute = true;
+        }
+        else if(os_wcsicmp(in[2]->getAsString()->string_get(0), NO_MUTE_FLAG) == 0)
+        {
+            bMute = false;
+        }
+        else
+        {
+            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), L"execstr", 3, MUTE_FLAG, NO_MUTE_FLAG);
+            return Function::Error;
+        }
 	}
 
-	if(in[0]->getType() == InternalType::RealString)
-	{//1st argument is a scilab source code, parse and execute it
-		String* pS = in[0]->getAsString();
+    //1st argument
+    if(in[0]->isDouble() && in[0]->getAsDouble()->size_get() == 0)
+    {// execstr([])
+        out.push_back(Double::Empty());
+        return Function::OK;
+    }
 
-		//must be a vector
-		if(pS->rows_get() != 1 && pS->cols_get() != 1)
-		{
-			return Function::Error;
-		}
+    if(in[0]->getType() != InternalType::RealString || (in[0]->getAsString()->rows_get() != 1 && in[0]->getAsString()->cols_get() != 1))
+	{
+        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Vector of strings expected.\n"), L"execstr", 1);
+        return Function::Error;
+    }
 
-		int iTotalLen = pS->size_get(); //add \n after each string
-		for(int i = 0 ; i < pS->size_get() ; i++)
-		{
-			iTotalLen += (int)wcslen(pS->string_get(i));
-		}
-
-		pstCommand = (wchar_t*)MALLOC(sizeof(wchar_t) * (iTotalLen + 1));//+1 for null termination
-
-		int iPos = 0;
-		for(int i = 0 ; i < pS->size_get() ; i++)
-		{
-			wcscpy(pstCommand + iPos, pS->string_get(i));
-			iPos = (int)wcslen(pstCommand);
-			pstCommand[iPos++] = L'\n';
-			pstCommand[iPos] = 0;
-		}
-
-		parser.parse(pstCommand);
-		if(parser.getExitStatus() !=  Parser::Succeded)
-		{
-			YaspWriteW(parser.getErrorMessage());
-			FREE(pstCommand);
-			return Function::Error;
-		}
-
-		pExp = parser.getTree();
+	String* pS = in[0]->getAsString();
+	int iTotalLen = pS->size_get(); //add \n after each string
+	for(int i = 0 ; i < pS->size_get() ; i++)
+	{
+		iTotalLen += (int)wcslen(pS->string_get(i));
 	}
-	else
-	{//not managed
-		YaspWriteW(L"Bad 1st parameter type in execstr call");
+
+	pstCommand = (wchar_t*)MALLOC(sizeof(wchar_t) * (iTotalLen + 1));//+1 for null termination
+
+	for(int i = 0, iPos = 0 ; i < pS->size_get() ; i++)
+	{
+		wcscpy(pstCommand + iPos, pS->string_get(i));
+		iPos = (int)wcslen(pstCommand);
+		pstCommand[iPos++] = L'\n';
+		pstCommand[iPos] = 0;
+	}
+
+	parser.parse(pstCommand);
+    FREE(pstCommand);
+	if(parser.getExitStatus() !=  Parser::Succeded)
+	{
+        ScierrorW(999, L"%s", parser.getErrorMessage());
 		return Function::Error;
 	}
+
+	pExp = parser.getTree();
 
 	if(pExp == NULL)
 	{
 		return Function::Error;
 	}
 
-	MuteVisitor mute;
-	pExp->accept(mute);
+    //save current prompt mode
+    ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+    if(bMute)
+    {
+        ConfigVariable::setPromptMode(ConfigVariable::silent);
+    }
 
 	std::list<Exp *>::iterator j;
 	std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
@@ -166,18 +162,37 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 			ExecVisitor execMe;
 			(*j)->accept(execMe);
 		}
-		catch(std::wstring st)
+		catch(ScilabError se)
 		{
-			//print error
-			YaspWriteW(pstCommand);
-			YaspWriteW(L"\n");
-			YaspWriteW(st.c_str());
-			return Function::Error;
+            if(bErrCatch && bMute == true)
+            {
+                //set mode silent for errors
+                ConfigVariable::setPromptMode(ConfigVariable::silent);
+            }
+
+            //store message
+            ScierrorW(ConfigVariable::getLastErrorNumber(), L"%ls", ConfigVariable::getLastErrorMessage().c_str());
+            iErr = ConfigVariable::getLastErrorNumber();
+            if(bErrCatch == false)
+            {
+            	parser.freeTree();
+			    return Function::Error;
+            }
+            break;
 		}
 	}
 
-	parser.freeTree();
-	FREE(pstCommand);
+    //restore previous prompt mode
+    ConfigVariable::setPromptMode(oldVal);
+
+    if(bErrCatch)
+    {
+        out.push_back(new Double(iErr));
+        //to lock last error information
+        ConfigVariable::setLastErrorCall();
+    }
+    
+    parser.freeTree();
 	return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -12,109 +12,80 @@
 
 
 #ifndef AST_SIMPLEVAR_HXX
-# define AST_SIMPLEVAR_HXX
+#define AST_SIMPLEVAR_HXX
 
 #include "var.hxx"
 
 namespace ast
 {
-
-  /** \brief Abstract a Simple Variable node.
-   **
-   ** \b Example: i */
-  class SimpleVar : public Var
-  {
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct a Simple Variable node.
-     ** \param location scanner position informations
-     ** \param name the name of the variable
-     */
-    SimpleVar (const Location& location,
-			const std::wstring name):
-      Var (location),
-      _name (name)
+    /** \brief Abstract a Simple Variable node.
+    **
+    ** \b Example: i */
+    class SimpleVar : public Var
     {
-    }
-    /** \brief Destroy a Field Variable node.
-     **
-     ** Delete name, see constructor. */
-    ~SimpleVar ()
-    {
-    }
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct a Simple Variable node.
+        ** \param location scanner position informations
+        ** \param name the name of the variable
+        */
+        SimpleVar (const Location& location,
+            const std::wstring name) 
+            : Var (location),
+            _name (name)
+        {
+        }
+        /** \brief Destroy a Field Variable node.
+        **
+        ** Delete name, see constructor. */
+        virtual ~SimpleVar ()
+        {
+        }
+
+        virtual SimpleVar* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new SimpleVar(*newloc, name_get());
+        }
+
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        /** \name Accessors.
+        ** \{ */
+    public:
+        /** \brief Return the Variable's name. */
+        const std::wstring& name_get () const
+        {
+            return _name;
+        }
+        /** \} */
 
 
-    /** \name Accessors.
-     ** \{ */
-  public:
-    /** \brief Return the Variable's name. */
-		const std::wstring& name_get () const
-    {
-      return _name;
-    }
-    /** \} */
+        bool operator== (const SimpleVar &rhs) const
+        {
+            return _name == rhs.name_get();
+        }
 
-
-	bool operator== (const SimpleVar &rhs) const
-	{
-		return _name == rhs.name_get();
-	}
-
-  protected:
-    /** \brief Variable's name */
-		std::wstring _name;
-  };
+    protected:
+        /** \brief Variable's name */
+        std::wstring _name;
+    };
 
 } // namespace ast
 
 #endif // !AST_SIMPLEVAR_HXX
-
-
-
-
-//«((symbol::Symbol*)((const ast::SimpleVar*)this)->ast::SimpleVar::_name)->symbol::Symbol::name_get() == ((const ast::SimpleVar*)rhs)->ast::SimpleVar::name_get()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

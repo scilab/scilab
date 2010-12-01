@@ -17,7 +17,7 @@
  */
 
 #ifndef PARSE_HH_
-# define PARSE_HH_
+#define PARSE_HH_
 
 #include <string>
 #include <iostream>

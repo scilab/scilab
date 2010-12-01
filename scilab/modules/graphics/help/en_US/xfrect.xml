@@ -24,7 +24,7 @@
 xfrect(rect) // rect =[x,y,w,h]</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y,w,h</term>

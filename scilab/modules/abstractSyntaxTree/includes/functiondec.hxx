@@ -28,7 +28,6 @@ using namespace std;
 
 namespace ast
 {
-
     /*
     ** \brief Abstract a Function Declaration node.
     **
@@ -50,8 +49,8 @@ namespace ast
             const std::wstring name,
             ArrayListVar& args,
             ArrayListVar& returns,
-            Exp& body) :
-        Dec (location),
+            Exp& body) 
+            : Dec (location),
             _name (name),
             _args (&args),
             _returns (&returns),
@@ -66,6 +65,11 @@ namespace ast
             delete _returns;
         }
 
+        virtual FunctionDec* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new FunctionDec(*newloc, name_get(), *args_get().clone(), *returns_get().clone(), *body_get().clone());
+        }
 
         // \name Visitors entry point.
     public:

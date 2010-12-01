@@ -85,11 +85,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -134,10 +135,9 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/csignal.c src/c/callinterf.c src/c/scimem.c \
 	src/c/isanan.c src/c/parse.c src/c/timer.c src/c/stack2.c \
 	src/c/xscion.c src/c/SetScilabEnvironment.c src/c/returnanan.c \
-	src/c/LoadFunctionsTab.c src/c/with_module.c \
-	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
-	src/c/scirun.c src/c/InitializeCore.c src/c/TerminateCore.c \
-	src/c/coretable.c src/c/returnProperty.c \
+	src/c/LoadFunctionsTab.c src/c/loadversion.c src/c/version.c \
+	src/c/stackinfo.c src/c/scirun.c src/c/InitializeCore.c \
+	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
 	src/c/returnPropertyList.c src/c/GetXmlFileEncoding.c \
 	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
 	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
@@ -152,9 +152,10 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/recursionFunction.c src/c/typename.c \
 	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
 	src/c/exitCodeValue.c src/c/getversion.c \
-	src/c/dynamic_tclsci.c src/c/scimem64.c src/fortran/clunit.f \
-	src/fortran/getlin.f src/fortran/allowptr.f \
-	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
+	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
+	src/c/scimem64.c src/fortran/clunit.f src/fortran/getlin.f \
+	src/fortran/allowptr.f src/fortran/isany.f \
+	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
 	src/fortran/misops.f src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
@@ -193,31 +194,29 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
 	src/cpp/search_functions.cpp src/cpp/storeCommand.cpp \
 	src/cpp/banner.cpp src/cpp/overload.cpp \
-	sci_gateway/c/sci_stacksize.c sci_gateway/c/sci_resume.c \
-	sci_gateway/c/sci_mtlb_mode.c sci_gateway/c/sci_where.c \
-	sci_gateway/c/sci_errcatch.c sci_gateway/c/sci_format.c \
-	sci_gateway/c/sci_getmemory.c sci_gateway/c/sci_havewindow.c \
-	sci_gateway/c/sci_delbpt.c sci_gateway/c/sci_macr2lst.c \
-	sci_gateway/c/sci_who.c sci_gateway/c/sci_errclear.c \
-	sci_gateway/c/sci_funcprot.c sci_gateway/c/sci_newfun.c \
-	sci_gateway/c/sci_warning.c sci_gateway/c/sci_dispbpt.c \
-	sci_gateway/c/sci_intppty.c sci_gateway/c/sci_ieee.c \
-	sci_gateway/c/sci_gstacksize.c sci_gateway/c/sci_lasterror.c \
+	src/cpp/with_module.cpp sci_gateway/c/sci_stacksize.c \
+	sci_gateway/c/sci_resume.c sci_gateway/c/sci_mtlb_mode.c \
+	sci_gateway/c/sci_where.c sci_gateway/c/sci_errcatch.c \
+	sci_gateway/c/sci_format.c sci_gateway/c/sci_getmemory.c \
+	sci_gateway/c/sci_havewindow.c sci_gateway/c/sci_delbpt.c \
+	sci_gateway/c/sci_macr2lst.c sci_gateway/c/sci_who.c \
+	sci_gateway/c/sci_errclear.c sci_gateway/c/sci_funcprot.c \
+	sci_gateway/c/sci_newfun.c sci_gateway/c/sci_warning.c \
+	sci_gateway/c/sci_dispbpt.c sci_gateway/c/sci_intppty.c \
+	sci_gateway/c/sci_ieee.c sci_gateway/c/sci_gstacksize.c \
 	sci_gateway/c/sci_funptr.c sci_gateway/c/sci_return.c \
 	sci_gateway/c/sci_getmd5.c sci_gateway/c/sci_clearfun.c \
 	sci_gateway/c/sci_setbpt.c sci_gateway/c/sci_what.c \
 	sci_gateway/c/sci_predef.c sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_typename.c sci_gateway/c/sci_mode.c \
 	sci_gateway/c/sci_macr2tree.c sci_gateway/c/sci_iserror.c \
-	sci_gateway/c/sci_getversion.c \
 	sci_gateway/c/sci_getdebuginfo.c sci_gateway/c/sci_debug.c \
 	sci_gateway/c/gw_core.c sci_gateway/c/gw_user.c \
 	sci_gateway/c/gw_user2.c sci_gateway/c/sci_error.c \
-	sci_gateway/c/sci_with_module.c \
 	sci_gateway/c/sci_islittleendian.c \
 	sci_gateway/c/sci_getvariablesonstack.c \
 	sci_gateway/c/sci_readgateway.c sci_gateway/c/sci_comp.c \
-	sci_gateway/fortran/sci_errclear.f \
+	sci_gateway/fortran/sci_global.f \
 	sci_gateway/fortran/sci_mtlb_mode.f \
 	sci_gateway/fortran/sci_resume.f \
 	sci_gateway/fortran/sci_dispbpt.f \
@@ -238,7 +237,10 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/cpp/sci_global.cpp \
 	sci_gateway/cpp/sci_isglobal.cpp \
 	sci_gateway/cpp/sci_getscilabmode.cpp \
-	sci_gateway/cpp/sci_getos.cpp sci_gateway/cpp/sci_exists.cpp
+	sci_gateway/cpp/sci_getos.cpp sci_gateway/cpp/sci_exists.cpp \
+	sci_gateway/cpp/sci_with_module.cpp \
+	sci_gateway/cpp/sci_lasterror.cpp \
+	sci_gateway/cpp/sci_getversion.cpp
 @USE_DYNAMIC_STACK_TRUE@am__objects_1 = libscicore_la-scimem64.lo
 am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-intmacr2tree.lo libscicore_la-run.lo \
@@ -255,11 +257,10 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-stack2.lo libscicore_la-xscion.lo \
 	libscicore_la-SetScilabEnvironment.lo \
 	libscicore_la-returnanan.lo libscicore_la-LoadFunctionsTab.lo \
-	libscicore_la-with_module.lo libscicore_la-loadversion.lo \
-	libscicore_la-version.lo libscicore_la-stackinfo.lo \
-	libscicore_la-scirun.lo libscicore_la-InitializeCore.lo \
-	libscicore_la-TerminateCore.lo libscicore_la-coretable.lo \
-	libscicore_la-returnProperty.lo \
+	libscicore_la-loadversion.lo libscicore_la-version.lo \
+	libscicore_la-stackinfo.lo libscicore_la-scirun.lo \
+	libscicore_la-InitializeCore.lo libscicore_la-TerminateCore.lo \
+	libscicore_la-coretable.lo libscicore_la-returnProperty.lo \
 	libscicore_la-returnPropertyList.lo \
 	libscicore_la-GetXmlFileEncoding.lo \
 	libscicore_la-islittleendian.lo libscicore_la-terme.lo \
@@ -283,7 +284,7 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-inittypenames.lo libscicore_la-funcprot.lo \
 	libscicore_la-eqid.lo libscicore_la-exitCodeValue.lo \
 	libscicore_la-getversion.lo libscicore_la-dynamic_tclsci.lo \
-	$(am__objects_1)
+	libscicore_la-dynamic_parallel.lo $(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
 am__objects_4 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	nextj.lo setgetmode.lo showstack.lo misops.lo iseye.lo \
@@ -306,7 +307,7 @@ am__objects_5 = libscicore_la-core_gw.lo \
 	libscicore_la-hashtable_core.lo libscicore_la-namstr.lo \
 	libscicore_la-search_functions.lo \
 	libscicore_la-storeCommand.lo libscicore_la-banner.lo \
-	libscicore_la-overload.lo
+	libscicore_la-overload.lo libscicore_la-with_module.lo
 am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_where.lo libscicore_la-sci_errcatch.lo \
@@ -317,21 +318,19 @@ am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_newfun.lo libscicore_la-sci_warning.lo \
 	libscicore_la-sci_dispbpt.lo libscicore_la-sci_intppty.lo \
 	libscicore_la-sci_ieee.lo libscicore_la-sci_gstacksize.lo \
-	libscicore_la-sci_lasterror.lo libscicore_la-sci_funptr.lo \
-	libscicore_la-sci_return.lo libscicore_la-sci_getmd5.lo \
-	libscicore_la-sci_clearfun.lo libscicore_la-sci_setbpt.lo \
-	libscicore_la-sci_what.lo libscicore_la-sci_predef.lo \
-	libscicore_la-sci_type.lo libscicore_la-sci_typename.lo \
-	libscicore_la-sci_mode.lo libscicore_la-sci_macr2tree.lo \
-	libscicore_la-sci_iserror.lo libscicore_la-sci_getversion.lo \
+	libscicore_la-sci_funptr.lo libscicore_la-sci_return.lo \
+	libscicore_la-sci_getmd5.lo libscicore_la-sci_clearfun.lo \
+	libscicore_la-sci_setbpt.lo libscicore_la-sci_what.lo \
+	libscicore_la-sci_predef.lo libscicore_la-sci_type.lo \
+	libscicore_la-sci_typename.lo libscicore_la-sci_mode.lo \
+	libscicore_la-sci_macr2tree.lo libscicore_la-sci_iserror.lo \
 	libscicore_la-sci_getdebuginfo.lo libscicore_la-sci_debug.lo \
 	libscicore_la-gw_core.lo libscicore_la-gw_user.lo \
 	libscicore_la-gw_user2.lo libscicore_la-sci_error.lo \
-	libscicore_la-sci_with_module.lo \
 	libscicore_la-sci_islittleendian.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
 	libscicore_la-sci_readgateway.lo libscicore_la-sci_comp.lo
-am__objects_7 = sci_errclear.lo sci_mtlb_mode.lo sci_resume.lo \
+am__objects_7 = sci_global.lo sci_mtlb_mode.lo sci_resume.lo \
 	sci_dispbpt.lo sci_useascommand.lo sci_intppty.lo sci_ieee.lo \
 	sci_macrovar.lo sci_errcatch.lo sci_setbpt.lo sci_delbpt.lo \
 	where.lo sci_iserror.lo sci_debug.lo sci_comp.lo
@@ -341,7 +340,8 @@ am__objects_8 = libscicore_la-sci_getmodules.lo \
 	libscicore_la-sci_argn.lo libscicore_la-sci_clearglobal.lo \
 	libscicore_la-sci_global.lo libscicore_la-sci_isglobal.lo \
 	libscicore_la-sci_getscilabmode.lo libscicore_la-sci_getos.lo \
-	libscicore_la-sci_exists.lo
+	libscicore_la-sci_exists.lo libscicore_la-sci_with_module.lo \
+	libscicore_la-sci_lasterror.lo libscicore_la-sci_getversion.lo
 am_libscicore_la_OBJECTS = $(am__objects_2) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
@@ -646,9 +646,9 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/intmacr2tree.c \
 	src/c/scimem.c src/c/isanan.c src/c/parse.c src/c/timer.c \
 	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
 	src/c/returnanan.c src/c/LoadFunctionsTab.c \
-	src/c/with_module.c src/c/loadversion.c src/c/version.c \
-	src/c/stackinfo.c src/c/scirun.c src/c/InitializeCore.c \
-	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
+	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
+	src/c/scirun.c src/c/InitializeCore.c src/c/TerminateCore.c \
+	src/c/coretable.c src/c/returnProperty.c \
 	src/c/returnPropertyList.c src/c/GetXmlFileEncoding.c \
 	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
 	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
@@ -663,7 +663,8 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/intmacr2tree.c \
 	src/c/recursionFunction.c src/c/typename.c \
 	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
 	src/c/exitCodeValue.c src/c/getversion.c \
-	src/c/dynamic_tclsci.c $(am__append_1)
+	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
+	$(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
@@ -703,13 +704,14 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/stackc2i.f src/fortran/isinstring.f \
 	$(am__append_2)
 CORE_CPP_SOURCES = \
-src/cpp/core_gw.cpp \
-src/cpp/hashtable_core.cpp \
-src/cpp/namstr.cpp \
-src/cpp/search_functions.cpp \
-src/cpp/storeCommand.cpp \
-src/cpp/banner.cpp \
-src/cpp/overload.cpp
+    src/cpp/core_gw.cpp \
+    src/cpp/hashtable_core.cpp \
+    src/cpp/namstr.cpp \
+    src/cpp/search_functions.cpp \
+    src/cpp/storeCommand.cpp \
+    src/cpp/banner.cpp \
+    src/cpp/overload.cpp \
+	src/cpp/with_module.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
@@ -730,7 +732,6 @@ sci_gateway/c/sci_dispbpt.c \
 sci_gateway/c/sci_intppty.c \
 sci_gateway/c/sci_ieee.c \
 sci_gateway/c/sci_gstacksize.c \
-sci_gateway/c/sci_lasterror.c \
 sci_gateway/c/sci_funptr.c \
 sci_gateway/c/sci_return.c \
 sci_gateway/c/sci_getmd5.c \
@@ -743,20 +744,18 @@ sci_gateway/c/sci_typename.c \
 sci_gateway/c/sci_mode.c \
 sci_gateway/c/sci_macr2tree.c \
 sci_gateway/c/sci_iserror.c \
-sci_gateway/c/sci_getversion.c \
 sci_gateway/c/sci_getdebuginfo.c \
 sci_gateway/c/sci_debug.c \
 sci_gateway/c/gw_core.c \
 sci_gateway/c/gw_user.c \
 sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
-sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_errclear.f \
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
@@ -784,7 +783,10 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_isglobal.cpp \
 	sci_gateway/cpp/sci_getscilabmode.cpp \
 	sci_gateway/cpp/sci_getos.cpp \
-	sci_gateway/cpp/sci_exists.cpp
+	sci_gateway/cpp/sci_exists.cpp \
+	sci_gateway/cpp/sci_with_module.cpp \
+	sci_gateway/cpp/sci_lasterror.cpp \
+	sci_gateway/cpp/sci_getversion.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -884,6 +886,7 @@ includes/version.h \
 includes/getversion.h \
 includes/Thread_Wrapper.h
 
+@GUI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1041,6 +1044,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cs2st.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_gateways.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_parallel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_tclsci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-eqid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-exitCodeValue.Plo@am__quote@
@@ -1381,13 +1385,6 @@ libscicore_la-LoadFunctionsTab.lo: src/c/LoadFunctionsTab.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-LoadFunctionsTab.lo `test -f 'src/c/LoadFunctionsTab.c' || echo '$(srcdir)/'`src/c/LoadFunctionsTab.c
 
-libscicore_la-with_module.lo: src/c/with_module.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-with_module.lo -MD -MP -MF $(DEPDIR)/libscicore_la-with_module.Tpo -c -o libscicore_la-with_module.lo `test -f 'src/c/with_module.c' || echo '$(srcdir)/'`src/c/with_module.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-with_module.Tpo $(DEPDIR)/libscicore_la-with_module.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/with_module.c' object='libscicore_la-with_module.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-with_module.lo `test -f 'src/c/with_module.c' || echo '$(srcdir)/'`src/c/with_module.c
-
 libscicore_la-loadversion.lo: src/c/loadversion.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-loadversion.lo -MD -MP -MF $(DEPDIR)/libscicore_la-loadversion.Tpo -c -o libscicore_la-loadversion.lo `test -f 'src/c/loadversion.c' || echo '$(srcdir)/'`src/c/loadversion.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-loadversion.Tpo $(DEPDIR)/libscicore_la-loadversion.Plo
@@ -1675,6 +1672,13 @@ libscicore_la-dynamic_tclsci.lo: src/c/dynamic_tclsci.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-dynamic_tclsci.lo `test -f 'src/c/dynamic_tclsci.c' || echo '$(srcdir)/'`src/c/dynamic_tclsci.c
 
+libscicore_la-dynamic_parallel.lo: src/c/dynamic_parallel.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-dynamic_parallel.lo -MD -MP -MF $(DEPDIR)/libscicore_la-dynamic_parallel.Tpo -c -o libscicore_la-dynamic_parallel.lo `test -f 'src/c/dynamic_parallel.c' || echo '$(srcdir)/'`src/c/dynamic_parallel.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-dynamic_parallel.Tpo $(DEPDIR)/libscicore_la-dynamic_parallel.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamic_parallel.c' object='libscicore_la-dynamic_parallel.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-dynamic_parallel.lo `test -f 'src/c/dynamic_parallel.c' || echo '$(srcdir)/'`src/c/dynamic_parallel.c
+
 libscicore_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem64.Tpo -c -o libscicore_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-scimem64.Tpo $(DEPDIR)/libscicore_la-scimem64.Plo
@@ -1815,13 +1819,6 @@ libscicore_la-sci_gstacksize.lo: sci_gateway/c/sci_gstacksize.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_gstacksize.lo `test -f 'sci_gateway/c/sci_gstacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gstacksize.c
 
-libscicore_la-sci_lasterror.lo: sci_gateway/c/sci_lasterror.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_lasterror.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_lasterror.Tpo -c -o libscicore_la-sci_lasterror.lo `test -f 'sci_gateway/c/sci_lasterror.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lasterror.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_lasterror.Tpo $(DEPDIR)/libscicore_la-sci_lasterror.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_lasterror.c' object='libscicore_la-sci_lasterror.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_lasterror.lo `test -f 'sci_gateway/c/sci_lasterror.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lasterror.c
-
 libscicore_la-sci_funptr.lo: sci_gateway/c/sci_funptr.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_funptr.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_funptr.Tpo -c -o libscicore_la-sci_funptr.lo `test -f 'sci_gateway/c/sci_funptr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_funptr.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_funptr.Tpo $(DEPDIR)/libscicore_la-sci_funptr.Plo
@@ -1906,13 +1903,6 @@ libscicore_la-sci_iserror.lo: sci_gateway/c/sci_iserror.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_iserror.lo `test -f 'sci_gateway/c/sci_iserror.c' || echo '$(srcdir)/'`sci_gateway/c/sci_iserror.c
 
-libscicore_la-sci_getversion.lo: sci_gateway/c/sci_getversion.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_getversion.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getversion.Tpo -c -o libscicore_la-sci_getversion.lo `test -f 'sci_gateway/c/sci_getversion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getversion.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_getversion.Tpo $(DEPDIR)/libscicore_la-sci_getversion.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getversion.c' object='libscicore_la-sci_getversion.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_getversion.lo `test -f 'sci_gateway/c/sci_getversion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getversion.c
-
 libscicore_la-sci_getdebuginfo.lo: sci_gateway/c/sci_getdebuginfo.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_getdebuginfo.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getdebuginfo.Tpo -c -o libscicore_la-sci_getdebuginfo.lo `test -f 'sci_gateway/c/sci_getdebuginfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdebuginfo.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_getdebuginfo.Tpo $(DEPDIR)/libscicore_la-sci_getdebuginfo.Plo
@@ -1954,13 +1944,6 @@ libscicore_la-sci_error.lo: sci_gateway/c/sci_error.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_error.c' object='libscicore_la-sci_error.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_error.lo `test -f 'sci_gateway/c/sci_error.c' || echo '$(srcdir)/'`sci_gateway/c/sci_error.c
-
-libscicore_la-sci_with_module.lo: sci_gateway/c/sci_with_module.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_with_module.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_with_module.Tpo -c -o libscicore_la-sci_with_module.lo `test -f 'sci_gateway/c/sci_with_module.c' || echo '$(srcdir)/'`sci_gateway/c/sci_with_module.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_with_module.Tpo $(DEPDIR)/libscicore_la-sci_with_module.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_with_module.c' object='libscicore_la-sci_with_module.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_with_module.lo `test -f 'sci_gateway/c/sci_with_module.c' || echo '$(srcdir)/'`sci_gateway/c/sci_with_module.c
 
 libscicore_la-sci_islittleendian.lo: sci_gateway/c/sci_islittleendian.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_islittleendian.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_islittleendian.Tpo -c -o libscicore_la-sci_islittleendian.lo `test -f 'sci_gateway/c/sci_islittleendian.c' || echo '$(srcdir)/'`sci_gateway/c/sci_islittleendian.c
@@ -2060,6 +2043,13 @@ libscicore_la-overload.lo: src/cpp/overload.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-overload.lo `test -f 'src/cpp/overload.cpp' || echo '$(srcdir)/'`src/cpp/overload.cpp
 
+libscicore_la-with_module.lo: src/cpp/with_module.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-with_module.lo -MD -MP -MF $(DEPDIR)/libscicore_la-with_module.Tpo -c -o libscicore_la-with_module.lo `test -f 'src/cpp/with_module.cpp' || echo '$(srcdir)/'`src/cpp/with_module.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-with_module.Tpo $(DEPDIR)/libscicore_la-with_module.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/with_module.cpp' object='libscicore_la-with_module.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-with_module.lo `test -f 'src/cpp/with_module.cpp' || echo '$(srcdir)/'`src/cpp/with_module.cpp
+
 libscicore_la-sci_getmodules.lo: sci_gateway/cpp/sci_getmodules.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_getmodules.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getmodules.Tpo -c -o libscicore_la-sci_getmodules.lo `test -f 'sci_gateway/cpp/sci_getmodules.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getmodules.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_getmodules.Tpo $(DEPDIR)/libscicore_la-sci_getmodules.Plo
@@ -2143,6 +2133,27 @@ libscicore_la-sci_exists.lo: sci_gateway/cpp/sci_exists.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_exists.cpp' object='libscicore_la-sci_exists.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_exists.lo `test -f 'sci_gateway/cpp/sci_exists.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_exists.cpp
+
+libscicore_la-sci_with_module.lo: sci_gateway/cpp/sci_with_module.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_with_module.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_with_module.Tpo -c -o libscicore_la-sci_with_module.lo `test -f 'sci_gateway/cpp/sci_with_module.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_with_module.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_with_module.Tpo $(DEPDIR)/libscicore_la-sci_with_module.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_with_module.cpp' object='libscicore_la-sci_with_module.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_with_module.lo `test -f 'sci_gateway/cpp/sci_with_module.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_with_module.cpp
+
+libscicore_la-sci_lasterror.lo: sci_gateway/cpp/sci_lasterror.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_lasterror.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_lasterror.Tpo -c -o libscicore_la-sci_lasterror.lo `test -f 'sci_gateway/cpp/sci_lasterror.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lasterror.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_lasterror.Tpo $(DEPDIR)/libscicore_la-sci_lasterror.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_lasterror.cpp' object='libscicore_la-sci_lasterror.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_lasterror.lo `test -f 'sci_gateway/cpp/sci_lasterror.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lasterror.cpp
+
+libscicore_la-sci_getversion.lo: sci_gateway/cpp/sci_getversion.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_getversion.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getversion.Tpo -c -o libscicore_la-sci_getversion.lo `test -f 'sci_gateway/cpp/sci_getversion.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getversion.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_getversion.Tpo $(DEPDIR)/libscicore_la-sci_getversion.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_getversion.cpp' object='libscicore_la-sci_getversion.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_getversion.lo `test -f 'sci_gateway/cpp/sci_getversion.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getversion.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -2441,8 +2452,8 @@ isinstring.lo: src/fortran/isinstring.f
 relocstack.lo: src/fortran/relocstack.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o relocstack.lo `test -f 'src/fortran/relocstack.f' || echo '$(srcdir)/'`src/fortran/relocstack.f
 
-sci_errclear.lo: sci_gateway/fortran/sci_errclear.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_errclear.lo `test -f 'sci_gateway/fortran/sci_errclear.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_errclear.f
+sci_global.lo: sci_gateway/fortran/sci_global.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_global.lo `test -f 'sci_gateway/fortran/sci_global.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_global.f
 
 sci_mtlb_mode.lo: sci_gateway/fortran/sci_mtlb_mode.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_mtlb_mode.lo `test -f 'sci_gateway/fortran/sci_mtlb_mode.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_mtlb_mode.f
@@ -2997,9 +3008,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

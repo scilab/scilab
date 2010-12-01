@@ -52,8 +52,8 @@ void visitprivate(const AssignExp  &e)
                 {//never append ?
                     std::wostringstream os;
                     os << _W("Unable to extract left part expression.\n");
-                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
                 }
             }
             else
@@ -92,8 +92,8 @@ void visitprivate(const AssignExp  &e)
                     //manage error
                     std::wostringstream os;
                     os << _W("Indexes must be positive .\n");
-                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
                 }
             }
 
@@ -149,8 +149,8 @@ void visitprivate(const AssignExp  &e)
                 //manage error
                 std::wostringstream os;
                 os << _W("Submatrix incorrectly defined.\n");
-                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
             delete piMaxDim;
             delete[] piDimSize;
@@ -159,7 +159,6 @@ void visitprivate(const AssignExp  &e)
         {//x(?) = ?
             T execVar;
             InternalType *pIT;
-            bool bRet           = true;
             bool bNew           = false;
             bool bSeeAsVector   = false;
             int iProductElem    = (int)pCall->args_get().size();
@@ -179,8 +178,8 @@ void visitprivate(const AssignExp  &e)
                 {//never append ?
                     std::wostringstream os;
                     os << _W("Unable to extract left part expression.\n");
-                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
                 }
             }
             else
@@ -209,6 +208,11 @@ void visitprivate(const AssignExp  &e)
             int *piMaxDim       = NULL;
             int *piDimSize      = new int[iProductElem];
             int iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+
+            if(iTotalCombi == 0)
+            {//nothing to do
+                return;
+            }
             /*We have the indexlist expanded and the max index*/
 
             //check we don't have bad indexes like "< 1"
@@ -219,8 +223,8 @@ void visitprivate(const AssignExp  &e)
                     //manage error
                     std::wostringstream os;
                     os << _W("Indexes must be positive .\n");
-                    os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
                 }
             }
 
@@ -234,13 +238,18 @@ void visitprivate(const AssignExp  &e)
             }
             else if(execMeR.result_get()->isContainer())
             {
-                std::cout << "assign container type during insertion" << std::endl;
+                //std::cout << "assign container type during insertion" << std::endl;
                 InternalType* pIL = execMeR.result_get()->clone();
                 execMeR.result_set(pIL);
             }
 
-            if(pIT == NULL)
+            if(pIT == NULL || (pIT->isDouble() && pIT->getAsDouble()->size_get() == 0))
             {//call static insert function
+                if(pIT->isDouble() && pIT->getAsDouble()->size_get() == 0)
+                {
+                    bNew = true;
+                }
+
                 switch(execMeR.result_get()->getType())
                 {
                 case InternalType::RealDouble : 
@@ -268,45 +277,61 @@ void visitprivate(const AssignExp  &e)
             }
             else
             {//call type insert function
+                InternalType* pRet = NULL;
                 switch(pIT->getType())
                 {
                 case InternalType::RealDouble : 
-                    bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    pRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
                 case InternalType::RealBool : 
-                    bRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    pRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
                 case InternalType::RealString : 
-                    bRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    pRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
                 case InternalType::RealInt : 
-                    bRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                    pRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     break;
                 case InternalType::RealList : 
-                    bRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
+                    pRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
                     break;
                 case InternalType::RealTList : 
-                    bRet = pIT->getAsTList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
+                    pRet = pIT->getAsTList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
                     break;
                 case InternalType::RealCell : 
-                    if(execMeR.result_list_get()->size() ==1)
+                    if(execMeR.result_get()->isCell() == true)
                     {
-                        bRet = pIT->getAsCell()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                        pRet = pIT->getAsCell()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
                     }
                     else
                     {
-                        bRet = false;
+                        //manage error
+                        std::wostringstream os;
+                        os << _W("Right hand argument must be a cell.\n");
+                        //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                        throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
                     }
                     break;
                 default : 
-                    //TOTO YaSp : overlaoding insertion
+                    //TODO YaSp : overlaoding insertion
                     break;
                 }
 
-                pOut = pIT;
+                if(pRet && pRet != pIT)
+                {
+                    //variable change
+                    pIT->DecreaseRef();
+                    if(pIT->isDeletable())
+                    {
+                        delete pIT;
+                    }
+                    bNew = true;
+                }
+                
+                pOut = pRet;
             }
 
-            if(pOut != NULL && bRet == true)
+            if(pOut != NULL)
             {
                 if(bNew)
                 {
@@ -334,8 +359,8 @@ void visitprivate(const AssignExp  &e)
                 //manage error
                 std::wostringstream os;
                 os << _W("Submatrix incorrectly defined.\n");
-                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
             delete piMaxDim;
             delete[] piDimSize;
@@ -350,8 +375,8 @@ void visitprivate(const AssignExp  &e)
             {
                 std::wostringstream os;
                 os << L"Lhs != Rhs";
-                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 				
             InternalType *pIT	=	execMeR.result_get();
@@ -398,7 +423,7 @@ void visitprivate(const AssignExp  &e)
             {
                 std::wostringstream os;
                 os << L"Lhs != Rhs";
-                throw os.str();
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
 
@@ -421,15 +446,31 @@ void visitprivate(const AssignExp  &e)
         }
         else if(pField)
         {//a.b = x
+            //a.b can be a struct or a tlist/mlist
+            InternalType *pHead = NULL;
             Struct* pStr = getStructFromExp(pField->head_get());
-
-            if(pStr->isRef(1) == true)
+            if(pStr != NULL)
             {
-                pStr = pStr->clone();
-                const wstring *pstName = getStructNameFromExp(pField);
-                symbol::Context::getInstance()->put(*pstName, *pStr);
+                pHead = pStr;
+            }
+            else
+            {
+                //a is not a struct
+                const SimpleVar* pVar =  dynamic_cast<const SimpleVar*>(pField->head_get());
+                if(pVar == NULL)
+                {
+                    std::cout << "Houston ..." << std::endl;
+                }
+                pHead = symbol::Context::getInstance()->get(pVar->name_get());
             }
 
+            //if a is already assign, make a copy and replace it
+            if(pHead->isRef(1) == true)
+            {
+                pHead = pHead->clone();
+                const wstring *pstName = getStructNameFromExp(pField);
+                symbol::Context::getInstance()->put(*pstName, *pHead);
+            }
             /*getting what to assign*/
             execMeR.expected_size_set(1);
             e.right_exp_get().accept(execMeR);
@@ -439,8 +480,8 @@ void visitprivate(const AssignExp  &e)
             {
                 std::wostringstream os;
                 os << L"Lhs != Rhs";
-                os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-                throw os.str();
+                //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
             InternalType *pIT = execMeR.result_get();
@@ -455,15 +496,37 @@ void visitprivate(const AssignExp  &e)
                 }
             }
             else if(pIT->isContainer())
-            {
-                std::cout << "assign container type to field" << std::endl;
+            {//if assigned value is a container, copy it before assign.
+                //std::cout << "assign container type to field" << std::endl;
                 pIT = pIT->clone();
             }
 
             //assign result to new field
             const SimpleVar* pTail =  dynamic_cast<const SimpleVar*>(pField->tail_get());
 
-            pStr->add(pTail->name_get(), pIT);
+            if(pHead->isStruct())
+            {
+                pHead->getAsStruct()->add(pTail->name_get(), pIT);
+            }
+            else if(pHead->isTList())
+            {
+                TList* pT = pHead->getAsTList();
+                if(pT->exists(pTail->name_get()))
+                {
+                    pT->set(pTail->name_get(), pIT);
+                }
+                else
+                {
+                    std::wostringstream os;
+                    os << L"Field must be exist";
+                    throw ScilabError(os.str(), 999, pVar->location_get());
+                }
+            }
+            else if(pHead->isMList())
+            {
+                //TODO:
+            }
+
             if(e.is_verbose())
             {
                 const wstring *pstName = getStructNameFromExp(pField);
@@ -478,12 +541,12 @@ void visitprivate(const AssignExp  &e)
         {//Houston ...
             std::wostringstream os;
             os << L"unknow script form";
-            os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-            throw os.str();
+            //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+            throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
         }
     }
-    catch(wstring sz)
+    catch(ScilabError error)
     {
-        throw sz;
+        throw error;
     }
 }

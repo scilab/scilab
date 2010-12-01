@@ -13,6 +13,7 @@
 
 #include "funcmanager.hxx"
 #include "context.hxx"
+#include "configvariable.hxx"
 
 Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -21,7 +22,17 @@ Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, type
         return Function::Error;
     }
 
-    out.push_back(symbol::Context::getInstance()->get(L"modules_list"));
+
+    list<wstring> sModuleList = ConfigVariable::getModuleList();
+    String *pOut  = new String(static_cast<int>(sModuleList.size()), 1);
+
+    list<wstring>::iterator it = sModuleList.begin();
+    for(int i = 0; it != sModuleList.end() ; it++,i++)
+    {
+        pOut->string_set(i, it->c_str());
+    }
+
+    out.push_back(pOut);
     return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

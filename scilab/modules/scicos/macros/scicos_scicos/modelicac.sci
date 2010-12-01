@@ -77,12 +77,7 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
   if execstr('unix_s(instr)', 'errcatch') <> 0 then  
     messagebox([_('-------Modelica compiler error (with the translator):-------');
                 mgetl(Errfile);
-                _('Please read the error message in the Scilab window')], 'error', 'modal');	    
-    if init then 
-       if %tk then
-         TCL_EvalStr("Compile_finished nok " + %_winId);
-       end
-    end
+                _('Please read the error message in the Scilab window')], 'error', 'modal');
     ok=%f;
     return
   end     

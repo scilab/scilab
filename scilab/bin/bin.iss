@@ -37,6 +37,7 @@ Source: bin\LIBMMD.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcoremd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcorertd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libiomp5md.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\svml_dispmd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\dynamiclibrary.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -51,6 +52,17 @@ Source: bin\GNU_gettext.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
 ;
+
+;YaSp files
+Source: bin\abstractSyntaxTree.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\operations.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\functions_manager.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\symbol.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\system_env.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\parse.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\YaSp.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
+
 Source: bin\zlib1.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\DetectFramework.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\GetWindowsVersion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -73,8 +85,8 @@ Source: bin\LibScilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\scilab_windows.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hashtable.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: bin\YaSpScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;

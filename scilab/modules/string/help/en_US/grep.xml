@@ -38,7 +38,7 @@ row=grep(haystack,needle ,[flag])
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

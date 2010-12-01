@@ -62,7 +62,6 @@ libsciumfpack_la_LIBADD =  $(top_builddir)/modules/mexlib/libmx.la \
 $(top_builddir)/modules/mexlib/libmat.la \
 $(top_builddir)/modules/sparse/libscisparse.la \
 $(top_builddir)/modules/mexlib/libmex.la \
-$(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
@@ -84,6 +83,8 @@ libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES)
 libsciumfpack_la_CFLAGS= -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/umfpack/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes
+
+libsciumfpack_la_CPPFLAGS=-I$(top_srcdir)/modules/operations/includes
 endif
 
 include $(top_srcdir)/Makefile.incl.am

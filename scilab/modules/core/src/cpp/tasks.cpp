@@ -21,6 +21,7 @@
 #include "configvariable.hxx"
 
 #include "yaspio.hxx"
+#include "runner.hxx"
 
 #define SCILAB_START L"/etc/scilab.start"
 
@@ -152,16 +153,8 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
         exec = new ast::ExecVisitor();
     }
 
-    try
-    {
-        tree->accept(*exec);
-    }
-    catch(wstring sz)
-    {
-        YaspWriteW(sz.c_str());
-        YaspWriteW(L"\n");
-    }
-
+    Runner engine;
+    engine.execAndWait(tree, exec);
     delete exec;
 
     if(timed)

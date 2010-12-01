@@ -38,8 +38,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -62,7 +64,7 @@ public class SetContextDialog extends JDialog {
 	/**
 	 * Default constructor
 	 * @param parent the parent component
-	 * @param parameters the associated parameters
+	 * @param parameters the Scicos parameters
 	 */
 	public SetContextDialog(Component parent, ScicosParameters parameters) {
 		this.parameters = parameters;
@@ -97,7 +99,7 @@ public class SetContextDialog extends JDialog {
         contextArea = new JTextArea(contextBuilder.toString());
       
         JScrollPane contextAreaScroll = new JScrollPane(contextArea, 
-        		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        		ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
 		JButton cancelButton = new JButton(XcosMessages.CANCEL);
 		JButton okButton = new JButton(XcosMessages.OK);
@@ -153,6 +155,7 @@ public class SetContextDialog extends JDialog {
 		 * The cancel button just exit without doing anything
 		 */
 		cancelButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
@@ -164,6 +167,7 @@ public class SetContextDialog extends JDialog {
 		 */
 		okButton.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				List<String> contextList = new ArrayList<String>();
 				int i = 0;
@@ -183,7 +187,18 @@ public class SetContextDialog extends JDialog {
 					
 					String[] context = contextList.toArray(new String[i]);
 					parameters.setContext(context);
-
+					
+					// Execute the context to alert the user against wrong settings
+					String ctx = contextArea.getText();
+					if (!ctx.replaceAll("[^\\p{Graph}]*", "").isEmpty()) {
+						// We need to remove some blanks and convert to a one line expression
+						// The '\n' is used on JTextArea for new lines.
+						ScilabInterpreterManagement
+								.putCommandInScilabQueue(ctx
+										.trim()
+										.replaceAll("\n", "; ") + ";");
+					}
+					
 					dispose();
 					
 				} catch (IOException e1) {

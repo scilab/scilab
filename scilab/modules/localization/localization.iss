@@ -21,6 +21,7 @@
 Source: modules\{#LOCALIZATION}\jar\org.scilab.modules.{#LOCALIZATION}.jar;DestDir: {app}\modules\{#LOCALIZATION}\jar; Components: {#COMPN_SCILAB}
 ;
 Source: bin\sci{#LOCALIZATION}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#LOCALIZATION}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\sci{#LOCALIZATION}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\VERSION.xml; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
@@ -40,8 +41,6 @@ Source: modules\{#LOCALIZATION}\includes\charEncoding.h; DestDir: {app}\modules\
 Source: modules\{#LOCALIZATION}\includes\dynlib_localization.h; DestDir: {app}\modules\{#LOCALIZATION}\includes; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#LOCALIZATION}\macros\lib; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#LOCALIZATION}\macros\names; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#LOCALIZATION}\macros\*.bin; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#LOCALIZATION}\macros\*.sci; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#LOCALIZATION}\macros\buildmacros.sce; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#LOCALIZATION}\macros\buildmacros.bat; DestDir: {app}\modules\{#LOCALIZATION}\macros; Components: {#COMPN_SCILAB}

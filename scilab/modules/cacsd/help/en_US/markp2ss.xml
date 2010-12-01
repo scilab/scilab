@@ -23,7 +23,7 @@
     <synopsis>[sl]=markp2ss(markpar,n,nout,nin)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>markpar</term>

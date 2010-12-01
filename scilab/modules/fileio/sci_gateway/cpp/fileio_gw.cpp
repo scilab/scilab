@@ -24,6 +24,7 @@ using namespace types;
 bool FileioModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"cd", &sci_chdir, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"chdir", &sci_chdir, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"pwd", &sci_pwd, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mopen", &sci_mopen, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mclose", &sci_mclose, MODULE_NAME));
@@ -37,5 +38,11 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"fileparts", &sci_fileparts, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"findfiles", &sci_findfiles, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"basename", &sci_basename, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"isfile", &sci_isfile, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"fileinfo", &sci_fileinfo, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"deletefile", &sci_deletefile, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getshortpathname", &sci_getshortpathname, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"fileext", &sci_fileext, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"createdir", &sci_createdir, MODULE_NAME));
     return true;
 }

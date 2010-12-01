@@ -23,7 +23,7 @@
     <synopsis>ilib_gen_cleaner(makename,[loadername],[files])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
     	
       <varlistentry>

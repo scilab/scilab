@@ -327,6 +327,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\lasterror.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\promptmode.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\sci_home.cpp"
 				>
 			</File>
@@ -366,6 +374,14 @@
 			</File>
 			<File
 				RelativePath=".\includes\home.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\lasterror.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\promptmode.h"
 				>
 			</File>
 			<File

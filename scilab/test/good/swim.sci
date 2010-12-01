@@ -5,9 +5,9 @@ function [t,t_p,ind]=swim(p,ind)
    aw=sqrt((x-p)^2+(y-d)^2);
    t=as/vs+aw/vw;
    t_p=(p+d*d_p)/(vs*as)+((p-x)+(d-y)*d_p)/(vw*aw);
-
+endfunction
 
 function [d,d_p]=dpfun(p);
    d=1.75-exp(log(1.55)*p);
    d_p=-log(1.55)*exp(log(1.55)*p);
-
+endfunction

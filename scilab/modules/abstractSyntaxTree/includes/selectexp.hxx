@@ -25,66 +25,77 @@
 
 namespace ast
 {
-
-  class SelectExp : public ControlExp
-  {
-  public :
-    SelectExp(const Location& location,
-			  Exp& select,
-			  cases_t& cases, 
-			  SeqExp& defaultCase) :
-      ControlExp (location),
-      _selectme (&select),
-      _cases (&cases),
-      _default (&defaultCase)
+    class SelectExp : public ControlExp
     {
-    }
+    public :
+        SelectExp(const Location& location,
+            Exp& select,
+            cases_t& cases, 
+            SeqExp& defaultCase) 
+            : ControlExp (location),
+            _selectme (&select),
+            _cases (&cases),
+            _default (&defaultCase)
+        {
+        }
 
-    SelectExp(const Location& location,
-			  Exp& select,
-			  cases_t& cases) : 
-      ControlExp (location),
-      _selectme (&select),
-      _cases (&cases)
-    {
-      _default = NULL;
-    }
+        SelectExp(const Location& location,
+            Exp& select,
+            cases_t& cases) 
+            : ControlExp (location),
+            _selectme (&select),
+            _cases (&cases)
+        {
+            _default = NULL;
+        }
 
-    ~SelectExp()
-    {
-      delete _selectme;
-      delete _cases;
-      if (_default != NULL) 
-		{
-		  delete _default;
-		}
-    }
+        ~SelectExp()
+        {
+            delete _selectme;
+            delete _cases;
+            if (_default != NULL) 
+            {
+                delete _default;
+            }
+        }
 
-  public :
-	Exp* select_get() const { return _selectme; }
-	cases_t* cases_get() const { return _cases; }
-	SeqExp* default_case_get() const { return _default; }
+        virtual SelectExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            cases_t* cases = new cases_t;
+            cases_t::const_iterator it;
+            for(it = cases_get()->begin() ; it != cases_get()->end() ; it++)
+            {
+                cases->push_back((*it)->clone());
+            }
+            return new SelectExp(*newloc, *select_get()->clone(), *cases, *default_case_get()->clone());
+        }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+    public :
+        Exp* select_get() const { return _selectme; }
+        cases_t* cases_get() const { return _cases; }
+        SeqExp* default_case_get() const { return _default; }
 
-  private :
-    Exp* _selectme;
-    cases_t* _cases;
-    SeqExp* _default;
-  };
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
+
+    private :
+        Exp* _selectme;
+        cases_t* _cases;
+        SeqExp* _default;
+    };
 
 }
 

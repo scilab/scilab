@@ -574,11 +574,11 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //			n_out = 1;
 //			if (GetFileNameOpenedInScilab(iID) == NULL)
 //			{
-//				filename = strdup("");
+//				filename = os_strdup("");
 //			}
 //			else
 //			{
-//				filename = strdup(GetFileNameOpenedInScilab(iID));
+//				filename = os_strdup(GetFileNameOpenedInScilab(iID));
 //			}
 //
 //			sciErr = createMatrixOfString(_piKey, Rhs + 3, m_out, n_out, &filename);

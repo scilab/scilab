@@ -11,7 +11,7 @@
 function l=lstcat(varargin)
 // concat inputs in a list
 
-    rhs=argn(2)
+    rhs=argn(2);
     l = list();
 
     if rhs==0 then
@@ -19,7 +19,7 @@ function l=lstcat(varargin)
     end
     
     for i=1:rhs
-        var = varargin(i)
+        var = varargin(i);
         if type(var) == 15 then
             for j = 1 : size(var)
                 l($ + 1) = var(j);

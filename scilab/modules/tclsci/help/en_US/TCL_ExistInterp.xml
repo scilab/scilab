@@ -24,7 +24,7 @@
     <synopsis>OK=TCL_ExistInterp(interp)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>interp</term>

@@ -4,20 +4,20 @@
 
   <MenuBar>
     <menu label="File" mnemonic="F">
+      <menuitem action="RecentFileAction" label="Recent Files"/>
       <menuitem action="NewAction" label="New"/>
       <menuitem action="OpenAction" label="Open"/>
+      <menuitem action="OpenFileInAction" label="Open file in ...;Add a directory;Remove last directory"/>
+      <menuitem action="SaveFileInAction" label="Save file in favorite directory ..."/>
+      <menuitem action="ReloadAction" label="Reload"/>
       <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
       <menuitem action="OpenURLAction" label="Open URL"/>
-      <menuitem action="RecentFileAction" label="Recent Files"/>
       <separator/>
       <menuitem action="SaveAction" label="Save"/>
       <menuitem action="SaveAsAction" label="Save as"/>
       <menuitem action="SaveAllAction" label="Save All"/>
-      <separator/>
       <menuitem action="OverwriteAction" label="Overwrite"/>
-      <menuitem action="ReloadAction" label="Reload"/>
       <separator/>
-      <menuitem action="PageSetupAction" label="Page Setup"/>
       <menuitem action="PrintPreviewAction" label="Print Preview"/>
       <menuitem action="PrintAction" label="Print"/>
       <separator/>
@@ -25,88 +25,104 @@
       <menuitem action="CloseAllAction" label="Close All"/>
       <menuitem action="CloseAllButThisAction" label="Close All But This"/>
       <separator/>
-      <menuitem action="RestoreOpenedFilesAction" label="Restore opened files on start-up"/>
       <menuitem action="ExitAction" label="Exit"/>
     </menu>
 
-    <menu label="Edition" mnemonic="E">
+    <menu label="Edit" mnemonic="E">
       <menuitem action="UndoAction" label="Undo"/>
       <menuitem action="RedoAction" label="Redo"/>
       <separator/>
       <menuitem action="CutAction" label="Cut"/>
       <menuitem action="CopyAction" label="Copy"/>
       <menuitem action="PasteAction" label="Paste"/>
+      <menuitem action="DeleteAction" label="Delete"/>
       <separator/>
       <menuitem action="SelectAllAction" label="Select All"/>
-      <menuitem action="DeleteAction" label="Delete"/>
-    </menu>
-
-    <menu label="Tools" mnemonic="T">
-      <menuitem action="ActivateHelpOnTypingAction" label="Help on typing"/>
+      <menuitem action="SelectBlockAction" label="Select current block"/>
       <separator/>
-      <menuitem action="OpenTabInNewWindowAction" label="Clone tab in new window"/>
-      <menuitem action="CCloseTabInNewWindowAction" label="Clone and close tab"/>
+      <menuitem action="TabifyAction" label="Shift Right"/>
+      <menuitem action="UnTabifyAction" label="Shift Left"/>
       <separator/>
       <menuitem action="CommentAction" label="Comment Selection"/>
       <menuitem action="UnCommentAction" label="Uncomment Selection"/>
       <separator/>
       <menuitem action="IndentAction" label="Correct Indentation"/>
-      <menuitem action="TabifyAction" label="Shift Right"/>
-      <menuitem action="UnTabifyAction" label="Shift Left"/>
+      <menuitem action="RemoveTrailingWhiteAction" label="Remove trailing spaces"/>
+      <menuitem action="GenerateHelpFromFunctionAction" label="Generate comments for help_from_sci"/>
       <separator/>
-      <menuitem action="GenerateHelpFromFunctionAction" label="Generate help from function"/>
-      <separator/>
-      <menuitem action="RemoveTrailingWhiteAction" label="Remove trailing whitespaces"/>
+      <menuitem action="ToUpperCaseAction" label="Make Selection Uppercase"/>
+      <menuitem action="ToLowerCaseAction" label="Make Selection Lowercase"/>
+      <menuitem action="CapitalizeAction" label="Capitalize Selection;Capitalize character"/>
     </menu>
 
-    <menu label="Search" mnemonic="S">
+    <menu label="Search" mnemonic="H">
       <menuitem action="FindAction" label="Find/Replace"/>
       <menuitem action="FindNextAction" label="Find Next"/>
       <menuitem action="FindPreviousAction" label="Find Previous"/>
+      <menuitem action="IncrementalSearchAction" label="Incremental Search"/>
+      <separator/>
+      <menuitem action="SetAnchorAction" label="Set anchor"/>
+      <menuitem action="RemoveAnchorAction" label="Remove anchor"/>
+      <menuitem action="GotoNextAnchorAction" label="Go to next anchor"/>
+      <menuitem action="GotoPreviousAnchorAction" label="Go to previous anchor"/>
+      <separator/>
       <menuitem action="CodeNavigatorAction" label="Code Navigator"/>
     </menu>
 
-    <menu label="View" mnemonic="V">
-      <menuitem action="HighlightCurrentLineAction" label="Highlight current line"/>
+    <menu label="Preferences" mnemonic="P">
       <menuitem action="LineNumbersAction" label="Line numbering;Off;Normal;Whereami compatible"/>
-      <menuitem action="SplitAction" label="Split View;Off;Horizontally;Vertically"/>
-      <separator/>
-      <menuitem action="SetColorsAction" label="Set Colors"/>
-      <menuitem action="SetFontAction" label="Set Font"/>
-      <menuitem action="ResetFontAction" label="Reset default font"/>
-    </menu>
-
-    <menu label="Document" mnemonic="D">
       <menuitem action="EncodingAction" label="Encoding"/>
       <menuitem action="EndOfLineAction" label="Line Endings"/>
+      <menuitem action="PageSetupAction" label="Page Setup"/>
+      <separator/>
+      <menuitem action="ActivateHelpOnTypingForOpenersAction" label="Auto-completion on (,&quot;,..."/>
+      <menuitem action="ActivateHelpOnTypingForKeywordsAction" label="Auto-completion on if,function,..."/>
       <separator/>
       <menuitem action="AutoIndentAction" label="Enable Auto Reformat"/>
+      <menuitem action="HighlightCurrentLineAction" label="Highlight current line"/>
+      <separator/>
+      <menuitem action="SetColorsAction" label="Set Colors ..."/>
+      <menuitem action="SetFontAction" label="Set Font"/>
+      <menuitem action="ResetFontAction" label="Reset default font"/>
+      <menuitem action="ConfigTabulationsAction" label="Configure Tabulation"/>
+      <separator/>
+      <menuitem action="RestoreOpenedFilesAction" label="Restore opened files on start-up"/>
     </menu>
 
-    <menu label="Execute" mnemonic="E">
-      <menuitem action="LoadIntoScilabAction" label="Load Into Scilab"/>
-      <menuitem action="EvaluateSelectionAction" label="Evaluate Selection;Evaluate from beginning"/>
-      <menuitem action="ExecuteFileIntoScilabAction" label="Execute File Into Scilab"/>
+    <menu label="Window" mnemonic="N">
+      <menuitem action="OpenTabInNewWindowAction" label="Copy tab in new window"/>
+      <menuitem action="CCloseTabInNewWindowAction" label="Detach tab in new window"/>
+      <separator/>
+      <menuitem action="CopySelectionInNewTabAction" label="Copy selection in a new tab"/>
+      <separator/>
+      <menuitem action="SplitAction" label="Split View;Off;Horizontally;Vertically"/>
+  </menu>
+
+    <menu label="Execute" mnemonic="X">
+      <menuitem action="ExecuteFileIntoScilabAction" label="... file with no echo"/>
+      <menuitem action="LoadIntoScilabAction" label="... file with echo"/>
+      <menuitem action="EvaluateSelectionAction" label="... the selection with echo;... until the caret, with echo"/>
     </menu>
 
     <menu label="?">
       <menuitem action="HelpAction" label="SciNotes help"/>
-      <menuitem action="HelpOnKeywordAction" label="Help on the current keyword"/>
+      <menuitem action="HelpOnKeywordAction" label="Help on ;Help on selection"/>
       <menuitem action="AboutAction" label="About"/>
     </menu>
   </MenuBar>
 
   <RightClickMenu>
-    <menuitem action="EvaluateSelectionAction" label="Evaluate Selection;Evaluate from beginning"/>
+    <menuitem action="EvaluateSelectionAction" label="Evaluate Selection with echo;Evaluate until the caret, with echo"/>
     <menuitem action="CopySelectionInNewTabAction" label="Copy selection in a new tab"/>
     <menuitem action="SciNotesCompletionAction" label="Complete"/>
     <separator/>
     <menuitem action="SelectAllAction" label="Select All"/>
+    <menuitem action="SelectBlockInPopupAction" label="Select current block"/>
     <menuitem action="CopyAction" label="Copy"/>
     <menuitem action="CutAction" label="Cut"/>
     <menuitem action="PasteAction" label="Paste"/>
     <separator/>
-    <menuitem action="HelpOnKeywordAction" label="Help on the current keyword"/>
+    <menuitem action="HelpOnKeywordInPopupAction" label="Help on ;Help on selection"/>
     <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
     <menuitem action="OpenURLAction" label="Open URL"/>
   </RightClickMenu>
@@ -114,6 +130,12 @@
   <ToolBar>
     <button action="NewAction" tooltip="New" icon="document-new.png"/>
     <button action="OpenAction" tooltip="Open" icon="document-open.png"/>
+
+    <!-- The second token of the button OpenFileInAction is the full path of the directory
+         where to open files.
+         The shortcuts SCI or MODULES can be used (not in path but alone) -->
+    <button action="OpenFileInAction" tooltip="Open in ;MODULES" icon="document-open-sci.png"/>
+
     <separator/>
     <button action="SaveAction" tooltip="Save" icon="media-floppy.png"/>
     <button action="SaveAsAction" tooltip="Save as" icon="document-save-as.png"/>
@@ -128,6 +150,7 @@
     <button action="PasteAction" tooltip="Paste" icon="edit-paste.png"/>
     <separator/>
     <button action="FindAction" tooltip="Find/Replace" icon="edit-find-replace.png"/>
+    <button action="IncrementalSearchAction" tooltip="Incremental Search" icon="16x16/actions/go-bottom.png"/>
     <separator/>
     <button action="ExecuteFileIntoScilabAction" tooltip="Execute" icon="media-playback-start.png"/>
   </ToolBar>

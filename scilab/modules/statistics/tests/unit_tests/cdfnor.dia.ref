@@ -1,26 +1,184 @@
 // =============================================================================
-// Tests for cdfnor() function
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - INRIA - Michael Baudin
 //
-// Scilab Team
-// Copyright INRIA
-//
+//  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-prec  = 1.e-5;
-x     = 0:0.1:3;
-[p,q] = cdfnor("PQ",x,0.0*ones(x),1.0*ones(x));
-if norm( p - 1/2*(1+erf(x/sqrt(2))))> 100*%eps then bugmes();quit;end
-yy    = cdfnor("PQ",0.5,0.0,1.0);
-deff('y=f(t)','y=exp(-t^2/2)');
-if norm(yy-(1/2+ 1/sqrt(2*%pi)*intg(0,0.5,f)))> %eps then bugmes();quit;end
-[x1] = cdfnor("X",0.0*ones(x),1.0*ones(x),p,q);
-if norm(x-x1) > prec then bugmes();quit;end
-M     = 2*x;
-[p,q] = cdfnor("PQ",x,M,1.0*ones(x));
-M1    = cdfnor("Mean",1.0*ones(x),p,q,x);
-if norm(M-M1) > prec then bugmes();quit;end
-// avoid M=x
-M      = 2*x+1;
-Std    = x+1;
-[p,q]  = cdfnor("PQ",x,M,Std);
-Std1   = cdfnor("Std",p,q,x,M);
-if norm(Std-Std1) > prec then bugmes();quit;end
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+//
+// assert_equal --
+//   Returns 1 if the two real matrices computed and expected are equal.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_equal ( computed , expected )
+  if computed==expected then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+function d = assert_computedigits ( computed , expected )
+  nre = size(expected,"r")
+  nce = size(expected,"c")
+  // Update shape
+  expected = expected (:)
+  computed = computed (:)
+  //
+  dmin = 0
+  dmax = -log10(2^(-53))
+  //
+  d = zeros(expected)
+  //
+  n = size(expected,"*")
+  for i = 1 : n
+    if ( isnan(expected(i)) & isnan(computed(i)) ) then
+      d(i) = dmax
+    elseif ( isnan(expected(i)) & ~isnan(computed(i)) ) then
+      d(i) = dmin
+    elseif ( ~isnan(expected(i)) & isnan(computed(i)) ) then
+      d(i) = dmin
+      // From now, both expected and computed are non-nan
+    elseif ( expected(i) == 0 & computed(i) == 0 ) then
+      d(i) = dmax
+    elseif ( expected(i) == 0 & computed(i) <> 0 ) then
+      d(i) = dmin
+      // From now, expected(i) is non-zero
+    elseif ( expected(i) == computed(i) ) then
+      d(i) = dmax
+      // From now, expected and computed are different
+    elseif ( expected(i) == %inf & computed(i) <> %inf ) then
+      d(i) = dmin
+    elseif ( expected(i) == -%inf & computed(i) <> -%inf ) then
+      d(i) = dmin
+      // From now, neither of computed, nor expected is infinity
+    else
+      d(i) = max ( -log10 ( abs(computed(i)-expected(i)) / abs(expected(i)) ) , dmin )
+    end
+  end
+  //
+  // Reshape
+  d = matrix(d,nre,nce)
+endfunction
+// 
+// References
+// Assessing the quality of the Normal distribution function
+// References
+//   Yalta, A. T. 2008. The accuracy of statistical distributions in Microsoft®Excel 2007. Comput. Stat. Data Anal. 52, 10 (Jun. 2008), 4579-4586. DOI= http://dx.doi.org/10.1016/j.csda.2008.03.005 
+//   Computation of Statistical Distributions (ELV), Leo Knüsel 
+// Table 6
+// Check inverse of normal law
+//
+// Table from Yalta, 2008.
+table = [
+  0.5 , 0.0 
+  1.e-1 , -1.28155 
+  1.e-2 , -2.32635 
+  1.e-3 , -3.09023 
+  1.e-4 , -3.71902 
+  1.e-5 , -4.26489 
+  1.e-6 , -4.75342 
+  1.e-7 , -5.19934 
+  1.e-15 , -7.94135 
+  1.e-16 , -8.22208 
+  1.e-100 , -21.2735 
+  1.e-197 , -29.9763 
+  1.e-198 , -30.0529 
+  1.e-300 , -37.0471 
+];
+precision = 1.e-5;
+nt = size(table,"r");
+for k = 1 : nt
+  p = table(k,1);
+  expected = table(k,2);
+  q = 1 - p;
+  Mean = 0;
+  Std = 1;
+  computed = cdfnor ( "X" , Mean , Std , p , q );
+  assert_close ( computed , expected , precision );
+end
+//
+// Values from R-2.8.1
+// table = [x mu sigma PDF-P CDF-P CDF-Q]
+// Some tests do not pass with Scilab.
+//
+// See : http://bugzilla.scilab.org/show_bug.cgi?id=8032
+//
+// Prints the number of accurate digits.
+table = [
+//                    %inf 1.000000000000000000D+00 2.000000000000000000D+00 0.000000000000000000D+00 1.000000000000000000D+00 0.000000000000000000D+00
+1.630146181031128094D+01 1.000000000000000000D+00 2.000000000000000000D+00 3.885547484725481156D-14 9.999999999999900080D-01 9.992007221626602924D-15
+1.372268177939483991D+01 1.000000000000000000D+00 2.000000000000000000D+00 3.255794261707647101D-10 9.999999998999999917D-01 1.000000082740384053D-10
+1.139867516458132002D+01 1.000000000000000000D+00 2.000000000000000000D+00 2.689766239123555948D-07 9.999999000000000526D-01 9.999999994736501079D-08
+9.529781587847679702D+00 1.000000000000000000D+00 2.000000000000000000D+00 2.239366490571142939D-05 9.999900000000000455D-01 9.999999999954530395D-06
+8.438032970911416797D+00 1.000000000000000000D+00 2.000000000000000000D+00 1.979239833799469940D-04 9.999000000000000110D-01 9.999999999998900014D-05
+7.180464612335624608D+00 1.000000000000000000D+00 2.000000000000000000D+00 1.683545038532002075D-03 9.989999999999999991D-01 1.000000000000003924D-03
+5.652695748081682403D+00 1.000000000000000000D+00 2.000000000000000000D+00 1.332607110172901940D-02 9.899999999999999911D-01 1.000000000000000021D-02
+3.563103131089199849D+00 1.000000000000000000D+00 2.000000000000000000D+00 8.774916596624346421D-02 8.999999999999999112D-01 1.000000000000001027D-01
+2.683242467145829036D+00 1.000000000000000000D+00 2.000000000000000000D+00 1.399809602039041034D-01 8.000000000000001554D-01 1.999999999999999001D-01
+1.506694206271600001D+00 1.000000000000000000D+00 2.000000000000000000D+00 1.931712667484301871D-01 6.000000000000000888D-01 3.999999999999999112D-01
+1.000000000000000000D+00 1.000000000000000000D+00 2.000000000000000000D+00 1.994711402007164069D-01 5.000000000000000000D-01 5.000000000000000000D-01
+-6.832424671458280363D-01 1.000000000000000000D+00 2.000000000000000000D+00 1.399809602039041867D-01 2.000000000000000111D-01 8.000000000000000444D-01
+-1.563103131089200959D+00 1.000000000000000000D+00 2.000000000000000000D+00 8.774916596624339482D-02 1.000000000000000056D-01 9.000000000000000222D-01
+-3.652695748081681959D+00 1.000000000000000000D+00 2.000000000000000000D+00 1.332607110172904022D-02 1.000000000000001062D-02 9.899999999999999911D-01
+-7.529781587845650215D+00 1.000000000000000000D+00 2.000000000000000000D+00 2.239366490580828930D-05 9.999999999999960160D-06 9.999900000000000455D-01
+-1.172268180480810962D+01 1.000000000000000000D+00 2.000000000000000000D+00 3.255793998537787058D-10 1.000000000000008954D-10 9.999999998999999917D-01
+-1.752468017959679969D+01 1.000000000000000000D+00 2.000000000000000000D+00 4.683961267403037244D-20 1.000000000000072017D-20 1.000000000000000000D+00
+-2.886667506957698137D+01 1.000000000000000000D+00 2.000000000000000000D+00 7.499857137115675432D-50 9.999999999999744883D-51 1.000000000000000000D+00
+//                   -%inf 1.000000000000000000D+00 2.000000000000000000D+00 0.000000000000000000D+00 0.000000000000000000D+00 1.000000000000000000D+00
+];
+precision = 1.e-12;
+precinv = 1.e-8;
+nt = size(table,"r");
+for k = 1 : nt
+  x = table(k,1);
+  mu = table(k,2);
+  std = table(k,3);
+  p = table(k,5);
+  q = table(k,6);
+  [ p1 , q1 ] = cdfnor("PQ",x,mu,std);
+  x1 = cdfnor("X",mu,std,p,q);
+  mu1 = cdfnor("Mean",std,p,q,x);
+  std1 = cdfnor("Std",p,q,x,mu);
+  if ( %t ) then
+    assert_close ( p1 , p , precision );
+    assert_close ( q1 , q , precision );
+    assert_close ( x1 , x , precinv );
+    assert_close ( mu1 , mu , precinv );
+    if ( ~isnan(std1) ) then
+      assert_close ( std1 , std , precinv );
+    end
+  end
+  if ( %f ) then
+    dP = assert_computedigits ( p1 , p );
+    dQ = assert_computedigits ( q1 , q );
+    dx = assert_computedigits ( x1 , x );
+    dmu = assert_computedigits ( mu1 , mu );
+    dstd = assert_computedigits ( std1 , std );
+    mprintf("Test #%3d/%3d: Digits p1= %.1f, q1=%.1f, X=%.1f, M=%.1f, S=%.1f\n",k,nt,dP,dQ,dx,dmu,dstd);
+  end
+end

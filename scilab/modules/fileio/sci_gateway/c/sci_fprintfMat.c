@@ -1,136 +1,375 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
- * Copyright (C) DIGITEO - 2010 - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
-#include <stdio.h>
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA
+* Copyright (C) DIGITEO - 2010 - Allan CORNET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
+#include <string.h>
+#include "api_scilab.h"
 #include "MALLOC.h"
 #include "stack-c.h"
+#include "api_oldstack.h"
 #include "gw_fileio.h"
-#include "scanf_functions.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "charEncoding.h"
-#include "StringConvert.h"
-#include "BOOL.h"
+#include "expandPathVariable.h"
+#include "os_strdup.h"
+#include "fprintfMat.h"
 /*--------------------------------------------------------------------------*/
-#define EOL "\n"
-#define DEFAULT_FPRINTF_FORMAT "%lf"
-/*--------------------------------------------------------------------------*/
-int sci_fprintfMat(char *fname,unsigned long fname_len)
+int sci_fprintfMat(char *fname, int *_piKey)
 {
-	int l1 = 0, m1 = 0, n1 = 0,l2 = 0,m2 = 0,n2 = 0,m3 = 0,n3 = 0,l3 = 0,i = 0,j = 0,mS = 0,nS = 0;
-	FILE  *f = NULL;
-	char *filename = NULL;
-	char **Str2 = NULL;
-	char *Format = NULL;
+    SciErr sciErr;
+    int *piAddressVarOne = NULL;
+    int m1 = 0, n1 = 0;
+    int iType1 = 0;
 
-	Nbvars = 0;
-	CheckRhs(1,4);
-	CheckLhs(1,1);
+    int *piAddressVarTwo = NULL;
+    int m2 = 0, n2 = 0;
+    int iType2 = 0;
 
-	if (GetType(1) == sci_strings)
-	{
-		char *filename2 = NULL;
-		GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);/* file name */
+    fprintfMatError ierr = FPRINTFMAT_ERROR;
 
-		/* BUG 3714 */
-		filename = cstk(l1);
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
-		return 0;
-	}
+    char *filename = NULL;
+    char *expandedFilename = NULL;
+    char **textAdded = NULL;
+    char *Format = NULL;
+    double *dValues = NULL;
+    char *separator = NULL;
+    int m4n4 = 0;
+    int i = 0;
 
-	if (GetType(2) == sci_matrix)
-	{
-		#define COMPLEXPART 1
-		int *header = NULL;
-		int Cmplx;
+    Nbvars = 0;
+    CheckRhs(1,5);
+    CheckLhs(1,1);
 
-		header = (int *) GetData(2);
-		Cmplx = header[3];
+    if (Rhs >= 3)
+    {
+        int *piAddressVarThree = NULL;
+        int iType3	= 0;
+        int m3 = 0, n3 = 0;
 
-		if (Cmplx != COMPLEXPART)
-		{
-			GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); /* data */
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Real values expected.\n"),fname,2);
-			return 0;
-		}
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of floating point numbers expected.\n"),fname,2);
-		return 0;
-	}
+        sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-	if ( Rhs >= 3)
-	{
-		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);/* format */
-		StringConvert(cstk(l3));  /* conversion */
-		Format = cstk(l3);
-	}
-	else
-	{
-		Format = DEFAULT_FPRINTF_FORMAT;
-	}
+        sciErr = getVarType(_piKey, piAddressVarThree, &iType3);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-	if ( Rhs >= 4 )
-	{
-		GetRhsVar(4,MATRIX_OF_STRING_DATATYPE,&mS,&nS,&Str2);
-	}
+        if (iType3 != sci_strings)
+        {
+            Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            return 0;
+        }
 
-	#if _MSC_VER
-	#define MODEFD "wt"
-	#else
-	#define MODEFD "w"
-	#endif
+        sciErr = getVarDimension(_piKey, piAddressVarThree, &m3, &n3);
 
-	wcfopen(f , filename, MODEFD);
+        if ( (m3 != n3) && (n3 != 1) )
+        {
+            Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
+            return 0;
+        }
 
-	if ( f == (FILE *)0 )
-	{
-		Scierror(999, _("%s: Cannot open file %s.\n"), fname, filename);
-		return 0;
-	}
+        if (getAllocatedSingleString(_piKey, piAddressVarThree, &Format))
+        {
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+    }
+    else
+    {
+        Format = os_strdup(DEFAULT_FPRINTFMAT_FORMAT);
+    }
 
-	if ( Rhs >= 4 )
-	{
-		for ( i=0 ; i < mS*nS ; i++) fprintf(f,"%s\n",Str2[i]);
-	}
+    if ( Rhs >= 4 )
+    {
+        int *piAddressVarFour = NULL;
+        int *lengthStrings = NULL;
+        int iType4	= 0;
+        int m4 = 0, n4 = 0;
 
-	for (i = 0 ; i < m2 ; i++ )
-	{
-		for ( j = 0 ; j < n2 ; j++)
-		{
-			fprintf(f, Format, *stk(l2+i + m2*j));
-			fprintf(f, " ");
-		}
+        sciErr = getVarAddressFromPosition(_piKey, 4, &piAddressVarFour);
+        if(sciErr.iErr)
+        {
+            if (Format) {FREE(Format); Format = NULL;}
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-		fprintf(f, EOL);
-	}
+        sciErr = getVarType(_piKey, piAddressVarFour, &iType4);
+        if(sciErr.iErr)
+        {
+            if (Format) {FREE(Format); Format = NULL;}
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-	fclose(f);
-	LhsVar(1) = 0 ; /** no return value **/
+        if (iType4 != sci_strings)
+        {
+            if (Format) {FREE(Format); Format = NULL;}
+            Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 4);
+            return 0;
+        }
 
-	if ( Rhs >= 4)
-	{
-		freeArrayOfString(Str2, mS*nS);
-	}
+        sciErr = getVarDimension(_piKey, piAddressVarFour, &m4, &n4);
+        if(sciErr.iErr)
+        {
+            if (Format) {FREE(Format); Format = NULL;}
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-	PutLhsVar();
-	return 0;
+        if  (! ((m4 == 1) || (n4 == 1)))
+        {
+            if (Format) {FREE(Format); Format = NULL;}
+            Scierror(999,_("%s: Wrong size for input argument #%d.\n"), fname, 4);
+            return 0;
+        }
+
+        lengthStrings = (int*)MALLOC(sizeof(int) * (m4 * n4));
+        if (lengthStrings == NULL)
+        {
+            if (Format) {FREE(Format); Format = NULL;}
+            Scierror(999,_("%s: Memory allocation error.\n"),fname);
+            return 0;
+        }
+
+        // get lengthStrings value
+        sciErr = getMatrixOfString(_piKey, piAddressVarFour, &m4, &n4, lengthStrings, NULL);
+        if(sciErr.iErr)
+        {
+            if (Format) {FREE(Format); Format = NULL;}
+            if (lengthStrings) {FREE(lengthStrings); lengthStrings = NULL;}
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        textAdded = (char**)MALLOC(sizeof(char*) * (m4 * n4));
+        if (textAdded == NULL)
+        {
+            if (Format) {FREE(Format); Format = NULL;}
+            if (lengthStrings) {FREE(lengthStrings); lengthStrings = NULL;}
+            Scierror(999,_("%s: Memory allocation error.\n"),fname);
+            return 0;
+        }
+
+        for (i = 0; i < (m4 * n4); i++)
+        {
+            textAdded[i] = (char*)MALLOC(sizeof(char) * (lengthStrings[i] + 1));
+            if (textAdded[i] == NULL)
+            {
+                freeArrayOfString(textAdded, m4 * n4);
+                if (Format) {FREE(Format); Format = NULL;}
+                if (lengthStrings) {FREE(lengthStrings); lengthStrings = NULL;}
+                Scierror(999,_("%s: Memory allocation error.\n"),fname);
+                return 0;
+            }
+        }
+
+        // get textAdded
+        sciErr = getMatrixOfString(_piKey, piAddressVarFour, &m4, &n4, lengthStrings, textAdded);
+        if (lengthStrings) {FREE(lengthStrings); lengthStrings = NULL;}
+        if(sciErr.iErr)
+        {
+            freeArrayOfString(textAdded, m4 * n4);
+            if (Format) {FREE(Format); Format = NULL;}
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        m4n4 = m4 * n4;
+    }
+
+    if (Rhs > 4)
+    {
+        int *piAddressVarFive = NULL;
+        int iType5	= 0;
+        int m5 = 0, n5 = 0;
+
+        sciErr = getVarAddressFromPosition(_piKey, 5, &piAddressVarFive);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        sciErr = getVarType(_piKey, piAddressVarFive, &iType5);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if (iType5 != sci_strings)
+        {
+            Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 5);
+            return 0;
+        }
+
+        sciErr = getVarDimension(_piKey, piAddressVarFive, &m5, &n5);
+
+        if ( (m5 != n5) && (n5 != 1) )
+        {
+            Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 5);
+            return 0;
+        }
+
+        if (getAllocatedSingleString(_piKey, piAddressVarFive, &separator))
+        {
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+    }
+    else
+    {
+        separator = os_strdup(DEFAULT_FPRINTFMAT_SEPARATOR);
+    }
+
+    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+    if(sciErr.iErr)
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+    if(sciErr.iErr)
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    if (iType2 != sci_matrix)
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of floating point numbers expected.\n"), fname, 2);
+        return 0;
+    }
+
+    if (isVarComplex(_piKey, piAddressVarTwo))
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        Scierror(999,_("%s: Wrong type for input argument #%d: Real values expected.\n"), fname, 2);
+        return 0;
+    }
+
+    sciErr = getMatrixOfDouble(_piKey, piAddressVarTwo, &m2, &n2, &dValues);
+    if(sciErr.iErr)
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    if(sciErr.iErr)
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+    if(sciErr.iErr)
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    if (iType1 != sci_strings)
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        return 0;
+    }
+
+    sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+
+    if ( (m1 != n1) && (n1 != 1) )
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        return 0;
+    }
+
+    if (getAllocatedSingleString(_piKey, piAddressVarOne, &filename))
+    {
+        if (textAdded) freeArrayOfString(textAdded, m4n4);
+        if (Format) {FREE(Format); Format = NULL;}
+        if (separator){FREE(separator); separator = NULL;}
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    expandedFilename = expandPathVariable(filename);
+    ierr = fprintfMat(expandedFilename, Format, separator, dValues, m2, n2,textAdded, m4n4);
+    if (expandedFilename) {FREE(expandedFilename); expandedFilename = NULL;}
+    if (textAdded) freeArrayOfString(textAdded, m4n4);
+    if (Format) {FREE(Format); Format = NULL;}
+    if (separator){FREE(separator); separator = NULL;}
+
+    switch(ierr)
+    {
+    case FPRINTFMAT_NO_ERROR:
+        {
+            LhsVar(1) = 0;
+            C2F(putlhsvar)();
+        }
+        break;
+    case FPRINTFMAT_FOPEN_ERROR:
+        {
+            Scierror(999,_("%s: can not open file %s.\n"), fname, filename);
+        }
+        break;
+    case FPRINTMAT_FORMAT_ERROR:
+        {
+            Scierror(999,_("%s: Invalid format.\n"), fname);
+        }
+        break;
+    default:
+    case FPRINTFMAT_ERROR:
+        {
+            Scierror(999,_("%s: error.\n"), fname);
+        }
+        break;
+    }
+
+    if (filename) {FREE(filename); filename = NULL;}
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
+

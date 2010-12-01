@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET , Cong WU
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -21,15 +21,15 @@ static gw_generic_table Tab[] =
 {
 	{NULL, ""}, //length
 	{NULL, ""}, //part
-	{sci_string,"string"},
+	{NULL,""}, //string
 	{sci_convstr,"convstr"},
 	{NULL, ""}, //emptystr
 	{sci_str2code,"str2code"},
 	{sci_code2str,"code2str"},
-	{sci_strcat,"strcat"},
+	{NULL ,""}, //strcat
 	{NULL, ""}, //strindex
 	{NULL, ""}, //strsubst
-	{sci_ascii,"ascii"},
+	{NULL, ""}, //ascii
 	{NULL, ""}, //grep
 	{sci_tokens,"tokens"},
 	{NULL, ""}, //strsplit
@@ -52,7 +52,7 @@ static gw_generic_table Tab[] =
 };
 /*--------------------------------------------------------------------------*/
 int gw_string(void)
-{  
+{
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

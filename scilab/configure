@@ -9232,7 +9232,7 @@ case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3"
+	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
@@ -9282,10 +9282,6 @@ case "$CC" in
    CFLAGS="$CFLAGS -fno-stack-protector" # bug 3131
 
    case "$host" in
-   # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
-	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
-	    CFLAGS="$CFLAGS -fwritable-strings"
-	;;
 	 x86_64-*-linux-gnu | x86_64-linux-gnu)
 		CFLAGS="$CFLAGS -DNARROWPROTO -m64"
     ;;
@@ -9296,11 +9292,11 @@ case "$CC" in
 		CFLAGS="$CFLAGS -DNARROWPROTO"
     ;;
 	 alpha-*-linux-gnu)
-		CFLAGS="$CFLAGS  -mieee-with-inexact -fwritable-strings"
+		CFLAGS="$CFLAGS  -mieee-with-inexact"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
 	;;
 	 powerpc-*-linux-gnu)
-		CFLAGS="$CFLAGS -D_GNU_SOURCE -fwritable-strings"
+		CFLAGS="$CFLAGS -D_GNU_SOURCE"
 	;;
 	 *-*-solaris*)
         if test "$enable_debug_C" = yes; then
@@ -10069,6 +10065,28 @@ fi
 ###########################
 
 if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
+   # Need MacosX Version to specify some path.
+   case "$host_os" in
+                   *Darwin* | *darwin*)
+
+        { $as_echo "$as_me:${as_lineno-$LINENO}: checking MacOSX Version" >&5
+$as_echo_n "checking MacOSX Version... " >&6; }
+        if eval system_profiler SPSoftwareDataType | grep "System Version" | grep "10\.6" > /dev/null; then
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: MacOSX 10.6 - Snow Leopard." >&5
+$as_echo "MacOSX 10.6 - Snow Leopard." >&6; }
+        macosx_version="10.6"
+        else
+        if eval system_profiler SPSoftwareDataType | grep "System Version" | grep "10\.5" > /dev/null; then
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: MacOSX 10.5 - Leopard." >&5
+$as_echo "MacOSX 10.5 - Leopard." >&6; }
+        macosx_version="10.5"
+        else
+        as_fn_error $? "MacOSX 10.5 or 10.6 is needed." "$LINENO" 5
+        fi
+        fi
+;;
+  esac
+
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -10120,8 +10138,8 @@ $as_echo "not defined" >&6; }
 			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: Darwin (Mac OS X) found. Use the standard paths." >&5
 $as_echo "Darwin (Mac OS X) found. Use the standard paths." >&6; }
 			# See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-			ac_java_jvm_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
-			JAVAC=$ac_java_jvm_dir/bin/javac
+			ac_java_jvm_dir=/System/Library/Frameworks/JavaVM.framework
+			JAVAC=$ac_java_jvm_dir/Commands/javac
 			;;
 		esac
 	fi
@@ -10141,7 +10159,7 @@ $as_echo "Darwin (Mac OS X) found. Use the standard paths." >&6; }
 	     # Don't follow the symlink since Java under MacOS is messy
 	     # Uses the wrapper providing by Apple to retrieve the path
 	     # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-		JAVAC=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/bin/javac
+		JAVAC=/System/Library/Frameworks/JavaVM.framework/Commands/javac
 		DONT_FOLLOW_SYMLINK=yes
 		;;
 	esac
@@ -10286,7 +10304,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 10289 "configure"
+// #line 10307 "configure"
 
 
 public class conftest {
@@ -10299,13 +10317,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
    		   works=yes
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   works=yes
 			else
@@ -10352,7 +10370,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 10355 "configure"
+// #line 10373 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -10365,13 +10383,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
    		   ac_java_jvm_name=gcj
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   ac_java_jvm_name=gcj
 			else
@@ -10416,7 +10434,7 @@ $as_echo_n "checking java API version... " >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 10419 "configure"
+// #line 10437 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -10429,13 +10447,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
    		   ac_java_jvm_version=1.4
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   ac_java_jvm_version=1.4
 			else
@@ -10461,7 +10479,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 10464 "configure"
+// #line 10482 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -10474,13 +10492,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
    		   ac_java_jvm_version=1.5
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   ac_java_jvm_version=1.5
 			else
@@ -10532,7 +10550,7 @@ $as_echo "$ac_java_jvm_version" >&6; }
          else
 		case "$host_os" in
 		     *darwin* )
-		     	      ac_java_jvm_jni_include_flags="-I$ac_java_jvm_dir/Headers/"
+		     	      ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers"
 			      ;;
 		      *)
 	                   as_fn_error $? "Could not locate Java's jni.h include file" "$LINENO" 5
@@ -10589,7 +10607,7 @@ _ACEOF
 if ac_fn_c_try_compile "$LINENO"; then :
   ac_cv_java_jvm_jni_working=yes
 else
-  as_fn_error $? "could not compile file that includes jni.h" "$LINENO" 5
+  as_fn_error $? "could not compile file that includes jni.h. If you run Mac OS X please make sure you have 'Java developer package'. This is available on http://connect.apple.com/ " "$LINENO" 5
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
         ac_ext=c
@@ -10625,7 +10643,7 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
 	    powerpc|ppc64)
 	  	  machine=ppc
 		  ;;
-		  armv4l|armv5tel)
+		  armv*)
 		  machine=arm
 		  ;;
 		  s390x) # s390 arch can also returns s390x
@@ -10756,7 +10774,7 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
 
         # Sun on MacOS X Java Compiler
 
-        F=../Libraries/libjava.jnilib
+        F=Libraries/libjava.jnilib
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
 
     echo Looking for $ac_java_jvm_dir/$F >&5
@@ -10767,13 +10785,15 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
     echo Found $ac_java_jvm_dir/$F >&5
     echo Found $ac_java_jvm_dir/$F
 
-				libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
+		libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
 
-                D=`dirname $ac_java_jvm_dir/$F`
-                ac_java_jvm_jni_lib_runtime_path=$D
-                ac_java_jvm_jni_lib_flags="-L$D -ljvm"
 
-                D=$ac_java_jvm_dir/jre/lib/i386/server
+                #D=`dirname $ac_java_jvm_dir/$F`
+                #ac_java_jvm_jni_lib_runtime_path=$D
+                #ac_java_jvm_jni_lib_flags="-L$D -ljvm"
+
+                #D=$ac_java_jvm_dir/jre/lib/i386/server
+		D=/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Libraries
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
                 ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
             fi
@@ -11013,6 +11033,14 @@ $as_echo "$ac_java_classpath" >&6; }
 
 
 
+    case "$host_os" in
+          *darwin*)
+	      ac_java_jvm_bin_dir=/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands;;
+          *)
+              ac_java_jvm_bin_dir=$ac_java_jvm_dir/bin;;
+    esac
+
+
     if test "$cross_compiling" = "yes" ; then
         # Extract the first word of "java", so it can be a program name with args.
 set dummy java; ac_word=$2
@@ -11068,7 +11096,7 @@ else
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $ac_java_jvm_dir/bin
+for as_dir in $ac_java_jvm_bin_dir
 do
   IFS=$as_save_IFS
   test -z "$as_dir" && as_dir=.
@@ -11163,7 +11191,7 @@ else
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $ac_java_jvm_dir/bin
+for as_dir in $ac_java_jvm_bin_dir
 do
   IFS=$as_save_IFS
   test -z "$as_dir" && as_dir=.
@@ -11258,7 +11286,7 @@ else
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $ac_java_jvm_dir/bin
+for as_dir in $ac_java_jvm_bin_dir
 do
   IFS=$as_save_IFS
   test -z "$as_dir" && as_dir=.
@@ -11352,7 +11380,7 @@ else
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $ac_java_jvm_dir/bin
+for as_dir in $ac_java_jvm_bin_dir
 do
   IFS=$as_save_IFS
   test -z "$as_dir" && as_dir=.
@@ -11447,7 +11475,7 @@ else
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $ac_java_jvm_dir/bin
+for as_dir in $ac_java_jvm_bin_dir
 do
   IFS=$as_save_IFS
   test -z "$as_dir" && as_dir=.
@@ -11697,6 +11725,12 @@ fi
 	fi
 
 
+		case "$host_os" in
+                     *Darwin* | *darwin*)
+		        JAVA_HOME="";;
+		esac
+
+
 		if test "$with_gui" != no; then
 
 				# jgraphx
@@ -11720,7 +11754,7 @@ $as_echo_n "checking jgraphx... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11723 "configure"
+// #line 11757 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -11733,7 +11767,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -11745,7 +11779,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -11807,23 +11841,24 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgraphx us
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.4.0.2) of jgraphx" >&5
-$as_echo_n "checking minimal version (1.4.0.2) of jgraphx... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.4.1.0) of jgraphx" >&5
+$as_echo_n "checking minimal version (1.4.1.0) of jgraphx... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$JGRAPHX:$ac_java_classpath"
+   if test "x=" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 11816 "configure"
+// #line 11851 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.4.0.2";
+        String minVersion="1.4.1.0";
 
                             System.out.println(mxGraph.VERSION);
-   						   	if (minVersion.compareTo(mxGraph.VERSION) > 0) {
-							   	System.exit(-1);
-								}
+                                  if (minVersion.compareTo(mxGraph.VERSION) > 0) {
+                                   System.exit(-1);
+                                }
 
     }
 }
@@ -11832,13 +11867,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""yes"" = "no"; then
            echo "yes" >&5
    		   echo "yes"
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   echo "yes"
 			else
@@ -11848,7 +11883,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
         		echo "configure: CLASSPATH was $CLASSPATH" >&5
-        		  as_fn_error $? "Wrong version of jgraphx. Expected at least 1.4.0.2. Found $STDOUT" "$LINENO" 5
+        		  as_fn_error $? "Wrong version of jgraphx. Expected at least 1.4.1.0. Found $STDOUT" "$LINENO" 5
         					fi
 		fi
         if test -f conftest.java.output; then
@@ -11858,9 +11893,61 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of jgraphx. Expected at least 1.4.0.2. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of jgraphx. Expected at least 1.4.1.0. Found $STDOUT" "$LINENO" 5
             fi
 
+   else
+
+    cat << \EOF > conftest.java
+// #line 11902 "configure"
+import com.mxgraph.view.mxGraph;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="1.4.1.0";
+
+                            System.out.println(mxGraph.VERSION);
+                                  if (minVersion.compareTo(mxGraph.VERSION) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error $? "Wrong version of jgraphx. Expected exact version 1.4.1.0. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error $? "Wrong version of jgraphx. Expected exact version 1.4.1.0. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
    ac_java_classpath=$saved_ac_java_classpath
 
 
@@ -11885,7 +11972,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11888 "configure"
+// #line 11975 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11898,7 +11985,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -11910,7 +11997,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -11971,6 +12058,117 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar flexdock u
 				FLEXDOCK=$PACKAGE_JAR_FILE
 
 
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (0.5.2) of flexdock" >&5
+$as_echo_n "checking minimal version (0.5.2) of flexdock... " >&6; }
+   saved_ac_java_classpath=$ac_java_classpath
+   export ac_java_classpath="$FLEXDOCK:$ac_java_classpath"
+   if test "x" == "x"; then
+
+    cat << \EOF > conftest.java
+// #line 12069 "configure"
+import org.flexdock.util.Utilities;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="0.5.2";
+
+                            System.out.println(Utilities.VERSION);
+                                  if (minVersion.compareTo(Utilities.VERSION) > 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error $? "Wrong version of flexdock. Expected at least 0.5.2. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error $? "Wrong version of flexdock. Expected at least 0.5.2. Found $STDOUT" "$LINENO" 5
+            fi
+
+   else
+
+    cat << \EOF > conftest.java
+// #line 12120 "configure"
+import org.flexdock.util.Utilities;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="0.5.2";
+
+                            System.out.println(Utilities.VERSION);
+                                  if (minVersion.compareTo(Utilities.VERSION) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error $? "Wrong version of flexdock. Expected exact version 0.5.2. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error $? "Wrong version of flexdock. Expected exact version 0.5.2. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
+   ac_java_classpath=$saved_ac_java_classpath
+
+
 				# Swing look&feel implementations
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking looks" >&5
@@ -11992,7 +12190,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11995 "configure"
+// #line 12193 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -12005,7 +12203,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12017,7 +12215,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12099,7 +12297,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12102 "configure"
+// #line 12300 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -12112,7 +12310,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12124,7 +12322,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12207,7 +12405,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12210 "configure"
+// #line 12408 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -12220,7 +12418,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12232,7 +12430,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12314,7 +12512,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12317 "configure"
+// #line 12515 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -12327,7 +12525,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12339,7 +12537,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12526,7 +12724,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12529 "configure"
+// #line 12727 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -12539,7 +12737,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12551,7 +12749,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12687,7 +12885,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12690 "configure"
+// #line 12888 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12700,7 +12898,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12712,7 +12910,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12794,7 +12992,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12797 "configure"
+// #line 12995 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12807,7 +13005,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12819,7 +13017,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -12902,7 +13100,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12905 "configure"
+// #line 13103 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -12915,7 +13113,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -12927,7 +13125,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13009,7 +13207,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13012 "configure"
+// #line 13210 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -13022,7 +13220,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13034,7 +13232,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13118,7 +13316,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13121 "configure"
+// #line 13319 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -13131,7 +13329,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13143,7 +13341,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13227,7 +13425,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13230 "configure"
+// #line 13428 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -13240,7 +13438,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13252,7 +13450,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13334,7 +13532,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13337 "configure"
+// #line 13535 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -13347,7 +13545,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13359,7 +13557,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13441,7 +13639,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13444 "configure"
+// #line 13642 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -13454,7 +13652,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13466,7 +13664,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13532,9 +13730,10 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik used
 $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$BATIK:$ac_java_classpath"
+   if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 13537 "configure"
+// #line 13736 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -13542,9 +13741,9 @@ public class conftest {
         String minVersion="1.7";
 
                             System.out.println(Version.getVersion());
-   						   	if (minVersion.compareTo(Version.getVersion()) > 0) {
-							   	System.exit(-1);
-								}
+                                  if (minVersion.compareTo(Version.getVersion()) > 0) {
+                                   System.exit(-1);
+                                }
 
     }
 }
@@ -13553,13 +13752,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""yes"" = "no"; then
            echo "yes" >&5
    		   echo "yes"
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   echo "yes"
 			else
@@ -13582,6 +13781,58 @@ EOF
           as_fn_error $? "Wrong version of batik. Expected at least 1.7. Found $STDOUT" "$LINENO" 5
             fi
 
+   else
+
+    cat << \EOF > conftest.java
+// #line 13787 "configure"
+import org.apache.batik.Version;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="1.7";
+
+                            System.out.println(Version.getVersion());
+                                  if (minVersion.compareTo(Version.getVersion()) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error $? "Wrong version of batik. Expected exact version 1.7. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error $? "Wrong version of batik. Expected exact version 1.7. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
    ac_java_classpath=$saved_ac_java_classpath
 
 
@@ -13606,7 +13857,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13609 "configure"
+// #line 13860 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -13619,7 +13870,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13631,7 +13882,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13713,7 +13964,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13716 "configure"
+// #line 13967 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -13726,7 +13977,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13738,7 +13989,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13820,7 +14071,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13823 "configure"
+// #line 14074 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -13833,7 +14084,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13845,7 +14096,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -13927,7 +14178,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13930 "configure"
+// #line 14181 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -13940,7 +14191,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -13952,7 +14203,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14034,7 +14285,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14037 "configure"
+// #line 14288 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -14047,7 +14298,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14059,7 +14310,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14145,7 +14396,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14148 "configure"
+// #line 14399 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -14158,7 +14409,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14170,7 +14421,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14252,7 +14503,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14255 "configure"
+// #line 14506 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -14265,7 +14516,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14277,7 +14528,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14339,23 +14590,24 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jlatexmath
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (0.8.8) of jlatexmath" >&5
-$as_echo_n "checking minimal version (0.8.8) of jlatexmath... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (0.9.3) of jlatexmath" >&5
+$as_echo_n "checking minimal version (0.9.3) of jlatexmath... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$JLATEXMATH:$ac_java_classpath"
+   if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14348 "configure"
+// #line 14600 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="0.8.8";
+        String minVersion="0.9.3";
 
                             System.out.println(TeXFormula.VERSION);
-   						   	if (minVersion.compareTo(TeXFormula.VERSION) > 0) {
-							   	System.exit(-1);
-								}
+                                  if (minVersion.compareTo(TeXFormula.VERSION) > 0) {
+                                   System.exit(-1);
+                                }
 
     }
 }
@@ -14364,13 +14616,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""yes"" = "no"; then
            echo "yes" >&5
    		   echo "yes"
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   echo "yes"
 			else
@@ -14380,7 +14632,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
         		echo "configure: CLASSPATH was $CLASSPATH" >&5
-        		  as_fn_error $? "Wrong version of jlatexmath. Expected at least 0.8.8. Found $STDOUT" "$LINENO" 5
+        		  as_fn_error $? "Wrong version of jlatexmath. Expected at least 0.9.3. Found $STDOUT" "$LINENO" 5
         					fi
 		fi
         if test -f conftest.java.output; then
@@ -14390,9 +14642,61 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of jlatexmath. Expected at least 0.8.8. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of jlatexmath. Expected at least 0.9.3. Found $STDOUT" "$LINENO" 5
             fi
 
+   else
+
+    cat << \EOF > conftest.java
+// #line 14651 "configure"
+import org.scilab.forge.jlatexmath.TeXFormula;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="0.9.3";
+
+                            System.out.println(TeXFormula.VERSION);
+                                  if (minVersion.compareTo(TeXFormula.VERSION) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error $? "Wrong version of jlatexmath. Expected exact version 0.9.3. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error $? "Wrong version of jlatexmath. Expected exact version 0.9.3. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
    ac_java_classpath=$saved_ac_java_classpath
 
 
@@ -14423,7 +14727,7 @@ $as_echo_n "checking checkstyle... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14426 "configure"
+// #line 14730 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -14436,7 +14740,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14448,7 +14752,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14530,7 +14834,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14533 "configure"
+// #line 14837 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -14543,7 +14847,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14555,7 +14859,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14637,7 +14941,7 @@ $as_echo_n "checking antlr... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14640 "configure"
+// #line 14944 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -14650,7 +14954,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14662,7 +14966,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14744,7 +15048,7 @@ $as_echo_n "checking testng... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14747 "configure"
+// #line 15051 "configure"
 import org.testng.TestNG;
 
 public class conftest {
@@ -14757,7 +15061,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14769,7 +15073,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14851,7 +15155,7 @@ $as_echo_n "checking qdox... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14854 "configure"
+// #line 15158 "configure"
 import com.thoughtworks.qdox.tools.QDoxTester;
 
 public class conftest {
@@ -14864,7 +15168,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14876,7 +15180,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -14958,7 +15262,7 @@ $as_echo_n "checking bsh... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14961 "configure"
+// #line 15265 "configure"
 import bsh.Console;
 
 public class conftest {
@@ -14971,7 +15275,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -14983,7 +15287,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -15065,7 +15369,7 @@ $as_echo_n "checking junit... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15068 "configure"
+// #line 15372 "configure"
 import junit.framework.Assert;
 
 public class conftest {
@@ -15078,7 +15382,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -15090,7 +15394,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -19085,7 +19389,7 @@ $as_echo_n "checking jhdf5... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 19088 "configure"
+// #line 19392 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -19098,7 +19402,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -19110,7 +19414,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -19231,9 +19535,10 @@ fi
 $as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$JHDF5:$ac_java_classpath"
+   if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 19236 "configure"
+// #line 19541 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -19245,9 +19550,9 @@ public class conftest {
                 String ver = vers[0] + "."+ vers[1] +"."+vers[2];
 
                             System.out.println(ver);
-   						   	if (minVersion.compareTo(ver) > 0) {
-							   	System.exit(-1);
-								}
+                                  if (minVersion.compareTo(ver) > 0) {
+                                   System.exit(-1);
+                                }
 
     }
 }
@@ -19256,13 +19561,13 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""yes"" = "no"; then
            echo "yes" >&5
    		   echo "yes"
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
        		   echo "yes"
 			else
@@ -19285,6 +19590,62 @@ EOF
           as_fn_error $? "Wrong version of hdf5. Expected at least 1.8.4. Found $STDOUT" "$LINENO" 5
             fi
 
+   else
+
+    cat << \EOF > conftest.java
+// #line 19596 "configure"
+import ncsa.hdf.hdf5lib.H5;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="1.8.4";
+                            int[] vers = new int[3];
+                try { H5.H5get_libversion(vers); }
+                catch (Throwable ex) {System.exit(-1);}
+                String ver = vers[0] + "."+ vers[1] +"."+vers[2];
+
+                            System.out.println(ver);
+                                  if (minVersion.compareTo(ver) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error $? "Wrong version of hdf5. Expected exact version 1.8.4. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error $? "Wrong version of hdf5. Expected exact version 1.8.4. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
    ac_java_classpath=$saved_ac_java_classpath
 
       unset LD_LIBRARY_PATH
@@ -24006,7 +24367,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 24009 "configure"
+#line 24370 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -24316,7 +24677,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 24319 "configure"
+#line 24680 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -24897,7 +25258,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24900 "configure"
+// #line 25261 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -24910,7 +25271,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -24922,7 +25283,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -25004,7 +25365,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25007 "configure"
+// #line 25368 "configure"
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
@@ -25017,7 +25378,7 @@ EOF
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5) ; then
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
        if test ""no"" = "no"; then
            echo "yes" >&5
 
@@ -25029,7 +25390,7 @@ $as_echo "$jar_resolved" >&6; }
 
 	   else
 	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&conftest.java.output 2>&5); then
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
 	           echo "yes" >&5
 
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
@@ -25112,7 +25473,7 @@ else
 fi
 
 
-## Install XML help files ###
+## Install XML help files ###
 
 
 # Check whether --with-install-help-xml was given.
@@ -31304,7 +31665,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31307 "configure"
+#line 31668 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31410,7 +31771,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31413 "configure"
+#line 31774 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -37432,7 +37793,7 @@ if test "$enable_stop_on_warning" = yes; then
    CPPFLAGS="$CPPFLAGS -Werror -O0"
 fi
 
-ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/abstractSyntaxTree/Makefile modules/parse/Makefile modules/symbol/Makefile modules/functions_manager/Makefile modules/system_env/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/types/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/operations/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/scinotes/Makefile modules/ui_data/Makefile modules/graph/Makefile modules/parallel/Makefile modules/modules_manager/Makefile modules/history_browser/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
+ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/abstractSyntaxTree/Makefile modules/parse/Makefile modules/symbol/Makefile modules/functions_manager/Makefile modules/system_env/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/commons/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/types/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/operations/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/scinotes/Makefile modules/ui_data/Makefile modules/graph/Makefile modules/parallel/Makefile modules/modules_manager/Makefile modules/history_browser/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
 
 
 # Detection of the module for the future version of Scilab 6
@@ -38791,6 +39152,7 @@ do
     "modules/completion/Makefile") CONFIG_FILES="$CONFIG_FILES modules/completion/Makefile" ;;
     "modules/history_manager/Makefile") CONFIG_FILES="$CONFIG_FILES modules/history_manager/Makefile" ;;
     "modules/jvm/Makefile") CONFIG_FILES="$CONFIG_FILES modules/jvm/Makefile" ;;
+    "modules/commons/Makefile") CONFIG_FILES="$CONFIG_FILES modules/commons/Makefile" ;;
     "modules/sound/Makefile") CONFIG_FILES="$CONFIG_FILES modules/sound/Makefile" ;;
     "modules/statistics/Makefile") CONFIG_FILES="$CONFIG_FILES modules/statistics/Makefile" ;;
     "modules/mexlib/Makefile") CONFIG_FILES="$CONFIG_FILES modules/mexlib/Makefile" ;;
@@ -41006,6 +41368,7 @@ echo "  hostname ....... = $ac_hostname"
 echo "  CPU 64 bits .... = $IS_64_BITS_CPU"
 if test -n "$MAC_DETECTED_ARCH"; then
 echo "  Mac OS X arch .. = $MAC_DETECTED_ARCH"
+echo "  Mac OS X version = $macosx_version"
 fi
 
 echo ""

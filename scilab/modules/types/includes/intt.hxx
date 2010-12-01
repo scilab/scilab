@@ -215,7 +215,7 @@ namespace types
             return _poOut;
         }
 
-        bool insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+        InternalType* insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
         {
             int iNewRows = rows_get();
             int iNewCols = cols_get();
@@ -271,7 +271,7 @@ namespace types
                     }
                 }
             }
-            return true;
+            return this;
         }
 
 

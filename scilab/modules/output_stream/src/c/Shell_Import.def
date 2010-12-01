@@ -6,5 +6,5 @@ EXPORTS
 	getColumnsSize
 	linesmore
 	TermPrintf_Windows
-	
+	GetCurrentPrompt
 	

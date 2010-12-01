@@ -35,11 +35,11 @@ function getExecNameForDesktop(Param: String): String;
     begin
         if (isCLIType() = true) then
             begin
-                Result := ExpandConstant('{app}') + '\bin\scilex.exe';
+                Result := ExpandConstant('{app}') + '\bin\YaSp.exe';
             end
         else
             begin
-                Result := ExpandConstant('{app}') + '\bin\wscilex.exe';
+                Result := ExpandConstant('{app}') + '\bin\YaSp.exe';
             end;
     end;
 //------------------------------------------------------------------------------
@@ -93,14 +93,21 @@ function DoTasksJustAfterInstall: Boolean;
 
     end;
 //------------------------------------------------------------------------------
+function haveProgramFiles64(): Boolean;
+    var
+        strEnv : String;
+    begin
+        strEnv := GetEnv('ProgramW6432');
+        result := DirExists(strEnv);
+    end;
+//------------------------------------------------------------------------------
 function isWow64(): Boolean;
     begin
         result := false;
-         if RegKeyExists(HKLM, 'SOFTWARE\Wow6432Node') then
-            begin
-                result := true;
-            end;
-
+        if (RegKeyExists(HKLM, 'SOFTWARE\Wow6432Node') = true) and (haveProgramFiles64() = true) then
+          begin
+              result := true;
+          end;
     end;
 //------------------------------------------------------------------------------
 function GetJREVersion(): String;

@@ -211,9 +211,6 @@ msgstr ""
 msgid "Tcl/TK interface disabled in -nogui mode.\n"
 msgstr "Interface Tcl/TK desabilitada no modo -nogui.\n"
 
-msgid "Tcl/Tk interface not loaded."
-msgstr "Interface Tcl/Tk não carregada."
-
 msgid ""
 "The SCI environment variable is not set.\n"
 "TCL initialisation failed !\n"
@@ -242,9 +239,6 @@ msgstr ""
 
 msgid "Unknown Release"
 msgstr "Lançamento desconhecido."
-
-msgid "Updating, please wait"
-msgstr "Atualizando. Por favor, aguard."
 
 msgid "Variable too long.\n"
 msgstr "Variável muito longa.\n"

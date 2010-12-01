@@ -71,7 +71,7 @@ SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
-SciErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _piCols)
+SciErr getNamedVarDimension(void* _pvCtx, const char *_pstName, int* _piRows, int* _piCols)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -145,7 +145,7 @@ int getNewVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-SciErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)
+SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddress)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -251,7 +251,9 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
-SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
+// _pvCtx will not be used by getVarAddressFromName neither getVarType
+// it can then be NULL.
+SciErr getNamedVarType(void* _pvCtx, const char* _pstName, int* _piType)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -259,7 +261,7 @@ SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
 	sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
 	if(sciErr.iErr)
 	{
-		addErrorMessage(&sciErr, API_ERROR_NAMED_TYPE, _("%s: Unable to get type of variable \"%s\""), "getNamedVarType", _pstName);
+		addErrorMessage(&sciErr, API_ERROR_NAMED_UNDEFINED_VAR, _("%s: Unable to get variable \"%s\""), "getNamedVarType", _pstName);
 		return sciErr;
 	}
 
@@ -299,7 +301,7 @@ int isVarComplex(void* _pvCtx, int* _piAddress)
 	return iComplex;
 }
 /*--------------------------------------------------------------------------*/
-int isNamedVarComplex(void* _pvCtx, char *_pstName)
+int isNamedVarComplex(void* _pvCtx, const char *_pstName)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -362,7 +364,7 @@ int isVarMatrixType(void* _pvCtx, int* _piAddress)
 	return 1;
 }
 /*--------------------------------------------------------------------------*/
-int isNamedVarMatrixType(void* _pvCtx, char *_pstName)
+int isNamedVarMatrixType(void* _pvCtx, const char *_pstName)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -629,7 +631,7 @@ SciErr getDimFromVar(void* _pvCtx, int* _piAddress, int* _piVal)
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
-SciErr getDimFromNamedVar(void* _pvCtx, char* _pstName, int* _piVal)
+SciErr getDimFromNamedVar(void* _pvCtx, const char* _pstName, int* _piVal)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr		= NULL;
@@ -702,7 +704,7 @@ int isRowVector(void* _pvCtx, int* _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int isNamedRowVector(void* _pvCtx, char* _pstName)
+int isNamedRowVector(void* _pvCtx, const char* _pstName)
 {
 	SciErr sciErr;
 	int iRows = 0;
@@ -761,7 +763,7 @@ int isColumnVector(void* _pvCtx, int* _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int isNamedColumnVector(void* _pvCtx, char* _pstName)
+int isNamedColumnVector(void* _pvCtx, const char* _pstName)
 {
 	SciErr sciErr;
 	int iRows = 0;
@@ -793,7 +795,7 @@ int isVector(void* _pvCtx, int* _piAddress)
 	return isRowVector(_pvCtx, _piAddress) || isColumnVector(_pvCtx, _piAddress);
 }
 /*--------------------------------------------------------------------------*/
-int isNamedVector(void* _pvCtx, char* _pstName)
+int isNamedVector(void* _pvCtx, const char* _pstName)
 {
 	return isNamedRowVector(_pvCtx, _pstName) || isNamedColumnVector(_pvCtx, _pstName);
 }
@@ -830,7 +832,7 @@ int isScalar(void* _pvCtx, int* _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int isNamedScalar(void* _pvCtx, char* _pstName)
+int isNamedScalar(void* _pvCtx, const char* _pstName)
 {
 	SciErr sciErr;
 	int iRows = 0;
@@ -889,7 +891,7 @@ int isSquareMatrix(void* _pvCtx, int* _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int isNamedSquareMatrix(void* _pvCtx, char* _pstName)
+int isNamedSquareMatrix(void* _pvCtx, const char* _pstName)
 {
 	SciErr sciErr;
 	int iRows = 0;
@@ -948,7 +950,7 @@ int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int checkNamedVarDimension(void* _pvCtx, char* _pstName, int _iRows, int _iCols)
+int checkNamedVarDimension(void* _pvCtx, const char* _pstName, int _iRows, int _iCols)
 {
 	SciErr sciErr;
 	int iRows = 0;
@@ -998,7 +1000,7 @@ int checkVarType(void* _pvCtx, int* _piAddress, int _iType)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int checkNamedVarType(void* _pvCtx, char* _pstName, int _iType)
+int checkNamedVarType(void* _pvCtx, const char* _pstName, int _iType)
 {
 	SciErr sciErr;
 	int iType = 0;
@@ -1026,7 +1028,7 @@ int isEmptyMatrix(void* _pvCtx, int* _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int isNamedEmptyMatrix(void* _pvCtx, char* _pstName)
+int isNamedEmptyMatrix(void* _pvCtx, const char* _pstName)
 {
 	if(checkNamedVarType(_pvCtx, _pstName, sci_matrix))
 	{
@@ -1051,7 +1053,7 @@ int createEmptyMatrix(void* _pvCtx, int _iVar)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createNamedEmptyMatrix(void* _pvCtx, char *_pstName)
+int createNamedEmptyMatrix(void* _pvCtx, const char *_pstName)
 {
 	SciErr sciErr;
 	double dblOne = 0;
@@ -1067,7 +1069,7 @@ int createNamedEmptyMatrix(void* _pvCtx, char *_pstName)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int isNamedVarExist(void* _pvCtx, char* _pstName)
+int isNamedVarExist(void* _pvCtx, const char* _pstName)
 {
 	SciErr sciErr;
 	int* piAddr = NULL;

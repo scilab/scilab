@@ -59,7 +59,8 @@ namespace types
           RealListInsertOperation,
           RealListDeleteOperation,
           RealListUndefinedOperation,
-          RealFile
+          RealFile,
+          RealThreadId
       };
 
   protected :
@@ -205,6 +206,10 @@ namespace types
       bool                              isFile(void) { return (getType() == RealFile); }
       virtual File*                     getAsFile(void) { return NULL; }
 
+      /* ThreadId */
+      bool                              isThreadId(void) { return (getType() == RealThreadId); }
+      virtual ThreadId*                 getAsThreadId(void) { return NULL; }
+
       /**
       ** List Operations
       ** \{
@@ -238,4 +243,5 @@ namespace types
   typedef std::vector<InternalType *>   typed_list;
 
 }
+
 #endif /* !__INTERNAL_HXX__ */

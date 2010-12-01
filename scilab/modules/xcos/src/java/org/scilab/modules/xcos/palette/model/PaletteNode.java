@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.palette.model;
 
+import java.util.Deque;
 import java.util.LinkedList;
 
 import javax.swing.JTree;
@@ -140,19 +141,23 @@ public abstract class PaletteNode implements TreeNode {
 	 */
 	public static void checkRemoving(final PaletteNode node) {
 		if (node == null) {
-			throw new RuntimeException(String.format(
-					org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, org.scilab.modules.xcos.palette.Palette.NAME));
+			throw new RuntimeException(
+					String.format(
+							org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH,
+							org.scilab.modules.xcos.palette.Palette.NAME));
 		} else if (node instanceof PreLoaded
 				&& !(node instanceof PreLoaded.Dynamic)) {
-			throw new RuntimeException(String.format(
-					org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_NODE, org.scilab.modules.xcos.palette.Palette.NAME));
+			throw new RuntimeException(
+					String.format(
+							org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_NODE,
+							org.scilab.modules.xcos.palette.Palette.NAME));
 		} else if (node instanceof Category) {
 			// Iterate over all nodes
 			for (final PaletteNode n : ((Category) node).getNode()) {
 				checkRemoving(n);
 			}
 		}
-		
+
 		/*
 		 * others can be removed safely.
 		 */
@@ -163,29 +168,18 @@ public abstract class PaletteNode implements TreeNode {
 	 * @param node the palette
 	 */
 	public static void remove(final PaletteNode node) {
-		if (node == null) {
-			throw new RuntimeException(String.format(
-					org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, org.scilab.modules.xcos.palette.Palette.NAME));
-		} else if (node instanceof PreLoaded && !(node instanceof PreLoaded.Dynamic)) {
-			throw new RuntimeException(String.format(
-					org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_NODE, org.scilab.modules.xcos.palette.Palette.NAME));
-		} else if (node instanceof Category) {
-			// Iterate over all nodes
-			for (final PaletteNode n : ((Category) node).getNode()) {
-				remove(n);
-			}
-		} else { // others
-			final Category toBeReloaded = node.getParent();
-			if (toBeReloaded == null) {
-				LOG.error("parent node is null");
-				throw new RuntimeException("Parent node is 'null'");
-			}
-			
-			toBeReloaded.getNode().remove(node);
-			node.setParent(null);
-	
-			refreshView(toBeReloaded);
+		checkRemoving(node);
+		
+		final Category toBeReloaded = node.getParent();
+		if (toBeReloaded == null) {
+			LOG.error("parent node is null");
+			throw new RuntimeException("Parent node is 'null'");
 		}
+		
+		node.setParent(null);
+		toBeReloaded.getNode().remove(node);
+
+		refreshView(toBeReloaded);
 	}
 	
 	/**
@@ -214,7 +208,7 @@ public abstract class PaletteNode implements TreeNode {
 			 */
 			
 			// getting the current path
-			final LinkedList<TreeNode> objectPath = new LinkedList<TreeNode>();
+			final Deque<TreeNode> objectPath = new LinkedList<TreeNode>();
 			TreeNode current = toBeReloaded;
 			do {
 				objectPath.addFirst(current);

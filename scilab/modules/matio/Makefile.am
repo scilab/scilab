@@ -42,7 +42,8 @@ libscimatio_la_LDFLAGS = $(MATIO_LIBS)
 
 else
 
-MATIO_C_SOURCES = src/nomatio/nomatio.c
+MATIO_C_SOURCES 	= src/nomatio/nomatio.c
+GATEWAY_CPP_SOURCES 	= src/nomatio/nomatio_gw.cpp
 
 endif
 

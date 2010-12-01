@@ -1,9 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009-2010 - DIGITEO
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-exec("SCI/modules/xcos/demos/setw.sci");
-xcos("SCI/modules/xcos/demos/Inverted_pendulum.xcos");
+function demo_xcosinvertpend()
+  if ~isdef('setw') then exec("SCI/modules/xcos/demos/setw.sci",-1),end
+  xcos("SCI/modules/xcos/demos/Inverted_pendulum.xcos");
+endfunction
+
+demo_xcosinvertpend();
+clear demo_xcosinvertpend;
 

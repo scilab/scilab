@@ -31,7 +31,7 @@ STRING_IMPEXP void code2str(char **Output_Matrix, int *Input_Matrix,int Dim_Inpu
 * @param[out] Output_Matrix  vector of character int codes 
 * @param[in] Input_Matrix a character string 
 */
-STRING_IMPEXP void str2code(int *Output_Matrix, char **Input_Matrix);
+STRING_IMPEXP void str2code(int *Output_Matrix, const char * const * Input_Matrix);
 
 #endif /* __CODE2STR__ */
 /*--------------------------------------------------------------------------*/

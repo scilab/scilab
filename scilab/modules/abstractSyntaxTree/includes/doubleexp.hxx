@@ -20,48 +20,53 @@
 namespace ast
 {
     /** \brief Abstract an Double Expression node.
-     **
-     ** \b Example:  42.51 */
+    **
+    ** \b Example:  42.51 */
     class DoubleExp : public ConstExp
     {
     public:
-        DoubleExp (const Location& location, double value) :
-            ConstExp (location),
+        DoubleExp (const Location& location, double value) 
+            : ConstExp (location),
             _value (value)
-            {
-            }
+        {
+        }
         /** \brief Destroy an Double Expression node.
-         **
-         ** Delete size et init (exp) (see constructor). */
+        **
+        ** Delete size et init (exp) (see constructor). */
         virtual ~DoubleExp ()
-            {
-            }
+        {
+        }
         /** \} */
 
+        virtual DoubleExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new DoubleExp(*newloc, value_get());
+        }
         /** \name Visitors entry point.
-         ** \{ */
+        ** \{ */
     public:
         /** \brief Accept a const visitor \a v. */
         virtual void accept (Visitor& v)
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
         /** \brief Accept a non-const visitor \a v. */
         virtual void accept (ConstVisitor& v) const
-            {
-                v.visit (*this);
-            }
+        {
+            v.visit (*this);
+        }
         /** \} */
 
 
         /** \name Accessors.
-         ** \{ */
+        ** \{ */
     public:
         /** \brief Return the value */
         double value_get() const
-            {
-                return _value;
-            }
+        {
+            return _value;
+        }
         /** \} */
 
     protected:

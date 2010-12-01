@@ -6,7 +6,7 @@
 </refnamediv>
   
   <refsynopsisdiv><title>Calling Sequence</title><synopsis>x=hilbert(xr)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+  <refsection><title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>xr</term>

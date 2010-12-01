@@ -74,11 +74,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -127,7 +128,7 @@ am__libscimatio_la_SOURCES_DIST = src/nomatio/nomatio.c \
 	sci_gateway/c/sci_matfile_listvar.c \
 	sci_gateway/c/sci_matfile_varreadnext.c \
 	sci_gateway/c/sci_matfile_varwrite.c \
-	sci_gateway/cpp/matio_gw.cpp
+	src/nomatio/nomatio_gw.cpp sci_gateway/cpp/matio_gw.cpp
 @MATIO_FALSE@am__objects_1 = libscimatio_la-nomatio.lo
 @MATIO_TRUE@am__objects_1 = libscimatio_la-matfile_manager.lo \
 @MATIO_TRUE@	libscimatio_la-CreateMatlabVariable.lo \
@@ -153,6 +154,7 @@ am__libscimatio_la_SOURCES_DIST = src/nomatio/nomatio.c \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_listvar.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_varreadnext.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_varwrite.lo
+@MATIO_FALSE@am__objects_3 = libscimatio_la-nomatio_gw.lo
 @MATIO_TRUE@am__objects_3 = libscimatio_la-matio_gw.lo
 am_libscimatio_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
@@ -512,6 +514,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@		    sci_gateway/c/sci_matfile_varreadnext.c \
 @MATIO_TRUE@		    sci_gateway/c/sci_matfile_varwrite.c
 
+@MATIO_FALSE@GATEWAY_CPP_SOURCES = src/nomatio/nomatio_gw.cpp
 @MATIO_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/matio_gw.cpp
 @MATIO_FALSE@MATIO_C_SOURCES = src/nomatio/nomatio.c
 
@@ -667,6 +670,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-matfile_manager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-matio_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-nomatio.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-nomatio_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_close.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_listvar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_open.Plo@am__quote@
@@ -889,6 +893,13 @@ libscimatio_la-sci_matfile_varwrite.lo: sci_gateway/c/sci_matfile_varwrite.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libscimatio_la-nomatio_gw.lo: src/nomatio/nomatio_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscimatio_la-nomatio_gw.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-nomatio_gw.Tpo -c -o libscimatio_la-nomatio_gw.lo `test -f 'src/nomatio/nomatio_gw.cpp' || echo '$(srcdir)/'`src/nomatio/nomatio_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-nomatio_gw.Tpo $(DEPDIR)/libscimatio_la-nomatio_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/nomatio/nomatio_gw.cpp' object='libscimatio_la-nomatio_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscimatio_la-nomatio_gw.lo `test -f 'src/nomatio/nomatio_gw.cpp' || echo '$(srcdir)/'`src/nomatio/nomatio_gw.cpp
 
 libscimatio_la-matio_gw.lo: sci_gateway/cpp/matio_gw.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscimatio_la-matio_gw.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-matio_gw.Tpo -c -o libscimatio_la-matio_gw.lo `test -f 'sci_gateway/cpp/matio_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/matio_gw.cpp
@@ -1361,9 +1372,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

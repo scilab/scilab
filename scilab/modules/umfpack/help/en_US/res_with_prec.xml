@@ -12,7 +12,7 @@
     <synopsis>[r,norm2_r] = res_with_prec(A, x, b)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>

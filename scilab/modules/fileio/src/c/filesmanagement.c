@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2007 - INRIA - Allan CORNET
+* Copyright (C) 2010 - DIGITEO - Allan CORNET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -19,11 +20,11 @@
 #include "fullpath.h"
 /*--------------------------------------------------------------------------*/
 typedef struct {
-	FILE *ftformat;
-	int ftswap; /* swap status for each file */
-	int ftmode; /* mode for each file */
-	int fttype; /* type (Fortran,C) for each file must be zero initialized */
-	char *ftname; /* name for each file */
+    FILE *ftformat;
+    int ftswap; /* swap status for each file */
+    int ftmode; /* mode for each file */
+    int fttype; /* type (Fortran,C) for each file must be zero initialized */
+    char *ftname; /* name for each file */
 
 } scilabfile;
 /*--------------------------------------------------------------------------*/
@@ -34,78 +35,78 @@ static int CurrentMaxFiles = DEFAULT_MAX_FILES;
 /*--------------------------------------------------------------------------*/
 FILE *GetFileOpenedInScilab(int Id)
 {
-	int fd1 = 0;
+    int fd1 = 0;
 
-	fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : CurFile ;
+    fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : CurFile ;
 
-	if ( fd1 != -1 )
-	{
-		return  ScilabFileList[fd1].ftformat;
-	}
-	return NULL;
+    if ( fd1 != -1 )
+    {
+        return  ScilabFileList[fd1].ftformat;
+    }
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/
 int GetCurrentFileId(void)
 {
-	return CurFile;
+    return CurFile;
 }
 /*--------------------------------------------------------------------------*/
 int GetPreviousFileId(void)
 {
-	return PreviousFile;
+    return PreviousFile;
 }
 /*--------------------------------------------------------------------------*/
 void SetCurrentFileId(int Id)
 {
-	if (Id == -1) PreviousFile = -1;
-	else PreviousFile = CurFile;
+    if (Id == -1) PreviousFile = -1;
+    else PreviousFile = CurFile;
 
-	CurFile = Id;
+    CurFile = Id;
 }
 /*--------------------------------------------------------------------------*/
 void SetFileOpenedInScilab(int Id,FILE *fptr)
 {
-	ScilabFileList[Id].ftformat=fptr;
+    ScilabFileList[Id].ftformat=fptr;
 }
 /*--------------------------------------------------------------------------*/
 int GetSwapStatus(int Id)
 {
-	int fd1;
-	fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : GetCurrentFileId() ;
-	if ( fd1 != -1 ) return(ScilabFileList[fd1].ftswap);
-	return(0);
+    int fd1;
+    fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : GetCurrentFileId() ;
+    if ( fd1 != -1 ) return(ScilabFileList[fd1].ftswap);
+    return(0);
 }
 /*--------------------------------------------------------------------------*/
 void SetSwapStatus(int Id,int newswap)
 {
-	ScilabFileList[Id].ftswap =  newswap;
+    ScilabFileList[Id].ftswap =  newswap;
 }
 /*--------------------------------------------------------------------------*/
 int GetMaximumFileOpenedInScilab(void)
 {
-	return CurrentMaxFiles;
+    return CurrentMaxFiles;
 }
 /*--------------------------------------------------------------------------*/
 int GetFileModeOpenedInScilab(int Id)
 {
-	return ScilabFileList[Id].ftmode;
+    return ScilabFileList[Id].ftmode;
 }
 /*--------------------------------------------------------------------------*/
 void SetFileModeOpenedInScilab(int Id,int mode)
 {
-	ScilabFileList[Id].ftmode = mode;
+    ScilabFileList[Id].ftmode = mode;
 }
 /*--------------------------------------------------------------------------*/
 int GetFileTypeOpenedInScilab(int Id)
 {
-	if ( (Id > 0) && (Id < GetMaximumFileOpenedInScilab()) )
-	{
-		return ScilabFileList[Id].fttype;
-	}
-	else
-	{
-		return 0;
-	}
+    if ( (Id > 0) && (Id < GetMaximumFileOpenedInScilab()) )
+    {
+        return ScilabFileList[Id].fttype;
+    }
+    else
+    {
+        return 0;
+    }
 }
 /*--------------------------------------------------------------------------*/
 char *GetFileTypeOpenedInScilabAsString(int Id)
@@ -128,32 +129,32 @@ char *GetFileTypeOpenedInScilabAsString(int Id)
 /*--------------------------------------------------------------------------*/
 void SetFileTypeOpenedInScilab(int Id,int Type)
 {
-	ScilabFileList[Id].fttype = Type;
+    ScilabFileList[Id].fttype = Type;
 }
 /*--------------------------------------------------------------------------*/
 char* GetFileNameOpenedInScilab(int Id)
 {
-	if (GetFileTypeOpenedInScilab(Id) == 1) // Fortran file
-	{
-		/* A exception for Id 5 and 6 */ 
-		/* no name */
-		if ((Id != 5) && (Id != 6))
-		{
-			return ScilabFileList[Id].ftname;
-		}
-	}
-	else
-	{
-		if (GetFileOpenedInScilab(Id) != NULL) return ScilabFileList[Id].ftname;
-	}
-	return NULL;
+    if (GetFileTypeOpenedInScilab(Id) == 1) // Fortran file
+    {
+        /* A exception for Id 5 and 6 */
+        /* no name */
+        if ((Id != 5) && (Id != 6))
+        {
+            return ScilabFileList[Id].ftname;
+        }
+    }
+    else
+    {
+        if (GetFileOpenedInScilab(Id) != NULL) return ScilabFileList[Id].ftname;
+    }
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/
 BOOL SetFileNameOpenedInScilab(int Id,char *name)
 {
-	BOOL bOK=FALSE;
-	char *ptrName=NULL;
-	char fullpath[PATH_MAX*4];
+    BOOL bOK=FALSE;
+    char *ptrName=NULL;
+    char fullpath[PATH_MAX*4];
 
 	/* A exception for Id 5 and 6 */
 	/* no filename */
@@ -190,269 +191,274 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 /*--------------------------------------------------------------------------*/
 BOOL FreeFileNameOpenedInScilab(int Id)
 {
-	char *ptr = ScilabFileList[Id].ftname;
-	if (ptr) { FREE(ptr);  ptr = NULL; return TRUE;}
-	return FALSE;
+    char *ptr = ScilabFileList[Id].ftname;
+    if (ptr) { FREE(ptr);  ptr = NULL; return TRUE;}
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL InitializeScilabFilesList(void)
 {
-	if (!ScilabFileList)
-	{
-		CurrentMaxFiles=DEFAULT_MAX_FILES;
-		ScilabFileList=(scilabfile *)MALLOC(sizeof(scilabfile)*CurrentMaxFiles);
+    if (!ScilabFileList)
+    {
+        CurrentMaxFiles = DEFAULT_MAX_FILES;
+        ScilabFileList = (scilabfile *) MALLOC(sizeof(scilabfile) * CurrentMaxFiles);
 
-		if (ScilabFileList)
-		{
-			int i=0;
-			for (i=0;i<CurrentMaxFiles;i++)
-			{
-				ScilabFileList[i].ftformat=NULL;
-				ScilabFileList[i].ftmode=0;
-				ScilabFileList[i].ftname=NULL;
-				ScilabFileList[i].ftswap=0;
-				ScilabFileList[i].fttype=0;
-			}
-			return TRUE;
-		}
-	}
-	return FALSE;
+        if (ScilabFileList)
+        {
+            int i = 0;
+            scilabfile initializedScilabFile;
+
+            initializedScilabFile.ftformat = NULL;
+            initializedScilabFile.ftmode = 0;
+            initializedScilabFile.ftname = NULL;
+            initializedScilabFile.ftswap = 0;
+            initializedScilabFile.fttype = 0;
+
+            for (i=0; i < CurrentMaxFiles; i++)
+            {
+                scilabfile *ptrScilabFile = &ScilabFileList[i];
+                memcpy(ptrScilabFile, &initializedScilabFile, sizeof(scilabfile));
+            }
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL TerminateScilabFilesList(void)
 {
-	if (ScilabFileList)
-	{
-		FREE(ScilabFileList);
-		ScilabFileList=NULL;
-		return TRUE;
-	}
-	return FALSE;
+    if (ScilabFileList)
+    {
+        FREE(ScilabFileList);
+        ScilabFileList=NULL;
+        return TRUE;
+    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL ExtendScilabFilesList(int NewSize)
 {
-	if (ScilabFileList)
-	{
-		if (NewSize > CurrentMaxFiles)
-		{
+    if (ScilabFileList)
+    {
+        if (NewSize > CurrentMaxFiles)
+        {
 
-			scilabfile *ScilabFileListTmp=NULL;
-			ScilabFileListTmp=(scilabfile *)REALLOC(ScilabFileList,NewSize*sizeof(scilabfile));
-			if (ScilabFileListTmp)
-			{
-				int i=0;
-				ScilabFileList=ScilabFileListTmp;
-				for (i=CurrentMaxFiles;i<NewSize;i++)
-				{
-					ScilabFileList[i].ftformat=NULL;
-					ScilabFileList[i].ftmode=0;
-					ScilabFileList[i].ftname=NULL;
-					ScilabFileList[i].ftswap=0;
-					ScilabFileList[i].fttype=0;
-				}
-				CurrentMaxFiles=NewSize;
-				return TRUE;
-			}
-		}
-	}
-	return FALSE;
+            scilabfile *ScilabFileListTmp=NULL;
+            ScilabFileListTmp=(scilabfile *)REALLOC(ScilabFileList,NewSize*sizeof(scilabfile));
+            if (ScilabFileListTmp)
+            {
+                int i=0;
+                ScilabFileList=ScilabFileListTmp;
+                for (i=CurrentMaxFiles;i<NewSize;i++)
+                {
+                    ScilabFileList[i].ftformat=NULL;
+                    ScilabFileList[i].ftmode=0;
+                    ScilabFileList[i].ftname=NULL;
+                    ScilabFileList[i].ftswap=0;
+                    ScilabFileList[i].fttype=0;
+                }
+                CurrentMaxFiles=NewSize;
+                return TRUE;
+            }
+        }
+    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL IsAlreadyOpenedInScilab(char *filename)
 {
-	if (ScilabFileList)
-	{
-		char fullpath[PATH_MAX*4];
-		int i = 0;
+    if (ScilabFileList)
+    {
+        char fullpath[PATH_MAX*4];
+        int i = 0;
 
         if ((strcmp(filename, "") == 0) || (filename == NULL))
         {
             return FALSE;
         }
 
-		if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
-		{
-			/* if we are a problem */
-			strcpy(fullpath,filename);
-		}
+        if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
+        {
+            /* if we are a problem */
+            strcpy(fullpath,filename);
+        }
 
-		for (i=0;i<CurrentMaxFiles;i++)
-		{
-			if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
-			{
-				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
-			}
-		}
-	}
-	return FALSE;
+        for (i=0;i<CurrentMaxFiles;i++)
+        {
+            if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
+            {
+                if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
+            }
+        }
+    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 int GetIdFromFilename(char *filename)
 {
-	if (ScilabFileList)
-	{
-		char fullpath[PATH_MAX*4];
-		int i=0;
-		if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
-		{
-			/* if we are a problem */
-			strcpy(fullpath,filename);
-		}
+    if (ScilabFileList)
+    {
+        char fullpath[PATH_MAX*4];
+        int i=0;
+        if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
+        {
+            /* if we are a problem */
+            strcpy(fullpath,filename);
+        }
 
-		for (i = 0; i < CurrentMaxFiles; i++)
-		{
-			if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
-			{
-				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return i;
-			}
-		}
-	}
-	return FILE_ID_NOT_DEFINED;
+        for (i = 0; i < CurrentMaxFiles; i++)
+        {
+            if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
+            {
+                if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return i;
+            }
+        }
+    }
+    return FILE_ID_NOT_DEFINED;
 }
 /*--------------------------------------------------------------------------*/
 double *GetFilesIdUsed(int *sizeArrayReturned)
 {
-	int i = 0, j = 0;
-	double* ArrayIdUsed = NULL;
-	*sizeArrayReturned = GetNumberOfIdsUsed();
+    int i = 0, j = 0;
+    double* ArrayIdUsed = NULL;
+    *sizeArrayReturned = GetNumberOfIdsUsed();
 
-	ArrayIdUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
-	if (ArrayIdUsed == NULL)
-	{
-		*sizeArrayReturned = 0;
-		return NULL;
-	}
+    ArrayIdUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
+    if (ArrayIdUsed == NULL)
+    {
+        *sizeArrayReturned = 0;
+        return NULL;
+    }
 
-	j = 0;
-	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
-	{
-		if (GetFileTypeOpenedInScilab(i) != 0)
-		{
-			ArrayIdUsed[j] = (double)i;
-			j++;
-		}
-	}
-	return ArrayIdUsed;
+    j = 0;
+    for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+    {
+        if (GetFileTypeOpenedInScilab(i) != 0)
+        {
+            ArrayIdUsed[j] = (double)i;
+            j++;
+        }
+    }
+    return ArrayIdUsed;
 }
 /*--------------------------------------------------------------------------*/
 double *GetSwapsUsed(int *sizeArrayReturned)
 {
-	double *ArraySwapUsed = NULL;
-	int i = 0, j = 0;
+    double *ArraySwapUsed = NULL;
+    int i = 0, j = 0;
 
-	*sizeArrayReturned = GetNumberOfIdsUsed();
+    *sizeArrayReturned = GetNumberOfIdsUsed();
 
-	ArraySwapUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
-	if (ArraySwapUsed == NULL)
-	{
-		*sizeArrayReturned = 0;
-		return NULL;
-	}
+    ArraySwapUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
+    if (ArraySwapUsed == NULL)
+    {
+        *sizeArrayReturned = 0;
+        return NULL;
+    }
 
-	j = 0;
-	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
-	{
-		if (GetFileTypeOpenedInScilab(i) != 0)
-		{
-			ArraySwapUsed[j] = (double)GetSwapStatus(i);
-			j++;
-		}
-	}
-	return ArraySwapUsed;
+    j = 0;
+    for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+    {
+        if (GetFileTypeOpenedInScilab(i) != 0)
+        {
+            ArraySwapUsed[j] = (double)GetSwapStatus(i);
+            j++;
+        }
+    }
+    return ArraySwapUsed;
 }
 /*--------------------------------------------------------------------------*/
 double *GetModesUsed(int *sizeArrayReturned)
 {
-	double *ArrayModeUsed = NULL;
-	int i = 0, j = 0;
+    double *ArrayModeUsed = NULL;
+    int i = 0, j = 0;
 
-	*sizeArrayReturned = GetNumberOfIdsUsed();
+    *sizeArrayReturned = GetNumberOfIdsUsed();
 
-	ArrayModeUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
-	if (ArrayModeUsed == NULL)
-	{
-		*sizeArrayReturned = 0;
-		return NULL;
-	}
+    ArrayModeUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
+    if (ArrayModeUsed == NULL)
+    {
+        *sizeArrayReturned = 0;
+        return NULL;
+    }
 
-	j = 0;
-	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
-	{
-		if (GetFileTypeOpenedInScilab(i) != 0)
-		{
-			ArrayModeUsed[j] = (double)GetFileModeOpenedInScilab(i);
-			j++;
-		}
-	}
-	return ArrayModeUsed;
+    j = 0;
+    for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+    {
+        if (GetFileTypeOpenedInScilab(i) != 0)
+        {
+            ArrayModeUsed[j] = (double)GetFileModeOpenedInScilab(i);
+            j++;
+        }
+    }
+    return ArrayModeUsed;
 }
 /*--------------------------------------------------------------------------*/
 int *GetTypesUsed(int *sizeArrayReturned)
 {
-	int *ArrayTypeUsed = NULL;
-	int i = 0, j = 0;
+    int *ArrayTypeUsed = NULL;
+    int i = 0, j = 0;
 
-	*sizeArrayReturned = GetNumberOfIdsUsed();
+    *sizeArrayReturned = GetNumberOfIdsUsed();
 
-	ArrayTypeUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
-	if (ArrayTypeUsed == NULL)
-	{
-		*sizeArrayReturned = 0;
-		return NULL;
-	}
+    ArrayTypeUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
+    if (ArrayTypeUsed == NULL)
+    {
+        *sizeArrayReturned = 0;
+        return NULL;
+    }
 
-	j = 0;
-	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
-	{
-		if (GetFileTypeOpenedInScilab(i) != 0)
-		{
-			ArrayTypeUsed[j] = GetFileTypeOpenedInScilab(i);
-			j++;
-		}
-	}
-	return ArrayTypeUsed;
+    j = 0;
+    for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+    {
+        if (GetFileTypeOpenedInScilab(i) != 0)
+        {
+            ArrayTypeUsed[j] = GetFileTypeOpenedInScilab(i);
+            j++;
+        }
+    }
+    return ArrayTypeUsed;
 }
 /*--------------------------------------------------------------------------*/
 char **GetTypesUsedAsString(int *sizeArrayReturned)
 {
-	char **ArrayTypeUsedAsString = NULL;
-	int i = 0, j = 0;
+    char **ArrayTypeUsedAsString = NULL;
+    int i = 0, j = 0;
 
-	*sizeArrayReturned = GetNumberOfIdsUsed();
+    *sizeArrayReturned = GetNumberOfIdsUsed();
 
-	ArrayTypeUsedAsString = (char**)MALLOC(sizeof(char*) * (*sizeArrayReturned));
-	if (ArrayTypeUsedAsString == NULL)
-	{
-		*sizeArrayReturned = 0;
-		return NULL;
-	}
+    ArrayTypeUsedAsString = (char**)MALLOC(sizeof(char*) * (*sizeArrayReturned));
+    if (ArrayTypeUsedAsString == NULL)
+    {
+        *sizeArrayReturned = 0;
+        return NULL;
+    }
 
-	j = 0;
-	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
-	{
-		if (GetFileTypeOpenedInScilab(i) != 0)
-		{
-			ArrayTypeUsedAsString[j] = GetFileTypeOpenedInScilabAsString(i);
-			j++;
-		}
-	}
-	return ArrayTypeUsedAsString;
+    j = 0;
+    for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+    {
+        if (GetFileTypeOpenedInScilab(i) != 0)
+        {
+            ArrayTypeUsedAsString[j] = GetFileTypeOpenedInScilabAsString(i);
+            j++;
+        }
+    }
+    return ArrayTypeUsedAsString;
 }
 /*--------------------------------------------------------------------------*/
 char **GetFilenamesUsed(int *sizeArrayReturned)
 {
-	char **FilenamesArray = NULL;
-	int i = 0, j = 0;
+    char **FilenamesArray = NULL;
+    int i = 0, j = 0;
 
-	*sizeArrayReturned = GetNumberOfIdsUsed();
+    *sizeArrayReturned = GetNumberOfIdsUsed();
 
-	FilenamesArray = (char**)MALLOC(sizeof(char*) * (*sizeArrayReturned));
-	if (FilenamesArray == NULL)
-	{
-		*sizeArrayReturned = 0;
-		return NULL;
-	}
+    FilenamesArray = (char**)MALLOC(sizeof(char*) * (*sizeArrayReturned));
+    if (FilenamesArray == NULL)
+    {
+        *sizeArrayReturned = 0;
+        return NULL;
+    }
 
 	j = 0;
 	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
@@ -475,16 +481,16 @@ char **GetFilenamesUsed(int *sizeArrayReturned)
 /*--------------------------------------------------------------------------*/
 int GetNumberOfIdsUsed(void)
 {
-	int i = 0;
-	int numberOfIds = 0;
-	
-	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
-	{
-		if (GetFileTypeOpenedInScilab(i) != 0)
-		{
-			numberOfIds++;
-		}
-	}
-	return numberOfIds;
+    int i = 0;
+    int numberOfIds = 0;
+
+    for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+    {
+        if (GetFileTypeOpenedInScilab(i) != 0)
+        {
+            numberOfIds++;
+        }
+    }
+    return numberOfIds;
 }
 /*--------------------------------------------------------------------------*/

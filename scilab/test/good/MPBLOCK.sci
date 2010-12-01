@@ -101,7 +101,7 @@ case 'set' then
         'Model name in packages:'],..
         list('str',-1,'str',-1,'str',-1,'str',-1,'str',-1,..
              'vec',-1,'str',-1),lab_1)
-   
+
    //Cancel case
    if ~ok then
      break
@@ -116,12 +116,12 @@ case 'set' then
 //
 //first stage of checking variable name
    //put string symbolic parameters in variable
-   ierr=execstr("in=stripblanks(evstr(Tin));..
-                 intype=stripblanks(evstr(Tintype));..
-                 out=stripblanks(evstr(Tout));..
-                 outtype=stripblanks(evstr(Touttype));..
-                 param=stripblanks(evstr(Tparam));..
-                 funam=stripblanks(Tfunam)",'errcatch')
+   ierr=execstr("in=stripblanks(evstr(Tin));"+..
+                 "intype=stripblanks(evstr(Tintype));"+..
+                 "out=stripblanks(evstr(Tout));"+..
+                 "outtype=stripblanks(evstr(Touttype));"+..
+                 "param=stripblanks(evstr(Tparam));"+..
+                 "funam=stripblanks(Tfunam)",'errcatch')
 
    if ierr<>0 then
      //You loose ! Try again ! Insert coin !
@@ -297,7 +297,7 @@ case 'set' then
 	 for i=1:Tparam_sz
 	   ee=evstr(exprs.param)
 	   for j=1:size(ee,'r')
-	     if ee(j)==Tparam_lab(i) then 
+	     if ee(j)==Tparam_lab(i) then
 	       lab_2_tmp(i)=lab_2(j)
 	     end
 	   end
@@ -359,7 +359,7 @@ case 'set' then
      mo.model=nameF
      mo.inputs=in;
      mo.outputs=out;
-     if pprop~=[] then 
+     if pprop~=[] then
        if max(pprop)>0 then
 	 mo.parameters=list(param',paramv,pprop')
        else
@@ -463,5 +463,4 @@ end
 endfunction
 
 
- 
- 
+

@@ -11,6 +11,7 @@ my $all_cira = 0;
 my $all_syntax = 0;
 my $all_control = 0;
 my $bad_good = 0;
+my @bad_good_name;
 my $bad_cira = 0;
 my $bad_syntax = 0;
 my $bad_control = 0;
@@ -217,6 +218,11 @@ if( $all_good != 0)
     InfoMsg( $all_good . " test(s)\n");
     GoodMsg($good_good . " test(s) passed\n");
     BadMsg($bad_good . " test(s) failed\n");
+    if ($#bad_good_name != 0)
+    {
+        BadMsg("Following tests failed :\n");
+        BadMsg(join("\n", @bad_good_name)."\n");
+    }
     StartMsg(($good_good/$all_good)*100 . "% passed\n");
     print "\n";
 }
@@ -284,6 +290,7 @@ sub good()
 		else
 		{
 		    $bad_good += 1;
+            @bad_good_name = (@bad_good_name, $nextname);
 		    BadMsg("Test Failed\n\n");
 		    if($progress == 1)
 		    {
@@ -516,7 +523,8 @@ sub process_display_tree()
 	}
 	else
 	{
-	    @_[1] += 1;
+        @bad_good_name = (@bad_good_name, $file_name);
+        @_[1] += 1;
 	    BadMsg("Test Failed : Results diff.\n");
 	    BadMsg("++ " . $file1 . "\n");
 	    BadMsg("-- " . $file2 . "\n");
@@ -529,7 +537,8 @@ sub process_display_tree()
     else
     {
 	@_[1] += 1;
-	BadMsg("Test Failed : Unable to parse File.\n\n");
+	 @bad_good_name = (@bad_good_name, $file_name);
+    BadMsg("Test Failed : Unable to parse File.\n\n");
 	if($progress == 1)
 	{
 	    exit;

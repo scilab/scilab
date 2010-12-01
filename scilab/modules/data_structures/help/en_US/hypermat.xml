@@ -23,7 +23,7 @@
     <synopsis>M=hypermat(dims [,v])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dims</term>

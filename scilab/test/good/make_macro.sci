@@ -6,14 +6,15 @@ for k=2:size(p);
 end,
 text='p='+num;
 deff('[p]=newfunction(t)',text),
-
+endfunction
 
 function [str]=makestr(p)
 n=degree(p)+1;c=coeff(p);str=string(c(1));x=part(varn(p),1);
 xstar=x+'^',
-for k=2:n, 
+for k=2:n,
    if c(k)<>0 then,
    str=addf(str,mulf(string(c(k)),(xstar+string(k-1))));
    end;
 end
-    
+endfunction
+

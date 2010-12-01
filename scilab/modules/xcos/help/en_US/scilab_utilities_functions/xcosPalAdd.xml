@@ -15,7 +15,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
   <info>
-    <pubdate>$LastChangedDate: 12-Juil-2010 $</pubdate>
+    <pubdate>$LastChangedDate: 02-Sept-2010 $</pubdate>
   </info>
 
   <refnamediv>
@@ -38,10 +38,10 @@
 </refsynopsisdiv>
 
 <refsection>
-   <title>Parameters</title>
+   <title>Arguments</title>
    <variablelist>
    <varlistentry><term>pal:</term>
-      <listitem><para> palette tlist; the palette to add</para></listitem></varlistentry>
+      <listitem><para> palette tlist or path string; the palette to add</para></listitem></varlistentry>
    <varlistentry><term>category:</term>
       <listitem><para> string array; the optional category path to use</para></listitem></varlistentry>
    <varlistentry><term>status:</term>

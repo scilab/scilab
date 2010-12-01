@@ -40,6 +40,21 @@ namespace types
 		}
 	}
 
+	MatrixPoly::MatrixPoly(wstring _szVarName, int _iRows, int _iCols, const int *_piRank)
+	{
+		m_iRows			= _iRows;
+		m_iCols			= _iCols;
+		m_iSize			= m_iRows * m_iCols;
+		m_szVarName	= _szVarName;
+		m_bComplex	= false;
+
+		m_poPolyMatrix = new Poly[_iRows * _iCols];
+		for(int i = 0 ; i < m_iSize ; i++)
+		{
+			m_poPolyMatrix[i].CreatePoly(NULL, NULL, _piRank[i]);
+		}
+	}
+
 	MatrixPoly::~MatrixPoly()
 	{
 		if(isDeletable() == true)
@@ -725,14 +740,14 @@ namespace types
 		return ostr.str();
 	}
 
-	bool MatrixPoly::insert(int _iRows, int _iCols, MatrixPoly *_poSource)
+	InternalType* MatrixPoly::insert(int _iRows, int _iCols, MatrixPoly *_poSource)
 	{
 		int iRows = _poSource->rows_get();
 		int iCols = _poSource->cols_get();
 
 		if(_iRows + iRows > m_iRows || _iCols + iCols > m_iCols)
 		{
-			return false;
+			return NULL;
 		}
 
 		for(int iRow = 0 ; iRow < iRows ; iRow++)
@@ -742,7 +757,7 @@ namespace types
 				poly_set(_iRows + iRow, _iCols + iCol, _poSource->poly_get(iRow, iCol)->coef_get());
 			}
 		}
-		return true;
+		return this;
 	}
 	Double* MatrixPoly::extract_coef(int _iRank)
 	{

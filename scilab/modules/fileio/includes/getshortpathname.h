@@ -16,6 +16,7 @@
 #include "dynlib_fileio.h"
 #include "machine.h" /* C2F */
 #include "BOOL.h" /* BOOL */
+#include <wchar.h> /* wchar_t */
 
 /**
 * Retrieves the short path form of the specified path
@@ -28,6 +29,8 @@
 FILEIO_IMPEXP char *getshortpathname(char *longpathname, BOOL *convertok);
 
 FILEIO_IMPEXP int C2F(getshortpathname)(char *pathname,int *len);
+
+FILEIO_IMPEXP wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK);
 
 #endif /* __GETSHORTPATHNAME_H__ */
 /*--------------------------------------------------------------------------*/

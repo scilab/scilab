@@ -1,15 +1,15 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
- *  Copyright (C) 2008-2008 - INRIA - Allan CORNET
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+*  Copyright (C) 2008-2008 - INRIA - Allan CORNET
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /*
 ** Thread wrapper to have an easy way to manage
@@ -51,14 +51,26 @@ typedef HANDLE				__threadSignal;
 
 #define __CreateThread(threadId, functionName)  *(threadId) = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)functionName, NULL, 0, NULL)
 
+#define __CreateThreadWithParams(threadId, functionName, params)  *(threadId) = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)functionName, params, 0, NULL)
+
 #define __WaitThreadDie(threadId)				((WaitForSingleObject((threadId),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(threadId))
 
 #define __Terminate(threadId)					TerminateThread(threadId, 0)
 
 #define __StaticInitLock                                        NULL
 
+#define __StaticInitThreadSignal            NULL
+
+#define __GetCurrentThreadId                    GetCurrentThread
+
+#define __SuspendThread( ThreadId)              SuspendThread(ThreadId)
+
+#define __ResumeThread( ThreadId)               ResumeThread(ThreadId)
+
 #else
+
 #include <pthread.h>
+#include <signal.h>
 
 typedef pthread_t __threadId;
 typedef pthread_mutex_t __threadLock;
@@ -100,11 +112,21 @@ Linux uses PTHREAD_MUTEX_ERRORCHECK_NP other Posix use PTHREAD_MUTEX_ERRORCHECK
 
 #define __CreateThread(threadId, functionName)  pthread_create(threadId, NULL, functionName, NULL)
 
+#define __CreateThreadWithParams(threadId, functionName, params)  pthread_create(threadId, NULL, functionName, params)
+
 #define __WaitThreadDie(threadId)		pthread_join(threadId, NULL)
 
 #define __Terminate(threadId)			pthread_cancel(threadId)
 
-#define __StaticInitLock                        PTHREAD_MUTEX_INITIALIZER
+#define __StaticInitLock                PTHREAD_MUTEX_INITIALIZER
+
+#define __StaticInitThreadSignal        PTHREAD_COND_INITIALIZER
+
+#define __GetCurrentThreadId            pthread_self
+
+#define __SuspendThread(ThreadId)       pthread_kill(ThreadId, SIGUSR1)
+
+#define __ResumeThread( ThreadId)       pthread_kill(ThreadId, SIGUSR2)
 
 #endif //_MSC_VER
 

@@ -11,7 +11,7 @@
  */
 
 #ifndef AST_EXECVISITOR_HXX
-# define AST_EXECVISITOR_HXX
+#define AST_EXECVISITOR_HXX
 
 #include "runvisitor.hxx"
 
@@ -145,6 +145,11 @@ namespace ast
         }
 
         void visit (const BreakExp &e)
+        {
+            visitprivate(e);
+        }
+
+        void visit (const ContinueExp &e)
         {
             visitprivate(e);
         }

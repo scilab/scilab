@@ -19,10 +19,10 @@
 
 MFILECONTENTS=[
 "fprintf(''qsdfsdcvwqghcv'')";
-]
+];
 
-MFILE=TMPDIR+"/bug1971.m"
-SCIFILE=TMPDIR+"/bug1971.sci"
+MFILE=TMPDIR+"/bug1971.m";
+SCIFILE=TMPDIR+"/bug1971.sci";
 
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
@@ -43,7 +43,7 @@ SCIFILECONTENTSREF=["";
 "";
 "// L.1: No simple equivalent, so mtlb_fprintf() is called.";
 "mtlb_fprintf(""qsdfsdcvwqghcv"")";
-]
+];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
 

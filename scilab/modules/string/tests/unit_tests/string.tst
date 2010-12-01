@@ -14,6 +14,21 @@ if string(1)<>'1' then pause,end
 //===============================
 if string(1.5)<>'1.5' then pause,end
 //===============================
+// Special display cases :
+if (string(0+%i) <> "%i") then pause, end
+if (string(0-%i) <> "-%i") then pause, end
+if (string(0+0*%i) <> "0") then pause, end
+if (string(-1+%i) <> "-1+%i") then pause, end
+if (string(-1-%i) <> "-1-%i") then pause, end
+if (string(1+%i) <> "1+%i") then pause, end
+if (string(1-%i) <> "1-%i") then pause, end
+if (string(0+2*%i) <> "%i*2") then pause, end
+if (string(0-2*%i) <> "-%i*2") then pause, end
+if (string(-2+2*%i) <> "-2+%i*2") then pause, end
+if (string(-2-2*%i) <> "-2-%i*2") then pause, end
+if (string(2+2*%i) <> "2+%i*2") then pause, end
+if (string(2-2*%i) <> "2-%i*2") then pause, end
+//===============================
 if string([])<>[] then pause,end
 //===============================
 if string('')<>'' then pause,end

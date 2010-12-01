@@ -24,7 +24,7 @@
     <synopsis>swap_handle( handle1, handle2 )</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>handle1</term>

@@ -234,6 +234,7 @@ int sci_rand(char *fname, int* _piKey)
 				
 				siRandSave = (int)Max(dblReal2,0);
 				iForceInit = 1;
+                return 0;
 			}
 			else
 			{

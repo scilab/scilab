@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -118,7 +118,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -193,7 +193,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -270,7 +270,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\abstractSyntaxTree\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -336,6 +336,14 @@
 				RelativePath="..\sci_disp.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\sci_mprintf.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_msprintf.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -353,6 +361,14 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath="..\..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\..\bin\lapack.lib"
+			>
+		</File>
 		<File
 			RelativePath="..\..\..\..\..\bin\libintl.lib"
 			>

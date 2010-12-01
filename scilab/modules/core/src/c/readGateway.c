@@ -35,35 +35,35 @@ struct gateway_struct *readGateway(char *modulename)
 {
 	struct gateway_struct *content = NULL;
 
-	if (modulename)
-	{
-		char *XmlFile = getModuleXmlFilename(modulename);
-		if (XmlFile)
-		{
-			content = readGatewayXmlFile(XmlFile);
-			FREE(XmlFile);
-			XmlFile = NULL;
-		}
-		else
-		{
-			/* module exists but without gateway */
-			if ( with_module(modulename) ) 
-			{
-				content = (struct gateway_struct *)MALLOC(sizeof(struct gateway_struct));
-				if (content)
-				{
-					content->dimLists = 0;
-					content->gatewayIdList = NULL;
-					content->primitivesList = NULL;
-					content->primiviteIdList = NULL;
-				}
-			}
-			else /* not exist */
-			{
-				content = NULL;
-			}
-		}
-	}
+	//if (modulename)
+	//{
+	//	char *XmlFile = getModuleXmlFilename(modulename);
+	//	if (XmlFile)
+	//	{
+	//		content = readGatewayXmlFile(XmlFile);
+	//		FREE(XmlFile);
+	//		XmlFile = NULL;
+	//	}
+	//	else
+	//	{
+	//		/* module exists but without gateway */
+	//		if ( with_module(modulename) ) 
+	//		{
+	//			content = (struct gateway_struct *)MALLOC(sizeof(struct gateway_struct));
+	//			if (content)
+	//			{
+	//				content->dimLists = 0;
+	//				content->gatewayIdList = NULL;
+	//				content->primitivesList = NULL;
+	//				content->primiviteIdList = NULL;
+	//			}
+	//		}
+	//		else /* not exist */
+	//		{
+	//			content = NULL;
+	//		}
+	//	}
+	//}
 
 	return content;
 }

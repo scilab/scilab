@@ -27,9 +27,7 @@ Source: modules\{#MODULES_MANAGER}\etc\{#MODULES_MANAGER}.start; DestDir: {app}\
 ;
 ;Source: modules\{#MODULES_MANAGER}\includes\*.h; DestDir: {app}\modules\{#MODULES_MANAGER}\includes; Flags: recursesubdirs; Components: {#COMPN_MODULES_MANAGER}
 ;
-Source: modules\{#MODULES_MANAGER}\macros\lib; DestDir: {app}\modules\{#MODULES_MANAGER}\macros; Components: {#COMPN_MODULES_MANAGER}
-Source: modules\{#MODULES_MANAGER}\macros\names; DestDir: {app}\modules\{#MODULES_MANAGER}\macros; Components: {#COMPN_MODULES_MANAGER}
-Source: modules\{#MODULES_MANAGER}\macros\*.bin; DestDir: {app}\modules\{#MODULES_MANAGER}\macros; Components: {#COMPN_MODULES_MANAGER}
+;Source: modules\{#MODULES_MANAGER}\macros\lib; DestDir: {app}\modules\{#MODULES_MANAGER}\macros; Components: {#COMPN_MODULES_MANAGER}
 Source: modules\{#MODULES_MANAGER}\macros\*.sci; DestDir: {app}\modules\{#MODULES_MANAGER}\macros; Components: {#COMPN_MODULES_MANAGER}
 Source: modules\{#MODULES_MANAGER}\macros\buildmacros.sce; DestDir: {app}\modules\{#MODULES_MANAGER}\macros; Components: {#COMPN_MODULES_MANAGER}
 Source: modules\{#MODULES_MANAGER}\macros\buildmacros.bat; DestDir: {app}\modules\{#MODULES_MANAGER}\macros; Components: {#COMPN_MODULES_MANAGER}

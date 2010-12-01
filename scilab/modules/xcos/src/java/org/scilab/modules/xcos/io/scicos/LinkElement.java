@@ -20,10 +20,10 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
@@ -39,6 +39,7 @@ import com.mxgraph.util.mxPoint;
  * Perform a link transformation between Scicos and Xcos.
  */
 // CSOFF: ClassDataAbstractionCoupling
+// CSOFF: FanOutComplexity
 public class LinkElement extends AbstractElement<BasicLink> {
 	private static final List<String> DATA_FIELD_NAMES = asList("Link", "xx",
 			"yy", "id", "thick", "ct", "from", "to");
@@ -79,7 +80,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	 * @return the decoded block.
 	 * @throws ScicosFormatException
 	 *             when e decoding error occurred.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
 	 *      java.lang.Object)
 	 */
 	@Override
@@ -370,7 +371,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	 * @param element
 	 *            the element to test
 	 * @return true, when the current implementation is the right one
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -389,7 +390,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	 *            the previously allocated element.
 	 * @return the element parameter
 	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-	 *      org.scilab.modules.types.scilabTypes.ScilabType)
+	 *      org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(BasicLink from, ScilabType element) {
@@ -487,3 +488,4 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	}
 }
 // CSON: ClassDataAbstractionCoupling
+// CSON: FanOutComplexity

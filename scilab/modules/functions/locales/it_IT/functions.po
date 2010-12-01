@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2009-10-20 21:24+0000\n"
+"PO-Revision-Date: 2010-07-14 14:27+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,10 @@ msgid "%s: Invalid library %s.\n"
 msgstr "%s: La libreria %s non è valida.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
+
+#, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: Non è stato trovato alcun file con estensione %s in %s\n"
 
@@ -84,11 +88,6 @@ msgstr "%s: Rigenerare nomi e lib\n"
 #, c-format
 msgid "%s: The function has not been built for profiling"
 msgstr "%s: La funzione non è stata costruita per creare il profilo"
-
-#, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr ""
-"%s: Non c'è alcun file chiamato %s.sci nella directory di libreria %s.\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
@@ -113,6 +112,10 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -248,19 +251,6 @@ msgstr "Questa funzione sarà rimossa in modo permanente in Scilab %s"
 
 msgid "Tools"
 msgstr "Strumenti"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "ATTENZIONE: la funzione %s è obsoleta.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "ATTENZIONE: usare %s invece.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr ""
-"ATTENZIONE: la funzione %s verrà rimossa permanentemente in Scilab.\n"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "

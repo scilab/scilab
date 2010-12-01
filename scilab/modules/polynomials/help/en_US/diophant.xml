@@ -23,7 +23,7 @@
     <synopsis>[x,err]=diophant(p1p2,b)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>p1p2</term>

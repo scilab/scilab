@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -28,16 +28,16 @@ int sci_zeros(char *fname, int* _piKey)
 	int* piAddr1			= NULL;
 	int* piAddr2			= NULL;
 
-	CheckLhs(1,1);
+    CheckLhs(1,1);
 
 
 	if(Rhs > 2)
-	{//call %hm_ones
+	{
 		int iStart	= 1;
 		int iRhs		= Rhs;
 		int iLhs		= Lhs;
 
-		//SciString(&iStart,"%hm_zeros", &iLhs, &iRhs);
+		SciString(&iStart,"%hm_zeros", &iLhs, &iRhs);
 
 		LhsVar(1) = 1;
 		PutLhsVar();
@@ -63,7 +63,7 @@ int sci_zeros(char *fname, int* _piKey)
 			OverLoad(1);
 			return 0;
 		}
-		
+
 		sciErr = getVarDimension(_piKey, piAddr1, &iRows, &iCols);
 		if(sciErr.iErr)
 		{

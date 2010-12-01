@@ -59,7 +59,8 @@ libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES) 
 CHECK_SRC= $(libsciapi_scilab_la_SOURCES)
 INCLUDE_FLAGS = $(libsciapi_scilab_la_CFLAGS) 
 
-libsciapi_scilab_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la
+libsciapi_scilab_la_LIBADD =  
+#
 
 
 #### Target ######

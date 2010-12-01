@@ -12,60 +12,65 @@
 
 
 #ifndef AST_BOOLEXP_HXX
-# define AST_BOOLEXP_HXX
+#define AST_BOOLEXP_HXX
 
-# include "constexp.hxx"
+#include "constexp.hxx"
 
 namespace ast
 {
-  /** \brief Abstract an Boolean Expression node.
-   **
-   ** \b Example:  true */
-  class BoolExp : public ConstExp
-  {
-  public:
-    BoolExp (const Location& location, bool value) :
-      ConstExp (location),
-      _value (value)
+    /** \brief Abstract an Boolean Expression node.
+    **
+    ** \b Example:  true */
+    class BoolExp : public ConstExp
     {
-    }
-    /** \brief Destroy an Boolean Expression node.
-     **
-     ** Delete size et init (exp) (see constructor). */
-    virtual ~BoolExp ()
-    {
-    }
-    /** \} */
+    public:
+        BoolExp (const Location& location, bool value) 
+            : ConstExp (location), _value (value)
+        {
+        }
+        /** \brief Destroy an Boolean Expression node.
+        **
+        ** Delete size et init (exp) (see constructor). */
+        virtual ~BoolExp ()
+        {
+        }
+        /** \} */
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        virtual BoolExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new BoolExp(*newloc, value_get());
+        }
+
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
 
-    /** \name Accessors.
-     ** \{ */
-  public:
-      /** \brief Return the value */
-      bool value_get() const
-          {
-              return _value;
-          }
-      /** \} */
+        /** \name Accessors.
+        ** \{ */
+    public:
+        /** \brief Return the value */
+        bool value_get() const
+        {
+            return _value;
+        }
+        /** \} */
 
-  protected:
-    bool     _value;
-  };
+    protected:
+        bool     _value;
+    };
 
 } // namespace ast
 #endif

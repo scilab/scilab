@@ -154,7 +154,6 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_delbpt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_dispbpt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_errcatch.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_errclear.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_ieee.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_intppty.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_iserror.f"/>

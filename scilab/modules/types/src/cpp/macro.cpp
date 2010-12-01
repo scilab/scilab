@@ -17,10 +17,14 @@
 #include "context.hxx"
 #include "localization.h"
 #include "yaspio.hxx"
+#include "scilabexception.hxx"
+#include "configvariable.hxx"
+#include "mutevisitor.hxx"
 
 extern "C"
 {
     #include "Scierror.h"
+    #include "os_swprintf.h"
 }
 
 namespace types
@@ -166,6 +170,11 @@ namespace types
 
         try
         {
+
+            m_body->mute();
+            MuteVisitor mute;
+            m_body->accept(mute);
+
             m_body->returnable_set();
             m_body->accept(*execFunc);
             if(m_body->is_return())
@@ -186,20 +195,20 @@ namespace types
                 else
                 {
                     wchar_t sz[bsiz];
-#ifdef _MSC_VER
-                    swprintf_s(sz, bsiz, _W("Undefined variable %s.\n"), (*i).c_str());
-#else
-                    swprintf(sz, bsiz, _W("Undefined variable %ls.\n"), (*i).c_str());
-#endif
+                    os_swprintf(sz, bsiz, _W("Undefined variable %ls.\n"), (*i).c_str());
                     YaspWriteW(sz);
                 }
             }
         }
-        catch(wstring sz)
+        catch(ast::ScilabError se)
         {
-            YaspWriteW(sz.c_str());
-            YaspWriteW(L"\n");
-            RetVal = Callable::Error;
+            //close the current scope
+            pContext->scope_end();
+            for (int j = 0; j < out.size(); ++j)
+            {
+                out[j]->DecreaseRef();
+            }
+            throw se;
         }
 
         //close the current scope

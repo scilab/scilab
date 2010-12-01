@@ -12,7 +12,7 @@
     <synopsis>r=fromc()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>
@@ -30,8 +30,16 @@
    <refsection>
     <title>See Also</title>
      <simplelist type="inline">
-      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link linkend="fromjava">fromjava</link></member>
-    </simplelist>
+       <member>
+	 <link linkend="call_scilab">Call_Scilab</link>
+       </member>
+       <member>
+	 <link linkend="api_scilab">api Scilab</link>
+       </member>
+       <member>
+	 <link linkend="fromjava">fromjava</link>
+       </member>
+     </simplelist>
   </refsection>
   
 </refentry>

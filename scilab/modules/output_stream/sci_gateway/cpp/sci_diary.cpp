@@ -17,6 +17,7 @@ extern "C"
 #include "gw_output_stream.h"
 #include "stack-c.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 #include "localization.h"
 #include "charEncoding.h"
 #include "Scierror.h"
@@ -182,7 +183,7 @@ static int sci_diary_no_rhs(char *fname, int* _piKey)
 		}
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }
@@ -221,7 +222,7 @@ static int sci_diary_one_rhs(char *fname, int* _piKey)
 			 ((IDs_size == 1) && ((int)IDs[0] == 0)))
 		{
 			diaryCloseAll();
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{
@@ -295,7 +296,7 @@ static int sci_diary_one_rhs(char *fname, int* _piKey)
 			}
 
 			freeArrayOfWideString(wcFilenames,sizewcFilenames);
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{
@@ -1019,7 +1020,7 @@ static int CloseByFilenames(char *fname, int* _piKey)
 	}
 
 	freeArrayOfWideString(wcFilenames, dIDs_size);
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -1035,7 +1036,7 @@ static int CloseByIds(char *fname, int* _piKey)
 	{
 		// diary([], 'close')
 		diaryCloseAll();
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 	else if (ierr) return 0;
@@ -1051,7 +1052,7 @@ static int CloseByIds(char *fname, int* _piKey)
 			return 0;
 		}
 	}
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -1083,7 +1084,7 @@ static int PauseByFilenames(char *fname, int* _piKey)
 
 	freeArrayOfWideString(wcFilenames, dIDs_size);
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -1108,7 +1109,7 @@ static int PauseByIds(char *fname, int* _piKey)
 		}
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }
@@ -1140,7 +1141,7 @@ static int ResumeByFilenames(char *fname, int* _piKey)
 
 	freeArrayOfWideString(wcFilenames, dIDs_size);
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }
@@ -1166,7 +1167,7 @@ static int ResumeByIds(char *fname, int* _piKey)
 		}
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }
@@ -1210,7 +1211,7 @@ static int ExistByFilenames(char *fname, int* _piKey)
 
 	FREE(resultExist); resultExist = NULL;
 	LhsVar(1) = Rhs + 1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -1252,7 +1253,7 @@ static int ExistByIds(char *fname, int* _piKey)
 
 	FREE(resultExist); resultExist = NULL;
 	LhsVar(1) = Rhs + 1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -1319,7 +1320,7 @@ static int AppendByFilenames(char *fname, int* _piKey,
 			LhsVar(2) = Rhs + 2;
 			freeArrayOfWideString(wfilenameUsed, 1);
 		}
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{
@@ -1387,7 +1388,7 @@ static int NewByFilenames(char *fname, int* _piKey,
 			FREE(wfilenameUsed[0]);
 			delete [] wfilenameUsed;
 		}
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

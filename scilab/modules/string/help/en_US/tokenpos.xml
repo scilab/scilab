@@ -23,7 +23,7 @@
     <synopsis>kdf=tokenpos(str [,delimiter])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str</term>

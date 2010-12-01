@@ -30,7 +30,7 @@
         <synopsis>void freeAllocatedComplexSparseMatrix(int* _piNbItemRows, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_piNbItemRows</term>

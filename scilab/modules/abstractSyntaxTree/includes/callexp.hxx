@@ -11,94 +11,106 @@
  */
 
 #ifndef AST_CALLEXP_HXX
-# define AST_CALLEXP_HXX
+#define AST_CALLEXP_HXX
 
-# include <list>
-# include "exp.hxx"
+#include <list>
+#include "exp.hxx"
 
 namespace ast
 {
-  /*
-  ** \brief Abstract a Call Expression node.
-  **
-  ** \b Example: foo(2097)
-  */
-  class CallExp : public Exp
-  {
-    // \brief Ctor & dtor.
-  public:
     /*
-    ** \brief Construct a Call Expression node.
-    ** \param location scanner position informations
-    ** \param name of the function
-    ** \param list of the arguments
+    ** \brief Abstract a Call Expression node.
+    **
+    ** \b Example: foo(2097)
     */
-    CallExp (const Location& location,
-	     Exp& name,
-	     std::list<Exp *>& args) :
-      Exp (location),
-      _name (&name),
-      _args (&args)
+    class CallExp : public Exp
     {
-    }
+        // \brief Ctor & dtor.
+    public:
+        /*
+        ** \brief Construct a Call Expression node.
+        ** \param location scanner position informations
+        ** \param name of the function
+        ** \param list of the arguments
+        */
+        CallExp (const Location& location,
+            Exp& name,
+            std::list<Exp *>& args) :
+        Exp (location),
+            _name (&name),
+            _args (&args)
+        {
+        }
 
-    virtual ~CallExp ()
-    {
-			delete _name;
-			std::list<Exp *>::const_iterator i;
-			for(i = _args->begin() ; i != _args->end() ; i++)
-			{
-				delete *i;
-			}
-			delete _args;
-    }
+        virtual ~CallExp ()
+        {
+            delete _name;
+            std::list<Exp *>::const_iterator i;
+            for(i = _args->begin() ; i != _args->end() ; i++)
+            {
+                delete *i;
+            }
+            delete _args;
+        }
+
+        virtual CallExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            std::list<Exp *>* args = new std::list<Exp *>;
+            std::list<Exp *>::const_iterator it;
+            for(it = _args->begin() ; it != _args->end() ; it++)
+            {
+                args->push_back((*it)->clone());
+            }
+
+            return new CallExp(*newloc, *name_get().clone(), *args);
+        }
+
+        // \brief Visitors entry point.
+    public:
+        // \brief Accept a const visitor
+        virtual void	accept(Visitor& v)
+        {
+            v.visit (*this);
+        }
+        // \brief Accept a non-const visitor
+        virtual void	accept(ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
 
 
-    // \brief Visitors entry point.
-  public:
-    // \brief Accept a const visitor
-    virtual void	accept(Visitor& v)
-    {
-      v.visit (*this);
-    }
-    // \brief Accept a non-const visitor
-    virtual void	accept(ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
+        // \brief Accessors.
+    public:
+        const Exp&	name_get() const
+        {
+            return *_name;
+        }
 
+        Exp&	name_get()
+        {
+            return *_name;
+        }
 
-    // \brief Accessors.
-  public:
-    const Exp&	name_get() const
-    {
-      return *_name;
-    }
+        void name_set (Exp *name)
+        {
+            _name = name;
+        }
 
-    Exp&	name_get()
-    {
-      return *_name;
-    }
+        const std::list<Exp *>&	args_get() const
+        {
+            return *_args;
+        }
 
-    void name_set (Exp *name)
-    {
-      _name = name;
-    }
+        std::list<Exp *>&	args_get()
+        {
+            return *_args;
+        }
 
-    const std::list<Exp *>&	args_get() const
-    {
-      return *_args;
-    }
-
-    std::list<Exp *>&	args_get()
-    {
-      return *_args;
-    }
-
-  protected:
-    Exp*		_name;
-    std::list<Exp *>*	_args;
-  };
+    protected:
+        Exp*		_name;
+        std::list<Exp *>*	_args;
+    };
 
 } // namespace ast
 

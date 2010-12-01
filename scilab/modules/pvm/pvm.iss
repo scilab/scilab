@@ -35,10 +35,8 @@
 ;Source: modules\{#PVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\macros\buildmacros.bat; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\macros\cleanmacros.bat; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
-;Source: modules\{#PVM}\macros\*.bin; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\macros\*.sci; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\macros\lib; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
-;Source: modules\{#PVM}\macros\names; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;
 ;Source: modules\{#PVM}\demos\*.*; DestDir: {app}\modules\{#PVM}\demos; Flags: recursesubdirs; Components: {#COMPN_PVM}
 ;

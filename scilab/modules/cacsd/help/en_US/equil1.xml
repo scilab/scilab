@@ -23,7 +23,7 @@
     <synopsis>[T [,siz]]=equil1(P,Q [,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P, Q</term>

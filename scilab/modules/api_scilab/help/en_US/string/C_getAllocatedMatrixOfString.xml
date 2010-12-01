@@ -31,7 +31,7 @@
         <synopsis xml:id="getAllocatedMatrixOfWideString">int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, wchar_t*** _pwstData)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>

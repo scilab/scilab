@@ -16,9 +16,9 @@
  */
 
 #ifndef AST_ALLEXP_HXX
-# define AST_ALLEXP_HXX
+#define AST_ALLEXP_HXX
 
-# include "exp.hxx"
+#include "exp.hxx"
 
 /*
 ** Constant Expressions
@@ -46,6 +46,7 @@
 #include "forexp.hxx"
 #include "trycatchexp.hxx"
 #include "breakexp.hxx"
+#include "continueexp.hxx"
 #include "returnexp.hxx"
 #include "selectexp.hxx"
 #include "caseexp.hxx"

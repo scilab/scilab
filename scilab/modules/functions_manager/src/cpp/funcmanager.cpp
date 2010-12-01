@@ -24,6 +24,7 @@
 #include <libxml/xmlreader.h>
 
 #include "MALLOC.h"
+#include "sci_mode.h"
 #include "funcmanager.hxx"
 #include "configvariable.hxx"
 #include "module_declaration.hxx"
@@ -44,7 +45,7 @@ extern "C"
 using namespace std;
 using namespace ast;
 
-#define BASENAMEMODULESFILE L"etc/yasp_modules.xml"
+#define BASENAMEMODULESFILE L"etc/modules.xml"
 
 bool FileExist(std::string _szFile);
 bool FileExist(std::wstring _szFile);
@@ -195,10 +196,6 @@ bool FuncManager::AppendModules()
 		if(xpathObj) xmlXPathFreeObject(xpathObj);
 		if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
 		xmlFreeDoc (doc);
-		/*
-		* Cleanup function for the XML library.
-		*/
-		xmlCleanupParser();
 	}
 	else
 	{
@@ -210,16 +207,7 @@ bool FuncManager::AppendModules()
 		encoding = NULL;
 	}
 
-    String *pS  = new String(static_cast<int>(m_ModuleName.size()), 1);
-
-    list<wstring>::iterator it = m_ModuleName.begin();
-    for(int i = 0; it != m_ModuleName.end() ; it++,i++)
-    {
-        pS->string_set(i, it->c_str());
-    }
-
-    symbol::Context::getInstance()->put(L"modules_list", *pS);
-
+    ConfigVariable::setModuleList(m_ModuleName);
     FREE(pstTemp);
 
 	return true;
@@ -296,21 +284,29 @@ char *GetXmlFileEncoding(string _filename)
 
 bool FuncManager::CreateModuleList(void)
 {
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"elementary_functions", &ElemFuncModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"types", &TypesModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"boolean", &BooleanModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"integer", &IntegerModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"core", &CoreModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"io", &IoModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"functions", &FunctionsModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"output_stream", &OutputStreamModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"matio", &MatioModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"elementary_functions", &ElemFuncModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"types", &TypesModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"boolean", &BooleanModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"integer", &IntegerModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"core", &CoreModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"io", &IoModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"functions", &FunctionsModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"output_stream", &OutputStreamModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"matio", &MatioModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"fileio", &FileioModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"gui", &GuiModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"time", &TimeModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
-	m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scinotes", &ScinotesModule::Load));
-	return true;
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"gui", &GuiModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"time", &TimeModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scinotes", &ScinotesModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"localization", &LocalizationModule::Load));
+    if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
+    {
+        m_ModuleMap.insert(pair<wstring, GW_MOD>(L"jvm", &JvmModule::Load));
+    }
+#ifdef _MSC_VER
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"windows_tools", &WindowsToolsModule::Load));
+#endif
+    return true;
 }
 
 bool FuncManager::LoadFuncByModule(void)
@@ -370,18 +366,26 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
 
     ExecVisitor execStart;
 
+    //save current prompt mode
+    ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+    //set mode silent for errors
+    ConfigVariable::setPromptMode(ConfigVariable::silent);
     try
     {
         parser.getTree()->accept(execStart);
+
     }
-    catch(wstring sz)
+    catch(ast::ScilabMessage sm)
     {
-        YaspWriteW(sz.c_str());
-        YaspWriteW(L"\n");
-        parser.freeTree();
-        return false;
+        YaspWriteW(sm.GetErrorMessage().c_str());
+    }
+    catch(ast::ScilabError se)
+    {
+        YaspWriteW(se.GetErrorMessage().c_str());
     }
 
+    //restore previous prompt mode
+    ConfigVariable::setPromptMode(oldVal);
     parser.freeTree();
     return true;
 }

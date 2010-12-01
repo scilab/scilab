@@ -23,7 +23,7 @@
     <synopsis>[sld [,r]]=dscr(sl,dt [,m])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl</term>

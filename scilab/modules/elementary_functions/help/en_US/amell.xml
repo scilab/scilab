@@ -23,7 +23,7 @@
     <synopsis>[sn]=amell(u,k)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>u</term>

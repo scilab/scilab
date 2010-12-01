@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure -->
+<!-- The accelerator can be "control shift A" or "control A" or "meta A" or "OSSCKEY A" where oskey means "OS ShortCut key"
+     and is replaced by the good key (control for Unix/Windows OS and meta for Mac) -->
+
 <menubar>
   <menu label="&amp;File">
-    <submenu label="&amp;New figure...">
+    <submenu label="&amp;New figure..." accelerator="OSSCKEY N">
       <callback instruction="scf();" type="0"/>
     </submenu>
     <separator/>
@@ -17,7 +20,7 @@
                        clear %fileToLoad'
           type="0"/>
     </submenu>
-    <submenu label="&amp;Save...">
+    <submenu label="&amp;Save..." accelerator="OSSCKEY S">
       <callback
           instruction='
                        %fileToSave = uiputfile("*.scg", pwd(), gettext("Select a file to write"));
@@ -28,11 +31,11 @@
                        xsave(%fileToSave, get_figure_handle([SCILAB_FIGURE_ID]));
                        disp(msprintf(gettext("Figure saved.\n")));
                        end
-                       clear %fileToSave isempty fileparts'
+                       clear %fileToSave isempty'
           type="0"/>
     </submenu>
     <separator/>
-    <submenu label="&amp;Export to...">
+    <submenu label="&amp;Export to..." accelerator="OSSCKEY E">
       <callback instruction='exportUI([SCILAB_FIGURE_ID])' type="0"/>
       <!--<submenu label="&amp;BMP">
           <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
@@ -147,18 +150,18 @@
           type="0"/>
           </submenu>-->
 </submenu>
-        <submenu label="&amp;Copy to clipboard">
+        <submenu label="&amp;Copy to clipboard" accelerator="OSSCKEY C">
             <callback instruction='clipboard([SCILAB_FIGURE_ID], "EMF");' type="0"/>
         </submenu>
         <separator/>
         <submenu label="P&amp;age setup...">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup' type="3"/>
         </submenu>
-        <submenu label="&amp;Print...">
+        <submenu label="&amp;Print..." accelerator="OSSCKEY P">
             <callback instruction='printfigure([SCILAB_FIGURE_ID]);' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="C&amp;lose">
+        <submenu label="C&amp;lose" accelerator="OSSCKEY W">
             <callback instruction='
                 if (get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler_enable") == "on" );
                     execstr(get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler")+"([SCILAB_FIGURE_ID], -1, -1, -1000)", "errcatch", "m");
@@ -226,11 +229,11 @@
     </menu>
 
     <menu label="&amp;?">
-        <submenu label="&amp;Scilab Help">
+        <submenu label="&amp;Scilab Help" accelerator="F1">
             <callback instruction='help();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;About Scilab...">
+        <submenu label="&amp;About Scilab..." accelerator="shift F1">
             <callback instruction='about()' type="0"/>
         </submenu>
     </menu>

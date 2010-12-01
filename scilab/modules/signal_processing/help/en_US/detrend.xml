@@ -14,7 +14,7 @@ y = detrend(x,flag)
 y = detrend(x,flag,bp)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

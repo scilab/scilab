@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-01-12 10:00+0000\n"
+"PO-Revision-Date: 2010-09-15 15:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -68,6 +68,10 @@ msgid "%s: Invalid library %s.\n"
 msgstr "%s: некоректна бібліотека %s.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка виділення пам’яті.\n"
+
+#, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: файлів з суфіксом назви %s у %s не знайдено\n"
 
@@ -86,10 +90,6 @@ msgstr "%s: оновлення файлів names і lib\n"
 #, c-format
 msgid "%s: The function has not been built for profiling"
 msgstr "%s: функцію не було зібрано для профілювання"
-
-#, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr "%s: файла з назвою %s.sci у каталозі бібліотеки %s не виявлено.\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
@@ -111,6 +111,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -249,18 +254,6 @@ msgstr "Цю функцію буде назавжди вилучено у Scilab
 
 msgid "Tools"
 msgstr "Інструменти"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "ПОПЕРЕДЖЕННЯ: функція %s вважається застарілою.\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "ПОПЕРЕДЖЕННЯ: будь ласка, скористайтеся %s.\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "ПОПЕРЕДЖЕННЯ: цю функцію буде назавжди вилучено у Scilab %s.\n"
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "

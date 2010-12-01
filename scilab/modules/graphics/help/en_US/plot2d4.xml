@@ -25,7 +25,7 @@ plot2d4(y)
 plot2d4(x,y &lt;,opt_args&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>args</term>

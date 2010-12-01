@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-09-15 14:22+0100\n"
 
 # File: src/c/sp.c, line: 468
 msgid ""
@@ -98,31 +98,31 @@ msgstr ""
 msgid "%s: Empty function (use -function option)."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 248
 # File: macros/optimbase/optimbase_configure.sci, line: 140
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 604
+# File: macros/neldermead/neldermead_configure.sci, line: 248
 #, c-format
 msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 241
 # File: macros/optimbase/optimbase_configure.sci, line: 133
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 597
+# File: macros/neldermead/neldermead_configure.sci, line: 241
 #, c-format
 msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 227
 # File: macros/optimbase/optimbase_configure.sci, line: 119
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 583
+# File: macros/neldermead/neldermead_configure.sci, line: 227
 #, c-format
 msgid ""
 "%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 234
 # File: macros/optimbase/optimbase_configure.sci, line: 126
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 590
+# File: macros/neldermead/neldermead_configure.sci, line: 234
 #, c-format
 msgid ""
 "%s: Expected string variable for variable %s at input #%d, but got %s "
@@ -135,11 +135,11 @@ msgstr ""
 msgid "%s: History disabled ; enable -storehistory option."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_get.sci, line: 22
-# File: macros/optimbase/optimbase_histget.sci, line: 22
 # File: macros/optimbase/optimbase_histset.sci, line: 23
 # File: macros/optimbase/optimbase_set.sci, line: 27
 # File: macros/optimbase/optimbase_set.sci, line: 34
+# File: macros/optimbase/optimbase_histget.sci, line: 22
+# File: macros/neldermead/neldermead_get.sci, line: 22
 #, c-format
 msgid "%s: History disabled ; turn on -storehistory option."
 msgstr ""
@@ -567,14 +567,14 @@ msgstr ""
 msgid "%s: Unknown -method %s"
 msgstr ""
 #
-# File: macros/neldermead/nmplot_configure.sci, line: 26
-# File: macros/optimbase/optimbase_histget.sci, line: 35
 # File: macros/optimbase/optimbase_histset.sci, line: 36
-# File: macros/optimbase/optimbase_get.sci, line: 50
-# File: macros/optimbase/optimbase_configure.sci, line: 112
 # File: macros/optimbase/optimbase_cget.sci, line: 66
+# File: macros/optimbase/optimbase_get.sci, line: 50
 # File: macros/optimbase/optimbase_set.sci, line: 44
+# File: macros/optimbase/optimbase_configure.sci, line: 112
+# File: macros/optimbase/optimbase_histget.sci, line: 35
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 194
+# File: macros/neldermead/nmplot_configure.sci, line: 26
 #, c-format
 msgid "%s: Unknown key %s"
 msgstr ""
@@ -609,9 +609,9 @@ msgstr ""
 msgid "%s: Unknown step %s"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 258
 # File: macros/optimbase/optimbase_configure.sci, line: 147
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 611
+# File: macros/neldermead/neldermead_configure.sci, line: 258
 #, c-format
 msgid "%s: Unknown value %s for %s option"
 msgstr ""
@@ -646,8 +646,8 @@ msgstr ""
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr ""
 #
-# File: macros/bvodeS.sci, line: 30
 # File: macros/fit_dat.sci, line: 78
+# File: macros/bvodeS.sci, line: 30
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""

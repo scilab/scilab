@@ -26,7 +26,7 @@ int cdfgamI(char* fname, int* _piKey)
     {{"PQ",    3, 2, 2},
      {"X",     4, 1, 3},
      {"Shape", 4, 1, 4},
-     {"Scale", 4, 1, 0}};
+     {"Rate", 4, 1, 0}};
   struct cdf_descriptor cdf = mkcdf(cdfgam, 4, 5, 1, 2, items);
-  return cdf_generic(fname, _piKey, &cdf); 
-} 
+  return cdf_generic(fname, _piKey, &cdf);
+}

@@ -11,7 +11,7 @@
 */
 
 #ifndef SYMBOL_TABLE_HH
-# define SYMBOL_TABLE_HH
+#define SYMBOL_TABLE_HH
 
 #include <iostream>
 #include <list>

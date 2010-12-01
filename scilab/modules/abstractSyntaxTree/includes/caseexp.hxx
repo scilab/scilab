@@ -17,50 +17,55 @@
 #include "seqexp.hxx"
 
 namespace ast {
-  class CaseExp : public ControlExp
-  {
-  public :
-    CaseExp(const Location& location,
-	    Exp& test,
-	    SeqExp& body) :
-      ControlExp (location),
-      _test (&test),
-      _body (&body)
+    class CaseExp : public ControlExp
     {
-    }
-    
-    ~CaseExp()
-    {
-      delete _test;
-      delete _body;
-    }
+    public :
+        CaseExp(const Location& location,
+            Exp& test,
+            SeqExp& body) :
+        ControlExp (location),
+            _test (&test),
+            _body (&body)
+        {
+        }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
+        ~CaseExp()
+        {
+            delete _test;
+            delete _body;
+        }
 
-  public :
-	Exp* test_get() const { return _test; }
-	SeqExp* body_get() const { return _body; }
+        virtual CaseExp* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new CaseExp(*newloc, *test_get()->clone(), *body_get()->clone());
+        }
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
 
-  private :
-    Exp* _test;
-    SeqExp *_body;
-  };
+    public :
+        Exp* test_get() const { return _test; }
+        SeqExp* body_get() const { return _body; }
 
-  /** \brief Define a shorthand for list of CaseExp* manipulation. */
-  typedef std::list<CaseExp *> cases_t;
+    private :
+        Exp* _test;
+        SeqExp *_body;
+    };
+
+    /** \brief Define a shorthand for list of CaseExp* manipulation. */
+    typedef std::list<CaseExp *> cases_t;
 }
 
 #endif /* !__AST_CASE_EXP_HXX__ */

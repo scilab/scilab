@@ -73,11 +73,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -415,7 +416,6 @@ am__objects_6 = libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_imag.lo \
 	libscielementary_functions_la-sci_log.lo \
 	libscielementary_functions_la-sci_log1p.lo \
-	libscielementary_functions_la-sci_eye.lo \
 	libscielementary_functions_la-sci_clean.lo \
 	libscielementary_functions_la-sci_tan.lo \
 	libscielementary_functions_la-sci_atan.lo \
@@ -457,7 +457,8 @@ am__objects_6 = libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_isequalbitwise.lo
 am__objects_7 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-elem_func_gw.lo \
-	libscielementary_functions_la-sci_size.lo
+	libscielementary_functions_la-sci_size.lo \
+	libscielementary_functions_la-sci_eye.lo
 am__objects_8 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_maxi.lo \
 	libscielementary_functions_la-sci_f_testmatrix.lo \
@@ -1097,7 +1098,6 @@ sci_gateway/c/sci_ceil.c \
 sci_gateway/c/sci_imag.c \
 sci_gateway/c/sci_log.c \
 sci_gateway/c/sci_log1p.c \
-sci_gateway/c/sci_eye.c \
 sci_gateway/c/sci_clean.c \
 sci_gateway/c/sci_tan.c \
 sci_gateway/c/sci_atan.c \
@@ -1186,7 +1186,8 @@ sci_gateway/fortran/sci_f_exp.f
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_isequal.cpp \
 	sci_gateway/cpp/elem_func_gw.cpp \
-	sci_gateway/cpp/sci_size.cpp
+	sci_gateway/cpp/sci_size.cpp \
+	sci_gateway/cpp/sci_eye.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -1915,13 +1916,6 @@ libscielementary_functions_la-sci_log1p.lo: sci_gateway/c/sci_log1p.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_log1p.lo `test -f 'sci_gateway/c/sci_log1p.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log1p.c
 
-libscielementary_functions_la-sci_eye.lo: sci_gateway/c/sci_eye.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_eye.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_eye.Tpo -c -o libscielementary_functions_la-sci_eye.lo `test -f 'sci_gateway/c/sci_eye.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eye.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_eye.Tpo $(DEPDIR)/libscielementary_functions_la-sci_eye.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_eye.c' object='libscielementary_functions_la-sci_eye.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_eye.lo `test -f 'sci_gateway/c/sci_eye.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eye.c
-
 libscielementary_functions_la-sci_clean.lo: sci_gateway/c/sci_clean.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_clean.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_clean.Tpo -c -o libscielementary_functions_la-sci_clean.lo `test -f 'sci_gateway/c/sci_clean.c' || echo '$(srcdir)/'`sci_gateway/c/sci_clean.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_clean.Tpo $(DEPDIR)/libscielementary_functions_la-sci_clean.Plo
@@ -2236,6 +2230,13 @@ libscielementary_functions_la-sci_size.lo: sci_gateway/cpp/sci_size.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_size.cpp' object='libscielementary_functions_la-sci_size.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_size.lo `test -f 'sci_gateway/cpp/sci_size.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_size.cpp
+
+libscielementary_functions_la-sci_eye.lo: sci_gateway/cpp/sci_eye.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_eye.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_eye.Tpo -c -o libscielementary_functions_la-sci_eye.lo `test -f 'sci_gateway/cpp/sci_eye.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_eye.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_eye.Tpo $(DEPDIR)/libscielementary_functions_la-sci_eye.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_eye.cpp' object='libscielementary_functions_la-sci_eye.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_eye.lo `test -f 'sci_gateway/cpp/sci_eye.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_eye.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -3364,7 +3365,7 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 # Commented because it is one of the first module to be compiled
-#libdummy-elementary_functions.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
+#libdummy-elementary_functions.la   $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
 
 libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
@@ -3564,9 +3565,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

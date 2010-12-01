@@ -13,6 +13,7 @@
 #include <sstream>
 #include "core_math.h"
 #include "string.hxx"
+#include "double.hxx"
 #include "tostring_common.hxx"
 
 extern "C"
@@ -412,7 +413,7 @@ namespace types
 		return ps;
 	}
 
-	bool String::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+	InternalType* String::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
 	{
 		int iNewRows = rows_get();
 		int iNewCols = cols_get();
@@ -441,7 +442,7 @@ namespace types
 				}
 				else
 				{
-					return false;
+					return NULL;
 				}
 			}
 		}
@@ -449,18 +450,18 @@ namespace types
 		//check if the size of _poSource is compatible with the size of the variable
 		if(_bAsVector == false && (iNewRows < _poSource->rows_get() || iNewCols < _poSource->cols_get()))
 		{
-			return false;
+			return NULL;
 		}
 		else if(_bAsVector == true && (iNewRows * iNewCols < _poSource->size_get()))
 		{
-			return false;
+			return NULL;
 		}
 
 
 		//check if the count of values is compatible with indexes
-		if(_poSource->size_get() != 1 && _poSource->size_get() != _iSeqCount)
+		if(_poSource->size_get() != 1 && _poSource->size_get() != 0 && _poSource->size_get() != _iSeqCount)
 		{
-			return false;
+			return NULL;
 		}
 
 
@@ -473,7 +474,7 @@ namespace types
 				//Only resize after all tests !
 				if(resize(iNewRows, iNewCols) == false)
 				{
-					return false;
+					return NULL;
 				}
 
 				wchar_t** pstIn = pIn->string_get();
@@ -519,13 +520,174 @@ namespace types
 						}
 					}
 				}
-			break;
+                break;
 			}
+        case InternalType::RealDouble :
+            {//[] used to delete items
+
+                Double *pIn = _poSource->getAsDouble();
+
+                if(pIn->size_get() != 0)
+                {//not []
+                    return NULL;
+                }
+
+                int iNewSize = 0;
+                int iNewCols = 0;
+                int iNewRows = 0;
+
+                if(_bAsVector == false)
+                {
+                    //use hard coded iDims in algo to futur updated with generic algo to N dims.
+                    int iDims = 2;
+                    //Convert piSeqCoord to 1-dim indexes
+                    for(int i = 0 ; i < _iSeqCount ; i++)
+                    {
+                        //+1 to keep 1 based indexes
+                        _piSeqCoord[i] = ((_piSeqCoord[i * iDims] - 1) + ((_piSeqCoord[i * iDims + 1] - 1) * rows_get())) + 1;
+                    }
+
+                    //create ordered list of index to not shit input data
+                    for(int i = _iSeqCount - 1 ; i > 0 ; i--)
+                    {
+                        for(int j = 1 ; j <= i ; j++)
+                        {
+                            //force index are <= to size_get()
+                            _piSeqCoord[j] = Min(_piSeqCoord[j], size_get());
+
+                            if(_piSeqCoord[j - 1] > _piSeqCoord[j])
+                            {
+                                int iIdx            = _piSeqCoord[j - 1];
+                                _piSeqCoord[j - 1]  = _piSeqCoord[j];
+                                _piSeqCoord[j]      = iIdx;
+                            }
+                        }
+                    }
+
+                    //check if indexes are on full row or column
+                    int iDeleteRow      = 0;
+                    int iDeleteCol      = 0;
+
+                    //check for rows
+                    for(int i = 0 ; i < rows_get() ; i++)
+                    {
+                        if(hasAllIndexesOfRow(i, _piSeqCoord, _iSeqCount))
+                        {
+                            iDeleteRow++;
+                        }
+                    }
+
+                    //check for cols
+                    for(int i = 0 ; i < cols_get() ; i++)
+                    {
+                        if(hasAllIndexesOfCol(i, _piSeqCoord, _iSeqCount))
+                        {
+                            iDeleteCol++;
+                        }
+                    }
+
+                    if(iDeleteRow == 0 && iDeleteCol == 0)
+                    {//nothing to delete, bad call
+                        return NULL;
+                    }
+
+                    if(iDeleteRow && iDeleteCol)
+                    {//the only way to delete row and col is to delete all
+                        return Double::Empty();
+                    }
+
+                    iNewRows = rows_get() - iDeleteRow;
+                    iNewCols = cols_get() - iDeleteCol;
+                    iNewSize = iNewRows * iNewCols;
+                }
+                else
+                {
+                    //create ordered list of index to not shit input data
+                    for(int i = _iSeqCount - 1 ; i > 0 ; i--)
+                    {
+                        for(int j = 1 ; j <= i ; j++)
+                        {
+                            //force index are <= to size_get()
+                            _piSeqCoord[j] = Min(_piSeqCoord[j], size_get());
+
+                            if(_piSeqCoord[j - 1] > _piSeqCoord[j])
+                            {
+                                int iIdx            = _piSeqCoord[j - 1];
+                                _piSeqCoord[j - 1]  = _piSeqCoord[j];
+                                _piSeqCoord[j]      = iIdx;
+                            }
+                        }
+                    }
+
+                    int iDuplicates = 0;
+                    for(int i = 0 ; i < _iSeqCount - 1 ; i++)
+                    {
+                        if(_piSeqCoord[i] == _piSeqCoord[i + 1])
+                        {
+                            iDuplicates++;
+                        }
+                    }
+
+                    iNewSize = size_get() - (_iSeqCount - iDuplicates);
+                }
+
+                if(iNewSize == 0)
+                {//delete all data, in this case return  []
+                    return Double::Empty();
+                }
+
+                wchar_t** pwstTemp = new wchar_t*[iNewSize];
+                int iOffset = 0;
+                //copy data before the first SeqCoord
+                memcpy(pwstTemp, m_pstData, (_piSeqCoord[0] - 1) * sizeof(wchar_t*));
+                iOffset = _piSeqCoord[0] - 1;
+
+                for(int i = 0 ; i < _iSeqCount - 1 ; i++)
+                {
+                    if(_piSeqCoord[i] == _piSeqCoord[i + 1])
+                    {//by pass duplicates coordinates
+                        continue;
+                    }
+                    //copy data between two SeqCoord
+                    int iLen = _piSeqCoord[i + 1] - _piSeqCoord[i] - 1;
+                    memcpy(pwstTemp + iOffset, m_pstData + _piSeqCoord[i], iLen * sizeof(wchar_t*));
+                    iOffset += iLen;
+                }
+
+                //copy data after the last SeqCoord
+                memcpy(pwstTemp + iOffset, m_pstData + _piSeqCoord[_iSeqCount - 1], (size_get() - _piSeqCoord[_iSeqCount - 1]) * sizeof(wchar_t*));
+
+                //set new dimension
+
+                if(_bAsVector)
+                {
+                    if(rows_get() == 1)
+                    {
+                        m_iCols = iNewSize;
+                    }
+                    else
+                    {
+                        m_iCols = 1;
+                        m_iRows = iNewSize;
+                    }
+                }
+                else
+                {
+                    m_iRows = iNewRows;
+                    m_iCols = iNewCols;
+                }
+
+                delete[] m_pstData;//just delete array not items
+                m_pstData = pwstTemp;
+                m_iSize = rows_get() * cols_get();
+
+                break;
+            }
 		default :
-			return false;
+			return NULL;
 			break;
 		}
-		return true;
+		return this;
 	}
 
 	String*	String::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, String* _poSource, bool _bAsVector)

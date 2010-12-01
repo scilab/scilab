@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -61,8 +61,8 @@ int sci_frexp(char *fname, int* _piKey)
 
 	if(isVarComplex(_piKey, piAddr))
 	{
-		SciError(9999);
-		sciprint(_("%s: real data only.\n"), fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 1);
+        return 0;
 	}
 
 	sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);

@@ -565,12 +565,16 @@ types::Struct* getStructFromExp(const Exp* _pExp)
     {
         types::Struct *pStr = NULL;
         types::InternalType *pIT = symbol::Context::getInstance()->get(pVar->name_get());
-        if(pIT == NULL || pIT->getType() != types::InternalType::RealStruct)
+        if(pIT == NULL)
         {
             //create new list variable
             pStr = new types::Struct();
             //Add variable to scope
             symbol::Context::getInstance()->put(pVar->name_get(), *pStr);
+        }
+        else if(pIT->getType() != types::InternalType::RealStruct)
+        {
+            return NULL;
         }
         else
         {

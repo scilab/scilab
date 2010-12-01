@@ -17,7 +17,7 @@ th=xget("thickness");
 xset("thickness",4);
 xpoly(p(:,1),p(:,2),"lines");
 xset("thickness",th);
-
+endfunction
 
 function []=chaina(yt)
 [n1,n2]=size(yt);
@@ -25,7 +25,7 @@ x=ones(n1/2,n2);
 y=ones(n1/2,n2);
 x(1,:)=2*r(1)*cos(yt(1,:));
 y(1,:)=2*r(1)*sin(yt(1,:));
-for i=2:n1/2, 
+for i=2:n1/2,
     x(i,:)=x(i-1,:)+2*r(i)*cos(yt(i,:));
     y(i,:)=y(i-1,:)+2*r(i)*sin(yt(i,:));
 end
@@ -49,13 +49,14 @@ else
   end
   xset('pixmap',pix)
 end
+endfunction
 
 function []=chainb(yt)
 [n1,n2]=size(yt);
 x=ones(n1/2,n2);y=ones(n1/2,n2);
 x(1,:)=2*r(1)*cos(yt(1,:));
 y(1,:)=2*r(1)*sin(yt(1,:));
-for i=2:n1/2, 
+for i=2:n1/2,
     x(i,:)=x(i-1,:)+2*r(i)*cos(yt(i,:));
     y(i,:)=y(i-1,:)+2*r(i)*sin(yt(i,:));
 end
@@ -86,6 +87,7 @@ else
   end
   xset('pixmap',pix)
 end
+endfunction
 
 
 

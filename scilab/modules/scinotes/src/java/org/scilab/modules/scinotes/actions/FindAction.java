@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -31,6 +33,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -38,6 +41,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -52,6 +56,8 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -81,14 +87,18 @@ public final class FindAction extends DefaultAction {
     private static final int GAP = 5;
     private static final int THREE = 3;
 
-    private static final Color colorSelected = new Color(205, 183, 158);
-    private static final Highlighter.HighlightPainter activePainter = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
-    private static final Highlighter.HighlightPainter inactivePainter = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
-    private static final Highlighter.HighlightPainter selectedPainter = new DefaultHighlighter.DefaultHighlightPainter(colorSelected);
+    private static final String FILTERNEWLINES = "filterNewlines";
+    private static final String ESCAPE = "ESCAPE";
+
+    private static final Color SELECTEDCOLOR = new Color(205, 183, 158);
+    private static final Highlighter.HighlightPainter ACTIVEPAINTER = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
+    private static final Highlighter.HighlightPainter INACTIVEPAINTER = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
+    private static final Highlighter.HighlightPainter SELECTEDPAINTER = new DefaultHighlighter.DefaultHighlightPainter(SELECTEDCOLOR);
 
     private static String previousSearch;
 
-    private boolean windowAlreadyExist;
+    private static boolean windowAlreadyExist;
+    private static FindAction current;
 
     private JFrame frame;
     private JButton buttonClose;
@@ -122,6 +132,9 @@ public final class FindAction extends DefaultAction {
     private String newWord;
     private String wordToFind;
 
+    private String lastSearch = "";
+    private String lastReplace = "";
+
     private int startSelectedLines;
     private int endSelectedLines;
 
@@ -138,6 +151,9 @@ public final class FindAction extends DefaultAction {
     private List<Integer[]> foundOffsets;
     private MyListener myListener = new MyListener();
 
+    private boolean comboReplaceCanceled;
+    private boolean comboFindCanceled;
+
     /**
      * Constructor
      * @param name the name of the action
@@ -145,18 +161,25 @@ public final class FindAction extends DefaultAction {
      */
     public FindAction(String name, SciNotes editor) {
         super(name, editor);
-        editor.addFindActionWindow(this);
     }
 
     /**
      * doAction
      */
     public void doAction() {
-        if (!windowAlreadyExist) {
-            findReplaceBox();
+        if (windowAlreadyExist) {
+            if (current != this) {
+                current.closeFindReplaceWindow();
+                current = this;
+                findReplaceBox();
+            } else {
+                frame.setVisible(true);
+                buttonFind.requestFocus();
+                frame.toFront();
+            }
         } else {
-            frame.setVisible(true);
-            buttonFind.requestFocus();
+            current = this;
+            findReplaceBox();
         }
 
         previousRegexp = "";
@@ -222,12 +245,29 @@ public final class FindAction extends DefaultAction {
     }
 
     /**
+     * Close the eventually opened FindReplaceWindow
+     */
+    public static void close() {
+        if (current != null) {
+            current.closeFindReplaceWindow();
+        }
+    }
+
+    /**
      * findReplaceBox
      */
     public void findReplaceBox() {
 
         //Find & Replace Frame
         frame = new JFrame();
+        frame.setAlwaysOnTop(true);
+        frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
+        frame.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    closeFindReplaceWindow();
+                }
+            });
+
         frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setTitle(SciNotesMessages.FIND_REPLACE);
@@ -360,13 +400,13 @@ public final class FindAction extends DefaultAction {
         radioForward.setSelected(true);
         radioAll.doClick();
 
-        updateRecentSearch();
-        updateRecentReplace();
+        fillSearch();
+        fillReplace();
 
         restoreConfiguration();
 
-        ((JTextField) comboReplace.getEditor().getEditorComponent()).getDocument().putProperty("filterNewlines", Boolean.FALSE);
-        ((JTextField) comboFind.getEditor().getEditorComponent()).getDocument().putProperty("filterNewlines", Boolean.FALSE);
+        ((JTextField) comboReplace.getEditor().getEditorComponent()).getDocument().putProperty(FILTERNEWLINES, Boolean.FALSE);
+        ((JTextField) comboFind.getEditor().getEditorComponent()).getDocument().putProperty(FILTERNEWLINES, Boolean.FALSE);
         checkCase.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveCaseSensitive(checkCase.isSelected());
@@ -443,12 +483,16 @@ public final class FindAction extends DefaultAction {
 
         buttonFind.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    updateRecentSearch();
                     findText();
                 }
             });
 
         buttonReplace.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    updateRecentSearch();
+                    updateRecentReplace();
+
                     JEditorPane scinotesTextPane = getEditor().getTextPane();
                     ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
 
@@ -461,6 +505,9 @@ public final class FindAction extends DefaultAction {
 
         buttonReplaceFind.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    updateRecentSearch();
+                    updateRecentReplace();
+
                     JEditorPane scinotesTextPane = getEditor().getTextPane();
                     ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
 
@@ -475,6 +522,9 @@ public final class FindAction extends DefaultAction {
 
         buttonReplaceAll.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    updateRecentSearch();
+                    updateRecentReplace();
+
                     int start = 0;
                     JEditorPane scinotesTextPane = getEditor().getTextPane();
                     ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
@@ -534,10 +584,21 @@ public final class FindAction extends DefaultAction {
                 }
             });
 
+        comboReplace.addPopupMenuListener(new PopupMenuListener() {
+                public void popupMenuCanceled(PopupMenuEvent e) {
+                    comboReplaceCanceled = true;
+                }
+
+                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+
+                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+            });
+
         comboReplace.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
                 public void mouseReleased(MouseEvent e) { }
                 public void mousePressed(MouseEvent e) {
                     closeComboPopUp();
+                    updateFindReplaceButtonStatus();
                 }
                 public void mouseExited(MouseEvent e) { }
                 public void mouseEntered(MouseEvent e) { }
@@ -548,7 +609,11 @@ public final class FindAction extends DefaultAction {
                 public void keyTyped(KeyEvent e) { }
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        closeComboPopUp();
+                        if (comboReplaceCanceled) {
+                            comboReplaceCanceled = false;
+                        } else {
+                            closeFindReplaceWindow();
+                        }
                     }
 
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -562,14 +627,14 @@ public final class FindAction extends DefaultAction {
                 public void keyPressed(KeyEvent e) { }
             });
 
-        comboReplace.getEditor().getEditorComponent().addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    updateRecentReplace();
+        comboFind.addPopupMenuListener(new PopupMenuListener() {
+                public void popupMenuCanceled(PopupMenuEvent e) {
+                    comboFindCanceled = true;
                 }
 
-                public void focusLost(FocusEvent e) {
-                    ConfigSciNotesManager.saveRecentReplace((String) comboReplace.getEditor().getItem());
-                }
+                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+
+                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
             });
 
         comboFind.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
@@ -582,8 +647,8 @@ public final class FindAction extends DefaultAction {
                 public void mouseClicked(MouseEvent arg0) { }
             });
 
-        comboFind.getEditor().addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent arg0) {
+        comboFind.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
                     updateFindReplaceButtonStatus();
                 }
             });
@@ -592,7 +657,11 @@ public final class FindAction extends DefaultAction {
                 public void keyTyped(KeyEvent e) { }
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        closeFindReplaceWindow();
+                        if (comboFindCanceled) {
+                            comboFindCanceled = false;
+                        } else {
+                            closeFindReplaceWindow();
+                        }
                     }
 
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -604,16 +673,6 @@ public final class FindAction extends DefaultAction {
                 }
 
                 public void keyPressed(KeyEvent e) { }
-            });
-
-        comboFind.getEditor().getEditorComponent().addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    updateRecentSearch();
-                }
-
-                public void focusLost(FocusEvent e) {
-                    ConfigSciNotesManager.saveRecentSearch((String) comboFind.getEditor().getItem());
-                }
             });
 
         frame.addWindowListener(new WindowListener() {
@@ -645,31 +704,55 @@ public final class FindAction extends DefaultAction {
     }
 
     /**
-     * Update recent search
+     * fill comboFind
      */
-    private void updateRecentSearch() {
-        Object old = comboFind.getEditor().getItem();
+    private void fillSearch() {
         comboFind.removeAllItems();
         List<String> recentFind = ConfigSciNotesManager.getRecentSearch();
         for (String item : recentFind) {
             comboFind.addItem(item);
         }
+    }
 
-        comboFind.getEditor().setItem(old);
+    /**
+     * fill comboReplace
+     */
+    private void fillReplace() {
+        comboReplace.removeAllItems();
+        List<String> recentReplace = ConfigSciNotesManager.getRecentReplace();
+        for (String item : recentReplace) {
+            comboReplace.addItem(item);
+        }
+    }
+
+    /**
+     * Update recent search
+     */
+    private void updateRecentSearch() {
+        String word = (String) comboFind.getEditor().getItem();
+        if (word != null && word.length() != 0 && !word.equals(lastSearch)) {
+            List<String> recentFind = ConfigSciNotesManager.getRecentSearch();
+            if (!recentFind.contains(word)) {
+                comboFind.addItem(word);
+                ConfigSciNotesManager.saveRecentSearch(word);
+                lastSearch = word;
+            }
+        }
     }
 
     /**
      * Update recent replace
      */
     private void updateRecentReplace() {
-        Object old = comboReplace.getEditor().getItem();
-        comboReplace.removeAllItems();
-        List<String> recentReplace = ConfigSciNotesManager.getRecentReplace();
-        for (String item : recentReplace) {
-            comboReplace.addItem(item);
+        String word = (String) comboReplace.getEditor().getItem();
+        if (word != null && word.length() != 0 && !word.equals(lastReplace)) {
+            List<String> recentReplace = ConfigSciNotesManager.getRecentReplace();
+            if (!recentReplace.contains(word)) {
+                comboReplace.addItem(word);
+                ConfigSciNotesManager.saveRecentReplace(word);
+                lastReplace = word;
+            }
         }
-
-        comboReplace.getEditor().setItem(old);
     }
 
     /**
@@ -711,20 +794,14 @@ public final class FindAction extends DefaultAction {
             if ((matcherWholeWord.end() - matcherWholeWord.start()) == textFind.length()) {
                 checkWhole.setEnabled(true);
             }
-
         }
 
         // if we search a regexp, we first need to know if the regexp is valid or not
         if (checkRegular.isSelected()) {
             try {
                 Pattern.compile(textFind);
-                statusBar.setText("");
-                buttonFind.setEnabled(true);
-                buttonReplaceAll.setEnabled(true);
             } catch (PatternSyntaxException pse) {
-
                 statusBar.setText(String.format(SciNotesMessages.INVALID_REGEXP, textFind));
-
                 buttonFind.setEnabled(false);
                 buttonReplaceAll.setEnabled(false);
             }
@@ -747,9 +824,9 @@ public final class FindAction extends DefaultAction {
         for (int i = 0; i < foundOffsets.size(); i++) {
             try {
                 if (active) {
-                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], activePainter);
+                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], ACTIVEPAINTER);
                 } else {
-                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], inactivePainter);
+                    highlighters[i] = hl.addHighlight(foundOffsets.get(i)[0], foundOffsets.get(i)[1], INACTIVEPAINTER);
                 }
             } catch (BadLocationException e) {
                 e.printStackTrace();
@@ -772,9 +849,9 @@ public final class FindAction extends DefaultAction {
             hl.removeHighlight(highlighters[n]);
             try {
                 if (active) {
-                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], activePainter);
+                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], ACTIVEPAINTER);
                 } else {
-                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], inactivePainter);
+                    highlighters[n] = hl.addHighlight(foundOffsets.get(n)[0], foundOffsets.get(n)[1], INACTIVEPAINTER);
                 }
             } catch (BadLocationException e) {
                 e.printStackTrace();
@@ -795,7 +872,7 @@ public final class FindAction extends DefaultAction {
             if (selectedHighlight != null) {
                 hl.removeHighlight(selectedHighlight);
             }
-            selectedHighlight = hl.addHighlight(startSelectedLines, endSelectedLines, selectedPainter);
+            selectedHighlight = hl.addHighlight(startSelectedLines, endSelectedLines, SELECTEDPAINTER);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
@@ -1076,6 +1153,13 @@ public final class FindAction extends DefaultAction {
      * Inner class to handle events (used as a singleton)
      */
     private class MyListener implements CaretListener, FocusListener {
+
+        /**
+         * Constructor
+         */
+        public MyListener() {
+            super();
+        }
 
         /**
          * focusGained in interface FocusListener

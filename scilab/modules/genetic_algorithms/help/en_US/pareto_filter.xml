@@ -25,7 +25,7 @@
     <synopsis>[F_out,X_out,Ind_out] = pareto_filter(F_in,X_in)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>F_in</term>

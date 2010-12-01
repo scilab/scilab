@@ -85,43 +85,16 @@ typedef struct {
 	int *mode;
 } scicos_block;
 
-
-
-/* define scicos flag number */
-/**
-\brief DerivativeState is flag 0
-*/
-#define DerivativeState 0
-
-/**
-\brief OutputUpdate is flag 1
-*/
-#define OutputUpdate 1
-
-/**
-\brief StateUpdate is flag 2
-*/
-#define StateUpdate 2
-
-/**
-\brief OutputEventTiming is flag 3
-*/
-#define OutputEventTiming 3
-
-/**
-\brief Initialization is flag 4
-*/
-#define Initialization 4
-
-/**
-\brief Ending is flag 5
-*/
-#define Ending 5
-
-/**
-\brief ReInitialization is flag 6
-*/
-#define ReInitialization 6
+/** define scicos flag number */
+typedef enum scicos_flag {
+    DerivativeState         = 0,
+    OutputUpdate            = 1,
+    StateUpdate             = 2,
+    OutputEventTiming       = 3,
+    Initialization          = 4,
+    Ending                  = 5,
+    ReInitialization        = 6
+};
 
 /* utility function for block declaration */
 int get_block_error(void);
@@ -141,20 +114,20 @@ int fx_( double *, double *);
 int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars);
 int write_xml_states(int,const char *, char **, double *);
 
-
-
-/* Define scicos simulator data type number (_N) */
-#define SCSREAL_N 10
-#define SCSCOMPLEX_N 11
-#define SCSINT_N 80
-#define SCSINT8_N 81
-#define SCSINT16_N 82
-#define SCSINT32_N 84
-#define SCSUINT_N 800
-#define SCSUINT8_N 811
-#define SCSUINT16_N 812
-#define SCSUINT32_N 814
-#define SCSUNKNOW_N -1
+/** Define scicos simulator data type number (_N) */
+typedef enum scicos_datatype_number {
+    SCSREAL_N               = 10,
+    SCSCOMPLEX_N            = 11,
+    SCSINT_N                = 80,
+    SCSINT8_N               = 81,
+    SCSINT16_N              = 82,
+    SCSINT32_N              = 84,
+    SCSUINT_N               = 800,
+    SCSUINT8_N              = 811,
+    SCSUINT16_N             = 812,
+    SCSUINT32_N             = 814,
+    SCSUNKNOW_N             = -1
+};
 
 /* Define scicos simulator data type C operators (_COP) */
 #define SCSREAL_COP double

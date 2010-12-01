@@ -299,7 +299,6 @@ sci_gateway/c/sci_ceil.c \
 sci_gateway/c/sci_imag.c \
 sci_gateway/c/sci_log.c \
 sci_gateway/c/sci_log1p.c \
-sci_gateway/c/sci_eye.c \
 sci_gateway/c/sci_clean.c \
 sci_gateway/c/sci_tan.c \
 sci_gateway/c/sci_atan.c \
@@ -388,7 +387,8 @@ sci_gateway/fortran/sci_f_exp.f
 GATEWAY_CPP_SOURCES =  \
 	sci_gateway/cpp/sci_isequal.cpp \
 	sci_gateway/cpp/elem_func_gw.cpp \
-	sci_gateway/cpp/sci_size.cpp
+	sci_gateway/cpp/sci_size.cpp \
+	sci_gateway/cpp/sci_eye.cpp
 
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
@@ -447,7 +447,7 @@ INCLUDE_FLAGS = $(libscielementary_functions_la_CFLAGS)
 
 libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
 # Commented because it is one of the first module to be compiled
-#libdummy-elementary_functions.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
+#libdummy-elementary_functions.la   $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
 
 libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f

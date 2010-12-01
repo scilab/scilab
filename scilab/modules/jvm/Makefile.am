@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -21,9 +21,6 @@ libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
 libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
-
-
-
 
 libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -40,6 +37,15 @@ libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes/
 
+libscijvm_la_CPPFLAGS=-I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/symbol/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/functions_manager/includes/ \
+			-I$(top_srcdir)/modules/system_env/includes/
+
 pkglib_LTLIBRARIES = libscijvm-disable.la
 
 if GUI
@@ -53,7 +59,7 @@ if IS_MACOSX
 libscijvm_la_LDFLAGS += -framework JavaVM
 endif
 
-libscijvm_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscijvm_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -71,13 +77,14 @@ includes/addToClasspath.h \
 includes/addToLibrarypath.h \
 includes/getScilabObject.h
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
-sci_gateway/c/sci_system_setproperty.c \
+GATEWAY_C_SOURCES = sci_gateway/c/sci_system_setproperty.c \
 sci_gateway/c/sci_with_embedded_jre.c \
 sci_gateway/c/sci_javaclasspath.c \
 sci_gateway/c/gw_jvm.c \
 sci_gateway/c/sci_javalibrarypath.c
 
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_system_getproperty.cpp \
+					  sci_gateway/cpp/jvm_gw.cpp
 
 JVM_C_SOURCES = src/c/InitializeJVM.c \
 src/c/TerminateJVM.c \
@@ -98,15 +105,24 @@ src/c/getLibrarypath.c \
 src/c/addToLibrarypath.c \
 src/c/getJvmOptions.c
 
-libscijvm_disable_la_SOURCES = src/nojvm/nojvm.c
+JVM_DISABLE_C_SOURCES = src/nojvm/nojvm.c
+JVM_DISABLE_CPP_SOURCES = src/nojvm/nojvm_gw.cpp
+libscijvm_disable_la_SOURCES = $(JVM_DISABLE_C_SOURCES) $(JVM_DISABLE_CPP_SOURCES)
 libscijvm_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(srcdir)/src/c \
 			-I$(top_srcdir)/modules/api_scilab/includes \
             -I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/
+libscijvm_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/symbol/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/functions_manager/includes/
 
-libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libscijvm_la_SOURCES)

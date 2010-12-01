@@ -26,9 +26,7 @@ Source: modules\{#GENETICALGORITHMS}\etc\{#GENETICALGORITHMS}.start; DestDir: {a
 ;
 Source: modules\{#GENETICALGORITHMS}\demos\*.*; DestDir: {app}\modules\{#GENETICALGORITHMS}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#GENETICALGORITHMS}\macros\lib; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#GENETICALGORITHMS}\macros\names; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#GENETICALGORITHMS}\macros\*.bin; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#GENETICALGORITHMS}\macros\lib; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#GENETICALGORITHMS}\macros\*.sci; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#GENETICALGORITHMS}\macros\buildmacros.sce; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#GENETICALGORITHMS}\macros\buildmacros.bat; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

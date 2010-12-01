@@ -24,7 +24,7 @@
     <synopsis>graypolarplot(theta,rho,z,[strf,rect])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>theta</term>

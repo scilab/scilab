@@ -12,23 +12,29 @@
 
 package org.scilab.modules.ui_data.variableeditor.renderers;
 
-import javax.swing.table.DefaultTableCellRenderer;
-
-public class ScilabDoubleRenderer extends DefaultTableCellRenderer {
+/**
+ * CellRenderer for double type
+ * @author Allan SIMON
+ */
+public class ScilabDoubleRenderer extends ScilabComplexRenderer {
 	
-	public  ScilabDoubleRenderer() {
-		super();
+    /**
+     * Constructor
+     */
+    public ScilabDoubleRenderer() {
+	super();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected void setValue(Object value) {
+	if (value == null) {
+	    super.setValue("");
+	} else if (value instanceof String) {
+	    super.setValue(value);
+	} else {
+	    super.setValue(convertDouble((Double) value));
 	}
-
-	@Override
-	protected void setValue(Object value) {
-		if (value == null){
-			super.setValue("");
-		} else if (value.toString().equals("")) {
-			super.setValue(0.0);
-		} else {
-			super.setValue(value);
-		}
-	}
-	
+    }
 }

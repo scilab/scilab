@@ -21,7 +21,8 @@ sci_gateway/cpp/functions_gw.cpp \
 sci_gateway/cpp/sci_exec.cpp \
 sci_gateway/cpp/sci_functionlist.cpp \
 sci_gateway/cpp/sci_whereis.cpp \
-sci_gateway/cpp/sci_execstr.cpp
+sci_gateway/cpp/sci_execstr.cpp \
+sci_gateway/cpp/sci_getCurrentThreadId.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intlib.f \
 sci_gateway/fortran/intdeff.f \
@@ -69,7 +70,7 @@ libscifunctions_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES)
 CHECK_SRC= $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifunctions_la_CFLAGS) $(libscifunctions_la_CPPFLAGS)
 
-libscifunctions_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la \
+libscifunctions_la_LIBADD =   \
 $(top_builddir)/modules/string/libscistring.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la \
 $(top_builddir)/modules/api_scilab/libsciapi_scilab.la \

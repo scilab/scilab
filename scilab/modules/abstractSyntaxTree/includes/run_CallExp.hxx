@@ -34,11 +34,26 @@ void visitprivate(const CallExp &e)
         for (j = 0, itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp,j++)
         {
             (*itExp)->accept (execVar[j]);
+
+            if(execVar[j].result_get() == NULL)
+            {
+                //special case for empty extraction of list ( list()(:) )
+                continue;
+            }
+
             if(execVar[j].result_get()->getType() == InternalType::RealImplicitList)
             {
                 ImplicitList* pIL = execVar[j].result_get()->getAsImplicitList();
-                execVar[j].result_set(pIL->extract_matrix());
-                delete pIL;
+                if(pIL->computable() == false)
+                {
+                    Double* pVal = new Double(-1, -1);
+                    pVal->real_get()[0] = 1;
+                    execVar[j].result_set(pVal);
+                }
+                else
+                {
+                    execVar[j].result_set(pIL->extract_matrix());
+                }
             }
 
             if(execVar[j].is_single_result())
@@ -58,66 +73,80 @@ void visitprivate(const CallExp &e)
 
         int iRetCount = Max(1, expected_size_get());
 
-        T execCall;
-        Function::ReturnValue Ret = pCall->call(in, iRetCount, out, &execCall);
-
-        if(Ret == Callable::OK)
+        try
         {
-            if(expected_size_get() == 1 && out.size() == 0) //to manage ans
+            T execCall;
+            Function::ReturnValue Ret = pCall->call(in, iRetCount, out, &execCall);
+
+            if(Ret == Callable::OK)
             {
-                if(static_cast<int>(out.size()) < expected_size_get())
+                if(expected_size_get() == 1 && out.size() == 0) //to manage ans
                 {
-                    std::wostringstream os;
-                    os << L"bad lhs, expected : " << expected_size_get() << L" returned : " << out.size() << std::endl;
-                    throw os.str();
+                    if(static_cast<int>(out.size()) < expected_size_get())
+                    {
+                        std::wostringstream os;
+                        os << L"bad lhs, expected : " << expected_size_get() << L" returned : " << out.size() << std::endl;
+                        throw ScilabError(os.str(), 999, e.location_get());
+                    }
+                }
+
+                if(out.size() == 1)
+                {//protect output values
+                    out[0]->IncreaseRef();
+                    result_set(out[0]);
+                }
+                else
+                {
+                    for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                    {//protect output values
+                        out[i]->IncreaseRef();
+                        result_set(i, out[i]);
+                    }
+                }
+            }
+            else if(Ret == Callable::Error)
+            {
+                ConfigVariable::setLastErrorFunction(pCall->getName());
+                ConfigVariable::setLastErrorLine(e.location_get().first_line);
+                throw ScilabError();
+            }
+
+
+            for (unsigned int k = 0; k < e.args_get().size(); k++)
+            {
+                if(execVar[k].result_get() != NULL)
+                {
+                    execVar[k].result_get()->DecreaseRef();
                 }
             }
 
+            //std::cout << "before delete[]" << std::endl;
+            delete[] execVar;
+            //std::cout << "after delete[]" << std::endl;
+
             if(out.size() == 1)
-            {//protect output values
-                out[0]->IncreaseRef();
-                result_set(out[0]);
+            {//unprotect output values
+                out[0]->DecreaseRef();
             }
             else
             {
                 for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                {//protect output values
-                    out[i]->IncreaseRef();
-                    result_set(i, out[i]);
+                {//unprotect output values
+                    out[i]->DecreaseRef();
                 }
             }
         }
-        else if(Ret == Callable::Error)
+        catch(ScilabMessage sm)
         {
-            std::wostringstream os;
-            wchar_t szError[bsiz];
-#ifdef _MSC_VER
-            swprintf_s(szError, bsiz, _W("Function \"%s\" failed\n"), pCall->getName().c_str());
-#else
-            swprintf(szError, bsiz, _W("Function \"%ls\" failed\n"), pCall->getName().c_str());
-#endif
-            throw wstring(szError);
-        }
-
-
-        for (unsigned int k = 0; k < e.args_get().size(); k++)
-        {
-            execVar[k].result_get()->DecreaseRef();
-        }
-
-        //std::cout << "before delete[]" << std::endl;
-        delete[] execVar;
-        //std::cout << "after delete[]" << std::endl;
-
-        if(out.size() == 1)
-        {//unprotect output values
-            out[0]->DecreaseRef();
-        }
-        else
-        {
-            for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-            {//unprotect output values
-                out[i]->DecreaseRef();
+            if(pCall->isMacro() || pCall->isMacroFile())
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                throw ScilabMessage(szError);
+            }
+            else
+            {
+                throw sm;
             }
         }
     }
@@ -228,7 +257,7 @@ void visitprivate(const CallExp &e)
                         std::wostringstream os;
                         os << _W("Indexes must be positive .\n");
                         os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
-                        throw os.str();
+                        throw ScilabError(os.str(), 999, e.name_get().location_get());
                     }
                 }
                 ResultList = pIT->getAsTList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
@@ -267,8 +296,8 @@ void visitprivate(const CallExp &e)
                     //manage error
                     std::wostringstream os;
                     os << _W("Indexes must be positive .\n");
-                    os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    //os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, e.name_get().location_get());
                 }
             }
 
@@ -320,9 +349,9 @@ void visitprivate(const CallExp &e)
             if(pOut == NULL)
             {
                 std::wostringstream os;
-                os << L"inconsistent row/column dimensions";
-                os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
-                throw os.str();
+                os << L"inconsistent row/column dimensions\n";
+                //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
             }
             result_set(pOut);
         }
@@ -330,10 +359,17 @@ void visitprivate(const CallExp &e)
         {
             if(ResultList.size() == 0)
             {
-                std::wostringstream os;
-                os << L"inconsistent row/column dimensions";
-                os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
-                throw os.str();
+                if(pIT->isList())
+                {
+                    result_set(NULL);
+                }
+                else
+                {
+                    std::wostringstream os;
+                    os << L"inconsistent row/column dimensions\n";
+                    //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                }
             }
         }
     }

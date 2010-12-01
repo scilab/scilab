@@ -26,7 +26,7 @@ title(my_title,&lt;Property&gt;)
 title(&lt;axes_handle&gt;,&lt;my_title&gt;,&lt;Property&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>my_title</term>

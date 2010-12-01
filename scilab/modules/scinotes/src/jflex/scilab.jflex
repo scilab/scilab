@@ -54,7 +54,7 @@ import javax.swing.text.Element;
         breakstring = false;
         yyreset(new ScilabDocumentReader(doc, p0, p1));
         int currentLine = elem.getElementIndex(start);
-        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBroken()) {
+        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBrokenString()) {
            yybegin(QSTRING);
         }
     }
@@ -66,7 +66,7 @@ import javax.swing.text.Element;
     public int scan() throws IOException {
         int ret = yylex();
         if (start + yychar + yylength() == end - 1) {
-           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBroken(breakstring);
+           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBrokenString(breakstring);
            breakstring = false;
         }
         return ret;
@@ -118,9 +118,11 @@ operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | 
 
 functionKwds = "function" | "endfunction"
 
-structureKwds = "then" | "else" | "elseif" | "end" | "do" | "catch" | "case"
+structureKwds = "then" | "do" | "catch" | "case"
 
-openstructureKwds = "if" | "for" | "while" | "try" | "select"
+elseif = "elseif" | "else"
+
+openCloseStructureKwds = "if" | "for" | "while" | "try" | "select" | "end"
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
@@ -141,9 +143,10 @@ url = "http://"[^ \t\f\n\r\'\"]+
 mail = "<"[ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*">"
 
 latex = "$"(([^$]*|"\\$")+)"$"
+latexinstring = (\"|\')"$"(([^$]*|"\\$")+)"$"(\"|\')
 
 digit = [0-9]
-exp = [eE][+-]?{digit}+
+exp = [dDeE][+-]?{digit}*
 number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
 %x QSTRING, COMMENT, FIELD, COMMANDS, COMMANDSWHITE, BREAKSTRING
@@ -167,7 +170,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.FKEYWORD;
                                  }
 
-  {openstructureKwds}            {
+  {openCloseStructureKwds}       {
                                    transposable = false;
                                    return ScilabLexerConstants.OSKEYWORD;
                                  }
@@ -175,6 +178,11 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
   {structureKwds}                {
                                    transposable = false;
                                    return ScilabLexerConstants.SKEYWORD;
+                                 }
+
+  {elseif}                       {
+                                   transposable = false;
+                                   return ScilabLexerConstants.ELSEIF;
                                  }
 
   {controlKwds}                  {
@@ -224,6 +232,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    transposable = false;
                                    yybegin(FIELD);
                                    return ScilabLexerConstants.OPERATOR;
+                                 }
+
+  {latexinstring}                {
+                                   return ScilabLexerConstants.LATEX;
                                  }
 
   {quote}                        {
@@ -294,7 +306,13 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <COMMANDSWHITE> {
-  [^ \t,;]*                      {
+  {comment}                      {
+                                   transposable = false;
+                                   yypushback(2);
+                                   yybegin(COMMENT);
+                                 }
+
+  ([^ \t,;/]*) | ("/"[^ /]*)     {
                                    return ScilabLexerConstants.STRING;
                                  }
 

@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET 
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -43,7 +44,7 @@
 
         <listitem>
           <para>string especificando o nome do arquivo ou valor inteiro
-          especificando uma unidade lógica (ver file).</para>
+          especificando uma unidade lógica (fortran)(ver  <link linkend="file">file</link>).</para>
         </listitem>
       </varlistentry>
 
@@ -129,12 +130,12 @@
     <title>Exemplos</title>
 
     <programlisting role="example"><![CDATA[ 
-if getos() == 'Windows' then unix('del foo');
-else unix('rm -f foo'); end
-A=rand(3,5); write('foo',A);
-B=read('foo',3,5)
-B=read('foo',-1,5)
-read(%io(1),1,1,'(a)')  // espera por entrada do usuário
+mdelete(TMPDIR + '/foo');
+A = rand(3,5);
+write(TMPDIR + '/foo', A);
+B = read(TMPDIR + '/foo', 3, 5);
+B = read(TMPDIR + '/foo', -1, 5);
+read(%io(1), 1, 1, '(a)')  // espera por entrada do usuário
  ]]></programlisting>
   </refsection>
 

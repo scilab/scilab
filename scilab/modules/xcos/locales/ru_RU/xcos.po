@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-14 21:20+0000\n"
+"PO-Revision-Date: 2010-08-22 13:21+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,20 +17,99 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s является недопустимым именем. Измените имя диаграммы."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s: Все пути, определенные переменной %s, должны существовать.\n"
+
+#, c-format
 msgid "%s: File ''%s'' does not exist.\n"
 msgstr "%s: Файл «%s» не существует.\n"
+
+#, c-format
+msgid "%s: File ''%s'' is not a valid palette file.\n"
+msgstr "%s: Файл «%s» не является допустимым файлом палитры.\n"
+
+#, c-format
+msgid "%s: Found ''%s'' instead of a block.\n"
+msgstr "%s: Найдено «%s» вместо блока.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: Не удалось создать каталог %s, проверьте, имеете ли вы доступ для записи "
+"в данный каталог.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: Не удалось экспортировать %s в %s.\n"
+
+#, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr "%s:Не удалось экспортировать «XX» в %s"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s: Не удалось экспортировать палитру в hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s: Не удалось сформировать изображение %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s: Не удалось сформировать значок палитры: %s уже существует.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr "%s: Не удалось импортировать данные из %s"
+
+#, c-format
 msgid "%s: Unable to import xcos file %s.\n"
 msgstr "%s: Не удалось импортировать файл Xcos %s.\n"
 
 #, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr "%s: Не удалось загрузить блок из %s: ожидался файл hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
+msgstr ""
+"%s: Не удалось загрузить блок из %s: переменной «scs_m» не найдено.\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра %s: ожидалось svg или gif.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -42,6 +121,11 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s: Неверный тип переменной %s: ожидался массив строковых переменных.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument %d: String or diagram structure expected"
 msgstr ""
 "%s: Неверный тип параметра %d: ожидалась строка или структура диаграммы"
@@ -51,8 +135,92 @@ msgid "%s: Wrong type for argument %d: diagram structure expected"
 msgstr "%s: Неверный тип параметра %d: ожидалась структура диаграммы"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался вектор строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидался блок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr "%s: Неверный тип входного параметра %s: файл не найден.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась диаграмма.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалась строка пути каталога.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалась строка полного пути.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s:ожидалась функция в виде строки, блок "
+"или строка полного пути.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидался дескриптор.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась палитра.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалась палитра или путь.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась строка пути.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалась строка или структура.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидался вектор строк.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
 
 msgid "?"
 msgstr "Справка"
@@ -65,6 +233,9 @@ msgstr "О Xcos"
 
 msgid "Add to"
 msgstr "Добавить к"
+
+msgid "Add to a new category"
+msgstr "Добавить в новую категорию"
 
 msgid "Add to new diagram"
 msgstr "Добавить к новой диаграмме"
@@ -84,6 +255,9 @@ msgstr "Справка по блоку"
 msgid "Block Parameters"
 msgstr "Параметры блока"
 
+msgid "Bold"
+msgstr "Полужирный"
+
 msgid "Border Color"
 msgstr "Цвет границы"
 
@@ -95,6 +269,9 @@ msgstr "CVODE"
 
 msgid "Cancel"
 msgstr "Отменить"
+
+msgid "Category"
+msgstr "Категория"
 
 msgid "Center"
 msgstr "По центру"
@@ -125,11 +302,14 @@ msgstr ""
 msgid "Compile"
 msgstr "Компилировать"
 
+msgid "Compiling"
+msgstr ""
+
+msgid "Computing"
+msgstr ""
+
 msgid "Continuous time systems"
 msgstr "Системы с непрерывным временем"
-
-msgid "Copy"
-msgstr "Копировать"
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Авторское право (c) 1989-2009 (INRIA)"
@@ -140,11 +320,11 @@ msgstr "Не удалось сохранить диаграмму"
 msgid "Create"
 msgstr "Создать"
 
+msgid "Create a category"
+msgstr "Создать категорию"
+
 msgid "Customize"
 msgstr "Настроить"
-
-msgid "Cut"
-msgstr "Вырезать"
 
 msgid "Debug block calls without trace"
 msgstr "Вызовы блока отладки без трассировки"
@@ -174,8 +354,14 @@ msgid ""
 "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Диаграмма была изменена.<br/> Сохранить изменения?"
 
+msgid "Diff. States"
+msgstr ""
+
 msgid "Discontinuities"
 msgstr "Системы с разрывами"
+
+msgid "Discrete"
+msgstr "Дискретные блоки"
 
 msgid "Discrete time systems"
 msgstr "Системы с дискретным временем"
@@ -198,6 +384,15 @@ msgstr "Изменяемый"
 msgid "Electrical"
 msgstr "Электрические блоки"
 
+msgid "Enable"
+msgstr "Включить"
+
+msgid "Equations"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
 msgid "Event handling"
 msgstr "Обработка событий"
 
@@ -219,12 +414,14 @@ msgstr ""
 msgid "Export"
 msgstr "Экспортировать"
 
+msgid "Export in progress"
+msgstr "Идёт экспорт"
+
 msgid "Export to XML"
 msgstr "Экспортировать в XML"
 
-#, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "Не удалось экспортировать: %s\n"
+msgid "Extended"
+msgstr ""
 
 msgid "Failed to load Diagram"
 msgstr "Не удалось загрузить диаграмму"
@@ -241,14 +438,38 @@ msgstr "Конечное время интегрирования"
 msgid "Fit diagram to view"
 msgstr "Уместить диаграмму в окне"
 
+msgid "Fix derivatives"
+msgstr ""
+
+msgid "Fix states"
+msgstr ""
+
+msgid "Fixed parameters"
+msgstr ""
+
+msgid "Fixed variables"
+msgstr ""
+
 msgid "Flip"
 msgstr "Отразить по вертикали"
+
+msgid "Font name"
+msgstr "Название шрифта"
+
+msgid "Font size"
+msgstr "Размер шрифта"
+
+msgid "Font style"
+msgstr "Стиль шрифта"
 
 msgid "Format"
 msgstr "Формат"
 
 msgid "From %s"
 msgstr "От %s"
+
+msgid "Generate Jacobian"
+msgstr ""
 
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Формируется суперблок..."
@@ -259,14 +480,14 @@ msgstr "Формируется код на C для суперблока..."
 msgid "Get infos"
 msgstr "Получить информацию"
 
+msgid "Global"
+msgstr ""
+
 msgid "Goto %s"
 msgstr "Перейти к %s"
 
 msgid "Grid"
 msgstr "Сетка"
-
-msgid "Group"
-msgstr "Сгруппировать"
 
 msgid "Horizontal"
 msgstr "Горизонтальный"
@@ -295,6 +516,12 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Импортировать из XML"
 
+msgid "Initial computing method"
+msgstr ""
+
+msgid "Input"
+msgstr ""
+
 msgid "Insert"
 msgstr "Вставить"
 
@@ -307,8 +534,8 @@ msgstr "Абсолютная погрешность интегрирования
 msgid "Integrator relative tolerance"
 msgstr "Относительная погрешность интегрирования"
 
-msgid "Invert selection"
-msgstr "Инвертировать выделение"
+msgid "Italic"
+msgstr "Курсив"
 
 msgid "Left"
 msgstr "По левому краю"
@@ -327,6 +554,9 @@ msgstr "Загружается диаграмма"
 
 msgid "Loading palettes"
 msgstr "Загружаются палитры"
+
+msgid "Loading the block"
+msgstr "Загружается блок"
 
 msgid "Loading user defined palettes"
 msgstr "Загружаются пользовательские палитры"
@@ -351,6 +581,12 @@ msgstr "По середине"
 
 msgid "Mirror"
 msgstr "Отразить по горизонтали"
+
+msgid "Modelica initialize"
+msgstr "Запускается Modelica"
+
+msgid "Modelica settings"
+msgstr ""
 
 msgid "Move Down"
 msgstr "Переместить вниз"
@@ -385,14 +621,20 @@ msgstr "Открыть"
 msgid "Palette browser"
 msgstr "Палитры блоков"
 
+msgid "Palette name"
+msgstr "Имя палитры"
+
 msgid "Palettes"
 msgstr "Палитры"
 
-msgid "Paste"
-msgstr "Вставить"
+msgid "Parameter embedding"
+msgstr ""
 
 msgid "Per block execution trace and Debug block calls"
 msgstr "Трассировка всех блоков и вызовы блока отладки"
+
+msgid "Please take a look into the Scilab console"
+msgstr ""
 
 msgid "Port & Subsystem"
 msgstr "Порты и подсистемы"
@@ -414,11 +656,17 @@ msgstr "Количество секунд в единице времени"
 msgid "Recent Files"
 msgstr "Недавние файлы"
 
-msgid "Redo"
-msgstr "Повторить"
+msgid "Reduced"
+msgstr ""
 
 msgid "Region to superblock"
 msgstr "Выделение в суперблок"
+
+msgid "Relaxed parameters"
+msgstr ""
+
+msgid "Relaxed variables"
+msgstr ""
 
 msgid "Remove"
 msgstr "Удалить"
@@ -434,9 +682,6 @@ msgstr "Вращать"
 
 msgid "Rows"
 msgstr "Строки"
-
-msgid "Same command executed again"
-msgstr "Та же команда выполнена снова"
 
 msgid "Save"
 msgstr "Сохранить"
@@ -467,9 +712,6 @@ msgstr "Модуль «%s» не установлен.\n"
 msgid "Scilab file"
 msgstr "Файл Scilab"
 
-msgid "Select all"
-msgstr "Выделить всё"
-
 msgid "Set Context"
 msgstr "Задать переменные окружения"
 
@@ -482,6 +724,9 @@ msgstr "Задать параметры блока"
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 "Выберите уровень отладки (0,1,2,3) <br/> для выполнения scicos_debug(n)"
+
+msgid "Setting up Modelica Compiler."
+msgstr "Настраивается компилятор Modelica"
 
 msgid "Setup"
 msgstr "Параметры"
@@ -507,6 +752,12 @@ msgstr "Выполняется моделирование"
 msgid "Sinks"
 msgstr "Регистрирующие устройства"
 
+msgid "Solve"
+msgstr ""
+
+msgid "Solver"
+msgstr ""
+
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Метод решения"
 
@@ -525,6 +776,12 @@ msgstr "Прямой"
 msgid "Superblock mask"
 msgstr "Маска суперблока"
 
+msgid "Text Color"
+msgstr "Цвет текста"
+
+msgid "Text settings"
+msgstr "Настройки текста"
+
 msgid "The Scicos libraries are not loaded"
 msgstr "Библиотеки Scicos не загружены"
 
@@ -538,6 +795,20 @@ msgstr ""
 "Файл %s не существует.\n"
 "Создать файл?"
 
+msgid ""
+"The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
+"default one."
+msgstr ""
+"Ошибка в пользовательском файле настроек (xcos.xml).<BR> Используются "
+"настройки по умолчанию."
+
+msgid ""
+"The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
+"to the default one."
+msgstr ""
+"Ошибка в пользовательском файле настроек палитр (palettes.xml).<BR> "
+"Используются настройки по умолчанию."
+
 msgid "Thermo-Hydraulics"
 msgstr "Термогидравлические блоки"
 
@@ -550,11 +821,38 @@ msgstr "Инструменты"
 msgid "Top"
 msgstr "По верхнему краю"
 
-msgid "UnGroup"
-msgstr "Разгруппировать"
+msgid "Unable to delete "
+msgstr "Не удалось удалить "
 
-msgid "Unable to communicate with the interpreter"
-msgstr "Не удалось связаться с интерпретатором"
+msgid "Unable to import %s .\n"
+msgstr "Ну удалось импортировать %s .\n"
+
+msgid "Unable to load block from %s ."
+msgstr "Не удалось загрузить блок из %s ."
+
+msgid ""
+"Unable to load the Batik library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Не удалось загрузить библиотеку Batik.\n"
+"Ожидалась версия %s ; установлена версия %s ."
+
+msgid ""
+"Unable to load the hdf5-java (jhdf5) library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Не удалось загрузить библиотеку hdf5-java (jhdf5). \n"
+"Ожидалась версия %s ; получена версия %s ."
+
+msgid ""
+"Unable to load the jgraphx library.\n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Не удалось загрузить библиотеку jgraphx.\n"
+"Ожидалась версия %s ; установлена версия %s ."
+
+msgid "Unable to load the native HDF5 library."
+msgstr "Не удалось загрузить системозависимую библиотеку HDF5."
 
 #, c-format
 msgid "Unable to open %s"
@@ -564,11 +862,14 @@ msgstr "Не удалось открыть %s"
 msgid "Unable to simulate %s"
 msgstr "Не удалось моделировать %s"
 
-msgid "Undo"
-msgstr "Отменить"
-
 msgid "Unknown Diagram Version : "
 msgstr "Неизвестная версия диаграммы: "
+
+msgid "Unknowns"
+msgstr ""
+
+msgid "Unknowns not equals to Equations"
+msgstr ""
 
 msgid "Untitled"
 msgstr "Безымянная диаграмма"
@@ -612,6 +913,15 @@ msgstr "WinTitle"
 msgid "Window title"
 msgstr "Заголовок окна"
 
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
+msgstr ""
+"Неверный входной параметр «%s»: недопустимый узел, используйте "
+"«xcosPalDisable».\n"
+
+msgid "Wrong input argument \"%s\": invalid tree path.\n"
+msgstr "Неверный входной параметр «%s»: недопустимый путь дерева.\n"
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -642,14 +952,49 @@ msgstr ""
 msgid "Zero crossing detection"
 msgstr "Обнаружение перехода через нуль"
 
-msgid "Zoom In"
-msgstr "Увеличить"
-
-msgid "Zoom Out"
-msgstr "Уменьшить"
+msgid "comment"
+msgstr ""
 
 msgid "control port must be connected to command port"
 msgstr "Управляющий порт должен быть подключён к командному порту"
 
+msgid "fixed"
+msgstr ""
+
+msgid "id"
+msgstr ""
+
+msgid "initial"
+msgstr ""
+
+msgid "kind"
+msgstr ""
+
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+
+msgid "max"
+msgstr ""
+
 msgid "maximum step size (0 means no limit)"
 msgstr "Максимальный размер шага (0 - без ограничений)"
+
+msgid "min"
+msgstr ""
+
+msgid "model is not valid"
+msgstr ""
+
+msgid "name"
+msgstr ""
+
+msgid "nominal"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "weight"
+msgstr ""

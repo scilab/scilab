@@ -13,6 +13,11 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* When we terminate Scilab, we freed dynamic gateways
+*/
+void freeAllDynamicGateways(void);
+
+/**
 * special_functions gateway
 * special_functions is loaded dynamically at runtime
 * load gw_special_functions in SCI/modules/special_functions/sci_gateway/gw_special_functions.c
@@ -169,13 +174,6 @@ int gw_dynamic_graphic_export(void);
 * load gw_action_binding in SCI/modules/action_binding/sci_gateway/gw_action_binding.c
 */
 int gw_dynamic_action_binding(void);
-
-/*
-* parallel gateway
-* parallel is loaded dynamically at runtime
-* load gw_parallel in SCI/modules/parallel/sci_gateway/gw_parallel.c
-*/
-int gw_dynamic_parallel(void);
 
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/

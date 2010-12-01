@@ -13,21 +13,26 @@
 
 pkglib_LTLIBRARIES 	= libsciabstractSyntaxTree.la
 
-libsciabstractSyntaxTree_la_SOURCES 	=	src/cpp/libAst.cpp \
+libsciabstractSyntaxTree_la_SOURCES = \
+				src/cpp/libAst.cpp \
 				src/cpp/visitor_common.cpp \
 				src/cpp/printvisitor.cpp \
 				src/cpp/debugvisitor.cpp \
 				src/cpp/mutevisitor.cpp \
-				src/cpp/shortcutvisitor.cpp
+				src/cpp/shortcutvisitor.cpp \
+				src/cpp/scilabexception.cpp
 
-libsciabstractSyntaxTree_la_CXXFLAGS 	= -I$(top_srcdir)/modules/symbol/includes \
+libsciabstractSyntaxTree_la_CXXFLAGS = \
+			-I $(top_srcdir)/modules/symbol/includes \
 			-I $(top_srcdir)/modules/types/includes \
 			-I $(top_srcdir)/modules/functions_manager/includes \
 			-I $(top_srcdir)/modules/elementary_functions/includes \
 			-I $(top_srcdir)/modules/operations/includes \
 			-I $(top_srcdir)/modules/output_stream/includes \
 			-I includes \
-			-I src/cpp
+			-I src/cpp \
+			-I $(top_srcdir)/modules/system_env/includes
+
 
 
 libsciabstractSyntaxTree_la_includedir=$(pkgincludedir)/abstractSyntaxTree

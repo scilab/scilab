@@ -20,7 +20,7 @@ static gw_generic_table Tab[]=
 	{sci_setlanguage,"setlanguage"},
 	{sci_getlanguage,"getlanguage"},
 	{sci_getdefaultlanguage,"getdefaultlanguage"},
-	{sci_gettext,"gettext"},
+	{NULL, ""}, //gettext
 	{sci_dgettext,"dgettext"},
 	{sci_setdefaultlanguage,"setdefaultlanguage"}
 };

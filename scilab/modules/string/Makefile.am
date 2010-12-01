@@ -32,12 +32,9 @@ src/c/scistrtostr.c
 STRING_FORTRAN_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
-sci_gateway/c/sci_ascii.c \
 sci_gateway/c/sci_code2str.c \
 sci_gateway/c/sci_convstr.c \
 sci_gateway/c/sci_str2code.c \
-sci_gateway/c/sci_strcat.c \
-sci_gateway/c/sci_string.c \
 sci_gateway/c/sci_strsplit.c \
 sci_gateway/c/sci_tokens.c \
 sci_gateway/c/sci_strcmp.c \
@@ -63,7 +60,10 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_part.cpp \
 	sci_gateway/cpp/sci_length.cpp \
 	sci_gateway/cpp/sci_strindex.cpp \
-	sci_gateway/cpp/sci_strsubst.cpp
+	sci_gateway/cpp/sci_strsubst.cpp \
+	sci_gateway/cpp/sci_ascii.cpp \
+	sci_gateway/cpp/sci_strcat.cpp \
+	sci_gateway/cpp/sci_string.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f
@@ -109,7 +109,7 @@ INCLUDE_FLAGS = $(libscistring_la_CFLAGS)
 
 # commented since it is the first module to be processed
 #  $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscistring_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscistring_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
 modulename=string
 

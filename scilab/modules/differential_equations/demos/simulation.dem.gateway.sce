@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 demopath = get_absolute_file_path("simulation.dem.gateway.sce");
 
@@ -12,9 +12,10 @@ subdemolist = ["n-pendulum"         ,"n_pendulum/n_pendulum.dem.sce" ;
                "DAE''S"             ,"dae/dae.dem.gateway.sce"       ];
 
 if ~ usecanvas() then
-	subdemolist = [ subdemolist                               ; ..
-		"Flow simulation"   ,"flow/flow.dem.gateway.sce" ; ..
-		"Levitron"          ,"levitron/levitron.dem.sce" ];
+    subdemolist = [ subdemolist                               ; ..
+        "Flow simulation"   ,"flow/flow.dem.gateway.sce" ; ..
+        "Levitron"          ,"levitron/levitron.dem.sce" ];
 end
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

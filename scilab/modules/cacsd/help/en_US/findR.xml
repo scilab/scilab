@@ -24,7 +24,7 @@
 [R,N] = findR(S,Y)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>S</term>

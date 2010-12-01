@@ -27,6 +27,7 @@ namespace types
     public :
                                 MatrixPoly();
                                 MatrixPoly(wstring _szVarName, int _iRows, int _iCols, int *_piRank);
+                                MatrixPoly(wstring _szVarName, int _iRows, int _iCols, const int *_piRank);
         virtual                 ~MatrixPoly();
 
         // FIXME : Should not return NULL
@@ -54,7 +55,7 @@ namespace types
         Double*                 extract_coef(int _iRank);
         bool                    insert_coef(int _iRank, Double* _pCoef);
 
-        bool                    insert(int _iRows, int _iCols, MatrixPoly* _poSource);
+        InternalType*           insert(int _iRows, int _iCols, MatrixPoly* _poSource);
 
         wstring                 toString(int _iPrecison, int _iLineLen);
         wstring                 GetRowString(int _iPrecison, int _iLineLen, bool _bComplex);

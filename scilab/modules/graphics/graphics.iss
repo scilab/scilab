@@ -23,8 +23,8 @@ Source: modules\{#GRAPHICS}\readme.txt; DestDir: {app}\modules\{#GRAPHICS}; Comp
 Source: modules\{#GRAPHICS}\license.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\changelog.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 ;
-Source: thirdparty\jlatexmath-0.9.2.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
-Source: thirdparty\jlatexmath-fop-0.9.2.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\jlatexmath-0.9.3.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\jlatexmath-fop-0.9.3.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\{#GRAPHICS}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;
@@ -41,15 +41,11 @@ Source: modules\{#GRAPHICS}\macros\buildmacros.sce; DestDir: {app}\modules\{#GRA
 Source: modules\{#GRAPHICS}\macros\buildmacros.bat; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\macros\lib; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\macros\names; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHICS}\macros\lib; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\*.sci; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\macros\*.bin; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHICS}\macros\datatips\lib; DestDir: {app}\modules\{#GRAPHICS}\macros\datatips; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\macros\datatips\names; DestDir: {app}\modules\{#GRAPHICS}\macros\datatips; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHICS}\macros\datatips\lib; DestDir: {app}\modules\{#GRAPHICS}\macros\datatips; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\datatips\*.sci; DestDir: {app}\modules\{#GRAPHICS}\macros\datatips; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\macros\datatips\*.bin; DestDir: {app}\modules\{#GRAPHICS}\macros\datatips; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\tcl\*.*; DestDir: {app}\modules\{#GRAPHICS}\tcl; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;

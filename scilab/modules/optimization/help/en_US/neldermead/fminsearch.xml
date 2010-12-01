@@ -60,7 +60,7 @@
   </refsection>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -257,6 +257,8 @@
         <listitem>
           <para>
 	  The verbose level. 
+          Possible values are "notify", "iter", "final" and "off". 
+          The default value is "notify".
 	  </para>
         </listitem>
       </varlistentry>
@@ -620,7 +622,7 @@ Exiting: Maximum number of iterations has been exceeded
 
     <programlisting role="example"> 
      <![CDATA[ 
-ffunction y = banana (x)
+function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 opt = optimset ( "Display" , "iter" );

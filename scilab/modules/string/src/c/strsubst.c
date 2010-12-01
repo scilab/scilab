@@ -340,7 +340,14 @@ wchar_t **wcssubst(wchar_t** _pwstInput, int _iInputSize, wchar_t* _pwstSearch, 
 		for(i = 0 ; i < _iInputSize ; i++)
 		{
 			wchar_t* pwst = _pwstInput[i];
-			pwstOutput[i] = wcssub(pwst, _pwstSearch, _pwstReplace);
+            if(wcslen(pwst) == 0)
+            {
+                pwstOutput[i] = os_wcsdup(L"");
+            }
+            else
+            {
+			    pwstOutput[i] = wcssub(pwst, _pwstSearch, _pwstReplace);
+            }
 		}
 	}
 	return pwstOutput;
@@ -353,7 +360,7 @@ wchar_t *wcssub(wchar_t* _pwstInput, wchar_t* _pwstSearch, wchar_t* _pwstReplace
     int iOccurs         = 0;
     size_t iReplace     = 0;
     size_t iSearch      = 0;
-    int iOffset         = 0;
+    size_t iOffset      = 0;
     
     size_t* piStart     = NULL;
 

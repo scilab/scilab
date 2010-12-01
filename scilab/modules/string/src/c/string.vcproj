@@ -432,10 +432,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_ascii.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_code2str.c"
 				>
 			</File>
@@ -464,26 +460,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_strcat.c"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_strchr.c"
 				>
 			</File>
@@ -493,10 +469,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_strcspn.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_string.c"
 				>
 			</File>
 			<File
@@ -633,6 +605,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\os_swprintf.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\os_wcsdup.h"
 				>
 			</File>
@@ -689,7 +665,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\strsubst.h"
+				RelativePath="..\..\includes\strsubst.h"
 				>
 			</File>
 			<File
@@ -737,6 +713,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
 		<File
 			RelativePath="..\..\..\..\bin\lapack.lib"
 			>

@@ -23,7 +23,7 @@
     <synopsis>set_fftw_wisdom(txt)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>txt</term>

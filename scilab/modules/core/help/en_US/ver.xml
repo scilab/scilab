@@ -23,7 +23,7 @@
     <synopsis>r = ver()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>

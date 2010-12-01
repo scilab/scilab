@@ -20,7 +20,7 @@ SUBDIRS= libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 
-changelogs = CHANGES CHANGES_5.1.X
+changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
@@ -46,6 +46,7 @@ $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 $(top_builddir)/modules/io/libsciio.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 $(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
@@ -63,6 +64,7 @@ COMMON_CPPFLAGS = 		-I$(top_srcdir)/modules/shell/includes/ \
 						-I$(top_srcdir)/modules/operations/includes/ \
 						-I$(top_srcdir)/modules/elementary_functions/includes/ \
 						-I$(top_srcdir)/modules/fileio/includes/ \
+						-I$(top_srcdir)/modules/string/includes/ \
 						-I$(top_srcdir)/modules/history_manager/includes/
 
 scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
@@ -117,12 +119,12 @@ all-local: $(TARGETS_ALL)
 rootdir=$(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
-$(top_srcdir)/etc/modules.xml \
-$(top_srcdir)/etc/classpath.xml \
-$(top_srcdir)/etc/librarypath.xml \
 $(top_srcdir)/etc/toolboxes.xml \
 $(top_builddir)/etc/jvm_options.xml \
-$(top_srcdir)/etc/yasp_modules.xml
+$(top_builddir)/etc/modules.xml \
+$(top_builddir)/etc/classpath.xml \
+$(top_builddir)/etc/logging.properties \
+$(top_builddir)/etc/librarypath.xml
 
 
 infofilesdir=$(pkgdatadir)/
@@ -133,14 +135,17 @@ $(top_srcdir)/CHANGES_4.X \
 $(top_srcdir)/CHANGES_5.0.X \
 $(top_srcdir)/CHANGES_5.1.X \
 $(top_srcdir)/CHANGES_5.2.X \
+$(top_srcdir)/CHANGES_5.3.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
+$(top_srcdir)/COPYING-BSD \
 $(top_srcdir)/COPYING-FR \
 $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
 $(top_srcdir)/RELEASE_NOTES_5.0.X \
 $(top_srcdir)/RELEASE_NOTES_5.1.X \
 $(top_srcdir)/RELEASE_NOTES_5.2.X \
+$(top_srcdir)/RELEASE_NOTES_5.3.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
@@ -162,17 +167,16 @@ macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
-doc:
-#$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
+doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 #if BUILD_HELP
 #	-@if test -x $(top_builddir)/scilab-bin; then \
 #		cd $(top_builddir);\
 #		echo "-- Building documentation (English) --"; \
-#		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
-#		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
+#		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
+#		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
 #		echo "-- Building documentation (French) --"; \
-#		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
-#		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
+#		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
+#		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
 #	else \
 #		echo "Cannot find Scilab-adv-cli binary"; \
 #	fi

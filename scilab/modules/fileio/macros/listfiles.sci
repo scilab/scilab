@@ -16,7 +16,7 @@ function files= listfiles(paths,flag,flagexpand)
   // flag,flagexpand : boolean optional parameters. (default value  %t ).
   // files           : a string matrix
   
-  [lhs,rhs]=argn(0) 
+  [lhs,rhs]=argn(0);
   if rhs < 1  then paths='./' ; end 
   if rhs <= 1 then flag = %t ; end 
   if rhs <= 2 then flagexpand = %t ; end 
@@ -53,9 +53,9 @@ function files= listfiles(paths,flag,flagexpand)
       if path == '' then path='./',end;
       if getos() == 'Windows' // Don't want this case under Linux/Unix 
         // Windows will return the file toto even if you provided toto.*
-        if extension == '' then extension='.*',end;
+        if extension == '' then extension='.*';end
       end
-      if fname == '' then fname='*',end;
+      if fname == '' then fname='*';end
     end
 
     filesi=findfiles(path,fname+extension);

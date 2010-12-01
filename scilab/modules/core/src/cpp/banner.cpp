@@ -26,7 +26,7 @@ void banner(void)
 {
     int i;
     wchar_t *line = L"        ___________________________________________        ";
-    int startVersion = (int)(floor((double)(wcslen(line)/2)) - floor((double)(wcslen(SCI_VERSION_STRING)/2)));
+    int startVersion = (int)(floor((double)(wcslen(line)/2)) - floor((double)(wcslen(SCI_VERSION_WIDE_STRING)/2)));
 
     YaspWriteW(line);
     YaspWriteW(L"\n");
@@ -37,7 +37,7 @@ void banner(void)
         YaspWriteW(L" ");
     }
 
-    YaspWriteW(SCI_VERSION_STRING);
+    YaspWriteW(SCI_VERSION_WIDE_STRING);
     YaspWriteW(L"\n\n");
 
     YaspWriteW(_W("                 Consortium Scilab (DIGITEO)\n"));

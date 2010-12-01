@@ -27,7 +27,7 @@
 [x,y,ok,gc] = edit_curv(x,y,job,tit,gc)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

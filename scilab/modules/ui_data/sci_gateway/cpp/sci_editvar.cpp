@@ -47,12 +47,29 @@ int sci_editvar(char * fname, int *_piKey)
     int* piBool = NULL;
     int** ppiBool = NULL;
 
+    char* piInt8 = NULL;
+    char** ppiInt8 = NULL;
+
+    unsigned char* piUInt8 = NULL;
+    short** ppiUInt8 = NULL;
+
+    short* piInt16 = NULL;
+    short** ppiInt16 = NULL;
+
+    unsigned short* piUInt16 = NULL;
+    int** ppiUInt16 = NULL;
+
+    int* piInt32 = NULL;
+    int** ppiInt32 = NULL;
+
+    unsigned int* piUInt32 = NULL;
+    long long int** ppiUInt32 = NULL;
+
     int iComplex = 0;
     double *pdblReal = NULL;
     double *pdblImg = NULL;
     double **ppdblRealMatrix = NULL;
     double **ppdblImgMatrix = NULL;
-
 
     char** pstData = NULL;
     int* piLen = NULL;
@@ -69,10 +86,20 @@ int sci_editvar(char * fname, int *_piKey)
         return 0;
     }
 
-
     /* get address */
-    sciErr = getVarAddressFromPosition(_piKey,  1, &piAddressVarOne);
-    sciErr = getVarType(_piKey,  piAddressVarOne, &iType);
+    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    sciErr = getVarType(_piKey, piAddressVarOne, &iType);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
     if (iType != sci_strings)
     {
@@ -89,8 +116,9 @@ int sci_editvar(char * fname, int *_piKey)
     }
 
     /* TODO maybe allow vectors in case someone wants to edit several variables in the same time? */
-    if (m1 !=1 || n1 != 1) {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+    if(m1 != 1 || n1 != 1)
+    {
+        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -112,6 +140,14 @@ int sci_editvar(char * fname, int *_piKey)
         printError(&sciErr, 0);
         return 0;
     }
+
+    if(strcmp(pStVarOne, "ans") == 0)
+    {
+        Scierror(999,_("%s: ans cannot be edited.\n"), fname);
+        FREE(pStVarOne);
+        return 0;
+    }
+
     /* get address of the variable*/
     sciErr = getVarAddressFromName(_piKey,  pStVarOne, &piAddr);
     if(sciErr.iErr)
@@ -122,9 +158,15 @@ int sci_editvar(char * fname, int *_piKey)
     }
 
     /* get type of the named variable */
-    sciErr = getVarType(_piKey,  piAddr, &iType);
+    sciErr = getVarType(_piKey, piAddr, &iType);
+    if(sciErr.iErr)
+    {
+        FREE(pStVarOne);
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-    switch( iType)
+    switch(iType)
     {
     case sci_matrix :
 
@@ -135,38 +177,58 @@ int sci_editvar(char * fname, int *_piKey)
         if(iComplex)
         {
             /* get size and data from Scilab memory */
-            sciErr = getComplexMatrixOfDouble(_piKey,  piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+            sciErr = getComplexMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+            if(sciErr.iErr)
+            {
+                FREE(pStVarOne);
+                printError(&sciErr, 0);
+                return 0;
+            }
 
             ppdblRealMatrix = new double*[iRows];
             for (int i = 0; i < iRows; ++i)
             {
-                ppdblRealMatrix[i] = &pdblReal[i*iCols];
-
+                ppdblRealMatrix[i] = &pdblReal[i * iCols];
             }
 
             ppdblImgMatrix = new double*[iRows];
             for (int i = 0; i < iRows; ++i)
             {
-                ppdblImgMatrix[i] = &pdblImg[i*iCols];
-
+                ppdblImgMatrix[i] = &pdblImg[i * iCols];
             }
-            
+
             /* Launch Java Variable Editor through JNI */
-            EditVar::openVariableEditorComplex(getScilabJavaVM(),
-                                            ppdblRealMatrix,
-                                            iRows,
-                                            iCols,
-                                            ppdblImgMatrix,
-                                            iRows,
-                                            iCols,
-                                            pStVarOne);
-        
+            try
+            {
+                EditVar::openVariableEditorComplex(getScilabJavaVM(),
+                                                   ppdblRealMatrix,
+                                                   iRows,
+                                                   iCols,
+                                                   ppdblImgMatrix,
+                                                   iRows,
+                                                   iCols,
+                                                   pStVarOne);
+            } catch (GiwsException::JniCallMethodException ex1)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            } catch (GiwsException::JniBadAllocException ex2)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            }
+
+            delete(ppdblRealMatrix);
+            delete(ppdblImgMatrix);
         }
         else
         {
             /* get size and data from Scilab memory */
-            sciErr = getMatrixOfDouble(_piKey,  piAddr, &iRows, &iCols, &pdblReal);
-
+            sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+            if(sciErr.iErr)
+            {
+                FREE(pStVarOne);
+                printError(&sciErr, 0);
+                return 0;
+            }
             /*
              * we need this to make the links between the API (which return a double*)
              * and the JNI which needs a double**
@@ -174,50 +236,49 @@ int sci_editvar(char * fname, int *_piKey)
             ppdblRealMatrix = new double*[iRows];
             for (int i = 0; i < iRows; ++i)
             {
-                ppdblRealMatrix[i] = &pdblReal[i*iCols];
-
+                ppdblRealMatrix[i] = &pdblReal[i * iCols];
             }
 
             /* Launch Java Variable Editor through JNI */
-            EditVar::openVariableEditorDouble(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
+            try
+            {
+                EditVar::openVariableEditorDouble(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
+            } catch (GiwsException::JniCallMethodException ex1)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            } catch (GiwsException::JniBadAllocException ex2)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            }
 
-
-        
+            delete(ppdblRealMatrix);
         }
-
-        if(sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-
-
-
-
         break;
 
     case sci_strings :
-
 
         //fisrt call to retrieve dimensions
         sciErr = getMatrixOfString(_piKey,  piAddr, &iRows, &iCols, NULL, NULL);
         if(sciErr.iErr)
         {
+            FREE(pStVarOne);
             printError(&sciErr, 0);
             return 0;
         }
 
         piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+
         //second call to retrieve length of each string
         sciErr = getMatrixOfString(_piKey,  piAddr, &iRows, &iCols, piLen, NULL);
         if(sciErr.iErr)
         {
+            FREE(pStVarOne);
+            FREE(piLen);
             printError(&sciErr, 0);
             return 0;
         }
 
-        pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+        pstData = (char**)calloc(iRows * iCols, sizeof(char*));
         for(int i = 0 ; i < iRows * iCols ; i++)
         {
             pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
@@ -226,6 +287,9 @@ int sci_editvar(char * fname, int *_piKey)
         sciErr = getMatrixOfString(_piKey,  piAddr, &iRows, &iCols, piLen, pstData);
         if(sciErr.iErr)
         {
+            FREE(pStVarOne);
+            FREE(piLen);
+            freeArrayOfString(pstData, iRows * iCols);
             printError(&sciErr, 0);
             return 0;
         }
@@ -237,18 +301,32 @@ int sci_editvar(char * fname, int *_piKey)
         ppstData = new char**[iRows];
         for (int i = 0; i < iRows; ++i)
         {
-            ppstData[i] = &pstData[i*iCols];
-
+            ppstData[i] = &pstData[i * iCols];
         }
         /* Launch Java Variable Editor through JNI */
-        EditVar::openVariableEditorString(getScilabJavaVM(), ppstData, iRows, iCols, pStVarOne);
+        try
+        {
+            EditVar::openVariableEditorString(getScilabJavaVM(), ppstData, iRows, iCols, pStVarOne);
+        } catch (GiwsException::JniCallMethodException ex1)
+        {
+            Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+        } catch (GiwsException::JniBadAllocException ex2)
+        {
+            Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+        }
+
+        FREE(piLen);
+        freeArrayOfString(pstData, iRows * iCols);
+        delete(ppstData);
+
         break;
 
-    case sci_boolean:
-       //get size and data from Scilab memory
-        sciErr = getMatrixOfBoolean(_piKey,  piAddr, &iRows, &iCols, &piBool);
+    case sci_boolean :
+        //get size and data from Scilab memory
+        sciErr = getMatrixOfBoolean(_piKey, piAddr, &iRows, &iCols, &piBool);
         if(sciErr.iErr)
         {
+            FREE(pStVarOne);
             printError(&sciErr, 0);
             return 0;
         }
@@ -260,21 +338,254 @@ int sci_editvar(char * fname, int *_piKey)
         ppiBool = new int*[iRows];
         for (int i = 0; i < iRows; ++i)
         {
-            ppiBool[i] = &piBool[i*iCols];
-
+            ppiBool[i] = &piBool[i * iCols];
         }
         /* Launch Java Variable Editor through JNI */
-        EditVar::openVariableEditorBoolean(getScilabJavaVM(), ppiBool, iRows, iCols, pStVarOne);
+        try
+        {
+            EditVar::openVariableEditorBoolean(getScilabJavaVM(), ppiBool, iRows, iCols, pStVarOne);
+        } catch (GiwsException::JniCallMethodException ex1)
+        {
+            Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+        } catch (GiwsException::JniBadAllocException ex2)
+        {
+            Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+        }
 
+        delete(ppiBool);
 
         break;
 
+    case sci_ints :
+        //get size and data from Scilab memory
+        int prec;
+        sciErr = getMatrixOfIntegerPrecision(_piKey, piAddr, &prec);
+        if (sciErr.iErr)
+        {
+            FREE(pStVarOne);
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        switch (prec)
+        {
+        case SCI_INT8 :
+            sciErr = getMatrixOfInteger8(_piKey, piAddr, &iRows, &iCols, &piInt8);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return -1;
+            }
+            ppiInt8 = new char*[iRows];
+            for (int i = 0; i < iRows; ++i)
+            {
+                ppiInt8[i] = &piInt8[i * iCols];
+            }
+
+            /* Launch Java Variable Editor through JNI */
+            try
+            {
+                EditVar::openVariableEditorInteger8(getScilabJavaVM(), reinterpret_cast<byte**>(ppiInt8), iRows, iCols, pStVarOne);
+            } catch (GiwsException::JniCallMethodException ex1)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            } catch (GiwsException::JniBadAllocException ex2)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            }
+
+            delete(ppiInt8);
+
+            break;
+
+        case SCI_UINT8 :
+            sciErr = getMatrixOfUnsignedInteger8(_piKey, piAddr, &iRows, &iCols, &piUInt8);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return -1;
+            }
+
+            ppiUInt8 = new short*[iRows];
+            for (int i = 0; i < iRows; ++i)
+            {
+                ppiUInt8[i] = new short[iCols];
+                for (int j = 0; j < iCols; ++j)
+                {
+                    ppiUInt8[i][j] = piUInt8[i * iCols + j];
+                }
+            }
+
+            /* Launch Java Variable Editor through JNI */
+            try
+            {
+                EditVar::openVariableEditorUInteger8(getScilabJavaVM(), ppiUInt8, iRows, iCols, pStVarOne);
+            } catch (GiwsException::JniCallMethodException ex1)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            } catch (GiwsException::JniBadAllocException ex2)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            }
+
+            for (int i = 0; i < iRows; ++i)
+            {
+                delete(ppiUInt8[i]);
+            }
+            delete(ppiUInt8);
+
+            break;
+
+        case SCI_INT16 :
+            sciErr = getMatrixOfInteger16(_piKey, piAddr, &iRows, &iCols, &piInt16);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return -1;
+            }
+            ppiInt16 = new short*[iRows];
+            for (int i = 0; i < iRows; ++i)
+            {
+                ppiInt16[i] = &piInt16[i * iCols];
+            }
+
+            /* Launch Java Variable Editor through JNI */
+            try
+            {
+                EditVar::openVariableEditorInteger16(getScilabJavaVM(), ppiInt16, iRows, iCols, pStVarOne);
+            } catch (GiwsException::JniCallMethodException ex1)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            } catch (GiwsException::JniBadAllocException ex2)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            }
+
+            delete(ppiInt16);
+
+            break;
+
+        case SCI_UINT16 :
+            sciErr = getMatrixOfUnsignedInteger16(_piKey, piAddr, &iRows, &iCols, &piUInt16);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return -1;
+            }
+
+            ppiUInt16 = new int*[iRows];
+            for (int i = 0; i < iRows; ++i)
+            {
+                ppiUInt16[i] = new int[iCols];
+                for (int j = 0; j < iCols; ++j)
+                {
+                    ppiUInt16[i][j] = piUInt16[i * iCols + j];
+                }
+            }
+
+            /* Launch Java Variable Editor through JNI */
+            try
+            {
+                EditVar::openVariableEditorUInteger16(getScilabJavaVM(), ppiUInt16, iRows, iCols, pStVarOne);
+            } catch (GiwsException::JniCallMethodException ex1)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            } catch (GiwsException::JniBadAllocException ex2)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            }
+
+            for (int i = 0; i < iRows; ++i)
+            {
+                delete(ppiUInt16[i]);
+            }
+            delete(ppiUInt16);
+
+            break;
+
+        case SCI_INT32 :
+            sciErr = getMatrixOfInteger32(_piKey, piAddr, &iRows, &iCols, &piInt32);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return -1;
+            }
+            ppiInt32 = new int*[iRows];
+            for (int i = 0; i < iRows; ++i)
+            {
+                ppiInt32[i] = &piInt32[i * iCols];
+            }
+
+            /* Launch Java Variable Editor through JNI */
+            try
+            {
+                EditVar::openVariableEditorInteger32(getScilabJavaVM(), ppiInt32, iRows, iCols, pStVarOne);
+            } catch (GiwsException::JniCallMethodException ex1)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            } catch (GiwsException::JniBadAllocException ex2)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            }
+
+            delete(ppiInt32);
+
+            break;
+
+        case SCI_UINT32 :
+            sciErr = getMatrixOfUnsignedInteger32(_piKey, piAddr, &iRows, &iCols, &piUInt32);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return -1;
+            }
+
+            ppiUInt32 = new long long int*[iRows];
+            for (int i = 0; i < iRows; ++i)
+            {
+                ppiUInt32[i] = new long long int[iCols];
+                for (int j = 0; j < iCols; ++j)
+                {
+                    ppiUInt32[i][j] = piUInt32[i * iCols + j];
+                }
+            }
+
+            /* Launch Java Variable Editor through JNI */
+            try
+            {
+                EditVar::openVariableEditorUInteger32(getScilabJavaVM(), ppiUInt32, iRows, iCols, pStVarOne);
+            } catch (GiwsException::JniCallMethodException ex1)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            } catch (GiwsException::JniBadAllocException ex2)
+            {
+                Scierror(999, _("%s: Java memory problem, cannot edit %s\n"), fname, pStVarOne);
+            }
+
+            for (int i = 0; i < iRows; ++i)
+            {
+                delete(ppiUInt32[i]);
+            }
+            delete(ppiUInt32);
+
+            break;
+
+        default :
+
+            Scierror(42, _("%s: Type not handle yet"), fname);
+            return 0;
+        }
+
+        break;
 
     default:
 
-        Scierror(42,"Type not handle by editvar yet");
+        Scierror(42, _("%s: Type not handle yet"), fname);
         return 0;
     }
+
+    FREE(pStVarOne);
+
     LhsVar(1) = 0;
     PutLhsVar();
     return 0;

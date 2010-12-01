@@ -19,8 +19,8 @@
 #include "storeCommand.h" /* storecommand */
 #include "FindFileExtension.h"
 #include "URIFileToFilename.h"
-#include "../../../string/includes/stricmp.h"
-#include "../../../core/src/c/with_module.h"
+#include "stricmp.h"
+#include "with_module.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define BIN_EXTENSION_FILE ".bin"
@@ -38,7 +38,7 @@
 #define FORMAT_COS_COSF_XCOS_EXTENSION_FILES "xcos('%s');"
 #define FORMAT_SCI_EXTENSION_FILES "exec('%s');"
 #define FORMAT_SCE_TST_EXTENSION_FILES "exec('%s');"
-#define FORMAT_SCG_EXTENSION_FILES "xload('%s');"
+#define FORMAT_SCG_EXTENSION_FILES "load('%s');"
 #define FORMAT_UNKNOW_EXTENSION_FILES "disp(gettext('Unknown file type : %s'));"
 #define XCOS_NOT_INSTALLED "disp(gettext('Please install xcos module.'))"
 /*--------------------------------------------------------------------------*/

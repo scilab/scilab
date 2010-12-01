@@ -26,7 +26,7 @@ Arguments
   _iSize : the number of elements to set
   _pdblReal, _pdblImg : the target array (real and imaginary parts)
 */
-void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
+void vGetPointerFromDoubleComplex(const doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
 	int iIndex = 0;
 

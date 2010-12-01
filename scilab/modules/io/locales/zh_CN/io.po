@@ -17,8 +17,12 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s：内存申请错误。\n"
+msgid "\"%s\" directory write access denied.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -65,12 +69,12 @@ msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个整数标量。\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -85,9 +89,31 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该一个整数。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: error during %s execution"
 msgstr "%s：%s在执行过程中发生错误"
 
 #, c-format
+msgid "File \"%s\" already exists.\n"
+msgstr ""
+
+#, c-format
+msgid "File \"%s\" does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "File \"%s\" read access denied.\n"
+msgstr ""
+
+msgid "Too many files opened!\n"
+msgstr ""
+
+#, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr "未定义的环境变量%s。\n"
+
+msgid "unmanaged error by v2cunit.\n"
+msgstr ""

@@ -24,7 +24,7 @@
     <synopsis>translatepaths(dirs_path [,res_path])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dirs_path</term>

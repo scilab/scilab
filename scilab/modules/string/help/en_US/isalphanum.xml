@@ -23,7 +23,7 @@
     <synopsis>res = isalphanum(str)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str</term>

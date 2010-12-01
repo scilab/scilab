@@ -60,31 +60,31 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
         wchar_t *expandedFileName = expandPathVariableW(in[0]->getAsString()->string_get(0));
 
         iErr = mopen(expandedFileName, L"rt", 0, &iFileID);
-        FREE(expandedFileName);
 
         if(iErr)
         {
             switch(iErr)
             {
             case MOPEN_NO_MORE_LOGICAL_UNIT:
-                ScierrorW(66, _W("%ls: Too many files opened!\n"), L"mputl");
+                ScierrorW(66, _W("%ls: Too many files opened!\n"), L"mgetl");
                 break;
             case MOPEN_CAN_NOT_OPEN_FILE:
-                ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"mputl", expandedFileName);
+                ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"mgetl", expandedFileName);
                 break;
             case MOPEN_NO_MORE_MEMORY:
-                ScierrorW(999, _W("%ls: No more memory.\n"), L"mputl");
+                ScierrorW(999, _W("%ls: No more memory.\n"), L"mgetl");
                 break;
             case MOPEN_INVALID_FILENAME:
-                ScierrorW(999, _W("%ls: invalid filename %ls.\n"), L"mputl", expandedFileName);
+                ScierrorW(999, _W("%ls: invalid filename %ls.\n"), L"mgetl", expandedFileName);
                 break;
             default: //MOPEN_INVALID_STATUS
-                ScierrorW(999, _W("%ls: invalid status.\n"), L"mputl");
+                ScierrorW(999, _W("%ls: invalid status.\n"), L"mgetl");
                 break;
             }
             return Function::Error;
         }
-        bCloseFile = true;
+        FREE(expandedFileName);
+       bCloseFile = true;
     }
     else
     {//Error

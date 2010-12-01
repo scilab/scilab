@@ -37,8 +37,8 @@ Dim=size(Directories);
 for i=1:Dim(1) do 
   cd(Directories(i));
   //if (fileinfo('buildmacros.sce')<>[]) then
-    disp(Directories(i));
-    exec('buildmacros.sce');
+    //disp(Directories(i));
+    exec('buildmacros.sce', 0);
   //end
   cd(CurrentDirectory);
 end

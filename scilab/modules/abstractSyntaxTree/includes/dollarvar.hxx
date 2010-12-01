@@ -12,86 +12,58 @@
 
 
 #ifndef AST_DOLLARVAR_HXX
-# define AST_DOLLARVAR_HXX
+#define AST_DOLLARVAR_HXX
 
-# include "var.hxx"
+#include "var.hxx"
 
 namespace ast
 {
 
-  /** \brief Abstract a Dollar Variable node.
-   **
-   ** \b Example: $ */
-  class DollarVar : public Var
-  {
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct a Dollar Variable node.
-     ** \param location scanner position informations
-     ** \param name the name of the variable
-     */
-    DollarVar (const Location& location):
-      Var (location)
+    /** \brief Abstract a Dollar Variable node.
+    **
+    ** \b Example: $ */
+    class DollarVar : public Var
     {
-    }
-    /** \brief Destroy a Field Variable node.
-     **
-     ** Delete name, see constructor. */
-    ~DollarVar ()
-    {
-    }
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct a Dollar Variable node.
+        ** \param location scanner position informations
+        ** \param name the name of the variable
+        */
+        DollarVar (const Location& location)
+            : Var (location)
+        {
+        }
+        /** \brief Destroy a Field Variable node.
+        **
+        ** Delete name, see constructor. */
+        ~DollarVar ()
+        {
+        }
 
+        virtual DollarVar* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new DollarVar(location_get());
+        }
 
-    /** \name Visitors entry point.
-     ** \{ */
-  public:
-    /** \brief Accept a const visitor \a v. */
-    virtual void accept (Visitor& v)
-    {
-      v.visit (*this);
-    }
-    /** \brief Accept a non-const visitor \a v. */
-    virtual void accept (ConstVisitor& v) const
-    {
-      v.visit (*this);
-    }
-    /** \} */
-  };
+        /** \name Visitors entry point.
+        ** \{ */
+    public:
+        /** \brief Accept a const visitor \a v. */
+        virtual void accept (Visitor& v)
+        {
+            v.visit (*this);
+        }
+        /** \brief Accept a non-const visitor \a v. */
+        virtual void accept (ConstVisitor& v) const
+        {
+            v.visit (*this);
+        }
+        /** \} */
+    };
 
 } // namespace ast
 
 #endif // !AST_DOLLARVAR_HXX
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

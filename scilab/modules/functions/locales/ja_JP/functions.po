@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-02-13 16:18+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-09-17 13:09+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,54 +80,37 @@ msgstr "%1$s: 私は、どんなファイルも  %3$s の拡張 %2$s で見つ�
 msgid "%s: Impossible to open file %s for writing\n"
 msgstr "%s: 書き込みのためのファイル %s を開くことができません。\n"
 
-#
-# File: macros/getd.sci, line: 55
 #, c-format
 msgid "%s: Incorrect function in file %s.\n"
-msgstr "%s: ファイル %s の不正確な関数です。\n"
+msgstr "%s: ファイル %s に正しくない関数があります.\n"
 
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: 無効なライブラリ %s.\n"
 
-#
-# File: macros/genlib.sci, line: 80
-# File: macros/genlib_old.sci, line: 52
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
+
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
-msgstr "%s: 拡張 %s を持ついかなるファイルも、%sで見つけませんでした。\n"
+msgstr "%s: 拡張子 %s を有するファイルが %s で見つかりませんでした.\n"
 
-#
-# File: macros/check_gateways.sci, line: 28
 #, c-format
 msgid "%s: Please check: %s\n"
-msgstr "%s: 確認してください: %s.\n"
+msgstr "%s: %s を確認してください.\n"
 
-#
-# File: macros/genlib.sci, line: 126
-# File: macros/genlib_old.sci, line: 93
 #, c-format
 msgid "%s: Processing file: %s\n"
-msgstr "%s: ファイルを加工: %s\n"
+msgstr "%s: ファイルを処理中: %s\n"
 
-#
-# File: macros/genlib.sci, line: 139
-# File: macros/genlib_old.sci, line: 104
 #, c-format
 msgid "%s: Regenerate names and lib\n"
-msgstr "%s: 再生された名前とライブラリ\n"
+msgstr "%s: names と lib を再度生成する\n"
 
-#
-# File: macros/profile.sci, line: 17
 #, c-format
 msgid "%s: The function has not been built for profiling"
-msgstr "%s: 関数は、プロファイルのために構築できません"
-
-#
-# File: macros/get_function_path.sci, line: 22
-#, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr "%1$s: ライブラリ・ディレクトリー %3$s に %2$s.sci 名のいかなるファイルもありません。\n"
+msgstr "%s: 関数がプロファイル用に構築されていません."
 
 #
 # File: macros/head_comments.sci, line: 17
@@ -142,109 +125,81 @@ msgstr "%s: 変数 %s は定義されていません。\n"
 msgid "%s: Warning: Error in file %s : %s. File ignored\n"
 msgstr "%s: 警告: ファイル %s でエラー : ファイル %s を無視します。\n"
 
-# File: macros/bytecode.sci, line: 29
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
-#
-# File: macros/head_comments.sci, line: 13
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
-#
-# File: macros/head_comments.sci, line: 13
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
-# File: macros/bytecode.sci, line: 29
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正な型です。.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
-#
-# File: macros/head_comments.sci, line: 13
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/head_comments.sci, line: 13
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: スカラー、または、文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してください.\n"
 
-#
-# File: macros/head_comments.sci, line: 13
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/macrovar.sci, line: 22
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: Scilab 関数を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: Scilab関数を指定してください.\n"
 
-#
-# File: macros/macrovar.sci, line: 22
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で、不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/head_comments.sci, line: 22
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 'errcatch' を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'errcatch' を指定してください.\n"
 
-#
-# File: macros/head_comments.sci, line: 22
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 'm' または 'n' を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'm' または'n'を指定してください.\n"
 
-#
-# File: macros/recompilefunction.sci, line: 19
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: Scilab 関数名を祖宛居します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilab関数名を指定してください.\n"
 
-#
-# File: macros/recompilefunction.sci, line: 19
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 整数 を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
 
-#
-# File: macros/head_comments.sci, line: 22
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: Scilab 関数の名前を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilab関数の名前を指定してください.\n"
 
-# File: macros/bytecode.sci, line: 29
 #, c-format
 msgid "%s: Wrong value(s) for input argument(s).\n"
-msgstr "%s: 入力引数で不正な値です。\n"
+msgstr "%s: 入力引数の値が間違っています.\n"
 
-#
-# File: macros/plotprofile.sci, line: 44
 #, c-format
 msgid ""
 "%s: Wrong values for input argument: No profile data in the function\n"
-msgstr "%s: 入力引数で不正な値: 関数のプロファイル・データはありません\n"
+msgstr "%s: 入力引数の値が間違っています: プロファイルデータが関数に存在しません.\n"
 
-#
-# File: macros/bytecodewalk.sci, line: 59
-# File: macros/bytecodewalk.sci, line: 98
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
-msgstr "%s: もはや用いられない op-code %d です。\n"
+msgstr "%s: 廃止されたオペコード %d です.\n"
 
 #
 # File: macros/genlib.sci, line: 23
@@ -255,11 +210,9 @@ msgstr "-- [%s] の作成(マクロ) --\n"
 msgid "?"
 msgstr "その他"
 
-#
-# File: macros/check_gateways.sci, line: 18
 #, c-format
 msgid "Checking: %s.\n"
-msgstr "調査: %s\n"
+msgstr "チェック中: %s.\n"
 
 #
 # File: macros/plotprofile.sci, line: 104
@@ -299,51 +252,25 @@ msgstr ""
 "ライブラリ・ファイル %s は、更新されました。\n"
 "しかし、%s は保護された変数なのでScilabへロードできません。\n"
 
-#
-# File: macros/head_comments.sci, line: 34
 msgid "No comment available.\n"
-msgstr "コメントは有効でありません。\n"
+msgstr "コメントは利用できません.\n"
 
-#
-# File: macros/recompilefunction.sci, line: 14
 #, c-format
 msgid "No variable named: %s"
-msgstr "変数に名前がありません: %s"
+msgstr "%s という名前の変数がありません"
 
-#
-# File: macros/warnobsolete.sci, line: 24
 #, c-format
 msgid "Please use %s instead."
-msgstr "どうぞ代わりに %s を使って下さい。"
+msgstr "代わりに %s を使用してください."
 
-#
-# File: macros/warnobsolete.sci, line: 27
 #, c-format
 msgid "This function will be permanently removed in Scilab %s"
-msgstr "この関数は、Scilab %s で使われなくなります"
+msgstr "この関数は Scilab %s  以降では削除される予定です."
 
 #
 # File: macros/plotprofile.sci, line: 243
 msgid "Tools"
 msgstr "ツール"
-
-#
-# File: macros/warnobsolete.sci, line: 22
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "警告: 関数 %s は廃れました。\n"
-
-#
-# File: macros/warnobsolete.sci, line: 24
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "警告: どうぞ代わりに %s を使って下さい。\n"
-
-#
-# File: macros/warnobsolete.sci, line: 27
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "警告: この関数は、Scilab %s で使われなくなります。\n"
 
 #
 # File: macros/plotprofile.sci, line: 153

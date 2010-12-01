@@ -26,14 +26,14 @@ else
     write(%IO(2),[comment;' ';'Ok ?';' '])
   else
     write(%IO(2),[comment;' ';btns(:);' '])
-    str=readline()	
+    str=readline()
     rep=find(str==btns)
   end
 end
 
 
 //str=read(%IO(1),1,1,'(a)')
-
+endfunction
 
 function str=x_dialog(comment,default)
 // Copyright INRIA
@@ -41,7 +41,7 @@ function str=x_dialog(comment,default)
 //%Syntaxe
 // str=dialog(comment [,default])
 //%Parametres
-//comment : vecteur de chaine contenant le texte commentaire de la 
+//comment : vecteur de chaine contenant le texte commentaire de la
 //          reponse demandee
 //default : reponse par defaut, peut etre donnee par un vecteur de
 //          chaines
@@ -67,7 +67,7 @@ default=default(1) // for lmitool
 write(%IO(2),[comment;'reponse par defaut :'+default;' '])
 str=[]
 while %t do
-  s=readline()	
+  s=readline()
   if part(s,1)=='o'|part(s,1)=='c' then break,end
   str=[str;s]
 end
@@ -75,6 +75,7 @@ if str==' ' then str=default,end
 write(%IO(2),'o[k]/c[ancel]')
 rep=s
 if part(rep,1)=='c' then str=[],end
+endfunction
 
 
 
@@ -88,7 +89,7 @@ function str=x_mdialog(description,labels,valuesini)
 //             reponses demandees
 //labels      : vecteur des chaines de caracteres donnant le texte associe
 //              a chacun des champs question
-//valuesini   : vecteur des chaines de caracteres donnant la reponse par 
+//valuesini   : vecteur des chaines de caracteres donnant la reponse par
 //              defaut pour chacun des champs.
 //
 //str     : chaine de caracteres correspondant a la reponse
@@ -129,6 +130,7 @@ if rhs==2 then valuesini(n)=' ',end
   rep=readline()
   if part(rep,1)=='c' then str=[],end
 //  disp('la');pause
+endfunction
 
 function num=x_choose(tochoose,comment,button)
 // choose - dialogue de selection
@@ -163,7 +165,7 @@ if rhs==2 then button='Annuler',end
 sep=[],
 for l=0:n,sep=[sep;':'],end
 lmx=maxi([length(tochoose);length(comment)])
-  
+
 tochoose=[string(0:n)', [button;tochoose]]
 
 write(%IO(2),[comment;' ';mat2tab(tochoose)])
@@ -174,13 +176,14 @@ while num<0|num>n  then
   [num,ierr]=evstr(t)
 end
 disp('choose:'+string(num))
+endfunction
 
 
 function tab=mat2tab(str,del)
 //Etant   donne une  matrice  de chaine  de  caracteres str, mat2tab(str)
 //retourne un vecteur colonne de chaines de caracteres  representant les
 //elements de str repartis sous forme d'un tableau.
-//mat2tab(str,del) (ou del est un vecteur de chaines a un ou deux elements) 
+//mat2tab(str,del) (ou del est un vecteur de chaines a un ou deux elements)
 //  retourne le meme tableau ou les colonnes sont separees par la chaine de
 //   caracteres contenue dans del(1) et lignes par del(2) s'il exite
 //%Exemple
@@ -193,7 +196,7 @@ function tab=mat2tab(str,del)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 job=0
-if rhs==1 then 
+if rhs==1 then
   delc=' ',
 else
   delc=del(1)
@@ -226,7 +229,8 @@ for l=1:m
   ll=ll+part(blk,1:lmx(n)-len(l,n))+delc
   tab=[tab;ll]
   if job==1 then tab=[tab;rd],end
-end 
+end
+endfunction
 
 function [btn,xc,yc,win,Cmenu]=xclick();
 // Copyright INRIA
@@ -242,19 +246,21 @@ plot2d(xc,yc,-1,'000')
 plot2d(xc,yc,-1,'000')
 xset('mark',mrk(1),mrk(2))
 win=0
-if size(rep)>=4 then 
+if size(rep)>=4 then
   win=rep(4),
 end
-if size(rep)>=5 then 
+if size(rep)>=5 then
   Cmenu=rep(5)
 else
   Cmenu=[]
 end
+endfunction
 
 function rep=xgetmouse(flag);
 // Copyright INRIA
 str=readline()
 rep=evstr('['+str+']')
+endfunction
 
 function str=readline()
 // Copyright INRIA
@@ -267,7 +273,7 @@ while %t do
   k=strindex(rep,comm)
   if k<>[] then
     k=k(1)
-    if k>1&part(rep,1:k)<>part(blank,1:k) then 
+    if k>1&part(rep,1:k)<>part(blank,1:k) then
       str=stripblanks(part(rep,1:k-1))
       com=part(rep,k+1:length(rep))
       if part(str,1:3)=='-->' then
@@ -289,12 +295,14 @@ while %t do
 end
 bl='=';txt=com+':'+str;txt=part(bl,ones(1,60-length(txt)))+txt
 write(%io(2),[' ';txt;' '])
-    
+endfunction
+
 
 function c=getcolor(title,cini)
 // Copyright INRIA
 str=readline()
 c=evstr('['+str+']')
+endfunction
 
 function [m,pt,btn]=getmenu(datas,pt)
 // Copyright INRIA
@@ -302,12 +310,13 @@ function [m,pt,btn]=getmenu(datas,pt)
 n=size(datas,1)-3
 if rhs<2 then
   [btn,xc,yc]=xclick()
-  pt=[xc,yc] 
+  pt=[xc,yc]
 else
   xc=pt(1);yc=pt(2)
 end
 str=readline()
 m=evstr('['+str+']')
+endfunction
 
 function hilitemenu(m,datas)
 // Copyright INRIA
@@ -318,6 +327,7 @@ thick=xget('thickness');xset('thickness',6)
 xrect(xm,ym,lm,hm)
 xset('thickness',thick)
 xclip(datas(size(datas,1)-2,:))
+endfunction
 
 function unhilitemenu(m,datas)
 // Copyright INRIA
@@ -328,6 +338,7 @@ thick=xget('thickness');xset('thickness',6)
 xrect(xm,ym,lm,hm)
 xset('thickness',thick)
 xclip(datas(size(datas,1)-2,:))
+endfunction
 
 function setmenubar(datas,menus)
 // Copyright INRIA
@@ -344,6 +355,7 @@ for km=1:nm
 end
 xset('alufunction',alu)
 xclip(datas(nm+1,:))
+endfunction
 
 function erasemenubar(datas)
 // Copyright INRIA
@@ -352,3 +364,4 @@ xclip()
 mrect=datas(nm+2,:)
 xclea(mrect(1),mrect(2),mrect(3),mrect(4))
 xclip(datas(nm+1,:))
+endfunction

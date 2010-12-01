@@ -15,6 +15,7 @@ package org.scilab.modules.graph;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.List;
 
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
@@ -50,7 +51,7 @@ public class ScilabGraph extends mxGraph {
 	private final mxUndoManager undoManager = new mxUndoManager();
 
 	private String title = ScilabGraphMessages.UNTITLED;
-	private String savedFile;
+	private File savedFile;
 	private boolean modified;
 	private Tab parentTab;
 	private boolean opened;
@@ -62,6 +63,7 @@ public class ScilabGraph extends mxGraph {
 	 * Manage the modification state on change
 	 */
 	private mxIEventListener changeTracker = new mxIEventListener() {
+		@Override
 		public void invoke(Object source, mxEventObject evt) {
 			setModified(true);
 		}
@@ -71,6 +73,7 @@ public class ScilabGraph extends mxGraph {
 	 * Manage the undo/redo on change
 	 */
 	private final mxIEventListener undoHandler = new mxIEventListener() {
+		@Override
 		public void invoke(Object source, mxEventObject evt) {
 			undoManager.undoableEditHappened((mxUndoableEdit) evt
 						.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT));
@@ -96,6 +99,7 @@ public class ScilabGraph extends mxGraph {
 	 * Update the selection on undo/redo
 	 */
 	private mxIEventListener selectionHandler = new mxIEventListener() {
+		@Override
 		public void invoke(Object source, mxEventObject evt) {
 			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT)).getChanges();
 			getSelectionModel().setCells(getSelectionCellsForChanges(changes));
@@ -106,6 +110,7 @@ public class ScilabGraph extends mxGraph {
 	 * Update the component when the graph is locked
 	 */
 	private PropertyChangeListener cellLockBackgroundUpdater = new PropertyChangeListener() {
+		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
 			if (evt.getPropertyName().equals("cellsLocked")) {
 				getAsComponent().getGraphControl().repaint();
@@ -146,7 +151,7 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * @return The previously saved file or null.
 	 */
-	public String getSavedFile() {
+	public File getSavedFile() {
 		return savedFile;
 	}
 
@@ -154,7 +159,7 @@ public class ScilabGraph extends mxGraph {
 	 * @param savedFile
 	 *            The new saved file
 	 */
-	public void setSavedFile(String savedFile) {
+	public void setSavedFile(File savedFile) {
 		this.savedFile = savedFile;
 	}
 

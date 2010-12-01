@@ -45,10 +45,8 @@ Source: modules\{#CONSOLE}\etc\configuration.xml; DestDir: {app}\modules\{#CONSO
 Source: modules\{#CONSOLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#CONSOLE}\macros\buildmacros.bat; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#CONSOLE}\macros\cleanmacros.bat; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;Source: modules\{#CONSOLE}\macros\*.bin; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;Source: modules\{#CONSOLE}\macros\*.sci; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;Source: modules\{#CONSOLE}\macros\lib; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;Source: modules\{#CONSOLE}\macros\names; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: modules\{#CONSOLE}\demos\*.*; DestDir: {app}\modules\{#CONSOLE}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

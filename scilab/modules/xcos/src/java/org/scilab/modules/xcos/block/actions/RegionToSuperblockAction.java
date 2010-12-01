@@ -27,21 +27,21 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
+import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.block.io.EventInBlock;
 import org.scilab.modules.xcos.block.io.EventOutBlock;
 import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
-import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
@@ -71,7 +71,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/** Name of the action */
 	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "object-group.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */
@@ -520,6 +520,8 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	    diagram.addCells(new Object[] {block});
 	    diagram.getModel().endUpdate();
 
+	    BlockPositioning.updateBlockView(block);
+	    
 	    /*
 	     * create new link in SuperBlock
 	     */
@@ -607,7 +609,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	for (ScilabGraphUniqueObject cell : blocks) {
 	    if (cell instanceof ContextUpdate) {
 	    if (cell instanceof ExplicitOutBlock) {
-		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
+		if (!items.containsKey(IOBlocks.ExplicitOutBlock)) {
 		    items.put(IOBlocks.ExplicitOutBlock, new ArrayList<BasicBlock>());
 		}
 		items.get(IOBlocks.ExplicitOutBlock).add((BasicBlock) cell);

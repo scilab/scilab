@@ -206,7 +206,12 @@ namespace ast
 
         virtual void visit (const BreakExp &e)
         {
+            // Nothing to follow up ...
+        }
 
+        virtual void visit (const ContinueExp &e)
+        {
+            // Nothing to follow up ...
         }
 
         virtual void visit (const ReturnExp &e)

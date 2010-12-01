@@ -73,12 +73,12 @@ utf3            ({utf31}|{utf32}|{utf33}|{utf34})
 utf4            ({utf41}|{utf42}|{utf43})
 
 utf             ({utf2}|{utf3}|{utf4})
-id              (([a-zA-Z_%#?]|{utf})([a-zA-Z_0-9#?]|{utf})*)
+id              (([a-zA-Z_%#?$]|{utf})([a-zA-Z_0-9#?$]|{utf})*)
 
 
-newline			("\n"|"\r\n"|"\r")
-blankline		^[ \t\v\f]+{newline}
-emptyline       ^[ \t\v\f,;]+{newline}
+newline			("\r"|"\n"|"\r\n")
+blankline		{spaces}+{newline}
+emptyline       {newline}({spaces}|[,;])+{newline}
 next			(".."|"...")
 
 boolnot			("@"|"~")
@@ -114,14 +114,14 @@ quote			"'"
 dot             "."
 dotquote		".'"
 dottimes		".*"
-dotdivide		"./"
-dotrdivide		".\\"
+dotrdivide		"./"
+dotldivide		".\\"
 dotpower		(".^"|".**")
 
 plus			"+"
 minus			"-"
-divide			"/"
-rdivide			"\\"
+rdivide			"/"
+ldivide			"\\"
 times			"*"
 power			("^"|"**")
 
@@ -133,12 +133,12 @@ lowerequal		"<="
 greaterequal		">="
 
 krontimes		".*."
-krondivide		"./."
-kronrdivide		".\\."
+kronrdivide		"./."
+kronldivide		".\\."
 
 controltimes    ("*."[^0-9])
-controldivide	("/."[^0-9])
-controlrdivide  ("\\."[^0-9])
+controlrdivide	("/."[^0-9])
+controlldivide  ("\\."[^0-9])
 
 assign			"="
 
@@ -299,6 +299,11 @@ assign			"="
         return scan_throw(BREAK);
 }
 
+<INITIAL,BEGINID>"continue"		{
+    	BEGIN(INITIAL);
+        return scan_throw(CONTINUE);
+}
+
 <INITIAL,BEGINID>"try" {
 	ParserSingleInstance::pushControlStatus(Parser::WithinTry);
 	BEGIN(INITIAL);
@@ -331,7 +336,6 @@ assign			"="
             std::string str = "can not convert'";
             str += yytext;
             str += "' to UTF-8";
-            std::cerr << "[ERROR] " << str << std::endl;
             exit_status = SCAN_ERROR;
             scan_error("can not convert string to UTF-8");
             yyterminate();
@@ -418,11 +422,11 @@ assign			"="
 <INITIAL,MATRIX>{dottimes}		{
   return scan_throw(DOTTIMES);
 }
-<INITIAL,MATRIX>{dotdivide}		{
-  return scan_throw(DOTDIVIDE);
-}
 <INITIAL,MATRIX>{dotrdivide}		{
   return scan_throw(DOTRDIVIDE);
+}
+<INITIAL,MATRIX>{dotldivide}		{
+  return scan_throw(DOTLDIVIDE);
 }
 <INITIAL,MATRIX>{dotpower}		{
   return scan_throw(DOTPOWER);
@@ -438,11 +442,11 @@ assign			"="
 <INITIAL,MATRIX>{times}			{
   return scan_throw(TIMES);
 }
-<INITIAL,MATRIX>{divide}		{
-  return scan_throw(DIVIDE);
-}
 <INITIAL,MATRIX>{rdivide}		{
   return scan_throw(RDIVIDE);
+}
+<INITIAL,MATRIX>{ldivide}		{
+  return scan_throw(LDIVIDE);
 }
 <INITIAL,MATRIX>{power}			{
   return scan_throw(POWER);
@@ -451,11 +455,11 @@ assign			"="
 <INITIAL,MATRIX>{krontimes}		{
   return scan_throw(KRONTIMES);
 }
-<INITIAL,MATRIX>{krondivide}		{
-  return scan_throw(KRONDIVIDE);
-}
 <INITIAL,MATRIX>{kronrdivide}		{
   return scan_throw(KRONRDIVIDE);
+}
+<INITIAL,MATRIX>{kronldivide}		{
+  return scan_throw(KRONLDIVIDE);
 }
 
 
@@ -463,13 +467,13 @@ assign			"="
     unput(yytext[yyleng - 1]);
     return scan_throw(CONTROLTIMES);
 }
-<INITIAL,MATRIX>{controldivide}		{
-    unput(yytext[yyleng - 1]);
-    return scan_throw(CONTROLDIVIDE);
-}
 <INITIAL,MATRIX>{controlrdivide}		{
     unput(yytext[yyleng - 1]);
     return scan_throw(CONTROLRDIVIDE);
+}
+<INITIAL,MATRIX>{controlldivide}		{
+    unput(yytext[yyleng - 1]);
+    return scan_throw(CONTROLLDIVIDE);
 }
 
 
@@ -514,7 +518,7 @@ assign			"="
   return scan_throw(DOT);
 }
 
-<INITIAL,MATRIX>{next}			{
+<INITIAL>{next}                 {
     ParserSingleInstance::pushControlStatus(Parser::WithinDots);
     yy_push_state(LINEBREAK);
 }
@@ -567,7 +571,6 @@ assign			"="
         std::string str = "can not convert'";
         str += yytext;
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -626,13 +629,14 @@ assign			"="
 }
 
 
-<INITIAL,MATRIX>{newline}		{
+<INITIAL>{newline}		{
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
   if (last_token != EOL) {
       return scan_throw(EOL);
   }
+
 }
 
 
@@ -640,13 +644,21 @@ assign			"="
   yylloc.last_line += 1;
   yylloc.last_column = 1;
   scan_step();
+  if (last_token != EOL)
+  {
+      return scan_throw(EOL);
+  }
   scan_throw(EOL);
 }
 
 <INITIAL,MATRIX>{emptyline}		{
-  yylloc.last_line += 1;
+  yylloc.last_line += 2;
   yylloc.last_column = 1;
   scan_step();
+  if (last_token != EOL)
+  {
+      return scan_throw(EOL);
+  }
   scan_throw(EOL);
 }
 .					{
@@ -664,6 +676,17 @@ assign			"="
   {spaces}*{colon}{spaces}* {
       return scan_throw(COLON);
   }
+
+  {newline} {
+      yylloc.last_line += 1;
+      yylloc.last_column = 1;
+      if(last_token != DOTS)
+      {
+          return scan_throw(EOL);
+      }
+      scan_throw(EOL);
+  }
+
 
   {rbrack}				{
     DEBUG("yy_pop_state()");
@@ -702,64 +725,66 @@ assign			"="
   }
 
   {spaces}({plus}|{minus}){number}	{
-   int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
+      int i;
+      for (i = yyleng - 1 ; i >= 0 ; --i)
       {
-	unput(yytext[i]);
+          unput(yytext[i]);
       }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
+      yy_push_state(MATRIXMINUSID);
+      if (last_token != LBRACK
+          && last_token != EOL
+          && last_token != SEMI)
       {
-	return scan_throw(COMMA);
+          return scan_throw(COMMA);
       }
   }
 
   {spaces}({plus}|{minus}){floating}	{
-   int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
+      int i;
+      for (i = yyleng - 1 ; i >= 0 ; --i)
       {
-	unput(yytext[i]);
+          unput(yytext[i]);
       }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
+      yy_push_state(MATRIXMINUSID);
+      if (last_token != LBRACK
+          && last_token != EOL
+          && last_token != SEMI)
       {
-	return scan_throw(COMMA);
+          return scan_throw(COMMA);
       }
   }
 
   {spaces}({plus}|{minus}){little}	{
-   int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
+      int i;
+      for (i = yyleng - 1 ; i >= 0 ; --i)
       {
-	unput(yytext[i]);
+          unput(yytext[i]);
       }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
+      yy_push_state(MATRIXMINUSID);
+      if (last_token != LBRACK
+          && last_token != EOL
+          && last_token != SEMI)
       {
-	return scan_throw(COMMA);
+          return scan_throw(COMMA);
       }
   }
 
   {spaces}({minus}|{plus}){id}		{
-    int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
+      int i;
+      for (i = yyleng - 1 ; i >= 0 ; --i)
       {
-	unput(yytext[i]);
+          unput(yytext[i]);
       }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
+      yy_push_state(MATRIXMINUSID);
+      if (last_token != LBRACK
+          && last_token != EOL
+          && last_token != SEMI
+          )
       {
-	return scan_throw(COMMA);
+          return scan_throw(COMMA);
       }
   }
+
   .					{
     std::string str = "unexpected token '";
     str += yytext;
@@ -767,6 +792,21 @@ assign			"="
     exit_status = SCAN_ERROR;
     scan_error(str);
     yyterminate();
+  }
+
+  {next}{spaces}*{newline}          {
+      /* Just do nothing */
+      yylloc.last_line += 1;
+      yylloc.last_column = 1;
+      scan_step();
+      scan_throw(EOL);
+  }
+
+  {next}{spaces}*{startcomment}          {
+      /* Just do nothing */
+      pstBuffer = new std::string();
+      yy_push_state(LINECOMMENT);
+      scan_throw(DOTS);
   }
 
   <<EOF>>       {
@@ -833,7 +873,6 @@ assign			"="
         std::string str = "can not convert'";
         str += yytext;
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -882,7 +921,7 @@ assign			"="
   }
 
   {spaces}				{
-    /* Do nothing... */
+      /* Do nothing... */
   }
 
   <<EOF>>	{
@@ -907,7 +946,10 @@ assign			"="
     //yylloc.last_column = 1;
     //scan_step();
     yy_pop_state();
-    unput('\n');
+    for (int i = yyleng - 1 ; i >= 0 ; --i)
+    {
+        unput(yytext[i]);
+    }
     /*
     ** To forgot comments after lines break
     */
@@ -922,7 +964,6 @@ assign			"="
             std::string str = "can not convert'";
             str += pstBuffer->c_str();
             str += "' to UTF-8";
-            std::cerr << "[ERROR] " << str << std::endl;
             exit_status = SCAN_ERROR;
             scan_error("can not convert string to UTF-8");
             yyterminate();
@@ -942,7 +983,6 @@ assign			"="
         std::string str = "can not convert'";
         str += pstBuffer->c_str();
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -1026,7 +1066,6 @@ assign			"="
         std::string str = "can not convert'";
         str += pstBuffer->c_str();
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -1035,11 +1074,6 @@ assign			"="
     delete pstBuffer;
     FREE(pwstBuffer);
     return scan_throw(STR);
-  }
-
-  {next}					{
-    //yylloc.last_line += 1;
-    scan_step();
   }
 
   {dquote}                  {
@@ -1102,7 +1136,6 @@ assign			"="
         std::string str = "can not convert'";
         str += pstBuffer->c_str();
         str += "' to UTF-8";
-        std::cerr << "[ERROR] " << str << std::endl;
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
         yyterminate();
@@ -1128,11 +1161,6 @@ assign			"="
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     yyterminate();
-  }
-
-  {next} {
-    //yylloc.last_line += 1;
-    scan_step();
   }
 
   <<EOF>>   {
@@ -1172,6 +1200,9 @@ assign			"="
 
     {newline}                   {
         BEGIN(INITIAL);
+        yylloc.last_line += 1;
+        yylloc.last_column = 1;
+        scan_step();
         return scan_throw(EOL);
     }
 

@@ -16,15 +16,15 @@
  */
 
 #ifndef AST_ANYDECS_HXX
-# define AST_ANYDECS_HXX
+#define AST_ANYDECS_HXX
 
-# include <list>
+#include <list>
 
-# include "decs.hxx"
+#include "decs.hxx"
 
-# include "vardec.hxx"
-# include "typedec.hxx"
-# include "functiondec.hxx"
+#include "vardec.hxx"
+#include "typedec.hxx"
+#include "functiondec.hxx"
 
 namespace ast
 {

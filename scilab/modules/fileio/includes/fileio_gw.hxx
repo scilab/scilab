@@ -48,5 +48,11 @@ CPP_GATEWAY_PROTOTYPE(sci_filesep);
 CPP_GATEWAY_PROTOTYPE(sci_fileparts);
 CPP_GATEWAY_PROTOTYPE(sci_findfiles);
 CPP_GATEWAY_PROTOTYPE(sci_basename);
+CPP_GATEWAY_PROTOTYPE(sci_isfile);
+CPP_GATEWAY_PROTOTYPE(sci_fileinfo);
+CPP_GATEWAY_PROTOTYPE(sci_deletefile);
+CPP_GATEWAY_PROTOTYPE(sci_getshortpathname);
+CPP_GATEWAY_PROTOTYPE(sci_fileext);
+CPP_GATEWAY_PROTOTYPE(sci_createdir);
 
 #endif /* !__FILEIO_GW_HXX__ */

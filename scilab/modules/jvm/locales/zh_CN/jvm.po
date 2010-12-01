@@ -179,9 +179,6 @@ msgstr "JNI：内存不足"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "在-nogui或-nwni模式下JVM接口被禁用。\n"
 
-msgid "Scilab Console"
-msgstr ""
-
 msgid "Scilab Java module not installed.\n"
 msgstr "Scilab Java模块没有安装。\n"
 

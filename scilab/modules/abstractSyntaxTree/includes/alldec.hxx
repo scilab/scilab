@@ -23,10 +23,10 @@
 #include "vardec.hxx"
 #include "functiondec.hxx"
 
-//# include "typedec.hxx"
+//#include "typedec.hxx"
 
-//# include "decs.hxx"
+//#include "decs.hxx"
 
-//# include "anydecs.hxx"
+//#include "anydecs.hxx"
 
 #endif // ! AST_ALLDEC_HXX

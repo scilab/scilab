@@ -139,14 +139,14 @@
 %token DOTTIMES		".*"
 %token KRONTIMES	".*."
 %token CONTROLTIMES "*."
-%token DIVIDE		"/"
-%token DOTDIVIDE	"./"
-%token CONTROLDIVIDE	"/."
-%token KRONDIVIDE	"./."
-%token RDIVIDE		"\\"
-%token DOTRDIVIDE	".\\"
-%token CONTROLRDIVIDE "\\."
-%token KRONRDIVIDE	".\\."
+%token RDIVIDE		"/"
+%token DOTRDIVIDE	"./"
+%token CONTROLRDIVIDE	"/."
+%token KRONRDIVIDE	"./."
+%token LDIVIDE		"\\"
+%token DOTLDIVIDE	".\\"
+%token CONTROLLDIVIDE "\\."
+%token KRONLDIVIDE	".\\."
 
 %token POWER		"** or ^"
 %token DOTPOWER		".^"
@@ -185,6 +185,7 @@
 %token WHILE		"while"
 %token DO		"do"
 %token BREAK		"break"
+%token CONTINUE     "continue"
 
 %token TRY		"try"
 %token CATCH		"catch"
@@ -285,13 +286,15 @@
 %nonassoc UPLEVEL
 %nonassoc LISTABLE
 
+%nonassoc CONTROLBREAK
+
 %left OR OROR
 %left AND ANDAND
 
 %left COLON
 %nonassoc EQ NE LT LE GT GE
 %left MINUS PLUS
-%left TIMES DOTTIMES KRONTIMES CONTROLTIMES DIVIDE DOTDIVIDE KRONDIVIDE CONTROLDIVIDE RDIVIDE DOTRDIVIDE KRONRDIVIDE CONTROLRDIVIDE
+%left TIMES DOTTIMES KRONTIMES CONTROLTIMES RDIVIDE DOTRDIVIDE KRONRDIVIDE CONTRORDIVIDE LDIVIDE DOTLDIVIDE KRONLDIVIDE CONTROLLDIVIDE
 %left POWER DOTPOWER
 
 %left QUOTE DOTQUOTE
@@ -412,6 +415,7 @@ functionDeclaration				{ $$ = $1; }
 | variable			%prec TOPLEVEL	{ $$ = $1; }
 | implicitFunctionCall		%prec TOPLEVEL	{ $$ = $1; }
 | BREAK						{ $$ = new ast::BreakExp(@$); }
+| CONTINUE						{ $$ = new ast::ContinueExp(@$); }
 | returnControl					{ $$ = $1; }
 | COMMENT					{ $$ = new ast::CommentExp(@$, $1); }
 | error						{
@@ -944,23 +948,23 @@ PLUS variable				{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wst
 | CONTROLTIMES variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controltimes, *$2); }
 | CONTROLTIMES functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controltimes, *$2); }
 /*   '/'   './'   './.'   '/.'   */
-| DIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::divide, *$2); }
-| DIVIDE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::divide, *$2); }
-| DOTDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotdivide, *$2); }
-| DOTDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotdivide, *$2); }
-| KRONDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::krondivide, *$2); }
-| KRONDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::krondivide, *$2); }
-| CONTROLDIVIDE variable		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controldivide, *$2); }
-| CONTROLDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controldivide, *$2); }
-/*   '\'   '.\'   '.\.'   '\.'   */
 | RDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::rdivide, *$2); }
 | RDIVIDE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::rdivide, *$2); }
 | DOTRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotrdivide, *$2); }
 | DOTRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotrdivide, *$2); }
 | KRONRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::kronrdivide, *$2); }
 | KRONRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::kronrdivide, *$2); }
-| CONTROLRDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controlrdivide, *$2); }
+| CONTROLRDIVIDE variable		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controlrdivide, *$2); }
 | CONTROLRDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controlrdivide, *$2); }
+/*   '\'   '.\'   '.\.'   '\.'   */
+| LDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ldivide, *$2); }
+| LDIVIDE functionCall			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ldivide, *$2); }
+| DOTLDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotldivide, *$2); }
+| DOTLDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::dotldivide, *$2); }
+| KRONLDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::kronldivide, *$2); }
+| KRONLDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::kronldivide, *$2); }
+| CONTROLLDIVIDE variable			{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controlldivide, *$2); }
+| CONTROLLDIVIDE functionCall		{ $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::controlldivide, *$2); }
 ;
 
 /*
@@ -1142,7 +1146,8 @@ matrixOrCellLines matrixOrCellLine	{
 matrixOrCellLineBreak :
 SEMI                            { /* !! Do Nothing !! */ }
 | EOL                           { /* !! Do Nothing !! */ }
-| SEMI EOL                      { /* !! Do Nothing !! */ }
+| matrixOrCellLineBreak EOL     { /* !! Do Nothing !! */ }
+| matrixOrCellLineBreak SEMI    { /* !! Do Nothing !! */ }
 ;
 
 /*
@@ -1350,7 +1355,14 @@ ELSEIF condition then thenBody						{
 									}
 | ELSEIF condition then thenBody else elseBody				{
 										ast::exps_t *tmp = new ast::exps_t;
-										tmp->push_front( new ast::IfExp(@$, *$2, *$4, *$6) );
+										if( $6 == NULL)
+                                        {
+                                            tmp->push_front( new ast::IfExp(@$, *$2, *$4) );
+                                        }
+                                        else
+                                        {
+                                            tmp->push_front( new ast::IfExp(@$, *$2, *$4, *$6) );
+                                        }
 										$$ = new ast::SeqExp(@$, *tmp);
 
 									}
@@ -1440,36 +1452,12 @@ CASE variable caseControlBreak caseBody							{
 																  $$ = new ast::cases_t;
 																  $$->push_back(new ast::CaseExp(@$, *$3, *$5));
 																}
-| CASE variable COMMENT EOL caseBody							{
-																  $$ = new ast::cases_t;
-																  $$->push_back(new ast::CaseExp(@$, *$2, *$5));
-																}
-| CASE functionCall COMMENT EOL caseBody						{
-																  $$ = new ast::cases_t;
-																  $$->push_back(new ast::CaseExp(@$, *$2, *$5));
-																}
-| comments CASE variable COMMENT EOL caseBody					{
-																  $$ = new ast::cases_t;
-																  $$->push_back(new ast::CaseExp(@$, *$3, *$6));
-																}
-| comments CASE functionCall COMMENT EOL caseBody				{
-																  $$ = new ast::cases_t;
-																  $$->push_back(new ast::CaseExp(@$, *$3, *$6));
-																}
 | casesControl CASE variable caseControlBreak caseBody			{
 																  $1->push_back(new ast::CaseExp(@$, *$3, *$5));
 																  $$ = $1;
 																}
 | casesControl CASE functionCall caseControlBreak caseBody		{
 																  $1->push_back(new ast::CaseExp(@$, *$3, *$5));
-																  $$ = $1;
-																}
-| casesControl CASE variable COMMENT EOL caseBody				{
-																  $1->push_back(new ast::CaseExp(@$, *$3, *$6));
-																  $$ = $1;
-																}
-| casesControl CASE functionCall COMMENT EOL caseBody			{
-																  $1->push_back(new ast::CaseExp(@$, *$3, *$6));
 																  $$ = $1;
 																}
 ;
@@ -1501,6 +1489,7 @@ THEN						{ /* !! Do Nothing !! */ }
 | THEN COMMA EOL			{ /* !! Do Nothing !! */ }
 | THEN SEMI					{ /* !! Do Nothing !! */ }
 | THEN SEMI EOL				{ /* !! Do Nothing !! */ }
+| /* Epsilon */		%prec CONTROLBREAK		{ /* !! Do Nothing !! */ }
 ;
 
 /*

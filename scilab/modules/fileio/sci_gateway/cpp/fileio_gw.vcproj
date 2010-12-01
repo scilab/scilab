@@ -337,6 +337,22 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_createdir.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_deletefile.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_fileext.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_fileinfo.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_fileparts.cpp"
 				>
 			</File>
@@ -349,7 +365,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_getshortpathname.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_isdir.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_isfile.cpp"
 				>
 			</File>
 			<File

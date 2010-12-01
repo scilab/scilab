@@ -377,6 +377,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dynamic_parallel.c"
+				>
+			</File>
+			<File
 				RelativePath=".\dynamic_tclsci.c"
 				>
 			</File>
@@ -669,10 +673,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_getversion.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_gstacksize.c"
 				>
 			</File>
@@ -694,10 +694,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_islittleendian.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_lasterror.c"
 				>
 			</File>
 			<File
@@ -770,10 +766,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_who.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_with_module.c"
 				>
 			</File>
 			<File
@@ -857,7 +849,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\with_module.c"
+				RelativePath="..\cpp\with_module.cpp"
 				>
 			</File>
 			<File
@@ -923,6 +915,10 @@
 			</File>
 			<File
 				RelativePath=".\dynamic_menus.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dynamic_parallel.h"
 				>
 			</File>
 			<File
@@ -1098,10 +1094,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\overload.hxx"
 				>
 			</File>
@@ -1266,7 +1258,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\with_module.h"
+				RelativePath="..\..\includes\with_module.h"
 				>
 			</File>
 			<File

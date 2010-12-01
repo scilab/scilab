@@ -37,7 +37,7 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
 
 	status = import_from_hdf5(hdf5FileToLoad);
 	if ~status then
-		error(msprintf(gettext("%s: Unable to import from data from %s"), "xcosBlockInterface", hdf5FileToLoad));
+		error(msprintf(gettext("%s: Unable to import data from %s"), "xcosBlockInterface", hdf5FileToLoad));
 	end
 	
 	ierr = execstr("[new_scs_m, y, typ] = interfaceAlias(job, scs_m, [])", 'errcatch');

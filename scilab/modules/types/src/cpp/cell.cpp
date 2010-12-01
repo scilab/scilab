@@ -25,15 +25,14 @@ namespace types
     */
     Cell::Cell() : Container()
     {
-        m_plData = NULL;
-        m_iRows = 0;
-        m_iCols = 0;
-        m_iSize = 0;
+        createCell(0, 0);
     }
 
     Cell::Cell(int _iRows, int _iCols)
     {
-        createCell(_iRows, _iCols);
+        int iRows = Max(0, _iRows);
+        int iCols = Max(0, _iCols);
+        createCell(iRows, iCols);
     }
 
     void Cell::createCell(int _iRows, int _iCols)
@@ -41,14 +40,19 @@ namespace types
         m_iRows = _iRows;
         m_iCols = _iCols;
         m_iSize = m_iRows * m_iCols;
+        m_iSizeMax = m_iSize;
 
-        m_plData = new InternalType*[size_get()];
+        m_vectData = new vector<InternalType*>;
+        if(m_iSize != 0)
+        {
+            m_vectData->resize(size_get());
+        }
 
         Double* pEmpty = Double::Empty();
         for(int i = 0 ; i < size_get() ; i++)
         {
             pEmpty->IncreaseRef();
-            m_plData[i] = pEmpty;
+            (*m_vectData)[i] = pEmpty;
         }
     }
 
@@ -58,13 +62,12 @@ namespace types
         {
             for(int i = 0 ; i < size_get() ; i++)
             {
-                m_plData[i]->DecreaseRef();
-                if(m_plData[i]->isDeletable())
+                (*m_vectData)[i]->DecreaseRef();
+                if((*m_vectData)[i]->isDeletable())
                 {
-                    delete m_plData[i];
+                    delete (*m_vectData)[i];
                 }
             }
-            delete[] m_plData;
         }
     }
 
@@ -84,7 +87,7 @@ namespace types
     {
         if(_iIndex < size_get())
         {
-            return m_plData[_iIndex];
+            return (*m_vectData)[_iIndex];
         }
         return NULL;
     }
@@ -111,17 +114,17 @@ namespace types
     {
         if(_iIndex < size_get())
         {
-            if(m_plData[_iIndex] != NULL)
+            if((*m_vectData)[_iIndex] != NULL)
             {
-                m_plData[_iIndex]->DecreaseRef();
-                if(m_plData[_iIndex]->isDeletable())
+                (*m_vectData)[_iIndex]->DecreaseRef();
+                if((*m_vectData)[_iIndex]->isDeletable())
                 {
-                    delete m_plData[_iIndex];
+                    delete (*m_vectData)[_iIndex];
                 }
             }
 
             _pIT->IncreaseRef();
-            m_plData[_iIndex] = _pIT;
+            (*m_vectData)[_iIndex] = _pIT;
             return true;
         }
         return false;
@@ -254,29 +257,38 @@ namespace types
             return true;
         }
 
-        //alloc new data array
-        InternalType** pIT = NULL;
-
-        pIT = new InternalType*[_iNewRows * _iNewCols];
-        for(int i = 0 ; i < _iNewRows ; i++)
+        if(m_iSizeMax < _iNewRows * _iNewCols)
         {
-            for(int j = 0 ; j < _iNewCols ; j++)
-            {
-                pIT[j * _iNewRows + i] = Double::Empty();
-            }
-        }
+            //alloc 10% bigger than asked to prevent future resize
+            m_iSizeMax = static_cast<int>(_iNewRows * _iNewCols * 1.1);
 
-        //copy existing values
-        for(int i = 0 ; i < rows_get() ; i++)
-        {
-            for(int j = 0 ; j < cols_get() ; j++)
+            //alloc new data array
+            vector<InternalType*>* pIT = NULL;
+
+            pIT = new vector<InternalType*>;
+            pIT->resize(m_iSizeMax);
+
+            for(int i = 0 ; i < _iNewRows ; i++)
             {
-                delete pIT[j * _iNewRows + i];
-                pIT[j * _iNewRows + i] = m_plData[j * rows_get() + i];
+                for(int j = 0 ; j < _iNewCols ; j++)
+                {
+                    (*pIT)[j * _iNewRows + i] = Double::Empty();
+                }
             }
+
+            //copy existing values
+            for(int i = 0 ; i < rows_get() ; i++)
+            {
+                for(int j = 0 ; j < cols_get() ; j++)
+                {
+                    delete (*pIT)[j * _iNewRows + i];
+                    (*pIT)[j * _iNewRows + i] = (*m_vectData)[j * rows_get() + i];
+                }
+            }
+            delete m_vectData;
+            m_vectData	= pIT;
+
         }
-        delete[] m_plData;
-        m_plData	= pIT;
 
         m_iRows = _iNewRows;
         m_iCols	= _iNewCols;
@@ -394,7 +406,7 @@ namespace types
         {
             for(int i = 0 ; i < _iSeqCount ; i++)
             {
-                vectRet.push_back(m_plData[_piSeqCoord[i] - 1]);
+                vectRet.push_back((*m_vectData)[_piSeqCoord[i] - 1]);
             }
         }
         else
@@ -403,14 +415,14 @@ namespace types
             {
                 //convert vertical indexes to horizontal indexes
                 int iInIndex = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-                vectRet.push_back(m_plData[iInIndex]);
+                vectRet.push_back((*m_vectData)[iInIndex]);
             }
         }
 
         return vectRet;
     }
 
-    bool Cell::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+    InternalType* Cell::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
     {
         int iNewRows = rows_get();
         int iNewCols = cols_get();
@@ -439,7 +451,7 @@ namespace types
                 }
                 else
                 {
-                    return false;
+                    return NULL;
                 }
             }
         }
@@ -447,18 +459,18 @@ namespace types
         //check if the size of _poSource is compatible with the size of the variable
         if(_bAsVector == false && (iNewRows < _poSource->rows_get() || iNewCols < _poSource->cols_get()))
         {
-            return false;
+            return NULL;
         }
         else if(_bAsVector == true && (iNewRows * iNewCols < _poSource->size_get()))
         {
-            return false;
+            return NULL;
         }
 
 
         //check if the count of values is compatible with indexes
         if(_poSource->size_get() != 1 && _poSource->size_get() != _iSeqCount)
         {
-            return false;
+            return NULL;
         }
 
 
@@ -469,7 +481,7 @@ namespace types
             //Only resize after all tests !
             if(resize(iNewRows, iNewCols) == false)
             {
-                return false;
+                return NULL;
             }
 
             ////variable can receive new values.
@@ -516,9 +528,9 @@ namespace types
         }
         else
         {
-            return false;
+            return NULL;
         }
-        return true;
+        return this;
     }
 
     Cell* Cell::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
@@ -548,6 +560,12 @@ namespace types
         int iNewRows = rows_get();
         int iNewCols = cols_get();
         //check input size
+        if(_iSeqCount != 1)
+        {
+            return false;
+        }
+
+
         if(_bAsVector == false)
         {
             if(rows_get() < _piMaxDim[0] || cols_get() < _piMaxDim[1])
@@ -577,23 +595,21 @@ namespace types
             }
         }
 
-        //check if the size of _poSource is compatible with the size of the variable
-        if(_bAsVector == false && (iNewRows < _poSource->rows_get() || iNewCols < _poSource->cols_get()))
-        {
-            return false;
-        }
-        else if(_bAsVector == true && (iNewRows * iNewCols < _poSource->size_get()))
-        {
-            return false;
-        }
-
         //Only resize after all tests !
         if(resize(iNewRows, iNewCols) == false)
         {
             return false;
         }
 
-        ////variable can receive new values.
-        return set(_piSeqCoord[0] - 1, _poSource);;
+        if(_bAsVector)
+        {//a{[]} = R
+            set(_piSeqCoord[0] - 1, _poSource);
+        }
+        else
+        {//a([],[]) = R
+            int iPos = (_piSeqCoord[0] - 1) + (_piSeqCoord[1] - 1) * rows_get();
+            set(iPos, _poSource);
+        }
+        return true;
     }
 }

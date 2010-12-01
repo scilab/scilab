@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.logging.LogManager;
 
 import javax.swing.SwingUtilities;
 
@@ -59,8 +60,8 @@ public final class Xcos {
 	/*
 	 * Dependencies version
 	 */
-	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.0.2");
-	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]");
+	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.1.0");
+	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]");
 	private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
 	
 	private static final String UNABLE_TO_LOAD_JGRAPHX = 
@@ -97,9 +98,18 @@ public final class Xcos {
 	 * There must be only one Xcos instance per Scilab application
 	 */
 	private Xcos() {
-		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadScicosLibs();");
-
+		/*
+		 * Read the configuration to support dynamic (before Xcos launch)
+		 * settings. 
+		 */
+		try {
+			LogManager.getLogManager().readConfiguration();
+		} catch (final SecurityException e) {
+			LOG.error(e);
+		} catch (final IOException e) {
+			LOG.error(e);
+		}
+		
 		/* Check the dependencies at startup time */
 		checkDependencies();
 		
@@ -120,7 +130,7 @@ public final class Xcos {
 		try {
 			FileUtils.decodeStyle(styleSheet);
 		} catch (final IOException e) {
-			LogFactory.getLog(Xcos.class).error(e);
+			LOG.error(e);
 		}
 	}
 
@@ -245,7 +255,7 @@ public final class Xcos {
 	 * @param filename
 	 *            the file to open. If null an empty diagram is created.
 	 */
-	public void open(final String filename) {
+	public void open(final File filename) {
 		if (!SwingUtilities.isEventDispatchThread()) {
 			LOG.error(CALLED_OUTSIDE_THE_EDT_THREAD);
 		}
@@ -260,7 +270,7 @@ public final class Xcos {
 			 */
 			for (final XcosDiagram diagram : diagrams) {
 				if (diagram.getSavedFile() != null
-						&& diagram.getSavedFile().compareTo(filename) == 0) {
+						&& diagram.getSavedFile().equals(filename)) {
 					diag = diagram;
 					break;
 				}
@@ -274,13 +284,14 @@ public final class Xcos {
 			 */
 			diag = new XcosDiagram();
 			diag.installListeners();
+			final XcosTab tab = new XcosTab(diag);
 
 			if (filename != null) {
 				diag.openDiagramFromFile(filename);
 			}
 
 			diagrams.add(diag);
-			new XcosTab(diag).setVisible(true);
+			tab.setVisible(true);
 
 		} else {
 
@@ -396,6 +407,9 @@ public final class Xcos {
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos() {
 		final Xcos instance = getInstance();
+		
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec("loadScicosLibs();");
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -416,8 +430,11 @@ public final class Xcos {
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos(final String fileName) {
-		final String filename = fileName;
-
+		final File filename = new File(fileName);
+		
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec("loadScicosLibs();");
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -449,7 +466,14 @@ public final class Xcos {
 		} catch (final InterruptedException e) {
 			LOG.error(e);
 		} catch (final InvocationTargetException e) {
-			LOG.error(e);
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 
@@ -497,7 +521,7 @@ public final class Xcos {
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static int xcosDiagramToHDF5(final String xcosFile, final String h5File,
 			final boolean forceOverwrite) {
-		final String file = xcosFile;
+		final File file = new File(xcosFile);
 		final File temp = new File(h5File);
 		final boolean overwrite = forceOverwrite;
 
@@ -515,13 +539,20 @@ public final class Xcos {
 				public void run() {
 					final XcosDiagram diagram = new XcosDiagram();
 					diagram.openDiagramFromFile(file);
-					diagram.dumpToHdf5File(temp.getAbsolutePath());
+					diagram.dumpToHdf5File(temp);
 				}
 			});
 		} catch (final InterruptedException e) {
 			throw new RuntimeException(e);
 		} catch (final InvocationTargetException e) {
-			throw new RuntimeException(e.getCause());
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 
 		return 0;
@@ -578,7 +609,14 @@ public final class Xcos {
 		} catch (final InterruptedException e) {
 			LOG.error(e);
 		} catch (final InvocationTargetException e) {
-			LOG.error(e);
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 
@@ -610,7 +648,14 @@ public final class Xcos {
 		} catch (final InterruptedException e) {
 			LOG.error(e);
 		} catch (final InvocationTargetException e) {
-			LOG.error(e);
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 }

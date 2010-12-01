@@ -64,7 +64,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/types.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -128,7 +128,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/types.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -192,7 +192,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/types.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -257,7 +257,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/types.lib"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -362,6 +362,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\struct.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\threadId.cpp"
 				>
 			</File>
 			<File
@@ -484,6 +488,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\struct.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\threadId.hxx"
 				>
 			</File>
 			<File

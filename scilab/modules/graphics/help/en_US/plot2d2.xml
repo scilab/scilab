@@ -26,7 +26,7 @@ plot2d2([x],y,&lt;opt_args&gt;)
 plot2d2([logflag],x,y,[style,strf,leg,rect,nax])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>args</term>

@@ -39,8 +39,10 @@ namespace types
         double                      img_get(int _iRows, int _iCols) const;
 
         bool                        real_set(double *_pdblReal);
+        bool                        real_set(const double *_pdblReal);
         bool                        real_set(int* _piReal); //to translate int to double matrix
         bool                        img_set(double *_pdblImg);
+        bool                        img_set(const double *_pdblImg);
 
         bool                        val_set(int _iRows, int _iCols, double _dblReal);
         bool                        val_set(int _iRows, int _iCols, double _dblReal, double _dblImg);
@@ -64,7 +66,7 @@ namespace types
         bool                        fillFromRow(int _iRows, Double *_poSource);
 
         bool                        resize(int _iNewRows, int _iNewCols);
-        bool                        insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+        InternalType*               insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
         static Double*              insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector);
         Double*                     extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
@@ -91,7 +93,6 @@ namespace types
         double*                       m_pdblReal;
         double*                       m_pdblImg;
         bool                          m_bComplex;
-        int                           m_iSizeMax;
     };
 }
 

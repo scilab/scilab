@@ -25,6 +25,7 @@
 //#include "execvisitor.hxx"
 //#include "timedvisitor.hxx"
 #include "shortcutvisitor.hxx"
+#include "printvisitor.hxx"
 
 // Needed by visitprivate(const OpExp &)
 // Needed by visitprivate(const LogicalOpExp &)
@@ -35,10 +36,12 @@
 #include "types_power.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
+#include "scilabexception.hxx"
 
 extern "C" {
 #include "doublecomplex.h"
 #include "matrix_transpose.h"
+#include "os_swprintf.h"
 }
 
 #include "timer.hxx"
@@ -422,9 +425,9 @@ namespace ast
                 if(iColMax != static_cast<int>((*row)->columns_get().size()))
                 {
                     std::wostringstream os;
-                    os << L"inconsistent row/column dimensions";
-                    os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
-                    throw os.str();
+                    os << L"inconsistent row/column dimensions\n";
+                    //os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, (*row)->location_get());
                 }
             }
 
@@ -523,12 +526,8 @@ namespace ast
             else
             {
                 wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                swprintf_s(szError, bsiz, _W("Undefined variable: %s\n"), e.name_get().c_str());
-#else
-                swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().c_str());
-#endif
-                throw wstring(szError);
+                os_swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().c_str());
+                throw ScilabError(szError, 999, e.location_get());
                 //Err, SimpleVar doesn't exist in Scilab scopes.
             }
         }
@@ -588,9 +587,9 @@ namespace ast
             {
                 e.head_get()->accept(execHead);
             }
-            catch(wstring sz)
+            catch(ScilabError error)
             {
-                throw sz;
+                throw error;
             }
 
             if(execHead.result_get() != NULL && execHead.result_get()->isStruct())
@@ -607,23 +606,15 @@ namespace ast
                     else
                     {
                         wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                        swprintf_s(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
-#else
-                        swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
-#endif
-                        throw wstring(szError);
+                        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
+                        throw ScilabError(szError, 999, psvRightMember->location_get());
                     }
                 }
                 else
                 {
                     wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                    swprintf_s(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-#else
-                    swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-#endif
-                    throw wstring(szError);
+                    os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
+                    throw ScilabError(szError, 999, e.location_get());
                 }
             }
             else if(execHead.result_get() != NULL && execHead.result_get()->isTList())
@@ -640,34 +631,22 @@ namespace ast
                     else
                     {
                         wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                        swprintf_s(szError, bsiz, _W("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
-#else
-                        swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
-#endif
-                        throw wstring(szError);
+                        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
+                        throw ScilabError(szError, 999, psvRightMember->location_get());
                     }
                 }
                 else
                 {
                     wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                    swprintf_s(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-#else
-                    swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-#endif
-                    throw wstring(szError);
+                    os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
+                    throw ScilabError(szError, 999, e.location_get());
                 }
             }
             else
             {
                 wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                swprintf_s(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
-#else
-                swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
-#endif
-                throw wstring(szError);
+                os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
+                throw ScilabError(szError, 999, e.location_get());
             }
         }
 
@@ -704,8 +683,8 @@ namespace ast
                             //manage error
                             std::wostringstream os;
                             os << _W("Indexes must be positive .\n");
-                            os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
-                            throw os.str();
+                            //os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
+                            throw ScilabError(os.str(), 999, e.location_get());
                         }
                     }
 
@@ -718,9 +697,9 @@ namespace ast
                     if(ResultList.size() == 0)
                     {
                         std::wostringstream os;
-                        os << L"inconsistent row/column dimensions";
-                        os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
-                        throw os.str();
+                        os << L"inconsistent row/column dimensions\n";
+                        //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+                        throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                     }
 
                     for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
@@ -758,6 +737,12 @@ namespace ast
                     const_cast<Exp*>(&e.then_get())->breakable_set();
                 }
 
+                if(e.is_continuable())
+                {
+                    const_cast<IfExp*>(&e)->continue_reset();
+                    const_cast<Exp*>(&e.then_get())->continuable_set();
+                }
+
                 if(e.is_returnable())
                 {
                     const_cast<Exp*>(&e.then_get())->returnable_set();
@@ -773,6 +758,12 @@ namespace ast
                     if(e.is_breakable())
                     {
                         const_cast<Exp*>(&e.else_get())->breakable_set();
+                    }
+
+                    if(e.is_continuable())
+                    {
+                        const_cast<IfExp*>(&e)->continue_reset();
+                        const_cast<Exp*>(&e.else_get())->continuable_set();
                     }
 
                     if(e.is_returnable())
@@ -793,6 +784,15 @@ namespace ast
                 const_cast<Exp*>(&e.then_get())->break_reset();
             }
 
+            if(e.is_continuable()
+                && ( (&e.else_get())->is_continue()
+                || (&e.then_get())->is_continue() ))
+            {
+                const_cast<IfExp*>(&e)->continue_set();
+                const_cast<Exp*>(&e.else_get())->continue_reset();
+                const_cast<Exp*>(&e.then_get())->continue_reset();
+            }
+
             if(e.is_returnable()
                 && ( (&e.else_get())->is_return()
                 || (&e.then_get())->is_return() ))
@@ -806,6 +806,26 @@ namespace ast
 
         void visitprivate(const TryCatchExp  &e)
         {
+            //save current prompt mode
+            ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+            //set mode silent for errors
+            ConfigVariable::setPromptMode(ConfigVariable::silent);
+            try
+            {
+                T execMe;
+                e.try_get().accept(execMe);
+            }
+            catch(ScilabMessage sm)
+            {
+                T execMe;
+
+                //to lock lasterror
+                ConfigVariable::setLastErrorCall();
+                e.catch_get().accept(execMe);
+            }
+
+            //restore previous prompt mode
+            ConfigVariable::setPromptMode(oldVal);
         }
 
 
@@ -814,8 +834,9 @@ namespace ast
             T execMeTest;
             T execMeAction;
 
-            //allow break operation
+            //allow break and continue operations
             const_cast<Exp*>(&e.body_get())->breakable_set();
+            const_cast<Exp*>(&e.body_get())->continuable_set();
             //allow return operation
             if(e.is_returnable())
             {
@@ -837,6 +858,15 @@ namespace ast
                     const_cast<WhileExp*>(&e)->return_set();
                     break;
                 }
+
+                if(e.body_get().is_continue())
+                {
+                    const_cast<WhileExp*>(&e)->continue_set();
+                    const_cast<Exp*>(&(e.body_get()))->continue_reset();
+                    e.test_get().accept(execMeTest);
+                    continue;
+                }
+
                 e.test_get().accept(execMeTest);
             }
         }
@@ -847,8 +877,9 @@ namespace ast
             T execVar;
             e.vardec_get().accept(execVar);
 
-            //allow break operation
+            //allow break and continue operations
             const_cast<Exp*>(&e.body_get())->breakable_set();
+            const_cast<Exp*>(&e.body_get())->continuable_set();
             //allow return operation
             if(e.is_returnable())
             {
@@ -890,6 +921,12 @@ namespace ast
                         break;
                     }
 
+                    if(e.body_get().is_continue())
+                    {
+                        const_cast<Exp*>(&(e.body_get()))->continue_reset();
+                        continue;
+                    }
+
                     if(e.body_get().is_return())
                     {
                         const_cast<ForExp*>(&e)->return_set();
@@ -913,6 +950,11 @@ namespace ast
                         break;
                     }
 
+                    if(e.body_get().is_continue())
+                    {
+                        continue;
+                    }
+
                     if(e.body_get().is_return())
                     {
                         const_cast<ForExp*>(&e)->return_set();
@@ -928,6 +970,10 @@ namespace ast
             const_cast<BreakExp*>(&e)->break_set();
         }
 
+        void visitprivate(const ContinueExp &e)
+        {
+            const_cast<ContinueExp*>(&e)->continue_set();
+        }
 
         void visitprivate(const ReturnExp &e)
         {
@@ -998,6 +1044,7 @@ namespace ast
                             T execBody;
                             pCase->body_get()->accept(execBody);
                             bCase = true;
+                            break;
                         }
                     }
                 }
@@ -1028,94 +1075,175 @@ namespace ast
                     (*itExp)->breakable_set();
                 }
 
+                if(e.is_continuable())
+                {
+                    (*itExp)->continue_reset();
+                    (*itExp)->continuable_set();
+                }
+
                 if(e.is_returnable())
                 {
                     (*itExp)->returnable_set();
                 }
 
-                (*itExp)->accept(execMe);
-
-                if(execMe.result_get() != NULL)
+                try
                 {
-                    bool bImplicitCall = false;
-                    if(execMe.result_get()->getAsCallable())//to manage call without ()
+                    (*itExp)->accept(execMe);
+
+                    if(execMe.result_get() != NULL)
                     {
-                        Callable *pCall = execMe.result_get()->getAsCallable();
-                        types::typed_list out;
-                        types::typed_list in;
-
-                        T execCall;
-                        Function::ReturnValue Ret = pCall->call(in, expected_size_get(), out, &execCall);
-
-                        if(Ret == Callable::OK)
+                        bool bImplicitCall = false;
+                        if(execMe.result_get()->getAsCallable())//to manage call without ()
                         {
-                            if(expected_size_get() == 1 && out.size() == 0) //to manage ans
-                            {
-                                if(static_cast<int>(out.size()) < expected_size_get())
-                                {
-                                    std::wostringstream os;
-                                    os << L"bad lhs, expected : " << expected_size_get() << L" returned : " << out.size() << std::endl;
-                                    throw os.str();
-                                }
-                            }
+                            Callable *pCall = execMe.result_get()->getAsCallable();
+                            types::typed_list out;
+                            types::typed_list in;
 
-                            if(out.size() == 1)
+                            T execCall;
+                            Function::ReturnValue Ret = pCall->call(in, expected_size_get(), out, &execCall);
+
+                            if(Ret == Callable::OK)
                             {
-                                out[0]->DecreaseRef();
-                                execMe.result_set(out[0]);
-                            }
-                            else
-                            {
-                                for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                                if(out.size() == 0)
                                 {
-                                    out[i]->DecreaseRef();
-                                    execMe.result_set(i, out[i]);
+                                    execMe.result_set(NULL);
+                                }
+                                else if(out.size() == 1)
+                                {
+                                    out[0]->DecreaseRef();
+                                    execMe.result_set(out[0]);
+                                }
+                                else
+                                {
+                                    for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                                    {
+                                        out[i]->DecreaseRef();
+                                        execMe.result_set(i, out[i]);
+                                    }
+                                }
+
+                                bImplicitCall = true;
+                            }
+                            else if(Ret == Callable::Error)
+                            {
+                                if(ConfigVariable::getLastErrorFunction() == L"")
+                                {
+                                    ConfigVariable::setLastErrorFunction(pCall->getName());
+                                }
+
+                                if(pCall->isMacro() || pCall->isMacroFile())
+                                {
+                                    wchar_t szError[bsiz];
+                                    os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*itExp)->location_get().first_line, pCall->getName().c_str());
+                                    throw ScilabMessage(szError);
+                                }
+                                else
+                                {
+                                    throw ScilabMessage();
                                 }
                             }
-                            bImplicitCall = true;
                         }
-                        else if(Ret == Callable::Error)
+
+
+                        SimpleVar* pVar = dynamic_cast<SimpleVar*>(*itExp);
+                        //don't output Simplevar and empty result
+                        if(execMe.result_get() != NULL && (pVar == NULL || bImplicitCall))
                         {
-                            std::wostringstream os;
-                            wchar_t szError[bsiz];
-#ifdef _MSC_VER
-                            swprintf_s(szError, bsiz, _W("Function \"%s\" failed\n"), pCall->getName().c_str());
-#else
-                            swprintf(szError, bsiz, _W("Function \"%ls\" failed\n"), pCall->getName().c_str());
-#endif
-                            throw wstring(szError);
+                            symbol::Context::getInstance()->put(L"ans", *execMe.result_get());
+                            if((*itExp)->is_verbose())
+                            {
+                                //TODO manage multiple returns
+                                std::wostringstream ostr;
+                                ostr << L"ans = " << std::endl << std::endl;
+                                ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                                YaspWriteW(ostr.str().c_str());
+                            }
+                        }
+
+                    }
+
+                    if((&e)->is_breakable() && (*itExp)->is_break())
+                    {
+                        const_cast<SeqExp *>(&e)->break_set();
+                        break;
+                    }
+
+                    if((&e)->is_continuable() && (*itExp)->is_continue())
+                    {
+                        const_cast<SeqExp *>(&e)->continue_set();
+                        break;
+                    }
+
+                    if((&e)->is_returnable() && (*itExp)->is_return())
+                    {
+                        const_cast<SeqExp *>(&e)->return_set();
+                        (*itExp)->return_reset();
+                        break;
+                    }
+                }
+                catch(ScilabMessage sm)
+                {
+                    YaspWriteW(sm.GetErrorMessage().c_str());
+
+                    CallExp* pCall = dynamic_cast<CallExp*>(*itExp);
+                    if(pCall != NULL)
+                    {//to print call expression only of it is a macro
+                        T execFunc;
+                        pCall->name_get().accept(execFunc);
+
+                        if(execFunc.result_get() != NULL && execFunc.result_get()->isCallable())
+                        {
+                            wostringstream os;
+                            PrintVisitor printMe(os);
+                            pCall->accept(printMe);
+                            os << std::endl << std::endl;
+                            if(ConfigVariable::getLastErrorFunction() == L"")
+                            {
+                                ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAsCallable()->getName());
+                            }
+                            throw ScilabMessage(os.str(), 0, (*itExp)->location_get());
                         }
                     }
 
-
-                    SimpleVar* pVar = dynamic_cast<SimpleVar*>(*itExp);
-                    //don't output Silplevar and empty result
-                    if(execMe.result_get() != NULL && (pVar == NULL || bImplicitCall))
+                    throw ScilabMessage((*itExp)->location_get());
+                }
+                catch(ScilabError se)
+                {
+                    if(ConfigVariable::getLastErrorMessage() == L"")
                     {
-                        symbol::Context::getInstance()->put(L"ans", *execMe.result_get());
-                        if((*itExp)->is_verbose())
+                        ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
+                        ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
+                        ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
+                        ConfigVariable::setLastErrorFunction(wstring(L""));
+                    }
+
+                    CallExp* pCall = dynamic_cast<CallExp*>(*itExp);
+                    if(pCall != NULL)
+                    {//to print call expression only of it is a macro
+                        T execFunc;
+
+                        try
                         {
-                            //TODO manage multiple returns
-                            std::wostringstream ostr;
-                            ostr << L"ans = " << std::endl << std::endl;
-                            ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-                            YaspWriteW(ostr.str().c_str());
+                            pCall->name_get().accept(execFunc);
+                            if(execFunc.result_get() != NULL &&
+                                (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
+                            {
+                                wostringstream os;
+                                PrintVisitor printMe(os);
+                                pCall->accept(printMe);
+                                os << std::endl << std::endl;
+                                ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAsCallable()->getName());
+                                YaspWriteW(se.GetErrorMessage().c_str());
+                                throw ScilabMessage(os.str(), 0, (*itExp)->location_get());
+                            }
+                        }
+                        catch(ScilabError se)
+                        {//just to catch exception, do nothing
                         }
                     }
 
-                }
-
-                if((&e)->is_breakable() && (*itExp)->is_break())
-                {
-                    const_cast<SeqExp *>(&e)->break_set();
-                    break;
-                }
-
-                if((&e)->is_returnable() && (*itExp)->is_return())
-                {
-                    const_cast<SeqExp *>(&e)->return_set();
-                    (*itExp)->return_reset();
-                    break;
+                    YaspWriteW(se.GetErrorMessage().c_str());
+                    throw ScilabMessage((*itExp)->location_get());
                 }
             }
         }
@@ -1267,6 +1395,20 @@ namespace ast
 
                 result_set(pReturn);
             }
+            else if(execMe.result_get()->isString())
+            {
+                String *pS      = execMe.result_get()->getAsString();
+                String* pReturn = new String(pS->cols_get(), pS->rows_get());
+
+                for(int i = 0 ; i < pS->rows_get() ; i++)
+                {
+                    for(int j = 0 ; j < pS->cols_get() ; j++)
+                    {
+                        pReturn->string_set(j,i, pS->string_get(i,j));
+                    }
+                }
+                result_set(pReturn);
+            }
         }
         /** \} */
 
@@ -1285,9 +1427,9 @@ namespace ast
                 result_set(execMe.result_get());
                 result_get()->IncreaseRef();
             }
-            catch(wstring sz)
+            catch(ScilabError error)
             {
-                throw sz;
+                throw error;
             }
         }
 
@@ -1316,9 +1458,11 @@ namespace ast
                 pRetList->push_back(static_cast<SimpleVar*>(*i)->name_get());
             }
 
+//            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            Exp* exp = const_cast<Exp*>(&e.body_get())->clone();
             //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
             types::Macro *pMacro = new types::Macro(e.name_get(), *pVarList, *pRetList,
-                static_cast<SeqExp&>(const_cast<Exp&>(e.body_get())), L"script");
+                static_cast<SeqExp&>(*exp), L"script");
             symbol::Context::getInstance()->AddMacro(pMacro);
         }
         /** \} */
@@ -1366,12 +1510,12 @@ namespace ast
                     {
                         if(execMeStep.result_get()->getAsInt()->getIntType() != IT)
                         {
-                            throw string(_("Undefined operation for the given operands.\n"));
+                            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
                         }
                     }
                     else if(execMeStep.result_get()->getType() == InternalType::RealPoly)
                     {
-                        throw string(_("Undefined operation for the given operands.\n"));
+                        throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
                     }
 
 
@@ -1379,24 +1523,24 @@ namespace ast
                     {
                         if(execMeEnd.result_get()->getAsInt()->getIntType() != IT)
                         {
-                            throw string(_("Undefined operation for the given operands.\n"));
+                            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
                         }
                     }
                     else if(execMeEnd.result_get()->getType() == InternalType::RealPoly)
                     {
-                        throw string(_("Undefined operation for the given operands.\n"));
+                            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
                     }
                 }
                 else if(execMeStart.result_get()->getType() == InternalType::RealPoly)
                 {
                     if(execMeStep.result_get()->getType() == InternalType::RealInt)
                     {
-                        throw string(_("Undefined operation for the given operands.\n"));
+                        throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
                     }
 
                     if(execMeEnd.result_get()->getType() == InternalType::RealInt)
                     {
-                        throw string(_("Undefined operation for the given operands.\n"));
+                        throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
                     }
                 }
                 else if(execMeStep.result_get()->getType() == InternalType::RealInt)
@@ -1407,7 +1551,7 @@ namespace ast
                     {
                         if(execMeEnd.result_get()->getAsInt()->getIntType() != IT)
                         {
-                            throw string(_("Undefined operation for the given operands.\n"));
+                            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
                         }
                     }
                 }
@@ -1415,7 +1559,7 @@ namespace ast
                 {
                     if(execMeEnd.result_get()->getType() == InternalType::RealInt)
                     {
-                        throw string(_("Undefined operation for the given operands.\n"));
+                        throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
                     }
                 }
 
@@ -1428,18 +1572,14 @@ namespace ast
             }
             catch(int iPos)
             {
-                char st[bsiz];
-#ifdef _MSC_VER
-                sprintf_s(st, bsiz, _("%s: Wrong type for argument %d: Scalar expected.\n"), ":", iPos);
-#else
-                sprintf(st, _("%s: Wrong type for argument %d: Scalar expected.\n"), "::", 1);
-#endif
-                throw string(st);
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Scalar expected.\n"), L":", iPos);
+                throw ScilabError(szError, 999, e.location_get());
             }
-            catch(wstring sz)
+            catch(ScilabError error)
             {
                 //TODO YaSp : Overloading
-                throw sz;
+                throw error;
             }
         }
         /** \} */

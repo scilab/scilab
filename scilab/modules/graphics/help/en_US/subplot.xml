@@ -24,7 +24,7 @@
 subplot(mnp)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>m,n,p</term>

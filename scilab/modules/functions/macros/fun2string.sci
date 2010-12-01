@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) 1999-2010 INRIA - Serge STEER <serge.steer@inria.fr>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -437,22 +437,23 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
       case '18' then  //named variable
         stk(top)(1)=op(2)+'='+ stk(top)(1)
       case '19' then  // mkindx
-                      // replace all variables describing path by a single list
-                      n=evstr(op(2))
-                      m=evstr(op(3));
-                      if m>1&n>0 then
-                        l=list(m),pos=top-m
-                        for k=1:m,l($+1)=stk(pos+k),end
-                        top=pos+1
-                        stk(top)=l
-                        //for k=2:m,stk(top+1)=null(),end
-                      end
-                      nn=n;if n==0 then nn=m,end
-                      l=list(nn),pos=top-nn
-                      for k=1:nn,l($+1)=stk(pos+k),end
-                      top=pos+1
-                      stk(top)=l
-                      //for k=size(stk):-1:top+1,stk(k)=null(),end
+        
+        // replace all variables describing path by a single list
+        n=evstr(op(2))
+        m=evstr(op(3));
+        if m>1&n>0 then
+          l=list(m),pos=top-m
+          for k=1:m,l($+1)=stk(pos+k),end
+          top=pos+1
+          stk(top)=l
+          //for k=2:m,stk(top+1)=null(),end
+        end
+        nn=n;if n==0 then nn=m,end
+        l=list(nn),pos=top-nn
+        for k=1:nn,l($+1)=stk(pos+k),end
+        top=pos+1
+        stk(top)=l
+        //for k=size(stk):-1:top+1,stk(k)=null(),end
       case '23' then
         top=top+1
         stk(top)=list(quote+op(2)+quote,'0')
@@ -733,7 +734,7 @@ function [stk,txt,top]=_p2sci()
   [s2,te2]=s2(1:2);
   //
   if te2=='1'|te2=='2'|te2=='3' then s2='('+s2+')',end
-  if te1=='2'|te1=='3' then s1='('+s1+')',end
+  if te1=='1'|te1=='2'|te1=='3' then s1='('+s1+')',end
   if part(s2,1)=='-' then s2='('+s2+')',end
   stk=list(s1+'^'+s2,'2')
   top=top-1

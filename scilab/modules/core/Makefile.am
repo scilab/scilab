@@ -38,7 +38,6 @@ src/c/xscion.c \
 src/c/SetScilabEnvironment.c \
 src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
-src/c/with_module.c \
 src/c/loadversion.c \
 src/c/version.c \
 src/c/stackinfo.c \
@@ -79,7 +78,8 @@ src/c/funcprot.c \
 src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
-src/c/dynamic_tclsci.c
+src/c/dynamic_tclsci.c \
+src/c/dynamic_parallel.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -182,13 +182,14 @@ src/fortran/stackc2i.f \
 src/fortran/isinstring.f
 
 CORE_CPP_SOURCES = \
-src/cpp/core_gw.cpp \
-src/cpp/hashtable_core.cpp \
-src/cpp/namstr.cpp \
-src/cpp/search_functions.cpp \
-src/cpp/storeCommand.cpp \
-src/cpp/banner.cpp \
-src/cpp/overload.cpp
+    src/cpp/core_gw.cpp \
+    src/cpp/hashtable_core.cpp \
+    src/cpp/namstr.cpp \
+    src/cpp/search_functions.cpp \
+    src/cpp/storeCommand.cpp \
+    src/cpp/banner.cpp \
+    src/cpp/overload.cpp \
+	src/cpp/with_module.cpp
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -213,7 +214,6 @@ sci_gateway/c/sci_dispbpt.c \
 sci_gateway/c/sci_intppty.c \
 sci_gateway/c/sci_ieee.c \
 sci_gateway/c/sci_gstacksize.c \
-sci_gateway/c/sci_lasterror.c \
 sci_gateway/c/sci_funptr.c \
 sci_gateway/c/sci_return.c \
 sci_gateway/c/sci_getmd5.c \
@@ -226,20 +226,18 @@ sci_gateway/c/sci_typename.c \
 sci_gateway/c/sci_mode.c \
 sci_gateway/c/sci_macr2tree.c \
 sci_gateway/c/sci_iserror.c \
-sci_gateway/c/sci_getversion.c \
 sci_gateway/c/sci_getdebuginfo.c \
 sci_gateway/c/sci_debug.c \
 sci_gateway/c/gw_core.c \
 sci_gateway/c/gw_user.c \
 sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
-sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
@@ -267,7 +265,10 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_isglobal.cpp \
 	sci_gateway/cpp/sci_getscilabmode.cpp \
 	sci_gateway/cpp/sci_getos.cpp \
-	sci_gateway/cpp/sci_exists.cpp
+	sci_gateway/cpp/sci_exists.cpp \
+	sci_gateway/cpp/sci_with_module.cpp \
+	sci_gateway/cpp/sci_lasterror.cpp \
+	sci_gateway/cpp/sci_getversion.cpp
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
@@ -377,5 +378,10 @@ includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
 includes/Thread_Wrapper.h
+
+if GUI
+USEANT=1
+endif
+
 
 include $(top_srcdir)/Makefile.incl.am

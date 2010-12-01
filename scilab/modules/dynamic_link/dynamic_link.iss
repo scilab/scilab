@@ -40,9 +40,7 @@ Source: modules\{#DYNAMIC_LINK}\src\scripts\Makefile.incl.mak; DestDir: {app}\mo
 ;
 Source: modules\{#DYNAMIC_LINK}\includes\*.h; DestDir: {app}\modules\{#DYNAMIC_LINK}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DYNAMIC_LINK}\macros\lib; DestDir: {app}\modules\{#DYNAMIC_LINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#DYNAMIC_LINK}\macros\names; DestDir: {app}\modules\{#DYNAMIC_LINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#DYNAMIC_LINK}\macros\*.bin; DestDir: {app}\modules\{#DYNAMIC_LINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+;Source: modules\{#DYNAMIC_LINK}\macros\lib; DestDir: {app}\modules\{#DYNAMIC_LINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#DYNAMIC_LINK}\macros\*.sci; DestDir: {app}\modules\{#DYNAMIC_LINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#DYNAMIC_LINK}\macros\buildmacros.sce; DestDir: {app}\modules\{#DYNAMIC_LINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#DYNAMIC_LINK}\macros\buildmacros.bat; DestDir: {app}\modules\{#DYNAMIC_LINK}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

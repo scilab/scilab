@@ -25,12 +25,13 @@ import javax.help.plaf.basic.BasicContentViewerUI;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.event.HyperlinkEvent;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
+import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.localization.Messages;
-
 
 /**
  * This class inherits from BasicContentViewerUI from Javahelp.
@@ -46,7 +47,7 @@ import org.scilab.modules.localization.Messages;
 public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2593697956426596790L;
 	/* This field is a copy of BasicContentViewerUI which is privated.
@@ -63,6 +64,19 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 		return new SwingScilabHelpBrowserViewer((JHelpContentViewer) x);
 	}
 
+        /**
+         * {@inheritDoc}
+         */
+        public void hyperlinkUpdate(HyperlinkEvent event) {
+                if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                        if (event.getDescription().startsWith("http://")) {
+                                WebBrowser.openUrl(event.getURL(), event.getDescription());
+                        } else {
+                                super.hyperlinkUpdate(event);
+                        }
+                }
+       }
+
 	/**
 	 * Create the UI interface
 	 * @see javax.help.plaf.basic.BasicContentViewerUI#installUI(javax.swing.JComponent)
@@ -77,7 +91,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 
 	/**
 	 * Retrieve the field "html" from BasicContentViewerUI and change
-	 * permission (it is private by default) 
+	 * permission (it is private by default)
 	 */
 	private void retrievePrivateFieldFromBasicContentViewerUI() {
 		Field privateField = null;
@@ -92,7 +106,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 			System.err.println("Could not find the field of the html component of the help browser.");
 			System.err.println("Please submit a bug report: http://bugzilla.scilab.org");
 			e.printStackTrace();
-		} 
+		}
 
 		try {
 			this.accessibleHtml = (javax.swing.JEditorPane) privateField.get(this);
@@ -103,7 +117,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 			System.err.println("Illegal access in the retrieval of the html component of Javahelp");
 			e.printStackTrace();
 		}
-	}    
+	}
 
 	/**
 	 * Create the popup menu on the help
@@ -112,7 +126,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 	private void createPopupMenu(JComponent c) {
 		final JPopupMenu popup = new JPopupMenu();
 
-		JMenuItem menuItem = null; 
+		JMenuItem menuItem = null;
 
 		/* Execute into Scilab */
 		ActionListener actionListenerExecuteIntoScilab = new ActionListener() {
@@ -141,7 +155,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 					ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
 				} else {
 					try {
-						/* Dynamic load of the SciNotes class. 
+						/* Dynamic load of the SciNotes class.
 						 * This is done to avoid a cyclic dependency on gui <=> scinotes
 						 */
 						Class scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
@@ -205,7 +219,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 			public void actionPerformed(ActionEvent actionEvent) {
 				DefaultHelpHistoryModel history = SwingScilabHelpBrowser.getHelpHistory();
 				/* Not at the last position */
-				if (history.getHistory().size() != (history.getIndex() + 1)) { 
+				if (history.getHistory().size() != (history.getIndex() + 1)) {
 					SwingScilabHelpBrowser.getHelpHistory().goForward();
 				}
 			}
@@ -219,7 +233,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 		/* Copy */
 		menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
 		menuItem.setText(Messages.gettext("Copy"));
-		popup.add(menuItem); 
+		popup.add(menuItem);
 		popup.addSeparator();
 
 
@@ -246,7 +260,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 				}
 			}
 		};
-		PropertyChangeListener listenerTextItem = new PropertyChangeListener() {			
+		PropertyChangeListener listenerTextItem = new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent arg0) {
 				String keyword = accessibleHtml.getSelectedText();
 				if (keyword == null) {
@@ -264,7 +278,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 		helpMenuItem.addActionListener(actionListenerHelpOnKeyword);
 		popup.add(helpMenuItem);
 
-					
+
 		/* Creates the Popupmenu on the component */
 		accessibleHtml.setComponentPopupMenu(popup);
 	}

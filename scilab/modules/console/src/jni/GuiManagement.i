@@ -1,6 +1,19 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 2007 - Vincent Couvert
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+
 /* GuiManagement.i */
-/** 
- * Windows: swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i 
+/**
+ * Windows: swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i
  * Other: Use the option --enable-build-swig to the configure
 */
 %module GuiManagement
@@ -16,8 +29,8 @@
 %pragma(java) jniclassclassmodifiers=%{
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
-   * All Scilab gui management used in Java console 
+ /**
+   * All Scilab gui management used in Java console
    * @author Vincent COUVERT
    * @copyright INRIA 2007
    */
@@ -31,7 +44,7 @@ public class%}
   protected GuiManagementJNI() {
     throw new UnsupportedOperationException();
   }";
-  
+
 /* static load of library */
 %pragma(java) jniclasscode=%{
   static {
@@ -57,10 +70,10 @@ public class%}
 
 /* JavaDoc for GuiManagement class */
 %pragma(java) moduleclassmodifiers="
- /** 
-   * All Scilab gui management used in Java console 
+ /**
+   * All Scilab gui management used in Java console
    * @author Vincent COUVERT
-   * @copyright INRIA 2007 
+   * @copyright INRIA 2007
    */
 public class";
 

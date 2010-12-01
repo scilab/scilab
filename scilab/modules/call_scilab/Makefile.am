@@ -38,7 +38,7 @@ libscicall_scilab_la_SOURCES = $(CALLSCILAB_C_SOURCES) $(GATEWAY_C_SOURCES)
 CHECK_SRC= $(libscicall_scilab_la_SOURCES)
 INCLUDE_FLAGS = $(libscicall_scilab_la_CFLAGS)
 
-libscicall_scilab_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la
+libscicall_scilab_la_LIBADD =  
 
 
 

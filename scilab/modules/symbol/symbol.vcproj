@@ -389,10 +389,6 @@
 			RelativePath="..\..\bin\lapack.lib"
 			>
 		</File>
-		<File
-			RelativePath="..\..\libs\types.lib"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

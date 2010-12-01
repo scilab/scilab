@@ -23,7 +23,7 @@
     <synopsis>[y]=intc(a,b,f)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a,b</term>

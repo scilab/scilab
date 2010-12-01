@@ -2,7 +2,7 @@
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
 #
 # This file is distributed under the same license as the Scilab package.
- 
+
 
 DATA_STRUCTURES_C_SOURCES = src/c/stcreate.c \
 src/c/hmops.c
@@ -63,7 +63,7 @@ CHECK_SRC= $(DATA_STRUCTURES_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidata_structures_la_CFLAGS)
 
 # cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscidata_structures_la_LIBADD =  libdummy-data_structures.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscidata_structures_la_LIBADD =  libdummy-data_structures.la  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 libdummy_data_structures_la-intl_e.lo: src/fortran/intl_e.f

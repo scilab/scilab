@@ -14,11 +14,27 @@
 #ifndef __FILEINFO_H__
 #define __FILEINFO_H__
 
+#include "dynlib_fileio.h"
+#include <wchar.h>
 #define FILEINFO_ARRAY_SIZE 13
 
-double * fileinfo(char *filename, int *ierr);
+#define FILEINFO_TOTAL_SIZE_INDICE 0
+#define FILEINFO_MODE_INDICE       1
+#define FILEINFO_UID_INDICE        2
+#define FILEINFO_GID_INDICE        3
+#define FILEINFO_DEV_INDICE        4
+#define FILEINFO_MTIME_INDICE      5
+#define FILEINFO_CTIME_INDICE      6
+#define FILEINFO_ATIME_INDICE      7
+#define FILEINFO_RDEV_INDICE       8
+#define FILEINFO_BLKSIZE_INDICE    9
+#define FILEINFO_BLOCKS_INDICE    10
+#define FILEINFO_INO_INDICE       11
+#define FILEINFO_NLINK_INDICE     12
 
-double * filesinfo(char **filenames, int dim_filenames, int *ierrs);
+#define FILEINFO_DEFAULT_ERROR    -1
+
+FILEIO_IMPEXP double* filesinfoW(wchar_t** _pwstFilename, int _iSize, int* _piErr);
 
 #endif /* __FILEINFO_H__ */
 /*--------------------------------------------------------------------------*/

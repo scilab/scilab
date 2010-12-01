@@ -22,6 +22,10 @@ Source: bin\slatec_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\linpack_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\linpack_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\eispack_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
+Source: bin\elem_func.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\elem_func_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 Source: bin\{#ELEMFUNCTIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#ELEMFUNCTIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -41,8 +45,6 @@ Source: modules\{#ELEMFUNCTIONS}\macros\buildmacros.sce; DestDir: {app}\modules\
 Source: modules\{#ELEMFUNCTIONS}\macros\buildmacros.bat; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\macros\lib; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#ELEMFUNCTIONS}\macros\names; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#ELEMFUNCTIONS}\macros\*.bin; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\macros\*.sci; DestDir: {app}\modules\{#ELEMFUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#ELEMFUNCTIONS}\demos\*.*; DestDir: {app}\modules\{#ELEMFUNCTIONS}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}

@@ -14,6 +14,7 @@
 #include "double.hxx"
 #include "tlist.hxx"
 #include "string.hxx"
+#include "listundefined.hxx"
 
 namespace types
 {
@@ -143,4 +144,37 @@ namespace types
         return getTypeStr();
     }
 
+    bool TList::set(const std::wstring& _sKey, InternalType* _pIT)
+    {
+        return set(getIndexFromString(_sKey), _pIT);
+    }
+
+    bool TList::set(const int _iIndex, InternalType* _pIT)
+    {
+        if(_iIndex < 0)
+        {
+            return false;
+        }
+
+        while(m_plData->size() <_iIndex)
+        {//incease list size and fill with "Undefined"
+            m_plData->push_back(new ListUndefined());
+            m_iSize = size_get();
+        }
+
+        //manage ref on the old value
+        InternalType* pOld = (*m_plData)[_iIndex];
+        if(pOld)
+        {
+            pOld->DecreaseRef();
+            if(pOld->isDeletable())
+            {
+                delete pOld;
+            }
+        }
+
+        _pIT->IncreaseRef();
+        (*m_plData)[_iIndex] = _pIT;
+        return true;
+    }
 }

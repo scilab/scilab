@@ -24,7 +24,7 @@
 sp=sparse(ij,v [,mn])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>

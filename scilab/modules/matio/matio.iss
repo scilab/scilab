@@ -20,6 +20,7 @@
 ;
 Source: bin\{#MATIO}.dll; DestDir: {app}\bin; Components: {#COMPN_MATIO}
 Source: bin\lib{#MATIO}.dll; DestDir: {app}\bin; Components: {#COMPN_MATIO}
+Source: bin\{#MATIO}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MATIO}\VERSION.xml; DestDir: {app}\modules\{#MATIO}; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\readme.txt; DestDir: {app}\modules\{#MATIO}; Components: {#COMPN_MATIO}
@@ -31,9 +32,7 @@ Source: modules\{#MATIO}\etc\{#MATIO}.start; DestDir: {app}\modules\{#MATIO}\etc
 ;
 ;Source: modules\{#MATIO}\includes\*.h; DestDir: {app}\modules\{#MATIO}\includes; Components: {#COMPN_MATIO}
 ;
-Source: modules\{#MATIO}\macros\lib; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
-Source: modules\{#MATIO}\macros\names; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
-Source: modules\{#MATIO}\macros\*.bin; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
+;Source: modules\{#MATIO}\macros\lib; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\macros\*.sci; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\macros\buildmacros.sce; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\macros\buildmacros.bat; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}

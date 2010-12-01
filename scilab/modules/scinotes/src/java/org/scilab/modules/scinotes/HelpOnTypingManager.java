@@ -17,17 +17,74 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.text.BadLocationException;
 
+import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+
 /**
  * This class handles the help on typing
  * @author Calixte DENIZET
  */
-public class HelpOnTypingManager implements KeyListener {
+public final class HelpOnTypingManager implements KeyListener {
+
+    private static final String OPENERS = "Openers";
+    private static final String KEYWORDS = "Keywords";
+
+    private static HelpOnTypingManager instance = new HelpOnTypingManager();
+    private static boolean openers;
+    private static boolean keywords;
 
     /**
      * Constructor
-     * @param pane the associated TextPane
      */
-    public HelpOnTypingManager(ScilabEditorPane pane) { }
+    private HelpOnTypingManager() {
+        super();
+        instance = this;
+        openers = ConfigSciNotesManager.getHelpOnTyping(OPENERS);
+        keywords = ConfigSciNotesManager.getHelpOnTyping(KEYWORDS);
+    }
+
+    /**
+     * @return the singleton instance of HelpOnTypingManager
+     */
+    public static HelpOnTypingManager getInstance() {
+        return instance;
+    }
+
+    /**
+     * @param b true if autocompletion on '(', '{', ...
+     */
+    public static void enableOpeners(boolean b) {
+        openers = b;
+        ConfigSciNotesManager.saveHelpOnTyping(OPENERS, b);
+    }
+
+    /**
+     * @param b true if autocompletion on 'if', 'function', ...
+     */
+    public static void enableKeywords(boolean b) {
+        keywords = b;
+        ConfigSciNotesManager.saveHelpOnTyping(KEYWORDS, b);
+    }
+
+    /**
+     * @return true if help on typing is active
+     */
+    public static boolean isActive() {
+        return openers || keywords;
+    }
+
+    /**
+     * @return true if help on typing for the openers is active
+     */
+    public static boolean isOpenersActive() {
+        return openers;
+    }
+
+    /**
+     * @return true if help on typing for the openers is active
+     */
+    public static boolean isKeywordsActive() {
+        return keywords;
+    }
 
     /**
      * Nothing !
@@ -49,7 +106,7 @@ public class HelpOnTypingManager implements KeyListener {
         char c = e.getKeyChar();
         ScilabEditorPane textPane = ScilabEditorPane.getFocusedPane();
         ScilabDocument doc = (ScilabDocument) textPane.getDocument();
-        if (c != KeyEvent.CHAR_UNDEFINED && textPane.getSelectionStart() == textPane.getSelectionEnd()) {
+        if (keywords && c != KeyEvent.CHAR_UNDEFINED && textPane.getSelectionStart() == textPane.getSelectionEnd()) {
             int pos = textPane.getCaretPosition();
             if (c == ' ' && e.getModifiers() == 0) {
                 int end = doc.getDefaultRootElement().getElement(doc.getDefaultRootElement().getElementIndex(pos)).getEndOffset() - 1;
@@ -59,11 +116,27 @@ public class HelpOnTypingManager implements KeyListener {
                         doc.insertString(pos, " ", null);
                         e.consume();
                         KeywordEvent kwe = textPane.getKeywordEvent(pos);
+                        int[] ret;
+                        String kw;
                         switch (kwe.getType()) {
                         case ScilabLexerConstants.OSKEYWORD :
-                            doc.insertString(pos + 1, "\nend", null);
-                            int[] ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 4);
-                            textPane.setCaretPosition(ret[0]);
+                            kw = doc.getText(kwe.getStart(), kwe.getLength());
+                            if ("if".equals(kw)) {
+                                doc.insertString(pos + 1, " then\nend", null);
+                                ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 9);
+                                textPane.setCaretPosition(ret[0]);
+                            } else if (!"end".equals(kw)) {
+                                doc.insertString(pos + 1, "\nend", null);
+                                ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 4);
+                                textPane.setCaretPosition(ret[0]);
+                            }
+                            break;
+                        case ScilabLexerConstants.SKEYWORD :
+                            kw = doc.getText(kwe.getStart(), kwe.getLength());
+                            if ("elseif".equals(kw)) {
+                                doc.insertString(pos + 1, " then", null);
+                                textPane.setCaretPosition(pos + 1);
+                            }
                             break;
                         case ScilabLexerConstants.FKEYWORD :
                             /* We have 'function' or 'endfunction' */
@@ -77,7 +150,7 @@ public class HelpOnTypingManager implements KeyListener {
                         }
                     } catch (BadLocationException exc) { }
                 }
-            } else {
+            } else if (openers) {
                 String str = null;
                 switch (c) {
                 case '(' :
@@ -91,6 +164,7 @@ public class HelpOnTypingManager implements KeyListener {
                     break;
                 case '\"' :
                     str = "\"\"";
+                    break;
                 default :
                 }
 

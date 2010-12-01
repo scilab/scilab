@@ -35,8 +35,6 @@ Source: modules\{#SCINOTES}\etc\keysConfiguration.xml; DestDir: {app}\modules\{#
 Source: modules\{#SCINOTES}\etc\{#SCINOTES}GUIConfiguration.xml; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 ;
 Source: modules\{#SCINOTES}\macros\lib; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
-Source: modules\{#SCINOTES}\macros\names; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
-Source: modules\{#SCINOTES}\macros\*.bin; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\*.sci; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\buildmacros.sce; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\buildmacros.bat; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}

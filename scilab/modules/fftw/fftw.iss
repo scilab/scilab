@@ -41,8 +41,6 @@ Source: modules\{#FFTW}\etc\{#FFTW}.start; DestDir: {app}\modules\{#FFTW}\etc; C
 ;Source: modules\{#FFTW}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#FFTW}\includes; Components: {#COMPN_FFTW}
 ;
 ;Source: modules\{#FFTW}\macros\lib; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
-;Source: modules\{#FFTW}\macros\names; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
-;Source: modules\{#FFTW}\macros\*.bin; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
 ;Source: modules\{#FFTW}\macros\*.sci; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\macros\buildmacros.sce; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\macros\buildmacros.bat; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}

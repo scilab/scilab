@@ -11,7 +11,7 @@
  */
 
 #ifndef AST_DEBUGVISITOR_HXX
-# define AST_DEBUGVISITOR_HXX
+#define AST_DEBUGVISITOR_HXX
 
 #include <iostream>
 #include <sstream>
@@ -74,6 +74,7 @@ namespace ast
     virtual void visit (const WhileExp  &e);
     virtual void visit (const ForExp  &e);
     virtual void visit (const BreakExp &e);
+    virtual void visit (const ContinueExp &e);
     virtual void visit (const ReturnExp &e);
     virtual void visit (const SeqExp  &e);
     virtual void visit (const SelectExp  &e);

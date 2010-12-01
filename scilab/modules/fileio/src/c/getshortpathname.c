@@ -16,6 +16,7 @@
 #include "MALLOC.h"
 #include "charEncoding.h"
 #include "os_strdup.h"
+#include "os_wcsdup.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#ifndef MAX_PATH_SHORT
@@ -96,5 +97,53 @@ char *getshortpathname(char *longpathname,BOOL *convertok)
 		*convertok = FALSE;
 	}
 	return ShortName;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK)
+{
+    wchar_t* pwstOutput = NULL;
+    if(_pwstLongPathName)
+    {
+#ifdef _MSC_VER
+        int iLen = GetShortPathNameW(_pwstLongPathName, NULL, 0);
+
+        if(iLen <= 0)
+        {
+            iLen = MAX_PATH_SHORT;
+        }
+
+        pwstOutput = (wchar_t*)MALLOC((iLen + 1) * sizeof(wchar_t));
+
+        if(pwstOutput) 
+        {
+            /* second converts path */
+            if(GetShortPathNameW(_pwstLongPathName, pwstOutput, iLen))
+            {
+                *_pbOK = TRUE;
+            }
+            else
+            {
+                FREE(_pwstLongPathName);
+                pwstOutput = os_wcsdup(_pwstLongPathName);
+                *_pbOK = FALSE;
+            }
+        }
+        else
+        {
+            /* FAILED */
+            pwstOutput = os_wcsdup(_pwstLongPathName);
+            *_pbOK = FALSE;
+        }
+#else
+		/* Linux and MacOS*/
+        pwstOutput = os_wcsdup(_pwstLongPathName);
+		*_pbOK = FALSE;
+#endif
+    }
+    else
+    {
+        *_pbOK = FALSE;
+    }
+    return pwstOutput;
 }
 /*--------------------------------------------------------------------------*/

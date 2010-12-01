@@ -65,14 +65,14 @@
      DOTTIMES = 280,
      KRONTIMES = 281,
      CONTROLTIMES = 282,
-     DIVIDE = 283,
-     DOTDIVIDE = 284,
-     CONTROLDIVIDE = 285,
-     KRONDIVIDE = 286,
-     RDIVIDE = 287,
-     DOTRDIVIDE = 288,
-     CONTROLRDIVIDE = 289,
-     KRONRDIVIDE = 290,
+     RDIVIDE = 283,
+     DOTRDIVIDE = 284,
+     CONTROLRDIVIDE = 285,
+     KRONRDIVIDE = 286,
+     LDIVIDE = 287,
+     DOTLDIVIDE = 288,
+     CONTROLLDIVIDE = 289,
+     KRONLDIVIDE = 290,
      POWER = 291,
      DOTPOWER = 292,
      EQ = 293,
@@ -103,22 +103,25 @@
      WHILE = 318,
      DO = 319,
      BREAK = 320,
-     TRY = 321,
-     CATCH = 322,
-     RETURN = 323,
-     STR = 324,
-     ID = 325,
-     VARINT = 326,
-     VARFLOAT = 327,
-     NUM = 328,
-     PATH = 329,
-     COMMENT = 330,
-     BLOCKCOMMENT = 331,
-     TOPLEVEL = 332,
-     HIGHLEVEL = 333,
-     UPLEVEL = 334,
-     LISTABLE = 335,
-     FUNCTIONCALL = 336
+     CONTINUE = 321,
+     TRY = 322,
+     CATCH = 323,
+     RETURN = 324,
+     STR = 325,
+     ID = 326,
+     VARINT = 327,
+     VARFLOAT = 328,
+     NUM = 329,
+     PATH = 330,
+     COMMENT = 331,
+     BLOCKCOMMENT = 332,
+     TOPLEVEL = 333,
+     HIGHLEVEL = 334,
+     UPLEVEL = 335,
+     LISTABLE = 336,
+     CONTROLBREAK = 337,
+     CONTRORDIVIDE = 338,
+     FUNCTIONCALL = 339
    };
 #endif
 /* Tokens.  */
@@ -148,14 +151,14 @@
 #define DOTTIMES 280
 #define KRONTIMES 281
 #define CONTROLTIMES 282
-#define DIVIDE 283
-#define DOTDIVIDE 284
-#define CONTROLDIVIDE 285
-#define KRONDIVIDE 286
-#define RDIVIDE 287
-#define DOTRDIVIDE 288
-#define CONTROLRDIVIDE 289
-#define KRONRDIVIDE 290
+#define RDIVIDE 283
+#define DOTRDIVIDE 284
+#define CONTROLRDIVIDE 285
+#define KRONRDIVIDE 286
+#define LDIVIDE 287
+#define DOTLDIVIDE 288
+#define CONTROLLDIVIDE 289
+#define KRONLDIVIDE 290
 #define POWER 291
 #define DOTPOWER 292
 #define EQ 293
@@ -186,22 +189,25 @@
 #define WHILE 318
 #define DO 319
 #define BREAK 320
-#define TRY 321
-#define CATCH 322
-#define RETURN 323
-#define STR 324
-#define ID 325
-#define VARINT 326
-#define VARFLOAT 327
-#define NUM 328
-#define PATH 329
-#define COMMENT 330
-#define BLOCKCOMMENT 331
-#define TOPLEVEL 332
-#define HIGHLEVEL 333
-#define UPLEVEL 334
-#define LISTABLE 335
-#define FUNCTIONCALL 336
+#define CONTINUE 321
+#define TRY 322
+#define CATCH 323
+#define RETURN 324
+#define STR 325
+#define ID 326
+#define VARINT 327
+#define VARFLOAT 328
+#define NUM 329
+#define PATH 330
+#define COMMENT 331
+#define BLOCKCOMMENT 332
+#define TOPLEVEL 333
+#define HIGHLEVEL 334
+#define UPLEVEL 335
+#define LISTABLE 336
+#define CONTROLBREAK 337
+#define CONTRORDIVIDE 338
+#define FUNCTIONCALL 339
 
 
 

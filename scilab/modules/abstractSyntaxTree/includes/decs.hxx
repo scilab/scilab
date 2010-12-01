@@ -16,32 +16,37 @@
  */
 
 #ifndef AST_DECS_HXX
-# define AST_DECS_HXX
+#define AST_DECS_HXX
 
-# include <list>
+#include <list>
 
-# include "ast/ast.hxx"
+#include "ast/ast.hxx"
 
 namespace ast
 {
 
-  /** \brief Abstract a Declarations node. */
-  class Decs : public Ast
-  {
-
-    /** \name Ctor & dtor.
-     ** \{ */
-  public:
-    /** \brief Construct a Declarations node.
-     ** \param location scanner position informations */
-    Decs (const Location& location) :
-      Ast (location)
+    /** \brief Abstract a Declarations node. */
+    class Decs : public Ast
     {
-    }
 
-  };
-  /** \brief Define shortand type for list of Declarations. */
-  typedef std::list<Decs *> decs_t;
+        /** \name Ctor & dtor.
+        ** \{ */
+    public:
+        /** \brief Construct a Declarations node.
+        ** \param location scanner position informations */
+        Decs (const Location& location) 
+            : Ast (location)
+        {
+        }
+
+        virtual Decs* clone()
+        {
+            Location* newloc = const_cast<Location*>(&location_get())->clone();
+            return new Decs(*newloc);
+        }
+    };
+    /** \brief Define shortand type for list of Declarations. */
+    typedef std::list<Decs *> decs_t;
 
 } // namespace ast
 

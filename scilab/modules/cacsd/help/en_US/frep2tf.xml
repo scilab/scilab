@@ -23,7 +23,7 @@
     <synopsis>[h [,err]]=frep2tf(frq,repf,dg [,dom,tols,weight])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>frq</term>

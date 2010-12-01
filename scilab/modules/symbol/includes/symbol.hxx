@@ -16,7 +16,7 @@
  */
 
 #ifndef SYMBOL_HH
-# define SYMBOL_HH
+#define SYMBOL_HH
 
 #include <set>
 #include <list>

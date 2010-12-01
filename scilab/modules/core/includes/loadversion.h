@@ -24,10 +24,10 @@
  * @param[out] sci_version_revision  
  * @return if the function has been able to load the informations
  */
-BOOL getversionmodule(char *modulename,
+BOOL getversionmodule(wchar_t* modulename,
 					  int *sci_version_major,
 					  int *sci_version_minor,
 					  int *sci_version_maintenance,
-					  char *sci_version_string,
+					  wchar_t *sci_version_string,
 					  int *sci_version_revision);
 /*--------------------------------------------------------------------------*/ 

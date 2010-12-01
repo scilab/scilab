@@ -27,6 +27,8 @@ libsciparse_la_CPPFLAGS = -I$(top_builddir)/modules/core/includes \
 			-I$(top_builddir)/modules/abstractSyntaxTree/includes \
 			-I$(top_builddir)/modules/symbol/includes \
 			-I$(top_builddir)/modules/types/includes \
+			-I$(top_builddir)/modules/output_stream/includes \
+			-I$(top_builddir)/modules/string/includes \
 			-Iincludes \
 			-Isrc/cpp
 

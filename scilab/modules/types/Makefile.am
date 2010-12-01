@@ -54,7 +54,8 @@ TYPES_CPP_SOURCES = \
 			src/cpp/cell.cpp \
 			src/cpp/tlist.cpp \
 			src/cpp/file.cpp \
-			src/cpp/mlist.cpp
+			src/cpp/mlist.cpp \
+			src/cpp/threadId.cpp
 
 GIWS_WRAPPERS =
 
@@ -81,15 +82,15 @@ libscitypes_la_CFLAGS=
 
 
 libscitypes_la_CPPFLAGS = 	-Iincludes/ \
-				-I../elementary_functions/includes \
-				-I../operations/includes \
-				-I../symbol/includes \
-				-I../abstractSyntaxTree/includes \
-				-I../output_stream/includes \
-				-I../parse/includes \
-				-I../system_env/includes \
-				-I ../functions_manager/includes \
-				-I ../string/includes \
+				-I$(top_srcdir)/modules/elementary_functions/includes \
+				-I$(top_srcdir)/modules/operations/includes \
+				-I$(top_srcdir)/modules/symbol/includes \
+				-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/parse/includes \
+				-I$(top_srcdir)/modules/system_env/includes \
+				-I$(top_srcdir)/modules/functions_manager/includes \
+				-I$(top_srcdir)/modules/string/includes \
 				-I src/cpp
 				-I src/cpp \
 				$(EIGEN_CPPFLAGS)
@@ -114,9 +115,10 @@ if SWIG
 BUILT_SOURCES=swig
 endif
 
-libscitypes_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-						$(top_builddir)/libs/MALLOC/libscimalloc.la \
-						$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscitypes_la_LIBADD =  \
+$(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la
+
 
 #### types : gateway declaration ####
 libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway

@@ -38,7 +38,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.ZOOM_OUT;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "list-remove.png";
+	public static final String SMALL_ICON = "zoom-out.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_MINUS;
 	/** Accelerator key for the action */

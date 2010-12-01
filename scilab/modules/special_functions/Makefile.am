@@ -49,7 +49,7 @@ libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOUR
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscispecial_functions_la_CFLAGS)
 
-libscispecial_functions_la_LIBADD =   $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/statistics/libscistatistics.la
+libscispecial_functions_la_LIBADD =    $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/statistics/libscistatistics.la
 
 
 #### Target ######

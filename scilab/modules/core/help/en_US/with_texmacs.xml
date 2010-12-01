@@ -13,7 +13,7 @@
     <synopsis>r=with_texmacs()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>

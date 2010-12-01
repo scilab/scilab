@@ -11,26 +11,32 @@
  */
 
 #ifndef AST_CONSTEXP_HXX
-# define AST_CONSTEXP_HXX
+#define AST_CONSTEXP_HXX
 
 #include "exp.hxx"
 
 namespace ast
 {
-  /** \brief Abstract an Constant Expression node.
-   **
-   ** \b Example:  true or 2 or 1,23*/
-  class ConstExp : public Exp
-  {
-  public:
-    ConstExp (const Location& location) :
-      Exp (location)
+    /** \brief Abstract an Constant Expression node.
+    **
+    ** \b Example:  true or 2 or 1,23*/
+    class ConstExp : public Exp
     {
-    }
+    public:
+        ConstExp (const Location& location) 
+            : Exp (location)
+        {
+        }
 
-    virtual ~ConstExp ()
-    {
-    }
-  };
+        virtual ~ConstExp ()
+        {
+        }
+
+        //virtual ConstExp* clone()
+        //{
+        //    Location* newloc = const_cast<Location*>(&location_get())->clone();
+        //    return new ConstExp(*newloc);
+        //}
+    };
 } // namespace ast
 #endif

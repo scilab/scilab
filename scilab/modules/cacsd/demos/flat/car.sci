@@ -134,27 +134,29 @@ function C=build_car()
 endfunction
 
 function draw_car(C,pos)
-  drawlater()
-  [x,y,theta,phi]=(pos(1),pos(2),pos(3),pos(4))
-  bigL=1
-  Rc=[cos(theta) sin(theta);-sin(theta) cos(theta)]
-  // the car
-  xy = [-2,-2;7,-2;8,-1;8,1;7,2;-2,2;-2,-2]/6
-  C(1).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  // rear wheels
-  xy=[[-1 1]/8; [1 1]/6]'
-  C(2).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  xy=[[-1 1]/8; -[1 1]/6]'
-  C(3).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  // front wheels
-  xy=[(1-cos(phi)/8) (1/6-sin(phi)/8)
+  if is_handle_valid(C) then
+    drawlater()
+    [x,y,theta,phi]=(pos(1),pos(2),pos(3),pos(4))
+    bigL=1
+    Rc=[cos(theta) sin(theta);-sin(theta) cos(theta)]
+    // the car
+    xy = [-2,-2;7,-2;8,-1;8,1;7,2;-2,2;-2,-2]/6
+    C(1).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    // rear wheels
+    xy=[[-1 1]/8; [1 1]/6]'
+    C(2).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    xy=[[-1 1]/8; -[1 1]/6]'
+    C(3).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    // front wheels
+    xy=[(1-cos(phi)/8) (1/6-sin(phi)/8)
       (1+cos(phi)/8) (1/6+sin(phi)/8)]
-  C(4).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  xy=[(1-cos(phi)/8) (-1/6-sin(phi)/8)
+    C(4).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    xy=[(1-cos(phi)/8) (-1/6-sin(phi)/8)
       (1+cos(phi)/8) (-1/6+sin(phi)/8)]
-  C(5).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  drawnow()
-  show_pixmap();
+    C(5).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    drawnow()
+    show_pixmap();
+  end
 endfunction
 
 function h=polyline(xy)

@@ -13,6 +13,7 @@ package org.scilab.modules.scinotes;
 //CHECKSTYLE:OFF
  /**
    * @author Allan CORNET - DIGITEO 2009
+   * @author Calixte DENIZET
    */
 public class ScilabKeywordsJNI {
 

@@ -16,7 +16,7 @@
 Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{app}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon
 ;
 Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{app}"
-Name: {group}\{cm:ConsoleIconName}; Filename: {app}\bin\scilex.exe;WorkingDir: "{app}"
+Name: {group}\{cm:ConsoleIconName}; Filename: {app}\bin\YaSp.exe;WorkingDir: "{app}"
 
 #ifdef WITH_CHM
 Name: {group}\{cm:DescriptionHelpScilabCHM}; Filename:"{app}\{cm:ScilabCHM}";
