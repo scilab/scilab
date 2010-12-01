@@ -117,11 +117,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libjavasci_la_etcdir)" \
 	"$(DESTDIR)$(libjavasci_la_rootdir)" \
-	"$(DESTDIR)$(libsciscipad_la_imagesdir)" \
-	"$(DESTDIR)$(libsciscipad_la_javadocdir)" \
-	"$(DESTDIR)$(libsciscipad_la_javadocjavascidir)" \
-	"$(DESTDIR)$(libsciscipad_la_javadocresourcesdir)" \
-	"$(DESTDIR)$(libsciscipad_la_javadoctypesdir)"
+	"$(DESTDIR)$(libsciscipad_la_imagesdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @JAVASCI_TRUE@libjavasci_la_DEPENDENCIES =  \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -180,10 +176,7 @@ SOURCES = $(libjavasci_la_SOURCES) $(libjavasci2_la_SOURCES)
 DIST_SOURCES = $(am__libjavasci_la_SOURCES_DIST) \
 	$(am__libjavasci2_la_SOURCES_DIST)
 DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_root_DATA) \
-	$(libsciscipad_la_images_DATA) $(libsciscipad_la_javadoc_DATA) \
-	$(libsciscipad_la_javadocjavasci_DATA) \
-	$(libsciscipad_la_javadocresources_DATA) \
-	$(libsciscipad_la_javadoctypes_DATA)
+	$(libsciscipad_la_images_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -519,49 +512,6 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@help/images/SciStringClass.gif \
 @JAVASCI_TRUE@help/images/SciBooleanClass.gif
 
-
-### javasci : javadoc ###
-@JAVASCI_TRUE@libsciscipad_la_javadocdir = $(mydatadir)/javadoc/
-@JAVASCI_TRUE@libsciscipad_la_javadoc_DATA = javadoc/overview-summary.html \
-@JAVASCI_TRUE@javadoc/deprecated-list.html \
-@JAVASCI_TRUE@javadoc/allclasses-frame.html \
-@JAVASCI_TRUE@javadoc/serialized-form.html \
-@JAVASCI_TRUE@javadoc/stylesheet.css \
-@JAVASCI_TRUE@javadoc/constant-values.html \
-@JAVASCI_TRUE@javadoc/package-list \
-@JAVASCI_TRUE@javadoc/overview-frame.html \
-@JAVASCI_TRUE@javadoc/allclasses-noframe.html \
-@JAVASCI_TRUE@javadoc/index.html
-
-@JAVASCI_TRUE@libsciscipad_la_javadocresourcesdir = $(mydatadir)/javadoc/resources/
-@JAVASCI_TRUE@libsciscipad_la_javadocresources_DATA = javadoc/resources/inherit.gif
-@JAVASCI_TRUE@libsciscipad_la_javadocjavascidir = $(mydatadir)/javadoc/org/scilab/modules/javasci/
-@JAVASCI_TRUE@libsciscipad_la_javadocjavasci_DATA = javadoc/org/scilab/modules/javasci/JavasciException.ScilabInternalException.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/JavasciException.UndefinedVariableException.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/Call_Scilab.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/JavasciException.UnknownTypeException.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/package-frame.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/JavasciException.UnsupportedTypeException.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/package-summary.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/Scilab.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/JavasciException.InitializationException.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/JavasciException.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/javasci/JavasciException.AlreadyRunningException.html
-
-@JAVASCI_TRUE@libsciscipad_la_javadoctypesdir = $(mydatadir)/javadoc/org/scilab/modules/javasci/
-@JAVASCI_TRUE@libsciscipad_la_javadoctypes_DATA = javadoc/org/scilab/modules/types/package-frame.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabIntegerTypeEnum.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/package-summary.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabTypeEnum.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabDouble.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabInteger.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabString.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabTList.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabList.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabMList.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabType.html \
-@JAVASCI_TRUE@javadoc/org/scilab/modules/types/ScilabBoolean.html
-
 @JAVASCI_TRUE@BUILT_SOURCES = $(am__append_1)
 
 #### SWIG Declaration ####
@@ -890,86 +840,6 @@ uninstall-libsciscipad_la_imagesDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciscipad_la_imagesdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciscipad_la_imagesdir)" && rm -f $$files
-install-libsciscipad_la_javadocDATA: $(libsciscipad_la_javadoc_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscipad_la_javadocdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_javadocdir)"
-	@list='$(libsciscipad_la_javadoc_DATA)'; test -n "$(libsciscipad_la_javadocdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscipad_la_javadocdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscipad_la_javadocdir)" || exit $$?; \
-	done
-
-uninstall-libsciscipad_la_javadocDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciscipad_la_javadoc_DATA)'; test -n "$(libsciscipad_la_javadocdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciscipad_la_javadocdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciscipad_la_javadocdir)" && rm -f $$files
-install-libsciscipad_la_javadocjavasciDATA: $(libsciscipad_la_javadocjavasci_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscipad_la_javadocjavascidir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_javadocjavascidir)"
-	@list='$(libsciscipad_la_javadocjavasci_DATA)'; test -n "$(libsciscipad_la_javadocjavascidir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscipad_la_javadocjavascidir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscipad_la_javadocjavascidir)" || exit $$?; \
-	done
-
-uninstall-libsciscipad_la_javadocjavasciDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciscipad_la_javadocjavasci_DATA)'; test -n "$(libsciscipad_la_javadocjavascidir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciscipad_la_javadocjavascidir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciscipad_la_javadocjavascidir)" && rm -f $$files
-install-libsciscipad_la_javadocresourcesDATA: $(libsciscipad_la_javadocresources_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscipad_la_javadocresourcesdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_javadocresourcesdir)"
-	@list='$(libsciscipad_la_javadocresources_DATA)'; test -n "$(libsciscipad_la_javadocresourcesdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscipad_la_javadocresourcesdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscipad_la_javadocresourcesdir)" || exit $$?; \
-	done
-
-uninstall-libsciscipad_la_javadocresourcesDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciscipad_la_javadocresources_DATA)'; test -n "$(libsciscipad_la_javadocresourcesdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciscipad_la_javadocresourcesdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciscipad_la_javadocresourcesdir)" && rm -f $$files
-install-libsciscipad_la_javadoctypesDATA: $(libsciscipad_la_javadoctypes_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscipad_la_javadoctypesdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_javadoctypesdir)"
-	@list='$(libsciscipad_la_javadoctypes_DATA)'; test -n "$(libsciscipad_la_javadoctypesdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscipad_la_javadoctypesdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscipad_la_javadoctypesdir)" || exit $$?; \
-	done
-
-uninstall-libsciscipad_la_javadoctypesDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciscipad_la_javadoctypes_DATA)'; test -n "$(libsciscipad_la_javadoctypesdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciscipad_la_javadoctypesdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciscipad_la_javadoctypesdir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1061,7 +931,7 @@ check: $(BUILT_SOURCES)
 @JAVASCI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libsciscipad_la_imagesdir)" "$(DESTDIR)$(libsciscipad_la_javadocdir)" "$(DESTDIR)$(libsciscipad_la_javadocjavascidir)" "$(DESTDIR)$(libsciscipad_la_javadocresourcesdir)" "$(DESTDIR)$(libsciscipad_la_javadoctypesdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libsciscipad_la_imagesdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1120,11 +990,7 @@ info-am:
 
 install-data-am: install-data-local install-libjavasci_la_etcDATA \
 	install-libjavasci_la_rootDATA \
-	install-libsciscipad_la_imagesDATA \
-	install-libsciscipad_la_javadocDATA \
-	install-libsciscipad_la_javadocjavasciDATA \
-	install-libsciscipad_la_javadocresourcesDATA \
-	install-libsciscipad_la_javadoctypesDATA
+	install-libsciscipad_la_imagesDATA
 
 install-dvi: install-dvi-am
 
@@ -1173,10 +1039,6 @@ ps-am:
 uninstall-am: uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_rootDATA \
 	uninstall-libsciscipad_la_imagesDATA \
-	uninstall-libsciscipad_la_javadocDATA \
-	uninstall-libsciscipad_la_javadocjavasciDATA \
-	uninstall-libsciscipad_la_javadocresourcesDATA \
-	uninstall-libsciscipad_la_javadoctypesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -1191,23 +1053,15 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libjavasci_la_etcDATA install-libjavasci_la_rootDATA \
-	install-libsciscipad_la_imagesDATA \
-	install-libsciscipad_la_javadocDATA \
-	install-libsciscipad_la_javadocjavasciDATA \
-	install-libsciscipad_la_javadocresourcesDATA \
-	install-libsciscipad_la_javadoctypesDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libjavasci_la_etcDATA \
+	install-libsciscipad_la_imagesDATA install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_rootDATA \
 	uninstall-libsciscipad_la_imagesDATA \
-	uninstall-libsciscipad_la_javadocDATA \
-	uninstall-libsciscipad_la_javadocjavasciDATA \
-	uninstall-libsciscipad_la_javadocresourcesDATA \
-	uninstall-libsciscipad_la_javadoctypesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
