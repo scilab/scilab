@@ -17,6 +17,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
+#include "charEncoding.h"
 }
 
 using namespace types;
@@ -28,13 +29,13 @@ Function::ReturnValue sci_tlist(typed_list &in, int _piRetCount, typed_list &out
     //check input parameters
     if(in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), "tlist" ,1);
+        ScierrorW(999, _W("%ls: Wrong number of input arguments: At least %d expected.\n"), L"tlist" ,1);
         return Function::Error;
     }
 
     if(in[0]->getType() != InternalType::RealString)
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "tlist", 1);
+        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"), L"tlist", 1);
         return Function::Error;
     }
 
@@ -50,7 +51,7 @@ Function::ReturnValue sci_tlist(typed_list &in, int _piRetCount, typed_list &out
         {
             if(*it == wstring(pS->string_get(i)))
             {
-                Scierror(999, _("%s : Fields names must be unique"), "tlist");
+                ScierrorW(999, _W("%ls : Fields names must be unique"), L"tlist");
                 return Function::Error;
             }
         }
