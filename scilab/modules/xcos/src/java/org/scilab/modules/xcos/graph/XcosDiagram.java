@@ -25,9 +25,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -1957,15 +1959,17 @@ public class XcosDiagram extends ScilabGraph {
      * @return The resulting data. Keys are variable names and Values are 
      *         evaluated values. 
      */
-	public Map<String, String> evaluateContext() {
-		Map<String, String> result = null;
+	public LinkedHashMap<String, String> evaluateContext() {
+		LinkedHashMap<String, String> result = null;
 		
 		try {
+			final Pattern p = Pattern.compile("('|\")");
+			
 			final StringBuilder str = new StringBuilder();
 			str.append('[');
 			for (final String s : getContext()) {
 				str.append('\"');
-				str.append(s);
+				str.append(p.matcher(s).replaceAll("''"));
 				str.append("\" ");
 			}
 			str.append(']');

@@ -545,6 +545,7 @@ public final class SuperBlock extends BasicBlock {
 	public void mask() {
 		setInterfaceFunctionName(MASKED_INTERFUNCTION_NAME);
 		setSimulationFunctionName(MASKED_SIMULATION_NAME);
+		setIntegerParameters(new ScilabDouble(1));
 	}
 
 	/**
@@ -553,6 +554,7 @@ public final class SuperBlock extends BasicBlock {
 	public void unmask() {
 		setInterfaceFunctionName(INTERFUNCTION_NAME);
 		setSimulationFunctionName(SIMULATION_NAME);
+		setIntegerParameters(new ScilabDouble());
 	}
 
 	/**

@@ -78,33 +78,36 @@ in the status bar of Scinotes.
 Xcos:
 =====
 
-* The demos has been updated to use the latest features.
+* The demos have been updated to use the latest features.
 
 * bug 7424 fixed - Integer parameters could be modified when loading a diagram.
 
 * bug 7639 fixed - Generating code for scilab function block was failing with
                    a syntax error message.
+
+* bug 8235 fixed - Using masked super-block did not work when parameters are
+                   defined on the sub-context.
+
+* bug 8711 fixed - The "Cont. Plant-Hybrid Observer" demo contains a translated
+                   origin point which lead to strange links creation.
+
+* bug 8440 fixed - The SVG background was not exported to SVG.
+
 * bug 8480 fixed - The Debug block did not have a valid function type.
 
-
-Module skeleton:
-================
-
-* New example added (function with copy instead of reference)
+* bug 8580 fixed - Mirror and flip icons were inverted.
 
 * bug 8639 fixed - Simulations were not halted on Xcos close.
 
 * bug 8642 fixed - The getDiagramVersion unit test could not pass.
 
-* bug 8711 fixed - The "Cont. Plant-Hybrid Observer" demo contains a translated
-                   origin point which lead to strange links creation.
-
 * bug 8658 fixed - Use accentuated characters on file name lead to a modelica
                    compiler error.
 
-* bug 8440 fixed - The SVG background was not exported to SVG.
+Module skeleton:
+================
 
-* bug 8580 fixed - Mirror and flip icons were inverted.
+* New example added (function with copy instead of reference)
 
 Localization:
 =============
