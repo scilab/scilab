@@ -23,6 +23,9 @@ Documentation:
 * In an example in the documentation, when an undocumented function is used, 
 trigger a warning and do not add a link on the function name.
 
+* bug 7069 fixed - Old documentation about the documentation build process
+                   removed.
+
 Scinotes:
 =========
 
@@ -125,6 +128,7 @@ Bug Fixes:
 
 * bug 6768 fixed - input did not return good value when RETURN was pressed
                    on Windows XP.
+
 * bug 7694 fixed - There were no key shortcuts in the command history browser.
 
 * bug 7695 fixed - Only the first selected line was deleted in command history
