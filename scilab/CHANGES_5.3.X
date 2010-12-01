@@ -21,6 +21,8 @@ Xcos:
 Bug Fixes:
 ==========
 
+* bug 5686 fixed - Complex number manipulation could crash Scilab.
+
 * bug 7694 fixed - There were no key shortcuts in the command history browser.
 
 * bug 7695 fixed - Only the first selected line was deleted in command history
