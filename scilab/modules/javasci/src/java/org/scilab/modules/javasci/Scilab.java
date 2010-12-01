@@ -32,8 +32,7 @@ import org.scilab.modules.javasci.JavasciException.ScilabInternalException;
 
 /**
  * This class provides the capability to access to the Scilab engine from
- * a Java application.
- * Note that Scilab 5.X is not threadsafe. This should be fixed in Scilab 6.X.
+ * a Java application.<br />
  * <br />
  * Example:<br />
  * <code>
