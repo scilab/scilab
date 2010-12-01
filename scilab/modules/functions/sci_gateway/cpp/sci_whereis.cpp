@@ -1,17 +1,22 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
 #include "funcmanager.hxx"
 #include "context.hxx"
+
+extern "C" {
+#include "Scierror.h"
+#include "localization.h"
+}
 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -22,12 +27,14 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 	/* Check the number of input argument */
 	if(in.size() != 1)
 	{
+        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"whereis", 1);
 		return Function::Error;
 	}
 
 	/* Check the number of output argument */
 	if(_iRetCount != 1)
 	{
+        ScierrorW(999, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"whereis", 1);
 		return Function::Error;
 	}
 
@@ -37,6 +44,7 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 
 		if(pS->size_get() != 1)
 		{
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"whereis", 1);
 			return Function::Error;
 		}
 
@@ -47,7 +55,8 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 		pIT = pContext->get_fun(funcName);
 		if(pIT == NULL)
 		{
-			return Function::Error;
+            out.push_back(types::Double::Empty());
+			return Function::OK;
 		}
 	}
 	else
@@ -63,8 +72,9 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 		stModule = pIT->getAsCallable()->getModule();
 		break;
 	default :
-		return Function::Error;
-	}
+		out.push_back(types::Double::Empty());
+        return Function::OK;
+    }
 
 	out.push_back(new types::String(stModule.c_str()));
 	return Function::OK;
