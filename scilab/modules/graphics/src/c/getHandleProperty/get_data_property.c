@@ -36,28 +36,38 @@
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
 int getgrayplotdata(sciPointObj *pobj)
 {
-  char * variable_tlist[] = {"grayplotdata","x","y","z"};
+    char * variable_tlist[] = {"grayplotdata","x","y","z"};
+    int* tmp;
+    int numX;
+    int numY;
+    double* dataX;
+    double* dataY;
+    double* dataZ;
 
-  /* F.Leray debug*/
-  sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);
+    /* Add 'variable' tlist items to stack */
+    returnedList * tList = createReturnedList( 3, variable_tlist );
 
-  /* Add 'variable' tlist items to stack */
-  returnedList * tList = createReturnedList( 3, variable_tlist ) ;
+    if ( tList == NULL )
+    {
+        return -1;
+    }
 
-  if ( tList == NULL )
-  {
-    return -1 ;
-  }
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_X__, jni_int);
+    numX = *tmp;
+    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_Y__, jni_int);
+    numY = *tmp;
 
-  addColVectorToReturnedList( tList, ppgrayplot->pvecx, ppgrayplot->nx ) ;
+    dataX = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, jni_double_vector);
+    dataY = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, jni_double_vector);
+    dataZ = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, jni_double_vector);
 
-  addColVectorToReturnedList( tList, ppgrayplot->pvecy, ppgrayplot->ny ) ;
+    addColVectorToReturnedList(tList, dataX, numX);
+    addColVectorToReturnedList(tList, dataY, numY);
+    addMatrixToReturnedList(tList, dataZ, numX, numY);
 
-  addMatrixToReturnedList( tList, ppgrayplot->pvecz, ppgrayplot->nx, ppgrayplot->ny ) ;
+    destroyReturnedList( tList );
 
-  destroyReturnedList( tList ) ;
-
-  return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
@@ -183,6 +193,9 @@ int get_data_property( sciPointObj * pobj )
 
 int get_data_property( sciPointObj * pobj )
 {
+  char* type;
+
+  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
 
   /*
    * 0 values put within the conditional expressions to prevent calling sciGetEntityType
@@ -197,9 +210,9 @@ int get_data_property( sciPointObj * pobj )
   {
     return getchampdata( pobj ) ;
   }
-  else if (0 &&  (sciGetEntityType(pobj) == SCI_GRAYPLOT)  && (pGRAYPLOT_FEATURE(pobj)->type == 0) ) /* case 0: real grayplot */
+  else if (strcmp(type, __GO_GRAYPLOT__) == 0)
   {
-    return getgrayplotdata( pobj ) ;
+    return getgrayplotdata( pobj );
   }
   else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
   {

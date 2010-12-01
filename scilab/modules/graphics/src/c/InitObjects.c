@@ -518,6 +518,8 @@ sciInitGraphicContext (sciPointObj * pobj)
     break;
 #endif
   }
+
+return 0;
 }
 
 /**

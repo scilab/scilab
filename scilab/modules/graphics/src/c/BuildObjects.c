@@ -1898,72 +1898,117 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 }
 
 /********************** 14/05/2002 *****
- **ConstructGayplot
+ **ConstructGrayplot
  * This function creates Grayplot
  */
 sciPointObj *
 ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 		   double *pvecz, int n1, int n2, int type)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciGrayplot *pgray = (sciGrayplot *) NULL;
-  int i = 0,cmpt;
+    sciPointObj *pobj = (sciPointObj *) NULL;
+    /* To be deleted */
+#if 0
+    sciGrayplot *pgray = (sciGrayplot *) NULL;
+#endif
+    int i = 0;
+    int cmpt;
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
+    char* typeParent;
+    char* grayplotID;
+    int result;
+    int dataMapping;
+    int gridSize[2];
+
+    int parentVisible;
+    double* clipRegion;
+    int clipRegionSet;
+    int clipState;
+    int* tmp;
+
+    typeParent = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+
+    if (strcmp(typeParent, __GO_AXES__) != 0)
     {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_GRAYPLOT);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciGrayplot)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (sciPointObj *) NULL;
+    }
 
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+        return (sciPointObj *) NULL;
+    }
 
-      pGRAYPLOT_FEATURE (pobj)->callback = (char *)NULL;
-      pGRAYPLOT_FEATURE (pobj)->callbacklen = 0;
-      pGRAYPLOT_FEATURE (pobj)->callbackevent = 100;
+    pobj->UID = (char*) createGraphicObject(__GO_GRAYPLOT__);
+    pobj->entitytype = SCI_GRAYPLOT;
+    grayplotID = (char*) createDataObject(pobj->UID, __GO_GRAYPLOT__);
 
-      pGRAYPLOT_FEATURE (pobj)->isselected = TRUE;
-      pGRAYPLOT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+    if (grayplotID == NULL)
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
 
-      pGRAYPLOT_FEATURE (pobj)->type = type;
-      pGRAYPLOT_FEATURE (pobj)->pvecx = (double *)NULL;
-      pGRAYPLOT_FEATURE (pobj)->pvecy = (double *)NULL;
+    /* To be implemented */
+#if 0
+    pGRAYPLOT_FEATURE (pobj)->callback = (char *)NULL;
+    pGRAYPLOT_FEATURE (pobj)->callbacklen = 0;
+    pGRAYPLOT_FEATURE (pobj)->callbackevent = 100;
 
-      sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
-      sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
+    pGRAYPLOT_FEATURE (pobj)->isselected = TRUE;
+#endif
 
-      strcpy( pGRAYPLOT_FEATURE (pobj)->datamapping, "scaled" ) ;
-      pgray = pGRAYPLOT_FEATURE (pobj);
+    /*
+     * Type: To be taken into account when setting data if indicating
+     * either a Matplot or a Matplot1 object (see below)
+     */
+#if 0
+    pGRAYPLOT_FEATURE (pobj)->type = type;
+#endif
 
-      if (pvecx && (pgray->pvecx = MALLOC (n1 * sizeof (double))) == NULL)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pGRAYPLOT_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      cmpt = (type == 2)? 4:n2 ;
-      if (type != 2)
-	if (pvecy && (pgray->pvecy = MALLOC (cmpt * sizeof (double))) == NULL)
-	  {
+    /* 0: scaled */
+    dataMapping = 0;
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, &dataMapping, jni_int, 1);
+
+    gridSize[0] = n1;
+    gridSize[1] = n2;
+
+    /* Allocates the coordinates arrays */
+    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 2);
+
+    if (result == 0)
+    {
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    /*
+     * The 4-value seems to be useless as type==2 grayplots (Matplot1)
+     * use the x-vector to store their bounding rectangle values
+     * and the y-vector was not allocated anyway for type==2.
+     * Data are therefore set only for the Grayplot object
+     * at the present moment (non-MVC Matplot and Matplot1 do not use the x
+     * and y vectors to store their coordinates, with the exception that Matplot1
+     * uses its x vector's 4 first elements to store its bounding rectangle.
+     * To be deleted and completed using the MVC to implement the
+     * Matplot and Matplot1 objects.
+     */
+#if 0
+    cmpt = (type == 2)? 4:n2 ;
+    if (type != 2)
+        if (pvecy && (pgray->pvecy = MALLOC (cmpt * sizeof (double))) == NULL)
+        {
 	    if (pvecx) FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
 	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	    sciDelHandle (pobj);
 	    FREE(pGRAYPLOT_FEATURE(pobj));
 	    FREE(pobj);
 	    return (sciPointObj *) NULL;
-	  }
-      if ((pgray->pvecz = MALLOC ((n1*n2) * sizeof (double))) == NULL){
+        }
+    if ((pgray->pvecz = MALLOC ((n1*n2) * sizeof (double))) == NULL)
+    {
 	if (pvecx) FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
 	if (pvecy) FREE(pGRAYPLOT_FEATURE (pobj)->pvecy);
 	sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -1971,42 +2016,71 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	FREE(pGRAYPLOT_FEATURE(pobj));
 	FREE(pobj);
 	return (sciPointObj *) NULL;
-      }
-      if (pvecx) {
+    }
+    if (pvecx) {
 	for (i = 0; i < n1; i++) pgray->pvecx[i] = pvecx[i];
-      }
+    }
 
-
+      /* Allocate only for a != Matplot1 */
+      /* Note: pvecy == NULL for Matplot, so this is only used by Grayplot */
       if (pvecy) {
 	if (type != 2)
 	  for (i = 0; i < n2; i++) pgray->pvecy[i] = pvecy[i];
       }
+#endif
 
-      pgray->nx = n1;pgray->ny = n2;
-      for (i = 0; i < (n1*n2); i++) pgray->pvecz[i] = pvecz[i];
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, n1);
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, n2);
 
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  if (pvecx) FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
-	  if (pvecy) FREE(pGRAYPLOT_FEATURE (pobj)->pvecy);
-	  FREE(pGRAYPLOT_FEATURE (pobj)->pvecz);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pGRAYPLOT_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      return pobj;
-    }
-  else
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, n1*n2);
+
+    /*
+     * Adding a new handle and setting the parent-child relationship is now
+     * done after data initialization in order to avoid additional
+     * clean-up.
+     */
+    if (sciAddNewHandle(pobj) == -1)
     {
-      Scierror(999, _("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
     }
+
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
+    parentVisible = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
+
+   /*
+    * Clip state and region
+    * To be checked for consistency
+    */
+    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
+    clipRegionSet = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
+    clipState = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+    if (sciInitGraphicContext (pobj) == -1)
+    {
+        setGraphicObjectRelationship("", pobj->UID);
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        sciDelHandle(pobj);
+
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+    }
+
+    return pobj;
 }
-
-
-
 
 
 /**ConstructAxes

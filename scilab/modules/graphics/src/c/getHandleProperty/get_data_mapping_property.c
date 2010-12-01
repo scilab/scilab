@@ -51,11 +51,11 @@ int get_data_mapping_property( sciPointObj * pobj )
 
     if (*dataMapping == 0)
     {
-        sciReturnString("scaled");
+        return sciReturnString("scaled");
     }
     else if (*dataMapping == 1)
     {
-        sciReturnString("direct");
+        return sciReturnString("direct");
     }
     else
     {

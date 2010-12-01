@@ -114,59 +114,59 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
 /* setgrayplot(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
 int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
 {
+    BOOL result;
 
-  sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);
+    int nbRow[3];
+    int nbCol[3];
+    int gridSize[2];
 
-  int nbRow[3] ;
-  int nbCol[3] ;
+    double * pvecx = NULL;
+    double * pvecy = NULL;
+    double * pvecz = NULL;
 
-  double * pvecx = NULL ;
-  double * pvecy = NULL ;
-  double * pvecz = NULL ;
+    pvecx = getDoubleMatrixFromList(tlist, 2, &nbRow[0], &nbCol[0]);
+    pvecy = getDoubleMatrixFromList(tlist, 3, &nbRow[1], &nbCol[1]);
+    pvecz = getDoubleMatrixFromList(tlist, 4, &nbRow[2], &nbCol[2]);
 
-  pvecx = createCopyDoubleMatrixFromList( tlist, &nbRow[0], &nbCol[0] ) ;
-  pvecy = createCopyDoubleMatrixFromList( tlist, &nbRow[1], &nbCol[1] ) ;
-  pvecz = createCopyDoubleMatrixFromList( tlist, &nbRow[2], &nbCol[2] ) ;
+    if ( nbCol[0] != 1 || nbCol[1] != 1 )
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
+        return SET_PROPERTY_ERROR;
+    }
 
-  if ( nbCol[0] != 1 || nbCol[1] != 1 )
-  {
-    Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
-    FREE( pvecx ) ;
-    FREE( pvecy ) ;
-    FREE( pvecz ) ;
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] )
+    {
+        Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"),"Tlist",3);
+        /* Was previously: */
+#if 0 
+        Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"),"Tlist","Tlist",3);
+#endif
+        return 0;
+    }
 
-  if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] )
-  {
-    Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"),"Tlist","Tlist",3);
-    FREE( pvecx ) ;
-    FREE( pvecy ) ;
-    FREE( pvecz ) ;
-    return 0;
-  }
+    if ( nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 )
+    {
+        return sciReturnEmptyMatrix();
+    }
 
-  if ( nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 )
-  {
-    FREE( pvecx ) ;
-    FREE( pvecy ) ;
-    FREE( pvecz ) ;
-    return sciReturnEmptyMatrix() ;
-  }
+    /* Update the dimensions nx and ny */
+    gridSize[0] = nbRow[0];
+    gridSize[1] = nbRow[1];
 
-  /* Update the dimensions nx and ny */
-  ppgrayplot->nx = nbRow[0] ;
-  ppgrayplot->ny = nbRow[1] ;
+    /* Resizes the coordinates arrays if required */
+    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 2);
 
-  /* Free the old values... */
-  FREE(ppgrayplot->pvecx) ;
-  FREE(ppgrayplot->pvecy) ;
-  FREE(ppgrayplot->pvecz) ;
-  ppgrayplot->pvecx = pvecx;
-  ppgrayplot->pvecy = pvecy;
-  ppgrayplot->pvecz = pvecz;
+    if (result == FALSE)
+    {
+        Scierror(999, _("%s: No more memory.\n"), "setgrayplotdata");
+        return SET_PROPERTY_ERROR;
+    }
 
-  return SET_PROPERTY_SUCCEED ;
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nbRow[0]);
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, nbRow[1]);
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nbRow[2]*nbCol[2]);
+
+    return SET_PROPERTY_SUCCEED;
 }
 /*--------------------------------------------------------------------------*/
 /* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
@@ -675,6 +675,10 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
  */
 int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
+  char* type;
+
+  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+
   /*
    * 0 values put within the conditional expressions to prevent calling sciGetEntityType
    * The last else block allows to set Polyline data (via sciSetPoint)
@@ -702,27 +706,29 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
     destroyAssignedList( tlist ) ;
     return status ;
   }
-  else if(0 && (sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
+//  else if(0 && (sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
+  /* Only works for Grayplot (type 0) for now */
+  else if (strcmp(type, __GO_GRAYPLOT__) == 0)
   {
-    AssignedList * tlist = NULL ;
-    int status = -1 ;
+    AssignedList * tlist = NULL;
+    int status = -1;
 
     if( !isParameterTlist( valueType ) )
     {
       Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
-      return SET_PROPERTY_ERROR ;
+      return SET_PROPERTY_ERROR;
     }
 
     /* we should have 3 properties in the tlist */
     tlist = createAssignedList( 3, 3 ) ;
     if ( tlist == NULL )
     {
-      return SET_PROPERTY_ERROR ;
+      return SET_PROPERTY_ERROR;
     }
 
-    status = setgrayplotdata( pobj, tlist ) ;
-    destroyAssignedList( tlist ) ;
-    return status ;
+    status = setgrayplotdata( pobj, tlist );
+    destroyAssignedList( tlist );
+    return status;
   }
   else if(0 && sciGetEntityType(pobj) == SCI_SURFACE)
   {
