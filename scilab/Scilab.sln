@@ -766,6 +766,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm-Ant", "modules\jvm\s
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-Ant", "modules\javasci\src\java\javasci-JAVA.vcproj", "{6182A20D-8111-41C1-9713-CD2A4725057C}"
 	ProjectSection(ProjectDependencies) = postProject
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0} = {F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}
 		{ABCB724E-8534-4420-AC12-7C33A606ABA3} = {ABCB724E-8534-4420-AC12-7C33A606ABA3}
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D} = {0BD503EF-5CB6-4277-BAC4-8955C97F247D}
 	EndProjectSection
@@ -1307,6 +1308,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "commons", "modules\commons\
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-java-tests", "modules\javasci\tests\java\javasci-JAVA-tests.vcproj", "{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildJavadoc", "modules\helptools\src\javadoc\javadoc.vcproj", "{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2532,6 +2535,14 @@ Global
 		{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}.Debug|x64.ActiveCfg = Debug|x64
 		{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}.Release|Win32.ActiveCfg = Release|Win32
 		{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}.Release|x64.ActiveCfg = Release|x64
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|Win32.Build.0 = Debug|Win32
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|x64.ActiveCfg = Debug|x64
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|x64.Build.0 = Debug|x64
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.ActiveCfg = Release|Win32
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.Build.0 = Release|Win32
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.ActiveCfg = Release|x64
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
