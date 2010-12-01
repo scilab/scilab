@@ -22,7 +22,6 @@ namespace types
     {
     public :
                                         MList();
-                                        ~MList();
 
         void                            whoAmI(void) { std::cout << "types::MList"; };
 

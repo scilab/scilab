@@ -391,6 +391,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\sci_tlist_or_mlist.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\types_gw.hxx"
 				>
 			</File>

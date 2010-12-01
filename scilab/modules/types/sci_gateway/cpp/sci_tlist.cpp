@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
+ *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,69 +11,10 @@
  *
  */
 
-#include "tlist.hxx"
-#include "string.hxx"
-#include "double.hxx"
 #include "function.hxx"
-#include "funcmanager.hxx"
-
-extern "C"
-{
-#include "Scierror.h"
-#include "localization.h"
-#include "charEncoding.h"
-}
-
-using namespace types;
+#include "sci_tlist_or_mlist.hxx"
 
 Function::ReturnValue sci_tlist(typed_list &in, int _piRetCount, typed_list &out)
 {
-    TList* pRetVal = NULL;
-
-    //check input parameters
-    if(in.size() < 1)
-    {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: At least %d expected.\n"), L"tlist" ,1);
-        return Function::Error;
-    }
-
-    if(in[0]->getType() != InternalType::RealString)
-    {
-        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"), L"tlist", 1);
-        return Function::Error;
-    }
-
-    //check uniqueness of fields name
-    String* pS = in[0]->getAsString();
-
-    //first string is the tlist type
-    list<wstring> fieldNames;
-    for(int i = 1 ; i < pS->size_get() ; i++)
-    {
-        list<wstring>::iterator it;
-        for(it = fieldNames.begin() ; it != fieldNames.end() ; it++)
-        {
-            if(*it == wstring(pS->string_get(i)))
-            {
-                ScierrorW(999, _W("%ls : Fields names must be unique"), L"tlist");
-                return Function::Error;
-            }
-        }
-        fieldNames.push_back(pS->string_get(i));
-    }
-
-    pRetVal = new TList();
-    for(int i = 0 ; i < in.size() ; i++)
-    {
-        pRetVal->append(in[i]);
-    }
-
-    //fill empty field with []
-    while(pRetVal->size_get() < pS->size_get())
-    {
-        pRetVal->append(Double::Empty());
-    }
-
-    out.push_back(pRetVal);
-    return Function::OK;
+    return sci_tlist_or_mlist<TList>(in, _piRetCount, out, L"tlist");
 }

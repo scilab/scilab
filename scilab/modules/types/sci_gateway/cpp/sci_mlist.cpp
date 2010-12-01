@@ -12,16 +12,11 @@
 
 #include "function.hxx"
 #include "funcmanager.hxx"
-
-extern "C"
-{
-#include "Scierror.h"
-#include "localization.h"
-}
+#include "sci_tlist_or_mlist.hxx"
 
 using namespace types;
 
 Function::ReturnValue sci_mlist(typed_list &in, int _piRetCount, typed_list &out)
 {
-    return Function::OK;
+    return sci_tlist_or_mlist<MList>(in, _piRetCount, out, L"mlist");
 }
