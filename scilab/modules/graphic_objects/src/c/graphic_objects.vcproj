@@ -424,6 +424,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\NgonGridData.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\NgonPolylineData.cpp"
 				>
 			</File>

@@ -77,6 +77,11 @@
 
 #define __GO_DATA_MODEL_FEC_TRIANGLES__                "DataModelFecTriangles"
 
+#define __GO_DATA_MODEL_NUM_X__                        "DataModelNumX"
+#define __GO_DATA_MODEL_NUM_Y__                        "DataModelNumY"
+#define __GO_DATA_MODEL_NUM_Z__                        "DataModelNumZ"
+#define __GO_DATA_MODEL_GRID_SIZE__                    "DataModelGridSize"
+
 #define __GO_REFERENCED__                  "Referenced"
 #define __GO_VALID__                       "Valid"
 

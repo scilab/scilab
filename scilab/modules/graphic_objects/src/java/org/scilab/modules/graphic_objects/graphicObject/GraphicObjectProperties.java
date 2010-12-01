@@ -78,6 +78,11 @@ public static final String __GO_DATA_MODEL_VALUES__ =                  "DataMode
 
 public static final String __GO_DATA_MODEL_FEC_TRIANGLES__ =           "DataModelFecTriangles";
 
+public static final String __GO_DATA_MODEL_NUM_X__ =                   "DataModelNumX";
+public static final String __GO_DATA_MODEL_NUM_Y__ =                   "DataModelNumY";
+public static final String __GO_DATA_MODEL_NUM_Z__ =                   "DataModelNumZ";
+public static final String __GO_DATA_MODEL_GRID_SIZE__ =               "DataModelGridSize";
+
 public static final String __GO_REFERENCED__ =             "Referenced";
 public static final String __GO_VALID__ =                  "Valid";
 

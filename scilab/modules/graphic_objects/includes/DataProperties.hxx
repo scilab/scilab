@@ -46,4 +46,9 @@
 
 #define FEC_TRIANGLES           20
 
+#define NUM_X                   21
+#define NUM_Y                   22
+#define NUM_Z                   23
+#define GRID_SIZE               24
+
 #endif

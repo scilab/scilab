@@ -19,13 +19,10 @@
 
 extern "C" {
 #include "BOOL.h"
-
-#include <stdio.h>
 }
 
 /**
- * n-gons grid data stub class
- * To be fully implemented
+ * N-gons grid data class
  */
 
 class NgonGridData : public NgonData
@@ -48,32 +45,105 @@ private :
     int ySize;
 
 public :
-    /* To be implemented */
-    NgonGridData(void)
-    {
-        numGons = 0;
-        numVerticesPerGon = 0;
 
-        xCoordinates = NULL;
-        yCoordinates = NULL;
-        zCoordinates = NULL;
+    /**
+     * Constructor
+     */
+    NgonGridData(void);
 
-        xSize = 0;
-        ySize = 0;
-    }
+    /**
+     * Destructor
+     */
+    ~NgonGridData(void);
 
-    /* To be implemented */
-    double* getData()
-    {
-        return zCoordinates;
-    }
+    /**
+     * Returns the value corresponding to a property name
+     * @param propertyName the property name
+     * @return the property value
+     */
+    int getPropertyFromName(char* propertyName);
 
-    /* To be implemented */
-    void setData(double* data)
-    {
+    /**
+     * Sets a data property
+     * @param property the property value
+     * @param value pointer to the property
+     * @param numElements the number of elements to set
+     * @return 1 if the property has been successfully set, 0 otherwise
+     */
+    int setDataProperty(int property, void* value, int numElements);
 
-    }
+    /**
+     * Returns a data property
+     * @param property the property value
+     * @return a pointer to the property
+     */
+    void* getDataProperty(int property);
 
+    /**
+     * Returns the grid's x size
+     * @return the grid's x size
+     */
+    int getNumX(void);
+
+    /**
+     * Returns the grid's y size
+     * @return the grid's y size
+     */
+    int getNumY(void);
+
+    /**
+     * Returns the grid's z size
+     * @return the grid's number of elements
+     */
+    int getNumZ(void);
+
+    /**
+     * Sets the grid's x and y size
+     * Resizes the x, y, and z data coordinates arrays if required
+     * and must therefore be called prior to any setData call
+     * @param gridSize 2-element array (grid x size, grid y size)
+     * @return 1 if the property has been successfully set, 0 otherwise (failed allocation)
+     */
+    int setGridSize(int* gridSize);
+
+    /**
+     * Sets the grid's x data
+     * @param data the data (numElements values)
+     * @param numElements the number of elements to set
+     */
+    void setDataX(double* data, int numElements);
+
+    /**
+     * Sets the grid's y data
+     * @param data the data (numElements values)
+     * @param numElements the number of elements to set
+     */
+    void setDataY(double* data, int numElements);
+
+    /**
+     * Sets the grid's z data
+     * @param data the data (numElements values)
+     * @param numElements the number of elements to set
+     */
+    void setDataZ(double* data, int numElements);
+
+    /**
+     * Returns the grid's x data
+     * @return a pointer to the grid's x data
+     */
+    double* getDataX(void);
+
+    /**
+     * Returns the grid's y data
+     * @return a pointer to the grid's y data
+     */
+    double* getDataY(void);
+
+    /**
+     * Returns the grid's z data
+     * @return a pointer to the grid's z data
+     */
+    double* getDataZ(void);
 };
 
 #endif
