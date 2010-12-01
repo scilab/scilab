@@ -12,6 +12,9 @@ SciNotes:
 Xcos:
 =====
 
+* bug 8483 fixed - Multiplying a scalar and vector using the MATMUL block did not
+                   work.
+
 * bug 8556 fixed - Creating a split block from a link did not work.
 
 * bug 8569 fixed - Deleting a link with a split-block did not reconstruct any
