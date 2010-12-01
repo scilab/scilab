@@ -229,12 +229,12 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	case GenericType::RealCell :
 		*_piType = sci_mlist;
 		break;
-	//case GenericType::RealTList :
-	//	*_piType = sci_tlist;
-	//	break;
-	//case GenericType::RealMList :
-	//	*_piType = sci_mlist;
-	//	break;
+	case GenericType::RealTList :
+		*_piType = sci_tlist;
+		break;
+	case GenericType::RealMList :
+		*_piType = sci_mlist;
+		break;
 	case GenericType::RealUserType :
 		*_piType = sci_pointer;
 		break;
