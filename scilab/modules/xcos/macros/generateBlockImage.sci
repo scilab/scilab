@@ -14,21 +14,23 @@
 //
 // @param block the block instance
 // @param path output file path
-// @param[opt] file the file name to use (without extension).
+// @param[opt] filename the file name to use (without extension).
 //             The default is `block.gui'.
 // @param[opt] handle the graphical handle to use
 //             The default is to get the current handle with gcf().
 // @param[opt] imageType the exported image type. only "svg" and "gif" is
 //             supported. The default is to use "gif".
+// @param[opt] withPort true if the exported image should contains the port,
+//             false otherwise. The default is value is true.
 // @return status %T if the operation has been sucessfull, %F otherwise.
-function status = generateBlockImage(block, path, file, handle, imageType)
+function status = generateBlockImage(block, path, filename, handle, imageType, withPort)
     status = %f;
     
     // call loadScicosLibs if not loaded
     if exists("scicos_diagram", 'a') == 0 then loadScicosLibs(); end
 
     [lhs,rhs] = argn(0)
-    if rhs < 2 | rhs > 4 then
+    if rhs < 2 | rhs > 6 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "generateBlockImage", 2, 4));
     end
     
@@ -49,14 +51,18 @@ function status = generateBlockImage(block, path, file, handle, imageType)
         end
     end
     
+    if exists("withPort", 'l') == 0 then
+        withPort = %t;
+    end
+
     // set the default outFile
-    if exists("file", 'l') == 0 then
+    if exists("filename", 'l') == 0 then
         outFile = path + "/" + block.gui + "." + imageType;
     else
-        if typeof(file) <> "string" | size(str, '*') <> 1 then
-            error(msprintf(gettext("%s: Wrong type for input argument ""%s"": string expected.\n"), "generateBlockImage", "file"));
+        if typeof(filename) <> "string" | size(filename, '*') <> 1 then
+            error(msprintf(gettext("%s: Wrong type for input argument ""%s"": string expected.\n"), "generateBlockImage", "filename"));
         end
-        outFile = path + "/" + file + "." + imageType;
+        outFile = path + "/" + filename + "." + imageType;
     end
     
     // generate a default graphic or clear the existing one
@@ -68,10 +74,18 @@ function status = generateBlockImage(block, path, file, handle, imageType)
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": handle type expected.\n"), "generateBlockImage", "handle"));
         end
         
-        clf();
+        clf(handle);
         deleteHandle = %f;
     end
     
+    if ~withPort then
+        prot = funcprot();
+        function standard_draw_port(varargin)
+        endfunction
+        standard_draw_port_up = standard_draw_port;
+        funcprot(prot);
+    end
+
     // constants
     diagram = scicos_diagram();
     options = diagram.props.options;
@@ -99,7 +113,7 @@ function status = generateBlockImage(block, path, file, handle, imageType)
     if (ierr <> 0) then
         return;
     end
-    
+
     if imageType == "svg" then
         xs2svg(handle.figure_id, outFile);
     elseif imageType == "gif" then
