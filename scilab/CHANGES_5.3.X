@@ -1,8 +1,6 @@
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
- * bug 7806 fixed - [a, b] = dos("git 1>&2") returned a wrong error.
-
 
 SciNotes:
 =========
@@ -38,8 +36,13 @@ Bug Fixes:
                    Added unit tests for sp2adj and adj2sp.
                    Improved implementation by checking the input arguments.
 
+* bug 7806 fixed - [a, b] = dos("git 1>&2") returned a wrong error.
+
 * bug 7849 fixed - eqfir / remez functions crashed under MacOSX due to
                    a lapack bug on slamch function.
+
+* bug 7900 fixed - inserting a rational in a rational hymermatrix  generated
+                   invalid rationals entries (with zero denominators)
 
 * bug 8091 fixed - Scilab was unable to find fortran compiler under MacOSX.
 
