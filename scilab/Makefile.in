@@ -1803,7 +1803,7 @@ distclean-generated:
 @BUILD_HELP_TRUE@		echo $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC)/$$dir; \
 @BUILD_HELP_TRUE@			for file in $(top_builddir)/$(PATHTOJAVASCIDOC)/$(dir)/*; do \
 @BUILD_HELP_TRUE@			    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC)/$$dir" ; \
-@BUILD_HELP_TRUE@	    		$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC)/$$dir ; \
+@BUILD_HELP_TRUE@				$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC)/$$dir ; \
 @BUILD_HELP_TRUE@			done; \
 @BUILD_HELP_TRUE@	done
 
