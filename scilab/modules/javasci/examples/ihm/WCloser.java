@@ -7,7 +7,10 @@
  */
 
 import java.awt.event.*;
-//import java.awt.*;
+
+/**
+ * @deprecated
+ */
 public class WCloser implements WindowListener
 {
 	public void windowOpened(WindowEvent e){}

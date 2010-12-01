@@ -25,6 +25,7 @@ public class SciBoolean extends SciAbstractDataType implements java.io.Serializa
 	
 	/**
 	 * Constructs a Scilab Boolean from a other SciBoolean
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param booleanObj the Sciboolean you want to copy
 	 */
@@ -36,6 +37,7 @@ public class SciBoolean extends SciAbstractDataType implements java.io.Serializa
 
 	/**
 	 * Constructs a Scilab Boolean
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 */
 	public SciBoolean(String name) {
@@ -45,6 +47,7 @@ public class SciBoolean extends SciAbstractDataType implements java.io.Serializa
 
 	/**
 	 * Constructs a Scilab Boolean from a java boolean
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param value the boolean value
 	 */
@@ -56,6 +59,7 @@ public class SciBoolean extends SciAbstractDataType implements java.io.Serializa
 
 	/**
 	 * Returns the boolean value
+     * @deprecated
 	 * @return the value
 	 */
 	public boolean getData() {
@@ -67,6 +71,7 @@ public class SciBoolean extends SciAbstractDataType implements java.io.Serializa
 	/**
 	 * Return the description of the DataType
 	 * Description must set in any class which extends SciAbstractDataType
+     * @deprecated
 	 * @return the Description
 	 *
 	 */

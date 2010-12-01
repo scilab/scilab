@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="javasci_faq_v2"
+<refentry version="5.0-subset Scilab" xml:id="javasci_faq_v1"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>javasci FAQ</refname>
 
-    <refpurpose>The frequently asked questions for Javasci v2</refpurpose>
+    <refpurpose>The frequently asked questions - Javasci v1. Deprecated: Please use <link linkend="javasci">Javasci v2</link></refpurpose>
   </refnamediv>
 
   <refsection>
@@ -35,24 +35,24 @@
         <question>
           <para>Running an application based on javasci, I get the error
           Exception in thread "main" java.lang.NoClassDefFoundError:
-          org/scilab/modules/javasci/Scilab</para>
+          javasci/Scilab</para>
         </question>
 
         <answer>
-          <para>org.scilab.modules.javasci.jar is probably not defined in the CLASSPATH. See
-<link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
+          <para>javasci.jar is probably not defined in the CLASSPATH. See
+<link linkend="compile_and_run_javasci_v1">Compile and run with javasci</link>
           </para>
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question>
-          <para>The native library javasci2 does not exist or cannot be found.</para>
+          <para>The native library javasci does not exist or cannot be found.</para>
         </question>
 
         <answer>
           <para>java.library.path has not been set or cannot be found.
-<link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
+<link linkend="compile_and_run_javasci_v1">Compile and run with javasci</link>
           </para>
         </answer>
       </qandaentry>
@@ -68,7 +68,7 @@
         Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink> (this will open the web browser).
        </member>
       <member><link linkend="javasci">Javasci</link></member>
-      <member><link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link></member>
+      <member><link linkend="compile_and_run_javasci_v1">Compile and run with javasci</link></member>
 
     </simplelist>
   </refsection>

@@ -22,6 +22,7 @@
     <para>Scilab offers the possibility to be called from a Java application.</para>
     <para>This help describes the features of the javasci API.</para>
     <para>Since Scilab version 5.3.0, a new version of Javasci called Javasci v2 has been introduced. This version fixes most of the <link linkend="javasci_v1_limitations">limitations of Javasci v1</link>.</para>
+<para>Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink> (this will open the web browser).</para>
   </refsection>
   <refsection>
     <title>Example of Javasci v2</title>
@@ -74,23 +75,14 @@ public class DisplayPI {
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
+    <member>
+        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink> (this will open the web browser).
+       </member>
       <member>
-        <link linkend="compile_and_run_javasci">Compile and run with Javasci</link>
+        <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>
       </member>
       <member>
-        <link linkend="javasci_faq">Javasci FAQ</link>
-      </member>
-      <member>
-        <link linkend="SciDouble">SciDouble</link>
-      </member>
-      <member>
-        <link linkend="SciDoubleArray">SciDoubleArray</link>
-      </member>
-      <member>
-        <link linkend="SciString">SciString</link>
-      </member>
-      <member>
-        <link linkend="SciStringArray">SciStringArray</link>
+        <link linkend="javasci_faq_v2">Javasci v2 FAQ</link>
       </member>
     </simplelist>
   </refsection>

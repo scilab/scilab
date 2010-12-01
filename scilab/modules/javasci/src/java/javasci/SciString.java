@@ -25,6 +25,7 @@ public class SciString extends SciAbstractDataType implements java.io.Serializab
 
 	/**
 	 * Constructs a Scilab String from a other SciString
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param stringObj the SciString you want to copy
 	 */
@@ -37,6 +38,7 @@ public class SciString extends SciAbstractDataType implements java.io.Serializab
 	/**
 	 * Constructs a Scilab String
 	 * initialized to ""
+     * @deprecated
 	 * @param name the name of the Scilab Variable 
 	 */ 
   public SciString(String name) {
@@ -45,6 +47,7 @@ public class SciString extends SciAbstractDataType implements java.io.Serializab
 
 	/**
 	 * Constructs a Scilab String from a Java String
+     * @deprecated
 	 * @param name the name of the Scilab Variable 
 	 * @param strValue the value
 	 */ 
@@ -56,6 +59,7 @@ public class SciString extends SciAbstractDataType implements java.io.Serializab
 
 	/**
 	 * Return the string
+     * @deprecated
 	 * @return the String
 	 */
   public String getData() {
@@ -67,6 +71,7 @@ public class SciString extends SciAbstractDataType implements java.io.Serializab
 	/**
 	 * Return the description of the DataType
 	 * Description must set in any class which extends SciAbstractDataType
+     * @deprecated
 	 * @return the Description
 	 *
 	 */

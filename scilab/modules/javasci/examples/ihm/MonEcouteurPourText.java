@@ -8,6 +8,10 @@
 
 import java.awt.event.*;
 
+
+/**
+ * @deprecated
+ */
 public class MonEcouteurPourText implements TextListener
 {
   private MonPanneau appli;

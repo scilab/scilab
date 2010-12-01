@@ -17,7 +17,7 @@
   <refnamediv>
     <refname>javasci.SciDoubleArray (deprecated)</refname>
     <refpurpose>Class to use real matrix in
-  Scilab.</refpurpose>
+  Scilab. Deprecated: Please use <link linkend="javasci">Javasci v2</link></refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -61,10 +61,13 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
+    <member>
+        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink>
+       </member>
       <member>
         <link linkend="javasci.Scilab">javasci.Scilab</link>
       </member>
-      <member><link linkend="compile_and_run_javasci">Compile and run with Javasci</link></member>
+      <member><link linkend="compile_and_run_javasci_v1">Compile and run with Javasci v1</link></member>
       <member>
         <link linkend="SciDouble">SciDouble</link>
       </member>
