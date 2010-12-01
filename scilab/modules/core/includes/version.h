@@ -15,8 +15,8 @@
 #define SCI_VERSION_MAJOR 6
 #define SCI_VERSION_MINOR 0
 #define SCI_VERSION_MAINTENANCE 0
-#define SCI_VERSION_STRING "scilab-branch-YaSp"
-#define SCI_VERSION_WIDE_STRING L"scilab-branch-YaSp"
+#define SCI_VERSION_STRING "scilab-branch-eigen"
+#define SCI_VERSION_WIDE_STRING L"scilab-branch-eigen"
 /* SCI_VERSION_REVISION --> hash key commit */
 #define SCI_VERSION_REVISION 0
 #define SCI_VERSION_TIMESTAMP 0
