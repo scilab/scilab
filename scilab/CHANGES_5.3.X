@@ -31,6 +31,9 @@ Bug Fixes:
 * bug 7695 fixed - Only the first selected line was deleted in command history
                    browser.
 
+* bug 7714 fixed - diag, triu, tril applyed to rational matrices  changed
+                   the formal variable name
+
 * bug 7727 fixed - The help page of sp2adj was not correct.
                    Improved the help page of adj2sp.
                    Added unit tests for sp2adj and adj2sp.
