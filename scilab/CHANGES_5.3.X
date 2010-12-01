@@ -65,6 +65,9 @@ Bug Fixes:
 
 * bug 8468 fixed - size with 2 input arguments did not work for hypermatrices.
 
+* bug 8475 fixed - It was impossible to get the data of an entity through
+                   the graphic editor.
+
 * bug 8481 fixed - Scilab crashed when display a rational containing a complex.
 
 * bug 8505 fixed - help was not generated on Windows, if there was a path name
