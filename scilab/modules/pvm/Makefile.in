@@ -655,9 +655,9 @@ top_srcdir = @top_srcdir@
 # Mask of the Scilab compiled macros
 @PVM_TRUE@MACROBINMASK = *.bin
 # List of the standard directory for tests
-@PVM_FALSE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+@PVM_FALSE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # List of the standard directory for tests
-@PVM_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+@PVM_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 @PVM_FALSE@pkgdemosdir = $(mydatadir)
 # Where the demos should be installed
