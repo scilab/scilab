@@ -33,6 +33,11 @@ Bug Fixes:
 * bug 7695 fixed - Only the first selected line was deleted in command history
                    browser.
 
+* bug 7727 fixed - The help page of sp2adj was not correct.
+                   Improved the help page of adj2sp.
+                   Added unit tests for sp2adj and adj2sp.
+                   Improved implementation by checking the input arguments.
+
 * bug 7849 fixed - eqfir / remez functions crashed under MacOSX due to
                    a lapack bug on slamch function.
 
