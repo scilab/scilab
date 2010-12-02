@@ -53,7 +53,11 @@ trigger a warning and do not add a link on the function name.
 Scinotes:
 =========
 
-* Name of the current function and position (line, column) are now displayedno
+* Refactorization of the printing
+
+* Add the possibility to export code to PDF, PS, EPS and RTF.
+
+* Name of the current function and position (line, column) are now displayed
 in the status bar of Scinotes.
 
 * A bad identifier is now shown in the text editor.

@@ -24,6 +24,8 @@
       <menuitem action="PrintPreviewAction" label="Print Preview"/>
       <menuitem action="PrintAction" label="Print"/>
       <separator/>
+      <menuitem action="ExportAction" label="Export"/>
+      <separator/>
       <menuitem action="CloseAction" label="Close"/>
       <menuitem action="CloseAllAction" label="Close All"/>
       <menuitem action="CloseAllButThisAction" label="Close All But This"/>
