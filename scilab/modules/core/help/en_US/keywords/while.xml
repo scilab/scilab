@@ -24,7 +24,7 @@
     <itemizedlist>
       <listitem>
         <para> The only constraint is that each <literal>then</literal> or
-	<literal>dod</literal>" keyword must be on the same line line as
+	<literal>do</literal> keyword must be on the same line line as
 	<literal>while</literal> keyword.</para>
       </listitem>
       <listitem>

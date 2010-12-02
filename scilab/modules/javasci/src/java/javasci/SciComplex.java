@@ -25,6 +25,7 @@ public class SciComplex extends SciAbstractDataType implements java.io.Serializa
 		
 	/**
 	 * Constructs a Scilab Complex from a other SciComplex
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param complexObj the SciComplex you want to copy
 	 */
@@ -41,6 +42,7 @@ public class SciComplex extends SciAbstractDataType implements java.io.Serializa
 	/**
 	 * Constructs a Scilab Complex
 	 * initialized to 0 for both part (Real & Imaginary)
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 */ 
  public SciComplex(String name) {
@@ -50,6 +52,7 @@ public class SciComplex extends SciAbstractDataType implements java.io.Serializa
 
 	/**
 	 * Constructs a Scilab Double from two Java Doubles (RealPart & ImaginaryPart)
+     * @deprecated
 	 * @param name the name of the Scilab Variable 
 	 * @param realPart the real value
 	 * @param imaginaryPart the imaginary value
@@ -65,6 +68,7 @@ public class SciComplex extends SciAbstractDataType implements java.io.Serializa
 
 	/**
 	 * Return the real part
+     * @deprecated
 	 * @return the real part
 	 */
   public double getRealPartData() {
@@ -75,6 +79,7 @@ public class SciComplex extends SciAbstractDataType implements java.io.Serializa
 
 	/**
 	 * Return the imaginary part
+     * @deprecated
 	 * @return the imaginary part
 	 */
   public double getImaginaryPartData() {
@@ -85,6 +90,7 @@ public class SciComplex extends SciAbstractDataType implements java.io.Serializa
 
 	/** 
 	 * Display the complex
+     * @deprecated
 	 * @return the display of the complex
 	 */
   public String toString() {
@@ -114,6 +120,7 @@ public class SciComplex extends SciAbstractDataType implements java.io.Serializa
 	/**
 	 * Return the description of the DataType
 	 * Description must set in any class which extends SciAbstractDataType
+     * @deprecated
 	 * @return the Description
 	 *
 	 */

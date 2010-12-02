@@ -111,7 +111,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"

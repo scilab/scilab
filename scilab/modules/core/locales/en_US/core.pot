@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-09-15 14:22+0100\n"
+"Revision-Date: 2010-11-18 15:37+0100\n"
 
 # File: src/c/banier.c, line: 36
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "               Copyright (c) 1989-2010 (INRIA)\n"
 msgstr ""
 #
-# File: /data/scilab/scilab/etc/scilab.start, line: 69
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 69
 msgid "  loading initial environment"
 msgstr ""
 #
@@ -178,16 +178,16 @@ msgid ""
 "%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_gstacksize.c, line: 127
-# File: sci_gateway/c/sci_gstacksize.c, line: 134
-# File: sci_gateway/c/sci_gstacksize.c, line: 188
-# File: sci_gateway/c/sci_gstacksize.c, line: 203
-# File: sci_gateway/c/sci_gstacksize.c, line: 267
-# File: sci_gateway/c/sci_stacksize.c, line: 123
-# File: sci_gateway/c/sci_stacksize.c, line: 130
-# File: sci_gateway/c/sci_stacksize.c, line: 184
-# File: sci_gateway/c/sci_stacksize.c, line: 198
-# File: sci_gateway/c/sci_stacksize.c, line: 262
+# File: sci_gateway/c/sci_stacksize.c, line: 124
+# File: sci_gateway/c/sci_stacksize.c, line: 131
+# File: sci_gateway/c/sci_stacksize.c, line: 185
+# File: sci_gateway/c/sci_stacksize.c, line: 199
+# File: sci_gateway/c/sci_stacksize.c, line: 263
+# File: sci_gateway/c/sci_gstacksize.c, line: 131
+# File: sci_gateway/c/sci_gstacksize.c, line: 138
+# File: sci_gateway/c/sci_gstacksize.c, line: 192
+# File: sci_gateway/c/sci_gstacksize.c, line: 207
+# File: sci_gateway/c/sci_gstacksize.c, line: 271
 #, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr ""
@@ -212,6 +212,8 @@ msgstr ""
 msgid "%s: Invalid module name : %s.\n"
 msgstr ""
 #
+# File: tests/nonreg_tests/bug_7974.c, line: 47
+# File: tests/nonreg_tests/bug_7974.c, line: 76
 # File: sci_gateway/c/sci_newfun.c, line: 133
 # File: sci_gateway/c/sci_getversion.c, line: 68
 # File: sci_gateway/c/sci_getversion.c, line: 95
@@ -222,12 +224,22 @@ msgstr ""
 # File: sci_gateway/c/sci_getversion.c, line: 316
 # File: sci_gateway/c/sci_getmd5.c, line: 100
 # File: sci_gateway/c/sci_getmd5.c, line: 150
-# File: tests/nonreg_tests/bug_7974.c, line: 47
-# File: tests/nonreg_tests/bug_7974.c, line: 76
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_typename.c, line: 176
+# File: sci_gateway/c/sci_getos.c, line: 49
+# File: sci_gateway/c/sci_getos.c, line: 57
+# File: src/c/stack1.c, line: 2240
+# File: src/c/stack1.c, line: 2322
+# File: src/c/stack1.c, line: 2353
+# File: src/c/stack2.c, line: 1895
+# File: src/c/stack2.c, line: 2180
+# File: src/c/storeCommand.c, line: 98
+# File: src/c/storeCommand.c, line: 106
+# File: src/c/storeCommand.c, line: 143
+# File: src/c/storeCommand.c, line: 151
 # File: src/c/intmacr2tree.c, line: 118
 # File: src/c/intmacr2tree.c, line: 135
 # File: src/c/intmacr2tree.c, line: 140
@@ -271,18 +283,6 @@ msgstr ""
 # File: src/c/intmacr2tree.c, line: 1918
 # File: src/c/intmacr2tree.c, line: 1923
 # File: src/c/intmacr2tree.c, line: 1976
-# File: src/c/stack2.c, line: 1895
-# File: src/c/stack2.c, line: 2180
-# File: src/c/stack1.c, line: 2240
-# File: src/c/stack1.c, line: 2322
-# File: src/c/stack1.c, line: 2353
-# File: src/c/storeCommand.c, line: 98
-# File: src/c/storeCommand.c, line: 106
-# File: src/c/storeCommand.c, line: 143
-# File: src/c/storeCommand.c, line: 151
-# File: sci_gateway/c/sci_getos.c, line: 49
-# File: sci_gateway/c/sci_getos.c, line: 57
-# File: sci_gateway/c/sci_typename.c, line: 176
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -307,10 +307,10 @@ msgstr ""
 msgid "%s: Optional arguments name=val must be at the end.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_gstacksize.c, line: 140
-# File: sci_gateway/c/sci_gstacksize.c, line: 145
-# File: sci_gateway/c/sci_stacksize.c, line: 136
-# File: sci_gateway/c/sci_stacksize.c, line: 141
+# File: sci_gateway/c/sci_stacksize.c, line: 137
+# File: sci_gateway/c/sci_stacksize.c, line: 142
+# File: sci_gateway/c/sci_gstacksize.c, line: 144
+# File: sci_gateway/c/sci_gstacksize.c, line: 149
 #, c-format
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
 msgstr ""
@@ -350,8 +350,6 @@ msgstr ""
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1975
-# File: src/c/stack2.c, line: 2232
 # File: src/c/stack1.c, line: 236
 # File: src/c/stack1.c, line: 515
 # File: src/c/stack1.c, line: 686
@@ -374,6 +372,8 @@ msgstr ""
 # File: src/c/stack1.c, line: 2689
 # File: src/c/stack1.c, line: 3030
 # File: src/c/stack1.c, line: 3119
+# File: src/c/stack2.c, line: 1975
+# File: src/c/stack2.c, line: 2232
 #, c-format
 msgid "%s: Too many names.\n"
 msgstr ""
@@ -522,31 +522,32 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 48
-# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 66
-# File: sci_gateway/c/sci_predef.c, line: 65
+# File: sci_gateway/c/sci_newfun.c, line: 110
+# File: sci_gateway/c/sci_funcprot.c, line: 85
 # File: sci_gateway/c/sci_error.c, line: 90
 # File: sci_gateway/c/sci_error.c, line: 141
 # File: sci_gateway/c/sci_error.c, line: 185
 # File: sci_gateway/c/sci_error.c, line: 190
 # File: sci_gateway/c/sci_error.c, line: 233
-# File: sci_gateway/c/sci_newfun.c, line: 110
+# File: sci_gateway/c/sci_typename.c, line: 109
+# File: sci_gateway/c/sci_predef.c, line: 65
+# File: sci_gateway/c/sci_errclear.c, line: 47
 # File: sci_gateway/c/sci_exit.c, line: 71
-# File: sci_gateway/c/sci_funcprot.c, line: 85
 # File: sci_gateway/c/sci_mode.c, line: 64
 # File: sci_gateway/c/sci_mode.c, line: 70
-# File: sci_gateway/c/sci_typename.c, line: 109
 # File: sci_gateway/c/sci_format.c, line: 151
 # File: sci_gateway/c/sci_format.c, line: 271
 # File: sci_gateway/c/sci_format.c, line: 291
+# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 48
+# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 66
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_newfun.c, line: 97
 # File: sci_gateway/c/sci_error.c, line: 61
 # File: sci_gateway/c/sci_error.c, line: 147
 # File: sci_gateway/c/sci_error.c, line: 227
-# File: sci_gateway/c/sci_newfun.c, line: 97
 # File: sci_gateway/c/sci_typename.c, line: 122
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -557,16 +558,16 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_gstacksize.c, line: 150
-# File: sci_gateway/c/sci_stacksize.c, line: 146
+# File: sci_gateway/c/sci_stacksize.c, line: 147
+# File: sci_gateway/c/sci_gstacksize.c, line: 154
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 #
+# File: tests/nonreg_tests/bug_7974.c, line: 41
 # File: sci_gateway/c/sci_getversion.c, line: 123
 # File: sci_gateway/c/sci_getversion.c, line: 242
 # File: sci_gateway/c/sci_getversion.c, line: 248
-# File: tests/nonreg_tests/bug_7974.c, line: 41
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -670,8 +671,8 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1497
 # File: src/c/stack1.c, line: 1970
+# File: src/c/stack2.c, line: 1497
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
 msgstr ""
@@ -681,8 +682,8 @@ msgstr ""
 msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1204
 # File: src/c/stack1.c, line: 2859
+# File: src/c/stack2.c, line: 1204
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
@@ -772,9 +773,9 @@ msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_newfun.c, line: 84
-# File: sci_gateway/c/sci_exit.c, line: 58
 # File: sci_gateway/c/sci_funcprot.c, line: 70
 # File: sci_gateway/c/sci_typename.c, line: 96
+# File: sci_gateway/c/sci_exit.c, line: 58
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -784,8 +785,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 #
-# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 73
 # File: tests/nonreg_tests/bug_6830.c, line: 35
+# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 73
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
 msgstr ""
@@ -801,26 +802,31 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_errclear.c, line: 71
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+#
 # File: src/c/intmacr2tree.c, line: 105
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_gstacksize.c, line: 169
-# File: sci_gateway/c/sci_gstacksize.c, line: 174
-# File: sci_gateway/c/sci_stacksize.c, line: 165
-# File: sci_gateway/c/sci_stacksize.c, line: 170
+# File: sci_gateway/c/sci_stacksize.c, line: 166
+# File: sci_gateway/c/sci_stacksize.c, line: 171
+# File: sci_gateway/c/sci_gstacksize.c, line: 173
+# File: sci_gateway/c/sci_gstacksize.c, line: 178
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_funptr.c, line: 49
-# File: sci_gateway/c/sci_clearfun.c, line: 65
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
-# File: sci_gateway/c/sci_with_module.c, line: 47
-# File: sci_gateway/c/sci_getversion.c, line: 209
 # File: sci_gateway/c/sci_warning.c, line: 100
 # File: sci_gateway/c/sci_readgateway.c, line: 124
+# File: sci_gateway/c/sci_funptr.c, line: 49
+# File: sci_gateway/c/sci_getversion.c, line: 209
+# File: sci_gateway/c/sci_with_module.c, line: 47
+# File: sci_gateway/c/sci_clearfun.c, line: 65
+# File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -855,8 +861,8 @@ msgstr ""
 msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getmd5.c, line: 105
 # File: tests/nonreg_tests/bug_7974.c, line: 53
+# File: sci_gateway/c/sci_getmd5.c, line: 105
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr ""
@@ -871,8 +877,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getversion.c, line: 292
 # File: sci_gateway/c/sci_who.c, line: 139
+# File: sci_gateway/c/sci_getversion.c, line: 292
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
@@ -933,6 +939,11 @@ msgstr ""
 # File: sci_gateway/c/sci_exit.c, line: 79
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_errclear.c, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
 msgstr ""
 #
 # File: macros/typeof.sci, line: 12
@@ -1066,7 +1077,6 @@ msgstr ""
 msgid "%s: intersiz is too small.\n"
 msgstr ""
 #
-# File: src/c/intmacr2tree.c, line: 202
 # File: src/c/stack1.c, line: 272
 # File: src/c/stack1.c, line: 537
 # File: src/c/stack1.c, line: 726
@@ -1084,6 +1094,7 @@ msgstr ""
 # File: src/c/stack1.c, line: 2694
 # File: src/c/stack1.c, line: 3036
 # File: src/c/stack1.c, line: 3061
+# File: src/c/intmacr2tree.c, line: 202
 #, c-format
 msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
 msgstr ""
@@ -1093,38 +1104,38 @@ msgstr ""
 msgid "%s: wrong code %d.\n"
 msgstr ""
 #
-# File: /data/scilab/scilab/etc/scilab.start, line: 181
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 181
 msgid "&?"
 msgstr ""
 #
-# File: /data/scilab/scilab/etc/scilab.start, line: 168
-# File: /data/scilab/scilab/etc/scilab.start, line: 170
-# File: /data/scilab/scilab/etc/scilab.start, line: 173
-# File: /data/scilab/scilab/etc/scilab.start, line: 176
-# File: /data/scilab/scilab/etc/scilab.start, line: 179
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 168
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 170
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 173
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 176
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 179
 msgid "&Applications"
 msgstr ""
 #
-# File: /data/scilab/scilab/etc/scilab.start, line: 167
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 167
 msgid "&Control"
 msgstr ""
 #
-# File: /data/scilab/scilab/etc/scilab.start, line: 165
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 165
 msgid "&Edit"
 msgstr ""
 #
-# File: /data/scilab/scilab/etc/scilab.start, line: 164
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 164
 msgid "&File"
 msgstr ""
 #
-# File: /data/scilab/scilab/etc/scilab.start, line: 166
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 166
 msgid "&Preferences"
 msgstr ""
 #
 # File: macros/toolboxes.sci, line: 43
 # File: macros/toolboxes.sci, line: 44
 # File: macros/toolboxes.sci, line: 48
-# File: /data/scilab/scilab/etc/scilab.start, line: 182
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 182
 msgid "&Toolboxes"
 msgstr ""
 #
@@ -1251,7 +1262,7 @@ msgstr ""
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr ""
 #
-# File: src/c/run.c, line: 520
+# File: src/c/run.c, line: 516
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
 #
@@ -1369,7 +1380,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 #
-# File: /data/scilab/scilab/etc/scilab.start, line: 68
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 68
 msgid "Startup execution:"
 msgstr ""
 #
@@ -1400,14 +1411,14 @@ msgstr ""
 # File: src/c/stack3.c, line: 529
 # File: src/c/stack3.c, line: 559
 # File: src/c/stack3.c, line: 596
-# File: src/c/stack3.c, line: 677
-# File: src/c/stack3.c, line: 723
+# File: src/c/stack3.c, line: 674
+# File: src/c/stack3.c, line: 720
 #, c-format
 msgid "Undefined variable %s.\n"
 msgstr ""
 #
-# File: src/c/run.c, line: 361
-# File: src/c/run.c, line: 369
+# File: src/c/run.c, line: 357
+# File: src/c/run.c, line: 365
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
 #

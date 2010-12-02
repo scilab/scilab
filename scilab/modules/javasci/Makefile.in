@@ -117,8 +117,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libjavasci_la_etcdir)" \
 	"$(DESTDIR)$(libjavasci_la_rootdir)" \
-	"$(DESTDIR)$(libsciscipad_la_imagesdir)" \
-	"$(DESTDIR)$(libsciscipad_la_specialtestdir)"
+	"$(DESTDIR)$(libsciscipad_la_imagesdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @JAVASCI_TRUE@libjavasci_la_DEPENDENCIES =  \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -177,8 +176,7 @@ SOURCES = $(libjavasci_la_SOURCES) $(libjavasci2_la_SOURCES)
 DIST_SOURCES = $(am__libjavasci_la_SOURCES_DIST) \
 	$(am__libjavasci2_la_SOURCES_DIST)
 DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_root_DATA) \
-	$(libsciscipad_la_images_DATA) \
-	$(libsciscipad_la_specialtest_DATA)
+	$(libsciscipad_la_images_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -251,6 +249,7 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
 JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
@@ -513,32 +512,6 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@help/images/SciStringClass.gif \
 @JAVASCI_TRUE@help/images/SciBooleanClass.gif
 
-
-### javasci : special tests ###
-@JAVASCI_TRUE@libsciscipad_la_specialtestdir = $(mydatadir)/tests
-@JAVASCI_TRUE@libsciscipad_la_specialtest_DATA = tests/unit_tests/Boolean.java \
-@JAVASCI_TRUE@tests/unit_tests/Boolean.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/BooleanArray.java \
-@JAVASCI_TRUE@tests/unit_tests/BooleanArray.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Clf.java \
-@JAVASCI_TRUE@tests/unit_tests/Clf.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Disp.java \
-@JAVASCI_TRUE@tests/unit_tests/Disp.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Exec.java  \
-@JAVASCI_TRUE@tests/unit_tests/Exec.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Real1.java \
-@JAVASCI_TRUE@tests/unit_tests/Real1.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Real2.java \
-@JAVASCI_TRUE@tests/unit_tests/Real2.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Real3.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Real3.java \
-@JAVASCI_TRUE@tests/unit_tests/String1.java \
-@JAVASCI_TRUE@tests/unit_tests/String1.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Strings1.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Strings1.java \
-@JAVASCI_TRUE@tests/unit_tests/Strings2.java \
-@JAVASCI_TRUE@tests/unit_tests/Strings2.dia.ref
-
 @JAVASCI_TRUE@BUILT_SOURCES = $(am__append_1)
 
 #### SWIG Declaration ####
@@ -592,7 +565,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 # Mask of the Scilab compiled macros
 @JAVASCI_TRUE@MACROBINMASK = *.bin
 # List of the standard directory for tests
-@JAVASCI_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+@JAVASCI_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 @JAVASCI_TRUE@pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -867,26 +840,6 @@ uninstall-libsciscipad_la_imagesDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciscipad_la_imagesdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciscipad_la_imagesdir)" && rm -f $$files
-install-libsciscipad_la_specialtestDATA: $(libsciscipad_la_specialtest_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscipad_la_specialtestdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_specialtestdir)"
-	@list='$(libsciscipad_la_specialtest_DATA)'; test -n "$(libsciscipad_la_specialtestdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscipad_la_specialtestdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscipad_la_specialtestdir)" || exit $$?; \
-	done
-
-uninstall-libsciscipad_la_specialtestDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciscipad_la_specialtest_DATA)'; test -n "$(libsciscipad_la_specialtestdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciscipad_la_specialtestdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciscipad_la_specialtestdir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -978,7 +931,7 @@ check: $(BUILT_SOURCES)
 @JAVASCI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libsciscipad_la_imagesdir)" "$(DESTDIR)$(libsciscipad_la_specialtestdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libsciscipad_la_imagesdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1037,8 +990,7 @@ info-am:
 
 install-data-am: install-data-local install-libjavasci_la_etcDATA \
 	install-libjavasci_la_rootDATA \
-	install-libsciscipad_la_imagesDATA \
-	install-libsciscipad_la_specialtestDATA
+	install-libsciscipad_la_imagesDATA
 
 install-dvi: install-dvi-am
 
@@ -1087,7 +1039,6 @@ ps-am:
 uninstall-am: uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_rootDATA \
 	uninstall-libsciscipad_la_imagesDATA \
-	uninstall-libsciscipad_la_specialtestDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -1102,17 +1053,15 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libjavasci_la_etcDATA install-libjavasci_la_rootDATA \
-	install-libsciscipad_la_imagesDATA \
-	install-libsciscipad_la_specialtestDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libjavasci_la_etcDATA \
+	install-libsciscipad_la_imagesDATA install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_rootDATA \
 	uninstall-libsciscipad_la_imagesDATA \
-	uninstall-libsciscipad_la_specialtestDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

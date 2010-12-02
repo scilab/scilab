@@ -11,8 +11,12 @@
  */
 
 package org.scilab.forge.scidoc;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +34,9 @@ import org.scilab.forge.scidoc.external.HTMLSVGHandler;
  */
 public final class SciDocMain {
 
+    private static final String SCI = ScilabConstants.SCI.getPath();
+    private static final String VERSION = SCI + "/Version.incl";
+
     private String input;
     private String outputDirectory;
     private String language;
@@ -39,8 +46,6 @@ public final class SciDocMain {
     private String scimacro;
     private String version;
     private String imagedir;
-    private static final String SCI = ScilabConstants.SCI.getPath();
-
 
     /**
      * Set the directory where files must be exported
@@ -149,8 +154,7 @@ public final class SciDocMain {
         /* TODO: make this file generated at build time of Scilab */
         sciprim = SCI + "/modules/helptools/data/configuration/scilab_primitives.txt";
         scimacro = SCI + "/modules/helptools/data/configuration/scilab_macros.txt";
-        /* Detect this somewhere */
-        version = "Scilab 5.3.0 beta4";
+        version = getVersion(version);
         imagedir = ".";//the path must be relative to outputDirectory
 
         if (!new File(sourceDoc).isFile()) {
@@ -183,7 +187,31 @@ public final class SciDocMain {
         return outputDirectory;
     }
 
+    /**
+     * Get the version in Version.incl if ver==null.
+     * @param ver the actual version
+     * @return the version in Version.incl
+     */
+    private static String getVersion(String ver) {
+        String ret = "";
+        if (ver == null) {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(VERSION));
+                ret = reader.readLine().split("=")[1];
+                reader.close();
+            } catch (IOException e) { }
+        } else {
+            ret = ver;
+        }
 
+        return ret;
+    }
+
+    /**
+     * Parse the command line
+     * @param args the command line arguments
+     * @return a map argsname-&gt;argsvalue
+     */
     private static Map<String, String> parseCommandLine(String[] args) {
         String option = null;
         boolean in = false;

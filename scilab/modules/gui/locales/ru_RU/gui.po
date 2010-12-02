@@ -84,11 +84,11 @@ msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
-msgstr "%s: Нет найденных результатов для свойства «%s» и значения «%s».\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr "%s: Нет найденных результатов.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"

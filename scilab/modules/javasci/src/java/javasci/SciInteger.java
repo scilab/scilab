@@ -21,6 +21,7 @@ public class SciInteger extends SciAbstractDataType implements java.io.Serializa
 	
 	/**
 	 * Constructs a Scilab Integer from a other SciInteger
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param intObj the SciInteger you want to copy
 	 */
@@ -33,6 +34,7 @@ public class SciInteger extends SciAbstractDataType implements java.io.Serializa
 	/**
 	 * Constructs a Scilab Integer 
 	 * initialized to 0
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 */ 
  public SciInteger(String name) {
@@ -41,6 +43,7 @@ public class SciInteger extends SciAbstractDataType implements java.io.Serializa
 
 	/**
 	 * Constructs a Scilab Integer from a Java Integer
+     * @deprecated
 	 * @param name the name of the Scilab Variable 
 	 * @param value the value
 	 */ 
@@ -52,6 +55,7 @@ public class SciInteger extends SciAbstractDataType implements java.io.Serializa
 
 	/**
 	 * Return the int
+     * @deprecated
 	 * @return the int
 	 */
   public int getData() {
@@ -63,6 +67,7 @@ public class SciInteger extends SciAbstractDataType implements java.io.Serializa
 	/**
 	 * Return the description of the DataType
 	 * Description must set in any class which extends SciAbstractDataType
+     * @deprecated
 	 * @return the Description
 	 *
 	 */

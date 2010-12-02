@@ -314,7 +314,7 @@ pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
             bounds and 
             <literal>"center"</literal>means the center of the text
             lines are aligned in the center of the label bounds.
-            Note this value doesn't affect the positioning of the
+            Note this value does not affect the positioning of the
             overall label bounds relative to the vertex, to move
             the label bounds horizontally, use 
             <literal>"labelPosition"</literal>.</para>
@@ -338,7 +338,7 @@ pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
             <literal>"middle"</literal>means there is equal spacing
             between the topmost text label line and the top of the
             label bounds and the bottom-most text label line and
-            the bottom of the label bounds. Note this value doesn't
+            the bottom of the label bounds. Note this value does not
             affect the positioning of the overall label bounds
             relative to the vertex, to move the label bounds
             vertically, use 
@@ -362,7 +362,7 @@ pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
             
             <literal>"center"</literal>means the label bounds are
             vertically aligned with the bounds of the vertex. Note
-            this value doesn't affect the positioning of label
+            this value does not affect the positioning of label
             within the label bounds, to move the label horizontally
             within the label bounds, use 
             <literal>"align"</literal>.</para>
@@ -385,7 +385,7 @@ pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
             and 
             <literal>"middle"</literal>means the label bounds are
             horizontally aligned with the bounds of the vertex.
-            Note this value doesn't affect the positioning of label
+            Note this value does not affect the positioning of label
             within the label bounds, to move the label vertically
             within the label bounds, use 
             <literal>"verticalAlign"</literal>.</para>

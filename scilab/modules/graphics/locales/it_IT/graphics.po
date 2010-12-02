@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-09-13 10:40+0000\n"
+"PO-Revision-Date: 2010-10-12 21:16+0000\n"
 "Last-Translator: Andrea Amoroso <andrea.amoroso@alice.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -300,7 +300,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -451,7 +451,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una grandezza sbagliata: era atteso un "
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "numero reale.\n"
 
 #, c-format
@@ -469,7 +469,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una grandezza sbagliata: era attesa una "
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
@@ -493,14 +493,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una grandezza sbagliata: era atteso uno "
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
 "scalare reale.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single handle expected.\n"
 msgstr ""
-"%s L'argomento in ingresso #%d è di tipo sbagliato: era atteso un singolo "
-"gestore.\n"
+"%s L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"singolo gestore.\n"
 
 #, c-format
 msgid ""
@@ -525,7 +525,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una grandezza sbagliato: era atteso un "
+"%s: L'argomento in ingresso %d ha una dimensione sbagliato: era atteso un "
 "gestore \"Assi\"\n"
 
 #, c-format
@@ -564,7 +564,7 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso #%d e #%d hanno una grandezza sbagliata: la "
+"%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: la "
 "lunghezza non è compatibile.\n"
 
 #, c-format
@@ -621,7 +621,7 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: ere atteso un array di "
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
 "stringhe 2D.\n"
 
 #, c-format
@@ -1037,7 +1037,7 @@ msgid "Colormap"
 msgstr "Tavolozza dei colori"
 
 msgid "Common X axis"
-msgstr ""
+msgstr "Asse X comune"
 
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
@@ -1078,7 +1078,7 @@ msgid "Disable interpolation"
 msgstr "Disabilita l'interpolazione"
 
 msgid "Edit the curve tip display function"
-msgstr "Modifica il suggerimento curvo per mostrare la funzione"
+msgstr "Modifica la funzione mostra il suggerimento sulla curva"
 
 msgid "Enable interpolation"
 msgstr "Abilita l'interpolazione"
@@ -1126,7 +1126,7 @@ msgid "Graphics"
 msgstr "Grafica"
 
 msgid "Graphics with 2 different Y-scales"
-msgstr ""
+msgstr "Immagini con 2 differenti scale per Y"
 
 msgid "Gray"
 msgstr "Grigio"
@@ -1175,16 +1175,18 @@ msgid "Jet"
 msgstr "Jet"
 
 msgid "Left click on a curve to create a datatip, right opens"
-msgstr ""
+msgstr "Un clic col sinistro su una curva crea un datatip,col destro lo apre"
 
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
-"Clic su tasto sinistro per creare un datatip, il tasto destro apre il menu "
-"contestuale"
+"Un clic col sinistro su una curva per creare un datatip, col destro per "
+"aprire il menu contestuale"
 
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
+"Cliccare col sinistro su una entità grafica per aprire l'editor delle "
+"proprietà"
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1194,7 +1196,7 @@ msgid "Misc"
 msgstr "Misc"
 
 msgid "Multiple datatips mode"
-msgstr "Modalità multipla dei datatip"
+msgstr "Modalità datatip multipli"
 
 msgid "Name"
 msgstr "Nome"
@@ -1253,7 +1255,7 @@ msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Per favore inviare una segnalazione di Bug a dev@lists.scilab.org\n"
 
 msgid "Plot with 3 different Y scales at shared X"
-msgstr ""
+msgstr "Disegna con 3 differenti scale di Y con la X condivisa"
 
 msgid "Problem with sciInitFontContext\n"
 msgstr "C'è un problema con sciInitFontContext\n"
@@ -1265,7 +1267,7 @@ msgid "Redraw all datatips"
 msgstr "Ridisegna tutti i datatip"
 
 msgid "Scale n1"
-msgstr ""
+msgstr "Scala n1"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Il modulo Graphics di Scilab non è installato.\n"
@@ -1284,7 +1286,7 @@ msgid "Summer"
 msgstr "Estate"
 
 msgid "Tcl/Tk interface not installed."
-msgstr ""
+msgstr "L'interfaccia Tcl/Tk non è installata"
 
 #, c-format
 msgid "The font size must be greater than %d.\n"
@@ -1318,7 +1320,7 @@ msgid "The selected file defines more than one function"
 msgstr "Il file selezionato definisce più di una funzione"
 
 msgid "The selected function must have 1 output parameter (str)"
-msgstr "La funzione selezionata deve avere 1 parametro di output (str)"
+msgstr "La funzione selezionata deve avere 1 parametro in uscita (str)"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
@@ -1375,7 +1377,7 @@ msgid "Unhandled data field\n"
 msgstr "Campo di dati non gestito\n"
 
 msgid "Unique datatip mode"
-msgstr "Modalità del datatip unico"
+msgstr "Modalità datatip singolo"
 
 #, c-format
 msgid "Unknown property: %s.\n"
@@ -1653,7 +1655,8 @@ msgid "lower right"
 msgstr "in basso a destra"
 
 msgid "select the curve tip display function"
-msgstr "seleziona la funzione di visualizzazione del suggerimento curvo"
+msgstr ""
+"seleziona la funzione di visualizzazione del suggerimento sulla curva"
 
 msgid "upper left"
 msgstr "in alto a sinistra"

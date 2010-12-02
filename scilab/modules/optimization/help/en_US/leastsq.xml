@@ -292,7 +292,7 @@ In C:          void fun(int *m, int *n, double *x, double *params, double *y)
           <emphasis>opt_par2</emphasis> begin from
           <literal>params(4)</literal> (fortran case), and from
           <literal>params[3]</literal> (C case), etc... Note that even if
-          <literal>fun</literal> doesn't need supplementary parameters you
+          <literal>fun</literal> does not need supplementary parameters you
           must anyway write the fortran code with a <literal>params</literal>
           argument (which is then unused in the subroutine core).</para>
         </listitem>
@@ -367,7 +367,7 @@ In C:          void fun(int *m, int *n, double *x, double *params, double *y)
 
     <programlisting role="example"><![CDATA[ 
 // We will show different calling possibilities of leastsq on one (trivial) example
-// which is non linear but doesn't really need to be solved with leastsq (applying
+// which is non linear but does not really need to be solved with leastsq (applying
 // log linearizes the model and the problem may be solved with linear algebra). 
 // In this example we look for the 2 parameters x(1) and x(2) of a simple
 // exponential decay model (x(1) being the unknow initial value and x(2) the
@@ -476,7 +476,7 @@ flibname = ilib_for_link(names,"myfun.f",[],"f");
 // 7-3/ link it to scilab (see link help page)
 link(flibname,names,"f") 
 
-// 7-4/ ready for the leastsq call: be carreful don't forget to
+// 7-4/ ready for the leastsq call: be carreful do not forget to
 //      give the dimension m after the routine name !
 [f,xopt, gropt] = leastsq(list("myfun",m,tm,ym,wm),x0)  // without Jacobian
 [f,xopt, gropt] = leastsq(list("myfun",m,tm,ym,wm),"mydfun",x0) // with Jacobian

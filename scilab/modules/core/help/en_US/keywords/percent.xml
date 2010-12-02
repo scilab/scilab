@@ -20,7 +20,7 @@
     For example the function <literal>%rmr</literal> performs the multiplication (<literal>m</literal>)
     operation <literal>x*y</literal> for <literal>x</literal> and <literal>y</literal> rational matrices (<literal>r</literal>).
     The coding conventions are given by the readme file in 
-    directory <literal>SCIDIR/macros/percent</literal>.</para>
+    directory <literal>SCI/modules/overloading/macros</literal>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

@@ -21,7 +21,7 @@
     Par exemple la fonction <literal>%rmr</literal> calcule la multiplication (opérateur <literal>m</literal>)
     <literal>x*y</literal> pour des matrices rationnelles <literal>x</literal> et <literal>y</literal> (type <literal>r</literal>).
     Les conventions de codage sont précisées dans le fichier README du répertoire 
-    <literal>SCIDIR/macros/percent</literal>.
+    <literal>SCI/modules/overloading/macros</literal>.
   </para>
   </refsection>
   <refsection>

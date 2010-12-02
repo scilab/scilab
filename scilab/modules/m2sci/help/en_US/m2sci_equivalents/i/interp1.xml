@@ -43,7 +43,7 @@ interp1
   <refsection>
     <title>Particular cases</title>
     <para>
-Scilab <emphasis role="bold">interp1</emphasis> function doesn't work with the pchip interpolation method.
+Scilab <emphasis role="bold">interp1</emphasis> function does not work with the pchip interpolation method.
 </para>
   </refsection>
 </refentry>

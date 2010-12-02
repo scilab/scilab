@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -154,8 +155,8 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
         try {
             FileOutputStream outToc = new FileOutputStream("toc.hhc");
             FileOutputStream outFiles = new FileOutputStream("htmlhelp.hhp");
-            OutputStreamWriter writerFiles = new OutputStreamWriter(outFiles);
-            OutputStreamWriter writerToc = new OutputStreamWriter(outToc);
+            OutputStreamWriter writerFiles = new OutputStreamWriter(outFiles, Charset.forName("UTF-8"));
+            OutputStreamWriter writerToc = new OutputStreamWriter(outToc, Charset.forName("UTF-8"));
             convertTree(writerToc);
             writerToc.flush();
             writerToc.close();

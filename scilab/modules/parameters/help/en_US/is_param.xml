@@ -67,7 +67,7 @@
 
         <listitem>
           <para>an error flag which is set to %T if list_name is not of type
-          plist (this list hasn't been initialized by a call to
+          plist (this list has not been initialized by a call to
           init_param).</para>
         </listitem>
       </varlistentry>

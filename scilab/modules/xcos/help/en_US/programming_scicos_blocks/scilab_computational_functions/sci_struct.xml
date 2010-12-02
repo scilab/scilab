@@ -99,7 +99,7 @@
     <title>Description</title>
     <para>
 A Scicos computational function of type 5 can be realized by the use of a Scilab function.
-That function doesn't really differs from all other scilab function : one can use all functions and
+That function does not really differs from all other scilab function : one can use all functions and
 instructions of the scilab language inside that function to do the computation.
 </para>
     <para>

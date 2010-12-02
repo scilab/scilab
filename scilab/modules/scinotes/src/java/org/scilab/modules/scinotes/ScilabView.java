@@ -74,7 +74,6 @@ public class ScilabView extends WrappedPlainView {
     private boolean lexerValid;
     private ScilabDocument doc;
     private Segment text = new Segment();
-    private boolean isLaTeXViewable;
     private boolean isTabViewable = true;
     private boolean isWhiteViewable = true;
     private boolean enable = true;
@@ -111,14 +110,6 @@ public class ScilabView extends WrappedPlainView {
         lexer = doc.createLexer();
         lexerValid = false;
         setTabRepresentation(TABVERTICAL);
-    }
-
-    /**
-     * To render LaTeX in this view (unused for the moment)
-     * @param b true if viewable or not
-     */
-    public void setLaTeXViewable(boolean b) {
-        isLaTeXViewable = b;
     }
 
     /**
@@ -328,11 +319,6 @@ public class ScilabView extends WrappedPlainView {
                         paintTab(text, x, y, g, mark);
                     }
                     break;
-                case ScilabLexerConstants.LATEX :
-                        if (isLaTeXViewable) {
-                            //LaTeXUtilities.drawText(text, x, y, g, mark);
-                        }
-                        break;
                 default :
                     break;
                 }

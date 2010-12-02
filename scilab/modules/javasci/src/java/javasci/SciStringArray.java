@@ -27,6 +27,7 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 
 	/**
 	 * Constructs a Scilab String Array from a other SciStringArray
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param stringArrayObj the SciStringArray you want to copy
 	 */
@@ -43,6 +44,7 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 	/**
 	 * Constructs a Scilab String Array 
 	 * All cells are initialized to ""
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 * @param r number of rows
 	 * @param c number of columns
@@ -67,6 +69,7 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 
 	/**
 	 * Constructs a Scilab String Array from a java string array
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 * @param r number of rows
 	 * @param c number of columns
@@ -85,6 +88,7 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 
 	/**
 	 * Return a specific element in the Array
+     * @deprecated
 	 * @param indr Row index
 	 * @param indc Column index
 	 * @return The element
@@ -93,6 +97,7 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 
 	/**
 	 * Return the data
+     * @deprecated
 	 * @return the data
 	 */
 	public String[] getData() {

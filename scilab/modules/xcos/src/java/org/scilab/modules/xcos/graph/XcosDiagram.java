@@ -290,12 +290,19 @@ public class XcosDiagram extends ScilabGraph {
     	
     	// ImplicitLink -> ImplicitOutputPort
     	if (source instanceof ImplicitLink && target instanceof ImplicitOutputPort && cell instanceof ImplicitLink) {
-    			return null;
+    		final BasicLink current = (BasicLink) cell;
+			final SplitBlock split = addSplitEdge(current.getGeometry()
+					.getTargetPoint(), (BasicLink) source, (BasicPort) target);
+			return addCell(cell, parent, index, split.getOut2(), source);
     	}
     	// ImplicitOutputPort -> ImplicitLink
     	// Switch source and target !
     	if (target instanceof ImplicitLink && source instanceof ImplicitOutputPort && cell instanceof ImplicitLink) {
-    			return null;
+			final BasicLink current = (BasicLink) cell;
+			final SplitBlock split = addSplitEdge(current.getGeometry()
+					.getTargetPoint(), (ImplicitLink) target,
+					(ImplicitOutputPort) source);
+			return addCell(cell, parent, index, split.getOut2(), source);
     	}
 
     	// CommandControlLink -> ControlPort
@@ -946,8 +953,8 @@ public class XcosDiagram extends ScilabGraph {
 			 * Remove split blocks
 			 */
 			if (cell instanceof BasicLink) {
-				final BasicBlock src = (BasicBlock) ((BasicLink) cell).getSource().getParent();
-				final BasicBlock target = (BasicBlock) ((BasicLink) cell).getTarget().getParent();
+				final mxICell src = ((BasicLink) cell).getSource().getParent();
+				final mxICell target = ((BasicLink) cell).getTarget().getParent();
 				
 				if (src instanceof SplitBlock) {
 					removedCells.add(src);
@@ -1069,34 +1076,23 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	@Override
 	public String convertValueToString(Object cell) {
-		final StringBuilder str = new StringBuilder();
-		str.append("<html><body>");
-		
 		if (cell != null) {
 			final Map<String, Object> style = getCellStyle(cell);
 			
 			final String customLabel = (String) style.get("displayedLabel");
 			if (customLabel != null && cell instanceof BasicBlock) {
-				str.append(String.format(customLabel,
-						(Object[]) ((BasicBlock) cell).getExprsFormat()));
+				return String.format(customLabel,
+						(Object[]) ((BasicBlock) cell).getExprsFormat());
 			} else {
 				final String label = super.convertValueToString(cell);
-				if (label.isEmpty()) {
-					if (cell instanceof BasicBlock) {
-						str.append(((BasicBlock) cell).getInterfaceFunctionName());
-					} else {
-						// empty label should not contains html tags
-						return label;
-					}
-				} else {
-					str.append(label);
+				if (label.isEmpty() && cell instanceof BasicBlock) {
+					return ((BasicBlock) cell).getInterfaceFunctionName();
 				}
+				return label;
 			}
 			
 		}
-		
-		str.append("</body></html>");
-		return str.toString();
+		return null;
 	}
 	
 	/**
@@ -1688,6 +1684,7 @@ public class XcosDiagram extends ScilabGraph {
 			if (getModel().getChildCount(getDefaultParent()) == 0) {
 		    	load(theFile);
 		    	postLoad(theFile);
+		    	getParentTab().setVisible(true);
 		    } else {
 		    	info(XcosMessages.LOADING_DIAGRAM);
 		    	final XcosDiagram xcosDiagram = new XcosDiagram();
@@ -1708,6 +1705,7 @@ public class XcosDiagram extends ScilabGraph {
 	    handler.readDiagram(this);
 	    generateUID();
 	    updateTabTitle();
+	    getParentTab().setVisible(true);
 	    result = true;
 	    break;
 

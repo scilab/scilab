@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-09-14 10:29+0000\n"
+"PO-Revision-Date: 2010-10-11 12:33+0000\n"
 "Last-Translator: Kenet Jervet <newelevenken@yahoo.com.cn>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -273,7 +273,7 @@ msgstr "%s：输入参数的数目出错，应该为 %d 个。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数数目错误：应为%d或%d。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -295,15 +295,15 @@ msgstr "%s：输入参数 #%d 的大小出错：应该为 1x2 大小的字符矩
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的规格错误：应为1x1或1x2的字符串数组。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的规格错误：应为布尔型变量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的规格错误：应为字符串型变量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -345,7 +345,7 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为一个布尔型的。\n
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应为字符串型变量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
@@ -354,7 +354,7 @@ msgstr "%s：输入参数#%d的类型错误：应该为布尔值。\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应为布尔型或字符串型变量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -384,7 +384,7 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为 mlist。\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
-msgstr ""
+msgstr "%s：第%d个输入参数值错误：“%s”类别尚未注册。"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
@@ -393,7 +393,7 @@ msgstr "%s：输入参数 #%d 的值出错：“%s”不是有效的 URL。\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数值错误：应为“all”或“main”。\n"
 
 #, c-format
 msgid ""

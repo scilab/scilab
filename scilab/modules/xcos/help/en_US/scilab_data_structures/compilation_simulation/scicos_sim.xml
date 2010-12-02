@@ -355,7 +355,7 @@ Type : integer.
           <emphasis role="bold">ztyp</emphasis>
         </para>
         <para> A vector of size equal to the number of blocks.</para>
-        <para> A 1 entry indicates that the block may have zero-crossings, even if it doesn't in the context of the diagram. Usually not used by the simulator.</para>
+        <para> A 1 entry indicates that the block may have zero-crossings, even if it does not in the context of the diagram. Usually not used by the simulator.</para>
         <para> 
 Size : number of blocks.
 </para>
