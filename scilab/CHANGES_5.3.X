@@ -30,6 +30,7 @@ Bug Fixes:
 * bug 8505 fixed - help was not generated on Windows, if there was a path name
                    with some spaces.
 
+* bug 8540 fixed - Fix a typo in Xcos.
 
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
             ===============================================================
