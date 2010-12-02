@@ -313,7 +313,8 @@ if BUILD_HELP
 	fi
 ## Install Javasci documentation (javadoc)
 ## See target javadoc in this file to see how it is build
-	@$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC); \
+	@if test -d $(PATHTOJAVASCIDOC); then \
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC); \
 	echo $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC); \
 	for dir in $(JAVASCI_DIRS) ; do \
 		$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC)/$$dir; \
@@ -322,7 +323,8 @@ if BUILD_HELP
 			    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC)/$$dir" ; \
 				$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOJAVASCIDOC)/$$dir ; \
 			done; \
-	done
+	done; \
+	fi
 endif
 
 # Pkgconfig directory
