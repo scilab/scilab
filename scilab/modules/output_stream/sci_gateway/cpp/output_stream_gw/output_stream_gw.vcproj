@@ -372,6 +372,10 @@
 				RelativePath="..\..\..\includes\output_stream_gw.hxx"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\includes\scilab_sprintf.hxx"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\..\..\..\bin\blasplus.lib"

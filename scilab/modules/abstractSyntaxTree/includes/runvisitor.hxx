@@ -807,9 +807,9 @@ namespace ast
         void visitprivate(const TryCatchExp  &e)
         {
             //save current prompt mode
-            ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+            int oldVal = ConfigVariable::getPromptMode();
             //set mode silent for errors
-            ConfigVariable::setPromptMode(ConfigVariable::silent);
+            ConfigVariable::setPromptMode(-1);
             try
             {
                 T execMe;

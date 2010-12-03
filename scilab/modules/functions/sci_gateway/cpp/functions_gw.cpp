@@ -28,6 +28,7 @@ bool FunctionsModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"funclist", &sci_funclist, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"whereis", &sci_whereis, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getCurrentThreadId", &sci_getCurrentThreadId, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mode", &sci_mode, MODULE_NAME));
 	return true;
 }
 

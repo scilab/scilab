@@ -22,7 +22,8 @@ sci_gateway/cpp/sci_exec.cpp \
 sci_gateway/cpp/sci_functionlist.cpp \
 sci_gateway/cpp/sci_whereis.cpp \
 sci_gateway/cpp/sci_execstr.cpp \
-sci_gateway/cpp/sci_getCurrentThreadId.cpp
+sci_gateway/cpp/sci_getCurrentThreadId.cpp \
+sci_gateway/cpp/sci_mode.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intlib.f \
 sci_gateway/fortran/intdeff.f \

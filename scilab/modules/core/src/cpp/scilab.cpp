@@ -127,6 +127,7 @@ int InitializeEnvironnement(void);
 bool execScilabStart(void);
 
 int StartScilabEngine(int argc, char*argv[], int iFileIndex);
+static Parser::ControlStatus processCommand(char* _pstCommand);
 
 /*
 ** Usage
@@ -250,164 +251,6 @@ extern "C"
     extern void ConsolePrintf(char*);
 }
 
-
-/*
-** -*- Batch Main -*-
-*/
-static int batchMain (void)
-{
-/*
-** -*- PARSING -*-
-*/
-    Parser *parser = new Parser();
-    parser->setParseTrace(parseTrace);
-
-    //Change parsing methode to parse line by line and not entire file
-    char* pstFilename = wide_string_to_UTF8(file_name);
-    char pstRead[4096] = {0};
-    char* pstCommand = NULL;
-    FILE* fileIn = NULL;
-#ifdef _MSC_VER
-    fopen_s(&fileIn, pstFilename, "r");
-#else
-    fileIn = fopen(pstFilename, "r");
-#endif
-    if(fileIn == NULL)
-    {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Cannot open file %ls.\n"), L"parser", file_name);
-        throw ast::ScilabError(szError, 999, *new Location());
-    }
-
-    while (!ConfigVariable::getForceQuit() && fgets(pstRead, 4096, fileIn) != 0)
-    {
-        if(pstCommand == NULL)
-        {
-            pstCommand = os_strdup(pstRead);
-        }
-        else
-        {
-            //+1 for null termination and +1 for '\n'
-            size_t iLen = strlen(pstCommand) + strlen(pstRead) + 2;
-            char* pstNewCommand = (char*)MALLOC(iLen * sizeof(char));
-#ifdef _MSC_VER
-            sprintf_s(pstNewCommand, iLen, "%s\n%s", pstCommand, pstRead);
-#else
-            sprintf(pstNewCommand, "%s\n%s", pstCommand, pstRead);
-#endif
-            FREE(pstCommand);
-            pstCommand = pstNewCommand;
-        }
-
-        if (strcmp(pstCommand, "") != 0 && strcmp(pstCommand, "\n") != 0)
-        {
-            wchar_t* pwstCommand = to_wide_string(pstCommand);
-            /*
-            ** -*- PARSING -*-
-            */
-            parseCommandTask(parser, timed, pwstCommand);
-
-            /*
-            ** -*- DUMPING TREE -*-
-            */
-            if (dumpAst == true) { dumpAstTask(parser->getTree(), timed); }
-
-            if (parser->getExitStatus() == Parser::Succeded)
-            {
-                //update diary
-                diaryWrite(pwstCommand, TRUE);
-
-                /*
-                ** -*- PRETTY PRINT TREE -*-
-                */
-                if (printAst == true) { printAstTask(parser->getTree(), timed); }
-
-                /*
-                ** -*- EXECUTING TREE -*-
-                */
-                if (execAst == true) { execAstTask(parser->getTree(), timed, ASTtimed); }
-
-                /*
-                ** -*- DUMPING STACK AFTER EXECUTION -*-
-                */
-                if (dumpStack == true) { dumpStackTask(timed); }
-
-                FREE(pstCommand);
-                pstCommand = NULL;
-            }
-            else if(parser->getExitStatus() == Parser::Failed && parser->getControlStatus() == Parser::AllControlClosed)
-            {
-                YaspWriteW(parser->getErrorMessage());
-            }
-
-            parser->freeTree();
-            FREE(pwstCommand);
-        }
-        else
-        {
-            FREE(pstCommand);
-            pstCommand = NULL;
-        }
-        pstRead[0] = '\0';
-    }
-
-    fclose(fileIn);
-
-    if(parser->getExitStatus() == Parser::Failed)
-    {
-        YaspWriteW(parser->getErrorMessage());
-        ConfigVariable::setExitStatus(parser->getExitStatus());
-    }
-
-#ifdef DEBUG
-    std::cerr << "To end program press [ENTER]" << std::endl;
-#endif
-    return ConfigVariable::getExitStatus();
-
-//    parseFileTask(parser, timed, file_name, prog_name);
-//
-///*
-//** -*- DUMPING TREE -*-
-//*/
-//    if (dumpAst == true) { dumpAstTask(parser->getTree(), timed); }
-//
-//    if (parser->getExitStatus() != Parser::Succeded)
-//    {
-//        YaspWriteW(parser->getErrorMessage());
-//        return PARSE_ERROR;
-//    }
-//
-///*
-//** -*- PRETTY PRINT TREE -*-
-//*/
-//    if (printAst == true) { printAstTask(parser->getTree(), timed); }
-//
-///*
-//** -*- EXECUTING TREE -*-
-//*/
-//    if (execAst == true)
-//    {
-//        //save current prompt mode
-//        ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
-//        //set mode silent for errors
-//        ConfigVariable::setPromptMode(ConfigVariable::silent);
-//        execAstTask(parser->getTree(), timed, ASTtimed);
-//        //restore previous prompt mode
-//        ConfigVariable::setPromptMode(oldVal);
-//    }
-//
-///*
-//** -*- DUMPING STACK AFTER EXECUTION -*-
-//*/
-//    if (dumpStack == true) { dumpStackTask(timed); }
-//
-//#ifdef DEBUG
-//    std::cerr << "To end program press [ENTER]" << std::endl;
-//#endif
-//
-//    return ConfigVariable::getExitStatus();
-}
-
 /*
 ** -*- stateView
 ** Used to show parser state.
@@ -443,11 +286,9 @@ static void stateShow(Parser::ControlStatus status)
 */
 static int interactiveMain (void)
 {
-    bool exit = false;
     int pause = 0;
     char *command = NULL;
-    Parser *parser = new Parser();
-    parser->setParseTrace(parseTrace);
+    Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
     if(noBanner == false)
     {
@@ -455,7 +296,7 @@ static int interactiveMain (void)
     }
 
     InitializeHistoryManager();
-/* add date & time @ begin session */
+    /* add date & time @ begin session */
     char *commentbeginsession = getCommentDateSession();
     if (commentbeginsession)
     {
@@ -464,17 +305,15 @@ static int interactiveMain (void)
         commentbeginsession=NULL;
     }
 
-
-
     while (!ConfigVariable::getForceQuit())
     {
         // Show Parser Sate before prompt
-        stateShow(parser->getControlStatus());
+        stateShow(controlStatus);
 
         //set prompt value
         C2F(setprlev)(&pause);
 
-        if (parser->getControlStatus() == Parser::AllControlClosed)
+        if (controlStatus == Parser::AllControlClosed)
         {
             if(command)
             {
@@ -499,48 +338,7 @@ static int interactiveMain (void)
             command = pstNewCommand;
         }
 
-        //std::cout << "---" << std::endl << "Command = " << std::endl;
-        //std::cout << command << std::endl;
-        //std::cout << "---" << std::endl;
-
-        if (strcmp(command, "") != 0)
-        {
-            wchar_t* pstCommand = to_wide_string(command);
-            /*
-            ** -*- PARSING -*-
-            */
-            parseCommandTask(parser, timed, pstCommand);
-
-            /*
-            ** -*- DUMPING TREE -*-
-            */
-            if (dumpAst == true) { dumpAstTask(parser->getTree(), timed); }
-
-            if (parser->getExitStatus() == Parser::Succeded)
-            {
-                /*
-                ** -*- PRETTY PRINT TREE -*-
-                */
-                if (printAst == true) { printAstTask(parser->getTree(), timed); }
-
-                /*
-                ** -*- EXECUTING TREE -*-
-                */
-                if (execAst == true) { execAstTask(parser->getTree(), timed, ASTtimed); }
-
-                /*
-                ** -*- DUMPING STACK AFTER EXECUTION -*-
-                */
-                if (dumpStack == true) { dumpStackTask(timed); }
-            }
-            else if(parser->getExitStatus() == Parser::Failed && parser->getControlStatus() == Parser::AllControlClosed)
-            {
-                YaspWriteW(parser->getErrorMessage());
-            }
-
-            parser->freeTree();
-            FREE(pstCommand);
-        }
+        controlStatus = processCommand(command);
     }
 #ifdef DEBUG
     std::cerr << "To end program press [ENTER]" << std::endl;
@@ -548,9 +346,67 @@ static int interactiveMain (void)
     return ConfigVariable::getExitStatus();
 }
 
+static Parser::ControlStatus processCommand(char* _pstCommand)
+{
+    Parser *parser = new Parser();
+    parser->setParseTrace(parseTrace);
+    if (strcmp(_pstCommand, "") != 0)
+    {
+        wchar_t* pwstCommand = to_wide_string(_pstCommand);
+        /*
+        ** -*- PARSING -*-
+        */
+        parseCommandTask(parser, timed, pwstCommand);
+
+        /*
+        ** -*- DUMPING TREE -*-
+        */
+        if(dumpAst == true)
+        { 
+            dumpAstTask(parser->getTree(), timed);
+        }
+
+        if(parser->getExitStatus() == Parser::Succeded)
+        {
+            /*
+            ** -*- PRETTY PRINT TREE -*-
+            */
+            if(printAst == true)
+            {
+                printAstTask(parser->getTree(), timed);
+            }
+
+            /*
+            ** -*- EXECUTING TREE -*-
+            */
+            if(execAst == true)
+            {
+                execAstTask(parser->getTree(), timed, ASTtimed);
+            }
+
+            /*
+            ** -*- DUMPING STACK AFTER EXECUTION -*-
+            */
+            if(dumpStack == true)
+            {
+                dumpStackTask(timed);
+            }
+        }
+        else if(parser->getExitStatus() == Parser::Failed && parser->getControlStatus() == Parser::AllControlClosed)
+        {
+            YaspWriteW(parser->getErrorMessage());
+        }
+
+        parser->freeTree();
+        FREE(pwstCommand);
+    }
+    return parser->getControlStatus();
+}
+
 static void TermPrintf(char *text)
 {
-    std::cout << text;
+    //std::cout << text;
+    printf("%s", text);
 }
 
 /*
@@ -653,39 +509,30 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
         execScilabStartTask();
     }
 
+    int pause = 0;
+    //set prompt value
+    C2F(setprlev)(&pause);
 
     try
     {
         if(execCommand)
-        {//-e option, create a file with command and run as batch
-            ConfigVariable::setPromptMode(ConfigVariable::prompt);
-            char szFile[PATH_MAX];
-            sprintf(szFile, "%s\\%s", getTMPDIR(), "execcommand.temp");
-            FILE* fExec = NULL;
-    #ifdef _MSC_VER
-            fopen_s(&fExec, szFile, "w");
-    #else
-            fExec = fopen(szFile, "w");
-    #endif
-            fwrite(argv[iFileIndex], sizeof(char), strlen(argv[iFileIndex]), fExec);
-            fclose(fExec);
-            file_name = to_wide_string(szFile);
-            iMainRet = batchMain();
-            deleteafile(szFile);
+        {//-e option
+            processCommand(argv[iFileIndex]);
         }
         else if(execFile)
-        {//-f option
-            ConfigVariable::setPromptMode(ConfigVariable::silent);
-            file_name = to_wide_string(argv[iFileIndex]);
-            iMainRet = batchMain();
+        {//-f option execute exec('%s',-1)
+            char* pstCommand = (char*)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(argv[iFileIndex]) + 1));
+            sprintf(pstCommand, "exec(\"%s\",-1)", argv[iFileIndex]);
+            processCommand(pstCommand);
+            FREE(pstCommand);
         }
     }
     catch(ScilabException se)
     {
-        ConfigVariable::setPromptMode(ConfigVariable::normal);
         YaspWriteW(se.GetErrorMessage().c_str());
     }
-    ConfigVariable::setPromptMode(ConfigVariable::normal);
+
+    ConfigVariable::setPromptMode(2);
 
     //always run as interactiveMain even after -e or -f option
     file_name = L"prompt";

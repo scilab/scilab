@@ -35,9 +35,9 @@ Function::ReturnValue sci_disp(typed_list &in, int _piRetCount, typed_list &out)
 	}
 
     //save current prompt mode
-    ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+    int oldVal = ConfigVariable::getPromptMode();
     //set mode silent for errors
-    ConfigVariable::setPromptMode(ConfigVariable::normal);
+    ConfigVariable::setPromptMode(0);
 	for(it = in.rbegin() ; it != in.rend() ; it++)
 	{
 		YaspWriteW(L"\n");

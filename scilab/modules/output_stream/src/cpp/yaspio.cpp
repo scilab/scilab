@@ -16,6 +16,7 @@
 
 extern "C"
 {
+#include <stdio.h>
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "diary.h"
@@ -57,6 +58,11 @@ char *YaspRead()
 void YaspWrite(const char* text)
 {
     int iMode =  getPromptMode();
+    char sz[256];
+
+    //sprintf(sz, "getPromptMode() -> %d", iMode);
+    //MessageBoxA(NULL, sz, NULL, 0);
+
     if(iMode != PROMPTMODE_SILENT)
     {
         wchar_t* pwstTemp = to_wide_string(text);

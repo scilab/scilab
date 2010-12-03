@@ -145,10 +145,10 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	}
 
     //save current prompt mode
-    ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+    int oldVal = ConfigVariable::getPromptMode();
     if(bMute)
     {
-        ConfigVariable::setPromptMode(ConfigVariable::silent);
+        ConfigVariable::setPromptMode(-1);
     }
 
 	std::list<Exp *>::iterator j;
@@ -167,7 +167,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             if(bErrCatch && bMute == true)
             {
                 //set mode silent for errors
-                ConfigVariable::setPromptMode(ConfigVariable::silent);
+                ConfigVariable::setPromptMode(-1);
             }
 
             //store message

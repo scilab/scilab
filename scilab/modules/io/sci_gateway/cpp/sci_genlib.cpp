@@ -119,9 +119,9 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         os_swprintf(pstVerbose, 65535, _W("-- Creation of [%ls] (Macros) --\n"), pstLibName);
 
         //save current prompt mode
-        ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
+        int oldVal = ConfigVariable::getPromptMode();
         //set mode silent for errors
-        ConfigVariable::setPromptMode(ConfigVariable::normal);
+        ConfigVariable::setPromptMode(0);
         YaspWriteW(pstVerbose);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);

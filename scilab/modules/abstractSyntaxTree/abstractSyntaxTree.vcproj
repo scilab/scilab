@@ -331,10 +331,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\scilabexception.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\shortcutvisitor.cpp"
 				>
 			</File>
@@ -501,10 +497,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\location.hxx"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\logicalopexp.hxx"
 				>
 			</File>
@@ -562,10 +554,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\runvisitor.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\scilabexception.hxx"
 				>
 			</File>
 			<File

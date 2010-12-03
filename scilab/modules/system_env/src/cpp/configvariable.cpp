@@ -351,21 +351,16 @@ wstring ConfigVariable::getLastErrorFunction()
 ** \{
 */
 
-ConfigVariable::PromptMode ConfigVariable::m_ePromptMode = ConfigVariable::normal;
-
-void ConfigVariable::setPromptMode(ConfigVariable::PromptMode _ePromptMode)
-{
-    m_ePromptMode = _ePromptMode;
-}
+int ConfigVariable::m_iPromptMode = 0;
 
 void ConfigVariable::setPromptMode(int _iPromptMode)
 {
-    m_ePromptMode = static_cast<ConfigVariable::PromptMode>(_iPromptMode);
+    m_iPromptMode = _iPromptMode;
 }
 
-ConfigVariable::PromptMode ConfigVariable::getPromptMode(void)
+int ConfigVariable::getPromptMode(void)
 {
-    return m_ePromptMode;
+    return m_iPromptMode;
 }
 
 /*

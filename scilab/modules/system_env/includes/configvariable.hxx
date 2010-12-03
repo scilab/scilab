@@ -155,23 +155,21 @@ public :
 
     //Prompt Mode
 public :
-    enum PromptMode
-    {
-        normal = 0,
-        silent = -1,
-        prompt = 2,
-        exec = 1,
-        exec3 = 3,
-        step = 4,
-        step7 = 7
-    };    
+/*
+    normal = 0,
+    silent = -1,
+    prompt = 2,
+    exec = 1,
+    exec3 = 3,
+    step = 4,
+    step7 = 7
+*/
 private :
-    static PromptMode m_ePromptMode;
+    static int m_iPromptMode;
 
 public :
-    static void setPromptMode(PromptMode _ePromptMode);
     static void setPromptMode(int _iPromptMode);
-    static PromptMode getPromptMode(void);
+    static int getPromptMode(void);
 };
 
 #endif /* __CONFIGVARIABLE_HXX__ */

@@ -38,24 +38,20 @@ extern "C"
 }
 
 
-#define EXEC_MODE_MUTE			0xFFFFFFFF //-1)
-#define EXEC_MODE_VERBOSE		0x00000001 //(1)
-#define EXEC_MODE_PROMPT		0x00000002 //(2)
-
 using namespace types;
 using namespace ast;
 using namespace std;
 
 bool checkPrompt(int _iMode, int _iCheck);
-void printLine(char* _stPrompt, char* _stLine);
-void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer, int _iMode);
+void printLine(char* _stPrompt, char* _stLine, bool _bLF);
+void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer);
 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    int promptMode  = 2;
     int iErr        = 0;
 	bool bErrCatch	= false;
-	int iMode		= EXEC_MODE_VERBOSE;
 	Exp* pExp		= NULL;
     int iID         = 0;
     Parser parser;
@@ -90,12 +86,12 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                     return Function::Error;
 				}
 
-				iMode = (int)in[2]->getAsDouble()->real_get()[0];
+                promptMode = (int)in[2]->getAsDouble()->real_get()[0];
 			}
 		}
 		else if(in[1]->getType() == InternalType::RealDouble && in[1]->getAsDouble()->size_get() == 1)
         {//mode
-            iMode = (int)in[1]->getAsDouble()->real_get()[0];
+            promptMode = (int)in[1]->getAsDouble()->real_get()[0];
 		}
 		else
 		{//not managed
@@ -158,6 +154,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	char stPrompt[64];
 	//get prompt
 	GetCurrentPrompt(stPrompt);
+//    MessageBoxA(NULL, stPrompt, "", 0);
 
     wchar_t* pwstFile =  expandPathVariableW(in[0]->getAsString()->string_get(0));
     char* pstFile = wide_string_to_UTF8(pwstFile);
@@ -169,27 +166,24 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	int iCurrentLine = -1; //no data in str
 
     //save current prompt mode
-    ConfigVariable::PromptMode oldVal = ConfigVariable::getPromptMode();
-
-    if(bErrCatch)
-    {
-        ConfigVariable::setPromptMode(ConfigVariable::silent);
-    }
+    int oldVal = ConfigVariable::getPromptMode();
+    ConfigVariable::setPromptMode(promptMode);
 
 	for(j = LExp.begin() ; j != LExp.end() ; j++)
 	{
 		try
 		{
-			if(checkPrompt(iMode, EXEC_MODE_MUTE))
+			//if(checkPrompt(iMode, EXEC_MODE_MUTE))
+			//{
+			//	//manage mute option
+			//	(*j)->mute();
+			//	MuteVisitor mute;
+			//	(*j)->accept(mute);
+			//}
+            //exec3 ou normal prompt mode
+            if(ConfigVariable::getPromptMode() == 1 || ConfigVariable::getPromptMode() == 3)
 			{
-				//manage mute option
-				(*j)->mute();
-				MuteVisitor mute;
-				(*j)->accept(mute);
-			}
-			else if(checkPrompt(iMode, EXEC_MODE_VERBOSE))
-			{
-				printExp(&file, *j, stPrompt, &iCurrentLine, str, iMode);
+				printExp(&file, *j, stPrompt, &iCurrentLine, str);
 			}
 
             //excecute script
@@ -256,8 +250,6 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 				wstring varName = L"ans";
 				symbol::Context::getInstance()->put(varName, *execMe.result_get());
 				if( (*j)->is_verbose() && 
-                    !checkPrompt(iMode, EXEC_MODE_MUTE) && 
-                    checkPrompt(iMode, EXEC_MODE_VERBOSE) && 
                     bErrCatch == false)
 				{
 					std::wostringstream ostr;
@@ -268,13 +260,11 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 				}
 			}
 
-			if( !checkPrompt(iMode, EXEC_MODE_MUTE) && 
-                checkPrompt(iMode, EXEC_MODE_VERBOSE) && 
-                bErrCatch == false)
-			{
-				YaspWriteW(L"\n");
-			}
-
+			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) && 
+   //             bErrCatch == false)
+			//{
+			//	YaspWriteW(L"\n");
+			//}
 		}
         catch(ScilabMessage sm)
         {
@@ -308,6 +298,8 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 
                     mclose(iID);
+                    //restore previous prompt mode
+                    ConfigVariable::setPromptMode(oldVal);
                     throw ScilabMessage(os.str(), 0, (*j)->location_get());
                 }
             }
@@ -317,24 +309,31 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         }
 		catch(ScilabError se)
 		{
-			//print last line
-			if(!checkPrompt(iMode, EXEC_MODE_MUTE))
-			{
-				//printExp(&file, *j, stPrompt, &iCurrentLine, str, iMode);
-			}
-
-            if(bErrCatch)
+            if(ConfigVariable::getLastErrorMessage() == L"")
             {
-                //set mode silent for errors
-                ConfigVariable::setPromptMode(ConfigVariable::silent);
+                ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
+                ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
+                ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
+                ConfigVariable::setLastErrorFunction(wstring(L""));
             }
 
             //store message
             iErr = ConfigVariable::getLastErrorNumber();
             if(bErrCatch == false)
             {
+                //in case of error, change mode to 2 ( prompt )
+                ConfigVariable::setPromptMode(2);
+                //write error
+                YaspWriteW(se.GetErrorMessage().c_str());
+                YaspWriteW(L"\n");
+
+                //write positino
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
                 mclose(iID);
-			    return Function::Error;
+                //restore previous prompt mode
+                ConfigVariable::setPromptMode(oldVal);
+                throw ScilabMessage(szError, 1, (*j)->location_get());
             }
             break;
 		}
@@ -361,7 +360,7 @@ bool checkPrompt(int _iMode, int _iCheck)
 	return ((_iMode & _iCheck) == _iCheck);
 }
 
-void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer, int _iMode)
+void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer)
 {
 	char strLastLine[1024];
 	//case 1, exp is on 1 line and take the entire line
@@ -401,18 +400,41 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 	{//1 line
 		strncpy(strLastLine, _pstPreviousBuffer + (loc.first_column - 1), loc.last_column - (loc.first_column - 1));
 		strLastLine[loc.last_column - (loc.first_column - 1)] = 0;
-		printLine(_pstPrompt, strLastLine);
+        int iExpLen = strlen(strLastLine);
+        int iLineLen = strlen(_pstPreviousBuffer) - (loc.first_column - 1);
+        if(iExpLen == iLineLen)
+        {
+            if(loc.first_column == 1)
+            {
+                printLine(_pstPrompt, strLastLine, true);
+            }
+            else
+            {
+                printLine("", strLastLine, true);
+            }
+        }
+        else
+        {
+            if(loc.first_column == 1)
+            {
+                printLine(_pstPrompt, strLastLine, false);
+            }
+            else
+            {
+                printLine("", strLastLine, false);
+            }
+        }
 	}
 	else
 	{//multiline
-		printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1));
+		printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), true);
 
 		//print other full lines
 		for(int i = loc.first_line; i < (loc.last_line - 1) ; i++)
 		{
 			(*_piLine)++;
 			_pFile->getline(_pstPreviousBuffer, 1024);
-			printLine(_pstPrompt, _pstPreviousBuffer);
+			printLine(_pstPrompt, _pstPreviousBuffer, true);
 		}
 
 		//last line
@@ -421,16 +443,26 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 
 		strncpy(strLastLine, _pstPreviousBuffer, loc.last_column);
 		strLastLine[loc.last_column] = 0;
-		printLine(_pstPrompt, strLastLine);
+		printLine(_pstPrompt, strLastLine, true);
 	}
 }
 
-void printLine(char* _stPrompt, char* _stLine)
+void printLine(char* _stPrompt, char* _stLine, bool _bLF)
 {
-	//print prompt
-	YaspWrite(_stPrompt);
-	//print first line
-	YaspWrite(_stLine);
-	YaspWrite("\n");
+    char* sz = (char*)MALLOC(sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 2));
+    memset(sz, 0x00, sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 2));
+    if(strlen(_stPrompt) != 0)
+    {
+        strcat(sz, _stPrompt);
+    }
+
+    strcat(sz, _stLine);
+    if(_bLF)
+    {
+        strcat(sz, "\n");
+    }
+
+    YaspWrite(sz);
+    FREE(sz);
 }
 /*--------------------------------------------------------------------------*/

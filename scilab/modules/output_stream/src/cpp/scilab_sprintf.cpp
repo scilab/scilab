@@ -241,79 +241,179 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
 
     //\n \n\r \r to string
     //find number of lines
+
     *_piOutputRows = 1;
-    int iLen = wcslen(pwstFirstOutput) - 1;
-    for(int i = 0 ; i < iLen ; i++)
+    wchar_t* pwstSlash = pwstFirstOutput;
+    wchar_t* pwstTemp = NULL;
+    while(pwstSlash != NULL)
     {
-        if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'r' && pwstFirstOutput[i + 2] != L'\0')
+        if((pwstTemp = wcsstr(pwstSlash, L"\\r\\n")) != NULL && pwstTemp[4] != '\0')
         {
             (*_piOutputRows)++;
-            i += 1;
-            if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'n' && pwstFirstOutput[i + 2] != L'\0')
-            {
-                i += 2;
-            }
+            pwstSlash = pwstTemp + 4;
         }
-        else if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'n' && pwstFirstOutput[i + 2] != L'\0')
+        else if((pwstTemp = wcsstr(pwstSlash, L"\\r")) != NULL && pwstTemp[2] != '\0')
         {
             (*_piOutputRows)++;
-            i += 1;
+            pwstSlash = pwstTemp + 2;
+        }
+        else if((pwstTemp = wcsstr(pwstSlash, L"\\n")) != NULL && pwstTemp[2] != '\0')
+        {
+            (*_piOutputRows)++;
+            pwstSlash = pwstTemp + 2;
+        }
+        else
+        {
+            pwstSlash = NULL;
         }
     }
+
+    //*_piOutputRows = 1;
+    //wchar_t* pwstSlash = wcschr(pwstFirstOutput, L'\\');
+    //while(pwstSlash != NULL)
+    //{
+    //    if(pwstSlash[1] == L'r' && pwstSlash[2] != L'\0')
+    //    {
+    //        (*_piOutputRows)++;
+    //        pwstSlash += 2;
+    //        if(pwstSlash[1] == L'n' && pwstSlash[2] != L'\0')
+    //        {
+    //            pwstSlash += 2;
+    //        }
+    //    }
+    //    else if(pwstSlash[1] == L'n' && pwstSlash[2] != L'\0')
+    //    {
+    //        (*_piOutputRows)++;
+    //        pwstSlash += 2;
+    //    }
+
+    //    pwstSlash = wcschr(pwstSlash, L'\\');
+    //}
+
+    //*_piOutputRows = 1;
+    //int iLen = wcslen(pwstFirstOutput) - 1;
+    //for(int i = 0 ; i < iLen ; i++)
+    //{
+    //    if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'r' && pwstFirstOutput[i + 2] != L'\0')
+    //    {
+    //        (*_piOutputRows)++;
+    //        i += 1;
+    //        if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'n' && pwstFirstOutput[i + 2] != L'\0')
+    //        {
+    //            i += 2;
+    //        }
+    //    }
+    //    else if(pwstFirstOutput[i] == L'\\' && pwstFirstOutput[i + 1] == L'n' && pwstFirstOutput[i + 2] != L'\0')
+    //    {
+    //        (*_piOutputRows)++;
+    //        i += 1;
+    //    }
+    //}
 
     //alloc output data
     pwstOutput = (wchar_t**)MALLOC(sizeof(wchar_t*) * *_piOutputRows);
-    wchar_t* pwstPtr = pwstFirstOutput;
+    pwstSlash = pwstFirstOutput;
     int iRows = 0;
 
     //split in multiple strings
-    for(int i = 0 ; i < wcslen(pwstPtr) ; i++)
+    while(pwstSlash != NULL)
     {
-        int idx = 0;
+        long long idx = 0;
         bool bNewLine = false;
-        if(pwstPtr[i] == L'\\' && pwstPtr[i + 1] == L'r')
+        if((pwstTemp = wcsstr(pwstSlash, L"\\r\\n")) != NULL)
         {
-            idx = i;
             bNewLine = true;
-            i += 2;
-            if(pwstPtr[i] == L'\\' && pwstPtr[i + 1] == L'n')
-            {
-                i += 2;
-            }
+            idx = pwstTemp - pwstSlash;
+            pwstTemp += 4;
         }
-        else if(pwstPtr[i] == L'\\' && pwstPtr[i + 1] == L'n')
+        else if((pwstTemp = wcsstr(pwstSlash, L"\\r")) != NULL)
         {
-            idx = i;
             bNewLine = true;
-            i += 2;
+            idx = pwstTemp - pwstSlash;
+            pwstTemp += 2;
         }
-
-        if(bNewLine || pwstPtr[i + 1] == L'\0')
+        else if((pwstTemp = wcsstr(pwstSlash, L"\\n")) != NULL)
         {
-            if(pwstPtr[i + 1] == L'\0' && !bNewLine)
-            {//to copy end of data in a new lines
-                idx = wcslen(pwstPtr);
-                i = idx ;
-            }
-            else if(bNewLine)
-            {//to insert '\0'
-                idx++;
-            }
-
-            pwstOutput[iRows] = (wchar_t*)MALLOC(sizeof(wchar_t) * (idx + 1));
-            wcsncpy(pwstOutput[iRows], pwstPtr, idx);
-
-            if(bNewLine)
-            {
-                pwstOutput[iRows][idx - 1] = L'\n';
-            }
-
-            pwstOutput[iRows][idx] = L'\0';
-            pwstPtr += i;
-            iRows++;
-            i = -1;
+            bNewLine = true;
+            idx = pwstTemp - pwstSlash;
+            pwstTemp += 2;
         }
+
+        if(pwstTemp == NULL)
+        {//to copy end of data in a new lines
+            idx = wcslen(pwstSlash);
+        }
+        else if(pwstTemp[0] == L'\0')
+        {//to copy end of data in a new lines
+            //idx = pwstTemp - pwstSlash;
+            pwstTemp = NULL;
+        }
+        
+        if(bNewLine)
+        {//to insert '\0'
+            idx++;
+        }
+
+        pwstOutput[iRows] = (wchar_t*)MALLOC(sizeof(wchar_t) * (idx + 1));
+        wcsncpy(pwstOutput[iRows], pwstSlash, idx);
+
+        if(bNewLine)
+        {
+            pwstOutput[iRows][idx - 1] = L'\n';
+        }
+
+        pwstOutput[iRows][idx] = L'\0';
+        iRows++;
+        pwstSlash = pwstTemp;
     }
+
+    //for(int i = 0 ; i < wcslen(pwstPtr) ; i++)
+    //{
+    //    int idx = 0;
+    //    bool bNewLine = false;
+    //    if(pwstPtr[i] == L'\\' && pwstPtr[i + 1] == L'r')
+    //    {
+    //        idx = i;
+    //        bNewLine = true;
+    //        i += 2;
+    //        if(pwstPtr[i] == L'\\' && pwstPtr[i + 1] == L'n')
+    //        {
+    //            i += 2;
+    //        }
+    //    }
+    //    else if(pwstPtr[i] == L'\\' && pwstPtr[i + 1] == L'n')
+    //    {
+    //        idx = i;
+    //        bNewLine = true;
+    //        i += 2;
+    //    }
+
+    //    if(bNewLine || pwstPtr[i + 1] == L'\0')
+    //    {
+    //        if(pwstPtr[i + 1] == L'\0' && !bNewLine)
+    //        {//to copy end of data in a new lines
+    //            idx = wcslen(pwstPtr);
+    //            i = idx ;
+    //        }
+    //        else if(bNewLine)
+    //        {//to insert '\0'
+    //            idx++;
+    //        }
+
+    //        pwstOutput[iRows] = (wchar_t*)MALLOC(sizeof(wchar_t) * (idx + 1));
+    //        wcsncpy(pwstOutput[iRows], pwstPtr, idx);
+
+    //        if(bNewLine)
+    //        {
+    //            pwstOutput[iRows][idx - 1] = L'\n';
+    //        }
+
+    //        pwstOutput[iRows][idx] = L'\0';
+    //        pwstPtr += i;
+    //        iRows++;
+    //        i = -1;
+    //    }
+    //}
 
     return pwstOutput;
 }

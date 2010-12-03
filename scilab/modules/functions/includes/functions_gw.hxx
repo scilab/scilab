@@ -27,11 +27,12 @@ public :
 	FUNCTIONS_GW_IMPEXP static bool Load();
 };
 
-Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out);
-Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::typed_list &out);
-Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types::typed_list &out);
-Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::typed_list &out);
-Function::ReturnValue sci_getCurrentThreadId(types::typed_list &in, int _iRetCount, types::typed_list &out);
+CPP_GATEWAY_PROTOTYPE(sci_exec);
+CPP_GATEWAY_PROTOTYPE(sci_execstr);
+CPP_GATEWAY_PROTOTYPE(sci_funclist);
+CPP_GATEWAY_PROTOTYPE(sci_whereis);
+CPP_GATEWAY_PROTOTYPE(sci_getCurrentThreadId);
+CPP_GATEWAY_PROTOTYPE(sci_mode);
 
 #endif /* __FUNCTIONS_GW_HXX__ */
 
