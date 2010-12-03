@@ -31,19 +31,30 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
 {
     if(in.size() < 1)
     {
-        Scierror(999,_("%s: Wrong number of input arguments: At least %d expected.\n"), "size", 1);        
+        Scierror(999,_("%s: Wrong number of input arguments: At least %d expected.\n"), "size", 1);
         return Function::Error;
     }
 
     switch(in[0]->getType())
     {
-    case InternalType::RealBool:
-    case InternalType::RealCell:
-    case InternalType::RealDouble:
-    case InternalType::RealFloat:
-    case InternalType::RealInt:
-    case InternalType::RealPoly:
-    case InternalType::RealString:
+        // Dedicated case for lists.
+    case InternalType::RealList:
+    case InternalType::RealMList:
+    case InternalType::RealStruct:
+    case InternalType::RealTList:
+        {
+            if(in.size() > 1)
+            {
+                Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "size", 1);
+                return Function::Error;
+            }
+
+            Double* pD = new Double(in[0]->getAsContainer()->size_get());
+            out.push_back(pD);
+            break;
+        }
+    default :
+        // All types inherits of GenericType, so have this algorithm as default.
         {
             int iMode = -1;
 
@@ -107,22 +118,6 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 out.push_back(pD1);
                 out.push_back(pD2);
             }
-            break;
-        }
-
-    case InternalType::RealList:
-    case InternalType::RealMList:
-    case InternalType::RealStruct:
-    case InternalType::RealTList:
-        {
-            if(in.size() > 1)
-            {
-                Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "size", 1);
-                return Function::Error;
-            }
-
-            Double* pD = new Double(in[0]->getAsContainer()->size_get());
-            out.push_back(pD);
             break;
         }
     }
