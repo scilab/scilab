@@ -1,6 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -58,128 +59,22 @@ void visitprivate(const OpExp &e)
         {
         case OpExp::plus :
             {
-                if(TypeR == GenericType::RealDouble && TypeL == GenericType::RealDouble)
+                try
                 {
-                    Double *pL = execMeL.result_get()->getAsDouble();
-                    Double *pR = execMeR.result_get()->getAsDouble();
+                    pResult = GenericPlus(execMeL.result_get(), execMeR.result_get());
+                }
+                catch (ScilabException *pSE)
+                {
+                    pSE->SetErrorLocation(e.right_get().location_get());
+                    throw pSE;
+                }
+                if (pResult == NULL)
+                {
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
 
-                    int iResult = AddDoubleToDouble(pL, pR, (Double**)&pResult);
-                    if(iResult != 0)
-                    {
-                        std::wostringstream os;
-                        os << L"inconsistent row/column dimensions\n";
-                        //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-                    result_set(pResult);
                 }
-                else if(TypeL == GenericType::RealBool && TypeR == GenericType::RealBool)
-                {
-                    //nothing to do, all in macro : %b_+_b
-                }
-                else if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
-                {
-                    String *pL = execMeL.result_get()->getAsString();
-                    String *pR = execMeR.result_get()->getAsString();
-
-                    int iResult = AddStringToString(pL, pR, (String**)&pResult);
-
-                    if(iResult != 0)
-                    {
-                        std::wostringstream os;
-                        os << L"inconsistent row/column dimensions\n";
-                        //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-                    result_set(pResult);
-                }
-                else if(TypeL == GenericType::RealInt && TypeR == GenericType::RealInt)
-                {
-                }
-                else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
-                {
-                    Double *pL				= execMeL.result_get()->getAsDouble();
-                    MatrixPoly *pR		= execMeR.result_get()->getAsPoly();
-
-                    int iResult = AddDoubleToPoly(pR, pL, (MatrixPoly**)&pResult);
-                    if(iResult != 0)
-                    {
-                        std::wostringstream os;
-                        os << L"inconsistent row/column dimensions\n";
-                        //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-                    result_set(pResult);
-                }
-                else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
-                {
-                    Double *pR				= execMeR.result_get()->getAsDouble();
-                    MatrixPoly *pL		= execMeL.result_get()->getAsPoly();
-
-                    int iResult = AddDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
-                    if(iResult != 0)
-                    {
-                        std::wostringstream os;
-                        os << L"inconsistent row/column dimensions\n";
-                        //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-                    result_set(pResult);
-                }
-                else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
-                {
-                    MatrixPoly *pL	= execMeL.result_get()->getAsPoly();
-                    MatrixPoly *pR	= execMeR.result_get()->getAsPoly();
-
-                    int iResult = AddPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
-                    if(iResult != 0)
-                    {
-                        if(iResult == 1)
-                        {
-                            std::wostringstream os;
-                            os << L"inconsistent row/column dimensions\n";
-                            //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                            throw ScilabError(os.str(), 999, e.right_get().location_get());
-                        }
-                        else if(iResult == 2)
-                        {
-                            std::wostringstream os;
-                            os << L"variables don't have the same formal variable";
-                            //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                            throw ScilabError(os.str(), 999, e.right_get().location_get());
-                        }
-                    }
-                    result_set(pResult);
-                }
-                else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealString)
-                {
-                    if(execMeL.result_get()->getAsDouble()->size_get() == 0)
-                    {//[] + "" -> ""
-                        result_set(execMeR.result_get()->clone());
-                    }
-                    else
-                    {
-                        // Don't know how to manage this Addition : Call Overloading
-                        result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
-                    }
-                }
-                else if(TypeL == GenericType::RealString && TypeR == GenericType::RealDouble)
-                {
-                    if(execMeR.result_get()->getAsDouble()->size_get() == 0)
-                    {//"text" + [] -> ""
-                        result_set(execMeL.result_get()->clone());
-                    }
-                    else
-                    {
-                        // Don't know how to manage this Addition : Call Overloading
-                        result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
-                    }
-                }
-                else
-                {
-                    // Don't know how to manage this Addition : Call Overloading
-                    result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
-                }
+                result_set(pResult);
                 break;
             }
         case OpExp::minus :

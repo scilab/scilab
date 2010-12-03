@@ -1,6 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -13,10 +14,174 @@
 #include "types_addition.hxx"
 #include "core_math.h"
 
+#include "scilabexception.hxx"
+
 extern "C"
 {
 	#include "matrix_addition.h"
 }
+
+InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOperand)
+{
+    InternalType *pResult = NULL;
+    GenericType::RealType TypeL = _pLeftOperand->getType();
+    GenericType::RealType TypeR = _pRightOperand->getType();
+
+    /*
+    ** DOUBLE + DOUBLE
+    */
+    if(TypeR == GenericType::RealDouble && TypeL == GenericType::RealDouble)
+    {
+        Double *pL = _pLeftOperand->getAsDouble();
+        Double *pR = _pRightOperand->getAsDouble();
+
+        int iResult = AddDoubleToDouble(pL, pR, (Double**)&pResult);
+        if(iResult != 0)
+        {
+            std::wostringstream os;
+            os << L"inconsistent row/column dimensions\n";
+            //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
+            throw ScilabError(os.str());
+        }
+        return pResult;
+    }
+
+// FIXME: Overload or dedicated function.
+//    else if(TypeL == GenericType::RealBool && TypeR == GenericType::RealBool)
+//    {
+//        //nothing to do, all in macro : %b_+_b
+//    }
+
+    /*
+    ** STRING + STRING
+    */
+    else if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
+    {
+        String *pL = _pLeftOperand->getAsString();
+        String *pR = _pRightOperand->getAsString();
+
+        int iResult = AddStringToString(pL, pR, (String**)&pResult);
+
+        if(iResult != 0)
+        {
+            std::wostringstream os;
+            os << L"inconsistent row/column dimensions\n";
+            //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
+            throw ScilabError(os.str());
+        }
+        return pResult;
+    }
+
+// FIXME: Overload or dedicated function.
+//    else if(TypeL == GenericType::RealInt && TypeR == GenericType::RealInt)
+//    {
+//    }
+
+    /*
+    ** DOUBLE + POLY
+    */
+    else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
+    {
+        Double *pL          = _pLeftOperand->getAsDouble();
+        MatrixPoly *pR      = _pRightOperand->getAsPoly();
+
+        int iResult = AddDoubleToPoly(pR, pL, (MatrixPoly**)&pResult);
+        if(iResult != 0)
+        {
+            std::wostringstream os;
+            os << L"inconsistent row/column dimensions\n";
+            //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
+            throw ScilabError(os.str());
+        }
+        return pResult;
+    }
+
+    /*
+    ** POLY + DOUBLE
+    */
+    else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    {
+        Double *pR	        = _pLeftOperand->getAsDouble();
+        MatrixPoly *pL      = _pRightOperand->getAsPoly();
+
+        int iResult = AddDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
+        if(iResult != 0)
+        {
+            std::wostringstream os;
+            os << L"inconsistent row/column dimensions\n";
+            //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
+            throw ScilabError(os.str());
+        }
+        return pResult;
+    }
+
+    /*
+    ** POLY + POLY
+    */
+    else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
+    {
+        MatrixPoly *pL	= _pLeftOperand->getAsPoly();
+        MatrixPoly *pR	= _pRightOperand->getAsPoly();
+
+        int iResult = AddPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
+        if(iResult != 0)
+        {
+            if(iResult == 1)
+            {
+                std::wostringstream os;
+                os << L"inconsistent row/column dimensions\n";
+                //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str());
+            }
+            else if(iResult == 2)
+            {
+                std::wostringstream os;
+                os << L"variables don't have the same formal variable";
+                //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
+                throw ScilabError(os.str());
+            }
+        }
+        return pResult;
+    }
+
+    /*
+    ** DOUBLE + STRING
+    */
+    else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealString)
+    {
+        if(_pLeftOperand->getAsDouble()->size_get() == 0)
+        {//[] + "" -> ""
+            return _pRightOperand->clone();
+        }
+        else
+        {
+            // Don't know how to manage this Addition : Return NULL will Call Overloading.
+            return NULL;
+        }
+    }
+
+    /*
+    ** STRING + DOUBLE
+    */
+    else if(TypeL == GenericType::RealString && TypeR == GenericType::RealDouble)
+    {
+        if(_pRightOperand->getAsDouble()->size_get() == 0)
+        {//"text" + [] -> ""
+            return _pLeftOperand->clone();
+        }
+        else
+        {
+            // Don't know how to manage this Addition :  Return NULL will Call Overloading.
+            return NULL;
+        }
+    }
+
+    /*
+    ** Default case : Return NULL will Call Overloading.
+    */
+    return NULL;
+}
+
 
 int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut)
 {
@@ -136,7 +301,7 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 		{
 			(*_pDoubleOut)	= new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal);
 			iAddRealScalarToRealMatrix(
-					_pDouble1->real_get()[0], 
+					_pDouble1->real_get()[0],
 					_pDouble2->real_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
 					(*_pDoubleOut)->real_get());
 		}
@@ -171,7 +336,7 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 		{
 			(*_pDoubleOut)	= new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal);
 			iAddRealScalarToRealMatrix(
-					_pDouble2->real_get()[0], 
+					_pDouble2->real_get()[0],
 					_pDouble1->real_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
 					(*_pDoubleOut)->real_get());
 		}
@@ -206,7 +371,7 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 		{
 			(*_pDoubleOut)	= new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal);
 			iAddRealMatrixToRealMatrix(
-					_pDouble1->real_get(), 
+					_pDouble1->real_get(),
 					_pDouble2->real_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
 					(*_pDoubleOut)->real_get());
 		}
@@ -235,7 +400,7 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 	}
-	else 
+	else
 	{
 		return 1;
 	}
@@ -253,7 +418,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 	double *pInDblR			= _pDouble->real_get();
 	double *pInDblI			= _pDouble->img_get();
 
-	if(bScalar1) 
+	if(bScalar1)
 	{//cas balaise
 		int *piRank = new int[_pDouble->size_get()];
 		for(int i = 0 ; i < _pDouble->size_get() ; i++)
@@ -365,7 +530,7 @@ int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOu
 	{
 		return 1;
 	}
-	return 0;	
+	return 0;
 }
 
 int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPolyOut)
@@ -379,7 +544,7 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 	bool bComplex2 			= _pPoly2->isComplex();
 	bool bScalar1				= _pPoly1->rows_get() == 1 && _pPoly1->cols_get() == 1;
 	bool bScalar2				= _pPoly2->rows_get() == 1 && _pPoly2->cols_get() == 1;
-	//3 cases : 
+	//3 cases :
 	//size(p1) == size(P2)
 	if(_pPoly1->rows_get() == _pPoly2->rows_get() && _pPoly1->cols_get() == _pPoly2->cols_get())
 	{

@@ -490,6 +490,10 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath="..\..\bin\abstractSyntaxTree.lib"
+			>
+		</File>
+		<File
 			RelativePath="..\..\bin\blasplus.lib"
 			>
 		</File>
