@@ -51,6 +51,8 @@ Bug Fixes:
 * bug 8505 fixed - help was not generated on Windows, if there was a path name
                    with some spaces.
 
+* bug 8532 fixed - size of input arguments of read_csv was not verified.
+
 * bug 8540 fixed - Fix a typo in Xcos.
 
 * bug 8582 fixed - Under Linux & Mac OS the waitbar window was too small and we
