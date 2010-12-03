@@ -53,6 +53,12 @@ Javasci:
                    Mac OS X.
 
 
+File I/O:
+=========
+
+* mkdir is now able to create recursively directories (see bug 8529).
+
+
 Packaging:
 ==========
 
@@ -564,6 +570,7 @@ Bug Fixes:
 * bug 8601 fixed - An help page was misdiplayed when the title contains html tag.
 
 * bug 8611 fixed - Path of few images in documentation was bad.
+
 
 
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
