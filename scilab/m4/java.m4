@@ -763,7 +763,7 @@ AC_DEFUN([AC_JAVA_TOOLS], [
 
     AC_JAVA_TOOLS_CHECK(JAR, jar, $ac_java_jvm_bin_dir)
 
-    AC_JAVA_TOOLS_CHECK(JAVADOC, javadoc, $ac_java_jvm_dir/bin)
+    AC_JAVA_TOOLS_CHECK(JAVADOC, javadoc, $ac_java_jvm_bin_dir)
 
     # Don't error if jdb can not be found
     AC_JAVA_TOOLS_CHECK(JDB, jdb, $ac_java_jvm_bin_dir, 1)
