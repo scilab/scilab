@@ -109,10 +109,10 @@ if test $TCL_VERSION_OK = 1; then
 	AC_MSG_RESULT([($TCL_VERSION) yes])
 else 
 	AC_MSG_RESULT([($TCL_VERSION) no])
-	if $TCL_VERSION = "can't happen"; then
+	if test "$TCL_VERSION" == "can't happen"; then
 		AC_MSG_ERROR([can't happen])
         else 
-	   AC_MSG_ERROR([You need at least version 8.4 of tcl])
+	   AC_MSG_ERROR([You need at least version $CHK_TCL_MAJOR.$CHK_TCL_MINOR of tcl])
 	fi
 fi
 CFLAGS=$saved_cflags
