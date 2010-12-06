@@ -31,7 +31,7 @@ Function::ReturnValue sci_getCurrentThreadId(types::typed_list &in, int _iRetCou
         return Function::Error;
 	}
 
-	if(out.size() > 1)
+	if(_iRetCount != 1)
 	{
         ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"getCurrentThreadId" , 1);
         return Function::Error;
