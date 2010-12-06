@@ -53,6 +53,12 @@ Javasci:
                    Mac OS X. 
 
 
+Packaging:
+==========
+
+* Update of JLaTeXMath to version 0.9.4
+
+
 Demonstration:
 ==============
 

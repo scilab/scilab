@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.console.utils;
 
 import java.awt.Graphics2D;
 import java.awt.Color;
@@ -93,6 +93,21 @@ public final class ScilabSpecialTextUtilities {
     }
 
     /**
+     * Load, if necessary the jlatexmath package, and compile a LaTeX expression or a valid subexpression.
+     * @param exp the expression to compile
+     * @param fontSize the size of the font
+     * @return the Icon
+     */
+    public static Icon compilePartialLaTeXExpression(String exp, int fontSize) {
+        if (!loadedLaTeX) {
+            LoadClassPath.loadOnUse("graphics_latex_textrendering");
+            loadedLaTeX = true;
+        }
+
+        return LaTeXCompiler.compilePartial(exp, fontSize);
+    }
+
+    /**
      * Load, if necessary the jeuclid package, and compile a LaTeX expression.
      * @param exp the expression to compile
      * @param fontSize the size of the font
@@ -140,6 +155,22 @@ public final class ScilabSpecialTextUtilities {
             Icon icon = null;
             try {
                 TeXFormula formula = new TeXFormula(str);
+                icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize);
+            } catch (ParseException e) { }
+
+            return icon;
+        }
+
+        /**
+         * Compile the expression
+         * @param str the expression to compile
+         * @param fontSize the size of the font
+         * @return the Icon
+         */
+        static Icon compilePartial(String str, int fontSize) {
+            Icon icon = null;
+            try {
+                TeXFormula formula = TeXFormula.getPartialTeXFormula(str);
                 icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize);
             } catch (ParseException e) { }
 
