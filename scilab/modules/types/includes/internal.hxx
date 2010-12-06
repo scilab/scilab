@@ -108,6 +108,9 @@ namespace types
       ** \{
       */
 
+      template <class T>
+      T*                                getAs(void) { return dynamic_cast<T*>(this); }
+
       /* GenericType */
       bool                              isGenericType(void);
       virtual GenericType*              getAsGenericType(void) { return NULL; }

@@ -32,8 +32,8 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     if(TypeR == GenericType::RealDouble && TypeL == GenericType::RealDouble)
     {
-        Double *pL = _pLeftOperand->getAsDouble();
-        Double *pR = _pRightOperand->getAsDouble();
+        Double *pL = _pLeftOperand->getAs<Double>();
+        Double *pR = _pRightOperand->getAs<Double>();
 
         int iResult = AddDoubleToDouble(pL, pR, (Double**)&pResult);
         if(iResult != 0)
@@ -57,8 +57,8 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     else if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
     {
-        String *pL = _pLeftOperand->getAsString();
-        String *pR = _pRightOperand->getAsString();
+        String *pL = _pLeftOperand->getAs<String>();
+        String *pR = _pRightOperand->getAs<String>();
 
         int iResult = AddStringToString(pL, pR, (String**)&pResult);
 
@@ -82,8 +82,8 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
     {
-        Double *pL          = _pLeftOperand->getAsDouble();
-        MatrixPoly *pR      = _pRightOperand->getAsPoly();
+        Double *pL          = _pLeftOperand->getAs<Double>();
+        MatrixPoly *pR      = _pRightOperand->getAs<MatrixPoly>();
 
         int iResult = AddDoubleToPoly(pR, pL, (MatrixPoly**)&pResult);
         if(iResult != 0)
@@ -101,8 +101,8 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
     {
-        Double *pR	        = _pRightOperand->getAsDouble();
-        MatrixPoly *pL      = _pLeftOperand->getAsPoly();
+        Double *pR	        = _pRightOperand->getAs<Double>();
+        MatrixPoly *pL      = _pLeftOperand->getAs<MatrixPoly>();
 
         int iResult = AddDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
         if(iResult != 0)
@@ -120,8 +120,8 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
     {
-        MatrixPoly *pL	= _pLeftOperand->getAsPoly();
-        MatrixPoly *pR	= _pRightOperand->getAsPoly();
+        MatrixPoly *pL	= _pLeftOperand->getAs<MatrixPoly>();
+        MatrixPoly *pR	= _pRightOperand->getAs<MatrixPoly>();
 
         int iResult = AddPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
         if(iResult != 0)
@@ -149,7 +149,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealString)
     {
-        if(_pLeftOperand->getAsDouble()->size_get() == 0)
+        if(_pLeftOperand->getAs<Double>()->size_get() == 0)
         {//[] + "" -> ""
             return _pRightOperand->clone();
         }
@@ -165,7 +165,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     else if(TypeL == GenericType::RealString && TypeR == GenericType::RealDouble)
     {
-        if(_pRightOperand->getAsDouble()->size_get() == 0)
+        if(_pRightOperand->getAs<Double>()->size_get() == 0)
         {//"text" + [] -> ""
             return _pLeftOperand->clone();
         }
