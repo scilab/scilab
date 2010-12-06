@@ -221,13 +221,14 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
   if (ismenu() == 0)
   {
+      __threadKey key;
       if (!WatchGetCmdLineThreadAlive)
       {
           if (WatchGetCmdLineThread)
           {
               __WaitThreadDie(WatchGetCmdLineThread);
           }
-          __CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
+          __CreateThread(&WatchGetCmdLineThread, &key, &watchGetCommandLine);
           WatchGetCmdLineThreadAlive = TRUE;
       }
       if (!WatchStoreCmdThreadAlive)
@@ -236,7 +237,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
           {
               __WaitThreadDie(WatchStoreCmdThread);
           }
-          __CreateThread(&WatchStoreCmdThread, &watchStoreCommand);
+          __CreateThread(&WatchStoreCmdThread, &key, &watchStoreCommand);
           WatchStoreCmdThreadAlive = TRUE;
       }
 

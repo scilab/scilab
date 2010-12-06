@@ -90,6 +90,11 @@ namespace symbol
                 return NULL;
             }
 
+            /*increase ref before delete old value to prevent pointed variable deletion*/
+            /*a = {1,2,3}*/
+            /*a = a{1}*/
+            value.IncreaseRef();
+
             if(pOld != NULL)
             {
                 pOld->DecreaseRef();
@@ -106,7 +111,6 @@ namespace symbol
             }
             */
             (*_scope)[key] = &value;
-            value.IncreaseRef();
             return NULL;
         }
 

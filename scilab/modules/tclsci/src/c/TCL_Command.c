@@ -121,6 +121,7 @@ static void evaluateTclFile()
 */
 void startTclLoop()
 {
+    __threadKey key;
   __threadId sleepThreadId;
 
   __InitLock(&singleExecutionLock);
@@ -130,7 +131,7 @@ void startTclLoop()
   __InitSignal(&workIsDone);
   __InitSignalLock(&launchCommand);
 
-  __CreateThread(&sleepThreadId, sleepAndSignal);
+  __CreateThread(&sleepThreadId, &key, sleepAndSignal);
 
   /*
   ** TCL Event Loop : Threaded

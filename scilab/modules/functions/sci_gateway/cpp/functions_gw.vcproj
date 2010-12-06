@@ -357,6 +357,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_getThreads.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_mode.cpp"
 				>
 			</File>

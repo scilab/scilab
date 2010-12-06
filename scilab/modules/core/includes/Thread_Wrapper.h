@@ -26,6 +26,7 @@
 #include <Windows.h>
 #include <process.h>
 
+typedef DWORD				__threadKey;
 typedef HANDLE				__threadId;
 typedef HANDLE				__threadLock;
 typedef CRITICAL_SECTION	__threadSignalLock;
@@ -49,9 +50,9 @@ typedef HANDLE				__threadSignal;
 
 #define __Wait(signalName, lockName)			{ResetEvent(*signalName); __UnLockSignal(lockName); WaitForSingleObject(*signalName, INFINITE); __LockSignal(lockName);};
 
-#define __CreateThread(threadId, functionName)  *(threadId) = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)functionName, NULL, 0, NULL)
+#define __CreateThread(threadId, threadKey, functionName)  *(threadId) = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)functionName, NULL, 0, threadKey)
 
-#define __CreateThreadWithParams(threadId, functionName, params)  *(threadId) = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)functionName, params, 0, NULL)
+#define __CreateThreadWithParams(threadId, threadKey, functionName, params)  *(threadId) = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)functionName, params, 0, threadKey)
 
 #define __WaitThreadDie(threadId)				((WaitForSingleObject((threadId),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(threadId))
 
@@ -63,6 +64,8 @@ typedef HANDLE				__threadSignal;
 
 #define __GetCurrentThreadId                    GetCurrentThread
 
+#define __GetCurrentThreadKey                    GetCurrentThreadId
+
 #define __SuspendThread( ThreadId)              SuspendThread(ThreadId)
 
 #define __ResumeThread( ThreadId)               ResumeThread(ThreadId)
@@ -72,6 +75,7 @@ typedef HANDLE				__threadSignal;
 #include <pthread.h>
 #include <signal.h>
 
+typedef pthread_t __threadKey;
 typedef pthread_t __threadId;
 typedef pthread_mutex_t __threadLock;
 typedef pthread_mutex_t __threadSignalLock;
@@ -110,9 +114,9 @@ Linux uses PTHREAD_MUTEX_ERRORCHECK_NP other Posix use PTHREAD_MUTEX_ERRORCHECK
 
 #define __Wait(signalName, lockName)		pthread_cond_wait(signalName, lockName)
 
-#define __CreateThread(threadId, functionName)  pthread_create(threadId, NULL, functionName, NULL)
+#define __CreateThread(threadId, threadKey, functionName)  {pthread_create(threadId, NULL, functionName, NULL);*threadKey = *threadId;}
 
-#define __CreateThreadWithParams(threadId, functionName, params)  pthread_create(threadId, NULL, functionName, params)
+#define __CreateThreadWithParams(threadId, threadKey, functionName, params)  {pthread_create(threadId, NULL, functionName, params); *threadKey = *threadId;}
 
 #define __WaitThreadDie(threadId)		pthread_join(threadId, NULL)
 
@@ -123,6 +127,8 @@ Linux uses PTHREAD_MUTEX_ERRORCHECK_NP other Posix use PTHREAD_MUTEX_ERRORCHECK
 #define __StaticInitThreadSignal        PTHREAD_COND_INITIALIZER
 
 #define __GetCurrentThreadId            pthread_self
+
+#define __GetCurrentThreadKey           pthread_self
 
 #define __SuspendThread(ThreadId)       pthread_kill(ThreadId, SIGUSR1)
 

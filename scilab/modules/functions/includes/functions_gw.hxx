@@ -33,6 +33,7 @@ CPP_GATEWAY_PROTOTYPE(sci_funclist);
 CPP_GATEWAY_PROTOTYPE(sci_whereis);
 CPP_GATEWAY_PROTOTYPE(sci_getCurrentThreadId);
 CPP_GATEWAY_PROTOTYPE(sci_mode);
+CPP_GATEWAY_PROTOTYPE(sci_getThreads);
 
 #endif /* __FUNCTIONS_GW_HXX__ */
 

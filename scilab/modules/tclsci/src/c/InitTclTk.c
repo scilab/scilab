@@ -216,6 +216,7 @@ static void *DaemonOpenTCLsci(void* in)
 /*--------------------------------------------------------------------------*/
 int OpenTCLsci(void)
 {
+    __threadKey key;
 	__InitSignalLock(&InterpReadyLock);
 	__InitSignal(&InterpReady);
 	// Open TCL interpreter in a separated thread.
@@ -223,7 +224,7 @@ int OpenTCLsci(void)
 	// Causes also Scilab let those application live their own lifes.
 
 
-	__CreateThread(&TclThread, &DaemonOpenTCLsci);
+	__CreateThread(&TclThread, &key, &DaemonOpenTCLsci);
 	// Wait to be sure initialisation is complete.
 	__LockSignal(&InterpReadyLock);
 	__Wait(&InterpReady, &InterpReadyLock);

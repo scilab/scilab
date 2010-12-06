@@ -15,10 +15,14 @@
 
 #include <iostream>
 
+extern "C"
+{
 #include "Thread_Wrapper.h"
+}
 
 #include "exp.hxx"
 #include "execvisitor.hxx"
+#include "threadId.hxx"
 
 class Runner
 {
@@ -33,8 +37,24 @@ public :
         {
             m_theProgram = _theProgram;
             m_visitor = _visitor;
-            __CreateThreadWithParams(&m_threadId, &Runner::launch, this);
+            __threadKey key;
+
+            //init locker
+            __InitLock(&m_lock);
+            //lock locker
+            __Lock(&m_lock);
+            //launch thread but is can't really start since locker is locked
+            __CreateThreadWithParams(&m_threadId, &key, &Runner::launch, this);
+            //register thread
+            ConfigVariable::setThread(key, new ThreadId(m_threadId));
+            //free locker to release thread
+            __UnLock(&m_lock);
+            //wait and of thread execution
             __WaitThreadDie(m_threadId);
+            //change thread status
+            ConfigVariable::getThread(key)->setStatus(ThreadId::Done);
+            //unregister thread
+            ConfigVariable::deleteThread(key);
         }
         catch(ScilabException se)
         {
@@ -46,7 +66,8 @@ public :
     {
         m_theProgram = _theProgram;
         m_visitor = _visitor;
-        __CreateThreadWithParams(&m_threadId, &Runner::launch, this);
+        __threadKey key;
+        __CreateThreadWithParams(&m_threadId, &key, &Runner::launch, this);
     }
 
     ast::ExecVisitor *getVisitor()
@@ -59,12 +80,23 @@ public :
         return m_theProgram;
     }
 
+    __threadId getThreadId(void)
+    {
+        return m_threadId;
+    }
+
 private :
     static void *launch(void *args)
     {
+        //try to lock locker ( waiting parent thread register me )
+        __Lock(&m_lock);
+        //just release locker
+        __UnLock(&m_lock);
+
+        //exec !
+        Runner *me = (Runner *)args;
         try
         {
-            Runner *me = (Runner *)args;
             me->getProgram()->accept(*(me->getVisitor()));
             ConfigVariable::clearLastError();
         }
@@ -81,6 +113,7 @@ private :
 public :
     ast::Exp*           m_theProgram;
     ast::ExecVisitor*   m_visitor;
+    static __threadLock m_lock;
 
 };
 #endif /* !__RUNNER_HXX__ */

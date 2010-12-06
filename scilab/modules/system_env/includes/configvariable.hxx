@@ -1,21 +1,28 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #ifndef __CONFIGVARIABLE_HXX__
 #define __CONFIGVARIABLE_HXX__
 
 #include <list>
+#include <map>
 #include <string>
+#include "threadId.hxx"
+
+extern "C"
+{
 #include "dynlib_system_env.h"
+#include "Thread_Wrapper.h"
+}
 
 using namespace std;
 class EXTERN_SYSTEM_ENV ConfigVariable
@@ -155,7 +162,7 @@ public :
 
     //Prompt Mode
 public :
-/*
+    /*
     normal = 0,
     silent = -1,
     prompt = 2,
@@ -163,13 +170,26 @@ public :
     exec3 = 3,
     step = 4,
     step7 = 7
-*/
+    */
 private :
     static int m_iPromptMode;
 
 public :
     static void setPromptMode(int _iPromptMode);
     static int getPromptMode(void);
+
+    //Thread List
+
+private :
+    static std::map<__threadKey, types::ThreadId*>    m_threadList;
+public :
+
+    static types::ThreadId* getThread(__threadKey _key);
+    static types::Cell* getAllThreads(void);
+    static void setThread(__threadKey _key, types::ThreadId* _thread);
+    static void deleteThread(__threadKey _key);
+
+
 };
 
 #endif /* __CONFIGVARIABLE_HXX__ */

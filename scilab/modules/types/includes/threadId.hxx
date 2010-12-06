@@ -16,6 +16,7 @@
 #include <map>
 
 #include "types.hxx"
+#include "cell.hxx"
 
 extern "C"
 {
@@ -27,6 +28,7 @@ namespace types
     class ThreadId : public GenericType
     {
     public :
+                                ThreadId(__threadId _id);
         virtual                 ~ThreadId();
 
         ThreadId*               getAsThreadId(void);
@@ -41,18 +43,27 @@ namespace types
         __threadId              getId();
         void                    setId(__threadId _id);
 
-        static  ThreadId*       createThreadId(__threadId _id);
+        /*
+        ** Status
+        */
+        enum Status {
+            Running,
+            Paused,
+            Aborted,
+            Done
+        };
 
+        Status                  getStatus();
+        void                    setStatus(Status _status);
     private :
-        /* Constructor is private to force use of createThreadId */
-                                ThreadId(__threadId _id);
+        std::wstring            StatusToString(Status _status);
 
     protected :
-        RealType                getType();//			{ return RealString; }
+        RealType                getType();
 
     private :
         __threadId                                 m_threadId;
-        static std::map<__threadId, ThreadId *>    m_threadList;
+        Status                                     m_threadStatus;
 
     };
 }

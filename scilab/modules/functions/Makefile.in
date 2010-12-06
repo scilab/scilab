@@ -132,7 +132,8 @@ am__objects_5 = libscifunctions_la-functions_gw.lo \
 	libscifunctions_la-sci_whereis.lo \
 	libscifunctions_la-sci_execstr.lo \
 	libscifunctions_la-sci_getCurrentThreadId.lo \
-	libscifunctions_la-sci_mode.lo
+	libscifunctions_la-sci_mode.lo \
+	libscifunctions_la-sci_getThreads.lo
 am_libscifunctions_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5)
 libscifunctions_la_OBJECTS = $(am_libscifunctions_la_OBJECTS)
@@ -445,7 +446,8 @@ sci_gateway/cpp/sci_functionlist.cpp \
 sci_gateway/cpp/sci_whereis.cpp \
 sci_gateway/cpp/sci_execstr.cpp \
 sci_gateway/cpp/sci_getCurrentThreadId.cpp \
-sci_gateway/cpp/sci_mode.cpp
+sci_gateway/cpp/sci_mode.cpp \
+sci_gateway/cpp/sci_getThreads.cpp
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intlib.f \
 sci_gateway/fortran/intdeff.f \
@@ -656,6 +658,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_execstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_functionlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_getCurrentThreadId.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_getThreads.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_lib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_librarieslist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_libraryinfo.Plo@am__quote@
@@ -816,6 +819,13 @@ libscifunctions_la-sci_mode.lo: sci_gateway/cpp/sci_mode.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_mode.cpp' object='libscifunctions_la-sci_mode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_la-sci_mode.lo `test -f 'sci_gateway/cpp/sci_mode.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_mode.cpp
+
+libscifunctions_la-sci_getThreads.lo: sci_gateway/cpp/sci_getThreads.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_la-sci_getThreads.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-sci_getThreads.Tpo -c -o libscifunctions_la-sci_getThreads.lo `test -f 'sci_gateway/cpp/sci_getThreads.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getThreads.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-sci_getThreads.Tpo $(DEPDIR)/libscifunctions_la-sci_getThreads.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_getThreads.cpp' object='libscifunctions_la-sci_getThreads.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_la-sci_getThreads.lo `test -f 'sci_gateway/cpp/sci_getThreads.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getThreads.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

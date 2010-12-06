@@ -29,6 +29,8 @@ Timer _timer;
 
 //#define DEBUG
 
+__threadLock Runner::m_lock;
+
 /*
 ** Parse
 **

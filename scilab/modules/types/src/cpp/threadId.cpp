@@ -13,9 +13,10 @@
 #include <map>
 #include <sstream>
 #include "core_math.h"
-#include "string.hxx"
+#include "cell.hxx"
 #include "threadId.hxx"
 #include "tostring_common.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -26,35 +27,15 @@ extern "C"
 namespace types
 {
 
-    std::map<__threadId, ThreadId *>    ThreadId::m_threadList;
-
-    ThreadId*       ThreadId::createThreadId(__threadId _id)
-    {
-        ThreadId* ptidThread = m_threadList[_id];
-
-        if(ptidThread == NULL)
-        {
-            ptidThread = new ThreadId(_id);
-            m_threadList[_id] = ptidThread;
-        }
-
-
-        return ptidThread;
-    }
-
-	ThreadId::~ThreadId()
-    {
-        this->DecreaseRef();
-
-        if (this->isDeletable())
-        {
-            m_threadList.erase(this->getId());
-        }
-    }
+	ThreadId::~ThreadId() { }
 
 	ThreadId::ThreadId(__threadId _id)
 	{
+        m_iRows = 1;
+        m_iCols = 1;
+        m_iSize = 1;
         m_threadId = _id;
+        m_threadStatus = Running;
 	}
 
     __threadId ThreadId::getId()
@@ -64,7 +45,7 @@ namespace types
 
     void ThreadId::setId(__threadId _id)
     {
-        m_threadId = _id;
+        this->m_threadId = _id;
     }
 
 	ThreadId *ThreadId::clone()
@@ -82,11 +63,38 @@ namespace types
 		return GenericType::RealThreadId;
 	}
 
+    std::wstring ThreadId::StatusToString(Status _status)
+    {
+        switch(_status)
+        {
+        case Running :
+            return L"Running";
+        case Paused :
+            return L"Paused";
+        case Aborted :
+            return L"Aborted";
+        case Done :
+            return L"Done";
+        }
+        return L"";
+    }
+
+    void ThreadId::setStatus(ThreadId::Status _status)
+    {
+        m_threadStatus = _status;
+    }
+
+    ThreadId::Status ThreadId::getStatus(void)
+    {
+        return m_threadStatus;
+    }
+
 	wstring ThreadId::toString(int _iPrecision, int _iLineLen)
 	{
 		wostringstream ostr;
 
-        ostr << L"ThreadId : " << this;
+        ostr << L"ThreadId : " << this << std::endl;
+        ostr << L"Status : " << StatusToString(this->getStatus());
 
         return ostr.str();
     }

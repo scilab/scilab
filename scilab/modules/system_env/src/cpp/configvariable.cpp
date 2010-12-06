@@ -364,5 +364,66 @@ int ConfigVariable::getPromptMode(void)
 }
 
 /*
+** ThreadList
+** \{
+*/
+
+std::map<__threadKey, types::ThreadId *> ConfigVariable::m_threadList;
+
+types::ThreadId* ConfigVariable::getThread(__threadKey _key)
+{
+    std::map<__threadKey, types::ThreadId *>::const_iterator it;
+    it = m_threadList.find(_key);
+    if(it == m_threadList.end())
+    {
+        return NULL;
+    }
+    return it->second;
+}
+
+types::Cell* ConfigVariable::getAllThreads(void)
+{
+    int iSize = (int) ConfigVariable::m_threadList.size();
+
+    if (iSize == 0)
+    {
+        return new types::Cell();
+    }
+
+    int i = 0;
+    types::Cell *pcResult = new types::Cell(iSize, 1);
+    std::map<__threadKey, types::ThreadId *>::iterator it;
+
+    for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it, ++i)
+    {
+        pcResult->set(i, 0, it->second);
+    }
+
+    return pcResult;
+}
+
+
+void ConfigVariable::setThread(__threadKey _key, types::ThreadId* _thread)
+{
+    ConfigVariable::deleteThread(_key);
+    m_threadList[_key] = _thread;
+}
+
+void ConfigVariable::deleteThread(__threadKey _key)
+{
+    std::map<__threadKey, types::ThreadId *>::const_iterator it;
+    it = m_threadList.find(_key);
+    if(it != m_threadList.end())
+    {
+        if(it->second->isRef() == false)
+        {
+            delete it->second;
+        }
+        m_threadList[_key] = NULL;
+        m_threadList.erase(_key);
+    }
+}
+
+/*
 ** \}
 */
