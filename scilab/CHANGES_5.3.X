@@ -12,8 +12,15 @@ SciNotes:
 Xcos:
 =====
 
+* bug 8348 fixed - Sometimes when openning the parameters of a block, its ports
+                   changed their index (and position).
+
+* bug 8407 fixed - The blocks was always resized after a parameters edition.
+
 * bug 8483 fixed - Multiplying a scalar and vector using the MATMUL block did not
                    work.
+
+* bug 8540 fixed - Fix a typo on the "highligthed" term.
 
 * bug 8556 fixed - Creating a split block from a link did not work.
 
@@ -85,6 +92,7 @@ Bug Fixes:
 * bug 8505 fixed - help was not generated on Windows, if there was a path name
                    with some spaces.
 
+<<<<<<< HEAD
 * bug 8528 fixed - length returned a wrong size for malformed characters.
 
 * bug 8531 fixed - "edit" function failed to open a defined macro loaded on stack.
@@ -102,6 +110,8 @@ Bug Fixes:
 * bug 8598 fixed - Fix a typo in the french help page of "return".
 
 
+=======
+>>>>>>> 9fcb4b4... Xcos: blocks: avoid input re-ordering when opening block settings
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
             ===============================================================
 

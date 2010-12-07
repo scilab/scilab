@@ -80,10 +80,10 @@ public class SumPortLabelingListener implements PropertyChangeListener, Serializ
 		for (InputPort port : ports) {
 			final double gain;
 			
-			if (data.isEmpty()) {
+			if (data.isEmpty() || data.getRealPart().length < port.getOrdering()) {
 				gain = 1; 
 			} else {
-				gain = data.getRealPart()[port.getOrdering() - 1][0]; 
+				gain = data.getRealPart()[port.getOrdering() - 1][0];
 			}
 			
 			port.setValue(getLabel(gain));
