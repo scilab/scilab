@@ -70,6 +70,8 @@ Bug Fixes:
 * bug 8505 fixed - help was not generated on Windows, if there was a path name
                    with some spaces.
 
+* bug 8528 fixed - length returned a wrong size for malformed characters.
+
 * bug 8531 fixed - "edit" function failed to open a defined macro loaded on stack.
 
 * bug 8532 fixed - size of input arguments of read_csv was not verified.
