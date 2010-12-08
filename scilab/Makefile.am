@@ -69,6 +69,9 @@ COMMON_CPPFLAGS = 		-I$(top_srcdir)/modules/shell/includes/ \
 
 scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+if IS_MACOSX
+scilab_bin_SOURCES		+=  $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+endif
 
 scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
 

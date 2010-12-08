@@ -62,7 +62,7 @@ extern "C"
 #include "deleteafile.h"
 
 #ifdef __APPLE__
-#include "../../../shell/src/c/others/initMacOSXEnv.h"
+#include "initMacOSXEnv.h"
 #endif
 /*
 ** HACK HACK HACK

@@ -59,14 +59,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@IS_MACOSX_TRUE@am__append_1 = src/c/others/initMacOSXEnv.c
-@IS_MACOSX_TRUE@am__append_2 = -msse2
+@IS_MACOSX_TRUE@am__append_1 = -msse2
 DIST_COMMON = $(libscishell_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 
 # With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_4 = test
+@COMPILATION_TESTS_TRUE@am__append_3 = test
 subdir = modules/shell
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -120,28 +119,18 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscishell_la_DEPENDENCIES = $(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__libscishell_la_SOURCES_DIST = src/c/clc.c src/c/tohome.c \
-	src/c/more.c src/c/scilines.c src/c/GetCommandLine.c \
-	src/c/others/zzledt.c src/c/others/gotoxy_nw.c \
-	src/c/others/clrscr_nw.c src/c/InitializeShell.c \
-	src/c/TerminateShell.c src/c/prompt.c src/c/promptecho.c \
-	src/c/others/initMacOSXEnv.c sci_gateway/c/gw_shell.c \
-	sci_gateway/c/sci_clc.c sci_gateway/c/sci_tohome.c \
-	sci_gateway/c/sci_lines.c sci_gateway/c/sci_prompt.c \
-	sci_gateway/c/sci_iswaitingforinput.c
-@IS_MACOSX_TRUE@am__objects_1 = libscishell_la-initMacOSXEnv.lo
-am__objects_2 = libscishell_la-clc.lo libscishell_la-tohome.lo \
+am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
 	libscishell_la-more.lo libscishell_la-scilines.lo \
 	libscishell_la-GetCommandLine.lo libscishell_la-zzledt.lo \
 	libscishell_la-gotoxy_nw.lo libscishell_la-clrscr_nw.lo \
 	libscishell_la-InitializeShell.lo \
 	libscishell_la-TerminateShell.lo libscishell_la-prompt.lo \
-	libscishell_la-promptecho.lo $(am__objects_1)
-am__objects_3 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
+	libscishell_la-promptecho.lo
+am__objects_2 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo libscishell_la-sci_lines.lo \
 	libscishell_la-sci_prompt.lo \
 	libscishell_la-sci_iswaitingforinput.lo
-am_libscishell_la_OBJECTS = $(am__objects_2) $(am__objects_3)
+am_libscishell_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscishell_la_OBJECTS = $(am_libscishell_la_OBJECTS)
 libscishell_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscishell_la_CFLAGS) \
@@ -160,7 +149,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscishell_la_SOURCES)
-DIST_SOURCES = $(am__libscishell_la_SOURCES_DIST)
+DIST_SOURCES = $(libscishell_la_SOURCES)
 DATA = $(libscishell_la_etc_DATA) $(libscishell_la_root_DATA) \
 	$(libscishell_la_sci_gateway_DATA)
 HEADERS = $(libscishell_la_include_HEADERS)
@@ -419,11 +408,19 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 
 # List of the c files
-SHELL_C_SOURCES = src/c/clc.c src/c/tohome.c src/c/more.c \
-	src/c/scilines.c src/c/GetCommandLine.c src/c/others/zzledt.c \
-	src/c/others/gotoxy_nw.c src/c/others/clrscr_nw.c \
-	src/c/InitializeShell.c src/c/TerminateShell.c src/c/prompt.c \
-	src/c/promptecho.c $(am__append_1)
+SHELL_C_SOURCES = src/c/clc.c \
+src/c/tohome.c \
+src/c/more.c \
+src/c/scilines.c \
+src/c/GetCommandLine.c \
+src/c/others/zzledt.c \
+src/c/others/gotoxy_nw.c \
+src/c/others/clrscr_nw.c \
+src/c/InitializeShell.c \
+src/c/TerminateShell.c \
+src/c/prompt.c \
+src/c/promptecho.c
+
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
@@ -458,7 +455,7 @@ libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/string/includes/ $(am__append_2)
+	-I$(top_srcdir)/modules/string/includes/ $(am__append_1)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -510,7 +507,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3) $(am__append_4)
+TARGETS_ALL = $(am__append_2) $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -642,7 +639,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clrscr_nw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gotoxy_nw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-initMacOSXEnv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-more.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-promptecho.Plo@am__quote@
@@ -759,13 +755,6 @@ libscishell_la-promptecho.lo: src/c/promptecho.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/promptecho.c' object='libscishell_la-promptecho.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
-
-libscishell_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-initMacOSXEnv.lo -MD -MP -MF $(DEPDIR)/libscishell_la-initMacOSXEnv.Tpo -c -o libscishell_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-initMacOSXEnv.Tpo $(DEPDIR)/libscishell_la-initMacOSXEnv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/initMacOSXEnv.c' object='libscishell_la-initMacOSXEnv.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
 
 libscishell_la-gw_shell.lo: sci_gateway/c/gw_shell.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-gw_shell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-gw_shell.Tpo -c -o libscishell_la-gw_shell.lo `test -f 'sci_gateway/c/gw_shell.c' || echo '$(srcdir)/'`sci_gateway/c/gw_shell.c

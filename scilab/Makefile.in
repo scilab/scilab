@@ -62,12 +62,13 @@ host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 	$(am__EXEEXT_1)
 @IS_MACOSX_TRUE@am__append_1 = -framework Cocoa
+@IS_MACOSX_TRUE@am__append_2 = $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 
 #-static
-@ENABLE_STATIC_TRUE@am__append_2 = scilab-static-bin
+@ENABLE_STATIC_TRUE@am__append_3 = scilab-static-bin
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_4 = localization
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
 	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
@@ -188,8 +189,13 @@ call_scilab_readwritestring_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(call_scilab_readwritestring_CFLAGS) $(CFLAGS) \
 	$(call_scilab_readwritestring_LDFLAGS) $(LDFLAGS) -o $@
+am__scilab_bin_SOURCES_DIST =  \
+	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+	$(top_srcdir)/modules/core/src/cpp/tasks.cpp \
+	$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@IS_MACOSX_TRUE@am__objects_1 = scilab_bin-initMacOSXEnv.$(OBJEXT)
 am_scilab_bin_OBJECTS = scilab_bin-scilab.$(OBJEXT) \
-	scilab_bin-tasks.$(OBJEXT)
+	scilab_bin-tasks.$(OBJEXT) $(am__objects_1)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(top_builddir)/modules/shell/libscishell.la \
@@ -213,9 +219,12 @@ scilab_cli_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(CXXFLAGS) $(scilab_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
 am__scilab_static_bin_SOURCES_DIST =  \
 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-	$(top_srcdir)/modules/core/src/cpp/tasks.cpp
-am__objects_1 = scilab.$(OBJEXT) tasks.$(OBJEXT)
-@ENABLE_STATIC_TRUE@am_scilab_static_bin_OBJECTS = $(am__objects_1)
+	$(top_srcdir)/modules/core/src/cpp/tasks.cpp \
+	$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@IS_MACOSX_TRUE@am__objects_2 =  \
+@IS_MACOSX_TRUE@	scilab_static_bin-initMacOSXEnv.$(OBJEXT)
+am__objects_3 = scilab.$(OBJEXT) tasks.$(OBJEXT) $(am__objects_2)
+@ENABLE_STATIC_TRUE@am_scilab_static_bin_OBJECTS = $(am__objects_3)
 scilab_static_bin_OBJECTS = $(am_scilab_static_bin_OBJECTS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_DEPENDENCIES =  \
 @ENABLE_STATIC_TRUE@	$(top_builddir)/modules/libscilab.la
@@ -282,8 +291,8 @@ DIST_SOURCES = $(call_scilab_c_SOURCES) \
 	$(call_scilab_readwriteboolean_SOURCES) \
 	$(call_scilab_readwritecomplexmatrix_SOURCES) \
 	$(call_scilab_readwritematrix_SOURCES) \
-	$(call_scilab_readwritestring_SOURCES) $(scilab_bin_SOURCES) \
-	$(scilab_cli_bin_SOURCES) \
+	$(call_scilab_readwritestring_SOURCES) \
+	$(am__scilab_bin_SOURCES_DIST) $(scilab_cli_bin_SOURCES) \
 	$(am__scilab_static_bin_SOURCES_DIST)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
@@ -631,8 +640,7 @@ COMMON_CPPFLAGS = -I$(top_srcdir)/modules/shell/includes/ \
 						-I$(top_srcdir)/modules/history_manager/includes/
 
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
-
+	$(top_srcdir)/modules/core/src/cpp/tasks.cpp $(am__append_2)
 scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB)
 scilab_bin_CPPFLAGS = $(COMMON_CPPFLAGS)
 
@@ -648,7 +656,7 @@ scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(COMMON_CPPFLAGS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_3)
+TARGETS_ALL = macros $(am__append_4)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
@@ -940,10 +948,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritestring-readwritestring.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-initMacOSXEnv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-scilab.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-tasks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_cli_bin-scilab.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_cli_bin-tasks.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_static_bin-initMacOSXEnv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tasks.Po@am__quote@
 
 .c.o:
@@ -1078,6 +1088,34 @@ call_scilab_readwritestring-readwritestring.obj: $(top_srcdir)/modules/call_scil
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c' object='call_scilab_readwritestring-readwritestring.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(call_scilab_readwritestring_CFLAGS) $(CFLAGS) -c -o call_scilab_readwritestring-readwritestring.obj `if test -f '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c'; fi`
+
+scilab_bin-initMacOSXEnv.o: $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(scilab_bin_CFLAGS) $(CFLAGS) -MT scilab_bin-initMacOSXEnv.o -MD -MP -MF $(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo -c -o scilab_bin-initMacOSXEnv.o `test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo $(DEPDIR)/scilab_bin-initMacOSXEnv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' object='scilab_bin-initMacOSXEnv.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(scilab_bin_CFLAGS) $(CFLAGS) -c -o scilab_bin-initMacOSXEnv.o `test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+
+scilab_bin-initMacOSXEnv.obj: $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(scilab_bin_CFLAGS) $(CFLAGS) -MT scilab_bin-initMacOSXEnv.obj -MD -MP -MF $(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo -c -o scilab_bin-initMacOSXEnv.obj `if test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_bin-initMacOSXEnv.Tpo $(DEPDIR)/scilab_bin-initMacOSXEnv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' object='scilab_bin-initMacOSXEnv.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(scilab_bin_CFLAGS) $(CFLAGS) -c -o scilab_bin-initMacOSXEnv.obj `if test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
+
+scilab_static_bin-initMacOSXEnv.o: $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -MT scilab_static_bin-initMacOSXEnv.o -MD -MP -MF $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Tpo -c -o scilab_static_bin-initMacOSXEnv.o `test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Tpo $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' object='scilab_static_bin-initMacOSXEnv.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -c -o scilab_static_bin-initMacOSXEnv.o `test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+
+scilab_static_bin-initMacOSXEnv.obj: $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -MT scilab_static_bin-initMacOSXEnv.obj -MD -MP -MF $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Tpo -c -o scilab_static_bin-initMacOSXEnv.obj `if test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Tpo $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' object='scilab_static_bin-initMacOSXEnv.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -c -o scilab_static_bin-initMacOSXEnv.obj `if test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
