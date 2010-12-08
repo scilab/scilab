@@ -43,6 +43,10 @@ Bug Fixes:
 
 * bug 8540 fixed - Fix a typo in Xcos.
 
+* bug 8582 fixed - Under Linux & Mac OS the waitbar window was too small and we
+                   could not see the bar inside it.
+
+
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
             ===============================================================
 
