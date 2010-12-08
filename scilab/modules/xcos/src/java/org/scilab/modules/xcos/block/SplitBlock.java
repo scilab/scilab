@@ -21,11 +21,14 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 
 /**
@@ -103,23 +106,49 @@ public final class SplitBlock extends BasicBlock {
 	 * @return input port
 	 */
 	public BasicPort getIn() {
-		return (BasicPort) getChildAt(0);
+		return getChild(0, InputPort.class, 1);
 	}
 
 	/**
 	 * @return first output port
 	 */
 	public BasicPort getOut1() {
-		return (BasicPort) getChildAt(1);
+		return getChild(1, OutputPort.class, 1);
 	}
 
 	/**
-	 * @return second ouput port
+	 * @return second output port
 	 */
 	public BasicPort getOut2() {
-		return (BasicPort) getChildAt(2);
+		return getChild(2, OutputPort.class, 2);
 	}
 
+	/**
+	 * Get the child of the kind class from the start to a count.
+	 * @param startIndex the start index (default position)
+	 * @param kind the kind of the port
+	 * @param ordering the ordering of the port 
+	 * @return the found port or null.
+	 */
+	private BasicPort getChild(int startIndex, Class<? extends BasicPort> kind, int ordering) {
+		final int size = children.size();
+		
+		int loopCount = size;
+		for (int i = startIndex; loopCount > 0; i = (i + 1) % size, loopCount--) {
+			Object child = children.get(i);
+			if (kind.isInstance(child)) {
+				BasicPort port = kind.cast(child);
+				
+				if (port.getOrdering() == ordering) {
+					// end of the loop
+					return kind.cast(child);
+				}
+			}
+		}
+		LogFactory.getLog(SplitBlock.class).error("Unable to find a child.");
+		return null;
+	}
+	
 	/**
 	 * delete split block child before delete
 	 */
@@ -171,10 +200,17 @@ public final class SplitBlock extends BasicBlock {
 	 */
 	@Override
 	public boolean isConnectable() {
-		return getChildCount() != 0
-				&& (getIn().getEdgeCount() == 0
-						|| getOut1().getEdgeCount() == 0 || getOut2()
-						.getEdgeCount() == 0);
+		if (getChildCount() != 0) {
+			boolean hasNoEdges = true;
+			for (int i = 0; i < getChildCount() && hasNoEdges; i++) {
+				final mxICell cell = getChildAt(i);
+				hasNoEdges = cell.getEdgeCount() == 0;
+			}
+			
+			return hasNoEdges;
+		} else {
+			return false;
+		}
 	}
 	
 	/**

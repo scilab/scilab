@@ -12,6 +12,9 @@ Xcos:
 
 * bug 8556 fixed - Creating a split block from a link did not work.
 
+* bug 8569 fixed - Deleting a link with a split-block did not reconstruct any
+                   valid link.
+
 
 Bug Fixes:
 ==========
