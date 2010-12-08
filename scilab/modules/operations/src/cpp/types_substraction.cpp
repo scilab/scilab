@@ -1,6 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -11,11 +12,90 @@
 */
 
 #include "types_substraction.hxx"
+#include "scilabexception.hxx"
 #include "core_math.h"
 
 extern "C"
 {
 	#include "matrix_substraction.h"
+    #include "localization.h"
+    #include "charEncoding.h"
+}
+
+InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOperand)
+{
+    InternalType *pResult = NULL;
+    GenericType::RealType TypeL = _pLeftOperand->getType();
+    GenericType::RealType TypeR = _pRightOperand->getType();
+
+    /*
+    ** DOUBLE - DOUBLE
+    */
+    if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    {
+        Double *pL = _pLeftOperand->getAsDouble();
+        Double *pR = _pRightOperand->getAsDouble();
+
+        int iResult = SubstractDoubleToDouble(pL, pR, (Double**)&pResult);
+        if(iResult != 0)
+        {
+            throw ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+        return pResult;
+    }
+
+    /*
+    ** DOUBLE - POLY
+    */
+    else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
+    {
+        Double *pL              = _pLeftOperand->getAsDouble();
+        MatrixPoly *pR          = _pRightOperand->getAsPoly();
+
+        int iResult = SubstractPolyToDouble(pL, pR, (MatrixPoly**)&pResult);
+        if(iResult != 0)
+        {
+            throw ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+        return pResult;
+    }
+
+    /*
+    ** POLY - DOUBLE
+    */
+    else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    {
+        MatrixPoly *pL			= _pLeftOperand->getAsPoly();
+        Double *pR				= _pRightOperand->getAsDouble();
+
+        int iResult = SubstractDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
+        if(iResult != 0)
+        {
+            throw ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+        return pResult;
+    }
+
+    /*
+    ** POLY - POLY
+    */
+    else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
+    {
+        MatrixPoly *pL			= _pLeftOperand->getAsPoly();
+        MatrixPoly *pR			= _pRightOperand->getAsPoly();
+
+        int iResult = SubstractPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
+        if(iResult != 0)
+        {
+            throw ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+        return pResult;
+    }
+
+    /*
+    ** Default case : Return NULL will Call Overloading.
+    */
+    return NULL;
 }
 
 int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut)
@@ -44,7 +124,7 @@ int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDou
 		{
 			(*_pDoubleOut) = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
 			iSubstractRealIdentityToComplexMatrix(
-					_pDouble1->real_get()[0], 
+					_pDouble1->real_get()[0],
 					_pDouble2->real_get(), _pDouble2->img_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
 					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
@@ -87,7 +167,7 @@ int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDou
 		{
 			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
 			iSubstractRealIdentityToComplexMatrix(
-					_pDouble2->real_get()[0], 
+					_pDouble2->real_get()[0],
 					_pDouble1->real_get(), _pDouble1->img_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
 					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
@@ -227,7 +307,7 @@ int SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly, MatrixPoly** _pP
 		{
 			(*_pPolyOut)->complex_set(true);
 		}
-		
+
 		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(i);
@@ -355,7 +435,7 @@ int SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly, MatrixPoly** _pP
 		return 1;
 	}
 
-	return 0;	
+	return 0;
 }
 
 int SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble, MatrixPoly **_pPolyOut)
@@ -379,7 +459,7 @@ int SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble, MatrixPoly **_pPo
 		}
 
 		if(_pPoly->isComplex() || _pDouble->isComplex())
-		{ 
+		{
 			(*_pPolyOut)->complex_set(true);
 			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
@@ -492,7 +572,7 @@ int SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble, MatrixPoly **_pPo
 
 int SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2, MatrixPoly **_pPolyOut)
 {
-	//3 cases : 
+	//3 cases :
 	//size(p1) == size(P2)
 	if(_pPoly1->rows_get() == _pPoly2->rows_get() && _pPoly1->cols_get() == _pPoly2->cols_get())
 	{
