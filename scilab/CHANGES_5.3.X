@@ -24,6 +24,8 @@ Bug Fixes:
 * bug 7849 fixed - eqfir / remez functions crashed under MacOSX due to
                    a lapack bug on slamch function.
 
+* bug 8091 fixed - Scilab was unable to find fortran compiler under MacOSX.
+
 * bug 8175 fixed - roots function did not converge under MacOSX due to
                    a lapack bug on slamch function.
 
