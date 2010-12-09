@@ -20,7 +20,7 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 { 
-	{sci_print, "print"},
+	{NULL, ""}, //print
 	{NULL, ""}, //mprintf
 	{NULL, ""}, //msprintf
 	{NULL, ""}, //disp

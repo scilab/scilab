@@ -26,7 +26,6 @@ extern "C" {
 #ifdef _MSC_VER
 
 #include "mmapWindows.h"
-#include "strdup_windows.h"
 
 #else
 #include <sys/mman.h>

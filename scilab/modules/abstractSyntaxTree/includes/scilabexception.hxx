@@ -16,9 +16,11 @@
 #include <string>
 #include <stdexcept>
 #include "location.hxx"
+#include "dynlib_ast_tools.hxx"
+
 namespace ast
 {
-    class EXTERN_AST ScilabException : public std::exception
+    class EXTERN_AST_TOOLS ScilabException : public std::exception
     {
     public :
         ScilabException();
@@ -42,7 +44,7 @@ namespace ast
         Location        m_ErrorLocation;
     };
 
-    class EXTERN_AST ScilabError : public ScilabException
+    class EXTERN_AST_TOOLS ScilabError : public ScilabException
     {
     public :
         ScilabError() : ScilabException(){}
@@ -51,13 +53,13 @@ namespace ast
         ScilabError(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation) : ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation){}
     };
 
-    class EXTERN_AST InternalError : public ScilabException
+    class EXTERN_AST_TOOLS InternalError : public ScilabException
     {
     public :
         InternalError(){}
     };
 
-    class EXTERN_AST ScilabMessage : public ScilabException
+    class EXTERN_AST_TOOLS ScilabMessage : public ScilabException
     {
     public :
         ScilabMessage() : ScilabException(){}

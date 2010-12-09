@@ -22,18 +22,10 @@
 #include <string>
 #include <sstream>
 
-#ifdef _MSC_VER
-    #if AST_EXPORTS
-        #define EXTERN_AST __declspec (dllexport)
-    #else
-        #define EXTERN_AST __declspec (dllimport)
-    #endif
-#else
-    #define EXTERN_AST 
-#endif
+#include "dynlib_ast_tools.hxx"
 
 /** \brief Abstract a Location. */
-class EXTERN_AST Location
+class EXTERN_AST_TOOLS Location
 {
     /** \name Ctor & dtor.
     ** \{ */
