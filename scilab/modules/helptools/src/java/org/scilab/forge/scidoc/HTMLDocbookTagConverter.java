@@ -726,11 +726,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleSimplelist(Map<String, String> attributes, String contents) throws SAXException {
-        String style = "simplelist";
-        String type = attributes.get("type");
-        if (type != null) {
-            style += " " + type + "-list";
-        }
+        String style = "itemizedlist";
 
         return encloseContents("ul", style, contents);
     }
