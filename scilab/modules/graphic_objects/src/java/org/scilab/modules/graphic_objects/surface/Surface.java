@@ -23,7 +23,7 @@ public abstract class Surface extends ClippableContouredObject {
 	// TBD Data -> Data Model
 	/* TBD: properties relative to the data model */
 	/** Surface properties names */
-	private enum SurfaceProperty { SURFACEMODE, COLORMODE, COLORFLAG };
+	private enum SurfaceProperty { SURFACEMODE, COLORMODE, COLORFLAG, HIDDENCOLOR };
 
 	/** Specifies whether the surface is drawn or not */
 	private boolean surfaceMode;
@@ -34,12 +34,16 @@ public abstract class Surface extends ClippableContouredObject {
 	/** Specifies how facet colors are computed */
 	private int colorFlag;
 
+	/** Back-facing facets color */
+	private int hiddenColor;
+
 	/** Constructor */	
 	public Surface() {
 		super();
 		surfaceMode = false;
 		colorMode = 0;
 		colorFlag = 0;
+		hiddenColor = 0;
 	}
 
 	/**
@@ -54,6 +58,8 @@ public abstract class Surface extends ClippableContouredObject {
 			return SurfaceProperty.COLORMODE;
 		} else if (propertyName.equals(__GO_COLOR_FLAG__)) {
 			return SurfaceProperty.COLORFLAG;
+		} else if (propertyName.equals(__GO_HIDDEN_COLOR__)) {
+			return SurfaceProperty.HIDDENCOLOR;
 		} else {
 			return super.getPropertyFromName(propertyName);
 		}
@@ -71,6 +77,8 @@ public abstract class Surface extends ClippableContouredObject {
 			return getColorMode();
 		} else if (property == SurfaceProperty.COLORFLAG) {
 			return getColorFlag();
+		} else if (property == SurfaceProperty.HIDDENCOLOR) {
+			return getHiddenColor();
 		} else {
 			return super.getProperty(property);	
 		}
@@ -90,6 +98,8 @@ public abstract class Surface extends ClippableContouredObject {
 			setColorMode((Integer) value);
 		} else if (property == SurfaceProperty.COLORFLAG) {
 			setColorFlag((Integer) value);
+		} else if (property == SurfaceProperty.HIDDENCOLOR) {
+			setHiddenColor((Integer) value);
 		} else {
 			return super.setProperty(property, value);
 		}
@@ -97,18 +107,19 @@ public abstract class Surface extends ClippableContouredObject {
 		return true;
 	}	
 
+
 	/**
-	 * @return the colorFlag
+	 * @return the surfaceMode
 	 */
-	public Integer getColorFlag() {
-		return colorFlag;
+	public Boolean getSurfaceMode() {
+		return surfaceMode;
 	}
 
 	/**
-	 * @param colorFlag the colorFlag to set
+	 * @param surfaceMode the surfaceMode to set
 	 */
-	public void setColorFlag(Integer colorFlag) {
-		this.colorFlag = colorFlag;
+	public void setSurfaceMode(Boolean surfaceMode) {
+		this.surfaceMode = surfaceMode;
 	}
 
 	/**
@@ -126,17 +137,31 @@ public abstract class Surface extends ClippableContouredObject {
 	}
 
 	/**
-	 * @return the surfaceMode
+	 * @return the colorFlag
 	 */
-	public Boolean getSurfaceMode() {
-		return surfaceMode;
+	public Integer getColorFlag() {
+		return colorFlag;
 	}
 
 	/**
-	 * @param surfaceMode the surfaceMode to set
+	 * @param colorFlag the colorFlag to set
 	 */
-	public void setSurfaceMode(Boolean surfaceMode) {
-		this.surfaceMode = surfaceMode;
+	public void setColorFlag(Integer colorFlag) {
+		this.colorFlag = colorFlag;
+	}
+
+	/**
+	 * @return the hiddenColor
+	 */
+	public Integer getHiddenColor() {
+		return hiddenColor;
+	}
+
+	/**
+	 * @param hiddenColor the hiddenColor to set
+	 */
+	public void setHiddenColor(Integer hiddenColor) {
+		this.hiddenColor = hiddenColor;
 	}
 
 }
