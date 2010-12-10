@@ -49,7 +49,7 @@ public final class SplitBlock extends BasicBlock {
 	public SplitBlock() {
 		super();
 	}
-	
+
 	/**
 	 * Add connection port depending on the type of the source.
 	 * @param source the type of the split
@@ -81,7 +81,7 @@ public final class SplitBlock extends BasicBlock {
 	protected void setDefaultValues() {
 		super.setDefaultValues();
 		setInterfaceFunctionName("SPLIT_f");
-		setStyle(getInterfaceFunctionName()); 
+		setStyle(getInterfaceFunctionName());
 		setSimulationFunctionName("lsplit");
 		setRealParameters(new ScilabDouble());
 		setIntegerParameters(new ScilabDouble());
@@ -91,7 +91,7 @@ public final class SplitBlock extends BasicBlock {
 
 	/**
 	 * Add a port on the block.
-	 * 
+	 *
 	 * @param port
 	 *            The port to be added to the block
 	 * @see org.scilab.modules.xcos.block.BasicBlock#addPort(org.scilab.modules.xcos.port.BasicPort)
@@ -106,39 +106,39 @@ public final class SplitBlock extends BasicBlock {
 	 * @return input port
 	 */
 	public BasicPort getIn() {
-		return getChild(0, InputPort.class, 1);
+		return getChild(0, BasicPort.class, 1);
 	}
 
 	/**
 	 * @return first output port
 	 */
 	public BasicPort getOut1() {
-		return getChild(1, OutputPort.class, 1);
+		return getChild(1, BasicPort.class, 1);
 	}
 
 	/**
 	 * @return second output port
 	 */
 	public BasicPort getOut2() {
-		return getChild(2, OutputPort.class, 2);
+		return getChild(2, BasicPort.class, 2);
 	}
 
 	/**
 	 * Get the child of the kind class from the start to a count.
 	 * @param startIndex the start index (default position)
 	 * @param kind the kind of the port
-	 * @param ordering the ordering of the port 
+	 * @param ordering the ordering of the port
 	 * @return the found port or null.
 	 */
 	private BasicPort getChild(int startIndex, Class<? extends BasicPort> kind, int ordering) {
 		final int size = children.size();
-		
+
 		int loopCount = size;
 		for (int i = startIndex; loopCount > 0; i = (i + 1) % size, loopCount--) {
 			Object child = children.get(i);
 			if (kind.isInstance(child)) {
 				BasicPort port = kind.cast(child);
-				
+
 				if (port.getOrdering() == ordering) {
 					// end of the loop
 					return kind.cast(child);
@@ -148,7 +148,7 @@ public final class SplitBlock extends BasicBlock {
 		LogFactory.getLog(SplitBlock.class).error("Unable to find a child.");
 		return null;
 	}
-	
+
 	/**
 	 * delete split block child before delete
 	 */
@@ -168,7 +168,7 @@ public final class SplitBlock extends BasicBlock {
 
 	/**
 	 * Set the geometry of the block
-	 * 
+	 *
 	 * @param geometry
 	 *            change split block geometry
 	 */
@@ -177,7 +177,7 @@ public final class SplitBlock extends BasicBlock {
 		if (geometry != null) {
 			geometry.setWidth(DEFAULT_SIZE);
 			geometry.setHeight(DEFAULT_SIZE);
-			
+
 			/*
 			 * Align the geometry on the grid
 			 */
@@ -190,10 +190,10 @@ public final class SplitBlock extends BasicBlock {
 			BlockPositioning.alignPoint(geometry, gridSize,
 					(geometry.getWidth() / 2.0));
 		}
-		
+
 		super.setGeometry(geometry);
 	}
-	
+
 	/**
 	 * @return true if the split is connectable, false otherwise
 	 * @see org.scilab.modules.xcos.block.BasicBlock#isConnectable()
@@ -206,16 +206,16 @@ public final class SplitBlock extends BasicBlock {
 				final mxICell cell = getChildAt(i);
 				hasNoEdges = cell.getEdgeCount() == 0;
 			}
-			
+
 			return hasNoEdges;
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Insert edges as children port edges
-	 * 
+	 *
 	 * @param edge the current edge
 	 * @param isOutgoing if it is an input port or output one
 	 * @return the inserted edges
