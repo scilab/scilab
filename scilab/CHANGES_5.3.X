@@ -150,10 +150,10 @@ Xcos:
 * bug 8658 fixed - Use accentuated characters on file name lead to a modelica
                    compiler error.
 
-* bug 8674 fixed - xcosShowBlockWarning was not protected against arbitrary 
+* bug 8674 fixed - xcosShowBlockWarning was not protected against arbitrary
                    arguments.
 
-* bug 8696 fixed - An exception was thrown while linking and deleting the 
+* bug 8696 fixed - An exception was thrown while linking and deleting the
                    source block.
 
 * bug 8711 fixed - The "Cont. Plant-Hybrid Observer" demo contains a translated
@@ -258,6 +258,13 @@ Scilab:
 
 * Scilab startup script of the binary is now automatically synchronized with
   the one from the source tree.
+
+
+Statistics:
+==========
+
+* bug 8560 fixed - The grand function failed on 64 bits machines.
+
 
 Optimization:
 =============
