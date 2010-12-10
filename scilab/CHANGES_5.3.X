@@ -82,6 +82,8 @@ Bug Fixes:
 * bug 8587 fixed - readNamedMatrixOfDouble (readCommonNamedMatrixOfDouble)
                    returned wrong values.
 
+* bug 8598 fixed - Fix a typo in the french help page of "return".
+
 
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
             ===============================================================
