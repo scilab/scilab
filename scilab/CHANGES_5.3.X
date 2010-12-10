@@ -17,6 +17,12 @@ Removed functions (previously declared as obsolete):
   Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
 
 
+Documentation:
+==============
+
+* In an example in the documentation, when an undocumented function is used, 
+trigger a warning and do not add a link on the function name.
+
 Scinotes:
 =========
 
