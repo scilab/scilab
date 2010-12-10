@@ -42,7 +42,7 @@ void banner(void)
 
     YaspWriteW(_W("                 Consortium Scilab (DIGITEO)\n"));
 
-    YaspWriteW(_W("               Copyright (c) 1989-2009 (INRIA)\n"));
+    YaspWriteW(_W("               Copyright (c) 1989-2011 (INRIA)\n"));
     YaspWriteW(_W("               Copyright (c) 1989-2007 (ENPC)\n"));
     YaspWriteW(line);
     YaspWriteW(L"\n");
