@@ -14,12 +14,11 @@
 #include <stdio.h>
 #ifdef _MSC_VER
 #include <Windows.h>
+#include "LocaleNameToLCID_Windows.h"
+#include "strdup_windows.h"
 #endif
 #include "getLcidString.h"
 #include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "charEncoding.h"
 #include "stack-def.h"
 /*--------------------------------------------------------------------------*/
@@ -46,7 +45,7 @@ char *getLcidString(const char *pStrLocale)
     else
     {
         wchar_t *wLocale = getWindowsLocaleFormat(pStrLocale);
-        LCID lcid = LocaleNameToLCID(wLocale, 0);
+        LCID lcid = dllLocaleNameToLCID(wLocale, 0);
 
         if (lcid == 0)
         {
@@ -57,12 +56,6 @@ char *getLcidString(const char *pStrLocale)
             pStrLCID = (char *)MALLOC(sizeof(char)*bsiz);
             if (pStrLCID)
             {
-                /*
-                DWORD LangID = LANGIDFROMLCID(lcid);
-                WORD PrimaryLangID = PRIMARYLANGID(LangID);
-                WORD SubLangID = SUBLANGID(LangID);
-                */
-
                 sprintf(pStrLCID, "0x0%x", lcid);
             }
         }
@@ -86,8 +79,7 @@ static wchar_t *getWindowsLocaleFormat(const char *pStrLocale)
             wchar_t *pos = wcschr(pwStrLocale, L'_');
             if (pos)
             {
-                int len = (int)wcslen(pos);
-                pwStrLocale[len] = L'-';
+                *pos = L'-';
             }
             Locale = pwStrLocale;
         }

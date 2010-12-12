@@ -421,6 +421,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\c\LocaleNameToLCID_Windows.h"
+				>
+			</File>
+			<File
 				RelativePath="..\includes\localization.h"
 				>
 			</File>
@@ -495,6 +499,10 @@
 			</File>
 			<File
 				RelativePath=".\c\LanguagePreferences_Windows.c"
+				>
+			</File>
+			<File
+				RelativePath=".\c\LocaleNameToLCID_Windows.c"
 				>
 			</File>
 			<File
