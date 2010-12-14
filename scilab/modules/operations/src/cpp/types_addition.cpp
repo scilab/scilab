@@ -101,8 +101,8 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
     {
-        Double *pR	        = _pLeftOperand->getAsDouble();
-        MatrixPoly *pL      = _pRightOperand->getAsPoly();
+        Double *pR	        = _pRightOperand->getAsDouble();
+        MatrixPoly *pL      = _pLeftOperand->getAsPoly();
 
         int iResult = AddDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
         if(iResult != 0)
