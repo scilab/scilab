@@ -899,6 +899,13 @@ namespace ast
 
                 for(int i = 0 ; i < pVar->size_get() ; i++)
                 {
+                    bool bNew = false;
+                    if(pIT->isRef(1))
+                    {
+                        pIT = pIT->clone();
+                        bNew = true;
+                    }
+
                     if(pIT->getAsDouble())
                     {
                         Double *pDouble = pIT->getAsDouble();
@@ -912,6 +919,11 @@ namespace ast
                     else
                     {
                         pIT = pVar->extract_value(i);
+                        symbol::Context::getInstance()->put(varName, *pIT);
+                    }
+
+                    if(bNew)
+                    {
                         symbol::Context::getInstance()->put(varName, *pIT);
                     }
 
