@@ -120,8 +120,7 @@
      UPLEVEL = 335,
      LISTABLE = 336,
      CONTROLBREAK = 337,
-     CONTRORDIVIDE = 338,
-     FUNCTIONCALL = 339
+     FUNCTIONCALL = 338
    };
 #endif
 /* Tokens.  */
@@ -206,8 +205,7 @@
 #define UPLEVEL 335
 #define LISTABLE 336
 #define CONTROLBREAK 337
-#define CONTRORDIVIDE 338
-#define FUNCTIONCALL 339
+#define FUNCTIONCALL 338
 
 
 
