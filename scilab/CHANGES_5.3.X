@@ -1,11 +1,6 @@
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
-Xcos:
-=====
-
-* bug 8441 fixed - "xcos_block" abstract block were not removed on the 
-                   compilation.
 
 SciNotes:
 =========
@@ -21,6 +16,9 @@ Xcos:
                    changed their index (and position).
 
 * bug 8407 fixed - The blocks was always resized after a parameters edition.
+
+* bug 8441 fixed - "xcos_block" abstract block were not removed on the 
+                   compilation.
 
 * bug 8483 fixed - Multiplying a scalar and vector using the MATMUL block did not
                    work.
@@ -97,7 +95,6 @@ Bug Fixes:
 * bug 8505 fixed - help was not generated on Windows, if there was a path name
                    with some spaces.
 
-<<<<<<< HEAD
 * bug 8528 fixed - length returned a wrong size for malformed characters.
 
 * bug 8531 fixed - "edit" function failed to open a defined macro loaded on stack.
@@ -114,9 +111,9 @@ Bug Fixes:
 
 * bug 8598 fixed - Fix a typo in the french help page of "return".
 
+* bug 8611 fixed - Path of few images in documentation was bad.
 
-=======
->>>>>>> 9fcb4b4... Xcos: blocks: avoid input re-ordering when opening block settings
+
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
             ===============================================================
 
