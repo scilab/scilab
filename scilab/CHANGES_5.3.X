@@ -315,6 +315,8 @@ Bug Fixes:
 
 * bug 8598 fixed - Fix a typo in the french help page of "return".
 
+* bug 8601 fixed - An help page was misdiplayed when the title contains html tag.
+
 * bug 8611 fixed - Path of few images in documentation was bad.
 
 
