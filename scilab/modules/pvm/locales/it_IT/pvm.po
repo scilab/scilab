@@ -40,7 +40,7 @@ msgstr "%s: Tipo sconosciuto o non ancora sviluppato.\n"
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Il primo argomento in ingresso è sbagliato: era atteso ''%s'' o ''%s''.\n"
+"%s: Il primo argomento in ingresso è sbagliato: era atteso '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"
@@ -126,7 +126,7 @@ msgid "Not in group"
 msgstr "Non è nel gruppo"
 
 msgid "Null group name is illegal"
-msgstr "\"Nessuno\" è illegale come nome per un gruppo"
+msgstr "'Nessuno' è illegale come nome per un gruppo"
 
 msgid "OK"
 msgstr "OK"

@@ -319,7 +319,7 @@ msgstr "%s: El sistema no tiene polos ni ceros.\n"
 
 #, c-format
 msgid "%s: Undefined type ''%s''.\n"
-msgstr "%s: Tipo indefinido \"%s\".\n"
+msgstr "%s: Tipo indefinido ''%s''.\n"
 
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
@@ -756,7 +756,7 @@ msgid ""
 msgstr ""
 "%s: no puede computarse la norma. La precisión relativa es menor que 1e-3\n"
 "Hinfnorm es probablemente exacto máx sv(D)\n"
-"El sistema tal vez sea \"todos-pasan\""
+"El sistema tal vez sea todos-pasan"
 
 #, c-format
 msgid "%s: time domains are not compatible.\n"

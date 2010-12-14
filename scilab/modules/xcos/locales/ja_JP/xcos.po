@@ -34,15 +34,15 @@ msgstr "%s: %s 変数により定義された全てのパスが存在する必�
 
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s: ファイル \"%s\" が存在しません.\n"
+msgstr "%s: ファイル ''%s'' が存在しません.\n"
 
 #, c-format
 msgid "%s: File ''%s'' is not a valid palette file.\n"
-msgstr "%s: ファイル \"%s\" は有効なパレットファイルではありません.\n"
+msgstr "%s: ファイル ''%s'' は有効なパレットファイルではありません.\n"
 
 #, c-format
 msgid "%s: Found ''%s'' instead of a block.\n"
-msgstr "%s: ブロックの代わりに \"%s\" が見つかりました.\n"
+msgstr "%s: ブロックの代わりに ''%s'' が見つかりました.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -60,7 +60,7 @@ msgstr "%s: %s を %s にエクスポートできません.\n"
 
 #, c-format
 msgid "%s: Unable to export ''XX'' to %s"
-msgstr "%s: \"XX\" を %s にエキスポートできません"
+msgstr "%s: ''XX'' を %s にエキスポートできません"
 
 #, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"

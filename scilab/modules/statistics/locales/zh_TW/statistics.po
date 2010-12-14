@@ -78,7 +78,7 @@ msgstr "%s: 第 %d 輸入參數長度錯誤: 應與第二參數之行數相同.\
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤: 長度應為 ''%s''.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 長度應為 %s.\n"
 
 #, c-format
 msgid ""
@@ -158,18 +158,18 @@ msgstr "%s: 第 %d 輸入參數數值錯誤: 應為''%s'', ''%s'', %d 或 %d .\n
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
 "expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , %d  或 %d .\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'', ''%s'' , ''%s'' , %d  或 %d .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
 "number expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s'  或正值之數 .\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'', ''%s'' , ''%s''  或正值之數 .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
-msgstr "%s: 第 %d 輸入參數數值錯誤: 應為' '%s'', ''%s'',''%s'', %d 或%d.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為 ''%s'', ''%s'',''%s'', %d 或%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"

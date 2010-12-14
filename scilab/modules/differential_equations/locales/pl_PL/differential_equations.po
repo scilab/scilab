@@ -88,7 +88,7 @@ msgid ""
 "3 : internally generated diagonal jacobian (''adams'' or ''stiff'' only)"
 msgstr ""
 "3: pełna diagonalna macierz Jacobiego jest obliczana wewnętrznie (tylko "
-"metody \"adams\" lub \"stiff\")"
+"metody ''adams'' lub ''stiff'')"
 
 msgid "3 : one step at one internal mesh point and return"
 msgstr "3 : jeden krok w jednym wewnętrznym węzle siatki i powrót"

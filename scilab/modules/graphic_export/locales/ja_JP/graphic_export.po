@@ -87,7 +87,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定し�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\" または \"%s'\" を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してください.\n"
 
 #, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"

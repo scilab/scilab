@@ -25,8 +25,8 @@ msgstr "O módulo de Exportação de gráfico do Scilab não está instalado.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\" ou "
-"\"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s' ou "
+"'%s'.\n"
 
 #, c-format
 msgid "%s: OpenGL error during export.\n"
@@ -101,8 +101,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\" ou "
-"\"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'' ou "
+"''%s''.\n"
 
 #, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"
@@ -133,5 +133,5 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
-"\"%s\", \"%s\", \"%s\", \"%s\" ou \"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'', "
+"''%s'', ''%s'', ''%s'', ''%s'' ou ''%s''.\n"

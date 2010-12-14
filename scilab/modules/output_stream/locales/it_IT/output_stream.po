@@ -110,14 +110,14 @@ msgstr "%s: Si è verificato il seg. errore: %s\n"
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
 msgstr ""
-"%s: Conversione sbagliata: il flag ''l'' o quello ''h'' è stato mischiato "
-"con la direttiva ''c''.\n"
+"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato "
+"con la direttiva 'c'.\n"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
 msgstr ""
-"%s: Conversione sbagliata: il flag ''l'' o quello ''h'' è stato mischiato "
-"con la direttiva ''s''.\n"
+"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato "
+"con la direttiva 's'.\n"
 
 #, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
@@ -390,7 +390,7 @@ msgid ""
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso "
-"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\" o \"%s\".\n"
+"''%s'',''%s'',''%s'',''%s'',''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -593,7 +593,7 @@ msgstr "Conversione sbagliata."
 
 msgid "Binary direct access files must be opened by 'file'.\n"
 msgstr ""
-"I file ad accesso diretto binario devono essere aperti tramite \"file\".\n"
+"I file ad accesso diretto binario devono essere aperti tramite 'file'.\n"
 
 #, c-format
 msgid "Breakpoints of function : %s\n"
@@ -1041,7 +1041,7 @@ msgstr "La sotto-matrice non è definita correttamente.\n"
 
 #, c-format
 msgid "Syntax error in a '%s' instruction.\n"
-msgstr "C'è un errore di sintassi in una istruzione \"%s\".\n"
+msgstr "C'è un errore di sintassi in una istruzione '%s'.\n"
 
 msgid "System functions:\n"
 msgstr "Funzioni di sistema:\n"
@@ -1090,7 +1090,7 @@ msgid "Too large, can't be displayed.\n"
 msgstr "È troppo lungo, non può essere mostrato.\n"
 
 msgid "Too many ':'\n"
-msgstr "Troppi \":\"\n"
+msgstr "Troppi ':'\n"
 
 msgid "Too many arguments in fort (max 30).\n"
 msgstr "Ci sono troppi argomenti in fort (max 30)\n"
@@ -1212,7 +1212,7 @@ msgstr ""
 "questo messaggio"
 
 msgid "Warning : singularity of 'log' or 'tan' function.\n"
-msgstr "Attenzine c'è una singolarità della funzione \"log\" o \"tan\".\n"
+msgstr "Attenzine c'è una singolarità della funzione 'log' o 'tan'.\n"
 
 msgid "Warning:\n"
 msgstr "Attenzione:\n"
@@ -1264,7 +1264,7 @@ msgstr ""
 "differente.\n"
 
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
-msgstr "Attenzione: uso obsoleto di \"=\" invece di \"==\".\n"
+msgstr "Attenzione: uso obsoleto di '=' invece di '=='.\n"
 
 msgid "Warning: obsolete use of eye, rand, or ones.\n"
 msgstr "Attenzione: uso obsoleto di eye, rand o ones.\n"

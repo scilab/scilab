@@ -119,7 +119,7 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
-msgstr "%s: 第 %d 個輸入參數的值錯誤: 應該是 \"%s\"  值.\n"
+msgstr "%s: 第 %d 個輸入參數的值錯誤: 應該是 ''%s''  值.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"

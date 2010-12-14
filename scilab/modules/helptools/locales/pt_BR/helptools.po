@@ -300,11 +300,11 @@ msgstr "Capítulo de ajuda"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "O módulo \"%s\" do Scilab é desabilitado em modo -nogui ou -nwni.\n"
+msgstr "O módulo '%s' do Scilab é desabilitado em modo -nogui ou -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "O módulo \"%s\" do Scilab não está instalado.\n"
+msgstr "O módulo '%s' do Scilab não está instalado.\n"
 
 #, c-format
 msgid "Warning %s does not follow the dtd"
