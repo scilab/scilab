@@ -67,7 +67,7 @@ GRAPHICS_IMPEXP double sciGetFontSize(sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP double sciGetFontOrientation (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP StringMatrix * sciGetText (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol ) ; /* GET */
-GRAPHICS_IMPEXP BOOL sciisTextEmpty( sciPointObj * pobj);
+GRAPHICS_IMPEXP BOOL sciisTextEmpty(char* identifier);
 GRAPHICS_IMPEXP unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
 
 GRAPHICS_IMPEXP int sciGetFontBackground (sciPointObj * pobj); /* GET */

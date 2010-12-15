@@ -960,6 +960,11 @@ BOOL needsDisplay(sciPointObj * pFigure)
   }
 }
 /*---------------------------------------------------------------------------------*/
+/*
+ * This function has been only partially adapted to the MVC, due to sciisTextEmpty's prototype
+ * having changed.
+ * To be completed.
+ */
 static BOOL subwinNeedsDisplay(sciPointObj * pSubwin)
 {
   /* the subwindow is not displayed if it does not have any children, its box is of and is transparent or */
@@ -977,6 +982,10 @@ static BOOL subwinNeedsDisplay(sciPointObj * pSubwin)
   else
   {
     BOOL axesVisible[3];
+    char* titleId;
+    char* xLabelId;
+    char* yLabelId;
+    char* zLabelId;
 
     if (sciGetBoxType(pSubwin) != BT_OFF)
     {
@@ -998,11 +1007,16 @@ static BOOL subwinNeedsDisplay(sciPointObj * pSubwin)
       return TRUE;
     }
 
+    titleId = (char*) getGraphicObjectProperty(pSubwin->UID, __GO_TITLE__, jni_string);
+    xLabelId = (char*) getGraphicObjectProperty(pSubwin->UID, __GO_X_AXIS_LABEL__, jni_string);
+    yLabelId = (char*) getGraphicObjectProperty(pSubwin->UID, __GO_Y_AXIS_LABEL__, jni_string);
+    zLabelId = (char*) getGraphicObjectProperty(pSubwin->UID, __GO_Z_AXIS_LABEL__, jni_string);
+
     /* Check that labels texts are empty */
-    if (   !sciisTextEmpty(pSUBWIN_FEATURE(pSubwin)->mon_title)
-        || !sciisTextEmpty(pSUBWIN_FEATURE(pSubwin)->mon_x_label)
-        || !sciisTextEmpty(pSUBWIN_FEATURE(pSubwin)->mon_y_label)
-        || !sciisTextEmpty(pSUBWIN_FEATURE(pSubwin)->mon_z_label))
+    if (   !sciisTextEmpty(titleId)
+        || !sciisTextEmpty(xLabelId)
+        || !sciisTextEmpty(yLabelId)
+        || !sciisTextEmpty(zLabelId))
     {
       return TRUE;
     }

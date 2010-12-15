@@ -3,6 +3,7 @@
  * Copyright (C) 2007 - INRIA - Allan Cornet
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -555,7 +556,7 @@ BOOL sciGetCenterPos( sciPointObj * pObj )
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL sciisTextEmpty( sciPointObj * pobj)
+BOOL sciisTextEmpty( char* identifier )
 {
 	return FALSE;
 }

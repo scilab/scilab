@@ -794,30 +794,47 @@ void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol )
 }
 /**
 * Checks if a text object is empty #rows*#columns==0 or #rows*#columns==1 and entry is  zero length
+* This function has been adapted to the MVC: its parameter's type has been changed from sciPointObj to char*
+* (MVC identifier), the reason being that it is exclusively used to get the properties of Label objects,
+* which can be only be known by their MVC identifiers at the present moment.
 */
-BOOL sciisTextEmpty( sciPointObj * pobj)
+//BOOL sciisTextEmpty( sciPointObj * pobj)
+
+BOOL sciisTextEmpty(char* identifier)
 {
     int nbElements;
-    StringMatrix * text = sciGetText( pobj ) ;
-    if ( text == NULL )
+    int* dimensions;
+
+    dimensions = (int*) getGraphicObjectProperty(identifier, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector);
+
+    if (dimensions == NULL)
     {
         return TRUE;
     }
-    nbElements = getMatNbRow(text) * getMatNbCol(text);
-    if (nbElements == 0) {return TRUE;}
+
+    nbElements = dimensions[0]*dimensions[1];
+
+    if (nbElements == 0)
+    {
+        return TRUE;
+    }
+
     if (nbElements == 1)
     {
-        char * firstElement = getStrMatElement(text, 0, 0);
-        if (firstElement == NULL)
+        char** textMatrix = (char**) getGraphicObjectProperty(identifier, __GO_TEXT_STRINGS__, jni_string_vector);
+
+        if (textMatrix[0] == NULL)
         {
             return TRUE;
         }
-        else if (firstElement[0] == 0)
+        else if (strcmp(textMatrix[0], "") == 0)
         {
             /* empty string */
             return TRUE;
         }
+
     }
+
     return FALSE;
 }
 
@@ -2885,23 +2902,30 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
 /*-----------------------------------------------------------------------------------*/
 BOOL sciGetLegendDefined( sciPointObj * pObj )
 {
-    sciSubWindow * ppSubWin ;
+    char* xLabelId;
+    char* yLabelId;
+    char* zLabelId;
 
-    if ( pObj == NULL )
+    if (pObj == NULL)
     {
-        return FALSE ;
+        return FALSE;
     }
 
-    ppSubWin = pSUBWIN_FEATURE( pObj ) ;
+    xLabelId = (char*) getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string);
+    yLabelId = (char*) getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string);
+    zLabelId = (char*) getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string);
 
     /* get the text size of labels */
-    if (sciisTextEmpty(ppSubWin->mon_x_label) &&
-        sciisTextEmpty(ppSubWin->mon_y_label) &&
-        sciisTextEmpty(ppSubWin->mon_z_label))
-        return FALSE ;
+    if (sciisTextEmpty(xLabelId) &&
+        sciisTextEmpty(yLabelId) &&
+        sciisTextEmpty(zLabelId))
+    {
+        return FALSE;
+    }
     else
-        return TRUE ;
-
+    {
+        return TRUE;
+    }
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL sciGetAutoSize( sciPointObj * pObj )
