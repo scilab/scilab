@@ -28,26 +28,25 @@ NgonGeneralData::NgonGeneralData(void)
 
     coordinates = NULL;
 
-    xCoordinates = NULL;
-    yCoordinates = NULL;
-    zCoordinates = NULL;
-
     colorValues = NULL;
+    numColors = 0;
 }
 
 NgonGeneralData::~NgonGeneralData(void)
 {
-    /* To be fully implemented */
-
     if (numGons*numVerticesPerGon > 0)
     {
         delete [] coordinates;
+    }
+
+    if (numColors > 0)
+    {
+        delete [] colorValues;
     }
 }
 
 int NgonGeneralData::getPropertyFromName(char* propertyName)
 {
-
     if (strcmp(propertyName, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__) == 0)
     {
         return NUM_ELEMENTS_ARRAY;
@@ -68,9 +67,17 @@ int NgonGeneralData::getPropertyFromName(char* propertyName)
     {
         return Z_COORDINATES;
     }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_COLORS__) == 0)
+    {
+        return COLORS;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_COLORS__) == 0)
+    {
+        return NUM_COLORS;
+    }
     else
     {
-        NgonData::getPropertyFromName(propertyName);
+        return NgonData::getPropertyFromName(propertyName);
     }
 
 }
@@ -97,6 +104,10 @@ int NgonGeneralData::setDataProperty(int property, void* value, int numElements)
     else if (property == Z_COORDINATES)
     {
         setDataZ((double*) value, numElements);
+    }
+    else if (property == COLORS)
+    {
+        setColors((double*) value, numElements);
     }
     else
     {
@@ -132,6 +143,15 @@ void* NgonGeneralData::getDataProperty(int property)
     {
         return getDataZ();
     }
+    else if (property == COLORS)
+    {
+        return getColors();
+    }
+    else if (property == NUM_COLORS)
+    {
+        localIntResult = getNumColors();
+        return &localIntResult;
+    }
     else
     {
         return NgonData::getDataProperty(property);
@@ -146,7 +166,6 @@ double* NgonGeneralData::getData()
 
 double* NgonGeneralData::getDataX(void)
 {
-
     return coordinates;
 }
 
@@ -209,7 +228,6 @@ void NgonGeneralData::setDataZ(double* data, int numElements)
 {
     double* zCoordinates;
 
-
     zCoordinates = &coordinates[2*numGons*numVerticesPerGon];
 
     for (int i = 0; i < numElements; i++)
@@ -224,30 +242,26 @@ int NgonGeneralData::getNumElements(void)
     return numGons;
 }
 
-void NgonGeneralData::setNumElements(int numElements)
-{
-    if (numElements !=  numGons * numVerticesPerGon)
-    {
-
-        delete [] xCoordinates;
-        delete [] yCoordinates;
-        delete [] zCoordinates;
-
-        xCoordinates = new double[numElements];
-        yCoordinates = new double[numElements];
-        zCoordinates = new double[numElements];
-    }
-}
-
 int NgonGeneralData::setNumElementsArray(int* numElementsArray)
 {
+    double* newCoordinates = NULL;
+    double* newColorValues = NULL;
+    int result;
+
+    result = 1;
+
+    /* Test whether the number of colors is valid */
+    if ((numElementsArray[2] != numElementsArray[0]*numElementsArray[1]) &&
+        (numElementsArray[2] != numElementsArray[0]) &&
+        (numElementsArray[2] != 0))
+    {
+        return 0;
+    }
 
     if (numGons*numVerticesPerGon != numElementsArray[0]*numElementsArray[1])
     {
-        double* newCoordinates;
-
-
-        try {
+        try
+        {
             newCoordinates = new double[3*numElementsArray[0]*numElementsArray[1]];
         }
         catch (const std::exception& e)
@@ -255,30 +269,87 @@ int NgonGeneralData::setNumElementsArray(int* numElementsArray)
             return 0;
         }
 
-        if (numGons*numVerticesPerGon > 0)
-        {
-            delete [] coordinates;
-        }
+        result = 1;
+    }
 
-        coordinates = newCoordinates;
+    if (numElementsArray[2] != this->numColors)
+    {
+        if (numElementsArray[2] > 0)
+        {
+            try
+            {
+                newColorValues = new double[numElementsArray[2]];
+            }
+            catch (const std::exception& e)
+            {
+                result = 0;
+            }
+        }
 
     }
 
-    numGons = numElementsArray[0];
-    numVerticesPerGon = numElementsArray[1];
+    if (result == 1)
+    {
+        if (newCoordinates != NULL)
+        {
+            if (numGons*numVerticesPerGon > 0)
+            {
+                delete [] coordinates;
+            }
 
-    return 1;
+            coordinates = newCoordinates;
+
+            numGons = numElementsArray[0];
+            numVerticesPerGon = numElementsArray[1];
+        }
+
+        if (newColorValues != NULL || numElementsArray[2] == 0)
+        {
+            if (this->numColors > 0)
+            {
+                delete [] colorValues;
+            }
+
+            colorValues = newColorValues;
+            this->numColors = numElementsArray[2];
+        }
+    }
+    else
+    {
+        if (newCoordinates != NULL)
+        {
+            delete [] newCoordinates;
+        }
+
+        if (newColorValues != NULL)
+        {
+            delete [] newColorValues;
+        }
+    }
+
+    return result;
 }
 
-/* To be implemented */
 double* NgonGeneralData::getColors(void)
 {
-    return NULL;
+    return colorValues;
 }
 
-/* To be implemented */
 void NgonGeneralData::setColors(double* colors, int numElements)
 {
+    if (numElements > numColors)
+    {
+        return;
+    }
 
+    for (int i = 0; i < numElements; i++)
+    {
+        colorValues[i] = colors[i];
+    }
+}
+
+int NgonGeneralData::getNumColors(void)
+{
+    return numColors;
 }
 

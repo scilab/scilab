@@ -50,5 +50,10 @@
 #define NUM_Y                   22
 #define NUM_Z                   23
 #define GRID_SIZE               24
+#define X_DIMENSIONS            25
+#define Y_DIMENSIONS            26
+
+#define COLORS                  27
+#define NUM_COLORS              28
 
 #endif

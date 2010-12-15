@@ -38,7 +38,7 @@ public :
 
     virtual ~Data3D(void);
 
-    virtual int getPropertyFromName(char* propertyName) { return UNKNOWN_DATA_PROPERTY; }
+    virtual int getPropertyFromName(char* propertyName);
 
     virtual int setDataProperty(int property, void* value, int numElements);
 

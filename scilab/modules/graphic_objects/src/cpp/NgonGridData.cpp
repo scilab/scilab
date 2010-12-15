@@ -32,6 +32,12 @@ NgonGridData::NgonGridData(void)
 
     xSize = 0;
     ySize = 0;
+
+    xDimensions[0] = 0;
+    xDimensions[1] = 0;
+
+    yDimensions[0] = 0;
+    yDimensions[1] = 0;
 }
 
 NgonGridData::~NgonGridData(void)
@@ -65,6 +71,14 @@ int NgonGridData::getPropertyFromName(char* propertyName)
     else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_Z__) == 0)
     {
         return NUM_Z;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_X_DIMENSIONS__) == 0)
+    {
+        return X_DIMENSIONS;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_Y_DIMENSIONS__) == 0)
+    {
+        return Y_DIMENSIONS;
     }
     else if (strcmp(propertyName, __GO_DATA_MODEL_GRID_SIZE__) == 0)
     {
@@ -135,6 +149,14 @@ void* NgonGridData::getDataProperty(int property)
         localIntResult = getNumZ();
         return &localIntResult;
     }
+    else if (property == X_DIMENSIONS)
+    {
+        return getXDimensions();
+    }
+    else if (property == Y_DIMENSIONS)
+    {
+        return getYDimensions();
+    }
     else if (property == X_COORDINATES)
     {
         return getDataX();
@@ -156,6 +178,8 @@ void* NgonGridData::getDataProperty(int property)
 
 int NgonGridData::setGridSize(int* gridSize)
 {
+    int newXSize;
+    int newYSize;
     int xModified;
     int yModified;
     int result;
@@ -169,13 +193,27 @@ int NgonGridData::setGridSize(int* gridSize)
     xModified = 0;
     yModified = 0;
 
-    if (gridSize[0] != xSize)
+    if ((gridSize[0] != 1) && (gridSize[1] != 1))
+    {
+        return 0;
+    }
+
+    if ((gridSize[2] != 1) && (gridSize[3] != 1))
+    {
+        return 0;
+    }
+
+    newXSize = gridSize[0]*gridSize[1];
+    newYSize = gridSize[2]*gridSize[3];
+
+
+    if (newXSize != xSize)
     {
         xModified = 1;
 
         try
         {
-            newXCoordinates = new double[gridSize[0]];
+            newXCoordinates = new double[newXSize];
         }
         catch (const std::exception& e)
         {
@@ -183,13 +221,13 @@ int NgonGridData::setGridSize(int* gridSize)
         }
     }
 
-    if (gridSize[1] != ySize)
+    if (newYSize != ySize)
     {
         yModified = 1;
 
         try
         {
-            newYCoordinates = new double[gridSize[1]];
+            newYCoordinates = new double[newYSize];
         }
         catch (const std::exception& e)
         {
@@ -197,12 +235,11 @@ int NgonGridData::setGridSize(int* gridSize)
         }
     }
 
-
-    if (gridSize[0]*gridSize[1] != xSize*ySize)
+    if (newXSize*newYSize != xSize*ySize)
     {
         try
         {
-            newZCoordinates = new double[gridSize[0]*gridSize[1]];
+            newZCoordinates = new double[newXSize*newYSize];
         }
         catch (const std::exception& e)
         {
@@ -221,8 +258,11 @@ int NgonGridData::setGridSize(int* gridSize)
             }
 
             xCoordinates = newXCoordinates;
-            xSize = gridSize[0];
+            xSize = newXSize;
         }
+
+        xDimensions[0] = gridSize[0];
+        xDimensions[1] = gridSize[1];
 
         if (yModified)
         {
@@ -232,8 +272,11 @@ int NgonGridData::setGridSize(int* gridSize)
             }
 
             yCoordinates = newYCoordinates;
-            ySize = gridSize[0];
+            ySize = newYSize;
         }
+
+        yDimensions[0] = gridSize[2];
+        yDimensions[1] = gridSize[3];
 
         if (xModified || yModified)
         {
@@ -252,17 +295,17 @@ int NgonGridData::setGridSize(int* gridSize)
     {
         /* Failed allocation(s) */
 
-        if (xModified && newXCoordinates != NULL)
+        if (xModified && (newXCoordinates != NULL))
         {
             delete [] newXCoordinates;
         }
 
-        if (yModified && newYCoordinates != NULL)
+        if (yModified && (newYCoordinates != NULL))
         {
             delete [] newYCoordinates;
         }
 
-        if ((xModified || yModified) && newZCoordinates != NULL)
+        if ((xModified || yModified) && (newZCoordinates != NULL))
         {
             delete [] newXCoordinates;
         }
@@ -285,6 +328,16 @@ int NgonGridData::getNumY(void)
 int NgonGridData::getNumZ(void)
 {
     return xSize*ySize;
+}
+
+int* NgonGridData::getXDimensions(void)
+{
+    return xDimensions;
+}
+
+int* NgonGridData::getYDimensions(void)
+{
+    return yDimensions;
 }
 
 void NgonGridData::setDataX(double* data, int numElements)

@@ -44,6 +44,18 @@ private :
     /** The grid y size */
     int ySize;
 
+    /**
+     * The grid x vector dimensions (rows, columns)
+     * One of them must be equal to 1 and the other one to xSize.
+     */
+    int xDimensions[2];
+
+    /**
+     * The grid y vector dimensions (rows, colums)
+     * One of them must be equal to 1 and the other one to ySize.
+     */
+    int yDimensions[2];
+
 public :
 
     /**
@@ -98,10 +110,22 @@ public :
     int getNumZ(void);
 
     /**
-     * Sets the grid's x and y size
+     * Returns the grid's x vector dimensions
+     * @return a pointer to a 2-element array (nb rows, nb columns)
+     */
+    int* getXDimensions(void);
+
+    /**
+     * Returns the grid's y vector dimensions
+     * @return a pointer to a 2-element array (nb rows, nb columns)
+     */
+    int* getYDimensions(void);
+
+    /**
+     * Sets the grid's x and y vectors dimensions
      * Resizes the x, y, and z data coordinates arrays if required
      * and must therefore be called prior to any setData call
-     * @param gridSize 2-element array (grid x size, grid y size)
+     * @param gridSize 4-element array: x vector (nb rows, nb cols) and y vector (nb rows, nb cols) dimensions
      * @return 1 if the property has been successfully set, 0 otherwise (failed allocation)
      */
     int setGridSize(int* gridSize);

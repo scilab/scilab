@@ -28,6 +28,11 @@ Data3D::~Data3D(void)
 
 }
 
+int Data3D::getPropertyFromName(char* propertyName)
+{
+    return UNKNOWN_DATA_PROPERTY;
+}
+
 int Data3D::setDataProperty(int property, void* value, int numElements)
 {
     return 0;

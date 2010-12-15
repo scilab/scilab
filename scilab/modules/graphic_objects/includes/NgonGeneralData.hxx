@@ -20,7 +20,6 @@
 extern "C" {
 #include "BOOL.h"
 
-#include <stdio.h>
 }
 
 /**
@@ -31,51 +30,71 @@ class NgonGeneralData : public NgonData
 {
 private :
 
-
-    /** The x coordinates array */
-    double* xCoordinates;
-
-    /** The y coordinates array */
-    double* yCoordinates;
-
-    /** The z coordinates array */
-    double* zCoordinates;
-
     /** The array of color values */
     double* colorValues;
+
+    /** The size of the color values array */
+    int numColors;
 
 protected : 
     /** The coordinates array */
     double* coordinates;
 
 public :
+    /**
+     * Constructor
+     */
     NgonGeneralData(void);
 
+    /**
+     * Destructor
+     */
     virtual ~NgonGeneralData(void);
 
+    /**
+     * Returns the value corresponding to a property name
+     * @param propertyName the property name
+     * @return the property value
+     */
     int getPropertyFromName(char* propertyName);
 
+    /**
+     * Sets a data property
+     * @param property the property value
+     * @param value pointer to the property
+     * @param numElements the number of elements to set
+     * @return 1 if the property has been successfully set, 0 otherwise
+     */
     int setDataProperty(int property, void* value, int numElements);
 
+    /**
+     * Returns a data property
+     * @param property the property value
+     * @return a pointer to the property
+     */
     void* getDataProperty(int property);
 
     /**
      * Returns the data coordinates array
+     * @return pointer to the coordinates array
      */
     double* getData();
 
     /**
      * Returns the data x coordinates array
+     * @return a pointer to the x coordinates
      */
     double* getDataX(void);
 
     /**
      * Returns the data y coordinates array
+     * @return a pointer to the y coordinates
      */
     double* getDataY(void);
 
     /**
      * Returns the data z coordinates array
+     * @return a pointer to the z coordinates
      */
     double* getDataZ(void);
 
@@ -113,33 +132,34 @@ public :
     int getNumElements(void);
 
     /**
-     * Sets the number of elements (number of n-gons)
-     * Incorrectly implemented for now.
-     * setNumElementsArray must be used instead.
-     */
-    void setNumElements(int numElements);
-
-    /**
-     * Sets the number of elements (number of n-gons and
-     * the number of vertices per n-gon)
+     * Sets the number of elements (number of n-gons, 
+     * number of vertices per n-gon, and number of color values)
      * Resizes the data coordinates array if required, must therefore
-     * be called any setData* call.
-     * @param numElementsArray 2-element array (# n-gons, # vertices per n-gon)
+     * be called before any setData call.
+     * @param numElementsArray 3-element array (# n-gons, # vertices per n-gon, # color values)
      * @return 1 if it succeeded, 0 if the allocation failed
      */
     int setNumElementsArray(int* numElementsArray);
 
     /**
      * Returns the color values array
-     * To be implemented
+     * @return a pointer to the color values array
      */
     double* getColors(void);
 
     /**
      * Sets the color values array
-     * To be implemented
+     * @param colors the color values array
+     * @param numElements the number of color values in the data array
      */
     void setColors(double* colors, int numElements);
+
+    /**
+     * Returns the number of colors
+     * @return the number of colors
+     */
+    int getNumColors(void);
+
 };
 
 #endif

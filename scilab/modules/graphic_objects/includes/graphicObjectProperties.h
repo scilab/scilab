@@ -69,6 +69,7 @@
 #define __GO_DATA_MODEL_Z_COORDINATES_SET__            "DataModelZCoordinatesSet"
 
 #define __GO_DATA_MODEL_COLORS__                       "DataModelColors"
+#define __GO_DATA_MODEL_NUM_COLORS__                   "DataModelNumColors"
 
 #define __GO_DATA_MODEL_NUM_VERTICES__                 "DataModelVertices"
 #define __GO_DATA_MODEL_NUM_INDICES__                  "DataModelNumIndices"
@@ -81,6 +82,8 @@
 #define __GO_DATA_MODEL_NUM_Y__                        "DataModelNumY"
 #define __GO_DATA_MODEL_NUM_Z__                        "DataModelNumZ"
 #define __GO_DATA_MODEL_GRID_SIZE__                    "DataModelGridSize"
+#define __GO_DATA_MODEL_X_DIMENSIONS__                 "DataModelXDimensions"
+#define __GO_DATA_MODEL_Y_DIMENSIONS__                 "DataModelYDimensions"
 
 #define __GO_REFERENCED__                  "Referenced"
 #define __GO_VALID__                       "Valid"

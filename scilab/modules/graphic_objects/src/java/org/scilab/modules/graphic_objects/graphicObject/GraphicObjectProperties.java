@@ -70,6 +70,7 @@ public static final String __GO_DATA_MODEL_NUM_GONS__ =                "DataMode
 public static final String __GO_DATA_MODEL_Z_COORDINATES_SET__ =       "DataModelZCoordinatesSet";
 
 public static final String __GO_DATA_MODEL_COLORS__ =                  "DataModelColors";
+public static final String __GO_DATA_MODEL_NUM_COLORS__ =              "DataModelNumColors";
 
 public static final String __GO_DATA_MODEL_NUM_VERTICES__ =            "DataModelVertices";
 public static final String __GO_DATA_MODEL_NUM_INDICES__ =             "DataModelNumIndices";
@@ -82,6 +83,8 @@ public static final String __GO_DATA_MODEL_NUM_X__ =                   "DataMode
 public static final String __GO_DATA_MODEL_NUM_Y__ =                   "DataModelNumY";
 public static final String __GO_DATA_MODEL_NUM_Z__ =                   "DataModelNumZ";
 public static final String __GO_DATA_MODEL_GRID_SIZE__ =               "DataModelGridSize";
+public static final String __GO_DATA_MODEL_X_DIMENSIONS__ =            "DataModelXDimensions";
+public static final String __GO_DATA_MODEL_Y_DIMENSIONS__ =            "DataModelYDimensions";
 
 public static final String __GO_REFERENCED__ =             "Referenced";
 public static final String __GO_VALID__ =                  "Valid";
