@@ -92,7 +92,7 @@ msgstr "%s: 無効な親ノード。\n"
 
 #, c-format
 msgid "%s: Invalid position ''%s''.\n"
-msgstr "%s: 無効なオプション %s です。\n"
+msgstr "%s: 無効なオプション ''%s'' です。\n"
 
 #, c-format
 msgid "%s: No matching node.\n"
@@ -104,7 +104,7 @@ msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
-msgstr "%s: プロパティ \"%s\" および値 \"%s\" に関する結果が見つかりません.\n"
+msgstr "%s: プロパティ ''%s'' および値 ''%s'' に関する結果が見つかりません.\n"
 
 #, c-format
 msgid "%s: No results found.\n"
@@ -205,7 +205,7 @@ msgstr "%s: 入力引数 #%dの大きさが間違っています: '%s'または'
 msgid ""
 "%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズです: '' 図形'' ハンドル、または 実数を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正なサイズです: ''図形'' ハンドル、または 実数を想定します。\n"
 
 #, c-format
 msgid ""
@@ -282,7 +282,7 @@ msgstr "%s: %s の型が間違っています: 文字列を指定してくださ
 
 #, c-format
 msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
-msgstr "%s: \"%s \"プロパティの型が間違っています: 文字列を指定してください.\n"
+msgstr "%s: ''%s'' プロパティの型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
@@ -454,7 +454,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
-msgstr "%s: \"%s\"プロパティの値が間違っています: %d, %d または %d を指定してください.\n"
+msgstr "%s: ''%s'' プロパティの値が間違っています: %d, %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -463,11 +463,11 @@ msgstr "%s: 入力引数 #%d の値が間違っています: ’%s' または '%
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: ''%s', '%s' または '%s' を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\" または \"%s'\" を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してください.\n"
 
 #, c-format
 msgid ""

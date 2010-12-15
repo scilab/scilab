@@ -106,7 +106,7 @@ msgstr "%s: il modulo %s non è installato.\n"
 
 #, c-format
 msgid "%s: Output value set to ''on''."
-msgstr "%s valore in uscita impostato a \"on\"."
+msgstr "%s valore in uscita impostato a ''on''."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -126,7 +126,7 @@ msgid "&Tools"
 msgstr "&Strumenti"
 
 msgid "''nobalance'' option, IGNORED."
-msgstr "opzione \"nobalance\",IGNORATA."
+msgstr "opzione ''nobalance'', IGNORATA."
 
 #, c-format
 msgid "(Find this function in matlab/%s)."
@@ -324,7 +324,7 @@ msgstr "L'estrazione da stringhe con più di due indici non è sviluppata."
 
 #, c-format
 msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
-msgstr "L'estrazione di %s dalla tlist \"%s\" non è ancora sviluppata."
+msgstr "L'estrazione di %s dalla tlist ''%s'' non è ancora sviluppata."
 
 msgid "File"
 msgstr "File"
@@ -686,7 +686,7 @@ msgstr "I dati utente sono di dimensioni sbagliate."
 
 msgid "Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."
 msgstr ""
-"C'è un argomento sbagliato in getrhs() (deve essere una tlist \"funcall\")."
+"C'è un argomento sbagliato in getrhs() (deve essere una tlist ''funcall'')."
 
 msgid "Wrong number of inputs."
 msgstr "Il numero di ingressi è sbagliato."
@@ -699,7 +699,7 @@ msgstr "Sì"
 
 #, c-format
 msgid "contents must be a ''contents'' tlist instead of a: %s."
-msgstr "contents deve essere una tlist \"contents\" invece di un: %s."
+msgstr "contents deve essere una tlist ''contents'' invece di un: %s."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling è utilizzato solo in modalità 3D."
@@ -738,10 +738,10 @@ msgstr "index deve essere una lista invece di un: %s."
 
 #, c-format
 msgid "infer must be an ''infer'' tlist instead of a: %s."
-msgstr "infer deve essere una tlist \"infer\" invece di un: %s."
+msgstr "infer deve essere una tlist ''infer'' invece di un: %s."
 
 msgid "input argument must be an ''operation'' tlist."
-msgstr "l'argomento in ingresso deve essere una tlist \"operation\""
+msgstr "l'argomento in ingresso deve essere una tlist ''operation''"
 
 msgid "is Real."
 msgstr "è reale"
@@ -885,7 +885,7 @@ msgstr "il tipo %d non è sviluppato."
 
 #, c-format
 msgid "type must be a ''type'' tlist instead of a: %s."
-msgstr "type deve essere una tlist \"type\" invece di un: %s."
+msgstr "type deve essere una tlist ''type'' invece di un: %s."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"

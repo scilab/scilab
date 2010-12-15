@@ -1504,7 +1504,7 @@ msgstr "Да"
 
 #, c-format
 msgid "You clicked on menu ''%s''."
-msgstr "Вы нажали на меню «%s«."
+msgstr "Вы нажали на меню «%s»."
 
 #, c-format
 msgid "You selected ''%s''."

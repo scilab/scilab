@@ -337,7 +337,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
 msgstr ""
 "%s: Valor  incorreto para o argumento de entrada #%d: esperava-se %d, "
-"\"%s\", %d ou \"%s\".\n"
+"''%s'', %d ou ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
@@ -347,16 +347,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\" ou "
-"\"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'' ou "
+"''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or "
 "''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
-"\"%s\", \"%s\", \"%s\" ou \"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'', "
+"''%s'', ''%s'', ''%s'' ou ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
@@ -472,16 +472,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: [''d'' ''i''] expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se [\"d\" "
-"\"i\"].\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se [''d'' "
+"''i''].\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: [''g'' ''r'' ''c'' ''lc'' ''lr''] "
 "expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se [\"g\" "
-"\"r\" \"c\" \"lc\" \"lr\"].\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se [''g'' "
+"''r'' ''c'' ''lc'' ''lr''].\n"
 
 #, c-format
 msgid ""

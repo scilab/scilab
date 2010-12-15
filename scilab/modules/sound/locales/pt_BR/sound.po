@@ -52,7 +52,7 @@ msgstr "%s: Erro de alocação de memória.\n"
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Erro no argumento de entrada #%d: esperava-se \"%s\" ou \"%s\".\n"
+"%s: Erro no argumento de entrada #%d: esperava-se '%s' ou '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"

@@ -1400,7 +1400,7 @@ function master_document = x2f_tree_to_master( tree )
 
     // Process the path if under windows
     if getos() == 'Windows' then
-        tree_xmllist(:,2) = "file:///"+ strsubst(getlongpathname(tree_xmllist(:,2)) ,"\","/");
+        tree_xmllist(:,2) = "file:///"+ strsubst(getshortpathname(tree_xmllist(:,2)) ,"\","/");
     end
 
     // Add entities

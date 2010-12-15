@@ -215,8 +215,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
@@ -337,7 +337,7 @@ msgstr "Attenzione . la seguente matrice è fattorizzata nella forma LU.\n"
 
 #, c-format
 msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr "scarso: panico nel file \"%s\" alla riga %d.\n"
+msgstr "scarso: panico nel file '%s' alla riga %d.\n"
 
 #, c-format
 msgid "|||  Starting new matrix  |||\n"

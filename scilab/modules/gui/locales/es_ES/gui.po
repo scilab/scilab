@@ -191,7 +191,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un manejador "
-"de \"Figura\" o un real.\n"
+"de ''Figura'' o un real.\n"
 
 #, c-format
 msgid ""
@@ -525,7 +525,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
 msgstr ""
-"%s: Valor incorrecto para la propiedad \"%s\": Se esperaba %d, %d ó %d.\n"
+"%s: Valor incorrecto para la propiedad ''%s'': Se esperaba %d, %d ó %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -542,8 +542,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba \"%s\" o "
-"\"%s\".\n"
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ''%s'' o "
+"''%s''.\n"
 
 #, c-format
 msgid ""

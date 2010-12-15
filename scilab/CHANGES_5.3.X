@@ -1,6 +1,7 @@
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
+
 SciNotes:
 =========
 
@@ -8,24 +9,109 @@ SciNotes:
                    middle click.
 
 
+Xcos:
+=====
+
+* bug 8348 fixed - Sometimes when openning the parameters of a block, its ports
+                   changed their index (and position).
+
+* bug 8407 fixed - The blocks was always resized after a parameters edition.
+
+* bug 8441 fixed - "xcos_block" abstract block were not removed on the 
+                   compilation.
+
+* bug 8483 fixed - Multiplying a scalar and vector using the MATMUL block did not
+                   work.
+
+* bug 8540 fixed - Fix a typo on the "highligthed" term.
+
+* bug 8556 fixed - Creating a split block from a link did not work.
+
+* bug 8569 fixed - Deleting a link with a split-block did not reconstruct any
+                   valid link.
+
+
 Bug Fixes:
 ==========
 
+* bug 4673 fixed - An example of "addinter" function call was added.
+
+* bug 4821 fixed - help file 'man' was obsolete.
+
+* bug 5686 fixed - Complex number manipulation could crash Scilab.
+
+* bug 6768 fixed - input did not return good value when RETURN was pressed
+                   on Windows XP.
 * bug 7694 fixed - There were no key shortcuts in the command history browser.
 
 * bug 7695 fixed - Only the first selected line was deleted in command history
                    browser.
 
+* bug 7714 fixed - diag, triu, tril applyed to rational matrices  changed
+                   the formal variable name
+
+* bug 7727 fixed - The help page of sp2adj was not correct.
+                   Improved the help page of adj2sp.
+                   Added unit tests for sp2adj and adj2sp.
+                   Improved implementation by checking the input arguments.
+
+* bug 7806 fixed - [a, b] = dos("git 1>&2") returned a wrong error.
+
+* bug 7849 fixed - eqfir / remez functions crashed under MacOSX due to
+                   a lapack bug on slamch function.
+
+* bug 7900 fixed - inserting a rational in a rational hymermatrix  generated
+                   invalid rationals entries (with zero denominators)
+
+* bug 8091 fixed - Scilab was unable to find fortran compiler under MacOSX.
+
+* bug 8175 fixed - roots function did not converge under MacOSX due to
+                   a lapack bug on slamch function.
+
 * bug 8254 fixed - The nearfloat function did not work properly for near
                    denormalized numbers.
 
+* bug 8279 fixed - error(144) returned a unexpected message.
+
+* bug 8390 fixed - a "Warning : redefining function: mputl" displayed if you
+                   did not install fftw on Windows.
+
 * bug 8412 fixed - find returned incorrect values with big vector.
+
+* bug 8448 fixed - 'whereis' function with a string as input argument did not work
+                   with ATOMS functions.
 
 * bug 8459 fixed - strsplit failed when second input argument was a "/"
 
+* bug 8462 fixed - bvodeS crashed on Windows and did not return a error.
+
 * bug 8468 fixed - size with 2 input arguments did not work for hypermatrices.
 
+* bug 8475 fixed - It was impossible to get the data of an entity through
+                   the graphic editor.
+
 * bug 8481 fixed - Scilab crashed when display a rational containing a complex.
+
+* bug 8505 fixed - help was not generated on Windows, if there was a path name
+                   with some spaces.
+
+* bug 8528 fixed - length returned a wrong size for malformed characters.
+
+* bug 8531 fixed - "edit" function failed to open a defined macro loaded on stack.
+
+* bug 8532 fixed - size of input arguments of read_csv was not verified.
+
+* bug 8540 fixed - Fix a typo in Xcos.
+
+* bug 8582 fixed - Under Linux & Mac OS the waitbar window was too small and we
+                   could not see the bar inside it.
+
+* bug 8587 fixed - readNamedMatrixOfDouble (readCommonNamedMatrixOfDouble)
+                   returned wrong values.
+
+* bug 8598 fixed - Fix a typo in the french help page of "return".
+
+* bug 8611 fixed - Path of few images in documentation was bad.
 
 
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab

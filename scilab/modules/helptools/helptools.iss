@@ -67,9 +67,7 @@ Source: modules\{#HELPTOOLS}\readme.txt; DestDir: {app}\modules\{#HELPTOOLS}; Co
 Source: modules\{#HELPTOOLS}\license.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HELPTOOLS}\changelog.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-;Source: modules\{#HELPTOOLS}\*.xsl; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;Source: modules\{#HELPTOOLS}\help.dtd; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;
+Source: modules\{#HELPTOOLS}\etc\fopconf.xml; DestDir: {app}\modules\{#HELPTOOLS}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HELPTOOLS}\css\*.*; DestDir: {app}\modules\{#HELPTOOLS}\css; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HELPTOOLS}\doc\*.*; DestDir: {app}\modules\{#HELPTOOLS}\doc; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HELPTOOLS}\schema\*.*; DestDir: {app}\modules\{#HELPTOOLS}\schema; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

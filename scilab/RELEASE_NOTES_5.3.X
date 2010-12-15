@@ -16,11 +16,13 @@
   * Do not hesitate to report your problem as comment of the bug:
     http://bugzilla.scilab.org/show_bug.cgi?id=7012
 
-- Some issues on startup under Mac OS X have been reported and should be fixed
-  in Scilab 5.3.0:
-  Bug #7012: Error in the detection of the version of Java available.
-  Bug #7433: A segmentation fault on Scilab startup on some Mac OS X 
-  installations.
+- Some issues on startup under Mac OS X 10.6 have been reported.
+  If you have "Audio Hijack" installed on your Mac OS X, it prevents some
+  applications to work including Scilab. See bug #7012.
+  Uninstall / disable Audio Hijack should fix this problem.
+
+- Support of Mac OS X 10.5 can be partial. This should be fixed with version
+  5.3.1.
 
 - The dependencies on the GLIBC 2.7 have been removed. However, on old system,
   the function parallel_run will not work since it needs a recent version

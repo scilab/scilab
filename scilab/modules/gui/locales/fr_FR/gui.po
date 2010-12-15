@@ -187,7 +187,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un handle de type "
-"\"Figure\" ou un réel attendu.\n"
+"''Figure'' ou un réel attendu.\n"
 
 #, c-format
 msgid ""
@@ -1293,7 +1293,7 @@ msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab Consortium (DIGITEO)"
 
 msgid "Tree Overview"
-msgstr "Aperçu de l''arbre"
+msgstr "Aperçu de l'arbre"
 
 msgid "Uicontrols demo"
 msgstr "Démo Uicontrol"

@@ -667,8 +667,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano \"%s\" lub "
-"\"%s\" .\n"
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano ''%s'' lub "
+"''%s'' .\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
@@ -1039,7 +1039,7 @@ msgstr "Niezdefiniowana zmienna %s.\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
-"Nieoczekiwany opcode, proszę zgłosić na \"raportowanie błędów\" programu "
+"Nieoczekiwany opcode, proszę zgłosić na raportowanie błędów programu "
 "Scilab."
 
 #, c-format

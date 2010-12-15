@@ -125,7 +125,7 @@ msgid "&Tools"
 msgstr "&Outils"
 
 msgid "''nobalance'' option, IGNORED."
-msgstr "option \"nobalance'', ignorée."
+msgstr "option ''nobalance'', ignorée."
 
 #, c-format
 msgid "(Find this function in matlab/%s)."
@@ -880,7 +880,7 @@ msgstr "type %d n'est pas implémenté."
 
 #, c-format
 msgid "type must be a ''type'' tlist instead of a: %s."
-msgstr "type doit être une tlist \"type\" au lieu de : %s."
+msgstr "type doit être une tlist ''type'' au lieu de : %s."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"

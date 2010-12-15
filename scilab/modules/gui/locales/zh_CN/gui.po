@@ -68,7 +68,7 @@ msgstr "%s：不正确的父节点。\n"
 
 #, c-format
 msgid "%s: Invalid position ''%s''.\n"
-msgstr "%s：不正确的位置‘’%s‘’。\n"
+msgstr "%s：不正确的位置 ''%s''。\n"
 
 #, c-format
 msgid "%s: No matching node.\n"
@@ -249,7 +249,7 @@ msgstr "%s：%s的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
-msgstr "%s：\"%s\"的属性类型错误：应该为一个字符串。\n"
+msgstr "%s： ''%s''的属性类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
@@ -418,7 +418,7 @@ msgstr "%s：属性'%s'的值错误：应该为points、normalized、inches、ce
 
 #, c-format
 msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
-msgstr "%s：\"%s\"的属性值错误：应该为%d、%d或%d。\n"
+msgstr "%s：''%s''的属性值错误：应该为%d、%d或%d。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"

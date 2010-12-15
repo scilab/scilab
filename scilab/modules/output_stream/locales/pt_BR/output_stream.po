@@ -364,8 +364,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
-"\"%s\", \"%s\", \"%s\", \"%s\" ou \"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'', "
+"''%s'', ''%s'', ''%s'', ''%s'' ou ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -976,7 +976,7 @@ msgstr "Submatriz definida incorretamente.\n"
 
 #, c-format
 msgid "Syntax error in a '%s' instruction.\n"
-msgstr "Erro de sintaxe em uma instrução \"%s\".\n"
+msgstr "Erro de sintaxe em uma instrução '%s'.\n"
 
 msgid "System functions:\n"
 msgstr "Funções do sistema:\n"
@@ -1126,7 +1126,7 @@ msgid "Waiting for end of command.\n"
 msgstr "Aguardando o fim do comando.\n"
 
 msgid "Waiting for right parenthesis.\n"
-msgstr "Aguardando pelo \"fecha-parênteses\".\n"
+msgstr "Aguardando pelo fecha-parênteses.\n"
 
 msgid "Warning :\n"
 msgstr "Aviso:\n"

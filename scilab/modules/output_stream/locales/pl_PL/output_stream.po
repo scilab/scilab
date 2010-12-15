@@ -369,7 +369,7 @@ msgid ""
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwana jest ''%s'', "
-"''%s'', ''%s'', ''%s'', \"%s\" lub \"%s\".\n"
+"''%s'', ''%s'', ''%s'', ''%s'' lub ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -570,7 +570,7 @@ msgstr "Złe przekształcenie."
 
 msgid "Binary direct access files must be opened by 'file'.\n"
 msgstr ""
-"Pliki binarne dostępu bezpośredniego muszą być otwierane przez  \"plik\".\n"
+"Pliki binarne dostępu bezpośredniego muszą być otwierane przez  'plik'.\n"
 
 #, c-format
 msgid "Breakpoints of function : %s\n"

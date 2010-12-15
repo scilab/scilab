@@ -804,7 +804,7 @@ msgid "CV_Rootfunction_NAN: The Root function returns NAN."
 msgstr "CV_Rootfunction_NAN: root 関数がNaNを返しました."
 
 msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
-msgstr "CV_TOO_CLOSE: 積分を開始するためには, \"tout\" が \"t0\" に接近しすぎています."
+msgstr "CV_TOO_CLOSE: 積分を開始するためには, ''tout'' が ''t0'' に接近しすぎています."
 
 msgid ""
 "CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "

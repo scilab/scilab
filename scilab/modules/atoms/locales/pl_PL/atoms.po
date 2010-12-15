@@ -444,7 +444,7 @@ msgstr "%s: Zły typ parametru wejściowego #%d: oczekiwano typu mlist.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
 msgstr ""
-"%s:  Nieprawidłowa wartość parametru wejściowego nr %d: \"%s\" nie jest "
+"%s:  Nieprawidłowa wartość parametru wejściowego nr %d: ''%s'' nie jest "
 "zarejestrowaną kategorią"
 
 #, c-format
@@ -457,8 +457,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
 msgstr ""
-"%s:  Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano \"all\" "
-"lub \"main\"\n"
+"%s:  Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano ''all'' "
+"lub ''main''\n"
 
 #, c-format
 msgid ""

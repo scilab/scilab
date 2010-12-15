@@ -646,7 +646,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s: Falscher Wert für Eingangsargument #%d: ''0'' oder ''1'' erwartet.\n"
+msgstr "%s: Falscher Wert für Eingangsargument #%d: '0' oder '1' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"

@@ -224,7 +224,7 @@ msgstr "%s : Impossible de trouver le fichier Perl : %s"
 
 #, c-format
 msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s : Impossible de trouver Perl dans \"%s\""
+msgstr "%s : Impossible de trouver Perl dans ''%s''"
 
 #, c-format
 msgid "%s: Unable to find Perl.\n"

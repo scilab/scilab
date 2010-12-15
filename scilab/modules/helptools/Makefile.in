@@ -478,7 +478,7 @@ libscihelptools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
-libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS
+libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml
 
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
@@ -521,7 +521,9 @@ libscihelptools_la_xsl_fo_DATA = xsl/fo/docbook.xsl
 
 #### helptools : schema files ####
 libscihelptools_la_schemadir = $(mydatadir)/schema
-libscihelptools_la_schema_DATA = schema/scilab.rnc
+libscihelptools_la_schema_DATA = schema/scilab.rnc \
+schema/extendedStyle.xsl
+
 
 #### helptools : doc files ####
 libscihelptools_la_docdir = $(mydatadir)/doc

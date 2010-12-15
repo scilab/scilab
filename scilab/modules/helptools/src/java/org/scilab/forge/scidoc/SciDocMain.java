@@ -168,7 +168,7 @@ public final class SciDocMain {
             } else if (format.equalsIgnoreCase("html")) {
                 converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast);
             } else if (format.equalsIgnoreCase("chm")) {
-                converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast);
+                converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast, language);
             }
 
             converter.registerExternalXMLHandler(new HTMLMathMLHandler(outputDirectory, imagedir));

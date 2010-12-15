@@ -625,7 +625,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" .\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' .\n"
 
 #, c-format
 msgid ""
@@ -691,7 +691,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: il dominio temporale "
-"deve essere \"c\" o \"d\".\n"
+"deve essere ''c'' o ''d''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"

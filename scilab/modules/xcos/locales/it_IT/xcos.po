@@ -26,15 +26,15 @@ msgstr "%s: Tutti i percorsi definiti dalla variabile %s devono esistere.\n"
 
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s: Il file \"%s\" non esiste.\n"
+msgstr "%s: Il file ''%s'' non esiste.\n"
 
 #, c-format
 msgid "%s: File ''%s'' is not a valid palette file.\n"
-msgstr "%s: Il file \"%s\" non è un file di tavolozza valido.\n"
+msgstr "%s: Il file ''%s'' non è un file di tavolozza valido.\n"
 
 #, c-format
 msgid "%s: Found ''%s'' instead of a block.\n"
-msgstr "%s: Trovato \"%s\" invece di un blocco.\n"
+msgstr "%s: Trovato ''%s'' invece di un blocco.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -54,7 +54,7 @@ msgstr "%s: È impossibile esportare %s a %s.\n"
 
 #, c-format
 msgid "%s: Unable to export ''XX'' to %s"
-msgstr "%s: Impossibile esportare \"XX\" a %s"
+msgstr "%s: Impossibile esportare ''XX'' a %s"
 
 #, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
@@ -85,7 +85,7 @@ msgstr ""
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr ""
-"%s: È impossibile caricare un blocco da %s: nessuna variabile \"scs_m\" "
+"%s: È impossibile caricare un blocco da %s: nessuna variabile ''scs_m'' "
 "trovata.\n"
 
 #, c-format
@@ -330,7 +330,7 @@ msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
 msgstr ""
 "Compilazione in corso, i risultati saranno depositati nella variabile "
-"\"scicos_cpr\""
+"'scicos_cpr'"
 
 msgid "Compile"
 msgstr "Compila"
@@ -740,11 +740,11 @@ msgstr "Un file di Scicos"
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
-"Il modulo \"%s\" di Scilab è disabilitato in modalità -nogui o -nwni.\n"
+"Il modulo '%s' di Scilab è disabilitato in modalità -nogui o -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "Il modulo \"%s\" di Scilab non è installato.\n"
+msgstr "Il modulo '%s' di Scilab non è installato.\n"
 
 msgid "Scilab file"
 msgstr "Un file di Scilab"
@@ -953,7 +953,7 @@ msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 "L'argomento in ingresso \"%s\" è sbagliato: nodo non valido, usare "
-"\"xcosPalDisable\" invece.\n"
+"'xcosPalDisable' invece.\n"
 
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""

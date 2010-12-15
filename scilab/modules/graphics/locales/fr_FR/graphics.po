@@ -658,7 +658,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Un handle de type "
-"\"Figure\" ou \"Axes\" attendu.\n"
+"Figure ou Axes attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"

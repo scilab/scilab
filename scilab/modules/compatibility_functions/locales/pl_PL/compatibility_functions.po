@@ -33,15 +33,15 @@ msgstr "%s: ''%s'' zignorowano.\n"
 
 #, c-format
 msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s: %s nie został(a) zrealizowany(a).\n"
+msgstr "%s: ''%s'' nie został(a) zrealizowany(a).\n"
 
 #, c-format
 msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s: \"%s\" stosowany tylko w trybie 3d."
+msgstr "%s: ''%s'' stosowany tylko w trybie 3d."
 
 #, c-format
 msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s: \"%s\" opcja ignorowana.\n"
+msgstr "%s: ''%s'' opcja ignorowana.\n"
 
 #, c-format
 msgid "%s: All windows deleted.\n"
@@ -49,11 +49,11 @@ msgstr "%s: Wszystkie okna zostały usunięte.\n"
 
 #, c-format
 msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s: Nie można otworzyć pliku \"%s\".\n"
+msgstr "%s: Nie można otworzyć pliku ''%s''.\n"
 
 #, c-format
 msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s: Nie można otworzyć \"%s\" ani \"%s\" ani \"%s\".\n"
+msgstr "%s: Nie można otworzyć ''%s'' ani ''%s'' ani ''%s''.\n"
 
 #, c-format
 msgid "%s: End of file reached before all matrix is read.\n"
@@ -77,11 +77,11 @@ msgstr "%s: Jeszcze nie realizowane.\n"
 
 #, c-format
 msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s: Format \"%s\" nie jest jeszcze obsługiwany.\n"
+msgstr "%s: Format ''%s'' nie jest jeszcze obsługiwany.\n"
 
 #, c-format
 msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s: Format \"%s\" jest nieznany.\n"
+msgstr "%s: Format ''%s'' jest nieznany.\n"
 
 #, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
@@ -118,15 +118,15 @@ msgstr "%s: Nieobsługiwana klasa ''%s''.\n"
 
 #, c-format
 msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s: Odnaleziono nieznany kolor w \"%s\" -> zmieniono na czarny.\n"
+msgstr "%s: Odnaleziono nieznany kolor w ''%s'' -> zmieniono na czarny.\n"
 
 #, c-format
 msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s: Odnaleziono nieznany typ linii w \"%s\" -> zmieniono na 6.\n"
+msgstr "%s: Odnaleziono nieznany typ linii w ''%s'' -> zmieniono na 6.\n"
 
 #, c-format
 msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s: Nieznany typ \"%s\": ZIGNOROWANY.\n"
+msgstr "%s: Nieznany typ ''%s'': ZIGNOROWANY.\n"
 
 #, c-format
 msgid "%s: Unknown type.\n"
@@ -164,7 +164,7 @@ msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s: Nieprawidłowy rozmiar \"%s\": Oczekiwany jest wektor.\n"
+msgstr "%s: Nieprawidłowy rozmiar ''%s'': Oczekiwany jest wektor.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
