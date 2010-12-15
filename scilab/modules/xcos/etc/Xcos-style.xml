@@ -699,11 +699,13 @@
     <add as="verticalLabelPosition" value="bottom"/>
     <add as="verticalAlign" value="top"/>
     <add as="displayedLabel" value="MUX"/>
+    <add as="spacing" value="2"/>
   </add>
   <add as="DEMUX" extend="blockWithLabel">
     <add as="verticalLabelPosition" value="bottom"/>
     <add as="verticalAlign" value="top"/>
     <add as="displayedLabel" value="DEMUX"/>
+    <add as="spacing" value="2"/>
   </add>
   <!-- COMMONLY USED BLOCKS -->
   <add as="OUT_f" extend="blockWithLabel">
