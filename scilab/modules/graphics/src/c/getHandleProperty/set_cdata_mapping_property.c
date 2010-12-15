@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,66 +31,53 @@
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_cdata_mapping_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  sciSurface * ppSurf = NULL ;
+    BOOL status;
+    int cdataMapping;
+    int result;
+    sciSurface * ppSurf = NULL;
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "cdata_mapping");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !isParameterStringMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "cdata_mapping");
+        return SET_PROPERTY_ERROR;
+    }
 
+#if 0
   if ( sciGetEntityType(pobj) != SCI_SURFACE || pSURFACE_FEATURE(pobj)->typeof3d != SCI_FAC3D )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"cdata_mapping") ;
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
-  ppSurf = pSURFACE_FEATURE ( pobj ) ;
-
-  if ( isStringParamEqual( stackPointer, "scaled" ) )
-  {
-    if( ppSurf->cdatamapping != 0 )
-    { /* not already scaled */
-      LinearScaling2Colormap(pobj);
-      ppSurf->cdatamapping = 0;
+    if (isStringParamEqual( stackPointer, "scaled" ))
+    {
+        cdataMapping = 0;
     }
-  } 
-  else if ( isStringParamEqual( stackPointer, "direct" ) )
-  {
-    if(pSURFACE_FEATURE (pobj)->cdatamapping != 1)
-    { 
-      /* not already direct */
-      int nc = ppSurf->nc ;
-
-      FREE( ppSurf->color ) ;
-      ppSurf->color = NULL ;
-
-      if( nc > 0 )
-      {
-        if ((ppSurf->color = MALLOC (nc * sizeof (double))) == NULL)
-        {
-					Scierror(999, _("%s: No more memory.\n"),"set_cdata_mapping_property");
-          return SET_PROPERTY_ERROR ;
-        }
-      }
-
-      doubleArrayCopy( ppSurf->color, ppSurf->zcol, nc ) ;
-
-
-      ppSurf->cdatamapping = 1 ;
+    else if (isStringParamEqual( stackPointer, "direct" ))
+    {
+        cdataMapping = 1;
     }
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "cdata_mapping", "scaled", "direct");
-    return SET_PROPERTY_ERROR ;
-  }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "cdata_mapping", "scaled", "direct");
+        return SET_PROPERTY_ERROR;
+    }
 
-  return SET_PROPERTY_SUCCEED ;
+    status = setGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, &cdataMapping, jni_int, 1);
 
+    if (status == FALSE)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"cdata_mapping");
+        return SET_PROPERTY_ERROR;
+    }
 
+    return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

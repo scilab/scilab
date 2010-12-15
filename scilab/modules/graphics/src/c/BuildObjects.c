@@ -1618,283 +1618,253 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 		  int *isfac, int *m1, int *n1, int *m2,
 		  int *n2, int *m3, int *n3, int *m3n, int *n3n)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  /*debug F.Leray*/
-  sciSurface *psurf;
+    sciPointObj *pobj = (sciPointObj *) NULL;
+    /*debug F.Leray*/
+    /* To be deleted */
+#if 0
+    sciSurface *psurf;
+#endif
 
-  int i=0, j=0;
-  int nx,ny,nz,nc,izc=izcol;
+    char* parentType;
+    char* surfaceID;
+    char* surfaceTypes[2] = {__GO_PLOT3D__, __GO_FAC3D__};
 
-  if (typeof3d == SCI_PLOT3D) {
-    nx=dimzx;
-    ny=dimzy;
-    nz=dimzx*dimzy;
-    if (flagcolor == 2)
-      nc=nz; /* one color per facet */    /* nc = dimzx * dimzy */
-    else if (flagcolor == 3)
-      nc=nz*4; /*one color per edge */    /* nc = 4* dimzx * dimzy ?????? */ /* 3 or 4 vectices are needed:
-										I think we take 4 to have enough allocated memory*/
-    /* made by Djalel : comes from the genfac3d case*/
-    else
-      nc=0;
-  }
-  /* DJ.A 2003 */
-  else { /* case SCI_FAC3D */
-    nx=dimzx*dimzy;
-    ny=dimzx*dimzy;
-    nz=dimzx*dimzy;
-    if (flagcolor == 2)
-      nc=dimzy; /* one color per facet */ /* nc = dimzy */
-    else if (flagcolor == 3)
-      nc=nz; /*one color per edge */      /* nc = dimzx * dimzy */
-    else
-      nc=0;
-  }
+    double* clipRegion;
 
+    int i=0, j=0;
+    int nx,ny,nz,nc,izc=izcol;
+    int result;
+    int clipRegionSet;
+    int clipState;
+    int visible;
+    int cdataMapping;
+    int hiddenColor;
+    int surfaceMode;
+    int* tmp;
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
+    /* To be modified: the MVC does not allow Plot3d objects with color data yet */
+    if (typeof3d == SCI_PLOT3D)
     {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_SURFACE);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciSurface)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      /*debug F.Leray*/
-      psurf = pSURFACE_FEATURE (pobj);
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
-
-      psurf->callback = (char *)NULL;
-      psurf->callbacklen = 0;
-      psurf->callbackevent = 100;
-      psurf->visible = sciGetVisibility(sciGetParentSubwin(pobj));
-
-
-
-      /*F.Leray 12.03.04 Adding here to know the length of arrays pvecx, pvecy and pvecz*/
-      psurf->nc = nc;
-      psurf->nx = nx;
-      psurf->ny = ny;
-      psurf->nz = nz;
-      psurf->isfac = *isfac;
-      psurf->m1= *m1;
-      psurf->m2= *m2;
-      psurf->m3= *m3;
-      psurf->n1= *n1;
-      psurf->n2= *n2;
-      psurf->n3= *n3;
-
-      /*Adding F.Leray 19.03.04*/
-      psurf->m3n= *m3n;
-      psurf->n3n= *n3n;
-
-      sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
-      sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
-
-      if (((psurf->pvecx = MALLOC ((nx * sizeof (double)))) == NULL))
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(psurf);
-	  FREE(pobj); pobj = NULL;
-	  return (sciPointObj *) NULL;
-	}
-      else
-	{
-	  for (i = 0;i < nx; i++)
-	    psurf->pvecx[i] = pvecx[i];
-	}
-      if (((psurf->pvecy = MALLOC ((ny * sizeof (double)))) == NULL))
-	{
-	  FREE(psurf->pvecx);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(psurf);
-	  FREE(pobj); pobj = NULL;
-	  return (sciPointObj *) NULL;
-	}
-      else
-	{
-	  for (j = 0;j < ny; j++)
-	    psurf->pvecy[j] = pvecy[j];
-	}
-
-      if (((psurf->pvecz = MALLOC ((nz * sizeof (double)))) == NULL))
-	{
-	  FREE(psurf->pvecy);
-	  FREE(psurf->pvecx);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(psurf);
-	  FREE(pobj); pobj = NULL;
-	  return (sciPointObj *) NULL;
-	}
-      else
-	{
-	  for (j = 0;j < nz; j++)
-	    psurf->pvecz[j] = pvecz[j];
-	}
-
-      /*Storage of the input Color Matrix or Vector Data */ /* F.Leray 23.03.04*/
-      psurf->inputCMoV = NULL;
-
-      if((*m3n)*(*n3n) != 0){
-	if (((psurf->inputCMoV = MALLOC (( (*m3n)*(*n3n) * sizeof (double)))) == NULL))
-	  {
-	    FREE(psurf->pvecy); psurf->pvecy = NULL;
-	    FREE(psurf->pvecx); psurf->pvecx = NULL;
-	    FREE(psurf->pvecz); psurf->pvecz = NULL;
-	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	    sciDelHandle (pobj);
-	    FREE(psurf);
-	    FREE(pobj); pobj = NULL;
-	    return (sciPointObj *) NULL;
-	  }
-      }
-
-      for (j = 0;j < (*m3n)*(*n3n); j++)
-	psurf->inputCMoV[j] = zcol[j];
-
-      /* Init. zcol & zcolReal to NULL F.Leray 17.03.04*/
-      psurf->zcol = NULL;
-      psurf->color = NULL;
-
-
-      /*-------Replaced by: --------*/
-
-      if (izc !=0&&nc>0 ) { /* Allocation of good size depending on flagcolor for nc (see above)*/
-	if (((psurf->zcol = MALLOC ((nc * sizeof (double)))) == NULL))
-	  {
-	    FREE(psurf->pvecy); psurf->pvecy = NULL;
-	    FREE(psurf->pvecx); psurf->pvecx = NULL;
-	    FREE(psurf->pvecz); psurf->pvecz = NULL;
-	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	    sciDelHandle (pobj);
-	    FREE(psurf);
-	    FREE(pobj); pobj = NULL;
-	    return (sciPointObj *) NULL;
-	  }
-      }
-
-      if(nc>0)
-	{
-	  /* case flagcolor == 2*/
-	  if(flagcolor==2 && ( *m3n==1 || *n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
-	    {
-	      /* We have just enough information to fill the psurf->zcol array*/
-	      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
-		psurf->zcol[j]= psurf->inputCMoV[j];  /* DJ.A 2003 */
-	    }
-	  else if(flagcolor==2 && !( *m3n==1 || *n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-	    {
-	      /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
-	      /* NO !! Let's do better; F.Leray 08.05.04 : */
-	      /* We compute the average value (sum of the value of the nf=m3n vertices on a facet) / (nb of vertices per facet which is nf=m3n) */
-	      /* in our example: m3n=4 and n3n=400 */
-	      for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-		{
-		  double tmp = 0;
-		  int ii=0;
-		  for(ii=0;ii<(*m3n);ii++)
-		    tmp = tmp +  psurf->inputCMoV[j*(*m3n) + ii];
-		  tmp = tmp / (*m3n);
-		  psurf->zcol[j]= tmp;
-		}
-	    }
-	  /* case flagcolor == 3*/
-	  else if(flagcolor==3 && ( *m3n==1 || *n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
-	    {
-	      /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
-	      /* We repeat the data:*/
-	      for(i = 0; i< dimzy; i++){
-		for (j = 0;j < dimzx; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
-		  psurf->zcol[dimzx*i+j]= psurf->inputCMoV[i];  /* DJ.A 2003 */
-	      }
-	    }
-	  else if(flagcolor==3 && !( *m3n==1 || *n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-	    {
-	      /* We have just enough information to fill the psurf->zcol array*/
-	      for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-		psurf->zcol[j]= psurf->inputCMoV[j];
-	    }
-	  /* Notice that the new case flagcolor == 4 is not available at the construction state */
-	  /* It is a flat mode display (like flagcolor == 2 case) with a different computation  */
-	  /* manner to simulate Matlab flat mode. It can be enabled by setting color_flag to 4. */
-
-	}
-
-
-      psurf->cdatamapping = 1; /* direct mode enabled by default */
-
-
-      /* We need to rebuild ...->color matrix */
-      if(psurf->cdatamapping == 0){ /* scaled */
-	FREE(psurf->color);
-	LinearScaling2Colormap(pobj);
-      }
-      else{
-
-	FREE(psurf->color);
-
-	if(nc>0){
-	  if ((psurf->color = MALLOC (nc * sizeof (double))) == NULL)
-	    return (sciPointObj *) NULL;
-	}
-
-	for(i=0;i<nc;i++)
-	  psurf->color[i] = psurf->zcol[i];
-	/* copy zcol that has just been freed and re-alloc + filled in */
-      }
-
-      /*-------END Replaced by: --------*/
-
-      psurf->dimzx = dimzx; /* dimzx is completly equal to m3*/
-      psurf->dimzy = dimzy; /* dimzx is completly equal to n3*/
-      psurf->izcol = izc;
-      psurf->isselected = TRUE;
-
-      psurf->flag[0] = flag[0]; /* F.Leray 16.04.04 HERE We store the flag=[mode (hidden part ), type (scaling), box (frame around the plot)] */
-      psurf->flag[1] = flag[1];
-      psurf->flag[2] = flag[2];
-
-      /* DJ.A 2003 */
-
-      psurf->ebox[0] = ebox[0];
-      psurf->ebox[1] = ebox[1];
-      psurf->ebox[2] = ebox[2];
-      psurf->ebox[3] = ebox[3];
-      psurf->ebox[4] = ebox[4];
-      psurf->ebox[5] = ebox[5];
-      psurf->flagcolor =flagcolor;
-      psurf->typeof3d = typeof3d;
-      sciInitHiddenColor(pobj, sciGetHiddenColor(pparentsubwin));
-
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  FREE(psurf->pvecz);
-	  FREE(psurf->pvecy);
-	  FREE(psurf->pvecx);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(psurf);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      return pobj;
+        nx=dimzx;
+        ny=dimzy;
+        nz=dimzx*dimzy;
+        if (flagcolor == 2)
+        {
+            /* one color per facet: nc = dimzx * dimzy */
+            nc=nz;
+        }
+        else if (flagcolor == 3)
+        {
+            /*
+             * one color per edge: nc = 4* dimzx * dimzy ??????
+             * 3 or 4 vertices are needed: I think we take 4 to have enough allocated memory
+             */
+            nc=nz*4;
+         }
+        /* made by Djalel : comes from the genfac3d case */
+        else
+        {
+            nc=0;
+        }
     }
-  else
+    /* DJ.A 2003 */
+    else
+    { /* case SCI_FAC3D */
+        nx=dimzx*dimzy;
+        ny=dimzx*dimzy;
+        nz=dimzx*dimzy;
+        if (flagcolor == 2)
+        {
+            /* one color per facet: nc = dimzy */
+            nc=dimzy;
+        }
+        else if (flagcolor == 3)
+        {
+            /* one color per edge: nc = dimzx * dimzy */
+            nc=nz;
+        }
+        else
+        {
+            nc=0;
+        }
+    }
+
+    parentType = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+
+    /* test using sciGetEntityType replaced by a test on the type string */
+    if (strcmp(parentType, __GO_AXES__) != 0)
     {
-      Scierror(999, _("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (sciPointObj *) NULL;
     }
+
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+        return (sciPointObj *) NULL;
+    }
+
+    /* To be implemented */
+#if 0
+    psurf->callback = (char *)NULL;
+    psurf->callbacklen = 0;
+    psurf->callbackevent = 100;
+#endif
+
+    pobj->UID = (char*) createGraphicObject(surfaceTypes[*isfac]);
+    surfaceID = (char*) createDataObject(pobj->UID, surfaceTypes[*isfac]);
+
+    /*Adding F.Leray 19.03.04*/
+    /* Dimension of the color matrix, to be implemented (vector case) */
+#if 0
+    psurf->m3n= *m3n;
+    psurf->n3n= *n3n;
+#endif
+
+    /* Clip state and region */
+    /* To be checked for consistency */
+
+    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
+    clipRegionSet = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
+    clipState = *tmp;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+    /* Visibility */
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
+    visible = *tmp;
+
+    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+
+    setGraphicObjectProperty(pobj->UID, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
+
+    /* Direct mode enabled as default */
+    cdataMapping = 1;
+
+    /* Only for Fac3D */
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, &cdataMapping, jni_int, 1);
+
+    setGraphicObjectProperty(pobj->UID, __GO_COLOR_MODE__, &flag[0], jni_int, 1);
+
+    /* Plot3d case */
+    if (!*isfac)
+    {
+        int gridSize[4];
+
+        gridSize[0] = *m1;
+        gridSize[1] = *n1;
+        gridSize[2] = *m2;
+        gridSize[3] = *n2;
+
+        /* Allocates the coordinates arrays */
+        result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    }
+    /* Fac3d case */
+    else
+    {
+        int numElementsArray[3];
+
+        /*
+         * First element: number of n-gons
+         * Second element: number of vertices per n-gon
+         * Third element: number of input colors
+         */
+        numElementsArray[0] = dimzy;
+        numElementsArray[1] = dimzx;
+        numElementsArray[2] = nc;
+
+        /* Allocates the coordinates and color arrays */
+        result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
+    }
+
+    if (result == 0)
+    {
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nx);
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, ny);
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nz);
+
+    /* Add the color matrix dimensions as a property ? */
+    if (nc > 0)
+    {
+        setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COLORS__, zcol, jni_double_vector, nc);
+    }
+
+    /*-------END Replaced by: --------*/
+
+    /* To be implemented */
+#if 0
+    psurf->isselected = TRUE;
+#endif
+
+    /* The flag array is apparently now useless (flag[0] == COLOR_MODE, the two remaining ones are unused) */
+#if 0
+    psurf->flag[0] = flag[0]; /* F.Leray 16.04.04 HERE We store the flag=[mode (hidden part ), type (scaling), box (frame around the plot)] */
+    psurf->flag[1] = flag[1];
+    psurf->flag[2] = flag[2];
+#endif
+
+    /* DJ.A 2003 */
+    /* Apparently useless */
+#if 0
+    psurf->ebox[0] = ebox[0];
+    psurf->ebox[1] = ebox[1];
+    psurf->ebox[2] = ebox[2];
+    psurf->ebox[3] = ebox[3];
+    psurf->ebox[4] = ebox[4];
+    psurf->ebox[5] = ebox[5];
+#endif
+
+    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_HIDDEN_COLOR__, jni_int);
+    hiddenColor = *tmp;
+
+    setGraphicObjectProperty(pobj->UID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
+
+    /*
+     * surfaceMode set to "on", was previously done by InitGraphicContext, by setting
+     * the graphic context's line_mode to on, which previously stood for the surface_mode.
+     */
+    surfaceMode = 1;
+
+    setGraphicObjectProperty(pobj->UID, __GO_SURFACE_MODE__, &surfaceMode, jni_bool, 1);
+
+
+    /*
+     * Adding a new handle and setting the parent-child relationship is now
+     * done after data initialization in order to avoid additional
+     * clean-up.
+     */
+    if (sciAddNewHandle(pobj) == -1)
+    {
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+
+    if (sciInitGraphicContext (pobj) == -1)
+    {
+        setGraphicObjectRelationship("", pobj->UID);
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        sciDelHandle(pobj);
+
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+    }
+
+    return pobj;
 }
 
 /********************** 14/05/2002 *****

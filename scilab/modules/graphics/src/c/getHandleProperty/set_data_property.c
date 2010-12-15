@@ -179,379 +179,263 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
 /* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
 int set3ddata( sciPointObj * pobj, AssignedList * tlist )
 {
-  sciSurface * psurf = pSURFACE_FEATURE (pobj);
+    char* type;
 
+    int m1, n1, m2, n2, m3, n3;
+    int m3n, n3n;
+    int colorFlag;
+    int isFac3d;
 
-  int m1, n1, m2, n2, m3, n3 ;
-  int m3n, n3n, ii;
+    double * pvecx = NULL;
+    double * pvecy = NULL;
+    double * pvecz = NULL;
+    int dimvectx = 0;
+    int dimvecty = 0;
 
-  double * pvecx = NULL ;
-  double * pvecy = NULL ;
-  double * pvecz = NULL ;
-  int dimvectx = 0 ;
-  int dimvecty = 0 ;
+    double* inputColors;
+    int nbInputColors;
 
-  // number of specified colors
-  int nc = 0 ;
+    // number of specified colors
+    int nc = 0;
 
-  /* no copy now we just perfrom tests on the matrices */
-  pvecx = getCurrentDoubleMatrixFromList( tlist, &m1, &n1 ) ;
-  pvecy = getCurrentDoubleMatrixFromList( tlist, &m2, &n2 ) ;
-  pvecz = getCurrentDoubleMatrixFromList( tlist, &m3, &n3 ) ;
+    int izcol;
 
-  if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 )
-  {
-    if ( !(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3) )
+    /* no copy now we just perform tests on the matrices */
+    pvecx = getCurrentDoubleMatrixFromList( tlist, &m1, &n1 );
+    pvecy = getCurrentDoubleMatrixFromList( tlist, &m2, &n2 );
+    pvecz = getCurrentDoubleMatrixFromList( tlist, &m3, &n3 );
+
+    if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 )
     {
-			Scierror(999, _("%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"),"Tlist",1,2,3);
-      return SET_PROPERTY_ERROR ;
-    }
-  }
-  else
-  {
-    if ( m2 * n2 != n3 )
-    {
-			Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",2,3);
-      return SET_PROPERTY_ERROR ;
-    }
-    if ( m1 * n1 != m3 )
-    {
-			Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",1,3);
-      return SET_PROPERTY_ERROR ;
-    }
-    if ( m1 * n1 <= 1 || m2 * n2 <= 1 )
-    {
-			Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"),"Tlist",1,2,2);
-      return SET_PROPERTY_ERROR ;
-    }
-  }
-
-  if ( m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 )
-  {
-    return sciReturnEmptyMatrix() ;
-  }
-
-  /* get color size if exists */
-  if ( getAssignedListNbElement( tlist ) == 4 )
-  {
-    getCurrentDoubleMatrixFromList( tlist, &m3n, &n3n ) ;
-    if ( m3n * n3n == m3 * n3 )
-    {
-      /* the color is a matrix, with same size as Z */
-      psurf->izcol = 2 ;
-    }
-    else if (m3n * n3n == n3 && (m3n == 1 || n3n == 1))
-    {
-      /* a vector with as many colors as facets */
-      psurf->izcol = 1 ;
-    }
-    else
-    {
-      Scierror(999, _("Wrong size for %s element: A %d-by-%d matrix or a vector of size %d expected.\n"), "color", m3, n3, n3);
-      return SET_PROPERTY_ERROR ;
-    }
-  }
-  else
-  {
-    m3n = 0 ;
-    n3n = 0 ;
-    psurf->izcol = 0;
-  }
-
-  if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 ) /* NG beg */
-  { /* case isfac=1;*/
-    if( psurf->isfac != 1 )
-    {
-      Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_PLOT3D");
-      return SET_PROPERTY_ERROR ;
-    }
-  }
-  else
-  {
-    /* case isfac=0;*/
-    if(psurf->isfac != 0)
-    {
-      Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_FAC3D");
-      return SET_PROPERTY_ERROR ;
-    }
-  }
-
-
-  /* check the monotony on x and y */
-
-  if ( psurf->isfac == 1 )
-  {
-    /* x is considered as a matrix */
-    dimvectx = -1 ;
-  }
-  else if ( m1 == 1 ) /* x is a row vector */
-  {
-    dimvectx = n1 ;
-  }
-  else if ( n1 == 1 ) /* x is a column vector */
-  {
-    dimvectx = m1 ;
-  }
-  else /* x is a matrix */
-  {
-    dimvectx = -1 ;
-  }
-
-  if ( dimvectx > 1 )
-  {
-    int monotony = checkMonotony( pvecx, dimvectx ) ;
-    if ( monotony == 0 )
-    {
-      Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
-      return SET_PROPERTY_ERROR;
-    }
-
-    psurf->flag_x = monotony ;
-  }
-
-  if ( psurf->isfac == 1 )
-  {
-    /* x is considered as a matrix */
-    dimvecty = -1 ;
-  }
-  else if(m2 == 1) /* y is a row vector */
-  {
-    dimvecty = n2 ;
-  }
-  else if(n2 == 1) /* y is a column vector */
-  {
-    dimvecty = m2 ;
-  }
-  else /* y is a matrix */
-  {
-    dimvecty = -1 ;
-  }
-  if( dimvecty > 1 )
-  {
-    int monotony = checkMonotony( pvecy, dimvecty ) ;
-    if ( monotony == 0 )
-    {
-      Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
-      return SET_PROPERTY_ERROR;
-    }
-
-    psurf->flag_y = monotony ;
-  }
-
-  /* Update of the dimzx, dimzy depends on  m3, n3: */
-  psurf->dimzx = m3;
-  psurf->dimzy = n3;
-
-
-  /* Free the old values... */
-  FREE(psurf->pvecx); psurf->pvecx = NULL;
-  FREE(psurf->pvecy); psurf->pvecy = NULL;
-  FREE(psurf->pvecz); psurf->pvecz = NULL;
-  /* ...even on zcol wich must have been initialized like others or set to NULL in case there was no color before
-  The FREE macro tests the NULL pointer existence... */
-  FREE(psurf->zcol); psurf->zcol = NULL;
-  /* If we had a previous color matrix/vector and we do not specify a new one, I consider we are losing it.*/
-  /* That's why we make a FREE as follows:*/
-  FREE(psurf->inputCMoV);psurf->inputCMoV = NULL; /* F.Leray 23.03.04*/
-
-  /* copy the values now */
-  rewindAssignedList( tlist ) ;
-  pvecx = createCopyDoubleMatrixFromList( tlist, &m1, &n1 ) ;
-  pvecy = createCopyDoubleMatrixFromList( tlist, &m2, &n2 ) ;
-  pvecz = createCopyDoubleMatrixFromList( tlist, &m3, &n3 ) ;
-
-
-  if( getAssignedListNbElement( tlist ) == 4 ) /* F.Leray There is a color matrix */
-  {
-    int j ;
-    int i ;
-
-    psurf->inputCMoV = createCopyDoubleMatrixFromList( tlist, &m3n, &n3n ) ;
-
-
-    if( psurf->flagcolor == 2 || psurf->flagcolor == 4 )
-    { /* case of SCI_PLOT3D avoid */
-      nc = psurf->dimzy ;
-    }
-    else if( psurf->flagcolor == 3 )
-    {
-      nc = psurf->dimzx * psurf->dimzy ;
-    }
-    else
-    {
-      nc = 0 ;
-    }
-
-    if ( nc > 0 )
-    {
-      if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL)
-      {
-        FREE(pvecx); pvecx = (double *) NULL;
-        FREE(pvecy); pvecy = (double *) NULL;
-        FREE(pvecz); pvecz = (double *) NULL;
-        return SET_PROPERTY_ERROR ;
-      }
-    }
-
-    /* case flagcolor == 2*/
-    if( psurf->flagcolor == 2 && ( m3n == 1 || n3n == 1) ) /* it means we have a vector in Color input: 1 color per facet in input*/
-    {
-      doubleArrayCopy( psurf->zcol, psurf->inputCMoV, nc ) ;
-      /* We have just enough information to fill the psurf->zcol array*/
-      /* nc value is dimzx*dimzy == m3 * n3 */
-    }
-    else if( psurf->flagcolor == 2 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-    {
-      /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
-      /* NO !! Let's do better; F.Leray 08.05.04 : */
-      /* We compute the average value (sum of the value of the nf=m3n vertices on a facet) / (nb of vertices per facet which is nf=m3n) */
-      /* in our example: m3n=4 and n3n=400 */
-      for ( j = 0 ; j < nc ; j++)   /* nc value is dimzy*/
-      {
-        double tmp = 0.0 ;
-        for(ii=0;ii<m3n;ii++)
+        if ( !(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3) )
         {
-          tmp = tmp +  psurf->inputCMoV[j * m3n + ii] ;
+            Scierror(999, _("%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"),"Tlist",1,2,3);
+            return SET_PROPERTY_ERROR;
         }
-        tmp = tmp / m3n ;
-        psurf->zcol[j] = tmp;
-      }
     }
-    /* case flagcolor == 3*/
-    else if( psurf->flagcolor==3 && ( m3n==1 || n3n ==1) ) /* it means we have a vector in Color input: 1 color per facet in input*/
+    else
     {
-      /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
-      /* We repeat the data:*/
-      for(i = 0; i< psurf->dimzy; i++)
-      {
-        for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+        if ( m2 * n2 != n3 )
         {
-          psurf->zcol[psurf->dimzx*i+j] = psurf->inputCMoV[i];  /* DJ.A 2003 */
+            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",2,3);
+            return SET_PROPERTY_ERROR;
         }
-      }
-    }
-    else if( psurf->flagcolor==3 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-    {
-      /* We have just enough information to fill the psurf->zcol array*/
-      /* nc value is dimzy*/
-      doubleArrayCopy( psurf->zcol, psurf->inputCMoV, nc ) ;
-    }
-    /* case flagcolor == 4*/
-    else if(psurf->flagcolor==4 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
-    {
-      /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
-      /* We repeat the data:*/
-      /* nc value is dimzx*dimzy == m3n * n3n */
-      doubleArrayCopy( psurf->zcol, psurf->inputCMoV, nc ) ;
-    }
-    else if ( psurf->flagcolor == 4 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-    {
-      /* input : color matrix , we use 1 color per facet with Matlab selection mode (no average computed) */
-      /* HERE is the difference with case 2 */
-      for ( j = 0 ; j < nc ; j++ )   /* nc value is dimzy*/
-      {
-        psurf->zcol[j] = psurf->inputCMoV[j*m3n] ;
-      }
-    }
-
-  }
-  else /* else we put the value of the color_mode flag[0]*/
-  {
-    if(psurf->flagcolor == 2 || psurf->flagcolor == 4)
-    { /* case of SCI_PLOT3D avoid */
-      nc = psurf->dimzy;
-    }
-    else if(psurf->flagcolor == 3)
-    {
-      nc = psurf->dimzx *  psurf->dimzy;
-    }
-    else
-    {
-      nc=0;
-    }
-
-    if ( nc > 0)
-    {
-      if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL)
-      {
-        FREE(pvecx); pvecx = (double *) NULL;
-        FREE(pvecy); pvecy = (double *) NULL;
-        FREE(pvecz); pvecz = (double *) NULL;
-        return -1;
-      }
-    }
-
-    /* case flagcolor == 2*/
-    if(psurf->flagcolor==2 || psurf->flagcolor==4) /* we have to fill a Color vector */
-    {
-      int j ;
-      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-      {
-        psurf->zcol[j] = psurf->flag[0];
-      }
-    }
-    else if(psurf->flagcolor==3) /* we have to fill a color matrix */
-    {
-      int i ;
-      for ( i = 0 ; i < psurf->dimzx * psurf->dimzy ; i++ )
-      {
-        psurf->zcol[i] = psurf->flag[0];
-      }
-    }
-    else
-    {
-      /* case flagcolor == 0 or 1 */
-      psurf->zcol = NULL;
-      psurf->izcol = 0;
-    }
-  }
-
-  psurf->pvecx = pvecx;
-  psurf->pvecy = pvecy;
-  psurf->pvecz = pvecz;
-
-  psurf->nc = nc; /*Adding F.Leray 23.03.04*/
-
-  psurf->m1 = m1;
-  psurf->m2 = m2;
-  psurf->m3 = m3;
-  psurf->n1 = n1;
-  psurf->n2 = n2;
-  psurf->n3 = n3;
-
-  /* Update nx, ny a,d nz */
-  psurf->nx = m1 * n1;
-  psurf->ny = m2 * n2;
-  psurf->nz = m3 * n3;
-  psurf->m3n = m3n; /* If m3n and n3n are 0, then it means that no color matrix/vector was in input*/
-  psurf->n3n = n3n;
-
-  /* We need to rebuild ...->color matrix */
-  if( psurf->flagcolor != 0 && psurf->flagcolor != 1 )
-  {
-    if(psurf->cdatamapping == 0)
-    {
-      /* scaled */
-      FREE(psurf->color);
-      LinearScaling2Colormap(pobj);
-    }
-    else
-    {
-      FREE(psurf->color);
-      psurf->color = NULL ;
-
-      if( nc > 0 )
-      {
-        if ((psurf->color = MALLOC (nc * sizeof (double))) == NULL)
+        if ( m1 * n1 != m3 )
         {
-          return -1;
+            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",1,3);
+            return SET_PROPERTY_ERROR;
         }
-        doubleArrayCopy( psurf->color, psurf->zcol, nc ) ;
-      }
-      /* copy zcol that has just been freed and re-alloc + filled in */
+        if ( m1 * n1 <= 1 || m2 * n2 <= 1 )
+        {
+            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"),"Tlist",1,2,2);
+            return SET_PROPERTY_ERROR;
+        }
     }
-  }
-  return SET_PROPERTY_SUCCEED ;
+
+    if ( m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 )
+    {
+        return sciReturnEmptyMatrix();
+    }
+
+    /* get color size if exists */
+    if ( getAssignedListNbElement( tlist ) == 4 )
+    {
+        getCurrentDoubleMatrixFromList( tlist, &m3n, &n3n ) ;
+        if ( m3n * n3n == m3 * n3 )
+        {
+            /* the color is a matrix, with same size as Z */
+            izcol = 2;
+        }
+        else if (m3n * n3n == n3 && (m3n == 1 || n3n == 1))
+        {
+            /* a vector with as many colors as facets */
+            izcol = 1;
+        }
+        else
+        {
+            Scierror(999, _("Wrong size for %s element: A %d-by-%d matrix or a vector of size %d expected.\n"), "color", m3, n3, n3);
+            return SET_PROPERTY_ERROR;
+        }
+    }
+    else
+    {
+        m3n = 0;
+        n3n = 0;
+        izcol = 0;
+    }
+
+    type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+
+    if (strcmp(type, __GO_FAC3D__) == 0)
+    {
+        isFac3d = 1;
+    }
+    else
+    {
+        isFac3d = 0;
+    }
+
+    if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 ) /* NG beg */
+    {
+        /* case isfac=1;*/
+        if (isFac3d == 0)
+        {
+            Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_PLOT3D");
+            return SET_PROPERTY_ERROR;
+        }
+    }
+    else
+    {
+        /* case isfac=0;*/
+        if (isFac3d == 1)
+        {
+            Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_FAC3D");
+            return SET_PROPERTY_ERROR;
+        }
+    }
+
+    /* check the monotony on x and y */
+
+    if (isFac3d == 1)
+    {
+        /* x is considered as a matrix */
+        dimvectx = -1;
+    }
+    else if ( m1 == 1 ) /* x is a row vector */
+    {
+        dimvectx = n1;
+    }
+    else if ( n1 == 1 ) /* x is a column vector */
+    {
+        dimvectx = m1;
+    }
+    else /* x is a matrix */
+    {
+        dimvectx = -1;
+    }
+
+    if ( dimvectx > 1 )
+    {
+        int monotony = checkMonotony( pvecx, dimvectx );
+        if ( monotony == 0 )
+        {
+            Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
+            return SET_PROPERTY_ERROR;
+        }
+
+        /* To be implemented within the MVC */
+#if 0
+        psurf->flag_x = monotony;
+#endif
+    }
+
+    if (isFac3d == 1)
+    {
+        /* x is considered as a matrix */
+        dimvecty = -1;
+    }
+    else if(m2 == 1) /* y is a row vector */
+    {
+        dimvecty = n2;
+    }
+    else if(n2 == 1) /* y is a column vector */
+    {
+        dimvecty = m2;
+    }
+    else /* y is a matrix */
+    {
+        dimvecty = -1;
+    }
+
+    if( dimvecty > 1 )
+    {
+        int monotony = checkMonotony( pvecy, dimvecty );
+        if ( monotony == 0 )
+        {
+            Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
+            return SET_PROPERTY_ERROR;
+        }
+
+        /* To be implemented within the MVC */
+#if 0
+        psurf->flag_y = monotony;
+#endif
+    }
+
+    /* get the values now */
+    rewindAssignedList( tlist );
+
+    pvecx = getCurrentDoubleMatrixFromList( tlist, &m1, &n1 );
+    pvecy = getCurrentDoubleMatrixFromList( tlist, &m2, &n2 );
+    pvecz = getCurrentDoubleMatrixFromList( tlist, &m3, &n3 );
+
+    if (isFac3d == 1)
+    {
+        int numElementsArray[3];
+        int result;
+
+        numElementsArray[0] = n1;
+        numElementsArray[1] = m1;
+        numElementsArray[2] = m3n * n3n;
+
+        result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
+
+        if (result == 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), "set3ddata");
+            return SET_PROPERTY_ERROR;
+        }
+    }
+    else if (isFac3d == 0)
+    {
+        int gridSize[4];
+        int result;
+
+        gridSize[0] = m1;
+        gridSize[1] = n1;
+        gridSize[2] = m2;
+        gridSize[3] = n2;
+
+        result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+
+        if (result == 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), "set3ddata");
+            return SET_PROPERTY_ERROR;
+        }
+    }
+
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, m1*n1);
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, m2*n2);
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3*n3);
+
+    if( getAssignedListNbElement( tlist ) == 4 ) /* F.Leray There is a color matrix */
+    {
+        inputColors = getCurrentDoubleMatrixFromList( tlist, &m3n, &n3n );
+        nbInputColors = m3n * n3n; 
+    }
+    else
+    {
+        inputColors = NULL;
+        nbInputColors = 0;
+    }
+
+    /*
+     * Plot 3d case not treated for now
+     * To be implemented
+     */
+    if (isFac3d == 1)
+    {
+        setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COLORS__, inputColors, jni_double_vector, nbInputColors);
+    }
+
+    /* Color vector/matrix dimensions: to be checked for MVC implementation */
+#if 0
+    psurf->m3n = m3n; /* If m3n and n3n are 0, then it means that no color matrix/vector was in input*/
+    psurf->n3n = n3n;
+#endif
+
+    return SET_PROPERTY_SUCCEED;
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -737,7 +621,8 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
     destroyAssignedList( tlist );
     return status;
   }
-  else if(0 && sciGetEntityType(pobj) == SCI_SURFACE)
+//  else if(0 && sciGetEntityType(pobj) == SCI_SURFACE)
+  else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
   {
     AssignedList * tlist = NULL ;
     int status = -1 ;

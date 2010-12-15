@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,32 +25,39 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_cdata_mapping_property( sciPointObj * pobj )
 {
-  if ( sciGetEntityType (pobj) != SCI_SURFACE  )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"cdata_mapping");
+    int* cdataMapping;
+
+#if 0
+    if ( pSURFACE_FEATURE (pobj)->typeof3d != SCI_FAC3D )
+    {
+        Scierror(999, _("%s property only exists for %s surfaces.\n"),"'cdata_mapping'","Fac3d");
+        return -1;
+    }
+#endif
+
+    cdataMapping = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, jni_int);
+
+    if (cdataMapping == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"cdata_mapping");
+        return -1;
+    }
+
+    if (*cdataMapping == 0)
+    {
+        return sciReturnString("scaled");
+    }
+    else if (*cdataMapping == 1)
+    {
+        return sciReturnString("direct");
+    }
+
     return -1;
-  }
-  if ( pSURFACE_FEATURE (pobj)->typeof3d != SCI_FAC3D )
-  {
-    Scierror(999, _("%s property only exists for %s surfaces.\n"),"'cdata_mapping'","Fac3d");
-    return -1;
-  }
-
-  if( pSURFACE_FEATURE(pobj)->cdatamapping == 0 )
-  {
-    /* scaled mode */
-    return sciReturnString( "scaled" ) ;
-  }
-  else if( pSURFACE_FEATURE (pobj)->cdatamapping == 1 )
-  {
-    /* direct mode */
-    return sciReturnString( "direct" ) ;
-  }
-
-  return -1 ;
-
 }
 /*------------------------------------------------------------------------*/

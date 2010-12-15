@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,15 +25,30 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_color_flag_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) != SCI_SURFACE)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag") ;
-    return -1 ;
-  }
+    int* colorFlag;
 
-  return sciReturnDouble( pSURFACE_FEATURE(pobj)->flagcolor ) ;
+#if 0
+    if (sciGetEntityType (pobj) != SCI_SURFACE)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag");
+        return -1;
+    }
+#endif
+
+    colorFlag = (int*) getGraphicObjectProperty(pobj->UID, __GO_COLOR_FLAG__, jni_int);
+
+    if (colorFlag == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag");
+        return -1;
+    }
+
+    return sciReturnDouble(*colorFlag);
 }
 /*------------------------------------------------------------------------*/

@@ -19,6 +19,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "get_data_property.h"
 #include "getHandleProperty.h"
 #include "GetProperty.h"
@@ -103,66 +105,119 @@ int getchampdata(sciPointObj *pobj)
 /*--------------------------------------------------------------------------*/
 int get3ddata(sciPointObj *pobj)
 {
-  char *variable_tlist_color[] = {"3d","x","y","z","color"};
-  char *variable_tlist[] = {"3d","x","y","z"};
+    char *variable_tlist_color[] = {"3d","x","y","z","color"};
+    char *variable_tlist[] = {"3d","x","y","z"};
+    char* type;
+    double* colors;
+    double* dataX;
+    double* dataY;
+    double* dataZ;
+    int nbRow;
+    int nbCol;
+    int* tmp;
 
-  returnedList * tList = NULL ;
+    returnedList * tList = NULL;
 
-  /* tests a faire sur presence et taille color */
-  if ( pSURFACE_FEATURE (pobj)->m3n != 0 )
-  {
+    type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
 
-    /* Add 'variable' tlist items to stack */
-    tList = createReturnedList( 4, variable_tlist_color ) ;
+    dataX = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, jni_double_vector);
+    dataY = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, jni_double_vector);
+    dataZ = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, jni_double_vector);
 
-    if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
+    colors = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COLORS__, jni_double_vector);
+
+    if (colors != NULL)
     {
-      int nbRow = pSURFACE_FEATURE (pobj)->m1 ;
-      int nbCol = pSURFACE_FEATURE (pobj)->n1 ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecx, nbRow, nbCol ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecy, nbRow, nbCol ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecz, nbRow, nbCol ) ;
+        /* Add 'variable' tlist items to stack */
+        tList = createReturnedList( 4, variable_tlist_color );
 
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->inputCMoV, pSURFACE_FEATURE (pobj)->m3n, pSURFACE_FEATURE (pobj)->n3n ) ;
+        if (strcmp(type, __GO_FAC3D__) == 0)
+        {
+            int numColors;
 
+            tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int);
+            nbRow = *tmp;
+            tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_GONS__, jni_int);
+            nbCol = *tmp;
 
+            tmp = (int*)getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_COLORS__, jni_int);
+            numColors = *tmp;
+
+            addMatrixToReturnedList(tList, dataX, nbRow, nbCol);
+            addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
+            addMatrixToReturnedList(tList, dataZ, nbRow, nbCol);
+
+            /*
+             * With per-facet colors, the data vector might be either a column one or a row one,
+             * only the row vector case is managed at the moment.
+             */
+            if (numColors == nbCol)
+            {
+                addMatrixToReturnedList(tList, colors, 1, nbCol);
+            }
+            else
+            {
+                addMatrixToReturnedList(tList, colors, nbRow, nbCol);
+            }
+
+        }
+        else if (strcmp(type, __GO_PLOT3D__) == 0)
+        {
+            /*
+             * Deactivated for now.
+             * The color matrix is not implemented yet within the MVC for Plot 3D objects (and possibly
+             * useless regarding rendering).
+             * To be implemented.
+             */
+#if 0
+            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecx, pSURFACE_FEATURE(pobj)->m1, pSURFACE_FEATURE(pobj)->n1 );
+            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecy, pSURFACE_FEATURE(pobj)->m2, pSURFACE_FEATURE(pobj)->n2 );
+            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecz, pSURFACE_FEATURE(pobj)->m3, pSURFACE_FEATURE(pobj)->n3 );
+
+            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->inputCMoV, pSURFACE_FEATURE (pobj)->m3n, pSURFACE_FEATURE (pobj)->n3n );
+#endif
+        }
+
+        destroyReturnedList( tList );
     }
-    else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
+    else /* no color provided in input*/
     {
+        /* Add 'variable' tlist items to stack */
+        tList = createReturnedList( 3, variable_tlist );
 
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecx, pSURFACE_FEATURE(pobj)->m1, pSURFACE_FEATURE(pobj)->n1 ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecy, pSURFACE_FEATURE(pobj)->m2, pSURFACE_FEATURE(pobj)->n2 ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecz, pSURFACE_FEATURE(pobj)->m3, pSURFACE_FEATURE(pobj)->n3 ) ;
+        if (strcmp(type, __GO_FAC3D__) == 0)
+        {
+            tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int);
+            nbRow = *tmp;
+            tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_GONS__, jni_int);
+            nbCol = *tmp;
 
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->inputCMoV, pSURFACE_FEATURE (pobj)->m3n, pSURFACE_FEATURE (pobj)->n3n ) ;
+            addMatrixToReturnedList(tList, dataX, nbRow, nbCol);
+            addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
+            addMatrixToReturnedList(tList, dataZ, nbRow, nbCol);
+        }
+        else if (strcmp(type, __GO_PLOT3D__) == 0)
+        {
+            int* xDimensions;
+            int* yDimensions;
+
+            tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_X__, jni_int);
+            nbRow = *tmp;
+            tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_Y__, jni_int);
+            nbCol = *tmp;
+
+            xDimensions = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_DIMENSIONS__, jni_int_vector);
+            yDimensions = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y_DIMENSIONS__, jni_int_vector);
+
+            addMatrixToReturnedList( tList, dataX, xDimensions[0], xDimensions[1]);
+            addMatrixToReturnedList( tList, dataY, yDimensions[0], yDimensions[1]);
+            addMatrixToReturnedList( tList, dataZ, nbRow, nbCol);
+        }
+
+        destroyReturnedList( tList );
     }
-    destroyReturnedList( tList ) ;
-  }
-  else /* no color provided in input*/
-  {
 
-    /* Add 'variable' tlist items to stack */
-    tList = createReturnedList( 3, variable_tlist ) ;
-
-    if( pSURFACE_FEATURE(pobj)->typeof3d == SCI_FAC3D )
-    {
-      int nbRow = pSURFACE_FEATURE (pobj)->m1 ;
-      int nbCol = pSURFACE_FEATURE (pobj)->n1 ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecx, nbRow, nbCol ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecy, nbRow, nbCol ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecz, nbRow, nbCol ) ;
-    }
-    else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
-    {
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecx, pSURFACE_FEATURE(pobj)->m1, pSURFACE_FEATURE(pobj)->n1 ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecy, pSURFACE_FEATURE(pobj)->m2, pSURFACE_FEATURE(pobj)->n2 ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecz, pSURFACE_FEATURE(pobj)->m3, pSURFACE_FEATURE(pobj)->n3 ) ;
-    }
-    destroyReturnedList( tList ) ;
-  }
-
-
-  return 0;
+    return 0;
 }
 /*------------------------------------------------------------------------*/
 /*
@@ -202,9 +257,9 @@ int get_data_property( sciPointObj * pobj )
    * The last else block allows to get Polyline data (via sciGetPoint)
    * To be implemented with string comparisons using the GO_TYPE property (see the sciGetPoint function)
    */
-  if (0 &&  sciGetEntityType( pobj ) == SCI_SURFACE )
+  if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
   {
-    return get3ddata( pobj ) ;
+    return get3ddata( pobj );
   }
   else if (0 &&  (sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1) )
   {
