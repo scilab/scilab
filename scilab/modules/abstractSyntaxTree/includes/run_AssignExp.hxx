@@ -245,7 +245,7 @@ void visitprivate(const AssignExp  &e)
 
             if(pIT == NULL || (pIT->isDouble() && pIT->getAsDouble()->size_get() == 0))
             {//call static insert function
-                if(pIT->isDouble() && pIT->getAsDouble()->size_get() == 0)
+                if(pIT != NULL && pIT->isDouble() && pIT->getAsDouble()->size_get() == 0)
                 {
                     bNew = true;
                 }
