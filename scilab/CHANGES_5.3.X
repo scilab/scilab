@@ -75,6 +75,8 @@ Module skeleton:
 
 * bug 8639 fixed - Simulations were not halted on Xcos close.
 
+* bug 8642 fixed - The getDiagramVersion unit test could not pass.
+
 Localization:
 =============
 
