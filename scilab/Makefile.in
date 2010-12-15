@@ -371,6 +371,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -414,6 +415,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -1701,6 +1703,16 @@ check-local:
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
+
+code-coverage:
+@CODE_COVERAGE_TRUE@	@if test ! -d $(top_builddir)/coverage/; then \
+@CODE_COVERAGE_TRUE@		mkdir $(top_builddir)/coverage/; \
+@CODE_COVERAGE_TRUE@	fi; \
+@CODE_COVERAGE_TRUE@	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
+@CODE_COVERAGE_TRUE@	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+@CODE_COVERAGE_TRUE@	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"
+#--frames is disable because of : http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=607206
+@CODE_COVERAGE_FALSE@	@echo "Cannot start the code coverage. Add --enable-code-coverage to the ./configure and 'make clean all'."
 
 distclean-recursive: distclean-generated clean-recursive
 

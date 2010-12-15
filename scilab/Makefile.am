@@ -191,6 +191,19 @@ check-local:
 		echo "Cannot find Scilab binary"; \
 	fi
 
+code-coverage:
+if CODE_COVERAGE
+	@if test ! -d $(top_builddir)/coverage/; then \
+		mkdir $(top_builddir)/coverage/; \
+	fi; \
+	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
+	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"
+#--frames is disable because of : http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=607206
+else
+	@echo "Cannot start the code coverage. Add --enable-code-coverage to the ./configure and 'make clean all'."
+endif
+
 distclean-recursive: distclean-generated clean-recursive
 
 clean-recursive: clean-doc clean-localization clean-macros clean-generated
