@@ -27,6 +27,7 @@ public class SciComplexArray extends javasci.SciAbstractArray implements java.io
 
 	/**
 	 * Constructs a Scilab Complex Array from a other SciComplexArray
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param complexArray the SciComplexArray Array you want to copy
 	 */
@@ -48,6 +49,7 @@ public class SciComplexArray extends javasci.SciAbstractArray implements java.io
 	/**
 	 * Constructs a ScilabComplexArray
 	 * All cells are initialized to 0
+     * @deprecated
 	 * @param name  the name of the Scilab Variable
 	 * @param row number of rows
 	 * @param col number of columns
@@ -77,6 +79,7 @@ public class SciComplexArray extends javasci.SciAbstractArray implements java.io
   }
 	/**
 	 * Constructs a Scilab Boolean Complex  from two java double array
+     * @deprecated
 	 * @param name  the name of the Scilab Variable
 	 * @param r number of rows
 	 * @param c number of columns
@@ -113,6 +116,7 @@ public class SciComplexArray extends javasci.SciAbstractArray implements java.io
 
 	/**
 	 * Return the Real part of the data
+     * @deprecated
 	 * @return the real part of the data 
 	 */
  public String getName() {
@@ -121,8 +125,9 @@ public class SciComplexArray extends javasci.SciAbstractArray implements java.io
  
  /**
   * returns the real data of the complex array
- * @return the real data
- */
+  * @deprecated
+  * @return the real data
+  */
 public double[] getRealPartData() {
 	Get();
 	return x;
@@ -131,6 +136,7 @@ public double[] getRealPartData() {
 /**
  * Get only ONE element from Scilab Matrix 
  * Get Real Part
+ * @deprecated
  * @param indr row indice in scilab
  * @param indc column indice in scilab 
  * @return the Real Part
@@ -140,6 +146,7 @@ public double[] getRealPartData() {
  /**
  * Get only ONE element from Scilab Matrix 
  * Get Real Part
+ * @deprecated
  * @param indr row indice in scilab
  * @param indc column indice in scilab 
  * @return the Imaginary Part 
@@ -149,6 +156,7 @@ public double[] getRealPartData() {
  
 	/**
 	 * Return the Imaginary part of the data
+     * @deprecated
 	 * @return the Imaginary part of the data 
 	 */
  public double[] getImaginaryPartData() {

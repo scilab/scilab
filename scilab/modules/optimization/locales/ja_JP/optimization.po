@@ -165,7 +165,7 @@ msgstr "%s: 負の反復インデックスは、許されません。"
 msgid ""
 "%s: No default options available: the function ''%s'' does not exist on the "
 "path."
-msgstr "%s: 初期化オプションが可能ではありません: 関数 \"%s\" は path に存在しません。"
+msgstr "%s: 初期化オプションが可能ではありません: 関数 ''%s'' は path に存在しません。"
 
 #, c-format
 msgid "%s: No output command is defined."
@@ -549,11 +549,11 @@ msgstr "%s: -simplex0method オプション で、未知の値 %s"
 
 #, c-format
 msgid "%s: Unrecognized parameter name ''%s''."
-msgstr "%s: 承認されないパラメータ名 \"%s\" です。"
+msgstr "%s: 承認されないパラメータ名 ''%s'' です。"
 
 #, c-format
 msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
-msgstr "%s: \"Display\" オプションの承認されない値 \"%s\" です。"
+msgstr "%s: ''Display'' オプションの承認されない値 ''%s'' です。"
 
 #
 # File: macros/fit_dat.sci, line: 81

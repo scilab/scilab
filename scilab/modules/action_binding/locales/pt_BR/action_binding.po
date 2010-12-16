@@ -30,7 +30,7 @@ msgstr "Mesmo comando executado novamente"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "O módulo \"%s\" do Scilab não está instalado.\n"
+msgstr "O módulo '%s' do Scilab não está instalado.\n"
 
 msgid "Unable to communicate with the interpreter"
 msgstr "Incapaz de se comunicar com o interpretador"

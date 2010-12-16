@@ -48,15 +48,15 @@ function setStringPosition(string_handle,pt)
   case 4 then //lower right
     dx=d(1);dy=-d(2)-r(2)
   end
+  
   if ax.view=="3d" then
     angles=ax.rotation_angles*%pi/180;
     t=angles(2);a=angles(1);
     st=sin(t);ct=cos(t);sa=sin(a);ca=cos(a)
-    c=sum(ax.data_bounds,1)/2
-    x=pt(1)-c(1)
-    y=pt(2)-c(2)
-    z=pt(3)-c(3)
-    pos=c+[(st*x-ct*y-dx)/st,0,(st*dy+st*sa*z-ca*y-ct*ca*dx)/(sa*st)]
+    //apply inverse transformation matrix to [dx,dy,0]
+    //the transformation matrix is R=[-st ct 0;-ct*ca -st*sa sa;ct*sa st*sa ca] 
+    //and the inserve is R'
+    pos=pt+[-st*dx-ct*ca*dy,ct*dx-st*ca*dy,sa*dy]
   else
     pos=pt+[dx dy]
   end

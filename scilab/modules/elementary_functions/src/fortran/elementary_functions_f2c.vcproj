@@ -56,7 +56,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="6"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../libs/f2c"
+				AdditionalIncludeDirectories="../../../../libs/f2c;../../../core/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEMENTARY_FUNCTIONS_F2C_EXPORTS;FORDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -154,7 +154,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../libs/f2c"
+				AdditionalIncludeDirectories="../../../../libs/f2c;../../../core/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEMENTARY_FUNCTIONS_F2C_EXPORTS;FORDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -242,7 +242,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../../libs/f2c"
+				AdditionalIncludeDirectories="../../../../libs/f2c;../../../core/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEMENTARY_FUNCTIONS_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -333,7 +333,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../../libs/f2c"
+				AdditionalIncludeDirectories="../../../../libs/f2c;../../../core/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEMENTARY_FUNCTIONS_F2C_EXPORTS;FORDLL"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="1"

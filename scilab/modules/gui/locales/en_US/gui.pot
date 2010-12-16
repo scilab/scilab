@@ -14,13 +14,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-09-15 14:22+0100\n"
+"Revision-Date: 2010-11-18 15:37+0100\n"
 
 # File: macros/tree/uiFindNode.sci, line: 115
 # File: macros/tree/uiFindNode.sci, line: 142
-# File: macros/tree/uiGetParentNode.sci, line: 87
 # File: macros/tree/uiDeleteNode.sci, line: 110
 # File: macros/tree/uiDeleteNode.sci, line: 118
+# File: macros/tree/uiGetParentNode.sci, line: 87
 #, c-format
 msgid "%s:  #%d matching nodes.\n"
 msgstr ""
@@ -53,28 +53,28 @@ msgstr ""
 msgid "%s: Could not create uicontrol of type %s."
 msgstr ""
 #
-# File: src/cpp/DestroyJavaUiobject.cpp, line: 40
 # File: src/cpp/DestroyWaitBar.cpp, line: 36
+# File: src/cpp/DestroyJavaUiobject.cpp, line: 40
 #, c-format
 msgid "%s: Could not destroy this object.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uimenu.c, line: 155
 # File: sci_gateway/c/sci_uicontrol.c, line: 127
 # File: sci_gateway/c/sci_uicontrol.c, line: 395
+# File: sci_gateway/c/sci_uimenu.c, line: 155
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_delmenu.c, line: 36
-# File: sci_gateway/c/sci_unsetmenu.c, line: 37
 # File: sci_gateway/c/sci_setmenu.c, line: 37
+# File: sci_gateway/c/sci_unsetmenu.c, line: 37
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 298
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 77
+# File: sci_gateway/c/sci_ClipBoard.c, line: 308
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
 msgstr ""
@@ -102,20 +102,21 @@ msgstr ""
 msgid "%s: No matching node.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 163
-# File: sci_gateway/c/sci_uicontrol.c, line: 150
-# File: sci_gateway/c/sci_uicontrol.c, line: 250
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 58
 # File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 62
+# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 58
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 114
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 291
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 327
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 54
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 73
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 226
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 260
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 52
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 81
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 114
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 291
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 327
+# File: sci_gateway/c/sci_uicontrol.c, line: 150
+# File: sci_gateway/c/sci_uicontrol.c, line: 250
+# File: sci_gateway/c/sci_ClipBoard.c, line: 165
+# File: sci_gateway/c/sci_ClipBoard.c, line: 181
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -170,8 +171,8 @@ msgstr ""
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_unsetmenu.c, line: 91
 # File: sci_gateway/c/sci_setmenu.c, line: 91
+# File: sci_gateway/c/sci_unsetmenu.c, line: 91
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
 msgstr ""
@@ -186,15 +187,15 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 #
-# File: macros/x_choices.sci, line: 29
-# File: macros/tree/uiEqualsTree.sci, line: 16
-# File: macros/tree/uiGetChildrenNode.sci, line: 16
-# File: macros/tree/uiGetParentNode.sci, line: 16
+# File: macros/findobj.sci, line: 14
 # File: macros/tree/uiConcatTree.sci, line: 17
 # File: macros/tree/uiDeleteNode.sci, line: 16
+# File: macros/tree/uiEqualsTree.sci, line: 16
 # File: macros/tree/uiGetNodePosition.sci, line: 16
+# File: macros/tree/uiGetChildrenNode.sci, line: 16
 # File: macros/tree/uiInsertNode.sci, line: 16
-# File: macros/findobj.sci, line: 14
+# File: macros/tree/uiGetParentNode.sci, line: 16
+# File: macros/x_choices.sci, line: 29
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
@@ -205,10 +206,10 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 #
-# File: macros/addmenu.sci, line: 202
 # File: macros/clipboard.sci, line: 47
 # File: macros/tree/uiCreateNode.sci, line: 16
 # File: macros/tree/uiDumpTree.sci, line: 16
+# File: macros/addmenu.sci, line: 202
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -270,10 +271,10 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
+# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 48
 # File: sci_gateway/c/sci_uigetfont.c, line: 93
 # File: sci_gateway/c/sci_uigetfont.c, line: 115
 # File: sci_gateway/c/sci_helpbrowser.c, line: 150
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 48
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -283,76 +284,76 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uimenu.c, line: 80
-# File: sci_gateway/c/sci_progressionbar.c, line: 48
-# File: sci_gateway/c/sci_progressionbar.c, line: 91
-# File: sci_gateway/c/sci_uiwait.c, line: 52
-# File: sci_gateway/c/sci_toolbar.c, line: 76
 # File: sci_gateway/c/sci_uicontrol.c, line: 101
 # File: sci_gateway/c/sci_uicontrol.c, line: 187
+# File: sci_gateway/c/sci_uimenu.c, line: 80
+# File: sci_gateway/c/sci_uiwait.c, line: 52
+# File: sci_gateway/c/sci_progressionbar.c, line: 48
+# File: sci_gateway/c/sci_progressionbar.c, line: 91
+# File: sci_gateway/c/sci_toolbar.c, line: 76
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 #
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 45
+# File: sci_gateway/c/sci_getcallbackobject.c, line: 36
+# File: sci_gateway/c/sci_uigetfont.c, line: 72
+# File: sci_gateway/c/sci_toolbar.c, line: 50
+# File: sci_gateway/c/sci_delmenu.c, line: 69
 # File: sci_gateway/c/sci_waitbar.c, line: 49
 # File: sci_gateway/c/sci_waitbar.c, line: 89
 # File: sci_gateway/c/sci_waitbar.c, line: 109
 # File: sci_gateway/c/sci_waitbar.c, line: 157
-# File: sci_gateway/c/sci_getcallbackobject.c, line: 36
-# File: sci_gateway/c/sci_uigetfont.c, line: 72
-# File: sci_gateway/c/sci_toolbar.c, line: 50
-# File: sci_gateway/c/sci_ClipBoard.c, line: 237
-# File: sci_gateway/c/sci_delmenu.c, line: 69
-# File: sci_gateway/c/sci_unsetmenu.c, line: 67
-# File: sci_gateway/c/sci_unsetmenu.c, line: 83
-# File: sci_gateway/c/sci_unsetmenu.c, line: 103
-# File: sci_gateway/c/sci_unsetmenu.c, line: 130
+# File: sci_gateway/c/sci_ClipBoard.c, line: 247
 # File: sci_gateway/c/sci_setmenu.c, line: 67
 # File: sci_gateway/c/sci_setmenu.c, line: 83
 # File: sci_gateway/c/sci_setmenu.c, line: 103
 # File: sci_gateway/c/sci_setmenu.c, line: 129
+# File: sci_gateway/c/sci_unsetmenu.c, line: 67
+# File: sci_gateway/c/sci_unsetmenu.c, line: 83
+# File: sci_gateway/c/sci_unsetmenu.c, line: 103
+# File: sci_gateway/c/sci_unsetmenu.c, line: 130
 # File: sci_gateway/c/sci_uigetcolor.c, line: 143
 # File: sci_gateway/c/sci_uigetcolor.c, line: 159
 # File: sci_gateway/c/sci_uigetcolor.c, line: 175
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 45
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 131
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 155
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 172
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 196
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 131
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 155
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
 msgstr ""
 #
+# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 55
+# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 80
 # File: sci_gateway/c/sci_uigetdir.c, line: 46
 # File: sci_gateway/c/sci_uigetdir.c, line: 65
 # File: sci_gateway/c/sci_uigetdir.c, line: 82
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 83
 # File: sci_gateway/c/sci_x_choose.c, line: 78
+# File: sci_gateway/c/sci_messagebox.c, line: 64
+# File: sci_gateway/c/sci_messagebox.c, line: 150
 # File: sci_gateway/c/sci_uigetfont.c, line: 52
-# File: sci_gateway/c/sci_toolbar.c, line: 109
 # File: sci_gateway/c/sci_helpbrowser.c, line: 80
 # File: sci_gateway/c/sci_helpbrowser.c, line: 111
 # File: sci_gateway/c/sci_helpbrowser.c, line: 130
+# File: sci_gateway/c/sci_toolbar.c, line: 109
 # File: sci_gateway/c/sci_delmenu.c, line: 51
-# File: sci_gateway/c/sci_messagebox.c, line: 64
-# File: sci_gateway/c/sci_messagebox.c, line: 150
-# File: sci_gateway/c/sci_unsetmenu.c, line: 52
 # File: sci_gateway/c/sci_setmenu.c, line: 52
+# File: sci_gateway/c/sci_unsetmenu.c, line: 52
 # File: sci_gateway/c/sci_uigetcolor.c, line: 59
 # File: sci_gateway/c/sci_uigetcolor.c, line: 79
 # File: sci_gateway/c/sci_uigetcolor.c, line: 123
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 55
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 80
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 108
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 149
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 108
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
@@ -412,8 +413,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_waitbar.c, line: 190
 # File: sci_gateway/c/sci_uiwait.c, line: 64
+# File: sci_gateway/c/sci_waitbar.c, line: 190
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -453,10 +454,10 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
+# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 40
 # File: sci_gateway/c/sci_uigetfont.c, line: 101
 # File: sci_gateway/c/sci_uigetfont.c, line: 123
 # File: sci_gateway/c/sci_helpbrowser.c, line: 159
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 40
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -485,24 +486,24 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
 #
+# File: macros/x_matrix.sci, line: 11
 # File: macros/addmenu.sci, line: 97
 # File: macros/addmenu.sci, line: 126
 # File: macros/addmenu.sci, line: 143
 # File: macros/addmenu.sci, line: 160
 # File: macros/addmenu.sci, line: 186
-# File: macros/x_matrix.sci, line: 11
-# File: sci_gateway/c/sci_waitbar.c, line: 163
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 71
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 43
 # File: sci_gateway/c/sci_uigetfont.c, line: 79
 # File: sci_gateway/c/sci_delmenu.c, line: 62
-# File: sci_gateway/c/sci_unsetmenu.c, line: 109
-# File: sci_gateway/c/sci_unsetmenu.c, line: 136
+# File: sci_gateway/c/sci_waitbar.c, line: 163
 # File: sci_gateway/c/sci_setmenu.c, line: 109
 # File: sci_gateway/c/sci_setmenu.c, line: 135
+# File: sci_gateway/c/sci_unsetmenu.c, line: 109
+# File: sci_gateway/c/sci_unsetmenu.c, line: 136
 # File: sci_gateway/c/sci_uigetcolor.c, line: 149
 # File: sci_gateway/c/sci_uigetcolor.c, line: 165
 # File: sci_gateway/c/sci_uigetcolor.c, line: 181
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 71
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
@@ -535,55 +536,55 @@ msgstr ""
 # File: macros/addmenu.sci, line: 164
 # File: macros/addmenu.sci, line: 190
 # File: macros/x_choices.sci, line: 34
-# File: sci_gateway/c/sci_uimenu.c, line: 117
-# File: sci_gateway/c/sci_waitbar.c, line: 173
-# File: sci_gateway/c/sci_uigetdir.c, line: 53
-# File: sci_gateway/c/sci_uigetdir.c, line: 72
-# File: sci_gateway/c/sci_uigetdir.c, line: 89
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 89
-# File: sci_gateway/c/sci_x_choose.c, line: 84
-# File: sci_gateway/c/sci_uigetfont.c, line: 58
-# File: sci_gateway/c/sci_toolbar.c, line: 127
-# File: sci_gateway/c/sci_setlookandfeel.c, line: 68
-# File: sci_gateway/c/sci_helpbrowser.c, line: 87
-# File: sci_gateway/c/sci_helpbrowser.c, line: 118
-# File: sci_gateway/c/sci_helpbrowser.c, line: 138
-# File: sci_gateway/c/sci_ClipBoard.c, line: 77
-# File: sci_gateway/c/sci_ClipBoard.c, line: 218
-# File: sci_gateway/c/sci_ClipBoard.c, line: 285
-# File: sci_gateway/c/sci_delmenu.c, line: 43
-# File: sci_gateway/c/sci_delmenu.c, line: 75
-# File: sci_gateway/c/sci_uicontrol.c, line: 236
-# File: sci_gateway/c/sci_uicontrol.c, line: 290
-# File: sci_gateway/c/sci_messagebox.c, line: 52
-# File: sci_gateway/c/sci_messagebox.c, line: 76
-# File: sci_gateway/c/sci_messagebox.c, line: 156
-# File: sci_gateway/c/sci_unsetmenu.c, line: 44
-# File: sci_gateway/c/sci_unsetmenu.c, line: 120
-# File: sci_gateway/c/sci_setmenu.c, line: 44
-# File: sci_gateway/c/sci_setmenu.c, line: 119
-# File: sci_gateway/c/sci_uigetcolor.c, line: 85
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 122
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 146
-# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 86
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 250
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 163
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 187
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 225
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 250
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 65
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 88
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 122
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 146
+# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 86
+# File: sci_gateway/c/sci_uicontrol.c, line: 236
+# File: sci_gateway/c/sci_uicontrol.c, line: 290
+# File: sci_gateway/c/sci_uigetdir.c, line: 53
+# File: sci_gateway/c/sci_uigetdir.c, line: 72
+# File: sci_gateway/c/sci_uigetdir.c, line: 89
+# File: sci_gateway/c/sci_uimenu.c, line: 117
+# File: sci_gateway/c/sci_x_choose_modeless.c, line: 89
+# File: sci_gateway/c/sci_x_choose.c, line: 84
+# File: sci_gateway/c/sci_messagebox.c, line: 52
+# File: sci_gateway/c/sci_messagebox.c, line: 76
+# File: sci_gateway/c/sci_messagebox.c, line: 156
+# File: sci_gateway/c/sci_uigetfont.c, line: 58
+# File: sci_gateway/c/sci_helpbrowser.c, line: 87
+# File: sci_gateway/c/sci_helpbrowser.c, line: 118
+# File: sci_gateway/c/sci_helpbrowser.c, line: 138
+# File: sci_gateway/c/sci_toolbar.c, line: 127
+# File: sci_gateway/c/sci_delmenu.c, line: 43
+# File: sci_gateway/c/sci_delmenu.c, line: 75
+# File: sci_gateway/c/sci_waitbar.c, line: 173
+# File: sci_gateway/c/sci_ClipBoard.c, line: 78
+# File: sci_gateway/c/sci_ClipBoard.c, line: 228
+# File: sci_gateway/c/sci_ClipBoard.c, line: 295
+# File: sci_gateway/c/sci_setmenu.c, line: 44
+# File: sci_gateway/c/sci_setmenu.c, line: 119
+# File: sci_gateway/c/sci_setlookandfeel.c, line: 68
+# File: sci_gateway/c/sci_unsetmenu.c, line: 44
+# File: sci_gateway/c/sci_unsetmenu.c, line: 120
+# File: sci_gateway/c/sci_uigetcolor.c, line: 85
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 83
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 124
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 83
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 291
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 256
+# File: sci_gateway/c/sci_ClipBoard.c, line: 301
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
 msgstr ""
@@ -652,20 +653,20 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
 msgstr ""
 #
-# File: macros/tree/uiFindNode.sci, line: 28
-# File: macros/tree/uiEqualsTree.sci, line: 25
-# File: macros/tree/uiEqualsTree.sci, line: 32
 # File: macros/tree/uiCreateTree.sci, line: 34
-# File: macros/tree/uiGetChildrenNode.sci, line: 27
-# File: macros/tree/uiDumpTree.sci, line: 26
-# File: macros/tree/uiGetParentNode.sci, line: 27
+# File: macros/tree/uiFindNode.sci, line: 28
 # File: macros/tree/uiConcatTree.sci, line: 26
 # File: macros/tree/uiConcatTree.sci, line: 33
 # File: macros/tree/uiDeleteNode.sci, line: 27
+# File: macros/tree/uiEqualsTree.sci, line: 25
+# File: macros/tree/uiEqualsTree.sci, line: 32
+# File: macros/tree/uiDumpTree.sci, line: 26
 # File: macros/tree/uiGetNodePosition.sci, line: 25
 # File: macros/tree/uiGetNodePosition.sci, line: 32
+# File: macros/tree/uiGetChildrenNode.sci, line: 27
 # File: macros/tree/uiInsertNode.sci, line: 27
 # File: macros/tree/uiInsertNode.sci, line: 46
+# File: macros/tree/uiGetParentNode.sci, line: 27
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
 msgstr ""
@@ -677,17 +678,17 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_x_dialog.c, line: 46
-# File: sci_gateway/c/sci_x_dialog.c, line: 67
+# File: sci_gateway/c/sci_x_mdialog.c, line: 51
+# File: sci_gateway/c/sci_x_mdialog.c, line: 78
+# File: sci_gateway/c/sci_x_mdialog.c, line: 116
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 45
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 56
 # File: sci_gateway/c/sci_x_choose.c, line: 45
 # File: sci_gateway/c/sci_x_choose.c, line: 55
-# File: sci_gateway/c/sci_x_mdialog.c, line: 51
-# File: sci_gateway/c/sci_x_mdialog.c, line: 78
-# File: sci_gateway/c/sci_x_mdialog.c, line: 116
 # File: sci_gateway/c/sci_x_choice.c, line: 74
 # File: sci_gateway/c/sci_x_choice.c, line: 103
+# File: sci_gateway/c/sci_x_dialog.c, line: 46
+# File: sci_gateway/c/sci_x_dialog.c, line: 67
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
@@ -724,15 +725,15 @@ msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 121
-# File: sci_gateway/c/sci_ClipBoard.c, line: 71
-# File: sci_gateway/c/sci_ClipBoard.c, line: 92
-# File: sci_gateway/c/sci_ClipBoard.c, line: 212
-# File: sci_gateway/c/sci_ClipBoard.c, line: 278
+# File: sci_gateway/c/sci_ClipBoard.c, line: 72
+# File: sci_gateway/c/sci_ClipBoard.c, line: 93
+# File: sci_gateway/c/sci_ClipBoard.c, line: 222
+# File: sci_gateway/c/sci_ClipBoard.c, line: 288
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 126
+# File: sci_gateway/c/sci_ClipBoard.c, line: 127
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
@@ -765,8 +766,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 271
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 65
+# File: sci_gateway/c/sci_ClipBoard.c, line: 281
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
@@ -800,9 +801,9 @@ msgstr ""
 msgid "%s: function not available in NWNI mode.\n"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 88
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
-# File: demos/uicontrol_LaTeX.dem.sce, line: 25
+# File: demos/uicontrol.dem.sce, line: 87
+# File: demos/uicontrol_LaTeX.dem.sce, line: 24
 # File: scilab_fake_localization_file.c, line: 36
 # File: scilab_fake_localization_file.c, line: 41
 # File: scilab_fake_localization_file.c, line: 78
@@ -883,9 +884,9 @@ msgstr ""
 msgid "&EPS"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 87
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
-# File: demos/uicontrol_LaTeX.dem.sce, line: 24
+# File: demos/uicontrol.dem.sce, line: 86
+# File: demos/uicontrol_LaTeX.dem.sce, line: 23
 # File: scilab_fake_localization_file.c, line: 26
 # File: scilab_fake_localization_file.c, line: 53
 msgid "&Edit"
@@ -911,9 +912,9 @@ msgstr ""
 msgid "&Figure properties"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 85
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 58
-# File: demos/uicontrol_LaTeX.dem.sce, line: 22
+# File: demos/uicontrol.dem.sce, line: 84
+# File: demos/uicontrol_LaTeX.dem.sce, line: 21
 # File: scilab_fake_localization_file.c, line: 1
 # File: scilab_fake_localization_file.c, line: 39
 # File: scilab_fake_localization_file.c, line: 43
@@ -1029,9 +1030,9 @@ msgstr ""
 msgid "&Start entity picker"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 86
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
-# File: demos/uicontrol_LaTeX.dem.sce, line: 23
+# File: demos/uicontrol.dem.sce, line: 85
+# File: demos/uicontrol_LaTeX.dem.sce, line: 22
 # File: scilab_fake_localization_file.c, line: 21
 msgid "&Tools"
 msgstr ""
@@ -1071,7 +1072,7 @@ msgid "2D/3D &Rotation"
 msgstr ""
 #
 # File: demos/uicontrol.dem.sce, line: 11
-# File: demos/uicontrol.dem.sce, line: 124
+# File: demos/uicontrol.dem.sce, line: 123
 msgid "<Enter color name here>"
 msgstr ""
 #
@@ -1085,7 +1086,7 @@ msgstr ""
 msgid "Acknowledgements"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 131
+# File: demos/uicontrol.dem.sce, line: 130
 msgid "Add color in listbox"
 msgstr ""
 #
@@ -1129,7 +1130,7 @@ msgid ""
 " is incorrect see error message in scilab window.\n"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 97
+# File: demos/uicontrol.dem.sce, line: 96
 msgid "Application"
 msgstr ""
 #
@@ -1163,7 +1164,7 @@ msgstr ""
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 168
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 177
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 210
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 212
 msgid "Cancel"
 msgstr ""
 #
@@ -1200,7 +1201,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 118
+# File: demos/uicontrol.dem.sce, line: 117
 msgid "Colors list edition"
 msgstr ""
 #
@@ -1212,11 +1213,11 @@ msgstr ""
 msgid "Console &Font..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2280
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2294
 msgid "Console Background..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2261
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2275
 msgid "Console Font..."
 msgstr ""
 #
@@ -1247,7 +1248,7 @@ msgstr ""
 msgid "Cut"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 149
+# File: demos/uicontrol.dem.sce, line: 148
 msgid "Display selection"
 msgstr ""
 #
@@ -1267,11 +1268,11 @@ msgstr ""
 msgid "Enhanced Metafile image (EMF)"
 msgstr ""
 #
-# File: etc/main_menubar.xml, line: 36
+# File: etc/main_menubar.xml, line: 38
 msgid "Environment loaded.\n"
 msgstr ""
 #
-# File: etc/main_menubar.xml, line: 50
+# File: etc/main_menubar.xml, line: 52
 msgid "Environment saved.\n"
 msgstr ""
 #
@@ -1292,11 +1293,11 @@ msgstr ""
 msgid "Execute into Scilab"
 msgstr ""
 #
-# File: etc/main_menubar.xml, line: 14
+# File: etc/main_menubar.xml, line: 16
 msgid "Execution done.\n"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 98
+# File: demos/uicontrol.dem.sce, line: 97
 msgid "Exit figure"
 msgstr ""
 #
@@ -1309,11 +1310,11 @@ msgstr ""
 msgid "FIG image"
 msgstr ""
 #
-# File: etc/graphics_menubar.xml, line: 15
+# File: etc/graphics_menubar.xml, line: 18
 msgid "Figure loaded.\n"
 msgstr ""
 #
-# File: etc/graphics_menubar.xml, line: 29
+# File: etc/graphics_menubar.xml, line: 32
 msgid "Figure saved.\n"
 msgstr ""
 #
@@ -1349,7 +1350,7 @@ msgstr ""
 msgid "GUI"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 74
+# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 78
 # File: scilab_fake_localization_file.c, line: 92
 # File: scilab_fake_localization_file.c, line: 104
 msgid "Help Browser"
@@ -1385,11 +1386,11 @@ msgstr ""
 msgid "Launch SciNotes"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 103
+# File: demos/uicontrol.dem.sce, line: 102
 msgid "Launch plot2d"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 102
+# File: demos/uicontrol.dem.sce, line: 101
 msgid "Launch plot3d"
 msgstr ""
 #
@@ -1402,7 +1403,7 @@ msgstr ""
 msgid "Left click to terminate selection. Right click to cancel."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 67
+# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 71
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 81
 msgid "Loading help browser..."
 msgstr ""
@@ -1411,7 +1412,7 @@ msgstr ""
 msgid "M&odule manager - ATOMS"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 105
+# File: demos/uicontrol.dem.sce, line: 104
 msgid "Menu"
 msgstr ""
 #
@@ -1438,49 +1439,50 @@ msgstr ""
 msgid "No"
 msgstr ""
 #
-# File: src/cpp/GetUicontrolFontAngle.cpp, line: 38
-# File: src/cpp/GetUicontrolFontWeight.cpp, line: 40
-# File: src/cpp/GetUicontrolValue.cpp, line: 96
 # File: src/cpp/SetUiobjectVisible.cpp, line: 72
-# File: src/cpp/GetUicontrolPosition.cpp, line: 68
-# File: src/cpp/SetUicontrolString.cpp, line: 87
-# File: src/cpp/GetUiobjectVisible.cpp, line: 63
-# File: src/cpp/GetUimenuLabel.cpp, line: 27
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 34
-# File: src/cpp/GetUiobjectForegroundColor.cpp, line: 44
-# File: src/cpp/SetUiobjectEnable.cpp, line: 72
-# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 37
-# File: src/cpp/GetUiobjectCallback.cpp, line: 48
-# File: src/cpp/GetUicontrolFontName.cpp, line: 44
-# File: src/cpp/GetUiobjectTag.cpp, line: 58
-# File: src/cpp/GetUicontrolMax.cpp, line: 26
-# File: src/cpp/SetUicontrolRelief.cpp, line: 26
-# File: src/cpp/SetUiobjectCallback.cpp, line: 134
-# File: src/cpp/GetUicontrolFontSize.cpp, line: 40
-# File: src/cpp/SetUiobjectTag.cpp, line: 78
-# File: src/cpp/SetUiobjectTag.cpp, line: 109
-# File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 69
-# File: src/cpp/SetUicontrolFontWeight.cpp, line: 26
-# File: src/cpp/GetUicontrolString.cpp, line: 91
-# File: src/cpp/GetUicontrolFontUnits.cpp, line: 42
-# File: src/cpp/SetUimenuLabel.cpp, line: 44
-# File: src/cpp/GetUicontrolStyle.cpp, line: 24
-# File: src/cpp/GetUicontrolRelief.cpp, line: 43
-# File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 26
-# File: src/cpp/GetUiobjectEnable.cpp, line: 62
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 24
-# File: src/cpp/GetUicontrolMin.cpp, line: 26
-# File: src/cpp/GetUicontrolUnits.cpp, line: 42
-# File: src/cpp/GetUicontrolListboxTop.cpp, line: 43
+# File: src/cpp/GetUiobjectVisible.cpp, line: 63
+# File: src/cpp/GetUicontrolRelief.cpp, line: 43
+# File: src/cpp/SetUicontrolFontName.cpp, line: 52
+# File: src/cpp/GetUicontrolHorizontalAlignment.cpp, line: 37
 # File: src/cpp/SetUicontrolFontAngle.cpp, line: 26
 # File: src/cpp/GetUimenuChecked.cpp, line: 36
+# File: src/cpp/GetUicontrolPosition.cpp, line: 68
+# File: src/cpp/SetUimenuLabel.cpp, line: 44
+# File: src/cpp/GetUicontrolFontName.cpp, line: 44
+# File: src/cpp/GetUiobjectTag.cpp, line: 58
+# File: src/cpp/SetUicontrolUnits.cpp, line: 26
+# File: src/cpp/SetUicontrolString.cpp, line: 87
+# File: src/cpp/SetUiobjectTag.cpp, line: 78
+# File: src/cpp/SetUiobjectTag.cpp, line: 109
+# File: src/cpp/GetUicontrolListboxTop.cpp, line: 43
 # File: src/cpp/SetUimenuChecked.cpp, line: 54
-# File: src/cpp/GetUicontrolHorizontalAlignment.cpp, line: 37
-# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 26
-# File: src/cpp/SetUicontrolFontName.cpp, line: 52
-# File: src/cpp/SetUicontrolFontSize.cpp, line: 26
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 139
+# File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 69
+# File: src/cpp/SetUiobjectEnable.cpp, line: 72
+# File: src/cpp/GetUicontrolFontAngle.cpp, line: 38
+# File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 26
+# File: src/cpp/GetUimenuLabel.cpp, line: 27
+# File: src/cpp/GetUicontrolStyle.cpp, line: 24
+# File: src/cpp/GetUicontrolMax.cpp, line: 26
+# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 37
 # File: src/cpp/GetUicontrolSliderStep.cpp, line: 36
+# File: src/cpp/GetUiobjectForegroundColor.cpp, line: 44
+# File: src/cpp/SetUicontrolFontWeight.cpp, line: 26
+# File: src/cpp/SetUicontrolFontSize.cpp, line: 26
+# File: src/cpp/GetUicontrolString.cpp, line: 91
+# File: src/cpp/GetUicontrolFontUnits.cpp, line: 42
+# File: src/cpp/GetUicontrolFontSize.cpp, line: 40
+# File: src/cpp/GetUiobjectCallback.cpp, line: 48
+# File: src/cpp/GetUicontrolMin.cpp, line: 26
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 34
+# File: src/cpp/GetUicontrolValue.cpp, line: 96
+# File: src/cpp/GetUiobjectEnable.cpp, line: 62
+# File: src/cpp/GetUicontrolFontWeight.cpp, line: 40
+# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 26
+# File: src/cpp/SetUicontrolRelief.cpp, line: 26
+# File: src/cpp/GetUicontrolUnits.cpp, line: 42
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 152
+# File: src/cpp/SetUiobjectCallback.cpp, line: 134
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr ""
@@ -1495,7 +1497,7 @@ msgstr ""
 msgid "No color selected."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2415
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2429
 msgid "No print service found."
 msgstr ""
 #
@@ -1511,7 +1513,7 @@ msgid "OK"
 msgstr ""
 #
 # File: macros/about.sci, line: 20
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 199
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 201
 msgid "Ok"
 msgstr ""
 #
@@ -1561,8 +1563,8 @@ msgstr ""
 msgid "Popupmenu selection"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 184
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 117
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 186
 msgid "Preview"
 msgstr ""
 #
@@ -1571,16 +1573,16 @@ msgid "Print..."
 msgstr ""
 #
 # File: demos/uicontrol.dem.sce, line: 70
-# File: demos/uicontrol.dem.sce, line: 99
+# File: demos/uicontrol.dem.sce, line: 98
 msgid "Quit Scilab"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 190
+# File: demos/uicontrol.dem.sce, line: 189
 msgid "Quit demonstration"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 156
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 141
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 156
 msgid "Replace existing file?"
 msgstr ""
 #
@@ -1600,7 +1602,7 @@ msgstr ""
 msgid "Save and execute"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 172
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 174
 msgid "SciNotes compatible"
 msgstr ""
 #
@@ -1663,7 +1665,7 @@ msgstr ""
 msgid "Scilab Demonstrations"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 101
+# File: demos/uicontrol.dem.sce, line: 100
 msgid "Scilab Graphics"
 msgstr ""
 #
@@ -1671,9 +1673,9 @@ msgstr ""
 msgid "Scilab Input Value Request"
 msgstr ""
 #
+# File: sci_gateway/c/sci_messagebox.c, line: 173
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 71
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 83
-# File: sci_gateway/c/sci_messagebox.c, line: 173
 msgid "Scilab Message"
 msgstr ""
 #
@@ -1706,40 +1708,40 @@ msgstr ""
 msgid "Select All"
 msgstr ""
 #
-# File: etc/main_menubar.xml, line: 59
+# File: etc/main_menubar.xml, line: 61
 # File: etc/main_toolbar.xml, line: 38
 msgid "Select a directory"
 msgstr ""
 #
-# File: etc/graphics_menubar.xml, line: 41
-# File: etc/graphics_menubar.xml, line: 52
-# File: etc/graphics_menubar.xml, line: 63
-# File: etc/graphics_menubar.xml, line: 74
-# File: etc/graphics_menubar.xml, line: 85
-# File: etc/graphics_menubar.xml, line: 98
-# File: etc/graphics_menubar.xml, line: 109
-# File: etc/graphics_menubar.xml, line: 120
-# File: etc/graphics_menubar.xml, line: 131
-# File: etc/graphics_menubar.xml, line: 142
+# File: etc/graphics_menubar.xml, line: 44
+# File: etc/graphics_menubar.xml, line: 55
+# File: etc/graphics_menubar.xml, line: 66
+# File: etc/graphics_menubar.xml, line: 77
+# File: etc/graphics_menubar.xml, line: 88
+# File: etc/graphics_menubar.xml, line: 101
+# File: etc/graphics_menubar.xml, line: 112
+# File: etc/graphics_menubar.xml, line: 123
+# File: etc/graphics_menubar.xml, line: 134
+# File: etc/graphics_menubar.xml, line: 145
 msgid "Select a file name"
 msgstr ""
 #
-# File: etc/main_menubar.xml, line: 11
+# File: etc/main_menubar.xml, line: 13
 msgid "Select a file to execute"
 msgstr ""
 #
-# File: etc/graphics_menubar.xml, line: 12
-# File: etc/main_menubar.xml, line: 33
+# File: etc/graphics_menubar.xml, line: 15
+# File: etc/main_menubar.xml, line: 35
 msgid "Select a file to load"
 msgstr ""
 #
-# File: etc/main_menubar.xml, line: 23
+# File: etc/main_menubar.xml, line: 25
 # File: etc/main_toolbar.xml, line: 11
 msgid "Select a file to open with SciNotes"
 msgstr ""
 #
-# File: etc/graphics_menubar.xml, line: 23
-# File: etc/main_menubar.xml, line: 44
+# File: etc/graphics_menubar.xml, line: 26
+# File: etc/main_menubar.xml, line: 46
 msgid "Select a file to write"
 msgstr ""
 #
@@ -1761,7 +1763,7 @@ msgstr ""
 msgid "Show/Hide &Toolbar"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 158
+# File: demos/uicontrol.dem.sce, line: 157
 msgid "Slider demo"
 msgstr ""
 #
@@ -1779,20 +1781,20 @@ msgstr ""
 msgid "Stop datatip manager"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 106
+# File: demos/uicontrol.dem.sce, line: 105
 msgid "Sub-menu 1"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 107
-# File: demos/uicontrol.dem.sce, line: 110
+# File: demos/uicontrol.dem.sce, line: 106
+# File: demos/uicontrol.dem.sce, line: 109
 msgid "Sub-menu 2"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 108
+# File: demos/uicontrol.dem.sce, line: 107
 msgid "Sub-menu 2-1"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 109
+# File: demos/uicontrol.dem.sce, line: 108
 msgid "Sub-menu 2-2"
 msgstr ""
 #
@@ -1831,12 +1833,12 @@ msgid ""
 "\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolValue.cpp, line: 125
-# File: src/cpp/SetUicontrolValue.cpp, line: 138
-# File: src/cpp/SetUicontrolMax.cpp, line: 79
-# File: src/cpp/SetUicontrolMax.cpp, line: 99
 # File: src/cpp/SetUicontrolMin.cpp, line: 79
 # File: src/cpp/SetUicontrolMin.cpp, line: 99
+# File: src/cpp/SetUicontrolMax.cpp, line: 79
+# File: src/cpp/SetUicontrolMax.cpp, line: 99
+# File: src/cpp/SetUicontrolValue.cpp, line: 125
+# File: src/cpp/SetUicontrolValue.cpp, line: 138
 #, c-format
 msgid ""
 "Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
@@ -1858,8 +1860,8 @@ msgstr ""
 msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 #
+# File: src/cpp/SetUicontrolUnits.cpp, line: 35
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 29
-# File: src/cpp/SetUicontrolUnits.cpp, line: 29
 #, c-format
 msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
@@ -1878,9 +1880,9 @@ msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 #
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 43
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 74
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 80
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 32
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 76
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 82
 #, c-format
 msgid ""
 "Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
@@ -1897,13 +1899,13 @@ msgstr ""
 msgid "Wrong size for '%s' property: A graphic handle expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolValue.cpp, line: 110
+# File: src/cpp/SetUicontrolMin.cpp, line: 26
 # File: src/cpp/SetUicontrolMax.cpp, line: 26
 # File: src/cpp/SetUicontrolListboxTop.cpp, line: 29
 # File: src/cpp/SetUicontrolListboxTop.cpp, line: 40
-# File: src/cpp/SetUiobjectCallback.cpp, line: 49
-# File: src/cpp/SetUicontrolMin.cpp, line: 26
+# File: src/cpp/SetUicontrolValue.cpp, line: 110
 # File: src/cpp/SetUicontrolFontSize.cpp, line: 35
+# File: src/cpp/SetUiobjectCallback.cpp, line: 49
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
 msgstr ""
@@ -1913,15 +1915,15 @@ msgstr ""
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolString.cpp, line: 34
-# File: src/cpp/SetUicontrolString.cpp, line: 75
+# File: src/cpp/SetUicontrolFontName.cpp, line: 26
 # File: src/cpp/SetUicontrolValue.cpp, line: 60
-# File: src/cpp/SetUiobjectCallback.cpp, line: 32
-# File: src/cpp/SetUiobjectCallback.cpp, line: 60
-# File: src/cpp/SetUiobjectTag.cpp, line: 26
 # File: src/cpp/SetUimenuLabel.cpp, line: 26
 # File: src/cpp/SetUimenuLabel.cpp, line: 32
-# File: src/cpp/SetUicontrolFontName.cpp, line: 26
+# File: src/cpp/SetUicontrolString.cpp, line: 34
+# File: src/cpp/SetUicontrolString.cpp, line: 75
+# File: src/cpp/SetUiobjectTag.cpp, line: 26
+# File: src/cpp/SetUiobjectCallback.cpp, line: 32
+# File: src/cpp/SetUiobjectCallback.cpp, line: 60
 #, c-format
 msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr ""
@@ -1957,8 +1959,8 @@ msgstr ""
 msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 #
+# File: src/cpp/SetUicontrolUnits.cpp, line: 73
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 67
-# File: src/cpp/SetUicontrolUnits.cpp, line: 67
 #, c-format
 msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
@@ -1976,8 +1978,8 @@ msgstr ""
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 95
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 111
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 108
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 124
 #, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
@@ -1989,9 +1991,9 @@ msgstr ""
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
 #
+# File: src/cpp/SetUicontrolMin.cpp, line: 118
 # File: src/cpp/SetUicontrolMax.cpp, line: 118
 # File: src/cpp/SetUicontrolListboxTop.cpp, line: 56
-# File: src/cpp/SetUicontrolMin.cpp, line: 118
 # File: src/cpp/SetUicontrolFontSize.cpp, line: 56
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
@@ -2002,9 +2004,9 @@ msgstr ""
 msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolString.cpp, line: 22
-# File: src/cpp/SetUimenuLabel.cpp, line: 22
 # File: src/cpp/SetUicontrolFontName.cpp, line: 22
+# File: src/cpp/SetUimenuLabel.cpp, line: 22
+# File: src/cpp/SetUicontrolString.cpp, line: 22
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr ""
@@ -2019,19 +2021,19 @@ msgstr ""
 # File: src/cpp/SetUiobjectVisible.cpp, line: 26
 # File: src/cpp/SetUiobjectVisible.cpp, line: 34
 # File: src/cpp/SetUiobjectVisible.cpp, line: 41
-# File: src/cpp/SetUiobjectEnable.cpp, line: 26
-# File: src/cpp/SetUiobjectEnable.cpp, line: 34
-# File: src/cpp/SetUiobjectEnable.cpp, line: 41
 # File: src/cpp/SetUimenuChecked.cpp, line: 25
 # File: src/cpp/SetUimenuChecked.cpp, line: 33
 # File: src/cpp/SetUimenuChecked.cpp, line: 40
+# File: src/cpp/SetUiobjectEnable.cpp, line: 26
+# File: src/cpp/SetUiobjectEnable.cpp, line: 34
+# File: src/cpp/SetUiobjectEnable.cpp, line: 41
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
 msgstr ""
 #
-# File: src/cpp/GetUicontrolFontAngle.cpp, line: 32
-# File: src/cpp/SetUicontrolFontAngle.cpp, line: 56
 # File: src/cpp/GetUicontrolHorizontalAlignment.cpp, line: 31
+# File: src/cpp/SetUicontrolFontAngle.cpp, line: 56
+# File: src/cpp/GetUicontrolFontAngle.cpp, line: 32
 # File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 56
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
@@ -2042,8 +2044,8 @@ msgstr ""
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 #
+# File: src/cpp/SetUicontrolUnits.cpp, line: 64
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 58
-# File: src/cpp/SetUicontrolUnits.cpp, line: 58
 # File: src/cpp/GetUicontrolFontUnits.cpp, line: 36
 # File: src/cpp/GetUicontrolUnits.cpp, line: 36
 #, c-format
@@ -2051,16 +2053,16 @@ msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolRelief.cpp, line: 68
 # File: src/cpp/GetUicontrolRelief.cpp, line: 37
+# File: src/cpp/SetUicontrolRelief.cpp, line: 68
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
 #
-# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 31
 # File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 56
+# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 31
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
@@ -2111,6 +2113,14 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 58
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 88
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 46
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 90
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+#
 # File: scilab_fake_localization_file.c, line: 102
 msgid "Xcos"
 msgstr ""
@@ -2139,7 +2149,7 @@ msgstr ""
 msgid "Zoom Area"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 135
+# File: demos/uicontrol.dem.sce, line: 134
 msgid "blue"
 msgstr ""
 #
@@ -2172,7 +2182,7 @@ msgid ""
 "update your driver.\")"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 135
+# File: demos/uicontrol.dem.sce, line: 134
 msgid "green"
 msgstr ""
 #
@@ -2180,11 +2190,11 @@ msgstr ""
 msgid "http://www.scilab.org/"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 183
+# File: demos/uicontrol.dem.sce, line: 182
 msgid "item1|item2|item3|item4"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 135
+# File: demos/uicontrol.dem.sce, line: 134
 msgid "red"
 msgstr ""
 #
@@ -2196,6 +2206,6 @@ msgstr ""
 msgid "unchecked"
 msgstr ""
 #
-# File: demos/uicontrol.dem.sce, line: 135
+# File: demos/uicontrol.dem.sce, line: 134
 msgid "yellow"
 msgstr ""

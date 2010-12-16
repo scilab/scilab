@@ -107,7 +107,7 @@ msgstr "%s: 各ハンドルを重複して指定することはできません.\
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function ''%s''."
-msgstr "%s: エラー : 入力関数 \"%s\" を評価できません。"
+msgstr "%s: エラー : 入力関数 ''%s'' を評価できません。"
 
 #
 # File: macros/plot.sci, line: 219
@@ -549,7 +549,7 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: サイズ %d または、%d 
 
 #, c-format
 msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
-msgstr "%s: 入力引数 %d の大きさが正しくありません: \"Axes\" ハンドルを1つ指定してください.\n"
+msgstr "%s: 入力引数 %d の大きさが正しくありません: ''Axes'' ハンドルを1つ指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_zoom_rect.c, line: 60
@@ -710,13 +710,13 @@ msgstr "%s: 入力引数 #%d で不正な型: ベクトルを想定します。\
 msgid ""
 "%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
 "expected."
-msgstr "%s: 入力引数 #%d で不正な型: \"構成\"のベクトル・ハンドルを想定します。"
+msgstr "%s: 入力引数 #%d で不正な型: ''構成''のベクトル・ハンドルを想定します。"
 
 #
 # File: macros/sca.sci, line: 20
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: \"軸\" ハンドルを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: ''軸'' ハンドルを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_xgetmouse.c, line: 88
@@ -855,7 +855,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
 # File: macros/sca.sci, line: 20
 #, c-format
 msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
-msgstr "%s: 入力引数 %d で不正な型: \"軸\" ハンドルを想定します。\n"
+msgstr "%s: 入力引数 %d で不正な型: ''軸'' ハンドルを想定します。\n"
 
 #
 # File: macros/ged.sci, line: 26
@@ -918,7 +918,7 @@ msgstr "%s: 入力引数 #%d で不正な値: '%s' または '%s' を想定し�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
-msgstr "%s: 入力引数 #%d で不正な値: \"クリア\"または、\"リセット\"を想定します。"
+msgstr "%s: 入力引数 #%d で不正な値: ''クリア''または、''リセット''を想定します。"
 
 #
 # File: macros/autumncolormap.sci, line: 18
@@ -1025,7 +1025,7 @@ msgstr "%s: 間違った値: ベクトルは単調ではありません。\n"
 # File: sci_gateway/c/sci_xstringb.c, line: 71
 #, c-format
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '%s' を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' を想定します。\n"
 
 #
 # File: macros/%h_save.sci, line: 38
@@ -1388,7 +1388,7 @@ msgstr "タイプ %d をもつ実体は破棄できません。\n"
 # File: macros/plot.sci, line: 219
 #, c-format
 msgid "Error %d at line %d of the function: ''%s''"
-msgstr "エラー %d 関数 で 行 %d のエラー: \"%s\""
+msgstr "エラー %d 関数 で 行 %d のエラー: ''%s''"
 
 #
 # File: src/c/HandleManagement.c, line: 658

@@ -111,7 +111,7 @@
     process).  The number of
     calls (and dimension of the result vectors) is given by the length of the
     longest vector of arguments.</para>
-
+    
     <para>Except for side effects, [R1[,…,Rm]]=parallel_run(A1[,…,Ak],
     'f'[,types][,dims][,C]) is equivalent to the Scilab pseudo code:</para>
 
@@ -127,6 +127,8 @@ end; ]]></programlisting>
   </refsection>
  <refsection>
     <title>Limitations</title>
+
+    <para>In this current version of Scilab, <literal>parallel_run</literal> uses only one core on Windows platforms.</para>
 
     <para>In order to provide the most efficient implementation possible, the least that parallel_run can do is to avoid imposing an overhead over an explicit loop. Unfortunately, this can only be achieved on some data structures.
 For matrices of scalar, extracting a single column to pass as argument to the function can be done very efficiently.

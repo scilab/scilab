@@ -84,7 +84,7 @@ function [alreadyran,%cpr] = do_terminate(scs_m,%cpr)
               break;
             end
           end
-          spec_err='The hilited '+spec_err+' returns the error :';
+          spec_err='The highlighted '+spec_err+' returns the error :';
           //**
           scf(curwin)
           //** call bad_connection

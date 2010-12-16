@@ -145,7 +145,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr ""
-"%s: falscher Wert für %d Eingangsargument: '%s', '%s', %d oder %d erwartet.\n"
+"%s: falscher Wert für %d Eingangsargument: ''%s'', ''%s'', %d oder %d erwartet.\n"
 
 #, c-format
 msgid ""
@@ -171,13 +171,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument '%d: '%s', '%s', %d oder %d "
+"%s: falscher Wert für Eingangsargument '%d: ''%s'', ''%s'', %d oder %d "
 "erwartet.\n"
 
 #, c-format
@@ -185,7 +185,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
 "expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s', %d oder %d "
+"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'', %d oder %d "
 "erwartet.\n"
 
 #, c-format
@@ -193,14 +193,14 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
 "number expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s' oder eine "
+"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'' oder eine "
 "positive Zahl erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s', %d oder %d.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'', %d oder %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
@@ -239,7 +239,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument: '%s', '%s', %d oder %d erwartet.\n"
+"%s: falscher Wert für Eingangsargument: ''%s'', ''%s'', %d oder %d erwartet.\n"
 
 #, c-format
 msgid ""

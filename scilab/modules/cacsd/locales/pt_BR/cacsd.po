@@ -322,7 +322,7 @@ msgstr "%s: o sistema fornecido não possui polos nem zeros.\n"
 
 #, c-format
 msgid "%s: Undefined type ''%s''.\n"
-msgstr "%s: o tipo \"%s\" é indefinido.\n"
+msgstr "%s: o tipo ''%s'' é indefinido.\n"
 
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"

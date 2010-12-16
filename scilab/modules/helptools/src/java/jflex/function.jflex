@@ -81,11 +81,11 @@ amp = "&"
 				 }
 
   {dquote}                       {
-				   htmlBuffer.append("&quot;");
+				   htmlBuffer.append("&#0034;");
                                  }
      
   {quote}                        {
-				   htmlBuffer.append("&apos;");
+				   htmlBuffer.append("&#0039;");
                                  }
 
   {lt}                           {

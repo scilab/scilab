@@ -24,8 +24,8 @@ static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{sci_buildDoc,"buildDoc"},
-	{sci_buildDocv2,"buildDocv2"}
+	{NULL, ""}, // buildDoc
+	{NULL, ""} // buildDocv2
 };
 /*--------------------------------------------------------------------------*/
 int gw_helptools(void)
@@ -39,7 +39,7 @@ int gw_helptools(void)
 		return 0;
 	}
 
-	if (!loadedDep) 
+	if (!loadedDep)
 	{
 		loadOnUseClassPath("documentationGeneration");
 		loadedDep=TRUE;

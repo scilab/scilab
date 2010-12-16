@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -267,7 +267,6 @@
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
-				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
@@ -360,7 +359,6 @@
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
-				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
@@ -407,6 +405,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\c\getLcidString.h"
+				>
+			</File>
+			<File
 				RelativePath=".\c\getLocaleInfo_Windows.h"
 				>
 			</File>
@@ -420,6 +422,10 @@
 			</File>
 			<File
 				RelativePath=".\c\LanguagePreferences_Windows.h"
+				>
+			</File>
+			<File
+				RelativePath=".\c\LocaleNameToLCID_Windows.h"
 				>
 			</File>
 			<File
@@ -484,6 +490,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\c\getLcidString.c"
+				>
+			</File>
+			<File
 				RelativePath=".\c\getLocaleInfo_Windows.c"
 				>
 			</File>
@@ -500,7 +510,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\localization.rc"
+				RelativePath=".\c\LocaleNameToLCID_Windows.c"
+				>
+			</File>
+			<File
+				RelativePath=".\jni\LocaleToLCID_wrap.c"
 				>
 			</File>
 			<File

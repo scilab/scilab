@@ -154,13 +154,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se "
-"\"errcatch\".\n"
+"'errcatch'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"m\" ou "
-"\"n\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se 'm' ou "
+"'n'.\n"
 
 #, c-format
 msgid ""

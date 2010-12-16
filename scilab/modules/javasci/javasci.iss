@@ -40,6 +40,8 @@ Source: modules\{#JAVASCI}\macros\cleanmacros.bat; DestDir: {app}\modules\{#JAVA
 ;
 Source: modules\{#JAVASCI}\src\java\javasci\*.*; DestDir: {app}\modules\{#JAVASCI}\src\java\javasci; Components: {#COMPN_JAVASCI}
 ;
+Source: modules\{#JAVASCI}\javadoc\*.*; DestDir: {app}\modules\{#JAVASCI}\javadoc; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
+;
 Source: modules\{#JAVASCI}\examples\*.*; DestDir: {app}\modules\{#JAVASCI}\examples; Flags: recursesubdirs; Components: {#COMPN_JAVASCI}
 ;
 Source: modules\{#JAVASCI}\tests\*.*; DestDir: {app}\modules\{#JAVASCI}\tests; Flags: recursesubdirs; Components: {#COMPN_JAVASCI} and {#COMPN_TESTS}

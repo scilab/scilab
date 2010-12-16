@@ -26,6 +26,6 @@
   <refsection>
     <title>Description</title>
     <para>
-    Returns <literal>%t</literal> if Scilab as been  been called by TeXmacs</para>
+    Returns <literal>%t</literal> if Scilab has been called by TeXmacs</para>
   </refsection>
 </refentry>

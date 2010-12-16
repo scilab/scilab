@@ -9,6 +9,9 @@
 import javasci.Scilab;
 import javasci.SciStringArray;
 
+/**
+ * @deprecated
+ */
 class Example5 {
 
     public static void main(String[] args) 

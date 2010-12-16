@@ -134,28 +134,28 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 
 
 			switch (precision) {
-				case sci_integer8:
-				case sci_uinteger8:
+				case sci_int8:
+				case sci_uint8:
 					final byte[][] data8 = new byte[height][width];
 					fillData(node, data8);
-					obj.setData(data8, precision == ScilabIntegerTypeEnum.sci_uinteger8);
+					obj.setData(data8, precision == ScilabIntegerTypeEnum.sci_uint8);
 					break;
-				case sci_integer16:
-				case sci_uinteger16:
+				case sci_int16:
+				case sci_uint16:
 					final short[][] data16 = new short[height][width];
 					fillData(node, data16);
-					obj.setData(data16, precision == ScilabIntegerTypeEnum.sci_uinteger16);
+					obj.setData(data16, precision == ScilabIntegerTypeEnum.sci_uint16);
 					break;
-				case sci_integer32:
-				case sci_uinteger32:
+				case sci_int32:
+				case sci_uint32:
 					final int[][] data32 = new int[height][width];
 					fillData(node, data32);
-					obj.setData(data32, precision == ScilabIntegerTypeEnum.sci_uinteger32);
+					obj.setData(data32, precision == ScilabIntegerTypeEnum.sci_uint32);
 					break;
 				default:
 					final long[][] data64 = new long[height][width];
 					fillData(node, data64);
-					obj.setData(data64, precision == ScilabIntegerTypeEnum.sci_uinteger64);
+					obj.setData(data64, precision == ScilabIntegerTypeEnum.sci_uint64);
 					break;
 			}
 
@@ -273,7 +273,7 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 	 * Fill the data from the node.
 	 *
 	 * @param node
-	 *			the ScilabInteger node
+	 *			the ScilabIntegern node
 	 * @param data
 	 *			the allocated data
 	 * @throws UnrecognizeFormatException

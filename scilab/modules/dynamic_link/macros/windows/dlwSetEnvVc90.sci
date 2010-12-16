@@ -22,6 +22,11 @@ function bOK = dlwSetEnvVc90(msCompiler, bWin64)
     return
   end
 
+  // MS compiler path is wrong
+  if MSVSDir == [] then
+    return
+  end
+
   IsExpress = (msCompiler == 'msvc100express');
 
   if ~setenv('VS90COMNTOOLS', MSVSDir + '\Common7\Tools\') then

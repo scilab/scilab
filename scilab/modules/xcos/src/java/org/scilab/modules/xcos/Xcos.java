@@ -287,12 +287,14 @@ public final class Xcos {
 			final XcosTab tab = new XcosTab(diag);
 
 			if (filename != null) {
+				// wait the end of the load before displaying the tab.
 				diag.openDiagramFromFile(filename);
+			} else {
+				// empty tab, display it
+				tab.setVisible(true);
 			}
 
 			diagrams.add(diag);
-			tab.setVisible(true);
-
 		} else {
 
 			/*

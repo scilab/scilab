@@ -1,3 +1,5 @@
+Note that this documentation is related to Javasci v1. Please use Javasci v2.
+
 Execute scilab :
 --> cd SCI/modules/Javasci/examples/ihm
 --> exec('builder.sce');

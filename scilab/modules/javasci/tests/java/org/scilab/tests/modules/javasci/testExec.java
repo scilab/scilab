@@ -25,28 +25,28 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.types.ScilabDouble;
 
 public class testExec {
-	private Scilab sci;
+    private Scilab sci;
 
-	/* 
-	 * This method will be called for each test.
-	 * with @AfterMethod, this ensures that all the time the engine is closed
-	 * especially in case of error.
-	 * Otherwise, the engine might be still running and all subsequent tests
-	 * would fail.
-	 */ 
-	@BeforeMethod
-	public void open() throws NullPointerException, JavasciException {
-		sci = new Scilab();
+    /* 
+     * This method will be called for each test.
+     * with @AfterMethod, this ensures that all the time the engine is closed
+     * especially in case of error.
+     * Otherwise, the engine might be still running and all subsequent tests
+     * would fail.
+     */ 
+    @BeforeMethod
+    public void open() throws NullPointerException, JavasciException {
+        sci = new Scilab();
         assert sci.open() == true;
-	}
+    }
 
-	@Test(sequential = true)
-		public void execAndReadTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true)
+    public void execAndReadTest() throws NullPointerException, JavasciException {
 
         /* Scalar test */
         assert sci.exec("a = 1+1") == true;
         ScilabType a = sci.get("a");
-		double[][] aReal = ((ScilabDouble)a).getRealPart();
+        double[][] aReal = ((ScilabDouble)a).getRealPart();
 
         assert a.getHeight() == 1;
         assert a.getWidth() == 1;
@@ -71,26 +71,26 @@ public class testExec {
 
         double sum = 0;
         /* Compute ourself the sum of all matrices elements */
-		for (int i=0; i < c.getHeight(); i++) {
-			for (int j=0; j < c.getWidth(); j++) {
+        for (int i=0; i < c.getHeight(); i++) {
+            for (int j=0; j < c.getWidth(); j++) {
                 sum += ((ScilabDouble)c).getRealPart()[i][j];
-			}
-		}
+            }
+        }
         ScilabType sumMatrix = sci.get("sumMatrix");
         /* Compare if they match */
         assert ((ScilabDouble)sumMatrix).getRealPart()[0][0] == sum;
-sci.exec("b = matrix(1:100,10,10)") ;
-ScilabType b2 = sci.get("b");
-b2.getHeight(); // 10 
-b2.getWidth(); // 10
-ScilabDouble b3 = (ScilabDouble)sci.get("b");
-assert b3.equals(b2);
+        sci.exec("b = matrix(1:100,10,10)") ;
+        ScilabType b2 = sci.get("b");
+        b2.getHeight(); // 10 
+        b2.getWidth(); // 10
+        ScilabDouble b3 = (ScilabDouble)sci.get("b");
+        assert b3.equals(b2);
     }
 
 
-	@Test(sequential = true)
+    @Test(sequential = true)
     public void execFromFileTest() throws NullPointerException, JavasciException {
-		sci.close();
+        sci.close();
 
         try {
             // Create temp file.
@@ -115,29 +115,29 @@ assert b3.equals(b2);
 
     @Test(sequential = true, expectedExceptions = FileNotFoundException.class)
     public void execFromNonExistingFileTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
-		sci.close();
+        sci.close();
 
-		File nonExistingFile = new File("/wrong/path/file");
+        File nonExistingFile = new File("/wrong/path/file");
 
-		sci.open(nonExistingFile);
-	}
+        sci.open(nonExistingFile);
+    }
 
-	@Test(sequential = true)
-	public void execExecstrTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
-		sci.exec("execstr('toto = 111')");
+    @Test(sequential = true)
+    public void execExecstrTest() throws NullPointerException, InitializationException, FileNotFoundException, JavasciException {
+        sci.exec("execstr('toto = 111')");
 
-		ScilabType a = sci.get("toto");
-		double[][] aReal = ((ScilabDouble)a).getRealPart();
-		
-		assert ((ScilabDouble)a).getRealPart()[0][0] == 111.0;
-	}
+        ScilabType a = sci.get("toto");
+        double[][] aReal = ((ScilabDouble)a).getRealPart();
+        
+        assert ((ScilabDouble)a).getRealPart()[0][0] == 111.0;
+    }
 
-	/**
-	 * See #open()
-	 */
-	@AfterMethod
-	public void close() {
-		sci.close();
-		
-	}
+    /**
+     * See #open()
+     */
+    @AfterMethod
+    public void close() {
+        sci.close();
+        
+    }
 }

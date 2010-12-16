@@ -216,6 +216,7 @@ static bool import_data(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAdd
 		}
 	default :
 		{
+            Scierror(999,_("%s: Invalid HDF5 Scilab format.\n"), "import_from_hdf5");
 #ifdef PRINT_DEBUG
             char pstMsg[512];
             sprintf(pstMsg, "Unknown type : %d", iVarType);

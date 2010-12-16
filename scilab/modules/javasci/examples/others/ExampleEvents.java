@@ -8,6 +8,9 @@
 
 import javasci.Scilab; 
 
+/**
+ * @deprecated
+ */
 class ExampleEvents
 {
   

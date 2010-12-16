@@ -15,4 +15,17 @@
     <para>
   </para>
   </refsection>
+  <refsection>
+    <title>Example</title>
+    <programlisting role="example"><![CDATA[ 
+a=1;
+if a==1 then
+    disp("a equals 1")
+elseif a==2 then
+    disp("a equals 2")
+else
+    disp("Case not handle")
+end
+     ]]></programlisting>
+  </refsection>
 </refentry>

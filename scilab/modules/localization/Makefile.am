@@ -11,10 +11,12 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
+src/c/getLcidString.c \
 src/c/charEncoding.c
 
 if NEED_JAVA
-LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c
+LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c \
+src/jni/LocaleToLCID_wrap.c
 endif
 
 if IS_MACOSX
@@ -32,7 +34,7 @@ GATEWAY_C_SOURCES = \
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/localization_gw.cpp \
 	sci_gateway/cpp/sci_gettext.cpp
-	
+
 
 libscilocalization_la_CFLAGS=  	\
 	$(JAVA_JNI_INCLUDE) \
@@ -44,7 +46,7 @@ libscilocalization_la_CFLAGS=  	\
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/operations/includes \
-    	-I$(top_srcdir)/modules/system_env/includes
+	-I$(top_srcdir)/modules/system_env/includes
 
 libscilocalization_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
@@ -102,7 +104,8 @@ USEANT=1
 endif
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Messages.i
+SWIG_WRAPPERS = src/jni/Messages.i \
+src/jni/LocaleToLCID.i
 
 if SWIG
 BUILT_SOURCES=swig

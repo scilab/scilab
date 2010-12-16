@@ -26,13 +26,13 @@
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(showstack)(); /* used in error 115 */
-extern int C2F(prntid)(); /* to print variables on stack */
+                         extern int C2F(prntid)(); /* to print variables on stack */
 /*--------------------------------------------------------------------------*/
-static void strip_blank(char *source);
-static void displayAndStoreError(const char *msg,...);
-static void resetLastError(void);
-static char *getConvertedNameFromStack(int cvnametype);
-static char *defaultStringError(void);
+                                               static void strip_blank(char *source);
+                                               static void displayAndStoreError(const char *msg,...);
+                                               static void resetLastError(void);
+                                               static char *getConvertedNameFromStack(int cvnametype);
+                                               static char *defaultStringError(void);
 /*--------------------------------------------------------------------------*/
 #define EMPTY_BUFFER "00000000000000000000000"
 /*--------------------------------------------------------------------------*/
@@ -40,14 +40,14 @@ static char *defaultStringError(void);
 #define vsnprintf _vsnprintf
 #endif
 /*--------------------------------------------------------------------------*/
-typedef enum {
-    CVNAME_READING_TYPE_1 = 0,
-    CVNAME_READING_TYPE_2 = 1,
-    CVNAME_READING_TYPE_3 = 2,
-    CVNAME_READING_TYPE_4 = 3,
-    CVNAME_READING_TYPE_5 = 4,
-    CVNAME_READING_TYPE_6 = 5,
-} CVNAME_TYPE;
+                                               typedef enum {
+                                                   CVNAME_READING_TYPE_1 = 0,
+                                                   CVNAME_READING_TYPE_2 = 1,
+                                                   CVNAME_READING_TYPE_3 = 2,
+                                                   CVNAME_READING_TYPE_4 = 3,
+                                                   CVNAME_READING_TYPE_5 = 4,
+                                                   CVNAME_READING_TYPE_6 = 5,
+                                               } CVNAME_TYPE;
 /*--------------------------------------------------------------------------*/
 int C2F(errmsg)(int *n,int *errtyp)
 {
@@ -1602,51 +1602,51 @@ static char *getConvertedNameFromStack(int cvnametype)
     switch (cvnametype)
     {
     case CVNAME_READING_TYPE_1 :
-        {
-            C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
-            strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
-            local_variable_buffer[nlgh-1] = '\0';
-        }
-        break;
+    {
+        C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
+        strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
+        local_variable_buffer[nlgh-1] = '\0';
+    }
+    break;
 
     case CVNAME_READING_TYPE_2 :
-        {
-            C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], local_variable_buffer, &one, nlgh);
-            local_variable_buffer[nlgh] = '\0';
-        }
-        break;
+    {
+        C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], local_variable_buffer, &one, nlgh);
+        local_variable_buffer[nlgh] = '\0';
+    }
+    break;
 
     case CVNAME_READING_TYPE_3 :
-        {
-            C2F(cvname)(&C2F(recu).ids[C2F(recu).pt * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
-            strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
-            local_variable_buffer[nlgh-1] = '\0';
-        }
-        break;
+    {
+        C2F(cvname)(&C2F(recu).ids[C2F(recu).pt * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
+        strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
+        local_variable_buffer[nlgh-1] = '\0';
+    }
+    break;
 
     case CVNAME_READING_TYPE_4 :
-        {
+    {
 #define SHIFT_CHAR 3
-            C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf + SHIFT_CHAR, &one, nlgh+1);
-            strncpy(local_variable_buffer, C2F(cha1).buf+SHIFT_CHAR, nlgh);
-            local_variable_buffer[nlgh] = '\0';
-        }
-        break;
+        C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf + SHIFT_CHAR, &one, nlgh+1);
+        strncpy(local_variable_buffer, C2F(cha1).buf+SHIFT_CHAR, nlgh);
+        local_variable_buffer[nlgh] = '\0';
+    }
+    break;
 
     case CVNAME_READING_TYPE_5 :
-        {
-            strncpy(local_variable_buffer, C2F(cha1).buf,bsiz);
-            local_variable_buffer[bsiz-1] = '\0';
-        }
-        break;
+    {
+        strncpy(local_variable_buffer, C2F(cha1).buf,bsiz);
+        local_variable_buffer[bsiz-1] = '\0';
+    }
+    break;
 
     case CVNAME_READING_TYPE_6 :
-        {
-            C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, nlgh+1);
-            strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
-            local_variable_buffer[nlgh-1] = '\0';
-        }
-        break;
+    {
+        C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, nlgh+1);
+        strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
+        local_variable_buffer[nlgh-1] = '\0';
+    }
+    break;
 
     default:
         strcpy(local_variable_buffer,_("\"unknown data\""));

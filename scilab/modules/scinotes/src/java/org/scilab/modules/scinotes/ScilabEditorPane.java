@@ -50,6 +50,7 @@ import javax.swing.event.CaretListener;
 
 import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.scinotes.actions.CopyAsHTMLAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
@@ -227,15 +228,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             });
 
         addKeyListener(this);
+        setTransferHandler(new CopyAsHTMLAction.HTMLTransferHandler());
+    }
+
+    /**
+     * @return the lexer
+     */
+    public ScilabLexer getLexer() {
+        return lexer;
     }
 
     /**
      * {@inheritDoc}
-     * When no split, this method return true and the consequence is
+     * When no split and in wrapped view , this method return true and the consequence is
      * that there is no horizontal scrollbar.
      */
     public boolean getScrollableTracksViewportWidth() {
-        return split == null;
+        return ((ScilabDocument) getDocument()).getView() instanceof ScilabView && split == null;
     }
 
     public boolean getOverwriteMode() {
@@ -470,7 +479,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         pane.suppressCom = suppressCom;
         pane.setName(getName());
         pane.setShortName(getShortName());
-        pane.setTitle(getTitle());
+        pane.setTitle(getTitle().substring(0, getTitle().lastIndexOf(TIRET)));
         pane.setEditable(isEditable());
     }
 
@@ -968,7 +977,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * Implements mouseEntered in MouseListener
      * @param e event
      */
-    public void mouseEntered(MouseEvent e) { }
+    public void mouseEntered(MouseEvent e) {
+        this.mousePoint = e.getPoint();
+    }
 
     /**
      * Implements mouseExited in MouseListener

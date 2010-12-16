@@ -39,6 +39,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
     private Map<String, String> mapId = new LinkedHashMap();
     private Map<String, String> toc = new LinkedHashMap();
     private Map<String, TreeId> mapTreeId = new HashMap();
+    private Map<String, String> mapIdDeclaringFile = new HashMap();
     private TreeId tree = new TreeId(null, "root");
 
     private TreeId currentLeaf = tree;
@@ -59,8 +60,9 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
      * @param in the input file path
      */
     public HTMLDocbookLinkResolver(String in) throws IOException, SAXException {
-    	this.in = new File(in);
+        this.in = new File(in);
         resolvLinks();
+        mapIdDeclaringFile = null;
     }
 
     /**
@@ -138,6 +140,12 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             }
             current = id + ".html";
             lastId = id;
+            if (mapIdDeclaringFile.containsKey(id)) {
+                String prev = mapIdDeclaringFile.get(id);
+                throw new SAXException("The id " + id + " in file " + currentFileName + " was previously declared in " + prev);
+            } else {
+                mapIdDeclaringFile.put(id, currentFileName);
+            }
             mapId.put(id, current);
             waitForTitle = localName.charAt(0) != 'r';
             waitForRefname = !waitForTitle;
@@ -242,12 +250,12 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
         if (currentFileName != null) {
             str = currentFileName;
         } else {
-        	try {
-				str = in.getCanonicalPath();
-			} catch (IOException e) {
-				e.printStackTrace();
-				str = null;
-			}
+                try {
+                    str = in.getCanonicalPath();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    str = null;
+                }
         }
 
         return "Refentry without id attributes in file " + str + " at line " + locator.getLineNumber();

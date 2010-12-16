@@ -9,6 +9,9 @@
 import javasci.Scilab; 
 import javasci.SciBoolean; 
 
+/**
+ * @deprecated
+ */
 class Example12 {
 
     public static void main(String[] args) {

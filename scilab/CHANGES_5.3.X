@@ -1,5 +1,126 @@
-            Changes between version 5.3.0-beta-4 and 5.3.0 of Scilab
+            Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
+
+
+SciNotes:
+=========
+
+* bug 8465 fixed - Under GNU/Linux, it was not possible to paste with the
+                   middle click.
+
+
+Xcos:
+=====
+
+* bug 8348 fixed - Sometimes when openning the parameters of a block, its ports
+                   changed their index (and position).
+
+* bug 8407 fixed - The blocks was always resized after a parameters edition.
+
+* bug 8441 fixed - "xcos_block" abstract block were not removed on the 
+                   compilation.
+
+* bug 8483 fixed - Multiplying a scalar and vector using the MATMUL block did not
+                   work.
+
+* bug 8540 fixed - Fix a typo on the "highligthed" term.
+
+* bug 8556 fixed - Creating a split block from a link did not work.
+
+* bug 8569 fixed - Deleting a link with a split-block did not reconstruct any
+                   valid link.
+
+
+Bug Fixes:
+==========
+
+* bug 4673 fixed - An example of "addinter" function call was added.
+
+* bug 4821 fixed - help file 'man' was obsolete.
+
+* bug 5686 fixed - Complex number manipulation could crash Scilab.
+
+* bug 6768 fixed - input did not return good value when RETURN was pressed
+                   on Windows XP.
+* bug 7694 fixed - There were no key shortcuts in the command history browser.
+
+* bug 7695 fixed - Only the first selected line was deleted in command history
+                   browser.
+
+* bug 7714 fixed - diag, triu, tril applyed to rational matrices  changed
+                   the formal variable name
+
+* bug 7727 fixed - The help page of sp2adj was not correct.
+                   Improved the help page of adj2sp.
+                   Added unit tests for sp2adj and adj2sp.
+                   Improved implementation by checking the input arguments.
+
+* bug 7806 fixed - [a, b] = dos("git 1>&2") returned a wrong error.
+
+* bug 7849 fixed - eqfir / remez functions crashed under MacOSX due to
+                   a lapack bug on slamch function.
+
+* bug 7900 fixed - inserting a rational in a rational hymermatrix  generated
+                   invalid rationals entries (with zero denominators)
+
+* bug 8091 fixed - Scilab was unable to find fortran compiler under MacOSX.
+
+* bug 8175 fixed - roots function did not converge under MacOSX due to
+                   a lapack bug on slamch function.
+
+* bug 8254 fixed - The nearfloat function did not work properly for near
+                   denormalized numbers.
+
+* bug 8279 fixed - error(144) returned a unexpected message.
+
+* bug 8390 fixed - a "Warning : redefining function: mputl" displayed if you
+                   did not install fftw on Windows.
+
+* bug 8412 fixed - find returned incorrect values with big vector.
+
+* bug 8448 fixed - 'whereis' function with a string as input argument did not work
+                   with ATOMS functions.
+
+* bug 8459 fixed - strsplit failed when second input argument was a "/"
+
+* bug 8462 fixed - bvodeS crashed on Windows and did not return a error.
+
+* bug 8468 fixed - size with 2 input arguments did not work for hypermatrices.
+
+* bug 8475 fixed - It was impossible to get the data of an entity through
+                   the graphic editor.
+
+* bug 8481 fixed - Scilab crashed when display a rational containing a complex.
+
+* bug 8505 fixed - help was not generated on Windows, if there was a path name
+                   with some spaces.
+
+* bug 8528 fixed - length returned a wrong size for malformed characters.
+
+* bug 8531 fixed - "edit" function failed to open a defined macro loaded on stack.
+
+* bug 8532 fixed - size of input arguments of read_csv was not verified.
+
+* bug 8540 fixed - Fix a typo in Xcos.
+
+* bug 8582 fixed - Under Linux & Mac OS the waitbar window was too small and we
+                   could not see the bar inside it.
+
+* bug 8587 fixed - readNamedMatrixOfDouble (readCommonNamedMatrixOfDouble)
+                   returned wrong values.
+
+* bug 8598 fixed - Fix a typo in the french help page of "return".
+
+* bug 8611 fixed - Path of few images in documentation was bad.
+
+
+            Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
+            ===============================================================
+
+Due to an important change from Apple in the Java environment, a new beta
+release of Scilab has been decided. This will allow further testing for
+this architecture.
+
 
 Documentation:
 ==============
@@ -10,7 +131,49 @@ Massive improvement of the documentation system:
 * Colorisation of the Scilab code.
 * In the examples, functions can be clicked to see their help pages.
 * Improved maintainability.
-* Faster build process (30 to 60 minutes => less than 30 seconds)
+* Faster build process (30 to 60 minutes => less than 30 seconds).
+
+In the meantime, a work of categorisation has been started in order to
+improve the Scilab documentation. More updates will follow in the upcoming
+versions of Scilab.
+
+* Documentation of trigonometry functions moved in a dedicated documentation
+  section.
+
+* Documentation of profiling functions moved in a dedicated documentation
+  section.
+
+* Documentation of color management in graphics functions moved in a dedicated
+  section. See bug 7048.
+
+* Documentation of floating point functions moved in a dedicated section.
+  See bug 7052.
+
+* Documentation of Integer representation functions moved in a dedicated
+  section. See bug 8268.
+
+* Documentation of adj2sp was not in the sparse help section. See bug 8269.
+
+* Documentation of discrete mathematics functions moved in a dedicated section.
+  See bug 8270.
+
+* bugs 8357, 8358 fixed - There was an encoding problem under Windows.
+
+* bug 8367 fixed - In synopsis function, &apos were displayed rather than '.
+
+
+Javasci:
+========
+
+A new version of the Java => Scilab API called Javasci v2 is now included into
+the Scilab distribution.
+This version fixes most the issues and limitations of the previous version.
+This API is automatically fully tested through unitary tests and code coverage.
+Please, note that previous version of Javasci remains available and shipped
+into the Scilab distribution.
+Advanced documentation and examples will be provided in the stable release of
+Scilab 5.3.0.
+
 
 License:
 ========
@@ -18,31 +181,13 @@ License:
 The license of all demos and examples have been changed to the 3-clause BSD
 license. The domain public license was not valid in some countries.
 
+
 Security issue:
 ===============
 
 * Fix a (minor) security issue. CVE-2010-3378
 See: http://security-tracker.debian.org/tracker/CVE-2010-3378
 
-Documentation:
-==============
-
-* Documentation of trigonometry functions moved in a dedicated documentation
-  section.
-
-* bug 7048 fixed - Documentation of color managements in graphics functions
-                   moved in a dedicated section.
-
-* bug 7052 fixed - Documentation of floating point functions moved in
-                   a dedicated section.
-
-* bug 8268 fixed - Documentation of Integer representation functions moved in
-                   a dedicated section.
-
-* bug 8269 fixed - Documentation of adj2sp was not in the sparse help section.
-
-* bug 8270 fixed - Documentation of discrete mathematics functions moved in
-                   a dedicated section.
 
 Known incompatibilities:
 ========================
@@ -51,8 +196,13 @@ Known incompatibilities:
   uimenus are no more (un)checked on mouse click. Moreover, they can now have
   a callback.
 
+* The graph of the nyquist function (CACSD module) has been symetrized.
+
+
 Xcos:
 =====
+
+* Loop link on a block produced some error when openning it.
 
 * bug 8081 fixed - The context was not checked before being set.
 
@@ -73,10 +223,23 @@ Xcos:
 
 * bug 8326 fixed - Region to superblock action did not work with OUT_f blocks.
 
+* bug 8331 fixed - Block.doc was not cleared on superblock diagrams.
+
+* bug 8397 fixed - the simulation was blocked on a Modelica translator error.
+
+
+* bug 8400 fixed - start demos from Xcos menu (? --> Xcos demos) did not work.
+
+
+* bug 8417 fixed - An h5 diagram open a new diagram before the end of the
+                   decoding.
+
+
 Graphic export:
 ===============
 
-* Decrease the amount of messages when exporting a graphic.
+* Decrease the amount of feedbacks when exporting a graphic.
+
 
 Graphics:
 =========
@@ -96,6 +259,21 @@ $..10^p$ exponents instead of the D+/-## console style display.
 * Finally, their positioning is still improved in order to avoid their mutual
 overlaying for big values.
 
+* bug 7110 fixed - When inserting a structure in a handle, the handle was
+  overwritten.
+
+* bug 7492 fixed - If its "data_mapping" property was set to "direct", the
+  Grayplot object's data seemed to be transposed when displayed.
+
+* bug 8168 fixed - Adding a datatip in a figure that mix surface and curve
+                   generated a zero divide error.
+
+
+Completion:
+===========
+
+* Add a completion on the fields name of a mlist or a tlist.
+
 
 SciNotes:
 =========
@@ -105,12 +283,12 @@ SciNotes:
 * Add a "Save file in..." menu which gives the possibility to save a file
   in favorite directories.
 
-* Add a completion on the fields name of a mlist or a tlist.
-
 * bug 4399 fixed - It was not possible to distinguish lines from inner functions
                    and from normal functions.
 
 * bugs 5321, 7760 fixed - It was not easy to configure the tabulation.
+
+* bug 7263 fixed - Scilab code could not be copy as HTML to keep the formatting.
 
 * bug 7762 fixed - A keyword was not fully helpable depending on the caret
                    position.
@@ -121,29 +299,47 @@ SciNotes:
 
 * bug 8135 fixed - An exception was thrown when restoring files on MacOS X.
 
+* bug 8166 fixed - All the checkboxes in SciNotes 'Preferences' menu were
+                   inefficient.
+
 * bug 8227 fixed - The commands evaluated with "Evaluate selection" were not
                    stored in history.
 
 * bug 8229 fixed - There was a problem of selection after an indentation.
 
-* bug 8230 fixed - Save As action did not propose the current file name as default.
+* bug 8230 fixed - Save As action did not propose the current file name as
+                   default.
+
+* bug 8267 fixed - The file encoding was not correctly detected and no default
+                   encoding was set.
 
 * bug 8277 fixed - Under Windows, exceptions were thrown when a key was hit on
                    a keyboard in chinese mode.
 
 * bug 8304 fixed - A Java exception was thrown on Exit menu.
 
-* bug 8309 fixed - Bad display of the line number in whereami mode with broken lines.
+* bug 8309 fixed - Bad display of the line number in whereami mode with broken
+                   lines.
+
+* bug 8359 fixed - An exception was thrown on Save As action.
+
+* bug 8368 fixed - Incremental search did not correctly highlight the pattern
+                   under Windows.
+
+* bug 8381 fixed - It was not logical to add favorite dirs only in "Open file
+                   in" action.
 
 Completion:
 ===========
 
 * Add completion on fields of mlist, tlist, struct and graphic handles in console.
 
+
 Compilation:
 ============
 
 * bug 7489 fixed - VPATH was failing on scicos_blocks generation headers.
+                   Note that the VPATH build system is not fully available.
 
 * bug 7606 fixed - Build option -Wold-style-cast removed for C++.
 
@@ -153,6 +349,12 @@ Compilation:
                    Java for Mac OS X 10.6 Update 3 and 10.5 Update 8 Release
                    Notes
 
+Dynamic link:
+=============
+
+* Intel Fortran Composer XE 2011 (12) support on Windows x86 and x64 platform.
+
+
 Bug Fixes:
 ==========
 
@@ -160,8 +362,8 @@ Bug Fixes:
 
 * bug 4738 fixed - The number of columns in the console was badly calculated.
 
-* bug 4827 fixed - The test_run function did not work properly with modules begining
-                   with a "n".
+* bug 4827 fixed - The test_run function did not properly work with modules
+                   begining with a "n".
 
 * bug 5486 fixed - It was not possible to precise the text of a link in
                    help_from_sci.
@@ -174,7 +376,7 @@ Bug Fixes:
 * bug 7566 fixed - The handling of immediate_drawing had been broken in zgrid by
                    bug 6395 fix in 5.3.0-beta-4 version
 
-* bug 7768 fixed - for cdfgam, the Scale parameter was, in fact, the Rate.
+* bug 7768 fixed - For cdfgam, the Scale parameter was, in fact, the Rate.
 
 * bug 7805 fixed - clear called inside an exec while in pause could
                    have unexpected results.
@@ -182,23 +384,25 @@ Bug Fixes:
 * bug 7970 fixed - The eager loading of openmp support library was crashing
                    on Linux with unsupported configuration for openmp.
 
-* bug 7997 fixed - Function getfreememory adapted for FreeBSD. Thanks to Rob
+* bug 7997 fixed - getfreememory function adapted for FreeBSD. Thanks to Rob
                    Farmer.
 
 * bug 8016 fixed - An error in a german translation gave an error message.
 
 * bug 8046 fixed - msprintf did not manage tabulation as format.
 
+* bug 8067 fixed - Nyquist unitary test failed due to a change of the nyquist
+                   function. The graph has been symetrized.
+
 * bug 8068 fixed - Figures were not all closed at the end of a demonstration.
 
-* bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in -nwni
-                   mode on Linux and MacOS X.
+* bug 8077 fixed - browsevar, scinotes, xcos functions were not disabled in
+                   scilab-cli / -nwni mode on Linux and MacOS X.
 
 * bug 8079 fixed - When the max number of variable available has been reached,
                    it was not possible to leave Scilab.
 
 * bug 8087 fixed - prettyprint did not handle %inf and %nan.
-
 
 * bug 8107 fixed - sum(a,1), cumsum(a,1), .. made Scilab 5.0.3-beta-4 crash
                    in some particular context.
@@ -208,21 +412,22 @@ Bug Fixes:
                    the msprintf function, which considers "\n" in file paths as
                    a new line insertion.
 
-* bug 8110 fixed - ATOMS: When removing a module, its main directory
-                   was not deleted even if it was empty.
+* bug 8110 fixed - ATOMS: When removing a module, its main directory was not
+                   deleted even if it was empty.
 
 * bug 8115 fixed - DisableInteractiveMode() (call_scilab) did not work.
 
-* bug 8122 fixed - help of write_csv said that it reads file and not that it writes.
+* bug 8122 fixed - help of write_csv said that it reads file and not that it
+                   wrotes.
 
 * bug 8124 fixed - Some translations were not up to date.
 
-* bug 8126 fixed - Some demos from the GUI modules where hanging.
+* bug 8126 fixed - Some demos from the GUI modules were hanging.
 
 * bug 8128 fixed - A warning was displayed on 'Save' action in a graphic window.
 
-* bug 8129 fixed - The error message was not clear in tlbx_builder_src if you did
-                   not have a compiler.
+* bug 8129 fixed - The error message was not cleared in tbx_builder_src if you
+                   did not have a compiler.
 
 * bug 8134 fixed - The font attributes (FontName, FontSize, FontWeight) were not
                    taken into account for "text" uicontrols.
@@ -232,48 +437,62 @@ Bug Fixes:
 
 * bug 8154 fixed - It was not possible to cancel a messagebox with ESC key.
 
-* bug 8160 fixed - The derivative function did not check for input
-                   argument #1, if it was a list.
+* bug 8160 fixed - The derivative function did not check for input argument #1,
+                   if it was a list.
 
 * bug 8164 fixed - Typo in the fileparts help page.
 
-* bug 8166 fixed - All the checkboxes in SciNotes 'Preferences' menu were
-                   inefficient.
+* bug 8170 fixed - Loading HDF5 files in non-Scilab format caused crash
+                   of application.
 
 * bug 8174 fixed - ss2tf produced bad results if applied to a complex
                    state space system.
 
-* bug 8177 fixed - format mode was modified by some macros and not restored.
+* bug 8177 fixed - Format mode was modified by some macros and not restored.
 
-* bug 8181 fixed - uicontrol did not handle color where composants are outside
+* bug 8181 fixed - uicontrol did not handle color where composants were outside
                    the range 0-255.
 
-* bug 8202 fixed - Typo in the the localization.
+* bug 8202 fixed - Typo in the localization.
 
 * bug 8206 fixed - isnum did not manage blanks.
 
 * bug 8208 fixed - Error in creating the temporary directory in function
                    createScilabTMPDIR.
 
-* bug 8218 fixed - file association with filename with accentued characters
+* bug 8218 fixed - File association with filename with accentued characters
                    did not work.
 
-* bug 8232 fixed - drag and drop of .scg files (on console) used "xload"
+* bug 8232 fixed - Drag and drop of .scg files (on console) used "xload"
                    and not "load".
 
 * bug 8240 fixed - Demo of polarplot improved (Thanks to Samuel Gougeon).
 
-* bug 8283 fixed - file graphics/help/en_US/datatips datatipLookfor.xml removed.
+* bug 8257, 8258 fixed - fscanfMat did not read matrix file not formated by
+                   fprintfMat.
+
+* bug 8283 fixed - File graphics/help/en_US/datatips datatipLookfor.xml removed.
                    datatipLookfor is an internal function that has not be used
                    directly.
 
+* bug 8294 fixed - A help page about "supported compilers" has been added.
+
 * bug 8296 fixed - size( M,3) crashed scilab 5.3.0-beta-4.
+
+* bug 8299 fixed - ilib_compile did not return enough feedback on Windows when
+                   compilation failed.
 
 * bug 8300 fixed - a(48400, 48400) = 0 crashed scilab.
 
 * bug 8318 fixed - help window was not brought up to front when already opened.
 
+* bug 8321 fixed - In some cases, configure_msvc failed and returned a wrong
+                   error message.
+
 * bug 8332 fixed - Some use of clipboard function crashed Scilab.
+
+* bug 8413 fixed - fscanfMat crashed when file included text lines at the
+                   beginning.
 
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
@@ -372,6 +591,8 @@ SciNotes:
 
 * bug 8061 fixed - An unwanted message box was displayed when an unsaved file
                    was executed.
+
+* bug 8085 fixed - It was not possible to disable the horizontal line wrapping.
 
 
 GUI creation:
@@ -2169,4 +2390,3 @@ Bug fixes:
 * bug 7278 fixed - strsplit did not work with some particular inputs.
 
 * bug 7312 fixed - isnum() diplayed warnings when using some unusual parameters.
-

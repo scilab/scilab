@@ -15,20 +15,22 @@
 
 extern "C"
 {
-/*--------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "api_scilab.h"
+#include "api_oldstack.h"
 #include "stack-c.h"
 #include "gw_helptools.h"
 #include "Scierror.h"
+#include "sci_path.h"
 #include "localization.h"
 #include "setgetlanguage.h"
-#include "sci_path.h"
 #include "getScilabJavaVM.h"
 #include "MALLOC.h"
 #ifdef _MSC_VER
 #include "ConvertSlash.h"
 #endif
-/*--------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------*/
 #define PATHTOCSS "/modules/helptools/css/javahelp.css"
 #define PATHTOBUILDDOC "/modules/helptools/build/doc/scilab_%s_help/"
 #define PATHTOMASTERXML "/modules/helptools/master_%s_help.xml"
@@ -45,8 +47,8 @@ extern "C"
         }
     }
 #endif
-/*--------------------------------------------------------------------------*/
-    int sci_buildDoc(char *fname,unsigned long l)
+    /*--------------------------------------------------------------------------*/
+    int sci_buildDoc(char *fname, int* _piKey)
     {
         static int l1 = 0,n1 = 0,m1 = 0;
         static int l2 = 0,n2 = 0,m2 = 0;
@@ -63,6 +65,9 @@ extern "C"
         std::string styleSheet; /* the CSS */
         //	std::string pathToGenerated;
         org_scilab_modules_helptools::BuildDocObject *doc = NULL;
+        SciErr sciErr;
+        int* piAddr = NULL;
+        int iRet    = 0;
 
         CheckRhs(0,4);
         CheckLhs(1,1);
@@ -75,15 +80,30 @@ extern "C"
         }
         else
         {
-            if (GetType(1) != sci_strings)
+            char* pstData = NULL;
+            sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+            if(sciErr.iErr)
             {
-                Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
+                printError(&sciErr, 0);
+                return 0;
+            }
+
+            if(!isStringType(_piKey, piAddr))
+            {
+                Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname,1);
                 return 0;
                 // Wrong type string
             }
 
-            GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-            exportFormat = cstk(l1);
+            iRet = getAllocatedSingleString(_piKey, piAddr, &pstData);
+            if(iRet)
+            {
+                freeAllocatedSingleString(pstData);
+                return iRet;
+            }
+            exportFormat = std::string(pstData);
+            freeAllocatedSingleString(pstData);
+
         }
 
         if ( Rhs < 3) /* Language not provided */
@@ -92,15 +112,37 @@ extern "C"
         }
         else
         {
-            GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-            if (m3*n3 == 0)
+            char* pstData = NULL;
+            sciErr = getVarAddressFromPosition(_piKey, 3, &piAddr);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+
+            if(!isStringType(_piKey, piAddr))
+            {
+                Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname,3);
+                return 0;
+                // Wrong type string
+            }
+
+            if(!isScalar(_piKey, piAddr))
             {
                 language = getlanguage();
             }
             else
             {
-                language = std::string(cstk(l3));
+                iRet = getAllocatedSingleString(_piKey, piAddr, &pstData);
+                if(iRet)
+                {
+                    freeAllocatedSingleString(pstData);
+                    return iRet;
+                }
+                language = std::string(pstData);
+                freeAllocatedSingleString(pstData);
             }
+
         }
 
         if (Rhs < 2)
@@ -111,29 +153,56 @@ extern "C"
         }
         else
         {
-            if (GetType(2) != sci_strings)
+            char* pstData = NULL;
+            sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr);
+            if(sciErr.iErr)
             {
-                // Wrong type string
-                Scierror(999,_("%s: Wrong for type for input argument #%d: String expected.\n"),fname,2);
+                printError(&sciErr, 0);
                 return 0;
             }
+            if(!isStringType(_piKey, piAddr))
+            {
+                Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname,2);
+                return 0;
+                // Wrong type string
+            }
 
-            GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-            masterXML = cstk(l2);
+
+            iRet = getAllocatedSingleString(_piKey, piAddr, &pstData);
+            if(iRet)
+            {
+                freeAllocatedSingleString(pstData);
+                return iRet;
+            }
+            masterXML = std::string(pstData);
+            freeAllocatedSingleString(pstData);
         }
 
         if (Rhs == 4)
         {
-            if (GetType(4) == sci_strings)
+            char* pstData = NULL;
+            sciErr = getVarAddressFromPosition(_piKey, 4, &piAddr);
+            if(sciErr.iErr)
             {
-                GetRhsVar(4,STRING_DATATYPE,&m4,&n4,&l4);
-                outputDirectory = std::string(cstk(l4))+std::string("/scilab_")+language+std::string("_help/");
+                printError(&sciErr, 0);
+                return 0;
             }
-            else
+            if(!isStringType(_piKey, piAddr))
             {
-                Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,4);
-                return FALSE;
+                Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname,4);
+                return 0;
+                // Wrong type string
             }
+
+            iRet = getAllocatedSingleString(_piKey, piAddr, &pstData);
+            if(iRet)
+            {
+                freeAllocatedSingleString(pstData);
+                return iRet;
+            }
+            outputDirectory = std::string(pstData)+std::string("/scilab_")+language+std::string("_help/");
+            freeAllocatedSingleString(pstData);
+
         }
         else /* Scilab help */
         {
@@ -161,8 +230,8 @@ extern "C"
 
                 doc->process((char *) masterXML.c_str(), (char *) styleSheet.c_str());
                 /*		Row_Output = 1;
-                        Col_Output = 1;
-                        CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_Output, &Col_Output, &pathToGenerated.c_str() );
+                Col_Output = 1;
+                CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_Output, &Col_Output, &pathToGenerated.c_str() );
                 */
 
             }
@@ -179,10 +248,13 @@ extern "C"
             return FALSE;
         }
 
-        if (doc != NULL) delete doc;
+        if (doc != NULL)
+        {
+            delete doc;
+        }
         LhsVar(1) = 0 ;
-        C2F(putlhsvar)();
+        PutLhsVar();
         return 0;
     }
-/*--------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------*/
 }

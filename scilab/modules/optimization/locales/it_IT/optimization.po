@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-16 12:13+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"PO-Revision-Date: 2010-10-06 14:02+0000\n"
+"Last-Translator: LoReNicolò <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,7 +165,7 @@ msgid ""
 "%s: No default options available: the function ''%s'' does not exist on the "
 "path."
 msgstr ""
-"%s: Non sono disponibili opzioni prestabilite: la funzione \"%s\" non esiste "
+"%s: Non sono disponibili opzioni prestabilite: la funzione ''%s'' non esiste "
 "nel percorso."
 
 #, c-format
@@ -383,32 +383,36 @@ msgid ""
 "%s: The restarteps option is expected to be a scalar, but current shape is "
 "%d x %d"
 msgstr ""
+"%s:L'opzione restartsteps dovrebbe essere uno scalare, ma la forma attuale è "
+"%d x %d"
 
 #, c-format
 msgid "%s: The restarteps option is expected to be positive"
-msgstr ""
+msgstr "%s:L'opzione restartsteps dovrebbe essere positiva"
 
 #, c-format
 msgid "%s: The restartstep vector is expected to be positive"
-msgstr ""
+msgstr "%s: Il vettore restartsteps dovrebbe essere positivo"
 
 #, c-format
 msgid ""
 "%s: The restartstep vector is expected to have %d x %d shape, but current "
 "shape is %d x %d"
 msgstr ""
+"%s: Il vettore restartsteps dovrebbe avere una forma %d x %d, ma quella "
+"attuale è %d x %d"
 
 #, c-format
 msgid ""
 "%s: The value of the ''OutputFcn'' option is neither a function nor a list."
 msgstr ""
-"%s: Il valore dell'opzione \"OutputFcn\" non è una funzione né una lista."
+"%s: Il valore dell'opzione ''OutputFcn'' non è una funzione né una lista."
 
 #, c-format
 msgid ""
 "%s: The value of the ''PlotFcns'' option is neither a function nor a list."
 msgstr ""
-"%s: Il valore dell'opzione \"PlotFcns\" non è una funzione né una lista."
+"%s: Il valore dell'opzione ''PlotFcns'' non è una funzione né una lista."
 
 #, c-format
 msgid ""
@@ -579,11 +583,11 @@ msgstr "%s: Il valore %s per l'opzione -simplex0method non è conosciuto"
 
 #, c-format
 msgid "%s: Unrecognized parameter name ''%s''."
-msgstr "%s: \"%s\" non è riconosciuto come nome per un parametro."
+msgstr "%s: ''%s'' non è riconosciuto come nome per un parametro."
 
 #, c-format
 msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
-msgstr "%s: Il valore \"%s\" per l'opzione \"Mostra\" non è riconosciuto."
+msgstr "%s: Il valore ''%s'' per l'opzione ''Mostra'' non è riconosciuto."
 
 #, c-format
 msgid "%s: Weighting matrix must be square.\n"

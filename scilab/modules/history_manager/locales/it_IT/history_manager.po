@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2009-11-04 16:25+0000\n"
+"PO-Revision-Date: 2010-10-27 17:15+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -41,8 +41,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"
 msgstr ""
-"%s L'argomento in ingresso #%d ha un valore sbagliato: deve essere \"%s\" o "
-"\"%s\".\n"
+"%s L'argomento in ingresso #%d ha un valore sbagliato: deve essere '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid ""
@@ -58,7 +58,7 @@ msgid "Aug"
 msgstr "Ago"
 
 msgid "Begin Session : "
-msgstr ""
+msgstr "Inizia una sessione: "
 
 msgid "Dec"
 msgstr "Dic"

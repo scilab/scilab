@@ -172,7 +172,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         this.parentWindow = parentWindow;
         this.uuid = UUID.randomUUID();
         numberOfUntitled = 0;
-        editorKit = new ScilabEditorKit();
+        editorKit = new ScilabEditorKit(!ConfigSciNotesManager.getHorizontalWrap());
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Position pos = ConfigSciNotesManager.getMainWindowPosition();
         window.setLocation(pos.getX(), pos.getY());
@@ -694,7 +694,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         File newSavedFile = new File(fileToSave);
 
-        if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
+        if (!SaveFile.doSave(textPaneAt, indexTab, newSavedFile, editorKit)) {
             return false;
         }
 
@@ -737,7 +737,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             return true;
         }
 
-        if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
+        if (!SaveFile.doSave(textPaneAt, indexTab, newSavedFile, editorKit)) {
             return false;
         }
 
@@ -841,7 +841,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 name += SCI_EXTENSION;
             }
         }
-        fileChooser.setSelectedFile(new File(name));
+
+        if (name != null) {
+            fileChooser.setSelectedFile(new File(name));
+        }
 
         int retval = fileChooser.showSaveDialog(this);
 
@@ -914,7 +917,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         File f = new File(filename);
         ScilabDocument styledDocument = (ScilabDocument) getTextPane().getDocument();
 
-        if (!SaveFile.doSave(getTextPane(), f, editorKit)) {
+        if (!SaveFile.doSave(getTextPane(), getTabPane().getSelectedIndex(), f, editorKit)) {
             return false;
         }
 
@@ -981,7 +984,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param pane the pane to init
      */
     public void initPane(ScilabEditorPane pane) {
-        initPane(pane, false);
+        initPane(pane, !ConfigSciNotesManager.getHorizontalWrap());
     }
 
     /**
@@ -1028,6 +1031,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void splitTab(boolean vertical) {
         ScilabEditorPane pane = getTextPane();
+        int state = pane.getXln().getState();
         ScilabEditorPane leftPane = new ScilabEditorPane(editor);
         ScilabEditorPane rightPane = new ScilabEditorPane(editor);
         NavigatorWindow.changePaneOnSplit(pane, leftPane);
@@ -1050,6 +1054,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
         leftPane.setSplitPane(split);
         rightPane.setSplitPane(split);
+        leftPane.getXln().setWhereamiLineNumbering(state);
+        rightPane.getXln().setWhereamiLineNumbering(state);
         tabPane.setComponentAt(tabPane.getSelectedIndex(), split);
         split.setLeftComponent(leftPane.getScrollPane());
         split.setRightComponent(rightPane.getScrollPane());
@@ -1139,7 +1145,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 newTitle.append(textPaneName);
             }
         }
-        getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newTitle.toString());
+        getTabPane().setTitleAt(getTabPane().getSelectedIndex(), newTitle.toString());
     }
 
     /**
@@ -1404,6 +1410,33 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
+     * Horizontal Wrap mode management
+     * @param b true to activate horizontal wrapping mode
+     */
+    public static void setHorizontalWrap(boolean b) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                if (sep.getOtherPaneInSplit() == null) {
+                    ScilabEditorPane pane = new ScilabEditorPane(editor);
+                    ed.initPane(pane, !b);
+                    sep.copyProps(pane);
+                    pane.setDocument(sep.getDocument());
+                    pane.setCaretPosition(sep.getCaretPosition());
+                    ed.tabPane.setComponentAt(i, pane.getScrollPane());
+                    ed.activateHelpOnTyping(pane);
+                    ed.initInputMap(pane);
+                    if (((ScilabDocument) sep.getDocument()).getBinary()) {
+                        pane.setBinary(true);
+                    }
+                    ed.getInfoBar().setText(pane.getInfoBarText());
+                }
+            }
+        }
+    }
+
+    /**
      * Enable the highlighted line in this editor
      * @param b boolean
      */
@@ -1622,25 +1655,12 @@ public class SciNotes extends SwingScilabTab implements Tab {
             styleDocument.disableUndoManager();
             theTextPane.setLastModified(f.lastModified());
 
-            FileInputStream fis = null;
-            InputStreamReader isr = null;
-            BufferedReader br = null;
-
             try {
                 styleDocument.setUpdater(false);
                 boolean indentMode = styleDocument.getAutoIndent();
                 styleDocument.setAutoIndent(false);
-                fis = new FileInputStream(f);
                 try {
-                    try {
-                        isr = new InputStreamReader(fis, styleDocument.getEncoding());
-                        br = new BufferedReader(isr);
-                        editorKit.read(br, styleDocument, 0);
-                    } catch (ChangedCharSetException e) {
-                        isr = new InputStreamReader(fis, e.getCharSetSpec());
-                        br = new BufferedReader(isr);
-                        editorKit.read(br, styleDocument, 0);
-                    }
+                    ((ScilabEditorKit) editorKit).read(this, f, styleDocument, 0);
                 } catch (BadLocationException e) {
                     e.printStackTrace();
                 }
@@ -1648,18 +1668,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 styleDocument.setUpdater(true);
             } catch (IOException ioex) {
                 ioex.printStackTrace();
-            } finally {
-                try {
-                    if (fis != null) {
-                        fis.close();
-                    }
-                    if (isr != null) {
-                        isr.close();
-                    }
-                    if (br != null) {
-                        br.close();
-                    }
-                } catch (IOException e) { }
             }
 
             theTextPane.setName(f.getAbsolutePath());

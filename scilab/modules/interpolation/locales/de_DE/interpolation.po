@@ -164,13 +164,13 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' oder '%s' "
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' oder ''%s'' "
 "erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder reelle Zahl erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder reelle Zahl erwartet.\n"
 
 #, c-format
 msgid ""

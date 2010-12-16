@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-09-13 10:40+0000\n"
+"PO-Revision-Date: 2010-10-12 21:16+0000\n"
 "Last-Translator: Andrea Amoroso <andrea.amoroso@alice.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,11 @@ msgstr ""
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr ""
-"%: Valore sbagliato per %s \"%c\": erano attesi \"%s\", \"%s\" e \"%s\".\n"
+"%: Valore sbagliato per %s '%c': erano attesi '%s', '%s' e '%s'.\n"
 
 #, c-format
 msgid "%s : '%s' must be set\n"
-msgstr "%s : \"%s\" deve essere impostato\n"
+msgstr "%s : '%s' deve essere impostato\n"
 
 #, c-format
 msgid "%s : Invalid entity %s\n"
@@ -39,7 +39,7 @@ msgstr ""
 
 #, c-format
 msgid "%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"
-msgstr "%s occorre cambiare FIRST, %s è \"%s\" e la dimensione %s è < %d.\n"
+msgstr "%s occorre cambiare FIRST, %s è '%s' e la dimensione %s è < %d.\n"
 
 #, c-format
 msgid "%s property only exists for %s surfaces.\n"
@@ -55,7 +55,7 @@ msgstr "%s deve essere un vettore di double.\n"
 
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
-msgstr "%s: il gestore \"%s\" non c'è o non esiste più.\n"
+msgstr "%s: il gestore '%s' non c'è o non esiste più.\n"
 
 #, c-format
 msgid ""
@@ -94,7 +94,7 @@ msgstr "%s: Non è possibile abilitare un gestore di eventi vuoto.\n"
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr ""
-"%s: Non è possibile leggere la proprietà \"%s\" per l'oggetto originario.\n"
+"%s: Non è possibile leggere la proprietà '%s' per l'oggetto originario.\n"
 
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
@@ -102,7 +102,7 @@ msgstr "%s: Ogni gestore non dovrebbe apparire due volte.\n"
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function ''%s''."
-msgstr "%s: Errore: non è possibile valutare la funzione in ingresso \"%s\"."
+msgstr "%s: Errore: non è possibile valutare la funzione in ingresso ''%s''."
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
@@ -148,7 +148,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Input argument #%d must be a '%s' handle.\n"
-msgstr "%s: L'argomento in ingresso #%d deve essere un gestore \"%s\".\n"
+msgstr "%s: L'argomento in ingresso #%d deve essere un gestore '%s'.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
@@ -182,7 +182,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: No ''%s'' handle found.\n"
-msgstr "%s: Nessun gestore \"%s\" trovato.\n"
+msgstr "%s: Nessun gestore ''%s'' trovato.\n"
 
 #, c-format
 msgid "%s: No more memory\n"
@@ -252,11 +252,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unrecognized input argument '%s'.\n"
-msgstr "%s: L'argomento in ingresso \"%s\" è sconosciuto.\n"
+msgstr "%s: L'argomento in ingresso '%s' è sconosciuto.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
-msgstr "%s: Il seguente argomento in ingresso è sconosciuto: \"%s\".\n"
+msgstr "%s: Il seguente argomento in ingresso è sconosciuto: '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
@@ -300,7 +300,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -412,19 +412,19 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"gestore \"%s\" o uno scalare reale.\n"
+"gestore '%s' o uno scalare reale.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata. Era atteso un "
-"gestore \"%s\".\n"
+"gestore ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"gestore ''Testo''.\n"
+"gestore 'Testo'.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
@@ -451,7 +451,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una grandezza sbagliata: era atteso un "
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "numero reale.\n"
 
 #, c-format
@@ -469,7 +469,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una grandezza sbagliata: era attesa una "
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
@@ -493,14 +493,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una grandezza sbagliata: era atteso uno "
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
 "scalare reale.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single handle expected.\n"
 msgstr ""
-"%s L'argomento in ingresso #%d è di tipo sbagliato: era atteso un singolo "
-"gestore.\n"
+"%s L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"singolo gestore.\n"
 
 #, c-format
 msgid ""
@@ -525,28 +525,28 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una grandezza sbagliato: era atteso un "
-"gestore \"Assi\"\n"
+"%s: L'argomento in ingresso %d ha una dimensione sbagliato: era atteso un "
+"gestore ''Assi''\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
 "by-%d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso \"%s\" ha una dimensione sbagliata: era attesa "
+"%s: L'argomento in ingresso ''%s'' ha una dimensione sbagliata: era attesa "
 "una matrice di dimensione maggiore di %d-per-%d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso \"%s\" ha una dimensione sbagliata: era attesa "
+"%s: L'argomento in ingresso ''%s'' ha una dimensione sbagliata: era attesa "
 "una matrice non vuota.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso \"%s\" ha una dimensione sbagliata: era atteso "
+"%s: L'argomento in ingresso ''%s'' ha una dimensione sbagliata: era atteso "
 "un vettore.\n"
 
 #, c-format
@@ -564,7 +564,7 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso #%d e #%d hanno una grandezza sbagliata: la "
+"%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: la "
 "lunghezza non è compatibile.\n"
 
 #, c-format
@@ -572,7 +572,7 @@ msgid ""
 "%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
 "dimensions.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso \"%s\" e \"%s\" hanno una dimensione "
+"%s: Gli argomenti in ingresso ''%s'' e ''%s'' hanno una dimensione "
 "sbagliata: le dimensioni non sono compatibili.\n"
 
 #, c-format
@@ -580,21 +580,21 @@ msgid ""
 "%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
 "expected.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso \"%s \" e \"%s \"hanno una dimensione "
+"%s: Gli argomenti in ingresso ''%s '' e ''%s ''hanno una dimensione "
 "sbagliata: erano attese delle matrici delle stesse dimensioni.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso \"%s\" e \"%s\" hanno una dimensione "
+"%s: Gli argomenti in ingresso ''%s'' e ''%s'' hanno una dimensione "
 "sbagliata: erano attese le stesse dimensioni.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso \"%s\" ha una dimensione sbagliata: era atteso "
+"%s: L'argomento in ingresso ''%s'' ha una dimensione sbagliata: era atteso "
 "un vettore di dimensione %d.\n"
 
 #, c-format
@@ -621,7 +621,7 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: ere atteso un array di "
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
 "stringhe 2D.\n"
 
 #, c-format
@@ -630,13 +630,13 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un gestore "
-"\"%s\" o uno scalare reale.\n"
+"'%s' o uno scalare reale.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un gestore "
-"\"Testo\".\n"
+"'Testo'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
@@ -673,13 +673,13 @@ msgid ""
 "expected."
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
-"di gestori \"Figura\"."
+"di gestori ''Figura''."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un gestore "
-"\"Assi\".\n"
+"''Assi''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
@@ -692,7 +692,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un gestore "
-"\"Figura\" o \"Assi\".\n"
+"Figura o Assi.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
@@ -778,7 +778,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un gestore "
-"\"Figura singola\" o \"Assi\".\n"
+"Figura singola o Assi.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -814,12 +814,12 @@ msgstr ""
 msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso un gestore "
-"\"Assi\"\n"
+"''Assi''\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso \"%s\" è di tipo sbagliato: era attesa una "
+"%s: L'argomento in ingresso ''%s'' è di tipo sbagliato: era attesa una "
 "matrice reale.\n"
 
 #, c-format
@@ -830,7 +830,7 @@ msgstr "%s: L'argomento in ingresso è di tipo sbagliato.\n"
 msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso è di tipo sbagliato: era atteso un gestore "
-"\"%s\".\n"
+"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
@@ -843,7 +843,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso è di tipo sbagliato: erano attesi dei gestori "
-"\"Vettori degli assi\" e \"Figura\".\n"
+"Vettori degli assi e Figura.\n"
 
 #, c-format
 msgid ""
@@ -855,26 +855,26 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for argument: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso ha un valore sbagliato: era atteso '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\"\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s'\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso "
-"\"pulisci\" o \"risetta\""
+"''pulisci'' o ''risetta''"
 
 #, c-format
 msgid ""
@@ -952,7 +952,7 @@ msgstr "%s: Valore errato: il vettore non è monotono.\n"
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso  "
-"\"%s\"\n"
+"''%s''\n"
 
 #, c-format
 msgid "%s: handle no more valid ignored.\n"
@@ -984,11 +984,11 @@ msgstr "&Strumenti"
 
 #, c-format
 msgid "'%s' handle does not or no longer exists.\n"
-msgstr "il gestore \"%s\" non c'è o non esiste più.\n"
+msgstr "il gestore '%s' non c'è o non esiste più.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
-msgstr "La proprietà \"%s\" non esiste per questo gestore.\n"
+msgstr "La proprietà '%s' non esiste per questo gestore.\n"
 
 msgid "A Label object cannot be deleted.\n"
 msgstr "Un oggetto Etichetta non può essere eliminato.\n"
@@ -1037,7 +1037,7 @@ msgid "Colormap"
 msgstr "Tavolozza dei colori"
 
 msgid "Common X axis"
-msgstr ""
+msgstr "Asse X comune"
 
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
@@ -1078,7 +1078,7 @@ msgid "Disable interpolation"
 msgstr "Disabilita l'interpolazione"
 
 msgid "Edit the curve tip display function"
-msgstr "Modifica il suggerimento curvo per mostrare la funzione"
+msgstr "Modifica la funzione mostra il suggerimento sulla curva"
 
 msgid "Enable interpolation"
 msgstr "Abilita l'interpolazione"
@@ -1089,7 +1089,7 @@ msgstr "Una entità con un tipo %d non può essere distrutta.\n"
 
 #, c-format
 msgid "Error %d at line %d of the function: ''%s''"
-msgstr "Errore %d alla linea %d della seg. funzione: \"%s\""
+msgstr "Errore %d alla linea %d della seg. funzione: ''%s''"
 
 #, c-format
 msgid "Error relocating handle %d."
@@ -1126,7 +1126,7 @@ msgid "Graphics"
 msgstr "Grafica"
 
 msgid "Graphics with 2 different Y-scales"
-msgstr ""
+msgstr "Immagini con 2 differenti scale per Y"
 
 msgid "Gray"
 msgstr "Grigio"
@@ -1175,16 +1175,18 @@ msgid "Jet"
 msgstr "Jet"
 
 msgid "Left click on a curve to create a datatip, right opens"
-msgstr ""
+msgstr "Un clic col sinistro su una curva crea un datatip,col destro lo apre"
 
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
-"Clic su tasto sinistro per creare un datatip, il tasto destro apre il menu "
-"contestuale"
+"Un clic col sinistro su una curva per creare un datatip, col destro per "
+"aprire il menu contestuale"
 
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
+"Cliccare col sinistro su una entità grafica per aprire l'editor delle "
+"proprietà"
 
 #, c-format
 msgid "Line width must be greater than %d.\n"
@@ -1194,7 +1196,7 @@ msgid "Misc"
 msgstr "Misc"
 
 msgid "Multiple datatips mode"
-msgstr "Modalità multipla dei datatip"
+msgstr "Modalità datatip multipli"
 
 msgid "Name"
 msgstr "Nome"
@@ -1253,7 +1255,7 @@ msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "Per favore inviare una segnalazione di Bug a dev@lists.scilab.org\n"
 
 msgid "Plot with 3 different Y scales at shared X"
-msgstr ""
+msgstr "Disegna con 3 differenti scale di Y con la X condivisa"
 
 msgid "Problem with sciInitFontContext\n"
 msgstr "C'è un problema con sciInitFontContext\n"
@@ -1265,7 +1267,7 @@ msgid "Redraw all datatips"
 msgstr "Ridisegna tutti i datatip"
 
 msgid "Scale n1"
-msgstr ""
+msgstr "Scala n1"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Il modulo Graphics di Scilab non è installato.\n"
@@ -1284,7 +1286,7 @@ msgid "Summer"
 msgstr "Estate"
 
 msgid "Tcl/Tk interface not installed."
-msgstr ""
+msgstr "L'interfaccia Tcl/Tk non è installata"
 
 #, c-format
 msgid "The font size must be greater than %d.\n"
@@ -1318,7 +1320,7 @@ msgid "The selected file defines more than one function"
 msgstr "Il file selezionato definisce più di una funzione"
 
 msgid "The selected function must have 1 output parameter (str)"
-msgstr "La funzione selezionata deve avere 1 parametro di output (str)"
+msgstr "La funzione selezionata deve avere 1 parametro in uscita (str)"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
@@ -1375,7 +1377,7 @@ msgid "Unhandled data field\n"
 msgstr "Campo di dati non gestito\n"
 
 msgid "Unique datatip mode"
-msgstr "Modalità del datatip unico"
+msgstr "Modalità datatip singolo"
 
 #, c-format
 msgid "Unknown property: %s.\n"
@@ -1387,7 +1389,7 @@ msgid ""
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
 msgstr ""
 "ATTENZIONE !!!\n"
-"Nella proprietà \"%s\": \"%s\" è deprecato usare \"%s\" invece.\n"
+"Nella proprietà '%s': '%s' è deprecato usare '%s' invece.\n"
 
 msgid "WARNING : The size of the figure may not be as wide as you want.\n"
 msgstr ""
@@ -1399,7 +1401,7 @@ msgid ""
 "WARNING: '%s' property can not be modified if the %s is docked with other "
 "elements.\n"
 msgstr ""
-"ATTENZIONE: la proprietà \"%s\" non può essere modificata se la %s-esima è "
+"ATTENZIONE: la proprietà '%s' non può essere modificata se la %s-esima è "
 "legata ad altri elementi.\n"
 
 #, c-format
@@ -1407,7 +1409,7 @@ msgid ""
 "WARNING: Wrong value for '%s' property: indices outside the colormap will be "
 "clamped.\n"
 msgstr ""
-"ATTENZIONE: La proprietà \"%s\" ha un valore sbagliato: gli indici al di "
+"ATTENZIONE: La proprietà '%s' ha un valore sbagliato: gli indici al di "
 "fuori della tavolozza dei colori saranno bloccati.\n"
 
 #, c-format
@@ -1421,7 +1423,7 @@ msgstr ""
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
 msgstr ""
-"Attenzione: %s deve essere cambiato, %s è \"%s\" e la dimensione %s non è "
+"Attenzione: %s deve essere cambiato, %s è '%s' e la dimensione %s non è "
 "%d.\n"
 
 #, c-format
@@ -1467,57 +1469,57 @@ msgstr ""
 #, c-format
 msgid "Wrong size for '%s' property: %d elements expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliato: erano attesi %d elementi.\n"
+"La proprietà '%s' ha una dimensione sbagliato: erano attesi %d elementi.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: %d or %d elements expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: erano attesi %d o %d "
+"La proprietà '%s' ha una dimensione sbagliata: erano attesi %d o %d "
 "elementi.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A scalar expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso uno scalare.\n"
+"La proprietà '%s' ha una dimensione sbagliata: era atteso uno scalare.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: erano attesi almeno %d "
+"La proprietà '%s' ha una dimensione sbagliata: erano attesi almeno %d "
 "elementi.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: At most %d elements expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: erano attesi almeno %d "
+"La proprietà '%s' ha una dimensione sbagliata: erano attesi almeno %d "
 "elementi.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Must be %s or %s.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: deve essere %s o %s.\n"
+"La proprietà '%s' ha una dimensione sbagliata: deve essere %s o %s.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: deve essere nell'insieme "
+"La proprietà '%s' ha una dimensione sbagliata: deve essere nell'insieme "
 "{%s}.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Must have %d columns.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: deve avere %d colonne.\n"
+"La proprietà '%s' ha una dimensione sbagliata: deve avere %d colonne.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso un vettore "
+"La proprietà '%s' ha una dimensione sbagliata: era atteso un vettore "
 "riga.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Scalar expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso uno scalare.\n"
+"La proprietà '%s' ha una dimensione sbagliata: era atteso uno scalare.\n"
 
 #, c-format
 msgid "Wrong size for input argument: %d or %d expected.\n"
@@ -1527,113 +1529,113 @@ msgstr ""
 #, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso un gestore \"%s\" o un "
-"gestore \"%s\".\n"
+"La proprietà '%s' è di tipo sbagliato: era atteso un gestore '%s' o un "
+"gestore '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso un array di gestori "
+"La proprietà '%s' è di tipo sbagliato: era atteso un array di gestori "
 "grafici.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
-msgstr "La proprietà \"%s\" è di tipo sbagliato: era atteso un gestore.\n"
+msgstr "La proprietà '%s' è di tipo sbagliato: era atteso un gestore.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
-msgstr "La proprietà \"%s\" è di tipo sbagliato: era atteso un intero.\n"
+msgstr "La proprietà '%s' è di tipo sbagliato: era atteso un intero.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era attesa un numero reale.\n"
+"La proprietà '%s' è di tipo sbagliato: era attesa un numero reale.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real matrix expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era attesa una matrice reale.\n"
+"La proprietà '%s' è di tipo sbagliato: era attesa una matrice reale.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso un numero reale o un "
-"gestore \"%s\".\n"
+"La proprietà '%s' è di tipo sbagliato: era atteso un numero reale o un "
+"gestore '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
-msgstr "La proprietà \"%s\" è di tipo sbagliato: era attesa una stringa.\n"
+msgstr "La proprietà '%s' è di tipo sbagliato: era attesa una stringa.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: String matrix expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era attesa una matrice di "
+"La proprietà '%s' è di tipo sbagliato: era attesa una matrice di "
 "stringhe.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Typed list expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era attesa una lista tipizzata.\n"
+"La proprietà '%s' è di tipo sbagliato: era attesa una lista tipizzata.\n"
 
 msgid "Wrong type for input argument: Tlist expected.\n"
 msgstr "L'argomento in ingresso è di tipo sbagliato: era attesa una Tlist.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property.\n"
-msgstr "La proprietà \"%s\" ha un valore sbagliato.\n"
+msgstr "La proprietà '%s' ha un valore sbagliato.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: %s or %s expected.\n"
-msgstr "La proprietà \"%s\" ha un valore sbagliato: era atteso %s o %s.\n"
+msgstr "La proprietà '%s' ha un valore sbagliato: era atteso %s o %s.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso un intero compreso "
+"La proprietà '%s' ha un valore sbagliato: era atteso un intero compreso "
 "tra %d e %d.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be '%s'.\n"
-msgstr "La proprietà \"%s\" ha un valore sbagliato: deve essere \"%s\".\n"
+msgstr "La proprietà '%s' ha un valore sbagliato: deve essere '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: deve essere -1 o un indice di "
+"La proprietà '%s' ha un valore sbagliato: deve essere -1 o un indice di "
 "colore valido.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be a handle on a axes.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: deve essere un gestore su un "
+"La proprietà '%s' ha un valore sbagliato: deve essere un gestore su un "
 "asse.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be a valid color index.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato deve essere un indice di colore "
+"La proprietà '%s' ha un valore sbagliato deve essere un indice di colore "
 "valido.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be a valid handle.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: deve essere un gestore valido.\n"
+"La proprietà '%s' ha un valore sbagliato: deve essere un gestore valido.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: deve essere tra %d e %d.\n"
+"La proprietà '%s' ha un valore sbagliato: deve essere tra %d e %d.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: deve essere nell'insieme {%s}.\n"
+"La proprietà '%s' ha un valore sbagliato: deve essere nell'insieme {%s}.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Smaller values expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: erano attesi dei valori "
+"La proprietà '%s' ha un valore sbagliato: erano attesi dei valori "
 "inferiori.\n"
 
 msgid "You are not using a legend object.\n"
@@ -1653,7 +1655,8 @@ msgid "lower right"
 msgstr "in basso a destra"
 
 msgid "select the curve tip display function"
-msgstr "seleziona la funzione di visualizzazione del suggerimento curvo"
+msgstr ""
+"seleziona la funzione di visualizzazione del suggerimento sulla curva"
 
 msgid "upper left"
 msgstr "in alto a sinistra"

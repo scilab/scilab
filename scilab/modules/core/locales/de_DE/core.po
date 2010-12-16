@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-09-20 22:36+0000\n"
-"Last-Translator: kayalemao <kayalemao@online.de>\n"
+"PO-Revision-Date: 2010-11-17 23:08+0000\n"
+"Last-Translator: Ascurion <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,10 +30,10 @@ msgstr "  lade Startumgebung"
 
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
-msgstr " und %10d Variablen aus %10d.\n"
+msgstr " und %10d Variablen von %10d\n"
 
 msgid " by "
-msgstr ""
+msgstr " von "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -642,7 +642,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
@@ -823,6 +823,8 @@ msgid ""
 "Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
 "SciError(x).\n"
 msgstr ""
+"Error(x) ist veraltet und wird in Scilab 5.4 entfernt. Bitte SciError(x) "
+"berücksichtigen.\n"
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -982,7 +984,7 @@ msgstr ""
 "%s\n"
 
 msgid "Size"
-msgstr ""
+msgstr "Größe"
 
 msgid "Startup execution:"
 msgstr "Starte Ausführung:"
@@ -997,7 +999,7 @@ msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Versuch Scilab in der Mitte vom Interface anzuhalten.\n"
 
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #, c-format
 msgid "Undefined variable %s.\n"

@@ -124,6 +124,8 @@ tcl/sciGUI/local_extra/spinbutton.tcl \
 tcl/sciGUI/license.txt \
 tcl/sciGUI/sciGUI.tcl \
 tcl/sciGUI/sciConfig.tcl \
+tcl/sciGUI/sciBrowseVar.tcl \
+tcl/sciGUI/sciEditVar.tcl \
 tcl/BWidget-1.8.0/tests/entry.test \
 tcl/BWidget-1.8.0/BWman/SelectColor.html \
 tcl/BWidget-1.8.0/BWman/SpinBox.html \
