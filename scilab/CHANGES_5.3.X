@@ -29,6 +29,7 @@ Scinotes:
 * Name of the current function and position (line, column) are now displayedno
 in the status bar of Scinotes.
 
+* A bad identifier is now shown in the text editor.
 
 Graphics:
 =========
