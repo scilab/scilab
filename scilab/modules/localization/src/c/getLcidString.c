@@ -15,8 +15,8 @@
 #ifdef _MSC_VER
 #include <Windows.h>
 #include "LocaleNameToLCID_Windows.h"
-#include "strdup_windows.h"
 #endif
+#include "os_strdup.h"
 #include "getLcidString.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
@@ -35,12 +35,12 @@ char *getLcidString(const char *pStrLocale)
 
     if (pStrLocale == NULL) 
     {
-        return strdup(DEFAULT_EN_LCID);
+        return os_strdup(DEFAULT_EN_LCID);
     }
 #ifdef _MSC_VER
     if ((strcmp(pStrLocale, "") == 0) || (strcmp(pStrLocale, "C") == 0))
     {
-        return strdup(DEFAULT_EN_LCID);
+        return os_strdup(DEFAULT_EN_LCID);
     }
     else
     {
@@ -49,7 +49,7 @@ char *getLcidString(const char *pStrLocale)
 
         if (lcid == 0)
         {
-            pStrLCID = strdup(DEFAULT_EN_LCID);
+            pStrLCID = os_strdup(DEFAULT_EN_LCID);
         }
         else
         {
@@ -62,7 +62,7 @@ char *getLcidString(const char *pStrLocale)
     }
 #else
     /* this routines not used on others platforms */
-    pStrLCID = strdup(DEFAULT_EN_LCID);
+    pStrLCID = os_strdup(DEFAULT_EN_LCID);
 #endif
     return pStrLCID;
 }

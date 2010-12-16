@@ -23,9 +23,7 @@
 #include "xscion.h"
 #include "../../../shell/includes/zzledt.h"
 #include "../../../shell/includes/GetCommandLine.h" /* getConsoleInputLine */
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define MAXSTR 512
 /*--------------------------------------------------------------------------*/
@@ -90,7 +88,7 @@ int sci_scanf(char *fname,unsigned long fname_len)
         if (lline == 0)
         {
             FREE(String);
-            String = strdup(" ");
+            String = os_strdup(" ");
             lline = (int)strlen(String);
         }
 
