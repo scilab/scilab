@@ -1,6 +1,13 @@
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
 
+Removed functions (previously declared as obsolete):
+====================================================
+
+* 'maxi' removed. Please use 'max' instead.
+
+* 'mini' removed. Please use 'min' instead.
+
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
