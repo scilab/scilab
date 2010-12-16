@@ -85,6 +85,10 @@ extern "C"
 
 #include "banner.hxx"
 
+#include "double.hxx"
+#include "string.hxx"
+#include "matrixpoly.hxx"
+
 #define INTERACTIVE     -1
 
 const wchar_t* prog_name;
@@ -362,7 +366,7 @@ static Parser::ControlStatus processCommand(char* _pstCommand)
         ** -*- DUMPING TREE -*-
         */
         if(dumpAst == true)
-        { 
+        {
             dumpAstTask(parser->getTree(), timed);
         }
 

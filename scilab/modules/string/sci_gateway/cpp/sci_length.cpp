@@ -26,7 +26,10 @@
    length('123')  is  3 .  length([1,2;3,4])  is  4 .                     */
 /*------------------------------------------------------------------------*/
 
-#include "alltypes.hxx"
+#include "function.hxx"
+#include "string.hxx"
+#include "list.hxx"
+#include "double.hxx"
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
 
@@ -36,6 +39,9 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 }
+
+using namespace types;
+
 /*----------------------------------------------------------------------------*/
 /* get length */
 static Double* lengthStrings(String* _pS);
@@ -92,7 +98,7 @@ static Double* lengthStrings(String* _pS)
     for(int i = 0 ; i < _pS->size_get() ; i++)
     {
         pdblData[i] = static_cast<double>(wcslen(_pS->string_get()[i]));
-   } 
+   }
     return pD;
 }
 /*--------------------------------------------------------------------------*/

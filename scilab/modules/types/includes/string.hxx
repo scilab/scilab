@@ -17,7 +17,6 @@
 #include <list>
 #include "types.hxx"
 
-using std::string;
 namespace types
 {
     class String : public GenericType
@@ -42,7 +41,7 @@ namespace types
         void                    whoAmI();
 
         String*                 getAsString(void);
-        wstring                  toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString(int _iPrecision, int _iLineLen);
 
         bool                    resize(int _iNewRows, int _iNewCols);
         InternalType*           insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
@@ -54,9 +53,9 @@ namespace types
         bool                    operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual wstring         getTypeStr() {return L"string";}
+        virtual std::wstring    getTypeStr() {return L"string";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual wstring         getShortTypeStr() {return L"c";}
+        virtual std::wstring    getShortTypeStr() {return L"c";}
         String*                 clone();
 
     protected :

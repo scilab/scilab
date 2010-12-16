@@ -11,6 +11,8 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "fileio_gw.hxx"
+#include "function.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -22,6 +24,9 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
+
+using namespace types;
+
 Function::ReturnValue sci_isfile(typed_list &in, int _iRetCount, typed_list &out)
 {
     if(in.size() != 1)

@@ -14,6 +14,7 @@
 #include <cstdio>
 
 #include "macro.hxx"
+#include "list.hxx"
 #include "context.hxx"
 #include "localization.h"
 #include "yaspio.hxx"

@@ -31,6 +31,7 @@
 #include "yaspio.hxx"
 #include "expandPathVariable.h"
 #include "configvariable.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -55,7 +56,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 {
 	wchar_t pstParseFile[PATH_MAX + FILENAME_MAX];
 	wchar_t pstVerbose[65535];
-	
+
     int iNbFile	            = 0;
 	wchar_t *pstParsePath      = NULL;
 	int iParsePathLen		= 0;

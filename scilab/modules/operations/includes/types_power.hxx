@@ -13,8 +13,9 @@
 #ifndef __TYPES_POWER_HXX__
 #define __TYPES_POWER_HXX__
 
-#include "alltypes.hxx" 
 #include "operation.hxx"
+#include "double.hxx"
+#include "matrixpoly.hxx"
 
 using namespace types;
 

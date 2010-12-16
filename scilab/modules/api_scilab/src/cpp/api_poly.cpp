@@ -9,12 +9,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be 
+ * However, the API (profile of the functions in the header files) will be
  * still available and supported in Scilab 6.
  */
 
 #include <string.h>
 #include <stdlib.h>
+
+#include "function.hxx"
+#include "matrixpoly.hxx"
+
+extern "C"
+{
 #include "machine.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
@@ -25,10 +31,9 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
-#include "context.hxx"
+#include "api_oldstack.h"
+}
 
-
-using namespace std;
 using namespace types;
 
 SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)
@@ -266,32 +271,32 @@ SciErr createNamedComplexMatrixOfPoly(void* _pvCtx, const char* _pstName, char* 
 SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
     SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-    int iVarID[nsiz];
-    int iSaveRhs			= api_Rhs((int*)_pvCtx);
-    int iSaveTop			= api_Top((int*)_pvCtx);
-    int *piAddr				= NULL;
-    int iTotalLen			= 0;
+    //int iVarID[nsiz];
+    //int iSaveRhs			= api_Rhs((int*)_pvCtx);
+    //int iSaveTop			= api_Top((int*)_pvCtx);
+    //int *piAddr				= NULL;
+    //int iTotalLen			= 0;
 
-    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-    Top = Top + Nbvars + 1;
+    //C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    //Top = Top + Nbvars + 1;
 
-    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+    //getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-    //write matrix information
-    sciErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
-    if(sciErr.iErr)
-    {
-        addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_POLY, _("%s: Unable to create %s named \"%s\""), _iComplex ? "createNamedComplexMatrixOfPoly" : "createNamedMatrixOfPoly", _("matrix of double"), _pstName);
-        return sciErr;
-    }
+    ////write matrix information
+    //sciErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
+    //if(sciErr.iErr)
+    //{
+    //    addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_POLY, _("%s: Unable to create %s named \"%s\""), _iComplex ? "createNamedComplexMatrixOfPoly" : "createNamedMatrixOfPoly", _("matrix of double"), _pstName);
+    //    return sciErr;
+    //}
 
 
-    //update "variable index"
-    updateLstk(Top, *Lstk(Top) + 4, iTotalLen);
+    ////update "variable index"
+    //updateLstk(Top, *Lstk(Top) + 4, iTotalLen);
 
-    //Rhs = 0;
-    //Add name in stack reference list
-    createNamedVariable(iVarID);
+    ////Rhs = 0;
+    ////Add name in stack reference list
+    //createNamedVariable(iVarID);
 
     //Top = iSaveTop;
     //Rhs = iSaveRhs;

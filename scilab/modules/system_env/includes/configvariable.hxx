@@ -17,6 +17,7 @@
 #include <map>
 #include <string>
 #include "threadId.hxx"
+#include "cell.hxx"
 
 extern "C"
 {
@@ -24,47 +25,46 @@ extern "C"
 #include "Thread_Wrapper.h"
 }
 
-using namespace std;
 class EXTERN_SYSTEM_ENV ConfigVariable
 {
     //module list
 private :
-    static list<wstring> m_ModuleList;
+    static std::list<std::wstring> m_ModuleList;
 
 public :
-    static void setModuleList(list<wstring>& _module_list);
-    static std::list<wstring> getModuleList();
+    static void setModuleList(std::list<std::wstring>& _module_list);
+    static std::list<std::wstring> getModuleList();
 
 
     //SCI
 private :
-    static wstring m_SCIPath;
+    static std::wstring m_SCIPath;
 
 public :
-    static void setSCIPath(wstring& _SCIPath);
-    static wstring getSCIPath();
+    static void setSCIPath(std::wstring& _SCIPath);
+    static std::wstring getSCIPath();
 
     //SCIHOME
 private :
-    static wstring m_SCIHOME;
+    static std::wstring m_SCIHOME;
 
 public :
-    static void setSCIHOME(wstring& _m_SCIHOME);
-    static wstring getSCIHOME();
+    static void setSCIHOME(std::wstring& _m_SCIHOME);
+    static std::wstring getSCIHOME();
 
     //TMPDIR
 private :
-    static wstring m_TMPDIR;
+    static std::wstring m_TMPDIR;
 
 public :
-    static void setTMPDIR(wstring& _TMPDIR);
-    static wstring getTMPDIR();
+    static void setTMPDIR(std::wstring& _TMPDIR);
+    static std::wstring getTMPDIR();
 
     // Force Quit
 private :
     static bool m_bForceQuit;
 
-public : 
+public :
     static void setForceQuit(bool _bForceQuit);
     static bool getForceQuit(void);
 
@@ -72,7 +72,7 @@ public :
 private :
     static int m_iExitStatus;
 
-public : 
+public :
     static void setExitStatus(int _iExitStatus);
     static int getExitStatus(void);
 
@@ -80,7 +80,7 @@ public :
 private :
     static int m_iFormat;
 
-public : 
+public :
     static void setFormat(int _iFormat);
     static int getFormat(void);
 
@@ -89,7 +89,7 @@ public :
 private :
     static int m_iConsoleWidth;
 
-public : 
+public :
     static void setConsoleWidth(int _iConsoleWidth);
     static int getConsoleWidth(void);
 
@@ -97,7 +97,7 @@ public :
 private :
     static int m_iScilabMode;
 
-public : 
+public :
     static void setScilabMode(int _iScilabMode);
     static int getScilabMode(void);
 
@@ -105,17 +105,17 @@ public :
 private :
     static bool m_bWarningMode;
 
-public : 
+public :
     static void setWarningMode(bool _bWarningMode);
     static bool getWarningMode(void);
 
     //HOME
 private :
-    static wstring m_HOME;
+    static std::wstring m_HOME;
 
 public :
-    static void setHOME(wstring& _m_HOME);
-    static wstring getHOME();
+    static void setHOME(std::wstring& _m_HOME);
+    static std::wstring getHOME();
 
     //Clear last error information
 public :
@@ -130,11 +130,11 @@ public :
 
     //Last Error Message
 private :
-    static wstring m_wstError;
+    static std::wstring m_wstError;
 
 public :
-    static void setLastErrorMessage(wstring _wstError);
-    static wstring getLastErrorMessage();
+    static void setLastErrorMessage(std::wstring _wstError);
+    static std::wstring getLastErrorMessage();
 
     //Last Error ID
 private :
@@ -154,11 +154,11 @@ public :
 
     //Last Error Function
 private :
-    static wstring m_wstErrorFunction;
+    static std::wstring m_wstErrorFunction;
 
 public :
-    static void setLastErrorFunction(wstring _wstFunction);
-    static wstring getLastErrorFunction();
+    static void setLastErrorFunction(std::wstring _wstFunction);
+    static std::wstring getLastErrorFunction();
 
     //Prompt Mode
 public :

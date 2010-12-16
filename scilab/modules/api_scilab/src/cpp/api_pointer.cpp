@@ -13,6 +13,8 @@
  * still available and supported in Scilab 6.
  */
 
+extern "C"
+{
 #include "api_common.h"
 #include "api_internal_common.h"
 #include "api_pointer.h"
@@ -21,6 +23,8 @@
 #include "MALLOC.h"
 #include "call_scilab.h"
 #include "stack-c.h"
+#include "api_oldstack.h"
+}
 
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
@@ -75,31 +79,31 @@ SciErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr)
 SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
-	int* piAddr			= NULL;
-	void* pvPtr			= NULL;
+	//int iNewPos			= Top - Rhs + _iVar;
+	//int iAddr				= *Lstk(iNewPos);
+	//int* piAddr			= NULL;
+	//void* pvPtr			= NULL;
 
-	int iMemSize = 2;
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
-	if (iMemSize > iFreeSpace)
-	{
-		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-		return sciErr;
-	}
+	//int iMemSize = 2;
+	//int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+	//if (iMemSize > iFreeSpace)
+	//{
+	//	addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+	//	return sciErr;
+	//}
 
-	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
+	//getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
-	sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");;
-		return sciErr;
-	}
+	//sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
+	//if(sciErr.iErr)
+	//{
+	//	addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");;
+	//	return sciErr;
+	//}
 
-	*_pvPtr = pvPtr;
-	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
-	updateLstk(iNewPos, sadr(iadr(iAddr) + 4), 2);
+	//*_pvPtr = pvPtr;
+	//updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
+	//updateLstk(iNewPos, sadr(iadr(iAddr) + 4), 2);
 
 	return sciErr;
 }
@@ -124,44 +128,44 @@ SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 SciErr createNamedPointer(void* _pvCtx, const char* _pstName, int* _pvPtr)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iVarID[nsiz];
-	int iSaveRhs	= Rhs;
-	int iSaveTop	= Top;
-	void* pvPtr	= NULL;
-	int *piAddr	= NULL;
+    //int iVarID[nsiz];
+    //int iSaveRhs	= Rhs;
+    //int iSaveTop	= Top;
+    //void* pvPtr	= NULL;
+    //int *piAddr	= NULL;
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-	Top = Top + Nbvars + 1;
+    //C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+    //Top = Top + Nbvars + 1;
 
-	int iMemSize = 1;
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
-	if (iMemSize > iFreeSpace)
-	{
-		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-		return sciErr;
-	}
+    //int iMemSize = 1;
+    //int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
+    //if (iMemSize > iFreeSpace)
+    //{
+    //    addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+    //    return sciErr;
+    //}
 
-	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+    //getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	//write matrix information
-	sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_POINTER, _("%s: Unable to create %s named \"%s\""), "createNamedPointer", _("pointer"), _pstName);
-		return sciErr;
-	}
+    ////write matrix information
+    //sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
+    //if(sciErr.iErr)
+    //{
+    //    addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_POINTER, _("%s: Unable to create %s named \"%s\""), "createNamedPointer", _("pointer"), _pstName);
+    //    return sciErr;
+    //}
 
-	//copy data in stack
-	((double*)pvPtr)[0] = (double) ((unsigned long int)_pvPtr);
+    ////copy data in stack
+    //((double*)pvPtr)[0] = (double) ((unsigned long int)_pvPtr);
 
-	updateLstk(Top, *Lstk(Top) + sadr(4), 2);
+    //updateLstk(Top, *Lstk(Top) + sadr(4), 2);
 
-	Rhs = 0;
-	//Add name in stack reference list
-	createNamedVariable(iVarID);
+    //Rhs = 0;
+    ////Add name in stack reference list
+    //createNamedVariable(iVarID);
 
-	Top = iSaveTop;
-  Rhs = iSaveRhs;
+    //Top = iSaveTop;
+    //Rhs = iSaveRhs;
 	return sciErr;
 }
 

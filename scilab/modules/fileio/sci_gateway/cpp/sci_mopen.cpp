@@ -10,7 +10,9 @@
  *
  */
 
-#include "alltypes.hxx"
+#include "function.hxx"
+#include "string.hxx"
+#include "double.hxx"
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"

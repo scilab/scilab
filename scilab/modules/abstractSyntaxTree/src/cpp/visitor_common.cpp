@@ -18,6 +18,11 @@
 #include "fieldexp.hxx"
 #include "callexp.hxx"
 #include "simplevar.hxx"
+#include "double.hxx"
+#include "string.hxx"
+#include "implicitlist.hxx"
+#include "struct.hxx"
+#include "matrixpoly.hxx"
 
 bool bConditionState(types::InternalType *_pITResult)
 {

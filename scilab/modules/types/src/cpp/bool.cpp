@@ -99,7 +99,7 @@ namespace types
 	/*	bool_get	*/
 	/*------------*/
 	int*	Bool::bool_get() const
-	{ 
+	{
 		return m_piData;
 	}
 
@@ -107,7 +107,7 @@ namespace types
 	/*	bool_get	*/
 	/*------------*/
 	int	Bool::bool_get(int _iRows, int _iCols) const
-	{ 
+	{
 		if(m_piData != NULL)
 		{
 			return m_piData[_iCols * m_iRows + _iRows];
@@ -164,17 +164,17 @@ namespace types
 	/*--------------*/
 	/*		whoIAm		*/
 	/*--------------*/
-	void Bool::whoAmI() 
-	{ 
-		std::cout << "types::Bool"; 
+	void Bool::whoAmI()
+	{
+		std::cout << "types::Bool";
 	}
 
 	/*--------------*/
 	/*	getAsInt		*/
 	/*--------------*/
-	Bool* Bool::getAsBool(void)		
-	{ 
-		return this; 
+	Bool* Bool::getAsBool(void)
+	{
+		return this;
 	}
 
 	/*------------*/
@@ -182,7 +182,7 @@ namespace types
 	/*------------*/
 	GenericType::RealType Bool::getType(void)
 	{
-		return RealBool; 
+		return RealBool;
 	}
 
 	/*--------------*/
@@ -230,12 +230,12 @@ namespace types
 		else
 			return false;
 
-		return true;	
+		return true;
 	}
 
-	wstring Bool::toString(int _iPrecision, int _iLineLen)
+    std::wstring Bool::toString(int _iPrecision, int _iLineLen)
 	{
-		wostringstream ostr;
+        std::wostringstream ostr;
 		ostr << std::endl;
 		/*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
 		if(cols_get() == 1 && rows_get() == 1)
@@ -256,7 +256,7 @@ namespace types
 		{//row vector
 			bool bWordWarp = false;
 			int iLineTag = 5000; //or not Oo
-			wstring szTemp;
+            std::wstring szTemp;
 
 			if(_iLineLen == -1)
 			{
@@ -292,11 +292,11 @@ namespace types
 			ostr << szTemp;
 			ostr << std::endl;
 		}
-		else 
+		else
 		{
 			bool bWordWarp = false;
 			int iLineTag = 5000; //or not Oo
-			wstring szTemp;
+            std::wstring szTemp;
 
 			if(_iLineLen == -1)
 			{
@@ -525,8 +525,8 @@ namespace types
 
 	Bool* Bool::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Bool* _poSource, bool _bAsVector)
 	{
-		Bool* pb	= NULL ; 
-		
+		Bool* pb	= NULL ;
+
 		if(_bAsVector)
 		{
 			if(_poSource->cols_get() == 1)

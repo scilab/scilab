@@ -3,16 +3,18 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "fileio_gw.hxx"
+#include "function.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -23,6 +25,9 @@ extern "C"
 #include "localization.h"
 }
 /*--------------------------------------------------------------------------*/
+
+using namespace types;
+
 Function::ReturnValue sci_getshortpathname(typed_list &in, int _iRetCount, typed_list &out)
 {
     if(in.size() != 1)
@@ -44,7 +49,7 @@ Function::ReturnValue sci_getshortpathname(typed_list &in, int _iRetCount, typed
     }
 
     String* pS  = in[0]->getAsString();
-    
+
     String* pOut1 = new String(pS->rows_get() , pS->cols_get());
     Bool* pOut2 = new Bool(pS->rows_get() , pS->cols_get());
     int* pBool = pOut2->bool_get();
@@ -100,7 +105,7 @@ Function::ReturnValue sci_getshortpathname(typed_list &in, int _iRetCount, typed
 	//	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,ShortNames);
 	//	LhsVar(1) = Rhs+1;
 
-	//	if (Lhs == 2) 
+	//	if (Lhs == 2)
 	//	{
 	//		CreateVarFromPtr(Rhs+2,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &bOK);
 	//		LhsVar(2) = Rhs + 2;

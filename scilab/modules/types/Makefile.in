@@ -151,7 +151,8 @@ libscitypes_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(CXXFLAGS) $(libscitypes_la_LDFLAGS) $(LDFLAGS) -o $@
 am_testTypes_OBJECTS = testTypes-test-types.$(OBJEXT)
 testTypes_OBJECTS = $(am_testTypes_OBJECTS)
-testTypes_DEPENDENCIES = $(top_builddir)/modules/types/libscitypes.la
+testTypes_DEPENDENCIES = $(top_builddir)/modules/types/libscitypes.la \
+	$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -581,11 +582,14 @@ libscitypes_la_sci_gateway_DATA =
 ####################
 ####################
 check_INCLUDES = -Iincludes/ \
-			-Isrc/cpp
+			-Isrc/cpp \
+			-I$(top_srcdir)/modules/abstractSyntaxTree/includes
 
 testTypes_SOURCES = src/cpp/test-types.cpp
 testTypes_CPPFLAGS = $(check_INCLUDES)
-testTypes_LDADD = $(top_builddir)/modules/types/libscitypes.la
+testTypes_LDADD = $(top_builddir)/modules/types/libscitypes.la \
+					$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la
+
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

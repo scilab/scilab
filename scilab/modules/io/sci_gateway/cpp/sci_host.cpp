@@ -14,6 +14,7 @@
 #include <string.h>
 #include "funcmanager.hxx"
 #include "io_gw.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -21,6 +22,8 @@ extern "C"
     #include "localization.h"
     #include "Scierror.h"
 }
+
+using namespace types;
 
 types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -30,7 +33,7 @@ types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, typ
         return Function::Error;
     }
 
-    InternalType* pIT = in[0];
+    types::InternalType* pIT = in[0];
 
     if(pIT->getType() != InternalType::RealString || pIT->getAsString()->size_get() != 1)
     {

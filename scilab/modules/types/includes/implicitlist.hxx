@@ -10,13 +10,11 @@
 *
 */
 
-#ifndef __IMP_LIST_HXX__
-#define __IMP_LIST_HXX__
+#ifndef __IMPLICITLIST_HXX__
+#define __IMPLICITLIST_HXX__
 
 #include "types.hxx"
 #include "int.hxx"
-#include "double.hxx"
-#include "matrixpoly.hxx"
 
 namespace types
 {
@@ -65,7 +63,7 @@ namespace types
         bool                    compute();
         bool                    computable();
 
-        wstring                 toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString(int _iPrecision, int _iLineLen);
 
 
         InternalType::RealType  start_type_get();
@@ -82,9 +80,9 @@ namespace types
         InternalType*           extract_matrix();
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual wstring         getTypeStr() {return L"implicitlist";}
+        virtual std::wstring    getTypeStr() {return L"implicitlist";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual wstring         getShortTypeStr() {return L"";}
+        virtual std::wstring    getShortTypeStr() {return L"";}
 
         // templated extract for
         // double / char / short / int / long long / unsigned ...
@@ -93,4 +91,4 @@ namespace types
     };
 }
 
-#endif /* !__IMP_LIST_HXX__ */
+#endif /* !__IMPLICITLIST_HXX__ */

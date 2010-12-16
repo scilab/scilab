@@ -16,40 +16,41 @@
 
 int main(void) {
 
-  /*
-  ** types::Int
-  */
-	types::Int i42(42);
-  std::cout << "i42 = " << i42.real_get()[0] << std::endl;
-  assert(i42.real_get()[0] == 42);
-  assert(i42.isInt() == true);
-  assert(i42.isDouble() == false);
+    /*
+    ** types::Int
+    */
+	types::Int32 i42(1,1);
+    i42.data_set(0,0,42);
+    std::cout << "i42 = " << ((long long*) i42.data_get())[0] << std::endl;
+    assert(i42.real_get()[0] == 42);
+    assert(i42.isInt() == true);
+    assert(i42.isDouble() == false);
 
-  /*
-  ** types::Double
-  */
-  types::Double d42(42);
-  std::cout << "d42 = " << d42.real_get(0,0) << std::endl;
-  assert(d42.real_get(0,0) == 42);
-  assert(d42.isInt() == false);
-  assert(d42.isDouble() == true);
+    /*
+    ** types::Double
+    */
+    types::Double d42(42);
+    std::cout << "d42 = " << d42.real_get(0,0) << std::endl;
+    assert(d42.real_get(0,0) == 42);
+    assert(d42.isInt() == false);
+    assert(d42.isDouble() == true);
 
-  /*
-  ** types::String
-  */
-  types::String s42("42");
-  std::cout << "s42 = " << d42.real_get(0,0) << std::endl;
-  assert(strcmp(s42.string_get(0,0), "42") == 0);
-  assert(s42.isInt() == false);
-  assert(s42.isDouble() == false);
-  assert(s42.isString() == true);
+    /*
+    ** types::String
+    */
+    types::String s42("42");
+    std::cout << "s42 = " << d42.real_get(0,0) << std::endl;
+    assert(strcmp(s42.string_get(0,0), "42") == 0);
+    assert(s42.isInt() == false);
+    assert(s42.isDouble() == false);
+    assert(s42.isString() == true);
 
-  /*
-  ** types::Generic
-  */
-  /* -*- WARNING : GenericType() is protected -*- */
-  //types::GenericType *gt = new types::GenericType();
+    /*
+    ** types::Generic
+    */
+    /* -*- WARNING : GenericType() is protected -*- */
+    //types::GenericType *gt = new types::GenericType();
 
-  return 0;
+    return 0;
 
 }

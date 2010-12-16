@@ -36,9 +36,9 @@ namespace types
 		return m_iSize;
 	}
 
-	wstring GenericType::DimToString()
+    std::wstring GenericType::DimToString()
 	{
-		wostringstream ostr;
+        std::wostringstream ostr;
 		ostr << L"(" << rows_get() << L" x " << cols_get() << L")";
 		return ostr.str();
 	}

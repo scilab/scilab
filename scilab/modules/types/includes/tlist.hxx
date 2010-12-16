@@ -10,10 +10,11 @@
  *
  */
 
-#ifndef __TLIST_HH__
-#define __TLIST_HH__
+#ifndef __TLIST_HXX__
+#define __TLIST_HXX__
 
 #include <list>
+#include <vector>
 #include "list.hxx"
 
 namespace types
@@ -42,7 +43,7 @@ namespace types
         bool                            set(const std::wstring& _sKey, InternalType* _pIT);
         bool                            set(const int _iIndex, InternalType* _pIT);
 
-        std::vector<InternalType*>      extract_string(list<wstring> _stFields);
+        std::vector<InternalType*>      extract_string(std::list<std::wstring> _stFields);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring             getTypeStr();
@@ -53,4 +54,4 @@ namespace types
     };
 }
 
-#endif /* __TLIST_HH__ */
+#endif /* __TLIST_HXX__ */

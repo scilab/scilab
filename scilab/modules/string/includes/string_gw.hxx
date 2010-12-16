@@ -17,6 +17,7 @@
 
 #include "funcmanager.hxx"
 #include "context.hxx"
+#include "function.hxx"
 
 class StringModule
 {

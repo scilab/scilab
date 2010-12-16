@@ -20,7 +20,6 @@ extern "C"
 #define MODULE_NAME L"windows_tools"
 bool WindowsToolsModule::Load()
 {
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"win64", &sci_win64, MODULE_NAME));
-
-  return true;
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"win64", &sci_win64, MODULE_NAME));
+    return true;
 }

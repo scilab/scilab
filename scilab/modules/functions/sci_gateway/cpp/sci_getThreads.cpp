@@ -13,12 +13,16 @@
 #include "functions_gw.hxx"
 #include "configvariable.hxx"
 #include "funcmanager.hxx"
+#include "cell.hxx"
+#include "threadId.hxx"
 
 extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
 }
+
+using namespace types;
 
 Function::ReturnValue sci_getThreads(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

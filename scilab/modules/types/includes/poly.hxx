@@ -16,9 +16,6 @@
 #include <list>
 #include "types.hxx"
 
-using std::string;
-using std::list;
-
 namespace types
 {
     class Poly : public GenericType
@@ -50,23 +47,23 @@ namespace types
         void                    update_rank(void);
 
         void                    CreatePoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
-        void                    toStringReal(int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef);
-        void                    toStringImg(int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef);
+        void                    toStringReal(int _iPrecision, int _iLineLen, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+        void                    toStringImg(int _iPrecision, int _iLineLen, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
-        wstring                 toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString(int _iPrecision, int _iLineLen);
 
         bool                    operator==(const InternalType& it);
         bool                    operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual wstring         getTypeStr() {return L"poly";}
+        virtual std::wstring    getTypeStr() {return L"poly";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual wstring         getShortTypeStr() {return L"p";}
+        virtual std::wstring    getShortTypeStr() {return L"p";}
     protected :
         RealType                getType(void);
 
-    private : 
-        void                    toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef);
+    private :
+        void                    toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
 
     private :

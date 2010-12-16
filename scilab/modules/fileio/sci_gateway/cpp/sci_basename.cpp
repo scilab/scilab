@@ -13,6 +13,8 @@
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
+#include "function.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -134,7 +136,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//		return 0;
 	//	}
 
-	//	if ( (m3 != n3) && (n3 != 1) ) 
+	//	if ( (m3 != n3) && (n3 != 1) )
 	//	{
 	//		Scierror(999,_("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 3);
 	//		return 0;
@@ -172,7 +174,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 
 	//	sciErr = getVarDimension(_piKey, piAddressVarTwo, &m2, &n2);
 
-	//	if ( (m2 != n2) && (n2 != 1) ) 
+	//	if ( (m2 != n2) && (n2 != 1) )
 	//	{
 	//		Scierror(999,_("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 2);
 	//		return 0;

@@ -15,6 +15,8 @@
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "types.hxx"
+#include "container.hxx"
+#include "string.hxx"
 
 extern "C"
 {

@@ -23,8 +23,8 @@ namespace types
                                     File();
                                     ~File();
 
-        void                        setFileMode(wstring _pstMode);
-        wstring&                    getFileMode();
+        void                        setFileMode(std::wstring _pstMode);
+        std::wstring&               getFileMode();
         double                      getFileModeAsDouble();
 
         void                        setFileDesc(FILE* _fileDesc);
@@ -35,17 +35,17 @@ namespace types
 
         void                        setFileType(int _iType);
         int                         getFileType();
-        wstring                     getFileTypeAsString();
+        std::wstring                getFileTypeAsString();
 
-        void                        setFilename(wstring _stFilename);
-        wstring                     getFilename();
+        void                        setFilename(std::wstring _stFilename);
+        std::wstring                getFilename();
 
     private :
         FILE*                       m_fileDesc;
         int                         m_iSwap; /* swap status for each file */
-        wstring                     m_pstMode; /* mode for each file */
+        std::wstring                m_pstMode; /* mode for each file */
         int                         m_iType; /* type (Fortran,C) for each file must be zero initialized */
-        wstring                     m_stFilename; /* name for each file */
+        std::wstring                m_stFilename; /* name for each file */
 
     };
 }

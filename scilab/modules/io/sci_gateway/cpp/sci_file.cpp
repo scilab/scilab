@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,6 +18,7 @@
 #include "io_gw.hxx"
 #include "setenvvar.hxx"
 #include "filemanager.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -43,6 +44,9 @@ extern "C"
 #define FILE_OPEN_STR "open"
 #define FILE_OLD_STR "old"
 /*--------------------------------------------------------------------------*/
+
+using namespace types;
+
 Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);
 Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);
 /*--------------------------------------------------------------------------*/
@@ -148,7 +152,7 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //				return 0;
 //			}
 //
-//			if ( (m1 != n1) && (n1 != 1) ) 
+//			if ( (m1 != n1) && (n1 != 1) )
 //			{
 //				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
 //				return 0;
@@ -161,7 +165,7 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //				return 0;
 //			}
 //
-//			if ( (m2 != n2) && (n2 != 1) ) 
+//			if ( (m2 != n2) && (n2 != 1) )
 //			{
 //				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
 //				return 0;
@@ -174,7 +178,7 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //				return 0;
 //			}
 //
-//			if ( (m3 != n3) && (n3 != 1) ) 
+//			if ( (m3 != n3) && (n3 != 1) )
 //			{
 //				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
 //				return 0;
@@ -227,14 +231,14 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //				sciErr = getMatrixOfString(_piKey, piAddressVarThree, &m3, &n3, &lenStVarThree, &pStVarThree);
 //				if(sciErr.iErr)
 //				{
-//					FREE(pStVarThree); pStVarThree = NULL; 
+//					FREE(pStVarThree); pStVarThree = NULL;
 //					printError(&sciErr, 0);
 //					return 0;
 //				}
 //
 //				if (strcmp(pStVarThree, FILE_OLD_STR) == 0)
 //				{
-//					FREE(pStVarThree); pStVarThree = NULL; 
+//					FREE(pStVarThree); pStVarThree = NULL;
 //
 //					// get lenStVarTwo value
 //					sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
@@ -305,7 +309,7 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 //					FREE(pStVarTwo); pStVarTwo = NULL;
 //				}
 //
-//				FREE(pStVarThree); pStVarThree = NULL; 
+//				FREE(pStVarThree); pStVarThree = NULL;
 //			}
 //
 //			FREE(pStVarOne); pStVarOne = NULL;
@@ -327,7 +331,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         }
         return Function::OK;
     }
-    
+
     int* piIds = FileManager::getIDs();
     if(piIds)
     {
@@ -470,7 +474,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //
 //	int m_out = 0;
 //	int n_out = 0;
-//	
+//
 //	/* get Address of inputs */
 //	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
 //	if(sciErr.iErr)
@@ -535,7 +539,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //		return 0;
 //	}
 //
-//	LhsVar(1) = Rhs + 1; 
+//	LhsVar(1) = Rhs + 1;
 //
 //	if (Lhs > 1) /* Type */
 //	{
@@ -562,7 +566,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //			return 0;
 //		}
 //
-//		LhsVar(2) = Rhs + 2; 
+//		LhsVar(2) = Rhs + 2;
 //	}
 //
 //	if (Lhs > 2) /* name */
@@ -599,7 +603,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //			return 0;
 //		}
 //
-//		LhsVar(3) = Rhs + 3; 
+//		LhsVar(3) = Rhs + 3;
 //	}
 //
 //	if (Lhs > 3)  /* mod */
@@ -625,7 +629,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //			return 0;
 //		}
 //
-//		LhsVar(4) = Rhs + 4; 
+//		LhsVar(4) = Rhs + 4;
 //	}
 //
 //	if (Lhs > 4) /* swap */
@@ -650,7 +654,7 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 //			printError(&sciErr, 0);
 //			return 0;
 //		}
-//		LhsVar(5) = Rhs + 5; 
+//		LhsVar(5) = Rhs + 5;
 //	}
 //
 //	C2F(putlhsvar)();

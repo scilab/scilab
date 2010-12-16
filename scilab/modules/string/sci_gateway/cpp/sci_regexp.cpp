@@ -17,6 +17,7 @@ using regular expression .                                      */
 #include "function.hxx"
 #include "context.hxx"
 #include "types.hxx"
+#include "string.hxx"
 #include "string_gw.hxx"
 
 extern "C"
@@ -34,6 +35,9 @@ extern "C"
 #define WCHAR_R L'r'
 #define WSTR_ONCE L'o'
 /*------------------------------------------------------------------------*/
+
+using namespace types;
+
 Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out)
 {
 	wchar_t wcType          = WCHAR_S;
@@ -130,7 +134,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
             return Function::Error;
         }
     }while(iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd && wcType != WSTR_ONCE);
- 
+
 
     Double* pStart = new Double(1, iOccurs);
     double* pdblStart = pStart->real_get();

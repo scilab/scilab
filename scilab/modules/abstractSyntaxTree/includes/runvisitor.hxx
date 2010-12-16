@@ -27,6 +27,14 @@
 #include "shortcutvisitor.hxx"
 #include "printvisitor.hxx"
 
+#include "double.hxx"
+#include "implicitlist.hxx"
+#include "tlist.hxx"
+#include "struct.hxx"
+#include "macro.hxx"
+#include "macrofile.hxx"
+#include "cell.hxx"
+
 // Needed by visitprivate(const OpExp &)
 // Needed by visitprivate(const LogicalOpExp &)
 #include "types_multiplication.hxx"

@@ -89,9 +89,9 @@ namespace types
         return m_threadStatus;
     }
 
-	wstring ThreadId::toString(int _iPrecision, int _iLineLen)
+    std::wstring ThreadId::toString(int _iPrecision, int _iLineLen)
 	{
-		wostringstream ostr;
+        std::wostringstream ostr;
 
         ostr << L"ThreadId : " << this << std::endl;
         ostr << L"Status : " << StatusToString(this->getStatus());

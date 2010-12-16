@@ -41,7 +41,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
             std::wostringstream os;
             os << L"inconsistent row/column dimensions\n";
             //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-            throw ScilabError(os.str());
+            throw ast::ScilabError(os.str());
         }
         return pResult;
     }
@@ -67,7 +67,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
             std::wostringstream os;
             os << L"inconsistent row/column dimensions\n";
             //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-            throw ScilabError(os.str());
+            throw ast::ScilabError(os.str());
         }
         return pResult;
     }
@@ -91,7 +91,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
             std::wostringstream os;
             os << L"inconsistent row/column dimensions\n";
             //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-            throw ScilabError(os.str());
+            throw ast::ScilabError(os.str());
         }
         return pResult;
     }
@@ -110,7 +110,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
             std::wostringstream os;
             os << L"inconsistent row/column dimensions\n";
             //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-            throw ScilabError(os.str());
+            throw ast::ScilabError(os.str());
         }
         return pResult;
     }
@@ -131,14 +131,14 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
                 std::wostringstream os;
                 os << L"inconsistent row/column dimensions\n";
                 //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                throw ScilabError(os.str());
+                throw ast::ScilabError(os.str());
             }
             else if(iResult == 2)
             {
                 std::wostringstream os;
                 os << L"variables don't have the same formal variable";
                 //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                throw ScilabError(os.str());
+                throw ast::ScilabError(os.str());
             }
         }
         return pResult;

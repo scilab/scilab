@@ -11,7 +11,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "alltypes.hxx"
+#include "function.hxx"
+#include "string.hxx"
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"

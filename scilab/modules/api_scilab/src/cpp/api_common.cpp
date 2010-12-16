@@ -13,19 +13,28 @@
  * still available and supported in Scilab 6.
  */
 
+
+#include "types.hxx"
+#include "internal.hxx"
+#include "double.hxx"
+#include "function.hxx"
+#include "matrixpoly.hxx"
+#include "alltypes.hxx"
+
+extern "C"
+{
 #include <string.h>
 #include <stdlib.h>
 #include "machine.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
+#include "api_common.h"
 #include "api_internal_common.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "MALLOC.h"
-#include "context.hxx"
-
-using namespace std;
-using namespace types;
+#include "api_oldstack.h"
+}
 
 /*Global structure for scilab 5.x*/
 extern "C"
@@ -52,8 +61,8 @@ SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	if(_piAddress != NULL && isVarMatrixType(_pvCtx, _piAddress))
 	{
-		*_piRows		= ((InternalType*)_piAddress)->getAsGenericType()->rows_get();
-		*_piCols		= ((InternalType*)_piAddress)->getAsGenericType()->cols_get();
+		*_piRows		= ((types::InternalType*)_piAddress)->getAsGenericType()->rows_get();
+		*_piCols		= ((types::InternalType*)_piAddress)->getAsGenericType()->cols_get();
 	}
 	else
 	{
@@ -102,10 +111,10 @@ SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 		return sciErr;
 	}
 
-	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-  typed_list in = *pStr->m_pIn;
-  int*	piRetCount = pStr->m_piRetCount;
-  wchar_t* pstName = pStr->m_pstName;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    int*	piRetCount = pStr->m_piRetCount;
+    wchar_t* pstName = pStr->m_pstName;
 
 	int iAddr			= 0;
 
@@ -177,6 +186,7 @@ SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddres
 	*_piAddress = piAddr;
 	return sciErr;
 }
+
 /*--------------------------------------------------------------------------*/
 SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 {
@@ -188,7 +198,8 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 		return sciErr;
 	}
 
-	switch(((InternalType*)_piAddress)->getType())
+/*
+    switch(((types::InternalType *)_piAddress)->getType())
 	{
 	case GenericType::RealDouble :
 		*_piType = sci_matrix;
@@ -247,7 +258,7 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	default :
 		*_piType = 0;
 	}
-
+*/
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -286,18 +297,20 @@ int isVarComplex(void* _pvCtx, int* _piAddress)
 		return 0;
 	}
 
+/*
 	getVarType(_pvCtx, _piAddress, &iType);
 	switch(iType)
 	{
 	case sci_matrix :
-		iComplex = ((InternalType*)_piAddress)->getAsDouble()->isComplex();
+		iComplex = ((types::InternalType*)(_piAddress))->getAsDouble()->isComplex();
 		break;
 	case sci_poly :
-		iComplex = ((InternalType*)_piAddress)->getAsPoly()->isComplex();
+		iComplex = ((types::InternalType*)_piAddress)->getAsPoly()->isComplex();
 	case sci_sparse :
 		//iComplex = ((InternalType*)_piAddress)->getAsSparse()->isComplex();
 		break;
 	}
+*/
 	return iComplex;
 }
 /*--------------------------------------------------------------------------*/
@@ -655,17 +668,17 @@ SciErr getDimFromNamedVar(void* _pvCtx, const char* _pstName, int* _piVal)
 /*--------------------------------------------------------------------------*/
 int getRhsFromAddress(void* _pvCtx, int* _piAddress)
 {
-	int i = 0;
-	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-  typed_list in = *pStr->m_pIn;
+	//int i = 0;
+ //   types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+ //   types::typed_list in = *pStr->m_pIn;
 
-	for(i = 0 ; i < Rhs ; i++)
-	{
-		if(_piAddress == (int*)in[i])
-		{
-			return i + 1;
-		}
-	}
+	//for(i = 0 ; i < Rhs ; i++)
+	//{
+	//	if(_piAddress == (int*)in[i])
+	//	{
+	//		return i + 1;
+	//	}
+	//}
 	return 0;
 }
 

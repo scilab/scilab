@@ -275,9 +275,9 @@ namespace types
         }
 
 
-        wstring toString(int _iPrecision, int _iLineLen)
+        std::wstring toString(int _iPrecision, int _iLineLen)
         {
-           wostringstream ostr;
+            std::wostringstream ostr;
             if(m_iRows == 1 && m_iCols == 1)
             {//scalar
                 int iWidth = 0;
@@ -297,7 +297,7 @@ namespace types
             }
             else if(m_iRows == 1)
             {//row vector
-                wostringstream ostemp;
+                std::wostringstream ostemp;
                 int iLastVal = 0;
 
                 for(int i = 0 ; i < m_iCols ; i++)
@@ -325,7 +325,7 @@ namespace types
             }
             else // matrix
             {
-                wostringstream ostemp;
+                std::wostringstream ostemp;
                 int iLen = 0;
                 int iLastCol = 0;
 
@@ -456,7 +456,7 @@ namespace types
     public :
         Int8(int _iRows, int _iCols) : SignedIntT<char>(_iRows, _iCols) {}
         IntType getIntType() { return Type8; }
-        wstring getTypeStr(){return L"int8";}
+        std::wstring getTypeStr(){return L"int8";}
     };
 
     /*
@@ -467,7 +467,7 @@ namespace types
     public :
         UInt8(int _iRows, int _iCols) : UnsignedIntT<unsigned char>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned8; }
-        wstring getTypeStr(){return L"uint8";}
+        std::wstring getTypeStr(){return L"uint8";}
     };
 
 //16 bits
@@ -479,7 +479,7 @@ namespace types
     public :
         Int16(int _iRows, int _iCols) : SignedIntT<short>(_iRows, _iCols) {}
         IntType getIntType() { return Type16; }
-        wstring getTypeStr(){return L"int16";}
+        std::wstring getTypeStr(){return L"int16";}
     };
 
     /*
@@ -490,7 +490,7 @@ namespace types
     public :
         UInt16(int _iRows, int _iCols) : UnsignedIntT<unsigned short>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned16; }
-        wstring getTypeStr(){return L"uint16";}
+        std::wstring getTypeStr(){return L"uint16";}
     };
 
 //32 bits
@@ -502,7 +502,7 @@ namespace types
     public :
         Int32(int _iRows, int _iCols) : SignedIntT<int>(_iRows, _iCols) {}
         IntType getIntType() { return Type32; }
-        wstring getTypeStr(){return L"int32";}
+        std::wstring getTypeStr(){return L"int32";}
     };
 
     /*
@@ -513,7 +513,7 @@ namespace types
     public :
         UInt32(int _iRows, int _iCols) : UnsignedIntT<unsigned int>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned32; }
-        wstring getTypeStr(){return L"uint32";}
+        std::wstring getTypeStr(){return L"uint32";}
     };
 
 //64 bits
@@ -525,7 +525,7 @@ namespace types
     public :
         Int64(int _iRows, int _iCols) : SignedIntT<long long>(_iRows, _iCols) {}
         IntType getIntType() { return Type64; }
-        wstring getTypeStr(){return L"int64";}
+        std::wstring getTypeStr(){return L"int64";}
     };
 
     /*
@@ -536,7 +536,7 @@ namespace types
     public :
         UInt64(int _iRows, int _iCols) : UnsignedIntT<unsigned long long>(_iRows, _iCols) {}
         IntType getIntType() { return TypeUnsigned64; }
-        wstring getTypeStr(){return L"uint64";}
+        std::wstring getTypeStr(){return L"uint64";}
     };
 }
 #endif /* __INTT_HH__ */

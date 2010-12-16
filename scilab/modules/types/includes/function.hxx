@@ -20,8 +20,8 @@
 #endif
 
 #include <string>
-#include "callable.hxx"
 #include "types.hxx"
+#include "callable.hxx"
 
 #define MAX_OUTPUT_VARIABLE		64
 
@@ -32,7 +32,7 @@ namespace types
     class Function : public Callable
     {
     public :
-        typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
+        typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
         typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
 
                                 Function() : Callable() {};

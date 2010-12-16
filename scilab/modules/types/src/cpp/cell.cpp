@@ -1,13 +1,13 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-* 
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-* 
+*
 */
 
 #include <sstream>
@@ -18,7 +18,7 @@
 #include "tostring_common.hxx"
 #include "core_math.h"
 
-namespace types 
+namespace types
 {
     /**
     ** Constructor & Destructor (public)
@@ -42,7 +42,7 @@ namespace types
         m_iSize = m_iRows * m_iCols;
         m_iSizeMax = m_iSize;
 
-        m_vectData = new vector<InternalType*>;
+        m_vectData = new std::vector<InternalType*>;
         if(m_iSize != 0)
         {
             m_vectData->resize(size_get());
@@ -56,7 +56,7 @@ namespace types
         }
     }
 
-    Cell::~Cell() 
+    Cell::~Cell()
     {
         if(isDeletable() == true)
         {
@@ -71,7 +71,7 @@ namespace types
         }
     }
 
-    /** 
+    /**
     ** Private Copy Constructor and data Access
     */
     Cell::Cell(Cell *_oCellCopyMe)
@@ -134,7 +134,7 @@ namespace types
     ** size_get
     ** Return the number of elements in struct
     */
-    int Cell::size_get() 
+    int Cell::size_get()
     {
         return m_iSize;
     }
@@ -152,9 +152,9 @@ namespace types
     ** toString to display Structs
     ** FIXME : Find a better indentation process
     */
-    wstring Cell::toString(int _iPrecision, int _iLineLen)
+    std::wstring Cell::toString(int _iPrecision, int _iLineLen)
     {
-        wostringstream ostr;
+        std::wostringstream ostr;
 
         if(size_get() == 0)
         {
@@ -179,7 +179,7 @@ namespace types
                 {
                     InternalType* pIT = get(i,j);
 
-                    wstring strType = pIT->getTypeStr();
+                    std::wstring strType = pIT->getTypeStr();
                     if(pIT->isAssignable())
                     {
                         //compute number of digits to write rows and cols
@@ -218,12 +218,12 @@ namespace types
                     ostr << L"  [";
                     if(pIT->isAssignable())
                     {
-                        wostringstream ostemp;
+                        std::wostringstream ostemp;
                         Config_Stream(&ostemp, piILen[j], _iPrecision, ' ');
-                        ostemp << right << pIT->getAsGenericType()->rows_get();
+                        ostemp << std::right << pIT->getAsGenericType()->rows_get();
                         ostemp << L"x";
                         Config_Stream(&ostemp, piJLen[j], _iPrecision, ' ');
-                        ostemp << left << pIT->getAsGenericType()->cols_get();
+                        ostemp << std::left << pIT->getAsGenericType()->cols_get();
                         Config_Stream(&ostemp, piSumLen[j] - static_cast<int>(ostemp.str().size()), _iPrecision, ' ');
                         ostemp << L"";//fill with space
                         ostr << ostemp.str();
@@ -235,7 +235,7 @@ namespace types
                     }
                     ostr << L" ";
                     Config_Stream(&ostr, piColLen[j], _iPrecision, ' ');
-                    ostr << left << pIT->getTypeStr();
+                    ostr << std::left << pIT->getTypeStr();
                     ostr << L"]";
                 }
                 ostr << std::endl;
@@ -263,9 +263,9 @@ namespace types
             m_iSizeMax = static_cast<int>(_iNewRows * _iNewCols * 1.1);
 
             //alloc new data array
-            vector<InternalType*>* pIT = NULL;
+            std::vector<InternalType*>* pIT = NULL;
 
-            pIT = new vector<InternalType*>;
+            pIT = new std::vector<InternalType*>;
             pIT->resize(m_iSizeMax);
 
             for(int i = 0 ; i < _iNewRows ; i++)
@@ -390,9 +390,9 @@ namespace types
         return pOut;
     }
 
-    vector<InternalType*> Cell::extract_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+    std::vector<InternalType*> Cell::extract_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
     {
-        vector<InternalType*> vectRet;
+        std::vector<InternalType*> vectRet;
 
         //check input param
         if(	(_bAsVector && _piMaxDim[0] > size_get()) ||

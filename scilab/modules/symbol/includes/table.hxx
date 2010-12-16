@@ -10,13 +10,13 @@
 *
 */
 
-#ifndef SYMBOL_TABLE_HH
-#define SYMBOL_TABLE_HH
+#ifndef __TABLE_HXX__
+#define __TABLE_HXX__
 
-#include <iostream>
 #include <list>
 #include "symbol.hxx"
 #include "scope.hxx"
+#include "internal.hxx"
 #include "export_symbol.h"
 
 namespace symbol
@@ -38,11 +38,11 @@ namespace symbol
 		}
 
 		/** Associate value to key in the current scope. */
-		virtual void put (const wstring& key, InternalType &value) = 0 ;
+		virtual void put (const std::wstring& key, types::InternalType &value) = 0 ;
 
 		/** If key was associated to some Entry_T in the open scopes, return the
 		** most recent insertion. Otherwise return the empty pointer. */
-		virtual InternalType*	get (const wstring& key) const = 0 ;
+		virtual types::InternalType*	get (const std::wstring& key) const = 0 ;
 
 		/** Send the content of this table on ostr in a readable manner, the top
 		** of the stack being displayed last. */
@@ -55,5 +55,5 @@ namespace symbol
 }
 
 
-#endif /* ! SYMBOL_TABLE_HH */
+#endif /* ! __TABLE_HXX__ */
 

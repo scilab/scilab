@@ -7,18 +7,19 @@
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
 
 /* desc : concatenate character strings                                   */
-/* Examples: strcat(string(1:10),',')                                     */ 
+/* Examples: strcat(string(1:10),',')                                     */
 /*                                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "funcmanager.hxx"
 #include "string_gw.hxx"
+#include "function.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -28,13 +29,13 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
-/*-------------------------------------------------------------------------------------*/ 
+/*-------------------------------------------------------------------------------------*/
 #define STAR '*'
 #define COL 'c'
 #define ROW 'r'
 #define ONE_CHAR 1
 #define EMPTY_CHAR ""
-/*-------------------------------------------------------------------------------------*/ 
+/*-------------------------------------------------------------------------------------*/
 static int sci_strcat_three_rhs(char *fname);
 static int sci_strcat_two_rhs(char *fname);
 static int sci_strcat_one_rhs(char *fname);
@@ -42,6 +43,9 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname);
 static int sumlengthstring(int rhspos);
 static int *lengthEachString(int rhspos, int *sizeArrayReturned);
 /*-------------------------------------------------------------------------------------*/
+
+using namespace types;
+
 Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out)
 {
     int iMode               = 0;
@@ -238,8 +242,8 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 //    return 0;
 //}
 ///*-------------------------------------------------------------------------------------*/
-//static int sci_strcat_three_rhs(char *fname) 
-//{ 
+//static int sci_strcat_three_rhs(char *fname)
+//{
 //    int Row_One = 0,Col_One = 0;
 //    char **Input_String_One = NULL;
 //    int mn = 0;
@@ -250,7 +254,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 //
 //    if (VarType(1) != sci_strings)
 //    {
-//        Scierror(999,_("%s: Wrong type for input argument #%d: a string vector expected.\n"),fname,1); 
+//        Scierror(999,_("%s: Wrong type for input argument #%d: a string vector expected.\n"),fname,1);
 //        return 0;
 //    }
 //
@@ -267,10 +271,10 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 //    }
 //
 //    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_String_One);
-//    mn = Row_One * Col_One;  
+//    mn = Row_One * Col_One;
 //
-//    if (Rhs >= 2) 
-//    { 
+//    if (Rhs >= 2)
+//    {
 //        /* second argument always a string and not a matrix of string */
 //        int l2 = 0;
 //        int Row_Two = 0,Col_Two = 0;
@@ -278,13 +282,13 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 //        Input_String_Two = cstk(l2);
 //    }
 //
-//    if (Rhs >= 3) 
+//    if (Rhs >= 3)
 //    {
 //        int Row_Three = 0, Col_Three = 0;
 //        int l3 = 0;
 //        GetRhsVar(3, STRING_DATATYPE, &Row_Three, &Col_Three, &l3);
 //        if (Row_Three * Col_Three != 0) typ = cstk(l3)[0];
-//        if (typ != COL && typ != ROW ) 
+//        if (typ != COL && typ != ROW )
 //        {
 //            freeArrayOfString(Input_String_One,mn);
 //            Scierror(999,_("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"c","r");
@@ -292,66 +296,66 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 //        }
 //    }
 //
-//    switch ( typ ) 
+//    switch ( typ )
 //    {
-//    case STAR : 
+//    case STAR :
 //        {
-//            int nchars = 0; 
+//            int nchars = 0;
 //            int one = 1;
 //            int l3 = 0;
 //            int k = 0;
 //
-//            /* just return one string */ 
-//            for ( i = 0 ; i < mn ; i++ ) nchars += (int)strlen(Input_String_One[i]); 
+//            /* just return one string */
+//            for ( i = 0 ; i < mn ; i++ ) nchars += (int)strlen(Input_String_One[i]);
 //            nchars += (mn-1)*(int)strlen(Input_String_Two);
 //
 //            CreateVar(Rhs+1,STRING_DATATYPE,&one,&nchars,&l3);
 //
-//            for ( i = 0 ; i < mn ; i++ ) 
+//            for ( i = 0 ; i < mn ; i++ )
 //            {
 //                int j = 0;
-//                for ( j =0 ; j < (int)strlen(Input_String_One[i]) ; j++ ) *cstk(l3+ k++) = Input_String_One[i][j]; 
+//                for ( j =0 ; j < (int)strlen(Input_String_One[i]) ; j++ ) *cstk(l3+ k++) = Input_String_One[i][j];
 //                if ( i != mn-1) for ( j =0 ; j < (int)strlen(Input_String_Two) ; j++ ) *cstk(l3+ k++) = Input_String_Two[j];
 //            }
 //            freeArrayOfString(Input_String_One,mn);
 //            LhsVar(1) = Rhs+1  ;
 //        }
 //        break;
-//    case COL: 
+//    case COL:
 //        {
 //            char **Output_String = NULL;
 //            int nchars = 0;
 //            int one = 1;
-//            /* return a column matrix */ 
-//            if ( (Output_String = (char**)MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
+//            /* return a column matrix */
+//            if ( (Output_String = (char**)MALLOC((Row_One+1)*sizeof(char *)))==NULL)
 //            {
 //                freeArrayOfString(Input_String_One,mn);
 //                Scierror(999,_("%s: No more memory.\n"),fname);
 //                return 0;
 //            }
 //            Output_String[Row_One]=NULL;
-//            for (i= 0 ; i < Row_One ; i++) 
+//            for (i= 0 ; i < Row_One ; i++)
 //            {
 //                int j = 0;
-//                /* length of row i */ 
+//                /* length of row i */
 //                nchars = 0;
 //                for ( j = 0 ; j < Col_One ; j++ ) nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
-//                nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
+//                nchars += (Col_One-1)*(int)strlen(Input_String_Two);
 //
 //                Output_String[i]=(char*)MALLOC((nchars+1)*sizeof(char));
-//                if ( Output_String[i] == NULL) 
+//                if ( Output_String[i] == NULL)
 //                {
 //                    freeArrayOfString(Output_String,i);
 //                    freeArrayOfString(Input_String_One,mn);
 //                    Scierror(999,_("%s: No more memory.\n"),fname);
 //                    return 0;
-//                } 
+//                }
 //                /* fill the string */
 //                strcpy(Output_String[i],Input_String_One[i]);
 //
-//                for ( j = 1 ; j < Col_One ; j++ ) 
+//                for ( j = 1 ; j < Col_One ; j++ )
 //                {
-//                    strcat(Output_String[i],Input_String_Two); 
+//                    strcat(Output_String[i],Input_String_Two);
 //                    strcat(Output_String[i],Input_String_One[i+ Row_One*j]);
 //                }
 //            }
@@ -370,27 +374,27 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 //            int one = 1;
 //            char **Output_String = (char **)CALLOC(Col_One, sizeof(char*));
 //
-//            /* return a row matrix */ 
-//            if (Output_String == NULL) 
+//            /* return a row matrix */
+//            if (Output_String == NULL)
 //            {
 //                freeArrayOfString(Input_String_One, mn);
 //                Scierror(999,_("%s: No more memory.\n"), fname);
 //                return 0;
 //            }
 //
-//            for (j = 0 ; j < Col_One ; j++) 
+//            for (j = 0 ; j < Col_One ; j++)
 //            {
 //                Output_String[j] = os_strdup(Input_String_One[j*Row_One]);
 //
-//                if ( Output_String[j] == NULL) 
+//                if ( Output_String[j] == NULL)
 //                {
 //                    freeArrayOfString(Output_String,j);
 //                    freeArrayOfString(Input_String_One, mn);
 //                    Scierror(999,_("%s: No more memory.\n"), fname);
 //                    return 0;
-//                } 
+//                }
 //
-//                for ( i = 1 ; i < Row_One ; i++ ) 
+//                for ( i = 1 ; i < Row_One ; i++ )
 //                {
 //                    int lenOutput = 0;
 //                    int lenInput = 0;
@@ -410,7 +414,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 //                            Scierror(999,_("%s: No more memory.\n"), fname);
 //                            return 0;
 //                        }
-//                        strcat(Output_String[j], Input_String_Two); 
+//                        strcat(Output_String[j], Input_String_Two);
 //                    }
 //
 //                    if (Input_String_One[i+ Row_One*j])
@@ -470,7 +474,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 //
 //    if (Type_Two != sci_strings)
 //    {
-//        Scierror(246,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname,2); 
+//        Scierror(246,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname,2);
 //        return 0;
 //    }
 //    else /* sci_strings */
@@ -684,7 +688,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 //    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&Row_One,&Col_One,&Input_String_One);
 //
 //    /* check that we have [] */
-//    if ((Row_One == 0) && (Col_One == 0)) 
+//    if ((Row_One == 0) && (Col_One == 0))
 //    {
 //        int one    = 1 ;
 //        int len   = (int)strlen(EMPTY_CHAR);

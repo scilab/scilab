@@ -15,18 +15,22 @@
 
 #include <string.h>
 #include <stdlib.h>
+
+#include "function.hxx"
+#include "double.hxx"
+
+extern "C"
+{
 #include "machine.h"
+#include "localization.h"
+#include "MALLOC.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "api_internal_double.h"
 #include "api_internal_common.h"
 #include "stack-c.h"
 #include "api_oldstack.h"
-#include "localization.h"
-#include "MALLOC.h"
-#include "context.hxx"
-
-using namespace std;
+}
 using namespace types;
 
 /*******************************/
@@ -274,34 +278,34 @@ SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, const char* _pstName, int 
 SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const doublecomplex* _pdblData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-    int iVarID[nsiz];
-    int iSaveRhs			= api_Rhs((int*)_pvCtx);
-    int iSaveTop			= api_Top((int*)_pvCtx);
-    int iSize					= _iRows * _iCols;
-	int *piAddr				= NULL;
-	double *pdblReal	= NULL;
-	double *pdblImg		= NULL;
+ //   int iVarID[nsiz];
+ //   int iSaveRhs			= api_Rhs((int*)_pvCtx);
+ //   int iSaveTop			= api_Top((int*)_pvCtx);
+ //   int iSize					= _iRows * _iCols;
+	//int *piAddr				= NULL;
+	//double *pdblReal	= NULL;
+	//double *pdblImg		= NULL;
 
-    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-    Top = Top + Nbvars + 1;
+ //   C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+ //   Top = Top + Nbvars + 1;
 
-    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+ //   getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-    //write matrix information
-    fillCommonMatrixOfDouble(_pvCtx, piAddr, 1, _iRows, _iCols, &pdblReal, &pdblImg);
+ //   //write matrix information
+ //   fillCommonMatrixOfDouble(_pvCtx, piAddr, 1, _iRows, _iCols, &pdblReal, &pdblImg);
 
-    vGetPointerFromDoubleComplex(_pdblData, _iRows * _iCols, pdblReal, pdblImg);
+ //   vGetPointerFromDoubleComplex(_pdblData, _iRows * _iCols, pdblReal, pdblImg);
 
-    //update "variable index"
-    updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (2) * 2);
+ //   //update "variable index"
+ //   updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (2) * 2);
 
-	//Rhs = 0;
+	////Rhs = 0;
 
-	//Add name in stack reference list
-	createNamedVariable(iVarID);
+	////Add name in stack reference list
+	//createNamedVariable(iVarID);
 
-	//Top = iSaveTop;
-	//Rhs = iSaveRhs;
+	////Top = iSaveTop;
+	////Rhs = iSaveRhs;
 
     return sciErr;
 }
@@ -309,44 +313,44 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
 SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iVarID[nsiz];
-	int iSaveRhs			= api_Rhs((int*)_pvCtx);
-	int iSaveTop			= api_Top((int*)_pvCtx);
-	int iSize					= _iRows * _iCols;
-	int *piAddr				= NULL;
-	double *pdblReal	= NULL;
-	double *pdblImg		= NULL;
-	int iOne		= 1;
+	//int iVarID[nsiz];
+	//int iSaveRhs			= api_Rhs((int*)_pvCtx);
+	//int iSaveTop			= api_Top((int*)_pvCtx);
+	//int iSize					= _iRows * _iCols;
+	//int *piAddr				= NULL;
+	//double *pdblReal	= NULL;
+	//double *pdblImg		= NULL;
+	//int iOne		= 1;
 
-    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-    Top = Top + Nbvars + 1;
+ //   C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+ //   Top = Top + Nbvars + 1;
 
-    int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
-    if (iMemSize > iFreeSpace)
-    {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-        return sciErr;
-    }
+ //   int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
+ //   int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
+ //   if (iMemSize > iFreeSpace)
+ //   {
+ //       addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+ //       return sciErr;
+ //   }
 
-    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+ //   getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-    //write matrix information
-    fillCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
-    //copy data in stack
-    C2F(dcopy)(&iSize, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);
+ //   //write matrix information
+ //   fillCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
+ //   //copy data in stack
+ //   C2F(dcopy)(&iSize, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);
 
-    if(_iComplex)
-    {
-        C2F(dcopy)(&iSize, const_cast<double*>(_pdblImg), &iOne, pdblImg, &iOne);
-    }
+ //   if(_iComplex)
+ //   {
+ //       C2F(dcopy)(&iSize, const_cast<double*>(_pdblImg), &iOne, pdblImg, &iOne);
+ //   }
 
-    //update "variable index"
-    updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (_iComplex + 1) * 2);
+ //   //update "variable index"
+ //   updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (_iComplex + 1) * 2);
 
-	//Rhs = 0;
-	//Add name in stack reference list
-	createNamedVariable(iVarID);
+	////Rhs = 0;
+	////Add name in stack reference list
+	//createNamedVariable(iVarID);
 
 	//Top = iSaveTop;
 	//Rhs = iSaveRhs;

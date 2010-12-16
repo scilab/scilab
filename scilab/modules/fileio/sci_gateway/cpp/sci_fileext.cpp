@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,6 +14,8 @@
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
+#include "function.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -83,7 +85,7 @@ Function::ReturnValue sci_fileext(typed_list &in, int _iRetCount, typed_list &ou
 	//	Output_extensions = (char**)MALLOC(sizeof(char*)*(m1*n1));
 	//	if (Output_extensions)
 	//	{
-	//		
+	//
 	//		for (i = 0; i < m1*n1; i++)
 	//		{
 	//			if (Input_filenames[i])

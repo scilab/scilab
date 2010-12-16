@@ -1,23 +1,25 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Cong WU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /* desc : Let  s[k]  stands for the  k  character of Input_StringMatrixings
   ( or the  white space character if  k >length(s) ).
-  part  returns  c , a matrix of character Input_StringMatrixings, such that  
+  part  returns  c , a matrix of character Input_StringMatrixings, such that
   c(i,j)  is the Input_StringMatrixing  "s[v(1)]...s[v(n)]"  (  s=mp(i,j)  ).
                                                                           */
 /*------------------------------------------------------------------------*/
 #include "string_gw.hxx"
 #include "funcmanager.hxx"
+#include "function.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -29,6 +31,9 @@ extern "C"
 #include "partfunction.h"
 }
 /*--------------------------------------------------------------------------*/
+
+using namespace types;
+
 Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 {
     if(in.size() != 2)
@@ -72,7 +77,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
         return Function::OK;
     }
 
-     
+
     if(!((pD->rows_get() == 1 && pD->cols_get() >= 1) || (pD->rows_get() >= 1 && pD->cols_get() == 1)))
     {//non vector
         ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A vector expected.\n"), L"part", 2);
@@ -107,11 +112,11 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 	//CheckRhs(2,2);
 	//CheckLhs(1,1);
 
-	//if (VarType(1) == sci_matrix) 
-	//{ 
+	//if (VarType(1) == sci_matrix)
+	//{
 	//	/*Check for an empty matrix */
 	//	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&StackPosTwo);
-	//	if (m1 * n1 == 0) 
+	//	if (m1 * n1 == 0)
 	//	{
 	//		LhsVar(1) = 1 ;
 	//		C2F(putlhsvar)();

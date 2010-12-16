@@ -15,15 +15,15 @@
 #define MODULE_NAME L"types"
 bool TypesModule::Load()
 {
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"list", &sci_list, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"struct", &sci_struct, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"null", &sci_null, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"insert", &sci_insert, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"cell", &sci_cell, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"makecell", &sci_makecell, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"usertype", &sci_usertype, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
-  symbol::Context::getInstance()->AddFunction(Function::createFunction(L"tlist", &sci_tlist, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"list", &sci_list, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"struct", &sci_struct, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"null", &sci_null, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"insert", &sci_insert, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"cell", &sci_cell, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"makecell", &sci_makecell, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"usertype", &sci_usertype, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"tlist", &sci_tlist, MODULE_NAME));
 
   return true;
 }

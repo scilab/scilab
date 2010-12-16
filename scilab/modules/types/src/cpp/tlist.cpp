@@ -63,7 +63,7 @@ namespace types
         //first field is the tlist type
         for(int i = 1 ; i < pS->size_get() ; i++)
         {
-            if(wstring(pS->string_get(i)) == _sKey)
+            if(std::wstring(pS->string_get(i)) == _sKey)
             {
                 return true;
             }
@@ -101,7 +101,7 @@ namespace types
         //first field is the tlist type
         for(int i = 1 ; i < pS->size_get() ; i++)
         {
-            if(wstring(pS->string_get(i)) == _sKey)
+            if(std::wstring(pS->string_get(i)) == _sKey)
             {
                 return i;
             }
@@ -109,11 +109,11 @@ namespace types
         return -1;
     }
 
-    std::vector<InternalType*> TList::extract_string(list<wstring> _stFields)
+    std::vector<InternalType*> TList::extract_string(std::list<std::wstring> _stFields)
     {
         std::vector<InternalType*> Result;
 
-        std::list<wstring>::const_iterator it;
+        std::list<std::wstring>::const_iterator it;
         for(it = _stFields.begin() ; it != _stFields.end() ; it++)
         {
             if(exists(*it) == false)

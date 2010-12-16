@@ -123,7 +123,7 @@ namespace types
 	/*	real_get	*/
 	/*------------*/
 	float*	Float::real_get() const
-	{ 
+	{
 		return m_pfReal;
 	}
 
@@ -131,7 +131,7 @@ namespace types
 	/*	img_get	*/
 	/*------------*/
 	float*	Float::img_get() const
-	{ 
+	{
 		return m_pfImg;
 	}
 
@@ -159,7 +159,7 @@ namespace types
 	/*	real_get	*/
 	/*------------*/
 	float	Float::real_get(int _iRows, int _iCols) const
-	{ 
+	{
 		if(m_pfReal != NULL)
 		{
 			return m_pfReal[_iCols * m_iRows + _iRows];
@@ -194,7 +194,7 @@ namespace types
 	/*	img_get	*/
 	/*------------*/
 	float	Float::img_get(int _iRows, int _iCols) const
-	{ 
+	{
 		if(m_pfImg != NULL)
 		{
 			return m_pfImg[_iCols * m_iRows + _iRows];
@@ -208,17 +208,17 @@ namespace types
 	/*--------------*/
 	/*		whoIAm		*/
 	/*--------------*/
-	void Float::whoAmI() 
-	{ 
-		std::cout << "types::Float"; 
+	void Float::whoAmI()
+	{
+		std::cout << "types::Float";
 	}
 
 	/*--------------*/
 	/*	getAsUInt		*/
 	/*--------------*/
-	Float* Float::getAsFloat(void)		
-	{ 
-		return this; 
+	Float* Float::getAsFloat(void)
+	{
+		return this;
 	}
 
 	/*------------*/
@@ -226,7 +226,7 @@ namespace types
 	/*------------*/
 	GenericType::RealType Float::getType(void)
 	{
-		return RealFloat; 
+		return RealFloat;
 	}
 
 	/*--------------*/
@@ -326,7 +326,7 @@ namespace types
 		else
 			return false;
 
-		return true;	
+		return true;
 	}
 
 	bool Float::operator==(const InternalType& it)
@@ -424,9 +424,9 @@ namespace types
 		return true;
 	}
 
-	wstring Float::toString(int _iPrecision, int _iLineLen) 
+    std::wstring Float::toString(int _iPrecision, int _iLineLen)
 	{
-		wostringstream ostr;
+        std::wostringstream ostr;
 		// FIXME : Implement display method.
 		ostr << L"Float Values" << std::endl;
 

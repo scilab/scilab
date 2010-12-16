@@ -10,12 +10,10 @@
 *
 */
 
-#ifndef __DOUBLE_HH__
-#define __DOUBLE_HH__
+#ifndef __DOUBLE_HXX__
+#define __DOUBLE_HXX__
 
 #include "types.hxx"
-
-using std::string;
 
 namespace types
 {
@@ -58,7 +56,7 @@ namespace types
         void                        complex_set(bool _bComplex);
 
         Double*                     getAsDouble(void);
-        wstring                     toString(int _iPrecision, int _iLineLen);
+        std::wstring                toString(int _iPrecision, int _iLineLen);
 
         Double*                     clone();
         bool                        append(int _iRows, int _iCols, Double *_poSource);
@@ -96,4 +94,4 @@ namespace types
     };
 }
 
-#endif /* !__DOUBLE_HH__ */
+#endif /* !__DOUBLE_HXX__ */

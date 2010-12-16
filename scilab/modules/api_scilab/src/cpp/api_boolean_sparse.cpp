@@ -13,16 +13,18 @@
  * still available and supported in Scilab 6.
  */
 
+extern "C"
+{
+#include "MALLOC.h"
+#include "call_scilab.h"
 #include "api_common.h"
 #include "api_internal_common.h"
 #include "api_boolean_sparse.h"
 #include "api_internal_boolean_sparse.h"
 #include "localization.h"
-
-
-#include "call_scilab.h"
 #include "stack-c.h"
-#include "MALLOC.h"
+#include "api_oldstack.h"
+}
 
 SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
@@ -69,30 +71,30 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
 SciErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
-	int iPos				= 5 + _iRows + _iNbItem;
-	int* piAddr			= NULL;
+	//int iNewPos			= Top - Rhs + _iVar;
+	//int iAddr				= *Lstk(iNewPos);
+	//int iPos				= 5 + _iRows + _iNbItem;
+	//int* piAddr			= NULL;
 
-	int iMemSize = (int)( ( (double)iPos / 2 ) + 0.5);
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
-	if (iMemSize > iFreeSpace)
-	{
-		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-		return sciErr;
-	}
+	//int iMemSize = (int)( ( (double)iPos / 2 ) + 0.5);
+	//int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+	//if (iMemSize > iFreeSpace)
+	//{
+	//	addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+	//	return sciErr;
+	//}
 
-	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
-	sciErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_ALLOC_BOOLEAN_SPARSE, _("%s: Unable to create variable in Scilab memory"), "allocBooleanSparseMatrix");
-		return sciErr;
-	}
+	//getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
+	//sciErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+	//if(sciErr.iErr)
+	//{
+	//	addErrorMessage(&sciErr, API_ERROR_ALLOC_BOOLEAN_SPARSE, _("%s: Unable to create variable in Scilab memory"), "allocBooleanSparseMatrix");
+	//	return sciErr;
+	//}
 
-	iPos += iAddr;
-	updateInterSCI(_iVar, '$', iAddr, iPos);
-	updateLstk(iNewPos, iPos, 0);
+	//iPos += iAddr;
+	//updateInterSCI(_iVar, '$', iAddr, iPos);
+	//updateLstk(iNewPos, iPos, 0);
 	return sciErr;
 }
 
@@ -139,49 +141,49 @@ SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
 SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iVarID[nsiz];
-	int iSaveRhs		= Rhs;
-	int iSaveTop		= Top;
-	int iPos		= 0;
+    //int iVarID[nsiz];
+    //int iSaveRhs		= Rhs;
+    //int iSaveTop		= Top;
+    //int iPos		= 0;
 
-	int* piAddr		= NULL;
-	int* piNbItemRow	= NULL;
-	int* piColPos		= NULL;
+    //int* piAddr		= NULL;
+    //int* piNbItemRow	= NULL;
+    //int* piColPos		= NULL;
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-	Top = Top + Nbvars + 1;
+    //C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+    //Top = Top + Nbvars + 1;
 
-	int iMemSize = (int)( ( (double)iPos / 2) + 0.5);
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
-	if (iMemSize > iFreeSpace)
-	{
-		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-		return sciErr;
-	}
+    //int iMemSize = (int)( ( (double)iPos / 2) + 0.5);
+    //int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
+    //if (iMemSize > iFreeSpace)
+    //{
+    //    addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+    //    return sciErr;
+    //}
 
-	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
-	sciErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("%s: Unable to create %s named \"%s\""), "createNamedBooleanSparseMatrix", _("boolean sparse matrix"), _pstName);
-		return sciErr;
-	}
+    //getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+    //sciErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
+    //if(sciErr.iErr)
+    //{
+    //    addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("%s: Unable to create %s named \"%s\""), "createNamedBooleanSparseMatrix", _("boolean sparse matrix"), _pstName);
+    //    return sciErr;
+    //}
 
-	memcpy(piNbItemRow, _piNbItemRow, _iRows * sizeof(int));
-	memcpy(piColPos, _piColPos, _iNbItem * sizeof(int));
+    //memcpy(piNbItemRow, _piNbItemRow, _iRows * sizeof(int));
+    //memcpy(piColPos, _piColPos, _iNbItem * sizeof(int));
 
-	iPos	= 5;//4 for header + 1 for NbItem
-	iPos += _iRows + _iNbItem;
+    //iPos	= 5;//4 for header + 1 for NbItem
+    //iPos += _iRows + _iNbItem;
 
-	//update "variable index"
-	updateLstk(Top, *Lstk(Top) + iPos, 0);
+    ////update "variable index"
+    //updateLstk(Top, *Lstk(Top) + iPos, 0);
 
-	Rhs = 0;
-	//Add name in stack reference list
-	createNamedVariable(iVarID);
+    //Rhs = 0;
+    ////Add name in stack reference list
+    //createNamedVariable(iVarID);
 
-	Top = iSaveTop;
-  Rhs = iSaveRhs;
+    //Top = iSaveTop;
+    //Rhs = iSaveRhs;
 
 	return sciErr;
 }

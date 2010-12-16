@@ -14,6 +14,7 @@
 #include "context.hxx"
 #include "types.hxx"
 #include "double.hxx"
+#include "string.hxx"
 #include "core_gw.hxx"
 
 extern "C"
@@ -21,6 +22,8 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 }
+
+using namespace types;
 
 types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -62,7 +65,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
                 InternalType* pIT = pCtx->get(pstVar);
                 if(pIT)
                 {//variable have already a value in current local scope
-                    
+
                     //set global at local value
                     pCtx->setGlobalValue(pstVar, *pIT);
                     pCtx->remove(pstVar);

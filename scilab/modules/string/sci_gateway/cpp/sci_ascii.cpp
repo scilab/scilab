@@ -2,22 +2,25 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
 *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /* desc : This function convert Scilab string to a vector of ascii code  */
 /*        or vector of ascii code to Scilab strings.                     */
-/*        If  txt  is a matrix of string,  ascii(txt)  is equivalent to  */  
+/*        If  txt  is a matrix of string,  ascii(txt)  is equivalent to  */
 /*          ascii(strcat(txt))                                           */
 /*-----------------------------------------------------------------------*/
 
 #include "string_gw.hxx"
+#include "function.hxx"
+#include "string.hxx"
+
 extern "C"
 {
 #include <ctype.h>
@@ -28,6 +31,8 @@ extern "C"
 }
 
 //#include "sci_warning.h"
+
+using namespace types;
 
 /*----------------------------------------------------------------------------*/
 String* DoubleToString(Double* _pdbl);
@@ -45,17 +50,17 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
     InternalType* pOut;
     switch(in[0]->getType())
     {
-    case InternalType::RealDouble : 
+    case InternalType::RealDouble :
         {
             pOut = DoubleToString(in[0]->getAsDouble());
             break;
         }
-    case InternalType::RealString : 
+    case InternalType::RealString :
         {
             pOut = StringToDouble(in[0]->getAsString());
             break;
         }
-    case InternalType::RealInt : 
+    case InternalType::RealInt :
         {
             pOut = IntToString(in[0]->getAsInt());
             break;
@@ -67,11 +72,11 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 
     out.push_back(pOut);
     return Function::OK;
-    
+
 //	CheckRhs(1,1);
 //	CheckLhs(0,1);
 //
-//	switch ( GetType(1)) 
+//	switch ( GetType(1))
 //	{
 //		case sci_strings:
 //			asciiStrings(fname);
@@ -80,11 +85,11 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //		case sci_matrix :
 //			asciiMatrix(fname);
 //		break;
-//		
+//
 //		case sci_ints :
 //			asciiIntMatrix(fname);
 //		break;
-//		
+//
 //		default:
 //			asciiOthers(fname);
 //		break;
@@ -96,7 +101,7 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //{
 //	/* interface written with stack3 */
 //	/* 3 phases :
-//		 1] get data from stack 
+//		 1] get data from stack
 //			conversion scilab code to ascii and strings (char **)
 //		 2] algo. conversion ascii to values
 //		 3] put results on stack
@@ -104,10 +109,10 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //
 //	/* interface written with stack1*/
 //	/* it works immediately on stack (read and write)
-//	conversion scilab code to ascii values 
+//	conversion scilab code to ascii values
 //	*/
 //
-//	/* Benchmark 
+//	/* Benchmark
 //	str_test_mat =  ["abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz", ..
 //	"abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz"; ..
 //	"abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz", ..
@@ -141,7 +146,7 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //	Length_Output_Matrix = 0;
 //	for (x = 0;x < Row_Num*Col_Num;x++) Length_Output_Matrix = Length_Output_Matrix + (int)strlen(Input_StringMatrix[x]);
 //
-//	if (Length_Output_Matrix !=0) 
+//	if (Length_Output_Matrix !=0)
 //	{
 //		Output_IntMatrix = (double*)MALLOC(sizeof(double)*(Length_Output_Matrix));
 //	}
@@ -154,7 +159,7 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //		return 0;
 //	}
 //
-//	for (x = 0; x < Row_Num*Col_Num; x++) 
+//	for (x = 0; x < Row_Num*Col_Num; x++)
 //	{
 //		for (y = 0;y < (int)strlen(Input_StringMatrix[x]); y++)
 //		{
@@ -165,7 +170,7 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //
 //	freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
 //
-//	
+//
 //	CreateVarFromPtr(Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbOutput_IntMatrix,&Output_IntMatrix);
 //
 //	LhsVar(1) = Rhs + 1 ;
@@ -183,7 +188,7 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //	il = iadr( C2F(vstk).lstk[Top - 1] );
 //
 //	ilr = il;
-//	if (*istk(il) < 0) 
+//	if (*istk(il) < 0)
 //	{
 //		il = iadr(*istk(il+1));
 //	}
@@ -195,19 +200,19 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //
 //	l = il + 5 + *istk(il+1) * *istk(il+2);
 //
-//	if (is_a_reference_on_stack) 
+//	if (is_a_reference_on_stack)
 //	{
 //		/* it is a reference on stack : txt = 'Scilab' ; ascii(txt) */
 //		j = ilr + 4;
 //		Err = j / 2 + 1 + nbr_characters - C2F(vstk).lstk[Bot - 1];
-//		if (Err > 0) 
+//		if (Err > 0)
 //		{
 //			/* stacksize exceeded */
 //			SciError(17);
 //			return 0;
 //		}
-//	} 
-//	else 
+//	}
+//	else
 //	{
 //		/* it is not a reference on stack  ascii('Scilab') */
 //		int one = 1;
@@ -215,7 +220,7 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //
 //		j = lw + nbr_characters;
 //		Err = j / 2 + 1 - C2F(vstk).lstk[Bot - 1];
-//		if (Err > 0) 
+//		if (Err > 0)
 //		{
 //			/* stacksize exceeded */
 //			SciError(17);
@@ -235,7 +240,7 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //	lr = j / 2 + 1;
 //
 //	/* put each value on stack */
-//	for (i = 0; i < nbr_characters; i++) 
+//	for (i = 0; i < nbr_characters; i++)
 //	{
 //		int scilab_code = *istk(l + i);
 //		*stk(lr + i) = convertScilabCodeToAsciiCode(scilab_code);
@@ -244,7 +249,7 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //	C2F(vstk).lstk[Top] = lr + nbr_characters;
 //
 //	return 0;
-//	
+//
 //}
 ///*--------------------------------------------------------------------------*/
 //static int asciiMatrix(char *fname)
@@ -269,9 +274,9 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //		outIndex = 0 ;
 //		CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
 //		Output_StringMatrix = cstk(outIndex);
-//		for (x = 0; x < len; x++) 
+//		for (x = 0; x < len; x++)
 //		{
-//			if ( FirstWarning ) 
+//			if ( FirstWarning )
 //			{
 //				if ( (Input_IntMatrix[x] < ASCII_MIN) || (Input_IntMatrix[x] > ASCII_MAX) )
 //				{
@@ -301,11 +306,11 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //		int one    = 1 ;
 //		int lenStr   = (int)strlen(EMPTY_STR);
 //		outIndex = 0 ;
-//		
+//
 //		CreateVar(Rhs+1,STRING_DATATYPE,&lenStr,&one,&outIndex);
 //		strcpy(cstk(outIndex),EMPTY_STR);
 //	}
-//	
+//
 //	LhsVar(1) = Rhs+1 ;
 //	C2F(putlhsvar)();
 //	return 0;
@@ -317,23 +322,23 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //	int Row_Num = 0,Col_Num = 0;
 //	int outIndex = 0 ;
 //	int len = 0;
-//	
+//
 //	SciIntMat M;
-//	
+//
 //	GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&Row_Num,&Col_Num,&M);
 //	len = Row_Num * Col_Num ;
-//	
+//
 //	if (len != 0)
 //	{
 //		int one        = 1;
 //		int ichar      = I_UCHAR;
 //		static int inc = 1;
-//		
+//
 //		char *Output_StringMatrix = NULL;
-//		
+//
 //		CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
 //		Output_StringMatrix = cstk(outIndex);
-//		
+//
 //		/* from intxx to char */
 //		C2F(tpconv)(&M.it,&ichar,&len, M.D, &inc, Output_StringMatrix, &inc);
 //		Output_StringMatrix[len] = '\0';
@@ -343,11 +348,11 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 //		#define EMPTY_STR ""
 //		int one    = 1 ;
 //		int lenStr = (int)strlen(EMPTY_STR);
-//		
+//
 //		CreateVar(Rhs+1,STRING_DATATYPE,&lenStr,&one,&outIndex);
 //		strcpy(cstk(outIndex),EMPTY_STR);
 //	}
-//	
+//
 //	LhsVar(1) = Rhs+1 ;
 //	C2F(putlhsvar)();
 //	return 0;

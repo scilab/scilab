@@ -20,16 +20,16 @@ extern "C"
 
 bool StringModule::Load()
 {
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"grep", &sci_grep, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"stripblanks", &sci_stripblanks, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"regexp", &sci_regexp, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"part", &sci_part, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"length", &sci_length, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"strindex", &sci_strindex, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"strsubst", &sci_strsubst, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"strsplit", &sci_strsplit, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"ascii", &sci_ascii, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"strcat", &sci_strcat, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"string", &sci_string, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"grep", &sci_grep, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"stripblanks", &sci_stripblanks, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"regexp", &sci_regexp, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"part", &sci_part, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"length", &sci_length, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strindex", &sci_strindex, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strsubst", &sci_strsubst, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strsplit", &sci_strsplit, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"ascii", &sci_ascii, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strcat", &sci_strcat, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"string", &sci_string, MODULE_NAME));
     return true;
 }

@@ -1,13 +1,13 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-* 
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-* 
+*
 */
 
 #include <sstream>
@@ -16,7 +16,7 @@
 #include "listundefined.hxx"
 #include "listinsert.hxx"
 
-namespace types 
+namespace types
 {
     /**
     ** Constructor & Destructor (public)
@@ -26,7 +26,7 @@ namespace types
         m_plData = new std::vector<InternalType *>();
     }
 
-    List::~List() 
+    List::~List()
     {
         if(isDeletable() == true)
         {
@@ -39,7 +39,7 @@ namespace types
         }
     }
 
-    /** 
+    /**
     ** Private Copy Constructor and data Access
     */
     List::List(List *_oListCopyMe)
@@ -65,7 +65,7 @@ namespace types
     ** size_get
     ** Return the number of elements in list
     */
-    int List::size_get() 
+    int List::size_get()
     {
         return static_cast<int>(m_plData->size());
     }
@@ -94,9 +94,9 @@ namespace types
     ** toString to display Lists
     ** FIXME : Find a better indentation process
     */
-    wstring List::toString(int _iPrecision, int _iLineLen)
+    std::wstring List::toString(int _iPrecision, int _iLineLen)
     {
-        wostringstream ostr;
+        std::wostringstream ostr;
 
         if (size_get() == 0)
         {
@@ -140,7 +140,7 @@ namespace types
         return outList;
     }
 
-    InternalType* List::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector)
+    InternalType* List::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, std::vector<types::InternalType*>* _poSource, bool _bAsVector)
     {
         //check input param
         if(_bAsVector == false)

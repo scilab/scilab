@@ -13,6 +13,7 @@
 #ifndef __MATRIXPOLY_HH__
 #define __MATRIXPOLY_HH__
 
+#include "matrixpoly.hxx"
 #include "poly.hxx"
 #include "double.hxx"
 
@@ -26,8 +27,8 @@ namespace types
     {
     public :
                                 MatrixPoly();
-                                MatrixPoly(wstring _szVarName, int _iRows, int _iCols, int *_piRank);
-                                MatrixPoly(wstring _szVarName, int _iRows, int _iCols, const int *_piRank);
+                                MatrixPoly(std::wstring _szVarName, int _iRows, int _iCols, int *_piRank);
+                                MatrixPoly(std::wstring _szVarName, int _iRows, int _iCols, const int *_piRank);
         virtual                 ~MatrixPoly();
 
         // FIXME : Should not return NULL
@@ -45,7 +46,7 @@ namespace types
         void                    whoAmI(void);
         bool                    isComplex(void);
         void                    complex_set(bool _bComplex);
-        wstring                 var_get();
+        std::wstring            var_get();
         bool                    rank_get(int *_piRank);
         int                     rank_max_get(void);
         Double*                 evaluate(Double* _pdblValue);
@@ -57,10 +58,10 @@ namespace types
 
         InternalType*           insert(int _iRows, int _iCols, MatrixPoly* _poSource);
 
-        wstring                 toString(int _iPrecison, int _iLineLen);
-        wstring                 GetRowString(int _iPrecison, int _iLineLen, bool _bComplex);
-        wstring                 GetColString(int _iPrecison, int _iLineLen, bool _bComplex);
-        wstring                 GetMatrixString(int _iPrecison, int _iLineLen, bool _bComplex);
+        std::wstring            toString(int _iPrecison, int _iLineLen);
+        std::wstring            GetRowString(int _iPrecison, int _iLineLen, bool _bComplex);
+        std::wstring            GetColString(int _iPrecison, int _iLineLen, bool _bComplex);
+        std::wstring            GetMatrixString(int _iPrecison, int _iLineLen, bool _bComplex);
 
 
         MatrixPoly&             operator= (MatrixPoly& poPoly);
@@ -69,14 +70,14 @@ namespace types
         bool                    operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual wstring         getTypeStr() {return L"matrixpoly";}
+        virtual std::wstring    getTypeStr() {return L"matrixpoly";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual wstring         getShortTypeStr() {return L"p";}
+        virtual std::wstring    getShortTypeStr() {return L"p";}
 
     private :
         Poly*                   m_poPolyMatrix;
         bool                    m_bComplex;
-        wstring                 m_szVarName;
+        std::wstring            m_szVarName;
     };
 }
 #endif /* !__MATRIXPOLY_HH__ */

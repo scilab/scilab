@@ -14,8 +14,11 @@
 #ifndef __TYPES_ADD_H__
 #define __TYPES_ADD_H__
 
-#include "alltypes.hxx"
 #include "operation.hxx"
+#include "internal.hxx"
+#include "double.hxx"
+#include "matrixpoly.hxx"
+#include "string.hxx"
 
 using namespace types;
 

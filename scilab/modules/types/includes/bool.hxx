@@ -15,8 +15,6 @@
 
 #include "types.hxx"
 
-using std::string;
-
 namespace types
 {
     class Bool : public GenericType
@@ -46,7 +44,7 @@ namespace types
 		bool                    isComplex();
 
         Bool*                   getAsBool(void);
-		wstring                 toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString(int _iPrecision, int _iLineLen);
 
 		bool                    resize(int _iNewRows, int _iNewCols);
 		InternalType*           insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);

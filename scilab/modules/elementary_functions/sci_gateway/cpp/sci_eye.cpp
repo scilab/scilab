@@ -22,6 +22,8 @@ extern "C"
 #include "charEncoding.h"
 }
 
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

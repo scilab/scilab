@@ -13,6 +13,8 @@
 /*------------------------------------------------------------------------*/
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
+#include "function.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -27,7 +29,10 @@ extern "C"
 #define WCHAR_R L'r'
 #define WCHAR_S L's'
 /*-------------------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount, types::typed_list &out)
+
+using namespace types;
+
+Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &out)
 {
     bool bRegExp = false;
     if(in.size() < 3 || in.size() > 4)
@@ -35,7 +40,7 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"strsubst", 3, 4);
         return Function::Error;
     }
-    
+
     if(in.size() > 3)
     {
         if(in[3]->isString() == false && in[3]->getAsString()->size_get() != 1)

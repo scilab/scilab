@@ -39,7 +39,7 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
         int iResult = SubstractDoubleToDouble(pL, pR, (Double**)&pResult);
         if(iResult != 0)
         {
-            throw ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
         return pResult;
     }
@@ -55,7 +55,7 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
         int iResult = SubstractPolyToDouble(pL, pR, (MatrixPoly**)&pResult);
         if(iResult != 0)
         {
-            throw ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
         return pResult;
     }
@@ -71,7 +71,7 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
         int iResult = SubstractDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
         if(iResult != 0)
         {
-            throw ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
         return pResult;
     }
@@ -87,7 +87,7 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
         int iResult = SubstractPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
         if(iResult != 0)
         {
-            throw ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
         return pResult;
     }

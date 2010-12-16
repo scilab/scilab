@@ -17,17 +17,17 @@
 
 namespace types
 {
-    Function *Function::createFunction(wstring _stName, GW_FUNC _pFunc, wstring _stModule)
+    Function *Function::createFunction(std::wstring _stName, GW_FUNC _pFunc, std::wstring _stModule)
     {
         return new Function(_stName, _pFunc, _stModule);
     }
 
-    Function *Function::createFunction(wstring _stName, OLDGW_FUNC _pFunc, wstring _stModule)
+    Function *Function::createFunction(std::wstring _stName, OLDGW_FUNC _pFunc, std::wstring _stModule)
     {
         return new WrapFunction(_stName, _pFunc, _stModule);
     }
 
-    Function::Function(wstring _stName, GW_FUNC _pFunc, wstring _stModule) : Callable(), m_pFunc(_pFunc)
+    Function::Function(std::wstring _stName, GW_FUNC _pFunc, std::wstring _stModule) : Callable(), m_pFunc(_pFunc)
     {
         setName(_stName);
         setModule(_stModule);
@@ -40,9 +40,9 @@ namespace types
         }
     }
 
-    Function* Function::getAsFunction(void)		
+    Function* Function::getAsFunction(void)
     {
-        return this; 
+        return this;
     }
 
     Function::ReturnValue Function::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
@@ -53,14 +53,14 @@ namespace types
     /*--------------*/
     /*		whoIAm		*/
     /*--------------*/
-    void Function::whoAmI() 
-    { 
-        std::cout << "types::Function"; 
+    void Function::whoAmI()
+    {
+        std::cout << "types::Function";
     }
 
-    wstring Function::toString(int _iPrecision, int _iLineLen)
+    std::wstring Function::toString(int _iPrecision, int _iLineLen)
     {
-        wostringstream ostr;
+        std::wostringstream ostr;
 
         // FIXME : Implement me.
         ostr << L"FIXME : Implement Function::toString" << std::endl;
@@ -68,13 +68,13 @@ namespace types
         return ostr.str();
     }
 
-    Function* Function::clone() 
+    Function* Function::clone()
     {
         IncreaseRef();
         return this;
     }
 
-    WrapFunction::WrapFunction(wstring _stName, OLDGW_FUNC _pFunc, wstring _stModule)
+    WrapFunction::WrapFunction(std::wstring _stName, OLDGW_FUNC _pFunc, std::wstring _stModule)
     {
         m_stName = _stName;
         m_pOldFunc = _pFunc;
@@ -93,7 +93,7 @@ namespace types
         return new WrapFunction(this);
     }
 
-    Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) 
+    Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
         ReturnValue retVal = Callable::OK;
         GatewayStruct* pStr = new GatewayStruct();

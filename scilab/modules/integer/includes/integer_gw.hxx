@@ -15,6 +15,7 @@
 
 #include "funcmanager.hxx"
 #include "context.hxx"
+#include "function.hxx"
 
 #include "dynlib_integer_gw.h"
 
@@ -27,6 +28,6 @@ public :
 	INTEGER_GW_IMPEXP static bool Load();
 };
 
-Function::ReturnValue sci_inttype(types::typed_list &in, int _iRetCount, types::typed_list &out);
+types::Function::ReturnValue sci_inttype(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
 #endif /* __INTEGER_GW_HXX__ */

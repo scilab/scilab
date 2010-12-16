@@ -13,6 +13,8 @@
  * still available and supported in Scilab 6.
  */
 
+extern "C"
+{
 #include "MALLOC.h"
 #include <stdio.h> 
 #include "api_common.h"
@@ -21,10 +23,9 @@
 #include "stack-c.h"
 #include "os_strdup.h"
 #include "localization.h"
-extern "C"
-{
-	#include "stackinfo.h"
-	#include "mode_exec.h"
+#include "stackinfo.h"
+#include "mode_exec.h"
+#include "api_oldstack.h"
 }
 
 int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)

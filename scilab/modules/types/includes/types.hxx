@@ -18,8 +18,6 @@
 #include <string>
 #include "internal.hxx"
 
-using namespace std;
-
 namespace types
 {
     /*
@@ -48,7 +46,7 @@ namespace types
         int                         rows_get();
         int                         size_get();
 
-        wstring                     DimToString();
+        std::wstring                DimToString();
 
         /* GenericType */
         GenericType*                getAsGenericType(void) { return this; }
@@ -62,9 +60,9 @@ namespace types
         virtual RealType            getType(void) { return RealGeneric; }
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual wstring             getTypeStr() {return L"generictype";}
+        virtual std::wstring        getTypeStr() {return L"generictype";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual wstring             getShortTypeStr() {return L"";}
+        virtual std::wstring        getShortTypeStr() {return L"";}
 
         virtual GenericType*        clone(void) = 0;
 

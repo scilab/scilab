@@ -1,6 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -10,11 +11,12 @@
 *
 */
 
-#ifndef __ELEM_FUNC_H__
-#define __ELEM_FUNC_H__
+#ifndef __ELEM_FUNC_GW_HXX__
+#define __ELEM_FUNC_GW_HXX__
 
 #include "funcmanager.hxx"
 #include "context.hxx"
+#include "function.hxx"
 
 #ifdef _MSC_VER
 	#if ELEM_FUNC_GW_EXPORTS
@@ -23,7 +25,7 @@
 		#define EXTERN_EF_GW __declspec (dllimport)
 	#endif
 #else
-	#define EXTERN_EF_GW 
+	#define EXTERN_EF_GW
 #endif
 
 class ElemFuncModule
@@ -39,4 +41,4 @@ CPP_GATEWAY_PROTOTYPE(sci_isequal);
 CPP_GATEWAY_PROTOTYPE(sci_size);
 CPP_GATEWAY_PROTOTYPE(sci_eye);
 
-#endif /* __ELEM_FUNC_H__ */
+#endif /* __ELEM_FUNC_GW_HXX__ */

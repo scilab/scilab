@@ -10,7 +10,10 @@
  *
  */
 
-#include "alltypes.hxx"
+#include "tlist.hxx"
+#include "string.hxx"
+#include "double.hxx"
+#include "function.hxx"
 #include "funcmanager.hxx"
 
 extern "C"

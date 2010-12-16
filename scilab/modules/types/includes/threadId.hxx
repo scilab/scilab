@@ -13,10 +13,7 @@
 #ifndef __THREADID_HH__
 #define __THREADID_HH__
 
-#include <map>
-
 #include "types.hxx"
-#include "cell.hxx"
 
 extern "C"
 {
@@ -32,13 +29,13 @@ namespace types
         virtual                 ~ThreadId();
 
         ThreadId*               getAsThreadId(void);
-        wstring                 toString(int _iPrecision, int _iLineLen);
+        std::wstring            toString(int _iPrecision, int _iLineLen);
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual wstring         getTypeStr() {return L"ThreadId";}
+        virtual std::wstring    getTypeStr() {return L"ThreadId";}
         /* return type as short string ( s, i, ce, l, ... )*/
-        virtual wstring         getShortTypeStr() {return L"tid";}
-        ThreadId*                 clone();
+        virtual std::wstring    getShortTypeStr() {return L"tid";}
+        ThreadId*               clone();
 
         __threadId              getId();
         void                    setId(__threadId _id);

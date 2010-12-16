@@ -14,12 +14,15 @@
 
 #include <wchar.h>
 
-#include "stack-c.h"
 
+#include "context.hxx"
+#include "internal.hxx"
+#include "string.hxx"
 #include "expandPathVariable.h"
 
 extern "C"
 {
+#include "stack-c.h"
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "PATH_MAX.h"
@@ -29,7 +32,7 @@ extern "C"
 #include "os_wcsdup.h"
 }
 
-#include "context.hxx"
+
 
 /*--------------------------------------------------------------------------*/
 struct VARIABLEALIAS
@@ -146,13 +149,13 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 {
 	if (wcVarName)
 	{
-        InternalType *pIT = symbol::Context::getInstance()->get(wcVarName);
+        types::InternalType *pIT = symbol::Context::getInstance()->get(wcVarName);
         if(pIT->isString() == false)
         {
             return NULL;
         }
 
-        String* pS = pIT->getAsString();
+        types::String* pS = pIT->getAsString();
         return os_wcsdup(pS->string_get(0));
 	}
 	return NULL;

@@ -10,7 +10,12 @@
 *
 */
 
+#include <math.h>
+#include <sstream>
+#include "string.hxx"
 #include "string_gw.hxx"
+#include "tostring_common.hxx"
+
 extern "C"
 {
 #include "os_wcsdup.h"
@@ -103,7 +108,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
                 out.push_back(new String(1,1));
                 return Function::OK;
             }
-            
+
 
             String *pstOutput = new String(iRows, iCols);
             for (int i = 0; i < iRows * iCols; ++i)

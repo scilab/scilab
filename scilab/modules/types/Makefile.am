@@ -129,7 +129,8 @@ endif
 ## Automated test ##
 ####################
 check_INCLUDES 		= -Iincludes/ \
-			-Isrc/cpp
+			-Isrc/cpp \
+			-I$(top_srcdir)/modules/abstractSyntaxTree/includes
 
 check_PROGRAMS 		= testTypes
 
@@ -137,5 +138,6 @@ TESTS			= testTypes
 
 testTypes_SOURCES 	= src/cpp/test-types.cpp
 testTypes_CPPFLAGS 	= $(check_INCLUDES)
-testTypes_LDADD	= $(top_builddir)/modules/types/libscitypes.la
+testTypes_LDADD	= 	$(top_builddir)/modules/types/libscitypes.la \
+					$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la
 

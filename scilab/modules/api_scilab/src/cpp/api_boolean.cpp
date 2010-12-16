@@ -9,12 +9,18 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 * Please note that piece of code will be rewrited for the Scilab 6 family
-* However, the API (profile of the functions in the header files) will be 
+* However, the API (profile of the functions in the header files) will be
 * still available and supported in Scilab 6.
 */
 
 #include <string.h>
 #include <stdlib.h>
+
+#include "bool.hxx"
+#include "function.hxx"
+
+extern "C"
+{
 #include "machine.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
@@ -24,7 +30,8 @@
 #include "api_oldstack.h"
 #include "localization.h"
 #include "MALLOC.h"
-#include "context.hxx"
+}
+
 
 using namespace std;
 using namespace types;
@@ -129,41 +136,41 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, co
 SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iVarID[nsiz];
-	int iSaveRhs			= api_Rhs((int*)_pvCtx);
-	int iSaveTop			= api_Top((int*)_pvCtx);
-	int* piBool				= NULL;
-	int *piAddr				= NULL;
+	//int iVarID[nsiz];
+	//int iSaveRhs			= api_Rhs((int*)_pvCtx);
+	//int iSaveTop			= api_Top((int*)_pvCtx);
+	//int* piBool				= NULL;
+	//int *piAddr				= NULL;
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-	Top = Top + Nbvars + 1;
+	//C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+	////Top = Top + Nbvars + 1;
 
-	int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
-	if (iMemSize > iFreeSpace)
-	{
-		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-		return sciErr;
-	}
+	//int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
+	//int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
+	//if (iMemSize > iFreeSpace)
+	//{
+	//	addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+	//	return sciErr;
+	//}
 
-	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+	//getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	//write matrix information
-	sciErr = fillMatrixOfBoolean(_pvCtx, piAddr, _iRows, _iCols, &piBool);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfBoolean", _("matrix of boolean"), _pstName);
-		return sciErr;
-	}
+	////write matrix information
+	//sciErr = fillMatrixOfBoolean(_pvCtx, piAddr, _iRows, _iCols, &piBool);
+	//if(sciErr.iErr)
+	//{
+	//	addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfBoolean", _("matrix of boolean"), _pstName);
+	//	return sciErr;
+	//}
 
-	//copy data in stack
-	memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
+	////copy data in stack
+	//memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
 
-	updateLstk(Top, *Lstk(Top) + sadr(3), (_iRows * _iCols) / (sizeof(double)/sizeof(int)));
+	//updateLstk(Top, *Lstk(Top) + sadr(3), (_iRows * _iCols) / (sizeof(double)/sizeof(int)));
 
-	//Rhs = 0;
-	//Add name in stack reference list
-	createNamedVariable(iVarID);
+	////Rhs = 0;
+	////Add name in stack reference list
+	//createNamedVariable(iVarID);
 
 	//Top = iSaveTop;
 	//Rhs = iSaveRhs;

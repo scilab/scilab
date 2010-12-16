@@ -15,18 +15,23 @@
 
 #include <string.h>
 #include <stdlib.h>
+
+#include "function.hxx"
+#include "int.hxx"
+
+extern "C"
+{
 #include "machine.h"
+#include "localization.h"
+#include "MALLOC.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "api_internal_int.h"
 #include "api_internal_common.h"
 #include "stack-c.h"
 #include "api_oldstack.h"
-#include "localization.h"
-#include "MALLOC.h"
-#include "context.hxx"
+}
 
-using namespace std;
 using namespace types;
 
 SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecision)
@@ -518,48 +523,48 @@ SciErr createNamedMatrixOfInteger64(void* _pvCtx, const char* _pstName, int _iRo
 
 SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iVarID[nsiz];
-  int iSaveRhs			= api_Rhs((int*)_pvCtx);
-	int iSaveTop			= api_Top((int*)_pvCtx);
-	int *piAddr				= NULL;
-	void *pvData			= NULL;
+    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    //int iVarID[nsiz];
+    //int iSaveRhs			= api_Rhs((int*)_pvCtx);
+    //int iSaveTop			= api_Top((int*)_pvCtx);
+    //int *piAddr				= NULL;
+    //void *pvData			= NULL;
 
-	int iRate				= (sizeof(double) / (_iPrecision % 10));
-	int iSize				= _iRows * _iCols;
-	int iDouble			= iSize / iRate;
-	int iMod				= (iSize % iRate) == 0 ? 0 : 1;
-	int iTotalSize	= iDouble + iMod;
+    //int iRate				= (sizeof(double) / (_iPrecision % 10));
+    //int iSize				= _iRows * _iCols;
+    //int iDouble			= iSize / iRate;
+    //int iMod				= (iSize % iRate) == 0 ? 0 : 1;
+    //int iTotalSize	= iDouble + iMod;
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    //C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+    //Top = Top + Nbvars + 1;
 
-	int iMemSize = iTotalSize + 2;
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
-	if (iMemSize > iFreeSpace)
-	{
-		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-		return sciErr;
-	}
+    //int iMemSize = iTotalSize + 2;
+    //int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
+    //if (iMemSize > iFreeSpace)
+    //{
+    //    addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+    //    return sciErr;
+    //}
 
-	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+    //getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	//write matrix information
-	fillCommonMatrixOfInteger(_pvCtx, piAddr, _iPrecision, _iRows, _iCols, &pvData);
-	//copy data in stack
-	memcpy(pvData, _pvData, (_iPrecision % 10) * iSize);
+    ////write matrix information
+    //fillCommonMatrixOfInteger(_pvCtx, piAddr, _iPrecision, _iRows, _iCols, &pvData);
+    ////copy data in stack
+    //memcpy(pvData, _pvData, (_iPrecision % 10) * iSize);
 
-	//update "variable index"
-	updateLstk(Top, *Lstk(Top) + 4, iTotalSize);
+    ////update "variable index"
+    //updateLstk(Top, *Lstk(Top) + 4, iTotalSize);
 
-	//Rhs = 0;
-	//Add name in stack reference list
-	createNamedVariable(iVarID);
+    ////Rhs = 0;
+    ////Add name in stack reference list
+    //createNamedVariable(iVarID);
 
-	//Top = iSaveTop;
-  //Rhs = iSaveRhs;
+    ////Top = iSaveTop;
+    ////Rhs = iSaveRhs;
 
-	return sciErr;
+    return sciErr;
 }
 
 SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, const char* _pstName, int* _piPrecision)

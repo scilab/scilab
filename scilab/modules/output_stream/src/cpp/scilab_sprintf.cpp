@@ -1,15 +1,18 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- * 
+ *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
+ *
  */
 
+#include "types.hxx"
+#include "double.hxx"
+#include "string.hxx"
 #include "scilab_sprintf.hxx"
 
 using namespace types;
@@ -27,7 +30,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
 {
     wchar_t** pwstOutput        = NULL;
     wchar_t* pwstFirstOutput    = NULL;
-    
+
     if(_iArgsCount == 0)
     {//no arg, just return _pwstInput value
         pwstFirstOutput = os_wcsdup(_pwstInput);
@@ -91,10 +94,10 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
             if(pwstPercent != NULL)
             {
                 //looking for flags
-                if(*(pwstPercent + 1) == L'-' || 
-                    *(pwstPercent + 1) == L'+' || 
-                    *(pwstPercent + 1) == L' ' || 
-                    *(pwstPercent + 1) == L'#' || 
+                if(*(pwstPercent + 1) == L'-' ||
+                    *(pwstPercent + 1) == L'+' ||
+                    *(pwstPercent + 1) == L' ' ||
+                    *(pwstPercent + 1) == L'#' ||
                     *(pwstPercent + 1) == L'0')
                 {
                     pwstPercent++;
@@ -124,8 +127,8 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 }
 
                 //looking for length
-                if(*(pwstPercent + 1) == L'h' || 
-                    *(pwstPercent + 1) == L'l' || 
+                if(*(pwstPercent + 1) == L'h' ||
+                    *(pwstPercent + 1) == L'l' ||
                     *(pwstPercent + 1) == L'L')
                 {
                     pToken[iToken].bLengthFlag = true;
@@ -173,7 +176,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                     }
                     pToken[iToken].outputType = InternalType::RealString;
                     break;
-                default : 
+                default :
                     //houston ...
                     break;
                 }
@@ -348,7 +351,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
             //idx = pwstTemp - pwstSlash;
             pwstTemp = NULL;
         }
-        
+
         if(bNewLine)
         {//to insert '\0'
             idx++;
@@ -417,4 +420,4 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
 
     return pwstOutput;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

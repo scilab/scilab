@@ -9,30 +9,30 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-
+#include <list>
 #include "configvariable.hxx"
 
 /*
 ** Module List
 ** \{
 */
-list<wstring> ConfigVariable::m_ModuleList;
+std::list<std::wstring> ConfigVariable::m_ModuleList;
 
-void ConfigVariable::setModuleList(list<wstring>& _pModule_list)
+void ConfigVariable::setModuleList(std::list<std::wstring>& _pModule_list)
 {
     m_ModuleList.clear();
 
-    list<wstring>::iterator it;
+    std::list<std::wstring>::iterator it;
     for(it = _pModule_list.begin() ; it != _pModule_list.end() ; it++)
     {
         m_ModuleList.push_back(*it);
     }
 }
 
-list<wstring> ConfigVariable::getModuleList()
+std::list<std::wstring> ConfigVariable::getModuleList()
 {
-    list<wstring> moduleList;
-    list<wstring>::iterator it;
+    std::list<std::wstring> moduleList;
+    std::list<std::wstring>::iterator it;
     for(it = m_ModuleList.begin() ; it != m_ModuleList.end() ; it++)
     {
         moduleList.push_back(*it);
@@ -47,14 +47,14 @@ list<wstring> ConfigVariable::getModuleList()
 ** SCI
 ** \{
 */
-wstring ConfigVariable::m_SCIPath;
+std::wstring ConfigVariable::m_SCIPath;
 
-void ConfigVariable::setSCIPath(wstring& _SCIPath)
+void ConfigVariable::setSCIPath(std::wstring& _SCIPath)
 {
     m_SCIPath = _SCIPath;
 }
 
-wstring ConfigVariable::getSCIPath()
+std::wstring ConfigVariable::getSCIPath()
 {
     return m_SCIPath;
 }
@@ -68,14 +68,14 @@ wstring ConfigVariable::getSCIPath()
 ** \{
 */
 
-wstring ConfigVariable::m_SCIHOME;
+std::wstring ConfigVariable::m_SCIHOME;
 
-void ConfigVariable::setSCIHOME(wstring& _SCIHOME)
+void ConfigVariable::setSCIHOME(std::wstring& _SCIHOME)
 {
     m_SCIHOME = _SCIHOME;
 }
 
-wstring ConfigVariable::getSCIHOME()
+std::wstring ConfigVariable::getSCIHOME()
 {
     return m_SCIHOME;
 }
@@ -88,14 +88,14 @@ wstring ConfigVariable::getSCIHOME()
 ** \{
 */
 
-wstring ConfigVariable::m_TMPDIR;
+std::wstring ConfigVariable::m_TMPDIR;
 
-void ConfigVariable::setTMPDIR(wstring& _TMPDIR)
+void ConfigVariable::setTMPDIR(std::wstring& _TMPDIR)
 {
     m_TMPDIR = _TMPDIR;
 }
 
-wstring ConfigVariable::getTMPDIR()
+std::wstring ConfigVariable::getTMPDIR()
 {
     return m_TMPDIR;
 }
@@ -226,14 +226,14 @@ bool ConfigVariable::getWarningMode(void)
 ** \{
 */
 
-wstring ConfigVariable::m_HOME;
+std::wstring ConfigVariable::m_HOME;
 
-void ConfigVariable::setHOME(wstring& _HOME)
+void ConfigVariable::setHOME(std::wstring& _HOME)
 {
     m_HOME = _HOME;
 }
 
-wstring ConfigVariable::getHOME()
+std::wstring ConfigVariable::getHOME()
 {
     return m_HOME;
 }
@@ -272,14 +272,14 @@ void ConfigVariable::clearLastError(void)
 ** \{
 */
 
-wstring ConfigVariable::m_wstError;
+std::wstring ConfigVariable::m_wstError;
 
-void ConfigVariable::setLastErrorMessage(wstring _wstError)
+void ConfigVariable::setLastErrorMessage(std::wstring _wstError)
 {
     m_wstError = _wstError;
 }
 
-wstring ConfigVariable::getLastErrorMessage()
+std::wstring ConfigVariable::getLastErrorMessage()
 {
     return m_wstError;
 }
@@ -330,14 +330,14 @@ int ConfigVariable::getLastErrorLine(void)
 ** \{
 */
 
-wstring ConfigVariable::m_wstErrorFunction;
+std::wstring ConfigVariable::m_wstErrorFunction;
 
-void ConfigVariable::setLastErrorFunction(wstring _wstErrorFunction)
+void ConfigVariable::setLastErrorFunction(std::wstring _wstErrorFunction)
 {
     m_wstErrorFunction = _wstErrorFunction;
 }
 
-wstring ConfigVariable::getLastErrorFunction()
+std::wstring ConfigVariable::getLastErrorFunction()
 {
     return m_wstErrorFunction;
 }

@@ -10,7 +10,9 @@
  *
  */
 
-#include "alltypes.hxx"
+#include "function.hxx"
+#include "struct.hxx"
+#include "string.hxx"
 #include "funcmanager.hxx"
 
 using namespace types;

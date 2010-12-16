@@ -13,6 +13,7 @@
 #ifndef __MATIO_GW_HXX__
 #define __MATIO_GW_HXX__
 
+#include "function.hxx"
 #include "funcmanager.hxx"
 #include "context.hxx"
 
@@ -23,7 +24,7 @@
 #define EXTERN_MATIO_GW __declspec (dllimport)
 #endif
 #else
-#define EXTERN_MATIO_GW 
+#define EXTERN_MATIO_GW
 #endif
 
 class MatioModule
@@ -35,10 +36,10 @@ public :
   EXTERN_MATIO_GW static bool Load();
 };
 
-Function::ReturnValue sci_matfile_open(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-Function::ReturnValue sci_matfile_close(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-Function::ReturnValue sci_matfile_listvar(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-Function::ReturnValue sci_matfile_varreadnext(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-Function::ReturnValue sci_matfile_varwrite(types::typed_list &in, int* _piRetCount, types::typed_list &out);
+types::Function::ReturnValue sci_matfile_open(types::typed_list &in, int* _piRetCount, types::typed_list &out);
+types::Function::ReturnValue sci_matfile_close(types::typed_list &in, int* _piRetCount, types::typed_list &out);
+types::Function::ReturnValue sci_matfile_listvar(types::typed_list &in, int* _piRetCount, types::typed_list &out);
+types::Function::ReturnValue sci_matfile_varreadnext(types::typed_list &in, int* _piRetCount, types::typed_list &out);
+types::Function::ReturnValue sci_matfile_varwrite(types::typed_list &in, int* _piRetCount, types::typed_list &out);
 
 #endif /* __MATIO_GW_HXX__ */

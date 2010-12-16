@@ -11,7 +11,8 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "alltypes.hxx"
+#include "function.hxx"
+#include "string.hxx"
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
@@ -111,22 +112,22 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
         String* pOut = NULL;
         switch(iPartialPart)
         {
-        case PathPart : 
+        case PathPart :
             {
                 pOut = new String(pwstDrive);
                 break;
             }
-        case NamePart : 
+        case NamePart :
             {
                 pOut = new String(pwstName);
                 break;
             }
-        case ExtensionPart : 
+        case ExtensionPart :
             {
                 pOut = new String(pwstExtension);
                 break;
             }
-        default : 
+        default :
             {
                 //Never occur
             }
@@ -172,8 +173,8 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//wchar_t* ext = NULL;
 	//wchar_t* path_out = NULL;
 
-	//CheckLhs(1,3); 
-	//CheckRhs(1,2); 
+	//CheckLhs(1,3);
+	//CheckRhs(1,2);
 
 	//if ( (Rhs == 2) && (Lhs != 1) )
 	//{
@@ -209,7 +210,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//	return 0;
 	//}
 
-	//if ( (m1 != n1) && (n1 != 1) ) 
+	//if ( (m1 != n1) && (n1 != 1) )
 	//{
 	//	Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 	//	return 0;
@@ -264,7 +265,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//		return 0;
 	//	}
 
-	//	if ( (m2 != n2) && (n2 != 1) ) 
+	//	if ( (m2 != n2) && (n2 != 1) )
 	//	{
 	//		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 	//		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
@@ -278,7 +279,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 	//		return 0;
 	//	}
-	//	
+	//
 	//	sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 	//	if(sciErr.iErr)
 	//	{

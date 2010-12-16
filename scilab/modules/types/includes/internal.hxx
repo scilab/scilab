@@ -20,8 +20,6 @@
 #include <string.h>
 #include "anytype.hxx"
 
-using namespace std;
-
 namespace types
 {
   class InternalType
@@ -71,10 +69,10 @@ namespace types
       virtual void                      whoAmI(void) { std::cout << "types::Inernal"; }
 
       virtual bool                      isAssignable(void) { return false; }
-      virtual RealType                  getType(void) { return RealInternal; }
+      virtual RealType                  getType(void) = 0 ; //{ return RealInternal; }
 
 
-      virtual wstring	                toString(int _iPrecison, int _iLineLen) = 0;
+      virtual std::wstring	            toString(int _iPrecison, int _iLineLen) = 0;
       virtual InternalType*             clone(void) = 0;
 
 
@@ -96,9 +94,9 @@ namespace types
       int                               getRef() { return m_iRef; }
 
       /* return type as string ( double, int, cell, list, ... )*/
-      virtual wstring                   getTypeStr() = 0;
+      virtual std::wstring              getTypeStr() = 0;
       /* return type as short string ( s, i, ce, l, ... )*/
-      virtual wstring                   getShortTypeStr() = 0;
+      virtual std::wstring              getShortTypeStr() = 0;
 
       virtual bool                      operator==(const InternalType& it) { return (getType() == (const_cast<InternalType *>(&it))->getType()); }
       virtual bool                      operator!=(const InternalType& it) { return !(*this == it); }

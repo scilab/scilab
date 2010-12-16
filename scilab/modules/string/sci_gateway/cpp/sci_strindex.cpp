@@ -15,6 +15,8 @@
 /*------------------------------------------------------------------------*/
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
+#include "function.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -41,6 +43,9 @@ int ComparaisonCallback( const void *in1 ,const void *in2)
     return ((In*)in1)->data > ((In*)in2)->data ? 1 : -1;
 }
 /*------------------------------------------------------------------------*/
+
+using namespace types;
+
 types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bRegExp = false;
@@ -49,7 +54,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"),L"strindex", 2, 3);
         return Function::Error;
     }
-    
+
     if(in.size() > 2)
     {
         if(in[2]->isString() == false && in[2]->getAsString()->size_get() != 1)

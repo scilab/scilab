@@ -14,7 +14,8 @@
 #define __TYPES_DIV_H__
 
 #include "operation.hxx"
-#include "alltypes.hxx"
+#include "double.hxx"
+#include "matrixpoly.hxx"
 
 using namespace types;
 

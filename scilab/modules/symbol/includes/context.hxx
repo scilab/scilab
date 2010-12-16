@@ -15,11 +15,14 @@
  ** \brief Define class Context.
  */
 
-#ifndef CONTEXT_HH
-#define CONTEXT_HH
-#include "symbol.hxx"
+#ifndef __CONTEXT_HXX__
+#define __CONTEXT_HXX__
 #include "stack.hxx"
 #include "heap.hxx"
+#include "internal.hxx"
+#include "function.hxx"
+#include "macro.hxx"
+#include "macrofile.hxx"
 
 namespace symbol
 {
@@ -44,60 +47,60 @@ namespace symbol
 
         /** If key was associated to some Entry_T in the open scopes, return the
         ** most recent insertion. Otherwise return the empty pointer. */
-        InternalType*	get(const wstring& key) const;
+        types::InternalType*	get(const std::wstring& key) const;
 
         /** If key was associated to some Entry_T in the last opened scope, return it.
         ** Otherwise return the empty pointer. */
-        InternalType*	getCurrentLevel(const wstring& key) const;
+        types::InternalType*	getCurrentLevel(const std::wstring& key) const;
 
         /** If key was associated to some Entry_T in the open scopes, return the
          ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */
-        InternalType*	getAllButCurrentLevel(const wstring& key) const;
+        types::InternalType*	getAllButCurrentLevel(const std::wstring& key) const;
 
         /** If key was associated to some Entry_T in the open scopes, return the
         ** most recent insertion. Otherwise return the empty pointer. */
-        InternalType*	get_fun(const wstring& key) const;
+        types::InternalType*	get_fun(const std::wstring& key) const;
 
         /*return function list in the module _stModuleName*/
-        std::list<wstring>& get_funlist(const wstring& _stModuleName);
+        std::list<std::wstring>& get_funlist(const std::wstring& _stModuleName);
 
 
         /* global functions */
 
         /*return global variable visibility status*/
-        bool isGlobalVisible(const wstring& key) const;
+        bool isGlobalVisible(const std::wstring& key) const;
 
         /*return global variable, search in global scope ( highest )*/
-        InternalType* getGlobalValue(const wstring& key) const;
+        types::InternalType* getGlobalValue(const std::wstring& key) const;
 
         /*return global variable existance status*/
-        bool isGlobalExists(const wstring& key) const;
+        bool isGlobalExists(const std::wstring& key) const;
 
         /*create or update a global variable*/
-        void setGlobalValue(const wstring& key, InternalType &value);
+        void setGlobalValue(const std::wstring& key, types::InternalType &value);
 
         /*remove global variable and all visibility references */
-        void removeGlobal(const wstring &key);
+        void removeGlobal(const std::wstring &key);
 
         /*remove all global variables and references */
         void removeGlobalAll();
 
         /*create an empty variable*/
-        void createEmptyGlobalValue(const wstring& key);
+        void createEmptyGlobalValue(const std::wstring& key);
 
         /*set variable visible/hidden in current global scope*/
-        void setGlobalVisible(const wstring& key, bool bVisible = true);
+        void setGlobalVisible(const std::wstring& key, bool bVisible = true);
 
         /*print all tables*/
         void print();
 
         /*add symbol and value in the stack*/
-        bool put(const wstring& key, InternalType &type);
+        bool put(const std::wstring& key, types::InternalType &type);
         /*add symbol and value in the previous scope*/
-        bool put_in_previous_scope(const wstring& key, InternalType &type);
+        bool put_in_previous_scope(const std::wstring& key, types::InternalType &type);
 
         /* remove symbol/value association */
-        bool remove(const wstring& key);
+        bool remove(const std::wstring& key);
 
         bool AddFunction(types::Function *_info);
         bool AddMacro(types::Macro *_info);
@@ -114,4 +117,4 @@ namespace symbol
         static Context* me;
     };
 }
-#endif // !CONTEXT_HH
+#endif /* !__CONTEXT_HXX__ */

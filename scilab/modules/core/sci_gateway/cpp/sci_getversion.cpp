@@ -14,6 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "funcmanager.hxx"
 #include "core_gw.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -29,6 +30,9 @@ static int getversion_no_rhs(char *fname, int* _piKey);
 static int getversion_one_rhs(char *fname, int* _piKey);
 static int getversion_two_rhs(char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/
+
+using namespace types;
+
 Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if(in.size() > 2)
@@ -125,7 +129,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 	//Rhs = Max(0,Rhs);
 
 //	CheckRhs(0,2);
-//	
+//
 //	if (Rhs == 0)
 //	{
 //		CheckLhs(1,2);
@@ -187,7 +191,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 //			return 0;
 //		}
 //	}
-//	
+//
 //	C2F(putlhsvar)();
 //
 //	return 0;
@@ -354,7 +358,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 //						if (versionInfo)
 //						{
 //							createSingleString(_piKey, Rhs + 1, versionInfo);
-//							
+//
 //							FREE(versionInfo);
 //							versionInfo = NULL;
 //

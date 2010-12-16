@@ -14,12 +14,15 @@
 #include "context.hxx"
 #include "types.hxx"
 #include "double.hxx"
+#include "string.hxx"
 
 extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
 }
+
+using namespace types;
 
 types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

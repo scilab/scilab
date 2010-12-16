@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * Copyright (C) 2010 - DIGITEO - ELIAS Antoine
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,6 +14,8 @@
 #include "funcmanager.hxx"
 #include "output_stream_gw.hxx"
 #include "scilab_sprintf.hxx"
+#include "function.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -22,7 +24,7 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_msprintf(typed_list &in, int _piRetCount, typed_list &out)
+types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     //Structure to store, link between % and input value
     ArgumentPosition* pArgs = NULL;
@@ -30,13 +32,13 @@ Function::ReturnValue sci_msprintf(typed_list &in, int _piRetCount, typed_list &
     if(in.size() < 1)
     {
         ScierrorW(999, _W("%ls: Wrong number of input arguments: at least %d expected.\n"), L"msprintf", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"msprintf" ,1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     for(int i = 1 ; i < in.size() ; i++)
@@ -45,7 +47,7 @@ Function::ReturnValue sci_msprintf(typed_list &in, int _piRetCount, typed_list &
         {
             //TODO: Overload
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real matrix or matrix of strings expected.\n"), L"msprintf", i + 1);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -58,7 +60,7 @@ Function::ReturnValue sci_msprintf(typed_list &in, int _piRetCount, typed_list &
 			iNumberPercent++;
 			if (pwstInput[i + 1] == L'%')
 			{
-                //it is a %%, not a %_ 
+                //it is a %%, not a %_
 				iNumberPercent--;
                 //force incremantation to bypass the second % of %%
                 i++;
@@ -70,7 +72,7 @@ Function::ReturnValue sci_msprintf(typed_list &in, int _piRetCount, typed_list &
     if((in.size() - 1) > iNumberPercent)
     {
         ScierrorW(999, _W("%ls: Wrong number of input arguments: at most %d expected.\n"), L"msprintf", iNumberPercent);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //determine if imput values are ... multiple values
@@ -84,7 +86,7 @@ Function::ReturnValue sci_msprintf(typed_list &in, int _piRetCount, typed_list &
             if(iRefRows != in[i]->getAsGenericType()->rows_get())
             {
                 ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), L"msprintf");
-                return Function::Error;
+                return types::Function::Error;
             }
 
             iNumberCols += in[i]->getAsGenericType()->cols_get();
@@ -94,7 +96,7 @@ Function::ReturnValue sci_msprintf(typed_list &in, int _piRetCount, typed_list &
     if(iNumberCols != iNumberPercent)
     {
         ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), L"msprintf");
-        return Function::Error;
+        return types::Function::Error;
     }
 
 
@@ -115,7 +117,7 @@ Function::ReturnValue sci_msprintf(typed_list &in, int _piRetCount, typed_list &
     int iOutputRows = 0;
     wchar_t** pwstOutput = scilab_sprintf(L"msprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows);
 
-    String* pOut = new String(iOutputRows, 1);
+    types::String* pOut = new types::String(iOutputRows, 1);
     pOut->string_set(pwstOutput);
     out.push_back(pOut);
 
@@ -124,6 +126,6 @@ Function::ReturnValue sci_msprintf(typed_list &in, int _piRetCount, typed_list &
         FREE(pwstOutput[i]);
     }
     FREE(pwstOutput);
-    return Function::OK;
+    return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
