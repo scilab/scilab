@@ -36,6 +36,8 @@
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 
+#include "getGraphicObjectProperty.h"
+
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the champ data is now set as a tlist (like for surface objects) */
@@ -118,7 +120,7 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
 
     int nbRow[3];
     int nbCol[3];
-    int gridSize[2];
+    int gridSize[4];
 
     double * pvecx = NULL;
     double * pvecy = NULL;
@@ -149,12 +151,17 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
         return sciReturnEmptyMatrix();
     }
 
-    /* Update the dimensions nx and ny */
+    /*
+     * Update the x and y vectors dimensions
+     * These vectors are column ones
+     */
     gridSize[0] = nbRow[0];
-    gridSize[1] = nbRow[1];
+    gridSize[1] = 1;
+    gridSize[2] = nbRow[1];
+    gridSize[3] = 1;
 
     /* Resizes the coordinates arrays if required */
-    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 2);
+    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
     if (result == FALSE)
     {

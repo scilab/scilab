@@ -1917,7 +1917,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     char* grayplotID;
     int result;
     int dataMapping;
-    int gridSize[2];
+    int gridSize[4];
 
     int parentVisible;
     double* clipRegion;
@@ -1970,11 +1970,14 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     dataMapping = 0;
     setGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, &dataMapping, jni_int, 1);
 
+    /* The x and y vectors are column ones */
     gridSize[0] = n1;
-    gridSize[1] = n2;
+    gridSize[1] = 1;
+    gridSize[2] = n2;
+    gridSize[3] = 1;
 
     /* Allocates the coordinates arrays */
-    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 2);
+    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
     if (result == 0)
     {
