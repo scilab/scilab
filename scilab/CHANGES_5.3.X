@@ -8,6 +8,11 @@ Removed functions (previously declared as obsolete):
 
 * 'mini' removed. Please use 'min' instead.
 
+* 'VCtoLCCLib', 'configure_lcc', 'with_lcc', 'chooselcccompiler', 'findlcccompiler'
+  are now available as ATOMS modules.
+  See http://atoms.scilab.org/toolboxes/LCC-windows
+  or type atomsInstall('lcc-windows') in Scilab.
+
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
