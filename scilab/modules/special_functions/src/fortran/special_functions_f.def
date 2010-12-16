@@ -9,8 +9,4 @@ EXPORTS
 	intsdlgamma_
 	intsgamma_
 	intslgamma_
-	intsbesseli_
-	intsbesselj_
-	intsbesselk_
-	intsbessely_
 

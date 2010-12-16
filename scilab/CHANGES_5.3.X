@@ -13,6 +13,9 @@ Removed functions (previously declared as obsolete):
   See http://atoms.scilab.org/toolboxes/LCC-windows
   or type atomsInstall('lcc-windows') in Scilab.
 
+* 'oldbesseli', 'oldbesselj', 'oldbesselk' and 'oldbessely' removed.
+  Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
+
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================

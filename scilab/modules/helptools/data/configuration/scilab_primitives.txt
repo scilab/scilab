@@ -368,10 +368,6 @@ notify
 number_properties
 ode
 odedc
-oldbesseli
-oldbesselj
-oldbesselk
-oldbessely
 ones
 opentk
 optim
