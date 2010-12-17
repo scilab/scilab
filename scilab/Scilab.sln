@@ -801,8 +801,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm-Ant", "modules\jvm\s
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-Ant", "modules\javasci\src\java\javasci-JAVA.vcproj", "{6182A20D-8111-41C1-9713-CD2A4725057C}"
 	ProjectSection(ProjectDependencies) = postProject
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0} = {F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}
-		{ABCB724E-8534-4420-AC12-7C33A606ABA3} = {ABCB724E-8534-4420-AC12-7C33A606ABA3}
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D} = {0BD503EF-5CB6-4277-BAC4-8955C97F247D}
 	EndProjectSection
 EndProject
@@ -1625,7 +1623,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "abstractSyntaxTree", "modul
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "abstractSyntaxTree-tools", "modules\abstractSyntaxTree\abstractSyntaxTree-tools.vcproj", "{1F4A0344-99ED-461B-BD53-1593788FB34D}"
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildJavadoc", "modules\helptools\src\javadoc\javadoc.vcproj", "{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2999,14 +2996,6 @@ Global
 		{1F4A0344-99ED-461B-BD53-1593788FB34D}.Release|Win32.Build.0 = Release|Win32
 		{1F4A0344-99ED-461B-BD53-1593788FB34D}.Release|x64.ActiveCfg = Release|x64
 		{1F4A0344-99ED-461B-BD53-1593788FB34D}.Release|x64.Build.0 = Release|x64
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|Win32.Build.0 = Debug|Win32
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|x64.ActiveCfg = Debug|x64
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|x64.Build.0 = Debug|x64
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.ActiveCfg = Release|Win32
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.Build.0 = Release|Win32
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.ActiveCfg = Release|x64
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

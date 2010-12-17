@@ -18,8 +18,8 @@ extern "C"
     /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "api_scilab.h"
-#include "api_oldstack.h"
 #include "stack-c.h"
+#include "api_oldstack.h"
 #include "gw_helptools.h"
 #include "Scierror.h"
 #include "sci_path.h"
