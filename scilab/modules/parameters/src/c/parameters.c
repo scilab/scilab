@@ -748,7 +748,7 @@ SciErr getColVectorOfDoubleInPList(void* _pvCtx, int * _piAddress, const char * 
                 sciprint(_("%s: wrong parameter type. %s expected. Return default value %f.\n"), "getColVectorOfDoubleInPList","double",_dblDefaultValue);
             }
             *_piSize  = _iDefaultSize;
-            double_fill_n(_pdblValue, (double)_iDefaultSize, _dblDefaultValue);
+            double_fill_n(_pdblValue, (size_t)_iDefaultSize, (int)_dblDefaultValue);
         }
     }
     else
@@ -758,7 +758,7 @@ SciErr getColVectorOfDoubleInPList(void* _pvCtx, int * _piAddress, const char * 
             sciprint(_("%s: parameter not found. Return default value %f.\n"), "getColVectorOfDoubleInPList",_dblDefaultValue);
         }
         *_piSize  = _iDefaultSize;
-        double_fill_n(_pdblValue, (double)_iDefaultSize, _dblDefaultValue);
+        double_fill_n(_pdblValue, (size_t)_iDefaultSize, (int)_dblDefaultValue);
     }
 
     /* Now check parameters */
