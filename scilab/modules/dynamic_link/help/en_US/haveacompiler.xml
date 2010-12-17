@@ -50,9 +50,6 @@ bOK = haveacompiler();
         <link linkend="supported_compilers">supported compilers</link>
       </member>
       <member>
-        <link linkend="findlcccompiler">findlcccompiler</link>
-      </member>
-      <member>
         <link linkend="findmsvccompiler">findmsvccompiler</link>
       </member>
     </simplelist>
