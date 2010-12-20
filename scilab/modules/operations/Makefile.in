@@ -15,11 +15,6 @@
 
 @SET_MAKE@
 
-##########
-### Antoine ELIAS <antoine.elias@scilab.org>
-### INRIA - Scilab 2008
-##########
-
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
@@ -406,6 +401,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
+### Antoine ELIAS <antoine.elias@scilab.org>
+### INRIA - Scilab 2008
+##########
 OPERATIONS_C_SOURCES = src/c/doublecomplex.c \
 			src/c/matrix_multiplication.c \
 			src/c/matrix_addition.c \
@@ -432,7 +430,8 @@ libscioperations_la_CXXFLAGS = -I$(top_srcdir)/modules/operations/includes \
 						-I$(top_srcdir)/modules/types/includes \
 						-I$(top_srcdir)/modules/symbol/includes \
 						-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
-						-I$(top_srcdir)/modules/core/includes
+						-I$(top_srcdir)/modules/core/includes \
+						-I$(top_srcdir)/modules/string/includes
 
 libscioperations_la_SOURCES = $(OPERATIONS_C_SOURCES) $(OPERATIONS_CPP_SOURCES)
 libscioperations_la_LIBADD = 
@@ -941,6 +940,7 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-pkglibLTLIBRARIES
 
+ ##########
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

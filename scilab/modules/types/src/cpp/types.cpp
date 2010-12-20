@@ -39,7 +39,7 @@ namespace types
     std::wstring GenericType::DimToString()
 	{
         std::wostringstream ostr;
-		ostr << L"(" << rows_get() << L" x " << cols_get() << L")";
+		ostr << rows_get() << L"x" << cols_get();
 		return ostr.str();
 	}
 
