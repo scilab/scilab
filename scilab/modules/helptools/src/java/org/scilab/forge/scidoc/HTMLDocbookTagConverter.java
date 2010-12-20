@@ -247,7 +247,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         if (prev.parent != null) {
             buffer.append("<a href=\"");
             buffer.append(mapId.get(prev.id));
-            buffer.append("\">");
+            buffer.append("\">&lt;&lt; ");
             buffer.append(tocitem.get(prev.id));
             buffer.append("</a></span>\n");
 
@@ -329,7 +329,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             buffer.append(mapId.get(next.id));
             buffer.append("\">");
             buffer.append(tocitem.get(next.id));
-            buffer.append("</a></span>\n");
+            buffer.append(" &gt;&gt;</a></span>\n");
 
             return buffer.toString();
         }
