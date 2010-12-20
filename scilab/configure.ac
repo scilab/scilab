@@ -67,7 +67,7 @@ AC_CONFIG_HEADERS([modules/core/includes/machine.h])
 AM_PROG_INSTALL_STRIP
 AC_PROG_LN_S
 
-AC_SYS_LARGEFILE
+AC_CUSTOM_LARGE_FILE
 
 # In order to be able to change the scilab directory
 # See http://wiki.debian.org/RpathIssue
@@ -340,6 +340,13 @@ fi
 
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
+fi
+
+
+if test "$enable_largefile" = "yes"; then
+   CFLAGS="$CFLAGS $LARGEFILE_CFLAGS"
+   CPPFLAGS="$CPPFLAGS $LARGEFILE_CFLAGS"
+   FFLAGS="$FFLAGS $LARGEFILE_CFLAGS"
 fi
 
 ###############################
