@@ -173,28 +173,23 @@ void visitprivate(const OpExp &e)
             }
         case OpExp::dottimes :
             {
-                if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
-                {
-                    Double *pL			= execMeL.result_get()->getAsDouble();
-                    Double *pR			= execMeR.result_get()->getAsDouble();
+                  try
+                  {
+                      pResult = GenericDotTimes(execMeL.result_get(), execMeR.result_get());
+                  }
+                  catch (ScilabException *pSE)
+                  {
+                      pSE->SetErrorLocation(e.right_get().location_get());
+                      throw pSE;
+                  }
+                  if (pResult == NULL)
+                  {
+                      // We did not have any algorithm matching, so we try to call OverLoad
+                      pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
 
-
-                    int iResult = DotMultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
-                    if(iResult)
-                    {
-                        std::wostringstream os;
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-
-                    result_set(pResult);
-                }
-                else
-                {
-                    result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
-                }
-                break;
+                  }
+                  result_set(pResult);
+                  break;
             }
         case OpExp::eq :
             {

@@ -29,6 +29,37 @@ extern "C"
 
 using namespace types;
 
+InternalType *GenericDotTimes(InternalType *_pLeftOperand, InternalType *_pRightOperand)
+{
+    InternalType *pResult = NULL;
+    GenericType::RealType TypeL = _pLeftOperand->getType();
+    GenericType::RealType TypeR = _pRightOperand->getType();
+
+    /*
+    ** DOUBLE .* DOUBLE
+    */
+    if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    {
+        Double *pL			= _pLeftOperand->getAs<Double>();
+        Double *pR			= _pRightOperand->getAs<Double>();
+
+
+        int iResult = DotMultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
+    ** Default case : Return NULL will Call Overloading.
+    */
+    return NULL;
+
+}
+
 InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;
