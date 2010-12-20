@@ -13,14 +13,13 @@
  * still available and supported in Scilab 6.
  */
 
-#include <string.h>
-#include <stdlib.h>
-
 #include "function.hxx"
 #include "int.hxx"
 
 extern "C"
 {
+#include <string.h>
+#include <stdlib.h>
 #include "machine.h"
 #include "localization.h"
 #include "MALLOC.h"
@@ -28,10 +27,8 @@ extern "C"
 #include "api_scilab.h"
 #include "api_internal_int.h"
 #include "api_internal_common.h"
-#include "stack-c.h"
 #include "api_oldstack.h"
 }
-
 using namespace types;
 
 SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecision)

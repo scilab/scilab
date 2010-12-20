@@ -13,27 +13,23 @@
  * still available and supported in Scilab 6.
  */
 
-#include <string.h>
-#include <stdlib.h>
-
 #include "function.hxx"
 #include "matrixpoly.hxx"
 
 extern "C"
 {
+#include <string.h>
+#include <stdlib.h>
 #include "machine.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "api_internal_poly.h"
 #include "api_internal_common.h"
-#include "stack-c.h"
 #include "api_oldstack.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
-#include "api_oldstack.h"
 }
-
 using namespace types;
 
 SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)

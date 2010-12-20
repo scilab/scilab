@@ -14,23 +14,21 @@
  */
 
 
-#include "types.hxx"
 #include "internal.hxx"
 #include "double.hxx"
 #include "function.hxx"
 #include "matrixpoly.hxx"
-#include "alltypes.hxx"
 
 extern "C"
 {
 #include <string.h>
 #include <stdlib.h>
 #include "machine.h"
+#include "core_math.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "api_common.h"
 #include "api_internal_common.h"
-#include "stack-c.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "api_oldstack.h"
@@ -42,6 +40,7 @@ extern "C"
 	StrCtx* pvApiCtx = NULL;
 }
 
+using namespace types;
 /*--------------------------------------------------------------------------*/
 /* Defined in SCI/modules/core/src/fortran/cvname.f */
 extern "C" {
@@ -134,56 +133,56 @@ SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 SciErr getVarNameFromPosition(void* _pvCtx, int _iVar, char* _pstName)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iNameLen				= 0;
-	int iJob1						= 1;
-	CvNameL(&vstk_.idstk[(_iVar - 1) * 6], _pstName, &iJob1, &iNameLen);
-	if(iNameLen == 0)
-	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Unable to get name of argument #%d"), "getVarNameFromPosition", _iVar);
-		return sciErr;
-	}
+	//int iNameLen				= 0;
+	//int iJob1						= 1;
+	//CvNameL(&vstk_.idstk[(_iVar - 1) * 6], _pstName, &iJob1, &iNameLen);
+	//if(iNameLen == 0)
+	//{
+	//	addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Unable to get name of argument #%d"), "getVarNameFromPosition", _iVar);
+	//	return sciErr;
+	//}
 
-	_pstName[iNameLen]	= '\0';
+	//_pstName[iNameLen]	= '\0';
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 int getNewVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 {
-	int iAddr			= iadr(*Lstk(_iVar));
-	*_piAddress		= istk(iAddr);
+	//int iAddr			= iadr(*Lstk(_iVar));
+	//*_piAddress		= istk(iAddr);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
 SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddress)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iVarID[nsiz];
-	int* piAddr				= NULL;
+    //int iVarID[nsiz];
+    //int* piAddr				= NULL;
 
-	//get variable id from name
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+    ////get variable id from name
+    //C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 
-	//define scope of search
-  Fin = -1;
-	Err = 0;
-	//search variable
-  C2F(stackg)(iVarID);
+    ////define scope of search
+    //Fin = -1;
+    //Err = 0;
+    ////search variable
+    //C2F(stackg)(iVarID);
 
-	//No idea :(
-  if ( *Infstk(Fin) == 2)
-		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
+    ////No idea :(
+    //if ( *Infstk(Fin) == 2)
+    //    Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
-	if (Err > 0 || Fin == 0)
-	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Unable to get address of variable \"%s\""), "getVarAddressFromName", _pstName);
-		return sciErr;
-	}
+    //if (Err > 0 || Fin == 0)
+    //{
+    //    addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Unable to get address of variable \"%s\""), "getVarAddressFromName", _pstName);
+    //    return sciErr;
+    //}
 
 
-	//get variable address
-	getNewVarAddressFromPosition(_pvCtx, Fin, &piAddr);
+    ////get variable address
+    //getNewVarAddressFromPosition(_pvCtx, Fin, &piAddr);
 
-	*_piAddress = piAddr;
+    //*_piAddress = piAddr;
 	return sciErr;
 }
 
@@ -191,23 +190,22 @@ SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddres
 SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-
+    
 	if(_piAddress == NULL)
 	{
 		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
 		return sciErr;
 	}
 
-/*
-    switch(((types::InternalType *)_piAddress)->getType())
+    switch(((types::InternalType*)_piAddress)->getType())
 	{
-	case GenericType::RealDouble :
+    case GenericType::RealDouble :
 		*_piType = sci_matrix;
 		break;
-	case GenericType::RealPoly :
+	case types::GenericType::RealPoly :
 		*_piType = sci_poly;
 		break;
-	case GenericType::RealBool :
+	case types::GenericType::RealBool :
 		*_piType = sci_boolean;
 		break;
 	//case GenericType::RealSparse :
@@ -258,7 +256,8 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 	default :
 		*_piType = 0;
 	}
-*/
+
+
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -335,15 +334,15 @@ void createNamedVariable(int *_piVarID)
 /*--------------------------------------------------------------------------*/
 int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddress)
 {
-	intersci_.ntypes[_iVar - 1]	= _cType;
-	intersci_.iwhere[_iVar - 1]	= _iSCIAddress;
-	intersci_.lad[_iVar - 1]		= _iSCIDataAddress;
+	//intersci_.ntypes[_iVar - 1]	= _cType;
+	//intersci_.iwhere[_iVar - 1]	= _iSCIAddress;
+	//intersci_.lad[_iVar - 1]		= _iSCIDataAddress;
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
 int updateLstk(int _iNewpos, int _iSCIDataAddress, int _iVarSize)
 {
-	*Lstk(_iNewpos + 1) = _iSCIDataAddress + _iVarSize;
+	//*Lstk(_iNewpos + 1) = _iSCIDataAddress + _iVarSize;
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

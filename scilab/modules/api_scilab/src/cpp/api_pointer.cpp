@@ -22,7 +22,6 @@ extern "C"
 
 #include "MALLOC.h"
 #include "call_scilab.h"
-#include "stack-c.h"
 #include "api_oldstack.h"
 }
 

@@ -15,14 +15,15 @@
 
 extern "C"
 {
+#include <string.h>
 #include "MALLOC.h"
 #include "call_scilab.h"
+#include "core_math.h"
 #include "api_common.h"
 #include "api_internal_common.h"
 #include "api_boolean_sparse.h"
 #include "api_internal_boolean_sparse.h"
 #include "localization.h"
-#include "stack-c.h"
 #include "api_oldstack.h"
 }
 

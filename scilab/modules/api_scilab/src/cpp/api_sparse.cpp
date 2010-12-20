@@ -15,6 +15,8 @@
 
 extern "C"
 {
+#include <string.h>
+#include "elem_common.h"
 #include "api_common.h"
 #include "api_internal_common.h"
 #include "api_internal_sparse.h"
@@ -22,7 +24,6 @@ extern "C"
 #include "localization.h"
 #include "MALLOC.h"
 #include "call_scilab.h"
-#include "stack-c.h"
 #include "api_oldstack.h"
 }
 

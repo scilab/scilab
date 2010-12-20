@@ -22,16 +22,15 @@
 extern "C"
 {
 #include "machine.h"
+#include "core_math.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "api_internal_boolean.h"
 #include "api_internal_common.h"
-#include "stack-c.h"
 #include "api_oldstack.h"
 #include "localization.h"
 #include "MALLOC.h"
 }
-
 
 using namespace std;
 using namespace types;

@@ -23,14 +23,11 @@ extern "C"
 #include <string.h>
 #include <stdlib.h>
 #include "machine.h"
-
-
 #include "charEncoding.h"
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "api_internal_string.h"
 #include "api_internal_common.h"
-#include "stack-c.h"
 #include "api_oldstack.h"
 #include "localization.h"
 #include "MALLOC.h"
@@ -180,29 +177,29 @@ SciErr fillMatrixOfString(void* _pvCtx, int* _piAddress, int _iRows, int _iCols,
 SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iVarID[nsiz];
-	int iSaveRhs			= api_Rhs((int*)_pvCtx);
-	int iSaveTop			= api_Top((int*)_pvCtx);
-	int *piAddr				= NULL;
+	//int iVarID[nsiz];
+	//int iSaveRhs			= api_Rhs((int*)_pvCtx);
+	//int iSaveTop			= api_Top((int*)_pvCtx);
+	//int *piAddr				= NULL;
 
-	int iTotalLen	= 0;
+	//int iTotalLen	= 0;
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-
-
-	//write matrix information
-	sciErr = fillMatrixOfString(_pvCtx, piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_STRING, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfString", _("matrix of string"), _pstName);
-		return sciErr;
-	}
-
-	//update "variable index"
+	//C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 
 
-	//Add name in stack reference list
-	createNamedVariable(iVarID);
+	////write matrix information
+	//sciErr = fillMatrixOfString(_pvCtx, piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
+	//if(sciErr.iErr)
+	//{
+	//	addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_STRING, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfString", _("matrix of string"), _pstName);
+	//	return sciErr;
+	//}
+
+	////update "variable index"
+
+
+	////Add name in stack reference list
+	//createNamedVariable(iVarID);
 
 	return sciErr;
 }

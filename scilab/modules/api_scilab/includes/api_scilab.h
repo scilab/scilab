@@ -30,4 +30,15 @@
 #include "api_pointer.h"
 #include "api_list.h"
 
+/*Constants*/
+#define ROW_LETTER		'r'
+#define COL_LETTER		'c'
+#define STAR_LETTER		'*'
+#define MTLB_LETTER		'm'
+
+#define BY_ROWS			1
+#define BY_COLS			2
+#define BY_ALL			0
+#define	BY_MTLB			-1
+
 #endif /* __VARIABLE_API__ */

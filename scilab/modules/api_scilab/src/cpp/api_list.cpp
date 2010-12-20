@@ -15,9 +15,9 @@
 
 extern "C"
 {
-#include "stdio.h"
+#include <stdio.h>
+#include <string.h>
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "call_scilab.h"
 
 #include "api_common.h"
@@ -39,6 +39,7 @@ extern "C"
 #include "localization.h"
 #include "api_oldstack.h"
 }
+
 //internal functions
 static SciErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNbItem, int** _piAddress);
 static SciErr createCommonListInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress, int iNamed);
@@ -2585,59 +2586,59 @@ static void updateListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _
 static void updateCommunListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 {
 	//find list depth and update list offset for last item
-	int i							= 0;
-	int *piRoot				= istk(iadr(*Lstk(_iVar)));
-	int iDepth				= 1; //we are already in a list
-	int iMaxDepth			= 0; //we are already in a list
-	int **piParent			= NULL;
+	//int i							= 0;
+	//int *piRoot				= istk(iadr(*Lstk(_iVar)));
+	//int iDepth				= 1; //we are already in a list
+	//int iMaxDepth			= 0; //we are already in a list
+	//int **piParent			= NULL;
 
-	getParentList(_pvCtx, piRoot, _piCurrentNode, &iDepth, NULL);
-	piParent = (int**)MALLOC(sizeof(int*) * iDepth);
-	iMaxDepth = iDepth;
-	iDepth = 1;
-	piParent[0] = piRoot;
-	getParentList(_pvCtx, piRoot, _piCurrentNode, &iDepth, piParent);
-	for(i = iMaxDepth - 2 ; i >= 0 ; i--)
-	{
-		int j					=	0;
-		int iItem			= piParent[i][1];
-		int *piOffset = piParent[i] + 2;
-		int *piData		= piOffset + iItem + 1 + !(iItem % 2);
+	//getParentList(_pvCtx, piRoot, _piCurrentNode, &iDepth, NULL);
+	//piParent = (int**)MALLOC(sizeof(int*) * iDepth);
+	//iMaxDepth = iDepth;
+	//iDepth = 1;
+	//piParent[0] = piRoot;
+	//getParentList(_pvCtx, piRoot, _piCurrentNode, &iDepth, piParent);
+	//for(i = iMaxDepth - 2 ; i >= 0 ; i--)
+	//{
+	//	int j					=	0;
+	//	int iItem			= piParent[i][1];
+	//	int *piOffset = piParent[i] + 2;
+	//	int *piData		= piOffset + iItem + 1 + !(iItem % 2);
 
-		//for all nodes
-		for(j = 0 ; j < iItem ; j++)
-		{
-			int* piItem = piData + ((piOffset[j] - 1) * 2);
+	//	//for all nodes
+	//	for(j = 0 ; j < iItem ; j++)
+	//	{
+	//		int* piItem = piData + ((piOffset[j] - 1) * 2);
 
-			if(piItem == piParent[i + 1])
-			{
-				int iOffset = 0;
-				iOffset		= piOffset[j] + (int)((_piEnd - piItem + 1) / 2);
-				piOffset[j + 1] = iOffset;
-			}
-			//else
-			//{
-			//	break;
-			//	//if this item is not the last of the parent list
-			//	//we don't need to continue to check the uppers levels
-			//}
-		}
-	}
+	//		if(piItem == piParent[i + 1])
+	//		{
+	//			int iOffset = 0;
+	//			iOffset		= piOffset[j] + (int)((_piEnd - piItem + 1) / 2);
+	//			piOffset[j + 1] = iOffset;
+	//		}
+	//		//else
+	//		//{
+	//		//	break;
+	//		//	//if this item is not the last of the parent list
+	//		//	//we don't need to continue to check the uppers levels
+	//		//}
+	//	}
+	//}
 
-	FREE(piParent);
+	//FREE(piParent);
 }
 
 static void closeList(int _iVar, int *_piEnd)
 {
 	//Get Root address;
-	int *piRoot				= istk(iadr(*Lstk(_iVar)));
-	int iAddr					= *Lstk(_iVar);
+	//int *piRoot				= istk(iadr(*Lstk(_iVar)));
+	//int iAddr					= *Lstk(_iVar);
 
-	int iOffsetData		=	2 + piRoot[1] + 1 + !(piRoot[1] % 2);
-	int iScale				= (int)(_piEnd - (piRoot + iOffsetData));
-	int iDoubleSclale = (iScale + 1)/ 2;
+	//int iOffsetData		=	2 + piRoot[1] + 1 + !(piRoot[1] % 2);
+	//int iScale				= (int)(_piEnd - (piRoot + iOffsetData));
+	//int iDoubleSclale = (iScale + 1)/ 2;
 
-	updateLstk(_iVar, sadr(iadr(iAddr) + iOffsetData), iDoubleSclale);
+	//updateLstk(_iVar, sadr(iadr(iAddr) + iOffsetData), iDoubleSclale);
 }
 
 static int getParentList(void* _pvCtx, int* _piStart, int* _piToFind, int* _piDepth, int** _piParent)
