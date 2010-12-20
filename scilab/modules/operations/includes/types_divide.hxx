@@ -10,18 +10,18 @@
 *
 */
 
-#ifndef __TYPES_DIV_H__
-#define __TYPES_DIV_H__
+#ifndef __TYPES_DIVIDE_HXX__
+#define __TYPES_DIVIDE_HXX__
 
 #include "operation.hxx"
 #include "double.hxx"
 #include "matrixpoly.hxx"
 
-using namespace types;
+EXTERN_OP types::InternalType *GenericRDivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
-EXTERN_OP int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubleOut);
-EXTERN_OP int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPolyOut);
-EXTERN_OP int DivideDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPolyOut);
+EXTERN_OP int DivideDoubleByDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double **_pDoubleOut);
+EXTERN_OP int DividePolyByDouble(types::MatrixPoly* _pPoly, types::Double* _pDouble, types::MatrixPoly** _pPolyOut);
+EXTERN_OP int DivideDoubleByPoly(types::Double* _pDouble, types::MatrixPoly* _pPoly, types::MatrixPoly** _pPolyOut);
 
 
-#endif /* __TYPES_DIV_H__ */
+#endif /* !__TYPES_DIVIDE_HXX__ */
