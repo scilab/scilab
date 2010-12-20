@@ -9,21 +9,23 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-#ifndef __TYPES_MULTI_H__
-#define __TYPES_MULTI_H__
+#ifndef __TYPES_MULTIPLICATION_HXX__
+#define __TYPES_MULTIPLICATION_HXX__
 
 #include "operation.hxx"
 #include "double.hxx"
 #include "matrixpoly.hxx"
 
 
-using namespace types;
 
-EXTERN_OP int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut);
-EXTERN_OP int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPolyOut);
-EXTERN_OP int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPolyOut);
-EXTERN_OP int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _pPolyOut);
+EXTERN_OP types::InternalType *GenericTimes(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
-EXTERN_OP int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**	 _pDoubleOut);
+EXTERN_OP int MultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut);
+EXTERN_OP int MultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut);
+EXTERN_OP int MultiplyDoubleByPoly(types::Double* _pDouble, types::MatrixPoly* _pPoly, types::MatrixPoly** _pPolyOut);
+EXTERN_OP int MultiplyPolyByDouble(types::MatrixPoly* _pPoly, types::Double* _pDouble, types::MatrixPoly **_pPolyOut);
+EXTERN_OP int MultiplyPolyByPoly(types::MatrixPoly* _pPoly1, types::MatrixPoly* _pPoly2, types::MatrixPoly** _pPolyOut);
 
-#endif /* __TYPES_MULTI_H__ */
+EXTERN_OP int DotMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double**	 _pDoubleOut);
+
+#endif /* __TYPES_MULTIPLICATION_HXX__ */

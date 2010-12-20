@@ -99,79 +99,24 @@ void visitprivate(const OpExp &e)
             }
         case OpExp::times:
               {
-                if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
-                {
-                    Double *pL			= execMeL.result_get()->getAsDouble();
-                    Double *pR			= execMeR.result_get()->getAsDouble();
+                  try
+                  {
+                      pResult = GenericTimes(execMeL.result_get(), execMeR.result_get());
+                  }
+                  catch (ScilabException *pSE)
+                  {
+                      pSE->SetErrorLocation(e.right_get().location_get());
+                      throw pSE;
+                  }
+                  if (pResult == NULL)
+                  {
+                      // We did not have any algorithm matching, so we try to call OverLoad
+                      pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
 
-                    int iResult = MultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
-                    if(iResult)
-                    {
-                        std::wostringstream os;
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-
-                    result_set(pResult);
-                }
-                else if(TypeL == InternalType::RealDouble && TypeR == InternalType::RealPoly)
-                {
-                    Double *pL			    = execMeL.result_get()->getAsDouble();
-                    MatrixPoly *pR	    = execMeR.result_get()->getAsPoly();
-
-                    int iResult = MultiplyDoubleByPoly(pL, pR, (MatrixPoly**)&pResult);
-
-                    if(iResult)
-                    {
-                        std::wostringstream os;
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-
-                    result_set(pResult);
-                }
-                else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealDouble)
-                {
-                    MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
-                    Double *pR			    = execMeR.result_get()->getAsDouble();
-
-                    int iResult = MultiplyPolyByDouble(pL, pR, (MatrixPoly**)&pResult);
-
-                    if(iResult)
-                    {
-                        std::wostringstream os;
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-
-                    result_set(pResult);
-                }
-                else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealPoly)
-                {
-                    MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
-                    MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
-
-                    int iResult = MultiplyPolyByPoly(pL, pR, (MatrixPoly**)&pResult);
-
-                    if(iResult)
-                    {
-                        std::wostringstream os;
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        //os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-
-                    result_set(pResult);
-                }
-                else
-                {
-                    result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
-                }
-                break;
-            }
+                  }
+                  result_set(pResult);
+                  break;
+              }
         case OpExp::rdivide:
             {
                 if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
