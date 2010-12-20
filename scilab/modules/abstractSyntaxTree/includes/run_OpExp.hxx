@@ -59,15 +59,7 @@ void visitprivate(const OpExp &e)
         {
         case OpExp::plus :
             {
-                try
-                {
-                    pResult = GenericPlus(execMeL.result_get(), execMeR.result_get());
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
+                pResult = GenericPlus(execMeL.result_get(), execMeR.result_get());
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
@@ -79,15 +71,7 @@ void visitprivate(const OpExp &e)
             }
         case OpExp::minus :
             {
-                try
-                {
-                    pResult = GenericMinus(execMeL.result_get(), execMeR.result_get());
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
+                pResult = GenericMinus(execMeL.result_get(), execMeR.result_get());
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
@@ -99,15 +83,7 @@ void visitprivate(const OpExp &e)
             }
         case OpExp::times:
               {
-                  try
-                  {
-                      pResult = GenericTimes(execMeL.result_get(), execMeR.result_get());
-                  }
-                  catch (ScilabException *pSE)
-                  {
-                      pSE->SetErrorLocation(e.right_get().location_get());
-                      throw pSE;
-                  }
+                  pResult = GenericTimes(execMeL.result_get(), execMeR.result_get());
                   if (pResult == NULL)
                   {
                       // We did not have any algorithm matching, so we try to call OverLoad
@@ -119,43 +95,26 @@ void visitprivate(const OpExp &e)
               }
         case OpExp::rdivide:
             {
-               try
-                  {
-                      pResult = GenericRDivide(execMeL.result_get(), execMeR.result_get());
-                  }
-                  catch (ScilabException *pSE)
-                  {
-                      pSE->SetErrorLocation(e.right_get().location_get());
-                      throw pSE;
-                  }
-                  if (pResult == NULL)
-                  {
-                      // We did not have any algorithm matching, so we try to call OverLoad
-                      pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                pResult = GenericRDivide(execMeL.result_get(), execMeR.result_get());
+                if (pResult == NULL)
+                {
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
 
-                  }
-                  result_set(pResult);
-                  break;
+                }
+                result_set(pResult);
+                break;
             }
         case OpExp::dottimes :
             {
-                  try
-                  {
-                      pResult = GenericDotTimes(execMeL.result_get(), execMeR.result_get());
-                  }
-                  catch (ScilabException *pSE)
-                  {
-                      pSE->SetErrorLocation(e.right_get().location_get());
-                      throw pSE;
-                  }
-                  if (pResult == NULL)
-                  {
-                      // We did not have any algorithm matching, so we try to call OverLoad
-                      pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
-
-                  }
-                  result_set(pResult);
-                  break;
+                pResult = GenericDotTimes(execMeL.result_get(), execMeR.result_get());
+                if (pResult == NULL)
+                {
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                }
+                result_set(pResult);
+                break;
             }
         case OpExp::eq :
             {
