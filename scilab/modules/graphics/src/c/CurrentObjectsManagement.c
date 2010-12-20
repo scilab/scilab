@@ -14,7 +14,7 @@
  */
 
 /*------------------------------------------------------------------------*/
-/* file: CurrentObjectsManagemet.c                                        */
+/* file: CurrentObjectsManagement.c                                        */
 /* desc : Set of functions to retrieve the currents objects               */
 /*------------------------------------------------------------------------*/
 
@@ -80,6 +80,14 @@ sciPointObj * sciGetCurrentFigure( void )
 
       // Register handle to Scilab.
       sciAddNewHandle(pFigure);
+
+      /*
+       * Registers the Axes' handle and sets the Axes as the current object.
+       * This was previously done in ConstructSubWin, called by createFirstSubwin
+       * which was also called by createFullFigure.
+       */
+      sciAddNewHandle(newaxes);
+      sciSetCurrentObj(newaxes);
   }
 
   return pFigure;
