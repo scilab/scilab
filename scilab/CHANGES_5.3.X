@@ -146,6 +146,9 @@ Xcos:
 * bug 8658 fixed - Use accentuated characters on file name lead to a modelica
                    compiler error.
 
+* bug 8674 fixed - xcosShowBlockWarning was not protected against arbitrary 
+                   arguments.
+
 * bug 8696 fixed - An exception was thrown while linking and deleting the 
                    source block.
 
