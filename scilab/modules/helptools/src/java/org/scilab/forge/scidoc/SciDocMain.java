@@ -17,12 +17,11 @@ import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintStream;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.console.ScilabPrintStream;
 import org.scilab.modules.helptools.BuildJavaHelp;
 import org.scilab.modules.helptools.Helpers;
 
@@ -148,12 +147,6 @@ public final class SciDocMain {
     /* Stylesheet is useless and just kept to keep the consistency with
      * builddoc V1 */
     public String process(String sourceDoc, String styleSheet)  {
-	PrintStream err = System.err;
-	if (ScilabPrintStream.isAvailable()) {
-            System.setErr(ScilabPrintStream.getInstance());
-            System.err.println("");
-        }
-
         template = SCI + "/modules/helptools/data/template/template_" + format.toLowerCase() + ".html";
         /* TODO: make this file generated at build time of Scilab */
         sciprim = SCI + "/modules/helptools/data/configuration/scilab_primitives.txt";
@@ -196,9 +189,6 @@ public final class SciDocMain {
             System.err.println("An error occured during the conversion:\n");
             e.printStackTrace();
         }
-
-	System.setErr(err);
-	
         return outputDirectory;
     }
 

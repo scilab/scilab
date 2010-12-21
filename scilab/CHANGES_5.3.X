@@ -81,9 +81,6 @@ Bug fixes:
 * bug 7691 fixed - Giving complex arguments to inverse degree trigonometric 
                    functions produced inconsistent results.
 
-* bug 8492 fixed - When the documentation was generated, error messages were not
-                   displayed in the console but in the terminal.
-
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
