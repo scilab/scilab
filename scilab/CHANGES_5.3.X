@@ -75,6 +75,13 @@ Compilation:
 * -Wimplicit removed for gfortran in the enable debug mode
 
 
+Scilab:
+=======
+
+* Scilab startup script of the binary is now automatically synchronized with
+  the one from the source tree.
+
+
 Bug fixes:
 ==========
 
