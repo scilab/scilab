@@ -96,13 +96,14 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int
     }
 
     if(_pdblReal != NULL)
-    {
-        *_pdblReal	= (double*)(_piAddress + 4);
-    }
-    if(_iComplex && _pdblImg != NULL)
-    {
-        *_pdblImg	= (double*)(_piAddress + 4) + *_piRows * *_piCols;
-    }
+	{
+		*_pdblReal	= ((InternalType*)_piAddress)->getAsDouble()->real_get();
+	}
+
+	if(_iComplex && _pdblImg != NULL)
+	{
+		*_pdblImg		= ((InternalType*)_piAddress)->getAsDouble()->img_get();
+	}
     return sciErr;
 }
 
