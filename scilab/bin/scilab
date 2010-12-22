@@ -283,12 +283,19 @@ detect_scilab_path() {
     export SCI
 }
 
-detect_java_vm() {
 
-    JAVA_SHLIB="libjava.so"
+set_macosx_java_vm () {
+    # For Mac OS X, Since path are different from the JVM normal tree,
+    # don't need to detect the CPU
+    JAVA_SHLIB="libjava.jnilib"
+    JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+    DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+    
+}
 
-    if test $IS_SCILAB_BINARY -eq 1; then
-        # Scilab binary => no Java detection since we are using the embeded JRE
+set_embedded_java_vm () {
+
+       # Scilab binary => no Java detection since we are using the embeded JRE
         # Here, we are handling 3 cases: GNU/Linux 32bit, GNU/Linux 64bit,
         # Mac OS X
         case $OS in
@@ -308,20 +315,23 @@ detect_java_vm() {
                 esac
                 ;;
             *darwin* | *Darwin*) # MacOS X
-        # For Mac OS X, Since path are different from the JVM normal tree,
-        # don't need to detect the CPU
-                JAVA_SHLIB="libjava.jnilib"
-        JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
-                DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+                set_macosx_java_vm
                 ;;
-
             *)
-                echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
-                echo "Fallback on the model <${MODEL}> found by uname -m"
-                proc=$MODEL
-                ;;
-        esac
-        JRE_HOME="$SCIBINARYBASE/thirdparty/java/"
+            echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
+            echo "Fallback on the model <${MODEL}> found by uname -m"
+            proc=$MODEL
+            ;;
+    esac
+
+}
+
+detect_java_vm() {
+
+    JAVA_SHLIB="libjava.so"
+
+    if test $IS_SCILAB_BINARY -eq 1; then
+        set_embedded_java_vm
     else  # NOT IS_SCILAB_BINARY
 
 ############# JAVA DETECTION ##############
@@ -357,13 +367,7 @@ detect_java_vm() {
 
         case $OS in
             *darwin* | *Darwin*)
-        if test -z "$JAVA_HOME"; then
-                    # Apple thinks and does things different (it would be too easy otherwise)
-                    # They provide a script which returns the JAVA_HOME path
-                    JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
-        fi
-                LD_LIBRARY_PATH="$JAVA_HOME/../Libraries${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+                set_macosx_java_vm
                 if test $SCIVERBOSE -ne 0; then
                     echo "Using default Mac OS X vm: $JAVA_HOME"
                     echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
@@ -515,11 +519,7 @@ detect_java_vm() {
                     JAVA_SHLIB="jvm.dll"
                     ;;
                 *darwin* | *Darwin*) # MacOS X
-        # For Mac OS X, Since path are different from the JVM normal tree,
-        # don't need to detect the CPU
-                    JAVA_SHLIB="libjava.jnilib"
-                    # Need to set DYLD_LIBRARY_PATH for Mac.
-            DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+                    set_macosx_java_vm
                     ;;
                 *FreeBSD*)
                     proc=$MODEL
@@ -575,12 +575,12 @@ if test $IS_SCILAB_BINARY -eq 1; then
     export Tk_LIBRARY
 
     case $OS in
-    *darwin* | *Darwin*)
-        DYLD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-        export DYLD_LIBRARY_PATH
-        PATH="/sw/bin:/sw64/bin:$PATH"
-        export PATH
-        ;;
+        *darwin* | *Darwin*)
+            DYLD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+            export DYLD_LIBRARY_PATH
+            PATH="/sw/bin:/sw64/bin:$PATH"
+            export PATH
+            ;;
     esac
 
 else
@@ -697,20 +697,20 @@ do_help()
     echo     "      -h/--help       : display help about this command."
     echo     "      --texmacs       : reserved for TeXMacs."
     echo     " "
-if test $IS_SCILAB_BINARY -eq 0; then
-    echo     "Developer arguments:"
-    echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-    echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
-    echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
-    echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-    echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-    echo     "                        valgrind (and override the existing valgrind arguments)."
-    echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-    echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-    echo     "                        callgrind (and override the existing callgrind arguments)."
-    echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
-    echo     " "
-fi
+    if test $IS_SCILAB_BINARY -eq 0; then
+        echo     "Developer arguments:"
+        echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+        echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+        echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
+        echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+        echo     "                        valgrind (and override the existing valgrind arguments)."
+        echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+        echo     "                        callgrind (and override the existing callgrind arguments)."
+        echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+        echo     " "
+    fi
     echo     "      All these arguments can be retrieved by the Scilab function sciargs."
     echo     " "
     exit
