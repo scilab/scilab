@@ -16,6 +16,7 @@
 #define SCI_VERSION_MINOR 4
 #define SCI_VERSION_MAINTENANCE 0
 #define SCI_VERSION_STRING "scilab-branch-master"
+
 /* SCI_VERSION_REVISION --> hash key commit */
 #define SCI_VERSION_REVISION 0
 #define SCI_VERSION_TIMESTAMP 0

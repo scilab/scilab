@@ -589,7 +589,7 @@ msgstr "%s: nicht erkannter Parameter Name ''%s''."
 
 #, c-format
 msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
-msgstr "%s: nicht erkannter Wert ''%s'' für 'Display' Option."
+msgstr "%s: nicht erkannter Wert ''%s'' für ''Display'' Option."
 
 #, c-format
 msgid "%s: Weighting matrix must be square.\n"

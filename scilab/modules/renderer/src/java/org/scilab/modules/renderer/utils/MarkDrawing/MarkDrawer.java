@@ -46,7 +46,8 @@ public class MarkDrawer extends DrawableObjectGL {
 	private int markSize;
 	/** drawer of dots */
 	private MarkDrawingStrategy drawer;
-	
+    
+        private MarkDrawingStrategy strategy;
 	
 	/**
 	 * Default constructor
@@ -58,9 +59,7 @@ public class MarkDrawer extends DrawableObjectGL {
 		markSize       = -1;
 		drawer         = null;
 	}
-	
-	
-	
+
 	/**
 	 * @param background index of new background color
 	 */
@@ -102,7 +101,7 @@ public class MarkDrawer extends DrawableObjectGL {
 	 * @param markStyleIndex index of the kind of mark
 	 */
 	public void setMarkStyle(int markStyleIndex) {
-		drawer = MarkDrawingStrategy.create(markStyleIndex);
+		drawer = strategy.create(markStyleIndex);
 	}
 	
 	
@@ -164,10 +163,11 @@ public class MarkDrawer extends DrawableObjectGL {
 			transform.pushPolygonsBack(gl);
 			double realMarkSize = getMarkPixelSize();
 			gl.glScaled(realMarkSize, realMarkSize, 1.0);
-			
+			gl.glPointSize((float) realMarkSize * 2);
+
 			//set transparency
 			drawer.setFrontTransparency(markForeground == -1);
-      		drawer.setBackTransparency(markBackground == -1);
+			drawer.setBackTransparency(markBackground == -1);
       		
 			drawer.drawMark(gl, getColorMap().getColor(markBackground), getColorMap().getColor(markForeground));
 			transform.endPushPolygonsBack(gl);
@@ -195,6 +195,8 @@ public class MarkDrawer extends DrawableObjectGL {
 			gl.glPopMatrix();
 		}
 	}
-	
-	
+
+        public void setMarkDrawingStrategy(MarkDrawingStrategy strategy) {
+	        this.strategy = strategy;
+	}
 }

@@ -104,7 +104,7 @@ msgstr "%s: 入力引数 #%d の値が間違っています： %s は %d から 
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s''' を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"

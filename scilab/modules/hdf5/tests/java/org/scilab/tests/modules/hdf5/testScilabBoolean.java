@@ -10,6 +10,7 @@ package org.scilab.tests.modules.hdf5;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
@@ -35,11 +36,11 @@ public class testScilabBoolean {
 
 		ScilabBoolean data = new ScilabBoolean();
 		fileId = H5Read.openFile(tempDir+"/singleBooleanFromJava.h5");
-		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_BOOLEAN);
+		Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_BOOLEAN);
 		H5Read.readDataFromFile(fileId, data);
-		assert data.getData().length == 1;
-		assert data.getData()[0].length == 1;
-		assert data.getData()[0][0] == myBoolean;
+		Assert.assertEquals(data.getData().length, 1);
+		Assert.assertEquals(data.getData()[0].length, 1);
+		Assert.assertEquals(data.getData()[0][0], myBoolean);
     }
 
 	@Test
@@ -61,13 +62,13 @@ public class testScilabBoolean {
 
 		ScilabBoolean data = new ScilabBoolean();
 		fileId = H5Read.openFile(tempDir+"/matrixbooleanFromJava.h5");
-		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_BOOLEAN);
+		Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_BOOLEAN);
 		H5Read.readDataFromFile(fileId, data);
-		assert data.getData().length == ROWS;
-		assert data.getData()[0].length == COLS;
+		Assert.assertEquals(data.getData().length, ROWS);
+		Assert.assertEquals(data.getData()[0].length, COLS);
 		for (int i = 0 ; i < ROWS ; ++i) {
 			for (int j = 0 ; j < COLS ; ++j) {
-				assert data.getData()[i][j] == dataBooleanMatix[i][j];
+				Assert.assertEquals(data.getData()[i][j], dataBooleanMatix[i][j]);
 			}
 		}
 

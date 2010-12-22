@@ -45,7 +45,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
 
     private static final String LATEXBASENAME = "Equation_LaTeX_";
 
-    private StringBuilder buffer = new StringBuilder(8192);
+    private StringBuffer buffer = new StringBuffer(8192);
     private int latexCompt;
     private String imageDir;
     private String outName;
@@ -109,7 +109,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * @return the buffer used
      */
-    public StringBuilder getBuffer() {
+    public StringBuffer getBuffer() {
         return buffer;
     }
 
@@ -247,7 +247,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         if (prev.parent != null) {
             buffer.append("<a href=\"");
             buffer.append(mapId.get(prev.id));
-            buffer.append("\">");
+            buffer.append("\">&lt;&lt; ");
             buffer.append(tocitem.get(prev.id));
             buffer.append("</a></span>\n");
 
@@ -329,7 +329,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             buffer.append(mapId.get(next.id));
             buffer.append("\">");
             buffer.append(tocitem.get(next.id));
-            buffer.append("</a></span>\n");
+            buffer.append(" &gt;&gt;</a></span>\n");
 
             return buffer.toString();
         }

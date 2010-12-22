@@ -1,3 +1,94 @@
+            Changes between version 5.3.0 and 5.3.1 of Scilab
+            =================================================
+
+Removed functions (previously declared as obsolete):
+====================================================
+
+* 'maxi' removed. Please use 'max' instead.
+
+* 'mini' removed. Please use 'min' instead.
+
+* 'VCtoLCCLib', 'configure_lcc', 'with_lcc', 'chooselcccompiler', 'findlcccompiler'
+  are now available as ATOMS modules.
+  See http://atoms.scilab.org/toolboxes/LCC-windows
+  or type atomsInstall('lcc-windows') in Scilab.
+
+* 'oldbesseli', 'oldbesselj', 'oldbesselk' and 'oldbessely' removed.
+  Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
+
+
+Documentation:
+==============
+
+* In an example in the documentation, when an undocumented function is used, 
+trigger a warning and do not add a link on the function name.
+
+* bug 7069 fixed - Old documentation about the documentation build process
+                   removed.
+
+Scinotes:
+=========
+
+* Name of the current function and position (line, column) are now displayedno
+in the status bar of Scinotes.
+
+* A bad identifier is now shown in the text editor.
+
+Localization:
+=============
+
+* bug 8096 fixed - With Russian localization, the banner was not centered.
+
+Graphics:
+=========
+
+* bug 4818 fixed - It was not possible to export a figure with a lot of circle
+                   marks.
+
+* bug 7509 fixed - Update of the legend help page regarding some previous
+                   changes.
+
+* bug 7836 fixed - The sub_tics property was not correctly tracking the number
+                   of displayed sub-ticks. Thanks to Paul Griffiths.
+
+* bug 8518 fixed - When graphic export failed, some error messages were not
+                   clear.
+
+GUI:
+====
+
+* bug 8203 fixed - It was not possible to close the fontchooser or the 
+                   colorchooser with the escape key.
+
+Quality assurance:
+==================
+
+* C/C++/Fortran test coverage available on the Scilab source code.
+  Add "--enable-code-coverage" to the configure under GNU/Linux and Mac OS X
+  Start the unitary tests or launch Scilab
+  "make code-coverage" creates the report into "/coverage/results/"
+
+
+Compilation:
+============
+
+* -Wimplicit removed for gfortran in the enable debug mode
+
+
+Scilab:
+=======
+
+* Scilab startup script of the binary is now automatically synchronized with
+  the one from the source tree.
+
+
+Bug fixes:
+==========
+
+* bug 7691 fixed - Giving complex arguments to inverse degree trigonometric 
+                   functions produced inconsistent results.
+
+
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
@@ -7,7 +98,6 @@ SciNotes:
 
 * bug 8465 fixed - Under GNU/Linux, it was not possible to paste with the
                    middle click.
-
 
 Xcos:
 =====
@@ -42,6 +132,7 @@ Bug Fixes:
 
 * bug 6768 fixed - input did not return good value when RETURN was pressed
                    on Windows XP.
+
 * bug 7694 fixed - There were no key shortcuts in the command history browser.
 
 * bug 7695 fixed - Only the first selected line was deleted in command history
@@ -1234,7 +1325,6 @@ Compilation:
 
 Bug Fixes:
 ==========
-
 * bug 3842 fixed - "native" and "double" evaluation modes added to the sum,
                    cumsum, prod and cumprod functions
                    For more information, see the SEP #46.

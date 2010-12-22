@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Strategy for computing ticks position and labels
  *
  * This file must be used under the terms of the CeCILL.
@@ -41,6 +42,7 @@ public:
   /**
    * Fill positions parameters
    * with the ticks abscissas, ordinate, ...
+   * Pass NULL to labels and labelsExponents to only determine the ticks position.
    */
   virtual void getTicksPosition(double positions[], char * labels[], char * labelsExponents[]) = 0;
 
