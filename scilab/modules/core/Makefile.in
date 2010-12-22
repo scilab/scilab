@@ -85,11 +85,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -154,7 +155,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/recursionFunction.c src/c/typename.c \
 	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
 	src/c/exitCodeValue.c src/c/getversion.c \
-	src/c/dynamic_tclsci.c src/c/storeCommand.c src/c/scimem64.c \
+	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
+	src/c/storeCommand.c src/c/scimem64.c \
 	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
 	src/cpp/search_functions.cpp src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
@@ -223,8 +225,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/c/sci_getscilabmode.c \
 	sci_gateway/c/sci_getvariablesonstack.c \
 	sci_gateway/c/sci_readgateway.c sci_gateway/c/sci_comp.c \
-	sci_gateway/c/sci_exit.c sci_gateway/fortran/sci_errclear.f \
-	sci_gateway/fortran/sci_global.f \
+	sci_gateway/c/sci_exit.c sci_gateway/fortran/sci_global.f \
 	sci_gateway/fortran/sci_mtlb_mode.f \
 	sci_gateway/fortran/sci_resume.f \
 	sci_gateway/fortran/sci_dispbpt.f \
@@ -288,6 +289,7 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-inittypenames.lo libscicore_la-funcprot.lo \
 	libscicore_la-eqid.lo libscicore_la-exitCodeValue.lo \
 	libscicore_la-getversion.lo libscicore_la-dynamic_tclsci.lo \
+	libscicore_la-dynamic_parallel.lo \
 	libscicore_la-storeCommand.lo $(am__objects_1)
 am__objects_3 = libscicore_la-hashtable_core.lo \
 	libscicore_la-namstr.lo libscicore_la-search_functions.lo
@@ -340,12 +342,12 @@ am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
 	libscicore_la-sci_readgateway.lo libscicore_la-sci_comp.lo \
 	libscicore_la-sci_exit.lo
-am__objects_7 = sci_errclear.lo sci_global.lo sci_mtlb_mode.lo \
-	sci_resume.lo sci_dispbpt.lo sci_useascommand.lo \
-	sci_intppty.lo sci_ieee.lo sci_macrovar.lo sci_exists.lo \
-	sci_errcatch.lo sci_clear.lo sci_argn.lo sci_setbpt.lo \
-	sci_clearglobal.lo sci_delbpt.lo where.lo sci_iserror.lo \
-	sci_debug.lo sci_comp.lo sci_isglobal.lo
+am__objects_7 = sci_global.lo sci_mtlb_mode.lo sci_resume.lo \
+	sci_dispbpt.lo sci_useascommand.lo sci_intppty.lo sci_ieee.lo \
+	sci_macrovar.lo sci_exists.lo sci_errcatch.lo sci_clear.lo \
+	sci_argn.lo sci_setbpt.lo sci_clearglobal.lo sci_delbpt.lo \
+	where.lo sci_iserror.lo sci_debug.lo sci_comp.lo \
+	sci_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -459,6 +461,7 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
 JAVA_CUP = @JAVA_CUP@
@@ -665,7 +668,8 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/recursionFunction.c src/c/typename.c \
 	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
 	src/c/exitCodeValue.c src/c/getversion.c \
-	src/c/dynamic_tclsci.c src/c/storeCommand.c $(am__append_1)
+	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
+	src/c/storeCommand.c $(am__append_1)
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp
@@ -766,8 +770,7 @@ sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_global.f \
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
@@ -876,6 +879,7 @@ includes/getversion.h \
 includes/warningmode.h \
 includes/Thread_Wrapper.h
 
+@GUI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -924,7 +928,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -1033,6 +1037,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cs2st.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_gateways.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_parallel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_tclsci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-eqid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-exitCodeValue.Plo@am__quote@
@@ -1712,6 +1717,13 @@ libscicore_la-dynamic_tclsci.lo: src/c/dynamic_tclsci.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamic_tclsci.c' object='libscicore_la-dynamic_tclsci.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-dynamic_tclsci.lo `test -f 'src/c/dynamic_tclsci.c' || echo '$(srcdir)/'`src/c/dynamic_tclsci.c
+
+libscicore_la-dynamic_parallel.lo: src/c/dynamic_parallel.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-dynamic_parallel.lo -MD -MP -MF $(DEPDIR)/libscicore_la-dynamic_parallel.Tpo -c -o libscicore_la-dynamic_parallel.lo `test -f 'src/c/dynamic_parallel.c' || echo '$(srcdir)/'`src/c/dynamic_parallel.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-dynamic_parallel.Tpo $(DEPDIR)/libscicore_la-dynamic_parallel.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamic_parallel.c' object='libscicore_la-dynamic_parallel.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-dynamic_parallel.lo `test -f 'src/c/dynamic_parallel.c' || echo '$(srcdir)/'`src/c/dynamic_parallel.c
 
 libscicore_la-storeCommand.lo: src/c/storeCommand.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-storeCommand.lo -MD -MP -MF $(DEPDIR)/libscicore_la-storeCommand.Tpo -c -o libscicore_la-storeCommand.lo `test -f 'src/c/storeCommand.c' || echo '$(srcdir)/'`src/c/storeCommand.c
@@ -2465,9 +2477,6 @@ isinstring.lo: src/fortran/isinstring.f
 relocstack.lo: src/fortran/relocstack.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o relocstack.lo `test -f 'src/fortran/relocstack.f' || echo '$(srcdir)/'`src/fortran/relocstack.f
 
-sci_errclear.lo: sci_gateway/fortran/sci_errclear.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_errclear.lo `test -f 'sci_gateway/fortran/sci_errclear.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_errclear.f
-
 sci_global.lo: sci_gateway/fortran/sci_global.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_global.lo `test -f 'sci_gateway/fortran/sci_global.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_global.f
 
@@ -3039,9 +3048,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

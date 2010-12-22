@@ -18,6 +18,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -46,7 +47,19 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PreLoaded", propOrder = { "block" })
 public class PreLoaded extends Palette {
-
+	
+	/**
+	 * Not marshalled {@link PreLoaded} class
+	 */
+	@XmlTransient
+	public static class Dynamic extends PreLoaded {
+		/**
+		 * Default constructor.
+		 */
+		public Dynamic() {
+		}
+	}
+	
 	@XmlElement(nillable = true)
 	private List<PaletteBlock> block;
 
@@ -82,7 +95,7 @@ public class PreLoaded extends Palette {
 		if (block == null) {
 			block = new ArrayList<PaletteBlock>();
 		}
-		return this.block;
+		return block;
 	}
 
 }

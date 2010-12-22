@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -27,6 +27,7 @@
 #include "CreateEmptystr.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 static int sci_emptystr_no_rhs(void);
 static int sci_emptystr_one_rhs(char *fname);
@@ -53,18 +54,16 @@ int sci_emptystr(char *fname,unsigned long fname_len)
     }
     return 0;
 }
-/*--------------------------------------------------------------------------*/       
+/*--------------------------------------------------------------------------*/
 static int sci_emptystr_no_rhs(void)
 {
     /* With no input argument returns a zero length character string */
-    int m1 = 0, n1 = 0, l1 = 0;
-
-    CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
-    LhsVar(1)=Rhs+1;
+    createSingleString(pvApiCtx, Rhs + 1, "");
+    LhsVar(1) = Rhs + 1;
     C2F(putlhsvar)();
     return 0;
 }
-/*--------------------------------------------------------------------------*/       
+/*--------------------------------------------------------------------------*/
 static int sci_emptystr_one_rhs(char *fname)
 {
     int m1 = 0,n1 = 0; /* m1 is the number of row ; n1 is the number of col*/
@@ -72,7 +71,7 @@ static int sci_emptystr_one_rhs(char *fname)
     /*With a matrix for input argument returns a zero length character strings matrix of the same size */
     int Type = VarType(1);
 
-    if (Type == sci_matrix) 
+    if (Type == sci_matrix)
     {
         char **Input_StringMatrix_One = NULL;
 
@@ -113,7 +112,7 @@ static int sci_emptystr_one_rhs(char *fname)
     }
 
     /* m1 is the number of row ; n1 is the number of col*/
-    CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, NULL);   
+    CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, NULL);
     LhsVar(1) = Rhs + 1;
     C2F(putlhsvar)();
 

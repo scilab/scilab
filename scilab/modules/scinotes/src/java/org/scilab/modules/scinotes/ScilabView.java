@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import javax.swing.text.Utilities;
 import javax.swing.text.WrappedPlainView;
+import javax.swing.text.Position;
 import javax.swing.text.Segment;
 import javax.swing.text.Element;
 import javax.swing.text.BadLocationException;
@@ -73,7 +74,6 @@ public class ScilabView extends WrappedPlainView {
     private boolean lexerValid;
     private ScilabDocument doc;
     private Segment text = new Segment();
-    private boolean isLaTeXViewable;
     private boolean isTabViewable = true;
     private boolean isWhiteViewable = true;
     private boolean enable = true;
@@ -110,14 +110,6 @@ public class ScilabView extends WrappedPlainView {
         lexer = doc.createLexer();
         lexerValid = false;
         setTabRepresentation(TABVERTICAL);
-    }
-
-    /**
-     * To render LaTeX in this view (unused for the moment)
-     * @param b true if viewable or not
-     */
-    public void setLaTeXViewable(boolean b) {
-        isLaTeXViewable = b;
     }
 
     /**
@@ -160,6 +152,13 @@ public class ScilabView extends WrappedPlainView {
     }
 
     /**
+     * @return the width of a white
+     */
+    public int getWhiteWidth() {
+        return whiteWidth;
+    }
+
+    /**
      * This method can be used to draw anything you want in the editor (such as
      * the line of maximum recommanded chars).
      * @param g the graphics where to draw
@@ -172,6 +171,16 @@ public class ScilabView extends WrappedPlainView {
             g.drawLine(numOfColumns * whiteWidth, 0, numOfColumns * whiteWidth, getHeight());
         }
         super.paint(g, a);
+    }
+
+    /**
+     * A trick to be sure that all the line is covered by an highlight
+     * {@inheritDoc}
+     */
+    public Shape modelToView(int p0, Position.Bias b0, int p1, Position.Bias b1, Shape a) throws BadLocationException {
+        Rectangle r = (Rectangle) super.modelToView(p0, b0, p1, b1, a);
+        r.width = ((Rectangle) a).width;
+        return r;
     }
 
     /**
@@ -310,11 +319,6 @@ public class ScilabView extends WrappedPlainView {
                         paintTab(text, x, y, g, mark);
                     }
                     break;
-                case ScilabLexerConstants.LATEX :
-                        if (isLaTeXViewable) {
-                            //LaTeXUtilities.drawText(text, x, y, g, mark);
-                        }
-                        break;
                 default :
                     break;
                 }

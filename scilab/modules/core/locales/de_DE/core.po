@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-04-13 10:51+0000\n"
-"Last-Translator: Tim Schulze-Hartung <Unknown>\n"
+"PO-Revision-Date: 2010-11-17 23:08+0000\n"
+"Last-Translator: Ascurion <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,10 @@ msgstr "  lade Startumgebung"
 
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
-msgstr " und %10d Variablen aus %10d.\n"
+msgstr " und %10d Variablen von %10d\n"
+
+msgid " by "
+msgstr " von "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -43,10 +46,6 @@ msgstr " verwende %10d Elemente aus %10d.\n"
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
 msgstr "%f: kein weiterer Raum, um Zeichenketten-Argumente zu speichern.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Fehler bei der Speicherbelegung.\n"
 
 #, c-format
 msgid "%s and %s arguments"
@@ -132,24 +131,8 @@ msgstr ""
 "intersiz.\n"
 
 #, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s: Kann Speicher nicht belegen.\n"
-"Versuchen Sie gstacksize('max').\n"
-
-#, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: kann Speicher nicht belegen.\n"
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s: Kann keinen zusätzlichen Speicher belegen.\n"
-"Versuchen Sie Stapelgröße ('max').\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -164,12 +147,12 @@ msgid "%s: Incompatible sizes.\n"
 msgstr "%s: inkompatible Größen.\n"
 
 #, c-format
-msgid "%s: Invalid '%s' value.\n"
-msgstr "%s: ungültiger '%s' Wert.\n"
-
-#, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: ungültiger Modulname: %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Speicherreservierungsfehler.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -262,12 +245,8 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s: falscher %s Wert %d anstatt von %d.\n"
 
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s: Falsche Dateiversion %s.\n"
-
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s: Falsche Dateiversion in %s.\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr "%s: Falsche Datei version.xml %s.\n"
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -335,6 +314,11 @@ msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr "%s: falsche Größe für Argument %d: mindestens %d erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: falsche Größe des Eingabewertes #%d: ein boolscher Wert wird erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Skalar erwartet.\n"
 
@@ -344,13 +328,21 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: Falsche Größe für Eingabeargumente.\n"
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr "%s: Falsche Größe des Eingabewertes #%d: Integer wird erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr "%s: falsche Größe des Eingabewertes #%d: Skalar wird erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s: falscher Typ für Argument #%d: Skalar, '%s' oder '%s' erwartet.\n"
+"%s: falsche Größe des Eingabewertes #%d: Zeichenkette wird erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s: Falsche Größe für Eingabeargumente.\n"
 
 #, c-format
 msgid ""
@@ -527,6 +519,11 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: falscher Typ des Eingabewertes #%d: ein boolscher Wert wird erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: eine Realzahl erwartet.\n"
 
@@ -564,17 +561,6 @@ msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: kompiliertes Makro erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: benannte Variable erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: Skalar, '%s' oder '%s' erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Skalar, '%s' oder '%s'.\n"
 
@@ -603,6 +589,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Falscher Typ für Eingabeargumente.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr "%s: falscher Typ des Eingabewertes #%d: ein Integer wird erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -652,11 +642,11 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s: Falscher Wert für Eingangsargument #%d: '0' oder '1' erwartet.\n"
+msgstr "%s: Falscher Wert für Eingangsargument #%d: ''0'' oder ''1'' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
@@ -685,13 +675,6 @@ msgid ""
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: Muss im Intervall [%d, %d] "
 "liegen.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Skalar, '%s' oder '%s' "
-"erwartet.\n"
 
 #, c-format
 msgid ""
@@ -810,6 +793,9 @@ msgstr "&Werkzeugboxen"
 msgid "A non square matrix!\n"
 msgstr "Eine nichtquadratische Matrix!\n"
 
+msgid "Bytes"
+msgstr "Bytes"
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "kann das temporäre Windows Verzeichnis nicht finden (1)."
 
@@ -832,6 +818,17 @@ msgstr "Fehler"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Fehler beim Zurückgeben der tlist, Speicher voll.\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+"Error(x) ist veraltet und wird in Scilab 5.4 entfernt. Bitte SciError(x) "
+"berücksichtigen.\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "Fehler: Konnte %s: %s nicht erstellen\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -947,6 +944,9 @@ msgstr "Ungültige Zeitdomäne\n"
 msgid "List full.\n"
 msgstr "Liste voll.\n"
 
+msgid "Name"
+msgstr ""
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Es kann kein Platz im Scilab Stapel belegt werden.\n"
 
@@ -965,6 +965,9 @@ msgstr "SCIHOME nicht definiert.\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP: breche Berechnung ab\n"
 
+msgid "Scilab Console"
+msgstr "Scilab-Konsole"
+
 msgid "Scilab Version Info."
 msgstr "Scilab Version Information"
 
@@ -980,6 +983,9 @@ msgstr ""
 "Scilab Version \"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Size"
+msgstr "Größe"
+
 msgid "Startup execution:"
 msgstr "Starte Ausführung:"
 
@@ -992,12 +998,23 @@ msgstr "Die Sci Umgebungsvariable ist nicht gesetzt.\n"
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Versuch Scilab in der Mitte vom Interface anzuhalten.\n"
 
+msgid "Type"
+msgstr "Typ"
+
 #, c-format
 msgid "Undefined variable %s.\n"
 msgstr "Nicht definierte Variable %s.\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "Unerwarteter Opcode, starten Sie den Scilab Fehlersucher."
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr ""
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr ""
 
 msgid "User variables are:"
 msgstr "Benutzervariablen:"

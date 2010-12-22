@@ -15,6 +15,9 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
@@ -26,13 +29,13 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
-import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.io.mxObjectCodec;
+import com.mxgraph.util.mxConstants;
 
 /**
  * Codec for any Port.
@@ -43,7 +46,8 @@ import com.mxgraph.io.mxObjectCodec;
 // CSOFF: ClassDataAbstractionCoupling
 public class BasicPortCodec extends XcosObjectCodec {
 
-    private static final String DATA_TYPE = "dataType";
+	private static final Log LOG = LogFactory.getLog(BasicPortCodec.class);
+	private static final String DATA_TYPE = "dataType";
     private static final String[] IGNORED_FIELDS = new String[] {DATA_TYPE};
 
 	/**
@@ -101,6 +105,11 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 */
 	@Override
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
+		if (!(obj instanceof BasicPort)) {
+			LOG.error("Unable to decode " + obj);
+			return obj;
+		}
+		
 	String attr = ((Element) node).getAttribute(DATA_TYPE);
 
 	if (attr == null || attr.equals("")) {
@@ -153,14 +162,22 @@ public class BasicPortCodec extends XcosObjectCodec {
 		boolean mirrored = false;
 
 		
-		if (map.get(XcosConstants.STYLE_ROTATION) != null) {
-			rotation = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
+		if (map.get(mxConstants.STYLE_ROTATION) != null) {
+			rotation = Integer.parseInt(map.get(mxConstants.STYLE_ROTATION));
 		} else {
 			rotation = 0;
 		}
 		
-		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
-		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
+		/*
+		 * Protect against a not set parent 
+		 */
+		if (obj.getParent() == null || !(obj.getParent() instanceof BasicBlock)) {
+			return;
+		}
+		
+		StyleMap parentBlockMap = new StyleMap(obj.getParent().getStyle());
+		flipped = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_FLIP));
+		mirrored = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_MIRROR));
 		
 		final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj
 				.getParent()).getAngle(), obj.getClass(), flipped, mirrored);
@@ -172,7 +189,7 @@ public class BasicPortCodec extends XcosObjectCodec {
 		// Calculate the rotation for this kind of port.
 		rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);
 
-		map.put(XcosConstants.STYLE_ROTATION, Integer.toString(rotation));
+		map.put(mxConstants.STYLE_ROTATION, Integer.toString(rotation));
 	}
 }
 // CSON: ClassDataAbstractionCoupling

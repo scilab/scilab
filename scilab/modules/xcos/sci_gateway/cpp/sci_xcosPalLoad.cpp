@@ -1,17 +1,18 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "Palette.hxx"
 #include "GiwsException.hxx"
+#include "xcosUtilities.hxx"
 
 extern "C"
 {
@@ -25,30 +26,27 @@ extern "C"
 #include "getScilabJavaVM.h"
 }
 
-extern int readSingleString(int rhsPosition, char** out, const char* fname);
-extern int readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fname);
-
 using namespace org_scilab_modules_xcos_palette;
 
 int
 sci_xcosPalLoad(char *fname, unsigned long fname_len)
 {
-    CheckRhs(2, 2);
+    CheckRhs(1, 2);
     CheckLhs(0, 1);
 
     char* path = NULL;
-    
+
     int lenCategory = 0;
     char** category = NULL;
 
     /* path setup */
-    if(readSingleString(1, &path, fname))
+    if(readSingleString(pvApiCtx, 1, &path, fname))
     {
         return 0;
     }
 
     /* category setup */
-    if(readVectorString(2, &category, &lenCategory, fname))
+    if (Rhs == 2 && readVectorString(pvApiCtx, 2, &category, &lenCategory, fname))
     {
         FREE(path);
         return 0;
@@ -59,7 +57,7 @@ sci_xcosPalLoad(char *fname, unsigned long fname_len)
     {
         // FIXME #7266 workaround
         // check category emptyness
-        if (lenCategory == 1 && *category == '\0')
+        if (category == NULL || (lenCategory == 1 && *category == '\0'))
         {
             Palette::loadPal(getScilabJavaVM(), path);
         }

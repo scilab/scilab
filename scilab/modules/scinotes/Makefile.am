@@ -22,6 +22,7 @@ libsciscinotes_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libsciscinotes_la_etcdir = $(mydatadir)/etc
 libsciscinotes_la_etc_DATA = etc/scinotesConfiguration.xml \
     etc/keysConfiguration.xml \
+    etc/scinotesGUIConfiguration.xml \
     etc/scinotes.quit \
     etc/scinotes.start
 
@@ -100,8 +101,9 @@ if SWIG
     BUILT_SOURCES=swig
 endif
 
-libsciscinotes_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libsciscinotes_la_LIBADD =  \
     $(top_builddir)/libs/MALLOC/libscimalloc.la \
+    $(top_builddir)/modules/jvm/libscijvm.la \
     $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

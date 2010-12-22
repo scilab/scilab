@@ -28,12 +28,12 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)</synopsis>
+        <synopsis>SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)</synopsis>
+        <synopsis>SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>
@@ -162,7 +162,7 @@ int list_createlist(char *fname,unsigned long fname_len)
 	double* pdblDataPtr     = NULL;
 
 
-	sciErr = createList(pvApiCtx, 1, 8, &piAddr);
+	sciErr = createList(pvApiCtx, Rhs + 1, 8, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -253,7 +253,7 @@ int list_createlist(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	LhsVar(1) = 1;
+	LhsVar(1) = Rhs + 1;
 	return 0;
 }
  ]]>

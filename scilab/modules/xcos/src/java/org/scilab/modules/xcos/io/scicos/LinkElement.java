@@ -20,10 +20,10 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
@@ -33,12 +33,14 @@ import org.scilab.modules.xcos.link.LinkPortMap;
 import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
 
 /**
  * Perform a link transformation between Scicos and Xcos.
  */
 // CSOFF: ClassDataAbstractionCoupling
+// CSOFF: FanOutComplexity
 public class LinkElement extends AbstractElement<BasicLink> {
 	private static final List<String> DATA_FIELD_NAMES = asList("Link", "xx",
 			"yy", "id", "thick", "ct", "from", "to");
@@ -79,7 +81,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	 * @return the decoded block.
 	 * @throws ScicosFormatException
 	 *             when e decoding error occurred.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
 	 *      java.lang.Object)
 	 */
 	@Override
@@ -94,6 +96,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			link = allocateLink();
 		}
 
+		link = beforeDecode(element, link);
+		
 		searchForPorts(link);
 		List<mxPoint> points = getPoints();
 
@@ -110,6 +114,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		geom.setPoints(points);
 		link.setGeometry(geom);
 
+		link = afterDecode(element, link);
+		
 		return link;
 	}
 
@@ -366,7 +372,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	 * @param element
 	 *            the element to test
 	 * @return true, when the current implementation is the right one
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -385,7 +391,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	 *            the previously allocated element.
 	 * @return the element parameter
 	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-	 *      org.scilab.modules.types.scilabTypes.ScilabType)
+	 *      org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(BasicLink from, ScilabType element) {
@@ -395,8 +401,20 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			data = (ScilabMList) element;
 		}
 
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		start = (BasicPort) from.getSource();
 		end = (BasicPort) from.getTarget();
+
+		// non-connected link
+		if ((start == null) || (end == null)) { return null; }
+
+		final mxICell srcBlock = start.getParent();
+		final mxICell endBlock = end.getParent();
+
+		// connection not valid
+		if ((srcBlock == null) || (endBlock == null)) { return null; }
+		if (!((srcBlock instanceof BasicBlock) && (endBlock instanceof BasicBlock))) { return null; }
 
 		final mxGeometry srcGeom = start.getGeometry();
 		final mxGeometry endGeom = end.getGeometry();
@@ -411,20 +429,22 @@ public class LinkElement extends AbstractElement<BasicLink> {
 
 		data.add(new ScilabDouble(from.getColorAndType())); // ct
 
-		double fromBlockID = ((BasicBlock) start.getParent()).getOrdering();
+		double fromBlockID = ((BasicBlock) srcBlock).getOrdering();
 		double fromPortID = start.getOrdering();
 		double fromType = LinkPortMap.isStart(start);
 
 		double[][] fromData = {{fromBlockID, fromPortID, fromType}};
 		data.add(new ScilabDouble(fromData)); // from
 
-		double toBlockID = ((BasicBlock) end.getParent()).getOrdering();
+		double toBlockID = ((BasicBlock) endBlock).getOrdering();
 		double toPortID = end.getOrdering();
 		double toType = LinkPortMap.isStart(end);
 
 		double[][] toData = {{toBlockID, toPortID, toType}};
 		data.add(new ScilabDouble(toData)); // to
 
+		data = (ScilabMList) afterEncode(from, data);
+		
 		return data;
 	}
 
@@ -448,11 +468,15 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		/*
 		 * Start point
 		 */
-		xx[0][0] = srcGeom.getCenterX()
-				+ start.getParent().getGeometry().getX();
-		yy[0][0] = -(srcGeom.getCenterY()
-				+ start.getParent().getGeometry().getY() - start.getParent()
-				.getGeometry().getHeight());
+		{
+			xx[0][0] = srcGeom.getCenterX();
+			yy[0][0] = -srcGeom.getCenterY();
+			final mxGeometry geometry = start.getParent().getGeometry();
+			if (geometry != null) {
+				xx[0][0] += geometry.getX();
+				yy[0][0] -= geometry.getY() - geometry.getHeight();
+			}
+		}
 
 		/*
 		 * Control points
@@ -460,22 +484,28 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		if (ptCount > 0 && from.getGeometry() != null) {
 			final List<mxPoint> lnkPoints = from.getGeometry().getPoints();
 			for (int i = 0; i < ptCount; i++) {
-				xx[1 + i][0] = ((mxPoint) lnkPoints.get(i)).getX();
-				yy[1 + i][0] = -((mxPoint) lnkPoints.get(i)).getY();
+				xx[1 + i][0] = (lnkPoints.get(i)).getX();
+				yy[1 + i][0] = -(lnkPoints.get(i)).getY();
 			}
 		}
 
 		/*
 		 * End point
 		 */
-		xx[1 + ptCount][0] = endGeom.getCenterX()
-				+ end.getParent().getGeometry().getX();
-		yy[1 + ptCount][0] = -(endGeom.getCenterY()
-				+ end.getParent().getGeometry().getY() - end.getParent()
-				.getGeometry().getHeight());
-
+		{
+			xx[1 + ptCount][0] = endGeom.getCenterX();
+			yy[1 + ptCount][0] = -endGeom.getCenterY();
+			
+			final mxGeometry geometry = end.getParent().getGeometry();
+			if (geometry != null) {
+				xx[1 + ptCount][0] += geometry.getX();
+				yy[1 + ptCount][0] -= geometry.getY() - geometry.getHeight();
+			}
+		}
+		
 		data.add(new ScilabDouble(xx));
 		data.add(new ScilabDouble(yy));
 	}
 }
 // CSON: ClassDataAbstractionCoupling
+// CSON: FanOutComplexity

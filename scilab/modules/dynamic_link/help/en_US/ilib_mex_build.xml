@@ -23,7 +23,7 @@
     <synopsis>ilib_mex_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,cc])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lib_name</term>

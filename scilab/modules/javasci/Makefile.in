@@ -63,12 +63,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@JAVASCI_TRUE@@SWIG_TRUE@am__append_1 = swig
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/Makefile.incl.am
-@JAVASCI_TRUE@@NEED_JAVA_TRUE@am__append_1 = java
+	$(top_srcdir)/Makefile.incl.am TODO
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@am__append_2 = java
 
 # With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@@JAVASCI_TRUE@am__append_2 = test
+@COMPILATION_TESTS_TRUE@@JAVASCI_TRUE@am__append_3 = test
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -80,11 +81,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -115,8 +117,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libjavasci_la_etcdir)" \
 	"$(DESTDIR)$(libjavasci_la_rootdir)" \
-	"$(DESTDIR)$(libsciscipad_la_imagesdir)" \
-	"$(DESTDIR)$(libsciscipad_la_specialtestdir)"
+	"$(DESTDIR)$(libsciscipad_la_imagesdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @JAVASCI_TRUE@libjavasci_la_DEPENDENCIES =  \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -144,6 +145,20 @@ libjavasci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libjavasci_la_CFLAGS) \
 	$(CFLAGS) $(libjavasci_la_LDFLAGS) $(LDFLAGS) -o $@
 @JAVASCI_TRUE@am_libjavasci_la_rpath = -rpath $(pkglibdir)
+@JAVASCI_TRUE@libjavasci2_la_DEPENDENCIES =  \
+@JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+@JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+@JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
+am__libjavasci2_la_SOURCES_DIST = src/jni/call_scilab_wrap.c \
+	src/c/javasci2_helper.c
+@JAVASCI_TRUE@am__objects_2 = libjavasci2_la-call_scilab_wrap.lo \
+@JAVASCI_TRUE@	libjavasci2_la-javasci2_helper.lo
+@JAVASCI_TRUE@am_libjavasci2_la_OBJECTS = $(am__objects_2)
+libjavasci2_la_OBJECTS = $(am_libjavasci2_la_OBJECTS)
+libjavasci2_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libjavasci2_la_CFLAGS) \
+	$(CFLAGS) $(libjavasci2_la_LDFLAGS) $(LDFLAGS) -o $@
+@JAVASCI_TRUE@am_libjavasci2_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -157,11 +172,11 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libjavasci_la_SOURCES)
-DIST_SOURCES = $(am__libjavasci_la_SOURCES_DIST)
+SOURCES = $(libjavasci_la_SOURCES) $(libjavasci2_la_SOURCES)
+DIST_SOURCES = $(am__libjavasci_la_SOURCES_DIST) \
+	$(am__libjavasci2_la_SOURCES_DIST)
 DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_root_DATA) \
-	$(libsciscipad_la_images_DATA) \
-	$(libsciscipad_la_specialtest_DATA)
+	$(libsciscipad_la_images_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -235,6 +250,7 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
 JAVA_CUP = @JAVA_CUP@
@@ -427,7 +443,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 ### All the compilation process of java is deleguated to ant
 
 #### Javasci : sources ####
-@JAVASCI_TRUE@JAVASCI_C_SOURCES = src/c/javasci_Scilab2.c \
+@JAVASCI_TRUE@JAVASCI_V1_C_SOURCES = src/c/javasci_Scilab2.c \
 @JAVASCI_TRUE@src/c/javasci_globals.c \
 @JAVASCI_TRUE@src/c/javasci_SciAbstractArray.c \
 @JAVASCI_TRUE@src/c/javasci_SciStringArray.c \
@@ -438,9 +454,15 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@src/c/javasci_SciBooleanArray.c \
 @JAVASCI_TRUE@src/c/javasci_SciIntegerArray.c
 
-@JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci.la
+@JAVASCI_TRUE@JAVASCI_V2_C_SOURCES = \
+@JAVASCI_TRUE@src/jni/call_scilab_wrap.c \
+@JAVASCI_TRUE@src/c/javasci2_helper.c
+
+@JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci.la libjavasci2.la
 @JAVASCI_TRUE@libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-@JAVASCI_TRUE@libjavasci_la_SOURCES = $(JAVASCI_C_SOURCES)
+@JAVASCI_TRUE@libjavasci_la_SOURCES = $(JAVASCI_V1_C_SOURCES)
+@JAVASCI_TRUE@libjavasci2_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+@JAVASCI_TRUE@libjavasci2_la_SOURCES = $(JAVASCI_V2_C_SOURCES)
 
 # For the code check (splint)
 @JAVASCI_TRUE@CHECK_SRC = $(JAVASCI_C_SOURCES)
@@ -461,6 +483,23 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 
+@JAVASCI_TRUE@libjavasci2_la_CFLAGS = -I$(srcdir)/includes/ \
+@JAVASCI_TRUE@			-I$(srcdir)/src/c/ \
+@JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
+@JAVASCI_TRUE@			$(TCL_INC_PATH) \
+@JAVASCI_TRUE@			$(TK_INC_PATH) \
+@JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
+
+@JAVASCI_TRUE@libjavasci2_la_LIBADD = \
+@JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+@JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+@JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
+
 
 ### javasci :  images ###
 @JAVASCI_TRUE@libsciscipad_la_imagesdir = $(mydatadir)/help/images/
@@ -476,32 +515,10 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@help/images/SciStringClass.gif \
 @JAVASCI_TRUE@help/images/SciBooleanClass.gif
 
+@JAVASCI_TRUE@BUILT_SOURCES = $(am__append_1)
 
-### javasci : special tests ###
-@JAVASCI_TRUE@libsciscipad_la_specialtestdir = $(mydatadir)/tests
-@JAVASCI_TRUE@libsciscipad_la_specialtest_DATA = tests/unit_tests/Boolean.java \
-@JAVASCI_TRUE@tests/unit_tests/Boolean.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/BooleanArray.java \
-@JAVASCI_TRUE@tests/unit_tests/BooleanArray.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Clf.java \
-@JAVASCI_TRUE@tests/unit_tests/Clf.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Disp.java \
-@JAVASCI_TRUE@tests/unit_tests/Disp.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Exec.java  \
-@JAVASCI_TRUE@tests/unit_tests/Exec.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Real1.java \
-@JAVASCI_TRUE@tests/unit_tests/Real1.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Real2.java \
-@JAVASCI_TRUE@tests/unit_tests/Real2.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Real3.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Real3.java \
-@JAVASCI_TRUE@tests/unit_tests/String1.java \
-@JAVASCI_TRUE@tests/unit_tests/String1.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Strings1.dia.ref \
-@JAVASCI_TRUE@tests/unit_tests/Strings1.java \
-@JAVASCI_TRUE@tests/unit_tests/Strings2.java \
-@JAVASCI_TRUE@tests/unit_tests/Strings2.dia.ref
-
+#### SWIG Declaration ####
+@JAVASCI_TRUE@SWIG_WRAPPERS = src/jni/call_scilab.i
 @JAVASCI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -515,7 +532,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@JAVASCI_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2)
+@JAVASCI_TRUE@TARGETS_ALL = $(am__append_2) $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -551,7 +568,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 # Mask of the Scilab compiled macros
 @JAVASCI_TRUE@MACROBINMASK = *.bin
 # List of the standard directory for tests
-@JAVASCI_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+@JAVASCI_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 @JAVASCI_TRUE@pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -566,7 +583,8 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@HELP_CHAPTERDIR = help/
 @JAVASCI_TRUE@HELP_CHAPTERFILE = addchapter.sce
 @JAVASCI_TRUE@HELP_CHAPTERLANG = en_US fr_FR pt_BR
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .lo .o .obj
@@ -633,6 +651,8 @@ clean-pkglibLTLIBRARIES:
 	done
 libjavasci.la: $(libjavasci_la_OBJECTS) $(libjavasci_la_DEPENDENCIES) 
 	$(libjavasci_la_LINK) $(am_libjavasci_la_rpath) $(libjavasci_la_OBJECTS) $(libjavasci_la_LIBADD) $(LIBS)
+libjavasci2.la: $(libjavasci2_la_OBJECTS) $(libjavasci2_la_DEPENDENCIES) 
+	$(libjavasci2_la_LINK) $(am_libjavasci2_la_rpath) $(libjavasci2_la_OBJECTS) $(libjavasci2_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -640,6 +660,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci2_la-call_scilab_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci2_la-javasci2_helper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-fix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciAbstractArray.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Plo@am__quote@
@@ -742,6 +764,20 @@ libjavasci_la-javasci_SciIntegerArray.lo: src/c/javasci_SciIntegerArray.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciIntegerArray.lo `test -f 'src/c/javasci_SciIntegerArray.c' || echo '$(srcdir)/'`src/c/javasci_SciIntegerArray.c
 
+libjavasci2_la-call_scilab_wrap.lo: src/jni/call_scilab_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -MT libjavasci2_la-call_scilab_wrap.lo -MD -MP -MF $(DEPDIR)/libjavasci2_la-call_scilab_wrap.Tpo -c -o libjavasci2_la-call_scilab_wrap.lo `test -f 'src/jni/call_scilab_wrap.c' || echo '$(srcdir)/'`src/jni/call_scilab_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci2_la-call_scilab_wrap.Tpo $(DEPDIR)/libjavasci2_la-call_scilab_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/call_scilab_wrap.c' object='libjavasci2_la-call_scilab_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -c -o libjavasci2_la-call_scilab_wrap.lo `test -f 'src/jni/call_scilab_wrap.c' || echo '$(srcdir)/'`src/jni/call_scilab_wrap.c
+
+libjavasci2_la-javasci2_helper.lo: src/c/javasci2_helper.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -MT libjavasci2_la-javasci2_helper.lo -MD -MP -MF $(DEPDIR)/libjavasci2_la-javasci2_helper.Tpo -c -o libjavasci2_la-javasci2_helper.lo `test -f 'src/c/javasci2_helper.c' || echo '$(srcdir)/'`src/c/javasci2_helper.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libjavasci2_la-javasci2_helper.Tpo $(DEPDIR)/libjavasci2_la-javasci2_helper.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci2_helper.c' object='libjavasci2_la-javasci2_helper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci2_la_CFLAGS) $(CFLAGS) -c -o libjavasci2_la-javasci2_helper.lo `test -f 'src/c/javasci2_helper.c' || echo '$(srcdir)/'`src/c/javasci2_helper.c
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -807,26 +843,6 @@ uninstall-libsciscipad_la_imagesDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciscipad_la_imagesdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciscipad_la_imagesdir)" && rm -f $$files
-install-libsciscipad_la_specialtestDATA: $(libsciscipad_la_specialtest_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciscipad_la_specialtestdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscipad_la_specialtestdir)"
-	@list='$(libsciscipad_la_specialtest_DATA)'; test -n "$(libsciscipad_la_specialtestdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciscipad_la_specialtestdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciscipad_la_specialtestdir)" || exit $$?; \
-	done
-
-uninstall-libsciscipad_la_specialtestDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciscipad_la_specialtest_DATA)'; test -n "$(libsciscipad_la_specialtestdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciscipad_la_specialtestdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciscipad_la_specialtestdir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -913,14 +929,16 @@ distdir: $(DISTFILES)
 @JAVASCI_FALSE@check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 @JAVASCI_FALSE@all-local:
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libsciscipad_la_imagesdir)" "$(DESTDIR)$(libsciscipad_la_specialtestdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libsciscipad_la_imagesdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -945,6 +963,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 @JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@install-data-local:
 @JAVASCI_FALSE@install-html-local:
@@ -974,8 +993,7 @@ info-am:
 
 install-data-am: install-data-local install-libjavasci_la_etcDATA \
 	install-libjavasci_la_rootDATA \
-	install-libsciscipad_la_imagesDATA \
-	install-libsciscipad_la_specialtestDATA
+	install-libsciscipad_la_imagesDATA
 
 install-dvi: install-dvi-am
 
@@ -1024,10 +1042,9 @@ ps-am:
 uninstall-am: uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_rootDATA \
 	uninstall-libsciscipad_la_imagesDATA \
-	uninstall-libsciscipad_la_specialtestDATA \
 	uninstall-pkglibLTLIBRARIES
 
-.MAKE: check-am install-am install-strip
+.MAKE: all check check-am install install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
@@ -1039,17 +1056,15 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libjavasci_la_etcDATA install-libjavasci_la_rootDATA \
-	install-libsciscipad_la_imagesDATA \
-	install-libsciscipad_la_specialtestDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libjavasci_la_etcDATA \
+	install-libsciscipad_la_imagesDATA install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_rootDATA \
 	uninstall-libsciscipad_la_imagesDATA \
-	uninstall-libsciscipad_la_specialtestDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
@@ -1236,9 +1251,11 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@JAVASCI_TRUE@@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@JAVASCI_TRUE@@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@clean-local: clean-java
+@JAVASCI_TRUE@@NEED_JAVA_FALSE@clean-local:
 
 @JAVASCI_TRUE@distclean-local:
 @JAVASCI_TRUE@	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

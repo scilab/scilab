@@ -23,7 +23,7 @@
     <synopsis>[info] = pvm_lvgroup(group)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>group</term>

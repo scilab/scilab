@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Palette")
-@XmlSeeAlso({ Custom.class, PreLoaded.class })
+@XmlSeeAlso({ Custom.class, PreLoaded.class, PreLoaded.Dynamic.class })
 public abstract class Palette extends PaletteNode {
 	
 	/*

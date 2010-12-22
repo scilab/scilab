@@ -24,14 +24,6 @@
 -->
 <!-- =================== -->
 
-<PRIMITIVE gatewayId="36" primitiveId="1" primitiveName="oldbesseli" />
-<PRIMITIVE gatewayId="36" primitiveId="2" primitiveName="oldbesselj" />
-<PRIMITIVE gatewayId="36" primitiveId="3" primitiveName="oldbesselk" />
-<PRIMITIVE gatewayId="36" primitiveId="4" primitiveName="oldbessely" />
-<PRIMITIVE gatewayId="36" primitiveId="5" primitiveName="gamma" />
-<PRIMITIVE gatewayId="36" primitiveId="6" primitiveName="gammaln" />
-<PRIMITIVE gatewayId="36" primitiveId="7" primitiveName="dlgamma" />
-<PRIMITIVE gatewayId="36" primitiveId="8" primitiveName="calerf" />
 <PRIMITIVE gatewayId="39" primitiveId="1" primitiveName="legendre" />
 <PRIMITIVE gatewayId="39" primitiveId="2" primitiveName="beta" />
 <PRIMITIVE gatewayId="39" primitiveId="3" primitiveName="besseli" />
@@ -39,4 +31,12 @@
 <PRIMITIVE gatewayId="39" primitiveId="5" primitiveName="besselk" />
 <PRIMITIVE gatewayId="39" primitiveId="6" primitiveName="bessely" />
 <PRIMITIVE gatewayId="39" primitiveId="7" primitiveName="besselh" />
+<PRIMITIVE gatewayId="39" primitiveId="8" primitiveName="oldbesseli" />
+<PRIMITIVE gatewayId="39" primitiveId="9" primitiveName="oldbesselj" />
+<PRIMITIVE gatewayId="39" primitiveId="10" primitiveName="oldbesselk" />
+<PRIMITIVE gatewayId="39" primitiveId="11" primitiveName="oldbessely" />
+<PRIMITIVE gatewayId="39" primitiveId="12" primitiveName="gamma" />
+<PRIMITIVE gatewayId="39" primitiveId="13" primitiveName="gammaln" />
+<PRIMITIVE gatewayId="39" primitiveId="14" primitiveName="dlgamma" />
+<PRIMITIVE gatewayId="39" primitiveId="15" primitiveName="calerf" />
 </GATEWAY>

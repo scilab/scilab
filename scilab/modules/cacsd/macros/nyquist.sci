@@ -94,7 +94,10 @@ function nyquist(varargin)
   dy=(mxy-mny)/30;
   rect=[mnx-dx,mny-dy;mxx+dx,mxy+dy];
 
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   ax=gca();
   if ax.children==[] then
     ax.data_bounds=rect;
@@ -220,8 +223,9 @@ function nyquist(varargin)
   if comments<>[] then
     legend(Curves($:-1:1),comments);
   end
-  drawnow()
+  fig.immediate_drawing=immediate_drawing;
 endfunction
+
 function str=formatNyquistTip(curve,pt,index)
 //This function is called by the datatip mechanism to format the tip
 //string for the nyquist curves.

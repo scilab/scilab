@@ -14,13 +14,11 @@
 package org.scilab.modules.scinotes.actions;
 
 import javax.swing.KeyStroke;
-import javax.swing.JComponent;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Class to handle "select all"
@@ -31,9 +29,11 @@ public final class SelectAllAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
      */
-    private SelectAllAction(SciNotes editor) {
-        super(SciNotesMessages.SELECT_ALL, editor);
+    public SelectAllAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -47,21 +47,12 @@ public final class SelectAllAction extends DefaultAction {
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.SELECT_ALL, null, new SelectAllAction(editor), key);
-    }
-
-    /**
-     * Put input map
-     * @param textPane JTextpane
-     * @param editor Editor
-     * @param key KeyStroke
-     */
-    public static void putInInputMap(JComponent textPane, SciNotes editor, KeyStroke key) {
-        textPane.getInputMap().put(key, new SelectAllAction(editor));
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SelectAllAction(label, editor), key);
     }
 }

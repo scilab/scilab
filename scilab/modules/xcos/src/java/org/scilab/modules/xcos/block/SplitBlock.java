@@ -11,10 +11,11 @@
  */
 package org.scilab.modules.xcos.block;
 
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.Type;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -43,17 +44,29 @@ public final class SplitBlock extends BasicBlock {
 	public SplitBlock() {
 		super();
 	}
-
+	
 	/**
-	 * @param label
-	 *            block label
+	 * Add connection port depending on the type of the source.
+	 * @param source the type of the split
 	 */
-	protected SplitBlock(String label) {
-		// SPLIT_f <-> lsplit
-		// CLKSPLIT_f <-> split
-		// IMPSPLIT_F <-> limpsplit
-		this();
-		setValue(label);
+	public void addConnection(BasicPort source) {
+		if (source.getType() == Type.EXPLICIT) {
+			addPort(new ExplicitInputPort());
+			addPort(new ExplicitOutputPort());
+			addPort(new ExplicitOutputPort());
+		} else if (source.getType() == Type.IMPLICIT) {
+			addPort(new ImplicitInputPort());
+			addPort(new ImplicitOutputPort());
+			addPort(new ImplicitOutputPort());
+		} else {
+			addPort(new ControlPort());
+			addPort(new CommandPort());
+			addPort(new CommandPort());
+		}
+
+		getChildAt(0).setVisible(false);
+		getChildAt(1).setVisible(false);
+		getChildAt(2).setVisible(false);
 	}
 	
 	/**
@@ -65,36 +78,13 @@ public final class SplitBlock extends BasicBlock {
 	 *            first target to be connected with
 	 * @param target2
 	 *            second target to be connected with
+	 * 
+	 * @deprecated use {@link #addConnection(BasicPort)} instead
 	 */
+	@Deprecated
 	public void setConnection(BasicPort source, BasicPort target1,
 			BasicPort target2) {
-
-		// source
-		if (source instanceof ExplicitOutputPort) {
-			addPort(new ExplicitInputPort());
-		} else if (source instanceof ImplicitOutputPort
-				|| source instanceof ImplicitInputPort) {
-			addPort(new ImplicitInputPort());
-		} else if (source instanceof CommandPort) {
-			addPort(new ControlPort());
-		}
-
-		// target1 -> add 3 output ports
-		if (target1 instanceof ExplicitInputPort) {
-			addPort(new ExplicitOutputPort());
-			addPort(new ExplicitOutputPort());
-		} else if (target1 instanceof ImplicitOutputPort
-				|| target1 instanceof ImplicitInputPort) {
-			addPort(new ImplicitOutputPort());
-			addPort(new ImplicitOutputPort());
-		} else if (target1 instanceof ControlPort) {
-			addPort(new CommandPort());
-			addPort(new CommandPort());
-		}
-
-		getChildAt(0).setVisible(false);
-		getChildAt(1).setVisible(false);
-		getChildAt(2).setVisible(false);
+		addConnection(source);
 	}
 
 	/**
@@ -190,5 +180,4 @@ public final class SplitBlock extends BasicBlock {
 		
 		super.setGeometry(geometry);
 	}
-
 }

@@ -19,7 +19,6 @@ import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.CommentManager;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * CommentAction Class
@@ -28,49 +27,51 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class CommentAction extends DefaultAction {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -7258307088402814986L;
-	
-	/**
-	 * Constructor
-	 * @param editor SciNotes
-	 */
-	private CommentAction(SciNotes editor) {
-		super(SciNotesMessages.COMMENT_SELECTION, editor);
-	}
-	
-	/**
-	 * doAction
-	 */
-	public void doAction() {
-	    ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
-	    int start = sep.getSelectionStart();
-	    int end   = sep.getSelectionEnd();
-	    CommentManager com = sep.getCommentManager();
-	    ScilabDocument doc = (ScilabDocument) sep.getDocument();
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -7258307088402814986L;
 
-	    doc.mergeEditsBegin();
-	    if (start == end) {
-		com.commentText(start);
-	    } else {
-		int[] ret = com.commentLines(start, end - 1);
-		if (ret != null) {
-		    sep.setSelectionStart(ret[0]);
-		    sep.setSelectionEnd(ret[1]);
-		}
-	    }
-	    doc.mergeEditsEnd();
-	}
-	
-	/**
-	 * createMenu
-	 * @param editor SciNotes
-	 * @param key Keystroke
-	 * @return MenuItem
-	 */
-        public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-	    return createMenu(SciNotesMessages.COMMENT_SELECTION, null, new CommentAction(editor), key);
-	}
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public CommentAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
+
+    /**
+     * doAction
+     */
+    public void doAction() {
+        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        int start = sep.getSelectionStart();
+        int end   = sep.getSelectionEnd();
+        CommentManager com = sep.getCommentManager();
+        ScilabDocument doc = (ScilabDocument) sep.getDocument();
+
+        doc.mergeEditsBegin();
+        if (start == end) {
+            com.commentText(start);
+        } else {
+            int[] ret = com.commentLines(start, end - 1);
+            if (ret != null) {
+                sep.setSelectionStart(ret[0]);
+                sep.setSelectionEnd(ret[1]);
+            }
+        }
+        doc.mergeEditsEnd();
+    }
+
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key Keystroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new CommentAction(label, editor), key);
+    }
 }

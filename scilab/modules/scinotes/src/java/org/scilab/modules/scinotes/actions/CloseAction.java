@@ -16,7 +16,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
  * CloseAction Class
@@ -24,40 +24,44 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  *
  */
 public final class CloseAction extends DefaultAction {
-    
+
     /**
      * serialVersionUID
      */
     private static final long serialVersionUID = 3575152401442746355L;
-    
+
     /**
-     * Constructor 
+     * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private CloseAction(SciNotes editor) {
-	super(SciNotesMessages.CLOSE, editor);
+    public CloseAction(String name, SciNotes editor) {
+        super(name, editor);
     }
-    
+
     /**
-     * DoAction
+     * doAction
      */
     public void doAction() {
-    	getEditor().closeTabAt(getEditor().getTabPane().getSelectedIndex());
-    	
-    	// Close the last opened file create a new file named "Untitled 1"
-    	if (getEditor().getTabPane().getTabCount() == 0) {
-	    getEditor().addEmptyTab();
-    	}
+        SciNotes ed = getEditor();
+        ed.closeTabAt(ed.getTabPane().getSelectedIndex());
+
+        // Close the last opened file create a new file named "Untitled 1"
+        if (ed.getTabPane().getTabCount() == 0) {
+            ed.addEmptyTab();
+            ConfigSciNotesManager.saveToOpenFiles(ed.getTextPane().getName(), ed, ed.getTextPane());
+        }
     }
-    
+
     /**
      * CreateMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-	return createMenu(SciNotesMessages.CLOSE, null, new CloseAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new CloseAction(label, editor), key);
     }
 }
 

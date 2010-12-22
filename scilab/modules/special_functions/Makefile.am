@@ -4,7 +4,6 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-
 GATEWAY_C_SOURCES = sci_gateway/c/sci_dlgamma.c \
 sci_gateway/c/sci_oldbessely.c \
 sci_gateway/c/sci_bessely.c \
@@ -19,8 +18,7 @@ sci_gateway/c/sci_besselj.c \
 sci_gateway/c/sci_oldbesselk.c \
 sci_gateway/c/sci_besselk.c \
 sci_gateway/c/sci_calerf.c \
-sci_gateway/c/gw_special_functions1.c \
-sci_gateway/c/gw_special_functions2.c \
+sci_gateway/c/gw_special_functions.c \
 sci_gateway/c/sci_lgamma.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_dlgamma.f \
@@ -49,7 +47,7 @@ libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOUR
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscispecial_functions_la_CFLAGS)
 
-libscispecial_functions_la_LIBADD =   $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/statistics/libscistatistics.la
+libscispecial_functions_la_LIBADD =    $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/statistics/libscistatistics.la
 
 
 #### Target ######

@@ -1,4 +1,3 @@
 	LIBRARY    fileio.dll
 
 EXPORTS 
-  splitpath

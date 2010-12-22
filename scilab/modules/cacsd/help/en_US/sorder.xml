@@ -24,7 +24,7 @@
 printw,ldwork,Ri))</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>meth</term>

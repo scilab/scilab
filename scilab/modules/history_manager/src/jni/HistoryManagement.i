@@ -42,11 +42,13 @@ class%}
     try {
         System.loadLibrary("scihistory_manager");
     } catch (SecurityException e) {
-		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-		e.printStackTrace(System.err);
-	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library scihistory_manager does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
+    } catch (UnsatisfiedLinkError e)    {
+        System.err.println("The native library scihistory_manager does not exist or cannot be found.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
     }
   }
 %}
@@ -67,222 +69,222 @@ public class";
     * Constructor
     */
   protected HistoryManagement() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
   }";
 
 
 %javamethodmodifiers appendLineToScilabHistory(char *line) "
-	/**
-	* add a line to History manager
-	* @param line a line to add
-	* line isn't added if it is the same as previous (false)
-	* @return true or false
-	*/
+    /**
+    * add a line to History manager
+    * @param line a line to add
+    * line isn't added if it is the same as previous (false)
+    * @return true or false
+    */
 public";
-	BOOL appendLineToScilabHistory(char *line);
+    BOOL appendLineToScilabHistory(char *line);
 
 %javamethodmodifiers appendLinesToScilabHistory(char **lines,int numberoflines) "
-	/**
-	* append lines to History manager
-	* @param lines array of string
-	* @param numberoflines size of the array of string
-	* @return true or false
-	*/
+    /**
+    * append lines to History manager
+    * @param lines array of string
+    * @param numberoflines size of the array of string
+    * @return true or false
+    */
 public";
-	BOOL appendLinesToScilabHistory(char **lines,int numberoflines);
+    BOOL appendLinesToScilabHistory(char **lines,int numberoflines);
 
 %javamethodmodifiers displayScilabHistory(void) "
-	/**
-	* Display history
-	*/
+    /**
+    * Display history
+    */
 public";
-	void displayScilabHistory(void);
+    void displayScilabHistory(void);
 
 %javamethodmodifiers writeScilabHistoryToFile(char *filename) "
-	/**
-	* save history in a file
-	* @param filename if NULL saves in default filename
-	* default filename --> SCIHOME/history.scilab
-	* @return true or false
-	*/
+    /**
+    * save history in a file
+    * @param filename if NULL saves in default filename
+    * default filename --> SCIHOME/history.scilab
+    * @return true or false
+    */
 public";
-	BOOL writeScilabHistoryToFile(char *filename);
+    BOOL writeScilabHistoryToFile(char *filename);
 
 %javamethodmodifiers loadScilabHistoryFromFile(char *filename) "
-	/**
-	* load history from a file
-	* @param filename if NULL load from default filename
-	* default filename --> SCIHOME/history.scilab
-	* @return true or false
-	*/
+    /**
+    * load history from a file
+    * @param filename if NULL load from default filename
+    * default filename --> SCIHOME/history.scilab
+    * @return true or false
+    */
 public";
-	BOOL loadScilabHistoryFromFile(char *filename);
+    BOOL loadScilabHistoryFromFile(char *filename);
 
 %javamethodmodifiers setFilenameScilabHistory(char *filename) "
-	/**
-	* set filename of history
-	* @param filename of history
-	* @return true or false
-	*/
+    /**
+    * set filename of history
+    * @param filename of history
+    * @return true or false
+    */
 public";
-	BOOL setFilenameScilabHistory(char *filename);
+    BOOL setFilenameScilabHistory(char *filename);
 
 %javamethodmodifiers getFilenameScilabHistory(void) "
-	/**
-	* get filename of history
-	* @return a filename
-	*/
+    /**
+    * get filename of history
+    * @return a filename
+    */
 public";
-	char *getFilenameScilabHistory(void);
+    char *getFilenameScilabHistory(void);
 
 %javamethodmodifiers setDefaultFilenameScilabHistory(void) "
-	/**
-	* set default filename of history
-	* @return true or false
-	*/
+    /**
+    * set default filename of history
+    * @return true or false
+    */
 public";
-	BOOL setDefaultFilenameScilabHistory(void);
+    BOOL setDefaultFilenameScilabHistory(void);
 
 %javamethodmodifiers resetScilabHistory(void) "
-	/**
-	* reset history manager
-	*/
+    /**
+    * reset history manager
+    */
 public";
-	void resetScilabHistory(void);
+    void resetScilabHistory(void);
 
 %javamethodmodifiers getAllLinesOfScilabHistory(void) "
-	/**
-	* Get all lines in history
-	* @return a array of string
-	*/
-public";	
-	char **getAllLinesOfScilabHistory(void);
-	
+    /**
+    * Get all lines in history
+    * @return a array of string
+    */
+public";    
+    char **getAllLinesOfScilabHistory(void);
+    
 %javamethodmodifiers getSizeAllLinesOfScilabHistory(void) "
-	/**
-	* Get numbers of lines in history
-	* size of array returned by getAllLinesOfScilabHistory
-	* @return int 
-	*/
-public";	
-	int getSizeAllLinesOfScilabHistory(void);
+    /**
+    * Get numbers of lines in history
+    * size of array returned by getAllLinesOfScilabHistory
+    * @return int 
+    */
+public";    
+    int getSizeAllLinesOfScilabHistory(void);
 
 
 %javamethodmodifiers setSearchedTokenInScilabHistory(char *token) "
-	/**
-	* set new token to search in history
-	* @param token (a string)
-	* @return true or false
-	*/
+    /**
+    * set new token to search in history
+    * @param token (a string)
+    * @return true or false
+    */
 public";
-	BOOL setSearchedTokenInScilabHistory(char *token);
+    BOOL setSearchedTokenInScilabHistory(char *token);
 
 %javamethodmodifiers resetSearchedTokenInScilabHistory(void) "
-	/**
-	* reset search in history
-	* @return true or false
-	*/
+    /**
+    * reset search in history
+    * @return true or false
+    */
 public";
-	BOOL resetSearchedTokenInScilabHistory(void);
+    BOOL resetSearchedTokenInScilabHistory(void);
 
 %javamethodmodifiers getSearchedTokenInScilabHistory(void) "
-	/**
-	* get token searched in history
-	* @return token (a string)
-	*/
+    /**
+    * get token searched in history
+    * @return token (a string)
+    */
 public";
-	char *getSearchedTokenInScilabHistory(void);
+    char *getSearchedTokenInScilabHistory(void);
 
 %javamethodmodifiers getPreviousLineInScilabHistory(void) "
-	/**
-	* Get the previous line in Scilab history
-	* @return a line or NULL
-	* after a appendLine iterator go to end
-	*/
+    /**
+    * Get the previous line in Scilab history
+    * @return a line or NULL
+    * after a appendLine iterator go to end
+    */
 public";
-	char *getPreviousLineInScilabHistory(void);
+    char *getPreviousLineInScilabHistory(void);
 
 %javamethodmodifiers getNextLineInScilabHistory(void) "
-	/**
-	* Get the next line in Scilab history
-	* @return a line or NULL
-	* after a appendLine iterator go to end
-	*/
+    /**
+    * Get the next line in Scilab history
+    * @return a line or NULL
+    * after a appendLine iterator go to end
+    */
 public";
-	char *getNextLineInScilabHistory(void);
+    char *getNextLineInScilabHistory(void);
 
 %javamethodmodifiers getNumberOfLinesInScilabHistory(void) "
-	/**
-	* Get numbers of lines in history
-	* @return number of lines
-	*/
+    /**
+    * Get numbers of lines in history
+    * @return number of lines
+    */
 public";
-	int getNumberOfLinesInScilabHistory(void);
+    int getNumberOfLinesInScilabHistory(void);
 
 %javamethodmodifiers setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit) "
-	/**
-	* set consecutive duplicate lines are added
-	* @param doit (true or false)
-	*/
+    /**
+    * set consecutive duplicate lines are added
+    * @param doit (true or false)
+    */
 public";
-	void setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit);
+    void setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit);
 
 %javamethodmodifiers getSaveConsecutiveDuplicateLinesInScilabHistory(void) "
-	/**
-	* indicate if consecutive duplicate lines are added
-	* @return true or false
-	*/
+    /**
+    * indicate if consecutive duplicate lines are added
+    * @return true or false
+    */
 public";
-	BOOL getSaveConsecutiveDuplicateLinesInScilabHistory(void);
+    BOOL getSaveConsecutiveDuplicateLinesInScilabHistory(void);
 
 %javamethodmodifiers setAfterHowManyLinesScilabHistoryIsSaved(int num) "
-	/**
-	* Set after how many lines history is saved
-	* @param num number between 0 and Max
-	* default value is 0 (disabled)
-	*/
+    /**
+    * Set after how many lines history is saved
+    * @param num number between 0 and Max
+    * default value is 0 (disabled)
+    */
 public";
-	void setAfterHowManyLinesScilabHistoryIsSaved(int num);
+    void setAfterHowManyLinesScilabHistoryIsSaved(int num);
 
 %javamethodmodifiers getAfterHowManyLinesScilabHistoryIsSaved(void) "
-	/**
-	* Get after how many lines history is saved
-	* @return number between 0 and Max
-	* default value is 0 (disabled)
-	*/
+    /**
+    * Get after how many lines history is saved
+    * @return number between 0 and Max
+    * default value is 0 (disabled)
+    */
 public";
-	int getAfterHowManyLinesScilabHistoryIsSaved(void);
+    int getAfterHowManyLinesScilabHistoryIsSaved(void);
 
 %javamethodmodifiers getNthLineInScilabHistory(int N) "
-	/**
-	* Get the Nth Line in history
-	* @param N the number of the line to get
-	* @return the Nth Line
-	*/
+    /**
+    * Get the Nth Line in history
+    * @param N the number of the line to get
+    * @return the Nth Line
+    */
 public";
-	char *getNthLineInScilabHistory(int N);
+    char *getNthLineInScilabHistory(int N);
 
 %javamethodmodifiers deleteNthLineScilabHistory(int N) "
-	/**
-	* delete the Nth Line in history
-	* @param N the number of the line to delete
-	* @return true or false
-	*/
+    /**
+    * delete the Nth Line in history
+    * @param N the number of the line to delete
+    * @return true or false
+    */
 public";
-	BOOL deleteNthLineScilabHistory(int N);
+    BOOL deleteNthLineScilabHistory(int N);
 
 %javamethodmodifiers getSizeScilabHistory(void) "
-	/**
-	* get number of lines of history
-	* @return a number >= 0
-	*/
+    /**
+    * get number of lines of history
+    * @return a number >= 0
+    */
 public";
-	int getSizeScilabHistory(void);
-	
+    int getSizeScilabHistory(void);
+    
 %javamethodmodifiers historyIsEnabled(void) "
-	/**
-	* get history manager state
-	* @return true or false
-	*/
+    /**
+    * get history manager state
+    * @return true or false
+    */
 public";
-	BOOL historyIsEnabled(void);
+    BOOL historyIsEnabled(void);

@@ -23,7 +23,7 @@
     <synopsis>[thegcd,U]=bezout(p1,p2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>p1, p2</term>

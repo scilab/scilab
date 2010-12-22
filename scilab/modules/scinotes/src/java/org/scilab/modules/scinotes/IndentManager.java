@@ -109,15 +109,15 @@ public class IndentManager {
             getNums(lineStart - 1, ind);
             if (lineStart > 0) {
                 scanner.getIndentLevel(elem.getElement(lineStart - 1).getStartOffset(), level);
-                tabs[0] = ind[1] + level[1];
+                tabs[0] = ind[1] + level[1] * num;
             }
 
             for (int lineNumber = 0; lineNumber <= lineEnd - lineStart; lineNumber++) {
                 int pos = elem.getElement(lineNumber + lineStart).getEndOffset() - 1;
                 scanner.getIndentLevel(pos, level);
-                tabs[lineNumber] = Math.max(tabs[lineNumber] - level[0], 0);
+                tabs[lineNumber] = Math.max(tabs[lineNumber] - level[0] * num, 0);
                 if (lineNumber != lineEnd - lineStart) {
-                    tabs[lineNumber + 1] = tabs[lineNumber] + level[1];
+                    tabs[lineNumber + 1] = tabs[lineNumber] + level[1] * num;
                 }
             }
 
@@ -136,8 +136,9 @@ public class IndentManager {
                     e = t;
                 }
                 doc.getText(t, e - t, seg);
+                ret[0] = start;
                 if (e > t + 1) {
-                    char[] str = new char[tabs[lineNumber - lineStart] * num];
+                    char[] str = new char[tabs[lineNumber - lineStart]];
                     for (int i = 0; i < str.length; i++) {
                         str[i] = indentChar;
                     }
@@ -183,11 +184,24 @@ public class IndentManager {
                     getNums(lineNumber, ind);
                     if (level[0] > 0 && ind[0] <= ind[1]) {
                         remove = level[0] * num;
-                        int startL = elem.getElement(lineNumber).getStartOffset();
+
+                        if (lineNumber > 0 && ind[0] == ind[1]) {
+                            /* Bug 7550 :
+                               prev and cur line are at the same level
+                               if cur should be indented, then we don't remove tabs */
+                            int posp = elem.getElement(lineNumber - 1).getEndOffset() - 1;
+                            int[] levelp = new int[2];
+                            scanner.getIndentLevel(posp, levelp);
+                            if (levelp[1] != 0) {
+                                remove = 0;
+                            }
+                        }
+
                         if (ind[1] < remove) {
                             remove = ind[1];
                         }
                         if (remove != 0) {
+                            int startL = elem.getElement(lineNumber).getStartOffset();
                             doc.remove(startL, remove);
                         }
                     }

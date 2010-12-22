@@ -8,16 +8,19 @@
     <add as="strokeColor" value="black" />
     <add as="fillColor" value="white" />
     <add as="fontColor" value="black" />
-    <add as="noLabel" value="0"/>
+    <add as="noLabel" value="1"/>
   </add>
 
 <!-- *** GENERIC BLOCKS *** -->
   
   <add as="block" extend="defaultVertex">
-    <add as="noLabel" value="1"/>
+    <add as="verticalLabelPosition" value="bottom" />
   </add>
 
-  <add as="blockWithLabel" extend="defaultVertex" />
+  <add as="blockWithLabel" extend="defaultVertex">
+    <add as="noLabel" value="0"/>
+  	<add as="spacing" value="13" />
+  </add>
 
 <!-- *** BLOCK DEFINITION *** -->
 
@@ -48,7 +51,7 @@
 	</add>
 
 	<!-- Const -->
-	<add as="Const" extend="block" />
+	<add as="Const" extend="defaultVertex" />
 
 	<!-- Gain -->
 	<add as="Gain" extend="blockWithLabel">
@@ -67,6 +70,7 @@
 	<add as="Port" extend="defaultVertex">
 		<add as="shape" value="triangle" />
 		<add as="perimeter" value="trianglePerimeter" />
+		<add as="noLabel" value="0"/>
 	</add>
 
 	<!-- Command Port -->
@@ -121,6 +125,7 @@
 		<!-- To have rounded links -->
 		<!-- <add as="rounded" value="1"/> -->
 		<!-- <add as="edgeStyle" value="elbowEdgeStyle"/> -->
+		<add as="elbow" value="horizontal" />
 		<add as="shape" value="connector" />
 		<add as="labelBackgroundColor" value="white" />
 		<add as="endArrow" value="classicnone" />
@@ -358,6 +363,7 @@
 	</add>
 	<add as="BIGSOM_f" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM.svg" />
+		<add as="noLabel" value="1" />
 		<!--
 			<add as="displayedLabel" value="&lt;TABLE&gt;&lt;TR&gt;
 			&lt;TD&gt;+&lt;/TD&gt; &lt;TD ROWSPAN=&quot;2&quot;&gt; &lt;FONT
@@ -365,6 +371,7 @@
 			&lt;TR&gt; &lt;TD&gt;+&lt;/TD&gt; &lt;TD/&gt; &lt;/TR&gt;
 			&lt;/TABLE&gt;"/>
 		-->
+		<remove as="verticalLabelPosition"/>
 	</add>
 	<add as="POWBLK_f" extend="blockWithLabel">
 		<add as="displayedLabel" value="u^a" />
@@ -388,13 +395,10 @@
 	<add as="EXPBLK_m" extend="blockWithLabel">
 		<add as="displayedLabel" value="a^u" />
 	</add>
-	<add as="PROD_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PROD_f.svg" />
-		<!--
-			<add as="shape" value="ellipse"/> <add as="perimeter"
-			value="ellipsePerimeter"/> <add as="displayedLabel" value="&lt;FONT
-			SIZE=&quot;6&quot;&gt;&#xD7;&lt;/FONT&gt;"/>
-		-->
+	<add as="PROD_f" extend="blockWithLabel">
+		<add as="shape" value="ellipse"/>
+		<remove as="image" />
+		<add as="fontSize" value="20" />
 	</add>
 	<add as="MATZREIM" extend="blockWithLabel">
 		<add as="displayedLabel" value="Re &amp; Im" />
@@ -409,6 +413,7 @@
 	</add>
 	<add as="SUMMATION" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM.svg" />
+		<add as="noLabel" value="1" />
 		<!--
 			<add as="displayedLabel" value="&lt;TABLE&gt; &lt;TR&gt;
 			&lt;TD&gt;+&lt;/TD&gt; &lt;TD ROWSPAN=&quot;2&quot;&gt; &lt;FONT
@@ -422,6 +427,7 @@
 	</add>
 	<add as="PRODUCT" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PRODUCT.svg" />
+		<add as="noLabel" value="1" />
 		<!--
 			<add as="displayedLabel" value="&lt;TABLE&gt; &lt;TR&gt;
 			&lt;TD&gt;*&lt;/TD&gt; &lt;TD ROWSPAN=&quot;2&quot;&gt; &lt;FONT
@@ -439,14 +445,12 @@
 	<add as="SIGNUM" extend="blockWithLabel">
 		<add as="displayedLabel" value="SIGN" />
 	</add>
-	<add as="SUM_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM_f.svg" />
-		<!--
-			<add as="shape" value="ellipse"/> <add as="perimeter"
-			value="ellipsePerimeter"/> <add as="displayedLabel" value="&lt;FONT
-			SIZE=&quot;6&quot;&gt;+&lt;/FONT&gt;"/>
-		-->
+	<add as="SUM_f" extend="blockWithLabel">
+		<add as="shape" value="ellipse"/>
+		<remove as="image" />
+		<add as="fontSize" value="20" />
 	</add>
+	
 	<add as="CONSTRAINT_f" extend="blockWithLabel">
 		<add as="displayedLabel" value="=0 ?" />
 	</add>
@@ -755,14 +759,15 @@
 		<add as="fillColor" value="white" />
 		<add as="strokeColor" value="red" />
 	</add>
-	<add as="CLKSOMV_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM_f.svg" />
-		<!--
-			<add as="shape" value="ellipse"/> <add as="strokeColor" value="red"/>
-			<add as="perimeter" value="ellipsePerimeter"/> <add
-			as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;
-			COLOR=&quot;red&quot;&gt;+&lt;/FONT&gt;"/>
-		-->
+	<add as="CLKSOMV_f" extend="blockWithLabel">
+		<add as="shape" value="ellipse"/>
+		<add as="displayedLabel" value="+" />
+		<add as="fontColor" value="red" />
+		<add as="strokeColor" value="red" />
+		<add as="fontSize" value="20" />
+		<add as="spacing" value="5" />
+		<add as="spacingLeft" value="6" />
+		<add as="spacingRight" value="6" />
 	</add>
 	<add as="EVTGEN_f" extend="blockWithLabel">
 		<add as="displayedLabel" value="Event at&lt;BR&gt;
@@ -924,14 +929,7 @@
 		<add as="shape" value="ellipse" />
 		<add as="perimeter" value="ellipsePerimeter" />
 		<add as="displayedLabel"
-			value="&lt;TABLE&gt;
-				    &lt;TR&gt;
-				    &lt;TD&gt;50&lt;/TD&gt;
-				    &lt;/TR&gt;
-				    &lt;TR&gt;
-				    &lt;TD ALIGN=&quot;center&quot;&gt;~&lt;/TD&gt;
-				    &lt;/TR&gt;
-				    &lt;/TABLE&gt;" />
+			value="1 V&lt;br/&gt;~ %s" />
 	</add>
 	<add as="ConstantVoltage" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/ConstantVoltage.svg" />
@@ -961,15 +959,9 @@
 		<!-- FIXME : Show parameters over block  -->
 		<add as="shape" value="ellipse" />
 		<add as="perimeter" value="ellipsePerimeter" />
+		<add as="textAlign" value="center" />
 		<add as="displayedLabel"
-			value="&lt;TABLE&gt;
-				      &lt;TR&gt;
-				        &lt;TD&gt;220&lt;/TD&gt;
-				      &lt;/TR&gt;
-				      &lt;TR&gt;
-				        &lt;TD ALIGN=&quot;center&quot;&gt;~&lt;/TD&gt;
-				        &lt;/TR&gt;
-				    &lt;/TABLE&gt;" />
+			value="%s V&lt;br/&gt;~ %s" />
 	</add>
 	<add as="NPN" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/NPN.svg" />
@@ -982,14 +974,7 @@
 		<add as="shape" value="ellipse" />
 		<add as="perimeter" value="ellipsePerimeter" />
 		<add as="displayedLabel"
-			value="&lt;TABLE&gt;
-				      &lt;TR&gt;
-				        &lt;TD&gt;1&lt;/TD&gt;
-				      &lt;/TR&gt;
-				      &lt;TR&gt;
-				        &lt;TD ALIGN=&quot;center&quot;&gt;~&lt;/TD&gt;
-				      &lt;/TR&gt;
-				    &lt;/TABLE&gt;" />
+			value="%s V&lt;br/&gt;~" />
 	</add>
 	<add as="Switch" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH.svg" />
@@ -1013,6 +998,10 @@
 				        &lt;TD&gt;&lt;/TD&gt;
 				      &lt;/TR&gt;
 				    &lt;/TABLE&gt;" />
+		<add as="spacing" value="0" />
+		<add as="spacingRight" value="5" />
+		<add as="spacingTop" value="7" />
+		<add as="spacingBottom" value="7" />
 	</add>
 	<add as="PMOS" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PMOS.svg" />

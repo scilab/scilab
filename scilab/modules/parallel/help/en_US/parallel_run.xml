@@ -18,7 +18,6 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
   </info>
 
   <refnamediv>
@@ -34,7 +33,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -112,7 +111,7 @@
     process).  The number of
     calls (and dimension of the result vectors) is given by the length of the
     longest vector of arguments.</para>
-
+    
     <para>Except for side effects, [R1[,…,Rm]]=parallel_run(A1[,…,Ak],
     'f'[,types][,dims][,C]) is equivalent to the Scilab pseudo code:</para>
 
@@ -129,6 +128,8 @@ end; ]]></programlisting>
  <refsection>
     <title>Limitations</title>
 
+    <para>In this current version of Scilab, <literal>parallel_run</literal> uses only one core on Windows platforms.</para>
+
     <para>In order to provide the most efficient implementation possible, the least that parallel_run can do is to avoid imposing an overhead over an explicit loop. Unfortunately, this can only be achieved on some data structures.
 For matrices of scalar, extracting a single column to pass as argument to the function can be done very efficiently.
 Not so for matrices of strings or sparse matrices (not to mention lists !).
@@ -139,7 +140,7 @@ For this reason, the concurrent execution of Scilab macros cannot be safe in a s
 </para>
     <para>As it is not possible to synchronize the access to Java Virtual Machine accross separate memory spaces, Scilab macros called by parallel_run are not allowed to use the JVM. This unfortunately encompass all the graphics functions as the Scilab GUI is based on Java. The spawned Scilab process are run in "nwni" mode their calls to <link linkend="disp">disp()</link> are redirected to the standard output.
 </para>
-    <para>A last limitation imposed by the aim to minimize data shuffling info memory is that no stack resizing (via <link linkend="gstacksize">gstacksize()</link> or via <link linkend="stacksize">stacksize()</link>) should take place during a call to <literal>parallel_run</literal> (neither by the function f nor by the prologue or epilogue cf. infra.).
+    <para>A last limitation imposed by the aim to minimize data shuffling info memory is that no stack resizing (via <link linkend="gstacksize">gstacksize()</link> or via <link linkend="stacksize">stacksize()</link>) should take place during a call to <literal>parallel_run</literal> (neither by the function f nor by the prologue or epilogue cf. infra.). Attempts to do do will result in a warning and leave the stack untouched.
 </para>
   </refsection>
  <refsection>
@@ -227,7 +228,9 @@ etime(getdate(), t0) // output the wallclock time for the explicit loop computat
 
 t0=getdate();
 r= parallel_run(1:n_max,"m");
-etime(getdate(), t0) // output the wallclock time for the parallel_run computation, it should be lower that the previous on multicore architectures.]]></programlisting>
+// output the wallclock time for the parallel_run computation,
+// it should be lower that the previous on multicore architectures.
+etime(getdate(), t0)]]></programlisting>
 <title>Plurality of arguments and returned values</title>
  It is of course possible to have more than one argument and more than one returned value :
     <programlisting role="example"
@@ -261,8 +264,8 @@ R4_6_7=matrix(zeros(1:3*10),3,10);
 for i =1:10
   R4_6_7(:,i)= quantiles(data(:,i),[4;6;7]);
 end;
-
-R4_6_7=parallel_run(data,[4;6;7],"quantiles", 3);// note the last argument to inform that quantiles returns 3 scalars.]]></programlisting>
+// note the last argument to inform that quantiles returns 3 scalars.
+R4_6_7=parallel_run(data,[4;6;7],"quantiles", 3);]]></programlisting>
 While it is only possible to pass vectors (1&#160;x&#160;n) as columns of argument and/or result matrices, it is easy to reshape any matrix into such vector to circumvent this restriction. The previous example was passing arguments with different numbers of columns. In fact, the second argument to pass to <literal>quantiles</literal> only has one columns, because all the calls to the function must be made with the same ranks. This column is recycled as if the second argument had as much columns as the first, all with the same values.
 <para>
 <emphasis role="bold">Note :</emphasis> In the previous example, the shape of the second argument is of utmost importance for parallel_run ! While it was possible to write <emphasis role="italic">R4_6_7(:,i)= quantiles(data(:,i),[4<emphasis role="bold">,</emphasis>6<emphasis role="bold">,</emphasis>7]);</emphasis> (note the comma) in the explicit loop, calling <emphasis role="italic">parallel_run(data,[4;6;7],"quantiles", 3)</emphasis> would have computed a very different result :
@@ -271,15 +274,15 @@ While it is only possible to pass vectors (1&#160;x&#160;n) as columns of argume
 -->parallel_run(data,[4;6;7],"quantiles", 3)
 ans  =
 
-    0.0000426    0.0000512    0.0000387    0.0000271    0.0000175    0.0000462    0.0000243    0.0000302    0.0000483    0.0000099
-    0.0000799    0.0000681    0.0000516    0.0000435    0.0000576    0.0000645    0.0000700    0.0000478    0.0000604    0.0000252
-    0.0000963    0.0000953    0.0000649    0.0000452    0.0000650    0.0000805    0.0000793    0.0000615    0.0000666    0.0000335
+0.0000426  0.0000512  0.0000387  0.0000271  0.0000175  0.0000462  0.0000243  0.0000302  0.0000483  0.0000099
+0.0000799  0.0000681  0.0000516  0.0000435  0.0000576  0.0000645  0.0000700  0.0000478  0.0000604  0.0000252
+0.0000963  0.0000953  0.0000649  0.0000452  0.0000650  0.0000805  0.0000793  0.0000615  0.0000666  0.0000335
 -->parallel_run(data,[4,6,7],"quantiles", 3)
   ans  =
 
-    0.0000426    0.0000681    0.0000649    0.0000271    0.0000576    0.0000805    0.0000243    0.0000478    0.0000666    0.0000099
-    0.           0.           0.           0.           0.           0.           0.           0.           0.           0.
-    0.           0.           0.           0.           0.           0.           0.           0.           0.           0.]]></programlisting>
+0.0000426  0.0000681  0.0000649  0.0000271  0.0000576  0.0000805  0.0000243  0.0000478  0.0000666  0.0000099
+0.         0.         0.         0.         0.         0.         0.         0.         0.         0.
+0.         0.         0.         0.         0.         0.         0.         0.         0.         0.]]></programlisting>
 The second call to <literal>parallel_run</literal> has a second argument of 3 columns and 1 row, so each call to <literal>quantiles</literal> only gets 1 scalar as second argument. The first call to  <literal>quantiles</literal> gets '4' and returns the 4th value of the first columns of data. This is confirmed by the fact that the returned value (0.0000426) is the same as the first returned by the previous call to  <literal>parallel_run</literal> (which returned the 4th, 6th and 7th values). For the second call to  <literal>parallel_run</literal>, the two other values of the first result column (here 0. ) are undefined because we stated that <literal>quantiles</literal> would return 3 values (the last argument to  <literal>parallel_run</literal> ) while in fact <literal>quantiles</literal> only returned one (because it only got one rank as second argument). The second call to <literal>quantiles</literal> gets '6' and returns the 6th value of the second columns of data. This is confirmed by the fact that the returned value (0.0000681) is the same as the first returned by the previous call to  <literal>parallel_run</literal> (which returned the 4th, 6th and 7th values). For the second call to  <literal>parallel_run</literal>, the two other values of the second result column (here 0. ) are undefined for the reason we have just seen. The third call to <literal>quantiles</literal> gets '7' and computes the 7th rank. For the next calls, the argument matrix with only three columns has its columns recycled so that  <literal>quantiles</literal> gets '4' and then '6' and then '7' and then '4' etc.
 
 </para>
@@ -432,7 +435,7 @@ end;
 endfunction
 
 len=max(length(a));
-res=ascii_v(parallel_run(1:size(a,'r'), len, "censor_odds_i",len)');]]></programlisting>
+res=censor_v(parallel_run(1:size(a,'r'), len, "censor_odds_i",len)');]]></programlisting>
 </refsection>
 </refsection>
 
@@ -520,7 +523,8 @@ A=rand(1:N);B=rand(1:N);C=rand(1:N);
 f1=['#include <algorithm>',
 'extern ""C""{',
 '  void min_med_max_cxx(void const*const* args, void*const* res){',
-'    double a(((double const*const*)args)[0][0]),b(((double const*const*)args)[1][0]),c(((double const*const*)args)[2][0]);',
+'    double a(((double const*const*)args)[0][0])',
+'    ,b(((double const*const*)args)[1][0]),c(((double const*const*)args)[2][0]);',
 '    if(b<a){ std::swap(a,b);}',
 '    if(c<a){ std::swap(a,c);}',
 '    if(c<b){ std::swap(b,c);}',
@@ -557,8 +561,8 @@ ilib_for_link('quantiles_cxx','quantiles_cxx.cxx',[],"c")
 exec loader.sce
 N=10;
 data=matrix(rand(1:N*N),N,N);
-
-R4_6_7=parallel_run(data',N,[4;6;7],3,"quantiles_cxx", 3);// note the last argument to inform that quantiles returns 3 scalars.]]></programlisting>
+// note the last argument to inform that quantiles returns 3 scalars.
+R4_6_7=parallel_run(data',N,[4;6;7],3,"quantiles_cxx", 3);]]></programlisting>
 
 
   </refsection>
@@ -600,9 +604,10 @@ function res= rand_macro(nb)
 endfunction
 nb= 5;
 // We use a configuration parameter to force nb_workers = 2 even on monocore
-res= parallel_run([nb,nb],'rand_macro',nb,init_param('nb_workers', 2));// without seeding the 2 workers have the same rng state.
-
-res= parallel_run([nb,nb],'rand_macro',nb,init_param('nb_workers', 2,'prologue','init_rand'));// when setting the seed, they should have different random numbers ]]></programlisting>
+// without seeding the 2 workers have the same rng state.
+res= parallel_run([nb,nb],'rand_macro',nb,init_param('nb_workers', 2));
+// when setting the seed, they should have different random numbers.
+res= parallel_run([nb,nb],'rand_macro',nb,init_param('nb_workers', 2,'prologue','init_rand')); ]]></programlisting>
 </refsection>
 
 

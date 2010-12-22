@@ -13,9 +13,6 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -30,35 +27,38 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class AboutAction extends DefaultAction {
 
-	private static final long serialVersionUID = -8172282717877209957L;
+    private static final long serialVersionUID = -8172282717877209957L;
 
-	/**
-	 * Constructor
-	 * @param editor associated editor
-	 */
-	public AboutAction(SciNotes editor) {
-		super(SciNotesMessages.ABOUT, editor);
-	}
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor associated editor
+     */
+    public AboutAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-	/**
-	 * Menu created for "Help menu"
-	 * @param editor associated editor
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(SciNotes editor) {
-		return createMenu(SciNotesMessages.ABOUT, null, new AboutAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F1, ActionEvent.SHIFT_MASK));
-	}
+    /**
+     * Menu created for "Help menu"
+     * @param label label of the menu
+     * @param editor associated editor
+     * @param key KeyStroke
+     * @return the menu
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new AboutAction(label, editor), key);
+    }
 
-	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-	 */
-	public void doAction() {
-		String[] contents = {SciNotesMessages.VERSION,
-				"",
-				SciNotesMessages.DIGITEO,
-				SciNotesMessages.COPYRIGHT};
+    /**
+     * Action !!
+     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+     */
+    public void doAction() {
+        String[] contents = {SciNotesMessages.VERSION,
+                             "",
+                             SciNotesMessages.DIGITEO,
+                             SciNotesMessages.COPYRIGHT};
 
-		ScilabAboutBox.createAboutBox(SciNotesMessages.ABOUT, contents, null, null);
-	}
+        ScilabAboutBox.createAboutBox(SciNotesMessages.ABOUT, contents, null, null);
+    }
 }

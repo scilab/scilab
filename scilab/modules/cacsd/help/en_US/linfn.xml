@@ -23,7 +23,7 @@
     <synopsis>[x,freq]=linfn(G,PREC,RELTOL,options);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>G</term>

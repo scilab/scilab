@@ -19,13 +19,10 @@
 // See the file ../license.txt
 //
 function ok=Compute_cic(method,Nunknowns)
-
-  %_winId=TCL_GetVar("IHMLoc");
   global icpr
+  ok=%f
   
   if icpr==list() then 
-    ok=%f
-    TCL_EvalStr("Compute_finished nok "+ %_winId); 
     return
   end  
 
@@ -42,25 +39,21 @@ function ok=Compute_cic(method,Nunknowns)
   nx2=round(nx/2);
   nxModelica=evstr(Nunknowns);
 
-  if nxModelica~=nx2 then 
-    TCL_EvalStr("Compute_finished nok "+ %_winId); 
+  if nxModelica~=nx2 then
     messagebox(msprintf(_('Your model contains states defined in standard Scicos blocks.\n'+..
-	       'Current initialization interface does not support mixed models.')),'error','modal'); 
+	       'Current initialization interface does not support mixed models.')),'error','modal');
     return
   end
-//  TCL_GettVar("sciGUITable(win,"+%_winId+",data,TOTO)",RRR);
 
   //------------------------------
   ierr=0;
   try 
     ierr=execstr('[state,t]=scicosim(state,%tcur,tf,icpr.sim,''start'',tolerances)','errcatch')
     if ierr<>0 then
-      TCL_EvalStr("Compute_finished nok "+ %_winId); 
       messagebox(msprintf(_('Initialisation problem in %s '),'Scicosim-start'),'error','modal'); 
       return
     end  
-  catch 
-      TCL_EvalStr("Compute_finished nok "+ %_winId); 
+  catch
       messagebox(msprintf(_('Initialisation problem in %s '),'Scicosim-start'),'error','modal'); 
       return
   end
@@ -73,11 +66,9 @@ function ok=Compute_cic(method,Nunknowns)
      Ida_ierr=execstr('[state,t]=scicosim(state,%tcur,tf,icpr.sim,''run'',tolerances)','errcatch')
      // unsetmenu(curwin,'stop')
      if Ida_ierr<>0 then,
-       TCL_EvalStr("Compute_finished nok "+ %_winId); 
        messagebox(msprintf(_('Initialisation problem in %s '),'Sundials'),'error','modal'); 
      end
     catch
-       TCL_EvalStr("Compute_finished nok "+ %_winId); 
        messagebox(msprintf(_('Initialisation problem in %s '),'Sundials'),'error','modal'); 
     end  
   end
@@ -95,11 +86,9 @@ function ok=Compute_cic(method,Nunknowns)
     end
     // unsetmenu(curwin,'stop')
      if ierr<>0 then,
-       TCL_EvalStr("Compute_finished nok "+ %_winId);
        messagebox(msprintf(_('Initialisation problem in %s '),'Kinsol'),'error','modal'); 
      end
     catch
-       TCL_EvalStr("Compute_finished nok "+ %_winId); 
        messagebox(msprintf(_('Initialisation problem in %s '),'Kinsol'),'error','modal'); 
     end  
   end
@@ -116,8 +105,7 @@ function ok=Compute_cic(method,Nunknowns)
 	for i=1:nx2, state.x(i)=xres(i);end       
 	fsim(xres);// just to perform an idoit to update outputs in mixed_models 
       end	
-    catch 
-      TCL_EvalStr("Compute_finished nok "+ %_winId); 
+    catch
       messagebox(msprintf(_('Initialisation problem in %s '),'Fsolve'), 'error','modal'); 
     end
   end
@@ -135,7 +123,6 @@ function ok=Compute_cic(method,Nunknowns)
        fsim(xres);// just to perform an idoit to update outputs in mixed_models 
      end
    catch
-      TCL_EvalStr("Compute_finished nok "+ %_winId); 
       messagebox(msprintf(_('Initialisation problem in the %s method'),'Optim'), 'error','modal');
    end
  end
@@ -147,7 +134,6 @@ function ok=Compute_cic(method,Nunknowns)
 
      for i=1:nx2, state.x(i)=xmin(i);end  
    catch
-      TCL_EvalStr("Compute_finished nok "+ %_winId); 
       messagebox(msprintf(_('Initialisation problem in the %s method'),' Nelder_Mead'), 'error','modal');
    end
  end
@@ -156,11 +142,9 @@ function ok=Compute_cic(method,Nunknowns)
    try
      ierr=execstr('[state,t]=scicosim(state,%tcur,tf,icpr.sim,''hompack77'',tolerances)','errcatch')
      if ierr<>0 then, 
-       TCL_EvalStr("Compute_finished nok "+ %_winId); 
        messagebox(msprintf(_('Initialisation problem in the %s method'),'hompack77'), 'error','modal');
      end
    catch
-     TCL_EvalStr("Compute_finished nok "+ %_winId); 
      messagebox(msprintf(_('Initialisation problem in the %s method'),'hompack77'), 'error','modal');
    end
   
@@ -193,20 +177,15 @@ function ok=Compute_cic(method,Nunknowns)
  try 
   if  Ida_ierr==0 then //cossimdaskr is followed by a cosend in case of error
    ierr=execstr('[state,t]=scicosim(state,%tcur,tf,icpr.sim,''finish'',tolerances)','errcatch')
-   if ierr<>0 then,
-      	TCL_EvalStr("Compute_finished nok "+ %_winId); 
+   if ierr<>0 then
 	messagebox(_('Initialisation problem in the finish phase'), 'error','modal'); 
 	return
    end
   end     
  catch
-  TCL_EvalStr("Compute_finished nok "+ %_winId); 
   messagebox(_('Initialisation problem in the finish phase'), 'error','modal'); 
   return
  end
- //------------------------------
- TCL_SetVar("sciGUITable(win,"+%_winId+",data,IERROR)",Err);
- TCL_EvalStr("Compute_finished ok "+ %_winId); 
  ok=%t;
 endfunction
 

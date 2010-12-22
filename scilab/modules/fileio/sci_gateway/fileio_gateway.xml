@@ -77,4 +77,5 @@
 <PRIMITIVE gatewayId="34" primitiveId="42" primitiveName="pathconvert" />
 <PRIMITIVE gatewayId="34" primitiveId="43" primitiveName="cd" />
 <PRIMITIVE gatewayId="34" primitiveId="44" primitiveName="mgetl" />
+<PRIMITIVE gatewayId="34" primitiveId="45" primitiveName="mputl" />
 </GATEWAY>

@@ -57,10 +57,10 @@
 /* 33 */                        #include "../../output_stream/includes/gw_output_stream.h"
 /* 34 */						#include "../../fileio/includes/gw_fileio.h"
 /* 35 */						#include "dynamic_gateways.h" /* arnoldi */
-/* 36 */						#include "../../special_functions/includes/gw_special_functions1.h"
+/* 36 gw_user(); FREE */
 /* 37 */						#include "dynamic_gateways.h" /* statistics */
 /* 38 */						#include "dynamic_gateways.h" /* randlib */
-/* 39 */						#include "../../special_functions/includes/gw_special_functions2.h"
+/* 39 */						#include "dynamic_gateways.h" /* special_functions */
 /* 40 */						#include "dynamic_tclsci.h"
 /* 41 */						#include "../../data_structures/includes/gw_data_structures2.h"
 /* 42 */						#include "dynamic_gateways.h" /* pvm */
@@ -87,7 +87,7 @@
 /* 63 */						#include "dynamic_gateways.h" /* scinotes */
 /* 64 */						#include "dynamic_gateways.h" /* xcos */
 /* 65 */						#include "dynamic_gateways.h" /* action_binding */
-/* 66 */                        #include "dynamic_gateways.h" /* parallel */
+/* 66 */                        #include "dynamic_parallel.h" /* parallel */
 /* 67 */                        #include "dynamic_gateways.h" /* ui_data */
 
 /*-------------------------------------

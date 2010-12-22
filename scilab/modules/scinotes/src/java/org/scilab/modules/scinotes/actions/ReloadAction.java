@@ -16,7 +16,6 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * ReloadAction class
@@ -27,20 +26,22 @@ public final class ReloadAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private ReloadAction(SciNotes editor) {
-        super(SciNotesMessages.RELOAD, editor);
+    public ReloadAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
      * Create Menu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.RELOAD, null, new ReloadAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new ReloadAction(label, editor), key);
     }
 
     /**

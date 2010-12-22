@@ -75,7 +75,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
   m4=uimenu(f,'label', 'Documentation', 'callback', "help()");
   m5=uimenu(f,'label', 'Quitter', 'callback', "do_quitter()");
   //create two items in the menu "windows"
-  //m11=uimenu(m,'label', 'new model', 'callback',"xselect()");
+  //m11=uimenu(m,'label', 'new model', 'callback',"show_window()");
   //m12=uimenu(m11,'label', 'clear  window', 'callback',"xbasc()");
 
   // Titre

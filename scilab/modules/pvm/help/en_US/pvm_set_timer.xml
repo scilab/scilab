@@ -23,7 +23,7 @@
     <synopsis>[info] = pvm_set_timer()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>info</term>

@@ -25,7 +25,7 @@
 [P1,r1]=lft(P,r,Ps,rs)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P</term>

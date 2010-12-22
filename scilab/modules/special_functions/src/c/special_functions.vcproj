@@ -376,11 +376,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\gw_special_functions1.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\gw_special_functions2.c"
+				RelativePath="..\..\sci_gateway\c\gw_special_functions.c"
 				>
 			</File>
 			<File
@@ -453,11 +449,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\gw_special_functions1.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\gw_special_functions2.h"
+				RelativePath="..\..\includes\gw_special_functions.h"
 				>
 			</File>
 		</Filter>

@@ -23,7 +23,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -75,7 +75,7 @@
     <title>Description</title>
 
     <para>An utility to read the Harwell-Boeing sparse matrix format.
-    Currently don't work for unassembled matrix. Also the eventual rhs vectors
+    Currently do not work for unassembled matrix. Also the eventual rhs vectors
     of the file are not returned. Generally the file name is of the form
     ref.mtype where mtype is a 3 letters word abc given some information
     (already inside the file) on the matrix :</para>

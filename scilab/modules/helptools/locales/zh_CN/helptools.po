@@ -117,10 +117,6 @@ msgid "%s: Reading from directory %s\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Scilab 5.0 or more is required.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s：两个mlist类型必须有相同的域（field）。\n"
 
@@ -238,8 +234,8 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为一个已存在的目录。\n"
 
 #, c-format
-msgid "%s: help module is not installed.\n"
-msgstr "%s：没有安装帮助模块。\n"
+msgid "%s: help file(.jar) is not installed.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: hhc.exe not found.\n"

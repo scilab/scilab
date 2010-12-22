@@ -79,7 +79,10 @@ function []=bode(varargin)
     hx=0.43
   end;
 
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   sciCurAxes=gca();
   axes=sciCurAxes;
   wrect=axes.axes_bounds;
@@ -140,16 +143,18 @@ function []=bode(varargin)
     c=captions(ephi.children,comments,"lower_caption")
     c.background=get(gcf(),"background")
   end
-  drawnow()
+  fig.immediate_drawing=immediate_drawing;
   // return to the previous scale
   set( "current_axes", sciCurAxes ) ;
 
 endfunction
+
 function str=formatBodeMagTip(curve,pt,index)
 //this function is called by the datatips mechanism to format the tip
 //string for the magnitude bode curves
   str=msprintf("%.4g"+_("Hz")+"\n%.4g"+_("dB"), pt(1),pt(2))
 endfunction
+
 function str=formatBodePhaseTip(curve,pt,index)
 //this function is called by the datatip mechanism to format the tip
 //string for the bode phase curves

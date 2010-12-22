@@ -12,10 +12,11 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
  * CloseAllAction Class
@@ -23,43 +24,47 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  *
  */
 public final class CloseAllAction extends DefaultAction {
-    
-    /**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 7134703185408271944L;
 
-	/**
-	 * Constructor
-	 * @param editor SciNotes
-	 */
-	private CloseAllAction(SciNotes editor) {
-        super(SciNotesMessages.CLOSEALL, editor);
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 7134703185408271944L;
+
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public CloseAllAction(String name, SciNotes editor) {
+        super(name, editor);
     }
-    
-	/**
-	 * doAction
-	 */
+
+    /**
+     * doAction
+     */
     public void doAction() {
-    	while (getEditor().getTabPane().getTabCount() != 0) {
-    		if (!getEditor().closeTabAt(getEditor().getTabPane().getSelectedIndex())) {
-    			return;
-    		}
-    	}
-    	
-    	// Close the last opened file create a new file named "Untitled 1"
-    	if (getEditor().getTabPane().getTabCount() == 0) {
-    		getEditor().addEmptyTab();
-    	}
+        SciNotes ed = getEditor();
+        while (ed.getTabPane().getTabCount() != 0) {
+            if (!ed.closeTabAt(ed.getTabPane().getSelectedIndex())) {
+                return;
+            }
+        }
+
+        // Close the last opened file create a new file named "Untitled 1"
+        if (ed.getTabPane().getTabCount() == 0) {
+            ed.addEmptyTab();
+            ConfigSciNotesManager.saveToOpenFiles(ed.getTextPane().getName(), ed, ed.getTextPane());
+        }
     }
-    
+
     /**
      * Create menu
+     * @param label label of the menu
      * @param editor SciNotes
-     * @return MenuItem 
+     * @param key KeyStroke
+     * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor) {
-	return createMenu(SciNotesMessages.CLOSEALL, null, new CloseAllAction(editor), null);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new CloseAllAction(label, editor), key);
     }
 }
-

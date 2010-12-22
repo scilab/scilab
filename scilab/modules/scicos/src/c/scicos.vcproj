@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -35,6 +35,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -118,6 +121,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -199,6 +205,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -286,6 +295,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -690,10 +702,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Shell_Import.def"
-					>
-				</File>
-				<File
 					RelativePath=".\String_Import.def"
 					>
 				</File>
@@ -724,23 +732,11 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\..\bin\MALLOC.lib"
-			>
-		</File>
-		<File
 			RelativePath="..\..\scicos.iss"
 			>
 		</File>
 		<File
-			RelativePath=".\scicos_f.lib"
-			>
-		</File>
-		<File
 			RelativePath="..\..\sci_gateway\scicos_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\..\bin\time.lib"
 			>
 		</File>
 		<File

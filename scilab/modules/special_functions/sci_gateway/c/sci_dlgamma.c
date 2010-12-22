@@ -9,10 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-#include "gw_special_functions1.h"
-#include "stack-c.h"
 #include <string.h>
+#include "gw_special_functions.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsdlgamma)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/

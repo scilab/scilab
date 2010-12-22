@@ -11,7 +11,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "gw_io.h"
+#include "gw_fileio.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"

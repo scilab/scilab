@@ -17,10 +17,10 @@
 // <-- Short Description -->
 //    probleme with the logical or in tests.
 
-MFILECONTENTS=["b=1;";"if b==0 | b(2)>0";"  a = 1;";"  else a = 0;";"end"]
+MFILECONTENTS=["b=1;";"if b==0 | b(2)>0";"  a = 1;";"  else a = 0;";"end"];
 
-MFILE=TMPDIR+"/bug682.m"
-SCIFILE=TMPDIR+"/bug682.sci"
+MFILE=TMPDIR+"/bug682.m";
+SCIFILE=TMPDIR+"/bug682.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
@@ -37,6 +37,6 @@ SCIFILECONTENTSREF=["";
 		"if b==0 | b(2)>0 then";
 		"  a = 1;";
 		"else a = 0;";
-		"end;"]
+		"end;"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

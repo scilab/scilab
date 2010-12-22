@@ -36,7 +36,7 @@
 */
 static void printf_scilab(char *buffer);
 /*--------------------------------------------------------------------------*/ 
-void sciprint(char *fmt,...) 
+void sciprint(const char *fmt,...)
 {
 	va_list ap;
 
@@ -45,7 +45,7 @@ void sciprint(char *fmt,...)
 	va_end (ap);
 }
 /*--------------------------------------------------------------------------*/ 
-int scivprint(char *fmt,va_list args) 
+int scivprint(const char *fmt,va_list args)
 {
 	static char s_buf[MAXPRINTF];
 	int count=0;

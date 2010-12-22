@@ -40,9 +40,12 @@
 /* This cleans up the memory we malloc'd before the function call */
 %typemap(freearg) char ** {
     int i;
-    for (i=0; i<size$argnum-1; i++)
+    for (i=0; i<size$argnum-1; i++) {
       FREE($1[i]);
+      $1[i] = NULL;
+    }
     FREE($1);
+    $1 = NULL;
 }
 
 /* This allows a C function to return a char ** as a Java String array */
@@ -91,8 +94,8 @@
 /* boolean <--> BOOL support */
 
 %typemap(in) BOOL {
-	if ($input == JNI_TRUE) $1 = TRUE;
-	else $1 = FALSE;
+    if ($input == JNI_TRUE) $1 = TRUE;
+    else $1 = FALSE;
 }
 
 %typemap(out) BOOL {

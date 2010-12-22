@@ -25,7 +25,7 @@ xsetech(wrect=[...],frect=[..],logflag="..", arect=[...])
 xsetech()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>wrect</term>

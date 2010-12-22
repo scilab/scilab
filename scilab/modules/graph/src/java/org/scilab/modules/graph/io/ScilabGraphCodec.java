@@ -57,9 +57,13 @@ public class ScilabGraphCodec extends mxObjectCodec {
 	 * @return Returns the object to be encoded by the default encoding.
 	 * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
 	 */
+	@Override
 	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-		((Element) node).setAttribute(BACKGROUND,
-				String.valueOf(((ScilabGraph) obj).getAsComponent().getBackground().getRGB()));
+		final ScilabGraph graph = (ScilabGraph) obj;
+		if (graph.getAsComponent() != null) {
+			((Element) node).setAttribute(BACKGROUND, String.valueOf(graph
+					.getAsComponent().getBackground().getRGB()));
+		}
 		return super.beforeEncode(enc, obj, node);
 	}
 
@@ -71,10 +75,17 @@ public class ScilabGraphCodec extends mxObjectCodec {
 	 * @return The Object transformed 
 	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
 	 */
+	@Override
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
+		final ScilabGraph graph = (ScilabGraph) obj;
+		final Element elem = (Element) node;  
+		if (graph.getAsComponent() != null 
+				&& !elem.getAttribute(BACKGROUND).isEmpty()) {
+			graph.getAsComponent().setBackground(
+					(new Color(Integer.parseInt((((Element) node)
+							.getAttribute(BACKGROUND))))));
+		}
 		
-		((ScilabGraph) obj).getAsComponent().setBackground((new Color(
-				Integer.parseInt((((Element) node).getAttribute(BACKGROUND))))));
 		return super.afterDecode(dec, node, obj);
 	}
 	

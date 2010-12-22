@@ -189,7 +189,6 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 
 #include "MALLOC.h"
 #include "../c/GuiManagement.h"
-#include "../../../core/includes/SCIHOME.h"
 
 
 #ifdef __cplusplus
@@ -205,25 +204,6 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_console_GuiManagementJNI_setScil
   arg1 = (int)jarg1; 
   arg2 = (int)jarg2; 
   setScilabLines(arg1,arg2);
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_scilab_modules_console_GuiManagementJNI_getSCIHOME(JNIEnv *jenv, jclass jcls) {
-  jstring jresult = 0 ;
-  char *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (char *)getSCIHOME();
-  {
-    if (result != NULL)
-    {
-      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-      FREE(result);
-      result = NULL;
-    }       
-  }
-  return jresult;
 }
 
 

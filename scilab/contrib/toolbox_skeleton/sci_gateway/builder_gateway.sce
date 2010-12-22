@@ -1,4 +1,4 @@
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 sci_gateway_dir = get_absolute_file_path("builder_gateway.sce");
 languages       = ["fortran" "c" "cpp"];

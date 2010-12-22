@@ -384,6 +384,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\Modelica.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\Palette.cpp"
 				>
 			</File>
@@ -397,6 +401,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_Xcos.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosConfigureXmlFile.cpp"
 				>
 			</File>
 			<File
@@ -444,7 +452,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\cpp\xcosUtilities.cpp"
+				RelativePath="..\cpp\xcosUtilities.cpp"
 				>
 			</File>
 		</Filter>
@@ -466,6 +474,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_xcos.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\Modelica.hxx"
 				>
 			</File>
 			<File

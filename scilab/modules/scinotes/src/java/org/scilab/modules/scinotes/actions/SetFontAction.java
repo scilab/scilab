@@ -16,49 +16,66 @@ package org.scilab.modules.scinotes.actions;
 import java.awt.Font;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.gui.bridge.fontchooser.SwingScilabFontChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
+/**
+ * Class to set the font
+ * @author DIGITEO
+ * @author Calixte DENIZET
+ */
 public class SetFontAction extends DefaultAction {
 
-        private SetFontAction(SciNotes editor) {
-                super(SciNotesMessages.SET_FONT, editor);
-        }
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor associated with this action
+     */
+    public SetFontAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-        public void doAction() {
-                SwingScilabFontChooser _fontChooser = new SwingScilabFontChooser(ConfigSciNotesManager.getFont());
-                _fontChooser.displayAndWait();
+    /**
+     * DoAction
+     */
+    public void doAction() {
+        SwingScilabFontChooser fontChooser = new SwingScilabFontChooser((JFrame) getEditor().getParentWindow().getAsSimpleWindow(), ConfigSciNotesManager.getFont(), true);
+        fontChooser.setLocationRelativeTo(getEditor());
+        fontChooser.displayAndWait();
 
-                Font newFont = _fontChooser.getSelectedFont();
+        Font newFont = fontChooser.getSelectedFont();
 
-                if (newFont != null) {
+        if (newFont != null) {
 
-                        List<String> listStylesName = ConfigSciNotesManager.getAllStyleName();
+            List<String> listStylesName = ConfigSciNotesManager.getAllStyleName();
 
-                        getEditor().getTextPane().setFont(newFont);
-
-                        /*we need to loop on every style , if not after the second change, styles will not change anymore
-                  except default*/
-                        int numberOfTab = getEditor().getTabPane().getComponentCount();
-                        for (int j = 0; j < numberOfTab; j++) {
-                            ScilabEditorPane textPane = getEditor().getTextPane(j);
-                            textPane.resetFont(newFont);
-                            if (textPane.getOtherPaneInSplit() != null) {
-                                textPane.getOtherPaneInSplit().resetFont(newFont);
-                            }
-                        }
-                        getEditor().getTextPane().setFocusable(true);
-                        ConfigSciNotesManager.saveFont(newFont);
+            int numberOfTab = getEditor().getTabPane().getTabCount();
+            for (int i = 0; i < numberOfTab; i++) {
+                ScilabEditorPane textPane = getEditor().getTextPane(i);
+                textPane.resetFont(newFont);
+                if (textPane.getOtherPaneInSplit() != null) {
+                    textPane.getOtherPaneInSplit().resetFont(newFont);
                 }
-
+            }
+            getEditor().getTextPane().setFocusable(true);
+            ConfigSciNotesManager.saveFont(newFont);
         }
+    }
 
-        public static MenuItem createMenu(SciNotes editor) {
-                return createMenu(SciNotesMessages.SET_FONT, null, new SetFontAction(editor), null);
-        }
-
+    /**
+     * Create the MenuItem
+     * @param label label of the menu
+     * @param editor Editor
+     * @param key KeyStroke
+     * @return a MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SetFontAction(label, editor), key);
+    }
 }

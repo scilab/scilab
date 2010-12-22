@@ -103,7 +103,7 @@ C     variable. See below comments "CSS".
 C**********************************************************************
 C     .. Parameters ..
       DOUBLE PRECISION tol
-      PARAMETER (tol=1.0D-8)
+      PARAMETER (tol=1.0D-13)
       DOUBLE PRECISION atol
       PARAMETER (atol=1.0D-50)
       DOUBLE PRECISION zero,inf

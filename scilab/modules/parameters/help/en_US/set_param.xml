@@ -31,7 +31,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -73,7 +73,7 @@
 
         <listitem>
           <para>an error flag which is set to %T if list_name is not of type
-          plist (this list hasn't been initialized by a call to
+          plist (this list has not been initialized by a call to
           init_param).</para>
         </listitem>
       </varlistentry>
@@ -83,7 +83,7 @@
   <refsection>
     <title>Description</title>
         <para>This function sets the value of an already existing parameter.
-        If the parameter doesn't exist, err is set to %T. If the err output
+        If the parameter does not exist, err is set to %T. If the err output
         parameter is not present, when an error occurs, a message is printed
         in the console.</para>
   </refsection>

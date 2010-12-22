@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -34,6 +34,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -117,6 +120,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -197,6 +203,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -284,6 +293,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -425,6 +437,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\fprintfMat.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fscanfMat.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\fullpath.c"
 				>
 			</File>
@@ -518,6 +538,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\mputi.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mputl.c"
 				>
 			</File>
 			<File
@@ -681,6 +705,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_mputl.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_mputstr.c"
 				>
 			</File>
@@ -799,6 +827,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\fprintfMat.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fscanfMat.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\fullpath.h"
 				>
 			</File>
@@ -888,6 +924,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\mputi.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mputl.h"
 				>
 			</File>
 			<File

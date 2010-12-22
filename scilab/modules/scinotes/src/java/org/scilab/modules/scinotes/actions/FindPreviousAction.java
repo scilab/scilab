@@ -13,16 +13,13 @@ package org.scilab.modules.scinotes.actions;
 
 import java.util.List;
 
-import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
-import javax.swing.JEditorPane;
 import org.scilab.modules.scinotes.SearchManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  *
@@ -35,10 +32,11 @@ public final class FindPreviousAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    protected FindPreviousAction(SciNotes editor) {
-        super(SciNotesMessages.FIND_NEXT, editor);
+    public FindPreviousAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -68,8 +66,7 @@ public final class FindPreviousAction extends DefaultAction {
                 exp = getEditor().getTextPane().getDocument().getText(startPos, endPos - startPos);
             }
 
-            JEditorPane scinotesTextPane =  getEditor().getTextPane();
-            ScilabDocument scilabStyle = ((ScilabDocument) scinotesTextPane.getDocument());
+            ScilabDocument scilabStyle = (ScilabDocument) getEditor().getTextPane().getDocument();
 
             //search from current position to end document
             List<Integer[]> offsets = SearchManager.findWord(scilabStyle, exp, 0, scilabStyle.getLength(), false, false, false);
@@ -96,21 +93,12 @@ public final class FindPreviousAction extends DefaultAction {
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.FIND_PREVIOUS, null, new FindPreviousAction(editor), key);
-    }
-
-    /**
-     * Put input map
-     * @param textPane JTextpane
-     * @param editor Editor
-     * @param key KeyStroke
-     */
-    public static void putInInputMap(JComponent textPane, SciNotes editor, KeyStroke key) {
-        textPane.getInputMap().put(key, new FindPreviousAction(editor));
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new FindPreviousAction(label, editor), key);
     }
 }

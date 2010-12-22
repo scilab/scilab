@@ -24,7 +24,7 @@
 k=newest(path1,path2,...,pathn)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>k</term>

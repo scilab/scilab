@@ -32,7 +32,6 @@ options_codes=[1;2;3;
   opt      = 1;
   with_box = %T;
 
-
   while type(varargin(k0))==9 then //a handle that could be an Axes, Agreg. or Polyline handle.
     tmpH=varargin(k0)
     if tmpH.type=='Axes' then
@@ -54,7 +53,7 @@ options_codes=[1;2;3;
   //get all labels
   for k=k0:size(varargin)
     if type(varargin(k))<>10 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "legend", k));
+      break;
     end
     vk=varargin(k)
     leg=[leg, vk(:)]

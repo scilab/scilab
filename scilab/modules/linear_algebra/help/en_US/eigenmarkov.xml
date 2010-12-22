@@ -23,7 +23,7 @@
     <synopsis>[M,Q]=eigenmarkov(P)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P</term>

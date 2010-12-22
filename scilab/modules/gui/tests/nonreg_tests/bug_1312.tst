@@ -21,13 +21,11 @@ sx=170;
 sy=450;
 hc=10:30:sy;
 
-close(1);
-
-figure(1,"position",[10 10 sx sy],..
+figure("position",[10 10 sx sy],..
     "backgroundcolor",rand(1,3));
 
 
-h1=uicontrol(1,"backgroundcolor",rand(1,3),..
+h1=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""push-button"")",..
     "fontangle","normal","fontsize",15,..
     "fontunits","points","fontweight","normal",..
@@ -42,7 +40,7 @@ h1=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Userdata","a1",..
     "Value",12);
 
-h2=uicontrol(1,"backgroundcolor",rand(1,3),..
+h2=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""Radio-button"")",..
     "fontangle","oblique","fontsize",15,..
     "fontunits","points","fontweight","demi",..
@@ -57,7 +55,7 @@ h2=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Userdata","a2",..
     "Value",12);
 
-h3=uicontrol(1,"backgroundcolor",rand(1,3),..
+h3=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""Check-Box"")",..
     "fontangle","oblique","fontsize",15,..
     "fontunits","points","fontweight","demi",..
@@ -71,7 +69,7 @@ h3=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Units","pixels",..
     "Userdata","a3",..
     "Value",12);
-h4=uicontrol(1,"backgroundcolor",rand(1,3),..
+h4=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""Edit"")",..
     "fontangle","oblique","fontsize",15,..
     "fontunits","pixels","fontweight","normal",..
@@ -86,7 +84,7 @@ h4=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Userdata","a4",..
     "Value",12);
 
-h5=uicontrol(1,"backgroundcolor",rand(1,3),..
+h5=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""Text"")",..
     "fontangle","oblique","fontsize",15,..
     "fontunits","points","fontweight","demi",..
@@ -101,7 +99,7 @@ h5=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Userdata","a5",..
     "Value",12);
 
-h6=uicontrol(1,"backgroundcolor",rand(1,3),..
+h6=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""Slider"")",..
     "fontangle","oblique","fontsize",15,..
     "fontunits","points","fontweight","demi",..
@@ -116,7 +114,7 @@ h6=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Userdata","a6",..
     "Value",7);
 
-h7=uicontrol(1,"backgroundcolor",rand(1,3),..
+h7=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""Frame"")",..
     "fontangle","normal","fontsize",15,..
     "fontunits","points","fontweight","bold",..
@@ -131,7 +129,7 @@ h7=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Userdata","a7",..
     "Value",12);
 
-h8=uicontrol(1,"backgroundcolor",rand(1,3),..
+h8=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "String","H1|hH2|Hhh3|hH",..
     "Style", "popupmenu",..
     "callback","disp(""Pop-Menu"")",..
@@ -147,7 +145,7 @@ h8=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Userdata","a9",..
     "Value",1);
 
-h9=uicontrol(1,"backgroundcolor",rand(1,3),..
+h9=uicontrol(gcf(),"backgroundcolor",rand(1,3),..
     "callback","disp(""List-box"")",..
     "fontangle","normal","fontsize",15,..
     "fontunits","points","fontweight","bold",..
@@ -162,4 +160,4 @@ h9=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Userdata","a8",..
     "Value",[1 2 3 4]);
 
-delete(scf(1));
+delete(gcf());

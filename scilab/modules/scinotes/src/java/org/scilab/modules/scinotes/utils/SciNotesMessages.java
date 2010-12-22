@@ -10,6 +10,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+//CHECKSTYLE:OFF
+
 package org.scilab.modules.scinotes.utils;
 
 import org.scilab.modules.localization.Messages;
@@ -22,16 +25,23 @@ import org.scilab.modules.localization.Messages;
 public class SciNotesMessages {
 
     public static final String DOTS = "...";
+    public static final String QUOTE = "'";
 
     public static final String SCILAB_EDITOR = Messages.gettext("SciNotes");
+    public static final String ERROR_WITH_STRING = Messages.gettext("Error while reading the String");
+
     /** FILE MENU */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New") + DOTS;
     public static final String OPEN = Messages.gettext("Open") + DOTS;
     public static final String OPEN_SOURCE_FILE_ON_KEYWORD = Messages.gettext("Open function source file") + DOTS;
+    public static final String OPEN_URL = Messages.gettext("Open URL") + DOTS;
+    public static final String SOURCE_OF = Messages.gettext("Source of '");
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    public static final String OPEN_ERROR = Messages.gettext("The file could not be created, check the path");
+
     /**
      * "Save All" message
      */
@@ -117,6 +127,9 @@ public class SciNotesMessages {
     /** HELP MENU */
     public static final String HELP = Messages.gettext("SciNotes help") + DOTS;
     public static final String HELP_ON_KEYWORD = Messages.gettext("Help on the current keyword");
+    public static final String HELP_ON_SELECTED = Messages.gettext("Help on the selected text");
+    public static final String HELP_ON_FOO = Messages.gettext("Help on selected text or keyword");
+    public static final String HELP_ABOUT = Messages.gettext("Help about '");
     public static final String ABOUT = Messages.gettext("About") + DOTS;
     public static final String SCINOTES_VERSION = Messages.gettext("SciNotes");
 
@@ -133,7 +146,8 @@ public class SciNotesMessages {
     public static final String SELECTED_LINES = Messages.gettext("Selected lines");
     public static final String OPTIONS = Messages.gettext("Options");
     public static final String CASE_SENSITIVE = Messages.gettext("Case sensitive");
-    public static final String WRAP_SEARCH = Messages.gettext("Wrap search");
+    public static final String CIRCULAR_SEARCH = Messages.gettext("Circular search");
+    public static final String RESTART_FROM_BEGINNING = Messages.gettext("Restart the search from the beginning");
     public static final String WHOLE_WORD = Messages.gettext("Whole word");
     public static final String REGULAR_EXPRESSIONS = Messages.gettext("Regular expressions");
     public static final String REPLACE = Messages.gettext("Replace");
@@ -158,6 +172,7 @@ public class SciNotesMessages {
     public static final String FILE_ALREADY_EXIST = Messages.gettext("File already exists");
     public static final String UNTITLED = Messages.gettext("Untitled ");
     public static final String OK = Messages.gettext("Ok");
+    public static final String APPLYREINDENT = Messages.gettext("Apply & Reindent");
     public static final String CANCEL = Messages.gettext("Cancel");
     public static final String DEFAULT = Messages.gettext("Default");
     public static final String NEXT_TAB = Messages.gettext("Next tab");
@@ -174,6 +189,11 @@ public class SciNotesMessages {
     public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
     public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
     public static final String READ_ONLY_MODE = Messages .gettext("Read-only mode");
+    public static final String CLICKABLE_URL = Messages .gettext("Press CTRL and move the mouse over the link to activate it");
+    public static final String OPENURL = Messages .gettext("Open in the navigator the URL ");
+    public static final String MAILTO = Messages .gettext("Mail to ");
+    public static final String OPENSOURCE = Messages .gettext("Open the source of the macro ");
+    public static final String SHOWSOURCE = Messages .gettext("Show the definition of the macro ");
 
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";
@@ -185,11 +205,19 @@ public class SciNotesMessages {
     public static final String COULD_NOT_CONVERT_FILE = Messages.gettext("The file could not be converted.");
     public static final String CANNOT_LOAD_DIRECTORY = Messages.gettext("%s is a directory.");
     public static final String MODIFICATIONS_WILL_BE_LOST = Messages.gettext("Your modifications will be lost, change encoding anyway?");
-    public static final String CONTINUE = Messages.gettext("Continue?");
+    public static final String CONTINUE = Messages.gettext("Continue ?");
     public static final String CANNOT_LOAD_COLORIZE = Messages.gettext("Cannot load \"scinotesConfiguration.xml\"");
 
     public static final String COULD_NOT_FIND_CONSOLE = Messages.gettext("Could not find the console nor the InterpreterManagement.");
     public static final String COULD_NOT_FIND_TMPFILE = Messages.gettext("Could not find the temporary file.");
+    public static final String NO_TEXT_SELECTED = Messages.gettext("No text selected.");
+    public static final String NO_TEXT_TO_EXECUTE = Messages.gettext("No text to execute.");
+    public static final String COMPLETE = Messages.gettext("Complete");
+    public static final String EDIT_SELECTION = Messages.gettext("Copy selection in a new tab");
+
+    public static final String DIFFERENT_ENCODINGS = Messages.gettext("The file encoding is actually %s and it will be saved in using %s. Continue ?");
+    public static final String DIFFERENT_ENCODINGS_TITLE = Messages.gettext("Encoding problems");
+    public static final String CANNOT_GUESS_ENCODING = Messages.gettext("Cannot guess the file encoding.");
 
     /**
      * "Change Colors" message
@@ -199,6 +227,8 @@ public class SciNotesMessages {
     /**
      * "Change Color" message
      */
+    public static final String CARET_COLOR =  Messages.gettext("Cursor Color");
+    public static final String BGCOLOR =  Messages.gettext("Background Color");
     public static final String CHANGE_COLOR =  Messages.gettext("Change Color");
     public static final String ITALIC = Messages.gettext("Italic");
     public static final String STRIKETHROUGH = Messages.gettext("Strike Through");
@@ -209,7 +239,52 @@ public class SciNotesMessages {
     public static final String BOLD = Messages.gettext("Bold");
 
     /**
+     * Navigator labels
+     */
+    public static final String CODE_NAVIGATOR = Messages.gettext("Code Navigator");
+    public static final String ABSOLUTE = Messages.gettext("Absolute");
+    public static final String RELATIVE = Messages.gettext("Relative");
+    public static final String GO_TO_LINE = Messages.gettext("Go to line: ");
+    public static final String NUMEROTATION = Messages.gettext("Numeration");
+    public static final String ALPHABETIC_ORDER = Messages.gettext("Alphabetic order");
+    public static final String NATURAL_ORDER = Messages.gettext("Natural order");
+    public static final String ORDER = Messages.gettext("Order");
+    public static final String FUNCTIONS = Messages.gettext("Functions");
+    public static final String ANCHORS = Messages.gettext("Anchors");
+
+    /**
+     * Anchor
+     */
+    public static final String ANCHOR_NAME = Messages.gettext("Anchor's name: ");
+    public static final String SET_ANCHOR = Messages.gettext("Set an anchor");
+    public static final String ANCHOR = Messages.gettext("Anchor: ");
+
+    /**
+     * Open source
+     */
+    public static final String OPEN_SOURCE_FILE_OF = Messages.gettext("Open source file of the function:");
+    public static final String OPEN_SOURCE = Messages.gettext("Open source") + DOTS;
+
+    /**
      * Exit confirm message
      */
     public static final String EXIT_CONFIRM = Messages.gettext("Are you sure that you want to close SciNotes ?");
+
+    /**
+     * Restore previous session's files query message
+     */
+    public static final String RESTORE_FILES_QUERY = Messages.gettext("Restore files from your last SciNotes session ?");
+    public static final String RESTORE_FILES_TITLE = Messages.gettext("Restore the last sessions");
+
+    /**
+     * Tabulations configuration
+     */
+    public static final String CONFIGTAB = Messages.gettext("Configure Tabulation");
+    public static final String TABSTYLE = Messages.gettext("Tab style");
+    public static final String TABUSEWHITES = Messages.gettext("Use spaces");
+    public static final String TABLENGTH = Messages.gettext("Length");
+    public static final String TABREPRESENTATION = Messages.gettext("Tab representation");
+    public static final String TABHRULE = Messages.gettext("Horizontal rule");
+    public static final String TABVRULE = Messages.gettext("Vertical rule");
+    public static final String TABDOUBLECHEVRONS = Messages.gettext("Double chevrons");
 }

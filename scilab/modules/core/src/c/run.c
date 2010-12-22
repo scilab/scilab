@@ -37,6 +37,7 @@
 #include "do_error_number.h"
 #include "Scierror.h"
 #include "msgs.h"
+#include "parserConstant.h"
 #undef Lstk
 #undef Infstk
 
@@ -46,11 +47,6 @@
 static int c__1 = 1;
 static int c__0 = 0;
 
-#define insert  2
-#define extrac  3
-#define semi  43
-#define equal  50
-#define iselect 3
 #define Pt (C2F(recu).pt)
 extern int C2F(stackp)(int *,int *);
 extern int C2F(eqid)(int *,int *);
@@ -309,6 +305,14 @@ int C2F(run)(void)
 	lc += 9;
 	goto L10;
       }
+      if (Fin==0) {
+        SciError(4);
+        if (Err > 0||C2F(errgst).err1 > 0) {
+          lc += 9;
+          goto L10;
+        }
+      }
+
     } else {
       /* referenced name was function at compile time it is now a
        * primitive. Modify the code for further use */

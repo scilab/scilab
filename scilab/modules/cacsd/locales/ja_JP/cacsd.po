@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-05-22 09:15+0000\n"
+"PO-Revision-Date: 2010-09-26 07:58+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "%s: %s は虚数のみからなる固有値を有しています。\n"
 
 #, c-format
 msgid "%s: %s has zero(s) near the imaginary axis.\n"
-msgstr "%s: %s は、虚部軸の近くの ゼロ(s) を持っています。\n"
+msgstr "%s: %s は虚軸近傍にゼロを有しています。\n"
 
 #, c-format
 msgid "%s: %s is detectable.\n"
@@ -332,6 +332,10 @@ msgstr "%s: システムは可安定 (または可検出) ではありません 
 msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: ||G|| の計算値が不正確である可能性があります.\n"
 
+#, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr "%s:  指定されたシステムには極もゼロも存在しません.\n"
+
 #
 # File: macros/bloc2exp.sci, line: 130
 # File: macros/bloc2ss.sci, line: 225
@@ -347,67 +351,41 @@ msgstr "%s: 警告: 行列Aは虚軸近傍に固有値を有しています.\n"
 msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
 msgstr "%s: 安定な部分空間の次元 (%d)が不正です: %d としてください.\n"
 
-#
-# File: macros/plzr.sci, line: 33
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: macros/cont_mat.sci, line: 20
-# File: macros/cont_mat.sci, line: 29
-# File: macros/ctr_gram.sci, line: 30
-# File: macros/ctr_gram.sci, line: 42
-# File: macros/obs_gram.sci, line: 25
-# File: macros/obs_gram.sci, line: 37
-# File: macros/obsv_mat.sci, line: 16
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
-msgstr "%s: 入力引数の数が不正です: %d を想定します。"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
 
-#
-# File: macros/plzr.sci, line: 16
-# File: macros/plzr.sci, line: 25
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: macros/minreal.sci, line: 26
-# File: macros/minreal.sci, line: 39
-# File: macros/obsvss.sci, line: 35
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d または %d を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が正しくありません: %d から %d の範囲で指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
-#
-# File: macros/flts.sci, line: 34
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
-msgstr "%s: 出力引数の数が不正です: %d を想定します。\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: macros/minreal.sci, line: 17
-# File: macros/minreal.sci, line: 33
-# File: macros/obsvss.sci, line: 16
-# File: macros/obsvss.sci, line: 27
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: 出力引数の数が不正です: %d を想定します。\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: macros/des2tf.sci, line: 16
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: 出力引数の数が不正です: %d または %d を想定します。\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
@@ -417,11 +395,9 @@ msgstr "%s: 出力引数の数が正しくありません: %d から %d の範�
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s: 出力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
-#
-# File: macros/routh_t.sci, line: 30
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 多項式を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 多項式を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -429,28 +405,17 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません:  長さ>%d の行ベクトルを指定してください.\n"
 
-#
-# File: macros/dscr.sci, line: 18
-# File: macros/syslin.sci, line: 20
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
-#
-# File: macros/cainv.sci, line: 63
-# File: macros/sgrid.sci, line: 28
-# File: macros/syslin.sci, line: 25
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
-#
-# File: macros/arsimul.sci, line: 71
-# File: macros/arsimul.sci, line: 90
-# File: macros/arsimul.sci, line: 109
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 空行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 空の行列を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -458,19 +423,13 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません:  1入力1出力のシステムを指定してください.\n"
 
-#
-# File: macros/syslin.sci, line: 87
-# File: macros/trzeros.sci, line: 22
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 正方行列を指定してください.\n"
 
-#
-# File: macros/invsyslin.sci, line: 18
-# File: macros/trzeros.sci, line: 61
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 平方システムを想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 正方システムを指定してください.\n"
 
 #, c-format
 msgid ""
@@ -481,13 +440,16 @@ msgstr "%s: 入力引数 #%d の大きさが正しくありません:  行の次
 msgid "%s: Wrong size for link from block %s.\n"
 msgstr "%s: ブロック %s からのリンクの大きさが正しくありません.\n"
 
-#
-# File: macros/armac.sci, line: 36
 #, c-format
 msgid ""
 "%s: Wrong size of input argument #%d: Number of columns are incompatible "
 "with %s.\n"
-msgstr "%s: 入力引数 #%d のサイズが不正です: 列の数は、%s と互換性がありません。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 列の数が %s と非互換です.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr "%s: 入力引数 #%d の型が間違っています : 実数の浮動小数点数の配列を指定してください\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -561,7 +523,7 @@ msgstr "%s: 入力引数 #%d の型が正しくありません: 状態空間形�
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: State-space linear system expected.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 線形状態空間システムを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: 線形状態空間システムを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -589,20 +551,13 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 浮動小数点数の配列を指定してください.\n"
 
-#
-# File: macros/findx0BD.sci, line: 77
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: %d または %d を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d または %d を指定してください.\n"
 
-#
-# File: macros/augment.sci, line: 48
-# File: macros/augment.sci, line: 182
-# File: macros/ss2des.sci, line: 18
-# File: macros/tf2des.sci, line: 20
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: ''%s'' を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s''を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -613,11 +568,9 @@ msgstr "%s: 入力引数 #%d の値が正しくありません: 連続時間シ�
 msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 可検出なシステムを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_contr.c, line: 55
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
-msgstr "%s: 入力引数 #%d で不正な値: [%d %d] でなくてはなりません。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: [%d %d] の範囲で指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -632,13 +585,11 @@ msgid ""
 "%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 虚部のみの極を指定することはできません.\n"
 
-#
-# File: macros/evans.sci, line: 45
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Single input, single output system "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 単一入力、単一出力のシステムを想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 1入力1出力システムを指定してください.\n"
 
 #, c-format
 msgid ""
@@ -660,12 +611,9 @@ msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 時間領域は、''c'' または ''d'' でなくてはなりません。\n"
 
-#
-# File: macros/calfrq.sci, line: 90
-# File: macros/repfreq.sci, line: 64
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で不正な値: %s < %s を想定します。\n"
+msgstr "%s: 入力引数 #%d および #%d の値が間違っています: %s < %s としてください.\n"
 
 #, c-format
 msgid ""
@@ -773,8 +721,29 @@ msgstr "周波数 (Hz)"
 msgid "Gain :"
 msgstr "ゲイン :"
 
+msgid "Hall chart"
+msgstr "ホール図"
+
+msgid "Hz"
+msgstr "Hzhelp hall"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
+msgid "Imaginary Axis"
+msgstr "虚軸"
+
+#
+# File: macros/evans.sci, line: 179
+# File: macros/plzr.sci, line: 98
 msgid "Imaginary axis"
-msgstr "虚部軸"
+msgstr "虚軸"
 
 msgid "Irreducible Factors of transfer function (click below)"
 msgstr "伝達関数の既約因子(以下をクリック)"
@@ -784,24 +753,16 @@ msgid ""
 "factor (click below)"
 msgstr "伝達関数の既約因子、固有周波数およびダンピング係数(以下をクリック)"
 
-#
-# File: macros/black.sci, line: 185
-# File: macros/bode.sci, line: 101
-# File: macros/gainplot.sci, line: 87
-msgid "Magnitude (Db)"
-msgstr "マグニチュード (Db)"
+msgid "Magnitude (dB)"
+msgstr "振幅 (dB)"
 
 #
 # File: macros/trfmod.sci, line: 97
 msgid "Numerator :"
 msgstr "分子 :"
 
-#
-# File: macros/nyquist.sci, line: 196
-# File: macros/nyquist.sci, line: 198
-# File: macros/nyquist.sci, line: 200
 msgid "Nyquist plot"
-msgstr "ナイキスト・プロット"
+msgstr "ナイキスト線図"
 
 #
 # File: macros/bode.sci, line: 121
@@ -817,6 +778,18 @@ msgstr "位相 (度)"
 # File: macros/plzr.sci, line: 92
 msgid "Poles"
 msgstr "極"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
+
+msgid "Real Axis"
+msgstr "実軸"
 
 #
 # File: macros/evans.sci, line: 179
@@ -855,10 +828,19 @@ msgstr "ゼロ"
 msgid "asymptotic directions"
 msgstr "漸近方向"
 
-#
-# File: macros/chart.sci, line: 78
+msgid "dB"
+msgstr "dB"
+
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr "離散平面におけるダンピング一定および固有周波数一定の軌跡"
+
 msgid "magnitude(y) (Db)"
-msgstr "マグニチュード(y) (Db)"
+msgstr "振幅(y) (dB)"
+
+msgid "magnitude(y) (dB)"
+msgstr "振幅(y) (dB)"
 
 msgid "open loop poles"
 msgstr "開ループの極"
@@ -870,3 +852,6 @@ msgstr "開ループのゼロ"
 # File: macros/chart.sci, line: 78
 msgid "phase(y) (degree)"
 msgstr "位相(y) (度)"
+
+msgid "rad/sec"
+msgstr "rad/sec"

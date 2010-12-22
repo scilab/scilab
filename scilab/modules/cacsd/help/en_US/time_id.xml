@@ -23,7 +23,7 @@
     <synopsis>[H [,err]]=time_id(n,u,y)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>

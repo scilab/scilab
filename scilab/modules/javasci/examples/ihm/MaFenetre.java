@@ -2,13 +2,16 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * 
- * This file is released into the public domain
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  */
 
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @deprecated
+ */
 public class MaFenetre extends Frame
 {
   private MonPanneau p;

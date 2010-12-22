@@ -44,6 +44,7 @@ Source: modules\{#SCICOS}\palettes\*.cosf; DestDir: {app}\modules\{#SCICOS}\pale
 Source: modules\{#SCICOS}\includes\scicos.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS}\includes\scicos_free.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS}\includes\scicos_malloc.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
+Source: modules\{#SCICOS}\includes\scicos_math.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS}\includes\scicos-def.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS}\macros\buildmacros.sce; DestDir: {app}\modules\{#SCICOS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
@@ -55,10 +56,6 @@ Source: modules\{#SCICOS}\macros\*.sce; DestDir: {app}\modules\{#SCICOS}\macros;
 Source: modules\{#SCICOS}\macros\*.cosf; DestDir: {app}\modules\{#SCICOS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;
 ;Source: modules\{#SCICOS}\demos\*.*; DestDir: {app}\modules\{#SCICOS}\demos; Flags: recursesubdirs; Components: {#COMPN_XCOS}
-;
-Source: modules\{#SCICOS}\tcl\MIHM.tcl; DestDir: {app}\modules\{#SCICOS}\tcl; Flags: recursesubdirs; Components: {#COMPN_XCOS}
-Source: modules\{#SCICOS}\tcl\scicos.gif; DestDir: {app}\modules\{#SCICOS}\tcl; Flags: recursesubdirs; Components: {#COMPN_XCOS}
-Source: modules\{#SCICOS}\tcl\scicos2.gif; DestDir: {app}\modules\{#SCICOS}\tcl; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS}\tests\*.*; DestDir: {app}\modules\{#SCICOS}\tests; Flags: recursesubdirs; Components: {#COMPN_XCOS} and {#COMPN_TESTS}
 ;--------------------------------------------------------------------------------------------------------------

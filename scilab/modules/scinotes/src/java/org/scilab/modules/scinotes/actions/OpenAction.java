@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,7 +21,6 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
-import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.scinotes.SciNotes;
@@ -30,17 +30,31 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
 /**
  * File opening management
  * @author Bruno JOFRET
+ * @author Calixte DENIZET
  */
-public final class OpenAction extends DefaultAction {
+public class OpenAction extends DefaultAction {
 
     private static final long serialVersionUID = -8765712033802048782L;
+    private String initialDirectoryPath;
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor associated SciNotes instance
      */
-    private OpenAction(SciNotes editor) {
-        super(SciNotesMessages.OPEN, editor);
+    public OpenAction(String name, SciNotes editor) {
+        this(name, editor, "");
+    }
+
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor associated SciNotes instance
+     * @param path the path where to open the filechooser
+     */
+    public OpenAction(String name, SciNotes editor, String path) {
+        super(name, editor);
+        this.initialDirectoryPath = path;
     }
 
     /**
@@ -48,48 +62,59 @@ public final class OpenAction extends DefaultAction {
      * @see org.scilab.modules.scinotes.actions.DefaultAction#doAction()
      */
     public void doAction() {
-
-        String initialDirectoryPath = getEditor().getTextPane().getName();
-        if (initialDirectoryPath == null) {
-            initialDirectoryPath = ConfigManager.getLastOpenedDirectory() ;
+        String path;
+        if (initialDirectoryPath.length() == 0) {
+            path = getEditor().getTextPane().getName();
+        } else {
+            path = initialDirectoryPath;
         }
 
-        String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.sc*"};
+        if (path == null) {
+            path = ConfigManager.getLastOpenedDirectory();
+        }
+
+        String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.tst", "*.start", "*.quit", "*.dem", "*.sc*", "all"};
 
         SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
-        fileChooser.setInitialDirectory(initialDirectoryPath);
+        fileChooser.setMultiSelectionEnabled(true);
+        fileChooser.setInitialDirectory(path);
         fileChooser.setAcceptAllFileFilterUsed(true);
         fileChooser.addMask(mask, null);
         fileChooser.setUiDialogType(Juigetfile.SAVE_DIALOG);
 
         int retval = fileChooser.showOpenDialog(getEditor());
         if (retval == JFileChooser.APPROVE_OPTION) {
-            File f = fileChooser.getSelectedFile();
-            ConfigManager.saveLastOpenedDirectory(f.getPath());
-            ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
+            File[] f = fileChooser.getSelectedFiles();
+            for (int i = 0; i < f.length; i++) {
+                ConfigManager.saveLastOpenedDirectory(f[i].getPath());
+                ConfigSciNotesManager.saveToRecentOpenedFiles(f[i].getPath());
 
-            getEditor().setTitle(f.getPath() + " - " + SciNotesMessages.SCILAB_EDITOR);
-            getEditor().updateRecentOpenedFilesMenu();
-            getEditor().readFile(f);
+                getEditor().setTitle(f[i].getPath() + " - " + SciNotesMessages.SCILAB_EDITOR);
+                RecentFileAction.updateRecentOpenedFilesMenu(getEditor());
+                getEditor().readFile(f[i]);
+            }
         }
     }
 
     /**
      * Create a menu to add to SciNotes menu bar
+     * @param label label of the menu
      * @param editor associated SciNotes instance
      * @param key KeyStroke
      * @return the menu
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.OPEN, null, new OpenAction(editor), key);
+    public static Object createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new OpenAction(label, editor), key);
     }
 
     /**
-     * Create a button to add to SciNotes tool bar
-     * @param editor associated SciNotes instance
-     * @return the button
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
+     * @param editor SciNotes
+     * @return PushButton
      */
-    public static PushButton createButton(SciNotes editor) {
-        return createButton(SciNotesMessages.OPEN, "document-open.png", new OpenAction(editor));
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new OpenAction(tooltip, editor));
     }
 }

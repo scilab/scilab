@@ -2,7 +2,7 @@
 /* Scilab, INRIA 2004 */
 /* Only For Windows */
 /*--------------------------------------------------------------------------*/
-#pragma comment(lib, "../../../../../../bin/libScilab.lib")
+#pragma comment(lib, "../../../../../../bin/call_scilab.lib")
 #pragma comment(lib, "../../../../../../bin/MALLOC.lib")
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h> 

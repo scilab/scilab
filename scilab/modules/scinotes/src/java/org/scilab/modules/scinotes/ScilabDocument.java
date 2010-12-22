@@ -15,6 +15,11 @@ package org.scilab.modules.scinotes;
 import java.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Comparator;
+import java.util.Iterator;
 
 import javax.swing.text.GapContent;
 import javax.swing.text.PlainDocument;
@@ -22,6 +27,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.View;
+
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -50,19 +57,23 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public static final String EOLUNIX = "\n";
 
     private static final int GAPBUFFERCAPACITY = 2;
+    private static final String LINE_SEPARATOR = "line.separator";
+    private static final int INITFUNCTIONSNUMBER = 128;
 
     private View view;
     private List<String> saved = new Vector();
     private FunctionScanner funScanner;
 
+    private Set<String> functions = new HashSet(INITFUNCTIONSNUMBER);
+
     private boolean contentModified;
+    private boolean alphaOrder;
 
     // Editor's default encoding is UTF-8
-    private String encoding = "UTF-8";
+    private String encoding = "utf-8";
     private boolean updater = true;
     private boolean binary;
     private boolean autoIndent;
-    private boolean autoColorize;
     private boolean shouldMergeEdits;
     private boolean undoManagerEnabled;
     private CompoundUndoManager undo;
@@ -70,7 +81,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private ScilabEditorPane pane;
     private boolean focused;
 
-    private String LINE_SEPARATOR = "line.separator";
     private String eolStyle = System.getProperty(LINE_SEPARATOR);
 
     /**
@@ -81,16 +91,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         setAsynchronousLoadPriority(2);
 
         autoIndent = ConfigSciNotesManager.getAutoIndent();
-        autoColorize = ConfigSciNotesManager.getAutoColorize();
         encoding = ConfigSciNotesManager.getDefaultEncoding();
 
         undo = new CompoundUndoManager(this);
         addUndoableEditListener(undo);
         undoManagerEnabled = true;
-        contentModified = false;
 
-        funScanner = new FunctionScanner(this);
-        addDocumentListener(this);
+        contentModified = false;
     }
 
     /**
@@ -123,6 +130,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public ScilabLexer createLexer() {
         return new ScilabLexer(this);
+    }
+
+    /**
+     * @return the Set containing the functions name
+     */
+    public Set<String> getFunctionsInDoc() {
+        return functions;
     }
 
     /**
@@ -227,7 +241,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         this.updater = updaterDisabled;
     }
 
-
     /**
      * Get document text
      * @return String
@@ -253,22 +266,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void mergeEditsEnd() {
         undo.endCompoundEdit();
-    }
-
-    /**
-     * getColorize
-     * @return boolean
-     */
-    public boolean getColorize() {
-        return autoColorize;
-    }
-
-    /**
-     * setColorize
-     * @param b boolean
-     */
-    public void setColorize(boolean b) {
-        autoColorize = b;
     }
 
     /**
@@ -376,6 +373,121 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * @param alphaOrder is true if names must be sorted with alphabetic order
+     */
+    public void setAlphaOrderInTree(boolean alphaOrder) {
+        this.alphaOrder = alphaOrder;
+    }
+
+    /**
+     * Fill a tree with function's name according to alphabetic order or not
+     * @param base to fill
+     */
+    public synchronized void fillTreeFuns(DefaultMutableTreeNode base) {
+        Element root = getDefaultRootElement();
+        int nlines = root.getElementCount();
+        if (!alphaOrder) {
+            for (int i = 0; i < nlines; i++) {
+                Element elem = root.getElement(i);
+                if (elem instanceof ScilabDocument.ScilabLeafElement) {
+                    int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
+                    switch (type) {
+                    case ScilabDocument.ScilabLeafElement.NOTHING :
+                        break;
+                    case ScilabDocument.ScilabLeafElement.FUN :
+                        base.add(new DefaultMutableTreeNode(elem));
+                        break;
+                    case ScilabDocument.ScilabLeafElement.ENDFUN :
+                        break;
+                    default :
+                        break;
+                    }
+                }
+            }
+        } else {
+            Set<DefaultMutableTreeNode> set = new TreeSet(new Comparator<DefaultMutableTreeNode>() {
+                    public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
+                        ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
+                        int n = l1.getFunctionName().compareTo(l2.getFunctionName());
+                        if (n != 0) {
+                            return n;
+                        }
+                        return l1.getStart() - l2.getStart();
+                    }
+
+                    public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        return false;
+                    }
+                });
+            for (int i = 0; i < nlines; i++) {
+                Element elem = root.getElement(i);
+                if (elem instanceof ScilabDocument.ScilabLeafElement) {
+                    int type = ((ScilabDocument.ScilabLeafElement) elem).getType();
+                    switch (type) {
+                    case ScilabDocument.ScilabLeafElement.NOTHING :
+                        break;
+                    case ScilabDocument.ScilabLeafElement.FUN :
+                        set.add(new DefaultMutableTreeNode(elem));
+                        break;
+                    case ScilabDocument.ScilabLeafElement.ENDFUN :
+                        break;
+                    default :
+                        break;
+                    }
+                }
+            }
+            Iterator<DefaultMutableTreeNode> iter = set.iterator();
+            while (iter.hasNext()) {
+                base.add(iter.next());
+            }
+        }
+    }
+
+    /**
+     * Fill a tree with anchor's name according to alphabetic order or not
+     * @param base to fill
+     */
+    public synchronized void fillTreeAnchors(DefaultMutableTreeNode base) {
+        Element root = getDefaultRootElement();
+        int nlines = root.getElementCount();
+        if (!alphaOrder) {
+            for (int i = 0; i < nlines; i++) {
+                ScilabLeafElement elem = (ScilabLeafElement) root.getElement(i);
+                if (elem.isAnchor()) {
+                    base.add(new DefaultMutableTreeNode(elem));
+                }
+            }
+        } else {
+            Set<DefaultMutableTreeNode> set = new TreeSet(new Comparator<DefaultMutableTreeNode>() {
+                    public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
+                        ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
+                        int n = l1.getAnchorName().compareTo(l2.getAnchorName());
+                        if (n != 0) {
+                            return n;
+                        }
+                        return l1.getStart() - l2.getStart();
+                    }
+
+                    public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        return false;
+                    }
+                });
+            for (int i = 0; i < nlines; i++) {
+                ScilabLeafElement elem = (ScilabLeafElement) root.getElement(i);
+                if (elem.isAnchor()) {
+                    set.add(new DefaultMutableTreeNode(elem));
+                }
+            }
+            Iterator<DefaultMutableTreeNode> iter = set.iterator();
+            while (iter.hasNext()) {
+                base.add(iter.next());
+            }
+        }
+    }
+
+    /**
      * @return the first function name which appears in this doc or null
      */
     public String getFirstFunctionName() {
@@ -393,36 +505,76 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
-     * Get the local variables used as arguments or returned valuesof a function
+     * @param line the number of the line where to begin the search
+     * @return the next anchor
+     */
+    public int nextAnchorFrom(int line) {
+        Element root = getDefaultRootElement();
+        for (int i = line + 1; i < root.getElementCount(); i++) {
+            ScilabLeafElement se = (ScilabLeafElement) root.getElement(i);
+            if (se.isAnchor()) {
+                return i;
+            }
+        }
+        for (int i = 0; i < line; i++) {
+            ScilabLeafElement se = (ScilabLeafElement) root.getElement(i);
+            if (se.isAnchor()) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * @param line the number of the line where to begin the search
+     * @return the previous anchor
+     */
+    public int previousAnchorFrom(int line) {
+        Element root = getDefaultRootElement();
+        for (int i = line - 1; i >= 0; i--) {
+            ScilabLeafElement se = (ScilabLeafElement) root.getElement(i);
+            if (se.isAnchor()) {
+                return i;
+            }
+        }
+        for (int i = root.getElementCount() - 1; i > line; i--) {
+            ScilabLeafElement se = (ScilabLeafElement) root.getElement(i);
+            if (se.isAnchor()) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Get the lhs/rhs args used in a function declaration
      * @param pos the position in the document
      * @return the two lists containing args and returned values or null if we are not
      * in a function
      */
-    public List<String>[] getLocalVariables(int pos) {
+    public List<String>[] getInOutArgs(int pos) {
         Element root = getDefaultRootElement();
         int index = root.getElementIndex(pos);
         int compt = 0;
         while (index != -1) {
-            Element e = root.getElement(index--);
-            if (e instanceof ScilabLeafElement) {
-                ScilabLeafElement se = (ScilabLeafElement) e;
-                int type = se.getType();
-                switch (type) {
-                case ScilabLeafElement.NOTHING :
-                    break;
-                case ScilabLeafElement.FUN :
-                    if (compt == 0) {
-                        FunctionScanner.FunctionInfo info = se.getFunctionInfo();
-                        return new List[]{info.returnValues, info.argsValues};
-                    } else {
-                        compt++;
-                    }
-                    break;
-                case ScilabLeafElement.ENDFUN :
-                    compt--;
-                    break;
-                default :
+            ScilabLeafElement e = (ScilabLeafElement) root.getElement(index--);
+            switch (e.getType()) {
+            case ScilabLeafElement.NOTHING :
+                break;
+            case ScilabLeafElement.FUN :
+                if (compt == 0) {
+                    FunctionScanner.FunctionInfo info = e.getFunctionInfo();
+                    return new List[]{info.returnValues, info.argsValues};
+                } else {
+                    compt++;
                 }
+                break;
+            case ScilabLeafElement.ENDFUN :
+                compt--;
+                break;
+            default :
             }
         }
         return null;
@@ -443,30 +595,74 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
-     * Implements DocumentListener
-     * @param documentEvent DocumentEvent
+     * Nothing !
+     * @param e the event
      */
-    public void changedUpdate(DocumentEvent documentEvent) { }
+    public void changedUpdate(DocumentEvent e) { }
 
     /**
-     * Implements DocumentListener
-     * @param documentEvent DocumentEvent
+     * Called when an insertion is made in the doc
+     * @param e the event
      */
-    public void insertUpdate(DocumentEvent documentEvent) {
+    public void insertUpdate(DocumentEvent e) {
+        handleEvent(e);
+    }
+
+    /**
+     * Called when a remove is made in the doc
+     * @param e the event
+     */
+    public void removeUpdate(DocumentEvent e) {
+        handleEvent(e);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected void insertUpdate(DefaultDocumentEvent chng, AttributeSet attr) {
+        // Fix bug 8277 in putting attr=null
+        // Java, by default, highlights the chinese chars when entered on keyboard
+        super.insertUpdate(chng, null);
+    }
+
+    /**
+     * @param ev the DocumentEvent to handle
+     */
+    private void handleEvent(DocumentEvent ev) {
         if (!contentModified && pane != null) {
             contentModified = true;
             pane.updateTitle();
         }
-    }
 
-    /**
-     * Implements DocumentListener
-     * @param documentEvent DocumentEvent
-     */
-    public void removeUpdate(DocumentEvent documentEvent) {
-        if (!contentModified && pane != null) {
-            contentModified = true;
-            pane.updateTitle();
+        DocumentEvent.ElementChange chg = ev.getChange(getDefaultRootElement());
+        if (chg != null) {
+            Element[] added = chg.getChildrenAdded();
+            Element[] removed = chg.getChildrenRemoved();
+            if ((added != null && added.length > 0) || (removed != null && removed.length > 0)) {
+                for (int i = 0; i < removed.length; i++) {
+                    String name = ((ScilabLeafElement) removed[i]).getFunctionName();
+                    if (name.length() != 0) {
+                        functions.remove(name);
+                    }
+                }
+                for (int i = 0; i < added.length; i++) {
+                    ((ScilabLeafElement) added[i]).resetTypeWhenBroken();
+                    String name = ((ScilabLeafElement) added[i]).getFunctionName();
+                    if (name.length() != 0) {
+                        functions.add(name);
+                    }
+                }
+            }
+        } else {
+            // change occured only on one line
+            Element root = getDefaultRootElement();
+            int index = root.getElementIndex(ev.getOffset());
+            ScilabLeafElement line = (ScilabLeafElement) root.getElement(index);
+            boolean broken = line.isBroken();
+            if (line.resetType() == ScilabLeafElement.FUN || broken != line.isBroken()
+                || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken())) {
+                pane.repaint();
+            }
         }
     }
 
@@ -475,11 +671,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return the element base
      */
     protected AbstractElement createDefaultRoot() {
+        funScanner = new FunctionScanner(this);
         BranchElement map = (BranchElement) createBranchElement(null, null);
-        Element line = super.createLeafElement(map, null, 0, 1);
-        Element[] lines = new Element[1];
-        lines[0] = line;
-        map.replace(0, 0, lines);
+        Element line = createLeafElement(map, null, 0, 1);
+        map.replace(0, 0, new Element[]{line});
         return map;
     }
 
@@ -519,9 +714,20 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public static final int ENDFUN = 2;
 
+        /**
+         * broken line
+         */
+        public static final int BROKEN = 4;
+
         private boolean visible = true;
         private int type;
         private FunctionScanner.FunctionInfo info;
+        private int start;
+        private boolean broken;
+        private boolean brokenString;
+
+        private boolean anchor;
+        private String anchorName;
 
         /**
          * The same constructor as in LeafElement.
@@ -532,7 +738,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public ScilabLeafElement(Element parent, AttributeSet a, int p0, int p1) {
             super(parent, a, p0, p1);
+            start = p0;
             type = funScanner.getLineType(p0, p1);
+            if ((type & BROKEN) == BROKEN) {
+                broken = true;
+                type -= BROKEN;
+            }
+
             if (type == FUN) {
                 info = funScanner.getFunctionInfo();
             }
@@ -540,11 +752,48 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
         /**
          * Reset type (normally called on a change in the document)
+         * @return the new type
          */
-        public void resetType() {
+        public int resetType() {
+            String oldName = "";
+            if (type == FUN) {
+                oldName = info.functionName;
+            }
+
             type = funScanner.getLineType(getStartOffset(), getEndOffset());
+
+            if ((type & BROKEN) == BROKEN) {
+                broken = true;
+                type -= BROKEN;
+            } else {
+                broken = false;
+            }
+
             if (type == FUN) {
                 info = funScanner.getFunctionInfo();
+                if (!info.functionName.equals(oldName)) {
+                    functions.remove(oldName);
+                    functions.add(info.functionName);
+                }
+            }
+
+            resetTypeWhenBroken();
+
+            return type;
+        }
+
+        /**
+         * If the previous line is broken, then this line is a part of it
+         * so we need to resetType of the previous.
+         */
+        public void resetTypeWhenBroken() {
+            int p0 = getStartOffset();
+            if (p0 != 0) {
+                Element parent = getParentElement();
+                ScilabLeafElement elem = (ScilabLeafElement) parent.getElement(parent.getElementIndex(p0 - 1));
+                if (elem.broken) {
+                    elem.resetType();
+                }
             }
         }
 
@@ -588,6 +837,100 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public void setVisible(boolean b) {
             visible = b;
+        }
+
+        /**
+         * @return if this line is broken
+         */
+        public boolean isBroken() {
+            return broken;
+        }
+
+        /**
+         * @param b true if this line is broken
+         */
+        public void setBroken(boolean b) {
+            broken = b;
+        }
+
+        /**
+         * @return if this line is broken
+         */
+        public boolean isBrokenString() {
+            return brokenString;
+        }
+
+        /**
+         * @param b true if this line is broken in a string
+         */
+        public void setBrokenString(boolean b) {
+            brokenString = b;
+            if (b) {
+                broken = true;
+            }
+        }
+
+        /**
+         * @return the position of the beginning of this element
+         */
+        public int getStart() {
+            return start;
+        }
+
+        /**
+         * @return the function's name
+         */
+        public String getFunctionName() {
+            if (type == FUN) {
+                return info.functionName;
+            }
+            return "";
+        }
+
+        /**
+         * @return if this line is an anchor
+         */
+        public boolean isAnchor() {
+            return anchor;
+        }
+
+        /**
+         * @param name the name of the anchor, if null remove
+         * the anchor.
+         */
+        public void setAnchor(String name) {
+            if (name == null) {
+                anchor = false;
+                return;
+            }
+
+            anchor = true;
+            anchorName = name;
+        }
+
+        /**
+         * @return the name of the anchor if exists
+         */
+        public String getAnchorName() {
+            if (anchor) {
+                return anchorName;
+            } else {
+                return "";
+            }
+        }
+
+        /**
+         * @return String representation
+         */
+        public String toString() {
+            if (anchor) {
+                if (type == FUN) {
+                    return "function: " + info.functionName + " & anchor: " + anchorName;
+                } else {
+                    return anchorName;
+                }
+            }
+            return info.functionName;
         }
     }
 }

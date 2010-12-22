@@ -11,10 +11,10 @@
  */
 #include "ifexpr.h"
 #include "stack-c.h"
+#include "parserConstant.h"
 /*--------------------------------------------------------------------------*/ 
 int C2F(ifexpr)(void)
 {
-	#define blank  40
 	int p = 0;
 
 	if (C2F(errgst).err1 != 0) return FALSE;

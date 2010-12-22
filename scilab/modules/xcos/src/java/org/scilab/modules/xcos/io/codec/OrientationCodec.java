@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.io.codec;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.port.Orientation;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -79,6 +80,15 @@ public class OrientationCodec extends mxObjectCodec {
 		final NamedNodeMap attrs = node.getAttributes();
 		
 		final Node value = attrs.getNamedItem(ATTRIBUTE_NAME);
+		
+		/*
+		 * Return the first value when unable to get it.
+		 */
+		if (value == null) {
+			LogFactory.getLog(OrientationCodec.class).error("Corrupted diagram, port may be wrongly oriented");
+			return Orientation.values()[0];
+		}
+		
 		final String enumName = value.getNodeValue();		
 		return Enum.valueOf(Orientation.class, enumName);
 	}

@@ -12,12 +12,29 @@ c   and the program stops.  in this latter case the
 c   filter design is probably acceptable, but should
 c   be checked by computing a frequency response.
 c!
+      INCLUDE 'stack.h'
       common /oops/niter,iout
-      write(iout,1)niter
-    1 format(1x,'************ failure to converge **********',/,
-     1       1x,'probable cause is machine rounding error',/,
-     2       1x,'- number of iterations =',i4,/,
-     3       1x,'if the number of iterations exceeds 3 the design',/
-     4       1x,'may be correct, but should be verified with an fft')
+      character bufstr*(4096)
+      
+      write(bufstr, 1001)
+      call basout(io ,wte ,bufstr(1:lnblnk(bufstr)))
+1001  format('************ failure to converge **********')
+
+      write(bufstr, 1002)
+      call basout(io ,wte ,bufstr(1:lnblnk(bufstr)))
+1002  format('probable cause is machine rounding error')
+
+      write(bufstr, 1003) niter
+      call basout(io ,wte ,bufstr(1:lnblnk(bufstr)))
+1003  format( '- number of iterations =',i4)
+
+      write(bufstr, 1004)
+      call basout(io ,wte ,bufstr(1:lnblnk(bufstr)))
+1004  format( 'if the number of iterations exceeds 3 the design')
+
+      write(bufstr, 1005)
+      call basout(io ,wte ,bufstr(1:lnblnk(bufstr)))
+1005  format('may be correct, but should be verified with an fft')
+      
       return
       end

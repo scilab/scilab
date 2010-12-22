@@ -8,17 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-16 11:56+0000\n"
+"PO-Revision-Date: 2010-10-01 13:29+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Errore di allocazione della memoria\n"
 
 #, c-format
 msgid "%s: %s format not recognized.\n"
@@ -91,14 +87,6 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Non è possibile aprire il file %s.\n"
 
 #, c-format
-msgid "%s: Cannot open file '%s'.\n"
-msgstr "%s: Non è possibile aprire il file ''%s''.\n"
-
-#, c-format
-msgid "%s: Cannot read data in file '%s'.\n"
-msgstr "%s: Non è possibile leggere i dati nel file ''%s''.\n"
-
-#, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
 msgstr ""
 "%s: Non è possibile leggere file il cui descrittore è %d: il file non è "
@@ -141,6 +129,14 @@ msgid "%s: Invalid conversion.\n"
 msgstr "%s: Conversione non valida.\n"
 
 #, c-format
+msgid "%s: Invalid format.\n"
+msgstr "%s: Il formato non è valido.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
+
+#, c-format
 msgid "%s: No File opened in Scilab.\n"
 msgstr "%s: Nessun file aperto in Scilab.\n"
 
@@ -175,6 +171,10 @@ msgstr "%s: Il file %s non è aperto in Scilab.\n"
 #, c-format
 msgid "%s: Too many directives in scanf.\n"
 msgstr "%s: Troppe direttive in scanf.\n"
+
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr "%s: Troppi file aperti!\n"
 
 #, c-format
 msgid ""
@@ -236,6 +236,10 @@ msgstr ""
 "attesa una stringa non-vuota.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
@@ -285,6 +289,12 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"intero.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
 msgstr ""
@@ -302,6 +312,19 @@ msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
 "scalare.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa o un'unità logica.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument: Scalar expected.\n"
@@ -359,6 +382,11 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: è una stringa.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Matrix of floating point numbers "
 "expected.\n"
@@ -383,6 +411,20 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
+"o un'unità logica.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
+"o un intero.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: A string expected.\n"
@@ -495,13 +537,29 @@ msgstr ""
 "potrebbe essere sbagliato o danneggiato.\n"
 
 #, c-format
+msgid "%s: can not open file %s.\n"
+msgstr "%s: impossibile aprire il file %s.\n"
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr "%s: impossibile leggere il file %s.\n"
+
+#, c-format
 msgid "%s: end of input reached before final conversion.\n"
 msgstr ""
 "%s: è stata raggiunta la fine dell'input prima della conversione finale.\n"
 
 #, c-format
+msgid "%s: error.\n"
+msgstr "%s: errore.\n"
+
+#, c-format
 msgid "%s: format is of 0 length.\n"
 msgstr "%s: il formato ha lunghezza 0.\n"
+
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr "%s: il nomefile %s non è valido.\n"
 
 #, c-format
 msgid "%s: invalid filename.\n"
@@ -524,6 +582,10 @@ msgstr "Non è possibile raggiungere la directory attuale.\n"
 #, c-format
 msgid "Can't go to directory %s.\n"
 msgstr "Non è possibile raggiungere la directory %s.\n"
+
+#, c-format
+msgid "Can't go to directory %s: %s\n"
+msgstr "Non è possibile accedere alla directory %s: %s\n"
 
 msgid "Invalid buffer.\n"
 msgstr "Buffer non valido.\n"

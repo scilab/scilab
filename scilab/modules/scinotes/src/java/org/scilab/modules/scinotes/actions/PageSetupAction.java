@@ -14,12 +14,11 @@ package org.scilab.modules.scinotes.actions;
 
 import java.awt.print.PageFormat;
 import java.awt.print.PrinterJob;
-
 import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Class Page setup action for SciNotes
@@ -28,42 +27,45 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public class PageSetupAction extends DefaultAction {
 
-	private static PageFormat pageFormat;
+    private static PageFormat pageFormat;
 
-	/**
-	 * Default constructor
-	 * @param editor Editor
-	 */
-	private PageSetupAction(SciNotes editor) {
-		super(SciNotesMessages.PAGE_SETUP, editor);
-	}
+    /**
+     * Default constructor
+     * @param name the name of the action
+     * @param editor Editor
+     */
+    public PageSetupAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-	/**
-	 * Function Run
-	 */
-	public void doAction() {
-		PrinterJob printTask = PrinterJob.getPrinterJob();
-		if (pageFormat == null) {
-			pageFormat = printTask.pageDialog(new HashPrintRequestAttributeSet());
-		} else {
-			pageFormat = printTask.pageDialog(pageFormat);
-		}
-	}
+    /**
+     * Function Run
+     */
+    public void doAction() {
+        PrinterJob printTask = PrinterJob.getPrinterJob();
+        if (pageFormat == null) {
+            pageFormat = printTask.pageDialog(new HashPrintRequestAttributeSet());
+        } else {
+            pageFormat = printTask.pageDialog(pageFormat);
+        }
+    }
 
-	/**
-	 * Create the MenuItem for page setup action
-	 * @param editor Editor
-	 * @return a MenuItem
-	 */
-	public static MenuItem createMenu(SciNotes editor) {
-		return createMenu(SciNotesMessages.PAGE_SETUP, null, new PageSetupAction(editor), null);
-	}
+    /**
+     * Create the MenuItem for page setup action
+     * @param label label of the menu
+     * @param editor Editor
+     * @param key KeyStroke
+     * @return a MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new PageSetupAction(label, editor), key);
+    }
 
-	/**
-	 * Get the page format
-	 * @return PageFormat
-	 */
-	public static PageFormat getPageFormat() {
-		return pageFormat;
-	}
+    /**
+     * Get the page format
+     * @return PageFormat
+     */
+    public static PageFormat getPageFormat() {
+        return pageFormat;
+    }
 }

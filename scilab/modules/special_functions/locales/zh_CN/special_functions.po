@@ -59,3 +59,18 @@ msgstr "%s：错误代码 %d\n"
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s：一个扩展范围数字上溢或下溢。\n"
+
+#, c-format
+msgid "Function %s is obsolete."
+msgstr ""
+
+#, c-format
+msgid "Please use %s instead."
+msgstr ""
+
+#, c-format
+msgid "This function will be permanently removed in Scilab %s"
+msgstr ""
+
+msgid "Warning: "
+msgstr ""

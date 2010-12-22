@@ -23,7 +23,7 @@
     <synopsis>res = strrev(str1)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str1</term>

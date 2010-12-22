@@ -12,7 +12,7 @@
 
 /* sci_types.i */
 /**
- * Windows: swig -java -package org.scilab.modules.types.scilabTypes -outdir ../java/org/scilab/modules/types/scilabTypes/ sci_types.i 
+ * Windows: swig -java -package org.scilab.modules.types -outdir ../java/org/scilab/modules/types/ sci_types.i 
  * Other: Use the option --enable-build-swig to the configure
 */
 
@@ -20,6 +20,7 @@
 %javaconst(1);
 // Rename the enum datatype
 %rename(ScilabTypeEnum) sci_types;
+%rename(ScilabIntegerTypeEnum) sci_int_types;
 
 %module types
 %{

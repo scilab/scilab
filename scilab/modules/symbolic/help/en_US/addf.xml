@@ -23,7 +23,7 @@
     <synopsis>addf("a","b")</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>"a","b"  </term>

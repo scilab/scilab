@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -59,6 +60,6 @@ public class ClosePalettesAction extends DefaultAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ViewPaletteBrowserAction.setPalettesVisible(false);
+		PaletteManager.setVisible(false);
 	}
 }

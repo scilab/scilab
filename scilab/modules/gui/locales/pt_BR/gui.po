@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: _gui-pt_BR\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-19 15:29+0000\n"
-"Last-Translator: Sam Samuels <gemini_sam_samuels@hotmail.co.uk>\n"
+"PO-Revision-Date: 2010-09-22 10:46+0000\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,8 +31,12 @@ msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Ocorreu um erro: %s.\n"
 
 #, c-format
-msgid "%s: An exception occurred: %s"
-msgstr "%s: Ocorreu uma exceção: %s"
+msgid ""
+"%s: An exception occurred: %s\n"
+"%s\n"
+msgstr ""
+"%s: Ocorreu uma exceção: %s\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -81,13 +85,12 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Memória esgotada.\n"
 
 #, c-format
-msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr ""
-"%s: Nenhum resultado encontrado para a propriedade \"%s\" e o valor \"%s\".\n"
 
 #, c-format
-msgid "%s: No results founded.\n"
-msgstr "%s: Nenhum resultado encontrado.\n"
+msgid "%s: No results found.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
@@ -641,6 +644,9 @@ msgstr "Fe&char"
 msgid "&Colors"
 msgstr "&Cores"
 
+msgid "&Command History"
+msgstr "Histórico de &comandos"
+
 msgid "&Contributions"
 msgstr "&Contribuições"
 
@@ -664,9 +670,6 @@ msgstr "&EPS"
 
 msgid "&Edit"
 msgstr "&Editar"
-
-msgid "&Editor"
-msgstr "&Editor"
 
 msgid "&Empty clipboard"
 msgstr "Es&vaziar a área de transferência"
@@ -749,6 +752,9 @@ msgstr "&Salvar ambiente..."
 msgid "&Save..."
 msgstr "&Salvar..."
 
+msgid "&SciNotes"
+msgstr "&SciNotes"
+
 msgid "&Scilab Help"
 msgstr "Ajuda do &Scilab"
 
@@ -758,6 +764,9 @@ msgstr "&Selecionar tudo"
 msgid "&Select as current figure"
 msgstr "&Selecionar como figura atual"
 
+msgid "&Start datatip manager"
+msgstr "&Iniciar gerenciador datatip"
+
 msgid "&Start entity picker"
 msgstr "&Iniciar apanhador de entidades"
 
@@ -766,6 +775,9 @@ msgstr "Ferramen&tas"
 
 msgid "&UnZoom"
 msgstr "A&fastar"
+
+msgid "&Variable Browser"
+msgstr "Navegador de &variáveis"
 
 msgid "&Vectorial export"
 msgstr "Exportação &vetorial"
@@ -810,6 +822,9 @@ msgstr "Todos os arquivos Scilab"
 msgid "All files"
 msgstr "Todos os arquivos"
 
+msgid "An error occured: "
+msgstr "Ocorreu um erro: "
+
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -839,6 +854,9 @@ msgstr ""
 msgid "Application"
 msgstr "Aplicativo"
 
+msgid "Attributes"
+msgstr "Atributos"
+
 msgid ""
 "Authors:\n"
 "Scilab Consortium / INRIA / ENPC / Contributors\n"
@@ -850,6 +868,9 @@ msgstr ""
 
 msgid "Back"
 msgstr "Voltar"
+
+msgid "Bold"
+msgstr "Negrito"
 
 msgid "C&lose"
 msgstr "&Fechar"
@@ -910,6 +931,9 @@ msgstr "Direitos autorais (c) 1989-2007 (ENPC)"
 
 msgid "Copyright (c) 1989-2010 (INRIA)"
 msgstr "Direitos autorais (c) 1989-2010 (INRIA)"
+
+msgid "Could not open: "
+msgstr "Não foi possível abrir: "
 
 msgid "Cut"
 msgstr "Recortar"
@@ -974,6 +998,12 @@ msgstr "O arquivo já existe"
 msgid "File already exists"
 msgstr "O arquivo já existe"
 
+msgid "Font"
+msgstr "Fonte"
+
+msgid "Font Chooser"
+msgstr "Seletor de fontes"
+
 msgid "Forward"
 msgstr "Próximo"
 
@@ -998,11 +1028,14 @@ msgstr "Ajuda sobre uma palavra-chave selecionada"
 msgid "Impossible to get current look and feel"
 msgstr "É impossível obter a aparência atual"
 
+msgid "Italic"
+msgstr "Itálico"
+
 msgid "JPEG image"
 msgstr "Imagem JPEG"
 
-msgid "Launch Scilab text editor"
-msgstr "Lançar o editor de textos do Scilab"
+msgid "Launch SciNotes"
+msgstr "Abre o programa editor de texto SciNotes"
 
 msgid "Launch plot2d"
 msgstr "Lançar plot2d"
@@ -1040,6 +1073,9 @@ msgstr "Estado do menu"
 msgid "Module manager - ATOMS"
 msgstr "Gerenciador de módulos - ATOMS"
 
+msgid "Monospaced"
+msgstr "Monoespaçado"
+
 msgid "No"
 msgstr "Não"
 
@@ -1053,6 +1089,9 @@ msgstr "Não existe a propriedade \"%s\" para uicontrol do estilo: %s.\n"
 
 msgid "No color selected."
 msgstr "Nenhuma cor está selecionada."
+
+msgid "No print service found."
+msgstr "Nenhum serviço de impressão encontrado."
 
 msgid "No text selected"
 msgstr "Nenhum texto está selecionado"
@@ -1123,6 +1162,9 @@ msgstr "Imagem SVG"
 msgid "Save and execute"
 msgstr "Salvar e executar"
 
+msgid "SciNotes compatible"
+msgstr "Compatível com SciNotes"
+
 msgid "Scicos files"
 msgstr "Arquivos Scicos"
 
@@ -1162,6 +1204,9 @@ msgstr "Mensagem de escolha do Scilab"
 msgid "Scilab Contributors..."
 msgstr "Colaboradores do Scilab..."
 
+msgid "Scilab Demo files"
+msgstr "Arquivos de demonstração do Scilab"
+
 msgid "Scilab Demonstrations"
 msgstr "Demonstrações do Scilab"
 
@@ -1177,11 +1222,17 @@ msgstr "Mensagem do Scilab"
 msgid "Scilab Multiple Values Request"
 msgstr "Solicitação de múltiplos valores do Scilab"
 
+msgid "Scilab Quit files"
+msgstr "Arquivos de saída do Scilab"
+
 msgid "Scilab SCE files"
 msgstr "Arquivos SCE do Scilab"
 
 msgid "Scilab SCI files"
 msgstr "Arquivos SCI do Scilab"
+
+msgid "Scilab Start files"
+msgstr "Arquivos de início do Scilab"
 
 msgid "Scilab binary files"
 msgstr "Arquivos binários do Scilab"
@@ -1201,8 +1252,8 @@ msgstr "Selecionar um arquivo para execução"
 msgid "Select a file to load"
 msgstr "Selecionar um arquivo para carregamento"
 
-msgid "Select a file to open with Scilab text editor"
-msgstr "Selecionar um arquivo para abrir com o Editor de textos do Scilab"
+msgid "Select a file to open with SciNotes"
+msgstr "Selecione um arquivo para abrir com SciNotes"
 
 msgid "Select a file to write"
 msgstr "Selecionar um arquivo para escrever"
@@ -1233,6 +1284,9 @@ msgstr ""
 "Alguns módulos do Scilab são lançados sob a licença GPLv2.\n"
 "\n"
 
+msgid "Stop datatip manager"
+msgstr "Parar gerenciador datatip"
+
 msgid "Sub-menu 1"
 msgstr "Submenu 1"
 
@@ -1245,6 +1299,9 @@ msgstr "Submenu 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Submenu 2-2"
 
+msgid "Test files"
+msgstr "Arquivos de testes"
+
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "O Consórcio Scilab (DIGITEO)"
 
@@ -1253,6 +1310,9 @@ msgstr "Visão geral de árvore"
 
 msgid "Uicontrols demo"
 msgstr "Demonstração de Uicontrols"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "Demonstração dos Uicontrols com LaTeX"
 
 msgid "Unrecognized extension '"
 msgstr "Extensão desconhecida: \""
@@ -1500,6 +1560,14 @@ msgstr ""
 "ou \"%s\".\n"
 
 #, c-format
+msgid ""
+"Wrong value for '%s' property: A String containing a numeric value "
+"expected.\n"
+msgstr ""
+"Propriedade de valor errado para '%s' uma string contendo um valor numérico "
+"esperado.\n"
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr ""
 "Valor incorreto para a propriedade \"%s\": esperava-se um número real.\n"
@@ -1583,6 +1651,9 @@ msgstr "item1|item2|item3|item4"
 
 msgid "red"
 msgstr "vermelho"
+
+msgid "toggle datatip mode"
+msgstr "modo de alternância datatip"
 
 msgid "unchecked"
 msgstr "desmarcado"

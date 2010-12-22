@@ -23,7 +23,7 @@
     <synopsis>[info] = pvm_barrier(group,count)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>type</term>
@@ -51,7 +51,7 @@
     members of the <literal>group</literal> have called <literal>pvm_barrier</literal>.
     The <literal>count</literal> argument is required because processes could be
     joining the given group after other processes have called
-    <literal>pvm_barrier</literal>. Thus PVM doesn't know how many group members
+    <literal>pvm_barrier</literal>. Thus PVM does not know how many group members
     to wait for at any given instant. Although <literal>count</literal> can be set less,
     it is typically the total number of members of the group.
     So the logical function of the <literal>pvm_barrier</literal> call

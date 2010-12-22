@@ -1,0 +1,331 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+package org.scilab.modules.xcos.modelica;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.EventListenerList;
+
+/**
+ * Contains the statistics for the current model.
+ */
+public final class ModelStatistics {
+	private long equations;
+	private long fixedParameters;
+	private long relaxedParameters;
+	private long fixedVariables;
+	private long relaxedVariables;
+	private long discreteStates;
+	private long inputs;
+	private long derivativeStates;
+
+	private EventListenerList listenerList = new EventListenerList();
+	private transient ChangeEvent changeEvent; // = null
+
+	/**
+	 * Default constructor
+	 */
+	public ModelStatistics() {
+	}
+
+	/**
+	 * @return the diffStates
+	 * 
+	 */
+	public long getDerivativeStates() {
+		return derivativeStates;
+	}
+
+	/**
+	 * @return the discreteStates
+	 */
+	public long getDiscreteStates() {
+		return discreteStates;
+	}
+
+	/**
+	 * @return the equations
+	 */
+	public long getEquations() {
+		return equations;
+	}
+
+	/**
+	 * @return the fixedParameters
+	 */
+	public long getFixedParameters() {
+		return fixedParameters;
+	}
+
+	/**
+	 * @return the fixedVariables
+	 */
+	public long getFixedVariables() {
+		return fixedVariables;
+	}
+
+	/**
+	 * @return the inputs
+	 */
+	public long getInputs() {
+		return inputs;
+	}
+
+	/**
+	 * @return the relaxedParameters
+	 */
+	public long getRelaxedParameters() {
+		return relaxedParameters;
+	}
+
+	/**
+	 * @return the relaxedVariables
+	 */
+	public long getRelaxedVariables() {
+		return relaxedVariables;
+	}
+
+	/**
+	 * @return the calculated unknowns
+	 */
+	public long getUnknowns() {
+		return getRelaxedParameters() + getRelaxedVariables();
+	}
+
+	/**
+	 * Increment the diffStates
+	 */
+	public void incDerivativeStates() {
+		incDerivativeStates(1);
+	}
+
+	/**
+	 * Increment the diffStates
+	 * 
+	 * @param increment
+	 *            the increment
+	 */
+	public void incDerivativeStates(long increment) {
+		derivativeStates += increment;
+	}
+
+	/**
+	 * Increment the discreteStates
+	 */
+	public void incDiscreteStates() {
+		incDiscreteStates(1);
+	}
+
+	/**
+	 * Increment the discreteStates
+	 * 
+	 * @param increment
+	 *            the increment
+	 */
+	public void incDiscreteStates(long increment) {
+		discreteStates += increment;
+	}
+
+	/**
+	 * Increment the equations
+	 */
+	public void incEquations() {
+		incEquations(1);
+	}
+
+	/**
+	 * Increment the equations
+	 * 
+	 * @param increment
+	 *            the increment
+	 */
+	public void incEquations(long increment) {
+		equations += increment;
+	}
+
+	/**
+	 * Increment the fixedParameters
+	 */
+	public void incFixedParameters() {
+		incFixedParameters(1);
+	}
+
+	/**
+	 * Increment the fixedParameters
+	 * 
+	 * @param increment
+	 *            the increment
+	 */
+	public void incFixedParameters(long increment) {
+		fixedParameters += increment;
+	}
+
+	/**
+	 * Increment the fixedVariables
+	 */
+	public void incFixedVariables() {
+		incFixedVariables(1);
+	}
+
+	/**
+	 * Increment the fixedVariables
+	 * 
+	 * @param increment
+	 *            the increment
+	 */
+	public void incFixedVariables(long increment) {
+		fixedVariables += increment;
+	}
+
+	/**
+	 * Increment the inputs
+	 */
+	public void incInputs() {
+		incInputs(1);
+	}
+
+	/**
+	 * Increment the inputs
+	 * 
+	 * @param increment
+	 *            the increment
+	 */
+	public void incInputs(long increment) {
+		inputs += increment;
+	}
+
+	/**
+	 * Increment the relaxedParameters
+	 */
+	public void incRelaxedParameters() {
+		incRelaxedParameters(1);
+	}
+
+	/**
+	 * Increment the relaxedParameters
+	 * 
+	 * @param increment
+	 *            the increment
+	 */
+	public void incRelaxedParameters(long increment) {
+		relaxedParameters += increment;
+	}
+
+	/**
+	 * Increment the relaxedVariables
+	 */
+	public void incRelaxedVariables() {
+		incRelaxedVariables(1);
+	}
+
+	/**
+	 * Increment the relaxedVariables
+	 * 
+	 * @param increment
+	 *            the increment
+	 */
+	public void incRelaxedVariables(long increment) {
+		relaxedVariables += increment;
+	}
+
+	/**
+	 * @param equations
+	 *            the equations to set
+	 */
+	public void setEquations(long equations) {
+		this.equations = equations;
+	}
+
+	/**
+	 * @param relaxedVariables
+	 *            the relaxedVariables to set
+	 */
+	public void setRelaxedVariables(long relaxedVariables) {
+		this.relaxedVariables = relaxedVariables;
+	}
+
+	/*
+	 * Utility methods
+	 */
+
+	/**
+	 * @return true if the statistics are all zeros, false otherwise.
+	 */
+	// CSOFF: BooleanExpressionComplexity
+	public boolean isEmpty() {
+		return equations == 0 && fixedParameters == 0 && relaxedParameters == 0
+				&& fixedVariables == 0 && relaxedVariables == 0
+				&& discreteStates == 0 && inputs == 0 && derivativeStates == 0;
+	}
+
+	// CSON: BooleanExpressionComplexity
+
+	/**
+	 * Clear the statistics
+	 */
+	public void clear() {
+		equations = 0;
+		fixedParameters = 0;
+		relaxedParameters = 0;
+		fixedVariables = 0;
+		relaxedVariables = 0;
+		discreteStates = 0;
+		inputs = 0;
+		derivativeStates = 0;
+	}
+
+	/*
+	 * Change listener support
+	 */
+
+	/**
+	 * Add a listener
+	 * 
+	 * @param l
+	 *            the listener
+	 */
+	public void addChangeListener(ChangeListener l) {
+		listenerList.add(ChangeListener.class, l);
+	}
+
+	/**
+	 * Remove a listener
+	 * 
+	 * @param l
+	 *            the listener
+	 */
+	public void removeChangeListener(ChangeListener l) {
+		listenerList.remove(ChangeListener.class, l);
+	}
+
+	/**
+	 * Notify all listeners that have registered interest for notification on
+	 * this event type. The event instance is lazily created using the
+	 * parameters passed into the fire method.
+	 */
+	public void fireChange() {
+		// Guaranteed to return a non-null array
+		Object[] listeners = listenerList.getListenerList();
+		// Process the listeners last to first, notifying
+		// those that are interested in this event
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
+			if (listeners[i] == ChangeListener.class) {
+				// Lazily create the event:
+				if (changeEvent == null) {
+					changeEvent = new ChangeEvent(this);
+				}
+				((ChangeListener) listeners[i + 1]).stateChanged(changeEvent);
+			}
+		}
+	}
+}

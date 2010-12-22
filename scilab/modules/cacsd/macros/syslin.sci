@@ -40,15 +40,11 @@ function [sl]=syslin(domain,a,b,c,d,x0)
   //============================================================================
   if rhs==2 then //syslin(domaine,sys)
 
-    if type(a)<>16 then 
-      error()
+    if typeof(a)=="state-space" | typeof(a)=="rational" then 
+      sl=a;
+      sl('dt')=domain
     else
-      if a(1)(1)=='r'|a(1)(1)=='lss' then
-	sl=a;
-	sl('dt')=domain
-      else
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"syslin",2))
-      end
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"syslin",2))
     end
     //============================================================================
   elseif rhs==3 then // syslin(domaine,num,den)

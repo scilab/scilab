@@ -15,7 +15,7 @@ package org.scilab.tests.modules.graph.utils;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.scilab.modules.graph.utils.Signal;
+import org.scilab.modules.action_binding.utils.Signal;
 import org.testng.annotations.Test;
 
 /**
@@ -32,17 +32,17 @@ public class SignalTest {
 	@Test
 	public void simpleNotify() {
 		final String index = "1";
-		
+
 		new Timer().schedule((new TimerTask() {
 			@Override
 			public void run() {
 				Signal.notify(index);
 			}
 		}), 1000);
-		
+
 		Signal.wait(index);
 	}
-	
+
 	/**
 	 * Check that the inverted sequence is valid :
 	 * <pre>
@@ -53,14 +53,14 @@ public class SignalTest {
 	@Test
 	public void invertedNotify() {
 		final String index = "1";
-		
+
 		new Timer().schedule((new TimerTask() {
 			@Override
 			public void run() {
 				Signal.wait(index);
 			}
 		}), 1000);
-		
+
 		Signal.notify(index);
 	}
 }

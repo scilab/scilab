@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - 
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,7 +34,7 @@ static void cdfbinErr(int status,double bound);
 /*--------------------------------------------------------------------------*/
 int cdfbinI(char* fname,unsigned long l)
 {
-	int m1,n1,l1;
+	int m1 = 0, n1 = 0, l1 = 0;
 	Nbvars = 0;
 	CheckRhs(5,6);
 	CheckLhs(1,2);
@@ -71,16 +72,38 @@ int cdfbinI(char* fname,unsigned long l)
 /*--------------------------------------------------------------------------*/
 static void cdfbinErr(int status,double bound)
 {
-	static char *param[7]={"Which", "P","Q","Pr","Ompr","S","Xn"};
-	switch ( status )
-	{
-	case 1 : Scierror(999,_("Answer appears to be lower than lowest search bound %f\n"),bound);break;
-	case 2 : Scierror(999,_("Answer appears to be higher than greatest search bound %f\n"),bound);break;
-	case 3 : Scierror(999," P + Q .ne. 1 \n");break ;
-	case 4 : Scierror(999," Pr + Ompr .ne. 1 \n");break;
-	default :
-		Scierror(999,_("Input argument %c is out of range.\nBound exceeded: %f\n"),
-			param[-status-1],bound);
-	}
+    static char *param[7] = {"Which", "P","Q","Pr","Ompr","S","Xn"};
+    switch ( status )
+    {
+    case 1 :
+        {
+            cdfLowestSearchError(bound);
+        }
+        break;
+
+    case 2 : 
+        {
+            cdfGreatestSearchError(bound);
+        }
+        break;
+
+    case 3 : 
+        {
+            Scierror(999," P + Q .ne. 1 \n");
+        }
+        break;
+
+    case 4 : 
+        {
+            Scierror(999," Pr + Ompr .ne. 1 \n");
+        }
+        break;
+
+    default :
+        {
+            CdfDefaultError(param, status, bound);
+        }
+        break;
+    }
 }
 /*--------------------------------------------------------------------------*/

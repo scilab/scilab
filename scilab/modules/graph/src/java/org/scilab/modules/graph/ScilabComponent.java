@@ -59,6 +59,7 @@ public class ScilabComponent extends mxGraphComponent {
 	 * 
 	 * @return the canvas
 	 */
+	@Override
 	public ScilabCanvas createCanvas() {
 		return new ScilabCanvas();
 	}

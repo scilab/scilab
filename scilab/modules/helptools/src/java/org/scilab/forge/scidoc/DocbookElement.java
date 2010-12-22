@@ -1,0 +1,98 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+package org.scilab.forge.scidoc;
+
+import java.util.Map;
+
+public class DocbookElement {
+	
+    private Map<String, String> attributes;
+    private String name;
+    private StringBuilder contents;
+	
+    /**
+     * Default constructor
+     * @param name the tag name
+     * @param attributes the attributes and its values
+     */
+    protected DocbookElement(String name, Map attributes) {
+	this.name = name;
+	this.attributes = attributes;
+	contents = new StringBuilder();
+    }
+
+    /**
+     * @return a new DocbookElement
+     */
+    public DocbookElement getNewInstance(String name, Map attributes) {
+	return new DocbookElement(name, attributes);
+    }
+
+    /**
+     * @return the tag name
+     */
+    public String getName() {
+	return name;
+    }
+
+    /**
+     * @return the attributes
+     */
+    public Map<String, String> getAttributes() {
+	return attributes;
+    }
+    
+    /**
+     * @return the buffer used to add contents of the tag
+     */
+    public StringBuilder getStringBuilder() {
+	return contents;
+    }
+
+    /**
+     * @param the buffer to use
+     */
+    public void setStringBuilder(StringBuilder buf) {
+	contents = buf;
+    }
+
+    /**
+     * This method can be used to store other things...
+     * and it should be override since it does nothing...
+     * I created it to handle the case where the converter has two String (or more)
+     * to generate with the same data.
+     * @param obj the Object to append.
+     */
+    public void append(Object obj) { }
+
+    /**
+     * This method can be used to get what it has been stored with append
+     * @return an object
+     */
+    public Object get() {
+	return null;
+    }
+
+    /**
+     * Add a parent to retrieve its contents
+     * @param elem the parent
+     */
+    public void setParent(DocbookElement elem) { }
+
+    /**
+     * @return the parent element
+     */
+    public DocbookElement getParent() {
+	return null;
+    }
+}

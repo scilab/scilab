@@ -16,9 +16,9 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
@@ -35,10 +35,10 @@ public class LabelElement extends AbstractElement<TextBlock> {
 	private ScilabMList data;
 	
 	/** Element used to decode/encode Scicos model part into a BasicBlock*/
-	private BlockModelElement modelElement = new BlockModelElement();
+	private final BlockModelElement modelElement = new BlockModelElement();
 	
 	/** Element used to decode/encode Scicos model part into a BasicBlock*/
-	private BlockGraphicElement graphicElement = new BlockGraphicElement();
+	private final BlockGraphicElement graphicElement = new BlockGraphicElement();
 	
 	/**
 	 * Default constructor
@@ -52,7 +52,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
 	 * @param into the target, if null a new instance is allocated and returned.
 	 * @return the decoded block.
 	 * @throws ScicosFormatException when e decoding error occurred.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType, java.lang.Object)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType, java.lang.Object)
 	 */
 	@Override
 	public TextBlock decode(ScilabType element, TextBlock into)
@@ -65,6 +65,8 @@ public class LabelElement extends AbstractElement<TextBlock> {
 		if (into == null) {
 			block = new TextBlock();
 		}
+		
+		block = beforeDecode(element, block);
 		
 		/*
 		 * Fill block with the data structure
@@ -91,6 +93,8 @@ public class LabelElement extends AbstractElement<TextBlock> {
 					.getData()[0][0];
 			block.setValue(text);
 		}
+		
+		block = afterDecode(element, block);
 		
 		return block;
 	}
@@ -178,7 +182,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
 	 * 
 	 * @param element the element to test
 	 * @return true when the implementation is the right one, false otherwise.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -194,7 +198,7 @@ public class LabelElement extends AbstractElement<TextBlock> {
 	 * @param from not used
 	 * @param element not used
 	 * @return always null
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(TextBlock from, ScilabType element) {

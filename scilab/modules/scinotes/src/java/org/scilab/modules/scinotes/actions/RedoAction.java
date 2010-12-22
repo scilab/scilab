@@ -12,13 +12,11 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * CommentAction Class
@@ -29,10 +27,11 @@ public class RedoAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private RedoAction(SciNotes editor) {
-        super(SciNotesMessages.REDO, editor);
+    public RedoAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -44,30 +43,25 @@ public class RedoAction extends DefaultAction {
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
+     * @return a MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.REDO, null, new RedoAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new RedoAction(label, editor), key);
     }
 
     /**
      * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
      * @param editor SciNotes
+     * @return PushButton
      */
-    public static PushButton createButton(SciNotes editor) {
-        PushButton button = createButton(SciNotesMessages.REDO, "edit-redo.png", new RedoAction(editor));
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        PushButton button = createButton(tooltip, icon, new RedoAction(tooltip, editor));
         editor.setRedoButton(button);
         return button;
-    }
-
-    /**
-     * Put input map
-     * @param textPane JTextpane
-     * @param editor Editor
-     * @param key KeyStroke
-     */
-    public static void putInInputMap(JComponent textPane, SciNotes editor, KeyStroke key) {
-        textPane.getInputMap().put(key, new RedoAction(editor));
     }
 }

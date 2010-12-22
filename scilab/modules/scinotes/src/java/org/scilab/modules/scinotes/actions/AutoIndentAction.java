@@ -12,10 +12,15 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * AutoIndentAction Class
@@ -24,38 +29,43 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class AutoIndentAction extends DefaultCheckAction  {
 
-
     /**
      * serialVersionUID
      */
     private static final long serialVersionUID = -1937347660350539353L;
 
-
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private AutoIndentAction(SciNotes editor) {
-        super(SciNotesMessages.AUTO_INDENT, editor);
+    public AutoIndentAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
      * doAction
      */
     public void doAction() {
-        getEditor().setAutoIndent(this.getState());
+        SciNotes.setAutoIndent(this.getState());
         ConfigSciNotesManager.saveAutoIndent(this.getState());
     }
 
-
     /**
      * createCheckBoxMenu
+     * @param label label of the menu
      * @param editor SciNotes
+     * @param key KeyStroke
      * @return CheckBoxMenuItem
      */
-    public static CheckBoxMenuItem createCheckBoxMenu(SciNotes editor) {
-        CheckBoxMenuItem autoIndent = createCheckBoxMenu(SciNotesMessages.AUTO_INDENT, null, new AutoIndentAction(editor), null);
-        autoIndent.setChecked(ConfigSciNotesManager.getAutoIndent());
+    public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        final CheckBoxMenuItem autoIndent = createCheckBoxMenu(label, null, new AutoIndentAction(label, editor), key);
+        ((JCheckBoxMenuItem) autoIndent.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    autoIndent.setChecked(ConfigSciNotesManager.getAutoIndent());
+                }
+            });
+
         return autoIndent;
     }
 }

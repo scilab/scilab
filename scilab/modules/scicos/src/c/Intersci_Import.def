@@ -2,4 +2,3 @@ LIBRARY    intersci.dll
 
 
 EXPORTS
-FreeRhsSVar

@@ -23,7 +23,7 @@
     <synopsis>[Ac,Bc,U,ind]=canon(A,B)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Ac,Bc</term>

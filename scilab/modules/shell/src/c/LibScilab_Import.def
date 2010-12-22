@@ -2,16 +2,15 @@
 
 
 EXPORTS
-;core
-  LaunchScilab
-  pLaunchScilabLock
+;
+LaunchScilab
+pLaunchScilabLock
 ;
 getScilabMode
+ismenu
 callFunctionFromGateway
 com_
-iop_
-recu_
-sigbas_
+getWarningMode
 putlhsvar_
 intersci_
 stack_
@@ -22,9 +21,10 @@ checklhs_
 checkrhs_
 createvar_
 createvarfromptr_
-set_is_reading
-freeArrayOfString
 vartype_
-getWarningMode
-ismenu
+recu_
+sigbas_
 StoreCommand
+freeArrayOfString
+iop_
+

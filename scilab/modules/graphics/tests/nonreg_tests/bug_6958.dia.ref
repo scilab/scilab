@@ -15,5 +15,5 @@
 v0=string(0:10);
 drawaxis(x=0:10,y=0.5,dir="u",tics="v",val=v0);
 e=gce();
-if execstr("e.tics_labels=v0"  ,"errcatch") <> 0 then pause, end  // Should work now.
-if execstr("e.tics_labels=v0''","errcatch") <> 0 then pause, end
+if execstr("e.tics_labels=v0"  ,"errcatch") <> 0 then bugmes();quit;end  // Should work now.
+if execstr("e.tics_labels=v0''","errcatch") <> 0 then bugmes();quit;end

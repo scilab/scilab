@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+ * Copyright (C) 2008-2009 - INRIA - Michael Baudin
+ * Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 -->
 <refentry 
           version="5.0-subset Scilab" 
@@ -60,7 +61,7 @@
   </refsection>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -257,6 +258,8 @@
         <listitem>
           <para>
 	  The verbose level. 
+          Possible values are "notify", "iter", "final" and "off". 
+          The default value is "notify".
 	  </para>
         </listitem>
       </varlistentry>
@@ -534,7 +537,7 @@ opt = optimset ( "PlotFcns" , myfunctions );
   </refsection>
 
   <refsection>
-    <title>Example with an customized output function</title>
+    <title>Example with a customized output function</title>
 
     <para>
     In the following example, we want to produce intermediate 
@@ -620,7 +623,7 @@ Exiting: Maximum number of iterations has been exceeded
 
     <programlisting role="example"> 
      <![CDATA[ 
-ffunction y = banana (x)
+function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 opt = optimset ( "Display" , "iter" );

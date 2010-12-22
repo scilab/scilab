@@ -12,6 +12,7 @@
 
 package org.scilab.modules.scinotes.utils;
 
+import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -21,7 +22,6 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.awt.Point;
 import java.io.IOException;
 
 import javax.swing.text.BadLocationException;
@@ -43,9 +43,10 @@ public class DropFilesListener implements DropTargetListener {
     private ScilabEditorPane pane;
     private int p0;
     private int p1;
-    private Point previousPoint;
-    private Point actualPoint;
+    private Point previousPoint = new Point();
+    private Point actualPoint = new Point();
     private int actualPos;
+    private boolean enter;
 
     /**
      * Constructor
@@ -62,11 +63,14 @@ public class DropFilesListener implements DropTargetListener {
      * @param arg0 DropTargetDragEvent
      */
     public void dragEnter(DropTargetDragEvent arg0) {
-        int sp0 = pane.getSelectionStart();
-        int sp1 = pane.getSelectionEnd();
-        if (sp1 != sp0) {
-            p1 = sp1;
-            p0 = sp0;
+        if (arg0.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+            int sp0 = pane.getSelectionStart();
+            int sp1 = pane.getSelectionEnd();
+            if (sp1 != sp0) {
+                p1 = sp1;
+                p0 = sp0;
+            }
+            enter = true;
         }
     }
 
@@ -75,14 +79,16 @@ public class DropFilesListener implements DropTargetListener {
      * @param arg0 DropTargetEvent
      */
     public void dragExit(DropTargetEvent arg0) {
-        int y = actualPoint.y - previousPoint.y;
-        ScilabDocument doc = (ScilabDocument) pane.getDocument();
-        Element root = doc.getDefaultRootElement();
-        int line0 = root.getElementIndex(actualPos);
-        int line1 = Math.max(0, line0 + Math.min(root.getElementCount() - 1 - line0, (int) Math.signum(y) * y * y));
-        int diff = actualPos - root.getElement(line0).getStartOffset();
-        Element line = root.getElement(line1);
-        pane.setCaretPosition(Math.min(line.getStartOffset() + diff, line.getEndOffset() - 1));
+        if (enter) {
+            int y = actualPoint.y - previousPoint.y;
+            ScilabDocument doc = (ScilabDocument) pane.getDocument();
+            Element root = doc.getDefaultRootElement();
+            int line0 = root.getElementIndex(actualPos);
+            int line1 = Math.max(0, line0 + Math.min(root.getElementCount() - 1 - line0, (int) Math.signum(y) * y * y));
+            int diff = actualPos - root.getElement(line0).getStartOffset();
+            Element line = root.getElement(line1);
+            pane.setCaretPosition(Math.min(line.getStartOffset() + diff, line.getEndOffset() - 1));
+        }
     }
 
     /**
@@ -90,10 +96,12 @@ public class DropFilesListener implements DropTargetListener {
      * @param arg0 DropTargetDragEven
      */
     public void dragOver(DropTargetDragEvent arg0) {
-        previousPoint = actualPoint;
-        actualPoint = arg0.getLocation();
-        actualPos = pane.viewToModel(actualPoint);
-        pane.setCaretPosition(actualPos);
+        if (arg0.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+            previousPoint = actualPoint;
+            actualPoint = arg0.getLocation();
+            actualPos = pane.viewToModel(actualPoint);
+            pane.setCaretPosition(actualPos);
+        }
     }
 
     /**
@@ -112,7 +120,7 @@ public class DropFilesListener implements DropTargetListener {
                 try {
                     java.util.List data = (java.util.List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
                     for (int i = 0; i < data.size(); i++) {
-                        SciNotes.scinotes(data.get(i).toString());
+                        SciNotes.launchSciNotes().openFile(data.get(i).toString(), 0, null);
                     }
                     arg0.dropComplete(true);
                 } catch (UnsupportedFlavorException e) {
@@ -137,7 +145,7 @@ public class DropFilesListener implements DropTargetListener {
                 }
                 java.util.List data = textURIListToFileList(uriData);
                 for (int i = 0; i < data.size(); i++) {
-                    SciNotes.scinotes(data.get(i).toString());
+                    SciNotes.launchSciNotes().openFile(data.get(i).toString(), 0, null);
                 }
                 arg0.dropComplete(true);
             } else if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {

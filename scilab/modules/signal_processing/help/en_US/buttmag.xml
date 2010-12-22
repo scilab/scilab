@@ -12,7 +12,7 @@
     <synopsis>[h]=buttmag(order,omegac,sample)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>order</term>

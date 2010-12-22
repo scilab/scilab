@@ -9,7 +9,7 @@
   <refsynopsisdiv><title>Calling Sequence</title><synopsis>TCL_EvalStr(str [,interp])
 res = TCL_EvalStr(str [,interp])</synopsis></refsynopsisdiv>
 
-  <refsection><title>Parameters</title>
+  <refsection><title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str</term>

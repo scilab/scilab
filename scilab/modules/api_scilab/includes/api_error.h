@@ -29,6 +29,7 @@ extern "C" {
 
 #define API_ERROR_INVALID_NAME														50
 #define API_ERROR_NAMED_TYPE															51
+#define API_ERROR_NAMED_UNDEFINED_VAR															52
 #define API_ERROR_NAMED_VARDIM														55
 #define API_ERROR_GET_NAMED_DIMFROMVAR										59
 #define API_ERROR_IS_ROW_VECTOR														60

@@ -77,11 +77,16 @@ function libn = ilib_compile(lib_name, ..
       mprintf(_("   Building shared library (be patient)\n"));
     end
 
-    if ilib_verbose() > 1 then
-      msg = unix_g(make_command + makename + ' all');
-      disp(msg);
+    [msg, stat] = unix_g(make_command + makename + ' all 2>&0');
+    if stat <> 0 then
+      // more feedback when compilation fails
+      [msg, stat, stderr] = unix_g(make_command + makename + ' all 1>&2'); 
+      disp(stderr);
+      error(msprintf(gettext("%s: Error while executing %s.\n"), "ilib_compile", makename));
     else
-      unix_s(make_command + makename + ' all');
+      if ilib_verbose() > 1 then
+        disp(msg);
+      end
     end
 
   else

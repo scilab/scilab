@@ -2,6 +2,7 @@
 // Copyright (C) 2008 INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2008-2010 DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+// Copyright (C) 2010 DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -27,15 +28,15 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // if dirs is not specified or [] then standard scilab man are assumed and
     // titles are searched in %helps
     // =========================================================================
+    
+    my_wanted_language  = getlanguage(); // This variable is only need when
+                                         // build all scilab help
 
     global %helps;
     global %helps_modules;
 
     if %helps_modules == [] then
-      moduleslist = getmodules();
-      for i = 1:size(moduleslist,'*')
-        add_module_help_chapter(moduleslist(i));
-      end
+       x2f_reset_help_mod_var(my_wanted_language);
     end
 
     %HELPS = [%helps_modules; %helps];
@@ -54,8 +55,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     generated_files = [];
 
     all_scilab_help     = %F;
-    my_wanted_language  = getlanguage(); // This variable is only need when
-                                         // build all scilab help
 
     [lhs,rhs] = argn(0);
 
@@ -82,7 +81,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         if rhs == 4 then
             my_wanted_language = directory_language;
             x2f_reset_help_mod_var(my_wanted_language);
-            %HELPS=[%helps_modules;%helps];
+            %HELPS = [%helps_modules; %helps];
         end
 
         dirs_to_build          = %HELPS;
@@ -453,7 +452,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
     if all_scilab_help then
 
-        mprintf(_("Building the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
+        mprintf(_("Building the scilab manual file ["+output_format+"]\n"));
 
         // Define and create the final output directory if does not exist
         final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
@@ -487,7 +486,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             final_help_file = pathconvert(buildDoc_dir + "htmlhelp.hhp",%f,%f);
         elseif is_html then
             final_help_file = pathconvert(final_output_dir+"/index.html",%f,%f);
-        else
+       else
             final_help_file = pathconvert(final_output_dir+"/scilab_" + my_wanted_language + "_help." + output_format_ext,%f,%f);
         end
 
@@ -509,7 +508,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
         // process the build
-        buildDoc(output_format,modules_tree("master_document"),my_wanted_language);
+        if output_format=="javaHelp" | output_format=="html" | output_format=="chm" then
+          buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
+        else
+          buildDoc(output_format,modules_tree("master_document"), my_wanted_language);
+        end
 
         // Check if the help file has been generated
         if fileinfo(buildDoc_file)==[] then
@@ -548,7 +551,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             this_tree  = contrib_tree(dirs_c(k));
 
-            mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take a while)\n"),output_format,strsubst(dirs_c(k),SCI_long,"SCI"));
+            mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs_c(k),SCI_long,"SCI"));
 
             // Define and create the final output directory if does not exist
             final_output_dir = pathconvert(dirs_c(k)+"/../../"+output_format_ext,%f,%f);
@@ -603,7 +606,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" then
+              buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            else
+              buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            end
 
             // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
@@ -656,12 +663,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             if nb_dir > 1 then
                 if displaydone == 0 then
-                    mprintf(_("\nBuilding the manual file [%s]. (Please wait building ... this can take a while)\n"),output_format);
+                    mprintf(_("\nBuilding the manual file [%s].\n"),output_format);
                     displaydone = 1;
                 end
                 mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
             else
-                mprintf(_("\nBuilding the manual file [%s] in %s. (Please wait building ... this can take a while)\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
+                mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
             end
 
             // Define and create the final output directory if does not exist
@@ -722,9 +729,13 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
+            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" then
+              buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
+            else
+              buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
+             end
 
-            // Check if the help file has been generated
+             // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
                 error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
             end
@@ -823,16 +834,41 @@ function x2f_reset_help_mod_var(language)
 
     // Reset the variable in hand
     %helps_modules = [];
-
-    // Get module list
-    module_list = getmodules();
-
-    // Loop on modules
-    for k=1:size(module_list,'*');
-        addchapter_path = getlongpathname(SCI+"/modules/"+module_list(k)+"/help/"+language+"/addchapter.sce");
-        if fileinfo(addchapter_path)<>[] then
-            exec(addchapter_path,-1);
+    
+    modules_ordered_list = mgetl(SCI + "/modules/helptools/etc/MAIN_CHAPTERS");
+    // remove empty lines in MAIN_CHAPTERS
+    modules_ordered_list(modules_ordered_list == "") = [];
+      
+    // get current modules used by scilab
+    current_modules_list = getmodules();
+      
+    size_current_modules = size(current_modules_list, "*");
+    size_modules_ordered = size(modules_ordered_list, "*");
+    
+    if size_current_modules > size_modules_ordered then
+      error(msprintf(gettext("%s: Please check %s, number of modules is invalid.\n"), "xmltoformat", SCI + "/modules/helptools/etc/MAIN_CHAPTERS"));
+    end
+    
+    // Remove modules not present
+    k = 1;
+    cleaned_ordered_modules = [];
+    for i = 1:size_modules_ordered
+      for j = 1:size_current_modules
+        if (current_modules_list(j) == modules_ordered_list(i)) then
+          cleaned_ordered_modules(k) = modules_ordered_list(i);
+          k = k + 1;
         end
+      end
+    end
+    
+    size_cleaned_modules = size(cleaned_ordered_modules, "*");
+    
+    // Loop on modules available ordered
+    for k = 1:size_cleaned_modules;
+      addchapter_path = SCI + "/modules/" + cleaned_ordered_modules(k) + "/help/" + language + "/addchapter.sce";
+      if isfile(addchapter_path) then
+        exec(addchapter_path, -1);
+      end
     end
 
 endfunction
@@ -1037,8 +1073,10 @@ function xmlfiles = x2f_get_xml_files(directory)
 
     if xmlpaths<>[] then
         infos = fileinfo(xmlpaths);
+        ft = format();
         format(20);
         lmt   = string(infos(:,7));
+        format(ft(2),ft(1));
     else
         lmt   = [];
     end
@@ -1172,7 +1210,7 @@ function desc_out = x2f_read_CHAPTER(file_in)
 
         // Second case : Current field continuation
         if (regexp(FILETOPARSE(i),"/^\s/","o") == 1) & (current_field <> "") then
-            current_value = part(CHAPTER(i),2:length(CHAPTER(i)));
+            current_value = part(FILETOPARSE(i),2:length(FILETOPARSE(i)));
             desc_out(current_field) = [ desc_out(current_field) ; current_value ];
             continue;
         end
@@ -1362,7 +1400,7 @@ function master_document = x2f_tree_to_master( tree )
 
     // Process the path if under windows
     if getos() == 'Windows' then
-        tree_xmllist(:,2) = "file:///"+ getshortpathname(tree_xmllist(:,2));
+        tree_xmllist(:,2) = "file:///"+ strsubst(getshortpathname(tree_xmllist(:,2)) ,"\","/");
     end
 
     // Add entities

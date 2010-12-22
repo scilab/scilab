@@ -55,7 +55,7 @@ Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_scicos_simulate">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scs_m :</emphasis> xcos diagram (obtained by "load file.cos"). Note that the version of file.cos must be the current version. If not, load into xcos and save.</para>

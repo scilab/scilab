@@ -24,7 +24,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -114,6 +114,8 @@ evstr('NaN'), evstr('Inf')</programlisting>
     <title>See Also</title>
 
     <simplelist type="inline">
+      <member><link linkend="execstr">execstr</link></member>
+      <member><link linkend="evstr">evstr</link></member>
       <member><link linkend="execstr">execstr</link></member>
     </simplelist>
   </refsection>

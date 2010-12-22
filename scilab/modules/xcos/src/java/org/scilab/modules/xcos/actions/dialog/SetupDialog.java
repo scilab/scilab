@@ -52,8 +52,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 //CSOFF: MagicNumber
 public class SetupDialog extends JDialog {
 	private static final DecimalFormatSymbols FORMAT_SYMBOL = DecimalFormatSymbols.getInstance();
-	private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat("0.0####E00;0", FORMAT_SYMBOL);
-//	private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat();
+	private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat("0.0####E00", FORMAT_SYMBOL);
+	private static final BigDecimal MAX_DOUBLE = BigDecimal.valueOf(Double.MAX_VALUE);
 	
 	/**
 	 * Validate the user entry and format it.
@@ -68,12 +68,13 @@ public class SetupDialog extends JDialog {
 		JFormattedTextField textField = (JFormattedTextField) arg0;
 		try {
         		BigDecimal value = new BigDecimal(textField.getText());
-        		if (value.compareTo(new BigDecimal(0)) >= 0) {
+        		if (value.compareTo(BigDecimal.ZERO) >= 0 
+        				&& value.compareTo(MAX_DOUBLE) <= 0) {
         		    ret = true;
-        		    
-        		    // bug #7143 workaround
-        		    textField.setText(value.toString());
         		}
+        		
+        		// bug #7143 workaround
+        		textField.setValue(value);
 		} catch (NumberFormatException e) {
 		    return ret;
 		}
@@ -120,7 +121,7 @@ public class SetupDialog extends JDialog {
 		setLayout(new GridBagLayout());
 		setIconImage(imageForIcon);
 		setTitle(XcosMessages.SETUP_TITLE);
-		setModal(true);
+		setModal(false);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
@@ -296,12 +297,14 @@ public class SetupDialog extends JDialog {
 	private void installActionListeners(JButton cancelButton, JButton okButton,
 			JButton defaultButton, JButton setContextButton) {
 		cancelButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
 
 		defaultButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				integration.setValue(new BigDecimal(ScicosParameters.FINAL_INTEGRATION_TIME));
 				rts.setValue(new BigDecimal(ScicosParameters.REAL_TIME_SCALING));
@@ -315,6 +318,7 @@ public class SetupDialog extends JDialog {
 		});
 
 		okButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 			    if (((JButton) e.getSource()).hasFocus()) {
 			    try {
@@ -345,6 +349,7 @@ public class SetupDialog extends JDialog {
 		});
 
 		setContextButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, parameters);
 				

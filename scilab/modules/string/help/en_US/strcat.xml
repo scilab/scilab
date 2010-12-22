@@ -36,7 +36,7 @@ txt=strcat(vector_of_strings [,string_added, ["flag"]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -68,7 +68,7 @@ txt=strcat(vector_of_strings [,string_added, ["flag"]])</synopsis>
         <term>"flag"</term>
 
         <listitem>
-          <para>string ( "r" for return a column matrix, "c" for return a row
+          <para>string ( "r" for return a row matrix, "c" for return a column
           matrix)</para>
         </listitem>
       </varlistentry>
@@ -89,11 +89,11 @@ txt=strcat(vector_of_strings [,string_added, ["flag"]])</synopsis>
     <para>The plus symbol does the same: <literal>"a"+"b"</literal> is the
     same as <literal>strcat(["a","b"]).</literal></para>
 
-    <para><literal>If size of vector_of_strings is one, it returns
-    txt=vector_of_strings(1); </literal></para>
+    <para>If size of vector_of_strings is one, it returns
+    <literal>txt=vector_of_strings(1); </literal></para>
 
-    <para><literal>strcat('A','B') returns 'A' and not 'AB' as
-    strcat(['A','B'])</literal></para>
+    <para><literal>strcat('A','B')</literal> returns 'A' and not 'AB' as
+    <literal>strcat(['A','B'])</literal></para>
   </refsection>
 
   <refsection>

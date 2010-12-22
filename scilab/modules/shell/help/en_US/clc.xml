@@ -23,7 +23,7 @@
     <synopsis>clc([nblines])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>nblines</term>

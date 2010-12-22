@@ -24,16 +24,14 @@ function bOK = dlwSetEnvCommonVc9Vc10(MSVSDir, IsExpress, bWin64)
     return
   end
 
-  if ~IsExpress then
-    DevEnvDir = MSVSDir + '\Common7\IDE';
-    err = setenv('DevEnvDir', DevEnvDir);
-    if (err == %F) then
-      bOK = %F;
-      return
-    end
+  DevEnvDir = MSVSDir + '\Common7\IDE';
+  err = setenv('DevEnvDir', DevEnvDir);
+  if (err == %F) then
+    bOK = %F;
+    return
   end
 
-  err = setenv('VCINSTALLDIR', MSVSDir + '\VC');
+  err = setenv('VCINSTALLDIR', MSVSDir + '\VC\');
   if (err == %F) then
     bOK = %F;
     return
@@ -132,15 +130,11 @@ function newPATH = getNewPATHx64(PATH, msvsPath, sdkPath, bIsExpress)
 endfunction
 //=============================================================================
 function newPATH = getNewPATHx86(PATH, msvsPath, sdkPath, bIsExpress)
-  newPATH = '';
-  if ~bIsExpress then
-    newPATH = msvsPath + '\Common7\IDE\' + pathsep();
-  end
-  newPATH = newPATH + ..
-            msvsPath + filesep() + '\VC\bin' + pathsep() + ..
-            msvsPath + filesep() + '\Common7\Tools'+ pathsep() + ..
-            msvsPath + filesep() + '\VC\VCPackages' + pathsep() + ..
-            PATH + pathsep();
+  newPATH = msvsPath + '\Common7\IDE\' + pathsep() + ..
+            msvsPath + '\VC\bin' + pathsep() + ..
+            msvsPath + '\Common7\Tools'+ pathsep() + ..
+            msvsPath + '\VC\VCPackages' + pathsep() + ..
+            sdkPath + '\bin' + pathsep() + PATH + pathsep();
 endfunction
 //=============================================================================
 function newLIBPATH = getNewLIBPATHx64(LIBPATH, msvsPath, sdkPath, bIsExpress)

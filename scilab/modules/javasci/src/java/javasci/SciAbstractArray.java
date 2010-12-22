@@ -34,6 +34,7 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 
 	/**
 	 * Internal method to know dim (Row) in scilab
+     * @deprecated
 	 * @param name name of the variable in the Scilab instance
 	 * @return The result of the operation (>= 0 OK, -1 if the name does not exist)
 	 */
@@ -41,6 +42,7 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 
 	/**
 	 * Internal method to know dim (Col) in scilab
+     * @deprecated
 	 * @param name name of the variable in the Scilab instance
 	 * @return The result of the operation (>= 0 OK, -1 if the name does not exist)
 	 */  
@@ -57,16 +59,19 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 
 	/**
 	 * Get Matrix from Scilab
+     * @deprecated
 	 */
 	public native void Get();
 
 	/**
 	 * Send Matrix to Scilab 
+     * @deprecated
 	 */
 	public native void Send();
 
 	/**
 	 * Return the number of rows
+     * @deprecated
 	 * @return the number of rows
 	 */
 	public int getNumberOfRows() {
@@ -75,6 +80,7 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 	
 	/**
 	 * Return the number of columns
+     * @deprecated
 	 * @return the number of columns
 	 */
 	public int getNumberOfCols() {
@@ -83,6 +89,7 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 
 	/**
 	 * Return the name of the variable
+     * @deprecated
 	 * @return the name
 	 */
 	public String getName() {
@@ -91,6 +98,7 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 
 	/**
 	 * Display the Matrix (by calling the scilab disp() function
+     * @deprecated
 	 */
 	public void disp() {
 		Get();
@@ -101,6 +109,7 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 
 	/**
 	 * Return the data
+     * @deprecated
 	 * @return the data
 	 */
 

@@ -12,8 +12,8 @@
 
 package org.scilab.modules.graph.utils;
 
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 /**
  * Perform useful conversions between a style string and key/value based map.
  */
-public final class StyleMap extends HashMap<String, String> {
+public final class StyleMap extends LinkedHashMap<String, String> {
 	
 	private static final Pattern P = Pattern.compile("(\\w+)(=((\\w|#)+))?($|;)");
 	private static final int KEY_GROUP = 1;

@@ -216,11 +216,13 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 				runningTasks.add(uidDesc);
 				Signal.wait(uidDesc);
 				runningTasks.remove(uidDesc);
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						callback.actionPerformed(event);
-					}
-				});
+				if (callback != null) {
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							callback.actionPerformed(event);
+						}
+					});
+				}
 				return null;
 			}
 		});
@@ -309,7 +311,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 
 		final List<Object> lst = Arrays.asList(args);
 		for (Iterator<Object> iterator = lst.iterator(); iterator.hasNext();) {
-			Object object = (Object) iterator.next();
+			Object object = iterator.next();
 
 			/*
 			 * Appending the object

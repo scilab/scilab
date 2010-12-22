@@ -47,17 +47,14 @@ msgid ""
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: muß sich im Intervall [%d, %d].\n"
 
-msgid "// Begin Session : "
-msgstr "//Beginne Sitzung: "
-
-msgid "// End Session   : "
-msgstr "//Ende Sitzung: "
-
 msgid "Apr"
 msgstr "April"
 
 msgid "Aug"
 msgstr "August"
+
+msgid "Begin Session : "
+msgstr ""
 
 msgid "Dec"
 msgstr "Dezember"
@@ -94,10 +91,6 @@ msgstr "Oktober"
 
 msgid "Sat"
 msgstr "Samstag"
-
-msgid "Scilab history_manager module not installed.\n"
-msgstr ""
-"Scilabs Modul für die Verwaltung der Historie ist nicht installiert.\n"
 
 msgid "Sep"
 msgstr "September"

@@ -19,8 +19,6 @@ import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.IndentManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
-
 
 /**
  * IndentAction Class
@@ -31,48 +29,50 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
 @SuppressWarnings("serial")
 public final class IndentAction extends DefaultAction {
 
-        /**
-         * Constructor
-         * @param editor SciNotes
-         */
-        private IndentAction(SciNotes editor) {
-                super(SciNotesMessages.INDENT, editor);
-        }
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public IndentAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
 
-        /**
-         * doAction
-         */
-        public void doAction() {
-            ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
-            int start = sep.getSelectionStart();
-            int end = sep.getSelectionEnd();
-            IndentManager indent = sep.getIndentManager();
-            ScilabDocument doc = (ScilabDocument) sep.getDocument();
-            int[] ret = new int[2];
+    /**
+     * doAction
+     */
+    public void doAction() {
+        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        int start = sep.getSelectionStart();
+        int end = sep.getSelectionEnd();
+        IndentManager indent = sep.getIndentManager();
+        ScilabDocument doc = (ScilabDocument) sep.getDocument();
+        int[] ret = new int[2];
 
-            doc.mergeEditsBegin();
-            if (start == end) {
-                ret = indent.indentDoc(start, end);
-                if (ret != null) {
-                    sep.setCaretPosition(ret[0]);
-                }
-            } else {
-                ret = indent.indentDoc(start, end - 1);
-                if (ret != null) {
-                    sep.setSelectionStart(ret[0]);
-                    sep.setSelectionEnd(ret[1]);
-                }
+        doc.mergeEditsBegin();
+        if (start == end) {
+            ret = indent.indentDoc(start, end);
+            if (ret != null) {
+                sep.setCaretPosition(ret[0]);
             }
-            doc.mergeEditsEnd();
+        } else {
+            ret = indent.indentDoc(start, end - 1);
+            if (ret != null) {
+                sep.setSelectionStart(ret[0]);
+                sep.setSelectionEnd(ret[1]);
+            }
         }
+        doc.mergeEditsEnd();
+    }
 
-        /**
-         * createMenu
-         * @param editor SciNotes
-         * @param key KeyStroke
-         * @return MenuItem
-         */
-        public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-                return createMenu(SciNotesMessages.INDENT, null, new IndentAction(editor), key);
-        }
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key KeyStroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new IndentAction(label, editor), key);
+    }
 }

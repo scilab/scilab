@@ -5,7 +5,7 @@
           <parameter type="String[]" name="variableNames"/>
           <parameter type="int[]" name="variableBytes"/>
           <parameter type="int[]" name="variableTypes"/>
-          <parameter type="String[]" name="variableStandard"/>
+          <parameter type="String[]" name="variableVisibility"/>
         </method>
         <method name="closeVariableBrowser" returnType="void" modifier="static"/>
     </object>

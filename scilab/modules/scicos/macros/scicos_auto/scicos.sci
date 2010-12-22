@@ -136,15 +136,6 @@ return
     pal_mode = %f       ;  // Palette edition mode
 
 
-
-
-
-
-
-    TCL_EvalFile(SCI+"/modules/scicos/tcl/MIHM.tcl")
-
-
-
     //**---- Scilab 5 patch for font handling. This patch fix the "Symbol" font issue
 //    scilab5fonts = xlfont() ; //** recover the full font list
 //    xlfont(scilab5fonts(1), 1) ; //** substitute the font in position one
@@ -353,7 +344,7 @@ return
        enable_undo = gh_current_window.user_data(3) ;
        scs_m_save  = gh_current_window.user_data(4) ;
        nc_save     = gh_current_window.user_data(5) ;
-       xselect();
+       show_window();
      end
 
   else //** diagram is NOT open
@@ -551,7 +542,7 @@ return
 
 	  if ierr > 0 then
 	    messagebox([
-		msprintf(_("An unexpected  error occured while executing the menu\n""%s"":\n"),CmenuLabel)
+		msprintf(_("An unexpected  error occurred while executing the menu\n""%s"":\n"),CmenuLabel)
 		''
 		lasterror()
 		''

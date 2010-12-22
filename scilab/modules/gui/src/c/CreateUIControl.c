@@ -11,6 +11,7 @@
  *
  */
 
+#include <string.h>
 #include "CreateUIControl.h"
 #include "BuildObjects.h"
 #include "ObjectStructure.h"

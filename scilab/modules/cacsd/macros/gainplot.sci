@@ -72,7 +72,10 @@ function []=gainplot(varargin)
   end
 
   //
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   axes = gca() ;
   if size(axes.children,"*")==0 then
     axes.data_bounds=[min(frq),min(d);max(frq),max(d)]
@@ -100,8 +103,9 @@ function []=gainplot(varargin)
   if comments<>[] then
     legend(comments)
   end
-  drawnow()
+  fig.immediate_drawing=immediate_drawing;
 endfunction
+
 function str=formatGainplotTip(curve,pt,index)
 //this function is called by the datatips mechanism to format the tip
 //string for the magnitude bode curves

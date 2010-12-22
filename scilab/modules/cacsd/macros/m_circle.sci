@@ -27,7 +27,10 @@ function []=m_circle(gain)
   rayon=abs(rayon)
   rect=[min(centre-rayon),min(-rayon),max(centre+rayon),max(rayon)];
   //
-  drawlater()
+  fig=gcf();
+  immediate_drawing=fig.immediate_drawing;
+  fig.immediate_drawing="off";
+
   ax=gca();
   llrect=xstringl(0,0,'1')
   hx=llrect(3);
@@ -49,6 +52,6 @@ function []=m_circle(gain)
     xpoly([real(rf) real(rf($:-1:1))],[imag(rf)  -imag(rf($:-1:1))])
     e=gce();e.foreground=3;e.clip_state='clipgrf'
   end;
-  drawnow();
+  fig.immediate_drawing=immediate_drawing;
 
 endfunction

@@ -119,6 +119,6 @@ public class VariablePath {
 	 */
 	@Override
 	public String toString() {
-		return getVariable() + " + \"" + getPath() + "\"";
+		return getEvaluatedPath();
 	}
 }

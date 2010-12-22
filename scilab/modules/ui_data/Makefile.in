@@ -80,11 +80,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -115,7 +116,8 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciui_data_la_etcdir)" \
 	"$(DESTDIR)$(libsciui_data_la_rootdir)" \
-	"$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsciui_data_la_iconsdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciui_data_disable_la_LIBADD =
 am__objects_1 = libsciui_data_disable_la-noui_data.lo
@@ -127,16 +129,15 @@ libsciui_data_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libsciui_data_disable_la_CFLAGS) $(CFLAGS) \
 	$(libsciui_data_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libsciui_data_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 =
 am__objects_3 = libsciui_data_la-BrowseVar.lo \
 	libsciui_data_la-EditVar.lo
 am__objects_4 = libsciui_data_la-gw_ui_data.lo
 am__objects_5 = libsciui_data_la-sci_editvar.lo \
-	libsciui_data_la-sci_browsevar.lo \
-	libsciui_data_la-sci_updateEditvarValue.lo
+	libsciui_data_la-sci_browsevar.lo
 am_libsciui_data_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5) $(am__objects_2)
 libsciui_data_la_OBJECTS = $(am_libsciui_data_la_OBJECTS)
@@ -171,7 +172,8 @@ SOURCES = $(libsciui_data_disable_la_SOURCES) \
 DIST_SOURCES = $(libsciui_data_disable_la_SOURCES) \
 	$(libsciui_data_la_SOURCES)
 DATA = $(libsciui_data_la_etc_DATA) $(libsciui_data_la_root_DATA) \
-	$(libsciui_data_la_sci_gateway_DATA)
+	$(libsciui_data_la_sci_gateway_DATA) \
+	$(nobase_libsciui_data_la_icons_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -245,6 +247,7 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
 JAVA_CUP = @JAVA_CUP@
@@ -433,7 +436,9 @@ libsciui_data_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 #### ui_data : init scripts ####
 libsciui_data_la_etcdir = $(mydatadir)/etc
 libsciui_data_la_etc_DATA = etc/ui_data.quit \
-				etc/ui_data.start
+				etc/ui_data.start \
+				etc/variablebrowser_menubar.xml \
+				etc/variableeditor_menubar.xml
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -483,7 +488,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -508,8 +513,7 @@ GIWS_WRAPPERS =
 @SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
-						sci_gateway/cpp/sci_browsevar.cpp \
-						sci_gateway/cpp/sci_updateEditvarValue.cpp
+						sci_gateway/cpp/sci_browsevar.cpp
 
 libsciui_data_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -547,14 +551,30 @@ INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = 
-libsciui_data_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libsciui_data_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/jvm/libscijvm.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### ui_data : gateway declaration ####
 libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
+
+#### ui_data : icons files ####
+libsciui_data_la_iconsdir = $(mydatadir)/
+nobase_libsciui_data_la_icons_DATA = images/icons/tp00.gif \
+images/icons/tp01.gif \
+images/icons/tp02.gif \
+images/icons/tp04.gif \
+images/icons/tp05.gif \
+images/icons/tp06.gif \
+images/icons/tp08.gif \
+images/icons/tp10.gif \
+images/icons/tp15.gif \
+images/icons/tp16.gif \
+images/icons/tp17.gif
+
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -639,7 +659,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-gw_ui_data.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_browsevar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_editvar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_updateEditvarValue.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -725,13 +744,6 @@ libsciui_data_la-sci_browsevar.lo: sci_gateway/cpp/sci_browsevar.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-sci_browsevar.lo `test -f 'sci_gateway/cpp/sci_browsevar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_browsevar.cpp
 
-libsciui_data_la-sci_updateEditvarValue.lo: sci_gateway/cpp/sci_updateEditvarValue.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-sci_updateEditvarValue.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-sci_updateEditvarValue.Tpo -c -o libsciui_data_la-sci_updateEditvarValue.lo `test -f 'sci_gateway/cpp/sci_updateEditvarValue.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_updateEditvarValue.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_la-sci_updateEditvarValue.Tpo $(DEPDIR)/libsciui_data_la-sci_updateEditvarValue.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_updateEditvarValue.cpp' object='libsciui_data_la-sci_updateEditvarValue.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-sci_updateEditvarValue.lo `test -f 'sci_gateway/cpp/sci_updateEditvarValue.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_updateEditvarValue.cpp
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -797,6 +809,29 @@ uninstall-libsciui_data_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)" && rm -f $$files
+install-nobase_libsciui_data_la_iconsDATA: $(nobase_libsciui_data_la_icons_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciui_data_la_iconsdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciui_data_la_iconsdir)"
+	@list='$(nobase_libsciui_data_la_icons_DATA)'; test -n "$(libsciui_data_la_iconsdir)" || list=; \
+	$(am__nobase_list) | while read dir files; do \
+	  xfiles=; for file in $$files; do \
+	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
+	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
+	  test -z "$$xfiles" || { \
+	    test "x$$dir" = x. || { \
+	      echo "$(MKDIR_P) '$(DESTDIR)$(libsciui_data_la_iconsdir)/$$dir'"; \
+	      $(MKDIR_P) "$(DESTDIR)$(libsciui_data_la_iconsdir)/$$dir"; }; \
+	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(libsciui_data_la_iconsdir)/$$dir'"; \
+	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(libsciui_data_la_iconsdir)/$$dir" || exit $$?; }; \
+	done
+
+uninstall-nobase_libsciui_data_la_iconsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nobase_libsciui_data_la_icons_DATA)'; test -n "$(libsciui_data_la_iconsdir)" || list=; \
+	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libsciui_data_la_iconsdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libsciui_data_la_iconsdir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -886,7 +921,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciui_data_la_etcdir)" "$(DESTDIR)$(libsciui_data_la_rootdir)" "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciui_data_la_etcdir)" "$(DESTDIR)$(libsciui_data_la_rootdir)" "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)" "$(DESTDIR)$(libsciui_data_la_iconsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -941,7 +976,8 @@ info-am:
 
 install-data-am: install-data-local install-libsciui_data_la_etcDATA \
 	install-libsciui_data_la_rootDATA \
-	install-libsciui_data_la_sci_gatewayDATA
+	install-libsciui_data_la_sci_gatewayDATA \
+	install-nobase_libsciui_data_la_iconsDATA
 
 install-dvi: install-dvi-am
 
@@ -990,6 +1026,7 @@ ps-am:
 uninstall-am: uninstall-libsciui_data_la_etcDATA \
 	uninstall-libsciui_data_la_rootDATA \
 	uninstall-libsciui_data_la_sci_gatewayDATA \
+	uninstall-nobase_libsciui_data_la_iconsDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -1006,14 +1043,16 @@ uninstall-am: uninstall-libsciui_data_la_etcDATA \
 	install-libsciui_data_la_etcDATA \
 	install-libsciui_data_la_rootDATA \
 	install-libsciui_data_la_sci_gatewayDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libsciui_data_la_etcDATA \
+	install-nobase_libsciui_data_la_iconsDATA install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libsciui_data_la_etcDATA \
 	uninstall-libsciui_data_la_rootDATA \
 	uninstall-libsciui_data_la_sci_gatewayDATA \
+	uninstall-nobase_libsciui_data_la_iconsDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
@@ -1200,9 +1239,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

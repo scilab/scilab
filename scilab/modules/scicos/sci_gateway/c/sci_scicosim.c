@@ -1926,7 +1926,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			C2F(curblk).kfun=0;
 			break;
 
-		case 4  : strcpy(C2F(cha1).buf,_("algrebraic loop detected"));
+		case 4  : strcpy(C2F(cha1).buf,_("algebraic loop detected"));
 			C2F(curblk).kfun=0;
 			break;
 
@@ -2050,7 +2050,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 239  : strcpy(C2F(cha1).buf,_("IDA_NULL_Y0: y0 = NULL illegal."));
 			break;
-		case 240  : strcpy(C2F(cha1).buf,_("IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, and IDA_WF."));
+		case 240  : strcpy(C2F(cha1).buf,_("IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, and IDA_WF."));
 			break;
 		case 241  : strcpy(C2F(cha1).buf,_("IDA_NULL_F: user supplied ODE routine is (NULL) illegal."));
 			break;
@@ -2068,7 +2068,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 248  : strcpy(C2F(cha1).buf,_("IDA_YP0_NULL: the derivative yp0 = NULL is illegal."));
 			break;
-		case 249  : strcpy(C2F(cha1).buf,_("IDA_RES_NULL: th returned residual res = NULL is illegal."));
+		case 249  : strcpy(C2F(cha1).buf,_("IDA_RES_NULL: the returned residual res = NULL is illegal."));
 			break;
 		case 250  : strcpy(C2F(cha1).buf,_("IDA_YRET_NULL: yret = NULL illegal.."));
 			break;
@@ -2114,7 +2114,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		case 308  : strcpy(C2F(cha1).buf,_("CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in an unrecoverable manner"));
 			break;
 
-		case 309  : strcpy(C2F(cha1).buf,_("CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a recoverable error at th efirst call"));
+		case 309  : strcpy(C2F(cha1).buf,_("CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a recoverable error at the first call"));
 			break;
 
 		case 310  : strcpy(C2F(cha1).buf,_("CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to repeated recoverable errors in the right-hand side function (user supplied ODE). This error may be raised due to repeated  recoverable errors during the estimation of an initial step size."));
@@ -2122,7 +2122,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 
 		case 311  : strcpy(C2F(cha1).buf,_("CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a recoverable error, but no recovery was possible."));
 			break;
-		case 312  : strcpy(C2F(cha1).buf,_("CV_RTFUNC_FAIL: The rootfinding routine failed in an unrecoverable manner."));
+		case 312  : strcpy(C2F(cha1).buf,_("CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."));
 			break;
 		case 320  : strcpy(C2F(cha1).buf,_("CV_MEM_FAIL: a memory allocation failed, including an attempt to increase maxord"));
 			break;
@@ -2136,7 +2136,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 325  : strcpy(C2F(cha1).buf,_("CV_BAD_T: t is not in the interval [tn-hu,tn]."));
 			break;
-		case 326  : strcpy(C2F(cha1).buf,_("CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector [((d/dy)^k)y](t)."));
+		case 326  : strcpy(C2F(cha1).buf,_("CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector [((d/dt)^k)y](t)."));
 			break;
 		case 327  : strcpy(C2F(cha1).buf,_("CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."));
 			break;
@@ -2164,7 +2164,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 339  : strcpy(C2F(cha1).buf,_("CV_NULL_Y0: y0 = NULL illegal."));
 			break;
-		case 340  : strcpy(C2F(cha1).buf,_("CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and CV_WF."));
+		case 340  : strcpy(C2F(cha1).buf,_("CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and CV_WF."));
 			break;
 		case 341  : strcpy(C2F(cha1).buf,_("CV_NULL_F: user supplied ODE routine is (NULL) illegal."));
 			break;
@@ -2208,7 +2208,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 411  : strcpy(C2F(cha1).buf,_("KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the preconditioner) encountered an unrecoverable error ."));
 			break;
-		case 412  : strcpy(C2F(cha1).buf,_("KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve the preconditioned linear system) encountered an unrecoverable error, or the linear solver routine  (lsolve) encountered an error condition."));
+		case 412  : strcpy(C2F(cha1).buf,_("KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the preconditioned linear system) encountered an unrecoverable error, or the linear solver routine (lsolve) encountered an error condition."));
 			break;
 		case 413  : strcpy(C2F(cha1).buf,_("KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."));
 			break;
@@ -2229,7 +2229,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 				   }
 				   else
 				   {
-					   strcpy(C2F(cha1).buf,_("scicos unexpected error,please report..."));
+					   strcpy(C2F(cha1).buf,_("scicos unexpected error, please report..."));
 					   C2F(curblk).kfun=0;
 				   }
 				   break;

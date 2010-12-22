@@ -12,14 +12,12 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.TabManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.ScilabDocument;
 
 /**
@@ -28,55 +26,47 @@ import org.scilab.modules.scinotes.ScilabDocument;
  *
  */
 public class UnTabifyAction extends DefaultAction {
-    
+
     /**
      * Default constructor
+     * @param name the name of the action
      * @param editor the editor
      */
-    public UnTabifyAction(SciNotes editor) {
-	super(SciNotesMessages.UNTABIFY_SELECTION, editor);
+    public UnTabifyAction(String name, SciNotes editor) {
+        super(name, editor);
     }
-    
+
     /**
      * Function doAction
      */
     public void doAction() {
-	ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
-	int start = sep.getSelectionStart();
-	int end   = sep.getSelectionEnd();
-	TabManager tab = sep.getTabManager();
-	ScilabDocument doc = (ScilabDocument) sep.getDocument();
-	
-	doc.mergeEditsBegin();
-	if (start == end) {
-	    tab.untabifyLine(start);
-	} else {
-	    int[] ret = tab.untabifyLines(start, end - 1);
-	    if (ret != null) {
-		sep.setSelectionStart(ret[0]);
-		sep.setSelectionEnd(ret[1]);
-	    }
-	}
-	doc.mergeEditsEnd();
+        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        int start = sep.getSelectionStart();
+        int end   = sep.getSelectionEnd();
+        TabManager tab = sep.getTabManager();
+        ScilabDocument doc = (ScilabDocument) sep.getDocument();
+
+        doc.mergeEditsBegin();
+        if (start == end) {
+            tab.untabifyLine(start);
+        } else {
+            int[] ret = tab.untabifyLines(start, end - 1);
+            if (ret != null) {
+                sep.setSelectionStart(ret[0]);
+                sep.setSelectionEnd(ret[1]);
+            }
+        }
+        doc.mergeEditsEnd();
     }
-    
+
     /**
      * Create the MenuItem for untabify action
+     * @param label label of the menu
      * @param editor Editor
      * @param key KeyStroke
      * @return a MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-	return createMenu(SciNotesMessages.UNTABIFY_SELECTION , null, new UnTabifyAction(editor), key);
-    }
-
-    /**
-     * Put input map
-     * @param textPane JTextpane
-     * @param key KeyStroke
-     * @param editor Editor
-     */
-    public static void putInInputMap(JComponent textPane, SciNotes editor, KeyStroke key) {
-	textPane.getInputMap().put(key, new UnTabifyAction(editor));
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new UnTabifyAction(label, editor), key);
     }
 }

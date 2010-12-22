@@ -19,7 +19,7 @@ function bOK = dlwConfigureVcx86()
 
     // Microsoft Visual 2010 Express
     case  'msvc100express' then
-    bOK = dlwSetEnvVc10(msvc, %t);
+    bOK = dlwSetEnvVc10(msvc, %f);
 
     // Microsoft Visual 2008 Studio Professional
     case  'msvc90pro' then
@@ -31,7 +31,7 @@ function bOK = dlwConfigureVcx86()
 
     // Microsoft Visual 2008 Express
     case  'msvc90express' then
-    bOK = dlwSetEnvVc90(msvc, %t);
+    bOK = dlwSetEnvVc90(msvc, %f);
 
     // Microsoft Visual 2005 Studio Professional
     case  'msvc80pro' then

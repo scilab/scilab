@@ -35,6 +35,7 @@ public class ClassPath {
 
 	/**
 	 * add a filename to java classpath.
+     * @deprecated
 	 * @param s a filename
 	 * @param i a int
 	 * @throws IOException if an error occurs
@@ -45,6 +46,7 @@ public class ClassPath {
 	/*-----------------------------------------------------------------------*/
 	/**
 	 * add a file to java classpath.
+     * @deprecated
 	 * @param  f a file
 	 * @param  i a int
 	 * @throws IOException if an error occurs
@@ -56,6 +58,7 @@ public class ClassPath {
 	/*-----------------------------------------------------------------------*/
 	/**
 	 * Add a URL to classpath.
+     * @deprecated
 	 * @param u URL of the classes (jar or path)
 	 * @param i the type of load: i=0 startup / i=1 background / i=2 onUse
 	 */
@@ -89,6 +92,7 @@ public class ClassPath {
 	/*-----------------------------------------------------------------------*/
 	/**
 	 * Get the classpath loaded 
+     * @deprecated
 	 * @return classpath The list of the classpath
 	 */
 	public static String[] getClassPath() {
@@ -105,6 +109,7 @@ public class ClassPath {
 
     /**
      * Load all the classpath in dedicated threads in background
+     * @deprecated
      */
 	public static void loadBackGroundClassPath() {
 		Thread backgroundLoader = new Thread() {

@@ -23,7 +23,7 @@
     <synopsis>txt=fun2string(fun,name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fun</term>

@@ -92,7 +92,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
   delmenu(curwin,_("&?"))
   
   toolbar(curwin, "off"); //** by Vincent C.
-  xselect(); //** rise the current graphics window 
+  show_window(); //** rise the current graphics window 
  
   //**-------------------------------------------------------
 

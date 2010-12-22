@@ -19,7 +19,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
+
 
 /**
  * ExitAction class
@@ -35,10 +35,11 @@ public final class ExitAction extends DefaultAction {
 
     /**
      * Constructor
+     * @param name the name of the action
      * @param editor SciNotes
      */
-    private ExitAction(SciNotes editor) {
-        super(SciNotesMessages.EXIT, editor);
+    public ExitAction(String name, SciNotes editor) {
+        super(name, editor);
     }
 
     /**
@@ -55,10 +56,13 @@ public final class ExitAction extends DefaultAction {
     public static void doExit(SciNotes editor) {
         ScilabWindow scinotesWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(editor.getParentWindowId());
 
-        int numberOfTab = editor.getTabPane().getComponentCount();
+        int numberOfTab = editor.getTabPane().getTabCount();
 
         boolean wantToClose = true;
         int k = 0;
+
+        editor.setProtectOpenFileList(true);
+
         for (int i = 0; i < numberOfTab; i++) {
                 //close and save all editors if they are modified
                 boolean response = editor.closeTabAt(k);
@@ -68,6 +72,8 @@ public final class ExitAction extends DefaultAction {
                 wantToClose &= response;
         }
 
+        editor.setProtectOpenFileList(false);
+
         if (wantToClose) {
                 scinotesWindow.getAsSimpleWindow().removeTab(editor);
                 editor.closeSciNotes();
@@ -76,11 +82,12 @@ public final class ExitAction extends DefaultAction {
 
     /**
      * createMenu
+     * @param label label of the menu
      * @param editor SciNotes
      * @param key KeyStroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(SciNotes editor, KeyStroke key) {
-        return createMenu(SciNotesMessages.EXIT, null, new ExitAction(editor), key);
+    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new ExitAction(label, editor), key);
     }
 }

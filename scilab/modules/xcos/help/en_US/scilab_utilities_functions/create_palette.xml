@@ -52,7 +52,7 @@ This function generates a palette if Path is a string indicating the directoy in
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_create_palette">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">Path :</emphasis> a string given the directory path that contains Scicos blocks interfacing functions.</para>

@@ -23,7 +23,7 @@
     <synopsis>[N,B,C]=pol2des(Ds)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Ds</term>

@@ -23,7 +23,7 @@
     <synopsis>[ij,v,mn]=spget(sp)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sp</term>

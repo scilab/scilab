@@ -23,7 +23,7 @@
     <synopsis>bOK=haveacompiler()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>bOK</term>
@@ -46,6 +46,9 @@ bOK = haveacompiler();
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
+      <member>
+        <link linkend="supported_compilers">supported compilers</link>
+      </member>
       <member>
         <link linkend="findlcccompiler">findlcccompiler</link>
       </member>

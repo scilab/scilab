@@ -16,10 +16,10 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
@@ -84,7 +84,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	 * @return the modified into block.
 	 * @throws ScicosFormatException
 	 *             on error.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
 	 *      java.lang.Object)
 	 */
 	@Override
@@ -95,10 +95,15 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		data = (ScilabMList) element;
 		
 		port = allocatePort();
+		
+		port = beforeDecode(element, port);
+		
 		fillParameters(port);
 		
 		// Update the index counter
 		alreadyDecodedCount++;
+		
+		port = afterDecode(element, port);
 		
 		return port;
 	}
@@ -134,9 +139,17 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		final int[] indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 		final String[][] outimpl = outImplicit.getData();
 		
-		if (outimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
+		// can we safely access the indexed data ?
+		final boolean isSet = indexes[0] < outimpl.length
+				&& indexes[1] < outimpl[indexes[0]].length;
+		
+		/*
+		 * when the type is set, create a new port instance; create an explicit
+		 * typed port otherwise.
+		 */
+		if (isSet && outimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
 			ret = new ExplicitOutputPort();
-		} else if (outimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
+		} else if (isSet && outimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
 			ret = new ImplicitOutputPort();
 		} else {
 			// when not specified, use explicit
@@ -196,7 +209,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	 * 
 	 * @param element the current element
 	 * @return true, if the element can be decoded, false otherwise
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -212,7 +225,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	 * @param from the source instance
 	 * @param element the previously allocated element.
 	 * @return the element parameter
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(OutputPort from, ScilabType element) {
@@ -222,11 +235,15 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 			throw new IllegalArgumentException();
 		}
 
+		data = (ScilabMList) beforeEncode(from, data);
+		
 		encodeModel(from);
 		encodeGraphics(from);
 		
 		// Update the index counter
 		alreadyDecodedCount++;
+		
+		data = (ScilabMList) afterEncode(from, data);
 		
 		return data;
 	}
@@ -301,7 +318,6 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	/**
 	 * Clear Block.model.out2 if it contains only zeros.
 	 */
-	@Override
 	public void afterEncode() {
 		if (allColumnsAreZeros) {
 			model.set(MODEL_OUT_DATACOL_INDEX, new ScilabDouble());

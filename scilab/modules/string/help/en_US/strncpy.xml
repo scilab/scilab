@@ -23,7 +23,7 @@
     <synopsis>res = strncpy(str1,num)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str1</term>

@@ -3,12 +3,11 @@
 
 EXPORTS
 ;core
-vstk_
-com_
-stack_
-returnanan_
-isanan_
 callFunctionFromGateway
+com_
+intersci_
+stack_
+vstk_
 putlhsvar_
 createvar_
 getlistrhsvar_
@@ -16,7 +15,8 @@ getrhsvar_
 checklhs_
 checkrhs_
 createlistvarfrom_
-check_vector
-intersci_
 createlistvarfromptr_
+check_vector
+returnanan_
+isanan_
 ;
