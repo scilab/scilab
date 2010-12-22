@@ -36,6 +36,11 @@ in the status bar of Scinotes.
 
 * A bad identifier is now shown in the text editor.
 
+Xcos:
+=====
+
+* bug 7424 fixed - Integer parameters could be modified when loading a diagram.
+
 Localization:
 =============
 
