@@ -26,6 +26,8 @@ trigger a warning and do not add a link on the function name.
 * bug 7069 fixed - Old documentation about the documentation build process
                    removed.
 
+* bug 8690 fixed - Typo fixed in the french min help page.
+
 Scinotes:
 =========
 
