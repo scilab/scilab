@@ -12,7 +12,7 @@
 
 package org.scilab.modules.xcos.simulink;
 
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 
 import edu.tum.cs.simulink.model.SimulinkBlock;

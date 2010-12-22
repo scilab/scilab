@@ -17,7 +17,7 @@ import java.util.Iterator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.ScilabDouble;
 
 public class MatrixElement {
 	private static final Log LOG = LogFactory.getLog(MatrixElement.class);
