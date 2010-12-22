@@ -4,6 +4,7 @@
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) INRIA - 2008 - Simon Lipp
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2010 - Bruno JOFRET
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -293,6 +294,8 @@ detect_java_vm() {
         # For Mac OS X, Since path are different from the JVM normal tree,
         # don't need to detect the CPU
                 JAVA_SHLIB="libjava.jnilib"
+        JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+                DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
                 ;;
 
             *)
@@ -335,22 +338,24 @@ detect_java_vm() {
             fi
         fi
 
+        case $OS in
+            *darwin* | *Darwin*)
         if test -z "$JAVA_HOME"; then
-            case $OS in
-                *darwin* | *Darwin*)
                     # Apple thinks and does things different (it would be too easy otherwise)
-            # They provide a script which returns the JAVA_HOME path
+                    # They provide a script which returns the JAVA_HOME path
                     JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
-                    LD_LIBRARY_PATH="$JAVA_HOME/../Libraries${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                    if test $SCIVERBOSE -ne 0; then
-                        echo "Using default Mac OS X vm: $JAVA_HOME"
-                        echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-                    fi
-                    ;;
-                *)
-                    ;;
-            esac
         fi
+                LD_LIBRARY_PATH="$JAVA_HOME/../Libraries${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+                DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Using default Mac OS X vm: $JAVA_HOME"
+                    echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+                    echo "And DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
+                fi
+                ;;
+            *)
+                ;;
+        esac
 
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
@@ -497,6 +502,8 @@ detect_java_vm() {
         # For Mac OS X, Since path are different from the JVM normal tree,
         # don't need to detect the CPU
                     JAVA_SHLIB="libjava.jnilib"
+                    # Need to set DYLD_LIBRARY_PATH for Mac.
+            DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
                     ;;
                 *FreeBSD*)
                     proc=$MODEL
@@ -547,6 +554,16 @@ if test $IS_SCILAB_BINARY -eq 1; then
     export LD_LIBRARY_PATH
     export TCL_LIBRARY
     export Tk_LIBRARY
+
+    case $OS in
+    *darwin* | *Darwin*)
+        DYLD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+        export DYLD_LIBRARY_PATH
+        PATH="/sw/bin:/sw64/bin:$PATH"
+        export PATH
+        ;;
+    esac
+
 else
     PATH="$SCI:$SCI/bin:$PATH"
 fi
