@@ -147,7 +147,24 @@ detect_type_of_scilab(){
     fi
 }
 
+detect_os() {
+
+    if test "${OS}" = ""; then
+        OS=`uname -s` # Retrieve the Operating System
+    fi
+    if test "${MODEL}" = ""; then
+        MODEL=`uname -m` # Retrieve the model
+    fi
+
+    if test $SCIVERBOSE -ne 0; then
+        echo "OS : $OS"
+        echo "MODEL : $MODEL"
+    fi
+}
+
 detect_type_of_scilab $@
+
+detect_os
 
 detect_scilab_path() {
 
@@ -207,7 +224,7 @@ detect_scilab_path() {
                     found=1
                     break
                 fi
-            # The current file ($0), probably scilab is a symlink to the 
+            # The current file ($0), probably scilab is a symlink to the
             # real one and here, it is the dev env
                 run_sci="$curdir/../$SCILABBIN"
                 if test -x "$run_sci"; then
@@ -248,17 +265,11 @@ detect_scilab_path() {
 
 detect_java_vm() {
 
-    if test "${OS}" = ""; then
-        OS=`uname -s` # Retrieve the Operating System
-    fi
-    if test "${MODEL}" = ""; then
-        MODEL=`uname -m` # Retrieve the model
-    fi
     JAVA_SHLIB="libjava.so"
 
     if test $IS_SCILAB_BINARY -eq 1; then
         # Scilab binary => no Java detection since we are using the embeded JRE
-        # Here, we are handling 3 cases: GNU/Linux 32bit, GNU/Linux 64bit, 
+        # Here, we are handling 3 cases: GNU/Linux 32bit, GNU/Linux 64bit,
         # Mac OS X
         case $OS in
             "Linux")
@@ -283,7 +294,7 @@ detect_java_vm() {
         # don't need to detect the CPU
                 JAVA_SHLIB="libjava.jnilib"
                 ;;
-            
+
             *)
                 echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
                 echo "Fallback on the model <${MODEL}> found by uname -m"
@@ -508,7 +519,7 @@ detect_java_vm() {
         fi
     else
         CLASSPATH="${CLASSPATH:+:$CLASSPATH}$SCI/modules/core/jar/org.scilab.modules.core.jar"
-        # @TODO This is the default path of the official sun JVM. 
+        # @TODO This is the default path of the official sun JVM.
         # It is different for other implementation of the JVM....
         LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
     fi
