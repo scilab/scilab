@@ -121,6 +121,8 @@ Xcos:
 * bug 8042 fixed - After a region to superblock action, the ports were wrongly
                    placed.
 
+* bug 8064 fixed - Without the grid, a SplitBlock might be unmovable.
+
 * bug 8223 fixed - Xcos did not produce a visible error when Saxon is used as
                    XML DOM implementation.
 

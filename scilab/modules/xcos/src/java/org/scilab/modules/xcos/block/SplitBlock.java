@@ -21,14 +21,10 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
-import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 
 /**
@@ -181,14 +177,13 @@ public final class SplitBlock extends BasicBlock {
 			/*
 			 * Align the geometry on the grid
 			 */
-			double gridSize;
-			if (getParentDiagram() != null) {
-				gridSize = getParentDiagram().getGridSize();
-			} else {
-				gridSize = BlockPositioning.DEFAULT_GRIDSIZE;
+			if (getParentDiagram() != null && getParentDiagram().isGridEnabled()) {
+				final double cx = getParentDiagram().snap(geometry.getCenterX());
+				final double cy = getParentDiagram().snap(geometry.getCenterY());
+				
+				geometry.setX(cx - (DEFAULT_SIZE / 2));
+				geometry.setY(cy - (DEFAULT_SIZE / 2));
 			}
-			BlockPositioning.alignPoint(geometry, gridSize,
-					(geometry.getWidth() / 2.0));
 		}
 
 		super.setGeometry(geometry);

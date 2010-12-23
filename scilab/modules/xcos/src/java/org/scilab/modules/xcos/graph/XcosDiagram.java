@@ -105,6 +105,7 @@ import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
+import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
@@ -392,15 +393,10 @@ public class XcosDiagram extends ScilabGraph {
 		getModel().beginUpdate();
 		try {
 			splitBlock.addConnection(linkSource);
-
-			final mxGeometry geom = splitBlock.getGeometry();
-			geom.setX(splitPoint.getX());
-			geom.setY(splitPoint.getY());
-
-			BlockPositioning.alignPoint(geom, getGridSize(),
-					(SplitBlock.DEFAULT_SIZE / 2));
-
+			
 			addCell(splitBlock);
+			// force resize and align on the grid
+			resizeCell(splitBlock, new mxRectangle(splitPoint.getX(), splitPoint.getY(), 0, 0));
 
 			// Update old link
 
@@ -903,55 +899,6 @@ public class XcosDiagram extends ScilabGraph {
             refresh();
         }
     };
-
-	/**
-	 * Get the point position according to the scale.
-	 * 
-	 * @param origin
-	 *            last point in the draklink
-	 * @param click
-	 *            clicked point in diagram window
-	 * @return new real point
-	 */
-	mxPoint getPointPosition(final mxPoint origin, final mxPoint click) {
-		final double origX = origin.getX();
-		final double origY = origin.getY();
-
-		final double clickX = click.getX();
-		final double clickY = click.getY();
-
-		final boolean signX = clickX > origX;
-		final boolean signY = clickY > origY;
-		
-		double diffX = Math.abs(clickX - origX);
-		double diffY = Math.abs(clickY - origY);
-		if (diffX > diffY) {
-			if (diffY > (diffX / 2)) { // diagonal
-				diffY = diffX;
-			} else { // orthogonal
-				diffY = 0;
-			}
-		} else { // < or ==
-			if (diffX > (diffY / 2)) { // diagonal
-				diffX = diffY;
-			} else { // orthogonal
-				diffX = 0;
-			}
-		}
-
-		// restore signs
-		if (!signX) {
-			diffX = -diffX;
-		}
-
-		if (!signY) {
-			diffY = -diffY;
-		}
-
-		final mxPoint p = new mxPoint(origX + diffX, origY + diffY);
-		BlockPositioning.alignPoint(p, getGridSize(), 0);		
-		return p;
-	}
 
 	/**
 	 * Removes the given cells from the graph including all connected edges if
