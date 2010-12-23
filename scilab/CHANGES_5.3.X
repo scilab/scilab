@@ -41,6 +41,9 @@ Xcos:
 
 * bug 7424 fixed - Integer parameters could be modified when loading a diagram.
 
+* bug 7639 fixed - Generating code for scilab function block was failing with
+                   a syntax error message.
+
 Localization:
 =============
 
