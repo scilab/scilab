@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -1006,20 +1007,9 @@ public class XcosDiagram extends ScilabGraph {
 				/*
 				 * Add any split to a link
 				 */
-				final mxICell src = ((BasicLink) cell).getSource().getParent();
-				final mxICell target = ((BasicLink) cell).getTarget().getParent();
+				addTerminalParent(((BasicLink) cell).getSource(), removedCells, loopCells);
+				addTerminalParent(((BasicLink) cell).getTarget(), removedCells, loopCells);
 				
-				if (src instanceof SplitBlock) {
-					if (removedCells.add(src)) {
-						loopCells.add(src);
-					}
-				}
-				
-				if (target instanceof SplitBlock) {
-					if (removedCells.add(target)) {
-						loopCells.add(target);
-					}
-				}
 			} else if (cell instanceof SplitBlock) {
 				final SplitBlock splitBlock = (SplitBlock) cell;
 				
@@ -1093,7 +1083,33 @@ public class XcosDiagram extends ScilabGraph {
 		return ret;
 	}
 
-
+	/**
+	 * Add any terminal parent to the removed cells 
+	 * @param terminal the current terminal (instance of BasicPort)
+	 * @param removedCells the "to be removed" set
+	 * @param loopCells the "while loop" set
+	 */
+	private final void addTerminalParent(mxICell terminal, Collection<Object> removedCells, Collection<Object> loopCells) {
+		assert(terminal == null || terminal instanceof BasicPort);
+		assert(removedCells != null);
+		assert(loopCells != null);
+		
+		// getting terminal parent
+		mxICell target = null;
+		if (terminal != null) {
+			target = terminal.getParent();
+		} else {
+			target = null;
+		}
+		
+		// add target if applicable
+		if (target instanceof SplitBlock) {
+			if (removedCells.add(target)) {
+				loopCells.add(target);
+			}
+		}
+	}
+	
 	/**
 	 * Get the direct points from inLink.getSource() to outLink.getTarget().
 	 * 
