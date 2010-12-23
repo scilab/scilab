@@ -46,6 +46,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -1957,7 +1958,7 @@ public final class ConfigSciNotesManager {
     public static void addMapActionNameKeys(Map map) {
         for (Enumeration action = keysMap.propertyNames(); action.hasMoreElements();) {
             String name = (String) action.nextElement();
-            KeyStroke ks = KeyStroke.getKeyStroke(keysMap.getProperty(name));
+            KeyStroke ks = ScilabKeyStroke.getKeyStroke(keysMap.getProperty(name));
             map.put(name, ks);
         }
     }
