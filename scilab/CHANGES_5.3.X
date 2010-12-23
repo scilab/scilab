@@ -36,6 +36,8 @@ in the status bar of Scinotes.
 
 * A bad identifier is now shown in the text editor.
 
+* bug 8697 fixed - An exception was thrown when an empty document was reload.
+
 Xcos:
 =====
 

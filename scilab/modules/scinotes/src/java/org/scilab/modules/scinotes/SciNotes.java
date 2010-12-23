@@ -1208,20 +1208,22 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void reload(int index) {
         ScilabEditorPane textPaneAt = getTextPane(index);
-        if ((index == 0) && (getTabPane().getTabCount() == 1)) {
-            for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
-                tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
+        if (textPaneAt.getName() != null) {
+            if ((index == 0) && (getTabPane().getTabCount() == 1)) {
+                for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
+                    tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
+                }
             }
+            ConfigSciNotesManager.removeFromOpenFiles(this, textPaneAt);
+            tabPane.remove(index);
+            File f = new File(textPaneAt.getName());
+            if (f.exists()) {
+                loadFile(f, index);
+            } else {
+                createNewFile(f);
+            }
+            ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
         }
-        ConfigSciNotesManager.removeFromOpenFiles(this, textPaneAt);
-        tabPane.remove(index);
-        File f = new File(textPaneAt.getName());
-        if (f.exists()) {
-            loadFile(f, index);
-        } else {
-            createNewFile(f);
-        }
-        ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
     }
 
     /**
