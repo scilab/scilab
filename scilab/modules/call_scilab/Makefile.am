@@ -26,16 +26,19 @@ libscicall_scilab_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/core/src/c/
 
 pkglib_LTLIBRARIES = libscicall_scilab.la
+noinst_LTLIBRARIES = libscicall_scilab-algo.la
 
 libscicall_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscicall_scilab_la_SOURCES = $(CALLSCILAB_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscicall_scilab_algo_la_SOURCES = $(CALLSCILAB_C_SOURCES)
+libscicall_scilab_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscicall_scilab_algo_la_CFLAGS = $(libscicall_scilab_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscicall_scilab_la_SOURCES)
 INCLUDE_FLAGS = $(libscicall_scilab_la_CFLAGS)
 
-libscicall_scilab_la_LIBADD =  
+libscicall_scilab_la_LIBADD = libscicall_scilab-algo.la
 
 
 

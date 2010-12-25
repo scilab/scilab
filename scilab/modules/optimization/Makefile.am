@@ -127,12 +127,15 @@ libscioptimization_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscioptimization.la
+noinst_LTLIBRARIES = libscioptimization-algo.la
 
 libscioptimization_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(MINPACK_SOURCES)
+libscioptimization_algo_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(MINPACK_SOURCES)
+libscioptimization_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
+libscioptimization_algo_la_CFLAGS = $(libscioptimization_la_CFLAGS)
 
-libscioptimization_la_LIBADD =  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscioptimization_la_LIBADD = libscioptimization-algo.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 
 #### Target ######

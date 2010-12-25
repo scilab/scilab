@@ -82,25 +82,24 @@ sci_gateway/c/sci_poly.c \
 sci_gateway/c/sci_triu.c \
 sci_gateway/c/sci_degree.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_simp.f \
-sci_gateway/fortran/sci_f_poly.f \
-sci_gateway/fortran/sci_f_varn.f \
-sci_gateway/fortran/sci_f_sum.f \
-sci_gateway/fortran/sci_f_div.f \
-sci_gateway/fortran/sci_f_diag.f \
-sci_gateway/fortran/sci_f_prod.f \
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intf_simp.f \
+sci_gateway/fortran/intf_poly.f \
+sci_gateway/fortran/intf_varn.f \
+sci_gateway/fortran/intf_sum.f \
+sci_gateway/fortran/intf_div.f \
+sci_gateway/fortran/intf_diag.f \
+sci_gateway/fortran/intf_prod.f \
 sci_gateway/fortran/polops.f \
-sci_gateway/fortran/sci_f_bezout.f \
-sci_gateway/fortran/sci_f_triu_tril.f \
-sci_gateway/fortran/sci_f_roots.f \
-sci_gateway/fortran/sci_f_psimp.f \
-sci_gateway/fortran/sci_f_rsimp.f \
-sci_gateway/fortran/sci_f_coeff.f \
-sci_gateway/fortran/sci_f_degree.f \
-sci_gateway/fortran/sci_f_pclean.f \
-sci_gateway/fortran/sci_f_sfact.f \
-sci_gateway/fortran/sci_f_simpmd.f
-
+sci_gateway/fortran/intf_bezout.f \
+sci_gateway/fortran/intf_triu_tril.f \
+sci_gateway/fortran/intf_roots.f \
+sci_gateway/fortran/intf_psimp.f \
+sci_gateway/fortran/intf_rsimp.f \
+sci_gateway/fortran/intf_coeff.f \
+sci_gateway/fortran/intf_degree.f \
+sci_gateway/fortran/intf_pclean.f \
+sci_gateway/fortran/intf_sfact.f \
+sci_gateway/fortran/intf_simpmd.f
 
 
 libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
@@ -108,16 +107,19 @@ libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscipolynomials.la
+noinst_LTLIBRARIES = libscipolynomials-algo.la
 
 libscipolynomials_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES)
+libscipolynomials_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscipolynomials_algo_la_CFLAGS = $(libscipolynomials_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= ) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
 
-libscipolynomials_la_LIBADD =  $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscipolynomials_la_LIBADD = libscipolynomials-algo.la $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 #### Target ######
 modulename=polynomials

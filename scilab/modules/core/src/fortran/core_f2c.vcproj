@@ -626,79 +626,79 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_argn.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_argn.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_clear.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_clear.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_clearglobal.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_clearglobal.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_comp.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_comp.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_debug.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_debug.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_delbpt.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_delbpt.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_dispbpt.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_dispbpt.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_errcatch.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_errcatch.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_exists.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_exists.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_global.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_global.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ieee.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_ieee.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_intppty.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_intppty.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_iserror.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_iserror.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_isglobal.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_isglobal.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_macrovar.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_macrovar.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_mtlb_mode.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_mtlb_mode.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_resume.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_resume.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_setbpt.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_setbpt.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_useascommand.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_useascommand.c"
 				>
 			</File>
 			<File
@@ -1110,79 +1110,79 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_argn.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_argn.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_clear.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_clear.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_clearglobal.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_clearglobal.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_comp.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_comp.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_debug.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_debug.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_delbpt.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_delbpt.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_dispbpt.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_dispbpt.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_errcatch.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_errcatch.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_exists.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_exists.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_global.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_global.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ieee.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_ieee.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_intppty.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_intppty.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_iserror.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_iserror.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_isglobal.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_isglobal.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_macrovar.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_macrovar.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_mtlb_mode.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_resume.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_resume.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_setbpt.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_setbpt.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_useascommand.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_useascommand.f"
 				>
 			</File>
 			<File

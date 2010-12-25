@@ -120,18 +120,21 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/localization/includes
 
+noinst_LTLIBRARIES = libscifileio-algo.la
 pkglib_LTLIBRARIES = libscifileio.la
 
 libscifileio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscifileio_algo_la_SOURCES = $(FILEIO_SOURCES)
+libscifileio_la_SOURCES = $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscifileio_algo_la_CFLAGS = $(libscifileio_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD = \
+libscifileio_la_LIBADD = libscifileio-algo.la \
 				$(top_builddir)/modules/string/libscistring.la \
 				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \

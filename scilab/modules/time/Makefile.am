@@ -2,7 +2,7 @@
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
 #
 # This file is distributed under the same license as the Scilab package.
- 
+
 ### SOURCES ###
 TIME_C_SOURCES = src/c/realtime.c \
 src/c/timer.c \
@@ -23,16 +23,19 @@ libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscitime.la
+noinst_LTLIBRARIES = libscitime-algo.la
 
 libscitime_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscitime_algo_la_SOURCES = $(TIME_C_SOURCES)
+libscitime_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscitime_algo_la_CFLAGS = $(libscitime_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscitime_la_SOURCES)
 INCLUDE_FLAGS = $(libscitime_la_CFLAGS)
 
-libscitime_la_LIBADD =   $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscitime_la_LIBADD = libscitime-algo.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 

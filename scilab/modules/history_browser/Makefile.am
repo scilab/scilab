@@ -45,10 +45,6 @@ else
 HISTORY_BROWSER_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
 endif
 
-GATEWAY_C_SOURCES = 
-
-GATEWAY_CPP_SOURCES = 
-
 libscihistory_browser_la_CFLAGS= 
 
 
@@ -71,10 +67,10 @@ endif
 
 libscihistory_browser_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(HISTORY_BROWSER_CPP_SOURCES)
+libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(HISTORY_BROWSER_CPP_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC= $(HISTORY_BROWSER_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(HISTORY_BROWSER_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_browser_la_CFLAGS)
 
 

@@ -407,43 +407,43 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ctree.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_ctree.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_curblock.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_curblock.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_debug_count.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_debug_count.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_getblocklabel.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_getblocklabel.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_scicos_debug.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_scicos_debug.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_tree2.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_tree2.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_tree3.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_tree3.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_tree4.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_tree4.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_var2vec.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_var2vec.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_vec2var.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_vec2var.c"
 				>
 			</File>
 			<File
@@ -515,43 +515,43 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ctree.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_ctree.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_curblock.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_curblock.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_debug_count.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_debug_count.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_getblocklabel.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_getblocklabel.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_scicos_debug.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_scicos_debug.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_tree2.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_tree2.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_tree3.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_tree3.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_tree4.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_tree4.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_var2vec.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_var2vec.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_vec2var.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_vec2var.f"
 				>
 			</File>
 			<File
