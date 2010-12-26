@@ -1,3 +1,19 @@
+A faire:
+* trouver comment envoyer le irows & icols dedans
+=> A priori, serialiser le flux binaire avec la structure et la restaurer
+* factoriser a d'autres types
+* ecrire d'autres tests
+* gestion du tag dans le send et le recv
+* region des irecv/isend
+* problement de l'ordonencement des outputs
+* pb dans la serialisation des doubles ?
+
+a=rand(100,100);
+myFile=TMPDIR+"/test"
+MPI_serialize(myFile,a);
+a2=MPI_unserialize(myFile);
+
+
 Mandatory functions :
 
 mpi_init
@@ -8,3 +24,7 @@ MPI_Recv
 
 MPI_Reduce
 MPI_Finalize
+
+juste:
+MPI_Comm_size(1);
+fais cracher scilab (manque probablement un check que mpi est bien init)

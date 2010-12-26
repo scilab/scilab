@@ -23,12 +23,11 @@
 int sci_mpi_send(char *fname,unsigned long fname_len)
 {
 	int nopt,iopos,m1,n1,l1,m2,n2,m3,n3,m4,n4,l4,un=1,l5;
-	static rhs_opts opts[]={
-		{-1,"comm","i",0,0,0},
-		{-1,NULL,NULL,NULL,0,0}};
 	static int xcomm_world[]= {MPI_COMM_WORLD}, *comm_world = xcomm_world;
 	char *stringToBeSend;
-	int nodeID;
+	double nodeID;
+	SciErr sciErr;
+        int *piAddr                     = NULL;
 
 	int errorCode = 0;
 	mappinpScilabMPI mapping;
@@ -50,23 +49,27 @@ int sci_mpi_send(char *fname,unsigned long fname_len)
 	//	stringToBeSend=cstk(l1);
 
 	mapping=getMPIDataStructure(1);
-	
-	getMatrixOfDouble(pvApiCtx, 2, &m2, &n2, &nodeID);
-	printf("To node %d\n", nodeID);
-	CheckScalar(2,m2,n2);
+	getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
+	getScalarDouble(pvApiCtx, piAddr ,&nodeID);
+	printf("To node %lf\n", nodeID);
+	//	CheckScalar(2,m2,n2);
 
-	errorCode = MPI_Send(mapping.data, mapping.count, mapping.MPI, nodeID, TAG, MPI_COMM_WORLD);
+	printf("try: %5.2f, %d, %d, %d, %d\n", mapping.data[0], mapping.rows*mapping.cols, mapping.MPI, TAG, nodeID);
+	//	printf("data send: %5.2f\n",(double)mapping.data[0]);
+
+	fflush(NULL);
+	printf("mapping.count %d\n", mapping.rows*mapping.cols);
+	errorCode = MPI_Send(mapping.data, mapping.rows*mapping.cols, mapping.customMPI, nodeID, TAG, MPI_COMM_WORLD);
+    printf("after MPI_Send. Error code: %d\n",errorCode);fflush(NULL);
 	//	errorCode = MPI_Send(stringToBeSend, strlen(stringToBeSend), MPI_CHAR, nodeID, TAG, MPI_COMM_WORLD);
 	
 	m3=1;
 	n3=1;
 
-	createMatrixOfDouble(pvApiCtx, Rhs + 1, &m3, &n3, &errorCode);
-						 //	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&errorCode);
+	createScalarDouble(pvApiCtx, Rhs + 1, errorCode);
+	//	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&errorCode);
 	
 	LhsVar(1) = Rhs+1;
-
 	C2F(putlhsvar)();
-
 	return 0;
 }

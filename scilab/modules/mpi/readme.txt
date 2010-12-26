@@ -1,3 +1,21 @@
+Serialisation
+
+1) Données homogenes
+* matrices:
+	- double
+	- boolean
+	- int
+	- string
+type
+dimension
+contenu
+
+Utilisation de MPI_Type_contiguous
+
+2) Heterogenes
+
+
+
 README File
 
 1. Description

@@ -70,6 +70,7 @@ int main(int argc, char **argv)
 
   char * initial_script = NULL;
   InitScriptType initial_script_type = SCILAB_SCRIPT;
+  printf("plop\n");
 
   /* This bug only occurs under Linux 32 bits
    * See: http://wiki.scilab.org/Scilab_precision

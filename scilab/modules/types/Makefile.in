@@ -65,8 +65,11 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-@GUI_TRUE@am__append_2 = libscigraph.la 
-subdir = modules/graph
+
+# With --enable-compilation-tests, launch java unitary tests
+@COMPILATION_TESTS_TRUE@am__append_2 = test
+@GUI_TRUE@am__append_3 = libscitypes.la 
+subdir = modules/types
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
@@ -77,12 +80,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/mpi.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -111,29 +114,28 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscigraph_la_etcdir)" \
-	"$(DESTDIR)$(libscigraph_la_rootdir)" \
-	"$(DESTDIR)$(libscigraph_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscitypes_la_etcdir)" \
+	"$(DESTDIR)$(libscitypes_la_rootdir)" \
+	"$(DESTDIR)$(libscitypes_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscigraph_disable_la_LIBADD =
+libscitypes_disable_la_LIBADD =
 am__objects_1 =
-am_libscigraph_disable_la_OBJECTS = $(am__objects_1)
-libscigraph_disable_la_OBJECTS = $(am_libscigraph_disable_la_OBJECTS)
-libscigraph_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+am_libscitypes_disable_la_OBJECTS = $(am__objects_1)
+libscitypes_disable_la_OBJECTS = $(am_libscitypes_disable_la_OBJECTS)
+libscitypes_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscigraph_disable_la_CFLAGS) $(CFLAGS) \
-	$(libscigraph_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libscigraph_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
+	$(libscitypes_disable_la_CFLAGS) $(CFLAGS) \
+	$(libscitypes_disable_la_LDFLAGS) $(LDFLAGS) -o $@
+libscitypes_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am_libscigraph_la_OBJECTS = $(am__objects_1) $(am__objects_1) \
+am_libscitypes_la_OBJECTS = $(am__objects_1) $(am__objects_1) \
 	$(am__objects_1) $(am__objects_1) $(am__objects_1)
-libscigraph_la_OBJECTS = $(am_libscigraph_la_OBJECTS)
-libscigraph_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscigraph_la_CFLAGS) \
-	$(CFLAGS) $(libscigraph_la_LDFLAGS) $(LDFLAGS) -o $@
-@GUI_TRUE@am_libscigraph_la_rpath = -rpath $(pkglibdir)
+libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
+libscitypes_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscitypes_la_CFLAGS) \
+	$(CFLAGS) $(libscitypes_la_LDFLAGS) $(LDFLAGS) -o $@
+@GUI_TRUE@am_libscitypes_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -144,11 +146,11 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscigraph_disable_la_SOURCES) $(libscigraph_la_SOURCES)
-DIST_SOURCES = $(libscigraph_disable_la_SOURCES) \
-	$(libscigraph_la_SOURCES)
-DATA = $(libscigraph_la_etc_DATA) $(libscigraph_la_root_DATA) \
-	$(libscigraph_la_sci_gateway_DATA)
+SOURCES = $(libscitypes_disable_la_SOURCES) $(libscitypes_la_SOURCES)
+DIST_SOURCES = $(libscitypes_disable_la_SOURCES) \
+	$(libscitypes_la_SOURCES)
+DATA = $(libscitypes_la_etc_DATA) $(libscitypes_la_root_DATA) \
+	$(libscitypes_la_sci_gateway_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -197,6 +199,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -219,6 +222,7 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
 JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
@@ -239,6 +243,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -276,6 +281,10 @@ OCAMLYACC = @OCAMLYACC@
 OPENMPI_CC = @OPENMPI_CC@
 OPENMPI_FLAGS = @OPENMPI_FLAGS@
 OPENMPI_LIBS = @OPENMPI_LIBS@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -396,16 +405,16 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-modulename = graph
+modulename = types
 
-#### graph : Conf files ####
-libscigraph_la_rootdir = $(mydatadir)
-libscigraph_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+#### types : Conf files ####
+libscitypes_la_rootdir = $(mydatadir)
+libscitypes_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### graph : init scripts ####
-libscigraph_la_etcdir = $(mydatadir)/etc
-libscigraph_la_etc_DATA = etc/graph.quit \
-				etc/graph.start
+#### types : init scripts ####
+libscitypes_la_etcdir = $(mydatadir)/etc
+libscitypes_la_etc_DATA = etc/types.quit \
+				etc/types.start
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -419,7 +428,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_1) $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -455,7 +464,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -470,40 +479,40 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-GRAPH_JNI_SOURCES = 
-GRAPH_C_SOURCES = 
-GRAPH_CPP_SOURCES = 
+TYPES_JNI_SOURCES = 
+TYPES_C_SOURCES = 
+TYPES_CPP_SOURCES = 
 GIWS_WRAPPERS = 
 @GIWS_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = 
 GATEWAY_CPP_SOURCES = 
-libscigraph_la_CFLAGS = 
-libscigraph_la_CPPFLAGS = 
+libscitypes_la_CFLAGS = 
+libscitypes_la_CPPFLAGS = 
 
-# Without the graph module 
-libscigraph_disable_la_CFLAGS = 
-GRAPH_DISABLE_C_SOURCES = 
-libscigraph_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libscigraph_disable_la_SOURCES = $(GRAPH_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libscigraph-disable.la $(am__append_2)
-libscigraph_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-libscigraph_la_SOURCES = $(GRAPH_C_SOURCES) $(GRAPH_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GRAPH_CPP_SOURCES)
+# Without the types module 
+libscitypes_disable_la_CFLAGS = 
+TYPES_DISABLE_C_SOURCES = 
+libscitypes_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscitypes_disable_la_SOURCES = $(TYPES_DISABLE_C_SOURCES)
+pkglib_LTLIBRARIES = libscitypes-disable.la $(am__append_3)
+libscitypes_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(TYPES_CPP_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC = $(GRAPH_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscigraph_la_CFLAGS)
+CHECK_SRC = $(TYPES_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = 
-libscigraph_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+SWIG_WRAPPERS = src/jni/sci_types.i
+libscitypes_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
-#### graph : gateway declaration ####
-libscigraph_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscigraph_la_sci_gateway_DATA = 
+#### types : gateway declaration ####
+libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscitypes_la_sci_gateway_DATA = 
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -519,9 +528,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign modules/graph/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign modules/types/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign modules/graph/Makefile
+	  $(AUTOMAKE) --foreign modules/types/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -571,10 +580,10 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscigraph-disable.la: $(libscigraph_disable_la_OBJECTS) $(libscigraph_disable_la_DEPENDENCIES) 
-	$(libscigraph_disable_la_LINK) -rpath $(pkglibdir) $(libscigraph_disable_la_OBJECTS) $(libscigraph_disable_la_LIBADD) $(LIBS)
-libscigraph.la: $(libscigraph_la_OBJECTS) $(libscigraph_la_DEPENDENCIES) 
-	$(libscigraph_la_LINK) $(am_libscigraph_la_rpath) $(libscigraph_la_OBJECTS) $(libscigraph_la_LIBADD) $(LIBS)
+libscitypes-disable.la: $(libscitypes_disable_la_OBJECTS) $(libscitypes_disable_la_DEPENDENCIES) 
+	$(libscitypes_disable_la_LINK) -rpath $(pkglibdir) $(libscitypes_disable_la_OBJECTS) $(libscitypes_disable_la_LIBADD) $(LIBS)
+libscitypes.la: $(libscitypes_la_OBJECTS) $(libscitypes_la_DEPENDENCIES) 
+	$(libscitypes_la_LINK) $(am_libscitypes_la_rpath) $(libscitypes_la_OBJECTS) $(libscitypes_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -587,66 +596,66 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscigraph_la_etcDATA: $(libscigraph_la_etc_DATA)
+install-libscitypes_la_etcDATA: $(libscitypes_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscigraph_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraph_la_etcdir)"
-	@list='$(libscigraph_la_etc_DATA)'; test -n "$(libscigraph_la_etcdir)" || list=; \
+	test -z "$(libscitypes_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitypes_la_etcdir)"
+	@list='$(libscitypes_la_etc_DATA)'; test -n "$(libscitypes_la_etcdir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscigraph_la_etcdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscigraph_la_etcdir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscitypes_la_etcdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscitypes_la_etcdir)" || exit $$?; \
 	done
 
-uninstall-libscigraph_la_etcDATA:
+uninstall-libscitypes_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscigraph_la_etc_DATA)'; test -n "$(libscigraph_la_etcdir)" || list=; \
+	@list='$(libscitypes_la_etc_DATA)'; test -n "$(libscitypes_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscigraph_la_etcdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscigraph_la_etcdir)" && rm -f $$files
-install-libscigraph_la_rootDATA: $(libscigraph_la_root_DATA)
+	echo " ( cd '$(DESTDIR)$(libscitypes_la_etcdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscitypes_la_etcdir)" && rm -f $$files
+install-libscitypes_la_rootDATA: $(libscitypes_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscigraph_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraph_la_rootdir)"
-	@list='$(libscigraph_la_root_DATA)'; test -n "$(libscigraph_la_rootdir)" || list=; \
+	test -z "$(libscitypes_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitypes_la_rootdir)"
+	@list='$(libscitypes_la_root_DATA)'; test -n "$(libscitypes_la_rootdir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscigraph_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscigraph_la_rootdir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscitypes_la_rootdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscitypes_la_rootdir)" || exit $$?; \
 	done
 
-uninstall-libscigraph_la_rootDATA:
+uninstall-libscitypes_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscigraph_la_root_DATA)'; test -n "$(libscigraph_la_rootdir)" || list=; \
+	@list='$(libscitypes_la_root_DATA)'; test -n "$(libscitypes_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscigraph_la_rootdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscigraph_la_rootdir)" && rm -f $$files
-install-libscigraph_la_sci_gatewayDATA: $(libscigraph_la_sci_gateway_DATA)
+	echo " ( cd '$(DESTDIR)$(libscitypes_la_rootdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscitypes_la_rootdir)" && rm -f $$files
+install-libscitypes_la_sci_gatewayDATA: $(libscitypes_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscigraph_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraph_la_sci_gatewaydir)"
-	@list='$(libscigraph_la_sci_gateway_DATA)'; test -n "$(libscigraph_la_sci_gatewaydir)" || list=; \
+	test -z "$(libscitypes_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscitypes_la_sci_gatewaydir)"
+	@list='$(libscitypes_la_sci_gateway_DATA)'; test -n "$(libscitypes_la_sci_gatewaydir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscigraph_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscigraph_la_sci_gatewaydir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscitypes_la_sci_gatewaydir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscitypes_la_sci_gatewaydir)" || exit $$?; \
 	done
 
-uninstall-libscigraph_la_sci_gatewayDATA:
+uninstall-libscitypes_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscigraph_la_sci_gateway_DATA)'; test -n "$(libscigraph_la_sci_gatewaydir)" || list=; \
+	@list='$(libscitypes_la_sci_gateway_DATA)'; test -n "$(libscitypes_la_sci_gatewaydir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscigraph_la_sci_gatewaydir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscigraph_la_sci_gatewaydir)" && rm -f $$files
+	echo " ( cd '$(DESTDIR)$(libscitypes_la_sci_gatewaydir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscitypes_la_sci_gatewaydir)" && rm -f $$files
 tags: TAGS
 TAGS:
 
@@ -690,7 +699,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraph_la_etcdir)" "$(DESTDIR)$(libscigraph_la_rootdir)" "$(DESTDIR)$(libscigraph_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitypes_la_etcdir)" "$(DESTDIR)$(libscitypes_la_rootdir)" "$(DESTDIR)$(libscitypes_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -742,9 +751,9 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscigraph_la_etcDATA \
-	install-libscigraph_la_rootDATA \
-	install-libscigraph_la_sci_gatewayDATA
+install-data-am: install-data-local install-libscitypes_la_etcDATA \
+	install-libscitypes_la_rootDATA \
+	install-libscitypes_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -789,9 +798,9 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscigraph_la_etcDATA \
-	uninstall-libscigraph_la_rootDATA \
-	uninstall-libscigraph_la_sci_gatewayDATA \
+uninstall-am: uninstall-libscitypes_la_etcDATA \
+	uninstall-libscitypes_la_rootDATA \
+	uninstall-libscitypes_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -804,22 +813,22 @@ uninstall-am: uninstall-libscigraph_la_etcDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscigraph_la_etcDATA \
-	install-libscigraph_la_rootDATA \
-	install-libscigraph_la_sci_gatewayDATA install-man install-pdf \
+	install-info-am install-libscitypes_la_etcDATA \
+	install-libscitypes_la_rootDATA \
+	install-libscitypes_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libscigraph_la_etcDATA \
-	uninstall-libscigraph_la_rootDATA \
-	uninstall-libscigraph_la_sci_gatewayDATA \
+	uninstall-libscitypes_la_etcDATA \
+	uninstall-libscitypes_la_rootDATA \
+	uninstall-libscitypes_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
 # This target enables tests for Scilab
-check-local: $(top_builddir)/scilab-bin
+check-local: $(top_builddir)/scilab-bin test
 	@COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -867,7 +876,7 @@ check-code:
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
@@ -885,6 +894,13 @@ clean-macros:
 		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
 		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
+
+test:
+# More tests could be added here
+	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+	if test -f build.xml -a $$USEANT -eq 1; then \
+		$(ANT) test; \
+	fi
 
 all-local: $(TARGETS_ALL)
 
@@ -971,6 +987,7 @@ install-data-local:
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 			if test -n "$(MACROSSPECIALEXT)"; then \
+				specialExtDir=""; \
 				for specialExt in $(MACROSSPECIALEXT); do \
 					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 				done; \
@@ -993,9 +1010,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

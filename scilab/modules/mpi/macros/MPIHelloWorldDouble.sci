@@ -1,4 +1,4 @@
-function MPIHelloWorld()
+function MPIHelloWorldDouble()
 disp("plop")
 ////////////
 // PARALLEL / initialization, include MPI_Init time in measurement
@@ -7,14 +7,14 @@ MPI_Init();			// should have lambooted first
 rnk =	MPI_Comm_rank();	// let it abort if it fails
 sizeNodes =	MPI_Comm_size();
 
-    SLV = rnk;			// handy shortcuts, master is rank 0
-    Master = ~ SLV;			// slaves are all other
+SLV = rnk;			// handy shortcuts, master is rank 0
+Master = ~ SLV;			// slaves are all other
 
 if Master
 
 	disp("We have "+string(sizeNodes) + " processors")
 	for slaveId = 1:sizeNodes-1
-		MPI_Send("== FROM Master == MPI_Send",slaveId)
+		MPI_Send([23,42;68,62],slaveId)
 	end
 
 	for slaveId = 1:sizeNodes-1

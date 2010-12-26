@@ -440,6 +440,7 @@ libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(CONSOLE_C_JNI_SO
 CHECK_SRC = $(ACTION_BINDING_C_SOURCES)
 INCLUDE_FLAGS = $(libsciaction_binding_la_CFLAGS)
 libsciaction_binding_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+
 #### Name of the module and the path ######
 modulename = action_binding
 

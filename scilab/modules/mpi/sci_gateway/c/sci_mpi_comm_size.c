@@ -37,7 +37,7 @@ int sci_mpi_comm_size(char *fname,unsigned long fname_len)
 		{
 			int typevar;
 			getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-
+			
 			getVarType(pvApiCtx, piAddr, &typevar);
 			if (typevar == sci_matrix)
 				{
@@ -47,6 +47,7 @@ int sci_mpi_comm_size(char *fname,unsigned long fname_len)
 
 					//					comm=(MPI_Comm)(int)istk(l1);
 				}else{
+				// TODO: update error message
 					Scierror(999,"The first parameter should be an int");
 				}
 		}
@@ -64,6 +65,7 @@ int sci_mpi_comm_size(char *fname,unsigned long fname_len)
 	SciErr iRet = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows2, iCols2, pdblReal1);
     if(iRet.iErr)
     {
+		// TODO: update error message
 		Scierror(999,"error in the creation of the variable");
     }
 	free(pdblReal1);

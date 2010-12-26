@@ -680,12 +680,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_SUBST(FLEXDOCK)
 
 				# Swing look&feel implementations
-				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel],"yes")
+				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
 				LOOKS=$PACKAGE_JAR_FILE
 
 				# Named differently under ArchLinux
 				if test -z "$LOOKS"; then
-					AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
+					AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel])
 					LOOKS=$PACKAGE_JAR_FILE
 				fi
 				AC_SUBST(LOOKS)
