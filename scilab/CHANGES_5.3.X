@@ -77,6 +77,9 @@ Module skeleton:
 
 * bug 8642 fixed - The getDiagramVersion unit test could not pass.
 
+* bug 8711 fixed - The "Cont. Plant-Hybrid Observer" demo contains a translated
+                   origin point which lead to strange links creation.
+
 Localization:
 =============
 
