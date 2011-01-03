@@ -487,9 +487,6 @@ public final class SetColorsAction extends DefaultAction {
         stylesList.setSelectedIndex(0);
 
         dialog.pack();
-        dialog.setLocationRelativeTo(getEditor());
-        dialog.setResizable(false);
-        dialog.setVisible(true);
 
         /* Bug 8095: the previewEditorPane size is mis-calculated under OpenJDK,
            so I recalculate it correctly. */
@@ -498,6 +495,10 @@ public final class SetColorsAction extends DefaultAction {
             previewEditorPane.setMaximumSize(new Dimension(previewEditorPane.getSize().width, r.y + r.height));
             dialog.pack();
         } catch (BadLocationException e) { }
+
+        dialog.setLocationRelativeTo(getEditor());
+        dialog.setResizable(false);
+        dialog.setVisible(true);
     }
 
     /**

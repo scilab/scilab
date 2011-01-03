@@ -36,6 +36,8 @@ in the status bar of Scinotes.
 
 * A bad identifier is now shown in the text editor.
 
+* bug 8095 fixed - With OpenJDK, the size of the dialog 'Set colors' was bad.
+
 * bug 8697 fixed - An exception was thrown when an empty document was reload.
 
 * bug 8709 fixed - Default font had no japanese glyphs.
