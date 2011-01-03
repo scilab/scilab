@@ -171,6 +171,7 @@ public static final String __GO_VIEW__ =                   "View";
 public static final String __GO_ISOVIEW__ =                "Isoview";
 public static final String __GO_CUBE_SCALING__ =           "CubeScaling";
 public static final String __GO_ROTATION_ANGLES__ =        "RotationAngles";
+public static final String __GO_ROTATION_ANGLES_3D__ =     "RotationAngles3d";
 public static final String __GO_BOX_TYPE__ =               "BoxType";
 public static final String __GO_HIDDEN_AXIS_COLOR__ =      "HiddenAxisColor";
 public static final String __GO_TIGHT_LIMITS__ =           "TightLimits";

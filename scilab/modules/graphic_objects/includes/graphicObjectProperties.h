@@ -170,6 +170,7 @@
 #define __GO_ISOVIEW__                     "Isoview"
 #define __GO_CUBE_SCALING__                "CubeScaling"
 #define __GO_ROTATION_ANGLES__             "RotationAngles"
+#define __GO_ROTATION_ANGLES_3D__          "RotationAngles3d"
 #define __GO_BOX_TYPE__                    "BoxType"
 #define __GO_HIDDEN_AXIS_COLOR__           "HiddenAxisColor"
 #define __GO_TIGHT_LIMITS__                "TightLimits"

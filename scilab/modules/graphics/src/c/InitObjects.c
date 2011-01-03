@@ -874,6 +874,13 @@ int InitAxesModel()
   view = 0;
   setGraphicObjectProperty(paxesmdl->UID, __GO_VIEW__, &view, jni_int, 1);
 
+
+  /* Must be set after VIEW, since setting VIEW to 2D overwrites the 3D rotation angles */
+  rotationAngles[0] = 45.0;
+  rotationAngles[1] = 215.0;
+
+  setGraphicObjectProperty(paxesmdl->UID, __GO_ROTATION_ANGLES_3D__, rotationAngles, jni_double_vector, 2);
+
   axisVisible = 0;
   setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
   setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
@@ -1042,8 +1049,7 @@ int InitAxesModel()
   /*
    * Former non-MVC property sets
    * Commented out and not deleted since a few properties are not implemented yet:
-   * project, user_data, alpha_kp and theta_kp (store the last know value of rotation angles when view was == "3d",
-   * user_grads, and Label default properties.
+   * project, user_data, user_grads, and Label default properties.
   */
 
 #if 0
@@ -1110,12 +1116,6 @@ int InitAxesModel()
   ppaxesmdl->theta  = 270.0;
 #endif
 
-  /*
-   * Not implemented yet within the MVC
-   * These store the rotation angles values
-   * which are set when the view is switched
-   * from "2d" to "3d"
-   */
 #if 0
   ppaxesmdl->alpha_kp  = 45.0;
   ppaxesmdl->theta_kp  = 215.0;

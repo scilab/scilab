@@ -309,6 +309,8 @@ public class Axes extends GraphicObject {
 			return Camera.CameraProperty.CUBESCALING;
 		} else if (propertyName.equals(__GO_ROTATION_ANGLES__)) {
 			return Camera.CameraProperty.ROTATIONANGLES;
+		} else if (propertyName.equals(__GO_ROTATION_ANGLES_3D__)) {
+			return Camera.CameraProperty.ROTATIONANGLES3D;
 		} else if (propertyName.equals(__GO_BOX_TYPE__)) {
 			return Box.BoxProperty.BOX;
 		} else if (propertyName.equals(__GO_HIDDEN_AXIS_COLOR__)) {
@@ -472,6 +474,8 @@ public class Axes extends GraphicObject {
 			return getCubeScaling();
 		} else if (property == Camera.CameraProperty.ROTATIONANGLES) {
 			return getRotationAngles();
+		} else if (property == Camera.CameraProperty.ROTATIONANGLES3D) {
+			return getRotationAngles3d();
 		} else if (property == Box.BoxProperty.BOX) {
 			return getBoxType();
 		} else if (property == Box.BoxProperty.HIDDENAXISCOLOR) {
@@ -630,6 +634,8 @@ public class Axes extends GraphicObject {
 			setCubeScaling((Boolean) value);
 		} else if (property == Camera.CameraProperty.ROTATIONANGLES) {
 			setRotationAngles((Double[]) value);
+		} else if (property == Camera.CameraProperty.ROTATIONANGLES3D) {
+			setRotationAngles3d((Double[]) value);
 		} else if (property == Box.BoxProperty.BOX) {
 			setBoxType((Integer) value);
 		} else if (property == Box.BoxProperty.HIDDENAXISCOLOR) {
@@ -1914,6 +1920,20 @@ public class Axes extends GraphicObject {
 	 */
 	public void setRotationAngles(Double[] rotationAngles) {
 		camera.setRotationAngles(rotationAngles);
+	}
+
+	/**
+	 * @return the 3d rotation angles
+	 */
+	public Double[] getRotationAngles3d() {
+		return camera.getRotationAngles3d();
+	}
+
+	/**
+	 * @param rotationAngles3d the 3d rotation angles to set
+	 */
+	public void setRotationAngles3d(Double[] rotationAngles3d) {
+		camera.setRotationAngles3d(rotationAngles3d);
 	}
 
 	/**

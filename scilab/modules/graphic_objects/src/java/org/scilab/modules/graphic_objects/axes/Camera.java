@@ -17,8 +17,11 @@ package org.scilab.modules.graphic_objects.axes;
  * @author Manuel JULIACHS
  */
 public class Camera {
+	/** Default rotation angles */
+	public static final double[] DEFAULT_ROTATION_ANGLES = {0.0, 270.0};
+
 	/** Camera properties names */
-	public enum CameraProperty { VIEW, ISOVIEW, CUBESCALING, ROTATIONANGLES };
+	public enum CameraProperty { VIEW, ISOVIEW, CUBESCALING, ROTATIONANGLES, ROTATIONANGLES3D };
 
 	/** View type */
 	public enum ViewType { VIEW_2D, VIEW_3D;
@@ -52,12 +55,19 @@ public class Camera {
 	/** 2-element array (alpha and theta rotation angles) */
 	private double[] rotationAngles;
 
+	/**
+	 * Last know values of the rotation angles when View was equal to VIEW_3D
+	 * 2-element array (alpha and theta)
+	 */
+	private double[] rotationAngles3d;
+
 	/** Constructor */
 	public Camera() {
 		view = ViewType.VIEW_2D;
 		isoview = false;
 		cubeScaling = false;
 		rotationAngles = new double[2];
+		rotationAngles3d = new double[2];
 	}
 
 	/**
@@ -73,6 +83,11 @@ public class Camera {
 
 		rotationAngles[0] = camera.rotationAngles[0];
 		rotationAngles[1] = camera.rotationAngles[1];
+
+		rotationAngles3d = new double[2];
+
+		rotationAngles3d[0] = camera.rotationAngles3d[0];
+		rotationAngles3d[1] = camera.rotationAngles3d[1];
 	}
 
 	/**
@@ -119,8 +134,34 @@ public class Camera {
 	 * @param rotationAngles the rotationAngles to set
 	 */
 	public void setRotationAngles(Double[] rotationAngles) {
+		if (rotationAngles[0] == DEFAULT_ROTATION_ANGLES[0] && rotationAngles[1] == DEFAULT_ROTATION_ANGLES[1]) {
+			view = ViewType.VIEW_2D;
+		} else if (view == ViewType.VIEW_2D) {
+			view = ViewType.VIEW_3D;
+		}
+
 		this.rotationAngles[0] = rotationAngles[0];
 		this.rotationAngles[1] = rotationAngles[1];
+	}
+
+	/**
+	 * @return the 3d rotationAngles
+	 */
+	public Double[] getRotationAngles3d() {
+		Double [] retRotationAngles3d = new Double[2];
+
+		retRotationAngles3d[0] = rotationAngles3d[0];
+		retRotationAngles3d[1] = rotationAngles3d[1];
+
+		return retRotationAngles3d;
+	}
+
+	/**
+	 * @param rotationAngles3d the 3d rotationAngles to set
+	 */
+	public void setRotationAngles3d(Double[] rotationAngles3d) {
+		this.rotationAngles3d[0] = rotationAngles3d[0];
+		this.rotationAngles3d[1] = rotationAngles3d[1];
 	}
 
 	/**
@@ -134,6 +175,17 @@ public class Camera {
 	 * @param view the view to set
 	 */
 	public void setView(ViewType view) {
+		if (view == ViewType.VIEW_2D) {
+			rotationAngles3d[0] = rotationAngles[0];
+			rotationAngles3d[1] = rotationAngles[1];
+
+			rotationAngles[0] = DEFAULT_ROTATION_ANGLES[0];
+			rotationAngles[1] = DEFAULT_ROTATION_ANGLES[1];
+		} else if (view == ViewType.VIEW_3D && this.view == ViewType.VIEW_2D) {
+			rotationAngles[0] = rotationAngles3d[0];
+			rotationAngles[1] = rotationAngles3d[1];
+		}
+
 		this.view = view;
 	}
 
