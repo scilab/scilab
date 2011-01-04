@@ -68,7 +68,7 @@ int scivprintW(wchar_t* fmt,va_list args)
 #ifdef _MSC_VER
 	count= vsnwprintf(s_buf, MAXPRINTF - 1, fmt, args );
 #else
-	count= swprintf(s_buf, MAXPRINTF - 1, fmt, args );
+	count= vswprintf(s_buf, MAXPRINTF - 1, fmt, args );
 #endif
 	if(count == -1)
     {
