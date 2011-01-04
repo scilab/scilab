@@ -13,33 +13,42 @@
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <Windows.h>
+#include <wchar.h>
 #include "LanguagePreferences_Windows.h"
 #include "os_strdup.h"
+#include "os_wcsdup.h"
+#include "charEncoding.h"
 #include "setgetlanguage.h"
 #include "version.h"
 #include "MALLOC.h"
 #include "GetWindowsVersion.h"
 /*--------------------------------------------------------------------------*/ 
-#define HKCU_LANGUAGE_FORMAT "SOFTWARE\\Scilab\\%s\\Settings" /* r/w registry */
-#define HKCM_LANGUAGE_FORMAT "SOFTWARE\\Scilab\\%s" /* only read registry */
-#define LANGUAGE_ENTRY "LANGUAGE"
-#define DEFAULT_LANGUAGE_VALUE "en_US"
+#define HKCU_LANGUAGE_FORMAT L"SOFTWARE\\Scilab\\%s\\Settings" /* r/w registry */
+#define HKCM_LANGUAGE_FORMAT L"SOFTWARE\\Scilab\\%s" /* only read registry */
+#define LANGUAGE_ENTRY L"LANGUAGE"
+#define DEFAULT_LANGUAGE_VALUE L"en_US"
 /*--------------------------------------------------------------------------*/ 
-static char *languageFromCommandLine = NULL;
+static wchar_t *languageFromCommandLine = NULL;
 /*--------------------------------------------------------------------------*/ 
-static char *getLanguagePreferencesCurrentUser(void);
-static char *getLanguagePreferencesAllUsers(void);
-static char *readRegistryLanguage(HKEY hKeyRoot,char *keyString);
+static wchar_t *getLanguagePreferencesCurrentUser(void);
+static wchar_t *getLanguagePreferencesAllUsers(void);
+static wchar_t *readRegistryLanguage(HKEY hKeyRoot,wchar_t *keyString);
 /*--------------------------------------------------------------------------*/ 
-BOOL isValidLanguage(char *lang)
+BOOL isValidLanguage(wchar_t *lang)
 {
     if (lang)
     {
-        if ( strcmp(lang, "") == 0) return TRUE;
-        if ( strcmp(lang, "C") == 0) return TRUE;
+        if ( wcscmp(lang, L"") == 0 || wcscmp(lang, L"C") == 0 )
+        {
+            return TRUE;
+        }
+
         /* xx_XX */
-        if ( ((int) strlen(lang) == 5) && (lang[2] == '_') ) return TRUE;
-        else if ((strlen(lang) == 2) && (convertlanguagealias(lang)))
+        if ( ((int) wcslen(lang) == 5) && (lang[2] == L'_') )
+        {
+            return TRUE;
+        }
+        else if ((wcslen(lang) == 2) && (convertlanguagealias(lang)))
         {
             return TRUE;
         }
@@ -47,7 +56,7 @@ BOOL isValidLanguage(char *lang)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
-BOOL setLanguageFromCommandLine(char *lang)
+BOOL setLanguageFromCommandLine(wchar_t *lang)
 {
     if (lang)
     {
@@ -57,16 +66,16 @@ BOOL setLanguageFromCommandLine(char *lang)
             languageFromCommandLine = NULL;
         }
 
-        languageFromCommandLine = os_strdup(convertlanguagealias(lang));
+        languageFromCommandLine = os_wcsdup(convertlanguagealias(lang));
 
         return TRUE;
     }
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
-char *getLanguagePreferences(void)
+wchar_t *getLanguagePreferences(void)
 {
-    char *LanguageUser = NULL;
+    wchar_t *LanguageUser = NULL;
 
     if (languageFromCommandLine)
     {
@@ -79,34 +88,46 @@ char *getLanguagePreferences(void)
 
     if (LanguageUser == NULL)
     {
-        char *LanguageAllUsers = getLanguagePreferencesAllUsers();
+        wchar_t *LanguageAllUsers = getLanguagePreferencesAllUsers();
 
         if (LanguageAllUsers == NULL)
         {
-            return os_strdup("");
+            return os_wcsdup(L"");
         }
         else
         {
-            if (isValidLanguage(LanguageAllUsers)) return LanguageAllUsers;
-            else return os_strdup("");
+            if (isValidLanguage(LanguageAllUsers))
+            {
+                return LanguageAllUsers;
+            }
+            else
+            {
+                return os_wcsdup(L"");
+            }
         }
     }
     else
     {
-        if (isValidLanguage(LanguageUser)) return LanguageUser;
-        else return os_strdup("");
+        if (isValidLanguage(LanguageUser))
+        {
+            return LanguageUser;
+        }
+        else
+        {
+            return os_wcsdup(L"");
+        }
     }
-    return os_strdup("");
+    return os_wcsdup(L"");
 }
 /*--------------------------------------------------------------------------*/ 
-static char *readRegistryLanguage(HKEY hKeyRoot,char *keyStringFormat)
+static wchar_t *readRegistryLanguage(HKEY hKeyRoot,wchar_t *keyStringFormat)
 {
 #define LENGTH_LANGUAGE_REGISTRY 64
-    char LANGUAGE_REGISTRY[LENGTH_LANGUAGE_REGISTRY] = DEFAULT_LANGUAGE_VALUE;
-    char *keyString = NULL;
-    int lenkeyString = (int)(strlen(keyStringFormat)+strlen(SCI_VERSION_STRING)) + 1;
+    wchar_t LANGUAGE_REGISTRY[LENGTH_LANGUAGE_REGISTRY] = DEFAULT_LANGUAGE_VALUE;
+    wchar_t *keyString = NULL;
+    int lenkeyString = (int)(wcslen(keyStringFormat)+wcslen(SCI_VERSION_WIDE_STRING)) + 1;
 
-    keyString = (char*) MALLOC(sizeof(char) * lenkeyString);
+    keyString = (wchar_t*) MALLOC(sizeof(wchar_t) * lenkeyString);
 
     if (keyString)
     {
@@ -115,7 +136,7 @@ static char *readRegistryLanguage(HKEY hKeyRoot,char *keyStringFormat)
         HKEY hKey;
         DWORD result = 0;
         int length = LENGTH_LANGUAGE_REGISTRY;
-        wsprintf(keyString, keyStringFormat, SCI_VERSION_STRING);
+        wsprintfW(keyString, keyStringFormat, SCI_VERSION_WIDE_STRING);
 #ifdef _WIN64 /* Scilab x64 on x64 windows */
         OpensKeyOptions = KEY_READ | KEY_WOW64_64KEY;
 #else
@@ -128,14 +149,14 @@ static char *readRegistryLanguage(HKEY hKeyRoot,char *keyStringFormat)
             OpensKeyOptions = KEY_READ;
         }
 #endif
-        if ( RegOpenKeyEx(hKeyRoot, keyString, 0, OpensKeyOptions, &hKey) != ERROR_SUCCESS )
+        if ( RegOpenKeyExW(hKeyRoot, keyString, 0, OpensKeyOptions, &hKey) != ERROR_SUCCESS )
         {
             RegCloseKey(hKey);
             if (keyString) { FREE(keyString); keyString = NULL;}
             return NULL;
         }
 
-        if ( RegQueryValueEx(hKey, LANGUAGE_ENTRY, 0, NULL ,(LPBYTE)LANGUAGE_REGISTRY,&length)  !=  ERROR_SUCCESS )
+        if ( RegQueryValueExW(hKey, LANGUAGE_ENTRY, 0, NULL ,(LPBYTE)LANGUAGE_REGISTRY,&length)  !=  ERROR_SUCCESS )
         {
             RegCloseKey(hKey);
             if (keyString) { FREE(keyString); keyString = NULL;}
@@ -145,34 +166,34 @@ static char *readRegistryLanguage(HKEY hKeyRoot,char *keyStringFormat)
         RegCloseKey(hKey);
         if (keyString) { FREE(keyString); keyString = NULL;}
     }
-    return os_strdup(LANGUAGE_REGISTRY);
+    return os_wcsdup(LANGUAGE_REGISTRY);
 }
 /*--------------------------------------------------------------------------*/ 
-static char *getLanguagePreferencesCurrentUser(void)
+static wchar_t *getLanguagePreferencesCurrentUser(void)
 {
     return readRegistryLanguage(HKEY_CURRENT_USER, HKCU_LANGUAGE_FORMAT);
 }
 /*--------------------------------------------------------------------------*/ 
-static char *getLanguagePreferencesAllUsers(void)
+static wchar_t *getLanguagePreferencesAllUsers(void)
 {
     return readRegistryLanguage(HKEY_LOCAL_MACHINE, HKCM_LANGUAGE_FORMAT);
 }
 /*--------------------------------------------------------------------------*/ 
 BOOL setLanguagePreferences(void)
 {
-    char *LANGUAGE = getlanguage();
+    char *LANGUAGE = wide_string_to_UTF8(getlanguage());
 
     if (LANGUAGE)
     {
-        char *keyString = NULL;
-        int lenkeyString = (int)(strlen(HKCU_LANGUAGE_FORMAT)+strlen(SCI_VERSION_STRING)) + 1;
-        keyString = (char*) MALLOC(sizeof(char) * lenkeyString);
+        wchar_t *keyString = NULL;
+        int lenkeyString = (int)(wcslen(HKCU_LANGUAGE_FORMAT)+wcslen(SCI_VERSION_WIDE_STRING)) + 1;
+        keyString = (wchar_t*) MALLOC(sizeof(wchar_t) * lenkeyString);
         if (keyString)
         {
             DWORD OpensKeyOptions = 0;
             HKEY hKey;
             DWORD result = 0;
-            wsprintf(keyString, HKCU_LANGUAGE_FORMAT, SCI_VERSION_STRING);
+            wsprintfW(keyString, HKCU_LANGUAGE_FORMAT, SCI_VERSION_WIDE_STRING);
 
 #ifdef _WIN64 /* Scilab x64 on x64 windows */
             OpensKeyOptions = KEY_ALL_ACCESS | KEY_WOW64_64KEY;
@@ -186,14 +207,14 @@ BOOL setLanguagePreferences(void)
                 OpensKeyOptions = KEY_ALL_ACCESS;
             }
 #endif
-            if ( RegCreateKeyEx(HKEY_CURRENT_USER, keyString, 0, NULL, REG_OPTION_NON_VOLATILE, OpensKeyOptions, NULL, &hKey, &result) != ERROR_SUCCESS)
+            if ( RegCreateKeyExW(HKEY_CURRENT_USER, keyString, 0, NULL, REG_OPTION_NON_VOLATILE, OpensKeyOptions, NULL, &hKey, &result) != ERROR_SUCCESS)
             {
                 RegCloseKey(hKey);
                 if (keyString) { FREE(keyString); keyString = NULL;}
                 return FALSE;
             }
 
-            if ( RegSetValueEx(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, (DWORD)(strlen(LANGUAGE)+1)) != ERROR_SUCCESS)
+            if ( RegSetValueExW(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, (DWORD)(strlen(LANGUAGE)+1)) != ERROR_SUCCESS)
             {
                 RegCloseKey(hKey);
                 if (keyString) { FREE(keyString); keyString = NULL;}

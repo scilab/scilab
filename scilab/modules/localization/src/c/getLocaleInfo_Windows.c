@@ -53,13 +53,13 @@ char* getLocaleSystemInfo(void)
 	return localeStr;
 }
 /*--------------------------------------------------------------------------*/
-char* getLocaleUserInfo(void)
+wchar_t* getLocaleUserInfo(void)
 {
 	#define LENGTH_BUFFER 1024
-	char buffer_LOCALE_SISO639LANGNAME[LENGTH_BUFFER];
-	char buffer_LOCALE_SISO3166CTRYNAME[LENGTH_BUFFER];
-	char buffer_LOCALE_IDEFAULTANSICODEPAGE[LENGTH_BUFFER]; 
-	char *localeStr = NULL;
+	wchar_t buffer_LOCALE_SISO639LANGNAME[LENGTH_BUFFER];
+	wchar_t buffer_LOCALE_SISO3166CTRYNAME[LENGTH_BUFFER];
+	wchar_t buffer_LOCALE_IDEFAULTANSICODEPAGE[LENGTH_BUFFER]; 
+	wchar_t *localeStr = NULL;
 	int ret = 0;
 	ret = GetLocaleInfo(LOCALE_USER_DEFAULT,
 						LOCALE_SISO639LANGNAME,

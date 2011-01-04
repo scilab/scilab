@@ -20,6 +20,7 @@ extern "C"
 #include "api_scilab.h"
 #include "stack-c.h"
 #include "api_oldstack.h"
+#include "charEncoding.h"
 #include "gw_helptools.h"
 #include "Scierror.h"
 #include "sci_path.h"
@@ -31,19 +32,19 @@ extern "C"
 #include "ConvertSlash.h"
 #endif
     /*--------------------------------------------------------------------------*/
-#define PATHTOCSS "/modules/helptools/css/javahelp.css"
-#define PATHTOBUILDDOC "/modules/helptools/build/doc/scilab_%s_help/"
-#define PATHTOMASTERXML "/modules/helptools/master_%s_help.xml"
-#define DEFAULTEXPORT "JH"
+#define PATHTOCSS L"/modules/helptools/css/javahelp.css"
+#define PATHTOBUILDDOC L"/modules/helptools/build/doc/scilab_%s_help/"
+#define PATHTOMASTERXML L"/modules/helptools/master_%s_help.xml"
+#define DEFAULTEXPORT L"JH"
 #ifdef _MSC_VER
-    static void __slashToAntislash(std::string *in)
+    static void __slashToAntislash(std::wstring *in)
     {
-        size_t found = in->rfind("/");
+        size_t found = in->rfind(L"/");
 
-        while (found != std::string::npos)
+        while (found != std::wstring::npos)
         {
-            in->replace (found, 1, "\\");
-            found = in->rfind("/");
+            in->replace (found, 1, L"\\");
+            found = in->rfind(L"/");
         }
     }
 #endif
@@ -55,14 +56,14 @@ extern "C"
         static int l3 = 0,n3 = 0,m3 = 0;
         static int l4 = 0,n4 = 0,m4 = 0;
         //     static int Row_Output = 0, Col_Output = 0;
-        std::string exportFormat;
-        std::string SciPath = getSCI(); /* Scilab path */
-        std::string masterXML; /* Which file contains all the doc stuff */
-        std::string masterXMLTMP;
-        std::string outputDirectory; /* Working directory */
-        std::string outputDirectoryTMP;
-        std::string language;
-        std::string styleSheet; /* the CSS */
+        std::wstring exportFormat;
+        std::wstring SciPath = getSCIW(); /* Scilab path */
+        std::wstring masterXML; /* Which file contains all the doc stuff */
+        std::wstring masterXMLTMP;
+        std::wstring outputDirectory; /* Working directory */
+        std::wstring outputDirectoryTMP;
+        std::wstring language;
+        std::wstring styleSheet; /* the CSS */
         //     std::string pathToGenerated;
         org_scilab_forge_scidoc::SciDocMain *doc = NULL;
         SciErr sciErr;
@@ -101,7 +102,7 @@ extern "C"
                 freeAllocatedSingleString(pstData);
                 return iRet;
             }
-            exportFormat = std::string(pstData);
+            exportFormat = std::wstring(to_wide_string(pstData));
             freeAllocatedSingleString(pstData);
 
         }
@@ -139,7 +140,7 @@ extern "C"
                     freeAllocatedSingleString(pstData);
                     return iRet;
                 }
-                language = std::string(pstData);
+                language = std::wstring(to_wide_string(pstData));
                 freeAllocatedSingleString(pstData);
             }
 
@@ -148,7 +149,7 @@ extern "C"
         if (Rhs < 2)
         {
             /* Update the path with the localization */
-            masterXMLTMP = std::string("/modules/helptools/master_")+language+std::string("_help.xml");
+            masterXMLTMP = std::wstring(L"/modules/helptools/master_")+language+std::wstring(L"_help.xml");
             masterXML = SciPath + masterXMLTMP;
         }
         else
@@ -174,7 +175,7 @@ extern "C"
                 freeAllocatedSingleString(pstData);
                 return iRet;
             }
-            masterXML = std::string(pstData);
+            masterXML = std::wstring(to_wide_string(pstData));
             freeAllocatedSingleString(pstData);
         }
 
@@ -200,14 +201,14 @@ extern "C"
                 freeAllocatedSingleString(pstData);
                 return iRet;
             }
-            outputDirectory = std::string(pstData)+std::string("/scilab_")+language+std::string("_help/");
+            outputDirectory = std::wstring(to_wide_string(pstData))+std::wstring(L"/scilab_")+language+std::wstring(L"_help/");
             freeAllocatedSingleString(pstData);
 
         }
         else /* Scilab help */
         {
             /* Update the path with the localization */
-            outputDirectoryTMP = std::string("/modules/helptools/")+std::string(exportFormat)+std::string("/scilab_")+language+std::string("_help/");
+            outputDirectoryTMP = std::wstring(L"/modules/helptools/")+std::wstring(exportFormat)+std::wstring(L"/scilab_")+language+std::wstring(L"_help/");
 
             outputDirectory = SciPath+outputDirectoryTMP;
         }

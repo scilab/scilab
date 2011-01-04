@@ -19,5 +19,4 @@ LanguageIsOK
 needtochangelanguage
 exportLocaleToSystem
 IsValidUTF8
-setLanguageFromCommandLine
 getLcidString

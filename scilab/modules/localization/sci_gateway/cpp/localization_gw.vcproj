@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes"
+				AdditionalIncludeDirectories="..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LOCALIZATION_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -118,7 +118,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes"
+				AdditionalIncludeDirectories="..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LOCALIZATION_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -193,7 +193,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes"
+				AdditionalIncludeDirectories="..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LOCALIZATION_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -270,7 +270,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes"
+				AdditionalIncludeDirectories="..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LOCALIZATION_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -333,7 +333,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_getdefaultlanguage.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_getlanguage.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gettext.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_setdefaultlanguage.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_setlanguage.cpp"
 				>
 			</File>
 		</Filter>

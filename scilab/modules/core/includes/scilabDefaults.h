@@ -74,7 +74,7 @@
 /* http://msdn2.microsoft.com/en-us/library/x99tb11d(vs.71).aspx */
 #define EXPORTENVLOCALE LC_CTYPE
 #endif
-#define EXPORTENVLOCALESTR "LC_MESSAGES"
+#define EXPORTENVLOCALESTR L"LC_MESSAGES"
 
 /* The portable locale. Should be english for numerical values */
 #define LCNUMERICVALUE "C"

@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
+* Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -15,25 +16,26 @@
 #define __LANGUAGEPREFERENCES_WINDOWS_H__
 
 #include "BOOL.h"
+#include "dynlib_localization.h"
 
 /**
 * Get default language saved in registry
 * @return language
 */
-char *getLanguagePreferences(void);
+LOCALIZATION_IMPEXP wchar_t *getLanguagePreferences(void);
 
 /**
 * Set default language saved in registry
 * @return TRUE or FALSE
 */
-BOOL setLanguagePreferences(void);
+LOCALIZATION_IMPEXP BOOL setLanguagePreferences(void);
 
 /**
 * Set language from Command line (wscilex.exe -l lang)
 * @param[in] language string
 * @return TRUE or FALSE
 */
-BOOL setLanguageFromCommandLine(char *lang);
+LOCALIZATION_IMPEXP BOOL setLanguageFromCommandLine(wchar_t *lang);
 
 /**
 * check if it is valid language format
@@ -41,7 +43,7 @@ BOOL setLanguageFromCommandLine(char *lang);
 * @param[in] language string
 * @return TRUE or FALSE
 */
-BOOL isValidLanguage(char *lang);
+LOCALIZATION_IMPEXP BOOL isValidLanguage(wchar_t *lang);
 
 #endif /* __LANGUAGEPREFERENCES_WINDOWS_H__ */
 /*--------------------------------------------------------------------------*/ 

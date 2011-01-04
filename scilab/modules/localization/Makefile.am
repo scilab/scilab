@@ -25,16 +25,15 @@ endif
 
 GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_localization.c \
-	sci_gateway/c/sci_dgettext.c \
-	sci_gateway/c/sci_setlanguage.c \
-	sci_gateway/c/sci_getdefaultlanguage.c \
-	sci_gateway/c/sci_getlanguage.c \
-	sci_gateway/c/sci_setdefaultlanguage.c
+	sci_gateway/c/sci_dgettext.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/localization_gw.cpp \
-	sci_gateway/cpp/sci_gettext.cpp
-
+	sci_gateway/cpp/sci_gettext.cpp \
+	sci_gateway/cpp/sci_setdefaultlanguage.cpp \
+	sci_gateway/cpp/sci_getdefaultlanguage.cpp \
+	sci_gateway/cpp/sci_setlanguage.cpp \
+	sci_gateway/cpp/sci_getlanguage.cpp
 
 libscilocalization_la_CFLAGS=  	\
 	$(JAVA_JNI_INCLUDE) \

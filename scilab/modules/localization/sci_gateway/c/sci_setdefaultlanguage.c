@@ -30,102 +30,102 @@ static char *getLanguageFromAlias(char *alias);
 /*--------------------------------------------------------------------------*/
 int sci_setdefaultlanguage(char *fname,unsigned long fname_len)
 {
-	int n1 = 0, m1 = 0, l1 = 0;
+	//int n1 = 0, m1 = 0, l1 = 0;
 
-	CheckRhs(1, 1);
-	CheckLhs(1, 1);
-	#ifndef _MSC_VER
-	{
-		if (getWarningMode())
-		{
-			sciprint(_("%s: This feature is only used on Windows.\n"), fname);
-		}
-		m1 = 1; n1 = 1;
-		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-		*istk(l1)=(int)(FALSE);
+	//CheckRhs(1, 1);
+	//CheckLhs(1, 1);
+	//#ifndef _MSC_VER
+	//{
+	//	if (getWarningMode())
+	//	{
+	//		sciprint(_("%s: This feature is only used on Windows.\n"), fname);
+	//	}
+	//	m1 = 1; n1 = 1;
+	//	CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+	//	*istk(l1)=(int)(FALSE);
 
-		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();
-	}
-	#else
-	{
-		if (GetType(1) == sci_strings)
-		{
-			char *newlang = NULL;
-			GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-			newlang = getLanguageFromAlias( cstk(l1) );
+	//	LhsVar(1) = Rhs+1;
+	//	C2F(putlhsvar)();
+	//}
+	//#else
+	//{
+	//	if (GetType(1) == sci_strings)
+	//	{
+	//		char *newlang = NULL;
+	//		GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+	//		newlang = getLanguageFromAlias( cstk(l1) );
 
-			if ( !isValidLanguage(newlang) )
-			{
-				if ( getWarningMode() )
-				{
-					sciprint(_("Unsupported language '%s'.\n"),newlang);
-				}
-				m1 = 1; n1 = 1;
-				CreateVar(Rhs+1, MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-				*istk(l1) = (int)(FALSE);
-				LhsVar(1) = Rhs+1;
-				C2F(putlhsvar)();
-				if (newlang) { FREE(newlang); newlang = NULL; }
-				return 0;
-			}
-			else
-			{
-				char *savedLanguage = getLanguagePreferences();
-				if ( strcmp(newlang, savedLanguage) == 0 )
-				{
-					/* do nothing */
-					m1 = 1; n1 = 1;
-					CreateVar(Rhs+1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &l1);
-					*istk(l1) = (int)(TRUE);
-					LhsVar(1) = Rhs+1;
-					C2F(putlhsvar)();
-					if (newlang) { FREE(newlang); newlang = NULL; }
-					if (savedLanguage) { FREE(savedLanguage); savedLanguage = NULL; }
-					return 0;
-				}
-				else
-				{
-					if (savedLanguage) { FREE(savedLanguage); savedLanguage = NULL; }
-					if ( !setlanguage(newlang) ) /* */
-					{
-						m1 = 1; n1 = 1;
-						CreateVar(Rhs+1, MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-						*istk(l1) = (int)(FALSE);
-						LhsVar(1) = Rhs+1;
-						C2F(putlhsvar)();
-						if (newlang) { FREE(newlang); newlang = NULL; }
-						return 0;
-					}
-					else
-					{
-						if ( getWarningMode() )
-						{
-							sciprint("\n");
-							sciprint(_("The language for menus cannot be changed on a running console.\n"));
-							sciprint(_("Restart Scilab to apply to menus.\n"));
-						}
+	//		if ( !isValidLanguage(newlang) )
+	//		{
+	//			if ( getWarningMode() )
+	//			{
+	//				sciprint(_("Unsupported language '%s'.\n"),newlang);
+	//			}
+	//			m1 = 1; n1 = 1;
+	//			CreateVar(Rhs+1, MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+	//			*istk(l1) = (int)(FALSE);
+	//			LhsVar(1) = Rhs+1;
+	//			C2F(putlhsvar)();
+	//			if (newlang) { FREE(newlang); newlang = NULL; }
+	//			return 0;
+	//		}
+	//		else
+	//		{
+	//			char *savedLanguage = getLanguagePreferences();
+	//			if ( strcmp(newlang, savedLanguage) == 0 )
+	//			{
+	//				/* do nothing */
+	//				m1 = 1; n1 = 1;
+	//				CreateVar(Rhs+1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &l1);
+	//				*istk(l1) = (int)(TRUE);
+	//				LhsVar(1) = Rhs+1;
+	//				C2F(putlhsvar)();
+	//				if (newlang) { FREE(newlang); newlang = NULL; }
+	//				if (savedLanguage) { FREE(savedLanguage); savedLanguage = NULL; }
+	//				return 0;
+	//			}
+	//			else
+	//			{
+	//				if (savedLanguage) { FREE(savedLanguage); savedLanguage = NULL; }
+	//				if ( !setlanguage(newlang) ) /* */
+	//				{
+	//					m1 = 1; n1 = 1;
+	//					CreateVar(Rhs+1, MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+	//					*istk(l1) = (int)(FALSE);
+	//					LhsVar(1) = Rhs+1;
+	//					C2F(putlhsvar)();
+	//					if (newlang) { FREE(newlang); newlang = NULL; }
+	//					return 0;
+	//				}
+	//				else
+	//				{
+	//					if ( getWarningMode() )
+	//					{
+	//						sciprint("\n");
+	//						sciprint(_("The language for menus cannot be changed on a running console.\n"));
+	//						sciprint(_("Restart Scilab to apply to menus.\n"));
+	//					}
 
-						m1 = 1; n1 = 1;
-						CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+	//					m1 = 1; n1 = 1;
+	//					CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 
-						if ( setLanguagePreferences() ) *istk(l1) = (int)TRUE;
-						else *istk(l1) = (int)FALSE;
+	//					if ( setLanguagePreferences() ) *istk(l1) = (int)TRUE;
+	//					else *istk(l1) = (int)FALSE;
 
-						LhsVar(1) = Rhs+1;
-						C2F(putlhsvar)();
-						if (newlang) { FREE(newlang); newlang = NULL; }
-						return 0;
-					}
-				}
-			 }
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"), fname);
-		}
-	}
-	#endif
+	//					LhsVar(1) = Rhs+1;
+	//					C2F(putlhsvar)();
+	//					if (newlang) { FREE(newlang); newlang = NULL; }
+	//					return 0;
+	//				}
+	//			}
+	//		 }
+	//	}
+	//	else
+	//	{
+	//		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"), fname);
+	//	}
+	//}
+	//#endif
 
 	return 0;
 }

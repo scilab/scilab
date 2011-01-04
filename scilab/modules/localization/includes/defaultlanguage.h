@@ -18,7 +18,7 @@
 ** tableslanguages.h seems not to be a very clever idea...
 */
 
-#define SCILABDEFAULTLANGUAGE "en_US"
+#define SCILABDEFAULTLANGUAGE L"en_US"
 #define SCILABDEFAULTLANGUAGECODE 83
 
 #endif /* !__DEFAULTLANGUAGE_H__ */
