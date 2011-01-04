@@ -35,6 +35,8 @@ void setWarningMode(int _iMode)
     {
         ConfigVariable::setWarningMode(false);
     }
-
-    ConfigVariable::setWarningMode(true);
+    else
+    {
+        ConfigVariable::setWarningMode(true);
+    }
 }

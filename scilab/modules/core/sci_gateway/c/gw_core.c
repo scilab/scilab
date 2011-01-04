@@ -20,7 +20,7 @@ static gw_generic_table Tab[]=
 {
 {C2F(sci_debug),"debug"},
 {C2F(sci_who),"who"},
-{C2F(sci_warning),"warning"},
+{NULL, ""}, // warning
 {NULL, ""}, //argn
 {C2F(sci_getvariablesonstack),"getvariablesonstack"},
 {C2F(sci_comp),"comp"},

@@ -41,6 +41,7 @@ bool CoreModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getscilabmode", &sci_getscilabmode, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"with_module", &sci_with_module, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"lasterror", &sci_lasterror, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"warning", &sci_warning, MODULE_NAME));
     return true;
 }
 

@@ -1,6 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+*  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -43,5 +44,6 @@ CPP_GATEWAY_PROTOTYPE(sci_getos);
 CPP_GATEWAY_PROTOTYPE(sci_with_module);
 CPP_GATEWAY_PROTOTYPE(sci_lasterror);
 CPP_GATEWAY_PROTOTYPE(sci_getversion);
+CPP_GATEWAY_PROTOTYPE(sci_warning);
 
 #endif /* __CORE_GW_HXX__ */

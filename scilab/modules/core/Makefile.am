@@ -209,7 +209,6 @@ sci_gateway/c/sci_who.c \
 sci_gateway/c/sci_errclear.c \
 sci_gateway/c/sci_funcprot.c \
 sci_gateway/c/sci_newfun.c \
-sci_gateway/c/sci_warning.c \
 sci_gateway/c/sci_dispbpt.c \
 sci_gateway/c/sci_intppty.c \
 sci_gateway/c/sci_ieee.c \
@@ -268,7 +267,9 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_exists.cpp \
 	sci_gateway/cpp/sci_with_module.cpp \
 	sci_gateway/cpp/sci_lasterror.cpp \
-	sci_gateway/cpp/sci_getversion.cpp
+	sci_gateway/cpp/sci_getversion.cpp \
+	sci_gateway/cpp/sci_warning.cpp
+
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
