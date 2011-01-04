@@ -20,8 +20,6 @@ import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +43,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.graph.ScilabCanvas;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
@@ -101,7 +98,6 @@ import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
@@ -526,19 +522,6 @@ public class XcosDiagram extends ScilabGraph {
 	public void installStylesheet() {
 		final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
 		setStylesheet(styleSheet);
-		
-		// Set Canvas background
-		URL background = null;
-		try {
-			final Map<String, Object> style = styleSheet.getCellStyle("Icon", null);
-			if (style != null) {
-				background = new URL((String) style.get(mxConstants.STYLE_IMAGE));
-			}
-		} catch (final MalformedURLException e) {
-			LOG.warn(e);
-		}
-		((ScilabCanvas) getAsComponent().getCanvas())
-				.setSvgBackgroundImage(background);
 	}
     
     /**

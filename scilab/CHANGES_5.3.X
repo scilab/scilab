@@ -91,6 +91,8 @@ Module skeleton:
 * bug 8658 fixed - Use accentuated characters on file name lead to a modelica
                    compiler error.
 
+* bug 8440 fixed - The SVG background was not exported to SVG.
+
 Localization:
 =============
 
