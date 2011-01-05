@@ -378,6 +378,9 @@ public final class Xcos {
 			instance.palette.getView().close();
 			instance.palette.setView(null);
 		}
+		
+		/* terminate any remaining simulation */
+		InterpreterManagement.requestScilabExec("haltscicos");
 	}
 
 	/**

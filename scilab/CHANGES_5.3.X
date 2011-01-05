@@ -73,6 +73,8 @@ Module skeleton:
 
 * New example added (function with copy instead of reference)
 
+* bug 8639 fixed - Simulations were not halted on Xcos close.
+
 Localization:
 =============
 
