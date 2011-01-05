@@ -35,6 +35,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureExc
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.utils.FileUtils;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
@@ -477,7 +478,12 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		data = paramsElement.encode(from.getScicosParameters(), data);
 		
 		// set the title as it is need for generating files
-		((ScilabTList) data).set(TITLE_INDEX, new ScilabString(from.getTitle()));
+		((ScilabTList) data).set(
+				TITLE_INDEX,
+				new ScilabString(
+						FileUtils.toValidCIdentifier(from.getTitle())
+				)
+		);
 		
 		base.set(field, data);
 	}

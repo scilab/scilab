@@ -27,7 +27,6 @@ import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
-import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
@@ -41,21 +40,19 @@ import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
-import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxUtils;
 
 /**
  * A SuperBlock contains an entire diagram on it. Thus it can be easily
@@ -74,7 +71,6 @@ import com.mxgraph.util.mxUtils;
  * @see SuperblockMaskRemoveAction
  */
 public final class SuperBlock extends BasicBlock {
-	private static final char UNDERSCORE = '_';
 	private static final long serialVersionUID = 3005281208417373333L;
 	/**
 	 * The simulation name (linked to Xcos-core)
@@ -580,48 +576,11 @@ public final class SuperBlock extends BasicBlock {
 		}
 		
 		if (getChild() != null) {
-			getChild().setTitle(toValidCIdentifier(value.toString()));
+			getChild().setTitle(FileUtils.toValidCIdentifier(value.toString()));
 			setRealParameters(new DiagramElement().encode(getChild()));
 		}
 	}
 
-	/**
-	 * Export an HTML label String to a valid C identifier String. 
-	 * 
-	 * @param label the HTML label
-	 * @return a valid C identifier String
-	 */
-	private String toValidCIdentifier(final String label) {
-		final String text = mxUtils.getBodyMarkup(label, true);
-		final StringBuilder cFunctionName = 
-			new StringBuilder();
-		
-		for (int i = 0; i < text.length(); i++) {
-			final char ch = text.charAt(i);
-			
-			// Adding upper case chars
-			if (ch >= 'A' && ch <= 'Z') {
-				cFunctionName.append(ch);
-			} else
-			
-			// Adding lower case chars
-			if (ch >= 'a' && ch <= 'z') {
-				cFunctionName.append(ch);
-			} else
-				
-			// Adding number chars
-			if (ch >= '0' && ch <= '9') {
-				cFunctionName.append(ch);
-			} else
-			
-			// Specific chars
-			if (ch == UNDERSCORE || ch == ' ') {
-				cFunctionName.append(UNDERSCORE);
-			}
-		}
-		return cFunctionName.toString();
-	}
-	
 	/**
 	 * Clone the child safely.
 	 * 

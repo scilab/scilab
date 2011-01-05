@@ -88,6 +88,9 @@ Module skeleton:
 * bug 8711 fixed - The "Cont. Plant-Hybrid Observer" demo contains a translated
                    origin point which lead to strange links creation.
 
+* bug 8658 fixed - Use accentuated characters on file name lead to a modelica
+                   compiler error.
+
 Localization:
 =============
 
