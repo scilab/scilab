@@ -109,16 +109,20 @@ Xcos:
 
 * bug 8642 fixed - The getDiagramVersion unit test could not pass.
 
+* bug 8644 fixed - Add an simple example to define their own block.
+
 * bug 8658 fixed - Use accentuated characters on file name lead to a modelica
                    compiler error.
+
+* bug 8737 fixed - Compilation failed when a diagram contains any hidden links
+                   (wrong indexes issues).
+
 
 Module skeleton:
 ================
 
 * New example added (function with copy instead of reference)
 
-
-* bug 8644 fixed - Add an simple example to define their own block.
 
 Localization:
 =============

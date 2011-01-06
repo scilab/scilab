@@ -16,10 +16,14 @@ import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
@@ -526,8 +530,29 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     			}
 			} else if (current instanceof BasicLink) {
 				BasicLink link = (BasicLink) current;
-				linkList.add(link);
+				
+				// Only add connected links
+				final mxICell source = link.getSource();
+				final mxICell target = link.getTarget();
+				if (source != null && target != null &&
+						source.getParent() instanceof BasicBlock &&
+						target.getParent() instanceof BasicBlock) {
+					linkList.add(link);
+				}
 			}
+		}
+		
+		/*
+		 * Use a predictable block and links order when debug is enable
+		 */
+		if (LogFactory.getLog(DiagramElement.class).isDebugEnabled()){
+			Collections.sort(blockList);
+			Collections.sort(linkList, new Comparator<BasicLink>() {
+				@Override
+				public int compare(BasicLink o1, BasicLink o2) {
+					return ((ScilabGraphUniqueObject) o1.getSource()).compareTo((ScilabGraphUniqueObject) o2.getSource());
+				}
+			});
 		}
 		
 		/*
