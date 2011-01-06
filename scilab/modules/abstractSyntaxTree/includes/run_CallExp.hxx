@@ -348,10 +348,18 @@ void visitprivate(const CallExp &e)
         {
             if(pOut == NULL)
             {
-                std::wostringstream os;
-                os << L"inconsistent row/column dimensions\n";
-                //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
-                throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                // Special case, try to extract from an empty matrix.
+                if (pIT->isDouble() && pIT->getAs<Double>()->size_get() == 0)
+                {
+                    pOut = Double::Empty();
+                }
+                else
+                {
+                    std::wostringstream os;
+                    os << L"inconsistent row/column dimensions\n";
+                    //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+                    throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                }
             }
             result_set(pOut);
         }
