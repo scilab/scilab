@@ -1783,6 +1783,16 @@ public final class ConfigSciNotesManager {
      * @param sep the pane
      */
     public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep) {
+        saveToOpenFiles(filePath, editorInstance, sep, -1);
+    }
+
+    /**
+     * Add a file to currently open files
+     * @param filePath the path of the files to add
+     * @param editorInstance instance of the editor to associate with the open file
+     * @param sep the pane
+     */
+    public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep, int pos) {
         readDocument();
         UUID nil = new UUID(0, 0);
 
@@ -1792,6 +1802,11 @@ public final class ConfigSciNotesManager {
         NodeList openFiles = root.getElementsByTagName(DOCUMENT);
         int numberOfFiles = openFiles.getLength();
 
+        Node bef = null;
+        if (pos != - 1 && pos < numberOfFiles) {
+            bef = openFiles.item(pos);
+        }
+
         Element newFile =  document.createElement(DOCUMENT);
         newFile.setAttribute(PATH, filePath);
         // Record the editor instance's hash code
@@ -1800,7 +1815,11 @@ public final class ConfigSciNotesManager {
         // Record the text pane's hash code
         newFile.setAttribute(PANEINST, sep.getUUID().toString());
         newFile.setAttribute(PANEINST_EX, nil.toString());
-        root.appendChild((Node) newFile);
+        if (bef != null) {
+            root.insertBefore((Node) newFile, bef);
+        } else {
+            root.appendChild((Node) newFile);
+        }
 
         clean(root);
         writeDocument();
