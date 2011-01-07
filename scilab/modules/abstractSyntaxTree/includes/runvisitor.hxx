@@ -147,6 +147,11 @@ namespace ast
 
         types::InternalType* result_get(int _iPos)
         {
+            if(is_single_result() && _iPos == 0)
+            {
+                return _result;
+            }
+
             if(_iPos >= static_cast<int>(_resultVect.size()))
             {
                 return NULL;

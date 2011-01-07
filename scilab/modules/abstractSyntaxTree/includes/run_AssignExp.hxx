@@ -159,6 +159,7 @@ void visitprivate(const AssignExp  &e)
         {//x(?) = ?
             T execVar;
             InternalType *pIT;
+            InternalType *pOut;
             bool bNew           = false;
             bool bSeeAsVector   = false;
             int iProductElem    = (int)pCall->args_get().size();
@@ -204,131 +205,175 @@ void visitprivate(const AssignExp  &e)
                 }
             }
 
-            int *piIndexSeq     = NULL;
-            int *piMaxDim       = NULL;
-            int *piDimSize      = new int[iProductElem];
-            int iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
-
-            if(iTotalCombi == 0)
-            {//nothing to do
-                return;
-            }
-            /*We have the indexlist expanded and the max index*/
-
-            //check we don't have bad indexes like "< 1"
-            for(int i = 0 ; i < iTotalCombi * iProductElem; i++)
+            if(pIT->isStruct())
             {
-                if(piIndexSeq[i] < 1)
+                // Don't know how to manage struc array now.
+                if(pCall->args_get().size() != 1)
                 {
-                    //manage error
-                    std::wostringstream os;
-                    os << _W("Indexes must be positive .\n");
-                    //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
-                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
-                }
-            }
-
-            InternalType *pOut	= NULL;
-
-            //fisrt extract implicit list
-            if(execMeR.result_get()->isImplicitList())
-            {
-                InternalType *pIL = execMeR.result_get()->getAsImplicitList()->extract_matrix();
-                execMeR.result_set(pIL);
-            }
-            else if(execMeR.result_get()->isContainer())
-            {
-                //std::cout << "assign container type during insertion" << std::endl;
-                InternalType* pIL = execMeR.result_get()->clone();
-                execMeR.result_set(pIL);
-            }
-
-            if(pIT == NULL || (pIT->isDouble() && pIT->getAsDouble()->size_get() == 0))
-            {//call static insert function
-                if(pIT != NULL && pIT->isDouble() && pIT->getAsDouble()->size_get() == 0)
-                {
-                    bNew = true;
+                    throw ScilabError(_W("Don't know how to extract Struct Array."), 999, e.left_exp_get().location_get());
                 }
 
-                switch(execMeR.result_get()->getType())
+                T execMeArg;
+                std::list<Exp *>::const_iterator	it;
+                for(it = pCall->args_get().begin() ; it != pCall->args_get().end() ; it++)
                 {
-                case InternalType::RealDouble : 
-                    pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsDouble(), bSeeAsVector);
-                    break;
-                case InternalType::RealBool : 
-                    pOut = Bool::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsBool(), bSeeAsVector);
-                    break;
-                case InternalType::RealString : 
-                    pOut = String::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsString(), bSeeAsVector);
-                    break;
-                case InternalType::RealInt : 
-                    pOut = Int::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsInt(), bSeeAsVector);
-                    break;
-                case InternalType::RealList : 
-                    //never occur !
-                    break;
-                case InternalType::RealCell : 
-                    //never occur !
-                    break;
-                default : 
-                    //TOTO YaSp : overlaoding insertion
-                    break;
-                }
-            }
-            else
-            {//call type insert function
-                InternalType* pRet = NULL;
-                switch(pIT->getType())
-                {
-                case InternalType::RealDouble : 
-                    pRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
-                    break;
-                case InternalType::RealBool : 
-                    pRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
-                    break;
-                case InternalType::RealString : 
-                    pRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
-                    break;
-                case InternalType::RealInt : 
-                    pRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
-                    break;
-                case InternalType::RealList : 
-                    pRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
-                    break;
-                case InternalType::RealTList : 
-                    pRet = pIT->getAsTList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
-                    break;
-                case InternalType::RealCell : 
-                    if(execMeR.result_get()->isCell() == true)
+                    (*it)->accept(execMeArg);
+                    if(execMeArg.result_get()->isDouble() == true)
                     {
-                        pRet = pIT->getAsCell()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                        throw ScilabError(_W("Don't know how to extract Struct Array."), 999, e.left_exp_get().location_get());
+                    }
+
+                    if(execMeArg.result_get()->isString() == false)
+                    {
+                        throw ScilabError(_W("Don't know how to insert non-string field of Struct Array."), 999, e.left_exp_get().location_get());
+                    }
+
+                    T execRight;
+                    e.right_exp_get().accept(execRight);
+                    if(execMeArg.result_get()->getAsString()->size_get() != execRight.result_size_get())
+                    {
+                        throw ScilabError(_W("Incompatible dimensions for multiple Struct fields insertion."), 999, e.left_exp_get().location_get());
                     }
                     else
                     {
-                        //manage error
-                        std::wostringstream os;
-                        os << _W("Right hand argument must be a cell.\n");
-                        //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                        for(int i = 0 ; i <  execRight.result_size_get() ; ++i)
+                        {
+                            pIT->getAsStruct()->add(std::wstring(execMeArg.result_get()->getAsString()->string_get(i)), execRight.result_get(i));
+                        }
                     }
-                    break;
-                default : 
-                    //TODO YaSp : overlaoding insertion
-                    break;
                 }
 
-                if(pRet && pRet != pIT)
-                {
-                    //variable change
-                    pIT->DecreaseRef();
-                    if(pIT->isDeletable())
-                    {
-                        delete pIT;
-                    }
-                    bNew = true;
+                pOut = pIT;
+
+            }
+            else
+            {
+                int *piIndexSeq     = NULL;
+                int *piMaxDim       = NULL;
+                int *piDimSize      = new int[iProductElem];
+                int iTotalCombi		= GetIndexList(pIT, pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+
+                if(iTotalCombi == 0)
+                {//nothing to do
+                    return;
                 }
-                
-                pOut = pRet;
+                /*We have the indexlist expanded and the max index*/
+
+                //check we don't have bad indexes like "< 1"
+                for(int i = 0 ; i < iTotalCombi * iProductElem; i++)
+                {
+                    if(piIndexSeq[i] < 1)
+                    {
+                        //manage error
+                        std::wostringstream os;
+                        os << _W("Indexes must be positive .\n");
+                        //os << ((Location)e.left_exp_get().location_get()).location_string_get() << std::endl;
+                        throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
+                    }
+                }
+
+                //fisrt extract implicit list
+                if(execMeR.result_get()->isImplicitList())
+                {
+                    InternalType *pIL = execMeR.result_get()->getAsImplicitList()->extract_matrix();
+                    execMeR.result_set(pIL);
+                }
+                else if(execMeR.result_get()->isContainer())
+                {
+                    //std::cout << "assign container type during insertion" << std::endl;
+                    InternalType* pIL = execMeR.result_get()->clone();
+                    execMeR.result_set(pIL);
+                }
+
+                if(pIT == NULL || (pIT->isDouble() && pIT->getAsDouble()->size_get() == 0))
+                {//call static insert function
+                    if(pIT != NULL && pIT->isDouble() && pIT->getAsDouble()->size_get() == 0)
+                    {
+                        bNew = true;
+                    }
+
+                    switch(execMeR.result_get()->getType())
+                    {
+                    case InternalType::RealDouble :
+                        pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsDouble(), bSeeAsVector);
+                        break;
+                    case InternalType::RealBool :
+                        pOut = Bool::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsBool(), bSeeAsVector);
+                        break;
+                    case InternalType::RealString :
+                        pOut = String::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsString(), bSeeAsVector);
+                        break;
+                    case InternalType::RealInt :
+                        pOut = Int::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsInt(), bSeeAsVector);
+                        break;
+                    case InternalType::RealList :
+                        //never occur !
+                        break;
+                    case InternalType::RealCell :
+                        //never occur !
+                        break;
+                    default :
+                        //TOTO YaSp : overlaoding insertion
+                        break;
+                    }
+                }
+                else
+                {//call type insert function
+                    InternalType* pRet = NULL;
+                    switch(pIT->getType())
+                    {
+                    case InternalType::RealDouble :
+                        pRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                        break;
+                    case InternalType::RealBool :
+                        pRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                        break;
+                    case InternalType::RealString :
+                        pRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                        break;
+                    case InternalType::RealInt :
+                        pRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                        break;
+                    case InternalType::RealList :
+                        pRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
+                        break;
+                    case InternalType::RealTList :
+                        pRet = pIT->getAsTList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
+                        break;
+                    case InternalType::RealCell :
+                        if(execMeR.result_get()->isCell() == true)
+                        {
+                            pRet = pIT->getAsCell()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
+                        }
+                        else
+                        {
+                            //manage error
+                            std::wostringstream os;
+                            os << _W("Right hand argument must be a cell.\n");
+                            //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
+                            throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                        }
+                        break;
+                    default :
+                        //TODO YaSp : overlaoding insertion
+                        break;
+                    }
+
+                    if(pRet && pRet != pIT)
+                    {
+                        //variable change
+                        pIT->DecreaseRef();
+                        if(pIT->isDeletable())
+                        {
+                            delete pIT;
+                        }
+                        bNew = true;
+                    }
+
+                    pOut = pRet;
+                }
+                delete piMaxDim;
+                delete[] piDimSize;
             }
 
             if(pOut != NULL)
@@ -362,9 +407,7 @@ void visitprivate(const AssignExp  &e)
                 //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
-            delete piMaxDim;
-            delete[] piDimSize;
-        }
+         }
         else if(pVar)
         {// x = ?
             /*getting what to assign*/
@@ -378,7 +421,7 @@ void visitprivate(const AssignExp  &e)
                 //os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
-				
+
             InternalType *pIT	=	execMeR.result_get();
             if(pIT->isImplicitList())
             {
