@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - INRIA - Allan SIMON
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010 - 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,7 +12,7 @@
  *
  -->
 
-<Setting version="0.30">
+<Setting version="0.31">
 
   <!-- SCINOTES configuration -->
   <Profile name="scinotes">
@@ -63,7 +63,7 @@
 
     <styles>
 
-      <FontName default="Lucida Sans Typewriter" value="Lucida Sans Typewriter"/>
+      <FontName default="Monospaced" value="Monospaced"/>
       <FontSize default="14" value="14"/>
 
       <MainWindowPosition x="150" y="50"/>
