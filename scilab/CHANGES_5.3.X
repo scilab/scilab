@@ -35,6 +35,8 @@ trigger a warning and do not add a link on the function name.
 
 * bug 8690 fixed - Typo fixed in the french min help page.
 
+* bug 8756 fixed - The file id was expected only in refentry.
+
 Scinotes:
 =========
 

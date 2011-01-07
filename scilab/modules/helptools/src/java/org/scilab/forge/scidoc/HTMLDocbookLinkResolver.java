@@ -51,6 +51,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
     private boolean waitForRefname;
     private boolean waitForTitle;
     private boolean getContents;
+    private boolean idInRefentry;
     private final File in;
     private int level;
     private StringBuilder buffer = new StringBuilder(256);
@@ -124,6 +125,10 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             }
         }
 
+        if (localName.equals("refentry")) {
+            idInRefentry = false;
+        }
+
         if (localName.equals("title")) {
             if (waitForTitle) {
                 getContents = true;
@@ -134,7 +139,8 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
                 getContents = true;
                 buffer.setLength(0);
             }
-        } else if (localName.equals("refentry") || localName.equals("section") || localName.equals("part") || localName.equals("chapter")) {
+        } else if ((id != null && localName.equals("refentry")) || localName.equals("section")
+                   || localName.equals("part") || localName.equals("chapter") || (!idInRefentry && localName.equals("refnamediv"))) {
             if (id == null) {
                 throw new SAXException(errorMsg());
             }
@@ -149,6 +155,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             mapId.put(id, current);
             waitForTitle = localName.charAt(0) != 'r';
             waitForRefname = !waitForTitle;
+            idInRefentry = waitForRefname;
             TreeId leaf = new TreeId(currentLeaf, id);
             currentLeaf.add(leaf);
             currentLeaf = leaf;
@@ -258,7 +265,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
                 }
         }
 
-        return "Refentry without id attributes in file " + str + " at line " + locator.getLineNumber();
+        return "No id attribute in <refentry> or <refnamediv> in file " + str + " at line " + locator.getLineNumber();
     }
 
     class TreeId {
