@@ -20,7 +20,7 @@ Removed functions (previously declared as obsolete):
 Documentation:
 ==============
 
-* In an example in the documentation, when an undocumented function is used, 
+* In an example in the documentation, when an undocumented function is used,
 trigger a warning and do not add a link on the function name.
 
 * bug 7069 fixed - Old documentation about the documentation build process
@@ -71,7 +71,7 @@ Graphics:
 GUI:
 ====
 
-* bug 8203 fixed - It was not possible to close the fontchooser or the 
+* bug 8203 fixed - It was not possible to close the fontchooser or the
                    colorchooser with the escape key.
 
 Quality assurance:
@@ -99,11 +99,13 @@ Scilab:
 Bug fixes:
 ==========
 
-* bug 7691 fixed - Giving complex arguments to inverse degree trigonometric 
+* bug 7691 fixed - Giving complex arguments to inverse degree trigonometric
                    functions produced inconsistent results.
 
 * bug 8492 fixed - When the documentation was generated, error messages were not
                    displayed in the console but in the terminal.
+
+* bug 8732 fixed - strchr and strrchr did not work with a non-ASCII character needle.
 
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
@@ -124,7 +126,7 @@ Xcos:
 
 * bug 8407 fixed - The blocks was always resized after a parameters edition.
 
-* bug 8441 fixed - "xcos_block" abstract block were not removed on the 
+* bug 8441 fixed - "xcos_block" abstract block were not removed on the
                    compilation.
 
 * bug 8483 fixed - Multiplying a scalar and vector using the MATMUL block did not
