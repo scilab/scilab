@@ -160,6 +160,8 @@ GUI:
 * bug 8203 fixed - It was not possible to close the fontchooser or the
                    colorchooser with the escape key.
 
+* bug 8717 fixed - Bad window's title just after creation. 
+
 Quality assurance:
 ==================
 
