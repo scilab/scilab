@@ -723,26 +723,26 @@
   <!-- USER-DEFINED FUNCTIONS -->
   <add as="PDE" extend="blockWithLabel"/>
   <add as="fortran_block" extend="blockWithLabel">
-    <add as="displayedLabel" value="Fortran"/>
+    <add as="displayedLabel" value="Fortran block:&lt;BR&gt;%4$s"/>
   </add>
   <add as="DEBUG_SCICOS" extend="blockWithLabel">
-    <add as="displayedLabel" value="Debug"/>
+    <add as="displayedLabel" value="Debug:&lt;BR&gt;%2$s"/>
   </add>
   <add as="EXPRESSION" extend="blockWithLabel">
-    <add as="displayedLabel" value="Mathematical&lt;BR&gt;         expression"/>
+    <add as="displayedLabel" value="Expression:&lt;BR&gt;%2$s"/>
   </add>
   <add as="scifunc_block_m" extend="blockWithLabel">
-    <add as="displayedLabel" value="Scifunc"/>
+    <add as="displayedLabel" value="Function:&lt;BR&gt;%10$s"/>
   </add>
   <add as="scifunc_block" extend="scifunc_block_m"/>
   <add as="CBLOCK" extend="blockWithLabel">
-    <add as="displayedLabel" value="C block 2"/>
+    <add as="displayedLabel" value="C block 2:&lt;BR&gt;%1$s"/>
   </add>
   <add as="generic_block3" extend="blockWithLabel">
-    <add as="displayedLabel" value="GENERIC"/>
+    <add as="displayedLabel" value="native block:&lt;BR&gt;%1$s"/>
   </add>
   <add as="c_block" extend="blockWithLabel">
-    <add as="displayedLabel" value="C block"/>
+    <add as="displayedLabel" value="C block:&lt;BR&gt;%4$s"/>
   </add>
   <add as="SUPER_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SUPER.svg"/>

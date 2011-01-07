@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.IllegalFormatException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -1213,8 +1214,11 @@ public class XcosDiagram extends ScilabGraph {
 			
 			final String customLabel = (String) style.get("displayedLabel");
 			if (customLabel != null && cell instanceof BasicBlock) {
-				return String.format(customLabel,
-						(Object[]) ((BasicBlock) cell).getExprsFormat());
+				try {
+					return String.format(customLabel, ((BasicBlock) cell).getExprsFormat());
+				} catch (IllegalFormatException e) {
+					LOG.error(e);
+				}
 			} else {
 				final String label = super.convertValueToString(cell);
 				if (label.isEmpty() && cell instanceof BasicBlock) {
