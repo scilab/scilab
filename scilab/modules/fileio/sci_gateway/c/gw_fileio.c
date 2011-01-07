@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -15,9 +15,9 @@
 #include "callFunctionFromGateway.h"
 #include "MALLOC.h"
 #include "stack-c.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /*  interface function */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={
 	{NULL, ""}, //mopen
 	{sci_mputstr, "mputstr"},
@@ -39,11 +39,11 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //findfiles
 	{sci_maxfiles,"maxfiles"},
 	{sci_getdrives,"getdrives"},
-	{sci_fullpath,"fullpath"},
+	{NULL, ""}, // fullpath
 	{NULL, ""}, //deletefile
 	{sci_pathsep,"pathsep"},
 	{NULL, ""}, //filesep
-	{sci_getlongpathname,"getlongpathname"},
+	{NULL, ""}, // getlongpathname
 	{NULL ,""}, //getshortpathname
 	{NULL, ""}, //fileext
 	{NULL, ""}, //isdir
@@ -63,7 +63,7 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //pathconvert
 	{NULL, ""} //cd
 	};
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int gw_fileio(void)
 {
     Rhs = Max(0,Rhs);
@@ -71,5 +71,5 @@ int gw_fileio(void)
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 

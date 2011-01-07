@@ -1,13 +1,13 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- * 
+ *  Copyright (C) 2010-2011 - DIGITEO - Bruno JOFRET
+ *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
+ *
  */
 
 #ifndef __FILEIO_GW_HXX__
@@ -23,7 +23,7 @@
 		#define EXTERN_FILEIO_GW __declspec (dllimport)
 	#endif
 #else
-	#define EXTERN_FILEIO_GW 
+	#define EXTERN_FILEIO_GW
 #endif
 
 class FileioModule
@@ -52,7 +52,9 @@ CPP_GATEWAY_PROTOTYPE(sci_isfile);
 CPP_GATEWAY_PROTOTYPE(sci_fileinfo);
 CPP_GATEWAY_PROTOTYPE(sci_deletefile);
 CPP_GATEWAY_PROTOTYPE(sci_getshortpathname);
+CPP_GATEWAY_PROTOTYPE(sci_getlongpathname);
 CPP_GATEWAY_PROTOTYPE(sci_fileext);
 CPP_GATEWAY_PROTOTYPE(sci_createdir);
+CPP_GATEWAY_PROTOTYPE(sci_fullpath);
 
 #endif /* !__FILEIO_GW_HXX__ */
