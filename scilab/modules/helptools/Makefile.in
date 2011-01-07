@@ -108,7 +108,6 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihelptools_la_bindir)" \
-	"$(DESTDIR)$(libscihelptools_la_cssdir)" \
 	"$(DESTDIR)$(libscihelptools_la_data_configurationdir)" \
 	"$(DESTDIR)$(libscihelptools_la_data_cssdir)" \
 	"$(DESTDIR)$(libscihelptools_la_data_templatedir)" \
@@ -166,7 +165,7 @@ CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscihelptools_la_SOURCES)
 DIST_SOURCES = $(am__libscihelptools_la_SOURCES_DIST)
-DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
+DATA = $(libscihelptools_la_bin_DATA) \
 	$(libscihelptools_la_data_configuration_DATA) \
 	$(libscihelptools_la_data_css_DATA) \
 	$(libscihelptools_la_data_template_DATA) \
@@ -494,14 +493,6 @@ libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
 data/css/style.css
 
-
-#### helptools : css files ####
-libscihelptools_la_cssdir = $(mydatadir)/css
-libscihelptools_la_css_DATA = css/html.css \
-css/htmlhelp.css \
-css/javahelp.css
-
-
 #### helptools : xsl files ####
 libscihelptools_la_xsl_convertdir = $(mydatadir)/xsl/convert
 libscihelptools_la_xsl_convert_DATA = \
@@ -778,26 +769,7 @@ uninstall-libscihelptools_la_binDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscihelptools_la_bindir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscihelptools_la_bindir)" && rm -f $$files
-install-libscihelptools_la_cssDATA: $(libscihelptools_la_css_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_cssdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_cssdir)"
-	@list='$(libscihelptools_la_css_DATA)'; test -n "$(libscihelptools_la_cssdir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscihelptools_la_cssdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscihelptools_la_cssdir)" || exit $$?; \
-	done
 
-uninstall-libscihelptools_la_cssDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_css_DATA)'; test -n "$(libscihelptools_la_cssdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscihelptools_la_cssdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscihelptools_la_cssdir)" && rm -f $$files
 install-libscihelptools_la_data_configurationDATA: $(libscihelptools_la_data_configuration_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscihelptools_la_data_configurationdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_data_configurationdir)"
@@ -1067,7 +1039,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_data_configurationdir)" "$(DESTDIR)$(libscihelptools_la_data_cssdir)" "$(DESTDIR)$(libscihelptools_la_data_templatedir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_data_configurationdir)" "$(DESTDIR)$(libscihelptools_la_data_cssdir)" "$(DESTDIR)$(libscihelptools_la_data_templatedir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1121,7 +1093,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscihelptools_la_binDATA \
-	install-libscihelptools_la_cssDATA \
 	install-libscihelptools_la_data_configurationDATA \
 	install-libscihelptools_la_data_cssDATA \
 	install-libscihelptools_la_data_templateDATA \
@@ -1177,7 +1148,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscihelptools_la_binDATA \
-	uninstall-libscihelptools_la_cssDATA \
 	uninstall-libscihelptools_la_data_configurationDATA \
 	uninstall-libscihelptools_la_data_cssDATA \
 	uninstall-libscihelptools_la_data_templateDATA \
@@ -1201,7 +1171,6 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscihelptools_la_binDATA \
-	install-libscihelptools_la_cssDATA \
 	install-libscihelptools_la_data_configurationDATA \
 	install-libscihelptools_la_data_cssDATA \
 	install-libscihelptools_la_data_templateDATA \
@@ -1217,7 +1186,6 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscihelptools_la_binDATA \
-	uninstall-libscihelptools_la_cssDATA \
 	uninstall-libscihelptools_la_data_configurationDATA \
 	uninstall-libscihelptools_la_data_cssDATA \
 	uninstall-libscihelptools_la_data_templateDATA \
