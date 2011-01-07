@@ -77,6 +77,8 @@ in the status bar of Scinotes.
 
 * bug 8709 fixed - Default font had no japanese glyphs.
 
+* bug 8714 fixed - Problem with Incremental Search bar when Code Navigator is docked.
+
 * bugs 8715, 8716 fixed - Problems with dnd'ed tabs.
 
 * bug 8764 fixed - File permissions were not checked.

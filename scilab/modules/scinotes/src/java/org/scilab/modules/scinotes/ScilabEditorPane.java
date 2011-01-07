@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010 - 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -107,6 +107,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private ScilabEditorPane rightTextPane;
     private UUID uuid;
 
+    private EditorComponent edComponent;
+
     private boolean hand;
     private boolean infoBarChanged;
     private boolean ctrlHit;
@@ -130,7 +132,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         this.editor = editor;
         this.uuid = UUID.randomUUID();
         updateCaret();
-        scroll = new JScrollPane(this);
+        //scroll = new JScrollPane(this);
+        edComponent = new EditorComponent(this);
 
         addCaretListener(this);
         addMouseMotionListener(this);
@@ -245,7 +248,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * that there is no horizontal scrollbar.
      */
     public boolean getScrollableTracksViewportWidth() {
-        return ((ScilabDocument) getDocument()).getView() instanceof ScilabView && split == null;
+        return ((ScilabDocument) getDocument()).getView() instanceof ScilabView && !edComponent.isSplited();
     }
 
     public boolean getOverwriteMode() {
@@ -554,18 +557,29 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     /**
      * @return the scrollPane or the splitpane associated with this textPane
      */
-    public JComponent getParentComponent() {
-        if (split == null) {
-            return scroll;
-        }
-        return split;
+    public EditorComponent getEditorComponent() {
+        return edComponent;
+    }
+
+    /**
+     * @return the scrollPane or the splitpane associated with this textPane
+     */
+    public void setEditorComponent(EditorComponent ed) {
+        this.edComponent = ed;
     }
 
     /**
      * @param split the split used
      */
     public void setSplitPane(JSplitPane split) {
-        this.split = split;
+        edComponent.setSplitPane(split);
+    }
+
+    /**
+     * @param split the split used
+     */
+    public JSplitPane getSplitPane() {
+        return edComponent.getSplitPane();
     }
 
     /**
@@ -582,7 +596,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void scrollTextToPos(int pos) {
         try {
             setCaretPosition(pos);
-            JScrollBar scrollbar = scroll.getVerticalScrollBar();
+            JScrollBar scrollbar = edComponent.getScrollPane().getVerticalScrollBar();
             int value = modelToView(pos).y;
             if (modelToView(pos).y > scrollbar.getMaximum()) {
                 scrollbar.setMaximum(value);
@@ -1063,7 +1077,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @return the scrollPane associated with this EditorPane
      */
     public JScrollPane getScrollPane() {
-        return scroll;
+        return edComponent.getScrollPane();//scroll;
     }
 
     /**
@@ -1126,7 +1140,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         doc.addDocumentListener(xln);
         doc.addDocumentListener(doc);
 
-        scroll.setRowHeaderView(xln);
+        edComponent.getScrollPane().setRowHeaderView(xln);
         doc.setEditorPane(this);
     }
 }
