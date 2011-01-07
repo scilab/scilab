@@ -1220,16 +1220,18 @@ function st = st_run(st)
 
     if (st.error_output == "check") & (testsuite.error_output == "check") then
 
-	if getos() == "macosx" then
-	    tmp_errfile_info = fileinfo(st.tmp_err);
-	    msg = "JavaVM: requested Java version (1.5) not available. Using Java at ""/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home"" instead."
+        if getos() == "Darwin" then
+            tmp_errfile_info = fileinfo(st.tmp_err);
+            msg = "JavaVM: requested Java version (1.5) not available. Using Java at ""/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"" instead."
 
-	    if tmp_file_info<>[] then
-		txt = mgetl(st.tmp_err);
-		txt(txt==msg) = [];
-		mputl(txt, st.tmp_err);
-	    end
-	end
+            if ~isempty(tmp_errfile_info) then
+                txt = mgetl(st.tmp_err);
+                txt(txt==msg) = [];
+                if isempty(txt) then
+                    deletefile(st.tmp_err);
+                end
+            end
+        end
 
         tmp_errfile_info = fileinfo(st.tmp_err);
 
