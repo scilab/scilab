@@ -88,6 +88,9 @@ function [status, msg] = xcosPalExport(pal, path)
     path = fullpath(path);
     mclose(fd);
     
+    // workaround bug 7242
+    pal = pal;
+    
     // export the data to the temp file
     status = export_to_hdf5(path, "pal");
     if ~status then

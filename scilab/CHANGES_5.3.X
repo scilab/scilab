@@ -118,6 +118,8 @@ Module skeleton:
 * New example added (function with copy instead of reference)
 
 
+* bug 8644 fixed - Add an simple example to define their own block.
+
 Localization:
 =============
 
