@@ -72,6 +72,9 @@ Graphics:
 * bug 7836 fixed - The sub_tics property was not correctly tracking the number
                    of displayed sub-ticks. Thanks to Paul Griffiths.
 
+* bug 7990 fixed - Box thickness was badly exported in vectorial formats (svg/pdf/...)
+                   Thanks to Paul Griffiths for the patch.
+
 * bug 8518 fixed - When graphic export failed, some error messages were not
                    clear.
 
