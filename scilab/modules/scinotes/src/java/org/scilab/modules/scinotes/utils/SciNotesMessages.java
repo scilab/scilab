@@ -41,6 +41,9 @@ public class SciNotesMessages {
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
     public static final String OPEN_ERROR = Messages.gettext("The file could not be created, check the path");
+    public static final String READONLY = Messages.gettext("The file is not writable so it is opened in read-only mode");
+    public static final String NOTWRITABLE = Messages.gettext("You don't have the permissions to write this file");
+    public static final String NOTREADABLE = Messages.gettext("You don't have the permissions to read this file");
 
     /**
      * "Save All" message

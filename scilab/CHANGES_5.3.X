@@ -38,6 +38,8 @@ in the status bar of Scinotes.
 
 * bug 8697 fixed - An exception was thrown when an empty document was reload.
 
+* bug 8764 fixed - File permissions were not checked.
+
 Xcos:
 =====
 
