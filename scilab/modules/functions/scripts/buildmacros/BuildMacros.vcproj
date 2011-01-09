@@ -29,7 +29,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="$(SolutionDir)bin\YaSp -ns -nwni -f buildmacros.sce"
+				BuildCommandLine="&quot;$(SolutionDir)bin\YaSp&quot; -ns -nb -nwni -f buildmacros.sce"
 				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\YaSp&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
 				CleanCommandLine="cleanmacros.bat"
 				Output=""
@@ -51,7 +51,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="$(SolutionDir)bin\YaSp -ns -nb -nwni -f buildmacros.sce"
+				BuildCommandLine="&quot;$(SolutionDir)bin\YaSp&quot; -ns -nb -nwni -f buildmacros.sce"
 				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\YaSp&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
 				CleanCommandLine="cleanmacros.bat"
 				Output=""
@@ -73,7 +73,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="$(SolutionDir)bin\YaSp -ns -nwni -f buildmacros.sce"
+				BuildCommandLine="&quot;$(SolutionDir)bin\YaSp&quot; -ns -nb -nwni -f buildmacros.sce"
 				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\YaSp&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
 				CleanCommandLine="cleanmacros.bat"
 				Output=""
@@ -95,7 +95,7 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="$(SolutionDir)bin\YaSp -ns -nwni -f buildmacros.sce"
+				BuildCommandLine="&quot;$(SolutionDir)bin\YaSp&quot; -ns -nb -nwni -f buildmacros.sce"
 				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\YaSp&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
 				CleanCommandLine="cleanmacros.bat"
 				Output=""
