@@ -111,6 +111,8 @@ Xcos:
 
 * bug 5680 fixed - Labels are not visible as default.
 
+* bug 6705 fixed - When drag and drop was used, port alignement was not correct.
+
 * bug 7194 fixed - Block UUID could not be used on a block implementation.
 
 * bug 7424 fixed - Integer parameters could be modified when loading a diagram.

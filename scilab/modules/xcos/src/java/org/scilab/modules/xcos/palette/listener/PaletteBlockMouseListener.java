@@ -38,8 +38,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /** Implement the default mouse listener for the block */
 public final class PaletteBlockMouseListener implements MouseListener {
-	private static final double BLOCK_DEFAULT_POSITION = 10.0;
-	
 	/** Default constructor */
 	public PaletteBlockMouseListener() { }
 
@@ -70,7 +68,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 				addTo.setCallback(new CallBack(e.toString()) {
 					@Override
 					public void callBack() {
-						BasicBlock current = loadAndSetupBlock(control);
+						BasicBlock current = control.getBlock();
 						theDiagram.addCell(current);
 					}
 				});
@@ -90,7 +88,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 					diagram.setCallback(new CallBack(e.toString()) {
 						@Override
 						public void callBack() {
-							BasicBlock current = loadAndSetupBlock(control);
+							BasicBlock current = control.getBlock();
 							theDiagram.addCell(current);
 						}
 					});
@@ -122,27 +120,6 @@ public final class PaletteBlockMouseListener implements MouseListener {
 			((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
 					MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
 		}
-	}
-	
-	/**
-	 * @param control The controller
-	 * @return the loaded block
-	 */
-	private BasicBlock loadAndSetupBlock(
-			final PaletteBlockCtrl control) {
-		BasicBlock current = control.loadBlock();
-		
-		current.getGeometry().setX(BLOCK_DEFAULT_POSITION);
-		current.getGeometry().setY(BLOCK_DEFAULT_POSITION);
-		
-		PaletteBlockCtrl.INTERNAL_GRAPH.addCell(current);
-		PaletteBlockCtrl.INTERNAL_GRAPH.selectAll();
-		
-		PaletteBlockCtrl.INTERNAL_GRAPH.updateCellSize(current);
-		
-		PaletteBlockCtrl.INTERNAL_GRAPH.removeCells();
-		
-		return current;
 	}
 
 	/**
