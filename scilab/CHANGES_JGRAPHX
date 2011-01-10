@@ -8,6 +8,68 @@ version.
 JGraphX:
 ========
 
+05-JAN-2011: 1.5.1.1
+
+- Moves loadImage, imageCache, PRESERVE_IMAGE_ASPECT to mxBasicCanvas
+- Adds embedded images output option using DataURLs in mxSvgCanvas 
+- Supports image flipping in all image shapes and canvases
+- Adds mxConstants.STYLE_IMAGE_FLIPH/FLIPV for image
+
+20-DEC-2010: 1.5.1.0
+
+- Fixes possible NPE in mxGraph.getCell-/EdgeValidationError
+- Fixes moving of vertices after mxGraphComponent.setTransferHandler
+- Uses smooth image scaling by default in mxGraphics2DCanvas.drawImage
+- Adds mxGraphics2DCanvas.IMAGE_SCALING switch
+- Adds mxGd-, mxGdi-, mxGraphics2DCanvas.PRESERVE_IMAGE_ASPECT switch
+- Fixes mxGd-, mxGdi-, mxGraphics2DCanvas.drawImage to preserve image aspects
+- Fixes mxSwimlaneManager to use parent swimlane orientation
+- Adds mxSwimlaneManager.isCellHorizontal, hasSiblings
+
+08-DEC-2010: 1.5.0.2
+
+- Adds mxRectangle.setRect
+- Adds mxPanningHandler.isActive
+- Fixes ignored initial angle in mxRotationHandler
+- Changes mxGraph.findTreeRoots to return List instead of Object[]
+- Adds data:-prefix for embedded image short format
+- Adds mxObjectCodec.getFieldTemplate, addObjectValue
+- Moves mxModelCodec.encode to mxModelCodec.encodeObject
+- Fixes gradients in mxLabelShape
+
+22-NOV-2010: 1.5.0.0
+
+- Adds mxGraph.postProcessCellStyle for resolving image keys
+- Adds mxGraph.add/removeImageBundle, getImageFromBundles
+- Adds mxGraph.imageBundles with accessors
+- Adds mxImageBundle class for embedded images
+- Adds support for data URIs in mxUtils.loadImage
+- Removes unused constants in com.mxgraph.util.svg.CSSConstants
+- Renames mxPngTextDecoder.decodezTXt to decodeCompressedText
+- Renames mxPNGzTXtDecoder to mxPngTextDecoder
+- Changes return type of mxGraphics2DCanvas.loadImage to BufferedImage
+- Changes return type of mxUtils.loadImage to BufferedImage
+- Fixes font sizes in printed output via mxGraphComponent.print
+- Fixes mxGraphControl.extendComponent for negative coordinates
+
+03-NOV-2010: 1.4.2.3
+
+02-NOV-2010: 1.4.2.2
+
+- Fixes handling of linefeeds in HTML labels with long text
+- mxCellEditor replaces installKeyHandler with configureActionMaps
+- mxCellEditor replaces key handler with input maps for key handling
+- Adds mxCellEditor.extractHtmlBody, replaceLinefeeds, shiftEnterSubmitsText
+- Moves mxGraphics2DCanvas.replaceHtmlLinefeeds to mxHtmlTextShape
+- Fixes background rendering in image shapes
+- Reduces unnecessary mxCurve re-calculations
+- Fixes curve label character bounds
+- Changes default colors, adds shapes in GraphEditor example
+- Fixes default alignment for images in label shape
+- Fixes size of images in mxLabelShape
+
+22-OCT-2010: 1.4.2.1
+
 19-OCT-2010: 1.4.2.0
 
 - Improves edge routing in hierarchical layout
