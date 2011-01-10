@@ -104,6 +104,8 @@ Module skeleton:
 
 * bug 8440 fixed - The SVG background was not exported to SVG.
 
+* bug 8580 fixed - Mirror and flip icons were inverted.
+
 Localization:
 =============
 
