@@ -192,6 +192,8 @@ Graphics:
 * bug 8518 fixed - When graphic export failed, some error messages were not
                    clear.
 
+* bug 8766 fixed - For small input matrices, the "Matplot1" function was not
+                   correctly taking its rectangle argument into account.
 GUI:
 ====
 
