@@ -23,6 +23,8 @@
  *    objects.
  --------------------------------------------------------------------------*/
 
+#include <stdio.h>
+
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "InitObjects.h"

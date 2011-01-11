@@ -453,11 +453,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\createGraphicObject.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\Data3D.hxx"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\DataProperties.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\deleteGraphicObject.h"
 				>
 			</File>
 			<File

@@ -47,6 +47,7 @@
 #include "localization.h"
 
 #include "createGraphicObject.h"
+#include "deleteGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
