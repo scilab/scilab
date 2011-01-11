@@ -101,8 +101,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano \"%s\" lub "
-"\"%s\" .\n"
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano ''%s'' lub "
+"''%s''.\n"
 
 #, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"
@@ -133,4 +133,4 @@ msgid ""
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwana jest ''%s'', "
-"''%s'', ''%s'', ''%s'', \"%s\" lub \"%s\".\n"
+"''%s'', ''%s'', ''%s'', ''%s'' lub ''%s''.\n"

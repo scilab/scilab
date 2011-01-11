@@ -24,7 +24,7 @@
     <synopsis>[phi,db]=phasemag(z [,mod])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>z</term>

@@ -50,6 +50,7 @@ import javax.swing.event.CaretListener;
 
 import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.scinotes.actions.CopyAsHTMLAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
@@ -85,6 +86,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private HelpOnTypingManager helpOnTyping;
     private TrailingWhiteManager trailingWhite;
     private boolean readonly;
+    private boolean binary;
     private String infoBar = "";
     private String shortName = "";
     private String title = "";
@@ -227,15 +229,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             });
 
         addKeyListener(this);
+        setTransferHandler(new CopyAsHTMLAction.HTMLTransferHandler());
+    }
+
+    /**
+     * @return the lexer
+     */
+    public ScilabLexer getLexer() {
+        return lexer;
     }
 
     /**
      * {@inheritDoc}
-     * When no split, this method return true and the consequence is
+     * When no split and in wrapped view , this method return true and the consequence is
      * that there is no horizontal scrollbar.
      */
     public boolean getScrollableTracksViewportWidth() {
-        return split == null;
+        return ((ScilabDocument) getDocument()).getView() instanceof ScilabView && split == null;
     }
 
     public boolean getOverwriteMode() {
@@ -376,7 +386,12 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     /**
      * Close this pane
      */
-    public void close() { }
+    public void close() {
+        FocusListener[] l = getFocusListeners();
+        for (int i = 0; i < l.length; i++) {
+            removeFocusListener(l[i]);
+        }
+    }
 
     /**
      * Update infos
@@ -444,6 +459,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param binary true to set binary mode
      */
     public void setBinary(boolean binary) {
+        this.binary = binary;
         setEditable(!binary);
         setDragEnabled(!binary);
         if (binary) {
@@ -465,7 +481,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         pane.suppressCom = suppressCom;
         pane.setName(getName());
         pane.setShortName(getShortName());
-        pane.setTitle(getTitle());
+        pane.setTitle(getTitle().substring(0, getTitle().lastIndexOf(TIRET)));
         pane.setEditable(isEditable());
     }
 
@@ -808,12 +824,17 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             repaint();
         }
 
+        int pos = getCaretPosition();
+
         if (matchingEnable) {
-            int pos = getCaretPosition();
             int tok = lexer.getKeyword(pos, false);
             matchLR.searchMatchingBlock(tok, lexer.start + lexer.yychar());
             tok = lexer.getKeyword(pos, true);
             matchRL.searchMatchingBlock(tok, lexer.start + lexer.yychar() + lexer.yylength());
+        }
+
+        if (!readonly && !binary) {
+            editor.getInfoBar().setText(((ScilabDocument) getDocument()).getCurrentFunction(pos));
         }
     }
 
@@ -907,6 +928,35 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * Get an helpable keyword at the current position in the document.
+     * @param caret if true the position is the current caret position in the doc else
+     * the position is the mouse pointer position projected in the document.
+     * @return the helpable keyword.
+     */
+    public String getHelpableKeyword(boolean caret) {
+        int tok;
+        int pos;
+        if (caret) {
+            pos = getCaretPosition();
+        } else {
+            pos = viewToModel(mousePoint);
+        }
+
+        tok = lexer.getKeyword(pos, true);
+        if (!ScilabLexerConstants.isHelpable(tok)) {
+            tok = lexer.getKeyword(pos + 1, true);
+        }
+
+        if (ScilabLexerConstants.isHelpable(tok)) {
+            try {
+                return getDocument().getText(lexer.start + lexer.yychar(), lexer.yylength());
+            } catch (BadLocationException e) { }
+        }
+
+        return null;
+    }
+
+    /**
      * Prevents the different KeywordListener that a MouseEvent occured
      * @param position of the mouse
      * @param ev the event which occured
@@ -934,7 +984,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * Implements mouseEntered in MouseListener
      * @param e event
      */
-    public void mouseEntered(MouseEvent e) { }
+    public void mouseEntered(MouseEvent e) {
+        this.mousePoint = e.getPoint();
+    }
 
     /**
      * Implements mouseExited in MouseListener

@@ -23,7 +23,7 @@
     <synopsis>[Inn,X,Gbar]=colinout(G)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>G</term>

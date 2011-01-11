@@ -17,7 +17,7 @@ win_l=window('kr',n,alpha)
 [win_l,cwp]=window('ch',n,par)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>

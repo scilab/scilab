@@ -26,6 +26,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoableEdit;
@@ -127,6 +128,9 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
             instance = new ScilabVariableEditor(type, data, variableName);
             instance.setVisible(true);
         } else {
+            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabVariableEditor) editorTab);
+            window.setVisible(true);
+            window.toFront();
             int row = -1;
             int col = -1;
             SwingEditvarTableModel model = (SwingEditvarTableModel) ((SwingScilabVariableEditor) editorTab).getCurrentModel();

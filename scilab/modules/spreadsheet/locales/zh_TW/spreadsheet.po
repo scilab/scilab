@@ -62,7 +62,7 @@ msgstr "%s: 第 %d 個輸入資料長度錯誤: 應該是字串.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 第 %d 個輸入參數資料型態錯誤: 應該是 \"%s\" 或 \"%s\".\n"
+msgstr "%s: 第 %d 個輸入參數資料型態錯誤: 應該是 ''%s'' 或 ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"

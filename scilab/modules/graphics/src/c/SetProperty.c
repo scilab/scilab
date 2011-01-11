@@ -6,6 +6,7 @@
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010 - Paul Griffiths
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -1297,7 +1298,7 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes )
 int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
 {
   double position[2]={0.0,0.0};
-  
+
   if (sciGetEntityType (pobj) == SCI_LEGEND)
   {
     pLEGEND_FEATURE (pobj)->place = place;
@@ -1884,19 +1885,19 @@ int sciInitName(sciPointObj * pobj, char * newName)
 				{
 					sciSetJavaTitle(pobj, "");
 				}
-				
+
 				return 0;
 			}
-			
+
 			/* newName is a valid string */
 			newNameLength = (int) strlen(newName);
-      
+
       /* Reallocate name */
       pFIGURE_FEATURE(pobj)->name = MALLOC( (newNameLength + 1) * sizeof(char) );
 
 			/* copy the string */
       strcpy(pFIGURE_FEATURE(pobj)->name, newName) ;
-			
+
 			/* Update the name of the physical window if one exists */
       if (!isFigureModel(pobj))
       {
@@ -1924,7 +1925,7 @@ int sciInitName(sciPointObj * pobj, char * newName)
           FREE(realTitle) ;
         }
 
-        
+
       }
 
       return 0 ;
@@ -1952,21 +1953,21 @@ sciSetName(sciPointObj * pobj, char * newName)
 		// nothing to do
 		return 1;
 	}
-	
+
 	/* Check that the string contains at most one %d character */
 	if (checkPercent(newName) < 0)
   {
   	Scierror(999, _("Figure name may not contains any %% character, except a single %%d.\n")) ;
   	return -1 ;
   }
-	
+
 	/* Free the current name if needed */
 	if (sciGetName(pobj) != NULL)
 	{
 		FREE(pFIGURE_FEATURE(pobj)->name);
 		pFIGURE_FEATURE(pobj)->name = NULL;
 	}
-	
+
 	return sciInitName(pobj, newName);
 }
 
@@ -2928,6 +2929,106 @@ sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed)
 
 
 int
+sciInitNbXSubTics(sciPointObj * pobj, int nbsubtics)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_SUBWIN:
+      pSUBWIN_FEATURE(pobj)->axes.nbsubtics[0] = nbsubtics;
+      break;
+    default:
+      printSetGetErrorMessage("subwin_type required");
+      return -1 ;
+      break;
+    }
+  return 0 ;
+}
+
+/**sciSetNbXSubTics
+ * Sets the number of x subticks
+ */
+int
+sciSetNbXSubTics(sciPointObj * pobj, int nbsubtics)
+{
+  int curr_nbsubtics[3];
+
+  sciGetNbSubTics( pobj,  curr_nbsubtics);
+
+  if ( curr_nbsubtics[0] == nbsubtics )
+  {
+    return 1 ;
+  }
+  return sciInitNbXSubTics( pobj, nbsubtics ) ;
+}
+
+int
+sciInitNbYSubTics(sciPointObj * pobj, int nbsubtics)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_SUBWIN:
+      pSUBWIN_FEATURE(pobj)->axes.nbsubtics[1] = nbsubtics;
+      break;
+    default:
+      printSetGetErrorMessage("subwin_type required");
+      return -1 ;
+      break;
+    }
+  return 0 ;
+}
+
+/**sciSetNbYSubTics
+ * Sets the number of y subticks
+ */
+int
+sciSetNbYSubTics(sciPointObj * pobj, int nbsubtics)
+{
+  int curr_nbsubtics[3];
+
+  sciGetNbSubTics( pobj,  curr_nbsubtics);
+
+  if ( curr_nbsubtics[1] == nbsubtics )
+  {
+    return 1 ;
+  }
+  return sciInitNbYSubTics( pobj, nbsubtics ) ;
+}
+
+int
+sciInitNbZSubTics(sciPointObj * pobj, int nbsubtics)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_SUBWIN:
+      pSUBWIN_FEATURE(pobj)->axes.nbsubtics[2] = nbsubtics;
+      break;
+    default:
+      printSetGetErrorMessage("subwin_type required");
+      return -1 ;
+      break;
+    }
+  return 0 ;
+}
+
+/**sciSetNbZSubTics
+ * Sets the number of x subticks
+ */
+int
+sciSetNbZSubTics(sciPointObj * pobj, int nbsubtics)
+{
+  int curr_nbsubtics[3];
+
+  sciGetNbSubTics( pobj,  curr_nbsubtics);
+
+  if ( curr_nbsubtics[2] == nbsubtics )
+  {
+    return 1 ;
+  }
+  return sciInitNbZSubTics( pobj, nbsubtics ) ;
+}
+
+
+int
 sciSetInterpVector(sciPointObj * pobj, int size, int * value)
 {
   int i;
@@ -3355,7 +3456,7 @@ int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage)
 			{
 				sciSetJavaInfoMessage(pObj, "");
 			}
-				
+
 			return 0;
 		}
 

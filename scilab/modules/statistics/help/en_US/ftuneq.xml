@@ -24,7 +24,7 @@
 [f,p]=ftuneq(sample1[,sample2[,sample3]...]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sample1, sample2, sample3,...  </term>

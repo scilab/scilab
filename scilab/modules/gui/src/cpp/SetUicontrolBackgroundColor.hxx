@@ -26,6 +26,7 @@ extern "C"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "UicontrolStyleToString.h"
+#include "checkColorRange.h"
 }
 
 #endif /* __SET_UICONTROL_BACKGROUNDCOLOR_HXX__ */

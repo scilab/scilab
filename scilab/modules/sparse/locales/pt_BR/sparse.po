@@ -327,7 +327,7 @@ msgstr "Aviso: A matriz a seguir está fatorada na forma LU.\n"
 
 #, c-format
 msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr "Sparse: pânico no arquivo \"%s\" na linha %d.\n"
+msgstr "Sparse: pânico no arquivo '%s' na linha %d.\n"
 
 #, c-format
 msgid "|||  Starting new matrix  |||\n"

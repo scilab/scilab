@@ -23,23 +23,27 @@ import java.util.regex.Pattern;
  */
 public final class StyleMap extends LinkedHashMap<String, String> {
 	
-	private static final Pattern P = Pattern.compile("(\\w+)(=((\\w|#)+))?($|;)");
-	private static final int KEY_GROUP = 1;
-	private static final int VALUE_GROUP = 3;
-	
 	/**
 	 * Create a Map from a style string
 	 * @param style The string which contains key=value list 
 	 */
 	public StyleMap(String style) {
 		super();
-		Matcher m = P.matcher(style);
-
-		while (m.find()) {
-			String key = m.group(KEY_GROUP);
-			String value = m.group(VALUE_GROUP);
-			put(key, value);
+		
+		if (style != null && style.length() > 0) {
+			final String[] pairs = style.split(";");
+			
+			for (String keyValue : pairs) {
+				final int sep = keyValue.indexOf('=');
+				
+				if (sep >= 0) {
+					put(keyValue.substring(0, sep), keyValue.substring(sep + 1));
+				} else {
+					put(keyValue, null);
+				}
+			}
 		}
+		
 	}
 	
 	/**

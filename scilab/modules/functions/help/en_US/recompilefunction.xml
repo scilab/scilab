@@ -13,7 +13,7 @@
     <synopsis>recompilefunction(funname [,kind [,force]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>funname</term>

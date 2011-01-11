@@ -23,7 +23,7 @@ function demo_riemann()
 
   // Add "see code" menu item
   // =========================================================================
-  demo_viewCode("SCI/modules/graphics/demos/anim/anim8/anim8.sci");
+  demo_viewCode(SCI+"/modules/graphics/demos/anim/anim8/anim8.sci");
 
   // Drawlater
   // =========================================================================
@@ -161,7 +161,7 @@ function cplxmap(z, w, varargin)
 
   my_handle    = gcf();
   my_color_map = my_handle.color_map;
-  ncols        = size(my_color_map, :);
+  ncols        = size(my_color_map, 'r');
 
   [X, Y, U]    = nf3d(x, y, u);
   [X, Y, V]    = nf3d(x, y, v);

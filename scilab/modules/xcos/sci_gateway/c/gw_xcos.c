@@ -51,7 +51,8 @@ int gw_xcos(void)
         return 0;
     }
 
-    if (!loadedDep) 
+    if (!loadedDep                                      // never reload
+        && Tab[Fin-1].f != sci_closeXcosFromScilab)     // do not load on close
     {
         loadOnUseClassPath("XCos");
         loadedDep = TRUE;

@@ -23,7 +23,7 @@
     <synopsis>path=get_function_path(fun_name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fun_name</term>

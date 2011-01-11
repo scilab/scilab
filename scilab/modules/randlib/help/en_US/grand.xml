@@ -29,7 +29,7 @@
       S=grand(action [,q1,....,ql])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>m, n</term>
@@ -440,7 +440,7 @@ scale       x          e          /  gamma(shape)
           <para>the generator used by the scilab function <link linkend="rand">rand</link>, state
             given by <literal>1</literal> integer, period of <literal>2^31</literal> (based  on  theory  
             and suggestions  given  in  d.e. knuth (1969),  vol  2. State). This
-            is the faster of this list but a little outdated (don't use it for
+            is the faster of this list but a little outdated (do not use it for
             serious simulations).</para>
         </listitem>
       </varlistentry>

@@ -24,7 +24,7 @@
     <synopsis>[infer,pos]=get_contents_infer(m2scitlist,index)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>m2scitlist</term>

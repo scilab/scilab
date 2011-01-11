@@ -12,7 +12,7 @@
     <synopsis>[j]=jmat(n,m)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>

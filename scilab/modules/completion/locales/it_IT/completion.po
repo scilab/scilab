@@ -58,7 +58,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso ha dei valori sbagliati: era atteso "
-"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\" o \"%s\".\n"
+"'%s','%s','%s','%s','%s' o '%s'.\n"
 
 msgid "Scilab completion module not installed.\n"
 msgstr "Il modulo di completamento di Scilab non è installato.\n"

@@ -25,6 +25,7 @@ public class SciBooleanArray extends javasci.SciAbstractArray implements java.io
 
 	/**
 	 * Constructs a Scilab Boolean Array from a other SciBooleanArray
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param booleanArray the SciBooleanArray you want to copy
 	 */
@@ -41,6 +42,7 @@ public class SciBooleanArray extends javasci.SciAbstractArray implements java.io
 	/**
 	 * Constructs a Scilab Boolean Array 
 	 * All cells are initialized to false
+     * @deprecated
 	 * @param name the name of the Scilab Variable 
 	 * @param r number of rows
 	 * @param c number of columns
@@ -69,6 +71,7 @@ public class SciBooleanArray extends javasci.SciAbstractArray implements java.io
 
 	/**
 	 * Constructs a Scilab Boolean Array from a java boolean array
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 * @param r number of rows
 	 * @param c number of columns
@@ -92,6 +95,7 @@ public class SciBooleanArray extends javasci.SciAbstractArray implements java.io
   * in Scilab A=[%t,%t;%t,%f];
   * A(1,1)=%t
   * A(2,2)=%f
+  * @deprecated
   * @param indr row indice
   * @param indc column indice
   * @return the boolean value at the position [indr, indc]
@@ -101,6 +105,7 @@ public class SciBooleanArray extends javasci.SciAbstractArray implements java.io
 
 	/**
 	 * Return the data
+     * @deprecated
 	 * @return the data
 	 */
   public boolean[] getData() {

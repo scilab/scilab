@@ -103,31 +103,6 @@ help/images/SciAbstractArrayClass.gif \
 help/images/SciStringClass.gif \
 help/images/SciBooleanClass.gif
 
-### javasci : special tests ###
-libsciscipad_la_specialtestdir = $(mydatadir)/tests
-libsciscipad_la_specialtest_DATA = tests/unit_tests/Boolean.java \
-tests/unit_tests/Boolean.dia.ref \
-tests/unit_tests/BooleanArray.java \
-tests/unit_tests/BooleanArray.dia.ref \
-tests/unit_tests/Clf.java \
-tests/unit_tests/Clf.dia.ref \
-tests/unit_tests/Disp.java \
-tests/unit_tests/Disp.dia.ref \
-tests/unit_tests/Exec.java  \
-tests/unit_tests/Exec.dia.ref \
-tests/unit_tests/Real1.java \
-tests/unit_tests/Real1.dia.ref \
-tests/unit_tests/Real2.java \
-tests/unit_tests/Real2.dia.ref \
-tests/unit_tests/Real3.dia.ref \
-tests/unit_tests/Real3.java \
-tests/unit_tests/String1.java \
-tests/unit_tests/String1.dia.ref \
-tests/unit_tests/Strings1.dia.ref \
-tests/unit_tests/Strings1.java \
-tests/unit_tests/Strings2.java \
-tests/unit_tests/Strings2.dia.ref
-
 BUILT_SOURCES=
 if SWIG
 BUILT_SOURCES+=swig

@@ -347,8 +347,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano \"%s\" lub "
-"\"%s\" .\n"
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano ''%s'' lub "
+"''%s'' .\n"
 
 #, c-format
 msgid ""
@@ -472,8 +472,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: [''d'' ''i''] expected.\n"
 msgstr ""
-"%s: Niepoprawna wartość argumentu wejściowego nr %d: oczekiwane [\"d\" "
-"\"i\"].\n"
+"%s: Niepoprawna wartość argumentu wejściowego nr %d: oczekiwane [''d'' "
+"''i''].\n"
 
 #, c-format
 msgid ""

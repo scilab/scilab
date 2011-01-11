@@ -13,7 +13,7 @@
     <synopsis>r=with_texmacs()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>
@@ -26,6 +26,6 @@
   <refsection>
     <title>Description</title>
     <para>
-    Returns <literal>%t</literal> if Scilab as been  been called by TeXmacs</para>
+    Returns <literal>%t</literal> if Scilab has been called by TeXmacs</para>
   </refsection>
 </refentry>

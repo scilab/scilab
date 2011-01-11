@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,21 +11,35 @@
 //
 //
 
-//load("SCI/modules/demo_tools/macros/lib");
+function demo_xcos()
 
-// Launch Scilab standard demo GUI
-demo_gui();
+  bResumeSomeVariables = %t;
+  // check if some variables used by demo_gui already exist
+  if isdef("demo_gui_update") & isdef("resize_gui") & isdef("create_frame") then
+    bResumeSomeVariables = %f;
+  end
 
-// Get main list
-frame1 = findobj("tag", "listbox_1");
+  // Launch Scilab standard demo GUI
+  demo_gui();
 
-// Select Xcos
-allitems = frame1.string;
-xcosItem = find(allitems==gettext("Xcos"));
-frame1.value = xcosItem;
+  // Get main list
+  frame1 = findobj("tag", "listbox_1");
 
-// Exec callback to display Xcos demos list
-gcbo = frame1;
-execstr(frame1.callback, "errcatch");
+  // Select Xcos
+  allitems = frame1.string;
+  xcosItem = find(allitems == gettext("Xcos"));
+  frame1.value = xcosItem;
 
-clear frame1 allitems xcosItem gcbo
+  // Exec callback to display Xcos demos list
+  gcbo = frame1;
+  execstr(frame1.callback, "errcatch");
+
+  // resume some variables 
+  if bResumeSomeVariables then
+    [demo_gui_update, resize_gui, create_frame] = resume(demo_gui_update, resize_gui, create_frame);
+  end
+
+endfunction
+
+demo_xcos();
+clear demo_xcos;

@@ -23,7 +23,7 @@
     <synopsis>[P11,P12,P21,P22]=fourplan(P,r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P</term>

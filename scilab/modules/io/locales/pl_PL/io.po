@@ -92,7 +92,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwano \"%s\"\n"
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwano ''%s''\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"

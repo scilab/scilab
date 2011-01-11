@@ -10,6 +10,9 @@ import javasci.SciBooleanArray;
 import javasci.Scilab; 
 
 
+/**
+ * @deprecated
+ */
 class Example11 {
 
     public static void main(String[] args) {

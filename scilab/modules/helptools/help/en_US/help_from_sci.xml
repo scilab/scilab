@@ -36,7 +36,7 @@ help_from_sci(dirname,helpdir,demodir) // as above but also creating demodir/*.d
 </refsynopsisdiv>
 
 <refsection>
-   <title>Parameters</title>
+   <title>Arguments</title>
    <variablelist>
    <varlistentry><term>funname:</term>
       <listitem><para> the name of a single .sci source file to be processed.</para></listitem></varlistentry>

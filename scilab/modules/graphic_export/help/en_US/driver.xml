@@ -24,7 +24,7 @@
 current_driver=driver()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>driver_name</term>

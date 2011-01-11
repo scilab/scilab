@@ -24,7 +24,7 @@
     <synopsis>[fd,SST,Sheetnames,Sheetpos] = xls_open(file_path)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>file_path</term>

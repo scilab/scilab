@@ -21,11 +21,18 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 
+import javax.swing.BorderFactory;
 import javax.swing.SpinnerModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
@@ -90,8 +97,9 @@ public class EditFormatAction extends DefaultAction {
 	 * @param c the current component 
 	 * @param name the window name
 	 * @param selectedCell the selected cell
+	 * @param the current graph
 	 */
-	public static void showDialog(ScilabComponent c, String name, mxCell selectedCell) {
+	public static void showDialog(ScilabComponent c, String name, mxCell selectedCell, XcosDiagram graph) {
 		/*
 		 * Looking for the parent window
 		 */
@@ -100,7 +108,7 @@ public class EditFormatAction extends DefaultAction {
 		/*
 		 * Create and show the dialog
 		 */
-		EditFormatDialog dialog = createDialog(selectedCell, window);
+		EditFormatDialog dialog = createDialog(selectedCell, graph, window);
 		dialog.setName(name);
 		dialog.setVisible(true);
 	}
@@ -108,10 +116,11 @@ public class EditFormatAction extends DefaultAction {
 	/**
 	 * Create the dialog and set the default values
 	 * @param selectedCell the current selected cell
+	 * @param graph the current graph
 	 * @param window the current windows
 	 * @return the instantiated dialog
 	 */
-	private static EditFormatDialog createDialog(mxCell selectedCell,
+	private static EditFormatDialog createDialog(mxCell selectedCell, final XcosDiagram graph, 
 			final Frame window) {
 		String working;
 		Color border;
@@ -121,6 +130,7 @@ public class EditFormatAction extends DefaultAction {
 		int fontStyle;
 		Color textColor;
 		String text;
+		String image = null;
 		
 		StyleMap style = new StyleMap(selectedCell.getStyle());
 		
@@ -166,6 +176,11 @@ public class EditFormatAction extends DefaultAction {
 			textColor = mxUtils.parseColor(working);
 		}
 		
+		working = style.get(mxConstants.STYLE_IMAGE);
+		if(working != null) {
+			image = working;
+		}
+		
 		Object current = selectedCell.getValue();
 		if (current == null) {
 			text = "";
@@ -174,7 +189,8 @@ public class EditFormatAction extends DefaultAction {
 		}
 		
 		EditFormatDialog dialog = new EditFormatDialog(window);
-		dialog.setValues(border, fill, font, fontSize, fontStyle, textColor, text);
+		dialog.setValues(border, fill, font, fontSize, fontStyle, textColor, text, image);
+		dialog.setGraph(graph);
 		dialog.setCell(selectedCell);
 		return dialog;
 	}
@@ -189,9 +205,10 @@ public class EditFormatAction extends DefaultAction {
 	 * @param fontSize the selected font size
 	 * @param textColor the selected color
 	 * @param text the typed text
+	 * @param image the image URL
 	 */
 	private static void updateFromDialog(EditFormatDialog dialog, Color borderColor, Color backgroundColor, 
-				String fontName, int fontSize, Color textColor, String text) {
+				String fontName, int fontSize, Color textColor, String text, String image) {
 		mxCell cell = dialog.getCell();
 		
 		StyleMap style = new StyleMap(cell.getStyle());
@@ -219,6 +236,21 @@ public class EditFormatAction extends DefaultAction {
 		if (!textColor.equals(DEFAULT_BORDERCOLOR)) {
 			style.put(mxConstants.STYLE_FONTCOLOR, mxUtils.hexString(textColor));
 		}
+
+		if (image != null && !image.isEmpty()) {
+			String path;
+			try {
+				URL url = new URL(image);
+				path = url.toExternalForm();
+			} catch (MalformedURLException e) {
+				path = image;
+			}
+			
+			style.put(mxConstants.STYLE_IMAGE, path);
+		} else {
+			style.remove(mxConstants.STYLE_IMAGE);
+		}
+			
 		
 		cell.setStyle(style.toString());
 		cell.setValue(text);
@@ -235,7 +267,7 @@ public class EditFormatAction extends DefaultAction {
 		Object[] selectedCells = graph.getSelectionCells();
 		
 		EditFormatAction.showDialog((ScilabComponent) graph
-				.getAsComponent(), NAME, (mxCell) selectedCells[0]);
+				.getAsComponent(), NAME, (mxCell) selectedCells[0], graph);
 		
 		graph.getView().clear(selectedCells[0], true, true);
 		graph.updateCellSize(selectedCells[0]);
@@ -273,6 +305,11 @@ public class EditFormatAction extends DefaultAction {
 	    private javax.swing.JCheckBox fontStyleBold;
 	    private javax.swing.JCheckBox fontStyleItalic;
 	    private javax.swing.JLabel fontStyleLabel;
+	    private javax.swing.JPanel backgroundPane;
+	    
+	    private javax.swing.JLabel imagePathLabel;
+	    private javax.swing.JTextField imagePath;
+	    private javax.swing.JButton imageFileChooserBtn;
 	    
 	    private javax.swing.JPanel jPanel2;
 	    private javax.swing.JScrollPane jScrollPane1;
@@ -284,6 +321,7 @@ public class EditFormatAction extends DefaultAction {
 	    private javax.swing.JButton okButton;
 	    private javax.swing.JPanel buttonPane;
 	    
+	    private XcosDiagram graph;
 	    private mxCell cell;
 		
 	    private final transient ChangeListener defaultChangeListener = new ChangeListener() {
@@ -309,7 +347,7 @@ public class EditFormatAction extends DefaultAction {
 				updateFont();
 			}
 		};
-	    
+		
 		/**
 		 * Construct the dialog
 		 * 
@@ -333,10 +371,11 @@ public class EditFormatAction extends DefaultAction {
 		 * @param fontStyle the current font style
 		 * @param textColor the current text color
 		 * @param text the current text
+		 * @param image the current URL of the image (may be null, absolute or relative)
 		 */
 		public void setValues(Color borderColor, Color backgroundColor, 
 				String fontName, int fontSize, int fontStyle, Color textColor, 
-				String text) {
+				String text, String image) {
 			borderColorChooser.setColor(borderColor);
 			backgroundColorChooser.setColor(backgroundColor);
 			textColorChooser.setColor(textColor);
@@ -348,6 +387,23 @@ public class EditFormatAction extends DefaultAction {
 			fontStyleItalic.setSelected((fontStyle & mxConstants.FONT_ITALIC) != 0);
 			
 			textArea.setText(text);
+			if (image != null) {
+				imagePath.setText(image);
+			}
+		}
+		
+		/**
+		 * @param graph the current graph to set
+		 */
+		public void setGraph(XcosDiagram graph) {
+			this.graph = graph;
+		}
+		
+		/**
+		 * @return the current graph
+		 */
+		public XcosDiagram getGraph() {
+			return graph;
 		}
 		
 		/**
@@ -359,9 +415,9 @@ public class EditFormatAction extends DefaultAction {
 			
 			// enable/disable the fill color pane
 			if (selectedCell.isVertex()) {
-				mainTab.addTab(XcosMessages.FILL_COLOR, backgroundColorChooser);
+				mainTab.addTab(XcosMessages.FILL_COLOR, backgroundPane);
 			} else {
-				mainTab.remove(backgroundColorChooser);
+				mainTab.remove(backgroundPane);
 			}
 			
 			pack();
@@ -405,6 +461,10 @@ public class EditFormatAction extends DefaultAction {
 	        fontStyleBold = new javax.swing.JCheckBox();
 	        fontStyleItalic = new javax.swing.JCheckBox();
 	        fontStyleLabel = new javax.swing.JLabel();
+	        imageFileChooserBtn = new javax.swing.JButton(XcosMessages.DOTS);
+	        imagePathLabel = new javax.swing.JLabel();
+	        imagePath = new javax.swing.JTextField(TEXT_AREA_COLUMNS);
+	        backgroundPane = new javax.swing.JPanel();
 	        
 	        jScrollPane1 = new javax.swing.JScrollPane();
 	        textArea = new javax.swing.JTextArea();
@@ -418,6 +478,7 @@ public class EditFormatAction extends DefaultAction {
 	        okButton = new javax.swing.JButton(XcosMessages.OK);
 	        buttonPane = new javax.swing.JPanel();
 
+	        backgroundPane.setLayout(new java.awt.BorderLayout());
 	        textFormat.setLayout(new java.awt.BorderLayout());
 
 	        fontSizeLabel.setText(XcosMessages.FONT_SIZE);
@@ -440,6 +501,8 @@ public class EditFormatAction extends DefaultAction {
 	        
 	        fontStyleItalic.setText(XcosMessages.ITALIC);
 	        fontStyleItalic.addChangeListener(defaultChangeListener);
+	        
+	        imagePathLabel.setText(XcosMessages.IMAGE_PATH);
 	        
 	        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
 	        jPanel2.setLayout(jPanel2Layout);
@@ -485,6 +548,14 @@ public class EditFormatAction extends DefaultAction {
 	        jScrollPane1.setBackground(Color.WHITE);
 
 	        textFormat.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+	        
+	        backgroundPane.add(backgroundColorChooser, java.awt.BorderLayout.CENTER);
+	        javax.swing.JPanel filePane = new javax.swing.JPanel();
+	        filePane.setBorder(BorderFactory.createEtchedBorder());
+	        filePane.add(imagePathLabel);
+	        filePane.add(imagePath);
+	        filePane.add(imageFileChooserBtn);
+	        backgroundPane.add(filePane, java.awt.BorderLayout.SOUTH);
 
 	        mainTab.addTab(XcosMessages.TEXT_SETTINGS, textFormat);
 	        mainTab.addTab(XcosMessages.BORDER_COLOR, borderColorChooser);
@@ -524,8 +595,57 @@ public class EditFormatAction extends DefaultAction {
 							(String) fontNameComboBox.getSelectedItem(),
 							(Integer) fontSizeSpinner.getValue(), 
 							textColorChooser.getColor(),
-							textArea.getText());
+							textArea.getText(),
+							imagePath.getText());
 					getDialog().dispose();
+				}
+			});
+			
+			imageFileChooserBtn.addActionListener(new ActionListener() {
+				/**
+				 * On file chooser open the file chooser with image filter.
+				 * @param e the event
+				 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+				 */
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
+					javax.swing.filechooser.FileNameExtensionFilter filter = new javax.swing.filechooser.FileNameExtensionFilter(
+					        "Images", "jpg", "png", "svg", "gif");
+					chooser.setFileFilter(filter);
+					
+					final String current = imagePath.getText();
+					final File savedFile = getGraph().getSavedFile();
+					if (current != null && !current.isEmpty()) {
+						try {
+							// try to handle an absolute URL
+							final URI uri = new URI(current);
+							chooser.setSelectedFile(new File(uri));
+						} catch (Exception e1) {
+							// this is a relative path
+							if (savedFile != null) {
+								final File parent = savedFile.getParentFile();
+								chooser.setSelectedFile(new File(parent, current));
+							}
+						}
+					} else {
+						if (savedFile != null) {
+							chooser.setCurrentDirectory(savedFile.getParentFile());
+						}
+					}
+					
+				    int returnVal = chooser.showOpenDialog(mainTab);
+				    if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
+						if (savedFile != null) {
+							final String relativeChild = savedFile.getParentFile().toURI()
+								.relativize(chooser.getSelectedFile()
+									.toURI()).toASCIIString();
+							imagePath.setText(relativeChild);
+						} else {
+							final String uri = chooser.getSelectedFile().toURI().toASCIIString();
+							imagePath.setText(uri);
+						}
+				    }
 				}
 			});
 			

@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA - Serge Steer
+// Copyright (C) ????-2010 - INRIA - Serge Steer
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -21,6 +21,10 @@ function r=checknyquist(Args,leg)
     R=[R %nan(ones(mn,1)) repf(:,sel)];
     I=[I %nan(ones(mn,1)) repi(:,sel)];
   end
+  //use symetry
+  R=[R R(:,$:-1:1)];
+  I=[I -I(:,$:-1:1)];
+  
   l=find(~isnan(R(1,:)))
   fig=gcf();
   r=0

@@ -9,7 +9,7 @@
     <synopsis>[num]=x_choose_modeless(items,title [,button])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>items</term>

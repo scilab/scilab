@@ -460,7 +460,7 @@ msgstr "&Zusatzprogramme"
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr ""
-"'scicos' ist nicht mehr verfügbar, bitte verwenden Sie 'xcos' "
+"''scicos'' ist nicht mehr verfügbar, bitte verwenden Sie ''xcos'' "
 "anstattdessen.\n"
 
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"

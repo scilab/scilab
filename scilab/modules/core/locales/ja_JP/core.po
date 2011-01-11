@@ -20,16 +20,16 @@ msgstr ""
 
 #
 # File: src/c/banier.c, line: 36
-msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr "                 Scilab コンソーシアム (DIGITEO)\n"
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Scilab コンソーシアム (DIGITEO)\n"
 
 #
 # File: src/c/banier.c, line: 39
-msgid "               Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
+msgid "Copyright (c) 1989-2010 (INRIA)\n"
+msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 msgid "  loading initial environment"
 msgstr "  初期環境をロードしています"
@@ -659,7 +659,7 @@ msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' �
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\" または \"%s'\" を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"

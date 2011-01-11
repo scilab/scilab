@@ -162,8 +162,8 @@ msgid ""
 "Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
 "found.\n"
 msgstr ""
-"Erro: Configuração inválida para o arquivo %s (a codificação não é \"%s\"). "
-"Codificação \"%s\" encontrada.\n"
+"Erro: Configuração inválida para o arquivo %s (a codificação não é '%s'). "
+"Codificação '%s' encontrada.\n"
 
 #, c-format
 msgid "Error: could not parse file %s\n"
@@ -228,7 +228,7 @@ msgstr "VM já criada"
 
 #, c-format
 msgid "Warning: Could not find Java package '%s'.\n"
-msgstr "Aviso: não foi possível encontrar o pacote Java \"%s\".\n"
+msgstr "Aviso: não foi possível encontrar o pacote Java '%s'.\n"
 
 #, c-format
 msgid "Warning: could not find classpath declaration file %s.\n"

@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA, Serge Steer
+// Copyright (C) - 2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,7 +10,7 @@
 function x = secd(x)
 // Secant argument in degree
   if ~isreal(x) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"secd",1)); 
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"secd",1)); 
   end
  
   n = round(x/90);

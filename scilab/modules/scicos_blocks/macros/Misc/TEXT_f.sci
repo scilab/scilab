@@ -78,9 +78,9 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
     //** hilite_obj(scs_m.objs(path_out)); //**
     hilite_obj(path_out); //** new
     if typ==0 then
-      messagebox(['Hilited block has connected ports ';'with  incompatible sizes'],"modal")
+      messagebox(['Highlighted block has connected ports ';'with  incompatible sizes'],"modal")
     else
-      messagebox(['Hilited block has connected ports ';'with  incompatible types'],"modal")
+      messagebox(['Highlighted block has connected ports ';'with  incompatible types'],"modal")
     end
     unhilite_obj(path_out); //** new
     return;
@@ -103,12 +103,12 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
       end
 
       if typ==0 then
-        messagebox(['Hilited block(s) have connected ports ';
+        messagebox(['Highlighted block(s) have connected ports ';
                  'with  incompatible sizes';
                  ' output port '+string(prt_out)+' size is :'+sci2exp(nout);
                  ' input port '+string(prt_in)+' size is  :'+sci2exp(nin)],"modal");
       else
-        messagebox(['Hilited block(s) have connected ports ';
+        messagebox(['Highlighted block(s) have connected ports ';
                  'with  incompatible type';
                  ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
                  ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");
@@ -135,12 +135,12 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
       end
 //*****************************************
       if typ==0 then
-        messagebox(['Hilited block(s) have connected ports ';
+        messagebox(['Highlighted block(s) have connected ports ';
                  'with  incompatible sizes';
                  string(prt_out)+' output port size is :'+sci2exp(nout);
                  string(prt_in)+' input port size is  :'+sci2exp(nin)],"modal");
       else
-        messagebox(['Hilited block(s) have connected ports ';
+        messagebox(['Highlighted block(s) have connected ports ';
                  'with  incompatible type';
                  ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
                  ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");

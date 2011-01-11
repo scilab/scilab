@@ -34,6 +34,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * The class ScilabDocument is used to render a document .sci or .sce
@@ -74,7 +75,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private boolean updater = true;
     private boolean binary;
     private boolean autoIndent;
-    private boolean autoColorize;
     private boolean shouldMergeEdits;
     private boolean undoManagerEnabled;
     private CompoundUndoManager undo;
@@ -92,7 +92,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         setAsynchronousLoadPriority(2);
 
         autoIndent = ConfigSciNotesManager.getAutoIndent();
-        autoColorize = ConfigSciNotesManager.getAutoColorize();
         encoding = ConfigSciNotesManager.getDefaultEncoding();
 
         undo = new CompoundUndoManager(this);
@@ -268,22 +267,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void mergeEditsEnd() {
         undo.endCompoundEdit();
-    }
-
-    /**
-     * getColorize
-     * @return boolean
-     */
-    public boolean getColorize() {
-        return autoColorize;
-    }
-
-    /**
-     * setColorize
-     * @param b boolean
-     */
-    public void setColorize(boolean b) {
-        autoColorize = b;
     }
 
     /**
@@ -599,6 +582,37 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * Get the function name where the caret is
+     * @param pos the position in the document
+     * @return the nearest function name
+     */
+    public String getCurrentFunction(int pos) {
+        Element root = getDefaultRootElement();
+        int index = root.getElementIndex(pos);
+        int line = index;
+        int compt = 0;
+        while (index != -1) {
+            ScilabLeafElement e = (ScilabLeafElement) root.getElement(index--);
+            switch (e.getType()) {
+            case ScilabLeafElement.NOTHING :
+                break;
+            case ScilabLeafElement.FUN :
+                if (compt == 0) {
+                    return String.format(SciNotesMessages.POSFUN_IN_DOC, e.getFunctionInfo().functionName, line + 1, pos - root.getElement(line).getStartOffset());
+                } else {
+                    compt++;
+                }
+                break;
+            case ScilabLeafElement.ENDFUN :
+                compt--;
+                break;
+            default :
+            }
+        }
+        return String.format(SciNotesMessages.POS_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset());
+    }
+
+    /**
      * lock
      */
     public void lock() {
@@ -632,6 +646,15 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public void removeUpdate(DocumentEvent e) {
         handleEvent(e);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected void insertUpdate(DefaultDocumentEvent chng, AttributeSet attr) {
+        // Fix bug 8277 in putting attr=null
+        // Java, by default, highlights the chinese chars when entered on keyboard
+        super.insertUpdate(chng, null);
     }
 
     /**

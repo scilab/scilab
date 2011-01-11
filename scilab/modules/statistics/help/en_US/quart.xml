@@ -26,7 +26,7 @@ s=quart(x,'r') or m=quart(x,1)
 s=quart(x,'c') or m=quart(x,2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

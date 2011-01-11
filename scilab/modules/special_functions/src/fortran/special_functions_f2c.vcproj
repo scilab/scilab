@@ -417,22 +417,6 @@
 				RelativePath="..\..\sci_gateway\fortran\sci_f_lgamma.c"
 				>
 			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesseli.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselj.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselk.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbessely.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -463,22 +447,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_lgamma.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesseli.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselj.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselk.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbessely.f"
 				>
 			</File>
 		</Filter>

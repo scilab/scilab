@@ -34,7 +34,7 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	private static final String SPACE = " ";
 	
 	private static final int WIDTH = 200;
-	private static final int HEIGHT = 120;
+	private static final int HEIGHT = 150;
 	
 	private int elementId;
 	

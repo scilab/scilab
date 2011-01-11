@@ -24,7 +24,7 @@
 v = saveafterncommands()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -45,7 +45,7 @@ v = saveafterncommands()</synopsis>
     <para>Save the history file after n statements are added to the file.</para>
     <para>For example, when you select the option and set n to 5, after every 5 statements are added,
     the history file is automatically saved.</para>
-    <para>Use this option if you don't want to risk losing entries to the saved history because of an abnormal termination,
+    <para>Use this option if you do not want to risk losing entries to the saved history because of an abnormal termination,
     such as a power failure.</para>
     <para>saveafterncommands() returns current value.</para>
     <para>default value is 0. History file saved at the end of scilab session.</para>

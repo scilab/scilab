@@ -33,6 +33,7 @@ import org.scilab.modules.xcos.link.LinkPortMap;
 import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
 
 /**
@@ -405,6 +406,16 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		start = (BasicPort) from.getSource();
 		end = (BasicPort) from.getTarget();
 
+		// non-connected link
+		if ((start == null) || (end == null)) { return null; }
+
+		final mxICell srcBlock = start.getParent();
+		final mxICell endBlock = end.getParent();
+
+		// connection not valid
+		if ((srcBlock == null) || (endBlock == null)) { return null; }
+		if (!((srcBlock instanceof BasicBlock) && (endBlock instanceof BasicBlock))) { return null; }
+
 		final mxGeometry srcGeom = start.getGeometry();
 		final mxGeometry endGeom = end.getGeometry();
 
@@ -418,14 +429,14 @@ public class LinkElement extends AbstractElement<BasicLink> {
 
 		data.add(new ScilabDouble(from.getColorAndType())); // ct
 
-		double fromBlockID = ((BasicBlock) start.getParent()).getOrdering();
+		double fromBlockID = ((BasicBlock) srcBlock).getOrdering();
 		double fromPortID = start.getOrdering();
 		double fromType = LinkPortMap.isStart(start);
 
 		double[][] fromData = {{fromBlockID, fromPortID, fromType}};
 		data.add(new ScilabDouble(fromData)); // from
 
-		double toBlockID = ((BasicBlock) end.getParent()).getOrdering();
+		double toBlockID = ((BasicBlock) endBlock).getOrdering();
 		double toPortID = end.getOrdering();
 		double toType = LinkPortMap.isStart(end);
 
@@ -457,11 +468,15 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		/*
 		 * Start point
 		 */
-		xx[0][0] = srcGeom.getCenterX()
-				+ start.getParent().getGeometry().getX();
-		yy[0][0] = -(srcGeom.getCenterY()
-				+ start.getParent().getGeometry().getY() - start.getParent()
-				.getGeometry().getHeight());
+		{
+			xx[0][0] = srcGeom.getCenterX();
+			yy[0][0] = -srcGeom.getCenterY();
+			final mxGeometry geometry = start.getParent().getGeometry();
+			if (geometry != null) {
+				xx[0][0] += geometry.getX();
+				yy[0][0] -= geometry.getY() - geometry.getHeight();
+			}
+		}
 
 		/*
 		 * Control points
@@ -477,12 +492,17 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		/*
 		 * End point
 		 */
-		xx[1 + ptCount][0] = endGeom.getCenterX()
-				+ end.getParent().getGeometry().getX();
-		yy[1 + ptCount][0] = -(endGeom.getCenterY()
-				+ end.getParent().getGeometry().getY() - end.getParent()
-				.getGeometry().getHeight());
-
+		{
+			xx[1 + ptCount][0] = endGeom.getCenterX();
+			yy[1 + ptCount][0] = -endGeom.getCenterY();
+			
+			final mxGeometry geometry = end.getParent().getGeometry();
+			if (geometry != null) {
+				xx[1 + ptCount][0] += geometry.getX();
+				yy[1 + ptCount][0] -= geometry.getY() - geometry.getHeight();
+			}
+		}
+		
 		data.add(new ScilabDouble(xx));
 		data.add(new ScilabDouble(yy));
 	}

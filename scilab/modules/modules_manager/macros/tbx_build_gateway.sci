@@ -49,7 +49,7 @@ function tbx_build_gateway(libname,      ..
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"),"tbx_build_gateway",2));
     end
 
-    if size(names,:) > 999 then
+    if size(names,'r') > 999 then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: At most %d rows expected.\n"),"tbx_build_gateway",2,999));
     end
 

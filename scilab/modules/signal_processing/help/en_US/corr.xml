@@ -18,7 +18,7 @@
 [wk]=corr('updt',xk,[yk],w,xu)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

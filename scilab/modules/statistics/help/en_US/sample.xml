@@ -23,7 +23,7 @@
     <synopsis>s = sample(n,X,orient)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>

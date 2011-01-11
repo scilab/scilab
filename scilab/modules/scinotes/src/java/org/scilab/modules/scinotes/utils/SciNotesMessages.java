@@ -40,6 +40,8 @@ public class SciNotesMessages {
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    public static final String OPEN_ERROR = Messages.gettext("The file could not be created, check the path");
+
     /**
      * "Save All" message
      */
@@ -81,7 +83,7 @@ public class SciNotesMessages {
     public static final String FIND_REPLACE = Messages.gettext("Find/Replace");
     public static final String FIND_NEXT = Messages.gettext("Find Next");
     public static final String FIND_PREVIOUS = Messages.gettext("Find Previous");
-    public static final String GOTO_LINE = Messages .gettext("Goto line");
+    public static final String GOTO_LINE = Messages.gettext("Goto line");
 
     /** VIEW MENU */
     public static final String VIEW = Messages.gettext("View");
@@ -170,6 +172,7 @@ public class SciNotesMessages {
     public static final String FILE_ALREADY_EXIST = Messages.gettext("File already exists");
     public static final String UNTITLED = Messages.gettext("Untitled ");
     public static final String OK = Messages.gettext("Ok");
+    public static final String APPLYREINDENT = Messages.gettext("Apply & Reindent");
     public static final String CANCEL = Messages.gettext("Cancel");
     public static final String DEFAULT = Messages.gettext("Default");
     public static final String NEXT_TAB = Messages.gettext("Next tab");
@@ -178,19 +181,21 @@ public class SciNotesMessages {
     public static final String BIG_FILE_WARNING = Messages.gettext("This file is very long. \"Execute File Into Scilab\" could be better.\nAre you sure to continue ?");
 
 
-    public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
-    public static final String BINARY_FILE = Messages .gettext("This file is a binary, saving it will result in a corrupt file.");
+    public static final String ENTER_LINE_NUMBER = Messages.gettext("Enter line number");
+    public static final String BINARY_FILE = Messages.gettext("This file is a binary, saving it will result in a corrupt file.");
 
     /* Status bar messages */
-    public static final String LOADING = Messages .gettext("Loading") + DOTS;
-    public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
-    public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
-    public static final String READ_ONLY_MODE = Messages .gettext("Read-only mode");
-    public static final String CLICKABLE_URL = Messages .gettext("Press CTRL and move the mouse over the link to activate it");
-    public static final String OPENURL = Messages .gettext("Open in the navigator the URL ");
-    public static final String MAILTO = Messages .gettext("Mail to ");
-    public static final String OPENSOURCE = Messages .gettext("Open the source of the macro ");
-    public static final String SHOWSOURCE = Messages .gettext("Show the definition of the macro ");
+    public static final String LOADING = Messages.gettext("Loading") + DOTS;
+    public static final String COLORIZATION_CANCELED = Messages.gettext("Colorization canceled");
+    public static final String BINARY_FILE_MODE = Messages.gettext("Binary file: read-only mode");
+    public static final String READ_ONLY_MODE = Messages.gettext("Read-only mode");
+    public static final String CLICKABLE_URL = Messages.gettext("Press CTRL and move the mouse over the link to activate it");
+    public static final String OPENURL = Messages.gettext("Open in the navigator the URL ");
+    public static final String MAILTO = Messages.gettext("Mail to ");
+    public static final String OPENSOURCE = Messages.gettext("Open the source of the macro ");
+    public static final String SHOWSOURCE = Messages.gettext("Show the definition of the macro ");
+    public static final String POSFUN_IN_DOC = Messages.gettext("Function '%s'. Line %s. Column %s.");
+    public static final String POS_IN_DOC = Messages.gettext("Line %s. Column %s.");
 
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";
@@ -211,6 +216,10 @@ public class SciNotesMessages {
     public static final String NO_TEXT_TO_EXECUTE = Messages.gettext("No text to execute.");
     public static final String COMPLETE = Messages.gettext("Complete");
     public static final String EDIT_SELECTION = Messages.gettext("Copy selection in a new tab");
+
+    public static final String DIFFERENT_ENCODINGS = Messages.gettext("The file encoding is actually %s and it will be saved in using %s. Continue ?");
+    public static final String DIFFERENT_ENCODINGS_TITLE = Messages.gettext("Encoding problems");
+    public static final String CANNOT_GUESS_ENCODING = Messages.gettext("Cannot guess the file encoding.");
 
     /**
      * "Change Colors" message
@@ -268,4 +277,16 @@ public class SciNotesMessages {
      */
     public static final String RESTORE_FILES_QUERY = Messages.gettext("Restore files from your last SciNotes session ?");
     public static final String RESTORE_FILES_TITLE = Messages.gettext("Restore the last sessions");
+
+    /**
+     * Tabulations configuration
+     */
+    public static final String CONFIGTAB = Messages.gettext("Configure Tabulation");
+    public static final String TABSTYLE = Messages.gettext("Tab style");
+    public static final String TABUSEWHITES = Messages.gettext("Use spaces");
+    public static final String TABLENGTH = Messages.gettext("Length");
+    public static final String TABREPRESENTATION = Messages.gettext("Tab representation");
+    public static final String TABHRULE = Messages.gettext("Horizontal rule");
+    public static final String TABVRULE = Messages.gettext("Vertical rule");
+    public static final String TABDOUBLECHEVRONS = Messages.gettext("Double chevrons");
 }

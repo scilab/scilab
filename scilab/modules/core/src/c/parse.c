@@ -31,6 +31,7 @@
 #include "storeCommand.h"
 #include "msgs.h"
 #include "eqid.h"
+#include "parserConstant.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -40,25 +41,6 @@
 
 static int c__1 = 1;
 static int c__0 = 0;
-#define comma  52
-#define lparen  41
-#define rparen  42
-#define left  54
-#define right  55
-#define less  59
-#define great  60
-#define dot  51
-#define name  1
-#define num  0
-#define cmt  2
-#define insert  2
-#define extrac  3
-#define blank  40
-#define semi  43
-#define slash  48
-
-#define equal  50
-#define eol  99
 
 #define Pt (C2F(recu).pt)
 /*--------------------------------------------------------------------------*/

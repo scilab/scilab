@@ -23,7 +23,7 @@
     <synopsis>stat=host(command-name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>command-name</term>

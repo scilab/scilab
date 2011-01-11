@@ -28,8 +28,8 @@ frame $w.grid
 scrollbar $w.hscroll -orient horiz -command "$c xview"
 scrollbar $w.vscroll -command "$c yview"
 canvas $c -relief sunken -borderwidth 2 -scrollregion {-11c -11c 50c 20c} \
-	-xscrollcommand "$w.hscroll set" \
-	-yscrollcommand "$w.vscroll set"
+    -xscrollcommand "$w.hscroll set" \
+    -yscrollcommand "$w.vscroll set"
 pack $w.grid -expand yes -fill both -padx 1 -pady 1
 grid rowconfig    $w.grid 0 -weight 1 -minsize 0
 grid columnconfig $w.grid 0 -weight 1 -minsize 0
@@ -46,10 +46,10 @@ set bg [lindex [$c config -bg] 4]
 for {set i 0} {$i < 20} {incr i} {
     set x [expr {-10 + 3*$i}]
     for {set j 0; set y -10} {$j < 10} {incr j; incr y 3} {
-	$c create rect ${x}c ${y}c [expr $x+2]c [expr $y+2]c \
-		-outline black -fill $bg -tags rect
-	$c create text [expr $x+1]c [expr $y+1]c -text "$i,$j" \
-	    -anchor center -tags text
+    $c create rect ${x}c ${y}c [expr $x+2]c [expr $y+2]c \
+        -outline black -fill $bg -tags rect
+    $c create text [expr $x+1]c [expr $y+1]c -text "$i,$j" \
+        -anchor center -tags text
     }
 }
 
@@ -63,14 +63,14 @@ proc scrollEnter canvas {
     global oldFill
     set id [$canvas find withtag current]
     if {[lsearch [$canvas gettags current] text] >= 0} {
-	set id [expr $id-1]
+    set id [expr $id-1]
     }
     set oldFill [lindex [$canvas itemconfig $id -fill] 4]
     if {[winfo depth $canvas] > 1} {
-	$canvas itemconfigure $id -fill SeaGreen1
+    $canvas itemconfigure $id -fill SeaGreen1
     } else {
-	$canvas itemconfigure $id -fill black
-	$canvas itemconfigure [expr $id+1] -fill white
+    $canvas itemconfigure $id -fill black
+    $canvas itemconfigure [expr $id+1] -fill white
     }
 }
 
@@ -78,7 +78,7 @@ proc scrollLeave canvas {
     global oldFill
     set id [$canvas find withtag current]
     if {[lsearch [$canvas gettags current] text] >= 0} {
-	set id [expr $id-1]
+    set id [expr $id-1]
     }
     $canvas itemconfigure $id -fill $oldFill
     $canvas itemconfigure [expr $id+1] -fill black
@@ -88,7 +88,8 @@ proc scrollButton canvas {
     global oldFill
     set id [$canvas find withtag current]
     if {[lsearch [$canvas gettags current] text] < 0} {
-	set id [expr $id+1]
+    set id [expr $id+1]
     }
-    puts stdout "You buttoned at [lindex [$canvas itemconf $id -text] 4]"
+    set msg "[lindex [$canvas itemconf $id -text] 4]"
+    ScilabEval "mprintf('%s\n' , _('You buttoned at ')+'$msg');"  "sync"
 }

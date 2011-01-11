@@ -25,7 +25,7 @@ chart(gain [,flags])
 chart(gain,phase [,flags])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>gain</term>

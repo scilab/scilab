@@ -23,7 +23,7 @@
     <synopsis>A=companion(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>p</term>

@@ -1,0 +1,24 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - Calixte DENIZET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- Non-regression test for bug 8181 -->
+// <-- JVM MANDATORY -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/8181
+//
+// <-- Short Description -->
+// uicontrol did not handle color where composants are outside the range 0-1.
+
+h = uicontrol("Style", "text");
+
+if execstr("h.BackgroundColor = [%inf 0 0];","errcatch") == 0 then pause, end
+if execstr("h.BackgroundColor = [%nan 0 0];","errcatch") == 0 then pause, end
+if execstr("h.BackgroundColor = [2 0 0];","errcatch") == 0 then pause, end
+if execstr("h.BackgroundColor = [-1 0 0];","errcatch") == 0 then pause, end
+
+// No critical error

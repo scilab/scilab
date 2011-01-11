@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Compute automatic ticks
  *
  * This file must be used under the terms of the CeCILL.
@@ -81,30 +82,31 @@ void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[
 		TheTicks(&m_dMinBounds, &m_dMaxBounds, positions, &m_iNbTicks, TRUE);
 	}
 
-  // now convert ticks positions in strings for labels
-  // find ticks format
-  char labelsFormat[5];
-  int lastIndex = Max( m_iNbTicks - 1, 0 ) ;
+  /* Build the tick labels if the labels arguement is not null.  (labelsExponents is unused.) */
+  if( labels != NULL )
+  {
+    // find ticks format
+    char labelsFormat[5];
+    int lastIndex = Max( m_iNbTicks - 1, 0 ) ;
 
-  ChoixFormatE( labelsFormat,
+    ChoixFormatE( labelsFormat,
                 positions[0],
                 positions[lastIndex],
                 (positions[lastIndex] - positions[0]) / lastIndex ); /* Adding F.Leray 06.05.04 */
 
-  char buffer[BUFFER_LENGTH];
-  for (int i = 0; i < m_iNbTicks; i++)
-  {
-    // convert current position into a string
-    sprintf(buffer, labelsFormat, positions[i]);
+    char buffer[BUFFER_LENGTH];
+    for (int i = 0; i < m_iNbTicks; i++)
+    {
+      // convert current position into a string
+      sprintf(buffer, labelsFormat, positions[i]);
 
-    // add the string to labels
-    if (labels[i] != NULL) {delete[] labels[i];}
+      // add the string to labels
+      if (labels[i] != NULL) {delete[] labels[i];}
 
-    labels[i] = new char[strlen(buffer) + 1];
-    strcpy(labels[i], buffer);
+      labels[i] = new char[strlen(buffer) + 1];
+      strcpy(labels[i], buffer);
+    }
   }
-  
-
 
 }
 /*------------------------------------------------------------------------------------------*/

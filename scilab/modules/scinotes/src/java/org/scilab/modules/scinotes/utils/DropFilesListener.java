@@ -43,8 +43,8 @@ public class DropFilesListener implements DropTargetListener {
     private ScilabEditorPane pane;
     private int p0;
     private int p1;
-    private Point previousPoint;
-    private Point actualPoint;
+    private Point previousPoint = new Point();
+    private Point actualPoint = new Point();
     private int actualPos;
     private boolean enter;
 

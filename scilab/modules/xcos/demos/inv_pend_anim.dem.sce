@@ -1,10 +1,16 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009-2010 - DIGITEO
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-exec("SCI/modules/xcos/demos/PENDULUM_ANIM.sci");
-exec("SCI/modules/xcos/demos/anim_pen.sci");
+function demo_xcospendul()
+  exec("SCI/modules/xcos/demos/PENDULUM_ANIM.sci",-1);
+  exec("SCI/modules/xcos/demos/anim_pen.sci",-1);
+  xcos("SCI/modules/xcos/demos/pendulum_anim5.xcos");
+endfunction
 
-xcos("SCI/modules/xcos/demos/pendulum_anim5.xcos");
+demo_xcospendul();
+clear demo_xcospendul;
+
+

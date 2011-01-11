@@ -16,7 +16,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
-AC_PREREQ(2.60)
+AC_PREREQ(2.62)
 AC_CONFIG_MACRO_DIR([m4/])
 
 SCI_BUILDDIR="`pwd`"
@@ -95,6 +95,9 @@ AC_ARG_ENABLE(debug-fortran,
 
 AC_ARG_ENABLE(debug-linker,
    AC_HELP_STRING([--enable-debug-linker],[Print warning messages from the linker (ld)]))
+
+AC_ARG_ENABLE(code-coverage,
+   AC_HELP_STRING([--enable-code-coverage],[Enable code coverage]))
 
 AC_ARG_ENABLE(stopOnWarning,
    AC_HELP_STRING([--enable-stop-on-warning],[Stop the compilation on the first warning found in the C/C++ code]))
@@ -355,10 +358,16 @@ fi
 
 if test -n "$F77"; then
 dnl @TODO : Maybe we should check that it is actually gfortran
+
+   # enable the code coverage
+   if test "$enable_code_coverage" = yes; then
+    FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
+   fi
+
    if test "$enable_debug_fortran" = yes; then
 	# -D_FORTIFY_SOURCE=2
 	AC_LANG_PUSH([Fortran 77])
-	for flag in -g -Wall -Wimplicit -Wsurprising ; do
+	for flag in -g -Wall -Wsurprising; do
 		case " ${FFLAGS} " in
 			*\ ${flag}\ *)
 				# flag is already present
@@ -470,8 +479,14 @@ fi
 case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
+
+   # enable the code coverage
+   if test "$enable_code_coverage" = yes; then
+    CPPFLAGS="$CPPFLAGS -fprofile-arcs -ftest-coverage"
+   fi
+
    if test "$enable_debug_CXX" = yes; then
-	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3"
+	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
@@ -502,6 +517,12 @@ esac
 case "$CC" in
 	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
+
+   # enable the code coverage
+   if test "$enable_code_coverage" = yes; then
+    CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage"
+   fi
+
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
 	  # used to be -O
@@ -624,6 +645,19 @@ esac
 ;; # end of not a gcc compiler
 esac
 
+# enable the code coverage
+if test "$enable_code_coverage" = yes; then
+   AC_PATH_PROG(LCOV, lcov)
+   if test -z "$LCOV" ; then
+		AC_MSG_ERROR([Cannot find lcov. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
+   fi
+   AC_PATH_PROG(GENHTML, genhtml)
+   if test -z "$GENHTML" ; then
+		AC_MSG_ERROR([Cannot find genhtml. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
+   fi
+   LDFLAGS="$LDFLAGS -coverage"
+fi
+AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
@@ -670,6 +704,12 @@ AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
 ###########################
 
 if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
+   # Need MacosX Version to specify some path.
+   case "$host_os" in
+                   *Darwin* | *darwin*)
+                   AC_GET_MACOSX_VERSION;;
+  esac
+
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -689,6 +729,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 		JAVA_CLASSPATH=$ac_java_classpath
 		AC_JAVA_TOOLS
 		AC_JAVA_ANT
+
+		case "$host_os" in
+                     *Darwin* | *darwin*)
+		        JAVA_HOME="";;
+		esac
+
 
 		if test "$with_gui" != no; then
 
@@ -1856,6 +1902,15 @@ fi
 fi
 
 echo ""
+if test "$enable_code_coverage" = yes;  then
+   echo "Code coverage configuration:"
+   echo "  LCOV .............. = $LCOV"
+   echo "  GENHTML ........... = $GENHTML"
+else
+   echo "Not using code coverage"
+fi
+
+echo ""
 if test $OPENMP_ENABLE = yes; then
    echo "OpenMP Configuration:"
    echo "OpenMP CFLAGS ...... = $OPENMP_CFLAGS"
@@ -1970,6 +2025,7 @@ echo "  JAVA_JNI_INCLUDE .... = $JAVA_JNI_INCLUDE"
 echo "  JAVA_JNI_LIBS ....... = $JAVA_JNI_LIBS"
 echo "  JAVA_JNI_LIBS_PRELOAD = $JAVA_JNI_LIBS_PRELOAD"
 echo "  JAVA ................ = $JAVA"
+echo "  JAVADOC ............. = $JAVADOC"
 echo "  JAR ................. = $JAR"
 echo "  ANT ................. = $ANT"
 else
@@ -2091,6 +2147,7 @@ echo "  hostname ....... = $ac_hostname"
 echo "  CPU 64 bits .... = $IS_64_BITS_CPU"
 if test -n "$MAC_DETECTED_ARCH"; then
 echo "  Mac OS X arch .. = $MAC_DETECTED_ARCH"
+echo "  Mac OS X version = $macosx_version"
 fi
 
 echo ""

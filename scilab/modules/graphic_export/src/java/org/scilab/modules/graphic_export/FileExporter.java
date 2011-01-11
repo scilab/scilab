@@ -141,7 +141,7 @@ public class FileExporter {
         //Put back the old infoMessage
         exportedFig.setInfoMessage(oldInfoMessage);
 
-        if (saveFileType != -1) {
+        if (saveFileType != -1 && ExportRenderer.getErrorNumber() == ExportRenderer.SUCCESS) {
             ConvertSVG.SVGTo(fileName, saveFileName, saveFileType);
             new File(fileName).delete();
         }

@@ -21,7 +21,7 @@ import javax.media.opengl.GL;
  * @author Jean-Baptiste Silvy
  *
  */
-public class SquareMarkDrawer extends MarkDrawingStrategy {
+public class SquareMarkDrawer extends JOGLMarkDrawingStrategy {
 
 
 	/**

@@ -28,7 +28,7 @@ waitbar(mes,winId)
 waitbar(x,mes,winId)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

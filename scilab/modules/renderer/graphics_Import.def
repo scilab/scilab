@@ -150,3 +150,6 @@ ComputeXIntervals
 deleteMatrix
 getStrMatElement
 computeDefaultTicsLabels
+sciSetNbXSubTics
+sciSetNbYSubTics
+sciSetNbZSubTics

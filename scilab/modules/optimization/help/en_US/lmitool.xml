@@ -27,7 +27,7 @@ lmitool(filename)
 txt=lmitool(probname,varlist,datalist)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>

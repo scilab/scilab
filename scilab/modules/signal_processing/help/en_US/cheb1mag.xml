@@ -12,7 +12,7 @@
     <synopsis>[h2]=cheb1mag(n,omegac,epsilon,sample)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>

@@ -31,14 +31,14 @@
 		</refsection>
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal)</synopsis>
-        <synopsis>SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)</synopsis>
+        <synopsis>SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const double* _pdblReal)</synopsis>
+        <synopsis>SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const double* _pdblReal, double* _pdblImg)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal)</synopsis>
-        <synopsis>SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)</synopsis>
+        <synopsis>SciErr createNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const double* _pdblReal)</synopsis>
+        <synopsis>SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
 			<varlistentry>
 				<term>_pvCtx</term>
@@ -119,7 +119,7 @@
 		<synopsis>SciErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)</synopsis>
 	</refsynopsisdiv>
 	<refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
 			<varlistentry>
 				<term>_pvCtx</term>

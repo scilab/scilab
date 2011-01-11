@@ -77,12 +77,12 @@ public class GraphHandler extends mxGraphHandler {
 			 * Double click
 			 */
 			if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e)) {
-				if (cell == null) {
-					createTextBlock(e);
-				} else if (cell instanceof BasicLink) {
+				if (cell instanceof BasicLink) {
 					clickOnLink(e, (BasicLink) cell);
 				} else if (cell instanceof BasicBlock) {
 					openBlock(e, (BasicBlock) cell);
+				} else if (cell == null) {
+					createTextBlock(e);
 				}
 				
 			/*
@@ -121,8 +121,8 @@ public class GraphHandler extends mxGraphHandler {
 		// set the position of the block
 		final mxPoint pt = graphComponent.getPointForEvent(e);
 		final mxGeometry geo = textBlock.getGeometry();
-		geo.setX(pt.getX());
-		geo.setY(pt.getY());
+		geo.setX(pt.getX() - (geo.getWidth() / 2));
+		geo.setY(pt.getY() - (geo.getHeight() / 2));
 		
 		// add the block to the graph
 		final mxGraph graph = graphComponent.getGraph();
@@ -159,7 +159,7 @@ public class GraphHandler extends mxGraphHandler {
 		model.beginUpdate();
 		try {
 			final int index = cell.findNearestSegment(pt);
-			if (index > points.size() && points.get(index).getPoint().distanceSq(pt.getPoint()) == 0) {
+			if (index < points.size() && points.get(index).getPoint().distanceSq(pt.getPoint()) == 0) {
 				points.remove(index);
 			} else {
 				points.add(index, pt);

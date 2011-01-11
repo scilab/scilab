@@ -31,14 +31,14 @@
 		</refsection>
 		<title>Calling Sequence</title>
 		<para>Input argument profile:</para>
-		<synopsis>SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
-		<synopsis>SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
+		<synopsis>SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal)</synopsis>
+		<synopsis>SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)</synopsis>
 		<para>Named variable profile:</para>
-		<synopsis>SciErr createNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
-		<synopsis>SciErr createNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
+		<synopsis>SciErr createNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal)</synopsis>
+		<synopsis>SciErr createNamedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)</synopsis>
 	</refsynopsisdiv>
 	<refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
 			<varlistentry>
 				<term>_pvCtx</term>
@@ -143,7 +143,7 @@
 		<synopsis>SciErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
 	</refsynopsisdiv>
 	<refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
 			<varlistentry>
 				<term>_pvCtx</term>

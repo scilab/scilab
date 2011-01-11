@@ -25,7 +25,7 @@
 test=c_link(routine-name,num)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>routine-name</term>

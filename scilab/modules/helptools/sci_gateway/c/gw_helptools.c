@@ -24,7 +24,8 @@ static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{sci_buildDoc,"buildDoc"}
+	{sci_buildDoc,"buildDoc"},
+	{sci_buildDocv2,"buildDocv2"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_helptools(void)

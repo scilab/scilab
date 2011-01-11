@@ -25,7 +25,7 @@ mom=moment(x,ord,'r') or mom=moment(x,ord,1)
 mom=moment(x,ord,'c') or mom=moment(x,ord,2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

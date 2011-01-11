@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * desc : Strategy decomposing grayplot objects
  * 
  * This file must be used under the terms of the CeCILL.
@@ -45,7 +46,7 @@ int GrayplotDecomposer::getNbCol(void)
 /*---------------------------------------------------------------------------------*/
 int GrayplotDecomposer::getNbColors(void)
 {
-  // we draw insie the grid
+  // we draw inside the grid
   return (getNbRow() - 1) * (getNbCol() - 1);
 }
 /*---------------------------------------------------------------------------------*/
@@ -162,13 +163,13 @@ void GrayplotDecomposer::decomposeDirectColors(int colors[])
 
 
   // fill color
-  for (int i = 0; i < nbRow - 1; i++)
+  for (int j = 0; j < nbRow - 1; j++)
   {
-    for (int j = 0; j < nbCol - 1; j++)
+    for (int i = 0; i < nbCol - 1; i++)
     {
       // colors is of size (nx - 1) x (ny -1) and pvecz of size nx x ny.
       // scilab data are stored column wise
-      colors[j + (nbCol - 1) * i] = (int) ppGray->pvecz[i + nbCol * j];
+      colors[i + (nbCol - 1) * j] = (int) ppGray->pvecz[i + nbCol * j];
     }
   }
 

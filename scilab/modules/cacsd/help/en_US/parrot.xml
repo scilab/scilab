@@ -23,7 +23,7 @@
     <synopsis>K=parrot(D,r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>D,K</term>

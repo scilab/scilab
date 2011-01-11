@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="compile_and_run_javasci"
+<refentry version="5.0-subset Scilab" xml:id="compile_and_run_javasci_v2"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -22,28 +22,28 @@
   </info>
 
   <refnamediv>
-    <refname>Compile and run with javasci</refname>
+    <refname>Compile and run with javasci v2</refname>
 
-    <refpurpose>How to compile a Java application using Javasci</refpurpose>
+    <refpurpose>How to compile a Java application using Javasci v2</refpurpose>
   </refnamediv>
 
   <refsection>
     <title>Description</title>
 
-    <para>To compile a Java code based on Javasci, it is only necessary to
-    have javasci.jar defined in the classpath.</para>
+    <para>To compile a Java code based on Javasci v2, it is only necessary to
+    have org.scilab.modules.javasci.jar and org.scilab.modules.types.jar  defined in the classpath.</para>
 
     <para>For example, with the code defined in the example of this page, the
     command would be:</para>
 
     <para>on Linux/Unix/MacOSX:</para>
 
-    <para><literal>$ javac -cp $SCI/modules/javasci/jar/javasci.jar
+    <para><literal>$ javac -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar
     BasicExample.java</literal></para>
 
     <para>on Windows:</para>
 
-    <para><literal>D:\&gt; javac -cp %SCI%\modules\javasci\jar\javasci.jar
+    <para><literal>D:\&gt; javac -cp %SCI%\modules\javasci\jar\org.scilab.modules.javasci.jar:%SCI%\modules\types\jar\org.scilab.modules.types.jar
     BasicExample.java</literal></para>
 
     <para>To run Scilab, there are a few other things to set up.</para>
@@ -78,7 +78,7 @@
               <listitem>
                 <para>path of scilab root directory:</para>
 
-                <para>set SCI=C:\program files\scilab-5.1</para>
+                <para>set SCI=C:\program files\scilab-XXX</para>
               </listitem>
             </itemizedlist>
           </listitem>
@@ -86,7 +86,7 @@
       </listitem>
 
       <listitem>
-        <para>LD_LIBRARY_PATH - Paths to libscilab.so and libjavasci.so (or
+        <para>LD_LIBRARY_PATH - Paths to libscilab.so, libscitypes.so and libjavasci2.so (or
         .jnilib...)</para>
 
         <itemizedlist>
@@ -101,14 +101,14 @@
 
               <listitem>
                 <para>In the source tree of Scilab, SCI will point to the root
-                of the source tree /path/to/scilab/modules/javasci/.libs/ and
+                of the source tree /path/to/scilab/modules/javasci/.libs/, /path/to/scilab/modules/types/.libs/ and
                 /path/to/scilab/.libs/</para>
               </listitem>
             </itemizedlist>
           </listitem>
 
           <listitem>
-            <para>Windows: Path to libscilab.dll and javasci.dll</para>
+            <para>Windows: Path to libscilab2.dll, libscitypes.dll and javasci.dll</para>
 
             <itemizedlist>
               <listitem>
@@ -132,7 +132,7 @@
         <itemizedlist>
           <listitem>
             <para><literal>LD_LIBRARY_PATH=/path/to/libjavasci/ SCI=/path/to/scilab/
-            java -cp modules/javasci/jar/javasci.jar:. BasicExample</literal></para>
+            java -cp modules/javasci/jar/org.scilab.modules.javasci.jar:modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal></para>
           </listitem>
         </itemizedlist>
 
@@ -140,7 +140,7 @@
           <listitem>
             <para><literal>SCI=/path/to/scilab/ java
             -Djava.library.path=/path/to/libjavasci/ -cp
-            modules/javasci/jar/javasci.jar:. BasicExample</literal></para>
+            modules/javasci/jar/org.scilab.modules.javasci.jar:modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal></para>
           </listitem>
         </itemizedlist>
 
@@ -150,20 +150,20 @@
       <listitem>
         <para>Windows:</para>
 
-        <para><literal>set SCI=c:\program files\scilab-5.1</literal></para>
+        <para><literal>set SCI=c:\program files\scilab-XXXX</literal></para>
 
         <para><literal>set PATH="%SCI%\bin";%PATH%</literal></para>
 
-        <para><literal>D:\java -cp "%SCI%\modules\javasci\jar\javasci.jar";.
+        <para><literal>D:\java -cp "%SCI%\modules\javasci\jar\org.scilab.modules.javasci.jar";"%SCI%\modules\types\jar\org.scilab.modules.types.jar";.
         BasicExample</literal></para>
       </listitem>
     </itemizedlist>
 
-    <para>optional options to launch java : <literal>-Djava.compiler=JIT
+    <para>Optional options to launch java : <literal>-Djava.compiler=JIT
     -Xmx256m</literal></para>
 
-    <para>(With these arguments , you launch javasci with same initial options
-    that standard scilab).</para>
+    <para>(With these arguments, you start javasci with same initial options
+    like the standard scilab).</para>
 
     <para>Note that two environnement variables are taken in account for specific needs: 
 </para>
@@ -184,15 +184,24 @@
 
     <programlisting role="example"><![CDATA[ 
 // A simple Java example 
+// javasci v2
 // Filename: BasicExample.java
 
-import javasci.Scilab;
+import org.scilab.modules.javasci.Scilab;
 
-public class BasicExample {
-	public static void main(String []args){
-	Scilab.Exec("disp((%pi^2)/6);");
-	}
+class BasicExample {
+
+    public static void main(String[] args) {
+        try {
+            Scilab sci = new Scilab();
+            sci.open();
+            sci.exec("a=cos(%pi)*sin(%pi^2);");
+        } catch (org.scilab.modules.javasci.JavasciException e) {
+            System.err.println("Could not find variable type: " + e.getLocalizedMessage());
+        }
+   }
 }
+
  ]]></programlisting>
   </refsection>
 
@@ -200,8 +209,11 @@ public class BasicExample {
     <title>See Also</title>
 
     <simplelist type="inline">
+    <member>
+        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink>
+       </member>
       <member><link linkend="javasci">Javasci</link></member>
-      <member><link linkend="javasci_faq">Javasci FAQ</link></member>
+      <member><link linkend="javasci_faq_v2">Javasci FAQ</link></member>
 
       <member><link linkend="SciDouble">SciDouble</link></member>
 

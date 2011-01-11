@@ -26,10 +26,18 @@ function demo_viewCode(this_script)
   my_fig = gcf();
 
   //Création du nouveau menu
-  my_menu = uimenu( "parent"      , my_fig             , ..
-    "label"       , gettext(" -- View Code -- ") , ..
-    "Foregroundcolor" , [ 0/255 81/255 6/255 ]     , ..
-    "callback"    , "editor("""+path+""", ""readonly"")" );
-
+  if getos() == "Darwin" then
+      my_menu = uimenu( "parent", my_fig, ..
+      "label"       , gettext(" -- View Code -- "));
+      my_submenu = uimenu("parent", my_menu , ..
+      "label"       , gettext("Open in Editor"), ..
+      "Foregroundcolor" , [ 0/255 81/255 6/255 ]     , ..
+      "callback"    , "editor("""+path+""", ""readonly"")" );
+  else
+      my_menu = uimenu( "parent"      , my_fig             , ..
+      "label"       , gettext(" -- View Code -- ") , ..
+      "Foregroundcolor" , [ 0/255 81/255 6/255 ]     , ..
+      "callback"    , "editor("""+path+""", ""readonly"")" );
+  end
 endfunction
 

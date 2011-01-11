@@ -420,24 +420,26 @@ public final class BlockPositioning {
 
 		final int childrenCount = block.getChildCount();
 		for (int i = 0; i < childrenCount; ++i) {
-			final BasicPort port = (BasicPort) block.getChildAt(i);
-			final Orientation orientation = port.getOrientation();
-
-			beginUpdate(block);
-
-			/* Apply angle */
-			if (block.getParentDiagram() != null) {
-				final mxIGraphModel model = block.getParentDiagram().getModel();
-				final String rot = Integer.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
-				mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, rot);
-			} else {
-				final StyleMap m = new StyleMap(port.getStyle());
-				final int rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
-				m.put(XcosConstants.STYLE_ROTATION, Integer.toString(rot));
-				port.setStyle(m.toString());
+			if (block.getChildAt(i) instanceof BasicPort) {
+				final BasicPort port = (BasicPort) block.getChildAt(i);
+				final Orientation orientation = port.getOrientation();
+	
+				beginUpdate(block);
+	
+				/* Apply angle */
+				if (block.getParentDiagram() != null) {
+					final mxIGraphModel model = block.getParentDiagram().getModel();
+					final String rot = Integer.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
+					mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, rot);
+				} else {
+					final StyleMap m = new StyleMap(port.getStyle());
+					final int rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
+					m.put(XcosConstants.STYLE_ROTATION, Integer.toString(rot));
+					port.setStyle(m.toString());
+				}
+	
+				endUpdate(block);
 			}
-
-			endUpdate(block);
 		}
 	}
 

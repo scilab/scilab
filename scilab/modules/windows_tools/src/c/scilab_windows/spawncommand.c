@@ -217,11 +217,22 @@ int GetNumberOfLines(char *lines)
     int NumberOfLines = 0;
     if (lines)
     {
-        int i = 0;
-        while(lines[i] != EMPTY_CHAR)
+        char *buffer = strdup(lines);
+        if (buffer)
         {
-            if (lines[i] == LF) NumberOfLines++;
-            i++;
+            int i = 0;
+            char *line = strtok(buffer, LF_STR);
+
+            while (line)
+            {
+                line = strtok(NULL, LF_STR);
+                i++;
+            }
+
+            NumberOfLines = i;
+
+            FREE(buffer);
+            buffer = NULL;
         }
         if (NumberOfLines == 0) NumberOfLines = 1;
     }

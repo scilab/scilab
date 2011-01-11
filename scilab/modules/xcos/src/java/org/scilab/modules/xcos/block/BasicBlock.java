@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -656,6 +658,32 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     }
 
     /**
+     * @return the expression as a object array
+     */
+    public String[] getExprsFormat() {
+    	// evaluate emptiness
+		if (getExprs() == null || getExprs().isEmpty()
+				|| getExprs().getHeight() == 0 || getExprs().getWidth() == 0) {
+			return new String[0];
+		}
+    	
+		// only ScilabString is handled
+		if (!(getExprs() instanceof ScilabString)) {
+			return new String[0];
+		}
+		String[][] scilabData = ((ScilabString) getExprs()).getData();
+		
+    	// normal case
+		final String[] array = new String[getExprs().getHeight() * getExprs().getWidth()];
+		final int width = scilabData[0].length;
+		for (int i = 0; i < scilabData.length; ++i) {
+			System.arraycopy(scilabData[i], 0, array, i * width, width);
+		}
+		
+		return array;
+    }
+    
+    /**
      * @return zero crossing value
      */
     public ScilabType getNbZerosCrossing() {
@@ -967,6 +995,18 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			oldPorts.put(type, new LinkedList<mxICell>());
 		}
 		
+		// sort children according to the ordering parameter (useful on scilab-5.2.x diagrams)
+		Collections.sort(children, new Comparator<Object>() {
+			@Override
+			public int compare(Object o1, Object o2) {
+				if (o1 instanceof BasicPort && o2 instanceof BasicPort) {
+					return ((BasicPort) o1).getOrdering() - ((BasicPort) o2).getOrdering();
+				} else {
+					return 0;
+				}
+			}
+		});
+		
 		// children lookup
 		for (Object cell : children) {
 			
@@ -979,7 +1019,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			}
 			
 			final Deque<mxICell> current = oldPorts.get(klass);
-			current.add((mxICell) cell);
+			if (current != null) {
+				current.add((mxICell) cell);
+			}
 		}
 		
 		return oldPorts;

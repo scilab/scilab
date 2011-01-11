@@ -23,7 +23,7 @@
     <synopsis>sound(y [,fs,bits,command)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>y</term>

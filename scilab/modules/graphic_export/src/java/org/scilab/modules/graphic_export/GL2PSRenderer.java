@@ -139,7 +139,7 @@ public class GL2PSRenderer extends ExportRenderer {
 			GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 			gLDrawable.setGL(newGL);
 
-			
+			exportedFigure.setMarkDrawingStrategy(new GL2PSMarkDrawingStrategy());
 			exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
 			exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
 			exportedFigure.setShadeFacetDrawer(new GL2PSShadeFacetDrawer());
@@ -153,6 +153,7 @@ public class GL2PSRenderer extends ExportRenderer {
 			int gl2psEndPageStatut = gl2ps.gl2psEndPage();
 			
 			gLDrawable.setGL(gl);
+			exportedFigure.setDefaultMarkDrawingStrategy();
 			exportedFigure.setDefaultArcRendererFactory();
 			exportedFigure.setDefaultTextRenderer();
 			exportedFigure.setDefaultShadeFacetDrawer();

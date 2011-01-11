@@ -23,6 +23,8 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 
+import com.mxgraph.model.mxICell;
+
 /**
  * Change the port label on ipar change.
  * 
@@ -65,7 +67,7 @@ public class SumPortLabelingListener implements PropertyChangeListener, Serializ
 		 */
 		final List<InputPort> ports = new ArrayList<InputPort>();
 		for (int i = 0; i < source.getChildCount(); i++) {
-			final BasicPort port = (BasicPort) source.getChildAt(i);
+			final mxICell port = source.getChildAt(i);
 			
 			if (port instanceof InputPort) {
 				ports.add((InputPort) port);
@@ -78,10 +80,10 @@ public class SumPortLabelingListener implements PropertyChangeListener, Serializ
 		for (InputPort port : ports) {
 			final double gain;
 			
-			if (data.isEmpty()) {
+			if (data.isEmpty() || data.getRealPart().length < port.getOrdering()) {
 				gain = 1; 
 			} else {
-				gain = data.getRealPart()[port.getOrdering() - 1][0]; 
+				gain = data.getRealPart()[port.getOrdering() - 1][0];
 			}
 			
 			port.setValue(getLabel(gain));

@@ -23,7 +23,7 @@
     <synopsis>evans(H [,kmax])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>H</term>

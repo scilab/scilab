@@ -190,13 +190,13 @@ int xs2file(char * fname, ExportFileType fileType )
 				Scierror(999,_("%s: Unable to create export file, permission denied.\n"),fname);
 				return 0;
 			case EXPORT_INVALID_FILE :
-				Scierror(999,_("%s: Unable to create export file, permission denied.\n"),fname);
+				Scierror(999,_("%s: Unable to create export file, invalid file.\n"),fname);
 				return 0;
 			case EXPORT_GL2PS_ERROR :
 				Scierror(999,_("%s: GL2PS error during export.\n"),fname);
 				return 0;
 			case EXPORT_GL2PS_OVERFLOW :
-				Scierror(999,_("%s: Unable to create export file, figure is too complex.\n"),fname);
+				Scierror(999,_("%s: Unable to create export file, figure is too big.\n"),fname);
 				return 0;
 			case EXPORT_GL2PS_UNINITIALIZED :
 				Scierror(999,_("%s: GL2PS error during export.\n"),fname);

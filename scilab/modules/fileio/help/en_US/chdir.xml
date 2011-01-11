@@ -18,7 +18,7 @@ realpath=cd(path)
 cd path</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>b</term>

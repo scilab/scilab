@@ -176,6 +176,15 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	public void setEnabled(boolean newEnableState) {
 		super.setEnabled(newEnableState);
 		getList().setEnabled(newEnableState);
+		if (newEnableState) {
+			if (mouseListener != null) {
+				getList().addMouseListener(mouseListener);
+			}
+		} else {
+			if (mouseListener != null) {
+				getList().removeMouseListener(mouseListener);
+			}
+		}
 	}
 	
 	/**
@@ -202,7 +211,9 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 			public void mouseReleased(MouseEvent arg0) { }
 		};
 		
-		getList().addMouseListener(mouseListener);
+		if (isEnabled()) {
+			getList().addMouseListener(mouseListener);
+		}
 	}
 
 	/**

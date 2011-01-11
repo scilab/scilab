@@ -22,7 +22,7 @@
 P = mtlb_legendre(n,X[,normflag])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -63,12 +63,12 @@ P = mtlb_legendre(n,X[,normflag])</synopsis>
             the <literal>X</literal> elements.</para>
       </listitem>
       <listitem>
-        <para>The option normflag= <literal>'sch'</literal> doesn't exist for
+        <para>The option normflag= <literal>'sch'</literal> does not exist for
             Scilab legendre (emulated)</para>
       </listitem>
       <listitem>
         <para>If <literal>X</literal> is a hypermatrix then Scilab
-            <literal>legendre(n,X)</literal> doesn't work (emulated)</para>
+            <literal>legendre(n,X)</literal> does not work (emulated)</para>
       </listitem>
     </itemizedlist>
     <para>The function <literal>mtlb_legendre(n,X[,normflag])</literal> is used by

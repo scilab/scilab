@@ -21,7 +21,7 @@ l(k1)...(kn)(i)=a or l(list(k1,...,kn,i))=a
 l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>

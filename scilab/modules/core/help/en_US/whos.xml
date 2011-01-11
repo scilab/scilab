@@ -14,7 +14,7 @@ whos -type typ
 whos -name nam</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>typ</term>

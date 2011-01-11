@@ -12,7 +12,7 @@
     <synopsis>[linenum,mac]=where()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>linenum</term>

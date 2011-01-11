@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-09 16:31+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-10-17 05:29+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,52 +18,19 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-# File: src/cpp/fecDrawing/ConcreteDrawableFec.cpp, line: 79
-# File: src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp, line: 59
-# File: src/cpp/fecDrawing/FecLineDrawerJoGL.cpp, line: 57
-# File: src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp, line: 68
-# File: src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp, line: 89
-# File: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp, line: 69
-# File: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp, line: 86
-# File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 90
-# File: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp, line: 113
-# File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 73
-# File: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp, line: 91
-# File: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp, line: 66
-# File: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp, line: 82
-# File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 82
-# File: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp, line: 106
-# File: src/cpp/segsDrawing/ConcreteDrawableSegs.cpp, line: 126
-# File: src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp, line: 68
-# File: src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp, line: 57
-# File: src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp, line: 61
-# File: src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp, line: 72
-# File: src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp, line: 105
-# File: src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp, line: 72
-# File: src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp, line: 103
-# File: src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp, line: 71
-# File: src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp, line: 105
-# File: src/cpp/textDrawing/TextContentDrawerJoGL.cpp, line: 84
-# File: src/cpp/textDrawing/TextContentDrawerJoGL.cpp, line: 238
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: これ以上メモリがありません。\n"
+msgstr "%s: メモリ不足です.\n"
 
-#
-# File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 66
 msgid ""
 "Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
-msgstr "Axesオブジェクトをクリックオンでローテーションを開始します。右クリック、またはエスケープキーでキャンセルします。"
+msgstr "Axesオブジェクト上でクリックすると回転を開始します.右クリックまたはエスケープでキャンセルします."
 
-#
-# File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 89
 msgid "Click or press ESCAPE to terminate rotation."
-msgstr "クリック、またはエスケープキーでローテーションを終わらせます。"
+msgstr "クリックまたはエスケープキーを押すと回転を終了します."
 
-#
-# File: src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp, line: 62
 msgid "Unable to render polyline, memory full.\n"
-msgstr "ポリラインを表現できません、メモリ不足です。\n"
+msgstr "ポリラインを描画できません, メモリ不足です.\n"
 
 #
 # File: src/cpp/rendererBasicAlgos.cpp, line: 41

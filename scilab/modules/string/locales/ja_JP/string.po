@@ -285,7 +285,7 @@ msgstr "%s: 入力引数 #%d で不正な型: '%s' を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: \"%s\" を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: ''%s'' を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_strcat.c, line: 104
@@ -483,7 +483,7 @@ msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
 # File: sci_gateway/c/sci_strcmp.c, line: 56
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ''%s'' または ''%s\" を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な型: %s または %s を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"

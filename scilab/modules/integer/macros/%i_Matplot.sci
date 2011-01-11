@@ -29,18 +29,18 @@ if exists('nax' ,'local')==1 then
 end
 if exists('frameflag' ,'local')==1 then 
   if isframeflag then
-    error(msprintf(gettext('%s: ''frameflag'' already defined by the strf argument.'),'%%i_Matplot'))
+    error(msprintf(gettext('%s: ''%s'' already defined by the ''%s'' argument.'),'%%i_Matplot','frameflag','strf'))
   end
   opts=[opts,'frameflag=frameflag']  ,
 end
 if exists('axesflag' ,'local')==1 then 
   if isaxesflag then
-    error(msprintf(gettext('%s: ''axesflag'' already defined by the strf argument.'),'%%i_Matplot'))
+    error(msprintf(gettext('%s: ''%s'' already defined by the ''%s'' argument.'),'%%i_Matplot','axesflag','strf'))
   end
   opts=[opts,'axesflag=axesflag']  ,
 end
-if size(opts,2)+1-narg <argn(2) then  
-  error('invalid named arguments'),
+if size(opts,2)+1-narg <argn(2) then 
+  error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"%%i_Matplot","strf","rect","nax","frameflag","axesflag"));
 end
 
 

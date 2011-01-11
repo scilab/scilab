@@ -12,7 +12,7 @@
     <synopsis>r=with_pvm()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>
@@ -24,6 +24,6 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Returns <literal>%t</literal> if Scilab as been built  with the "Parallel Virtual Machine" interface or <literal>%f</literal> if not.</para>
+    <para>Returns <literal>%t</literal> if Scilab has been built  with the "Parallel Virtual Machine" interface or <literal>%f</literal> if not.</para>
   </refsection>
 </refentry>

@@ -12,7 +12,7 @@
     <synopsis>PlotSparse(A [,style])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>

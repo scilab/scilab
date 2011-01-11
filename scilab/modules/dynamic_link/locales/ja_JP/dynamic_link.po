@@ -314,7 +314,7 @@ msgstr "%s: 入力引数の型が間違っています: 文字列を指定して
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"\" または \"[]\" を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '''' または ''[]'' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"

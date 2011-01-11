@@ -23,7 +23,7 @@
     <synopsis>p=jre_path()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>p</term>

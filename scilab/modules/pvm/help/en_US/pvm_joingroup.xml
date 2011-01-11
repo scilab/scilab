@@ -23,7 +23,7 @@
     <synopsis>[inum] = pvm_joingroup(group)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>group</term>

@@ -162,6 +162,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
         macrosSet = new TreeSet(ScilabLexer.macros);
 
         mainFrame = new JFrame();
+        mainFrame.setAlwaysOnTop(true);
         mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

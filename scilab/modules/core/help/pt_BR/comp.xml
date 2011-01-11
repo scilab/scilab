@@ -56,7 +56,7 @@
     <para>A definição online bem como a sintaxe curta dos comandos
     <literal>exec</literal> e <literal>deff</literal> geram funções
     compiladas. Então comp tem que ser usado apenas em casos bem particulares.
-    Para se produzir uma função não compilada, deve-se usar &gt;<link
+    Para se produzir uma função não compilada, deve-se usar <link
     linkend="exec">exec</link> ou <link linkend="deff">deff</link> com a opção
     <literal>"n"</literal>.</para>
 

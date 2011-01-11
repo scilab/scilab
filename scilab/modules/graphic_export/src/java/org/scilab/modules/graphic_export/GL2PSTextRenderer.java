@@ -11,7 +11,7 @@
  *
  */
  
- package org.scilab.modules.graphic_export;
+package org.scilab.modules.graphic_export;
 
 import java.awt.Font;
 

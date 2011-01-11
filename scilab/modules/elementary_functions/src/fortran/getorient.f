@@ -116,17 +116,18 @@ c
       if (istk(il).lt.0) il=iadr(istk(il+1))
       if (istk(il).ne.10.or.istk(il+1).ne.1.or.istk(il+2).ne.1) then
          type=-2
-      endif
-      n=min(7,istk(il+5)-1)
-      id=il+4
-      l=id+2
-      call codetoascii(min(n,7),istk(l),temp)
-      if (temp(1:n).eq.'native') then
-         type=0
-      elseif(temp(1:n).eq.'double') then
-         type=1
       else
-         type=-1
+         n=min(7,istk(il+5)-1)
+         id=il+4
+         l=id+2
+         call codetoascii(min(n,7),istk(l),temp)
+         if (temp(1:n).eq.'native') then
+            type=0
+         elseif(temp(1:n).eq.'double') then
+            type=1
+         else
+            type=-1
+         endif
       endif
       return
       end

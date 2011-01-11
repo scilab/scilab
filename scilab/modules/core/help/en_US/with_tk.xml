@@ -13,7 +13,7 @@
     <synopsis>r=with_tk()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>
@@ -26,7 +26,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    Returns <literal>%t</literal> if Scilab as been built  with TCL/TK
+    Returns <literal>%t</literal> if Scilab has been built  with TCL/TK
     interface or <literal>%f</literal> if not.</para>
   </refsection>
 </refentry>

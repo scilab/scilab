@@ -23,7 +23,7 @@
     <synopsis>mps= readmps (file-name,bounds [,maxsizes]);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>file-name</term>

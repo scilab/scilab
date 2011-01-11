@@ -929,14 +929,7 @@
 		<add as="shape" value="ellipse" />
 		<add as="perimeter" value="ellipsePerimeter" />
 		<add as="displayedLabel"
-			value="&lt;TABLE&gt;
-				    &lt;TR&gt;
-				    &lt;TD&gt;50&lt;/TD&gt;
-				    &lt;/TR&gt;
-				    &lt;TR&gt;
-				    &lt;TD ALIGN=&quot;center&quot;&gt;~&lt;/TD&gt;
-				    &lt;/TR&gt;
-				    &lt;/TABLE&gt;" />
+			value="1 V&lt;br/&gt;~ %s" />
 	</add>
 	<add as="ConstantVoltage" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/ConstantVoltage.svg" />
@@ -966,15 +959,9 @@
 		<!-- FIXME : Show parameters over block  -->
 		<add as="shape" value="ellipse" />
 		<add as="perimeter" value="ellipsePerimeter" />
+		<add as="textAlign" value="center" />
 		<add as="displayedLabel"
-			value="&lt;TABLE&gt;
-				      &lt;TR&gt;
-				        &lt;TD&gt;220&lt;/TD&gt;
-				      &lt;/TR&gt;
-				      &lt;TR&gt;
-				        &lt;TD ALIGN=&quot;center&quot;&gt;~&lt;/TD&gt;
-				        &lt;/TR&gt;
-				    &lt;/TABLE&gt;" />
+			value="%s V&lt;br/&gt;~ %s" />
 	</add>
 	<add as="NPN" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/NPN.svg" />
@@ -987,14 +974,7 @@
 		<add as="shape" value="ellipse" />
 		<add as="perimeter" value="ellipsePerimeter" />
 		<add as="displayedLabel"
-			value="&lt;TABLE&gt;
-				      &lt;TR&gt;
-				        &lt;TD&gt;1&lt;/TD&gt;
-				      &lt;/TR&gt;
-				      &lt;TR&gt;
-				        &lt;TD ALIGN=&quot;center&quot;&gt;~&lt;/TD&gt;
-				      &lt;/TR&gt;
-				    &lt;/TABLE&gt;" />
+			value="%s V&lt;br/&gt;~" />
 	</add>
 	<add as="Switch" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH.svg" />

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2010 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -56,10 +57,20 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 
 	private boolean checkedState;
 
+	private boolean autoCheckedMode = true;
+	
 	/**
 	 * Constructor
 	 */
 	public SwingScilabMenuItem() {
+		this(true);
+	}
+
+	/**
+	 * Constructor
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 */
+	public SwingScilabMenuItem(boolean autoCheckedMode) {
 		super();
 		this.setFocusable(true);
 		addActionListener(new ActionListener() {
@@ -71,6 +82,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 				BlockingResult.getInstance().setResult(((SwingScilabMenuItem) arg0.getSource()).getText());
 			}
 		});
+		this.autoCheckedMode = autoCheckedMode;
 	}
 
         /**
@@ -314,7 +326,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	public void setChecked(boolean status) {
 		checkedState = status;
 		if (meAsACheckBoxMenuItem == null) {
-			meAsACheckBoxMenuItem = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
+			meAsACheckBoxMenuItem = ScilabCheckBoxMenuItem.createCheckBoxMenuItem(autoCheckedMode);
 			meAsACheckBoxMenuItem.setText(getText());
 			meAsACheckBoxMenuItem.setChecked(status);
 			meAsACheckBoxMenuItem.setCallback(getCallback());

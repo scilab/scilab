@@ -9,6 +9,9 @@
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @deprecated
+ */
 public class MaFenetre extends Frame
 {
   private MonPanneau p;

@@ -23,7 +23,7 @@
     <synopsis>[num,den]=nlev(A,z [,rmax])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>

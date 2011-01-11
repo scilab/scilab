@@ -1232,7 +1232,7 @@ msgstr "IDA_Rootfunction_NAN: Funkcja Root zwraca NAN."
 
 msgid "IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
 msgstr ""
-"IDA_TOO_CLOSE: 'wartość 'tout'' jest zbyt bliska do ''t0'' żeby zacząć "
+"IDA_TOO_CLOSE: wartość ''tout'' jest zbyt bliska do ''t0'' żeby zacząć "
 "całkowanie."
 
 msgid ""

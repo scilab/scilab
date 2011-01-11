@@ -23,6 +23,7 @@
 #include "BOOL.h"
 #define ENABLE_HELPERS
 #include "javasci2_helper.h"
+#include "MALLOC.h"
 #include "../../../call_scilab/includes/call_scilab.h"
 #include "../../../call_scilab/includes/fromjava.h"
 #include "../../../api_scilab/includes/api_scilab.h"

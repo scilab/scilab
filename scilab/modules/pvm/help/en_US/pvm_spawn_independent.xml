@@ -23,7 +23,7 @@
     <synopsis>[tids, numt] = pvm_spawn_independent(task, ntask, [where])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>task:  </term>

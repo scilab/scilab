@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,10 +24,12 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 
+import org.scilab.modules.history_manager.HistoryManagement;
+
 /**
  * EvaluateSelectionAction class
  * @author Bruno JOFRET
- *
+ * @author Calixte DENIZET
  */
 public final class EvaluateSelectionAction extends DefaultAction {
 
@@ -52,6 +55,13 @@ public final class EvaluateSelectionAction extends DefaultAction {
         ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
         String selection = sep.getCodeToExecute();
         if (selection.compareTo("") != 0) {
+            StringTokenizer tokens = new StringTokenizer(selection, "\n");
+            String[] lines = new String[tokens.countTokens()];
+            int i = 0;
+            while (tokens.hasMoreTokens()) {
+                lines[i++] = tokens.nextToken();
+            }
+            HistoryManagement.appendLinesToScilabHistory(lines, lines.length);
             ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);
         }
     }

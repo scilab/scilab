@@ -153,7 +153,7 @@ msgid ""
 "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
 msgstr ""
 "Mu-law kann nur mit 8 Bit Daten verwendet werden. Verwende Methode "
-"=\"linear\" anstattdessen."
+"=''linear'' anstattdessen."
 
 msgid "Requires 2-D values only."
 msgstr "Benötigt nur 2-D Werte."

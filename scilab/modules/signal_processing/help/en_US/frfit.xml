@@ -15,7 +15,7 @@ sys=frfit(w,fresp,order,weight)
 [num,den]=frfit(w,fresp,order,weight)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>w</term>

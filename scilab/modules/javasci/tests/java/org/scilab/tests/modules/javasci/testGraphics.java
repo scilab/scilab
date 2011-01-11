@@ -19,40 +19,40 @@ import org.scilab.modules.javasci.JavasciException.UndefinedVariableException;
 import org.scilab.modules.types.ScilabTypeEnum;
 
 public class testGraphics {
-	private Scilab sci;
+    private Scilab sci;
 
-	/* 
-	 * This method will be called for each test.
-	 * with @AfterMethod, this ensures that all the time the engine is closed
-	 * especially in case of error.
-	 * Otherwise, the engine might be still running and all subsequent tests
-	 * would fail.
-	 */ 
-	@BeforeMethod
-	public void open() throws NullPointerException, JavasciException {
-		sci = new Scilab(true); // True = enable advanced mode
-		assert sci.open() == true;
-	}
+    /* 
+     * This method will be called for each test.
+     * with @AfterMethod, this ensures that all the time the engine is closed
+     * especially in case of error.
+     * Otherwise, the engine might be still running and all subsequent tests
+     * would fail.
+     */ 
+    @BeforeMethod
+    public void open() throws NullPointerException, JavasciException {
+        sci = new Scilab(true); // True = enable advanced mode
+        assert sci.open() == true;
+    }
 
-	@Test(sequential = true) 
-	public void isGraphicOpenedTest() throws NullPointerException, JavasciException {
-		sci.exec("plot3d();");
-		assert sci.isGraphicOpened() == true;
-	}
+    @Test(sequential = true) 
+    public void isGraphicOpenedTest() throws NullPointerException, JavasciException {
+        sci.exec("plot3d();");
+        assert sci.isGraphicOpened() == true;
+    }
 
-	@Test(sequential = true) 
-	public void isGraphicNotOpenedTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true) 
+    public void isGraphicNotOpenedTest() throws NullPointerException, JavasciException {
 
-		sci.exec("a=1+1;");
-		assert sci.isGraphicOpened() == false;
-	}
+        sci.exec("a=1+1;");
+        assert sci.isGraphicOpened() == false;
+    }
 
-	/**
-	 * See #open()
-	 */
-	@AfterMethod
-	public void close() {
-		sci.close();
-		
-	}
+    /**
+     * See #open()
+     */
+    @AfterMethod
+    public void close() {
+        sci.close();
+        
+    }
 }

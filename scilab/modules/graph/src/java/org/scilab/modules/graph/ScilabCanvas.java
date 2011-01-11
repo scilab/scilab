@@ -234,6 +234,11 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 * @param h background height
 	 */
 	public void paintSvgBackgroundImage(int w, int h) {
+		if (svgBackgroundImage == null) {
+			LogFactory.getLog(ScilabCanvas.class).error("background image not set");
+			return;
+		}
+		
 		GraphicsNode background = ScilabGraphUtils
 				.getSVGComponent(svgBackgroundImage);
 
@@ -330,6 +335,24 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 		// Paint
 		icon.paint(g);
+	}
+	
+	/**
+	 * Gets the image path from the given style. If the path is relative (does
+	 * not start with a slash) then it is appended to the imageBasePath.
+	 * 
+	 * @param style the curernt style
+	 * @return the image path
+	 */
+	@Override
+	public String getImageForStyle(Map<String, Object> style) {
+		String filename = mxUtils.getString(style, mxConstants.STYLE_IMAGE);
+
+		if (filename != null && !filename.startsWith("/") && !filename.startsWith("file:/")) {
+			filename = imageBasePath + filename;
+		}
+
+		return filename;
 	}
 }
 

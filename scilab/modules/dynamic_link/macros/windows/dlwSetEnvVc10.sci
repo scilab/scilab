@@ -19,6 +19,11 @@ function bOK = dlwSetEnvVc10(msCompiler, bWin64)
   else
     return
   end
+  
+  // MS compiler path is wrong
+  if MSVSDir == [] then
+    return
+  end
 
   IsExpress = (msCompiler == 'msvc100express');
 

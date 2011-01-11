@@ -40,7 +40,7 @@
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_getblocklabel">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">blk :</emphasis> Integer parameter. Set the index of a block (in the compiled structure).</para>

@@ -132,7 +132,7 @@ msgstr "%s: La matrice e i fattori LU non hanno la stessa dimensione !\n"
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è sbagliato: era atteso \"%s\" o \"%s\".\n"
+"%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"

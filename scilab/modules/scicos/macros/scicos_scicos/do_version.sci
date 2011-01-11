@@ -88,7 +88,7 @@ end
 
 if or(version==["scicos4.3";"scicos4.4"]) then
   ncl=lines(); lines(0);
-  version='scicos4.4';
+  version='scicos4.3';
   scs_m=update_scs_m(scs_m,version);
   scs_m=do_version43(scs_m);
   scs_m.version = version;
@@ -109,6 +109,11 @@ function scs_m_new=do_version43(scs_m)
     o=scs_m.objs(j);
     if typeof(o)=='Block' then
       omod=o.model;
+
+      // Clear the doc fields if it contains a function pointer
+      if type(o.doc) == 15 & size(o.doc) > 1 & (type(o.doc(1)) == 11 | type(o.doc(1)) == 13) then
+        scs_m_new.objs(j).doc = list();
+      end
 
       //@@ sbloc
       if omod.sim=='super'|omod.sim=='csuper'|omod.sim(1)=='asuper' then

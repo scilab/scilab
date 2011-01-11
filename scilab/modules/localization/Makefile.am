@@ -11,10 +11,12 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
+src/c/getLcidString.c \
 src/c/charEncoding.c
 
 if NEED_JAVA
-LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c
+LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c \
+src/jni/LocaleToLCID_wrap.c
 endif
 
 if IS_MACOSX
@@ -84,7 +86,8 @@ USEANT=1
 endif
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Messages.i 
+SWIG_WRAPPERS = src/jni/Messages.i \
+src/jni/LocaleToLCID.i
 
 if SWIG
 BUILT_SOURCES=swig

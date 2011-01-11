@@ -18,6 +18,7 @@ package javasci;
 public class BadDataArgumentException extends RuntimeException {
 	/**
 	 * Constructor of the exception
+     * @deprecated
 	 * @param s the error message
 	 */
 	BadDataArgumentException(String s) {

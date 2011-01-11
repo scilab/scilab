@@ -24,7 +24,7 @@
     <synopsis>dirs= dirname(files[,flag [,flagexpand]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>files</term>

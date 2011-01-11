@@ -23,7 +23,7 @@
     <synopsis>txt=tree2code(tree,prettyprint)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>tree</term>

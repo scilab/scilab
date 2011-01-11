@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - 
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Michael Baudin
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -40,37 +41,37 @@ int cdfgamI(char* fname,unsigned long l)
     if ( strcmp(cstk(l1),"PQ")==0)
     {
         static int callpos[5] = {3,4,0,1,2};
-        CdfBase(fname,3,2,callpos,"PQ",_("X,Shape and Scale"),1,C2F(cdfgam),
+        CdfBase(fname,3,2,callpos,"PQ",_("X,Shape and Rate"),1,C2F(cdfgam),
             cdfgamErr);
     }
     else if ( strcmp(cstk(l1),"X")==0)
     {
         static int callpos[5] = {2,3,4,0,1};
-        CdfBase(fname,4,1,callpos,"X",_("Shape,Scale,P and Q"),2,C2F(cdfgam),
+        CdfBase(fname,4,1,callpos,"X",_("Shape,Rate,P and Q"),2,C2F(cdfgam),
             cdfgamErr);
     }
     else if ( strcmp(cstk(l1),"Shape")==0)
     {
         static int callpos[5] = {1,2,3,4,0};
-        CdfBase(fname,4,1,callpos,"Shape",_("Scale,P,Q and X"),3,C2F(cdfgam),
+        CdfBase(fname,4,1,callpos,"Shape",_("Rate,P,Q and X"),3,C2F(cdfgam),
             cdfgamErr);
     }
-    else if ( strcmp(cstk(l1),"Scale")==0)
+    else if ( strcmp(cstk(l1),"Rate")==0)
     {
         static int callpos[5] = {0,1,2,3,4};
-        CdfBase(fname,4,1,callpos,"Scale",_("P,Q,X and Shape"),4,C2F(cdfgam),
+        CdfBase(fname,4,1,callpos,"Rate",_("P,Q,X and Shape"),4,C2F(cdfgam),
             cdfgamErr);
     }
     else
     {
-        Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"),fname,1,"PQ","X","Shape","Scale");
+        Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"),fname,1,"PQ","X","Shape","Rate");
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 static void cdfgamErr(int status,double bound)
 {
-    static char *param[7]={"X", "P","Q","X","Shape","Scale"};
+    static char *param[7]={"X", "P","Q","X","Shape","Rate"};
     switch ( status )
     {
     case 1 :

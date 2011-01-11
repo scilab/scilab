@@ -35,7 +35,7 @@
 </refsynopsisdiv>
 
 <refsection>
-   <title>Parameters</title>
+   <title>Arguments</title>
    <variablelist>
    <varlistentry><term>pal:</term>
       <listitem><para> palette tlist; the palette to export</para></listitem></varlistentry>

@@ -23,7 +23,7 @@
     <synopsis>tp=Type(vtype,property)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>vtype</term>

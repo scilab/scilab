@@ -23,7 +23,7 @@
     <synopsis>[Sl]=sm2ss(Sm);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sm</term>

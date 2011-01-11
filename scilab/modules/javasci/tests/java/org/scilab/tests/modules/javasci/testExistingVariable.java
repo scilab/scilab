@@ -21,38 +21,38 @@ import org.scilab.modules.javasci.JavasciException.UndefinedVariableException;
 import org.scilab.modules.types.ScilabDouble;
 
 public class testExistingVariable {
-	private Scilab sci;
+    private Scilab sci;
 
-	/* 
-	 * This method will be called for each test.
-	 * with @AfterMethod, this ensures that all the time the engine is closed
-	 * especially in case of error.
-	 * Otherwise, the engine might be still running and all subsequent tests
-	 * would fail.
-	 */ 
-	@BeforeMethod
-	public void open() throws NullPointerException, JavasciException {
-		sci = new Scilab();
+    /* 
+     * This method will be called for each test.
+     * with @AfterMethod, this ensures that all the time the engine is closed
+     * especially in case of error.
+     * Otherwise, the engine might be still running and all subsequent tests
+     * would fail.
+     */ 
+    @BeforeMethod
+    public void open() throws NullPointerException, JavasciException {
+        sci = new Scilab();
         assert sci.open() == true;
-	}
+    }
 
-	@Test(sequential = true) 
-	public void existVariableTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true) 
+    public void existVariableTest() throws NullPointerException, JavasciException {
         double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
         ScilabDouble aOriginal = new ScilabDouble(a);
         sci.put("a",aOriginal);
         assert sci.isExistingVariable("a") == true;
     }
 
-	@Test(sequential = true) 
-	public void notExistVariableTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true) 
+    public void notExistVariableTest() throws NullPointerException, JavasciException {
         assert sci.isExistingVariable("a") == false;
         assert sci.isExistingVariable("b") == false;
     }
 
 
-	@Test(sequential = true) 
-	public void existVariableAfterExecTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true) 
+    public void existVariableAfterExecTest() throws NullPointerException, JavasciException {
         assert sci.exec("a=rand(20,20);") == true;
         assert sci.isExistingVariable("a") == true;
         assert sci.exec("b='test variable';") == true;
@@ -60,12 +60,12 @@ public class testExistingVariable {
     }
 
 
-	/**
-	 * See #open()
-	 */
-	@AfterMethod
-	public void close() {
-		sci.close();
-		
-	}
+    /**
+     * See #open()
+     */
+    @AfterMethod
+    public void close() {
+        sci.close();
+        
+    }
 }

@@ -12,7 +12,7 @@
     <synopsis>[K2, lm, vm, lM, vM] = cond2sp(A, C_ptr [, rtol, itermax, verb])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
@@ -41,7 +41,7 @@
       <varlistentry>
         <term>verb  </term>
         <listitem>
-          <para>(optional) boolean, must be %t for displaying the intermediary results, and %f (default) if you don't want.</para>
+          <para>(optional) boolean, must be %t for displaying the intermediary results, and %f (default) if you do not want.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -125,7 +125,7 @@ B = A - l0*speye(A);
 LUp = umf_lufact(B);
 vr = v0; nstep = 5;
 for i=1:nstep, vr = umf_lusolve(LUp, vr, "Ax=b", B); vr = vr/norm(vr) ; end
-umf_ludel(LUp); // if you don't use anymore this factorization
+umf_ludel(LUp); // if you do not use anymore this factorization
 lr = vr'*A*vr;
 norm_r0 = norm(A*v0 - l0*v0);
 norm_rr = norm(A*vr - lr*vr);

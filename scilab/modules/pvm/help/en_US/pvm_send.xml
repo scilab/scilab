@@ -23,7 +23,7 @@
     <synopsis>[info] = pvm_send(tids,buff,msgtag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>tids</term>

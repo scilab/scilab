@@ -23,7 +23,7 @@
     <synopsis>[C]=coeff(Mp [,v])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Mp</term>

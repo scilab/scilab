@@ -23,7 +23,7 @@
     <synopsis>res = strrchr(str1,char)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str1</term>

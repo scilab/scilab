@@ -22,7 +22,7 @@ msgstr "%s: Questa funzionalità è usata solo su Windows.\n"
 
 #, c-format
 msgid "%s: Unsupported language '%s'.\n"
-msgstr "%s: La lingua \"%s\" non è supportata.\n"
+msgstr "%s: La lingua '%s' non è supportata.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: String expected.\n"
@@ -41,11 +41,11 @@ msgstr "Riavviare Scilab per applicarla ai menù.\n"
 
 #, c-format
 msgid "Switching to default language : '%s'.\n"
-msgstr "Passaggio alla lingua predefinita \"%s\" in corso.\n"
+msgstr "Passaggio alla lingua predefinita '%s' in corso.\n"
 
 msgid "The language for menus cannot be changed on a running console.\n"
 msgstr "La lingua dei menù non può essere cambiata in un terminale attivo.\n"
 
 #, c-format
 msgid "Unsupported language '%s'.\n"
-msgstr "La lingua \"%s\" non è supportata.\n"
+msgstr "La lingua '%s' non è supportata.\n"

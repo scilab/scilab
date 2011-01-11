@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="scaling">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>scaling</refname>
+    <refpurpose> affine transformation of a set of points</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xy1=scaling(xy,scalingFactor,[orig])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>xy1</term>
+        <listitem>
+          <para>matrice of size (2,.).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xy</term>
+        <listitem>
+          <para>matrice of size (2,.).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>scalingFactor</term>
+        <listitem>
+          <para>real scalar, coefficient of the linear transformation.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orig</term>
+        <listitem>
+          <para>shift vector; default value is [0;0].</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>scaling</literal> performs an affine transformation on the set of points defined
+    by the coordinates <literal>xy</literal>:</para>
+    <para><literal>xy1(:,i) = scalingFactor * (xy(:,i) - orig) + orig</literal>.</para>
+  </refsection>
+</refentry>

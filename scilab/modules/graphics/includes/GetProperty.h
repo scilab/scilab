@@ -4,6 +4,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -227,6 +228,8 @@ GRAPHICS_IMPEXP BOOL sciGetTightLimitsOn(sciPointObj * pObj); /* GET */
 GRAPHICS_IMPEXP void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3]); /* GET */
 
 GRAPHICS_IMPEXP BOOL sciGetAutoSubticks(sciPointObj * pObj); /* GET */
+
+GRAPHICS_IMPEXP void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3]); /* GET */
 
 GRAPHICS_IMPEXP void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]); /* GET */
 

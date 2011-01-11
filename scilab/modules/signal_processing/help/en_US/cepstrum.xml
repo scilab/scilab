@@ -12,7 +12,7 @@
     <synopsis>fresp = cepstrum(w,mag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>w</term>

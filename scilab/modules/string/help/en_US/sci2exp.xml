@@ -23,7 +23,7 @@
     <synopsis>t=sci2exp(a [,nam] [,lmax])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a</term>

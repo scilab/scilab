@@ -24,7 +24,7 @@
 [f,p]=ftest(samples)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>samples</term>

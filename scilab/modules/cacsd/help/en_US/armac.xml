@@ -23,7 +23,7 @@
     <synopsis>[ar]=armac(a,b,d,ny,nu,sig)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a=[Id,a1,..,a_r]  </term>

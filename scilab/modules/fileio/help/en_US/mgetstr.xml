@@ -31,7 +31,7 @@
     <synopsis>str = mgetstr(n, [fd])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -108,7 +108,7 @@ mclose(fd);                     // close file descriptor
       <member><link linkend="mdelete">mdelete</link></member>
       <member>"Input/Output functions" section</member>
       <!-- TODO: link to "Input/Output functions" index page -->
-      <!-- next link doesn't work when reading doc in scilab -->
+      <!-- next link does not work when reading doc in scilab -->
       <!-- <member><link linkend="section_efa4cbf5c15e166f34901f827390e756">Input/Output functions</link></member> -->
     </simplelist>
   </refsection>

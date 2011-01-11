@@ -24,7 +24,7 @@
     <synopsis>xmltohtml(dirs [,titles [,dir_language [default_language]]]]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dirs</term>

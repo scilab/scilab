@@ -24,7 +24,7 @@
 [Acl]=h_cl(P22,K)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P, P22</term>

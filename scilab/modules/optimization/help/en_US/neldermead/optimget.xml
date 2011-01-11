@@ -70,7 +70,7 @@ val = optimget(options, key, value)
   </refsection>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

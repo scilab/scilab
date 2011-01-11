@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-09-15 14:22+0100\n"
+"Revision-Date: 2010-11-18 15:37+0100\n"
 
 # File: sci_gateway/c/sci_exec.c, line: 267
 #, c-format
@@ -80,11 +80,11 @@ msgstr ""
 msgid "%s: Invalid library %s.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_libraryinfo.c, line: 111
-# File: sci_gateway/c/sci_libraryinfo.c, line: 116
 # File: sci_gateway/c/sci_exec.c, line: 188
 # File: sci_gateway/c/sci_execstr.c, line: 162
 # File: sci_gateway/c/sci_execstr.c, line: 231
+# File: sci_gateway/c/sci_libraryinfo.c, line: 111
+# File: sci_gateway/c/sci_libraryinfo.c, line: 116
 # File: sci_gateway/c/sci_whereis.c, line: 101
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -172,11 +172,11 @@ msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 #
 # File: macros/get_function_path.sci, line: 16
-# File: sci_gateway/c/sci_lib.c, line: 66
 # File: sci_gateway/c/sci_execstr.c, line: 87
 # File: sci_gateway/c/sci_execstr.c, line: 94
 # File: sci_gateway/c/sci_execstr.c, line: 122
 # File: sci_gateway/c/sci_execstr.c, line: 191
+# File: sci_gateway/c/sci_lib.c, line: 66
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""

@@ -136,22 +136,24 @@ public final class BasicBlockInfo {
 
 		final int childrenCount = block.getChildCount();
 		for (int i = 0; i < childrenCount; ++i) {
-			BasicPort port = (BasicPort) block.getChildAt(i);
-			switch (port.getOrientation()) {
-			case NORTH:
-				northPorts.add(port);
-				break;
-			case SOUTH:
-				southPorts.add(port);
-				break;
-			case EAST:
-				eastPorts.add(port);
-				break;
-			case WEST:
-				westPorts.add(port);
-				break;
-			default:
-				break;
+			if (block.getChildAt(i) instanceof BasicPort) {
+				BasicPort port = (BasicPort) block.getChildAt(i);
+				switch (port.getOrientation()) {
+					case NORTH:
+						northPorts.add(port);
+						break;
+					case SOUTH:
+						southPorts.add(port);
+						break;
+					case EAST:
+						eastPorts.add(port);
+						break;
+					case WEST:
+						westPorts.add(port);
+						break;
+					default:
+						break;
+				}
 			}
 		}
 

@@ -27,7 +27,7 @@
 [Pnonc]=cdffnc("Pnonc",P,Q,F,Dfn,Dfd);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,F,Dfn,Dfd,Pnonc</term>
@@ -97,4 +97,17 @@
     Barry W. Brown, James Lovato and Kathy Russell. The University of
     Texas.</para>
   </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+
+f        = [1:2];
+dfn      = [1:2];
+dfd      = 2*dfn;
+pn       = [0,1];
+
+[P,Q]    = cdffnc("PQ",f,dfn,dfd,pn)
+ ]]></programlisting>
+  </refsection>
+
 </refentry>

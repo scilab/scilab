@@ -69,7 +69,7 @@ msgstr "%s: 入力引数  #%d の値が間違っています: 要素は非負の
 
 #, c-format
 msgid "%s: field name ''%s'' defined twice.\n"
-msgstr "%s: フィールド名 \"%s\" が重複して定義されています.\n"
+msgstr "%s: フィールド名 ''%s'' が重複して定義されています.\n"
 
 #, c-format
 msgid "Bad (%d th) index in hypermatrix extraction. "

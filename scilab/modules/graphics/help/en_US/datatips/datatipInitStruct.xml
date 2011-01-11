@@ -21,7 +21,7 @@
     <synopsis>ok=datatipInitStruct(curve_handle,varargin)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>curve_handle</term>

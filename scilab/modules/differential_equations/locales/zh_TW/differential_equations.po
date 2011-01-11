@@ -55,7 +55,7 @@ msgstr "%s:輸入參數值有錯#%d:給定的句子中文法錯誤\n"
 
 msgid ""
 "0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))"
-msgstr "0 : 函數的疊代 (沒有使用 jacobian (僅支援 \"adams\" 或 \"stiff\"))"
+msgstr "0 : 函數的疊代 (沒有使用 jacobian (僅支援 ''adams'' 或 ''stiff''))"
 
 msgid "1 : normal computation at specified times"
 msgstr "1: 在特定時進行正規運算"
@@ -71,7 +71,7 @@ msgstr "2 : 內部產生的完整 jacobian 矩陣"
 
 msgid ""
 "3 : internally generated diagonal jacobian (''adams'' or ''stiff'' only)"
-msgstr "3 : 內部產生對角 jacobian 矩陣 (僅 \"adams\" 或 \"stiff\")"
+msgstr "3 : 內部產生對角 jacobian 矩陣 (僅 ''adams'' 或 ''stiff'')"
 
 msgid "3 : one step at one internal mesh point and return"
 msgstr "3:在內部格狀點和返回值的動作"

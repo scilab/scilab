@@ -23,7 +23,7 @@
     <synopsis>txt=sci2map(a,Map-name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a</term>

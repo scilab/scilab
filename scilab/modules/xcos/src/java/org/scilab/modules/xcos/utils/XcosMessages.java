@@ -105,6 +105,7 @@ public final class XcosMessages {
     public static final String FONT_NAME = Messages.gettext("Font name");
     public static final String FONT_STYLE = Messages.gettext("Font style");
     public static final String TEXT_SETTINGS = Messages.gettext("Text settings");
+    public static final String IMAGE_PATH = Messages.gettext("Image path");
     
     /* Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");

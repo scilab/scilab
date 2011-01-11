@@ -12,6 +12,7 @@
 
 #include "Palette.hxx"
 #include "GiwsException.hxx"
+#include "xcosUtilities.hxx"
 
 extern "C"
 {
@@ -24,9 +25,6 @@ extern "C"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
 }
-
-extern int
-readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fname);
 
 using namespace org_scilab_modules_xcos_palette;
 
@@ -43,13 +41,13 @@ sci_xcosPalMove(char *fname, unsigned long fname_len)
     int targetLength = 0;
 
     /* source setup */
-    if (readVectorString(1, &source, &sourceLength, fname))
+    if (readVectorString(pvApiCtx, 1, &source, &sourceLength, fname))
     {
         return 0;
     }
 
     /* target setup */
-    if (readVectorString(2, &target, &targetLength, fname))
+    if (readVectorString(pvApiCtx, 2, &target, &targetLength, fname))
     {
         return 0;
     }

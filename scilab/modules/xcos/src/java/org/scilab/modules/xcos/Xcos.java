@@ -61,7 +61,7 @@ public final class Xcos {
 	 * Dependencies version
 	 */
 	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.1.0");
-	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]");
+	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]");
 	private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
 	
 	private static final String UNABLE_TO_LOAD_JGRAPHX = 
@@ -287,12 +287,14 @@ public final class Xcos {
 			final XcosTab tab = new XcosTab(diag);
 
 			if (filename != null) {
+				// wait the end of the load before displaying the tab.
 				diag.openDiagramFromFile(filename);
+			} else {
+				// empty tab, display it
+				tab.setVisible(true);
 			}
 
 			diagrams.add(diag);
-			tab.setVisible(true);
-
 		} else {
 
 			/*

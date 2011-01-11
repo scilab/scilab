@@ -1,4 +1,4 @@
-///withoutPrompt 
+///withoutPrompt
 function [x,y,typ]=PENDULUM_ANIM(job,arg1,arg2)
 // Animation of the cart-pendulum problem
   x=[];y=[];typ=[]
@@ -57,7 +57,7 @@ function [x,y,typ]=PENDULUM_ANIM(job,arg1,arg2)
     model.rpar=[plen;csiz;phi;xmin;xmax;ymin;ymax]
     model.blocktype='d'
     model.dep_ut=[%f %f]
-    
+
     exprs=string(model.rpar)
     gr_i=['thick=xget(''thickness'');xset(''thickness'',2);';
           'xx=orig(1)+sz(1)*[.4 .6 .6 .4 .4]'

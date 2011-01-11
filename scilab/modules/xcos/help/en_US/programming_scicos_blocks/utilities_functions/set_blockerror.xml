@@ -52,7 +52,7 @@ set_blockerror(n)
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_set_blockerror">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">n</emphasis> : an error number. The following calls are allowed :</para>

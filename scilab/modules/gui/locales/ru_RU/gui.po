@@ -83,12 +83,12 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
-msgstr "%s: Нет найденных результатов для свойства «%s» и значения «%s».\n"
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: No results founded.\n"
-msgstr "%s: Нет найденных результатов.\n"
+msgid "%s: No results found.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
@@ -1504,7 +1504,7 @@ msgstr "Да"
 
 #, c-format
 msgid "You clicked on menu ''%s''."
-msgstr "Вы нажали на меню «%s«."
+msgstr "Вы нажали на меню «%s»."
 
 #, c-format
 msgid "You selected ''%s''."

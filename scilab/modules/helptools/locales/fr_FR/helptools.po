@@ -72,7 +72,7 @@ msgstr "%02d-%02d-%04d"
 
 #, c-format
 msgid "%s: %s file hasn''t been moved in the %s directory."
-msgstr "%s : le fichier %s n'a pas été déplacé dans le répertoire %s."
+msgstr "%s : le fichier %s n''a pas été déplacé dans le répertoire %s."
 
 #, c-format
 msgid "%s: %s has not been generated."

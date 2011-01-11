@@ -21,30 +21,6 @@ extern int C2F(intmaxi)(char *fname,int *id,unsigned long fname_len);
 int sci_maxi(char *fname, unsigned long fname_len)
 {
 	static int id[6];
-
-    if ((strcmp(fname, "maxi") == 0) | (strcmp(fname, "mini") == 0))
-    {
-        if (getWarningMode())
-        {
-            sciprint(_("Warning: "));
-            sciprint(_("Function %s is obsolete."), fname);
-            sciprint("\n");
-            sciprint(_("Warning: "));
-            if (strcmp(fname, "maxi") == 0)
-            {
-                sciprint(_("Please use %s instead."), "max");
-            }
-            else
-            {
-                sciprint(_("Please use %s instead."), "min");
-            }
-            sciprint("\n");
-            sciprint(_("Warning: "));
-            sciprint(_("This function will be permanently removed in Scilab %s"), "5.3.1");
-            sciprint("\n");
-        }
-    }
-
 	C2F(intmaxi)(fname, id, fname_len);
 	return 0;
 }

@@ -23,7 +23,7 @@
     <synopsis>[sl1]=bilin(sl,v)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl,sl1</term>

@@ -12,7 +12,7 @@
     <synopsis>[hst]=fsfirlin(hd,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>hd</term>

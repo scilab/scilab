@@ -1,14 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 // Maple code used to create reference
-// Digits := 40:
+// Digits := 40: 
 // writeto("acosd.ref"): interface(prettyprint = 0):
-// for i from -1 by 1/200 to 1 do print(i, evalf[30](arccos(i)*180/Pi, 30)) end do;
+// for i from -1 by 1/200 to 1 do print(i, evalf[30](arccos(i)*180/Pi, 30)) end do; 
 // writeto(terminal):
 ieee(2)
 pi=%pi;eps=%eps;Inf=%inf;NaN=%nan; //used to make following code runnable under Matlab
@@ -413,7 +414,10 @@ ref=[-1, 180.
 99/100, 8.10961445599417869582018328724
 199/200, 5.73196796519772397418765075974
 1, 0.];
-x=ref(1:$-1,1);e=max(abs((ref(1:$-1,2)-acosd(x))./ref(1:$-1,2)));
+x=ref(1:$-1,1);
+expected = ref(1:$-1,2);
+computed = acosd(x);
+e=max(abs((expected-computed)./expected));
 if e>10*eps then bugmes();quit;end
 if acosd(1)<>0 then bugmes();quit;end
 if acosd(-1)<>180 then bugmes();quit;end

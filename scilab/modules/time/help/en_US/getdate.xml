@@ -25,7 +25,7 @@ x=getdate("s")
 dt=getdate(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dt</term>

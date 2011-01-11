@@ -23,7 +23,7 @@
     <synopsis>show_pca(lambda,facpr,N)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
      
       <varlistentry>

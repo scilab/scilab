@@ -20,7 +20,7 @@ import javax.media.opengl.GL;
  * Class specialized in drawing asterisk marks
  * @author Jean-Baptiste Silvy
  */
-public class AsteriskMarkDrawer extends MarkDrawingStrategy {
+public class AsteriskMarkDrawer extends JOGLMarkDrawingStrategy {
 
 	/** sqrt(2)/2 */
 	private static final double DIAG_END = Math.sqrt(2.0) / 2.0;

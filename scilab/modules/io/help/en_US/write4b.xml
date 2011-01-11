@@ -23,7 +23,7 @@
     <synopsis>write4b(file-name,a [,rec])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>file-name</term>

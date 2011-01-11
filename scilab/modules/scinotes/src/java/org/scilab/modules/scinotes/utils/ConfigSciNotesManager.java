@@ -59,6 +59,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 /**
@@ -69,6 +70,7 @@ public final class ConfigSciNotesManager {
 
     private static final int MARGIN = 20;
 
+    private static final String HORIZONTALWRAP = "HorizontalWrapAllowed";
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
     private static final String VALUE = "value";
@@ -89,7 +91,6 @@ public final class ConfigSciNotesManager {
     private static final String MAINWINPOSITION = "MainWindowPosition";
     private static final String MAINWINSIZE = "MainWindowSize";
     private static final String AUTOINDENT = "AutoIndent";
-    private static final String AUTOCOLORIZE = "AutoColorize";
     private static final String DEFAULTENCONDING = "DefaultEncoding";
     private static final String LINEHIGHLIGHTER = "LineHighlighter";
     private static final String HELPONTYPING = "HelpOnTyping";
@@ -98,6 +99,9 @@ public final class ConfigSciNotesManager {
 
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
+    private static final String ALTERNCOLORS = "AlternColors";
+    private static final String COLOR1 = "color1";
+    private static final String COLOR2 = "color2";
     private static final String LINECOLOR = "linecolor";
     private static final String CONTOURCOLOR = "contourcolor";
     private static final String COLORPREFIX = "#";
@@ -445,6 +449,40 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * @return the color the altern colors for inner function
+     */
+    public static Color[] getAlternColors() {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(ALTERNCOLORS);
+        Element alternColors = (Element) allSizeElements.item(0);
+        Color[] arr = new Color[2];
+
+        Color c;
+        if (NULL.equals(alternColors.getAttribute(COLOR1))) {
+            c = null;
+        } else {
+            c = Color.decode(alternColors.getAttribute(COLOR1));
+        }
+
+        arr[0] = c;
+
+        if (NULL.equals(alternColors.getAttribute(COLOR2))) {
+            c = null;
+        } else {
+            c = Color.decode(alternColors.getAttribute(COLOR2));
+        }
+
+        arr[1] = c;
+        return arr;
+    }
+
+    /**
      * Get all font style
      * @return true if the font style is bold , false otherwise
      */
@@ -717,6 +755,44 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * Retrieve from scinotesConfiguration.xml the infos about a tabulation
+     * @return a Tabulation containing infos
+     */
+    public static void saveDefaultTabulation(TabManager.Tabulation cfg) {
+        /* <style name="Tabulation" rep="vertical" value="4" white="false"> */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+        NodeList styles = root.getElementsByTagName(STYLE);
+
+        for (int i = 0; i < styles.getLength(); ++i) {
+            Element style = (Element) styles.item(i);
+            if ("Tabulation".equals(style.getAttribute(NAME))) {
+                String type = "none";
+                switch (cfg.type) {
+                case ScilabView.TABVERTICAL:
+                    type = "vertical";
+                    break;
+                case ScilabView.TABHORIZONTAL:
+                    type = "horizontal";
+                    break;
+                case ScilabView.TABDOUBLECHEVRONS:
+                    type = "doublechevrons";
+                    break;
+                default:
+                    break;
+                }
+
+                style.setAttribute("rep", type);
+                style.setAttribute(VALUE, Integer.toString(cfg.number));
+                style.setAttribute("white", Boolean.toString(cfg.tab == ' '));
+                writeDocument();
+                return;
+            }
+        }
+    }
+
+    /**
      * Retrieve form scinotesConfiguration.xml the infos the matchers
      * @param kind should be "KeywordsHighlighter" or "OpenCloseHighlighter"
      * @return an Object containing infos
@@ -925,13 +1001,11 @@ public final class ConfigSciNotesManager {
         }
     }
 
-
     /**
-     * Save SciNotes autoColorize or not
+     * Save SciNotes horizontal wrapping or not
      * @param activated if autoIndent should be used or not
      */
-    public static void saveAutoColorize(boolean activated) {
-
+    public static void saveHorizontalWrap(boolean activated) {
         /* Load file */
         readDocument();
 
@@ -940,44 +1014,40 @@ public final class ConfigSciNotesManager {
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(AUTOCOLORIZE);
-        Element scinotesAutoIndent = (Element) allSizeElements.item(0);
-        if (scinotesAutoIndent == null) {
-            Element autoColorize = document.createElement(AUTOCOLORIZE);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HORIZONTALWRAP);
+        Element horizontalWrap = (Element) allSizeElements.item(0);
+        if (horizontalWrap == null) {
+            Element hw = document.createElement(HORIZONTALWRAP);
 
-            autoColorize.setAttribute(VALUE, new Boolean(activated).toString());
+            hw.setAttribute(VALUE, new Boolean(activated).toString());
 
-            scinotesProfile.appendChild((Node) autoColorize);
+            scinotesProfile.appendChild((Node) hw);
         } else {
-            scinotesAutoIndent.setAttribute(VALUE, new Boolean(activated).toString());
+            horizontalWrap.setAttribute(VALUE, new Boolean(activated).toString());
         }
         /* Save changes */
         writeDocument();
     }
 
-
     /**
-     * @return a boolean to say if the doc is autocolorize
+     * @return a boolean if horizontal wrapping should be used or not
      */
-    public static boolean getAutoColorize() {
+    public static boolean getHorizontalWrap() {
         /* Load file */
         readDocument();
 
         Element root = document.getDocumentElement();
-
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HORIZONTALWRAP);
+        Element horizontalWrap = (Element) allSizeElements.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(AUTOCOLORIZE);
-        Element autoColorize = (Element) allSizeElements.item(0);
-
-        if (autoColorize == null) {
+        if (horizontalWrap == null) {
             return true;
         } else {
-            return new Boolean(autoColorize.getAttribute(VALUE));
+            return new Boolean(horizontalWrap.getAttribute(VALUE));
         }
     }
-
 
     /**
      * @param encoding the default encoding for the files
@@ -1407,7 +1477,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
 
         return files;
@@ -1435,7 +1505,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
 
         return dirsList;
@@ -1453,7 +1523,7 @@ public final class ConfigSciNotesManager {
         newDir.setAttribute(PATH, path);
         root.appendChild((Node) newDir);
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1470,7 +1540,7 @@ public final class ConfigSciNotesManager {
             root.removeChild(dirs.item(dirs.getLength() - 1));
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1503,7 +1573,7 @@ public final class ConfigSciNotesManager {
         newFile.setAttribute(PATH, filePath);
         root.appendChild((Node) newFile);
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1545,6 +1615,8 @@ public final class ConfigSciNotesManager {
         } else {
             restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
         }
+
+        clean(root);
         writeDocument();
     }
 
@@ -1567,7 +1639,6 @@ public final class ConfigSciNotesManager {
                 if (temp.exists()) {
                     count++;
                 }
-                writeDocument();
             }
         }
         return count;
@@ -1603,7 +1674,8 @@ public final class ConfigSciNotesManager {
                     }
                 }
             }
-            /* Save any changes */
+
+            clean(root);
             writeDocument();
         }
         return files;
@@ -1660,7 +1732,7 @@ public final class ConfigSciNotesManager {
         newFile.setAttribute(PANEINST_EX, nil.toString());
         root.appendChild((Node) newFile);
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1706,7 +1778,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1814,7 +1886,8 @@ public final class ConfigSciNotesManager {
             Element style = (Element) openFiles.item(i);
             root.removeChild((Node) style);
         }
-        /* Save changes */
+
+        clean(root);
         writeDocument();
     }
 
@@ -1946,7 +2019,7 @@ public final class ConfigSciNotesManager {
         newSearch.setAttribute(EXPRESSION, exp);
         recents.appendChild((Node) newSearch);
 
-        /* Save changes */
+        clean(recents);
         writeDocument();
     }
 
@@ -1969,7 +2042,8 @@ public final class ConfigSciNotesManager {
                 break;
             }
         }
-        /* Save changes */
+
+        clean(recent);
         writeDocument();
 
     }
@@ -2029,7 +2103,7 @@ public final class ConfigSciNotesManager {
         newReplace.setAttribute(EXPRESSION, exp);
         recent.appendChild((Node) newReplace);
 
-        /* Save changes */
+        clean(recent);
         writeDocument();
     }
 
@@ -2054,7 +2128,8 @@ public final class ConfigSciNotesManager {
             }
 
         }
-        /* Save changes */
+
+        clean(recent);
         writeDocument();
 
     }
@@ -2270,5 +2345,20 @@ public final class ConfigSciNotesManager {
             }
         }
         return null;
+    }
+
+    /**
+     * Remove text at the beginning and at the end
+     * @param r the element to clean
+     */
+    private static void clean(Node r) {
+        Node n = r.getFirstChild();
+        if (n != null && n instanceof Text) {
+            r.removeChild(n);
+        }
+        n = r.getLastChild();
+        if (n != null && n instanceof Text) {
+            r.removeChild(n);
+        }
     }
 }

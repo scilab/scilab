@@ -26,15 +26,15 @@ msgstr "%s: Todos os caminhos definidos pela variável %s devem existir.\n"
 
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s: O arquivo \"%s\" não existe.\n"
+msgstr "%s: O arquivo ''%s'' não existe.\n"
 
 #, c-format
 msgid "%s: File ''%s'' is not a valid palette file.\n"
-msgstr "%s: O arquivo \"%s\" não é um arquivo válido de paleta.\n"
+msgstr "%s: O arquivo ''%s'' não é um arquivo válido de paleta.\n"
 
 #, c-format
 msgid "%s: Found ''%s'' instead of a block.\n"
-msgstr "%s: Encontrou \"%s\" em vez de um bloco.\n"
+msgstr "%s: Encontrou ''%s'' em vez de um bloco.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -83,7 +83,7 @@ msgstr "%s: Incapaz de carregar bloco de %s: esperava-se um arquivo hdf5.\n"
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr ""
-"%s: Incapaz de carregar bloco de %s: nenhuma variável \"scs_m\" foi "
+"%s: Incapaz de carregar bloco de %s: nenhuma variável ''scs_m'' foi "
 "encontrada.\n"
 
 #, c-format
@@ -330,7 +330,7 @@ msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
 msgstr ""
 "Compilação em andamento, os resultados serão armazenados na variável "
-"\"scicos_cpr\""
+"'scicos_cpr'"
 
 msgid "Compile"
 msgstr "Compilar"

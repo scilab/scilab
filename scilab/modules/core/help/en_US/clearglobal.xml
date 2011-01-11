@@ -14,7 +14,7 @@ clearglobal nam1 .. namn
 clearglobal('nam1', ..,'namn')</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>nam1,..., namn</term>

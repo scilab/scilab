@@ -15,7 +15,7 @@ ierr=exec(path,'errcatch' [,mode])
 ierr=exec(fun,'errcatch' [,mode])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>path</term>

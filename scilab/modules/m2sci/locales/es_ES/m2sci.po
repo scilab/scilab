@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "PO-Revision-Date: 2010-08-02 15:01+0000\n"
-"Last-Translator: Federico Vera <Unknown>\n"
+"Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -690,7 +690,7 @@ msgstr "Si"
 
 #, c-format
 msgid "contents must be a ''contents'' tlist instead of a: %s."
-msgstr "el contenido debe ser una lista de \"contenidos\" en lugar de: %s."
+msgstr "el contenido debe ser una lista de ''contenidos'' en lugar de: %s."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling solo usada en modo 3d."
@@ -732,7 +732,7 @@ msgid "infer must be an ''infer'' tlist instead of a: %s."
 msgstr "infer debe ser una lista ''infer'' en lugar de: %s."
 
 msgid "input argument must be an ''operation'' tlist."
-msgstr "el argumento de entrada debe ser una lista de \"operaciones\"."
+msgstr "el argumento de entrada debe ser una lista de ''operaciones''."
 
 msgid "is Real."
 msgstr "es Real."
@@ -874,7 +874,7 @@ msgstr "el tipo %d no implementado."
 
 #, c-format
 msgid "type must be a ''type'' tlist instead of a: %s."
-msgstr "el tipo debe ser una lista de \"tipo\" en lugar de: %s."
+msgstr "el tipo debe ser una lista de ''tipo'' en lugar de: %s."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"

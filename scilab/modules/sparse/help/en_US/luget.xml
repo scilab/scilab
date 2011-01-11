@@ -23,7 +23,7 @@
     <synopsis>[P,L,U,Q]=luget(hand)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>hand</term>

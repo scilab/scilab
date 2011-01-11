@@ -23,7 +23,7 @@
     <synopsis>[n,[U]]=unobs(A,C,[tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A, C</term>

@@ -23,7 +23,7 @@
     <synopsis>[L,M,T]=gfrancis(Plant,Model)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Plant</term>

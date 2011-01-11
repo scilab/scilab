@@ -35,7 +35,15 @@ public class ScilabCheckBoxMenuItem extends ScilabMenuItem implements CheckBoxMe
 	 * Constructor
 	 */
 	protected ScilabCheckBoxMenuItem() {
-        component = ScilabBridge.createCheckBoxMenuItem();
+        this(true);
+	}
+
+	/**
+	 * Constructor
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 */
+	protected ScilabCheckBoxMenuItem(boolean autoCheckedMode) {
+        component = ScilabBridge.createCheckBoxMenuItem(autoCheckedMode);
 	}
 
 	/**
@@ -43,7 +51,16 @@ public class ScilabCheckBoxMenuItem extends ScilabMenuItem implements CheckBoxMe
 	 * @return the created MenuItem
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenuItem() {
-		return new ScilabCheckBoxMenuItem();
+		return createCheckBoxMenuItem(true);
+	}
+	
+	/**
+	 * Creates a Scilab CheckBoxMenuItem object
+	 * @param autoCheckedMode if false, menu checking is managed by the user (and not automatically by Java)
+	 * @return the created MenuItem
+	 */
+	public static CheckBoxMenuItem createCheckBoxMenuItem(boolean autoCheckedMode) {
+		return new ScilabCheckBoxMenuItem(autoCheckedMode);
 	}
 	
 	/**

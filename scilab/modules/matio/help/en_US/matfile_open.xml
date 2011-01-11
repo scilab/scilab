@@ -23,7 +23,7 @@
     <synopsis>fd = matfile_open(filename[, mode])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>

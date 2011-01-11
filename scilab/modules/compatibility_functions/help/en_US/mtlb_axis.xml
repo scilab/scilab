@@ -24,7 +24,7 @@ mtlb_axis(axeshandle, ...)
 [mode,visibility,direction]=mtlb_axis('state')</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>

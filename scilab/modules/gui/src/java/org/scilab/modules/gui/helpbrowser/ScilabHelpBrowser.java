@@ -12,8 +12,12 @@
 
 package org.scilab.modules.gui.helpbrowser;
 
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.ScilabDockable;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
@@ -92,7 +96,12 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
 			helpWindow.draw();
 
+		} else {
+                        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
+                        window.setVisible(true);
+                        window.toFront();
 		}
+
 		return instance;
 	}
 
