@@ -90,6 +90,8 @@ Compilation:
 
 * -Wimplicit removed for gfortran in the enable debug mode
 
+* Intel Compiler XE 2011 update 1 C++/Fortran used to build Scilab on Windows.
+
 
 Scilab:
 =======
