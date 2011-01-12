@@ -53,7 +53,7 @@
     <title>Description</title>
 
     <para>Pour <literal>A</literal>, un vecteur ou une matrice réelle,
-    <literal>min(A)</literal> est son plus grand élément.
+    <literal>min(A)</literal> est son plus petit élément.
     <literal>[m,k]=min(A)</literal> donne la position du minimum dans
     <literal>A</literal>. Le deuxième argument peut être la chaîne de
     caractère <literal>'r'</literal> ou <literal>'c'</literal> :

@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2011 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,39 +22,43 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#define EMPTY_WCSTR L""
 /*----------------------------------------------------------------------------*/
-char ** strings_strrchr(char **InputStrings,int Dim_InputStrings,char** InputChar,int Dim_InputChar,BOOL do_strrchr)
+wchar_t ** strings_wcsrchr(const wchar_t **InputStrings, int Dim_InputStrings,
+                           const wchar_t** InputChar, int Dim_InputChar, BOOL do_strchr)
 {
-	char **Output_Strings = NULL;
+    wchar_t **wcOutput_Strings = NULL;
 
-	if ( (InputStrings) && (InputChar) )
-	{
-		Output_Strings = (char**)MALLOC(sizeof(char*)*Dim_InputStrings);
-		if (Output_Strings)
-		{
-			int i = 0;
-			for(i = 0;i < Dim_InputStrings; i++)
-			{
-				int c = 0;
-				char *ptrStr = NULL;
+    if ( (InputStrings) && (InputChar) )
+    {
+        wcOutput_Strings = (wchar_t**)MALLOC(sizeof(wchar_t*)*Dim_InputStrings);
+        if (wcOutput_Strings)
+        {
+            int i = 0;
+            for(i = 0;i < Dim_InputStrings; i++)
+            {
+                int c = 0;
+                wchar_t *ptrStr = NULL;
 
-				if (Dim_InputChar == 1) c = InputChar[0][0];
-				else  c = InputChar[i][0];
+                if (Dim_InputChar == 1) c = InputChar[0][0];
+                else  c = InputChar[i][0];
 
-				if (do_strrchr) ptrStr = strrchr(InputStrings[i],c);
-				else ptrStr = strchr(InputStrings[i],c);
+                if (do_strchr) ptrStr = wcschr(InputStrings[i], c);
+                else ptrStr = wcsrchr(InputStrings[i], c);
 
-				if (ptrStr)
-				{
-					Output_Strings[i] = strdup(ptrStr);
-				}
-				else
-				{
-					Output_Strings[i] = strdup("");
-				}
-			}
-		}
-	}
-	return Output_Strings;
+                if (ptrStr)
+                {
+                    wcOutput_Strings[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(ptrStr) + 1));
+                    wcscpy(wcOutput_Strings[i], ptrStr);
+                }
+                else
+                {
+                    wcOutput_Strings[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(EMPTY_WCSTR) + 1));
+                    wcscpy(wcOutput_Strings[i], EMPTY_WCSTR);
+                }
+            }
+        }
+    }
+    return wcOutput_Strings;
 }
 /*--------------------------------------------------------------------------*/

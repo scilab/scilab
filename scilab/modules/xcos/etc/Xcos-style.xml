@@ -472,7 +472,7 @@
 	</add>
 	<add as="GotoTagVisibilityMO" extend="blockWithLabel">
 		<!-- TODO: icon to be verified -->
-		<add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;" />
+		<add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{%s}&lt;/FONT&gt;" />
 		<add as="shape" value="ellipse" />
 		<add as="strokeColor" value="green" />
 	</add>
@@ -749,7 +749,7 @@
 		<add as="strokeColor" value="red" />
 	</add>
 	<add as="CLKGotoTagVisibility" extend="blockWithLabel">
-		<add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;" />
+		<add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{%s}&lt;/FONT&gt;" />
 		<add as="shape" value="ellipse" />
 		<add as="strokeColor" value="red" />
 	</add>
@@ -849,7 +849,7 @@
 		<add as="shape" value="rectangle" />
 	</add>
 	<add as="GotoTagVisibility" extend="blockWithLabel">
-		<add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;" />
+		<add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{%s}&lt;/FONT&gt;" />
 	</add>
 	<add as="FROM" extend="blockWithLabel">
 		<add as="rounded" value="1" />
@@ -925,7 +925,6 @@
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Ground.svg" />
 	</add>
 	<add as="VVsourceAC" extend="blockWithLabel">
-		<!-- FIXME : Show parameters over block  -->
 		<add as="shape" value="ellipse" />
 		<add as="perimeter" value="ellipsePerimeter" />
 		<add as="displayedLabel"

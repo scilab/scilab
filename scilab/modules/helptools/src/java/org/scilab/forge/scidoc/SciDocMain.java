@@ -17,7 +17,6 @@ import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -189,6 +188,7 @@ public final class SciDocMain {
             System.err.println("An error occured during the conversion:\n");
             e.printStackTrace();
         }
+
         return outputDirectory;
     }
 

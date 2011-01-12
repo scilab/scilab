@@ -53,7 +53,6 @@ sci_gateway/c/sci_isascii.c \
 sci_gateway/c/sci_strchr.c \
 sci_gateway/c/sci_strcspn.c \
 sci_gateway/c/sci_strncpy.c \
-sci_gateway/c/sci_strrchr.c \
 sci_gateway/c/sci_strrev.c \
 sci_gateway/c/sci_strspn.c \
 sci_gateway/c/sci_strstr.c \

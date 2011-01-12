@@ -929,7 +929,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   for i=1:size(scs_m.objs)
     if typeof(scs_m.objs(i))=='Block' then
       if scs_m.objs(i).gui=='CLKOUT_f' then
-        ok=%f;%cpr=list()
+        ok=%f;%cpr=list();
         message('Superblock should not have any activation output port.')
         return
       elseif scs_m.objs(i).gui=='IN_f' then
@@ -1037,6 +1037,13 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
 
   ///**********************************
   for i=1:size(bllst)
+    // check for a scilab function block
+    if type(bllst(3).sim(1)) == 13 then
+      ok=%f;%cpr=list();
+      message(_('Superblock should not contains any Scilab function block.'))
+      return
+    end
+
     for j=1:size(bllst)
       if (bllst(i).sim(1)=='actionneur'+string(j)) then
         if tt<>i then
