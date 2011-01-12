@@ -50,6 +50,7 @@
     <add as="shape" value="triangle"/>
     <add as="perimeter" value="trianglePerimeter"/>
     <add as="direction" value="east"/>
+    <add as="displayedLabel" value="%s"/>
   </add>
   <!-- Icon -->
   <add as="Icon" extend="block">

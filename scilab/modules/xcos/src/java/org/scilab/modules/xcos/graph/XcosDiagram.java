@@ -484,6 +484,12 @@ public class XcosDiagram extends ScilabGraph {
 
 	/* Labels use HTML if not equal to interface function name */
 	setHtmlLabels(true);
+	/**
+	 * by default every label is movable, see
+	 * XcosDiagram##isLabelMovable(java.lang.Object) for restrictions
+	 */
+	setVertexLabelsMovable(true);
+	setEdgeLabelsMovable(true);
 	
 	//
 	//setCloneInvalidEdges(false);
@@ -1110,21 +1116,36 @@ public class XcosDiagram extends ScilabGraph {
 	
 	/**
 	 * Manage Group to be CellFoldable i.e with a (-) to reduce and a (+) to
-	 * expand them. Only non-Block / non-Port Cell are foldable.
+	 * expand them. Labels (mxCell instance with value) should not have a
+	 * visible foldable sign.
 	 * 
 	 * @param cell
 	 *            the selected cell
 	 * @param collapse
 	 *            the collapse settings
-	 * @return <code>true</code> if the cell is foldable, <code>false</code>
-	 *         otherwise.
+	 * @return always <code>false</code>
 	 * @see com.mxgraph.view.mxGraph#isCellFoldable(java.lang.Object, boolean)
 	 */
 	@Override
-    public boolean isCellFoldable(final Object cell, final boolean collapse) {
-		return !(cell instanceof BasicBlock) && super.isCellFoldable(cell, collapse);
-    }
+	public boolean isCellFoldable(final Object cell, final boolean collapse) {
+		return false;
+	}
 
+	/**
+	 * Not BasicBLock cell have a moveable label.
+	 * @param cell the cell
+	 * @return true if the corresponding label is moveable 
+	 * @see com.mxgraph.view.mxGraph#isLabelMovable(java.lang.Object)
+	 */
+	@Override
+	public boolean isLabelMovable(Object cell) {
+		if (cell instanceof BasicBlock) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	/**
 	 * Return true if selectable
 	 * @param cell the cell
@@ -1164,7 +1185,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	return movable && super.isCellMovable(cell);
     }
-
+	
 	/**
 	 * Return true if resizable
 	 * @param cell the cell
@@ -1180,7 +1201,7 @@ public class XcosDiagram extends ScilabGraph {
     }
 
 	/**
-	 * Return true if deletable
+	 * A cell is deletable is it is not a locked block or an identifier cell 
 	 * @param cell the cell
 	 * @return status
 	 * @see com.mxgraph.view.mxGraph#isCellDeletable(java.lang.Object)
@@ -1190,8 +1211,8 @@ public class XcosDiagram extends ScilabGraph {
     	if (cell instanceof BasicBlock && ((BasicBlock) cell).isLocked()) {
     		return false;
     	}
-
-    	return super.isCellDeletable(cell);
+    	
+    	return !cell.getClass().equals(mxCell.class) && super.isCellDeletable(cell);
     }
 
 	/**
@@ -1250,7 +1271,7 @@ public class XcosDiagram extends ScilabGraph {
 		if (cell instanceof TextBlock) {
 			status &= false;
 		}
-		
+			
     	return status;
     }
 

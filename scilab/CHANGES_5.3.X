@@ -96,6 +96,8 @@ Xcos:
 
 * The demos have been updated to use the latest features.
 
+* bug 5680 fixed - Labels are not visible as default.
+
 * bug 7424 fixed - Integer parameters could be modified when loading a diagram.
 
 * bug 7639 fixed - Generating code for scilab function block was failing with
