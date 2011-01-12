@@ -33,7 +33,7 @@ import com.mxgraph.util.mxEventObject;
  * @author Antoine ELIAS
  *
  */
-public final class SuperBlockDiagram extends XcosDiagram implements Serializable {
+public final class SuperBlockDiagram extends XcosDiagram implements Serializable, Cloneable {
 
     private static final long serialVersionUID = -402918614723713301L;
     private SuperBlock container;
@@ -86,7 +86,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     /**
      * Listener for SuperBlock diagram events.
      */
-    private static final class GenericSuperBlockListener implements mxIEventListener {
+    private static final class GenericSuperBlockListener implements mxIEventListener, Serializable {
 	private static GenericSuperBlockListener instance;
 	
 	/**
@@ -120,7 +120,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	}
     }
     
-    private static final class LabelBlockListener implements mxIEventListener {
+    private static final class LabelBlockListener implements mxIEventListener, Serializable {
     	private static final LabelBlockListener instance = new LabelBlockListener();
     	
     	/**
@@ -199,5 +199,19 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
      */
     public void setModifiedNonRecursively(boolean modified) {
 	super.setModified(modified);
+    }
+    
+    /** {@inheritDoc}} */
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+    	final SuperBlockDiagram clone = new SuperBlockDiagram();
+    	
+    	clone.setScicosParameters((ScicosParameters) getScicosParameters().clone());
+    	clone.addCells(cloneCells(new Object[] {getModel().getRoot()}));
+    	
+    	clone.installListeners();
+    	clone.installSuperBlockListeners();
+    	
+    	return clone;
     }
 }
