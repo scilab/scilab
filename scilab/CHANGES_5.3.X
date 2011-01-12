@@ -30,6 +30,10 @@ Removed functions (previously declared as obsolete):
 * 'oldbesseli', 'oldbesselj', 'oldbesselk' and 'oldbessely' removed.
   Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
 
+New functions
+=============
+
+* 'repmat' added a missing basic function.
 
 Demonstration:
 ==============
