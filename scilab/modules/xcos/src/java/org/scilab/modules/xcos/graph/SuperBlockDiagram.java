@@ -22,6 +22,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
+import org.scilab.modules.xcos.io.XcosCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
@@ -86,7 +87,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     /**
      * Listener for SuperBlock diagram events.
      */
-    private static final class GenericSuperBlockListener implements mxIEventListener {
+    private static final class GenericSuperBlockListener implements mxIEventListener, Serializable {
 	private static GenericSuperBlockListener instance;
 	
 	/**
@@ -120,7 +121,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 	}
     }
     
-    private static final class LabelBlockListener implements mxIEventListener {
+    private static final class LabelBlockListener implements mxIEventListener, Serializable {
     	private static final LabelBlockListener instance = new LabelBlockListener();
     	
     	/**
@@ -199,5 +200,16 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
      */
     public void setModifiedNonRecursively(boolean modified) {
 	super.setModified(modified);
+    }
+    
+    /** {@inheritDoc}} */
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+    	final XcosCodec codec = new XcosCodec();
+    	final SuperBlockDiagram clone = (SuperBlockDiagram) codec.decode(codec.encode(this));
+    	
+    	clone.installSuperBlockListeners();
+    	
+    	return clone;
     }
 }
