@@ -10,6 +10,10 @@ import java.awt.event.*;
 import javasci.*;
 import java.awt.*;
 
+
+/**
+ * @deprecated
+ */
 public class MonEcouteurPourBouton implements ActionListener
 {
   private MonPanneau appli;

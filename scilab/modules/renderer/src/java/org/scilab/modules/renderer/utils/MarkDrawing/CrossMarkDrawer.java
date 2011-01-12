@@ -20,7 +20,7 @@ import javax.media.opengl.GL;
  * Class specialized in drawing cross marks
  * @author Jean-Baptiste Silvy
  */
-public class CrossMarkDrawer extends MarkDrawingStrategy {
+public class CrossMarkDrawer extends JOGLMarkDrawingStrategy {
 
 	/**
 	 * Default constructor

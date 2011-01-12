@@ -16,18 +16,12 @@
 #include "stack-c.h"
 #include "basout.h"
 #include "do_error_number.h"
+#include "parserConstant.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(getsym)();
 /*--------------------------------------------------------------------------*/ 
 int C2F(terme)(void)
 {
-#define char_plus 45
-#define char_minus 46
-#define char_bchar_slash 49
-#define char_star 47
-#define char_slash 48
-#define char_dot 51
-#define char_not 61
 #define constnumber 114688
 
   /* Local variables */
@@ -35,7 +29,7 @@ int C2F(terme)(void)
 
   int r = 0;
 
-  /* int equal,less,great,char_not */
+  /* int equal,less,great,not */
   r = C2F(recu).rstk[(constnumber + (0 + ( (C2F(recu).pt - 1) << 2)) - constnumber) / 4];
 
   if (C2F(iop).ddt == 4) {
@@ -62,23 +56,23 @@ int C2F(terme)(void)
       { /* return point after  first factor evaluation*/
 	--C2F(recu).pt;
 	op = 0;
-	if (C2F(com).sym == char_dot) 
+	if (C2F(com).sym == dot) 
 	  {
-	    op = char_dot;
+	    op = dot;
 	    C2F(getsym)();
 	  }
 
-	if (C2F(com).sym == char_star || C2F(com).sym == char_slash || C2F(com).sym == char_bchar_slash) 
+	if (C2F(com).sym == star || C2F(com).sym == slash || C2F(com).sym == bchar_slash) 
 	  {
 	    op += C2F(com).sym;
 	    C2F(getsym)();
-	    if (C2F(com).sym == char_dot) op += C2F(com).sym << 1;
+	    if (C2F(com).sym == dot) op += C2F(com).sym << 1;
 
-	    if (C2F(com).sym == char_dot) C2F(getsym)();
+	    if (C2F(com).sym == dot) C2F(getsym)();
 
 	    ++C2F(recu).pt;
 	    C2F(recu).pstk[C2F(recu).pt - 1] = op;
-	    if (C2F(com).sym != char_not) 
+	    if (C2F(com).sym != not) 
 	      {
 		/* escape to call fact */
 		C2F(recu).rstk[C2F(recu).pt - 1] = 202;
@@ -113,26 +107,26 @@ int C2F(terme)(void)
       {  /* return point after operation evaluation (allops(op))*/
 	--C2F(recu).pt;
 	op = 0;
-	if (C2F(com).sym == char_dot) 
+	if (C2F(com).sym == dot) 
 	  {
-	    op = char_dot;
+	    op = dot;
 	    C2F(getsym)();
 	  }
-	if (C2F(com).sym == char_star || C2F(com).sym == char_slash || C2F(com).sym == char_bchar_slash) 
+	if (C2F(com).sym == star || C2F(com).sym == slash || C2F(com).sym == bchar_slash) 
 	  {
 	    op += C2F(com).sym;
 	    C2F(getsym)();
-	    if (C2F(com).sym == char_dot) op += C2F(com).sym << 1;
+	    if (C2F(com).sym == dot) op += C2F(com).sym << 1;
 
-	    if (C2F(com).sym == char_dot) C2F(getsym)();
+	    if (C2F(com).sym == dot) C2F(getsym)();
 
 	    ++C2F(recu).pt;
 	    C2F(recu).pstk[C2F(recu).pt - 1] = op;
-	    if (C2F(com).sym != char_not) 
+	    if (C2F(com).sym != not) 
 	      {
 		C2F(recu).rstk[C2F(recu).pt - 1] = 202;
 		/*next line added to handle syntax like a*-b for Matlab compatiblity */
-		if (C2F(com).sym == char_plus || C2F(com).sym == char_minus) 
+		if (C2F(com).sym == plus || C2F(com).sym == minus) 
 		  C2F(recu).icall = 1; /* escape to call expr */
 		else
 		  C2F(recu).icall = 3; /* escape to call fact */

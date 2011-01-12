@@ -10,6 +10,10 @@
 import java.awt.*;
 import javasci.*; 
 
+
+/**
+ * @deprecated
+ */
 public class MonPanneau extends Panel
 {
     private Label lab;

@@ -96,13 +96,13 @@
       <varlistentry>
         <term>-S</term>
         <listitem>
-          <para>Same as -s, but slave pvmd doesn't wait for its stdin to be closed after printing its parameters.  Used for manual startup.</para>
+          <para>Same as -s, but slave pvmd does not wait for its stdin to be closed after printing its parameters.  Used for manual startup.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>-f</term>
         <listitem>
-          <para>Slave doesn't fork after configuration (useful if the slave is to be controlled or monitored by some process).</para>
+          <para>Slave does not fork after configuration (useful if the slave is to be controlled or monitored by some process).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -247,7 +247,7 @@ betty
 # hostfile for testing on various platforms fonebone refuge
 # installed in /usr/local/here
 sigi.cs
-dx=/usr/local/pvm3/lib/pvmd # borrowed accts, "guest", don't trust fonebone 
+dx=/usr/local/pvm3/lib/pvmd # borrowed accts, "guest", do not trust fonebone 
 label="* lo=guest so=pw sn666.jrandom.com cubie.misc.edu # really painful one, must start it by hand and share a homedir  
 igor.firewall.com lo=guest2 so=ms  ep=bob/pvm3/bin/$PVM_ARCH
  ]]></programlisting>

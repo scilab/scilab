@@ -47,7 +47,7 @@ bOK = haveacompiler();
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="findlcccompiler">findlcccompiler</link>
+        <link linkend="supported_compilers">supported compilers</link>
       </member>
       <member>
         <link linkend="findmsvccompiler">findmsvccompiler</link>

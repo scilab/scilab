@@ -36,6 +36,7 @@ public class LibraryPath {
 /*--------------------------------------------------------------------------*/	
 	/**
 	 * checks if pathToAdd already exists
+     * @deprecated
      * @param currentpaths list of current paths
      * @param pathToAdd path to add
      * @return a boolean true if path already exists
@@ -50,6 +51,7 @@ public class LibraryPath {
 /*--------------------------------------------------------------------------*/
 	/**
 	 * add a path to java.library.path 
+     * @deprecated
 	 * @param p path to add
 	 * @throws IOException return a exception
 	 */
@@ -74,6 +76,7 @@ public class LibraryPath {
 /*--------------------------------------------------------------------------*/
 /**
  * get the scilab java.library.path.
+ * @deprecated
  * @return librarypath
  */
 	public static String[] getLibraryPath() {

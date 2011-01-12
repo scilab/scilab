@@ -22,10 +22,10 @@
   </info>
 
   <refnamediv>
-    <refname>javasci.Scilab</refname>
+    <refname>javasci.Scilab (deprecated)</refname>
 
     <refpurpose>This class provides the basic methods to execute Scilab code
-    and scripts.</refpurpose>
+    and scripts. Deprecated: Please use <link linkend="javasci">Javasci v2</link></refpurpose>
   </refnamediv>
 
   <refsection>
@@ -118,7 +118,10 @@ public class ScilabExample {
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="compile_and_run_javasci">Compile and run with Javasci</link></member>
+    <member>
+        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink>
+       </member>
+      <member><link linkend="compile_and_run_javasci_v1">Compile and run with Javasci v1</link></member>
 
       <member><link linkend="SciDouble">SciDouble</link></member>
 

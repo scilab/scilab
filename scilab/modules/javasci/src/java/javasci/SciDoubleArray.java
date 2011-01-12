@@ -25,6 +25,7 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 
 	/**
 	 * Constructs a Scilab Double Array from a other SciDoubleArray
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param doubleObj the SciDoubleArray you want to copy
 	 */
@@ -41,6 +42,7 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	/**
 	 * Constructs a Scilab Double Array 
 	 * All cells are initialized to 0
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 * @param r number of rows
 	 * @param c number of columns
@@ -65,6 +67,7 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	
 	/**
 	 * Constructs a Scilab Double Array from a java double array
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 * @param r number of rows
 	 * @param c number of columns
@@ -87,6 +90,7 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	 * in Scilab A=[1,2;3,4];
 	 * A(1,1)=1 
 	 * A(2,2)=4 
+     * @deprecated
 	 * @param indr row indice 
 	 * @param indc column indice 
 	 * @return the double value at the position [indr, indc]
@@ -95,6 +99,7 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 
 	/**
 	 * Return the data
+     * @deprecated
 	 * @return the data
 	 */
 	public double[] getData() {

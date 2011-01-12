@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-17 13:07+0000\n"
+"PO-Revision-Date: 2010-10-02 02:20+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -34,15 +34,15 @@ msgstr "%s: %s 変数により定義された全てのパスが存在する必�
 
 #, c-format
 msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s: ファイル %s は、存在しません。\n"
+msgstr "%s: ファイル ''%s'' が存在しません.\n"
 
 #, c-format
 msgid "%s: File ''%s'' is not a valid palette file.\n"
-msgstr "%s: ファイル \"%s\" は有効なパレットファイルではありません.\n"
+msgstr "%s: ファイル ''%s'' は有効なパレットファイルではありません.\n"
 
 #, c-format
 msgid "%s: Found ''%s'' instead of a block.\n"
-msgstr "%s: ブロックの代わりに \"%s\" が見つかりました.\n"
+msgstr "%s: ブロックの代わりに ''%s'' が見つかりました.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -60,7 +60,7 @@ msgstr "%s: %s を %s にエクスポートできません.\n"
 
 #, c-format
 msgid "%s: Unable to export ''XX'' to %s"
-msgstr "%s: \"XX\" を %s にエキスポートできません"
+msgstr "%s: ''XX'' を %s にエキスポートできません"
 
 #, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
@@ -160,7 +160,7 @@ msgstr "%s: 入力引数 %s の型が間違っています: 論理値を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: diagram 型を指定してください.\n"
+msgstr "%s: 入力引数 %s の型が間違っています: ダイアグラム型を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -175,7 +175,8 @@ msgstr "%s: 入力引数 %s の型が間違っています: ファイルパス�
 msgid ""
 "%s: Wrong type for input argument %s: function as string or Block type or "
 "full path string expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: 文字列で指定した関数またはblock 型または完全パス文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 %s の型が間違っています: 文字列で指定した関数またはブロック(Block)型または完全パス文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: handle type expected.\n"
@@ -295,7 +296,7 @@ msgid "Compiling"
 msgstr "コンパイル中"
 
 msgid "Computing"
-msgstr "コンパイル中"
+msgstr "計算中"
 
 msgid "Continuous time systems"
 msgstr "連続時間システム"
@@ -334,10 +335,10 @@ msgid "Details"
 msgstr "詳細"
 
 msgid "Diagram background"
-msgstr "図の背景"
+msgstr "ダイアグラムの背景"
 
 msgid "Diagram browser"
-msgstr "図形 ブラウザー"
+msgstr "ダイアグラム ブラウザ"
 
 msgid ""
 "Diagram has been modified since last save.<br/> Do you want to save it?"
@@ -353,7 +354,7 @@ msgid "Discrete"
 msgstr "離散"
 
 msgid "Do you want a transparent background image?"
-msgstr "透明な背景イメージが欲しいですか?"
+msgstr "背景イメージを透明にしますか?"
 
 msgid "Do you want to overwrite existing file?"
 msgstr "既存ファイルを上書きしますか?"
@@ -418,7 +419,7 @@ msgid "Final integration time"
 msgstr "積分終了時間"
 
 msgid "Fit diagram to view"
-msgstr "可視範囲内にダイアグラムを調整"
+msgstr "表示領域にダイアグラムを合わせる"
 
 msgid "Fix derivatives"
 msgstr "微係数を固定"
@@ -522,7 +523,7 @@ msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr "軽量シミュレーショントレース (離散または連続部のスイッチ)"
 
 msgid "Link Style"
-msgstr "リンク・スタイル"
+msgstr "結合方法"
 
 msgid "Load as palette"
 msgstr "パレットとして取り込む"
@@ -546,7 +547,7 @@ msgid "Masked SuperBlock editor"
 msgstr "マスクされたスーパーブロックエディタ"
 
 msgid "Mathematical Operations"
-msgstr "数学的演算"
+msgstr "数値計算"
 
 msgid "Matrix"
 msgstr "行列"
@@ -558,7 +559,7 @@ msgid "Middle"
 msgstr "中間"
 
 msgid "Mirror"
-msgstr "ミラー"
+msgstr "反転"
 
 msgid "Modelica initialize"
 msgstr "Modelica初期化"
@@ -637,7 +638,7 @@ msgid "Reduced"
 msgstr "削減"
 
 msgid "Region to superblock"
-msgstr "スーパーブロックの領域,"
+msgstr "選択範囲をスーパーブロックに変換"
 
 msgid "Relaxed parameters"
 msgstr "緩和されたパラメータ"
@@ -861,7 +862,7 @@ msgid "Vertical"
 msgstr "垂直"
 
 msgid "View"
-msgstr "ビュー"
+msgstr "表示"
 
 msgid "View in Scicos"
 msgstr "Scicosでの表示"

@@ -76,7 +76,7 @@ end
 scs_m=delete_unconnected(scs_m);
 
 //list of blocks with are not retained in the final block list
-blocks_to_remove=['CLKSPLIT_f' 'SPLIT_f' 'IMPSPLIT_f' 'CLKSOM_f' 'CLKSOMV_f' 'NRMSOM_f' 'PAL_f']
+blocks_to_remove=['CLKSPLIT_f' 'SPLIT_f' 'IMPSPLIT_f' 'CLKSOM_f' 'CLKSOMV_f' 'NRMSOM_f' 'PAL_f' 'xcos_block']
 port_blocks=['IN_f','INIMPL_f','OUT_f','OUTIMPL_f','CLKIN_f','CLKINV_f','CLKOUT_f','CLKOUTV_f']
 block_goto=['GOTO','CLKGOTO','GOTOMO']
 block_from=['FROM','CLKFROM','FROMMO']

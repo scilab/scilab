@@ -84,12 +84,10 @@ msgstr "%s: No hi ha més memòria.\n"
 #, c-format
 msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr ""
-"%s: No s'ha trobat cap resultat per a la propietat ''%s'' i el valor "
-"''%s''.\n"
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr "%s: No s'ha trobat cap resultat.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"

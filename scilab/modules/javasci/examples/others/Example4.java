@@ -9,6 +9,9 @@
 import javasci.Scilab;
 import javasci.SciString;
 
+/**
+ * @deprecated
+ */
 class Example4 {
 
   public static void main(String[] args) 

@@ -544,7 +544,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     	 * Encode links
     	 */
     	for (int i = 0; i < linkList.size(); ++i) {
-    		data.add(linkElement.encode(linkList.get(i), null));
+			final ScilabType link = linkElement.encode(linkList.get(i), null);
+			if (link != null) {
+				data.add(link);
+			}
     	}
 	}
 }

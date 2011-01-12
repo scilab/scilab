@@ -16,23 +16,31 @@ function mat = read_csv(fname, sep)
   if (type(fname) <> 10) then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "read_csv", 1));
   end
-  
+
   if (size(fname,"*")<> 1) then
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "read_csv", 1));  
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "read_csv", 1));
   end
-  
-  if argn(2)<2 then 
+
+  if argn(2)<2 then
     sep = ",";
   end
-  
+
+  if (type(sep) <> 10) then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "read_csv", 2));
+  end
+
+  if (size(sep, "*")<> 1) then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "read_csv", 2));
+  end
+
   if sep == "\t" then
     sep = ascii(9);
   end
-  
+
   if ~isfile(fname) then
     error(msprintf(gettext("%s: file %s does not exist.\n"), "read_csv", fname));
   end
-  
+
   v = mgetl(fname);
   v(v == "") = [];
   ns = length(sep);
@@ -58,4 +66,3 @@ function mat = read_csv(fname, sep)
     mat = [mat; row];
   end
 endfunction
-

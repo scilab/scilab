@@ -36,7 +36,12 @@ void UserDefLogTicksComputer::getTicksPosition(double positions[], char * labels
   {
     positions[i] = m_aUserTicksPositions[i];
   }
-  BasicAlgos::stringArrayCopy(labels, m_aUserTicksLabels, m_iNbUserTicks);
+
+  /* Copy the tick labels if the labels arguement is not null.  (labelsExponents is unused.) */
+  if( labels != NULL)
+  {
+    BasicAlgos::stringArrayCopy(labels, m_aUserTicksLabels, m_iNbUserTicks);
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 }

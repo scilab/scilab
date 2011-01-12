@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+ * Copyright (C) 2008-2009 - INRIA - Michael Baudin
+ * Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 -->
 <refentry 
           version="5.0-subset Scilab" 
@@ -536,7 +537,7 @@ opt = optimset ( "PlotFcns" , myfunctions );
   </refsection>
 
   <refsection>
-    <title>Example with an customized output function</title>
+    <title>Example with a customized output function</title>
 
     <para>
     In the following example, we want to produce intermediate 

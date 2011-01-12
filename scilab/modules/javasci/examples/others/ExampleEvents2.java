@@ -8,6 +8,9 @@
 
 import javasci.Scilab; 
 
+/**
+ * @deprecated
+ */
 class LoopEvent extends Thread
 {
     boolean continueLoop = true;

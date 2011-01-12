@@ -84,7 +84,7 @@
     projection onto the k dimensional subspace must be maximal.
     </para>
     <para>Warning, the graphical part of the old version of
-    <literal>pca</literal> as been removed. It can now be performed
+    <literal>pca</literal> has been removed. It can now be performed
     using the <link linkend="show_pca">show_pca</link>
     function.</para>
   </refsection>

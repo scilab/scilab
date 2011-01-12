@@ -11,7 +11,9 @@ import javasci.Scilab;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
-
+/**
+ * @deprecated
+ */
 class Example7B {
 
     public static void main(String[] args)

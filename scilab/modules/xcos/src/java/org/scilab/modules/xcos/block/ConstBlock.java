@@ -24,4 +24,15 @@ public final class ConstBlock extends PrintBlock {
 	public ConstBlock() {
 		super();
 	}
+	
+	/**
+	 * Set the default block name.
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("CONST_m");
+		setSimulationFunctionName("cstblk4");
+		setValue("1");
+	}
 }

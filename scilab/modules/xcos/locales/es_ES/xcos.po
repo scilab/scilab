@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-21 15:45+0000\n"
-"Last-Translator: Federico Vera <Unknown>\n"
+"PO-Revision-Date: 2010-10-30 21:46+0000\n"
+"Last-Translator: Sergio I. <korgzak@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -247,6 +247,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
+"%s: Valor incorrecto del argumento de entrada %s: Se esperaba un archivo "
+"existente.\n"
 
 msgid "?"
 msgstr "¿?"
@@ -330,10 +332,10 @@ msgid "Compile"
 msgstr "Compilar"
 
 msgid "Compiling"
-msgstr ""
+msgstr "Compilando"
 
 msgid "Computing"
-msgstr ""
+msgstr "Calculando"
 
 msgid "Continuous time systems"
 msgstr "Sistemas de tiempo continuo"
@@ -416,10 +418,10 @@ msgid "Enable"
 msgstr "Activar"
 
 msgid "Equations"
-msgstr ""
+msgstr "Ecuaciones"
 
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 msgid "Event handling"
 msgstr "Gestión de eventos"
@@ -449,7 +451,7 @@ msgid "Export to XML"
 msgstr "Exportar a XML"
 
 msgid "Extended"
-msgstr ""
+msgstr "Extendido"
 
 msgid "Failed to load Diagram"
 msgstr "Fallo al cargar el Diagrama"
@@ -467,16 +469,16 @@ msgid "Fit diagram to view"
 msgstr "Ajustar el diagrama a la vista"
 
 msgid "Fix derivatives"
-msgstr ""
+msgstr "Derivadas fijas"
 
 msgid "Fix states"
-msgstr ""
+msgstr "Estados fijos"
 
 msgid "Fixed parameters"
-msgstr ""
+msgstr "Parámetros fijos"
 
 msgid "Fixed variables"
-msgstr ""
+msgstr "Variables fijas"
 
 msgid "Flip"
 msgstr "Voltear"
@@ -497,7 +499,7 @@ msgid "From %s"
 msgstr "Desde %s"
 
 msgid "Generate Jacobian"
-msgstr ""
+msgstr "Generar Jacobiano"
 
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Generando SuperBloque, por favor espere ..."
@@ -509,7 +511,7 @@ msgid "Get infos"
 msgstr "Obtener información"
 
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 msgid "Goto %s"
 msgstr "Ir a %s"
@@ -545,10 +547,10 @@ msgid "Import from XML"
 msgstr "Importar de XML"
 
 msgid "Initial computing method"
-msgstr ""
+msgstr "Método de cálculo inicial"
 
 msgid "Input"
-msgstr ""
+msgstr "Entrada"
 
 msgid "Insert"
 msgstr "Insertar"
@@ -614,7 +616,7 @@ msgid "Modelica initialize"
 msgstr "Inicializar Modelica"
 
 msgid "Modelica settings"
-msgstr ""
+msgstr "Preferencias de Modelica"
 
 msgid "Move Down"
 msgstr "Bajar"
@@ -662,7 +664,7 @@ msgid "Per block execution trace and Debug block calls"
 msgstr "Ejecución de traza y depuración por bloque"
 
 msgid "Please take a look into the Scilab console"
-msgstr ""
+msgstr "Por favor revise la consola de Scilab"
 
 msgid "Port & Subsystem"
 msgstr "Puerto y Subsistema"
@@ -686,7 +688,7 @@ msgid "Recent Files"
 msgstr "Archivos Recientes"
 
 msgid "Reduced"
-msgstr ""
+msgstr "Reducido"
 
 msgid "Region to superblock"
 msgstr "Región al superbloque"
@@ -782,10 +784,10 @@ msgid "Sinks"
 msgstr "Sinks"
 
 msgid "Solve"
-msgstr ""
+msgstr "Resolver"
 
 msgid "Solver"
-msgstr ""
+msgstr "Solucionador"
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Solver 0 (CVODE) - 100 (IDA)"
@@ -895,10 +897,10 @@ msgid "Unknown Diagram Version : "
 msgstr "Versión de diagrama desconocida: "
 
 msgid "Unknowns"
-msgstr ""
+msgstr "Incógnitas"
 
 msgid "Unknowns not equals to Equations"
-msgstr ""
+msgstr "Incógnitas no iguales a Ecuaciones"
 
 msgid "Untitled"
 msgstr "Sin título"
@@ -981,48 +983,50 @@ msgid "Zero crossing detection"
 msgstr "Detección de cruce por cero"
 
 msgid "comment"
-msgstr ""
+msgstr "comentario"
 
 msgid "control port must be connected to command port"
 msgstr "Un puerto de control debe estar conectado a un puerto de comandos"
 
 msgid "fixed"
-msgstr ""
+msgstr "fijo"
 
 msgid "id"
-msgstr ""
+msgstr "id"
 
 msgid "initial"
-msgstr ""
+msgstr "inicial"
 
 msgid "kind"
-msgstr ""
+msgstr "tipo"
 
 msgid ""
 "lets the user change the parameters and call the solver without regenerating "
 "code."
 msgstr ""
+"permite al usuario cambiar los parámetros y llama al solucionador si "
+"regenerar código."
 
 msgid "max"
-msgstr ""
+msgstr "máx"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "tamaño máximo del paso (0 significa sin límites)"
 
 msgid "min"
-msgstr ""
+msgstr "mín"
 
 msgid "model is not valid"
-msgstr ""
+msgstr "modelo inválido"
 
 msgid "name"
-msgstr ""
+msgstr "nombre"
 
 msgid "nominal"
-msgstr ""
+msgstr "nominal"
 
 msgid "selected"
-msgstr ""
+msgstr "seleccionado"
 
 msgid "weight"
-msgstr ""
+msgstr "peso"

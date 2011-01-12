@@ -9,7 +9,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>return [x1,..,xn]=return(a1,..,an)</synopsis>
+    <synopsis>return
+[x1,..,xn]=return(a1,..,an)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>

@@ -120,7 +120,7 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
 
     if spec_err=='csuper block' then
         //** update spec_err
-        spec_err='The hilited '+spec_err+' returns the error :';
+        spec_err='The highlighted '+spec_err+' returns the error :';
         //**
         scf(curwin)
         //** call bad_connection
@@ -132,7 +132,7 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
              'unhilite_obj('+string(blk)+');']
     else
       //** update spec_err
-      spec_err='The hilited '+spec_err+' returns the error :';
+      spec_err='The highlighted '+spec_err+' returns the error :';
       //** create cmd
       cmd=['%diagram_path_objective='+sci2exp(obj_path)+';%scicos_navig=1;'
            'hilite_obj('+string(blk)+');'+...

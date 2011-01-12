@@ -33,7 +33,7 @@ global nam1 ... namn</synopsis>
     in any function, is available to all the other functions declaring
     it <literal>global</literal>.</para>
     <para>
-    If the global variable doesn't exist the first time you issue
+    If the global variable does not exist the first time you issue
     the <literal>global</literal> statement, it will be initialized to the empty matrix.</para>
   </refsection>
   <refsection>

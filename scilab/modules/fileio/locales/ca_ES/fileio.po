@@ -515,7 +515,7 @@ msgid ""
 "%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
 "corrupted.\n"
 msgstr ""
-"%s: S'ha trobat un tipus de variable incorrecta (%s) a '%s'. Pot ser que el "
+"%s: S''ha trobat un tipus de variable incorrecta (%s) a ''%s''. Pot ser que el "
 "fitxer sigui incorrecte.\n"
 
 #, c-format

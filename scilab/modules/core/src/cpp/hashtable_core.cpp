@@ -35,7 +35,7 @@ extern "C" {
 #include "partition.hxx" // for scilab::core::partition_point_n
 #include "unrolled_algorithms.hxx" //for eq_n less_n copy_n
 /*----------------------------------------------------------------------------*/
-#define MAXLENGHTFUNCTIONNAME 32 /* 24 in fact in scilab +1 for '\0' round to nearest multiple of 8*/
+#define MAXLENGHTFUNCTIONNAME  nlgh + 8 /* 24 in fact in scilab +1 for '\0' round to nearest multiple of 8*/
 /*----------------------------------------------------------------------------*/
 using namespace scilab::core;
 /*----------------------------------------------------------------------------*/

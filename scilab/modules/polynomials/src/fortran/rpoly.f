@@ -49,6 +49,9 @@ c
       logical  zerok
       integer fail
 c
+      real ZERO
+      parameter (ZERO = 0.0E+0)
+
       if(degree.gt.100) goto 300
 c the following statements set machine constants used
 c in various parts of the program. the meaning of the
@@ -64,9 +67,19 @@ c         double precision then smalno and infin
 c         should indicate the smaller range.
 c base    the base of the floating-point number
 c         system used.
-      smalno=slamch('u')
-      infin=slamch('o')
-      base=slamch('b')
+
+c
+c Rely on compiler instead of Lapack
+c slamch function does not work under macosX
+c replace this by compiler stuffs working on each platform
+c http://www.netlib.org/lapack/util/slamch.f
+c
+c     slamch('u') <=> TINY(ZERO)
+      smalno=TINY(ZERO)
+c     slamch('o') <=> HUGE(ZERO)
+      infin=HUGE(ZERO)
+c     slamch('b') <=> RADIX(ZERO)
+      base=RADIX(ZERO)
       eta=real(dlamch('p'))
 c are and mre refer to the unit error in + and *
 c respectively. they are assumed to be the same as

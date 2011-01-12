@@ -20,27 +20,27 @@ import org.scilab.modules.javasci.JavasciException.InitializationException;
 
 
 public class testErrorManagement {
-	private Scilab sci;
+    private Scilab sci;
 
-	/* 
-	 * This method will be called for each test.
-	 * with @AfterMethod, this ensures that all the time the engine is closed
-	 * especially in case of error.
-	 * Otherwise, the engine might be still running and all subsequent tests
-	 * would fail.
-	 */ 
-	@BeforeMethod
-	public void open() throws NullPointerException, JavasciException {
-		sci = new Scilab();
+    /* 
+     * This method will be called for each test.
+     * with @AfterMethod, this ensures that all the time the engine is closed
+     * especially in case of error.
+     * Otherwise, the engine might be still running and all subsequent tests
+     * would fail.
+     */ 
+    @BeforeMethod
+    public void open() throws NullPointerException, JavasciException {
+        sci = new Scilab();
         assert sci.open() == true;
 
-	}
+    }
 
 
-	@Test(sequential = true)
+    @Test(sequential = true)
     public void getLastErrorCodeTest() throws NullPointerException, JavasciException {
         assert sci.getLastErrorCode() == 0; // No error
-		sci.close();
+        sci.close();
 
         assert sci.open("a=1+") == false;
         assert sci.getLastErrorCode() == 2;
@@ -50,14 +50,14 @@ public class testErrorManagement {
         sci.exec("errclear();");
     }
 
-	@Test(sequential = true)
+    @Test(sequential = true)
     public void getLastErrorMessageTest() throws NullPointerException, JavasciException {
         sci.exec("errclear();"); // No error by default
         assert sci.getLastErrorMessage().equals("");
         assert sci.getLastErrorMessage().length() == 0;
 
         sci.exec("errclear();");
-		sci.close();
+        sci.close();
 
         assert sci.open("a=1+") == false;
         assert sci.getLastErrorMessage().length() > 0;
@@ -69,11 +69,11 @@ public class testErrorManagement {
         assert sci.getLastErrorMessage().length() == 0;
     }
 
-	/**
-	 * See #open()
-	 */
-	@AfterMethod
-	public void close() {
-		sci.close();
-	}
+    /**
+     * See #open()
+     */
+    @AfterMethod
+    public void close() {
+        sci.close();
+    }
 }

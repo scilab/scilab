@@ -109,6 +109,12 @@ public final class CommandHistory {
 
                 scilabHistoryTree.addMouseListener(new CommandHistoryMouseListener());
 
+                DeleteAction.registerKeyAction();
+                EvaluateAction.registerKeyAction();
+                CopyAction.registerKeyAction();
+                CutAction.registerKeyAction();
+                CloseAction.registerKeyAction();
+
                 scrollPane = new JScrollPane(scilabHistoryTree);
                 JPanel contentPane = new JPanel(new BorderLayout());
                 contentPane.add(scrollPane);

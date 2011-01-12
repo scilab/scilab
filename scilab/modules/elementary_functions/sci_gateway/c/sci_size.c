@@ -30,7 +30,7 @@ I_SIZE_ROWCOL = 0,
 /*--------------------------------------------------------------------------*/
 int sci_size(char *fname,unsigned long fname_len)
 {
-	static int id[6];
+    static int id[6];
 
     CheckRhs(1,2);
 
@@ -39,12 +39,33 @@ int sci_size(char *fname,unsigned long fname_len)
     {
         int iType = 0;
         int *piAddressVarTwo = NULL;
+        int *piAddressVarOne = NULL;
 
         /* get Address of inputs */
         SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            return 0;
+        }
+
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if (iType == sci_mlist)
+        {
+            C2F(intsize)(id);
             return 0;
         }
 
@@ -58,7 +79,7 @@ int sci_size(char *fname,unsigned long fname_len)
                 if (isDoubleType(pvApiCtx, piAddressVarTwo))
                 {
                     double dValue = 0.;
-                    
+
                     if (getScalarDouble(pvApiCtx, piAddressVarTwo, &dValue) == 0)
                     {
                         iValue = (int)(dValue);
@@ -101,7 +122,7 @@ int sci_size(char *fname,unsigned long fname_len)
         }
     }
 
-	C2F(intsize)(id);
-	return 0;
+    C2F(intsize)(id);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

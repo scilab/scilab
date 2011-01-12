@@ -19,7 +19,7 @@ import javax.media.opengl.GL;
  * Class specialized in drawing triangle up marks
  * @author Jean-Baptiste Silvy
  */
-public class TriangleMarkDrawer extends MarkDrawingStrategy {
+public class TriangleMarkDrawer extends JOGLMarkDrawingStrategy {
 
 	/** Corners of an equilateral triangle centered on (0,0) whose height is 1.0 */
 	private static final double NB_CORNERS = 3.0;

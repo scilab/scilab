@@ -10,6 +10,9 @@ import javasci.Scilab;
 import javasci.SciComplex;
 
 
+/**
+ * @deprecated
+ */
 class Example10 {
 
     public static void main(String[] args) {

@@ -132,7 +132,7 @@ msgstr "%s: A matriz e os fatores LU não têm dimensões iguais !\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: Argumento de entrada errado #%d: Esperava-se \"%s\" ou \"%s\".\n"
+msgstr "%s: Argumento de entrada errado #%d: Esperava-se '%s' ou '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"

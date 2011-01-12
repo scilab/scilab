@@ -29,6 +29,7 @@ import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
@@ -127,13 +128,21 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		InputPortElement inElement = new InputPortElement(data);
 		final int numberOfInputPorts = inElement.getNumberOfInputPort();
 		for (int i = 0; i < numberOfInputPorts; i++) {
-			block.addPort(inElement.decode(data, null));
+			final BasicPort port = inElement.decode(data, null);
+			
+			// do not use BasicPort#addPort() to avoid the view update
+			port.setOrdering(i + 1);
+			block.insert(port, i);
 		}
 		
 		OutputPortElement outElement = new OutputPortElement(data);
 		final int numberOfOutputPorts = outElement.getNumberOfOutputPort();
 		for (int i = 0; i < numberOfOutputPorts; i++) {
-			block.addPort(outElement.decode(data, null));
+			final BasicPort port = outElement.decode(data, null);
+			
+			// do not use BasicPort#addPort() to avoid the view update
+			port.setOrdering(i + 1);
+			block.insert(port, i);
 		}
 		
 		/*

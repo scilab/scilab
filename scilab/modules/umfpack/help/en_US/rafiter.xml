@@ -48,7 +48,7 @@
         <term>verb  </term>
         <listitem>
           <para>(optional) boolean, must be %t for displaying the intermediary results, 
-      and %f (default) if you don't want.</para>
+      and %f (default) if you do not want.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

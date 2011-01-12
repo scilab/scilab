@@ -23,7 +23,7 @@ import javax.media.opengl.GL;
  * both of the two sets are defining a pentagram centered on (0,0).
  * @author Jean-Baptiste Silvy
  */
-public class PentagramMarkDrawer extends MarkDrawingStrategy {
+public class PentagramMarkDrawer extends JOGLMarkDrawingStrategy {
 
 	/** 
 	 * Distance of the inside points from the center

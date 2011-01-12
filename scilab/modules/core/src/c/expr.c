@@ -18,6 +18,7 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "do_error_number.h"
+#include "parserConstant.h"
 #include "basout.h"
 /*--------------------------------------------------------------------------*/ 
 static int inc = 1;
@@ -29,19 +30,6 @@ extern int C2F(compil)(int *, int *, int *, int *, int *);
 extern int C2F(getsym)(void);
 extern int C2F(istrue)(int *);
 extern int C2F(eptover)(int *, int *);
-/*--------------------------------------------------------------------------*/ 
-#define  et      58 /* @TODO does 'et' is 'and' in english ? */
-#define  equal   50
-#define  less    59
-#define  great   60
-#define  not     61
-#define  eol     99
-#define  colon   44
-#define  blank   40
-#define  plus    45
-#define  minus   46
-#define  ou      57 /* @TODO does 'ou' is 'or' in english ? */
-
 /*--------------------------------------------------------------------------*/ 
 int C2F(expr)(void)
 {

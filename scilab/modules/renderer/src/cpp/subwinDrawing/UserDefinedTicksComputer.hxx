@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Compute ticks from ticks given by the user
  *
  * This file must be used under the terms of the CeCILL.
@@ -41,6 +42,7 @@ public:
   /**
    * Fill positions parameters
    * with the ticks abscissas, ordinate, ...
+   * Pass NULL to labels and labelsExponents to only determine the ticks position.
    */
   virtual void getTicksPosition(double positions[], char * labels[], char * labelsExponents[]);
 
@@ -67,17 +69,15 @@ public:
 
   /**
    * Set the parameter for drawing user ticks.
-   * @param nbSubticks number of subticks between each ticks.
    */
   void setUserTicks(double * userTicksPos, char ** userLabels,
-                    int nbUserTicks, int nbSubticks);
+                    int nbUserTicks);
 
 protected:
 
   double * m_aUserTicksPositions;
   char ** m_aUserTicksLabels;
   int m_iNbUserTicks;
-  int m_iNbSubticks;
 
 };
 

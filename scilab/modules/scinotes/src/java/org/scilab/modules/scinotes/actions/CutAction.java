@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,8 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import java.awt.Toolkit;
+
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
@@ -19,10 +22,12 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 
 /**
  * CutAction Class
  * @author Bruno JOFRET
+ * @author Calixte DENIZET
  *
  */
 public final class CutAction extends DefaultAction {
@@ -45,10 +50,15 @@ public final class CutAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
-        doc.mergeEditsBegin();
-        getEditor().getTextPane().getActionMap().get(DefaultEditorKit.cutAction).actionPerformed(null);
-        doc.mergeEditsEnd();
+        String selection = getEditor().getTextPane().getSelectedText();
+        if (selection != null) {
+            CopyAsHTMLAction.HTMLSelection sel = new CopyAsHTMLAction.HTMLSelection((ScilabEditorPane) getEditor().getTextPane(), selection, false);
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
+            ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+            doc.mergeEditsBegin();
+            getEditor().getTextPane().replaceSelection("");
+            doc.mergeEditsEnd();
+        }
     }
 
     /**

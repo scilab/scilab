@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,12 +38,12 @@ int get_sub_tics_property( sciPointObj * pobj )
   }
   else if ( sciGetEntityType (pobj) == SCI_SUBWIN )
   {
+    /* modified Paul Griffiths 10/2010 to address bug #7836 */
     double sub_ticks[3] ;
-    int i ;
-    for ( i = 0 ; i < 3 ; i++ )
-    {
-      sub_ticks[i] = pSUBWIN_FEATURE (pobj)->axes.nbsubtics[i];
-    }
+
+    /*Get the number of subticks. (This comes from the renderer.) */
+    sciGetNbSubticks( pobj, sub_ticks );
+
     if ( sciGetIs3d( pobj ) )
     {
       return sciReturnRowVector( sub_ticks, 3 ) ;

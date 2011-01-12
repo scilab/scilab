@@ -20,7 +20,7 @@ import javax.media.opengl.GL;
  * Class specialized in drawing plus marks
  * @author Jean-Baptiste Silvy
  */
-public class PlusMarkDrawer extends MarkDrawingStrategy {
+public class PlusMarkDrawer extends JOGLMarkDrawingStrategy {
 
 	/**
 	 * Default constructor

@@ -2077,7 +2077,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
     hilite_obj(path_out)
     //if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
     if or(path_in<>path_out) then hilite_obj(path_in),end
-    mess=msprintf(_('Hilited block(s) have connected ports \n'+..
+    mess=msprintf(_('Highlighted block(s) have connected ports \n'+..
 		    'with  sizes that cannot be determined by the context.\n'+..
 		    'What is the size of this link?'))
 
@@ -2114,11 +2114,11 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
       end
       hilite_obj(kk)
       if flagg==1 then
-	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	ninnout=evstr(dialog(['Highlighted block(s) have connected ports ';
 	    'with  sizes that cannot be determined by the context';
 	    'what is the size of this link'],'[1,1]'))
       else
-	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	ninnout=evstr(dialog(['Highlighted block(s) have connected ports ';
 	    'with  types that cannot be determined by the context';
 	    'what is the size of this link'],'1'))
       end
@@ -2146,11 +2146,11 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
       end
       hilite_obj(kk)
       if flagg==1 then
-	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	ninnout=evstr(dialog(['Highlighted block(s) have connected ports ';
 	    'with  sizes that cannot be determined by the context';
 	    'what is the size of this link'],'[1,1]'))
       else
-	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	ninnout=evstr(dialog(['Highlighted block(s) have connected ports ';
 	    'with  types that cannot be determined by the context';
 	    'what is the size of this link'],'1'))
       end

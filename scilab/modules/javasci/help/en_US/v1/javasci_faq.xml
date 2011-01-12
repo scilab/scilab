@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="javasci_faq_v1"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>javasci FAQ</refname>
+
+    <refpurpose>The frequently asked questions - Javasci v1. Deprecated: Please use <link linkend="javasci">Javasci v2</link></refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Questions / Answers</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Running an application based on javasci, I get the error
+          Exception in thread "main" java.lang.NoClassDefFoundError:
+          javasci/Scilab</para>
+        </question>
+
+        <answer>
+          <para>javasci.jar is probably not defined in the CLASSPATH. See
+<link linkend="compile_and_run_javasci_v1">Compile and run with javasci</link>
+          </para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>The native library javasci does not exist or cannot be found.</para>
+        </question>
+
+        <answer>
+          <para>java.library.path has not been set or cannot be found.
+<link linkend="compile_and_run_javasci_v1">Compile and run with javasci</link>
+          </para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+    <member>
+        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink> (this will open the web browser).
+       </member>
+      <member><link linkend="javasci">Javasci</link></member>
+      <member><link linkend="compile_and_run_javasci_v1">Compile and run with javasci</link></member>
+
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>

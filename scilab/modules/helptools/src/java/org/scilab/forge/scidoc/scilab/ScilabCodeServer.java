@@ -21,6 +21,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -205,7 +206,7 @@ public final class ScilabCodeServer {
 	    this.scs = scs;
 	    try {
 		in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-		out = new OutputStreamWriter(sock.getOutputStream());
+		out = new OutputStreamWriter(sock.getOutputStream(), Charset.forName("UTF-8"));
 	    } catch (IOException e) {
 		e.printStackTrace();
 	    }

@@ -66,8 +66,8 @@ public final class WebBrowser {
         }
 
         try {
-            if (url.charAt(0) == 'h') {
-                // We have something like http://...
+            if (url.charAt(0) == 'h' || url.charAt(0) == 'f') {
+                // We have something like http://... or file://
                 Desktop.getDesktop().browse(new URI(url));
             } else {
                 // We have <pierre.marechal@scilab.org>

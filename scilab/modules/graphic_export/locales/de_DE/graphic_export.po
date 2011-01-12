@@ -68,14 +68,14 @@ msgid ""
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
 "%s: falsche Anzahl an Eingangsargumenten: Funktion hat keine "
-"Eingangsargumente mit '%s' oder '%s' Treibern.\n"
+"Eingangsargumente mit ''%s'' oder ''%s'' Treibern.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
-"%s: falsche Anzahl an Eingangsargumenten: Zeichenkette mit '%s', '%s', '%s' "
+"%s: falsche Anzahl an Eingangsargumenten: Zeichenkette mit ''%s'', ''%s'', ''%s'' "
 "oder '%s' Treibern erwartet.\n"
 
 #, c-format
@@ -93,7 +93,7 @@ msgstr "%s: falscher Typ für Eingangsargument #%d: Integer erwartet.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
 
 #, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"
@@ -123,5 +123,5 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s', '%s', '%s' "
+"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' "
 "oder ''%s'' erwartet.\n"

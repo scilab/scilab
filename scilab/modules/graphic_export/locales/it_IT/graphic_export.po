@@ -26,8 +26,8 @@ msgstr "Il modulo di esportazione Scilab Graphic non è installato.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid "%s: OpenGL error during export.\n"
@@ -77,7 +77,7 @@ msgid ""
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: Function non ha "
-"argomenti in ingresso con i driver \"%s\" o \"%s\".\n"
+"argomenti in ingresso con i driver ''%s'' o ''%s''.\n"
 
 #, c-format
 msgid ""
@@ -85,7 +85,7 @@ msgid ""
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso: era attesa una stringa con i "
-"driver \"%s\",\"%s\",\"%s\" o \"%s\".\n"
+"driver ''%s'',''%s'',''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -107,8 +107,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"''%s''.\n"
 
 #, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"
@@ -140,4 +140,4 @@ msgid ""
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso "
-"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\" o \"%s\".\n"
+"''%s'',''%s'',''%s'',''%s'',''%s'' o ''%s''.\n"

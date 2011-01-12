@@ -36,17 +36,17 @@ public class ScilabContext implements ViewFactory {
     /**
      * Contains the colors of the different tokens
      */
-    Color[] tokenColors;
+    public Color[] tokenColors;
 
     /**
      * Contains the fonts of the different tokens
      */
-    Font[] tokenFonts;
+    public Font[] tokenFonts;
 
     /**
      * Contains the attrib (underline or stroke) of the different tokens
      */
-    int[] tokenAttrib;
+    public int[] tokenAttrib;
 
     private View view;
     private boolean plain;

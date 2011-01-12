@@ -70,7 +70,7 @@
     <para>Outras operações e funções usando este formato podem ficar
     sobrecarregadas com funções do Scilab usando o prefixo "%msp". Por
     exemplo, a função <literal>%msp_p(x)</literal> (ver diretório
-    SCIDIR/macros/percent) é usada para exibir tais objetos "tipo 7".</para>
+    SCI/modules/overloading/macros) é usada para exibir tais objetos "tipo 7".</para>
   </refsection>
 
   <refsection>

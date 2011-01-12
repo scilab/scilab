@@ -35,7 +35,7 @@
     <literal>x</literal> e <literal>y</literal> matrizes de razões de
     polinômios (<literal>r</literal>). As convenções de codificação são
     fornecidas pelo arquivo "leia-me" no diretório
-    <literal>SCIDIR/macros/percent</literal>.</para>
+    <literal>SCI/modules/overloading/macros</literal>.</para>
   </refsection>
 
   <refsection>

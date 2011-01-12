@@ -24,6 +24,6 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Returns <literal>%t</literal> if Scilab as been built  with the "Parallel Virtual Machine" interface or <literal>%f</literal> if not.</para>
+    <para>Returns <literal>%t</literal> if Scilab has been built  with the "Parallel Virtual Machine" interface or <literal>%f</literal> if not.</para>
   </refsection>
 </refentry>

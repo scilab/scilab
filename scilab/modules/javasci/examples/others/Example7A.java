@@ -11,6 +11,9 @@ import java.io.ObjectOutputStream;
 import javasci.SciDoubleArray;
 import javasci.Scilab;
 
+/**
+ * @deprecated
+ */
 public class Example7A {
 
     public static void main(String[] args)

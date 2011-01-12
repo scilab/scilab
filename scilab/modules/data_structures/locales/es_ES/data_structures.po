@@ -33,7 +33,7 @@ msgstr " Extracción de hipermatriz incompatible. "
 
 #, c-format
 msgid "%s: ''dims'' can not be used as a field name.\n"
-msgstr "%s: No puede usarse \"dims\" como nombre de campo.\n"
+msgstr "%s: No puede usarse ''dims'' como nombre de campo.\n"
 
 #, c-format
 msgid "%s: Number of entries does not match product of dimensions"
@@ -74,7 +74,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: field name ''%s'' defined twice.\n"
-msgstr "%s: el nombre del campo \"%s\" está definido dos veces.\n"
+msgstr "%s: el nombre del campo ''%s'' está definido dos veces.\n"
 
 #, c-format
 msgid "Bad (%d th) index in hypermatrix extraction. "

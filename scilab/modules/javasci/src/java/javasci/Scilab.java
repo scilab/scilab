@@ -19,24 +19,28 @@ package javasci;
 public class Scilab {
   /**
   * Initialize Scilab interface
+  * @deprecated
   */
   private static native void Initialize();
 
   /**
   * do a Scilab event 
   * See SCI/modules/javasci/examples/others/ExempleEvent.java 
+  * @deprecated
   * @see ExempleEvent
   */  
   public static native void Events();  
 
   /**
   * Detect if a Scilab graphic window is opened
+  * @deprecated
   * @return if have a graph or not
   */
   public static native boolean HaveAGraph();
 
   /**
   * Execute a command in Scilab
+  * @deprecated
   * @param job the scilab job
   * @return the result of the job
   */
@@ -44,6 +48,7 @@ public class Scilab {
 
   /**
   * Detect if a variable name exists in Scilab 
+  * @deprecated
   * @param varName the name of the variable 
   * @return if the variable exists or not into the current instance of Scilab
   */
@@ -70,6 +75,7 @@ public class Scilab {
 	 * <li> 128 : pointer 
 	 * </ul>
 	 *
+     * @deprecated
 	 * @param varName the name of the variable defined into Scilab
 	 * @return the code of the type of Scilab variable
 	 */  
@@ -77,12 +83,14 @@ public class Scilab {
 
   /**
   * Get Last Error Code
+  * @deprecated
   * @return the last error code (0 if no error)
   */  
   public static native int GetLastErrorCode();
 
   /**
   * Execute a scilab script .sce
+  * @deprecated
   * @param scriptFilename the path to the .sce file
   * @return The result of the operation
   */
@@ -92,6 +100,7 @@ public class Scilab {
 
   /**
   * When you finish to use Scilab Call scilab.quit, clean memory, ... 
+  * @deprecated
   * @return the result of the operation
   */  
   public static native boolean Finish();

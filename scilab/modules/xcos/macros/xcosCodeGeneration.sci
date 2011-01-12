@@ -26,7 +26,7 @@ function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
     error(msprintf(gettext("%s: Unable to import data from %s"), "xcosCodeGeneration", hdf5FileToLoad));
   end
   
-  ierr = execstr("[ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock42(scs_m, [], [], %f); ", 'errcatch');
+  ierr = execstr("[ok] = do_compile_superblock42(scs_m, [], [], %f); ", 'errcatch');
   if ierr <> 0 then
 	  [msg, err] = lasterror();
 	  disp(msg);

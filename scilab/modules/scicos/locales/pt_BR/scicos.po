@@ -470,7 +470,7 @@ msgstr "&Ferramentas"
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr ""
-"\"scicos\" não está mais disponível. Por favor, use \"xcos\" no lugar.\n"
+"''scicos'' não está mais disponível. Por favor, use ''xcos'' no lugar.\n"
 
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""

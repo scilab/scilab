@@ -21,55 +21,55 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.types.ScilabInteger;
 
 public class testReadWriteInteger {
-	private Scilab sci;
+    private Scilab sci;
 
-	/* 
-	 * This method will be called for each test.
-	 * with @AfterMethod, this ensures that all the time the engine is closed
-	 * especially in case of error.
-	 * Otherwise, the engine might be still running and all subsequent tests
-	 * would fail.
-	 */ 
-	@BeforeMethod
-	public void open() throws NullPointerException, JavasciException {
-		sci = new Scilab();
+    /* 
+     * This method will be called for each test.
+     * with @AfterMethod, this ensures that all the time the engine is closed
+     * especially in case of error.
+     * Otherwise, the engine might be still running and all subsequent tests
+     * would fail.
+     */ 
+    @BeforeMethod
+    public void open() throws NullPointerException, JavasciException {
+        sci = new Scilab();
         assert sci.open() == true;
-	}
+    }
 
-	@Test(sequential = true)
-	public void putAndGetInteger8UnsignedTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true)
+    public void putAndGetInteger8UnsignedTest() throws NullPointerException, JavasciException {
 
         byte [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
         sci.put("b",aOriginal);
-		//        assert sci.exec("somme = sum(a);") == true;
+        //        assert sci.exec("somme = sum(a);") == true;
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
         assert aFromScilab.equals(aOriginal);
 
-		// Test values
-		byte [][]z={{-1, -128, 0}};
-		ScilabInteger zMatrix = new ScilabInteger(z, true);
-		sci.put("z",zMatrix);
-		sci.exec("sumElements=sum(z);");
+        // Test values
+        byte [][]z={{-1, -128, 0}};
+        ScilabInteger zMatrix = new ScilabInteger(z, true);
+        sci.put("z",zMatrix);
+        sci.exec("sumElements=sum(z);");
 
         ScilabInteger zFromScilab = (ScilabInteger)sci.get("z");
         assert zFromScilab.equals(zMatrix);
     }
 
-	@Test(sequential = true)
-	public void putAndGetInteger8SignedTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true)
+    public void putAndGetInteger8SignedTest() throws NullPointerException, JavasciException {
         byte [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
-		//        assert sci.exec("somme = sum(a);") == true;
+        //        assert sci.exec("somme = sum(a);") == true;
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
-		byte [][]z={{-1, -128, 0}};
-		ScilabInteger zMatrix = new ScilabInteger(z, false);
-		sci.put("z",zMatrix);
+        byte [][]z={{-1, -128, 0}};
+        ScilabInteger zMatrix = new ScilabInteger(z, false);
+        sci.put("z",zMatrix);
         ScilabInteger zFromScilab = (ScilabInteger)sci.get("z");
         assert zFromScilab.equals(zMatrix);
 
@@ -77,8 +77,8 @@ public class testReadWriteInteger {
 
     }
 
-	@Test(sequential = true)
-	public void putAndGetInteger16UnsignedTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true)
+    public void putAndGetInteger16UnsignedTest() throws NullPointerException, JavasciException {
         short [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
         sci.put("b",aOriginal);
@@ -89,12 +89,12 @@ public class testReadWriteInteger {
 
     }
 
-	@Test(sequential = true)
-	public void putAndGetInteger16SignedTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true)
+    public void putAndGetInteger16SignedTest() throws NullPointerException, JavasciException {
         short [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
-		//        assert sci.exec("somme = sum(a);") == true;
+        //        assert sci.exec("somme = sum(a);") == true;
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
@@ -102,14 +102,14 @@ public class testReadWriteInteger {
 
     }
 
-	@Test(sequential = true)
-	public void putAndGetInteger32UnsignedTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true)
+    public void putAndGetInteger32UnsignedTest() throws NullPointerException, JavasciException {
 
         int [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
 
         sci.put("b",aOriginal);
-		//        assert sci.exec("somme = sum(a);") == true;
+        //        assert sci.exec("somme = sum(a);") == true;
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
@@ -117,12 +117,12 @@ public class testReadWriteInteger {
 
     }
 
-	@Test(sequential = true)
-	public void putAndGetInteger32SignedTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true)
+    public void putAndGetInteger32SignedTest() throws NullPointerException, JavasciException {
         int [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
-		//        assert sci.exec("somme = sum(a);") == true;
+        //        assert sci.exec("somme = sum(a);") == true;
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
@@ -131,8 +131,8 @@ public class testReadWriteInteger {
     }
 
     @Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
-	// Will be unblocked for Scilab 6
-	public void putAndGetInteger64UnsignedTest() throws NullPointerException, JavasciException {
+    // Will be unblocked for Scilab 6
+    public void putAndGetInteger64UnsignedTest() throws NullPointerException, JavasciException {
         long [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
         sci.put("b",aOriginal); /* Exception launched */
@@ -142,9 +142,9 @@ public class testReadWriteInteger {
         assert aFromScilab.equals(aOriginal);
     }
 
-	@Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
-	// Will be unblocked for Scilab 6
-	public void putAndGetInteger64SignedTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
+    // Will be unblocked for Scilab 6
+    public void putAndGetInteger64SignedTest() throws NullPointerException, JavasciException {
         long [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);  /* Exception launched */
@@ -154,13 +154,13 @@ public class testReadWriteInteger {
         assert aFromScilab.equals(aOriginal);
 
     }
-	
-	/**
-	 * See #open()
-	 */
-	@AfterMethod
-	public void close() {
-		sci.close();
-		
-	}
+    
+    /**
+     * See #open()
+     */
+    @AfterMethod
+    public void close() {
+        sci.close();
+        
+    }
 }

@@ -211,18 +211,18 @@ msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso \"%s\".\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso \"%s\".\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso ''%s'' o "
+"''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -372,33 +372,33 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" .\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' .\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"s\" o "
-"\"r\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso 's' o "
+"'r'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"u\" "
-"(maiuscolo) o \"l\" (minuscolo).\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso 'u' "
+"(maiuscolo) o 'l' (minuscolo).\n"
 
 #, c-format
 msgid ""

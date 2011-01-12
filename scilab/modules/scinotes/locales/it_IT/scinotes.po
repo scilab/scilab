@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2010-09-01 22:03+0000\n"
+"PO-Revision-Date: 2010-10-14 11:39+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
 msgstr ""
+"%s: L'argomento %d è di tipo sbagliato: era attesa una matrice o \"sola "
+"lettura\".\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
@@ -57,7 +59,7 @@ msgid "... file with echo"
 msgstr ""
 
 msgid "... file with no echo"
-msgstr ""
+msgstr "... file senza echo"
 
 msgid "... the selection with echo;... until the caret, with echo"
 msgstr ""
@@ -66,7 +68,7 @@ msgid "?"
 msgstr "?"
 
 msgid "About"
-msgstr "Riguardo a"
+msgstr "Informazioni"
 
 msgid "Absolute"
 msgstr "Assoluto"
@@ -129,7 +131,7 @@ msgid "Circular search"
 msgstr "Ricerca circolare"
 
 msgid "Clone and close tab in a new window"
-msgstr ""
+msgstr "Clona e chiudi la scheda in una nuova finestra"
 
 msgid "Clone tab in a new window"
 msgstr "Clona la scheda in una nuova finestra"
@@ -144,7 +146,7 @@ msgid "Close All But This"
 msgstr "Chiudi tutte tranne questa"
 
 msgid "Code Navigator"
-msgstr ""
+msgstr "Navigatore del codice"
 
 msgid "Color"
 msgstr "Colore"
@@ -186,7 +188,7 @@ msgid "Could not find the temporary file."
 msgstr "Non è possibile trovare il file temporaneo."
 
 msgid "Cursor Color"
-msgstr ""
+msgstr "Colore del cursore"
 
 msgid "Cut"
 msgstr "_Taglia"
@@ -219,7 +221,7 @@ msgid "Enter line number"
 msgstr "Inserire il numero della riga"
 
 msgid "Error while reading the String"
-msgstr ""
+msgstr "Errore durante la lettura della stringa"
 
 msgid "Evaluate Selection"
 msgstr "_Valuta la selezione"
@@ -264,7 +266,7 @@ msgid "Forward"
 msgstr "Avanti"
 
 msgid "Functions"
-msgstr ""
+msgstr "Funzioni"
 
 msgid "Generate comments for help_from_sci"
 msgstr ""

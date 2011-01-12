@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.nio.charset.Charset;
 
 /**
  * Class to handle a template
@@ -37,7 +38,7 @@ public class TemplateHandler {
     public void generateFileFromTemplate(String fileName, String id, String contents) {
         try {
             OutputStream out = new FileOutputStream(fileName);
-            OutputStreamWriter writer = new OutputStreamWriter(out);
+            OutputStreamWriter writer = new OutputStreamWriter(out, Charset.forName("UTF-8"));
 
             for (int i = 0; i < array.length; i += 2) {
                 writer.append(array[i]);

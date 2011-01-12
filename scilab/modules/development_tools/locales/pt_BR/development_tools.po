@@ -26,7 +26,7 @@ msgstr "%s não é um módulo ou uma caixa de ferramentas instalado"
 
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-msgstr "%s: O teste \"%s\" não existe ou não está disponível para leitura.\n"
+msgstr "%s: O teste ''%s'' não existe ou não está disponível para leitura.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."

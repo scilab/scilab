@@ -24,6 +24,7 @@ public class SciIntegerArray extends javasci.SciAbstractArray implements java.io
 
 	/**
 	 * Constructs a Scilab Integer Array from a other SciIntegerArray
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param intObj the SciIntegerArray you want to copy
 	 */
@@ -40,6 +41,7 @@ public class SciIntegerArray extends javasci.SciAbstractArray implements java.io
 	/**
 	 * Constructs a Scilab Integer Array 
 	 * All cells are initialized to 0
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 * @param r number of rows
 	 * @param c number of columns
@@ -64,6 +66,7 @@ public class SciIntegerArray extends javasci.SciAbstractArray implements java.io
 	
 	/**
 	 * Constructs a Scilab Integer Array from a java int array
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 * @param r number of rows
 	 * @param c number of columns
@@ -86,6 +89,7 @@ public class SciIntegerArray extends javasci.SciAbstractArray implements java.io
 	 * in Scilab A=[1,2;3,4];
 	 * A(1,1)=1 
 	 * A(2,2)=4 
+     * @deprecated
 	 * @param indr row indice 
 	 * @param indc column indice 
 	 * @return the int value at the position [indr, indc]
@@ -94,6 +98,7 @@ public class SciIntegerArray extends javasci.SciAbstractArray implements java.io
 
 	/**
 	 * Return the data
+     * @deprecated
 	 * @return the data
 	 */
 	public int[] getData() {

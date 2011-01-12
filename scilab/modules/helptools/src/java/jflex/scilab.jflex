@@ -35,27 +35,27 @@ import java.io.IOException;
     private boolean breakargs;
     private int whitesOnFirstLine;
     private int saveLexState;
-    
+
     private String id;
     private List<String> returnValues = new ArrayList();
     private List<String> argsValues = new ArrayList();
-    private List<String> localFun = new ArrayList();	    
-    
+    private List<String> localFun = new ArrayList();
+
     private AbstractScilabCodeHandler handler;
 
     public ScilabLexer(String primFile, String macroFile) {
        if (commands == null) {
-       	  commands = new HashSet();
-	  macros = new HashSet();
+          commands = new HashSet();
+          macros = new HashSet();
           loadNames(primFile, commands);
-       	  loadNames(macroFile, macros);
+          loadNames(macroFile, macros);
        }
     }
 
     public ScilabLexer(Set primitives, Set macros) {
        commands = primitives;
        this.macros = macros;
-    }	  
+    }
 
     private void loadNames(String file, Set set) {
        if (file == null) {
@@ -66,68 +66,68 @@ import java.io.IOException;
           input =  new BufferedReader(new FileReader(file));
           String line = null;
           while ((line = input.readLine()) != null) {
-	     set.add(line);
+             set.add(line);
           }
        } catch (IOException e) {
-       	  System.err.println(e);
+          System.err.println(e);
        }
        if (input != null) {
           try {
-	     input.close();
+             input.close();
           } catch (IOException e) {
-       	     System.err.println(e);
+             System.err.println(e);
           }
        }
     }
 
     private String trimEnd(String str) {
         int end = str.length() - 1;
-	int i = end;
+        int i = end;
         for (; i >= 0; i--) {
-	   char c = str.charAt(i);	
-	   if (c != ' ' && c != '\t' && c != '\r' && c != '\n') {
-	      break;
-	   }
+           char c = str.charAt(i);
+           if (c != ' ' && c != '\t' && c != '\r' && c != '\n') {
+              break;
+           }
         }
-	if (i != end) {
-	   return str.substring(0, i + 1);
-	}
+        if (i != end) {
+           return str.substring(0, i + 1);
+        }
 
-	return str;
+        return str;
     }
 
     public String convert(AbstractScilabCodeHandler h, String code) {
         Reader reader = new StringReader(trimEnd(code));
-	String str = convert(h, reader, true);
-	try {
-	  reader.close();
-	} catch (IOException e) { }
-	
-	return str;
+        String str = convert(h, reader, true);
+        try {
+          reader.close();
+        } catch (IOException e) { }
+
+        return str;
     }
 
     public String convert(AbstractScilabCodeHandler h, Reader code, boolean ret) {
         if (code == null) {
-	   return null;
-	} else {
-	   handler = h;
- 	   transposable = false;
+           return null;
+        } else {
+           handler = h;
+           transposable = false;
            breakargs = false;
-           breakstring = false;	
-	   whitesOnFirstLine = 0;      
-	   localFun.clear();
+           breakstring = false;
+           whitesOnFirstLine = 0;
+           localFun.clear();
            yyreset(code);
-	   yybegin(CLEANFIRST);
+           yybegin(CLEANFIRST);
            try {
-	       yylex();
-	   } catch (IOException e) {
-	       return null;
-	   }
-	   if (ret) {
-	       return h.toString();
+               yylex();
+           } catch (IOException e) {
+               return null;
            }
-	   return "";
-	}      
+           if (ret) {
+               return h.toString();
+           }
+           return "";
+        }
     }
 %}
 
@@ -166,6 +166,8 @@ special = "$" | ":" | {break}
 
 string = (([^\t\'\"\r\n<>&\.]*)|([\'\"]{2})|("."[^\t\'\"\r\n<>&\.]))+
 
+argstring = ([^ \t,;/\n\r<>&]*) | ("/"[^ \t,;/\n\r<>&]*)
+
 id = ([a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*)|("$"[a-zA-Z0-9_#!$?]+)
 
 dot = "."
@@ -188,43 +190,43 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
 %%
 
 <CLEANFIRST> {
-  {white}*{eol}+	         { }
+  {white}*{eol}+                 { }
 
   {white}                        {
-  				   whitesOnFirstLine = yylength();
-				   yybegin(YYINITIAL);
+                                   whitesOnFirstLine = yylength();
+                                   yybegin(YYINITIAL);
                                  }
 
-  .				 {
-  				   yypushback(1);
-				   yybegin(YYINITIAL);
-				 }
+  .                              {
+                                   yypushback(1);
+                                   yybegin(YYINITIAL);
+                                 }
 }
 
 <CLEAN> {
-  {eol}+	                 {
-				   handler.handleNothing("\n");
-  				 }
-
-  {white}                        {
-  				   int len = yylength() - whitesOnFirstLine;
-				   if (len > 0) {
-				      yypushback(len); 
-				   }
-				   yybegin(saveLexState);
+  {eol}+                         {
+                                   handler.handleNothing("\n");
                                  }
 
-  .				 {
-  				   yypushback(1);
-				   yybegin(saveLexState);
-				 }
+  {white}                        {
+                                   int len = yylength() - whitesOnFirstLine;
+                                   if (len > 0) {
+                                      yypushback(len);
+                                   }
+                                   yybegin(saveLexState);
+                                 }
+
+  .                              {
+                                   yypushback(1);
+                                   yybegin(saveLexState);
+                                 }
 }
 
 <YYINITIAL> {
-  {htmlentity}			 {
-  				   transposable = false;
-				   handler.handleDefault(yytext());   
-                                 } 
+  {htmlentity}                   {
+                                   transposable = false;
+                                   handler.handleDefault(yytext());
+                                 }
 
   {comment}                      {
                                    transposable = false;
@@ -234,173 +236,173 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
 
   {dottransp}                    {
                                    transposable = false;
-				   handler.handleOperator(".&#0039;");
+                                   handler.handleOperator(".&#0039;");
                                  }
 
   {lt}                           {
                                    transposable = false;
-				   handler.handleOperator("&#0060;");
+                                   handler.handleOperator("&#0060;");
                                  }
 
   {gt}                           {
                                    transposable = false;
-				   handler.handleOperator("&#0062;");
+                                   handler.handleOperator("&#0062;");
                                  }
 
   {leq}                          {
                                    transposable = false;
-				   handler.handleOperator("&#0060;=");
+                                   handler.handleOperator("&#0060;=");
                                  }
 
   {geq}                          {
                                    transposable = false;
-				   handler.handleOperator("&#0062;=");
-				 }
+                                   handler.handleOperator("&#0062;=");
+                                 }
 
   {neq}                          {
                                    transposable = false;
-				   handler.handleOperator("&#0060;&#0062;");
+                                   handler.handleOperator("&#0060;&#0062;");
                                  }
 
   {amp}                          {
                                    transposable = false;
-				   handler.handleOperator("&#0038;");
+                                   handler.handleOperator("&#0038;");
                                  }
 
   {operator}                     {
                                    transposable = false;
-				   handler.handleOperator(yytext());
+                                   handler.handleOperator(yytext());
                                  }
 
   {funb}                         {
                                    transposable = false;
-				   handler.handleFKeywords("function");
-				   handler.handleNothing(" ");
-				   handler.handleOpenClose("[");
+                                   handler.handleFKeywords("function");
+                                   handler.handleNothing(" ");
+                                   handler.handleOpenClose("[");
                                    yybegin(RETS);
                                  }
 
   {fun}                          {
                                    transposable = false;
-				   handler.handleFKeywords("function");
-				   handler.handleNothing(" ");
+                                   handler.handleFKeywords("function");
+                                   handler.handleNothing(" ");
                                    yybegin(FUNCTION);
                                  }
 
   {endfun}                       {
                                    transposable = false;
-				   returnValues.clear();
-				   argsValues.clear();
-				   handler.handleFKeywords("endfunction");
+                                   returnValues.clear();
+                                   argsValues.clear();
+                                   handler.handleFKeywords("endfunction");
                                  }
 
   {structureKwds}                {
                                    transposable = false;
-				   handler.handleSKeywords(yytext());
+                                   handler.handleSKeywords(yytext());
                                  }
 
   {controlKwds}                  {
                                    transposable = false;
-				   handler.handleCKeywords(yytext());
-				 }
+                                   handler.handleCKeywords(yytext());
+                                 }
 
   {cstes}                        {
                                    transposable = true;
-				   handler.handleConstants(yytext());
+                                   handler.handleConstants(yytext());
                                  }
 
   {id}                           {
                                    transposable = true;
                                    String str = yytext();
-				   if (commands.contains(str)) {
-				       yybegin(COMMANDS);
-				       handler.handleCommand(str);
+                                   if (commands.contains(str)) {
+                                       yybegin(COMMANDS);
+                                       handler.handleCommand(str);
                                    } else if (macros.contains(str)) {
                                        yybegin(COMMANDS);
-				       handler.handleMacro(str);
+                                       handler.handleMacro(str);
                                    } else if (localFun.contains(str)) {
-				        yybegin(COMMANDS);
-				        handler.handleFunctionId(str);
+                                        yybegin(COMMANDS);
+                                        handler.handleFunctionId(str);
                                    } else {
                                        if (returnValues.contains(str) || argsValues.contains(str)) {
-				           handler.handleInputOutputArgs(str);
+                                           handler.handleInputOutputArgs(str);
                                        }  else {
-				           handler.handleId(str);
-				       }
+                                           handler.handleId(str);
+                                       }
                                    }
-				 }
+                                 }
 
   {number}                       {
                                    transposable = true;
-				   handler.handleNumber(yytext());
+                                   handler.handleNumber(yytext());
                                  }
 
   {special}                      {
                                    transposable = false;
-				   handler.handleSpecial(yytext());
+                                   handler.handleSpecial(yytext());
                                  }
 
   {dot}                          {
                                    transposable = false;
                                    yybegin(FIELD);
-				   handler.handleOperator(yytext());
+                                   handler.handleOperator(yytext());
                                  }
 
   {quote}                        {
                                    if (transposable) {
-				       handler.handleOperator("&#0039;");
+                                       handler.handleOperator("&#0039;");
                                    } else {
                                        beginString = zzStartRead;
                                        yybegin(QSTRING);
-				       handler.handleString("&#0039;");
+                                       handler.handleString("&#0039;");
                                    }
                                  }
 
   {open}                         {
                                    transposable = false;
-				   handler.handleOpenClose(yytext());
+                                   handler.handleOpenClose(yytext());
                                  }
 
   {close}                        {
                                    transposable = true;
-				   handler.handleOpenClose(yytext());
+                                   handler.handleOpenClose(yytext());
                                  }
 
   {dquote}                       {
                                    transposable = false;
                                    beginString = zzStartRead;
                                    yybegin(QSTRING);
-				   handler.handleString("&#0034;");
+                                   handler.handleString("&#0034;");
                                  }
 
   " "                            {
-				   handler.handleNothing(" ");
+                                   handler.handleNothing(" ");
                                  }
 
   "\t"                           {
-				   handler.handleNothing("    ");
+                                   handler.handleNothing("    ");
                                  }
 
-  "\0"				 {
-  				   return;
-  				 }
+  "\0"                           {
+                                   return;
+                                 }
 
   .                              {
                                    transposable = false;
-				   handler.handleDefault(yytext());
+                                   handler.handleDefault(yytext());
                                  }
 
   {eol}                          {
-				   handler.handleNothing("\n");
-				   saveLexState = YYINITIAL;
-				   yybegin(CLEAN);
-  				 }
+                                   handler.handleNothing("\n");
+                                   saveLexState = YYINITIAL;
+                                   yybegin(CLEAN);
+                                 }
 
 }
 
 <FUNCTION> {
   "["                            {
-				   handler.handleOpenClose("[");
+                                   handler.handleOpenClose("[");
                                    yybegin(RETS);
                                  }
 
@@ -411,7 +413,7 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
 
   .                              |
   {eol}                          {
-				   yypushback(1);
+                                   yypushback(1);
                                    yybegin(YYINITIAL);
                                  }
 }
@@ -419,159 +421,159 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
 <TYPEID> {
   "="                            {
                                    returnValues.add(id);
-				   handler.handleInputOutputArgsDecl(id);
-				   handler.handleOperator("=");
+                                   handler.handleInputOutputArgsDecl(id);
+                                   handler.handleOperator("=");
                                    yybegin(FUNNAME);
                                  }
 
   "("                            {
-  				   localFun.add(id);
-				   handler.handleFunctionIdDecl(id);
-				   handler.handleOpenClose("(");
+                                   localFun.add(id);
+                                   handler.handleFunctionIdDecl(id);
+                                   handler.handleOpenClose("(");
                                    yybegin(ARGS);
                                  }
 
   [ \t]                          { }
 
   {funcomments}                  {
-  				   localFun.add(id);
-				   handler.handleFunctionIdDecl(id);
-				   yypushback(yylength());
-				   yybegin(YYINITIAL);
+                                   localFun.add(id);
+                                   handler.handleFunctionIdDecl(id);
+                                   yypushback(yylength());
+                                   yybegin(YYINITIAL);
                                  }
 
   .                              |
-  {eol}				 {
-				   yypushback(1);
+  {eol}                          {
+                                   yypushback(1);
                                    yybegin(YYINITIAL);
                                  }
 }
 
 <FUNNAME> {
   {id}                           {
-  				   id = yytext();
-  				   localFun.add(id);
-				   handler.handleFunctionIdDecl(id);
+                                   id = yytext();
+                                   localFun.add(id);
+                                   handler.handleFunctionIdDecl(id);
                                  }
 
   [ \t]                          { }
 
   "("                            {
-				   handler.handleOpenClose("(");
+                                   handler.handleOpenClose("(");
                                    yybegin(ARGS);
                                  }
 
   {funcomments}                  {
-				   yypushback(yylength());
-				   yybegin(YYINITIAL);
+                                   yypushback(yylength());
+                                   yybegin(YYINITIAL);
                                  }
 
   .                              |
-  {eol}				 {
-				   yypushback(1);
-				   yybegin(YYINITIAL);
+  {eol}                          {
+                                   yypushback(1);
+                                   yybegin(YYINITIAL);
                                  }
 }
 
 <ARGS> {
   {id}                           {
-  				   id = yytext();
+                                   id = yytext();
                                    argsValues.add(id);
-				   handler.handleInputOutputArgsDecl(id);
+                                   handler.handleInputOutputArgsDecl(id);
                                  }
 
   ","                            {
-				   handler.handleDefault(", ");
+                                   handler.handleDefault(", ");
                                  }
 
   {white}                        { }
 
   {break}                        {
-				   handler.handleSpecial(yytext());
-				   yybegin(BREAKINARGS);
+                                   handler.handleSpecial(yytext());
+                                   yybegin(BREAKINARGS);
                                  }
 
   ")"                            {
-				   handler.handleOpenClose(")");
-				   yybegin(YYINITIAL);
+                                   handler.handleOpenClose(")");
+                                   yybegin(YYINITIAL);
                                  }
 
   .                              |
   {eol}                          {
-  				   yypushback(1);
-				   yybegin(YYINITIAL);
+                                   yypushback(1);
+                                   yybegin(YYINITIAL);
                                  }
 }
 
 <BREAKINARGS> {
   " "                            {
-				   handler.handleNothing(" ");
+                                   handler.handleNothing(" ");
                                  }
 
   {comment}                      {
-  				   breakargs = true;
+                                   breakargs = true;
                                    yypushback(2);
                                    yybegin(COMMENT);
                                  }
 
-  {white}*{eol}		         {
-				   handler.handleNothing("\n");
-				   saveLexState = WHITESEOL;
-				   yybegin(CLEAN);
-				 }
+  {white}*{eol}                  {
+                                   handler.handleNothing("\n");
+                                   saveLexState = WHITESEOL;
+                                   yybegin(CLEAN);
+                                 }
 
   .                              {
-  				   yypushback(1);
-				   yybegin(YYINITIAL);
-                                 }  				 
+                                   yypushback(1);
+                                   yybegin(YYINITIAL);
+                                 }
 }
 
 <WHITESEOL> {
-  " "				 {
-				   handler.handleNothing(" ");
+  " "                            {
+                                   handler.handleNothing(" ");
                                  }
 
   .                              |
-  {eol}				 {
-  				   yypushback(1);
-				   yybegin(ARGS);
-				 }
+  {eol}                          {
+                                   yypushback(1);
+                                   yybegin(ARGS);
+                                 }
 }
 
 <RETS> {
   {id}                           {
-  				   id = yytext();
+                                   id = yytext();
                                    returnValues.add(id);
-				   handler.handleInputOutputArgsDecl(id);
+                                   handler.handleInputOutputArgsDecl(id);
                                  }
 
   ","                            {
-				   handler.handleDefault(", ");
+                                   handler.handleDefault(", ");
                                  }
 
   "]"                            {
-				   handler.handleOpenClose("]");
+                                   handler.handleOpenClose("]");
                                  }
 
   "["                            {
-				   handler.handleOpenClose("[");
+                                   handler.handleOpenClose("[");
                                  }
 
   "="                            {
-				   handler.handleOperator("=");
+                                   handler.handleOperator("=");
                                    yybegin(FUNNAME);
                                  }
 
   "..."                          {
-				   handler.handleNothing("...");
+                                   handler.handleNothing("...");
                                  }
 
-  {white}			 { }
+  {white}                        { }
 
   .                              |
   {eol}                          {
-  				   yypushback(1);
-				   yybegin(YYINITIAL);
+                                   yypushback(1);
+                                   yybegin(YYINITIAL);
                                  }
 }
 
@@ -583,12 +585,12 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
 
   " "                            {
                                    yybegin(COMMANDSWHITE);
-				   handler.handleNothing(" ");
+                                   handler.handleNothing(" ");
                                  }
 
   "\t"                           {
                                    yybegin(COMMANDSWHITE);
-				   handler.handleNothing("    ");
+                                   handler.handleNothing("    ");
                                  }
   .
                                  {
@@ -597,10 +599,10 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
                                  }
 
   {eol}                          {
-				   handler.handleNothing("\n");
-				   saveLexState = YYINITIAL;
-				   yybegin(CLEAN);
-  				 }
+                                   handler.handleNothing("\n");
+                                   saveLexState = YYINITIAL;
+                                   yybegin(CLEAN);
+                                 }
 }
 
 <COMMANDSWHITE> {
@@ -610,32 +612,37 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
                                    yybegin(COMMENT);
                                  }
 
-  ([^ \t,;/\n\r<>&]*) 		 |
-  ("/"[^ /<>&]*) 		 {
-				   handler.handleString(yytext());
+  {argstring}                    {
+                                   handler.handleString(yytext());
                                  }
 
   {lt}                           {
                                    transposable = false;
-				   handler.handleString("&#0060;");
+                                   handler.handleString("&#0060;");
                                  }
 
   {gt}                           {
                                    transposable = false;
-				   handler.handleString("&#0062;");
+                                   handler.handleString("&#0062;");
                                  }
 
   {amp}                          {
                                    transposable = false;
-				   handler.handleString("&#0038;");
+                                   handler.handleString("&#0038;");
                                  }
 
   " "                            {
-				   handler.handleNothing(" ");
+                                   handler.handleNothing(" ");
                                  }
 
   "\t"                           {
-				   handler.handleNothing("    ");
+                                   handler.handleNothing("    ");
+                                 }
+
+  {eol}                          {
+                                   handler.handleNothing("\n");
+                                   saveLexState = YYINITIAL;
+                                   yybegin(CLEAN);
                                  }
   .
                                  {
@@ -643,16 +650,11 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
                                    yybegin(YYINITIAL);
                                  }
 
-  {eol}                          {
-				   handler.handleNothing("\n");
-				   saveLexState = YYINITIAL;
-				   yybegin(CLEAN);
-  				 }
 }
 
 <FIELD> {
   {id}                           {
-				   handler.handleField(yytext());
+                                   handler.handleField(yytext());
                                  }
 
   .                              {
@@ -660,10 +662,10 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
                                    yybegin(YYINITIAL);
                                  }
 
- {eol}				 {
-				   handler.handleNothing("\n");
-				   saveLexState = YYINITIAL;
-				   yybegin(CLEAN);
+ {eol}                           {
+                                   handler.handleNothing("\n");
+                                   saveLexState = YYINITIAL;
+                                   yybegin(CLEAN);
                                  }
 }
 
@@ -672,112 +674,112 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
                                    yypushback(yylength());
                                    yybegin(BREAKSTRING);
                                    transposable = false;
-				   handler.handleString(yytext());
+                                   handler.handleString(yytext());
                                  }
 
   {lt}                           {
                                    transposable = false;
-				   handler.handleString("&#0060;");
+                                   handler.handleString("&#0060;");
                                  }
 
   {gt}                           {
                                    transposable = false;
-				   handler.handleString("&#0062;");
+                                   handler.handleString("&#0062;");
                                  }
 
   {amp}                          {
                                    transposable = false;
-				   handler.handleString("&#0038;");
+                                   handler.handleString("&#0038;");
                                  }
 
   {string}                       |
   "."                            {
-				   handler.handleString(yytext());
+                                   handler.handleString(yytext());
                                  }
 
   {quote}                        {
                                    transposable = false;
                                    yybegin(YYINITIAL);
-				   handler.handleString("&#0039;");
+                                   handler.handleString("&#0039;");
                                  }
 
   {dquote}                       {
                                    transposable = false;
                                    yybegin(YYINITIAL);
-				   handler.handleString("&#0034;");
+                                   handler.handleString("&#0034;");
                                  }
 
-  "\0"				 {
-  				   return;
-  				 }
+  "\0"                           {
+                                   return;
+                                 }
 
   .                              {
-				   handler.handleString(yytext());
+                                   handler.handleString(yytext());
                                  }
 
- {eol}				 {
-				   handler.handleNothing("\n");
-				   saveLexState = YYINITIAL;
-				   yybegin(CLEAN);
+ {eol}                           {
+                                   handler.handleNothing("\n");
+                                   saveLexState = YYINITIAL;
+                                   yybegin(CLEAN);
                                  }
 }
 
 <COMMENT> {
   [^&<>\'\"\n\0]*                {
-				   handler.handleComment(yytext());
+                                   handler.handleComment(yytext());
                                  }
 
   {lt}                           {
-				   handler.handleComment("&#0060;");
+                                   handler.handleComment("&#0060;");
                                  }
 
   {gt}                           {
-				   handler.handleComment("&#0062;");
+                                   handler.handleComment("&#0062;");
                                  }
 
   {amp}                          {
-				   handler.handleComment("&#0038;");
+                                   handler.handleComment("&#0038;");
                                  }
 
   {quote}                        {
-				   handler.handleComment("&#0039;");
+                                   handler.handleComment("&#0039;");
                                  }
 
   {dquote}                       {
-				   handler.handleComment("&#0034;");
+                                   handler.handleComment("&#0034;");
                                  }
 
   {eol}                          {
-  				   if (breakstring) {
-				     saveLexState = QSTRING;
-				     breakstring = false;
-				   } else if (breakargs) {
-				     saveLexState = WHITESEOL;
-				     breakargs = false;
-				   } else {
-				     saveLexState = YYINITIAL;
-				   }
-				   handler.handleNothing("\n");
-				   yybegin(CLEAN);
+                                   if (breakstring) {
+                                     saveLexState = QSTRING;
+                                     breakstring = false;
+                                   } else if (breakargs) {
+                                     saveLexState = WHITESEOL;
+                                     breakargs = false;
+                                   } else {
+                                     saveLexState = YYINITIAL;
+                                   }
+                                   handler.handleNothing("\n");
+                                   yybegin(CLEAN);
                                  }
 
-  "\0"				 {
-  				   return;
-  				 }
+  "\0"                           {
+                                   return;
+                                 }
 }
 
 <BREAKSTRING> {
   {break}                        {
                                    breakstring = true;
-				   handler.handleSpecial(yytext());
+                                   handler.handleSpecial(yytext());
                                  }
 
   " "                            {
-				   handler.handleNothing(" ");
+                                   handler.handleNothing(" ");
                                  }
 
   "\t"                           {
-				   handler.handleNothing("    ");
+                                   handler.handleNothing("    ");
                                  }
 
   {comment}                      {
@@ -787,23 +789,23 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
                                  }
 
   .                              {
-				   handler.handleDefault(yytext());
+                                   handler.handleDefault(yytext());
                                  }
 
-  {eol}                          { 				   
-				   if (breakstring) {
-				      breakstring = false;
-				      saveLexState = QSTRING;
-				   } else {
-				      saveLexState = YYINITIAL;
-				   }
-				   handler.handleNothing("\n");
-				   yybegin(CLEAN);
+  {eol}                          {
+                                   if (breakstring) {
+                                      breakstring = false;
+                                      saveLexState = QSTRING;
+                                   } else {
+                                      saveLexState = YYINITIAL;
+                                   }
+                                   handler.handleNothing("\n");
+                                   yybegin(CLEAN);
                                  }
 
-  "\0"				 {
-  				   return;
-  				 }
+  "\0"                           {
+                                   return;
+                                 }
 }
 
 <<EOF>>                          {

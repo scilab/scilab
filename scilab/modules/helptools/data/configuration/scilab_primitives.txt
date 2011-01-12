@@ -328,7 +328,6 @@ matfile_varwrite
 matrix
 max
 maxfiles
-maxi
 mclearerr
 mclose
 meof
@@ -341,7 +340,6 @@ mgeti
 mgetl
 mgetstr
 min
-mini
 mlist
 mode
 model2blk
@@ -370,10 +368,6 @@ notify
 number_properties
 ode
 odedc
-oldbesseli
-oldbesselj
-oldbesselk
-oldbessely
 ones
 opentk
 optim

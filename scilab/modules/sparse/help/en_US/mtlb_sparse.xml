@@ -52,7 +52,7 @@
      Other operations and functions using this format
     can be overloaded with Scilab functions using the prefix "%msp". 
     For instance the function 
-    <literal>%msp_p(x)</literal> (see SCIDIR/macros/percent directory) is used to
+    <literal>%msp_p(x)</literal> (see SCI/modules/overloading/macros directory) is used to
     display such "type 7" objects.</para>
   </refsection>
   <refsection>

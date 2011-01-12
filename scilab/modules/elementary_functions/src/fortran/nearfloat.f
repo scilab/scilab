@@ -1,5 +1,6 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) Bruno Pincon
+C Copyright (C) 2010 - DIGITEO - Michael Baudin
 c 
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -134,7 +135,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *        4/ now compute the near float
          if (d*sign_x .lt. 0.d0) then
 *           retrieve one ULP to m but there is a special case
-            if ( m .eq. 1.d0 ) then
+            if ( m .eq. 1.d0 .and. xa .ne. RMIN ) then
 *              this is the special case : we must retrieve ULP / BASE
                nearfloat = sign_x*( m - (ULP/BASE) )*ep
             else

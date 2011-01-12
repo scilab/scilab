@@ -562,25 +562,27 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	    if (objs.get(i) instanceof BasicBlock) {
 		BasicBlock block = (BasicBlock) objs.get(i);
 		for (int j = 0; j < block.getChildCount(); j++) {
-		    BasicPort port = (BasicPort) block.getChildAt(j);
-		    if (port.getEdgeCount() != 0) {
-			BasicLink link = (BasicLink) port.getEdgeAt(0);
-			if (block.getChildAt(j) instanceof InputPort
-				|| block.getChildAt(j) instanceof ControlPort) {
-			    BasicBlock source = (BasicBlock) (link.getSource()
-				    .getParent());
-			    if (!objs.contains(source)) {
-				BasicPort copiedPort = (BasicPort) ((BasicBlock) copiedCells.get(i)).getChildAt(j);
-				breaks.add(new BrokenLink(link, copiedPort, source.getGeometry(), false));
-			    }
-			} else { // OutputPort or CommandPort
-			    BasicBlock target = (BasicBlock) (link.getTarget().getParent());
-			    if (!objs.contains(target)) {
-				BasicPort copiedPort = (BasicPort) ((BasicBlock) copiedCells.get(i)).getChildAt(j);
-				breaks.add(new BrokenLink(link, copiedPort, target.getGeometry(), true));
+			if (block.getChildAt(j) instanceof BasicPort) {
+			    BasicPort port = (BasicPort) block.getChildAt(j);
+			    if (port.getEdgeCount() != 0) {
+				BasicLink link = (BasicLink) port.getEdgeAt(0);
+				if (block.getChildAt(j) instanceof InputPort
+					|| block.getChildAt(j) instanceof ControlPort) {
+				    BasicBlock source = (BasicBlock) (link.getSource()
+					    .getParent());
+				    if (!objs.contains(source)) {
+					BasicPort copiedPort = (BasicPort) ((BasicBlock) copiedCells.get(i)).getChildAt(j);
+					breaks.add(new BrokenLink(link, copiedPort, source.getGeometry(), false));
+				    }
+				} else { // OutputPort or CommandPort
+				    BasicBlock target = (BasicBlock) (link.getTarget().getParent());
+				    if (!objs.contains(target)) {
+					BasicPort copiedPort = (BasicPort) ((BasicBlock) copiedCells.get(i)).getChildAt(j);
+					breaks.add(new BrokenLink(link, copiedPort, target.getGeometry(), true));
+				    }
+				}
 			    }
 			}
-		    }
 		}
 	    }
 	}

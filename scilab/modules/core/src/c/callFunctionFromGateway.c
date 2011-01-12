@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-void callFunctionFromGateway(gw_generic_table *Tab,int sizeTab)
+void callFunctionFromGateway(gw_generic_table *Tab, int sizeTab)
 {
 	if ( (Fin > sizeTab) || (Fin < 1) )
 	{
@@ -29,20 +29,29 @@ void callFunctionFromGateway(gw_generic_table *Tab,int sizeTab)
 	{
 #ifdef _MSC_VER
 #ifndef _DEBUG
-	_try
-	{
-		if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) ((char*)Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-	}
-	_except (EXCEPTION_EXECUTE_HANDLER)
-	{	
-		ExceptionMessage(GetExceptionCode(),(char*)Tab[Fin-1].name);
-	}
+    _try
+    {
+        if (*(Tab[Fin-1].f) != NULL)
+        {
+            (*(Tab[Fin-1].f)) ((char*)Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+        }
+    }
+    _except (EXCEPTION_EXECUTE_HANDLER)
+    {    
+        ExceptionMessage(GetExceptionCode(),(char*)Tab[Fin-1].name);
+    }
 #else
-	if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) ((char*)Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+    if (*(Tab[Fin-1].f) != NULL)
+    {
+        (*(Tab[Fin-1].f)) ((char*)Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+    }
 #endif
 #else
-	if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+    if (*(Tab[Fin-1].f) != NULL)
+    {
+        (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+    }
 #endif
-	}
+    }
 }
 /*--------------------------------------------------------------------------*/

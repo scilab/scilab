@@ -145,7 +145,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         // style by default
         block_img = TMPDIR + "/" + scs_m.gui + ".svg";
         style = "noLabel=1;image=file:" + block_img + ";";
-        status = generateBlockImage(scs_m, TMPDIR, imageType="svg");
+        status = generateBlockImage(scs_m, TMPDIR, imageType="svg", withPort=%f);
         if ~status then
             error(msprintf(gettext("%s: Unable to generate the image ""%s"".\n"), "xcosPalAddBlock", block_img));
         end

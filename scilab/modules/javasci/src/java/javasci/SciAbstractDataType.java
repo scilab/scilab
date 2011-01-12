@@ -26,6 +26,7 @@ public abstract class SciAbstractDataType {
 	/**
 	 * Return the description of the DataType
 	 * Description must set in any class which extends SciAbstractDataType
+     * @deprecated
 	 * @return the Description
 	 *
 	 */
@@ -33,6 +34,7 @@ public abstract class SciAbstractDataType {
 
 	/**
 	 * Returns the name of the Scilab variable
+     * @deprecated
 	 * @return the name
 	 */
 	public String getName()	{
@@ -41,6 +43,7 @@ public abstract class SciAbstractDataType {
 
 	/**
 	 * Load the data from Scilab
+     * @deprecated
 	 */
 	public void Get() {
 		sciArray.Get();
@@ -48,6 +51,7 @@ public abstract class SciAbstractDataType {
 	
 	/**
 	 * Send the data to Scilab 
+     * @deprecated
 	 */
 	public void Send() {
 		sciArray.Send();
@@ -67,6 +71,7 @@ public abstract class SciAbstractDataType {
 
 	/** 
 	 * Display the variable 
+     * @deprecated
 	 */
 	public void disp() {
 		Get();

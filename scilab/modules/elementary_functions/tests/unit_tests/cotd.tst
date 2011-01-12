@@ -1,11 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
+
+
 
 // Maple code used to create reference
 // Digits := 40:
@@ -374,13 +377,23 @@ ref=[-179, 57.2899616307594246872781475371
 179, -57.2899616307594246872781475371
 ];
 
-x=ref(:,1);e=max(abs((ref(:,2)-cotd(x))./ref(:,2)));
-if e>2*eps then pause,end
-x=ref(:,1)+2^6*360; e=max(abs((ref(:,2)-cotd(x))./ref(:,2)));
-if e>2*eps then pause,end
-
-x=ref(:,1)+2^10*360; e=max(abs((ref(:,2)-cotd(x))./ref(:,2)));
-if e>2*eps then pause,end
+x=ref(:,1);
+expected = ref(:,2);
+computed = cotd(x);
+e=max(abs((expected-computed)./expected));
+if e>100*eps then pause,end
+//
+x=ref(:,1)+2^6*360; 
+expected = ref(:,2);
+computed = cotd(x);
+e=max(abs((expected-computed)./expected));
+if e>100*eps then pause,end
+//
+x=ref(:,1)+2^10*360; 
+expected = ref(:,2);
+computed = cotd(x);
+e=max(abs((expected-computed)./expected));
+if e>100*eps then pause,end
 
 if  cotd(-180)<>Inf then pause,end
 if  cotd(+180)<>Inf then pause,end

@@ -312,8 +312,8 @@ msgstr "%s: Zły typ parametrów wejściowych: Oczekiwano ciągów znaków.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano \"\" albo "
-"\"[]\"\n"
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '''' albo "
+"''[]''\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"

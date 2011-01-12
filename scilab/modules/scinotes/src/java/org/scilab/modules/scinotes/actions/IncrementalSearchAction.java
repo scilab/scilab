@@ -43,6 +43,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 
 /**
@@ -173,7 +174,8 @@ public final class IncrementalSearchAction extends DefaultAction {
          */
         public void focusGained(FocusEvent e) {
             if (text == null) {
-                text = getEditor().getTextPane().getText().toLowerCase();
+                ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+                text = doc.getText().toLowerCase();
             }
             field.select(0, field.getText().length());
         }
@@ -301,7 +303,8 @@ public final class IncrementalSearchAction extends DefaultAction {
                             int start;
                             String str = field.getText();
 
-                            String txt = getEditor().getTextPane().getText().toLowerCase();
+                            ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+                            String txt = doc.getText().toLowerCase();
 
                             if (str != null) {
                                 str = str.toLowerCase();

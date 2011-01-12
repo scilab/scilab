@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Class containing drivers independent routines for a subwin object
  * 
  * This file must be used under the terms of the CeCILL.
@@ -357,6 +358,24 @@ void ConcreteDrawableSubwin::getZTicksPos(double ticksPositions[], char ** ticks
   }
 }
 /*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::getNbSubticksPerGrad(double nbsubtics[3])
+{
+  // to be sure that the inner structure is up to date.
+  update();
+
+  // Initialize all elements to -1.
+  nbsubtics[0] = nbsubtics[1] = nbsubtics[2] = -1;
+
+  if (m_pXTicksDrawer != NULL)
+    nbsubtics[0] =  m_pXTicksDrawer->getInitNbSubticksPerGrad();
+
+  if (m_pYTicksDrawer != NULL)
+    nbsubtics[1] =  m_pYTicksDrawer->getInitNbSubticksPerGrad();
+
+  if (m_pZTicksDrawer != NULL)
+    nbsubtics[2] =  m_pZTicksDrawer->getInitNbSubticksPerGrad();
+}
+/*------------------------------------------------------------------------------------------*/
 bool ConcreteDrawableSubwin::getXAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3])
 {
 
@@ -446,7 +465,7 @@ void ConcreteDrawableSubwin::drawTicks(void)
   double distToYaxis = 0.0;
   double distToZaxis = 0.0;
   
-  // Z ticks are deeper qo draw them before
+  // Z ticks are deeper so draw them before
   if (m_pZTicksDrawer != NULL)
   {
     distToZaxis = m_pZTicksDrawer->draw();

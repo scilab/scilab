@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Interface functions between between GetProperty functions and the C++/Java part of module 
  * 
  * This file must be used under the terms of the CeCILL.
@@ -117,6 +118,11 @@ BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure)
 void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4])
 {
   getFigureDrawer(pFigure)->getViewport(viewport);
+}
+/*---------------------------------------------------------------------------------*/
+void sciGetJavaNbSubticks(sciPointObj * pSubwin, double nbsubtics[3])
+{
+  getSubwinDrawer(pSubwin)->getNbSubticksPerGrad( nbsubtics );
 }
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaNbXTicks(sciPointObj * pSubwin)

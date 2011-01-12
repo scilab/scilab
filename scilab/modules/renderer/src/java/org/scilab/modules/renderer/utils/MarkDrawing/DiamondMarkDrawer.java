@@ -20,7 +20,7 @@ import javax.media.opengl.GL;
  * Class specialized in drawing diamond marks
  * @author Jean-Baptiste Silvy
  */
-public class DiamondMarkDrawer extends MarkDrawingStrategy {
+public class DiamondMarkDrawer extends JOGLMarkDrawingStrategy {
 
 	/**
 	 * Default constructor

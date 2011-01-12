@@ -86,10 +86,6 @@ public class OpenAction extends DefaultAction {
         if (retval == JFileChooser.APPROVE_OPTION) {
             File[] f = fileChooser.getSelectedFiles();
             for (int i = 0; i < f.length; i++) {
-                ConfigManager.saveLastOpenedDirectory(f[i].getPath());
-                ConfigSciNotesManager.saveToRecentOpenedFiles(f[i].getPath());
-
-                getEditor().setTitle(f[i].getPath() + " - " + SciNotesMessages.SCILAB_EDITOR);
                 RecentFileAction.updateRecentOpenedFilesMenu(getEditor());
                 getEditor().readFile(f[i]);
             }

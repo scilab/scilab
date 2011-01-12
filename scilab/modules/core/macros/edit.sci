@@ -52,8 +52,8 @@ function edit(macroname,ueditor)
         finded = isfile(fname);
       elseif isdef(macroname)
         if typeof(evstr(macroname)) == "function" then
-          // tour de force to keep the original function name
-          execstr("txt = tree2code(macr2tree(" + macroname + "), %t)");
+          txt = fun2string(evstr(macroname));
+          txt = strsubst(txt, "=ans(", " = " + macroname + "(");
           fname = tmpfile;
           mputl(txt, fname);
           finded = %t;

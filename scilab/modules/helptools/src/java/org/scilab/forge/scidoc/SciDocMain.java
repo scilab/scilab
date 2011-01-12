@@ -11,9 +11,12 @@
  */
 
 package org.scilab.forge.scidoc;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +33,9 @@ import org.scilab.forge.scidoc.external.HTMLSVGHandler;
  */
 public final class SciDocMain {
 
+    private static final String SCI = ScilabConstants.SCI.getPath();
+    private static final String VERSION = SCI + "/Version.incl";
+
     private String input;
     private String outputDirectory;
     private String language;
@@ -39,8 +45,6 @@ public final class SciDocMain {
     private String scimacro;
     private String version;
     private String imagedir;
-    private static final String SCI = ScilabConstants.SCI.getPath();
-
 
     /**
      * Set the directory where files must be exported
@@ -86,7 +90,7 @@ public final class SciDocMain {
         Map<String, String> map = parseCommandLine(args);
         if (map.containsKey("help")) {
             System.out.println("Usage scidoc [OPTION]... file");
-            System.out.println("SciDoc is a tool to generate html or javahelp files from DocBook");
+            System.out.println("SciDoc is a tool to generate html, chm or javahelp files from DocBook");
             System.out.println("");
             System.out.println("-input        Input DocBook file");
             System.out.println("-output       The output directory");
@@ -95,6 +99,7 @@ public final class SciDocMain {
             System.out.println("              the path is relative to output");
             System.out.println("-javahelp     No expected argument, just precise the kind of output");
             System.out.println("-html         No expected argument, just precise the kind of output (default)");
+            System.out.println("-web          No expected argument, just precise the kind of output");
             System.out.println("-sciprim      A file containing the list of the Scilab primitives");
             System.out.println("-scimacro     A file containing the list of the Scilab macros");
             System.out.println("-version      A string with the version of Scilab");
@@ -135,11 +140,7 @@ public final class SciDocMain {
         version = map.get("version");
         imagedir = map.get("imagedir");
 
-        if (map.containsKey("javahelp")) {
-            process(input, "");
-        } else {
-            process(input, "");
-        }
+		process(input, "");
     }
 
     /* Stylesheet is useless and just kept to keep the consistency with
@@ -149,22 +150,29 @@ public final class SciDocMain {
         /* TODO: make this file generated at build time of Scilab */
         sciprim = SCI + "/modules/helptools/data/configuration/scilab_primitives.txt";
         scimacro = SCI + "/modules/helptools/data/configuration/scilab_macros.txt";
-        /* Detect this somewhere */
-        version = "Scilab 5.3.0 beta4";
+        version = getVersion(version);
         imagedir = ".";//the path must be relative to outputDirectory
 
+
         if (!new File(sourceDoc).isFile()) {
-            //                  throw new FileNotFoundException("Could not find master document: " + sourceDoc);
+            System.err.println("Could not find master document: " + sourceDoc);
+			return null;
         }
+
+        if (!new File(template).isFile()) {
+            System.err.println("Could not find template document: " + template);
+			return null;
+        }
+
         boolean checkLast = false;//Boolean.parseBoolean(map.get("checklast"));
         try {
             DocbookTagConverter converter = null;
             if (format.equalsIgnoreCase("javahelp")) {
                 converter = new JavaHelpDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast);
-            } else if (format.equalsIgnoreCase("html")) {
+            } else if (format.equalsIgnoreCase("html") || format.equalsIgnoreCase("web")) {
                 converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast);
             } else if (format.equalsIgnoreCase("chm")) {
-                converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast);
+                converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast, language);
             }
 
             converter.registerExternalXMLHandler(new HTMLMathMLHandler(outputDirectory, imagedir));
@@ -180,10 +188,35 @@ public final class SciDocMain {
             System.err.println("An error occured during the conversion:\n");
             e.printStackTrace();
         }
+
         return outputDirectory;
     }
 
+    /**
+     * Get the version in Version.incl if ver==null.
+     * @param ver the actual version
+     * @return the version in Version.incl
+     */
+    private static String getVersion(String ver) {
+        String ret = "";
+        if (ver == null) {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(VERSION));
+                ret = reader.readLine().split("=")[1];
+                reader.close();
+            } catch (IOException e) { }
+        } else {
+            ret = ver;
+        }
 
+        return ret;
+    }
+
+    /**
+     * Parse the command line
+     * @param args the command line arguments
+     * @return a map argsname-&gt;argsvalue
+     */
     private static Map<String, String> parseCommandLine(String[] args) {
         String option = null;
         boolean in = false;

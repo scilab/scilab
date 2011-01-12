@@ -86,7 +86,7 @@ msgstr "%s: ''%s'' n''est pas installé.\n"
 
 #, c-format
 msgid "%s: An error occurred while loading ''%s-%s'':\n"
-msgstr "%s : Une erreur est survenue au cours du chargement de \"%s-%s\":\n"
+msgstr "%s : Une erreur est survenue au cours du chargement de ''%s-%s'':\n"
 
 #, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
@@ -598,7 +598,7 @@ msgid ""
 "''http://'',''ftp://'' or ''file://'' expected.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n° %d: Chaîne commençant par "
-"\"http://\", \"ftp://\" ou \"file://\" attendue.\n"
+"''http://'', ''ftp://'' ou ''file://'' attendue.\n"
 
 #, c-format
 msgid ""

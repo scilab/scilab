@@ -29,7 +29,6 @@ function %diagram_xcos(scs_m)
     end
 
     // export to hdf5
-    scs_m = scs_m; // #7242 workaround
     if export_to_hdf5(tempfile, "scs_m") then
         // load the exported diagram
         xcos(tempfile);

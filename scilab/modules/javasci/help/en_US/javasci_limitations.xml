@@ -35,23 +35,14 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
+    <member>
+        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink> (this will open the web browser).
+       </member>
       <member>
-        <link linkend="compile_and_run_javasci">Compile and run with Javasci</link>
+        <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci</link>
       </member>
       <member>
-        <link linkend="javasci_faq">Javasci FAQ</link>
-      </member>
-      <member>
-        <link linkend="SciDouble">SciDouble</link>
-      </member>
-      <member>
-        <link linkend="SciDoubleArray">SciDoubleArray</link>
-      </member>
-      <member>
-        <link linkend="SciString">SciString</link>
-      </member>
-      <member>
-        <link linkend="SciStringArray">SciStringArray</link>
+        <link linkend="javasci_faq_v2">Javasci FAQ</link>
       </member>
     </simplelist>
   </refsection>

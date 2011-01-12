@@ -396,7 +396,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: The value of the ''OutputFcn'' option is neither a function nor a list."
-msgstr "%s: Wartość z opcji \"OutputFcn'' nie jest ani funkcją, ani listą."
+msgstr "%s: Wartość z opcji ''OutputFcn'' nie jest ani funkcją, ani listą."
 
 #, c-format
 msgid ""

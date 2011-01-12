@@ -74,7 +74,7 @@ x = umf_lusolve(Lup,b)
 x = umf_lusolve(Lup,b,"A''x=b")
 norm(A'*x - b)
 
-// don't forget to clear memory with
+// do not forget to clear memory with
 umf_ludel(Lup)
 
 // a real (but small)  example
@@ -97,7 +97,7 @@ norm(A'*x - b)
 x = umf_lusolve(Lup,b,"A''x=b",A);  // with refinement
 norm(A'*x - b)
 
-// don't forget to clear memory
+// do not forget to clear memory
 umf_ludel(Lup)
  ]]></programlisting>
   </refsection>

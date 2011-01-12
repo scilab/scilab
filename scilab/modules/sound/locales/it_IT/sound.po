@@ -52,7 +52,7 @@ msgstr "%s: Errore di allocazione della memoria.\n"
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è sbagliato: era atteso \"%s\" o \"%s\".\n"
+"%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -165,7 +165,7 @@ msgid ""
 "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
 msgstr ""
 "La Mu-law può essere usata solo con dati a 8 bit.Usare invece "
-"metodo=\"lineare\""
+"metodo=''lineare''"
 
 msgid "Requires 2-D values only."
 msgstr "Richiede solo valori 2-D"

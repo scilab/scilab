@@ -83,11 +83,10 @@ msgstr "%s: Brak pamięci.\n"
 #, c-format
 msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr ""
-"%s: Brak znalezionych wyników dla właściwości \"%s\" oraz wartości \"%s\".\n"
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr "%s: Nie znaleziono wyników.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
@@ -191,7 +190,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Nieprawidłowy  rozmiar parametru wejściowego nr %d: oczekiwano uchwytu "
-"(handle) typu \"Figure\" lub wartości rzeczywistej.\n"
+"(handle) typu ''Figure'' lub wartości rzeczywistej.\n"
 
 #, c-format
 msgid ""
@@ -206,7 +205,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano "
-"rzeczywistego skalara lub uchwytu (handle) typu \"Figure\".\n"
+"rzeczywistego skalara lub uchwytu (handle) typu 'Figure'.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -396,7 +395,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości "
-"rzeczywistej lub uchwytu (handle) typu \"Figure\".\n"
+"rzeczywistej lub uchwytu (handle) typu Figure.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
@@ -508,8 +507,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
 "''callback''.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: musi być \"label\", "
-"''icon'' lub ''callback\".\n"
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: musi być ''label'', "
+"''icon'' lub ''callback''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
@@ -520,8 +519,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla rodzica: Oczekiwane typy \"Figure\" lub "
-"\"uimenu\".\n"
+"%s: Nieprawidłowy typ dla rodzica: Oczekiwane typy Figure lub "
+"uimenu.\n"
 
 #, c-format
 msgid ""
@@ -551,8 +550,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwany \"%s\" lub "
-"\"%s\" .\n"
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwany ''%s'' lub "
+"''%s'' .\n"
 
 #, c-format
 msgid ""
@@ -1576,7 +1575,7 @@ msgstr "Tak"
 
 #, c-format
 msgid "You clicked on menu ''%s''."
-msgstr "Klikneleś na menu \"%s''."
+msgstr "Klikneleś na menu ''%s''."
 
 #, c-format
 msgid "You selected ''%s''."
