@@ -234,7 +234,7 @@ images/palettes/CUMSUM.png \
 images/palettes/CurrentSensor.png \
 images/palettes/CURV_f.png \
 images/palettes/CVS.png \
-images/palettes/DEADBAND_modif.png \
+images/palettes/DEADBAND.png \
 images/palettes/DEBUG_SCICOS.png \
 images/palettes/DELAY_f.png \
 images/palettes/DELAYV_f.png \
