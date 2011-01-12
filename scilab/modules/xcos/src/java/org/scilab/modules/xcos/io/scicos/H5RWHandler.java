@@ -310,7 +310,9 @@ public class H5RWHandler {
 
 			H5Write.closeFile(fileId);
 		} catch (HDF5Exception e) {
+			// important error which need a backtrace.
 			LOG.error(e);
+			e.printStackTrace();
 		} catch (java.lang.NullPointerException e) {
 			LOG.error(e);
 			LOG.debug(data);
