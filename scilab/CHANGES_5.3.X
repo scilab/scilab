@@ -194,6 +194,9 @@ Installer:
 Graphics:
 =========
 
+* bug 2913 fixed - In the histplot function, the legend was displayed over the
+                   graphic.
+
 * bug 4818 fixed - It was not possible to export a figure with a lot of circle
                    marks.
 
