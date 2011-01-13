@@ -48,8 +48,8 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
      * @param macroConf the file containing the macros of Scilab
      * @param out the output stream
      */
-    public JavaHelpDocbookTagConverter(String inName, String outName, String primConf, String macroConf, String template, String version, String imageDir, boolean checkLast) throws IOException, SAXException {
-        super(inName, outName, primConf, macroConf, template, version, imageDir, checkLast);
+    public JavaHelpDocbookTagConverter(String inName, String outName, String primConf, String macroConf, String template, String version, String imageDir) throws IOException, SAXException {
+        super(inName, outName, primConf, macroConf, template, version, imageDir);
     }
 
     /**

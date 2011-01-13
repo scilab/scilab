@@ -49,7 +49,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     private int latexCompt;
     private String imageDir;
     private String outName;
-    private boolean checkLast;
     private boolean hasExamples;
     private int warnings;
     private int nbFiles;
@@ -83,12 +82,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param macroConf the file containing the macros of Scilab
      * @param out the output stream
      */
-    public HTMLDocbookTagConverter(String inName, String outName, String primConf, String macroConf, String template, String version, String imageDir, boolean checkLast) throws IOException, SAXException {
+    public HTMLDocbookTagConverter(String inName, String outName, String primConf, String macroConf, String template, String version, String imageDir) throws IOException, SAXException {
         super(inName);
 
         this.version = version;
         this.imageDir = imageDir;
-        this.checkLast = checkLast;
         this.outName = outName + File.separator;
         HTMLDocbookLinkResolver resolver = new HTMLDocbookLinkResolver(inName);
         mapId = resolver.getMapId();
@@ -101,9 +99,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         ImageConverter.registerExternalImageConverter(LaTeXImageConverter.getInstance());
         ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance());
         ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance());
-        if (checkLast) {
-            getLastGeneration(tpl.lastModified());
-        }
     }
 
     /**
@@ -185,13 +180,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         buffer.append(">");
 
         return buffer.toString();
-    }
-
-    public void endDocument() throws SAXException {
-        if (checkLast) {
-            saveLastGeneration();
-        }
-        super.endDocument();
     }
 
     /**
