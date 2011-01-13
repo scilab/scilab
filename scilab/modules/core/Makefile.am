@@ -215,7 +215,6 @@ sci_gateway/c/sci_ieee.c \
 sci_gateway/c/sci_gstacksize.c \
 sci_gateway/c/sci_funptr.c \
 sci_gateway/c/sci_return.c \
-sci_gateway/c/sci_getmd5.c \
 sci_gateway/c/sci_clearfun.c \
 sci_gateway/c/sci_setbpt.c \
 sci_gateway/c/sci_what.c \
@@ -268,7 +267,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_with_module.cpp \
 	sci_gateway/cpp/sci_lasterror.cpp \
 	sci_gateway/cpp/sci_getversion.cpp \
-	sci_gateway/cpp/sci_warning.cpp
+	sci_gateway/cpp/sci_warning.cpp \
+	sci_gateway/cpp/sci_getmd5.cpp
 
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
@@ -309,7 +309,8 @@ libscicore_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+	        -I$(top_srcdir)/modules/fileio/includes
 
 # Used by sci_getdebuginfo:
 if TCLTK

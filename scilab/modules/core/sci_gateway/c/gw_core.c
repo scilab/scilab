@@ -65,7 +65,7 @@ static gw_generic_table Tab[]=
 {NULL, ""}, //getos
 {NULL, ""}, //banner
 {C2F(sci_getmemory),"getmemory"},
-{C2F(sci_getmd5),"getmd5"},
+{NULL, ""}, //getmd5
 {NULL,""}, //getmodules
 {NULL, ""}, //with_module
 {NULL, ""}, //getdebuginfo

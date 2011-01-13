@@ -45,5 +45,6 @@ CPP_GATEWAY_PROTOTYPE(sci_with_module);
 CPP_GATEWAY_PROTOTYPE(sci_lasterror);
 CPP_GATEWAY_PROTOTYPE(sci_getversion);
 CPP_GATEWAY_PROTOTYPE(sci_warning);
+CPP_GATEWAY_PROTOTYPE(sci_getmd5);
 
 #endif /* __CORE_GW_HXX__ */
