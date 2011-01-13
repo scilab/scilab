@@ -11,6 +11,11 @@ function %dir_p(L)
   ll= lines();ll=max(ll(1),20)
   name=L.name;
   if name==[] then mprintf("%s \n","[]"); return,end
+  
+  // If it is a directory, add a trailing "/"
+  tmp = find(L.isdir);
+  name(tmp)=name(tmp)+filesep();
+
   nc=6
   l1=length(name)
   while %t
