@@ -15,10 +15,24 @@
 #include "string.hxx"
 #include "funcmanager.hxx"
 
+extern "C"
+{
+#include "Scierror.h"
+#include "localization.h"
+#include "charEncoding.h"
+}
+
 using namespace types;
 
 Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &out)
 {
+    /* Check number of input arguments: must be even */
+    if (in.size()%2 != 0)
+    {
+        ScierrorW(999, _W("%ls: Wrong number of input argument(s): An even number is expected.\n"), L"struct");
+        return Function::Error;
+    }
+
     /* First check if all fields are Strings */
     typed_list::iterator itInput;
 
