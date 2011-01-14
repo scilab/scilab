@@ -27,7 +27,7 @@ static gw_generic_table Tab[]=
 {NULL, ""}, //getscilabmode
 {C2F(sci_mode),"mode"},
 {NULL ,""}, //type
-{C2F(sci_error),"error"},
+{NULL, ""}, //error
 {C2F(sci_resume),"resume"},
 {C2F(sci_return),"return"},
 {C2F(sci_format),"format"},

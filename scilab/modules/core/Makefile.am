@@ -229,7 +229,6 @@ sci_gateway/c/sci_debug.c \
 sci_gateway/c/gw_core.c \
 sci_gateway/c/gw_user.c \
 sci_gateway/c/gw_user2.c \
-sci_gateway/c/sci_error.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
@@ -268,7 +267,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_lasterror.cpp \
 	sci_gateway/cpp/sci_getversion.cpp \
 	sci_gateway/cpp/sci_warning.cpp \
-	sci_gateway/cpp/sci_getmd5.cpp
+	sci_gateway/cpp/sci_getmd5.cpp \
+	sci_gateway/cpp/sci_error.cpp
 
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \

@@ -21,7 +21,7 @@ int C2F(sci_debug)(char *fname,unsigned long fname_len);
 int C2F(sci_who)(char *fname,unsigned long fname_len);
 //int C2F(sci_warning)(char *fname,unsigned long fname_len); -> C++
 int C2F(sci_mode)(char *fname,unsigned long fname_len);
-int C2F(sci_error)(char *fname,unsigned long fname_len);
+//int C2F(sci_error)(char *fname,unsigned long fname_len); -> C++
 int C2F(sci_resume)(char *fname,unsigned long fname_len);
 int C2F(sci_return)(char *fname,unsigned long fname_len);
 int C2F(sci_format)(char *fname,unsigned long fname_len);
@@ -51,7 +51,7 @@ int C2F(sci_getos)(char *fname,unsigned long fname_len);
 int C2F(sci_fromjava)(char *fname,unsigned long fname_len);
 int C2F(sci_getmemory)(char *fname,unsigned long fname_len);
 int C2F(sci_fromc)(char *fname,unsigned long fname_len);
-int C2F(sci_getmd5)(char *fname,unsigned long fname_len);
+//int C2F(sci_getmd5)(char *fname,unsigned long fname_len); -> C++
 int C2F(sci_islittleendian)(char *fname,unsigned long fname_len);
 int C2F(sci_librarieslist)(char *fname,unsigned long fname_len);
 int C2F(sci_getvariablesonstack)(char *fname,unsigned long fname_len);

@@ -353,6 +353,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_error.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_exists.cpp"
 				>
 			</File>
