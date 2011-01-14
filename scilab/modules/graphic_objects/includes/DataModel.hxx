@@ -20,6 +20,7 @@
 
 #include "NgonGeneralData.hxx"
 #include "NgonGridData.hxx"
+#include "NgonGridMatplotData.hxx"
 #include "NgonPolylineData.hxx"
 #include "TriangleMeshData.hxx"
 #include "TriangleMeshFecData.hxx"

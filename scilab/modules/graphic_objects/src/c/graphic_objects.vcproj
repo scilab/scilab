@@ -428,6 +428,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\NgonGridMatplotData.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\NgonPolylineData.cpp"
 				>
 			</File>
@@ -498,6 +502,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\NgonGridData.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\NgonGridMatplotData.hxx"
 				>
 			</File>
 			<File

@@ -27,7 +27,7 @@ extern "C" {
 
 class NgonGridData : public NgonData
 {
-private :
+protected :
 
     /** The x coordinates array */
     double* xCoordinates;

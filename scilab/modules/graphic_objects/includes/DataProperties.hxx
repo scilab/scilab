@@ -56,4 +56,6 @@
 #define COLORS                  27
 #define NUM_COLORS              28
 
+#define MATPLOT_BOUNDS          30
+
 #endif

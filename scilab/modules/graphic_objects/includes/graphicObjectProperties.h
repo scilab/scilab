@@ -85,6 +85,8 @@
 #define __GO_DATA_MODEL_X_DIMENSIONS__                 "DataModelXDimensions"
 #define __GO_DATA_MODEL_Y_DIMENSIONS__                 "DataModelYDimensions"
 
+#define __GO_DATA_MODEL_MATPLOT_BOUNDS__               "DataModelMatplotBounds"
+
 #define __GO_REFERENCED__                  "Referenced"
 #define __GO_VALID__                       "Valid"
 
