@@ -6,7 +6,7 @@
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -1869,19 +1869,19 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 
 /********************** 14/05/2002 *****
  **ConstructGrayplot
- * This function creates Grayplot
+ * This function is used to build Grayplot and Matplot objects.
+ * It would probably be better to put the code related to Matplot objects
+ * in a separate build function, as it would avoid having to perform several tests
+ * on the type parameter. This is done so because Matplot objects were previously
+ * internally represented by sciGrayplot structures.
  */
 sciPointObj *
 ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 		   double *pvecz, int n1, int n2, int type)
 {
     sciPointObj *pobj = (sciPointObj *) NULL;
-    /* To be deleted */
-#if 0
-    sciGrayplot *pgray = (sciGrayplot *) NULL;
-#endif
-    int i = 0;
-    int cmpt;
+
+    char* objectTypes[3] = {__GO_GRAYPLOT__, __GO_MATPLOT__, __GO_MATPLOT__};
 
     char* typeParent;
     char* grayplotID;
@@ -1894,6 +1894,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     int clipRegionSet;
     int clipState;
     int* tmp;
+    int numElements;
 
     typeParent = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
 
@@ -1908,9 +1909,8 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
         return (sciPointObj *) NULL;
     }
 
-    pobj->UID = (char*) createGraphicObject(__GO_GRAYPLOT__);
-    pobj->entitytype = SCI_GRAYPLOT;
-    grayplotID = (char*) createDataObject(pobj->UID, __GO_GRAYPLOT__);
+    pobj->UID = (char*) createGraphicObject(objectTypes[type]);
+    grayplotID = (char*) createDataObject(pobj->UID, objectTypes[type]);
 
     if (grayplotID == NULL)
     {
@@ -1928,23 +1928,47 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     pGRAYPLOT_FEATURE (pobj)->isselected = TRUE;
 #endif
 
-    /*
-     * Type: To be taken into account when setting data if indicating
-     * either a Matplot or a Matplot1 object (see below)
-     */
-#if 0
-    pGRAYPLOT_FEATURE (pobj)->type = type;
-#endif
-
-    /* 0: scaled */
-    dataMapping = 0;
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, &dataMapping, jni_int, 1);
+    /* 0: scaled; only used for Grayplot */
+    if (type == 0)
+    {
+        dataMapping = 0;
+        setGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, &dataMapping, jni_int, 1);
+    }
 
     /* The x and y vectors are column ones */
-    gridSize[0] = n1;
-    gridSize[1] = 1;
-    gridSize[2] = n2;
-    gridSize[3] = 1;
+
+    /*
+     * For the Grayplot object, the number of rows and columns respectively
+     * correspond to the grid's x and y dimensions whereas for Matplot objects,
+     * they respectively correspond to the grid's y and x dimensions.
+     */
+    if (type == 0)
+    {
+        gridSize[0] = n1;
+        gridSize[1] = 1;
+        gridSize[2] = n2;
+        gridSize[3] = 1;
+    }
+    else
+    {
+        gridSize[0] = n2;
+        gridSize[1] = 1;
+        gridSize[2] = n1;
+        gridSize[3] = 1;
+    }
+
+    /* Only for Matplot objects */
+    if (type != 0)
+    {
+        if (type == 1)
+        {
+            setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_MATPLOT_BOUNDS__, NULL, jni_double_vector, 4);
+        }
+        else if (type == 2)
+        {
+            setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_MATPLOT_BOUNDS__, pvecx, jni_double_vector, 4);
+        }
+    }
 
     /* Allocates the coordinates arrays */
     result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
@@ -1957,55 +1981,23 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
         return (sciPointObj*) NULL;
     }
 
-    /*
-     * The 4-value seems to be useless as type==2 grayplots (Matplot1)
-     * use the x-vector to store their bounding rectangle values
-     * and the y-vector was not allocated anyway for type==2.
-     * Data are therefore set only for the Grayplot object
-     * at the present moment (non-MVC Matplot and Matplot1 do not use the x
-     * and y vectors to store their coordinates, with the exception that Matplot1
-     * uses its x vector's 4 first elements to store its bounding rectangle.
-     * To be deleted and completed using the MVC to implement the
-     * Matplot and Matplot1 objects.
-     */
-#if 0
-    cmpt = (type == 2)? 4:n2 ;
-    if (type != 2)
-        if (pvecy && (pgray->pvecy = MALLOC (cmpt * sizeof (double))) == NULL)
-        {
-	    if (pvecx) FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
-	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	    sciDelHandle (pobj);
-	    FREE(pGRAYPLOT_FEATURE(pobj));
-	    FREE(pobj);
-	    return (sciPointObj *) NULL;
-        }
-    if ((pgray->pvecz = MALLOC ((n1*n2) * sizeof (double))) == NULL)
+    /* Only for Grayplot objects, for Matplot objects, x and y coordinates are automatically computed */
+    if (type == 0)
     {
-	if (pvecx) FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
-	if (pvecy) FREE(pGRAYPLOT_FEATURE (pobj)->pvecy);
-	sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	sciDelHandle (pobj);
-	FREE(pGRAYPLOT_FEATURE(pobj));
-	FREE(pobj);
-	return (sciPointObj *) NULL;
-    }
-    if (pvecx) {
-	for (i = 0; i < n1; i++) pgray->pvecx[i] = pvecx[i];
+        setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, n1);
+        setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, n2);
     }
 
-      /* Allocate only for a != Matplot1 */
-      /* Note: pvecy == NULL for Matplot, so this is only used by Grayplot */
-      if (pvecy) {
-	if (type != 2)
-	  for (i = 0; i < n2; i++) pgray->pvecy[i] = pvecy[i];
-      }
-#endif
+    if (type == 0)
+    {
+        numElements = n1*n2;
+    }
+    else
+    {
+        numElements = (n1-1)*(n2-1);
+    }
 
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, n1);
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, n2);
-
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, n1*n2);
+    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, numElements);
 
     /*
      * Adding a new handle and setting the parent-child relationship is now

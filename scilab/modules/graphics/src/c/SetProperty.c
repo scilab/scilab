@@ -5,7 +5,7 @@
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - Paul Griffiths
  *
  * This file must be used under the terms of the CeCILL.
@@ -2593,56 +2593,34 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       Scierror(999, _("Unhandled data field\n"));
       return -1;
   }
-  else if (strcmp(type, __GO_GRAYPLOT__) == 0)
+  else if (strcmp(type, __GO_MATPLOT__) == 0)
   {
-      if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
-	double *pvecx,*pvecy,*pvecz;
-	int nx,ny;
-	nx=*numrow-1;
-	ny=*numcol-1;
-	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny || pGRAYPLOT_FEATURE (pthis)->nx!=nx) {
-	  if ((pvecx = CALLOC(nx,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  if ((pvecy = CALLOC(ny,sizeof(double))) == NULL) {
-	    FREE(pvecx);
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
-	    FREE(pvecx);FREE(pvecy);
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecx);pGRAYPLOT_FEATURE (pthis)->pvecx=pvecx;
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecy);pGRAYPLOT_FEATURE (pthis)->pvecy=pvecy;
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
-	}
-	for (i=0;i < nx;i++)
-	  pGRAYPLOT_FEATURE (pthis)->pvecx[i] = tab[i+1];
+      int nx;
+      int ny;
+      int gridSize[4];
+      int result;
 
-	for (i=0;i < ny;i++)
-	  pGRAYPLOT_FEATURE (pthis)->pvecy[i] = tab[*numrow*(i+1)];
-	for (i=0;i < ny;i++)
-	  for (k=0;k < nx;k++)
-	    pGRAYPLOT_FEATURE (pthis)->pvecz[nx*i+k]=tab[*numrow*(i+1)+k+1];
-	pGRAYPLOT_FEATURE (pthis)->ny=ny;
-	pGRAYPLOT_FEATURE (pthis)->nx=nx;
+      ny = *numrow;
+      nx = *numcol;
+
+      /*
+       * The number of points along each dimension is equal to the z data matrix's
+       * corresponding dimension plus 1
+       */
+      gridSize[0] = nx + 1;
+      gridSize[1] = 1;
+      gridSize[2] = ny + 1;
+      gridSize[3] = 1;
+
+      result = setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+
+      if (result == FALSE)
+      {
+          Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+          return -1;
       }
-      else  {/* Matplot */
-	double *pvecz;
-	int nx,ny;
-	nx=*numrow;
-	ny=*numcol;
-	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny+1 || pGRAYPLOT_FEATURE (pthis)->nx!=nx+1) {
-	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
-	}
-	for (i=0;i < nx*ny;i++)
-	  pGRAYPLOT_FEATURE (pthis)->pvecz[i]=tab[i];
-	pGRAYPLOT_FEATURE (pthis)->ny=ny+1;
-	pGRAYPLOT_FEATURE (pthis)->nx=nx+1;
-      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, tab, jni_double_vector, nx*ny);
   }
   else if (strcmp(type, __GO_FEC__) == 0)
   {

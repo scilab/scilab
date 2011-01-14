@@ -5,7 +5,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Serge Steer
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - Paul Griffiths
  *
  * This file must be used under the terms of the CeCILL.
@@ -2295,40 +2295,39 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         *numcol = -1;
         return (double*) NULL;
     }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    else if (strcmp(type, __GO_MATPLOT__) == 0)
     {
-        if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
-            int ny=pGRAYPLOT_FEATURE (pthis)->ny,nx=pGRAYPLOT_FEATURE (pthis)->nx;
-            *numrow = nx+1;
-            *numcol = ny+1;
-            if ((tab = CALLOC(*numrow * *numcol,sizeof(double))) == NULL)
-            {
-                *numrow = -1;
-                *numcol = -1;
-                return (double*)NULL;
-            }
-            tab[0]=0;
-            for (i=0;i < nx;i++)
-                tab[i+1] = pGRAYPLOT_FEATURE (pthis)->pvecx[i];
-            for (i=0;i < ny;i++)
-                tab[*numrow*(i+1)] = pGRAYPLOT_FEATURE (pthis)->pvecy[i];
+        int* tmp;
+        int nx;
+        int ny;
+        double* data;
 
-            for (i=0;i < ny;i++)
-                for (k=0;k < nx;k++)
-                    tab[*numrow*(i+1)+k+1] = pGRAYPLOT_FEATURE (pthis)->pvecz[nx*i+k];
+        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_X__, jni_int);
+        nx = *tmp;
+        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_Y__, jni_int);
+        ny = *tmp;
+
+        /* The z data matrix has (ny-1) rows and (nx-1) cols */
+        nx = nx - 1;
+        ny = ny - 1;
+
+        *numrow = ny;
+        *numcol = nx;
+
+        if ((tab = CALLOC(nx*ny,sizeof(double))) == NULL)
+        {
+            *numrow = -1;
+            *numcol = -1;
+            return (double*)NULL;
         }
-        else  {/* Matplot */
-            int ny=pGRAYPLOT_FEATURE (pthis)->ny-1,nx=pGRAYPLOT_FEATURE (pthis)->nx-1;
-            *numrow = nx;	*numcol = ny;
-            if ((tab = CALLOC(nx*ny,sizeof(double))) == NULL)
-            {
-                *numrow = -1;
-                *numcol = -1;
-                return (double*)NULL;
-            }
-            for (i=0;i < nx*ny;i++)
-                tab[i] = pGRAYPLOT_FEATURE (pthis)->pvecz[i];
+
+        data = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, jni_double_vector);
+
+        for (i=0; i < nx*ny; i++)
+        {
+            tab[i] = data[i];
         }
+
         return (double*)tab;
     }
     else if (strcmp(type, __GO_FEC__) == 0)
