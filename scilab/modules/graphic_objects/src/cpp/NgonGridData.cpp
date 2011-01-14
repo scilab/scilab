@@ -182,6 +182,7 @@ int NgonGridData::setGridSize(int* gridSize)
     int newYSize;
     int xModified;
     int yModified;
+    int zModified;
     int result;
 
     double* newXCoordinates = NULL;
@@ -192,6 +193,7 @@ int NgonGridData::setGridSize(int* gridSize)
 
     xModified = 0;
     yModified = 0;
+    zModified = 0;
 
     if ((gridSize[0] != 1) && (gridSize[1] != 1))
     {
@@ -237,6 +239,8 @@ int NgonGridData::setGridSize(int* gridSize)
 
     if (newXSize*newYSize != xSize*ySize)
     {
+        zModified = 1;
+
         try
         {
             newZCoordinates = new double[newXSize*newYSize];
@@ -245,7 +249,6 @@ int NgonGridData::setGridSize(int* gridSize)
         {
             result = 0;
         }
-
     }
 
     if (result)
@@ -278,7 +281,7 @@ int NgonGridData::setGridSize(int* gridSize)
         yDimensions[0] = gridSize[2];
         yDimensions[1] = gridSize[3];
 
-        if (xModified || yModified)
+        if (zModified)
         {
             if (xSize*ySize > 0)
             {
@@ -305,9 +308,9 @@ int NgonGridData::setGridSize(int* gridSize)
             delete [] newYCoordinates;
         }
 
-        if ((xModified || yModified) && (newZCoordinates != NULL))
+        if (zModified && (newZCoordinates != NULL))
         {
-            delete [] newXCoordinates;
+            delete [] newZCoordinates;
         }
 
     }
