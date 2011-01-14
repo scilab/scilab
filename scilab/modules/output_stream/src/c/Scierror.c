@@ -25,7 +25,7 @@
 #endif
 /*--------------------------------------------------------------------------*/
 /* Scilab Error at C level */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int  Scierror(int iv,const char *fmt,...)
 {
 	int retval = 0;
@@ -49,6 +49,7 @@ int  Scierror(int iv,const char *fmt,...)
     pwstError = to_wide_string(s_buf);
     setLastError(iv, pwstError, 0, NULL);
 
+    YaspWriteW(L"Error: ");
     YaspWriteW(pwstError);
     YaspWriteW(L"\n");
     FREE(pwstError);
@@ -76,6 +77,7 @@ int ScierrorW(int iv, const wchar_t *fmt,...)
 
 
     setLastError(iv, s_buf, 0, NULL);
+    YaspWriteW(L"Error: ");
     YaspWriteW(s_buf);
     YaspWriteW(L"\n");
 
