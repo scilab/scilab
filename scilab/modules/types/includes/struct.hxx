@@ -72,7 +72,7 @@ namespace types
         Struct*                                 getAsStruct(void) { return this; }
 
         /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring                    getTypeStr() {return L"struct";}
+        virtual std::wstring                    getTypeStr() {return L"st";}
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring                    getShortTypeStr() {return L"st";}
     private :
