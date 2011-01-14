@@ -76,7 +76,8 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_usertype.cpp \
 			sci_gateway/cpp/sci_typeof.cpp \
 			sci_gateway/cpp/sci_tlist.cpp \
-			sci_gateway/cpp/sci_mlist.cpp
+			sci_gateway/cpp/sci_mlist.cpp \
+			sci_gateway/cpp/sci_isfield.cpp
 
 libscitypes_la_CFLAGS=
 

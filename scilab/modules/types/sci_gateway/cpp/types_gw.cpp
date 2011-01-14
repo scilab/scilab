@@ -25,6 +25,7 @@ bool TypesModule::Load()
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"tlist", &sci_tlist, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"mlist", &sci_mlist, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"isfield", &sci_isfield, MODULE_NAME));
 
     return true;
 }
