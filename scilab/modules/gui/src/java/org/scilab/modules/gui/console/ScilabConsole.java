@@ -323,7 +323,19 @@ public class ScilabConsole extends ScilabDockable implements Console {
 
     public void helpOnTheKeyword() {
         ScilabBridge.helpOnTheKeyword(this);
-
     }
 
+    /**
+     * Evaluate the selection with echo
+     */
+    public void evaluateSelectionWithEcho() {
+        ScilabBridge.evaluateSelectionWithEcho(this);
+    }
+
+    /**
+     * Evaluate the selection with no echo
+     */
+    public void evaluateSelectionWithNoEcho() {
+        ScilabBridge.evaluateSelectionWithNoEcho(this);
+    }
 }

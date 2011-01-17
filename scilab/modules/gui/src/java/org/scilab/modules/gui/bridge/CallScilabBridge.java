@@ -602,8 +602,8 @@ public class CallScilabBridge {
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
-	((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
-										   + "/modules/gui/images/icons/graphic-window.png").getImage());
+        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
+                                                                                   + "/modules/gui/images/icons/graphic-window.png").getImage());
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
@@ -2218,6 +2218,20 @@ public class CallScilabBridge {
     }
 
     /**
+     * Evaluate the selection with echo
+     */
+    public static void evaluateSelectionWithEcho() {
+        ScilabConsole.getConsole().evaluateSelectionWithEcho();
+    }
+
+    /**
+     * Evaluate the selection with no echo
+     */
+    public static void evaluateSelectionWithNoEcho() {
+        ScilabConsole.getConsole().evaluateSelectionWithNoEcho();
+    }
+
+    /**
      * Opens a dialog to selected a new font for the console
      */
     public static void changeConsoleFont() {
@@ -2305,9 +2319,9 @@ public class CallScilabBridge {
         }
     }
 
-/**
- * Display a dialog to print the console text contents
- */
+    /**
+     * Display a dialog to print the console text contents
+     */
     public static void printConsoleContents() {
 
         SciConsole scilabConsole = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole());
@@ -2398,7 +2412,7 @@ public class CallScilabBridge {
                 String fileExtension = ".ps";
 
                 try {
-                       String tmpPrinterFile = File.createTempFile("scilabfigure","").getAbsolutePath();
+                    String tmpPrinterFile = File.createTempFile("scilabfigure","").getAbsolutePath();
                     /** Export image to PostScript */
                     if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
                         FileExporter.fileExport(figureID,
@@ -2889,7 +2903,6 @@ public class CallScilabBridge {
     public static void raiseWindow(int id) {
         ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().getParentWindow().raise();
         ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();
-
     }
 
     /**

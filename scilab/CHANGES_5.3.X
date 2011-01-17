@@ -7,6 +7,9 @@ Console:
 
 * The console could be scrolled with Page Up/Down. See bug #6251.
 
+* Add Evaluate Selection With Echo/No Echo in popup menu (Right Click) in
+  console. See bug #8749.
+
 * Performance improvements on the display of long computation with a lot of
   output (the more text in the console, the slower was the display). 
   See bug #4840. 
@@ -166,7 +169,6 @@ Bug fixes:
                    displayed in the console but in the terminal.
 
 * bug 8732 fixed - strchr and strrchr did not work with a non-ASCII character needle.
-
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
