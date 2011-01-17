@@ -3,7 +3,7 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -137,36 +137,41 @@ void Objpoly ( double  * x     ,
                int       mark  ,
                long    * hdl    )
 {
-  sciPointObj * pFigure = NULL;
-  sciPointObj * psubwin;
-  sciPointObj * pobj;
+    sciPointObj * pFigure = NULL;
+    sciPointObj * psubwin;
+    sciPointObj * pobj;
 
-  pFigure = sciGetCurrentFigure();
-  psubwin = sciGetCurrentSubWin();
+    pFigure = sciGetCurrentFigure();
+    psubwin = sciGetCurrentSubWin();
 
-  /*
-   * Deactivated for now as it involves the renderer module
-   * To be implemented
-   */
+    /*
+     * Deactivated for now as it involves the renderer module
+     * To be implemented
+     */
 #if 0
-  checkRedrawing();
+    checkRedrawing();
 #endif
 
-  if (mark <= 0)
+    if (mark <= 0)
     {
-      int absmark = abs(mark);
-      pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
-	         	       NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
+        int absmark = abs(mark);
+        pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
+            NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
     }
-  else
+    else
     {
-      pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
-	                       &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
+        pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
+            &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
     }
 
-  /* pobj may be NULL, however this is not tested at all */
-  sciSetCurrentObj(pobj);
-   *hdl=sciGetHandle(pobj);
+    if (pobj == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"),"Objpoly");
+        return;
+    }
+
+    sciSetCurrentObj(pobj);
+    *hdl=sciGetHandle(pobj);
 }
 
 
@@ -182,11 +187,12 @@ void Objfpoly ( double  * x    ,
                 int   shading )
 {
   int fillcolor, contourcolor;
+  int* tmp;
   sciPointObj *psubwin, *pobj;
   int closed = 1; /* we close the polyline by default */
   psubwin = sciGetCurrentSubWin();
 
-  checkRedrawing() ;
+  checkRedrawing();
 
   if(shading == 2)
     {
@@ -196,6 +202,7 @@ void Objfpoly ( double  * x    ,
     }
   else
     {
+
       /* flat mode is "on" */
       if (*style < 0){
 	fillcolor = abs(*style);
@@ -203,18 +210,27 @@ void Objfpoly ( double  * x    ,
 			         1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE);
       }
       else if (*style == 0){
-	contourcolor = sciGetForeground(psubwin);
+        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int);
+	contourcolor = *tmp;
 	pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
 	                         1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
       }
       else{ /* *style > 0*/
 	fillcolor = *style;
-	contourcolor = sciGetForeground(psubwin);
+        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int);
+	contourcolor = *tmp;
 	pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
 	                         1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE);
       }
 
     }
+
+    if (pobj == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"),"Objfpoly");
+        return;
+    }
+
     sciSetCurrentObj(pobj);
     *hdl=sciGetHandle(pobj);
 
@@ -475,7 +491,7 @@ void Objplot3d ( char    * fname ,
         loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
         if ( loc == NULL)
         {
-            Scierror(999, _("%s: No more memory.\n"),"Objplot3d");
+            Scierror(999, _("%s: No more memory.\n"), "Objplot3d");
         }
 
         strcpy(loc,legend);
@@ -830,6 +846,7 @@ void Objplot3d ( char    * fname ,
 #if 0
             endFigureDataWriting(parentFigure);
 #endif
+            Scierror(999, _("%s: No more memory.\n"),"Objplot3d");
             return;
         }
 
@@ -847,6 +864,9 @@ void Objplot3d ( char    * fname ,
     }
     else
     {
+        sciPointObj* pNewPolyline = NULL;
+        sciPointObj* currentSubwin = NULL;
+
         if ((hdltab = MALLOC (*n * sizeof (long))) == NULL)
         {
             /* Deactivated for now (synchronization) */
@@ -856,6 +876,8 @@ void Objplot3d ( char    * fname ,
             Scierror(999,"%s: No more memory.\n",fname);
             return;
         }
+
+        currentSubwin = sciGetCurrentSubWin();
 
         for (i = 0; i < *n; ++i)
         {
@@ -868,26 +890,37 @@ void Objplot3d ( char    * fname ,
             if ((*n > 0) && (zcol != (double *)NULL)) {
                 if ((int) zcol[i] > 0){
                     int intzcol = (int) zcol[i];
-                    sciSetCurrentObj (ConstructPolyline
-                        (sciGetCurrentSubWin(),
+                    pNewPolyline = ConstructPolyline
+                        (currentSubwin,
                         &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-                        &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
+                        &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
                 }
                 else {
                     int intzcol = (int) -zcol[i];
-                    sciSetCurrentObj (ConstructPolyline
-                        (sciGetCurrentSubWin(),
+                    pNewPolyline = ConstructPolyline
+                        (currentSubwin,
                         &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-                        NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE));
+                        NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
                 }
             }
             else { /* default case, nothing is given */
-                int curcolor = sciGetForeground(sciGetCurrentSubWin()); /* current color equivalent for new graphics mode */
-                sciSetCurrentObj (ConstructPolyline
-                    (sciGetCurrentSubWin(),
+                int curcolor;
+                tmp = (int*) getGraphicObjectProperty(currentSubwin->UID, __GO_LINE_COLOR__, jni_int);
+                curcolor = *tmp;
+
+                pNewPolyline = ConstructPolyline
+                    (currentSubwin,
                     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-                    &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
+                    &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
             }
+
+            if (pNewPolyline == NULL)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return;
+            }
+
+            sciSetCurrentObj(pNewPolyline);
 
             pobj = sciGetCurrentObj();
 
