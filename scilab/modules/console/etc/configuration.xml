@@ -69,6 +69,8 @@
 			<Key name="VK_ESCAPE" mask="" action="DEL_WHOLE_LINE"/> 
 			<Key name="VK_W" mask="CTRL_MASK" action="DEL_LAST_WORD"/>
 			<Key name="VK_X" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK_OR_CUT"/>
+			<Key name="VK_PAGE_UP" mask="" action="PAGEUP"/>
+			<Key name="VK_PAGE_DOWN" mask="" action="PAGEDOWN"/>
 		</KeyMapping>
 
 		<!-- Key mapping -->
@@ -93,6 +95,8 @@
 			<Action name="DEL_WHOLE_LINE" className="org.scilab.modules.console.DelWholeLineAction"/>
 			<Action name="INTERRUPT_SCILAB_WORK_OR_CUT" className="org.scilab.modules.console.InterruptScilabWorkOrCut"/>
 			<Action name="INTERRUPT_SCILAB_WORK_OR_COPY" className="org.scilab.modules.console.InterruptScilabWorkOrCopy"/>
+			<Action name="PAGEUP" className="org.scilab.modules.console.PageUpAction"/>
+			<Action name="PAGEDOWN" className="org.scilab.modules.console.PageDownAction"/>
 		</ActionMapping>
 
 	</Profile>

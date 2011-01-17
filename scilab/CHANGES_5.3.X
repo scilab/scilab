@@ -5,6 +5,8 @@
 Console:
 ========
 
+* The console could be scrolled with Page Up/Down. See bug #6251.
+
 * Performance improvements on the display of long computation with a lot of
   output (the more text in the console, the slower was the display). 
   See bug #4840. 
