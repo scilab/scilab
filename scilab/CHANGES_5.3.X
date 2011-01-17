@@ -64,6 +64,12 @@ Xcos:
 * bug 7639 fixed - Generating code for scilab function block was failing with
                    a syntax error message.
 
+
+Module skeleton:
+================
+
+* New example added (function with copy instead of reference)
+
 Localization:
 =============
 
