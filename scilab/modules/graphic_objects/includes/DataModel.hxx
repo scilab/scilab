@@ -79,7 +79,6 @@ public :
 
     /**
      * Deletes a data object
-     * To be implemented
      */
     void deleteDataObject(char* _pstID);
 

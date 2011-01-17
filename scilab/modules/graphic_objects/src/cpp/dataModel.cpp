@@ -103,9 +103,8 @@ char* DataModel::createDataObject(char* _pstID, char* _sType)
     return _pstID;
 }
 
-/* To be implemented */
 void DataModel::deleteDataObject(char* _pstID)
 {
-
+    m_dataMap->erase(std::string(_pstID));
 }
 
