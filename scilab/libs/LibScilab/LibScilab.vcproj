@@ -308,7 +308,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/FORCE:MULTIPLE "
-				AdditionalDependencies="&quot;$(IFORT_COMPILER12)\compiler\lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER12)\compiler\lib\ia32\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER12)\compiler\lib\ia32\libmmd.lib&quot; &quot;$(IFORT_COMPILER12)\compiler\lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER12)\compiler\lib\ia32\svml_disp.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libiomp5md.lib&quot;"
+				AdditionalDependencies="&quot;$(IFORT_COMPILER12)\compiler\lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER12)\compiler\lib\ia32\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER12)\compiler\lib\ia32\libmmd.lib&quot; &quot;$(IFORT_COMPILER12)\compiler\lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER12)\compiler\lib\ia32\svml_disp.lib&quot; &quot;$(IFORT_COMPILER12)\compilerlib\ia32\libiomp5md.lib&quot;"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
