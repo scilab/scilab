@@ -1,6 +1,14 @@
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
 
+
+Console:
+========
+
+* Performance improvements on the display of long computation with a lot of
+  output (the more text in the console, the slower was the display). 
+  See bug #4840. 
+
 Removed functions (previously declared as obsolete):
 ====================================================
 
@@ -84,6 +92,7 @@ Localization:
 =============
 
 * bug 8096 fixed - With Russian localization, the banner was not centered.
+
 
 Graphics:
 =========

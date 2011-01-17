@@ -31,6 +31,7 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 import javax.swing.JPanel;
+import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
@@ -154,7 +155,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
                 menu.add(helpMenu);
 
-                ((JTextPane) getConfiguration().getOutputView()).setComponentPopupMenu(menu);
+                ((JEditorPane) getConfiguration().getOutputView()).setComponentPopupMenu(menu);
                 ((JTextPane) getConfiguration().getInputCommandView()).setComponentPopupMenu(menu);
                 ((JPanel) getConfiguration().getPromptView()).setComponentPopupMenu(menu);
 
@@ -238,7 +239,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
                 // Add a keylistener which will set the returned char
                 OneCharKeyEventListener keyListener = new OneCharKeyEventListener(this);
                 ((JTextPane) this.getConfiguration().getInputCommandView()).addKeyListener(keyListener);
-                ((JTextPane) this.getConfiguration().getOutputView()).addKeyListener(keyListener);
+                ((JEditorPane) this.getConfiguration().getOutputView()).addKeyListener(keyListener);
 
                 // Reads the buffer
                 retChar = this.getUserInputValue();
@@ -250,7 +251,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
                 // Remove the key listener
                 ((JTextPane) this.getConfiguration().getInputCommandView()).removeKeyListener(keyListener);
-                ((JTextPane) this.getConfiguration().getOutputView()).removeKeyListener(keyListener);
+                ((JEditorPane) this.getConfiguration().getOutputView()).removeKeyListener(keyListener);
 
                 this.getConfiguration().getPromptView().setVisible(true);
                 this.getConfiguration().getInputCommandView().setEditable(true);
@@ -406,7 +407,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
          * Select all the console contents
          */
         public void selectAll() {
-                JTextPane output = (JTextPane) this.getConfiguration().getOutputView();
+                JEditorPane output = (JEditorPane) this.getConfiguration().getOutputView();
                 output.setSelectionStart(0);
                 output.setSelectionEnd(output.getText().length());
                 // TODO should also select the prompt and the input
@@ -417,7 +418,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
          * @return The selected text in the console
          */
         private String getSelectedText() {
-                JTextPane output = (JTextPane) this.getConfiguration().getOutputView();
+                JEditorPane output = (JEditorPane) this.getConfiguration().getOutputView();
                 JTextPane input = (JTextPane) this.getConfiguration().getInputCommandView();
 
                 String selection = "";
