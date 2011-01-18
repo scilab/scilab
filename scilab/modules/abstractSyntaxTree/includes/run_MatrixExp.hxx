@@ -170,6 +170,11 @@ void visitprivate(const MatrixExp &e)
             }
         }
 
+        if (poResult == NULL)
+        {
+            poResult = Double::Empty();
+        }
+
         result_set(poResult);
     }
     catch(ScilabError error)
