@@ -35,7 +35,7 @@ function [status, msg] = xcosPalExport(pal, path)
 // Export Scilab palette instance to a file.
 // 
 // Examples
-//   loadScicosLibs();
+//   loadXcosLibs();
 //   pal = xcosPal();
 //   
 //   sumPath = TMPDIR + "/sum.h5";

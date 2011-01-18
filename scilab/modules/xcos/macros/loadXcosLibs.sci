@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2011 - DIGITEO - Clément DAVID
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,8 +10,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
-function loadScicosLibs()
-  warnobsolete("loadXcosLibs", "5.4.0");
+function loadXcosLibs()
 
   if ~isdef('scicos_menuslib') then
     load('SCI/modules/scicos/macros/scicos_menus/lib')

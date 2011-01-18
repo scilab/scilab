@@ -30,13 +30,21 @@ Removed functions (previously declared as obsolete):
 * 'oldbesseli', 'oldbesselj', 'oldbesselk' and 'oldbessely' removed.
   Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
 
-* ilib_for_link, ilib_build will not accept files with ".o" or ".obj" extensions
-  for source files in Scilab 5.4.0.
 
 New functions
 =============
 
 * 'repmat' added a missing basic function.
+
+Obsolete Functions:
+===================
+
+* 'loadScicosLibs' is obsolete and will be removed on 5.4.0, please use
+  'loadXcosLibs' instead.
+
+* ilib_for_link, ilib_build will not accept files with ".o" or ".obj" extensions
+  for source files in Scilab 5.4.0.
+
 
 Demonstration:
 ==============

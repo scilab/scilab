@@ -26,8 +26,8 @@
 function status = generateBlockImage(block, path, filename, handle, imageType, withPort)
     status = %f;
     
-    // call loadScicosLibs if not loaded
-    if exists("scicos_diagram", 'a') == 0 then loadScicosLibs(); end
+    // call loadXcosLibs if not loaded
+    if exists("scicos_diagram", 'a') == 0 then loadXcosLibs(); end
 
     [lhs,rhs] = argn(0)
     if rhs < 2 | rhs > 6 then

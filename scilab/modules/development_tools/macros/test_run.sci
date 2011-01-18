@@ -1089,7 +1089,7 @@ function st = st_run(st)
     ]
 
     if st.xcos then
-        head = [ head ; "loadScicosLibs();"];
+        head = [ head ; "loadXcosLibs();"];
     end
 
     if st.try_catch then

@@ -1104,7 +1104,7 @@ pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-loadScicosLibs();
+loadXcosLibs();
 pal = xcosPal();
 
 sumPath = TMPDIR + "/sum.h5";

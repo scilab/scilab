@@ -32,7 +32,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 //
 //
 // Examples
-//  loadScicosLibs();
+//  loadXcosLibs();
 //  pal = xcosPal();
 //
 //  sumPath = TMPDIR + "/sum.h5";
