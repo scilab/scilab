@@ -513,10 +513,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		final mxIGraphModel model = from.getModel();
 		final int nbObjs = model.getChildCount(parent);
 		for (int i = 0; i < nbObjs; i++) {
-			Object current = model.getChildAt(parent, i);
+			final Object current = model.getChildAt(parent, i);
 			
 			if (current instanceof BasicBlock && !(current instanceof TextBlock)) {
-				BasicBlock block = (BasicBlock) current;
+				final BasicBlock block = (BasicBlock) current;
 				blockList.add(block);
 				
     			//
@@ -525,11 +525,16 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     			//
     			for (int j = 0; j < block.getChildCount(); ++j) {
     				if (block.getChildAt(j) instanceof BasicLink) {
-    					linkList.add((BasicLink) block.getChildAt(j));
+    					final BasicLink link = (BasicLink) block.getChildAt(j);
+    					
+    					// do not add the link if not connected
+    					if (link.getSource() != null && link.getTarget() != null) {
+    						linkList.add(link);
+    					}
     				}
     			}
 			} else if (current instanceof BasicLink) {
-				BasicLink link = (BasicLink) current;
+				final BasicLink link = (BasicLink) current;
 				
 				// Only add connected links
 				final mxICell source = link.getSource();

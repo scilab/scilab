@@ -20,6 +20,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxConstants;
 
 /**
@@ -309,5 +310,37 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
     public boolean isConnectable() {
     	final int edges = getEdgeCount();
     	return edges == 0 || getEdgeAt(0).getTerminal(false) == null;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+    	final StringBuilder str = new StringBuilder();
+    	
+    	final mxICell parent = getParent();
+    	if (parent != null) {
+    		str.append(parent.getClass().getSimpleName()).append('.');
+    	}
+    	
+		if (getChildCount() > 0)  {
+			// append the label
+			str.append(getChildAt(0).getValue());
+		} else {
+			str.append(getClass().getSimpleName());
+		}
+		if (parent != null) {
+			str.append('[').append(getParent().getIndex(this)).append(']');
+		}
+    	if (getEdgeCount() == 1) {
+    		str.append(" (connected)"); 
+    	} else if (getEdgeCount() > 1){
+    		str.append(" - multiple links (");
+    		str.append(getEdgeCount());
+    		str.append(')');
+    	}
+    	
+    	return str.toString();
     }
 }

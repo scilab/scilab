@@ -96,6 +96,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxICell;
@@ -114,6 +115,30 @@ import com.mxgraph.view.mxStylesheet;
  */
 public class XcosDiagram extends ScilabGraph {
 	private static final Log LOG = LogFactory.getLog(XcosDiagram.class);
+	
+	/*
+	 * Static helpers
+	 */
+
+	/**
+	 * Only return the instanceof klass 
+	 * 
+	 * @param selection the selection to filter out
+	 * @param klass the class selector
+	 * @return the selection with only klass instance.
+	 */
+	public static Object[] filterByClass(final Object[] selection, final Class<BasicBlock> klass) {
+		return mxGraphModel.filterCells(selection, new mxGraphModel.Filter() {
+			@Override
+			public boolean filter(Object cell) {
+				return klass.isInstance(cell);
+			}
+		});
+	}
+	
+	/*
+	 * diagram data
+	 */
 	
 	// the associated parameters
 	private ScicosParameters scicosParameters;
