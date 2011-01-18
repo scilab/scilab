@@ -234,6 +234,7 @@ public static final String __GO_AUTO_POSITION__ =          "AutoPosition";
 public static final String __GO_AUTO_ROTATION__ =          "AutoRotation";
 
 public static final String __GO_LINKS__ =                  "Links";
+public static final String __GO_LINKS_COUNT__ =            "LinksCount";
 public static final String __GO_LEGEND_LOCATION__ =        "LegendLocation";
 
 public static final String __GO_CLOSED__ =                 "Closed";

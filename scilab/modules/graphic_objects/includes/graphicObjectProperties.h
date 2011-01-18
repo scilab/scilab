@@ -233,6 +233,7 @@
 #define __GO_AUTO_ROTATION__               "AutoRotation"
 
 #define __GO_LINKS__                       "Links"
+#define __GO_LINKS_COUNT__                 "LinksCount"
 #define __GO_LEGEND_LOCATION__             "LegendLocation"
 
 #define __GO_CLOSED__                      "Closed"

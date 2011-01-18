@@ -81,9 +81,9 @@ public abstract class ClippableTextObject extends TextObject {
 		if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
 			setClipProperty((ClippableProperty) value);
 		} else if (property == ClippablePropertyType.CLIPSTATE) {
-			setClipBox((Double[]) value);
-		} else if (property == ClippablePropertyType.CLIPBOX) {
 			setClipState((Integer) value);
+		} else if (property == ClippablePropertyType.CLIPBOX) {
+			setClipBox((Double[]) value);
 		} else if (property == ClippablePropertyType.CLIPBOXSET) {
 			setClipBoxSet((Boolean) value);
 		} else {

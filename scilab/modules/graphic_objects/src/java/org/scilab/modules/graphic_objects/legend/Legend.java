@@ -25,7 +25,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class Legend extends ClippableTextObject {
 	/** Legend properties names */
-	private enum LegendProperty { LINKS, LEGENDLOCATION, POSITION };
+	private enum LegendProperty { LINKS, LINKSCOUNT, LEGENDLOCATION, POSITION };
 	
 	/** Legend location */
 	private enum LegendLocation { IN_UPPER_RIGHT, IN_UPPER_LEFT, IN_LOWER_RIGHT, IN_LOWER_LEFT,
@@ -68,7 +68,7 @@ public class Legend extends ClippableTextObject {
 	};
 	
 	/** List of the polylines referred to */
-	private ArrayList <Polyline> links;
+	private ArrayList <String> links;
 
 	/** Legend location */
 	private LegendLocation legendLocation;
@@ -79,8 +79,8 @@ public class Legend extends ClippableTextObject {
 	/** Constructor */
 	public Legend() {
 		super();
-		this.links = null;
-		this.legendLocation = null;
+		this.links = new ArrayList<String>(0);
+		this.legendLocation = LegendLocation.LOWER_CAPTION;
 		position = new double[2];
 	}
 
@@ -97,6 +97,8 @@ public class Legend extends ClippableTextObject {
 	public Object getPropertyFromName(String propertyName) {
 		if (propertyName.equals(__GO_LINKS__)) {
 			return LegendProperty.LINKS;
+		} else if (propertyName.equals(__GO_LINKS_COUNT__)) {
+			return LegendProperty.LINKSCOUNT;
 		} else if (propertyName.equals(__GO_LEGEND_LOCATION__)) {
 			return LegendProperty.LEGENDLOCATION;
 		} else if (propertyName.equals(__GO_POSITION__)) {
@@ -114,6 +116,8 @@ public class Legend extends ClippableTextObject {
 	public Object getProperty(Object property) {
 		if (property == LegendProperty.LINKS) {
 			return getLinks();
+		} else if (property == LegendProperty.LINKSCOUNT) {
+			return getLinksCount();
 		} else if (property == LegendProperty.LEGENDLOCATION) {
 			return getLegendLocation();
 		} else if (property == LegendProperty.POSITION) {
@@ -131,7 +135,7 @@ public class Legend extends ClippableTextObject {
 	 */
 	public boolean setProperty(Object property, Object value) {
 		if (property == LegendProperty.LINKS) {
-			setLinks((ArrayList<Polyline>) value);
+			setLinks((String[]) value);
 		} else if (property == LegendProperty.LEGENDLOCATION) {
 			setLegendLocation((Integer) value);
 		} else if (property == LegendProperty.POSITION) {
@@ -174,14 +178,40 @@ public class Legend extends ClippableTextObject {
 	/**
 	 * @return the links
 	 */
-	public ArrayList<Polyline> getLinks() {
-		return links;
+	public String[] getLinks() {
+		String[] retLinks = new String[links.size()];
+
+		for (int i = 0; i < links.size(); i++) {
+			retLinks[i] = links.get(i);
+		}
+
+		return retLinks;
+	}
+
+	/**
+	 * @return the links count
+	 */
+	public Integer getLinksCount() {
+		return links.size();
 	}
 
 	/**
 	 * @param links the links to set
 	 */
-	public void setLinks(ArrayList<Polyline> links) {
+	public void setLinks(String[] links) {
+		if (!this.links.isEmpty()) {
+			this.links.clear();
+		}
+
+		for (int i = 0; i < links.length; i++) {
+			this.links.add(links[i]);
+		}
+	}
+
+	/**
+	 * @param links the links to set
+	 */
+	public void setLinks(ArrayList<String> links) {
 		this.links = links;
 	}
 
