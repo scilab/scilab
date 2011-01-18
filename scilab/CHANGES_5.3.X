@@ -11,7 +11,7 @@ Console:
   console. See bug #8749.
 
 * Performance improvements on the display of long computation with a lot of
-  output (the more text in the console, the slower was the display). 
+  output (the more text in the console, the slower was the display).
   See bug #4840.
 
 
@@ -195,6 +195,8 @@ Bug fixes:
                    displayed in the console but in the terminal.
 
 * bug 8732 fixed - strchr and strrchr did not work with a non-ASCII character needle.
+
+* bug 8809 fixed - Bad top link in the chm files.
 
 * bug 8789 fixed - read function crashed on Windows XP 64 bit platform.
 
@@ -576,7 +578,7 @@ Bug Fixes:
 
 * bug 6942 fixed - Explicit dependency on the libX11 on scilab-cli was existing.
 
-* bug 7242 fixed - API Scilab returned bad address for named variables 
+* bug 7242 fixed - API Scilab returned bad address for named variables
                    when name was provided by input arguments.
 
 * bug 7364 fixed - The "Checked" property misworked for uimenus and they could

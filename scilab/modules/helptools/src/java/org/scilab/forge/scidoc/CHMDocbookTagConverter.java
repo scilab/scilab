@@ -95,8 +95,9 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
         if (leaf == null) {
             return "<link rel=\"up\" href=\"\" title=\"\">";
         }
-        HTMLDocbookLinkResolver.TreeId prev = leaf.getPrevious();
-        if (prev.parent != null) {
+
+        leaf = leaf.parent;
+        if (leaf != null) {
             buffer.append("<link rel=\"up\" href=\"");
             if (!leaf.isRoot()) {
                 buffer.append(mapId.get(leaf.id));
@@ -178,8 +179,6 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
     }
 
     private void convertFileList(Appendable buffer) throws IOException {
-        // Allan : si tu penses que l'on peut faire un truc plus configurable, dis-moi je ferais un fichier modele
-        // que l'on remplira ensuite avec les bonnes options...
         buffer.append("[OPTIONS]\n");
         buffer.append("Binary TOC=Yes\n");
         buffer.append("Compatibility=1.1 or later\n");
