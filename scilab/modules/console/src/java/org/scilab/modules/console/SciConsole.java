@@ -206,7 +206,7 @@ public abstract class SciConsole extends JPanel {
             }
         }
 
-        int numberOfLines = getNumberOfLines();
+        int numberOfLines = Math.max(1, getNumberOfLines());
         int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getPreferredSize().width;
 
         int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1;

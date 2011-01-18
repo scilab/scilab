@@ -187,6 +187,9 @@ Scilab:
 Bug fixes:
 ==========
 
+* bug 4930 fixed - When the console was resized from 0-height to x-height, lines()
+                   was not correctly updated.
+
 * bug 5551 fixed - With the function dir(), add a trailing filesep() for each
                    directory.
 
