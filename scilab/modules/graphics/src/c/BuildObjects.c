@@ -789,143 +789,164 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 sciPointObj *
 ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandles[], int nblegends)
 {
-	sciPointObj * pobj = (sciPointObj *) NULL;
-	sciLegend   * ppLegend ;
+    sciPointObj * pobj = (sciPointObj *) NULL;
 
-	/*
-	* verifier qu'il n'y a pas d'objet existant !!!!
-	* si oui alors le detruire puis le reconstruire.
-	* car il ne peut y avoir qu'une legende
-	*/
-	sciSons *psonstmp;
-	int i=0;
+    /* To be deleted */
+#if 0
+    sciLegend   * ppLegend;
+#endif
 
-	psonstmp = sciGetSons (pparentsubwin);
-	/* init */
-	if (psonstmp != NULL)
-	{/* on peut commencer sur le next */
-		/* tant que le fils n'est pas une legende */
-		while ((psonstmp->pnext != NULL) && sciGetEntityType (psonstmp->pointobj) != SCI_LEGEND)
-		{
-			psonstmp = psonstmp->pnext;
-		}
-	}
+    int i;
+    int iLegendPresent = 0;
+    int* piLegendPresent = &iLegendPresent;
+    int iVisible;
+    int* piVisible = &iVisible;
+    int* tmp;
+    int textDimensions[2];
+    int fillMode;
+    int legendLocation;
 
-	if (sciGetEntityType (psonstmp->pointobj) == SCI_LEGEND)
-	{
-		DestroyLegend (psonstmp->pointobj);
-	}
+    int clipRegionSet;
+    int clipState;
 
-	if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-	{
-		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-		{
-			return NULL;
-		}
-		sciSetEntityType (pobj, SCI_LEGEND);
-		if ((pobj->pfeatures = MALLOC ((sizeof (sciLegend)))) == NULL)
-		{
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		/* get the pointer on the features */
-		ppLegend = pLEGEND_FEATURE( pobj );
+    double* clipRegion;
+    double position[2];
 
+    char** lineIDS;
+    char* parentType;
 
-		if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-		{
-			FREE( pobj->pfeatures ) ;
-			FREE( pobj ) ;
-			return NULL ;
-		}
+    /* Check beforehand whether a Legend object is already present */
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_HAS_LEGEND_CHILD__, jni_bool, &piLegendPresent);
 
-		ppLegend->text.callback = (char *)NULL;
-		ppLegend->text.callbacklen = 0;
-		ppLegend->text.callbackevent = 100;
-		ppLegend->text.isboxed = FALSE ;
+    if (iLegendPresent)
+    {
+        /*
+	 * Object deletion not implemented yet.
+         * To be implemented
+         */
+#if 0
+        DestroyLegend();
+#endif
+    }
 
-		ppLegend->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &parentType);
 
-		ppLegend->text.pStrings = newFullStringMatrix( text,nblegends,1 ) ;
+    if (strcmp(parentType, __GO_AXES__) != 0)
+    {
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (sciPointObj*) NULL;
+    }
 
-		/* Allocation de la structure sciText */
-		if ( ppLegend->text.pStrings == NULL)
-		{
-			Scierror(999, _("No more place to allocates text string, try a shorter string.\n"));
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(ppLegend);
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		/* on copie le texte du titre dans le champs specifique de l'objet */
-		ppLegend->nblegends = nblegends;
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+        return (sciPointObj*) NULL;
+    }
 
-		if ((ppLegend->tabofhandles =
-			MALLOC(nblegends*sizeof(long long))) == NULL)
-		{
-			Scierror(999, _("%s: No more memory.\n"),"ConstructLegend");
-			deleteMatrix( ppLegend->text.pStrings ) ;
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(ppLegend);
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
+    pobj->UID = (char*) createGraphicObject(__GO_LEGEND__);
+
+    /* Required to initialize the default contour and font properties */
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+
+    /* To be implemented */
+#if 0
+    ppLegend->text.callback = (char *)NULL;
+    ppLegend->text.callbacklen = 0;
+    ppLegend->text.callbackevent = 100;
+#endif
+
+    /* To be implemented, probably useless */
+#if 0
+    ppLegend->text.isboxed = FALSE;
+#endif
 
 
-		for (i=0; i < nblegends; i++)
-		{
- 			// Bug 4530: we must reverse the order of the handles
-			ppLegend->tabofhandles[i] = tabofhandles[nblegends - 1 - i];
-		}
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
 
-		ppLegend->text.fontcontext.textorientation = 0.0;
-		ppLegend->pos.x = 0;
-		ppLegend->pos.y = 0;
-		ppLegend->width = 0;
-		ppLegend->height = 0;
-		ppLegend->place = SCI_LEGEND_LOWER_CAPTION; /* Default position */
-		ppLegend->isselected = TRUE;
-		ppLegend->issurround = FALSE;
+    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
 
-		/* no clipping by default */
-		ppLegend->clip_region_set = 0 ;
-		sciInitIsClipping( pobj, -1 ) ;
-		sciSetClipping( pobj, sciGetClipping(pparentsubwin) );
+    lineIDS = (char**) MALLOC(nblegends*sizeof(char*));
 
-		if (sciInitGraphicContext (pobj) == -1) /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
-		{
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(pobj->pfeatures);
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
+    if (lineIDS == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"),"ConstructLegend");
+        return (sciPointObj*) NULL;
+    }
 
-		/* With legends, force drawing of background */
-		/* Otherwise underlying lines can be seen */
-		sciSetIsFilled(pobj, TRUE);
+    textDimensions[0] = nblegends;
+    textDimensions[1] = 1;
 
-		if (sciInitFontContext (pobj) == -1)
-		{
-			Scierror(999, _("Problem with sciInitFontContext\n"));
-			FREE(ppLegend->tabofhandles);
-			deleteMatrix( ppLegend->text.pStrings ) ;
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(ppLegend);
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
+    setGraphicObjectProperty(pobj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
+    setGraphicObjectProperty(pobj->UID, __GO_TEXT_STRINGS__, text, jni_string_vector, nblegends);
 
-		return pobj;
-	}
-	else
-	{
-		Scierror(999, _("The parent has to be a SUBWIN\n"));
-		return (sciPointObj *) NULL;
-	}
+    for (i = 0; i < nblegends; i++)
+    {
+        sciPointObj* tmpObj;
+
+        tmpObj =  sciGetPointerFromHandle(tabofhandles[i]);
+        lineIDS[i] = tmpObj->UID;
+    }
+
+    setGraphicObjectProperty(pobj->UID, __GO_LINKS__, lineIDS, jni_string_vector, nblegends);
+
+    FREE(lineIDS);
+
+
+    position[0] = 0.0;
+    position[1] = 0.0;
+    setGraphicObjectProperty(pobj->UID, __GO_POSITION__, position, jni_double_vector, 2);
+
+
+    /* 9: LOWER_CAPTION */
+    legendLocation = 9;
+    setGraphicObjectProperty(pobj->UID, __GO_LEGEND_LOCATION__, &legendLocation, jni_int, 1);
+
+    /* To be implemented */
+#if 0
+    ppLegend->isselected = TRUE;
+#endif
+
+    /* Clipping: to be checked for consistency */
+    clipRegionSet = 0;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+    /* 0: OFF */
+    clipState = 0;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+
+    /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
+    if (sciInitGraphicContext (pobj) == -1) 
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    if (sciInitFontContext (pobj) == -1)
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    fillMode = TRUE;
+    setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
+
+    if (sciAddNewHandle(pobj) == -1)
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return NULL;
+    }
+
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+
+    return pobj;
 }
 /*---------------------------------------------------------------------------------*/
 /**

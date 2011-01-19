@@ -84,7 +84,7 @@ int get_position_property( sciPointObj * pobj )
             return -1;
         }
 
-        sciReturnRowVector(position, 2);
+        return sciReturnRowVector(position, 2);
     }
 
 }

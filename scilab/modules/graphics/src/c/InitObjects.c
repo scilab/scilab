@@ -6,7 +6,7 @@
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -469,6 +469,13 @@ sciInitGraphicContext (sciPointObj * pobj)
     getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
     cloneGraphicContext(parent, pobj->UID);
   }
+  else if (strcmp(type, __GO_LEGEND__) == 0)
+  {
+    char* parent;
+
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+    cloneGraphicContext(parent, pobj->UID);
+  }
 
   /* Deactivated for now */
   /* This must be implemented within the MVC */
@@ -530,13 +537,13 @@ return 0;
 }
 
 /**
- * Inits the font context of an object byt copying the one of an other.
+ * Inits the font context of an object by copying the one of an other.
  * @param pObjSource the object from which the FC is taken
  * @param pObjDest the object in which the FC is paste
  */
 int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest )
 {
-  return cloneFontContext( pObjSource, pObjDest ) ;
+    return cloneFontContext( pObjSource->UID, pObjDest->UID );
 }
 
 
@@ -665,6 +672,14 @@ sciInitFontContext (sciPointObj * pobj)
       initFCfromCopy( pfiguremdl, pobj );
     }
   }
+  else if (strcmp(type, __GO_LEGEND__) == 0)
+  {
+    char* parent;
+
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+    cloneFontContext(parent, pobj->UID);
+  }
+
   /* Deactivated for now */
 #if 0
   case SCI_ARC:

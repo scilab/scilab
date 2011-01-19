@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -387,45 +387,56 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
 #endif
 
     /*---- Drawing the Legends ----*/
-    /*
-     * Deactivated for now, the Legend is not fully implemented yet
-     * within the MVC
-     * To be implemented
-     */
+
+    /* Deactivated (synchronization) */
 #if 0
     startFigureDataWriting(curFigure);
+#endif
 
     if (with_leg) {
-      char ** Str;
-      int nleg;
-      sciPointObj * Leg;
-      if (scitokenize(legend, &Str, &nleg)) {
-	FREE(tabofhandles);
-	FREE(hdltab);
-	Scierror(999, _("%s: No more memory.\n"),"plot2d");
-        endFigureDataWriting(curFigure);
-	return 0;
-      }
-      Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,Min(nleg,cmpt));
-	if (Leg != NULL)
-	  {
-	    pLEGEND_FEATURE(Leg)->place = SCI_LEGEND_LOWER_CAPTION;
-	    sciSetIsFilled (Leg, FALSE);
-	    sciSetIsLine (Leg, FALSE);
-	    sciSetCurrentObj (Leg);
-	  }
+        char ** Str;
+        int nleg;
+        sciPointObj * leg;
+        if (scitokenize(legend, &Str, &nleg)) {
+            FREE(tabofhandles);
+            FREE(hdltab);
+            Scierror(999, _("%s: No more memory.\n"),"plot2d");
 
-      freeArrayOfString(Str, nleg);
-
-	FREE(tabofhandles);
-	/* }*/
-    }
+            /* Deactivated (synchronization) */
+#if 0
+            endFigureDataWriting(curFigure);
 #endif
+            return 0;
+        }
+
+        leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,Min(nleg,cmpt));
+
+        if (leg != NULL)
+        {
+            int legendLocation;
+            int contourMode;
+
+            /* 9: LOWER_CAPTION */
+            legendLocation = 9;
+            setGraphicObjectProperty(leg->UID, __GO_LEGEND_LOCATION__, &legendLocation, jni_int, 1);
+
+            contourMode = 0;
+
+            setGraphicObjectProperty(leg->UID, __GO_FILL_MODE__, &contourMode, jni_bool, 1);
+            setGraphicObjectProperty(leg->UID, __GO_LINE_MODE__, &contourMode, jni_bool, 1);
+
+            sciSetCurrentObj (leg);
+        }
+
+        freeArrayOfString(Str, nleg);
+
+        FREE(tabofhandles);
+    }
 
     /*---- construct Compound ----*/
     if (cmpt > 0)
     {
-      sciSetCurrentObj(ConstructCompound (hdltab, cmpt));
+        sciSetCurrentObj(ConstructCompound (hdltab, cmpt));
     }
     FREE(hdltab);
 

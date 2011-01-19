@@ -140,7 +140,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     {
         double * values = getDoubleMatrixFromStack( stackPointer );
 
-        setGraphicObjectProperty(pobj->UID, __GO_POSITION__, values, jni_double_vector, 2);
+        status = setGraphicObjectProperty(pobj->UID, __GO_POSITION__, values, jni_double_vector, 2);
 
         if (status == TRUE)
         {

@@ -52,11 +52,11 @@ GRAPHICS_IMPEXP int cloneGraphicContext(char* sourceIdentifier, char* destIdenti
 /*--------------------------------------------------------------------------*/
 /**
  * copy the fontContext of an object to another.
- * @param pObjSource the object from which the FC is taken
- * @param pObjDest the object in which the FC is paste
- * @return 0 if the copy is ok, -1 otherwise.
+ * @param sourceIdentifier the source object's MVC identifier
+ * @param destIdentifier the destination object's MVC identifier
+ * @return always 0, the copy is considered to be always correct
  */
-GRAPHICS_IMPEXP int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
+GRAPHICS_IMPEXP int cloneFontContext(char* sourceIdentifier, char* destIdentifier);
 /*--------------------------------------------------------------------------*/
 /**
  * copy the user data of an object to an other.

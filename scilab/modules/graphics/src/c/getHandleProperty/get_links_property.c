@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+* Copyright (C) 2011 - DIGITEO - Manuel Juliachs
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -22,30 +23,62 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_links_property( sciPointObj * pobj )
 {
-  int nblegends=pLEGEND_FEATURE(pobj)->nblegends;
-  int i;
-  long *handles;
-  int status;
-  if (sciGetEntityType(pobj) != SCI_LEGEND)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"links") ;
-    return -1 ;
-  }
-  handles=(long *)MALLOC(nblegends*sizeof(long));
-  if (handles==NULL) {
-    Scierror(999, _("%s: No more memory.\n"),"get_links_property");
-    return -1 ;
-  }
-  for (i=0; i<nblegends; i++) {
-    handles[i]=(long)pLEGEND_FEATURE(pobj)->tabofhandles[i];
-  }
-  status = sciReturnRowHandleVector(handles, nblegends);
- 
-  FREE(handles);
+    int nbLegends;
+    int i;
+    long *handles;
+    char** links;
+    int status;
+    sciPointObj* pLinks;
+    int iLinksCount = 0;
+    int* piLinksCount = &iLinksCount;
 
-  return status;
+    getGraphicObjectProperty(pobj->UID, __GO_LINKS_COUNT__, jni_int, &piLinksCount);
+
+    if (piLinksCount == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
+        return -1;
+    }
+
+    handles = (long *)MALLOC(iLinksCount*sizeof(long));
+    if (handles==NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"),"get_links_property");
+        return -1;
+    }
+
+    getGraphicObjectProperty(pobj->UID, __GO_LINKS__, jni_string_vector, &links);
+
+    if (links == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
+        return -1;
+    }
+
+    /*
+     * Temporary, as sciPointObj structures should not be allocated.
+     * To be modified
+     */
+    for (i = 0; i < iLinksCount; i++)
+    {
+        pLinks = MALLOC(sizeof(sciPointObj));
+        pLinks->UID = links[i];
+
+        sciAddNewHandle(pLinks);
+        handles[i] = sciGetHandle(pLinks);
+    }
+
+    status = sciReturnRowHandleVector(handles, iLinksCount);
+
+    FREE(handles);
+
+    return status;
 }
 /*------------------------------------------------------------------------*/
