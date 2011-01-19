@@ -12,7 +12,8 @@ Console:
 
 * Performance improvements on the display of long computation with a lot of
   output (the more text in the console, the slower was the display). 
-  See bug #4840. 
+  See bug #4840.
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
@@ -54,6 +55,7 @@ trigger a warning and do not add a link on the function name.
 * bug 8690 fixed - Typo fixed in the french min help page.
 
 * bug 8756 fixed - The file id was expected only in refentry.
+
 
 Scinotes:
 =========
@@ -120,6 +122,12 @@ Localization:
 =============
 
 * bug 8096 fixed - With Russian localization, the banner was not centered.
+
+
+Installer:
+==========
+
+* bug 8825 fixed - Mac OS X installer reported a wrong version of Scilab.
 
 
 Graphics:

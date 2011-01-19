@@ -335,7 +335,11 @@ RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -492,6 +496,7 @@ libscihelptools_la_data_template_DATA = data/template/template_javahelp.html
 libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
 data/css/style.css
+
 
 #### helptools : xsl files ####
 libscihelptools_la_xsl_convertdir = $(mydatadir)/xsl/convert
@@ -769,7 +774,6 @@ uninstall-libscihelptools_la_binDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscihelptools_la_bindir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscihelptools_la_bindir)" && rm -f $$files
-
 install-libscihelptools_la_data_configurationDATA: $(libscihelptools_la_data_configuration_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscihelptools_la_data_configurationdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_data_configurationdir)"
