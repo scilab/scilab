@@ -43,6 +43,9 @@ Documentation:
 * In an example in the documentation, when an undocumented function is used,
 trigger a warning and do not add a link on the function name.
 
+* In the documentation, Java, C, C++ and XML codes are now colorized if the role
+  in programlisting is set (role='java', role='c', role='cpp' or role='xml')
+
 * bug 7069 fixed - Old documentation about the documentation build process
                    removed.
 
