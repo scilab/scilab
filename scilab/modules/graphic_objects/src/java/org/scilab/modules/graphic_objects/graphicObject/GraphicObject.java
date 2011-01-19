@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,6 +20,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.legend.Legend;
 
 /**
  * GraphicObject class
@@ -35,7 +36,7 @@ public abstract class GraphicObject implements Cloneable {
 	
 	/** GraphicObject properties */
 	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
-		PARENT_FIGURE, PARENT_AXES, UNKNOWNPROPERTY };
+		PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -167,6 +168,10 @@ public abstract class GraphicObject implements Cloneable {
 			return GraphicObjectPropertyType.PARENT_FIGURE;
 		} else if (propertyName.equals(__GO_PARENT_AXES__)) {
 			return GraphicObjectPropertyType.PARENT_AXES;
+		} else if (propertyName.equals(__GO_PARENT_AXES__)) {
+			return GraphicObjectPropertyType.PARENT_AXES;
+		} else if (propertyName.equals(__GO_HAS_LEGEND_CHILD__)) {
+			return GraphicObjectPropertyType.HASLEGENDCHILD;
 		} else if (propertyName.equals(__GO_TYPE__)) {
 			return GraphicObjectPropertyType.TYPE;
 		}  else if (propertyName.equals(__GO_DATA_MODEL__)) {
@@ -198,6 +203,8 @@ public abstract class GraphicObject implements Cloneable {
 			return getParentFigure();
 		} else if (property == GraphicObjectPropertyType.PARENT_AXES) {
 			return getParentAxes();
+		} else if (property == GraphicObjectPropertyType.HASLEGENDCHILD) {
+			return getHasLegendChild();
 		} else if (property == GraphicObjectPropertyType.TYPE) {
             return getType();
         }  else if (property == GraphicObjectPropertyType.DATA) {
@@ -376,6 +383,27 @@ public abstract class GraphicObject implements Cloneable {
                 		return null;
                 	}
                 }
+	}
+
+	/**
+	 * Get has legend child method
+	 * Returns a boolean indicating whether one of the object's direct children
+	 * is a Legend object. Only one Legend is supposed to be present in the list.
+	 * To be done: storing the property and updating it only when a Legend object
+	 * is inserted or deleted instead of searching the children list when the
+	 * property is queried.
+	 * @return a Boolean indicating whether the object has a child Legend object or not
+	 */
+	public Boolean getHasLegendChild() {
+		for (int i = 0; i < children.size(); i++) {
+			GraphicObject currentObject = GraphicController.getController().getObjectFromId(children.get(i));
+
+			if (currentObject instanceof Legend) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
