@@ -190,6 +190,9 @@ Bug fixes:
 
 * bug 8789 fixed - read function crashed on Windows XP 64 bit platform.
 
+* bug 8830 fixed - In call_scilab, TerminateScilab did not clear the last
+                   error.
+
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================

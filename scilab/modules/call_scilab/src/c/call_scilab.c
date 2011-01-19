@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "BOOL.h"
 #include "call_scilab.h"
+#include "lasterror.h" /* clearLastError */
 #include "MALLOC.h"
 #include "scilabmode.h"
 #include "fromc.h"
@@ -195,6 +196,10 @@ BOOL TerminateScilab(char *ScilabQuit)
         {
             TerminateCorePart2();
         }
+
+        /* Make sure that the error management is reset. See bug #8830 */
+        clearLastError();
+
         ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
 
