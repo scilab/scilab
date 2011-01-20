@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
+ * Copyright (C) INRIA\
+ *\
+ * This file must be used under the terms of the CeCILL.\
+ * This source file is licensed as described in the file COPYING, which\
+ * you should have received as part of this distribution.  The terms\
+ * are also available at\
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
+ *\
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          xml:id="Mathoperations_pal"
+          xml:lang="fr_FR">
+  <refnamediv>
+    <refname>Mathoperations_pal</refname>
+
+    <refpurpose>Palette Opérations mathématiques</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="ABS_VALUE" fileref="../../../../../../modules/xcos/images/palettes/ABS_VALUE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="BIGSOM_f" fileref="../../../../../../modules/xcos/images/palettes/BIGSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="COSBLK_f" fileref="../../../../../../modules/xcos/images/palettes/COSBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="EXPBLK_m" fileref="../../../../../../modules/xcos/images/palettes/EXPBLK_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="GAINBLK_f" fileref="../../../../../../modules/xcos/images/palettes/GAINBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="INVBLK" fileref="../../../../../../modules/xcos/images/palettes/INVBLK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="LOGBLK_f" fileref="../../../../../../modules/xcos/images/palettes/LOGBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATMAGPHI" fileref="../../../../../../modules/xcos/images/palettes/MATMAGPHI.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATZREIM" fileref="../../../../../../modules/xcos/images/palettes/MATZREIM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MAXMIN" fileref="../../../../../../modules/xcos/images/palettes/MAXMIN.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MAX_f" fileref="../../../../../../modules/xcos/images/palettes/MAX_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MIN_f" fileref="../../../../../../modules/xcos/images/palettes/MIN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="POWBLK_f" fileref="../../../../../../modules/xcos/images/palettes/POWBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="PRODUCT" fileref="../../../../../../modules/xcos/images/palettes/PRODUCT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="PROD_f" fileref="../../../../../../modules/xcos/images/palettes/PROD_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SIGNUM" fileref="../../../../../../modules/xcos/images/palettes/SIGNUM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SINBLK_f" fileref="../../../../../../modules/xcos/images/palettes/SINBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SQRT" fileref="../../../../../../modules/xcos/images/palettes/SQRT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SUMMATION" fileref="../../../../../../modules/xcos/images/palettes/SUMMATION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SUM_f" fileref="../../../../../../modules/xcos/images/palettes/SUM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TANBLK_f" fileref="../../../../../../modules/xcos/images/palettes/TANBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TrigFun" fileref="../../../../../../modules/xcos/images/palettes/TrigFun.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Module_Mathoperations_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Mathoperations_pal">
+    <title>Description</title>
+
+    <para> La palette Opérations mathématiques contient les blocs de modélisation des fonctions mathématiques générales.</para>
+  </refsection>
+
+  <refsection id="Blocks_Mathoperations_pal">
+    <title>Blocs</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="ABS_VALUE">ABS_VALUE — Valeur absolue</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="BIGSOM_f">BIGSOM_f — Addition/Soustraction de scalaires ou vecteurs</link>
+        </para>
+      </listitem>
+
+
+      <listitem>
+        <para>
+          <link linkend="COSBLK_f">COSBLK_f — Cosinus</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="EXPBLK_m">EXPBLK_m — Exponentielle d'un scalaire</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="GAINBLK_f">GAINBLK_f — Gain</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="INVBLK">INVBLK — Inverse</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="LOGBLK_f">LOGBLK_f — Logarithme Commun</link>
+        </para>
+      </listitem>
+
+
+      <listitem>
+        <para>
+          <link linkend="MATMAGPHI">MATMAGPHI — Complexe à partir de/vers module et phase</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATZREIM">MATZREIM — Composition/décomposition complexe</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+           <link linkend="MAX_f">MAX_f — Valeur maximale des éléments d'un vecteur</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+           <link linkend="MAXMIN">MAXMIN — Valeur maximale ou minimale des éléments de vecteurs</link>
+        </para>
+       </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MIN_f">MIN_f — Valeur minimale des éléments d'un vecteur</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="POWBLK_f">POWBLK_f — Puissance</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PROD_f">PROD_f — Produit de vecteurs élément par élément</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PRODUCT">PRODUCT — Multiplication/Division de vecteurs élément par élément</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SIGNUM">SIGNUM — Signe</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SINBLK_f">SINBLK_f — Sinus</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SQRT">SQRT — Racine carrée</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SUM_f">SUM_f — Addition</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SUMMATION">SUMMATION — Addition/Soustraction de matrices</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TANBLK_f">TANBLK_f — Tangente</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TrigFun">TrigFun — Fonction trigonométrique</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>
