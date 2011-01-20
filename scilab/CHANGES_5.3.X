@@ -107,6 +107,9 @@ in the status bar of Scinotes.
 Xcos:
 =====
 
+* Many improvements on the english documentation of Xcos (better description
+  of the blocks, arguments, etc). Many thanks to Bernard Dujardin.
+
 * The demos have been updated to use the latest features.
 
 * bug 5680 fixed - Labels are not visible as default.
