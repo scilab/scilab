@@ -14,7 +14,6 @@ Console:
   output (the more text in the console, the slower was the display).
   See bug #4840.
 
-
 Removed functions (previously declared as obsolete):
 ====================================================
 
@@ -236,6 +235,12 @@ Compilation:
 * -Wimplicit removed for gfortran in the enable debug mode
 
 * Intel Compiler XE 2011 update 1 C++/Fortran used to build Scilab on Windows.
+
+
+Dynamic link:
+=============
+
+* Intel Fortran Composer XE 2011 (12) used by default if it is detected.
 
 
 Scilab:
