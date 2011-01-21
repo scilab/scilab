@@ -162,6 +162,9 @@ Xcos:
 * bug 8737 fixed - Compilation failed when a diagram contains any hidden links
                    (wrong indexes issues).
 
+* bug 8818 fixed - Generic modelica blocks did not transform Scilab exponential
+                   notation to Modelica one.
+
 * bug 8867 fixed - Unconnected links could not be deleted.
 
 * bug 8884 fixed - Using region to super block with ports on the same position
