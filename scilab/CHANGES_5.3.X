@@ -249,6 +249,9 @@ Xcos:
 * bug 8818 fixed - Generic modelica blocks did not transform Scilab exponential
                    notation to Modelica one.
 
+* bug 8822 fixed - Remove an implicit link connected to a spli block could lead
+                   to an unconnectable port.
+
 * bug 8867 fixed - Unconnected links could not be deleted.
 
 * bug 8870 fixed - TKSCALE block did not work without TCL.
