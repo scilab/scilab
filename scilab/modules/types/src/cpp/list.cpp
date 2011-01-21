@@ -264,4 +264,13 @@ namespace types
         }
         return this;
     }
+
+    InternalType* List::get(const int _iIndex)
+    {
+        if(_iIndex >= 0 && _iIndex < m_plData->size())
+        {
+            return (*m_plData)[_iIndex];
+        }
+        return NULL;
+    }
 }

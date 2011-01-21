@@ -12,6 +12,7 @@
 
 #include <sstream>
 #include "arrayof.hxx"
+#include "list.hxx"
 #include "tlist.hxx"
 #include "listundefined.hxx"
 
@@ -72,21 +73,7 @@ namespace types
 
     InternalType* TList::get(const std::wstring& _sKey)
     {
-        return get(getIndexFromString(_sKey));
-    }
-
-    InternalType* TList::get(const int _iIndex)
-    {
-        if(getSize() < 2)
-        {
-            return NULL;
-        }
-
-        if(_iIndex > 0 && _iIndex < (*m_plData)[0]->getAs<types::String>()->getSize())
-        {
-            return (*m_plData)[_iIndex];
-        }
-        return NULL;
+        return List::get(getIndexFromString(_sKey));
     }
 
     int TList::getIndexFromString(const std::wstring _sKey)

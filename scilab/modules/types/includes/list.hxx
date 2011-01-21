@@ -28,7 +28,6 @@ namespace types
                                         List(List *_oListCopyMe);
     protected :
         std::vector<InternalType *>*    getData();
-
     public :
         int                             getSize();
 
@@ -57,6 +56,7 @@ namespace types
 
         InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);
         std::vector<InternalType*>      extract(typed_list* _pArgs);
+        virtual InternalType*           get(const int _iIndex);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring            getTypeStr() {return L"list";}
