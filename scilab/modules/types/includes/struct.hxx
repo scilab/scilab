@@ -61,6 +61,7 @@ namespace types
         bool                                    exists(const std::wstring& _sKey);
 
         std::vector<InternalType*>              extract(std::list<std::wstring> _stFields);
+        String*                                 getFieldNames();
 
         GenericType*                            getColumnValues(int _iPos);
 

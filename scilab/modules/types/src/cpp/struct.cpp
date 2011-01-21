@@ -13,6 +13,7 @@
 #include <sstream>
 #include "symbol.hxx"
 #include "struct.hxx"
+#include "arrayof.hxx"
 
 namespace types
 {
@@ -196,5 +197,18 @@ namespace types
             Result.push_back(get(*it));
         }
         return Result;
+    }
+
+    String* Struct::getFieldNames()
+    {
+        String* pOut = new String((int)m_plData->size(), 1);
+        std::map<std::wstring, InternalType *>::iterator it;
+
+        int i = 0;
+        for (it = m_plData->begin() ; it != m_plData->end() ; it++, i++)
+        {
+            pOut->set(i, it->first.c_str());
+        }
+        return pOut;
     }
 }
