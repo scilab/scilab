@@ -169,7 +169,10 @@ int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int S
     /* Scilab Initialization */
     C2F(inisci)(&iflag, &StacksizeUsed, &ierr);
 
-    if ( ierr > 0 ) return ierr;
+    if ( ierr > 0 ) {
+        if (ScilabStartupUsed) {FREE(ScilabStartupUsed); ScilabStartupUsed = NULL;}
+        return ierr;
+    }
 
     lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartupUsed + 1));
     InitStringToScilab = (char*)MALLOC(lengthStringToScilab*sizeof(char));

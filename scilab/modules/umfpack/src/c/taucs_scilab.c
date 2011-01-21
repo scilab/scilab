@@ -547,7 +547,7 @@ multifrontal_supernodal_front_factor(int sn,
   int i,j;
   int* ind;
   double* re;
-  int INFO;
+  int INFO = -1;
   double done      =  1.0;
   double dminusone = -1.0;
 
@@ -584,7 +584,7 @@ multifrontal_supernodal_front_factor(int sn,
 		&INFO);
   }
 
-  if (INFO) 
+  if (INFO && INFO != -1)  /* INFO = -1 if not initialized */ 
   {
 	sciprint(_("    CC^T Factorization: Matrix is not positive definite.\n"));
     sciprint(_("                        nonpositive pivot in column %d\n"),mtr->sn_vertices[INFO-1]);
