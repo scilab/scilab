@@ -1508,18 +1508,31 @@ bool mxIsStruct(const mxArray *ptr)
 
 int IsstOrce(mxArray *ptr)
 {
-  int *header1; int l; int nfplus2;
-  int *header = Header(ptr);
-  if (header[0]==MLIST) {
-    header1 = (int *) listentry(header,1);
-    nfplus2 = header1[1]*header1[2];
-    l = 5 + nfplus2;
-    if (header1[0]==STRINGMATRIX)
-	if (header1[l]==12 && header1[l+1]==14) return 1;  /*  "ce"  */
-	if (header1[l]==28 && header1[l+1]==29) return 1;  /*  "st"  */
-    else return 0;
-      }
-  else return 0;
+    int *header1; int l; int nfplus2;
+    int *header = Header(ptr);
+    if (header[0]==MLIST)
+    {
+        header1 = (int *) listentry(header,1);
+        nfplus2 = header1[1]*header1[2];
+        l = 5 + nfplus2;
+        if (header1[0]==STRINGMATRIX)
+        {
+            if (header1[l]==12 && header1[l+1]==14)
+            {
+                return 1;  /*  "ce"  */
+            }
+        }
+        if (header1[l]==28 && header1[l+1]==29)
+        {
+            return 1;  /*  "st"  */
+        } else {
+            return 0;
+        }
+    }
+    else 
+    {
+        return 0;
+    }
 }
 
 /***************************************************************

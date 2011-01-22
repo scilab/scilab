@@ -557,7 +557,9 @@ int KINSol(void *kinmem, N_Vector u, int strategy,
 
     /* evaluate eta by calling the forcing term routine */
 
-    if (callForcingTerm) KINForcingTerm(kin_mem, fnormp);
+    if (callForcingTerm) {
+        KINForcingTerm(kin_mem, fnormp);
+    }
 
     fnorm = fnormp;
 
