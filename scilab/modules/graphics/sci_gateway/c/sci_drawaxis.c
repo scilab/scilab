@@ -187,7 +187,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
     return 0;
   }
 
-  if (val != NULL) 
+  if ( val != NULL ) 
   {
     CheckLength( opts[8].position, opts[8].m*opts[8].n,ntics);
     nb_tics_labels = opts[8].m*opts[8].n;

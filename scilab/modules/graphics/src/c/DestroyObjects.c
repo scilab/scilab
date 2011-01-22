@@ -615,7 +615,6 @@ void sciDeleteWindow( int winNum )
 void AllGraphWinDelete( void )
 {
 
-  int iflag=0 ;
   int num = sciGetNbFigure() ;
   int *ArrayWGraph = NULL ;
 
@@ -626,7 +625,6 @@ void AllGraphWinDelete( void )
     int i=0;
     ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
 
-    iflag = 1;
     sciGetFiguresId( ArrayWGraph ) ;
 
     for (i=0;i<num;i++)

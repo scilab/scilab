@@ -133,7 +133,7 @@ int writef4(scicos_block *block,int flag)
 #define istk ((int *)&stack_1)
 #define sstk ((real *)&stack_1)
 #define zstk ((doublecomplex *)&stack_1)
-  static int i__, j, k, n, iflag, lunit;
+  static int i__, j, k, n, lunit;
   extern int cvstr_();
   static int io;
   extern int basout_(), clunit_();
