@@ -262,7 +262,7 @@ taucs_ccs_create(int m, int n, int nnz)
   matrix->colptr = (int*)    MALLOC((n+1) * sizeof(int));
   matrix->rowind = (int*)    MALLOC(nnz   * sizeof(int));
   matrix->values = (double*) MALLOC(nnz   * sizeof(double));
-  if (!(matrix->colptr) || !(matrix->rowind) || !(matrix->rowind)) 
+  if (!(matrix->colptr) || !(matrix->rowind)) 
   {
     sciprint(_("%s: No more memory (n=%d, nnz=%d).\n"),"taucs_ccs_create",n,nnz);
     FREE(matrix->colptr); FREE(matrix->rowind); FREE(matrix->values);
