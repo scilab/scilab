@@ -95,7 +95,7 @@
     <literal>n</literal>-par- <literal>p</literal> ... avec des copies
     de <literal>A</literal>. La taille du résultat est
     <literal>[size(A,1)*M, size(A,2)*N, size(A,3)*P,
-    ...]</literal</para>>.
+    ...]</literal></para>.
 
 
     <para>Cette fonction supporte les tableaux de réels, d'entiers, de
