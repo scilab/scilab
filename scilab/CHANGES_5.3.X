@@ -229,6 +229,10 @@ Bug fixes:
 * bug 8830 fixed - In call_scilab, TerminateScilab did not clear the last
                    error.
 
+* bug 8836 fixed - fileparts crashed when a matrix of strings was passed as
+                   input argument.
+
+
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
