@@ -20,6 +20,9 @@
 //
 
 function [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcompile)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //Update an already compiled scicos diagram compilation result according to 
 //parameter changes
 //!

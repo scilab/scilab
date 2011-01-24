@@ -20,6 +20,9 @@
 //
 
 function  [%cpr,ok] = do_compile(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 show_trace = %f //** tracing and profiling (probably by Alan L. )
     if show_trace then 
          disp("c_pass0:"+string(timer())); 

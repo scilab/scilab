@@ -20,6 +20,9 @@
 //
 
 function scs_m = do_color(%win, %pt, scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //
 // do_color - edit a block / link color
 //

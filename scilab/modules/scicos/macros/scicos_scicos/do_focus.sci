@@ -20,6 +20,9 @@
 //
 
 function wdm=do_focus(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 [btn,%pt,win,Cmenu]=cosclick()
 if Cmenu<>[] then
   Cmenu=resume(Cmenu)

@@ -20,6 +20,9 @@
 //
 
 function scs_m = do_ident(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 //** Alan 21/12/06 : use of objects swap in gh_curwin.children.children()
   K=find(Select(:,2)==%win)
