@@ -381,6 +381,7 @@ Optimization:
 
 * bug 8775 fixed - The karmarkar function did not detect unbounded problems.
 
+
 Bug fixes:
 ==========
 
@@ -420,6 +421,9 @@ Bug fixes:
 * bug 8789 fixed - read function crashed on Windows XP 64 bit platform.
 
 * bug 8809 fixed - Bad top link in the chm files.
+
+* bug 8820 fixed - squeeze function returned 2D hypermatrix instead of regular 2D array
+                   function also extended to all array types included cells ans structs
 
 * bug 8828 fixed - "savematfile" could no more save a structure.
 
