@@ -554,7 +554,7 @@ class BlockModelElement extends BlockPartsElement {
 		data.set(field, new ScilabBoolean(dependsOnUandT));
 		
 		field++; // label
-		data.set(field, new ScilabString(""));
+		data.set(field, new ScilabString(from.getId()));
 		
 		field++; // nzcross
 		data.set(field, from.getNbZerosCrossing());

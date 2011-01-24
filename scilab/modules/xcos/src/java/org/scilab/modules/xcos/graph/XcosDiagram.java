@@ -1948,18 +1948,17 @@ public class XcosDiagram extends ScilabGraph {
      * @param message - The message to display.
      */
     public void warnCellByUID(final String uid, final String message) {
-	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
-	    if (getModel().getChildAt(getDefaultParent(), i) instanceof mxCell) {
-		if (((mxCell) getModel().getChildAt(getDefaultParent(), i)).getId().compareTo(uid) == 0) {
-		    //to put on top, only for new message, no for reset
-		    if (message.compareTo("") != 0) {
-			setVisible(true);
-		    }
-
-		    getAsComponent().setCellWarning(getModel().getChildAt(getDefaultParent(), i), message);
-		}
-	    }
-	}
+    	final Object cell = ((mxGraphModel) getModel()).getCell(uid);
+    	if (cell == null) {
+		return;
+    	}
+    	
+    	if (message.isEmpty()) {
+    		// put the current tab on top
+    		setVisible(true);
+    	}
+    	
+    	getAsComponent().setCellWarning(cell, message);
     }
 
     /**
