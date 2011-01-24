@@ -177,7 +177,7 @@
       <classfileset dir="${build.test.dir}" includes="**/*.class"/>
       <jvmarg value="-DdisableLoadJNIScilab=1"/>
       <jvmarg value="-DSCI=${base.dir}"/>
-      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:/usr/lib/jni/"/>
+      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:"/>
     </testng>
   </target>
 

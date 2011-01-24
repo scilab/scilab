@@ -93,7 +93,7 @@ trigger a warning and do not add a link on the function name.
 * bug 7069 fixed - Old documentation about the documentation build process
                    removed.
 
-* bug 8463 fixed - scilab pdfs (fr_FR and pt_BR) were not fully generated.
+* bug 8463 fixed - scilab PDF (fr_FR and pt_BR) were not fully generated.
 
 * bug 8690 fixed - Typo fixed in the french min help page.
 
@@ -272,6 +272,7 @@ Quality assurance:
   Start the unitary tests or launch Scilab
   "make code-coverage" creates the report into "/coverage/results/"
 
+* bug 6684 fixed - Some Xcos unitary tests had problems loading native libraries.
 
 Compilation:
 ============

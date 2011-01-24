@@ -26,6 +26,7 @@ public class MessagesJNI {
 
   static {
     try {
+        System.loadLibrary("scilab");
         System.loadLibrary("scilocalization");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
