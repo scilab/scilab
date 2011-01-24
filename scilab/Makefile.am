@@ -92,6 +92,10 @@ if GENERATE_LOCALIZATION_FILES
 TARGETS_ALL+=localization
 endif
 
+if COMPILATION_TESTS
+TARGETS_ALL+=check-java
+endif
+
 all-local: $(TARGETS_ALL)
 
 rootdir=$(pkgdatadir)/etc/
@@ -279,6 +283,17 @@ if IS_MACOSX
 # Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
 MACOSX=1
 endif
+
+# For each module, build and call Java unitary tests
+# If fails, stops the call
+check-java:
+	@echo "-- Launch all testng (Java) unitary tests"; \
+	MASK="$(top_srcdir)/modules/*/tests/java/"; \
+	MODULES=`ls -d $$MASK`; \
+	for M in $$MODULES; do \
+		BASE=`echo $$M|sed -e "s|tests/java/$$||g"`; \
+		$(ANT) -buildfile $$BASE/build.xml test || exit $$?; \
+	done
 
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac

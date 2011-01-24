@@ -68,6 +68,7 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 
 #  The user wants to compile the localization files
 @GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
+@COMPILATION_TESTS_TRUE@am__append_4 = check-java
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
 	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
@@ -614,7 +615,7 @@ scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_3)
+TARGETS_ALL = macros $(am__append_3) $(am__append_4)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
@@ -1789,6 +1790,17 @@ clean-generated:
 
 distclean-generated: 
 	rm -f $(top_builddir)/modules/core/includes/stack.h 2> /dev/null
+
+# For each module, build and call Java unitary tests
+# If fails, stops the call
+check-java:
+	@echo "-- Launch all testng (Java) unitary tests"; \
+	MASK="$(top_srcdir)/modules/*/tests/java/"; \
+	MODULES=`ls -d $$MASK`; \
+	for M in $$MODULES; do \
+		BASE=`echo $$M|sed -e "s|tests/java/$$||g"`; \
+		$(ANT) -buildfile $$BASE/build.xml test || exit $$?; \
+	done
 
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac

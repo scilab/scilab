@@ -279,6 +279,9 @@ Quality assurance:
   Start the unitary tests or launch Scilab
   "make code-coverage" creates the report into "/coverage/results/"
 
+* Using the configure with the option "--enable-compilation-tests" launchs Java
+  unitary tests (based on TestNG).
+
 * bug 6684 fixed - Some Xcos unitary tests had problems loading native libraries.
 
 * bug 6873 fixed - A jar file was not available when testng was called.
