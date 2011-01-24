@@ -14102,7 +14102,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar avalon-fra
 				AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
 
 
-	# XML API EXT (conversion of a SVG => PNG)
+				# XML API EXT (conversion of a SVG => PNG)
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking xml-apis-ext" >&5
 $as_echo_n "checking xml-apis-ext... " >&6; }

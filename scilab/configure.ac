@@ -894,7 +894,7 @@ the the JNI libraries."])],
 				AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
 				AC_SUBST(AVALON_FRAMEWORK)
 
-	# XML API EXT (conversion of a SVG => PNG)
+				# XML API EXT (conversion of a SVG => PNG)
 				AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code],"yes")
 				XML_APIS_EXT=$PACKAGE_JAR_FILE
 

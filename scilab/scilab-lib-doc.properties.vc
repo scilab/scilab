@@ -1,5 +1,6 @@
 ; Definition of lib for documentation build used in Scilab 
- 	
+
+xml_apis_ext.jar =${thirdparty.dir}/xml_apis_ext.jar
 
 ; xml.apache.org SVG Library 
 batik.jar=${thirdparty.dir}/batik-all-1.7.jar
