@@ -20,6 +20,9 @@
 //
 
 function [%pt, scs_m] = do_tild(%pt, scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** 16/07/2009, S. Steer, make it work with multiple selection
 //** Alan 02/12/06 : use of objects swap in gh_curwin.children.children()
 //**

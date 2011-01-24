@@ -20,6 +20,9 @@
 //
 
 function scs_m = update_redraw_obj(scs_m, path, o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** 02/12/06 : use of objects permutation in gh_curwin.children.children()
 
 if length(path)==2 then

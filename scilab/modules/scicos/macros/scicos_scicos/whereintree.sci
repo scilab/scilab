@@ -20,6 +20,9 @@
 //
 
 function [Path,path,ok]=whereintree(Tree,xc,yc)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 [m,k]=min((Tree('x')-xc).^2+(Tree('y')-yc).^2)
 ok=%t;path=[];Path=list()
 if k==1 then return,end

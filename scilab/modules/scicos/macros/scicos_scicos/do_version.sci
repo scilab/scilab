@@ -21,6 +21,9 @@
 //
 
 function scs_m=do_version(scs_m,version)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 // available versions of Scicos 
 availableVersions = [ ..
@@ -97,6 +100,9 @@ end
 endfunction
 
 function scs_m_new=do_version43(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   //disp('do_version43');
   scs_m_new=scs_m;
 
@@ -812,6 +818,9 @@ endfunction
 
 //*** update scope ***//
 function scs_m_new=do_version42(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   scs_m_new=scs_m
   n=size(scs_m.objs);
   for j=1:n //loop on objects
@@ -969,6 +978,9 @@ function scs_m_new=do_version42(scs_m)
 endfunction
 
 function scs_m_new=do_version273(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   scs_m_new=scs_m;
   n=size(scs_m.objs);
   for i=1:n //loop on objects
@@ -1011,6 +1023,9 @@ endfunction
 
 
 function scs_m_new=do_version272(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   scs_m_new=scs_m
   for i=1:lstsize(scs_m.objs)
@@ -1049,6 +1064,9 @@ function scs_m_new=do_version272(scs_m)
 endfunction
 
 function scs_m_new=do_version271(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   scs_m_new=scs_m;
   n=size(scs_m.objs);
   for i=1:n //loop on objects
@@ -1076,6 +1094,9 @@ function scs_m_new=do_version271(scs_m)
 endfunction
 
 function scs_m=do_version251(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 nx=size(scs_m)
 obsolete=%f
 for k=2:nx
@@ -1127,6 +1148,9 @@ end
 
 endfunction
 function scs_m=do_version231(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //2.3.1 to 2.4 version
 if size(scs_m(1))<5 then scs_m(1)(5)=' ',end  //compatibility
 if type(scs_m(1)(5))<>10 then scs_m(1)(5)=' ',end //compatibility
@@ -1191,6 +1215,9 @@ end
 
 endfunction
 function x_new=do_version23(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //2.3 to 2.3.1
 x_new=list()
 x_new(1)=scs_m(1)
@@ -1215,12 +1242,18 @@ end
 
 endfunction
 function o=block2_version(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 if o(3)(6)<>[] then o(3)(12)(2)=%t;end
 
 endfunction
 
 
 function o=block_version(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 [graphics,model]=o(2:3)
 for k=2:5, model(k)=ones(model(k),1),end
 blocktype=o(5)
@@ -2018,6 +2051,9 @@ case 'FOR_f' then
 endfunction
 
 function o=replace_firing(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 firing=o(3)(11)
 cout=o(3)(5)
 if firing==%f|firing==0 then
@@ -2035,6 +2071,9 @@ end
 
 endfunction
 function x_new=do_version22(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 x_new=list()
 wpar=scs_m(1)
 wsiz=wpar(1)
@@ -2065,6 +2104,9 @@ end
 endfunction
 
 function scs_m_new=do_version27(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   if typeof(scs_m)=='diagram' then
     //following code reported into do_version273
     //     scs_m_new=scs_m,
@@ -2183,6 +2225,9 @@ function scs_m_new=do_version27(scs_m)
 endfunction
 
 function  gr_i=convert_gri(name,gri)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 gr_i=[];
 select name
 case 'BIGSOM_f' then
@@ -2267,6 +2312,9 @@ endfunction
 
 
 function scs_m_new=do_versionxx(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //A SUPPRIMER CF ci dessus
   if typeof(scs_m)=='diagram' then scs_m_new=scs_m,return,end
   if typeof(scs_m(1))<>'params' then scs_m_new=scs_m,return,end
@@ -2288,6 +2336,9 @@ endfunction
 
 
 function model=scicos_model27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //initialisation de model mlist
   if exists('sim','local')==0 then sim='',end
   if exists('in','local')==0 then in=[],end
@@ -2310,6 +2361,9 @@ function model=scicos_model27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13)
 endfunction
 
 function graphics=scicos_graphics27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //initialisation de graphics mlist
   if exists('orig','local')==0 then orig=[0 0],end
   if exists('sz','local')==0 then sz=[20 20],end

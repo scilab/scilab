@@ -21,6 +21,9 @@
 //
 
 function fname=choosefile(path,comm,errmess)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // choosefile - select a file through a filter
 //%Syntax
 //  fname=choosefile(path)

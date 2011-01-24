@@ -20,5 +20,8 @@
 //
 
 function [x,y,t]=getoutputs(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   execstr('[x,y,t]='+o.gui+'(''getoutputs'',o)')
 endfunction

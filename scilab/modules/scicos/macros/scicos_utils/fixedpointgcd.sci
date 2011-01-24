@@ -1,4 +1,7 @@
 function [value,denom_com]=fixedpointgcd(v)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // This function computes the PGCD of a double vector.
   x=log10(v);
   f=round((min(x)+max(x))/2);

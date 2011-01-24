@@ -20,6 +20,9 @@
 //
 
 function wpar=do_setup(wpar)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // set integration parameters
 tolerances=wpar.tol;
 tf=wpar.tf

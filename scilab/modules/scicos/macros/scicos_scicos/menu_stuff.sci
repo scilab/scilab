@@ -20,6 +20,9 @@
 //
 
 function menu_stuff()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 //** Remove the default Scilab graphics window menus 
 delmenu(curwin,_("&File"))  ; 

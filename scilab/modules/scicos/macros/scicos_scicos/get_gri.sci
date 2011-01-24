@@ -21,6 +21,9 @@
 //
 
 function gr_k=get_gri(k,l)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   //** 03/01/07 : Alan
   //** semi empirical equation :)
   //

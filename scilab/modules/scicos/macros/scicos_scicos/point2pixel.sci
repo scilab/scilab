@@ -20,6 +20,9 @@
 //
 
 function xyp=point2pixel(win,xy)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   old=xget('window');xset('window',win);
   wp=xget('wpos');
   [x,y,r]=xchange(xy(1),xy(2),'f2i');

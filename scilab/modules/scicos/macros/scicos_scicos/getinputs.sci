@@ -20,5 +20,8 @@
 //
 
 function [x,y,t]=getinputs(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   execstr('[x,y,t]='+o.gui+'(''getinputs'',o)')
 endfunction

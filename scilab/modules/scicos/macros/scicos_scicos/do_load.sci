@@ -20,6 +20,9 @@
 //
 
 function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //**
 //** Load a Scicos diagram 
 //**
@@ -257,6 +260,9 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 endfunction
 
 function [ok,scs_m]=do_define_and_set(scs_m,flg)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 %mprt=funcprot()
 funcprot(0) 
@@ -350,6 +356,9 @@ end
 endfunction
 
 function model=update_model(model)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 tt='model=scicos_model(';
 xx=getfield(1,o.model)
 for i=2:size(xx,'*')-1
@@ -360,6 +369,9 @@ execstr(tt);
 endfunction
 
 function [scs_m,ok]=generating_atomic_code(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 scs_m_sav=scs_m;
 for i=1:lstsize(scs_m.objs)
   o=scs_m.objs(i);

@@ -20,6 +20,9 @@
 //
 
 function [rect,btn] = scicos_rubberbox(rect, edit_mode)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 //** 18 Mar 2008 : this function has been renomed "scicos_rubberbox" in order to 
 //**               avoid confusion with the Scilab 5 internal "C" primitive

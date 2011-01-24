@@ -20,6 +20,9 @@
 //
 
 function XcosMenuDelete()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   
   [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select)
   

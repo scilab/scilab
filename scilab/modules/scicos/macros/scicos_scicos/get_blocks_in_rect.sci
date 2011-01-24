@@ -20,6 +20,9 @@
 //
 
 function [in,out]=get_blocks_in_rect(scs_m,ox,oy,w,h)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //
 //** 11 Jan 2007 : 'Block' / 'Text' bug validation: this function is OK.
 //** 

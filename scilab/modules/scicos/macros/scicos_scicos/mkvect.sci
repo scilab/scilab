@@ -20,6 +20,9 @@
 //
 
 function out=mkvect(in)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Computes pointer vector with the number of elements as input.
 // Ex: [1 2 3] gives [1 2 4 7] as output
 out=rtitr(poly(1,'z','c'),poly(1,'z'),in)+1

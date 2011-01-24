@@ -20,6 +20,9 @@
 //
 
 function hilite_path(path,mess,with_intermediates)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //hilite a block included in a superblock hierarchy and displays a
 //message.   If required all the intermediate superblocs are displayed
 //first entry of the path must be a bloc of currently opened diagram  

@@ -20,6 +20,9 @@
 //
 
 function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // do_delete - delete a scicos object
   
 // ** Serge Steer 24/06/2009

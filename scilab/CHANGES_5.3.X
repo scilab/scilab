@@ -169,6 +169,9 @@ Xcos:
 
 * The demos have been updated to use the latest features.
 
+* Most of the old user interface control Xcos/Scicos functions are now
+  deprecated and will be removed in Scilab 5.4.0. See bug 7232.
+
 * bug 5680 fixed - Labels are not visible as default.
 
 * bug 6705 fixed - When drag and drop was used, port alignement was not correct.

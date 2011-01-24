@@ -20,6 +20,9 @@
 //
 
 function XcosMenuDefaultWindow()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   Cmenu='XcosMenuReplot'
   %zoom=1.4   // not a good idea, use a variable. It is also used in scicos.sci
   pwindow_set_size();
