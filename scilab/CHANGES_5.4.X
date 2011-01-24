@@ -98,6 +98,9 @@ Bug fixes
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
+* Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
+                    were missing.
+
 * Bug #9197 fixed - Unitary test examples in toolbox_skeleton
                     and xcos_toolbox_skeleton did not use assert functions.
 
