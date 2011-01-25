@@ -112,6 +112,10 @@ public final class CallGraphicController {
     public static double[] getGraphicObjectPropertyAsDoubleVector(String id, String propertyName) {
         Double[] tmp = (Double[]) getGraphicObjectProperty(id, propertyName);
 
+        if (tmp == null) {
+            return null;
+        }
+
         double[] result = new double[tmp.length];
 
         for(int i = 0; i < result.length; i++) {
@@ -127,6 +131,10 @@ public final class CallGraphicController {
 
     public static int[] getGraphicObjectPropertyAsIntegerVector(String id, String propertyName) {
         Integer[] tmp = (Integer[]) getGraphicObjectProperty(id, propertyName);
+
+        if (tmp == null) {
+            return null;
+        }
 
         int[] result = new int[tmp.length];
 
@@ -149,6 +157,10 @@ public final class CallGraphicController {
 
     public static int[] getGraphicObjectPropertyAsBooleanVector(String id, String propertyName) {
         Boolean[] tmp = (Boolean[]) getGraphicObjectProperty(id, propertyName);
+
+        if (tmp == null) {
+            return null;
+        }
 
         int[] result = new int[tmp.length];
 
