@@ -20,9 +20,6 @@
 //
 
 function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_initial_xcos_menus()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //** Sept 2009, Serge Steer
 //  a better data organization should be made to avoid redundancy and for
 //  a better efficiency (see scicos_menubar, XcosPopup)

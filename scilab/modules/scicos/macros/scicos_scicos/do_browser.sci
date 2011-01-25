@@ -20,9 +20,6 @@
 //
 
 function do_browser(scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
   tt = scs_TreeView(scs_m);
   //-- cur_wd = getcwd();
@@ -34,9 +31,6 @@ function do_browser(scs_m)
 endfunction
 
 function tt = scs_TreeView(scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   x = [];
   y = 0 ;
 // tt=["set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
@@ -72,9 +66,6 @@ endfunction
 
 
 function java = crlist1(scs_m,Path,java)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   for i=1:size(scs_m.objs)
     o = scs_m.objs(i);
 

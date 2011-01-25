@@ -20,9 +20,6 @@
 //
 
 function [%scs_wgrid]=do_grid(%scs_wgrid)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
 // ** 22/06/2009 Serge Steer INRIA
 // - gh_window.children replaced by gh_axes because of uimenu which are

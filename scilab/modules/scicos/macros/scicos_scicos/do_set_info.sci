@@ -20,9 +20,6 @@
 //
 
 function [ok,new_info]=do_set_info(info)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 // This function may be redefined by the user to handle definition 
 // of the information associated with the current diagram
 

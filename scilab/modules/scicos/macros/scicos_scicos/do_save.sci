@@ -20,9 +20,6 @@
 //
 
 function ok = do_save(scs_m, filenamepath)   
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 // saves scicos data structures scs_m and %cpr on a binary file
 // filename is an optional to indicate the name of the file (name of
 // the diagram is not affected)

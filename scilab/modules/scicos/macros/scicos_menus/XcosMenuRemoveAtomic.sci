@@ -19,9 +19,6 @@
 // See the file ../license.txt
 //
 function XcosMenuRemoveAtomic()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   if alreadyran then
     Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
 		     '[alreadyran,%cpr]=do_terminate();%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';

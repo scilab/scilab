@@ -20,9 +20,6 @@
 //
 
 function [scs_m,ok] = do_doc(scs_m,%pt)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   K=find(Select(:,2)==curwin);
   if size(K,'*')>1 then
     messagebox("Only one block can be selected in current window for this operation.","modal")
@@ -85,9 +82,6 @@ function [scs_m,ok] = do_doc(scs_m,%pt)
 
 endfunction
 function doc=standard_doc(job,doc)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   if job=='set' then
     if type(doc)<>10 then doc=' ',end
     text=dialog('You may enter here the document for this block ',doc)
@@ -98,9 +92,6 @@ function doc=standard_doc(job,doc)
 
 endfunction
 function doc=complex_doc(job,doc)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
   if job=='set' then
     if type(doc)<>16 then 

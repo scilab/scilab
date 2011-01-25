@@ -20,9 +20,6 @@
 //
 
 function XcosMenuIdentification()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
   scs_m = do_ident(scs_m)
   Cmenu = [] ; %pt = [];

@@ -20,9 +20,6 @@
 //
 
 function [edited,options] = do_options(opt,flag)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //
   colors    = string(1:xget("lastpattern") + 2);
   

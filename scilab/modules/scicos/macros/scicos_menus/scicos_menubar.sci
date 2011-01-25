@@ -21,9 +21,6 @@
 //
  
 function scicos_menubar(gh_current_window,scicos_menus,isMainDiagram)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //Creates the Scicos menubar.
 //scicos_menus is a list, each entry is a two column string array. 
 //  The first column gives the menus unique Id, 

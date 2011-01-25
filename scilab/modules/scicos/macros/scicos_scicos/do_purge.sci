@@ -20,9 +20,6 @@
 //
 
 function scs_m_new = do_purge(scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
 // suppress deleted elements in a scicos data structure
   nx = lstsize(scs_m.objs);

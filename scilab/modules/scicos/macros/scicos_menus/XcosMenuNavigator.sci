@@ -20,9 +20,6 @@
 //
 
 function XcosMenuNavigator()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
     [%Tree,windows]=do_navigator(scs_m,windows)
     Cmenu=[]
 endfunction

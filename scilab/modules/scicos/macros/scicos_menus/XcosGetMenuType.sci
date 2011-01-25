@@ -19,9 +19,6 @@
 // See the file ../license.txt
 //
 function [itype, mess] = XcosGetMenuType(Cmenu)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //** look inside "%CmenuTypeOneVector" if the command is type 1 (need both Cmenu and %pt)
   k = find (Cmenu == %CmenuTypeOneVector(:,1));
   if k==[] then //** if is not type 1 (empty k)

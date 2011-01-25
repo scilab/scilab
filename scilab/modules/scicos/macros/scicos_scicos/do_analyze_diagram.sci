@@ -19,9 +19,6 @@
 // See the file ../license.txt
 //
 function do_analyze_diagram(cpr)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   txt=[];blks=[];
   z_size=diff(cpr.sim.zptr)
   oz_size=diff(cpr.sim.ozptr)

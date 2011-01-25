@@ -21,9 +21,6 @@
 //
 
 function XcosMenuSelectRegion()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //** 10 July 2006: find a
 //** xx/01/07 : Alan - review (introduce rubberbox here)
 //**            Objects must be totally included in

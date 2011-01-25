@@ -20,9 +20,6 @@
 //
 
 function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //!
 //
 //**  30 August 2007 :

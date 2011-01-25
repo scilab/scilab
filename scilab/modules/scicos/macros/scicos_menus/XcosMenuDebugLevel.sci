@@ -20,9 +20,6 @@
 //
 
 function XcosMenuDebugLevel()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   Cmenu=[]
   n=dialog(['Set debugging level (0,1,2,3)';
 	    'It performs scicos_debug(n)'],string(scicos_debug()))

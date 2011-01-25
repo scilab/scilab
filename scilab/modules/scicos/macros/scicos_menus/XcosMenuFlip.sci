@@ -22,9 +22,6 @@
 //
 
 function XcosMenuFlip()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //** Alan/Simone 13/12/06 : Replot no more needed
    scs_m_save = scs_m    ; //** save the old diagram for "undo" operation 
    nc_save = needcompile ; //** save the old diagram state

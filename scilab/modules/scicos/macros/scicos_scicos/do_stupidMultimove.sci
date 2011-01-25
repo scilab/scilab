@@ -20,9 +20,6 @@
 //
 
 function [scs_m] = do_stupidMultimove(%pt, Select, scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //** ---------------------------------   M U L T I     M O V E   -----------------------------------------
 
 have_moved = %f ; //** flag to signal the movement of one or more objects (used to avoid not useful resume operations)
@@ -67,9 +64,6 @@ endfunction
 
 
 function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   // Move Selected Blocks/Texts and Links and modify connected (external) links if any
 
   //** scs_m  : the local level diagram

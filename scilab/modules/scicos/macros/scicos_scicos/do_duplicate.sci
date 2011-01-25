@@ -20,9 +20,6 @@
 //
 
 function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //**   
 //** If you double click an object in a palettes windows, a call at "Duplicate_" is generated ->
 //** then the "do_duplicate":  - this very function - is executed : Welcome to the Real Mess :)

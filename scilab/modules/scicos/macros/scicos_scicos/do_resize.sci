@@ -20,9 +20,6 @@
 //
 
 function [%pt, scs_m] = do_resize(%pt, scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //
 //**
 //** Change the size (w,h) of a Block

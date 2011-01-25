@@ -20,9 +20,6 @@
 //
 
 function [scs_m,needcompile] = do_replace(scs_m, needcompile, Clipboard, Select)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
 //**         BEWARE : This is an ---> EXPERIMENTAL VERSION <--- ! 
 //**

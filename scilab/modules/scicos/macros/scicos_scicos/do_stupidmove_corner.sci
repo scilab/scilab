@@ -20,9 +20,6 @@
 //
 
 function [scs_m] = do_stupidmove_corner(%pt,Select,scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //**
 //** This function is called ONLY on the case of SINGLE LINK selected
 //** The code do some partially redundant function call becase is
@@ -80,9 +77,6 @@ endfunction
 //** --------> This function works only with links <---------
 //** ------------------ Link Supid Move ---------------------
 function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   
   //**----------------------------------------------------------------------------------
   //** the code below is modified according the new graphics API

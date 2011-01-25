@@ -20,9 +20,6 @@
 //
 
 function [palettes,windows] = do_palettes(palettes, windows)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
 
   global ClipboardPal

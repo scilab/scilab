@@ -20,9 +20,6 @@
 //
 
 function txt=do_newblk(o,nam)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //create text of GUI function associated with a a block
 // o     : block data structure
 // nam   : name of the created GUI function

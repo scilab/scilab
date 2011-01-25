@@ -20,9 +20,6 @@
 //
 
 function XcosMenuExitScicos()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
 			 'Cmenu='"XcosMenuQuit'";%scicos_navig=[]'
 	      	  ]

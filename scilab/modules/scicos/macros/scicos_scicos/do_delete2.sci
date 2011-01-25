@@ -20,9 +20,6 @@
 //
 
 function [scs_m,DEL] = do_delete2(scs_m,K,gr)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //perform deletion of scs_m object whose index are given in the vector 
 //K and all connected links. splits which are not given in K are not deleted
 //!

@@ -19,9 +19,6 @@
 // See the file ../license.txt
 //
 function [%pt,scs_m] = do_select2pal(%pt,scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 // Copyright INRIA
   scs_m_save = scs_m
   nc_save    = needcompile ;

@@ -20,9 +20,6 @@
 //
 
 function XcosMenuScicosDoc()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
   if execstr('help(''scicos'');' , 'errcatch') <>0 then
      messagebox("No help available.",'modal');

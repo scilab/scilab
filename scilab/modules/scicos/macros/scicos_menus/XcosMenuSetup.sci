@@ -20,9 +20,6 @@
 //
 
 function XcosMenuSetup()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
     Cmenu=[]
     %wpar=do_setup(scs_m.props)
     %scicos_solver=%wpar.tol(6)

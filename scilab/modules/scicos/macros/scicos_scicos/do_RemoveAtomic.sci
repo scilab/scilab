@@ -20,9 +20,6 @@
 //
 // Copyright INRIA
 function [o,needcompile,ok]=do_RemoveAtomic(o)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 ok=%t
 if typeof(o)=='Block' then
   model=o.model

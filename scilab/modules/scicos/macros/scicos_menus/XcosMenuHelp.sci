@@ -20,9 +20,6 @@
 //
 
 function XcosMenuHelp()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   xinfo("Click on object or menu to get help") ; 
 
   do_help() ; //** call the help function 

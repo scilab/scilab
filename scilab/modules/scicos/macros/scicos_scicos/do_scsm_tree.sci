@@ -20,9 +20,6 @@
 //
 
 function scs_m = do_scsm_tree(scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   tt = scs_m_TreeView(scs_m);
   cur_wd = pwd();
   chdir(TMPDIR);
@@ -32,9 +29,6 @@ function scs_m = do_scsm_tree(scs_m)
 endfunction
 
 function tt=scs_m_TreeView(scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   x=[];y=0;
 tt=["set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
     "if {[lsearch $auto_path $BWpath]==-1} {"
@@ -71,9 +65,6 @@ endfunction
 
 
 function tt=crlist2(scs_m,Path,tt)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   for i=1:size(scs_m.objs)
     o=scs_m.objs(i);
     path=Path+','+string(i)

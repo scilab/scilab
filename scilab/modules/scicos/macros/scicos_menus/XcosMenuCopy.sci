@@ -20,9 +20,6 @@
 //
 
 function XcosMenuCopy()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //Select contains the selected items in the window where the menu has
 //been activated
   if size(Select,1)>1 then

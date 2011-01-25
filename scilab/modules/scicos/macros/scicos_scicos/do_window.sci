@@ -20,9 +20,6 @@
 //
 
 function wpar=do_window(wpar)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   wd=wpar.wpar;w=wd(1);h=wd(2);
 
   while %t do

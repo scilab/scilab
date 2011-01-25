@@ -20,9 +20,6 @@
 //
 
 function XcosMenuPopup()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
 //** This function uses the "%scicos_lhb_list(state_var) data strucuture
 //** defined inside [set_initial_xcos_menus]

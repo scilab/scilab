@@ -20,9 +20,6 @@
 //
 
 function XcosMenuCreateMask()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //** 25/06/2009 : Serge Steer, 
 //   - check selection against curwin
 //   - add a message in case of multiple selection

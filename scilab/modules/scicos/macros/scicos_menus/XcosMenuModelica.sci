@@ -20,9 +20,6 @@
 //
 
 function XcosMenuModelica()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   Cmenu=[]
   xinfo('Click on a Implcit Superblock '+..
 	' to obtain a modelica block ! ')

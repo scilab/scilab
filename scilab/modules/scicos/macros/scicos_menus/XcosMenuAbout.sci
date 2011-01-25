@@ -20,9 +20,6 @@
 //
 
 function XcosMenuAboutScicos()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   Cmenu=[] ; %pt=[];
     messagebox([strsubst(get_scicos_version(),"scicos","Scicos -")+"-";...
              "For more information visit:";...

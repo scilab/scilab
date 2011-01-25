@@ -20,9 +20,6 @@
 //
 
 function XcosMenuGrid()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   Cmenu = [] ;
   
   if exists('%scicos_with_grid') then

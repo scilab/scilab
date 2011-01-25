@@ -20,9 +20,6 @@
 //
 
 function XcosMenuUpToMain()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   Cmenu=[]
   if super_block then
     //each line of Scicos_commands are directive to be executed by scicos

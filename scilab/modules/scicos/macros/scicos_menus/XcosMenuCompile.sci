@@ -20,9 +20,6 @@
 //
 
 function XcosMenuCompile()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
     nc_save = 4  ;
     Cmenu   = [] ;
     needcompile = 4; 

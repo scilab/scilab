@@ -20,9 +20,6 @@
 //
 
 function EnableAllMenus()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   //** Serge Steer Sept 2009, use the uimenu properties instead of setmenu
   curf=gcf(); //preserve current figure
   for win=intersect(winsid(),[inactive_windows(2);curwin]')

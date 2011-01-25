@@ -20,9 +20,6 @@
 //
 
 function XcosMenuSelectAll()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //** BEWARE : This function works ONLY in diagram but not in palettes !
 
 Cmenu=[]; %pt=[];

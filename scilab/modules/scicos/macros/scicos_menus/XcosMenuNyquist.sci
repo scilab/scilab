@@ -20,9 +20,6 @@
 //
 
 function XcosMenuNyquist()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
     syst=analyse(scs_m)
     %sl=bloc2ss(syst)
     xset('window',curwin+1);clf()

@@ -20,9 +20,6 @@
 //
 
 function XcosMenuMove()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 
   Cmenu = []; //** NB : preserve %pt information 
   //** Filter out selection on other windows 

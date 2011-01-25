@@ -21,9 +21,6 @@
 //
 
 function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 // This function (re)-evaluates blocks in the scicos data structure scs_m
 
 ok=%t
@@ -33,9 +30,6 @@ funcprot(0)
 scicos_getvalue=setvalue;
 
 function scicosmessage(txt)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   messagebox(['In block ' + o.gui + ': ';
           txt;
           'current parameter value kept'],'Warning','modal');

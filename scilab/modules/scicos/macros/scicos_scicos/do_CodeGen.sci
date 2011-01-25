@@ -25,9 +25,6 @@
 //
 
 function [scs_m,edited,needcompile,Cmenu,ok]=do_CodeGen(scs_m,%pt)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   global Scicos_commands
   K=find(Select(:,2)==%win)
   if K==[] then
@@ -158,9 +155,6 @@ endfunction
 
 
 function scs_m = goto_target_scs_m(scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
   //## look if we want generate a sblock
   //## contained in a sblock
   kk=super_path
