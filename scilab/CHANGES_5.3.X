@@ -134,6 +134,7 @@ Xcos:
 * bug 8737 fixed - Compilation failed when a diagram contains any hidden links
                    (wrong indexes issues).
 
+* bug 8783 fixed - loadmatfile could not load hypermatrices of integer types.
 
 Module skeleton:
 ================
