@@ -105,6 +105,8 @@ Xcos:
 * bug 7639 fixed - Generating code for scilab function block was failing with
                    a syntax error message.
 
+* bug 7953 fixed - No error message were printed when the diagram is invalid.
+
 * bug 8042 fixed - After a region to superblock action, the ports were wrongly
                    placed.
 

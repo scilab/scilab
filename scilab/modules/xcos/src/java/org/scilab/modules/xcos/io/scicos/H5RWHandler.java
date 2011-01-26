@@ -206,10 +206,11 @@ public class H5RWHandler {
 						+ ((VersionMismatchException) e).getWrongVersion()
 						+ "\n" + XcosMessages.TRY_TO_CONTINUE);
 			} else {
-				LOG.error(e);
+				// rethrow
+				throw new RuntimeException(e);
 			}
 		} catch (HDF5Exception e) {
-			LOG.error(e);
+			throw new RuntimeException(e);
 		} finally {
 			diagram.getModel().endUpdate();
 		}

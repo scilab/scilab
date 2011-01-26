@@ -454,12 +454,25 @@ public final class Xcos {
 		/* load scicos libraries (macros) */
 		InterpreterManagement.requestScilabExec("loadScicosLibs();");
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				instance.open(filename);
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
+				public void run() {
+					instance.open(filename);
+				}
+			});
+		} catch (final InterruptedException e) {
+			LOG.error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
 			}
-		});
+			
+			throw new RuntimeException(firstMessage, e);
+		}
 	}
 
 	/**
