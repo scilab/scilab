@@ -346,6 +346,9 @@ Bug fixes:
 * bug 8836 fixed - fileparts crashed when a matrix of strings was passed as
                    input argument.
 
+* bug 8845 fixed - a example in call_scilab module with Visual Studio has been
+                   rewritten to use api_scilab.
+
 * bug 8837 fixed - fscanfMat did not read a malformated text with many blanks
                    at the end of file.
 
