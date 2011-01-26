@@ -36,6 +36,7 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -315,6 +316,13 @@ public class EditFormatAction extends DefaultAction {
 		graph.cellLabelChanged(identifier, text, false);
 		graph.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED,
 				"cell", identifier, "value", text, "parent", cell));
+		
+		/*
+		 * Should also update diagram title
+		 */
+		if (cell instanceof SuperBlock) {
+			graph.cellLabelChanged(cell, text, false);
+		}
 	}
 	
 	/**
