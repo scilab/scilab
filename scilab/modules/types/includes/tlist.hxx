@@ -38,14 +38,13 @@ namespace types
         TList*                          getAsTList(void) { return this; }
 
         bool                            exists(const std::wstring& _sKey);
-
-        virtual InternalType*           get(const std::wstring& _sKey);
-
-        int                             getIndexFromString(const std::wstring _sKey);
+        InternalType*                   get(const std::wstring& _sKey);
+        InternalType*                   get(const int _iIndex);
+        int                             getIndexFromString(const std::wstring& _sKey);
         bool                            set(const std::wstring& _sKey, InternalType* _pIT);
         bool                            set(const int _iIndex, InternalType* _pIT);
 
-        std::vector<InternalType*>      extractStrings(std::list<std::wstring> _stFields);
+        std::vector<InternalType*>      extract_string(const std::list<std::wstring>& _stFields);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring            getTypeStr();
