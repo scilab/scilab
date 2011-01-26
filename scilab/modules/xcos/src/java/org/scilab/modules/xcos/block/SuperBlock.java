@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.block;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +42,6 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
-import org.scilab.modules.xcos.io.XcosCodec;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -51,7 +49,6 @@ import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.w3c.dom.Node;
 
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
@@ -597,32 +594,11 @@ public final class SuperBlock extends BasicBlock {
 	public Object clone() throws CloneNotSupportedException {
 		SuperBlock clone = (SuperBlock) super.clone();
 		
-		// clone the diagram
-		if (child != null) {
-			clone.child = (SuperBlockDiagram) child.clone();
-			clone.child.setContainer(clone);
-		}
+		// Clear then generate the child.
+		clone.child = null;
+		clone.generateId();
 		
 		return clone;
 		
-	}
-	
-	/*
-	 * Serializable custom implementation need to handle any copy / DnD case.
-	 */
-	
-	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
-		out.writeObject(new XcosCodec().encode(this));
-	}
-
-	private void readObject(java.io.ObjectInputStream in) throws IOException,
-			ClassNotFoundException {
-		new XcosCodec().decode((Node) in.readObject(), this);
-		
-		/*
-		 * Specific post serialization things
-		 */
-		this.child.setContainer(this);
-		this.child.installSuperBlockListeners();
 	}
 }
