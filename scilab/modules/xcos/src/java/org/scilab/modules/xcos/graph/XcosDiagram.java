@@ -994,6 +994,16 @@ public class XcosDiagram extends ScilabGraph {
 			
 			if (cell instanceof BasicLink) {
 				/*
+				 * Continue on non fully connected links
+				 */
+				if (((BasicLink) cell).getSource() == null) {
+					continue;
+				}
+				if (((BasicLink) cell).getTarget() == null) {
+					continue;
+				}
+				
+				/*
 				 * Add any split to a link
 				 */
 				final mxICell src = ((BasicLink) cell).getSource().getParent();

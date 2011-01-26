@@ -139,6 +139,8 @@ Xcos:
 * bug 8737 fixed - Compilation failed when a diagram contains any hidden links
                    (wrong indexes issues).
 
+* bug 8867 fixed - Unconnected links could not be deleted.
+
 
 Module skeleton:
 ================
