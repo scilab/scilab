@@ -141,6 +141,9 @@ Xcos:
 
 * bug 8867 fixed - Unconnected links could not be deleted.
 
+* bug 8884 fixed - Using region to super block with ports on the same position
+                   was resulting to a non-reconnected link.
+
 
 Module skeleton:
 ================

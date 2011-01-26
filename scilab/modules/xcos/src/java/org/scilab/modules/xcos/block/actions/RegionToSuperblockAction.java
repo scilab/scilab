@@ -94,7 +94,6 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 		private final double x;
 		private final double y;
 		
-
 		/*
 		 * lazy allocated fields
 		 */
@@ -126,21 +125,23 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 			this.parentLink = link;
 			this.containsSource = containsSource;
 
-			final mxGeometry pos;
-			final mxGeometry parent;
+			final BasicPort terminal;
 			if (containsSource) {
-				pos = parentModel.getGeometry(target);
-				parent = parentModel.getGeometry(parentModel.getParent(target));
+				terminal = target;
 			} else {
-				pos = parentModel.getGeometry(source);
-				parent = parentModel.getGeometry(parentModel.getParent(source));
+				terminal = source;
 			}
-			if (pos != null && parent != null) {
-				this.x = pos.getX() + parent.getX() + (pos.getWidth() / 2) - (parent.getWidth() / 2);
-				this.y = pos.getY() + parent.getY() + (pos.getHeight() / 2) - (parent.getHeight() / 2);
-			} else {
-				this.x = 0.0;
-				this.y = 0.0;
+			
+			{
+				final mxGeometry pos = parentModel.getGeometry(terminal);;
+				final mxGeometry parent = parentModel.getGeometry(parentModel.getParent(terminal));
+				if (pos != null && parent != null) {
+					this.x = pos.getX() + parent.getX() + (pos.getWidth() / 2) - (parent.getWidth() / 2);
+					this.y = pos.getY() + parent.getY() + (pos.getHeight() / 2) - (parent.getHeight() / 2);
+				} else {
+					this.x = 0.0;
+					this.y = 0.0;
+				}
 			}
 		}
 
@@ -283,13 +284,19 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 		/**
 		 * {@inheritDoc}
 		 * 
-		 * This function is used to get the right ordering
+		 * This function is used to sort a {@link TreeSet} of {@link Broken}.
 		 */
 		@Override
 		public int compareTo(Broken o) {
 			final int xdiff = (int) (x - o.x);
 			final int ydiff = (int) (y - o.y);
-			return (ydiff << (Integer.SIZE / 2)) + xdiff;
+			
+			if (xdiff == 0 && ydiff == 0) {
+				// same position, sort by hashcode
+				return hashCode() - o.hashCode();
+			} else {
+				return (ydiff << (Integer.SIZE / 2))  + xdiff;
+			}
 		}
 
 		/**
