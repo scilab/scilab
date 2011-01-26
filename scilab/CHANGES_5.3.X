@@ -262,6 +262,8 @@ Bug fixes:
 
 * bug 8809 fixed - Bad top link in the chm files.
 
+* bug 8828 fixed - "savematfile" could no more save a structure.
+
 * bug 8830 fixed - In call_scilab, TerminateScilab did not clear the last
                    error.
 
