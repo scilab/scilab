@@ -7,6 +7,8 @@
 //
 // <-- JVM NOT MANDATORY -->
 //
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 7862 -->
 //
 // <-- Bugzilla URL -->
