@@ -268,6 +268,9 @@ Bug fixes:
 * bug 8836 fixed - fileparts crashed when a matrix of strings was passed as
                    input argument.
 
+* bug 8837 fixed - fscanfMat did not read a malformated text with many blanks 
+                   at the end of file.
+
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================

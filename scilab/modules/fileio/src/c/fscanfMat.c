@@ -63,6 +63,7 @@ static double returnINF(BOOL bPositive);
 static double returnNAN(void);
 static BOOL checkFscanfMatFormat(char *format);
 static char *getCleanedFormat(char *format);
+static BOOL isOnlyBlankLine(const char *line);
 static char **removeEmptyLinesAtTheEnd(char **lines, int *sizelines);
 static BOOL isValidLineWithOnlyOneNumber(char *line);
 /*--------------------------------------------------------------------------*/
@@ -698,7 +699,7 @@ static char **removeEmptyLinesAtTheEnd(char **lines, int *sizelines)
         {
             if (lines[i])
             {
-                if (strcmp(lines[i], "") == 0) 
+                if ( (strcmp(lines[i], "") == 0) || (isOnlyBlankLine(lines[i])) )
                 {
                     FREE(lines[i]);
                     lines[i] = NULL;
@@ -737,8 +738,8 @@ static BOOL isValidLineWithOnlyOneNumber(char *line)
         else
         {
             if ((strncmp(line, NanString, (int)strlen(NanString)) == 0) ||
-            (strncmp(line, NegInfString, (int)strlen(NegInfString)) == 0) ||
-            (strncmp(line, InfString, (int)strlen(InfString)) == 0))
+                (strncmp(line, NegInfString, (int)strlen(NegInfString)) == 0) ||
+                (strncmp(line, InfString, (int)strlen(InfString)) == 0))
             {
                 return TRUE;
             }
@@ -747,4 +748,16 @@ static BOOL isValidLineWithOnlyOneNumber(char *line)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-
+static BOOL isOnlyBlankLine(const char *line)
+{
+    if (line)
+    {
+        int i = 0;
+        for (i = 0; i < (int) strlen(line); i++)
+        {
+            if (line[i] != ' ') return FALSE;
+        }
+    }
+    return TRUE;
+}
+/*--------------------------------------------------------------------------*/
