@@ -262,11 +262,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         // ast_tree : "Modules" Tree
 
         if directory_language_m(1) == "fr_FR" then
-            scilab_manual = "Manuel Scilab"
+            scilab_manual = "Aide Scilab"
         elseif directory_language_m(1) == "pt_BR" then
-            scilab_manual = "Manual Scilab"
+            scilab_manual = "Ajuda Scilab"
         else
-            scilab_manual = "Scilab manual"
+            scilab_manual = "Scilab help"
         end
 
         modules_tree = struct();
