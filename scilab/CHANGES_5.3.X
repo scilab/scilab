@@ -90,6 +90,8 @@ in the status bar of Scinotes.
 
 * bug 8764 fixed - File permissions were not checked.
 
+* bug 8885 fixed - Anchors were removed on a Replace All action.
+
 
 Xcos:
 =====

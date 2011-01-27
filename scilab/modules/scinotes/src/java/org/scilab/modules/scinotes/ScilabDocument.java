@@ -550,6 +550,27 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * Get the anchors between two positions
+     * @param start the beginning
+     * @param end the end
+     * @return a list of the anchors
+     */
+    public List<Anchor> getAnchorsBetween(int start, int end) {
+        Element root = getDefaultRootElement();
+        int lineS = root.getElementIndex(start);
+        int lineE = root.getElementIndex(end);
+        List<Anchor> list = new ArrayList<Anchor>();
+        for (int i = lineS; i <= lineE; i++) {
+            final ScilabLeafElement se = (ScilabLeafElement) root.getElement(i);
+            if (se.isAnchor()) {
+                list.add(new Anchor(i, se.getAnchorName()));
+            }
+        }
+
+        return list;
+    }
+
+    /**
      * Get the lhs/rhs args used in a function declaration
      * @param pos the position in the document
      * @return the two lists containing args and returned values or null if we are not
@@ -963,6 +984,39 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 }
             }
             return info.functionName;
+        }
+    }
+
+    /**
+     * Inner class to get infos on anchor
+     */
+    public class Anchor {
+
+        private int line;
+        private String name;
+
+        /**
+         * Default constructor
+         * @param line the line where the anchor is
+         * @param name the anchor's name
+         */
+        public Anchor(int line, String name) {
+            this.line = line;
+            this.name = name;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public String toString() {
+            return name;
+        }
+
+        /**
+         * @return the line number
+         */
+        public int getLine() {
+            return line;
         }
     }
 }

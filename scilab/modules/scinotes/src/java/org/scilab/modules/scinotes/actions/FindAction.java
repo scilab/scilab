@@ -65,6 +65,7 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SearchManager;
+import org.scilab.modules.scinotes.utils.NavigatorWindow;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
@@ -525,9 +526,10 @@ public final class FindAction extends DefaultAction {
                     updateRecentSearch();
                     updateRecentReplace();
 
-                    int start = 0;
                     JEditorPane scinotesTextPane = getEditor().getTextPane();
                     ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
+                    int start = 0;
+                    int end = doc.getLength();
                     String text = "";
 
                     boolean wholeWordSelected = checkWhole.isSelected() && checkWhole.isEnabled();
@@ -538,8 +540,8 @@ public final class FindAction extends DefaultAction {
                     int currentCaretPos = scinotesTextPane.getCaretPosition();
 
                     if (radioSelection.isSelected()) {
-                        ScilabDocument scilabDocument = (ScilabDocument) scinotesTextPane.getDocument();
                         start = startSelectedLines;
+                        end = endSelectedLines;
                         try {
                             text = doc.getText(startSelectedLines, endSelectedLines - startSelectedLines);
                         } catch (BadLocationException ex) { }
@@ -557,15 +559,23 @@ public final class FindAction extends DefaultAction {
                     if (replacedText.compareTo(text) != 0 && text.length() > 0) {
                         // only touch document if any replacement took place
                         try {
+                            List<ScilabDocument.Anchor> anchors = doc.getAnchorsBetween(start, end);
                             doc.mergeEditsBegin();
                             doc.setFocused(true);
                             doc.replace(start, text.length(), replacedText, null);
                             doc.mergeEditsEnd();
+                            Element root = doc.getDefaultRootElement();
+                            for (ScilabDocument.Anchor anchor : anchors) {
+                                ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(anchor.getLine());
+                                line.setAnchor(anchor.toString());
+                            }
+                            NavigatorWindow.updateNavigator();
                             previousRegexp = "";
                             previousIndex = -1;
                             buttonReplace.setEnabled(false);
                             buttonReplaceFind.setEnabled(false);
                             buttonReplaceAll.setEnabled(false);
+                            scinotesTextPane.setCaretPosition(currentCaretPos);
                         } catch (BadLocationException e1) {
                             e1.printStackTrace();
                         }
