@@ -13,7 +13,7 @@
   <refnamediv>
     <refname>star (*)</refname>
 
-    <refpurpose>opérateur dde multiplication</refpurpose>
+    <refpurpose>opérateur de multiplication</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -30,8 +30,8 @@
     <literal>*</literal>.</para>
 
     <para><literal>A*.B</literal> est un opérateur dont la signification n'est
-    pas prédéfinie peut être utilisé pour définir de nouveaux opérateurs voir
-    "overloading") avec la même priorité que <literal>*</literal></para>
+    pas prédéfinie peut être utilisé pour définir de nouveaux opérateurs (voir
+    <link linkend="overloading">overloading</link>) avec la même priorité que <literal>*</literal></para>
 
     <para>Le produit de Kronecker se note <literal>x.*.y</literal></para>
   </refsection>
