@@ -32,7 +32,7 @@
     <literal>x.*.y</literal></para>
 
     <para><literal>A*.B</literal> é um operador sem significado predefinido.
-    Pode ser usado para definir um novo operador (ver "overloading") com a
+    Pode ser usado para definir um novo operador (ver <link linkend="overloading">overloading</link>) com a
     mesma precedência que * ou /.</para>
   </refsection>
 
