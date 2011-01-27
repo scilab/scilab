@@ -1170,7 +1170,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * integer (of size 2) containing the position of the selection
      */
     public int[] isNearColumnSelection(int pos) {
-        if (((SciNotesCaret) getCaret()).isEmptySelection()) {
+        if (!(getCaret() instanceof SciNotesCaret) || ((SciNotesCaret) getCaret()).isEmptySelection()) {
             return null;
         }
 
