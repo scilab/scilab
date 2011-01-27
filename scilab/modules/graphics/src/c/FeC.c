@@ -5,6 +5,7 @@
  * Copyright (C) 2001 -  Bruno Pincon (for gain in speed and added
  *    possibilities to set zmin, zmax by the user and also to set the
  *    first and last color of the colormap)
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -149,13 +150,13 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
   if (autoScale)
   {
-    /* compute and merge new specified bounds with psubwin->Srect */
+    /* compute and merge new specified bounds with the data bounds */
     switch (strflag[1])  {
       case '0':
-        /* do not change psubwin->Srect */
+        /* do not change data bounds */
         break;
       case '1' : case '3' : case '5' : case '7':
-        /* Force psubwin->Srect=brect */
+        /* Force data bounds=brect */
         re_index_brect(brect, drect);
         break;
       case '2' : case '4' : case '6' : case '8':case '9':
@@ -176,20 +177,28 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
         break;
     }
 
+    /* merge data bounds and drect */
     if (!firstPlot &&
-      (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
-        drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
-        drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
-        drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
-        drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+      (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
+    {
+        double* dataBounds;
+        getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+
+        drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
+        drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
+        drect[1] = Max(dataBounds[1],drect[1]); /*xmax*/
+        drect[3] = Max(dataBounds[3],drect[3]); /*ymax*/
     }
+
     if (strflag[1] != '0')
-      bounds_changed = update_specification_bounds(psubwin, drect,2);
+    {
+        bounds_changed = update_specification_bounds(psubwin, drect,2);
+    }
   }
 
   if (firstPlot)
   {
-    bounds_changed = TRUE;
+      bounds_changed = TRUE;
   }
 
   axes_properties_changed = strflag2axes_properties(psubwin, strflag);
@@ -208,7 +217,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
   if (flagNax == TRUE)
   {
-      getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+    getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
     logFlags[0] = iTmp;
     getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
     logFlags[1] = iTmp;
