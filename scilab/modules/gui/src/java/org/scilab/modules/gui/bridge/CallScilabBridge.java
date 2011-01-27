@@ -2162,6 +2162,13 @@ public class CallScilabBridge {
     }
 
     /**
+     * Open a Browser on Scilab Online Help
+     */
+    public static void openOnlineHelpSite() {
+        WebBrowser.openUrl("http://help.scilab.org/");
+    }
+
+    /**
      * Open a Browser on Mailing List Archives
      */
     public static void openMailingListWebSite() {

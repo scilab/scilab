@@ -630,7 +630,7 @@ msgstr "&Właściwości osi"
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "&Zawiadomienie o błędzie"
 
 msgid "&Change current directory..."
@@ -783,7 +783,7 @@ msgstr "Przeglądarka zmiennych"
 msgid "&Vectorial export"
 msgstr "&Eksportowanie wektorowe"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "&Linki w sieci"
 
 msgid "&Xcos"

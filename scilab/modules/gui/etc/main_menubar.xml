@@ -184,9 +184,12 @@
              <callback instruction='demo_gui();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;Web links">
+        <submenu label="&amp;Links">
             <submenu label="Scilab &amp;Web Site">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite' type="3"/>
+            </submenu>
+            <submenu label="Scilab &amp;Online Help">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openOnlineHelpSite' type="3"/>
             </submenu>
             <submenu label="Scilab &amp;ATOMS Web Site">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openAtomsScilabWebSite' type="3"/>
@@ -194,7 +197,7 @@
             <submenu label="&amp;Contributions">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openContributionsWebSite' type="3"/>
             </submenu>
-            <submenu label="&amp;Bug And Request database">
+            <submenu label="&amp;Bugs And Requests">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openBugzillaWebSite' type="3"/>
             </submenu>
             <submenu label="&amp;Mailing lists">
