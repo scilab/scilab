@@ -68,6 +68,7 @@ jmethodID voidbuildDocumentationjstringID; // cache method id
 jmethodID jbooleansetOutputDirectoryjstringID; // cache method id
 jmethodID voidsetWorkingLanguagejstringID; // cache method id
 jmethodID voidsetExportFormatjstringID; // cache method id
+jmethodID voidsetIsToolboxjbooleanID; // cache method id
 jmethodID jstringprocessjstringjstringID; // cache method id
 
 
@@ -132,6 +133,8 @@ bool setOutputDirectory(char * directory);
 void setWorkingLanguage(char * language);
 
 void setExportFormat(char * format);
+
+void setIsToolbox(bool isToolbox);
 
 char * process(char * sourceDoc, char * styleSheet);
 

@@ -45,12 +45,18 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
     /**
      * Constructor
      * @param inName the name of the input stream
+     * @param outName the output directory
      * @param primConf the file containing the primitives of Scilab
      * @param macroConf the file containing the macros of Scilab
-     * @param out the output stream
+     * @param template the template to use
+     * @param version the version
+     * @param imageDir the image directory (relative to outName)
+     * @param isToolbox is true when compile a toolbox' help
+     * @param urlBase the base url for external link
+     * @param language the language to use ('en_US', 'fr_FR', ...)
      */
-    public CHMDocbookTagConverter(String inName, String outName, String primConf, String macroConf, String template, String version, String imageDir, String language) throws IOException, SAXException {
-        super(inName, outName, primConf, macroConf, template, version, imageDir);
+    public CHMDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase, String language) throws IOException, SAXException {
+        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase);
         this.outName = new File(outName).getCanonicalPath() + File.separator;
         this.language = language;
     }

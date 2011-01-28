@@ -1580,14 +1580,20 @@ function master_section = x2f_tree_to_section( tree , offset )
         // title built with the directory name
         section_title = tree("title_default");
     end
-
+    
+    if (isfield(tree, "xml_id")) then
+        xml_id = tree("xml_id");
+    else
+        xml_id = "section_"+getmd5(strsubst(tree("path"),SCI,""),"string");
+    end
+    
     section_title  = strsubst(section_title,"&"  ,"&amp;");
     section_title  = strsubst(section_title,"""" ,"&quot;");
     section_title  = strsubst(section_title,">"  ,"&gt;");
     section_title  = strsubst(section_title,"<"  ,"&lt;");
 
     master_section = [];
-    master_section = [ master_section ; "<"+section_type+" xml:id=''section_"+getmd5(strsubst(tree("path"),SCI,""),"string")+"''>" ];
+    master_section = [ master_section ; "<"+section_type+" xml:id=''" + xml_id + "''>" ];
     master_section = [ master_section ; "<title>"+section_title+"</title>" ];
 
     // Loop on dir_

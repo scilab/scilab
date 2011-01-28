@@ -2096,6 +2096,7 @@ public class CallScilabBridge {
      */
     public static void launchHelpBrowser(String[] helps, String language) {
         ScilabHelpBrowser.createHelpBrowser(helps, language);
+        ScilabHelpBrowser.startHomePage();
     }
 
     /**

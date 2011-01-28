@@ -55,6 +55,19 @@ Demonstration:
 Documentation:
 ==============
 
+* In the help, allow the creation of links between modules with the following
+syntax: 
+<link type="scilab" linkend="mytoolbox/exec/macros/fooexec.sce">macros/fooexec.sce</link>
+
+* In the help, allow the creation of links between a module to the Scilab
+documentation with the following syntax: 
+<link type="scilab" linkend="scilab/help/bvode">bvode</link>
+
+* In the help, allow the execution and the edition of any example.
+
+* In the help, allow the execution of the demos with the following syntax:
+<link type="scilab" linkend="scilab/demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link>
+
 * In an example in the documentation, when an undocumented function is used,
 trigger a warning and do not add a link on the function name.
 

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Sylvestre Ledru
+ * Copyright (C) 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,21 +16,36 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.JarURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.help.DefaultHelpHistoryModel;
 import javax.help.JHelpContentViewer;
+import javax.help.HelpSet;
 import javax.help.plaf.basic.BasicContentViewerUI;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
 import javax.swing.event.HyperlinkEvent;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
 
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.localization.Messages;
 
@@ -38,26 +54,33 @@ import org.scilab.modules.localization.Messages;
  * Through this class, we are adding some features on the javahelp browser
  * We are adding a popup menu on the right click of the mouse
  * In this menu, we are providing:
- *     - Execute in Scilab
+ *  - Execute in Scilab
  *  - Edit in the text editor
  *  - Copy
  *  - Select all
  *  - History
+ *
+ * @author Sylvestre LEDRU
+ * @author Calixte DENIZET
  */
 public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 
-    /**
-     *
-     */
+    private static final String SCILAB_PROTO = "scilab://";
+    private static final String SCI = ScilabConstants.SCI.getPath();
     private static final long serialVersionUID = -2593697956426596790L;
+
     /* This field is a copy of BasicContentViewerUI which is privated.
      * Therefor, I am changing the permission here to make it available
      * to the methods of this object
      */
     private javax.swing.JEditorPane accessibleHtml;
 
+    private JHelpContentViewer x;
+    private List<HelpSet> helpSets;
+
     public SwingScilabHelpBrowserViewer(JHelpContentViewer x) {
         super(x);
+        this.x = x;
     }
 
     public static javax.swing.plaf.ComponentUI createUI(JComponent x) {
@@ -71,15 +94,247 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
         if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
             if (event.getDescription().startsWith("http://")) {
                 WebBrowser.openUrl(event.getURL(), event.getDescription());
+            } else if (event.getDescription().startsWith(SCILAB_PROTO)) {
+                if (helpSets == null) {
+                    initHelpSets(x.getModel().getHelpSet());
+                }
+                URL url = resolvScilabLink(event);
+                if (url != null) {
+                    super.hyperlinkUpdate(new HyperlinkEvent(event.getSource(), event.getEventType(), url, ""));
+                }
+            } else if (event.getDescription().startsWith("file://")) {
+                String url = event.getDescription();
+                url = url.replaceFirst("SCI", SCI);
+                WebBrowser.openUrl(url);
             } else {
-                if (event.getDescription().startsWith("file://")) {
-                    String url = event.getDescription();
-                    url = url.replaceFirst("SCI", System.getenv("SCI"));
-                    WebBrowser.openUrl(url);
-                } else {
-                    super.hyperlinkUpdate(event);
+                super.hyperlinkUpdate(event);
+            }
+        }
+    }
+
+    private void initHelpSets(HelpSet hs) {
+        helpSets = new ArrayList();
+        helpSets.add(hs);
+        for (Enumeration<HelpSet> e = hs.getHelpSets(); e.hasMoreElements();) {
+            helpSets.add(e.nextElement());
+        }
+    }
+
+    /**
+     * Try to find an id
+     * @param id the id to find
+     * @return the URL corresponding to the id
+     */
+    public URL getURLFromID(String id) {
+        URL url = null;
+        try {
+            for (HelpSet hs : helpSets) {
+                javax.help.Map map = hs.getLocalMap();
+                if (map.isValidID(id, hs)) {
+                    url = map.getURLFromID(javax.help.Map.ID.create(id, hs));
+                    if (url != null) {
+                        return url;
+                    }
                 }
             }
+            url = new URL(helpSets.get(0).getHelpSetURL().toString().replace("jhelpset.hs", "ScilabErrorPage.html"));
+        } catch (MalformedURLException ex) { }
+
+        return url;
+    }
+
+    /**
+     * Try to find an id in a toolbox
+     * @param tbxName the toolbox's name
+     * @param id the id to find
+     * @return the URL corresponding to the id
+     */
+    public URL getURLFromID(String tbxName, String id) {
+        if (tbxName == null) {
+            return getURLFromID(id);
+        }
+        URL url = null;
+        try {
+            for (HelpSet hs : helpSets) {
+                if (hs.getHelpSetURL().toString().replaceAll("\\\\", "/").indexOf("/" + tbxName + "/") !=  -1) {
+                    javax.help.Map map = hs.getLocalMap();
+                    if (map.isValidID(id, hs)) {
+                        url = map.getURLFromID(javax.help.Map.ID.create(id, hs));
+                        if (url != null) {
+                            return url;
+                        }
+                    }
+                }
+            }
+            url = new URL(helpSets.get(0).getHelpSetURL().toString().replace("jhelpset.hs", "ScilabErrorPage.html"));
+        } catch (MalformedURLException ex) { }
+
+        return url;
+    }
+
+    /**
+     * Try to transform an address such as scilab://scilab.help/bvode into a conform URL
+     * pointing to the corresponding file in using jar: protocol.
+     * E.g. scilab://scilab.help/bvode will be transform into
+     * jar:file:SCI/modules/helptools/jar/scilab_fr_FR_help.jar!/scilab_fr_FR_help/bvode.html
+     * (where SCI has the good value)
+     * @param address the address to convert
+     * @return the correct address in using jar:// protocol
+     **/
+    public URL resolvScilabLink(HyperlinkEvent event) {
+        int pos = SCILAB_PROTO.length();
+        String addr = event.getDescription();
+        addr = addr.trim().replaceAll("\\\\", "/");
+        addr = addr.substring(pos);
+
+        pos = addr.indexOf("/");
+        String location;
+        String path = "";
+        if (pos != -1) {
+            location = addr.substring(0, pos);
+            if (pos != addr.length()) {
+                path = addr.substring(pos + 1);
+            }
+        } else {
+            return getURLFromID(addr);
+        }
+
+        String[] splitLoc = location.split("\\.");
+        String mainLocation = null;
+        String subLocation = null;
+
+        if (splitLoc.length >= 1) {
+            mainLocation = splitLoc[0];
+        }
+        if (splitLoc.length >= 2) {
+            subLocation = splitLoc[1];
+        }
+
+        if (subLocation.equals("help")) {
+            if (mainLocation.equals("scilab")) {
+                return getURLFromID(path);
+            } else {
+                return getURLFromID(mainLocation, path);
+            }
+        } else if (subLocation.equals("exec")) {
+            if (!mainLocation.equals("scilab")) {
+                exec(getToolboxPath() + "/" + path);
+            } else {
+                exec(SCI + "/modules/" + path);
+            }
+        } else if (subLocation.equals("demos")) {
+            if (!mainLocation.equals("scilab")) {
+                exec(getToolboxPath() + "/demos/" + path + ".sce");
+            } else {
+                exec(SCI + "/modules/" + path + ".sce");
+            }
+        } else if (subLocation.equals("execexample")) {
+            execExample(event.getSourceElement().getParentElement().getParentElement().getParentElement().getElement(0).getElement(0));
+        } else if (subLocation.equals("editexample")) {
+            editExample(event.getSourceElement().getParentElement().getParentElement().getParentElement().getElement(0).getElement(0));
+        }
+
+        return null;
+    }
+
+    /**
+     * @return the path of the toolbox
+     */
+    public String getToolboxPath() {
+        try {
+            URL url = ((JarURLConnection) x.getCurrentURL().openConnection()).getJarFileURL();
+            return new File(url.toURI()).getParentFile().getParent();
+        } catch (Exception e) { }
+
+        return "";
+    }
+
+    /**
+     * Execute the code in example
+     * @param pre the preformatted Element containing Scilab's code
+     */
+    public static void execExample(Element pre) {
+        String code = getCode(pre);
+        ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(code, true /* display */, true /* store in history */);
+    }
+
+    /**
+     * Edit the code in example
+     * @param pre the preformatted Element containing Scilab's code
+     */
+    public static void editExample(Element pre) {
+        edit(getCode(pre));
+    }
+
+    /**
+     * Edit the code
+     * @param code the code to edit
+     */
+    private static void edit(String code) {
+        try {
+            /* Dynamic load of the SciNotes class.
+             * This is done to avoid a cyclic dependency on gui <=> scinotes
+             */
+            Class scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
+            Class[] arguments = new Class[] {String.class};
+            Method method = scinotesClass.getMethod("scinotesWithText", arguments);
+            method.invoke(scinotesClass, new Object[]{code});
+
+        } catch (ClassNotFoundException e) {
+            System.err.println("Could not find SciNotes class");
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            System.err.println("Security error: Could not access to SciNotes class");
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            System.err.println("Could not access to scinotesWithText method from object SciNotes");
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            System.err.println("Wrong argument used with scinotesWithText method from object SciNotes");
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            System.err.println("Illegal access with scinotesWithText method from object SciNotes");
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            System.err.println("Error of invocation with scinotesWithText method from object SciNotes");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @param pre the preformatted Element containing Scilab's code
+     * @return the code
+     */
+    private static String getCode(Element pre) {
+        int size = pre.getElementCount();
+        Document doc = pre.getDocument();
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            Element line = pre.getElement(i);
+            int ssize = line.getElementCount();
+            for (int j = 0; j < ssize; j++) {
+                Element content = line.getElement(j);
+                if (content.isLeaf()) {
+                    try {
+                        buffer.append(doc.getText(content.getStartOffset(), content.getEndOffset() - content.getStartOffset()));
+                    } catch (BadLocationException e) { }
+                }
+            }
+        }
+
+        return buffer.toString().trim();
+    }
+
+    /**
+     * Execute a file given by its path
+     * @param the file path
+     */
+    public void exec(String path) {
+        String cmd = "exec('" + path + "', -1)";
+        try {
+            ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmd, true, false);
+        } catch (NoClassDefFoundError e) {
+            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Could not find the console nor the InterpreterManagement."));
         }
     }
 
@@ -93,7 +348,6 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
         this.retrievePrivateFieldFromBasicContentViewerUI();
         this.createPopupMenu(c);
     }
-
 
     /**
      * Retrieve the field "html" from BasicContentViewerUI and change
@@ -160,39 +414,10 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
                 if (selection == null) {
                     ScilabHelpBrowser.getHelpBrowser().getInfoBar().setText(Messages.gettext("No text selected"));
                 } else {
-                    try {
-                        /* Dynamic load of the SciNotes class.
-                         * This is done to avoid a cyclic dependency on gui <=> scinotes
-                         */
-                        Class scinotesClass = Class.forName("org.scilab.modules.scinotes.SciNotes");
-                        Class[] arguments = new Class[] {String.class};
-                        Method method = scinotesClass.getMethod("scinotesWithText", arguments);
-                        method.invoke(scinotesClass, new Object[]{selection});
-
-                    } catch (ClassNotFoundException e) {
-                        System.err.println("Could not find SciNotes class");
-                        e.printStackTrace();
-                    } catch (SecurityException e) {
-                        System.err.println("Security error: Could not access to SciNotes class");
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
-                        System.err.println("Could not access to scinotesWithText method from object SciNotes");
-                        e.printStackTrace();
-                    } catch (IllegalArgumentException e) {
-                        System.err.println("Wrong argument used with scinotesWithText method from object SciNotes");
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        System.err.println("Illegal access with scinotesWithText method from object SciNotes");
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        System.err.println("Error of invocation with scinotesWithText method from object SciNotes");
-                        e.printStackTrace();
-                    }
+                    edit(selection);
                 }
             }
         };
-
-
 
         menuItem = new JMenuItem(Messages.gettext("Edit in the Scilab Text Editor"));
         try {
