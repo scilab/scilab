@@ -20,16 +20,18 @@ import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.IllegalFormatException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -45,7 +47,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.graph.ScilabCanvas;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
@@ -97,14 +98,15 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
+import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
@@ -116,6 +118,30 @@ import com.mxgraph.view.mxStylesheet;
  */
 public class XcosDiagram extends ScilabGraph {
 	private static final Log LOG = LogFactory.getLog(XcosDiagram.class);
+	
+	/*
+	 * Static helpers
+	 */
+
+	/**
+	 * Only return the instanceof klass 
+	 * 
+	 * @param selection the selection to filter out
+	 * @param klass the class selector
+	 * @return the selection with only klass instance.
+	 */
+	public static Object[] filterByClass(final Object[] selection, final Class<BasicBlock> klass) {
+		return mxGraphModel.filterCells(selection, new mxGraphModel.Filter() {
+			@Override
+			public boolean filter(Object cell) {
+				return klass.isInstance(cell);
+			}
+		});
+	}
+	
+	/*
+	 * diagram data
+	 */
 	
 	// the associated parameters
 	private ScicosParameters scicosParameters;
@@ -368,15 +394,10 @@ public class XcosDiagram extends ScilabGraph {
 		getModel().beginUpdate();
 		try {
 			splitBlock.addConnection(linkSource);
-
-			final mxGeometry geom = splitBlock.getGeometry();
-			geom.setX(splitPoint.getX());
-			geom.setY(splitPoint.getY());
-
-			BlockPositioning.alignPoint(geom, getGridSize(),
-					(SplitBlock.DEFAULT_SIZE / 2));
-
+			
 			addCell(splitBlock);
+			// force resize and align on the grid
+			resizeCell(splitBlock, new mxRectangle(splitPoint.getX(), splitPoint.getY(), 0, 0));
 
 			// Update old link
 
@@ -461,6 +482,12 @@ public class XcosDiagram extends ScilabGraph {
 
 	/* Labels use HTML if not equal to interface function name */
 	setHtmlLabels(true);
+	/**
+	 * by default every label is movable, see
+	 * XcosDiagram##isLabelMovable(java.lang.Object) for restrictions
+	 */
+	setVertexLabelsMovable(true);
+	setEdgeLabelsMovable(true);
 	
 	//
 	//setCloneInvalidEdges(false);
@@ -526,19 +553,6 @@ public class XcosDiagram extends ScilabGraph {
 	public void installStylesheet() {
 		final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
 		setStylesheet(styleSheet);
-		
-		// Set Canvas background
-		URL background = null;
-		try {
-			final Map<String, Object> style = styleSheet.getCellStyle("Icon", null);
-			if (style != null) {
-				background = new URL((String) style.get(mxConstants.STYLE_IMAGE));
-			}
-		} catch (final MalformedURLException e) {
-			LOG.warn(e);
-		}
-		((ScilabCanvas) getAsComponent().getCanvas())
-				.setSvgBackgroundImage(background);
 	}
     
     /**
@@ -888,55 +902,6 @@ public class XcosDiagram extends ScilabGraph {
     };
 
 	/**
-	 * Get the point position according to the scale.
-	 * 
-	 * @param origin
-	 *            last point in the draklink
-	 * @param click
-	 *            clicked point in diagram window
-	 * @return new real point
-	 */
-	mxPoint getPointPosition(final mxPoint origin, final mxPoint click) {
-		final double origX = origin.getX();
-		final double origY = origin.getY();
-
-		final double clickX = click.getX();
-		final double clickY = click.getY();
-
-		final boolean signX = clickX > origX;
-		final boolean signY = clickY > origY;
-		
-		double diffX = Math.abs(clickX - origX);
-		double diffY = Math.abs(clickY - origY);
-		if (diffX > diffY) {
-			if (diffY > (diffX / 2)) { // diagonal
-				diffY = diffX;
-			} else { // orthogonal
-				diffY = 0;
-			}
-		} else { // < or ==
-			if (diffX > (diffY / 2)) { // diagonal
-				diffX = diffY;
-			} else { // orthogonal
-				diffX = 0;
-			}
-		}
-
-		// restore signs
-		if (!signX) {
-			diffX = -diffX;
-		}
-
-		if (!signY) {
-			diffY = -diffY;
-		}
-
-		final mxPoint p = new mxPoint(origX + diffX, origY + diffY);
-		BlockPositioning.alignPoint(p, getGridSize(), 0);		
-		return p;
-	}
-
-	/**
 	 * Removes the given cells from the graph including all connected edges if
 	 * includeEdges is true. The change is carried out using cellsRemoved.
 	 * 
@@ -978,22 +943,21 @@ public class XcosDiagram extends ScilabGraph {
 			
 			if (cell instanceof BasicLink) {
 				/*
+				 * Continue on non fully connected links
+				 */
+				if (((BasicLink) cell).getSource() == null) {
+					continue;
+				}
+				if (((BasicLink) cell).getTarget() == null) {
+					continue;
+				}
+				
+				/*
 				 * Add any split to a link
 				 */
-				final mxICell src = ((BasicLink) cell).getSource().getParent();
-				final mxICell target = ((BasicLink) cell).getTarget().getParent();
+				addTerminalParent(((BasicLink) cell).getSource(), removedCells, loopCells);
+				addTerminalParent(((BasicLink) cell).getTarget(), removedCells, loopCells);
 				
-				if (src instanceof SplitBlock) {
-					if (removedCells.add(src)) {
-						loopCells.add(src);
-					}
-				}
-				
-				if (target instanceof SplitBlock) {
-					if (removedCells.add(target)) {
-						loopCells.add(target);
-					}
-				}
 			} else if (cell instanceof SplitBlock) {
 				final SplitBlock splitBlock = (SplitBlock) cell;
 				
@@ -1067,7 +1031,33 @@ public class XcosDiagram extends ScilabGraph {
 		return ret;
 	}
 
-
+	/**
+	 * Add any terminal parent to the removed cells 
+	 * @param terminal the current terminal (instance of BasicPort)
+	 * @param removedCells the "to be removed" set
+	 * @param loopCells the "while loop" set
+	 */
+	private final void addTerminalParent(mxICell terminal, Collection<Object> removedCells, Collection<Object> loopCells) {
+		assert(terminal == null || terminal instanceof BasicPort);
+		assert(removedCells != null);
+		assert(loopCells != null);
+		
+		// getting terminal parent
+		mxICell target = null;
+		if (terminal != null) {
+			target = terminal.getParent();
+		} else {
+			target = null;
+		}
+		
+		// add target if applicable
+		if (target instanceof SplitBlock) {
+			if (removedCells.add(target)) {
+				loopCells.add(target);
+			}
+		}
+	}
+	
 	/**
 	 * Get the direct points from inLink.getSource() to outLink.getTarget().
 	 * 
@@ -1100,21 +1090,36 @@ public class XcosDiagram extends ScilabGraph {
 	
 	/**
 	 * Manage Group to be CellFoldable i.e with a (-) to reduce and a (+) to
-	 * expand them. Only non-Block / non-Port Cell are foldable.
+	 * expand them. Labels (mxCell instance with value) should not have a
+	 * visible foldable sign.
 	 * 
 	 * @param cell
 	 *            the selected cell
 	 * @param collapse
 	 *            the collapse settings
-	 * @return <code>true</code> if the cell is foldable, <code>false</code>
-	 *         otherwise.
+	 * @return always <code>false</code>
 	 * @see com.mxgraph.view.mxGraph#isCellFoldable(java.lang.Object, boolean)
 	 */
 	@Override
-    public boolean isCellFoldable(final Object cell, final boolean collapse) {
-		return !(cell instanceof BasicBlock) && super.isCellFoldable(cell, collapse);
-    }
+	public boolean isCellFoldable(final Object cell, final boolean collapse) {
+		return false;
+	}
 
+	/**
+	 * Not BasicBLock cell have a moveable label.
+	 * @param cell the cell
+	 * @return true if the corresponding label is moveable 
+	 * @see com.mxgraph.view.mxGraph#isLabelMovable(java.lang.Object)
+	 */
+	@Override
+	public boolean isLabelMovable(Object cell) {
+		if (cell instanceof BasicBlock) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	/**
 	 * Return true if selectable
 	 * @param cell the cell
@@ -1154,7 +1159,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	return movable && super.isCellMovable(cell);
     }
-
+	
 	/**
 	 * Return true if resizable
 	 * @param cell the cell
@@ -1170,7 +1175,7 @@ public class XcosDiagram extends ScilabGraph {
     }
 
 	/**
-	 * Return true if deletable
+	 * A cell is deletable is it is not a locked block or an identifier cell 
 	 * @param cell the cell
 	 * @return status
 	 * @see com.mxgraph.view.mxGraph#isCellDeletable(java.lang.Object)
@@ -1180,8 +1185,8 @@ public class XcosDiagram extends ScilabGraph {
     	if (cell instanceof BasicBlock && ((BasicBlock) cell).isLocked()) {
     		return false;
     	}
-
-    	return super.isCellDeletable(cell);
+    	
+    	return !cell.getClass().equals(mxCell.class) && super.isCellDeletable(cell);
     }
 
 	/**
@@ -1209,8 +1214,11 @@ public class XcosDiagram extends ScilabGraph {
 			
 			final String customLabel = (String) style.get("displayedLabel");
 			if (customLabel != null && cell instanceof BasicBlock) {
-				return String.format(customLabel,
-						(Object[]) ((BasicBlock) cell).getExprsFormat());
+				try {
+					return String.format(customLabel, ((BasicBlock) cell).getExprsFormat());
+				} catch (IllegalFormatException e) {
+					LOG.error(e);
+				}
 			} else {
 				final String label = super.convertValueToString(cell);
 				if (label.isEmpty() && cell instanceof BasicBlock) {
@@ -1240,7 +1248,7 @@ public class XcosDiagram extends ScilabGraph {
 		if (cell instanceof TextBlock) {
 			status &= false;
 		}
-		
+			
     	return status;
     }
 
@@ -1944,18 +1952,17 @@ public class XcosDiagram extends ScilabGraph {
      * @param message - The message to display.
      */
     public void warnCellByUID(final String uid, final String message) {
-	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
-	    if (getModel().getChildAt(getDefaultParent(), i) instanceof mxCell) {
-		if (((mxCell) getModel().getChildAt(getDefaultParent(), i)).getId().compareTo(uid) == 0) {
-		    //to put on top, only for new message, no for reset
-		    if (message.compareTo("") != 0) {
-			setVisible(true);
-		    }
-
-		    getAsComponent().setCellWarning(getModel().getChildAt(getDefaultParent(), i), message);
-		}
-	    }
-	}
+    	final Object cell = ((mxGraphModel) getModel()).getCell(uid);
+    	if (cell == null) {
+		return;
+    	}
+    	
+    	if (message.isEmpty()) {
+    		// put the current tab on top
+    		setVisible(true);
+    	}
+    	
+    	getAsComponent().setCellWarning(cell, message);
     }
 
     /**
@@ -1974,15 +1981,17 @@ public class XcosDiagram extends ScilabGraph {
      * @return The resulting data. Keys are variable names and Values are 
      *         evaluated values. 
      */
-	public Map<String, String> evaluateContext() {
-		Map<String, String> result = null;
+	public LinkedHashMap<String, String> evaluateContext() {
+		LinkedHashMap<String, String> result = null;
 		
 		try {
+			final Pattern p = Pattern.compile("('|\")");
+			
 			final StringBuilder str = new StringBuilder();
 			str.append('[');
 			for (final String s : getContext()) {
 				str.append('\"');
-				str.append(s);
+				str.append(p.matcher(s).replaceAll("''"));
 				str.append("\" ");
 			}
 			str.append(']');

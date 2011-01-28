@@ -49,7 +49,6 @@ public class DocbookTagConverter extends DefaultHandler {
 
     private static final String DOCBOOKURI = "http://docbook.org/ns/docbook";
     private static final Class[] argsType = new Class[]{Map.class, String.class};
-    private static final File lastGenerationFile = new File(System.getProperty("java.io.tmpdir") + File.separator + "scidocLastGen");
 
     private Map<String, Method> mapMeth = new HashMap();
     private Map<String, ExternalXMLHandler> externalHandlers = new HashMap();
@@ -71,20 +70,15 @@ public class DocbookTagConverter extends DefaultHandler {
     protected Locator locator;
 
     /**
-     * The local time where the last generation occured.
-     */
-    protected long lastGeneration;
-
-    /**
      * Constructor
      * @param in the input file path
      */
     public DocbookTagConverter(String in) throws IOException {
-    	if (in != null && !in.isEmpty()) {
-    		this.in = new File(in);
-    	} else {
-    		this.in = null;
-    	}
+        if (in != null && !in.isEmpty()) {
+                this.in = new File(in);
+        } else {
+                this.in = null;
+        }
     }
 
     /**
@@ -235,14 +229,8 @@ public class DocbookTagConverter extends DefaultHandler {
                 conv.resolveEntity(publicId, systemId);
             }
         }
-        try {
-            URI uri = new URI(systemId);
-            if (new File(uri).lastModified() > lastGeneration) {
-                return super.resolveEntity(publicId, systemId);
-            }
-        } catch (URISyntaxException e) { }
 
-        return new InputSource(new StringReader(""));
+        return super.resolveEntity(publicId, systemId);
     }
 
     /**
@@ -426,56 +414,18 @@ public class DocbookTagConverter extends DefaultHandler {
         if (currentFileName != null) {
             sId = "SystemID:" + currentFileName;
         }
-        
+
         String file;
-		try {
-			file = in.getCanonicalPath();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-			file = null;
-		}
+                try {
+                        file = in.getCanonicalPath();
+                } catch (IOException e1) {
+                        e1.printStackTrace();
+                        file = null;
+                }
         if (locator != null) {
             throw new SAXException("Cannot parse " + file + ":\n" + e.getMessage() + "\n" + sId + " at line " + locator.getLineNumber());
         } else {
             throw new SAXException("Cannot parse " + file + ":\n" + e.getMessage() + "\n" + sId);
-        }
-    }
-
-    protected void getLastGeneration(long time) {
-        BufferedReader input = null;
-        lastGeneration = 0;
-        if (lastGenerationFile.exists()) {
-            try {
-                input = new BufferedReader(new FileReader(lastGenerationFile));
-                String line = input.readLine();
-                if (line != null) {
-                    lastGeneration = Long.parseLong(line);
-                    if (time > lastGeneration) {
-                        lastGeneration = 0;
-                    }
-                }
-            } catch (IOException e) {
-                System.err.println(e);
-            }
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    System.err.println(e);
-                }
-            }
-        }
-    }
-
-    protected void saveLastGeneration() {
-        try {
-            FileOutputStream out = new FileOutputStream(lastGenerationFile);
-            OutputStreamWriter writer = new OutputStreamWriter(out);
-            writer.append(Long.toString(System.currentTimeMillis()));
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            System.err.println(e);
         }
     }
 

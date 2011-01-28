@@ -50,6 +50,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 	 * @return 1 when there is data on the list, 0 otherwise.
 	 * @see org.scilab.modules.types.ScilabType#getHeight()
 	 */
+	@Override
 	public int getHeight() {
 		if (isEmpty()) {
 			return 0;
@@ -61,6 +62,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 	 * @return 1 when there is data on the list, 0 otherwise.
 	 * @see org.scilab.modules.types.ScilabType#getWidth()
 	 */
+	@Override
 	public int getWidth() {
 		if (isEmpty()) {
 			return 0;
@@ -75,6 +77,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 	 * @return the pretty-printed data 
 	 * @see java.util.AbstractCollection#toString()
 	 */
+	@Override
 	public String toString() {
 
 		StringBuffer result = new StringBuffer();
@@ -85,7 +88,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 
 		result.append("list(");
 		for (int i = 0; i < size(); i++) {
-			result.append(get(i).toString());
+			result.append(get(i));
 			if (i != size() - 1) {
 				result.append(", ");
 			}

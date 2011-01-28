@@ -13,6 +13,7 @@
 package org.scilab.modules.console;
 
 import java.awt.event.ActionEvent;
+import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
@@ -21,29 +22,29 @@ import com.artenum.rosetta.core.action.AbstractConsoleAction;
  * @author Allan CORNET
  */
 public class SelectAllAction extends AbstractConsoleAction {
-	private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public SelectAllAction() {
-		super();
-	}
+        /**
+         * Constructor
+         */
+        public SelectAllAction() {
+                super();
+        }
 
-	/**
-	 * Threats the event
-	 * @param e the action event that occured
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e) {
-		JTextPane outputPane = (JTextPane) configuration.getOutputView();
-		JTextPane inputPane = (JTextPane) configuration.getInputCommandView();
-		
-		outputPane.setSelectionStart(0);
-		outputPane.setSelectionEnd(outputPane.getText().length());
-		
-		inputPane.setSelectionStart(0);
-		inputPane.setSelectionEnd(inputPane.getText().length());
-		
-	}
+        /**
+         * Threats the event
+         * @param e the action event that occured
+         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+         */
+        public void actionPerformed(ActionEvent e) {
+                JEditorPane outputPane = (JEditorPane) configuration.getOutputView();
+                JTextPane inputPane = (JTextPane) configuration.getInputCommandView();
+
+                outputPane.setSelectionStart(0);
+                outputPane.setSelectionEnd(outputPane.getText().length());
+
+                inputPane.setSelectionStart(0);
+                inputPane.setSelectionEnd(inputPane.getText().length());
+
+        }
 }

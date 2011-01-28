@@ -66,7 +66,7 @@ BOOL FreeDynLibJVM(void)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
-BOOL LoadFuntionsJVM(char *filedynlib)
+BOOL LoadFunctionsJVM(char *filedynlib)
 {
 #ifdef _MSC_VER
     wchar_t * wcfiledynlib = to_wide_string(filedynlib);

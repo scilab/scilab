@@ -320,7 +320,7 @@ int getVariableNames(int _iFile, char **pstNameList)
             if(pstNameList != NULL)
             {
                 int iLen = 0;
-                iLen = H5Gget_objname_by_idx(_iFile, i, NULL, iLen);
+                iLen = (int)H5Gget_objname_by_idx(_iFile, i, NULL, iLen);
                 pstNameList[iNbItem] = (char*)MALLOC(sizeof(char) * (iLen + 1)); //null terminated
                 H5Gget_objname_by_idx(_iFile, i, pstNameList[iNbItem], iLen + 1);
             }

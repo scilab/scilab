@@ -5,6 +5,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -1603,7 +1604,13 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
       strcpy( pGRAYPLOT_FEATURE (pobj)->datamapping, "scaled" ) ;
       pgray = pGRAYPLOT_FEATURE (pobj);
 
-      if (pvecx && (pgray->pvecx = MALLOC (n1 * sizeof (double))) == NULL)
+      /*
+       * For an object corresponding to Matplot1, the pvecx array stores its
+       * bounding rectangle's coordinates (xmin, ymin, xmax, ymax)
+       */
+      cmpt = (type == 2)? 4:n1;
+
+      if (pvecx && (pgray->pvecx = MALLOC (cmpt * sizeof (double))) == NULL)
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -1611,9 +1618,9 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      cmpt = (type == 2)? 4:n2 ;
+
       if (type != 2)
-	if (pvecy && (pgray->pvecy = MALLOC (cmpt * sizeof (double))) == NULL)
+	if (pvecy && (pgray->pvecy = MALLOC (n2 * sizeof (double))) == NULL)
 	  {
 	    if (pvecx) FREE(pGRAYPLOT_FEATURE (pobj)->pvecx);
 	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -1631,8 +1638,11 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	FREE(pobj);
 	return (sciPointObj *) NULL;
       }
+
       if (pvecx) {
-	for (i = 0; i < n1; i++) pgray->pvecx[i] = pvecx[i];
+	for (i = 0; i < cmpt; i++){
+            pgray->pvecx[i] = pvecx[i];
+        }
       }
 
 

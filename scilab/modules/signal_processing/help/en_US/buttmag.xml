@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>buttmag</refname>
-    <refpurpose>  response of Butterworth filter</refpurpose>
+    <refpurpose>  Power transmission of a Butterworth filter</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -23,13 +23,13 @@
       <varlistentry>
         <term>omegac</term>
         <listitem>
-          <para>real : cut-off frequency in Hertz</para>
+          <para>real : cut-off angular frequency (in rad/s)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sample</term>
         <listitem>
-          <para>vector of frequency where <literal>buttmag</literal> is evaluated</para>
+          <para>real vector of angular frequencies (in rad/s), where the transmission must be evaluated.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

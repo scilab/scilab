@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="COSBLK_f">
   <refnamediv>
     <refname>COSBLK_f</refname>
-    <refpurpose>COSBLK</refpurpose>
+    <refpurpose>Cosine</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="COSBLK_f">COSBLK</link>
+          <link linkend="COSBLK_f">Cosine</link>
         </para>
       </listitem>
       <listitem>
@@ -66,6 +66,11 @@
               <xref linkend="Interfacingfunction_COSBLK_f">Interfacing function</xref>
             </para>
           </listitem>
+           <listitem>
+            <para>
+              <xref linkend="Seealso_COSBLK_f">See also</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -82,7 +87,7 @@
   </refsection>
   <refsection id="Description_COSBLK_f">
     <title>Description</title>
-    <para>Description</para>
+    <para>That block computes the cosine of the elements of the input vector.</para>
     <para>
 </para>
     <para>
@@ -152,6 +157,26 @@
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/NonLinear/COSBLK_f.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_COSBLK_f">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="TrigFun">TrigFun - Trigonometric function (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SINBLK_f">SINBLK_f - Sine (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TANBLK_f">TANBLK_f - Tangente (Bloc Xcos)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -36,6 +36,11 @@ import org.scilab.forge.scidoc.image.MathMLImageConverter;
 import org.scilab.forge.scidoc.image.SVGImageConverter;
 import org.scilab.forge.scidoc.scilab.ScilabLexer;
 import org.scilab.forge.scidoc.scilab.HTMLScilabCodeHandler;
+import org.scilab.forge.scidoc.XML.XMLLexer;
+import org.scilab.forge.scidoc.XML.HTMLXMLCodeHandler;
+import org.scilab.forge.scidoc.c.CLexer;
+import org.scilab.forge.scidoc.c.HTMLCCodeHandler;
+import org.scilab.forge.scidoc.java.JavaLexer;
 
 /**
  * Class to convert DocBook to HTML
@@ -49,7 +54,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     private int latexCompt;
     private String imageDir;
     private String outName;
-    private boolean checkLast;
     private boolean hasExamples;
     private int warnings;
     private int nbFiles;
@@ -62,6 +66,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected TemplateHandler templateHandler;
 
     protected ScilabLexer scilabLexer;
+    protected XMLLexer xmlLexer;
+    protected CLexer cLexer;
+    protected JavaLexer javaLexer;
 
     protected String bookTitle = "";
     protected String partTitle = "";
@@ -73,6 +80,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String refname = "";
     protected String version;
 
+    protected String currentId;
+
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
 
     /**
@@ -83,12 +92,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param macroConf the file containing the macros of Scilab
      * @param out the output stream
      */
-    public HTMLDocbookTagConverter(String inName, String outName, String primConf, String macroConf, String template, String version, String imageDir, boolean checkLast) throws IOException, SAXException {
+    public HTMLDocbookTagConverter(String inName, String outName, String primConf, String macroConf, String template, String version, String imageDir) throws IOException, SAXException {
         super(inName);
 
         this.version = version;
         this.imageDir = imageDir;
-        this.checkLast = checkLast;
         this.outName = outName + File.separator;
         HTMLDocbookLinkResolver resolver = new HTMLDocbookLinkResolver(inName);
         mapId = resolver.getMapId();
@@ -96,14 +104,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         tree = resolver.getTree();
         mapTreeId = resolver.getMapTreeId();
         scilabLexer = new ScilabLexer(primConf, macroConf);
+        xmlLexer = new XMLLexer();
+        cLexer = new CLexer();
+        javaLexer = new JavaLexer();
         File tpl = new File(template);
         templateHandler = new TemplateHandler(this, tpl);
         ImageConverter.registerExternalImageConverter(LaTeXImageConverter.getInstance());
         ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance());
         ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance());
-        if (checkLast) {
-            getLastGeneration(tpl.lastModified());
-        }
     }
 
     /**
@@ -187,25 +195,18 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         return buffer.toString();
     }
 
-    public void endDocument() throws SAXException {
-        if (checkLast) {
-            saveLastGeneration();
-        }
-        super.endDocument();
-    }
-
     /**
      * {@inheritDoc}
      */
     public boolean isEscapable(String tagName) {
-        return !"latex".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
+        return !"latex".equals(tagName) && !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean isTrimable(String tagName) {
-        return !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
+        return !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
     }
 
     /**
@@ -223,7 +224,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * {@inheritDoc}
      */
     public String makeTitle(String id) {
-        return refname;
+        if (refname.length() > 0) {
+            return tocitem.get(id);
+        }
+
+        return "";
     }
 
     /**
@@ -292,7 +297,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             return "";
         }
 
-        String str = tocitem.get(id);
         leaf = leaf.parent;
         if (leaf != null) {
             buffer.append("<a href=\"");
@@ -441,8 +445,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleRefentry(Map<String, String> attributes, String contents) throws SAXException {
-        String fileName = attributes.get("id") + ".html";
-        createHTMLFile(attributes.get("id"), fileName, refpurpose, contents);
+        if (currentId == null) {
+            currentId = attributes.get("id");
+        }
+        String fileName = currentId + ".html";
+        createHTMLFile(currentId, fileName, refpurpose, contents);
         if (!hasExamples) {
             warnings++;
             //System.err.println("Warning (should be fixed): no example in " + currentFileName);
@@ -450,9 +457,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             hasExamples = false;
         }
         String rp = encloseContents("span", "refentry-description", refpurpose);
-        String str = encloseContents("li", encloseContents("a", new String[]{"href", fileName, "class", "refentry"}, attributes.get("id")) + " &#8212; " + rp);
+        String str = encloseContents("li", encloseContents("a", new String[]{"href", fileName, "class", "refentry"}, currentId) + " &#8212; " + rp);
         refpurpose = "";
         refname = "";
+        currentId = null;
 
         return str;
     }
@@ -489,8 +497,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         createHTMLFile("index", indexFilename, bookTitle, title + "\n" + str);
 
         if (warnings != 0) {
-            System.out.println("Total files without example: " + warnings);
-            System.out.println("Total generated html files: " + nbFiles);
+            System.err.println("Total files without example: " + warnings);
+            System.err.println("Total generated html files: " + nbFiles);
         }
 
         return encloseContents("li", encloseContents("a", new String[]{"href", indexFilename, "class", "part"}, bookTitle) + "\n" + str);
@@ -595,10 +603,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     public String handleRefnamediv(Map<String, String> attributes, String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
-            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refnamediv", contents);
-        } else {
-            return encloseContents("div", "refnamediv", contents);
+            currentId = id;
         }
+
+        return encloseContents("div", "refnamediv", contents);
     }
 
     /**
@@ -699,7 +707,38 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleProgramlisting(Map<String, String> attributes, String contents) throws SAXException {
         String id = attributes.get("id");
-        String str = encloseContents("div", "programlisting", encloseContents("pre", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, mapId), contents)));
+        String role = attributes.get("role");
+        String str;
+        if (role == null) {
+            str = encloseContents("div", "programlisting", encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, mapId), contents)));
+        } else {
+            if (role.equals("xml")) {
+                str = encloseContents("div", "programlisting", encloseContents("pre", "xmlcode", xmlLexer.convert(HTMLXMLCodeHandler.getInstance(), contents)));
+            } else if (role.equals("c") || role.equals("cpp") || role.equals("code_gateway")) {
+                str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", cLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
+            } else if (role.equals("java")) {
+                str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
+            } else {
+                str = encloseContents("div", "programlisting", encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, mapId), contents)));
+            }
+        }
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + str;
+        } else {
+            return str;
+        }
+    }
+
+    /**
+     * Handle a screen
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleScreen(Map<String, String> attributes, String contents) throws SAXException {
+        String id = attributes.get("id");
+        String str = encloseContents("div", "screen", encloseContents("pre", contents));
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + str;
         } else {

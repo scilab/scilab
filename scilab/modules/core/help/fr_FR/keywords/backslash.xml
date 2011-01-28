@@ -53,7 +53,7 @@ printf('\ntemps nécessaire à la résolution du système avec linsolve: %.3f\n'
 
 tic();
 res = A\b;
-printf('\ntemps nécessaire à la résolution du système avec l'opérateur backslash: %.3f\n',toc());
+printf('\ntemps nécessaire à la résolution du système avec l''opérateur backslash: %.3f\n',toc());
  ]]></programlisting>
   </refsection>
   <refsection>

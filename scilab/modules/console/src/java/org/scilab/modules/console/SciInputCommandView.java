@@ -155,46 +155,46 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         // BUG 2510 fix: automatic validation of pasted lines
         this.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                // Nothing to do in Scilab
-            }
+                public void changedUpdate(DocumentEvent e) {
+                    // Nothing to do in Scilab
+                }
 
-            public void insertUpdate(DocumentEvent e) {
-                // Validates commands if followed by a carriage return
-                String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-                if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
+                public void insertUpdate(DocumentEvent e) {
+                    // Validates commands if followed by a carriage return
+                    String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+                    if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
                         EventQueue.invokeLater(new Runnable() {
                                 public void run() {
-                                        String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-                                        console.sendCommandsToScilab(wholeTxt, true, true);
+                                    String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+                                    console.sendCommandsToScilab(wholeTxt, true, true);
                                 };
-                        });
+                            });
+                    }
                 }
-            }
 
-            public void removeUpdate(DocumentEvent e) {
-                // Nothing to do in Scilab
-            }
-        });
+                public void removeUpdate(DocumentEvent e) {
+                    // Nothing to do in Scilab
+                }
+            });
 
         this.addKeyListener(new KeyListener() {
-            public void keyPressed (KeyEvent e) {
-                if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
+                public void keyPressed (KeyEvent e) {
+                    if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
                         if (console.getConfiguration().getHistoryManager().isInHistory()) {
-                                //console.getConfiguration().getInputParsingManager().reset();
-                                //console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
-                                console.getConfiguration().getHistoryManager().setInHistory(false);
+                            //console.getConfiguration().getInputParsingManager().reset();
+                            //console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
+                            console.getConfiguration().getHistoryManager().setInHistory(false);
                         }
+                    }
                 }
-            }
 
-            public void keyReleased (KeyEvent e) {
-                // Nothing to do in Scilab
-            }
+                public void keyReleased (KeyEvent e) {
+                    // Nothing to do in Scilab
+                }
 
-            public void keyTyped (KeyEvent e) {
-                // Nothing to do in Scilab
-            }
-});
+                public void keyTyped (KeyEvent e) {
+                    // Nothing to do in Scilab
+                }
+            });
     }
 }

@@ -43,7 +43,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleDefault(String seq) throws IOException {
-        buffer.append("<span class=\"default\">");
+        buffer.append("<span class=\"scilabdefault\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -52,7 +52,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleOperator(String seq) throws IOException {
-        buffer.append("<span class=\"operator\">");
+        buffer.append("<span class=\"scilaboperator\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -61,7 +61,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleOpenClose(String seq) throws IOException {
-        buffer.append("<span class=\"openclose\">");
+        buffer.append("<span class=\"scilabopenclose\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -70,7 +70,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleFKeywords(String seq) throws IOException {
-        buffer.append("<span class=\"fkeyword\">");
+        buffer.append("<span class=\"scilabfkeyword\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -79,7 +79,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleSKeywords(String seq) throws IOException {
-        buffer.append("<span class=\"skeyword\">");
+        buffer.append("<span class=\"scilabskeyword\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -88,7 +88,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleCKeywords(String seq) throws IOException {
-        buffer.append("<span class=\"ckeyword\">");
+        buffer.append("<span class=\"scilabckeyword\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -97,7 +97,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleConstants(String seq) throws IOException {
-        buffer.append("<span class=\"constants\">");
+        buffer.append("<span class=\"scilabconstants\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -113,7 +113,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
         } else {
             String link = mapId.get(seq);
             if (link == null) {
-                buffer.append("<span class=\"command\">");
+                buffer.append("<span class=\"scilabcommand\">");
                 buffer.append(seq);
                 buffer.append("</span>");
                 if (!undoc.contains(seq)) {
@@ -121,7 +121,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
                     undoc.add(seq);
                 }
             } else {
-                buffer.append("<a class=\"command\" href=\"");
+                buffer.append("<a class=\"scilabcommand\" href=\"");
                 buffer.append(mapId.get(seq));
                 buffer.append("\">");
                 buffer.append(seq);
@@ -135,13 +135,13 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      */
     public void handleMacro(String seq) throws IOException {
         if (seq.equals(currentCommand)) {
-            buffer.append("<span class=\"macro\">");
+            buffer.append("<span class=\"scilabmacro\">");
             buffer.append(seq);
             buffer.append("</span>");
         } else {
             String link = mapId.get(seq);
             if (link == null) {
-                buffer.append("<span class=\"macro\">");
+                buffer.append("<span class=\"scilabmacro\">");
                 buffer.append(seq);
                 buffer.append("</span>");
                 if (!undoc.contains(seq)) {
@@ -149,7 +149,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
                     undoc.add(seq);
                 }
             } else {
-                buffer.append("<a class=\"macro\" href=\"");
+                buffer.append("<a class=\"scilabmacro\" href=\"");
                 buffer.append(link);
                 buffer.append("\">");
                 buffer.append(seq);
@@ -162,7 +162,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleFunctionId(String seq) throws IOException {
-        buffer.append("<span class=\"functionid\">");
+        buffer.append("<span class=\"scilabfunctionid\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -171,7 +171,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleFunctionIdDecl(String seq) throws IOException {
-        buffer.append("<span class=\"functionid\">");
+        buffer.append("<span class=\"scilabfunctionid\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -180,7 +180,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleId(String seq) throws IOException {
-        buffer.append("<span class=\"id\">");
+        buffer.append("<span class=\"scilabid\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -189,7 +189,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleInputOutputArgs(String seq) throws IOException {
-        buffer.append("<span class=\"inputoutputargs\">");
+        buffer.append("<span class=\"scilabinputoutputargs\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -198,7 +198,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleInputOutputArgsDecl(String seq) throws IOException {
-        buffer.append("<span class=\"inputoutputargs\">");
+        buffer.append("<span class=\"scilabinputoutputargs\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -207,7 +207,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleNumber(String seq) throws IOException {
-        buffer.append("<span class=\"number\">");
+        buffer.append("<span class=\"scilabnumber\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -216,7 +216,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleSpecial(String seq) throws IOException {
-        buffer.append("<span class=\"special\">");
+        buffer.append("<span class=\"scilabspecial\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -225,7 +225,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleString(String seq) throws IOException {
-        buffer.append("<span class=\"string\">");
+        buffer.append("<span class=\"scilabstring\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -241,7 +241,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleField(String seq) throws IOException {
-        buffer.append("<span class=\"field\">");
+        buffer.append("<span class=\"scilabfield\">");
         buffer.append(seq);
         buffer.append("</span>");
     }
@@ -250,7 +250,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * {@inheritDoc}
      */
     public void handleComment(String seq) throws IOException {
-        buffer.append("<span class=\"comment\">");
+        buffer.append("<span class=\"scilabcomment\">");
         buffer.append(seq);
         buffer.append("</span>");
     }

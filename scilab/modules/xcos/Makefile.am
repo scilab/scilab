@@ -134,7 +134,6 @@ nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
 images/blocks/ASCOPE.svg \
 images/blocks/BACHE.svg \
-images/blocks/background.svg \
 images/blocks/BPLATFORM.svg \
 images/blocks/Capacitor.svg \
 images/blocks/CCS.svg \
@@ -147,7 +146,6 @@ images/blocks/CVS.svg \
 images/blocks/DEADBAND.svg \
 images/blocks/Diode.svg \
 images/blocks/DSCOPE.svg \
-images/blocks/empty.svg \
 images/blocks/Ground.svg \
 images/blocks/Gyrator.svg \
 images/blocks/HYSTHERESIS.svg \
@@ -236,7 +234,7 @@ images/palettes/CUMSUM.png \
 images/palettes/CurrentSensor.png \
 images/palettes/CURV_f.png \
 images/palettes/CVS.png \
-images/palettes/DEADBAND_modif.png \
+images/palettes/DEADBAND.png \
 images/palettes/DEBUG_SCICOS.png \
 images/palettes/DELAY_f.png \
 images/palettes/DELAYV_f.png \

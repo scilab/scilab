@@ -27,6 +27,7 @@ import java.util.Vector;
 import java.util.logging.LogManager;
 
 import javax.swing.SwingUtilities;
+import javax.xml.transform.TransformerFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -72,6 +73,8 @@ public final class Xcos {
 		Messages.gettext("Unable to load the native HDF5 library.");
 	private static final String UNABLE_TO_LOAD_BATIK = 
 		Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
+	private static final String UNABLE_TO_USE_DOM = 
+		Messages.gettext("Saxon provides only an immutable DOM, please configure another implementation");
 	
 	private static final String CALLED_OUTSIDE_THE_EDT_THREAD = "Called outside the EDT thread.";
 	private static final Log LOG = LogFactory.getLog(Xcos.class);
@@ -207,6 +210,12 @@ public final class Xcos {
 		} catch (final Throwable e) {
 			throw new RuntimeException(String.format(UNABLE_TO_LOAD_BATIK,
 					BATIK_VERSIONS.get(0), batikVersion), e);
+		}
+		
+		/* DOM implementation must be writable */
+		final String title = TransformerFactory.newInstance().getClass().getName();
+		if (title.contains("saxon")) {
+			throw new RuntimeException(UNABLE_TO_USE_DOM);
 		}
 	}
 	// CSON: MagicNumber
@@ -359,7 +368,7 @@ public final class Xcos {
 			return;
 		}
 		
-		final Xcos instance = getInstance();
+		final Xcos instance = sharedInstance;
 		final List<XcosDiagram> diagrams = instance.diagrams;
 
 		/*
@@ -378,6 +387,13 @@ public final class Xcos {
 			instance.palette.getView().close();
 			instance.palette.setView(null);
 		}
+		
+		/* terminate any remaining simulation */
+		InterpreterManagement.requestScilabExec("haltscicos");
+
+		/* Saving modified data */
+		instance.palette.saveConfig();
+		instance.configuration.saveConfig();
 	}
 
 	/**
@@ -411,7 +427,7 @@ public final class Xcos {
 		final Xcos instance = getInstance();
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadScicosLibs();");
+		InterpreterManagement.requestScilabExec("loadXcosLibs();");
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -432,17 +448,31 @@ public final class Xcos {
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos(final String fileName) {
+		final Xcos instance = getInstance();
 		final File filename = new File(fileName);
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadScicosLibs();");
+		InterpreterManagement.requestScilabExec("loadXcosLibs();");
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				getInstance().open(filename);
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
+				public void run() {
+					instance.open(filename);
+				}
+			});
+		} catch (final InterruptedException e) {
+			LOG.error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
 			}
-		});
+			
+			throw new RuntimeException(firstMessage, e);
+		}
 	}
 
 	/**
@@ -457,10 +487,6 @@ public final class Xcos {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-					// Saving modified data
-					getInstance().palette.saveConfig();
-					getInstance().configuration.saveConfig();
-					
 					closeSession();
 					clearInstance();
 				}

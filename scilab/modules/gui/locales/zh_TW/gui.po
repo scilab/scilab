@@ -499,7 +499,7 @@ msgstr "座標軸特性(&A)"
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "臭蟲及開發需求資料庫(&B)"
 
 msgid "&Change current directory..."
@@ -652,7 +652,7 @@ msgstr ""
 msgid "&Vectorial export"
 msgstr "向量圖檔輸出(&V)"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "網站連結 (&W)"
 
 msgid "&Xcos"

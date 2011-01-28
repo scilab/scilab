@@ -17,13 +17,15 @@ function warnobsolete(newFunctionName, scilabRemovedVersion)
   
   //Retrieve Calling function
   [lineCall, stackCall]=where()
-  
+  if size(stackCall,"*") < 2 then
+    error(msprintf(gettext("%s: Private function: cannot access to this function directly.\n"),"warnobsolete"));
+  end
   // Now build the correct warning message
   warnMessage = msprintf(_("Function %s is obsolete."),stackCall(2))
-  if argn(2) >= 1 then
+  if exists("newFunctionName", 'l') then
     warnMessage = [warnMessage, msprintf(_("Please use %s instead."),newFunctionName)]
   end
-  if argn(2) >= 2 then
+  if exists("scilabRemovedVersion", 'l') then
     warnMessage = [warnMessage, msprintf(_("This function will be permanently removed in Scilab %s"), scilabRemovedVersion)]
   end
   

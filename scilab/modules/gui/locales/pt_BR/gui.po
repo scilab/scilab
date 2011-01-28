@@ -629,7 +629,7 @@ msgstr "Propriedades dos ei&xos"
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "&Banco de dados de erros e solicitações"
 
 msgid "&Change current directory..."
@@ -782,7 +782,7 @@ msgstr "Navegador de &variáveis"
 msgid "&Vectorial export"
 msgstr "Exportação &vetorial"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "Links da &Web"
 
 msgid "&Xcos"

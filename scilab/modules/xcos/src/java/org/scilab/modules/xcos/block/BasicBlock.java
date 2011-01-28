@@ -256,7 +256,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 */
 	public static enum SimulationFunctionType {
 		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0),
-		    TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), MODELICA(30004.0), UNKNOWN(5.0), OLDBLOCKS(10001.0), IMPLICIT_C_OR_FORTRAN(10004.0);
+		    TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), DEBUG(99), MODELICA(30004.0), UNKNOWN(5.0), OLDBLOCKS(10001.0), IMPLICIT_C_OR_FORTRAN(10004.0);
 
 		private double value;
 
@@ -660,27 +660,70 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     /**
      * @return the expression as a object array
      */
-    public String[] getExprsFormat() {
+    public Object[] getExprsFormat() {
     	// evaluate emptiness
 		if (getExprs() == null || getExprs().isEmpty()
 				|| getExprs().getHeight() == 0 || getExprs().getWidth() == 0) {
 			return new String[0];
 		}
     	
-		// only ScilabString is handled
-		if (!(getExprs() instanceof ScilabString)) {
-			return new String[0];
-		}
-		String[][] scilabData = ((ScilabString) getExprs()).getData();
+		List<String[]> stack = getString(null, getExprs());
 		
-    	// normal case
-		final String[] array = new String[getExprs().getHeight() * getExprs().getWidth()];
-		final int width = scilabData[0].length;
-		for (int i = 0; i < scilabData.length; ++i) {
-			System.arraycopy(scilabData[i], 0, array, i * width, width);
+		int len = 0;
+		for (Object[] strings : stack) {
+			len += strings.length;
+		}
+		
+		final Object[] array = new Object[len];
+		int start = 0;
+		for (Object[] strings : stack) {
+			System.arraycopy(strings, 0, array, start, strings.length);
+			start += strings.length;
 		}
 		
 		return array;
+    }
+    
+    /**
+     * Append the data recursively to the stack
+     * @param stack the current stack
+     * @param data the data to append
+     * @return the stack
+     */
+    private List<String[]> getString(List<String[]> stack, ScilabType data)  {
+    	if (stack == null) {
+    		stack = new LinkedList<String[]>();
+    	}
+    		
+    	if (data instanceof List) {
+    		/*
+    		 * Container case (ScilabList, ScilabMList, ScilabTList) 
+    		 */
+    		
+    		@SuppressWarnings("unchecked")
+			final List<ScilabType> list = (List<ScilabType>) data;
+    		
+    		for (final ScilabType scilabType : list) {
+				getString(stack, scilabType);
+			}
+    	} else if (data instanceof ScilabString) {
+    		/*
+    		 * native case (only ScilabString supported)
+    		 */
+    		
+    		final String[][] scilabData = ((ScilabString) data).getData();
+    		final int height = data.getHeight();
+    		final int width = data.getWidth();
+    		
+    		final String[] array = new String[height * width];
+    		for (int i = 0; i < height; ++i) {
+    			System.arraycopy(scilabData[i], 0, array, i * width, width);
+    		}
+    		
+    		stack.add(array);
+    	}
+    	
+    	return stack;
     }
     
     /**

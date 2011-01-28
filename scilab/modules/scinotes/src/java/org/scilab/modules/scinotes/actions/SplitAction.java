@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010 - 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,6 +27,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.EditorComponent;
 
 /**
  * SplitAction Class
@@ -101,10 +102,10 @@ public final class SplitAction extends DefaultAction {
         ((JMenu) menu.getAsSimpleMenu()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     if (editor.getTextPane() != null) {
-                        JComponent c = editor.getTextPane().getParentComponent();
+                        EditorComponent c = editor.getTextPane().getEditorComponent();
                         int state = 0;
-                        if (c instanceof JSplitPane) {
-                            JSplitPane split = (JSplitPane) c;
+                        if (c.isSplited()) {
+                            JSplitPane split = c.getSplitPane();
                             if (split.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
                                 state = 1;
                             } else {

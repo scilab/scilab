@@ -43,8 +43,8 @@ function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable,
         end
     end
     
-    // call loadScicosLibs if not loaded
-    if exists("scicos_diagram", 'a') == 0 then loadScicosLibs(); end
+    // call loadXcosLibs if not loaded
+    if exists("scicos_diagram", 'a') == 0 then loadXcosLibs(); end
     
     if traceEnable then
         ncl = lines(), lines(0);        

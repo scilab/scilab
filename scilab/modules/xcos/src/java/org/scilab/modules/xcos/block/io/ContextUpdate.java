@@ -168,31 +168,34 @@ public abstract class ContextUpdate extends BasicBlock {
 	 */
 	public static enum IOBlocks {
 		/** Map a control port to an event input block */
-		EventInBlock(EventInBlock.class, ControlPort.class),
+		EventInBlock(EventInBlock.class, ControlPort.class, CommandPort.class),
 		/** Map a command port to an event output block */
-		EventOutBlock(EventOutBlock.class, CommandPort.class),
+		EventOutBlock(EventOutBlock.class, CommandPort.class,  ControlPort.class),
 		/** Map an explicit input port to an explicit input block */
-		ExplicitInBlock(ExplicitInBlock.class, ExplicitInputPort.class),
+		ExplicitInBlock(ExplicitInBlock.class, ExplicitInputPort.class, ExplicitOutputPort.class),
 		/** Map an explicit output port to an explicit output block */
-		ExplicitOutBlock(ExplicitOutBlock.class, ExplicitOutputPort.class),
+		ExplicitOutBlock(ExplicitOutBlock.class, ExplicitOutputPort.class, ExplicitInputPort.class),
 		/** Map an implicit input port to an implicit input block */
-		ImplicitInBlock(ImplicitInBlock.class, ImplicitInputPort.class),
+		ImplicitInBlock(ImplicitInBlock.class, ImplicitInputPort.class, ImplicitOutputPort.class),
 		/** Map an implicit output port to an implicit output block */
-		ImplicitOutBlock(ImplicitOutBlock.class, ImplicitOutputPort.class);
+		ImplicitOutBlock(ImplicitOutBlock.class, ImplicitOutputPort.class, ImplicitInputPort.class);
 
 		private final Class< ? extends ContextUpdate> ioBlock;
 		private final Class< ? extends BasicPort> port;
+		private final Class< ? extends BasicPort> opposite;
 
 		/**
 		 * @param ioBlock
 		 *            input/output block
 		 * @param port
 		 *            the associated port class
+		 * @param opposite the opposite port class
 		 */
 		private IOBlocks(Class< ? extends ContextUpdate> ioBlock,
-				Class< ? extends BasicPort> port) {
+				Class< ? extends BasicPort> port, Class< ? extends BasicPort> opposite) {
 			this.ioBlock = ioBlock;
 			this.port = port;
+			this.opposite = opposite;
 		}
 		
 		/**
@@ -227,7 +230,46 @@ public abstract class ContextUpdate extends BasicBlock {
 
 			return ret;
 		}
+		
+		public static List<mxICell> getPorts(SuperBlock parent, Class<? extends ContextUpdate> klass) {
+			List<mxICell> ret = new ArrayList<mxICell>();
+			
+			/* Get the corresponding klass */
+			Class< ? extends BasicPort> portKlass = null; 
+			for (IOBlocks b : IOBlocks.values()) {
+				if (b.getReferencedClass().equals(klass)) {
+					portKlass = b.getReferencedPortClass();
+					break;
+				}
+			}
+			
+			/* Loop all over the children */
+			final int childCount = parent.getChildCount();
 
+			for (int i = 0; i < childCount; i++) {
+				final mxICell child = parent.getChildAt(i);
+				if (portKlass.isInstance(child)) {
+					ret.add(child);
+				}
+			}
+			
+			return ret;
+		}
+		
+		/**
+		 * Return the opposite of the port
+		 * @param klass the klass
+		 * @return the opposite of klass
+		 */
+		public static Class<? extends BasicPort> getOpposite(Class<? extends BasicPort> klass) {
+			for (IOBlocks b : IOBlocks.values()) {
+				if (b.getReferencedPortClass() == klass) {
+					return b.getOppositeClass();
+				}
+			}
+			return null;
+		}
+		
 		/**
 		 * Get all the I/O blocks of the SuperBlock parent.
 		 * 
@@ -270,6 +312,30 @@ public abstract class ContextUpdate extends BasicBlock {
 		}
 
 		/**
+		 * Create a corresponding I/O block
+		 * @param port the port used as an output 
+		 * @return 
+		 */
+		public static ContextUpdate createBlock(BasicPort port) {
+			for (IOBlocks io : IOBlocks.values()) {
+				if (io.getReferencedPortClass().isInstance(port)) {
+					try {
+						ContextUpdate block = io.getReferencedClass().newInstance();
+						block.addPort(io.getOppositeClass().newInstance());
+						
+						return block;
+					} catch (InstantiationException e) {
+						LogFactory.getLog(IOBlocks.class).error(e);
+					} catch (IllegalAccessException e) {
+						LogFactory.getLog(IOBlocks.class).error(e);
+					}
+				}
+			}
+			
+			return null;
+		}
+		
+		/**
 		 * @return referenced class
 		 */
 		public Class< ? extends ContextUpdate> getReferencedClass() {
@@ -281,6 +347,13 @@ public abstract class ContextUpdate extends BasicBlock {
 		 */
 		public Class< ? extends BasicPort> getReferencedPortClass() {
 			return port;
+		}
+		
+		/**
+		 * @return the port opposite class
+		 */
+		public Class< ? extends BasicPort> getOppositeClass() {
+			return opposite;
 		}
 	}
 	
@@ -309,7 +382,7 @@ public abstract class ContextUpdate extends BasicBlock {
 		setODState(new ScilabList());
 		setValue(1);
 	}
-
+	
 	/**
 	 * @param context
 	 *            new context

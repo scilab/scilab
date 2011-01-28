@@ -833,7 +833,7 @@ msgid "&BMP"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 85
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 48
@@ -1050,7 +1050,7 @@ msgid "&Vectorial export"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 81
-msgid "&Web links"
+msgid "&Links"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 73

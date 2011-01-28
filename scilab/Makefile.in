@@ -72,10 +72,12 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
 	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
 	$(top_srcdir)/Makefile.call_scilab.am $(top_srcdir)/configure \
+	$(top_srcdir)/etc/Info.plist.in \
 	$(top_srcdir)/etc/classpath.xml.in \
 	$(top_srcdir)/etc/jvm_options.xml.in \
 	$(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
+	$(top_srcdir)/modules/core/includes/version.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
 	COPYING config/compile config/config.guess config/config.rpath \
 	config/config.sub config/depcomp config/install-sh \
@@ -112,8 +114,8 @@ mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 	scilab.pc etc/modules.xml etc/classpath.xml \
-	etc/jvm_options.xml scilab-lib.properties \
-	scilab-lib-doc.properties
+	etc/jvm_options.xml etc/Info.plist scilab-lib.properties \
+	scilab-lib-doc.properties modules/core/includes/version.h
 CONFIG_CLEAN_VPATH_FILES =
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
@@ -482,7 +484,11 @@ RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -767,9 +773,13 @@ etc/classpath.xml: $(top_builddir)/config.status $(top_srcdir)/etc/classpath.xml
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 etc/jvm_options.xml: $(top_builddir)/config.status $(top_srcdir)/etc/jvm_options.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
+etc/Info.plist: $(top_builddir)/config.status $(top_srcdir)/etc/Info.plist.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 scilab-lib.properties: $(top_builddir)/config.status $(srcdir)/scilab-lib.properties.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 scilab-lib-doc.properties: $(top_builddir)/config.status $(srcdir)/scilab-lib-doc.properties.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+modules/core/includes/version.h: $(top_builddir)/config.status $(top_srcdir)/modules/core/includes/version.h.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)

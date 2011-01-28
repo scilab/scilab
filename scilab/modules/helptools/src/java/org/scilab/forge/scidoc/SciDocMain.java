@@ -103,8 +103,6 @@ public final class SciDocMain {
             System.out.println("-sciprim      A file containing the list of the Scilab primitives");
             System.out.println("-scimacro     A file containing the list of the Scilab macros");
             System.out.println("-version      A string with the version of Scilab");
-            //System.out.println("-checklast    true or false, just say if the date of the last generation");
-            //System.out.println("              must be checked, it could be useful to regenerate only the changed files");
             System.out.println("");
             System.out.println("Report bugs on: <http://bugzilla.scilab.org>");
             System.out.println("Project page: <http://forge.scilab.org/index.php/p/scidoc>");
@@ -140,7 +138,7 @@ public final class SciDocMain {
         version = map.get("version");
         imagedir = map.get("imagedir");
 
-		process(input, "");
+                process(input, "");
     }
 
     /* Stylesheet is useless and just kept to keep the consistency with
@@ -156,29 +154,30 @@ public final class SciDocMain {
 
         if (!new File(sourceDoc).isFile()) {
             System.err.println("Could not find master document: " + sourceDoc);
-			return null;
+                        return null;
         }
 
         if (!new File(template).isFile()) {
             System.err.println("Could not find template document: " + template);
-			return null;
+                        return null;
         }
 
-        boolean checkLast = false;//Boolean.parseBoolean(map.get("checklast"));
         try {
             DocbookTagConverter converter = null;
             if (format.equalsIgnoreCase("javahelp")) {
-                converter = new JavaHelpDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast);
+                converter = new JavaHelpDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir);
             } else if (format.equalsIgnoreCase("html") || format.equalsIgnoreCase("web")) {
-                converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast);
+                converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir);
             } else if (format.equalsIgnoreCase("chm")) {
-                converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, checkLast, language);
+                converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, language);
             }
 
             converter.registerExternalXMLHandler(new HTMLMathMLHandler(outputDirectory, imagedir));
             converter.registerExternalXMLHandler(new HTMLSVGHandler(outputDirectory, imagedir));
             converter.convert();
             Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/scilab_code.css"), new File(outputDirectory + "/scilab_code.css"));
+            Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/xml_code.css"), new File(outputDirectory + "/xml_code.css"));
+            Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/c_code.css"), new File(outputDirectory + "/c_code.css"));
             Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/style.css"), new File(outputDirectory + "/style.css"));
             if (format.equalsIgnoreCase("javahelp")) {
                 BuildJavaHelp.buildJavaHelp(outputDirectory, language); // replace en_US by language

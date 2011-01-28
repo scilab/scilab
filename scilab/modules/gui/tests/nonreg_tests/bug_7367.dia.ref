@@ -23,7 +23,7 @@ Handle of type "uimenu" with properties:
 Parent: Figure
 Children: []
 Enable = "on"
-Foregroundcolor = [0.0627451,0.0627451,0.0627451]
+Foregroundcolor = [0,0,0]
 Label = Test
 Visible = "on"
 Callback = 

@@ -16,10 +16,14 @@ import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
@@ -35,6 +39,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureExc
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.utils.FileUtils;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
@@ -477,7 +482,12 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		data = paramsElement.encode(from.getScicosParameters(), data);
 		
 		// set the title as it is need for generating files
-		((ScilabTList) data).set(TITLE_INDEX, new ScilabString(from.getTitle()));
+		((ScilabTList) data).set(
+				TITLE_INDEX,
+				new ScilabString(
+						FileUtils.toValidCIdentifier(from.getTitle())
+				)
+		);
 		
 		base.set(field, data);
 	}
@@ -503,10 +513,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		final mxIGraphModel model = from.getModel();
 		final int nbObjs = model.getChildCount(parent);
 		for (int i = 0; i < nbObjs; i++) {
-			Object current = model.getChildAt(parent, i);
+			final Object current = model.getChildAt(parent, i);
 			
 			if (current instanceof BasicBlock && !(current instanceof TextBlock)) {
-				BasicBlock block = (BasicBlock) current;
+				final BasicBlock block = (BasicBlock) current;
 				blockList.add(block);
 				
     			//
@@ -515,13 +525,39 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     			//
     			for (int j = 0; j < block.getChildCount(); ++j) {
     				if (block.getChildAt(j) instanceof BasicLink) {
-    					linkList.add((BasicLink) block.getChildAt(j));
+    					final BasicLink link = (BasicLink) block.getChildAt(j);
+    					
+    					// do not add the link if not connected
+    					if (link.getSource() != null && link.getTarget() != null) {
+    						linkList.add(link);
+    					}
     				}
     			}
 			} else if (current instanceof BasicLink) {
-				BasicLink link = (BasicLink) current;
-				linkList.add(link);
+				final BasicLink link = (BasicLink) current;
+				
+				// Only add connected links
+				final mxICell source = link.getSource();
+				final mxICell target = link.getTarget();
+				if (source != null && target != null &&
+						source.getParent() instanceof BasicBlock &&
+						target.getParent() instanceof BasicBlock) {
+					linkList.add(link);
+				}
 			}
+		}
+		
+		/*
+		 * Use a predictable block and links order when debug is enable
+		 */
+		if (LogFactory.getLog(DiagramElement.class).isDebugEnabled()){
+			Collections.sort(blockList);
+			Collections.sort(linkList, new Comparator<BasicLink>() {
+				@Override
+				public int compare(BasicLink o1, BasicLink o2) {
+					return ((ScilabGraphUniqueObject) o1.getSource()).compareTo((ScilabGraphUniqueObject) o2.getSource());
+				}
+			});
 		}
 		
 		/*
