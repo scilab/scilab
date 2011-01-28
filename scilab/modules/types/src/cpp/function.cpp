@@ -12,8 +12,15 @@
  */
 
 #include <sstream>
+#include <vector>
 #include "function.hxx"
+
+extern "C"
+{
 #include "core_math.h"
+#include "charEncoding.h"
+#include "MALLOC.h"
+}
 
 namespace types
 {
@@ -93,53 +100,40 @@ namespace types
     Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
         ReturnValue retVal = Callable::OK;
-        GatewayStruct* pStr = new GatewayStruct();
-
+        int iRet ;
+        GatewayStruct gStr;
         _iRetCount = Max(1, _iRetCount);
-        pStr->m_pIn = &in;
-        pStr->m_pOut = m_pTempOut;
-        pStr->m_piRetCount = &_iRetCount;
-        pStr->m_pstName = const_cast<wchar_t*>(m_stName.c_str());
-        pStr->m_pOutOrder = new int[_iRetCount < 1 ? 1 : _iRetCount];
-        memset(pStr->m_pOutOrder, 0xFF, (_iRetCount < 1 ? 1 : _iRetCount) * sizeof(int));
-        memset(pStr->m_pOut, 0x00, MAX_OUTPUT_VARIABLE * sizeof(InternalType*));
-
-        //call gateway
-        int iRet = m_pOldFunc((char*)m_stName.c_str(), (int*)pStr);
-
+        gStr.m_pIn = &in;
+        typed_list::value_type tmpOut[MAX_OUTPUT_VARIABLE];
+        std::fill_n(tmpOut, MAX_OUTPUT_VARIABLE, static_cast<typed_list::value_type>(0));
+        gStr.m_pOut = tmpOut;
+        gStr.m_piRetCount = &_iRetCount;
+        gStr.m_pstName = const_cast<wchar_t*>(m_stName.c_str());
+        // we should use a stack array of the max size to avoid dynamic alloc.
+        std::vector<int> outOrder(_iRetCount < 1 ? 1 : _iRetCount, -1);
+        gStr.m_pOutOrder = &outOrder[0];
+        
+        char* pFunctionName = wide_string_to_UTF8(m_stName.c_str());
+        //call gateway (thoses cast should looks  suspicious)
+        iRet = m_pOldFunc(pFunctionName, reinterpret_cast<int*>(&gStr));
+        FREE(pFunctionName);
         if(iRet != 0)
         {
             retVal = Callable::Error;
         }
         else
         {
-            //replace output argument in good order following m_pOutOrder
-            for(int i = 0 ; i < _iRetCount ; i++)
+            for(std::size_t i(0); i != _iRetCount && outOrder[i] != -1 && outOrder[i] != 0 ; ++i)
             {
-                //take care about return value count
-                // or LhsVar(1) = 0
-                if(pStr->m_pOutOrder[i] == -1 || pStr->m_pOutOrder[i] == 0)
-                {
-                    break;
-                }
-
-                int iPos = (int)(pStr->m_pOutOrder[i] - in.size() - 1);
-                out.push_back(m_pTempOut[iPos]);
-                m_pTempOut[iPos] = NULL;
+                std::size_t const iPos(outOrder[i] - in.size() -1);
+                out.push_back(tmpOut[iPos]);
+                tmpOut[iPos]= 0;
             }
         }
-
-        //clean temp output variable array
-        for(int i = 0 ; i < MAX_OUTPUT_VARIABLE ; i++)
+        for(std::size_t i(0); i != MAX_OUTPUT_VARIABLE; ++i)
         {
-            if(m_pTempOut[i] != NULL)
-            {
-                delete m_pTempOut[i];
-            }
+            delete tmpOut[i];// delete 0 is safe cf.5.3.5/2
         }
-
-        delete[] pStr->m_pOutOrder;
-        delete pStr;
         return retVal;
     }
 }

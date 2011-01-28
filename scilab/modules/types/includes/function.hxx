@@ -79,7 +79,6 @@ namespace types
 
     private :
         OLDGW_FUNC              m_pOldFunc;
-        InternalType*           m_pTempOut[MAX_OUTPUT_VARIABLE];
     };
 
     class GatewayStruct

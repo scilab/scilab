@@ -96,7 +96,7 @@ namespace types
         return -1;
     }
 
-    std::vector<InternalType*> TList::extract_string(const std::list<std::wstring>& _stFields)
+    std::vector<InternalType*> TList::extractStrings(const std::list<std::wstring>& _stFields)
     {
         std::vector<InternalType*> Result;
 
