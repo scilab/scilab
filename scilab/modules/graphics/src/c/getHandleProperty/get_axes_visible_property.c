@@ -17,7 +17,7 @@
 /* desc : function to retrieve in Scilab the axes_visible field of        */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
