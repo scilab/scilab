@@ -196,7 +196,7 @@ msgid "Exit"
 msgstr "離開"
 
 #, c-format
-msgid "Function %s is obsolete."
+msgid "Feature %s is obsolete."
 msgstr "%s函式已經過時的"
 
 #, c-format
@@ -219,7 +219,7 @@ msgid "Please use %s instead."
 msgstr "請用 %s 替換."
 
 #, c-format
-msgid "This function will be permanently removed in Scilab %s"
+msgid "This feature will be permanently removed in Scilab %s"
 msgstr "此函數 %s 將在 Scilab 中永遠停用."
 
 msgid "Tools"

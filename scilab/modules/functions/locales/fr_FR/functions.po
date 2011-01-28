@@ -219,8 +219,8 @@ msgid "Exit"
 msgstr "Quitter"
 
 #, c-format
-msgid "Function %s is obsolete."
-msgstr "La fonction %s est obsolète."
+msgid "Feature %s is obsolete."
+msgstr "La fonctionnalité %s est obsolète."
 
 #, c-format
 msgid ""
@@ -242,8 +242,8 @@ msgid "Please use %s instead."
 msgstr "Utilisez plutôt %s s'il vous plait."
 
 #, c-format
-msgid "This function will be permanently removed in Scilab %s"
-msgstr "Cette fonction va être définitivement enlevée dans Scilab %s"
+msgid "This feature will be permanently removed in Scilab %s"
+msgstr "Cette fonctionnalité va être définitivement enlevée dans Scilab %s"
 
 msgid "Tools"
 msgstr "Outils"

@@ -268,7 +268,7 @@ msgstr ""
 #
 # File: macros/warnobsolete.sci, line: 22
 #, c-format
-msgid "Function %s is obsolete."
+msgid "Feature %s is obsolete."
 msgstr ""
 #
 # File: macros/genlib.sci, line: 168
@@ -295,7 +295,7 @@ msgstr ""
 #
 # File: macros/warnobsolete.sci, line: 27
 #, c-format
-msgid "This function will be permanently removed in Scilab %s"
+msgid "This feature will be permanently removed in Scilab %s"
 msgstr ""
 #
 # File: macros/plotprofile.sci, line: 90

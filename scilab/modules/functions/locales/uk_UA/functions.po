@@ -226,7 +226,7 @@ msgid "Exit"
 msgstr "Вийти"
 
 #, c-format
-msgid "Function %s is obsolete."
+msgid "Feature %s is obsolete."
 msgstr "Функція %s вважається застарілою."
 
 #, c-format
@@ -249,7 +249,7 @@ msgid "Please use %s instead."
 msgstr "Будь ласка, використовуйте %s."
 
 #, c-format
-msgid "This function will be permanently removed in Scilab %s"
+msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Цю функцію буде назавжди вилучено у Scilab %s"
 
 msgid "Tools"
