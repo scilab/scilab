@@ -43,23 +43,23 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 //    - modify a little the demo
 //    - add some checking on n|x and data
 //
-	[lhs,rhs]=argn()
+        [lhs,rhs]=argn()
 
-	if rhs == 0 then   // demo
-		histplot([-4.5:0.25:4.5],rand(1,20000,'n'),style=2,axesflag=1,..
-						frameflag=1,rect=[-4.5 0 4.5 0.47]);
-		deff("[y]=f(x)","y=exp(-x.*x/2)/sqrt(2*%pi);");
-		x=-4.5:0.125:4.5;
-		x=x';
-		plot2d(x,f(x),26,"000");
-		titre= gettext("histplot() : (normalized) histogram plot");
-		xtitle(titre,"C (Classes)","N(C) / (Nmax length(C))");  // Not clear
-		legend(gettext("Gaussian random sample histogram"), ..
-					 gettext("Exact gaussian density"));
-		return
-	end
+        if rhs == 0 then   // demo
+                histplot([-4.5:0.25:4.5],rand(1,20000,'n'),style=2,axesflag=1,..
+                                                frameflag=1,rect=[-4.5 0 4.5 0.47]);
+                deff("[y]=f(x)","y=exp(-x.*x/2)/sqrt(2*%pi);");
+                x=-4.5:0.125:4.5;
+                x=x';
+                plot2d(x,f(x),26,"000");
+                titre= gettext("histplot() : (normalized) histogram plot");
+                xtitle(titre,"C (Classes)","N(C) / (Nmax length(C))");  // Not clear
+                legend(gettext("Gaussian random sample histogram"), ..
+                                         gettext("Exact gaussian density"));
+                return
+        end
 
-   if rhs < 2 
+   if rhs < 2
       error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"histplot",2));
    end
 
@@ -77,7 +77,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
    opt_arg_list = ["style","strf","leg","rect","nax","logflag","frameflag","axesflag"]
    for opt_arg = opt_arg_list
       if exists(opt_arg,"local") then
-	    opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
+            opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
       end
    end
 
