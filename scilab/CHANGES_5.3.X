@@ -262,6 +262,7 @@ Compilation:
 
 * Intel Compiler XE 2011 update 1 C++/Fortran used to build Scilab on Windows.
 
+* Upgrade to autoconf 2.67
 
 Dynamic link:
 =============
