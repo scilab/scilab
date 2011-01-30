@@ -35,6 +35,7 @@ New functions
 
 * 'repmat' added a missing basic function.
 
+
 Obsolete Functions:
 ===================
 
@@ -43,6 +44,13 @@ Obsolete Functions:
 
 * ilib_for_link, ilib_build will not accept files with ".o" or ".obj" extensions
   for source files in Scilab 5.4.0.
+
+
+Javasci:
+========
+
+* Bug 8807 fixed - Javadoc of javasci v2 was not installed under GNU/Linux and
+                   Mac OS X. 
 
 
 Demonstration:

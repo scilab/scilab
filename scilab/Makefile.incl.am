@@ -159,6 +159,12 @@ DOCMASKXML = *.xml
 DOCMASKMML = *.mml
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 if INSTALL_HELP_XML
 # If the user wants the help sources to be installed
 	@echo "-------- Install of XML sources of help files --------"; \

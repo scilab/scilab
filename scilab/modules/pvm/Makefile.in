@@ -1499,6 +1499,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@	fi )
 
 @PVM_TRUE@install-html-local:
+
+@PVM_TRUE@install-data-local-local:
+# Mainly for javasci
+@PVM_TRUE@	@if test -d $(srcdir)/javadoc; then \
+@PVM_TRUE@		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+@PVM_TRUE@	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1693,6 +1699,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@	fi )
 
 @PVM_FALSE@install-html-local:
+
+@PVM_FALSE@install-data-local-local:
+# Mainly for javasci
+@PVM_FALSE@	@if test -d $(srcdir)/javadoc; then \
+@PVM_FALSE@		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+@PVM_FALSE@	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	for lang in $(ALL_LINGUAS); do \
