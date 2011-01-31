@@ -377,9 +377,16 @@ public abstract class ContextUpdate extends BasicBlock {
 	@Override
 	protected void setDefaultValues() {
 		super.setDefaultValues();
+		
+		/*
+		 * Fill parameters with non empty values.
+		 */
 		setNbZerosCrossing(new ScilabDouble(0));
 		setNmode(new ScilabDouble(0));
 		setODState(new ScilabList());
+		setRealParameters(new ScilabDouble());
+		setObjectsParameters(new ScilabDouble());
+		
 		setValue(1);
 	}
 	
