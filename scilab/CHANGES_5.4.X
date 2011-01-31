@@ -1,6 +1,11 @@
             Changes between version 5.3.X and 5.4.0 of Scilab
             =================================================
 
+File input/output:
+==================
+
+* mgetl, exec, fscanfMat functions manage files encoded as UTF-8 with BOM.
+
 
 Bug Fixes:
 ==========
