@@ -93,7 +93,12 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				.getSelectionCell();
 		block.createChildDiagram(); // assert that diagram is an xcos one
 		
-		CustomizeFrame frame = new CustomizeFrame(block.getParentDiagram());
+		final XcosDiagram graph = block.getParentDiagram();
+		if (graph == null) {
+			LogFactory.getLog(getClass()).error("Parent diagram is null");
+			return;
+		}
+		CustomizeFrame frame = new CustomizeFrame(graph);
 		CustomizeFrame.CustomizeFrameModel model = frame.getController()
 				.getModel();
 		model.setBlock(block);

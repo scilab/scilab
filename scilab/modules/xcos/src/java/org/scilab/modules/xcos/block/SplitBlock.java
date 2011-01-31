@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.block;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Type;
@@ -149,17 +150,22 @@ public final class SplitBlock extends BasicBlock {
 	 * delete split block child before delete
 	 */
 	public void unlinkAndClean() {
-
-		Object[] objs = getParentDiagram().getAllEdges(
+		final XcosDiagram graph = getParentDiagram();
+		if (graph == null) {
+			LogFactory.getLog(getClass()).error("Parent diagram is null");
+			return;
+		}
+		
+		Object[] objs = graph.getAllEdges(
 				new Object[] {getChildAt(0), getChildAt(1), getChildAt(2)});
 		getParentDiagram().getModel().beginUpdate();
 		for (Object obj : objs) {
 			if (obj instanceof BasicLink) {
 				BasicLink link = (BasicLink) obj;
-				getParentDiagram().getModel().remove(link);
+				graph.getModel().remove(link);
 			}
 		}
-		getParentDiagram().getModel().endUpdate();
+		graph.getModel().endUpdate();
 	}
 
 	/**

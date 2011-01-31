@@ -509,7 +509,7 @@ public final class SuperBlock extends BasicBlock {
 	 * update super block ports in parent diagram
 	 */
 	public void updateExportedPort() {
-		if (child == null) {
+		if (child == null || getParentDiagram() == null) {
 			return;
 		}
 
@@ -622,7 +622,12 @@ public final class SuperBlock extends BasicBlock {
 		/*
 		 * Specific post serialization things
 		 */
-		this.child.setContainer(this);
+		if (this.child == null) {
+			this.child = new SuperBlockDiagram(this);
+			this.child.installListeners();
+		} else {
+			this.child.setContainer(this);
+		}
 		this.child.installSuperBlockListeners();
 	}
 }

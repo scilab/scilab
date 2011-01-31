@@ -97,6 +97,7 @@ public final class AfficheBlock extends BasicBlock {
 		@Override
 		public synchronized void actionPerformed(ActionEvent e) {
 			if (block.getParentDiagram() == null) {
+				LogFactory.getLog(getClass()).error("Parent diagram is null");
 				return;
 			}
 			

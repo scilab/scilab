@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
@@ -74,7 +75,13 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
      */
     @Override
     public String[] getContext() {
-    	final String[] parent = getContainer().getParentDiagram().getContext();
+		final XcosDiagram graph = getContainer().getParentDiagram();
+		if (graph == null) {
+			LogFactory.getLog(getClass()).error("Parent diagram is null");
+			return new String[0];
+		}
+		
+    	final String[] parent = graph.getContext();
     	final String[] current = super.getContext();
     	
     	String[] full = new String[current.length + parent.length];
@@ -156,6 +163,11 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 						return o1.getOrdering() - o2.getOrdering();
 					}});
 				
+				final XcosDiagram graph = container.getParentDiagram();
+				if (graph == null) {
+					LogFactory.getLog(getClass()).error("Parent diagram is null");
+					return;
+				}
 				container.getParentDiagram().cellLabelChanged(ports[index - 1], value, false);
 			}
 		}

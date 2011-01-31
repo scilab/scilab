@@ -108,12 +108,18 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 							return;
 						}
 						
-						block.getParentDiagram().getModel().beginUpdate();
-						doAction(block, tempInput);
-						block.getParentDiagram().getModel().endUpdate();
+						final XcosDiagram graph = block.getParentDiagram();
+						if (graph == null) {
+							LogFactory.getLog(getClass()).error("Parent diagram is null");
+							return;
+						}
 						
-						block.getParentDiagram().getView().clear(block, true, false);
-						block.getParentDiagram().getView().validate();
+						graph.getModel().beginUpdate();
+						doAction(block, tempInput);
+						graph.getModel().endUpdate();
+						
+						graph.getView().clear(block, true, false);
+						graph.getView().validate();
 						
 						delete(tempOutput);
 						delete(tempInput);

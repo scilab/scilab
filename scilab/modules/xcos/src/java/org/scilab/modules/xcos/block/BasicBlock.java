@@ -864,7 +864,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param port to remove
      */
     public void removePort(BasicPort port) {
-	if (port.getEdgeCount() != 0) {
+	if (port.getEdgeCount() != 0 && getParentDiagram() != null) {
 	    getParentDiagram().removeCells(new Object[]{port.getEdgeAt(0)});
 	}
 	remove(port);
@@ -918,6 +918,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param modifiedBlock the new settings
      */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
+    	if (modifiedBlock == null) {
+    		return;
+    	}
+    	
     	/*
 		 * Update the block settings
 		 */
@@ -936,9 +940,13 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() instanceof SuperBlockDiagram) {
 			SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram())
 					.getContainer();
-			parentBlock.getParentDiagram().fireEvent(
+			if (parentBlock.getParentDiagram() != null) {
+				parentBlock.getParentDiagram().fireEvent(
 					new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
 							XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
+			} else {
+				LogFactory.getLog(getClass()).error("Parent diagram is null");
+			}
 		}
     }
 
@@ -969,6 +977,12 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * @param modifiedBlock the new block instance
 	 */
 	private void updateChildren(BasicBlock modifiedBlock) {
+		final XcosDiagram graph = getParentDiagram();
+		if (graph == null) {
+			LogFactory.getLog(getClass()).error("Parent diagram is null");
+			return;
+		}
+		
 		/*
 		 * Checked as port classes only
 		 */
@@ -1075,6 +1089,11 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      */
     public void openBlockSettings(String[] context) {
 	
+	final XcosDiagram graph = getParentDiagram();
+	if (graph == null) {
+		LogFactory.getLog(getClass()).error("Parent diagram is null");
+		return;
+	}
 	if (getParentDiagram() instanceof PaletteDiagram) {
 	    return;
 	}
@@ -1107,7 +1126,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			    BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
 			    updateBlockSettings(modifiedBlock);
 			    
-			    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
+			    graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
 				    currentBlock));
 			    delete(tempInput);
 				} else {
