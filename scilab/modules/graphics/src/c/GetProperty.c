@@ -2241,50 +2241,60 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_SEGS__) == 0)
     {
-        if (pSEGS_FEATURE (pthis)->ptype == 0) {
-            *numrow = pSEGS_FEATURE (pthis)->Nbr1;
+        int iView = 0;
+        int* piView = &iView;
+        int iNumArrows = 0;
+        int* piNumArrows = &iNumArrows;
+        char* parentAxes;
+        double* arrowBases;
+        double* arrowDirections;
 
-            /* only two coordinates are displayed if the axe is in 2d
-            and the z coordinates has never been modified */
-            if (   pSEGS_FEATURE(pthis)->vz != NULL
-                || pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d )
-            {
-                *numcol = 3 ;
-            }
-            else
-            {
-                *numcol = 2 ;
-            }
-            /**numcol = ( pSEGS_FEATURE (pthis)->vz != NULL ? 3 : 2 ) ;*/
-            if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-            {
-                *numrow = -1;
-                *numcol = -1;
-                return NULL;
-            }
-            for ( i = 0 ; i < *numrow ; i++ )
-            {
-                tab[i] = pSEGS_FEATURE (pthis)->vx[i];
-                tab[*numrow+i]= pSEGS_FEATURE (pthis)->vy[i];
-                if ( *numcol == 3 )
-                {
-                    if ( pSEGS_FEATURE (pthis)->vz == NULL )
-                    {
-                        /* default value */
-                        tab[2*(*numrow)+i] = 0.0 ;
-                    }
-                    else
-                    {
-                        tab[2*(*numrow)+i]= pSEGS_FEATURE (pthis)->vz[i];
-                    }
-                }
-            }
+        getGraphicObjectProperty(pthis->UID, __GO_NUMBER_ARROWS__, jni_int, &piNumArrows);
+        *numrow = iNumArrows;
+
+        /* only two coordinates are displayed if the axe is in 2d
+        and the z coordinates has never been modified */
+
+        getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
+
+        if (iView)
+        {
+            *numcol = 3;
         }
-        else {
+        else
+        {
+            *numcol = 2;
+        }
+
+        if ((tab = CALLOC(2*(*numrow)*(*numcol),sizeof(double))) == NULL)
+        {
             *numrow = -1;
             *numcol = -1;
-            return (double *) NULL;
+            return NULL;
         }
+
+        getGraphicObjectProperty(pthis->UID, __GO_BASE__, jni_double_vector, &arrowBases);
+        getGraphicObjectProperty(pthis->UID, __GO_DIRECTION__, jni_double_vector, &arrowDirections);
+
+        for (i = 0; i < *numrow; i++)
+        {
+            tab[2*i] = arrowBases[3*i];
+            tab[2*i+1] = arrowDirections[3*i];
+            tab[2*(*numrow)+2*i] = arrowBases[3*i+1];
+            tab[2*(*numrow)+2*i+1] = arrowDirections[3*i+1];
+
+            if (iView)
+            {
+                tab[4*(*numrow)+2*i] = arrowBases[3*i+2];
+                tab[4*(*numrow)+2*i+1] = arrowDirections[3*i+2];
+            }
+        }
+
+        /* There are twice as many points as arrows (2 endpoints) */
+        *numrow = 2*(*numrow);
+
         return (double*)tab;
     }
     /* F.Leray 17.03.04*/

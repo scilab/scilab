@@ -5,7 +5,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -44,70 +44,55 @@
 /* setchampdata(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
 int setchampdata( sciPointObj * pobj, AssignedList * tlist )
 {
+    int nbRow[4];
+    int nbCol[4];
 
-    sciSegs * ppsegs = pSEGS_FEATURE (pobj);
+    int numberArrows;
+    int dimensions[2];
 
-    int nbRow[4] ;
-    int nbCol[4] ;
-
-    double * vx  = NULL ;
-    double * vy  = NULL ;
-    double * vfx = NULL ;
-    double * vfy = NULL ;
+    double * vx  = NULL;
+    double * vy  = NULL;
+    double * vfx = NULL;
+    double * vfy = NULL;
 
     /* get parameters */
-
-    vx  = createCopyDoubleMatrixFromList( tlist, &nbRow[0], &nbCol[0] ) ;
-    vy  = createCopyDoubleMatrixFromList( tlist, &nbRow[1], &nbCol[1] ) ;
-    vfx = createCopyDoubleMatrixFromList( tlist, &nbRow[2], &nbCol[2] ) ;
-    vfy = createCopyDoubleMatrixFromList( tlist, &nbRow[3], &nbCol[3] ) ;
+    vx  = getCurrentDoubleMatrixFromList( tlist, &nbRow[0], &nbCol[0] );
+    vy  = getCurrentDoubleMatrixFromList( tlist, &nbRow[1], &nbCol[1] );
+    vfx = getCurrentDoubleMatrixFromList( tlist, &nbRow[2], &nbCol[2] );
+    vfy = getCurrentDoubleMatrixFromList( tlist, &nbRow[3], &nbCol[3] );
 
     /* check dim */
     if ( nbCol[0] != 1 || nbCol[1] != 1 )
     {
         Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
-        FREE( vx  ) ;
-        FREE( vy  ) ;
-        FREE( vfx ) ;
-        FREE( vfy ) ;
-
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
+
+    numberArrows = nbRow[0]*nbRow[1];
+    dimensions[0] = nbRow[0];
+    dimensions[1] = nbRow[1];
 
     if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] || nbRow[3] != nbRow[2] || nbCol[3] != nbCol[2] )
     {
         Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",3,4);
-        FREE( vx  ) ;
-        FREE( vy  ) ;
-        FREE( vfx ) ;
-        FREE( vfy ) ;
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
     if ( nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 || nbRow[3] * nbCol[3] == 0 )
     {
-        FREE( vx  ) ;
-        FREE( vy  ) ;
-        FREE( vfx ) ;
-        FREE( vfy ) ;
-        return sciReturnEmptyMatrix() ;
+        return sciReturnEmptyMatrix();
     }
 
-    /* ok everything ok we can allocate new values */
-    /* Update the dimensions Nbr1 and Nbr2 */
-    ppsegs->Nbr1 = nbRow[0] ;
-    ppsegs->Nbr2 = nbRow[1] ;
+    /* Update the champ's number of arrows and dimensions then set the coordinates */
+    setGraphicObjectProperty(pobj->UID, __GO_NUMBER_ARROWS__, &numberArrows, jni_int, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
 
-    FREE( ppsegs->vx  ) ;
-    FREE( ppsegs->vy  ) ;
-    FREE( ppsegs->vfx ) ;
-    FREE( ppsegs->vfy ) ;
-    ppsegs->vx = vx;
-    ppsegs->vy = vy;
-    ppsegs->vfx = vfx;
-    ppsegs->vfy = vfy;
+    setGraphicObjectProperty(pobj->UID, __GO_BASE_X__, vx, jni_double_vector, dimensions[0]);
+    setGraphicObjectProperty(pobj->UID, __GO_BASE_Y__, vy, jni_double_vector, dimensions[1]);
+    setGraphicObjectProperty(pobj->UID, __GO_DIRECTION_X__, vfx, jni_double_vector, dimensions[0]*dimensions[1]);
+    setGraphicObjectProperty(pobj->UID, __GO_DIRECTION_Y__, vfy, jni_double_vector, dimensions[0]*dimensions[1]);
 
-    return SET_PROPERTY_SUCCEED ;
+    return SET_PROPERTY_SUCCEED;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -571,34 +556,33 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
     getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
     /*
-     * 0 values put within the conditional expressions to prevent calling sciGetEntityType
-     * The last else block allows to set Polyline data (via sciSetPoint)
-     * To be implemented with string comparisons using the GO_TYPE property (see the sciSetPoint function)
+     * The tests using the sciGetEntityType value have been replaced by string comparisons
+     * using the GO_TYPE property and must therefore be deleted.
      */
-    if(0 && sciGetEntityType(pobj) == SCI_SEGS && pSEGS_FEATURE(pobj)->ptype == 1 )
+    if (strcmp(type, __GO_CHAMP__) == 0)
     {
-        AssignedList * tlist = NULL ;
-        int status = -1 ;
+        AssignedList* tlist = NULL;
+        int status = -1;
 
         if( !isParameterTlist( valueType ) )
         {
-            Scierror(999, "Incorrect argument, must be a Tlist!\n") ;
-            return SET_PROPERTY_ERROR ;
+            Scierror(999, "Incorrect argument, must be a Tlist!\n");
+            return SET_PROPERTY_ERROR;
         }
 
         /* we should have 4 properties in the tlist */
-        tlist = createAssignedList( 3, 4 ) ;
+        tlist = createAssignedList( 3, 4 );
         if ( tlist == NULL )
         {
-            return SET_PROPERTY_ERROR ;
+            return SET_PROPERTY_ERROR;
         }
 
-        status = setchampdata( pobj, tlist ) ;
-        destroyAssignedList( tlist ) ;
-        return status ;
+        status = setchampdata( pobj, tlist );
+        destroyAssignedList( tlist );
+        return status;
     }
 //  else if(0 && (sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
-    /* Only works for Grayplot (type 0) for now */
+  /* Only works for Grayplot (type 0) for now */
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
         AssignedList * tlist = NULL;

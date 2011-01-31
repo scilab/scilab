@@ -2426,159 +2426,74 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
   }
   else if (strcmp(type, __GO_SEGS__) == 0)
   {
-      if (pSEGS_FEATURE (pthis)->ptype <= 0) {
-	if ((*numcol != 3)&&(*numcol != 2)) {
-	  Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
-	  return -1;
-	}
-	n1=pSEGS_FEATURE (pthis)->Nbr1;
-	if (*numrow != n1) {
-	  n1=*numrow;
-	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    return -1;
-	  }
-	  if (*numcol == 3)
-	    if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-	      return -1;
-	    }
-	  if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    FREE(pvy); pvy = (double *) NULL;
-	    FREE(pvz); pvz = (double *) NULL;
-	    return -1;
-	  }
-	  FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
-	  FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vx = NULL;
-	  if (*numcol == 3)
-	    FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
-	  /* Attention ici on detruit pstyle !! F.Leray 20.02.04*/
-	  FREE(pSEGS_FEATURE (pthis)->pstyle); pSEGS_FEATURE (pthis)->pstyle = NULL;
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pvx[i] = tab[i];
-	      pvy[i] = tab[i+ (*numrow)];
-	      if (*numcol == 3)
-		pvz[i] = tab[i+ 2*(*numrow)];
-	      pstyle[i] = 0;
-	    }
-	  pSEGS_FEATURE (pthis)->vx=pvx;
-	  pSEGS_FEATURE (pthis)->vy=pvy;
-	  if (*numcol == 3)
-	    pSEGS_FEATURE (pthis)->vz=pvz;
-	  pSEGS_FEATURE (pthis)->Nbr1=n1;
-	  pSEGS_FEATURE (pthis)->pstyle=pstyle;
-	}
-	else {
-	  if ((*numcol == 3) && (pSEGS_FEATURE (pthis)->vz == NULL))
-	    if ((pSEGS_FEATURE (pthis)->vz = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+      int numArrows;
+      double* arrowPoints = NULL;
 
-	  for (i=0;i < *numrow;i++) {
-	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
-	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
-	    if (*numcol == 3)
-	      pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
-	  }
-	}
+      if ((*numcol != 3)&&(*numcol != 2))
+      {
+          Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
+          return -1;
       }
-      else { /* Strange test object == Champ: e=gce(); e.data = e.data
-	        make this error happened! Remove it to perform such legal operation */
 
-	n1=pSEGS_FEATURE (pthis)->Nbr1;
-	if (*numrow != n1) /* SS 30/1/02 */
-	  {
-	    n1=*numrow;
-	    if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	    if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      return -1;
-	    }
-	    if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-	      FREE(pvz); pvz = (double *) NULL;
-	      return -1;
-	    }
-	    if ((pvfx = MALLOC ((n1*n1) * sizeof (double))) == NULL) return -1;
-	    if ((pvfy = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-	      FREE(pvz); pvz = (double *) NULL;
-	      FREE(pvfx); pvfx = (double *) NULL;
-	      return -1;
-	    }
-	    if (*numcol == 3 +3*(*numrow * *numrow))
-	      {
-		if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-		  FREE(pvx); pvx = (double *) NULL;
-		  FREE(pvy); pvy = (double *) NULL;
-		  return -1;
-		}
-		if ((pvfz = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
-		  FREE(pvx); pvx = (double *) NULL;
-		  FREE(pvy); pvy = (double *) NULL;
-		  FREE(pvz); pvz = (double *) NULL;
-		  FREE(pvfx); pvfx = (double *) NULL;
-		  FREE(pvfy); pvfy = (double *) NULL;
-		  return -1;
-		}
-		FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
-		FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
-	      }
-	    FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vy = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vfx); pSEGS_FEATURE (pthis)->vfx = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
-	    for (i=0;i < n1;i++)
-	      {
-		pvx[i] = tab[i];
-		pvy[i] = tab[i+ (*numrow)];
-		if (*numcol == 3 +3*(*numrow * *numrow))
-		  pvz[i] = tab[i+ 2*(*numrow)];
-
-	      }
-	    k=3*n1;
-	    for (i=0;i < n1*n1;i++)
-	      {
-		pvfx[i] = tab[k+i];
-		pvfy[i] = tab[k+n1*n1+i];
-		if (*numcol == 3 +3*(*numrow * *numrow))
-		  pvfz[i] = tab[2*k+n1*n1+i];
-
-	      }
-	    pSEGS_FEATURE (pthis)->vx=pvx;
-	    pSEGS_FEATURE (pthis)->vy=pvy;
-	    pSEGS_FEATURE (pthis)->vx=pvfx;
-	    pSEGS_FEATURE (pthis)->vy=pvfy;
-	    pSEGS_FEATURE (pthis)->Nbr1=n1;
-	    if (*numcol == 3 +3*(*numrow * *numrow))
-	      {
-		pSEGS_FEATURE (pthis)->vz=pvz;
-		pSEGS_FEATURE (pthis)->vy=pvfz;
-	      }
-
-	  }
-	else {
-	  for (i=0;i < *numrow;i++)   {
-	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
-	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
-	    if (pSEGS_FEATURE (pthis)->vz != (double *)NULL)
-	      pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
-	  }
-	  k=2* (*numrow);
-	  k1=k+ (*numrow * *numrow);
-	  k2=2*k+ (*numrow * *numrow);
-	  for (i=0;i < *numrow * *numrow ;i++)   {
-	    pSEGS_FEATURE (pthis)->vfx[i] = tab[k+i];
-	    pSEGS_FEATURE (pthis)->vfy[i] = tab[k1+i];
-	    if (pSEGS_FEATURE (pthis)->vfz != (double *)NULL)
-	      pSEGS_FEATURE (pthis)->vfz[i] = tab[k2+i];
-	  }
-	}
+      if (*numrow % 2 != 0)
+      {
+          Scierror(999, _("Number of rows must be a multiple of 2.\n"));
+          return -1;
       }
+
+
+      numArrows = *numrow/2;
+
+      arrowPoints = (double*) MALLOC(3*numArrows*sizeof(double));
+
+      if (arrowPoints == NULL)
+      {
+          Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+          return -1;
+      }
+
+      /*
+       * Interlacing ought to be done in the MVC's coordinates
+       * set function to avoid the additional code below.
+       */
+      for (i = 0; i < numArrows; i++)
+      {
+          arrowPoints[3*i] = tab[2*i];
+          arrowPoints[3*i+1] = tab[2*numArrows+2*i];
+
+          if (*numcol == 3)
+          {
+              arrowPoints[3*i+2] = tab[4*numArrows+2*i];
+          }
+          else
+          {
+              arrowPoints[3*i+2] = 0.0;
+          }
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_NUMBER_ARROWS__, &numArrows, jni_int, 1);
+
+      setGraphicObjectProperty(pthis->UID, __GO_BASE__, arrowPoints, jni_double_vector, 3*numArrows);
+
+      for (i = 0; i < numArrows; i++)
+      {
+          arrowPoints[3*i] = tab[2*i+1];
+          arrowPoints[3*i+1] = tab[2*numArrows+2*i+1];
+
+          if (*numcol == 3)
+          {
+              arrowPoints[3*i+2] = tab[4*numArrows+2*i+1];
+          }
+          else
+          {
+              arrowPoints[3*i+2] = 0.0;
+          }
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_DIRECTION__, arrowPoints, jni_double_vector, 3*numArrows);
+
+      FREE(arrowPoints);
+
       return 0;
   }
   /* DJ.A 2003 */

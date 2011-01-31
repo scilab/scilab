@@ -2382,6 +2382,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 
 /**ConstructSegs
  * This function creates Segments
+ * It is used to create and initialize the data of both the Champ and Segs MVC objects.
  * @author Djalel.ABDEMOUCHE
  * @version 0.1
  * @see sciSetCurrentObj
@@ -2394,202 +2395,215 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
                 int flag, int *style, double arsize,
                 int colored, int typeofchamp)
 {
-	sciPointObj *pobj = (sciPointObj *) NULL;
-	sciSegs * ppSegs = (sciSegs *) NULL;
-	int i;
+    sciPointObj *pobj = (sciPointObj *) NULL;
+    /* To be deleted */
+#if 0
+    sciSegs * ppSegs = (sciSegs *) NULL;
+#endif
+    int visible = 0;
+    int* piVisible = &visible;
+    int clipRegionSet = 0;
+    int *piClipRegionSet = &clipRegionSet;
+    int clipState = 0;
+    int* piClipState = &clipState;
+    int numberArrows;
+    int dimensions[2];
+    int i;
+    int foreground;
+    int* tmp;
 
-	if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-	{
-		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-			return (sciPointObj *) NULL;
-		sciSetEntityType (pobj, SCI_SEGS);
-		if ((pobj->pfeatures = MALLOC ((sizeof (sciSegs)))) == NULL)
-		{
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
+    double* clipRegion;
+    double* arrowCoords;
 
-		if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-		{
-			FREE( pobj->pfeatures ) ;
-			FREE( pobj ) ;
-			return NULL ;
-		}
-
-		ppSegs = pSEGS_FEATURE(pobj) ;
-
-		ppSegs->callback = (char *)NULL;
-		ppSegs->callbacklen = 0;
-		ppSegs->callbackevent = 100;
-
-		ppSegs->isselected = TRUE;
-		ppSegs->visible = sciGetVisibility(sciGetParentSubwin(pobj));
-
-		/* this must be done prior to the call of sciSetClipping to know */
-		/* if the clip_state has been set */
-		ppSegs->clip_region_set = 0;
-		sciInitIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
-		sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-
-
-		ppSegs = pSEGS_FEATURE (pobj);
-		ppSegs->ptype = type;
-
-		ppSegs->pstyle = NULL ;
-
-		if ((ppSegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
-		{
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(ppSegs);
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-		if ((ppSegs->vy = MALLOC (Nbr2 * sizeof (double))) == NULL)
-		{
-			FREE(ppSegs->vx);
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(ppSegs);
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
-    if (vz!=NULL)
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
-		  if ((ppSegs->vz = MALLOC (Nbr3 * sizeof (double))) == NULL)
-		  {
-			  FREE(ppSegs->vx);
-			  FREE(ppSegs->vy);
-			  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			  sciDelHandle (pobj);
-			  FREE(ppSegs);
-			  FREE(pobj);
-			  return (sciPointObj *) NULL;
-		  }
+        return (sciPointObj *) NULL;
+    }
+
+    if (type == 0)
+    {
+        pobj->UID = createGraphicObject(__GO_SEGS__);
+    }
+    else if (type == 1)
+    {
+        pobj->UID = createGraphicObject(__GO_CHAMP__);
     }
     else
     {
-        ppSegs->vz = NULL;
+        return (sciPointObj*) NULL;
     }
 
-		for (i = 0; i < Nbr1; i++)
-			ppSegs->vx[i] = vx[i];
-		for (i = 0; i < Nbr2; i++)
-			ppSegs->vy[i] = vy[i];
-    if (vz!=NULL)
+    /* To be implemented */
+#if 0
+    ppSegs->callback = (char *)NULL;
+    ppSegs->callbacklen = 0;
+    ppSegs->callbackevent = 100;
+
+    ppSegs->isselected = TRUE;
+#endif
+
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
+
+    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+
+    /* this must be done prior to the call of sciSetClipping to know */
+    /* if the clip_state has been set */
+
+   /*
+    * Clip state and region
+    * To be checked for consistency
+    */
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+
+    if (type == 1)
     {
-  		for (i = 0; i < Nbr3; i++)
-        {
-	  		ppSegs->vz[i] = vz[i];
-        }
+        numberArrows = Nbr1*Nbr2;
+    }
+    else
+    {
+        /* Segs: Nbr1/2 arrows, Nbr1 is the number of endpoints */
+        numberArrows = Nbr1/2;
     }
 
-		ppSegs->ptype = type;
+    /* Triggers the creation of the Arrow objects part of Champ or Segs */
+    setGraphicObjectProperty(pobj->UID, __GO_NUMBER_ARROWS__, &numberArrows, jni_int, 1);
 
-		/* F.Leray Test imprortant sur type ici*/
-		if (type == 0) /* attention ici type = 0 donc...*/
-		{
-			ppSegs->typeofchamp = -1; /* useless property in the case type == 0 */
-			ppSegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
-			if ((ppSegs->pstyle = MALLOC (Nbr1 * sizeof (int) )) == NULL)
-			{
-				FREE(ppSegs->vx);
-				FREE(ppSegs->vy);
-        if (vz!=NULL)
-  				FREE(ppSegs->vz);
-				sciDelThisToItsParent (pobj, sciGetParent (pobj));
-				sciDelHandle (pobj);
-				FREE(ppSegs);
-				FREE(pobj);
-				return (sciPointObj *) NULL;
-			}
-			if (flag == 1)
-			{
-				for (i = 0; i < Nbr1; i++)
-				{
-					ppSegs->pstyle[i] = style[i];
-				}
-			}
-			else
-			{
-				for (i = 0; i < Nbr1; i++)
-				{
-					ppSegs->pstyle[i] = style[0];
-				}
-			}
+    /* Champ property only */
+    if (type == 1)
+    {
+        dimensions[0] = Nbr1;
+        dimensions[1] = Nbr2;
 
-			ppSegs->iflag = flag;
-			ppSegs->Nbr1 = Nbr1;
-		}
-		else /* Warning here type = 1 so... building comes from champg */
-		{
-			/* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
-			ppSegs->arrowsize = arsize /* * 100 */;
-			ppSegs->Nbr1 = Nbr1;
-			ppSegs->Nbr2 = Nbr2;
-			sciInitForeground(pobj,sciGetForeground(sciGetCurrentSubWin())); /* set sciGetForeground(psubwin) as the current foreground */
-			ppSegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
-			if ((ppSegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
-			{
-				FREE(ppSegs->vx);
-				FREE(ppSegs->vy);
-        if (vz!=NULL)
-  				FREE(ppSegs->vz);
-				sciDelThisToItsParent (pobj, sciGetParent (pobj));
-				sciDelHandle (pobj);
-				FREE(ppSegs);
-				FREE(pobj);
-				return (sciPointObj *) NULL;
-			}
-			if ((ppSegs->vfy = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
-			{
-				FREE(ppSegs->vx);
-				FREE(ppSegs->vy);
-        if (vz!=NULL)
-  				FREE(ppSegs->vz);
-				FREE(ppSegs->vfx);
-				sciDelThisToItsParent (pobj, sciGetParent (pobj));
-				sciDelHandle (pobj);
-				FREE(ppSegs);
-				FREE(pobj);
-				return (sciPointObj *) NULL;
-			}
+        setGraphicObjectProperty(pobj->UID, __GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
+    }
 
-			for (i = 0; i < (Nbr1*Nbr2); i++)
-			{
-				ppSegs->vfx[i] = vfx[i];
-				ppSegs->vfy[i] = vfy[i];
-			}
-			pSEGS_FEATURE (pobj)->vfz=(double *) NULL; /**DJ.Abdemouche 2003**/
-		}
-		if (sciInitGraphicContext (pobj) == -1)
-		{
-			FREE(ppSegs->vx);
-			FREE(ppSegs->vy);
-      if (vz!=NULL)
-  		  FREE(ppSegs->vz);
-			if (type ==0)
-			{
-				FREE(ppSegs->pstyle);
-			}
-			else
-			{
-				FREE(ppSegs->vfx);
-				FREE(ppSegs->vfy);
-			}
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
-			FREE(ppSegs);
-			FREE(pobj);
-			return (sciPointObj *) NULL;
-		}
+    arrowCoords = (double*) MALLOC(3*numberArrows*sizeof(double));
+
+    if (arrowCoords == NULL)
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    /* Type 0 corresponds to a SEGS object */
+    if (type == 0)
+    {
+        for (i = 0; i < numberArrows; i++)
+        {
+            arrowCoords[3*i] = vx[2*i];
+            arrowCoords[3*i+1] = vy[2*i];
+
+            if (vz != NULL)
+            {
+                arrowCoords[3*i+2] = vz[2*i];
+            }
+            else
+            {
+                arrowCoords[3*i+2] = 0.0;
+            }
+        }
+
+        setGraphicObjectProperty(pobj->UID, __GO_BASE__, arrowCoords, jni_double_vector, 3*numberArrows);
+
+        for (i = 0; i < numberArrows; i++)
+        {
+            arrowCoords[3*i] = vx[2*i+1];
+            arrowCoords[3*i+1] = vy[2*i+1];
+
+            if (vz != NULL)
+            {
+                arrowCoords[3*i+2] = vz[2*i+1];
+            }
+            else
+            {
+                arrowCoords[3*i+2] = 0.0;
+            }
+        }
+
+        setGraphicObjectProperty(pobj->UID, __GO_DIRECTION__, arrowCoords, jni_double_vector, 3*numberArrows);
+
+        if (flag == 1)
+        {
+            /* Style is an array of numberArrows elements */
+            setGraphicObjectProperty(pobj->UID, __GO_SEGS_COLORS__, style, jni_int_vector, numberArrows);
+        }
+        else
+        {
+            /* Style is a scalar */
+            setGraphicObjectProperty(pobj->UID, __GO_SEGS_COLORS__, style, jni_int_vector, 1);
+        }
+
+    }
+    else
+    {
+        /*
+         * Type 1 corresponds to a CHAMP object
+         * so building comes from champg
+         */
+        setGraphicObjectProperty(pobj->UID, __GO_BASE_X__, vx, jni_double_vector, Nbr1);
+        setGraphicObjectProperty(pobj->UID, __GO_BASE_Y__, vy, jni_double_vector, Nbr2);
+
+        /*
+         * Foreground color
+         * It has no apparent effect in Scilab 5.3.X and is therefore
+         * commented out for now.
+         */
+#if 0
+        tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_LINE_COLOR__, jni_int);
+        foreground = *tmp;
+        setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+#endif
+
+        setGraphicObjectProperty(pobj->UID, __GO_ARROW_SIZE__, &arsize, jni_double, 1);
+
+        for (i = 0; i < numberArrows; i++)
+        {
+            arrowCoords[3*i] = vfx[i];
+            arrowCoords[3*i+1] = vfy[i];
+            arrowCoords[3*i+2] = 0.0;
+        }
+
+        setGraphicObjectProperty(pobj->UID, __GO_DIRECTION__, arrowCoords, jni_double_vector, 3*numberArrows);
+
+        /* typeofchamp corresponds to COLORED (0: false, 1: true) */
+        setGraphicObjectProperty(pobj->UID, __GO_COLORED__, &typeofchamp, jni_bool, 1);
+    }
+
+    /* Required to initialize the default contour properties */
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+
+    if (sciInitGraphicContext (pobj) == -1)
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(arrowCoords);
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+    }
+
+    if ( sciAddNewHandle(pobj) == -1 )
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(arrowCoords);
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+    }
+
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
+
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+
+    FREE(arrowCoords);
+
     return pobj;
-  }
-  else
-  {
-    Scierror(999, _("The parent has to be a SUBWIN\n"));
-    return (sciPointObj *) NULL;
-  }
 }
 
 

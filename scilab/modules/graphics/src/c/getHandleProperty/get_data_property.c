@@ -3,7 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -75,31 +75,37 @@ int getgrayplotdata(sciPointObj *pobj)
 /* the champ data is now given as a tlist (like for surface objects) */
 int getchampdata(sciPointObj *pobj)
 {
-  char * variable_tlist[] = {"champdata","x","y","fx","fy"};
+    char * variable_tlist[] = {"champdata","x","y","fx","fy"};
+    int* dimensions;
+    double* arrowBasesX;
+    double* arrowBasesY;
+    double* arrowDirectionsX;
+    double* arrowDirectionsY;
 
-  /* F.Leray debug*/
-  sciSegs * ppsegs = pSEGS_FEATURE (pobj);
+    /* Add 'variable' tlist items to stack */
 
-  /* Add 'variable' tlist items to stack */
+    returnedList * tList = createReturnedList( 4, variable_tlist );
 
-  returnedList * tList = createReturnedList( 4, variable_tlist ) ;
+    if ( tList == NULL )
+    {
+        return -1;
+    }
 
-  if ( tList == NULL )
-  {
-    return -1 ;
-  }
+    getGraphicObjectProperty(pobj->UID, __GO_CHAMP_DIMENSIONS__, jni_int_vector, &dimensions);
 
-  addColVectorToReturnedList( tList, ppsegs->vx, ppsegs->Nbr1 ) ;
+    getGraphicObjectProperty(pobj->UID, __GO_BASE_X__, jni_double_vector, &arrowBasesX);
+    getGraphicObjectProperty(pobj->UID, __GO_BASE_Y__, jni_double_vector, &arrowBasesY);
+    getGraphicObjectProperty(pobj->UID, __GO_DIRECTION_X__, jni_double_vector, &arrowDirectionsX);
+    getGraphicObjectProperty(pobj->UID, __GO_DIRECTION_Y__, jni_double_vector, &arrowDirectionsY);
 
-  addColVectorToReturnedList( tList, ppsegs->vy, ppsegs->Nbr2 ) ;
+    addColVectorToReturnedList(tList, arrowBasesX, dimensions[0]);
+    addColVectorToReturnedList(tList, arrowBasesY, dimensions[1]);
+    addMatrixToReturnedList(tList, arrowDirectionsX, dimensions[0], dimensions[1]);
+    addMatrixToReturnedList(tList, arrowDirectionsY, dimensions[0], dimensions[1]);
 
-  addMatrixToReturnedList( tList, ppsegs->vfx, ppsegs->Nbr1, ppsegs->Nbr2 ) ;
+    destroyReturnedList( tList );
 
-  addMatrixToReturnedList( tList, ppsegs->vfy, ppsegs->Nbr1, ppsegs->Nbr2 ) ;
-
-  destroyReturnedList( tList ) ;
-
-  return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int get3ddata(sciPointObj *pobj)
@@ -255,9 +261,9 @@ int get_data_property( sciPointObj * pobj )
   {
     return get3ddata( pobj );
   }
-  else if (0 &&  (sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1) )
+  else if (strcmp(type, __GO_CHAMP__) == 0)
   {
-    return getchampdata( pobj ) ;
+    return getchampdata( pobj );
   }
   else if (strcmp(type, __GO_GRAYPLOT__) == 0)
   {
