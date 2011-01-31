@@ -263,12 +263,22 @@
 #define __GO_TEXT_STRINGS__                "TextStrings"
 
 #define __GO_BASE__                        "Base"
+#define __GO_BASE_X__                      "BaseX"
+#define __GO_BASE_Y__                      "BaseY"
+#define __GO_BASE_Z__                      "BaseZ"
 #define __GO_DIRECTION__                   "Direction"
+#define __GO_DIRECTION_X__                 "DirectionX"
+#define __GO_DIRECTION_Y__                 "DirectionY"
+#define __GO_DIRECTION_Z__                 "DirectionZ"
 #define __GO_ARROW_SIZE__                  "ArrowSize"
+#define __GO_SEGS_COLORS__                 "SegsColors"
 
 #define __GO_COLORED__                     "Colored"
 
 #define __GO_ARROWS__                      "Arrows"
+#define __GO_NUMBER_ARROWS__               "NumberArrows"
+#define __GO_CHAMP_DIMENSIONS__            "ChampDimensions"
+#define __GO_BOUNDING_BOX__                "BoundingBox"
 
 #define __GO_HIDDEN_COLOR__                "HiddenColor"
 

@@ -264,12 +264,22 @@ public static final String __GO_TEXT_ARRAY_DIMENSIONS__ =  "TextArrayDimensions"
 public static final String __GO_TEXT_STRINGS__ =           "TextStrings";
 
 public static final String __GO_BASE__ =                   "Base";
+public static final String __GO_BASE_X__ =                 "BaseX";
+public static final String __GO_BASE_Y__ =                 "BaseY";
+public static final String __GO_BASE_Z__ =                 "BaseZ";
 public static final String __GO_DIRECTION__ =              "Direction";
+public static final String __GO_DIRECTION_X__ =            "DirectionX";
+public static final String __GO_DIRECTION_Y__ =            "DirectionY";
+public static final String __GO_DIRECTION_Z__ =            "DirectionZ";
 public static final String __GO_ARROW_SIZE__ =             "ArrowSize";
+public static final String __GO_SEGS_COLORS__ =            "SegsColors";
 
 public static final String __GO_COLORED__ =                "Colored";
 
 public static final String __GO_ARROWS__ =                 "Arrows";
+public static final String __GO_NUMBER_ARROWS__ =          "NumberArrows";
+public static final String __GO_CHAMP_DIMENSIONS__ =       "ChampDimensions";
+public static final String __GO_BOUNDING_BOX__ =           "BoundingBox";
 
 public static final String __GO_HIDDEN_COLOR__ =           "HiddenColor";
 

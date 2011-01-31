@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,7 +24,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class Arrow extends ContouredObject {
 	/** Arrow properties names */
-	private enum ArrowProperty { BASE, DIRECTION, ARROWSIZE };
+	public enum ArrowProperty { BASE, BASEX, BASEY, BASEZ, DIRECTION, DIRECTIONX, DIRECTIONY, DIRECTIONZ, ARROWSIZE };
 
 	/** Arrow base (x,y,z) coordinates */
 	private double[] base;
@@ -42,6 +42,17 @@ public class Arrow extends ContouredObject {
 		direction = new double[3];
 		arrowSize = 0.0;
 	}
+
+	/** Clone method */
+        public Arrow clone() {
+		Arrow copy = (Arrow) super.clone();
+
+		copy.base = new double[3];
+		copy.direction = new double[3];
+
+		return copy;
+        }
+
 
     @Override
     public void accept(IVisitor visitor) {
@@ -123,8 +134,8 @@ public class Arrow extends ContouredObject {
 		Double[] retBase = new Double[3];
 
 		retBase[0] = base[0];
-		retBase[2] = base[1];
-		retBase[1] = base[2];
+		retBase[1] = base[1];
+		retBase[2] = base[2];
 
 		return retBase;
 	}
