@@ -26,23 +26,6 @@ New functions
   "numerically almost equal", i.e. that the relative error is small.
   This automatically fixes the bug #4381.
 
-Bug Fixes:
-==========
-
-* bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
-                   is supplied by the 2nd input argument.
-
-* bug 8608 - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
-             and optimized.
-
-* bug 8608 - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified and optimized.
-
-* bug 9156 - mgetl.c compilation failed on some Windows.
-
-* bug 9164 - The unit tests now use the new assert functions.
-
-* bug 9277 - escape character "\" did not work with msprintf.
-
 
 Removed functions (previously declared as obsolete):
 ====================================================
@@ -74,5 +57,18 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
+                   is supplied by the 2nd input argument.
+
+* bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
+                   and optimized.
+
+* bug 9156 fixed - mgetl.c compilation failed on some Windows.
+
+* bug 9164 fixed - The unit tests now use the new assert functions.
+
+* bug 9277 fixed - escape character "\" did not work with msprintf.
+
 * bug 7061 fixed - changelog.txt, readme.txt, version.xml removed from modules.
 
+* bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
