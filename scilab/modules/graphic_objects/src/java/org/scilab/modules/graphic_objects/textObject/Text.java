@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -96,10 +96,10 @@ public class Text extends ClippableTextObject {
 		super();
 		fontAngle = 0.0;
 		position = new double[3];
-		alignment = null;
+		alignment = Alignment.CENTER;
 		box = false;
 		textBox = new double[2];
-		textBoxMode = null;
+		textBoxMode = TextBoxMode.OFF;
 		autoDimensioning = false;
 	}
 
@@ -284,7 +284,7 @@ public class Text extends ClippableTextObject {
 	public Double[] getTextBox() {
 		Double[] retTextBox = new Double[2];
 		retTextBox[0] = textBox[0];
-		retTextBox[1] = textBox[2];
+		retTextBox[1] = textBox[1];
 
 		return retTextBox;
 	}
