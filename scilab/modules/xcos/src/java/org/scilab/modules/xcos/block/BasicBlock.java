@@ -938,15 +938,18 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		 * If the block is in a superblock then update it.
 		 */
 		if (getParentDiagram() instanceof SuperBlockDiagram) {
-			SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram())
+			SuperBlock block = ((SuperBlockDiagram) getParentDiagram())
 					.getContainer();
-			if (parentBlock.getParentDiagram() != null) {
-				parentBlock.getParentDiagram().fireEvent(
-					new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
-							XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
-			} else {
-				LogFactory.getLog(getClass()).error("Parent diagram is null");
+			
+			XcosDiagram graph = block.getParentDiagram();
+			if (graph == null) {
+				setParentDiagram(Xcos.findParent(block));
+				graph = block.getParentDiagram();
+				LogFactory.getLog(getClass()).error("Parent diagram was null");
 			}
+			
+			graph.fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
+							XcosConstants.EVENT_BLOCK_UPDATED, block));
 		}
     }
 
@@ -977,10 +980,11 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * @param modifiedBlock the new block instance
 	 */
 	private void updateChildren(BasicBlock modifiedBlock) {
-		final XcosDiagram graph = getParentDiagram();
+		XcosDiagram graph = getParentDiagram();
 		if (graph == null) {
-			LogFactory.getLog(getClass()).error("Parent diagram is null");
-			return;
+			setParentDiagram(Xcos.findParent(this));
+			graph = getParentDiagram();
+			LogFactory.getLog(getClass()).error("Parent diagram was null");
 		}
 		
 		/*
@@ -1088,11 +1092,13 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param context parent diagram context
      */
     public void openBlockSettings(String[] context) {
-	
-	final XcosDiagram graph = getParentDiagram();
-	if (graph == null) {
-		LogFactory.getLog(getClass()).error("Parent diagram is null");
-		return;
+	final XcosDiagram graph;
+	if (getParentDiagram() == null) {
+		setParentDiagram(Xcos.findParent(this));
+		graph = getParentDiagram();
+		LogFactory.getLog(getClass()).error("Parent diagram was null");
+	} else {
+		graph = getParentDiagram();
 	}
 	if (getParentDiagram() instanceof PaletteDiagram) {
 	    return;

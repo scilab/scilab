@@ -43,6 +43,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -93,10 +94,11 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				.getSelectionCell();
 		block.createChildDiagram(); // assert that diagram is an xcos one
 		
-		final XcosDiagram graph = block.getParentDiagram();
+		XcosDiagram graph = block.getParentDiagram();
 		if (graph == null) {
-			LogFactory.getLog(getClass()).error("Parent diagram is null");
-			return;
+			block.setParentDiagram(Xcos.findParent(block));
+			graph = block.getParentDiagram();
+			LogFactory.getLog(getClass()).error("Parent diagram was null");
 		}
 		CustomizeFrame frame = new CustomizeFrame(graph);
 		CustomizeFrame.CustomizeFrameModel model = frame.getController()

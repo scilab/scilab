@@ -686,4 +686,19 @@ public final class Xcos {
 			throw new RuntimeException(firstMessage, e);
 		}
 	}
+	
+	/**
+	 * Look for the parent diagram of the cell in the diagram hierarchy.
+	 * @param cell the cell to search for
+	 * @return the associated diagram
+	 */
+	public static XcosDiagram findParent(Object cell) {
+		final Xcos instance = getInstance();
+		for (XcosDiagram diag : instance.getDiagrams()) {
+			if (diag.getModel().contains(cell)) {
+				return diag;
+			}
+		}
+		return null;
+	}
 }

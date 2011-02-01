@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
@@ -75,10 +76,12 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
      */
     @Override
     public String[] getContext() {
-		final XcosDiagram graph = getContainer().getParentDiagram();
+    	final SuperBlock block = getContainer();
+		XcosDiagram graph = block.getParentDiagram();
 		if (graph == null) {
-			LogFactory.getLog(getClass()).error("Parent diagram is null");
-			return new String[0];
+			block.setParentDiagram(Xcos.findParent(block));
+			graph = block.getParentDiagram();
+			LogFactory.getLog(getClass()).error("Parent diagram was null");
 		}
 		
     	final String[] parent = graph.getContext();
@@ -163,10 +166,11 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 						return o1.getOrdering() - o2.getOrdering();
 					}});
 				
-				final XcosDiagram graph = container.getParentDiagram();
+				XcosDiagram graph = container.getParentDiagram();
 				if (graph == null) {
-					LogFactory.getLog(getClass()).error("Parent diagram is null");
-					return;
+					container.setParentDiagram(Xcos.findParent(container));
+					graph = container.getParentDiagram();
+					LogFactory.getLog(getClass()).error("Parent diagram was null");
 				}
 				container.getParentDiagram().cellLabelChanged(ports[index - 1], value, false);
 			}
