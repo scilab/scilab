@@ -222,6 +222,8 @@ Xcos:
 * bug 8884 fixed - Using region to super block with ports on the same position
                    was resulting to a non-reconnected link.
 
+* bug 8896 fixed - On windows, a multi-line context could not be edited twice.
+
 
 Module skeleton:
 ================
