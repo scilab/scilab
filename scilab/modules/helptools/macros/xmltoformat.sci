@@ -917,7 +917,7 @@ function tree = x2f_dir_to_tree(directory,level)
     end
 
     if type(level) <> 1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A integer expected.\n"),"x2f_dir_to_tree",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer expected.\n"),"x2f_dir_to_tree",2));
     end
 
     // Check input argument dimension
@@ -928,7 +928,7 @@ function tree = x2f_dir_to_tree(directory,level)
     end
 
     if size(level,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A integer expected.\n"),"x2f_dir_to_tree",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"x2f_dir_to_tree",1));
     end
 
     // Check the directory existence
@@ -1531,7 +1531,7 @@ function master_section = x2f_tree_to_section( tree , offset )
     end
 
     if type(offset) <> 1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A integer expected.\n"),"x2f_tree_to_section",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer expected.\n"),"x2f_tree_to_section",2));
     end
 
     // And now, action ...

@@ -180,7 +180,7 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています: Scilab関数名を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
 
 #, c-format

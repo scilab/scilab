@@ -151,7 +151,7 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该是一个整数。\n"
 
 #, c-format

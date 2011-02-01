@@ -212,7 +212,7 @@ msgstr ""
 # File: sci_gateway/c/sci_exec.c, line: 148
 # File: sci_gateway/c/sci_exec.c, line: 227
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 #
 # File: macros/head_comments.sci, line: 22

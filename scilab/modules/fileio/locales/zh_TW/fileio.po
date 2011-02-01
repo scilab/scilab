@@ -342,7 +342,7 @@ msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
 msgstr "%s: 第#%d個參數長度有誤:  檔名才對.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s: 第#%d個參數長度有誤: 整數才對.\n"
 
 #, c-format
@@ -410,12 +410,12 @@ msgid ""
 msgstr "%s: 第#%d個參數型別有誤:  檔名或檔案描述子才對.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: 第#%d個參數型別有誤:   整數才對.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A integer or string expected.\n"
+"%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr "%s: 第#%d個參數型別有誤:   整數或字串才對.\n"
 
 #

@@ -232,7 +232,7 @@ msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个文件名。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
 
 #, c-format
@@ -292,12 +292,12 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A integer or string expected.\n"
+"%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数或字符串。\n"
 
 #, c-format

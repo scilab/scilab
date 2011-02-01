@@ -160,7 +160,7 @@ msgstr ""
 "wird erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s: falscher Wert für Eingangsargument #%d: ein Integer erwartet.\n"
 
 #, c-format

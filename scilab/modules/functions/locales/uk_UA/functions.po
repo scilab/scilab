@@ -174,7 +174,7 @@ msgstr ""
 "функції Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
 "значення.\n"

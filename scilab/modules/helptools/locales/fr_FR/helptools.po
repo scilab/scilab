@@ -175,7 +175,7 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Mauvais nombre d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un entier attendu.\n"
 
@@ -197,7 +197,7 @@ msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n° %d : Un booléen attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un entier attendu.\n"
 

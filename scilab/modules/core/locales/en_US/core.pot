@@ -938,12 +938,12 @@ msgstr ""
 # File: sci_gateway/c/sci_newfun.c, line: 117
 # File: sci_gateway/c/sci_exit.c, line: 79
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_errclear.c, line: 56
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 #
 # File: macros/typeof.sci, line: 12
