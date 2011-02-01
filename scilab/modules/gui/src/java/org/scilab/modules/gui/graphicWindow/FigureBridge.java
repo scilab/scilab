@@ -11,12 +11,11 @@
 
 package org.scilab.modules.gui.graphicWindow;
 
-import org.scilab.forge.scirenderer.canvas.glimpl.canvas.AbstractGLCanvas;
-import org.scilab.forge.scirenderer.canvas.glimpl.canvas.IGLCanvas;
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -27,8 +26,8 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 import javax.media.opengl.GLCanvas;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JComponent;
+import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -60,6 +59,12 @@ public class FigureBridge implements GraphicView {
 
             if (object instanceof Figure) {
                 final Figure figure = (Figure) object;
+
+                Canvas rendererCanvas = JoGLCanvasFactory.createCanvas(canvas);
+
+                rendererCanvas.setMainDrawer(new DrawerVisitor(rendererCanvas, figure));
+
+                /*
                 IGLCanvas page = new AbstractGLCanvas(canvas) {
                     private IVisitor visitor = null;
 
@@ -75,6 +80,7 @@ public class FigureBridge implements GraphicView {
                         return visitor;
                     }
                 };
+                */
 
                 canvas.addMouseListener(new MouseListener() {
                     MouseEvent beginEvent;

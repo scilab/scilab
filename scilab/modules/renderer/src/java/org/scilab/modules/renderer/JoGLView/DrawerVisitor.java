@@ -11,20 +11,18 @@
 
 package org.scilab.modules.renderer.JoGLView;
 
-import org.scilab.forge.scirenderer.canvas.interfaces.appearance.IAppearance;
-import org.scilab.forge.scirenderer.canvas.interfaces.appearance.material.color.FinalColor;
-import org.scilab.forge.scirenderer.canvas.interfaces.appearance.material.color.IColor;
-import org.scilab.forge.scirenderer.canvas.interfaces.buffers.IVertexBuffer;
-import org.scilab.forge.scirenderer.canvas.interfaces.canvas.ICanvas;
-import org.scilab.forge.scirenderer.canvas.interfaces.core.math.FinalRectangle;
-import org.scilab.forge.scirenderer.canvas.interfaces.geometry.box.FinalBox;
-import org.scilab.forge.scirenderer.canvas.interfaces.geometry.box.IBox;
-import org.scilab.forge.scirenderer.canvas.interfaces.geometry.line.ILines;
-import org.scilab.forge.scirenderer.canvas.interfaces.geometry.line.Lines;
-import org.scilab.forge.scirenderer.canvas.interfaces.tranformations.ITransformation;
-import org.scilab.forge.scirenderer.canvas.interfaces.tranformations.Rotation;
-import org.scilab.forge.scirenderer.canvas.interfaces.tranformations.Scale;
-import org.scilab.forge.scirenderer.canvas.interfaces.tranformations.Translate;
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.Drawer;
+import org.scilab.forge.scirenderer.DrawingTools;
+import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
+import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
+import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
+import org.scilab.forge.scirenderer.shapes.geometry.GeometryImpl;
+import org.scilab.forge.scirenderer.tranformations.Transformation;
+import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
+import org.scilab.forge.scirenderer.tranformations.TransformationStack;
+import org.scilab.forge.scirenderer.utils.shapes.geometry.CubeFactory;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.Box;
@@ -54,10 +52,17 @@ import org.scilab.modules.graphic_objects.vectfield.Segs;
 /**
  * @author Pierre Lando
  */
-public class DrawerVisitor implements IVisitor {
+public class DrawerVisitor implements IVisitor, Drawer {
     private static final double DEFAULT_THETA = 270.0;
-    
-    private final IVertexBuffer boxBorderVertices;
+    private static final int ELEMENT_SIZE = 4;
+
+
+    private final Geometry cubeGeometry;
+    private final Geometry boxBorderGeometry;
+    private final Geometry frontBoxBorderGeometry;
+    private final Geometry hiddenBoxBorderGeometry;
+
+    private final ElementsBuffer boxBorderVertices;
     private static final float[] boxBorderVerticesData = new float[] {
         -1,-1,+1,1, -1,+1,+1,1,
         -1,+1,-1,1, +1,+1,-1,1,
@@ -65,44 +70,59 @@ public class DrawerVisitor implements IVisitor {
     };
 
     private static final Line.LineType HIDDEN_BORDER_PATTERN = Line.LineType.STYLE1;
-    private final IVertexBuffer hiddenBoxBorderVertices;
+    private final ElementsBuffer hiddenBoxBorderVertices;
     private static final float[] hiddenBoxBorderVerticesData = new float[] {
         -1,-1,-1,1, +1,-1,-1,1,
         -1,-1,-1,1, -1,+1,-1,1,
         -1,-1,-1,1, -1,-1,+1,1
     };
 
-    private final IVertexBuffer frontBoxBorderVertices;
+    private final ElementsBuffer frontBoxBorderVertices;
     private static final float[] frontBoxBorderVerticesData = new float[] {
         +1,+1,+1,1, -1,+1,+1,1,
         +1,+1,+1,1, +1,-1,+1,1,
         +1,+1,+1,1, +1,+1,-1,1
     };
 
-    private final ICanvas canvas;
+    private final Canvas canvas;
+    private final Figure figure;
     private final DataManager dataManager;
 
     private ColorMap colorMap;
+    private DrawingTools drawingTools = null;
 
-    public DrawerVisitor(ICanvas canvas) {
+    public DrawerVisitor(Canvas canvas, Figure figure) {
         this.canvas = canvas;
+        this.figure = figure;
         this.dataManager = new DataManager(canvas);
-        boxBorderVertices = canvas.getBuffersManager().newVertexBuffer();
-        boxBorderVertices.setData(boxBorderVerticesData, IVertexBuffer.ECoordinates.XYZW);
 
-        hiddenBoxBorderVertices = canvas.getBuffersManager().newVertexBuffer();
-        hiddenBoxBorderVertices.setData(hiddenBoxBorderVerticesData, IVertexBuffer.ECoordinates.XYZW);
+        boxBorderVertices = canvas.getBuffersManager().createElementsBuffer();
+        boxBorderVertices.setData(boxBorderVerticesData, ELEMENT_SIZE);
 
-        frontBoxBorderVertices = canvas.getBuffersManager().newVertexBuffer();
-        frontBoxBorderVertices.setData(frontBoxBorderVerticesData, IVertexBuffer.ECoordinates.XYZW);
+        hiddenBoxBorderVertices = canvas.getBuffersManager().createElementsBuffer();
+        hiddenBoxBorderVertices.setData(hiddenBoxBorderVerticesData, ELEMENT_SIZE);
+
+        frontBoxBorderVertices = canvas.getBuffersManager().createElementsBuffer();
+        frontBoxBorderVertices.setData(frontBoxBorderVerticesData, ELEMENT_SIZE);
+
+        cubeGeometry = CubeFactory.createCube(canvas);
+        hiddenBoxBorderGeometry = new GeometryImpl(Geometry.DrawingMode.SEGMENTS, hiddenBoxBorderVertices);
+        frontBoxBorderGeometry  = new GeometryImpl(Geometry.DrawingMode.SEGMENTS, frontBoxBorderVertices);
+        boxBorderGeometry       = new GeometryImpl(Geometry.DrawingMode.SEGMENTS_LOOP, boxBorderVertices);
+    }
+
+    @Override
+    public void draw(DrawingTools drawingTools) {
+        this.drawingTools = drawingTools;
+        figure.accept(this);
     }
 
     @Override
     public void finalize() throws Throwable {
         super.finalize();
-        canvas.getBuffersManager().freeBuffer(boxBorderVertices);
-        canvas.getBuffersManager().freeBuffer(hiddenBoxBorderVertices);
-        canvas.getBuffersManager().freeBuffer(frontBoxBorderVertices);
+        canvas.getBuffersManager().dispose(boxBorderVertices);
+        canvas.getBuffersManager().dispose(hiddenBoxBorderVertices);
+        canvas.getBuffersManager().dispose(frontBoxBorderVertices);
     }
 
 
@@ -119,18 +139,21 @@ public class DrawerVisitor implements IVisitor {
 
     @Override
     public void visit(Axes axes) {
+        TransformationStack projectionStack = drawingTools.getTransformationManager().getModelViewStack();
         if (axes.getVisible()) {
             // Set current zone
             /**********************************************************************************************************/
             Double[] axesBounds = axes.getAxesBounds();
             Double[] margins = axes.getMargins();
 
-            double x = (axesBounds[0] + axesBounds[2] * margins[0]);
-            double y = (1.0 - axesBounds[1] - axesBounds[3] * (1.0 - margins[3]));
+            double x = (axesBounds[0] + axesBounds[2] * margins[0])*2 - 1;
+            double y = (1.0 - axesBounds[1] - axesBounds[3] * (1.0 - margins[3]))*2 - 1;
             double w = (1 - margins[0] - margins[1]) * axesBounds[2];
             double h = (1 - margins[2] - margins[3]) * axesBounds[3];
 
-            canvas.getZoneControl().setCurrentZone(new FinalRectangle(x+w/2, y+h/2, w, h));
+            Transformation zoneTranslation = TransformationFactory.getTranslateTransformation(x+w, y+h, 0);
+            Transformation zoneScale = TransformationFactory.getScaleTransformation(w, h, 1);
+            drawingTools.getTransformationManager().getProjectionStack().push(zoneTranslation.rightTimes(zoneScale));
             /***********************************************************************************************************
              * Compute transformation matrix.
              *
@@ -149,19 +172,25 @@ public class DrawerVisitor implements IVisitor {
             double tmpY;
             double tmpZ;
             
-            ITransformation transformation;
+            Transformation transformation;
 
             // Set zone aspect ratio.
-            double ratio = canvas.getZoneControl().getFinalAspectRatio();
+            // TODO double ratio = canvas.getFinalAspectRatio();
+            double canvasRatio = (double) canvas.getWidth() / (double) canvas.getHeight();
+            double axesRatio = w / h;
+            double ratio = canvasRatio * axesRatio;
             if (ratio < 1.0) {
-                transformation = new Scale(1, ratio, 1);
+                transformation = TransformationFactory.getScaleTransformation(1, ratio, 1);
             } else {
-                transformation = new Scale(1/ratio, 1, 1);
+                transformation = TransformationFactory.getScaleTransformation(1/ratio, 1, 1);
             }
 
             // Rotate.
-            transformation.times(new Rotation(axes.getRotationAngles()[0], 1.0, 0.0, 0.0));
-            transformation.times(new Rotation(DEFAULT_THETA - axes.getRotationAngles()[1], 0.0, 0.0, 1.0));
+            Transformation alphaRotation = TransformationFactory.getRotationTransformation(axes.getRotationAngles()[0], 1.0, 0.0, 0.0);
+            transformation = transformation.rightTimes(alphaRotation);
+
+            Transformation thetaRotation = TransformationFactory.getRotationTransformation(DEFAULT_THETA - axes.getRotationAngles()[1], 0.0, 0.0, 1.0);
+            transformation = transformation.rightTimes(thetaRotation);
 
             // If there is no cube scaling, we must take into account the distribution of data.
             if (!axes.getCubeScaling()) {
@@ -173,35 +202,35 @@ public class DrawerVisitor implements IVisitor {
                  * Here, we should divide the values by their maximum.
                  * But the next operation will automatically.  
                  */
-                transformation.times(new Scale(tmpX, tmpY, tmpZ));
+                Transformation cubeScale = TransformationFactory.getScaleTransformation(tmpX, tmpY, tmpZ);
+                transformation = transformation.rightTimes(cubeScale);
             }
 
             // Compute bounds of projected data.
-            double matrix[] = transformation.getMatrix16dv();
+            double matrix[] = transformation.getMatrix();
             tmpX = 1 / (Math.abs(matrix[0]) + Math.abs(matrix[4]) + Math.abs(matrix[8]));
             tmpY = 1 / (Math.abs(matrix[1]) + Math.abs(matrix[5]) + Math.abs(matrix[9]));
             tmpZ = 1 / (Math.abs(matrix[2]) + Math.abs(matrix[6]) + Math.abs(matrix[10]));
 
-            // Scale projected data to fit in the square.
+            // Scale projected data to fit in the cube.
+            Transformation isoScale;
             if (axes.getIsoview()) {
                 double minScale = Math.min(tmpX, tmpY);
-                transformation = transformation.leftTimes(new Scale(minScale, minScale, tmpZ));
+                isoScale = TransformationFactory.getScaleTransformation(minScale, minScale, tmpZ);
             } else {
-                transformation = transformation.leftTimes(new Scale(tmpX, tmpY, tmpZ));
+                isoScale = TransformationFactory.getScaleTransformation(tmpX, tmpY, tmpZ);
             }
+            transformation = transformation.leftTimes(isoScale);
 
-
-            canvas.getTransformationsStack().push(transformation);
+            projectionStack.pushRightMultiply(transformation);
 
             // Draw box.
             /**********************************************************************************************************/
-            canvas.getZoneControl().clearZBuffer();
-            IColor backgroundColor = new FinalColor(colorMap.getScilabColor(axes.getBackground()));
-            IBox box = new FinalBox(2, 2, 2);
-            box.getAppearance().getFillProperties().getMaterial().setDiffuseColor(backgroundColor);
-            box.getAppearance().setRenderingMode(IAppearance.ERenderingMode.FILL);
-            canvas.draw(box);
-            canvas.getZoneControl().clearZBuffer();
+            drawingTools.clearDepthBuffer();
+            Appearance appearance = new Appearance();
+            appearance.setFillColor(new Color(colorMap.getScilabColor(axes.getBackground())));
+            drawingTools.draw(cubeGeometry, appearance);
+            drawingTools.clearDepthBuffer();
 
             // Draw box border.
             /**********************************************************************************************************/
@@ -210,77 +239,82 @@ public class DrawerVisitor implements IVisitor {
                 /**
                  * Mirror the cube such that the corner with the maximum Z value was (-1, -1, -1).
                  */
-                canvas.getTransformationsStack().push(new Scale(
-                    matrix[2] < 0  ? 1 : -1,
-                    matrix[6] < 0  ? 1 : -1,
-                    matrix[10] < 0 ? 1 : -1
-                ));
+                Transformation cubeOrientationScale = TransformationFactory.getScaleTransformation(
+                        matrix[2] < 0 ? 1 : -1,
+                        matrix[6] < 0 ? 1 : -1,
+                        matrix[10] < 0 ? 1 : -1
+                );
+                projectionStack.pushRightMultiply(cubeOrientationScale);
 
-                ILines lines = new Lines();
-                lines.getLineProperties().setLineWidth(axes.getLineThickness().floatValue());
+                /**
+                 * Draw hidden box border.
+                 */
+                appearance.setLineColor(new Color(colorMap.getScilabColor(axes.getHiddenAxisColor())));
+                appearance.setLineWidth(axes.getLineThickness().floatValue());
+                appearance.setLinePattern(HIDDEN_BORDER_PATTERN.asPattern());
+                drawingTools.draw(hiddenBoxBorderGeometry, appearance);
 
-                IColor lineColor;
-                lineColor = new FinalColor(colorMap.getScilabColor(axes.getHiddenAxisColor()));
-                lines.getLineProperties().getMaterial().setDiffuseColor(lineColor);
-                lines.getLineProperties().setLinePattern(HIDDEN_BORDER_PATTERN.asPattern());
-
-                lines.setMode(ILines.EMode.SEGMENTS);
-                lines.setVertexBuffer(hiddenBoxBorderVertices);
-                canvas.draw(lines);
 
                 if (boxed != Box.BoxType.HIDDEN_AXES) {
-                    lineColor = new FinalColor(colorMap.getScilabColor(axes.getLineColor()));
-                    lines.getLineProperties().getMaterial().setDiffuseColor(lineColor);
 
-                    lines.getLineProperties().setLinePattern(axes.getLine().getLineStyle().asPattern());
-                    lines.setMode(ILines.EMode.LOOP);
-                    lines.setVertexBuffer(boxBorderVertices);
-                    canvas.draw(lines);
+                    /**
+                     * Draw box border.
+                     */
+                    appearance.setLineColor(new Color(colorMap.getScilabColor(axes.getLineColor())));
+                    appearance.setLineWidth(axes.getLineThickness().floatValue());
+                    appearance.setLinePattern(axes.getLine().getLineStyle().asPattern());
+                    drawingTools.draw(boxBorderGeometry, appearance);
+
 
                     if (boxed != Box.BoxType.BACK_HALF) {
-                        lines.setMode(ILines.EMode.SEGMENTS);
-                        lines.setVertexBuffer(frontBoxBorderVertices);
-                        canvas.draw(lines);
+                        /**
+                         * Draw front box border.
+                         * Draw front box border.
+                         */
+                        drawingTools.draw(frontBoxBorderGeometry, appearance);
                     }
                 }
 
-                canvas.getTransformationsStack().pop();
+                projectionStack.pop();
             }
             /**********************************************************************************************************/
 
             // Draw data.
             /**********************************************************************************************************/
 
-            canvas.getTransformationsStack().pop();
+            projectionStack.pop();
 
             // Reverse data if needed.
-            transformation.times(
-                new Scale(
+            Transformation reverseAxesScale = TransformationFactory.getScaleTransformation(
                     axes.getAxes()[0].getReverse() ? -1 : 1,
                     axes.getAxes()[1].getReverse() ? -1 : 1,
                     axes.getAxes()[2].getReverse() ? -1 : 1
-                )
             );
+            transformation = transformation.rightTimes(reverseAxesScale);
 
 
             // Scale data.
-            tmpX = 2/(bounds[1] - bounds[0]);
-            tmpY = 2/(bounds[3] - bounds[2]);
-            tmpZ = 2/(bounds[5] - bounds[4]);
-
-            transformation.times(new Scale(tmpX, tmpY, tmpZ));
+            Transformation scaleTransformation = TransformationFactory.getScaleTransformation(
+                    2/(bounds[1] - bounds[0]),
+                    2/(bounds[3] - bounds[2]),
+                    2/(bounds[5] - bounds[4])
+            );
+            transformation = transformation.rightTimes(scaleTransformation);
 
 
             // Translate data.
-            transformation.times(new Translate(
-               - (bounds[0] + bounds[1]) / 2.0,
-               - (bounds[2] + bounds[3]) / 2.0,
-               - (bounds[4] + bounds[5]) / 2.0
-            ));
+            Transformation translateTransformation = TransformationFactory.getTranslateTransformation(
+                    -(bounds[0] + bounds[1]) / 2.0,
+                    -(bounds[2] + bounds[3]) / 2.0,
+                    -(bounds[4] + bounds[5]) / 2.0
+            );
+            transformation = transformation.rightTimes(translateTransformation);
 
-            canvas.getTransformationsStack().push(transformation);
+            projectionStack.push(transformation);
             askAcceptVisitor(axes.getChildren());
-            canvas.getTransformationsStack().pop();
+            projectionStack.pop();
+
+            drawingTools.getTransformationManager().getProjectionStack().pop();
         }
     }
 
@@ -312,14 +346,13 @@ public class DrawerVisitor implements IVisitor {
     @Override
     public void visit(Figure figure) {
         if (figure.getVisible()) {
+            /**
+             * Set the used color map.
+             */
             colorMap = figure.getColorMap();
-            int background = figure.getBackground();
-            IColor clearColor = new FinalColor(colorMap.getScilabColor(background));
 
-            canvas.setCoordinate(new FinalRectangle(.5,.5,1,1));
-            canvas.getZoneControl().setCurrentZone(new FinalRectangle(.5,.5,1,1));
-            canvas.getZoneControl().clearZone(clearColor);
-            canvas.getZoneControl().clearZBuffer();
+            drawingTools.clear(new Color(colorMap.getScilabColor(figure.getBackground())));
+            drawingTools.clearDepthBuffer();
 
             askAcceptVisitor(figure.getChildren());
         }
@@ -351,25 +384,18 @@ public class DrawerVisitor implements IVisitor {
 
     @Override
     public void visit(Polyline polyline) {
-        /*
-        ISciBuffersManager buffersManager = canvas.getBuffersManager();
-        IVertexBuffer vertexBuffer = buffersManager.getVertexBuffer(polyline);
-        */
+        Geometry geometry = new GeometryImpl(
+                Geometry.DrawingMode.SEGMENTS_STRIP,
+                dataManager.getVertexBuffer(polyline.getIdentifier())
+        );
 
-        IVertexBuffer vertexBuffer = dataManager.getVertexBuffer(polyline.getIdentifier());
-        ILines lines = new Lines();
-        lines.setVertexBuffer(vertexBuffer);
-        
-        IColor frontColor = new FinalColor(colorMap.getScilabColor(polyline.getLineColor()));
-        float lineWidth = polyline.getLineThickness().floatValue();
-        short pattern = polyline.getLineStyleAsEnum().asPattern();
+        Appearance appearance = new Appearance();
 
-        lines.setMode(ILines.EMode.STRIP);
-        lines.getLineProperties().setLineWidth(lineWidth);
-        lines.getLineProperties().setLinePattern(pattern);
-        lines.getLineProperties().getMaterial().setDiffuseColor(frontColor);
+        appearance.setLineColor(new Color(colorMap.getScilabColor(polyline.getLineColor())));
+        appearance.setLineWidth(polyline.getLineThickness().floatValue());
+        appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
 
-        canvas.draw(lines);
+        drawingTools.draw(geometry, appearance);
     }
 
     @Override

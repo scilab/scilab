@@ -12,8 +12,8 @@
 package org.scilab.modules.renderer.JoGLView;
 
 import com.sun.opengl.util.BufferUtil;
-import org.scilab.forge.scirenderer.canvas.interfaces.buffers.IVertexBuffer;
-import org.scilab.forge.scirenderer.canvas.interfaces.canvas.ICanvas;
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.modules.graphic_objects.NativeGL;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -28,26 +28,26 @@ import java.util.Map;
  */
 public class DataManager implements GraphicView {
 
-    private final Map<String, IVertexBuffer> vertexBuffers = new HashMap<String, IVertexBuffer>();
-    private final ICanvas canvas;
+    private final Map<String, ElementsBuffer> vertexBuffers = new HashMap<String, ElementsBuffer>();
+    private final Canvas canvas;
 
 
-    public DataManager(ICanvas canvas) {
+    public DataManager(Canvas canvas) {
         this.canvas = canvas;
         GraphicController.getController().register(this);
     }
 
-    public IVertexBuffer getVertexBuffer(String id) {
+    public ElementsBuffer getVertexBuffer(String id) {
         if (vertexBuffers.containsKey(id)) {
             return vertexBuffers.get(id);
         } else {
-            IVertexBuffer vertexBuffer = canvas.getBuffersManager().newVertexBuffer();
+            ElementsBuffer vertexBuffer = canvas.getBuffersManager().createElementsBuffer();
 
             int length = NativeGL.getGLDataLength(id);
             FloatBuffer dataBuffer = BufferUtil.newFloatBuffer(length);
             NativeGL.loadGLData(dataBuffer, id);
 
-            vertexBuffer.setData(dataBuffer, IVertexBuffer.ECoordinates.XYZW);
+            vertexBuffer.setData(dataBuffer, 4);
 
             vertexBuffers.put(id, vertexBuffer);
             return vertexBuffer;
@@ -57,13 +57,13 @@ public class DataManager implements GraphicView {
     @Override
     public void updateObject(String id, String property) {
         if (property.equals(GraphicObjectProperties.__GO_DATA_MODEL__) && vertexBuffers.containsKey(id)) {
-            IVertexBuffer vertexBuffer = vertexBuffers.get(id);
+            ElementsBuffer vertexBuffer = vertexBuffers.get(id);
 
             int length = NativeGL.getGLDataLength(id);
             FloatBuffer dataBuffer = BufferUtil.newFloatBuffer(length);
             NativeGL.loadGLData(dataBuffer, id);
             
-            vertexBuffer.setData(dataBuffer, IVertexBuffer.ECoordinates.XYZW);
+            vertexBuffer.setData(dataBuffer, 4);
         }
     }
 
@@ -73,7 +73,7 @@ public class DataManager implements GraphicView {
     @Override
     public void deleteObject(String id) {
         if (vertexBuffers.containsKey(id)) {
-            canvas.getBuffersManager().freeBuffer(vertexBuffers.get(id));
+            canvas.getBuffersManager().dispose(vertexBuffers.get(id));
             vertexBuffers.remove(id);
         }
     }
