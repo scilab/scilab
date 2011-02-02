@@ -33,7 +33,7 @@ int get_text_box_property( sciPointObj * pobj )
 {
     double* size;
 
-    getGraphicObjectProperty(pobj->UID, __GO_TEXT_BOX__, jni_double_vector, size);
+    getGraphicObjectProperty(pobj->UID, __GO_TEXT_BOX__, jni_double_vector, &size);
 
     if (size == NULL)
     {

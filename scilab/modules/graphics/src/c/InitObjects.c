@@ -490,6 +490,13 @@ sciInitGraphicContext (sciPointObj * pobj)
     getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
     cloneGraphicContext(parent, pobj->UID);
   }
+  else if (strcmp(type, __GO_TEXT__) == 0)
+  {
+    char* parent;
+
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+    cloneGraphicContext(parent, pobj->UID);
+  }
 
   /* Deactivated for now */
   /* This must be implemented within the MVC */
@@ -687,6 +694,13 @@ sciInitFontContext (sciPointObj * pobj)
     }
   }
   else if (strcmp(type, __GO_LEGEND__) == 0)
+  {
+    char* parent;
+
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+    cloneFontContext(parent, pobj->UID);
+  }
+  else if (strcmp(type, __GO_TEXT__) == 0)
   {
     char* parent;
 

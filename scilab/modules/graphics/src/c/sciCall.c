@@ -288,19 +288,32 @@ void Objstring( char            ** fname      ,
                 BOOL               isfilled   ,
                 sciTextAlignment   alignment   )
 {
-  sciPointObj * psubwin = NULL;
-  sciPointObj * pobj = NULL;
-  sciPointObj * pFigure = NULL;
+    sciPointObj * psubwin = NULL;
+    sciPointObj * pobj = NULL;
+    sciPointObj * pFigure = NULL;
 
-  startGraphicDataWriting();
-  pFigure = sciGetCurrentFigure();
-  psubwin = sciGetCurrentSubWin();
-  endGraphicDataWriting();
+    /* Deactivated (synchronization) */
+#if 0
+    startGraphicDataWriting();
+#endif
 
-  checkRedrawing() ;
+    pFigure = sciGetCurrentFigure();
+    psubwin = sciGetCurrentSubWin();
 
-  startFigureDataWriting(pFigure);
-  sciSetCurrentObj( ConstructText( psubwin   ,
+#if 0
+    /* Deactivated (synchronization) */
+    endGraphicDataWriting();
+#endif
+
+    checkRedrawing();
+
+    /* Deactivated (synchronization) */
+#if 0
+    startFigureDataWriting(pFigure);
+#endif
+
+
+    pobj = ConstructText( psubwin   ,
                                    fname     ,
                                    nbRow     ,
                                    nbCol     ,
@@ -314,16 +327,32 @@ void Objstring( char            ** fname      ,
                                    isboxed   ,
                                    isline    ,
                                    isfilled  ,
-                                   alignment  ) ) ;
-  endFigureDataWriting(pFigure);
+                                   alignment  );
 
-  startFigureDataReading(pFigure);
-  pobj=sciGetCurrentObj ();
-  *hdl= sciGetHandle(pobj);
-  sciSetFontOrientation (pobj, *angle);
+    if (pobj == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"), "Objstring");
+        return;
+    }
 
-  sciDrawObj(pobj);
-  endFigureDataReading(pFigure);
+    sciSetCurrentObj(pobj);
+
+    /* Deactivated (synchronization) */
+#if 0
+    endFigureDataWriting(pFigure);
+
+    startFigureDataReading(pFigure);
+#endif
+    pobj = sciGetCurrentObj ();
+    *hdl = sciGetHandle(pobj);
+
+    setGraphicObjectProperty(pobj->UID, __GO_FONT_ANGLE__, angle, jni_double, 1);
+
+  /* Deactivated (drawing and synchronization) */
+#if 0
+    sciDrawObj(pobj);
+    endFigureDataReading(pFigure);
+#endif
 
 }
 

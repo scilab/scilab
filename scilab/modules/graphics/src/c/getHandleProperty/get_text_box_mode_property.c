@@ -36,7 +36,7 @@ int get_text_box_mode_property( sciPointObj * pobj )
     int iTextBoxMode = 0;
     int* piTextBoxMode = &iTextBoxMode;
 
-    getGraphicObjectProperty(pobj->UID, __GO_TEXT_BOX_MODE__, jni_int, piTextBoxMode);
+    getGraphicObjectProperty(pobj->UID, __GO_TEXT_BOX_MODE__, jni_int, &piTextBoxMode);
 
     if (piTextBoxMode == NULL)
     {

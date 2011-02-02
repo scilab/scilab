@@ -596,9 +596,9 @@ ConstructSubWin(sciPointObj * pparentfigure)
 
 
 /**
- * creates a new text object. However the object is not added in the handle list.
- * Its graphic and font context are also not initialized.
- * this function is to be used with objects including a text object.
+ * Creates a new text object. However the object is not added in the handle list.
+ * Its graphic and font contexts are initialized.
+ * This function is to be used with objects including a text object.
  */
 sciPointObj * allocateText( sciPointObj       * pparentsubwin,
                             char             ** text         ,
@@ -616,60 +616,81 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
                             BOOL                isfilled     ,
                             sciTextAlignment    align         )
 {
-  sciPointObj * pObj = NULL ;
-  sciText * ppText ;
-  int i;
-  if ( ( pObj = MALLOC( sizeof(sciPointObj) ) ) == NULL )
-  {
-    return NULL;
-  }
+    sciPointObj * pObj = NULL;
+    int textDimensions[2];
+    int visible = 0;
+    int* piVisible = &visible;
+    int clipRegionSet;
+    int clipState = 0;
+    int* piClipState = &clipState;
 
-  sciSetEntityType (pObj, SCI_TEXT);
+    double* clipRegion;
+    double position[3];
+    double setUserSize[2];
 
-  if ( ( pObj->pfeatures = MALLOC( sizeof (sciText) ) ) == NULL )
-  {
-    FREE( pObj ) ;
-    return NULL;
-  }
+    if ( ( pObj = MALLOC( sizeof(sciPointObj) ) ) == NULL )
+    {
+        return NULL;
+    }
 
-	/* Create the default relationShip */
-	createDefaultRelationShip(pObj);
-
-  ppText = pTEXT_FEATURE( pObj ) ;
-
-  initUserData(pObj);
+    pObj->UID = (char*) createGraphicObject(__GO_TEXT__);
 
 
-  /* it must be specified for some functions */
-  sciSetParent( pObj, pparentsubwin ) ;
+    /* Required to initialize the default contour properties */
+    setGraphicObjectProperty(pObj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
 
-  ppText->callback = (char *)NULL;
-  ppText->callbacklen = 0;
-  ppText->callbackevent = 100;
-  ppText->visible = sciGetVisibility( pparentsubwin );
+    /* To be implemented */
+#if 0
+    ppText->callback = (char *)NULL;
+    ppText->callbacklen = 0;
+    ppText->callbackevent = 100;
+    ppText->visible = sciGetVisibility( pparentsubwin );
+#endif
 
-  ppText->clip_region_set = 0 ;
-  sciInitIsClipping( pObj, sciGetIsClipping( pparentsubwin ) ) ;
-  sciSetClipping( pObj, sciGetClipping(pparentsubwin) );
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
+    setGraphicObjectProperty(pObj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
-  /* Check if we should load LaTex / MathML Java libraries */
-  loadTextRenderingAPI(text, nbRow, nbCol);
+    /* Clipping: to be checked for consistency */
+    clipRegionSet = 0;
+    setGraphicObjectProperty(pObj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-  /* allocate the matrix */
-  ppText->pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
-  if ( ppText->pStrings == NULL )
-  {
-    FREE(pObj->pfeatures);
-    FREE(pObj);
-    return NULL ;
-  }
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pObj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-  /* initialize position */
-  ppText->is3d = TRUE ;
-  ppText->x = x;
-  ppText->y = y;
-  ppText->z = 0.0; /**DJ.Abdemouche 2003**/
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    setGraphicObjectProperty(pObj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
+    /* Check if we should load LaTex / MathML Java libraries */
+    loadTextRenderingAPI(text, nbRow, nbCol);
+
+    /* Allocates the String array */
+    textDimensions[0] = nbRow;
+    textDimensions[1] = nbCol;
+
+    setGraphicObjectProperty(pObj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
+
+    setGraphicObjectProperty(pObj->UID, __GO_TEXT_STRINGS__, text, jni_string_vector, nbRow*nbCol);
+
+    position[0] = x;
+    position[1] = y;
+    position[2] = 0.0;
+
+    setGraphicObjectProperty(pObj->UID, __GO_POSITION__, position, jni_double_vector, 3);
+
+    /*
+     * Possibly useless.
+     * To be deleted
+     */
+#if 0
+    ppText->is3d = TRUE;
+#endif
+
+  /*
+   * This was used by the previous renderer to return the Text
+   * object's bounding box, but has no present equivalent within the MVC.
+   * To be implemented when needed
+   */
+#if 0
   /* initialize to a not too weird value */
   for (i = 0; i < 4; i++)
   {
@@ -677,58 +698,69 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
     ppText->corners[i][1] = ppText->y;
     ppText->corners[i][2] = ppText->z;
   }
+#endif
 
-  ppText->centeredPos = centerPos ;
-  ppText->autoSize = autoSize ;
+    setGraphicObjectProperty(pObj->UID, __GO_TEXT_BOX_MODE__, &centerPos, jni_int, 1);
+    setGraphicObjectProperty(pObj->UID, __GO_AUTO_DIMENSIONING__, &autoSize, jni_bool, 1);
 
-  /* userSize must be specified if the size is given by the user */
-  /* or the user specified a rectangle */
+    /* userSize must be specified if the size is given by the user */
+    /* or the user specified a rectangle */
+    if (!autoSize || centerPos)
+    {
+        setUserSize[0] = userSize[0];
+        setUserSize[1] = userSize[1];
+    }
+    else
+    {
+        setUserSize[0] = 0.0;
+        setUserSize[1] = 0.0;
+    }
 
-  if ( !autoSize || centerPos )
-  {
-    ppText->userSize[0] = userSize[0] ;
-    ppText->userSize[1] = userSize[1] ;
-  }
-  else
-  {
-    ppText->userSize[0] = 0.0 ;
-    ppText->userSize[1] = 0.0 ;
-  }
+    setGraphicObjectProperty(pObj->UID, __GO_TEXT_BOX__, setUserSize, jni_double_vector, 2);
 
-  ppText->stringsAlign = align ;
+    /* Required to get the correct MVC value from the sciTextAlignment enum */
+    align = align - 1;
 
-  pObj->pDrawer = NULL ;
+    /* Set alignment to left if its value is incorrect */
+    if (align < 0 || align > 2)
+    {
+        align = 0;
+    }
 
-  if ( sciInitGraphicContext( pObj ) == -1 )
-  {
-    FREE(pObj->pfeatures);
-    FREE(pObj);
-    return NULL ;
-  }
+    setGraphicObjectProperty(pObj->UID, __GO_ALIGNMENT__, &align, jni_int, 1);
 
-  if ( sciInitFontContext( pObj ) == -1 )
-  {
-    FREE(pObj->pfeatures);
-    FREE(pObj);
-    return NULL ;
-  }
+    if ( sciInitGraphicContext( pObj ) == -1)
+    {
+        deleteGraphicObject(pObj->UID);
+        FREE(pObj);
+        return NULL;
+    }
 
-  sciInitIsBoxed(pObj,isboxed);
-  sciInitIsLine(pObj,isline);
-  sciInitIsFilled(pObj,isfilled);
+    if ( sciInitFontContext( pObj ) == -1 )
+    {
+        deleteGraphicObject(pObj->UID);
+        FREE(pObj);
+        return NULL;
+    }
 
-  if ( foreground != NULL )
-  {
-    sciInitForeground(pObj,(*foreground));
-  }
+    setGraphicObjectProperty(pObj->UID, __GO_BOX__, &isboxed, jni_bool, 1);
+    setGraphicObjectProperty(pObj->UID, __GO_LINE_MODE__, &isline, jni_bool, 1);
+    setGraphicObjectProperty(pObj->UID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
 
-  if ( background != NULL )
-  {
-    sciInitBackground(pObj,(*background));
-  }
+    if ( foreground != NULL )
+    {
+        setGraphicObjectProperty(pObj->UID, __GO_LINE_COLOR__, foreground, jni_int, 1);
+    }
 
+    if ( background != NULL )
+    {
+        setGraphicObjectProperty(pObj->UID, __GO_BACKGROUND__, foreground, jni_int, 1);
+    }
 
-  return pObj;
+    /* Parent reset to the null object */
+    setGraphicObjectProperty(pObj->UID, __GO_PARENT__, "", jni_string, 1);
+
+    return pObj;
 }
 
 /**ConstructText
@@ -744,42 +776,37 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 	       double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background,
 	       BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align )
 {
-  if ( sciGetEntityType( pparentsubwin ) == SCI_SUBWIN )
-  {
-    sciPointObj * pobj = allocateText( pparentsubwin, text, nbRow, nbCol, x, y,
-                                       autoSize, userSize, centerPos, foreground, background,
-                                       isboxed, isline, isfilled, align ) ;
+    char* parentType;
+    sciPointObj* pobj;
+
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &parentType);
+
+    if (strcmp(parentType, __GO_AXES__) != 0)
+    {
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (sciPointObj*) NULL;
+    }
+
+    pobj = allocateText( pparentsubwin, text, nbRow, nbCol, x, y,
+        autoSize, userSize, centerPos, foreground, background,
+        isboxed, isline, isfilled, align );
 
     if ( pobj == NULL )
     {
-      return NULL ;
+        /* In this particular case, object deletion has already occured in allocateText */
+        return NULL;
     }
-
-    pobj->pObservers = DoublyLinkedList_new() ;
-    createDrawingObserver( pobj ) ;
-    pobj->pDrawer = NULL ;
 
     if (sciAddNewHandle (pobj) == -1)
     {
-      deallocateText( pobj ) ;
-      return  NULL;
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return NULL;
     }
 
-    if ( !(sciAddThisToItsParent (pobj, pparentsubwin)) )
-    {
-      deleteMatrix( pTEXT_FEATURE( pobj )->pStrings ) ;
-      sciDelHandle (pobj);
-      FREE(pobj->pfeatures);
-      FREE(pobj);
-      return NULL;
-    }
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
-    return pobj ;
-
-  }
-
-  Scierror(999, _("The parent has to be a SUBWIN\n"));
-  return NULL;
+    return pobj;
 }
 
 
@@ -2695,72 +2722,88 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 }
 
 /**sciConstructCompoundSeq
- * constructes an Compound of with the last n entities created in the current subwindow
- on entry subwin children list is
- null->s1->s2->...->sn->sn+1->...->null
+ * constructs a Compound of with the last n entities created in the current subwindow
+ on entry the subwin children list is
+ s1->s2->...->sk->sk+1->...->sk+n-1
+ with sk the first of the last n created entities
  on exit it is
- null->A->sn+1->...->null
- with A an Compound whose children list is:
- null->s1->s2->...->sn->null
+ s1->s2->...->sk-1->A
+ with A a Compound whose children list is:
+ sk->sk+1->...->sk+n-1
 */
 sciPointObj *
 ConstructCompoundSeq (int number)
 {
-  sciPointObj *pobj;
-  int i;
+    char** children;
+    char* parentFigure;
+    int numberChildren = 0;
+    int piNumberChildren = &numberChildren;
+    int i;
+    int visible = 0;
+    int piVisible = &visible;
 
-  sciPointObj *psubwin;
-  sciSubWindow *ppsubwin;
-  sciAgreg     *ppagr;
+    sciPointObj *pobj;
+    sciPointObj *psubwin;
 
-  psubwin = sciGetCurrentSubWin();
-  ppsubwin=pSUBWIN_FEATURE(psubwin);
+    psubwin = sciGetCurrentSubWin();
 
-  /* initialize the A Compound data structure */
-  if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-  {
-    return NULL;
-  }
+    /* Creates the Compound object A */
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+        return NULL;
+    }
 
-  sciSetEntityType (pobj, SCI_AGREG);
-  if ((pobj->pfeatures = MALLOC ((sizeof (sciAgreg)))) == NULL)
-  {
-    return NULL;
-  }
+    pobj->UID = createGraphicObject(__GO_COMPOUND__);
 
-  ppagr = pAGREG_FEATURE(pobj) ;
+    /* Adding the Compound's handle was previously done by sciStandardBuildOperations */
+    if (sciAddNewHandle(pobj) == -1)
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return NULL;
+    }
 
-  if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
-  {
-    FREE( pobj->pfeatures ) ;
-    FREE( pobj ) ;
-    return NULL ;
-  }
+    getGraphicObjectProperty(psubwin->UID, __GO_CHILDREN_COUNT__, jni_int, &piNumberChildren);
 
-  /* Remove the created objects after the compound and add them */
-  /* Under the compound in the same order */
-  for ( i = 0 ; i < number ; i++ )
-  {
-    /* Get the first object to move (the first son in the list is the compound) */
-    sciSons * sonToMove = sciGetSons(psubwin)->pnext;
-    sciPointObj * curObj = sonToMove->pointobj;
-    /* remove it from the subwin */
-    sciDelSonFromItsParent(sonToMove, psubwin);
-    /* add it to the agreg */
-    sciAddThisToItsParentLastPos(curObj, pobj);
-  }
+    getGraphicObjectProperty(psubwin->UID, __GO_CHILDREN__, jni_string_vector, &children);
 
-  sciInitSelectedSons(pobj);
+    /*
+     * Remove the last "number" created objects (located at the children list's end)
+     * and add them to the compound in the same order
+     */
+    for ( i = 0 ; i < number ; i++ )
+    {
+        /* Set the parent-child relationship between the Compound and each aggregated object */
+        setGraphicObjectRelationship(pobj->UID, children[numberChildren-number+i]);
+    }
 
-  /* set Compound properties*/
-  initUserData(pobj);
-  ppagr->callback = (char *)NULL;
-  ppagr->callbacklen = 0;
-  ppagr->visible = sciGetVisibility (sciGetParentFigure(pobj));
+    /* Sets the parent-child relationship for the Compound */
+    setGraphicObjectRelationship(psubwin->UID, pobj->UID);
 
-  ppagr->isselected = TRUE;
+    /* set Compound properties*/
+    /* To be implemented */
+#if 0
+    initUserData(pobj);
+    ppagr->callback = (char *)NULL;
+    ppagr->callbacklen = 0;
+#endif
 
-  return (sciPointObj *)pobj;
+    /*
+     * visibility is obtained from the parent Figure, whereas it is retrieved from the
+     * parent Axes in ConstructCompound.
+     * To be made consistent.
+     */
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
+    getGraphicObjectProperty(parentFigure, __GO_VISIBLE__, jni_bool, &piVisible);
+
+    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+
+    /* To be implemented */
+#if 0
+    ppagr->isselected = TRUE;
+#endif
+
+    return (sciPointObj *)pobj;
 }
 
 

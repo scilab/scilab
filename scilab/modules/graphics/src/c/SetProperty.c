@@ -2413,15 +2413,42 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
   }
   else if (strcmp(type, __GO_TEXT__) == 0)
   {
+      char* parentAxes;
+      double position[3];
+      int iView = 0;
+      int* piView = &iView;
+
       if ((*numrow * *numcol != 2)&&(*numrow * *numcol != 3))
-	{
-	  Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),2,3,"z");
-	  return -1;
-	}
-      pTEXT_FEATURE (pthis)->x = tab[0];
-      pTEXT_FEATURE (pthis)->y = tab[1];
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	pTEXT_FEATURE (pthis)->z = tab[2];
+      {
+          Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),2,3,"z");
+          return -1;
+      }
+
+      getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+      getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
+
+      position[0] = tab[0];
+      position[1] = tab[1];
+
+      if (iView)
+      {
+          position[2] = tab[2];
+      }
+      else
+      {
+          /*
+           * Required as the position has 3 coordinates, hence the z-coordinate
+           * is set to its current value, which must be retrieved beforehand.
+           * Avoiding doing this would require being able to set only the x and y
+           * coordinates if required.
+           */
+          double* currentPosition;
+          getGraphicObjectProperty(pthis->UID, __GO_POSITION__, jni_double_vector, &currentPosition);
+          position[2] = currentPosition[2];
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_POSITION__, position, jni_double_vector, 3);
+
       return 0;
   }
   else if (strcmp(type, __GO_SEGS__) == 0)

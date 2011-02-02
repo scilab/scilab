@@ -4,7 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,6 +20,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
@@ -31,53 +33,74 @@
 /*------------------------------------------------------------------------*/
 int get_box_property( sciPointObj * pobj )
 {
-    int iBoxType = 0;
-    int* piBoxType = &iBoxType;
+    char* type;
 
-    getGraphicObjectProperty(pobj->UID, __GO_BOX_TYPE__, jni_int, &piBoxType);
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
-    if (piBoxType == NULL) {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
-        return -1;
-    }
+    /*
+     * Required since the Box property is implemented differently for the Axes and Text
+     * objects (respectively as an Integer and a Boolean).
+     * To be corrected
+     */
+    if (strcmp(type, __GO_AXES__) == 0)
+    {
+        int iBoxType = 0;
+        int* piBoxType = &iBoxType;
 
-    if (iBoxType == 0)
-    {
-        return sciReturnString("off");
-    }
-    else if (iBoxType == 1)
-    {
-        return sciReturnString("on");
-    }
-    else if (iBoxType == 2)
-    {
-        return sciReturnString("hidden_axes");
-    }
-    else if (iBoxType == 3)
-    {
-        return sciReturnString("back_half");
-    }
+        getGraphicObjectProperty(pobj->UID, __GO_BOX_TYPE__, jni_int, &piBoxType);
 
-#if 0
-  /*
-   * To be implemented using the MVC framework, since the Text object's "Box" property is
-   * internally represented as a Boolean and its constant is __GO_BOX__ instead of __GO_BOX_TYPE__
-   */
-  else if (sciGetEntityType( pobj ) == SCI_TEXT)
-  {
-    int* box;
-    box = (int*) getGraphicObjectProperty(pobj->UID, __GO_BOX__, jni_bool);
+        if (piBoxType == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
+            return -1;
+        }
 
-    if (*box)
+        if (iBoxType == 0)
+        {
+            return sciReturnString("off");
+        }
+        else if (iBoxType == 1)
+        {
+            return sciReturnString("on");
+        }
+        else if (iBoxType == 2)
+        {
+            return sciReturnString("hidden_axes");
+        }
+        else if (iBoxType == 3)
+        {
+            return sciReturnString("back_half");
+        }
+
+    }
+    else if (strcmp(type, __GO_TEXT__) == 0)
     {
-      return sciReturnString( "on" );
+        int iBox = 0;
+        int* piBox = &iBox;
+
+        getGraphicObjectProperty(pobj->UID, __GO_BOX__, jni_bool, &piBox);
+
+        if (piBox == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
+            return -1;
+        }
+
+        if (iBox)
+        {
+            return sciReturnString( "on" );
+        }
+        else
+        {
+            return sciReturnString( "off" );
+        }
+
     }
     else
     {
-      return sciReturnString( "off" );
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
+        return -1;
     }
-  }
-#endif
 
 }
 /*------------------------------------------------------------------------*/
