@@ -343,7 +343,6 @@ public class EditFormatAction extends DefaultAction {
 				.getAsComponent(), NAME, (mxCell) selectedCell, graph);
 		
 		graph.getView().clear(selectedCell, true, true);
-		graph.updateCellSize(selectedCell);
 		graph.refresh();
 	}
 	
