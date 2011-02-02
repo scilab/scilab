@@ -25,7 +25,7 @@ public class Text extends ClippableTextObject {
 	private enum TextProperty { FONTANGLE, POSITION, ALIGNMENT, BOX, TEXTBOX, TEXTBOXMODE, AUTODIMENSIONING };
 
 	/** Alignment */
-	private enum Alignment { LEFT, CENTER, RIGHT;
+	public enum Alignment { LEFT, CENTER, RIGHT;
 
 		/**
 		 * Converts an integer to the corresponding enum

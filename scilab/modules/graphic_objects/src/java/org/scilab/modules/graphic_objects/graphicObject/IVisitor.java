@@ -15,7 +15,6 @@ import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
-import org.scilab.modules.graphic_objects.textObject.TextObject;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
@@ -54,8 +53,6 @@ public interface IVisitor {
     void visit(Plot3d plot3d);
 
     void visit(Text text);
-
-    void visit(TextObject textObject);
 
     void visit(Arrow arrow);
 

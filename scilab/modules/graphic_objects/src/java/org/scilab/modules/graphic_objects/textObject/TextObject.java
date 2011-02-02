@@ -13,17 +13,21 @@
 package org.scilab.modules.graphic_objects.textObject;
 
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
-import org.scilab.modules.graphic_objects.textObject.Font.FontProperty;
-import org.scilab.modules.graphic_objects.textObject.FormattedText.FormattedTextProperty;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_FRACTIONAL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FORMATTED_TEXT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TEXT_STRINGS__;
 
 
 /**
  * TextObject class
  * @author Manuel JULIACHS
  */
-public class TextObject extends ContouredObject {
+public abstract class TextObject extends ContouredObject {
 	/** TextObject properties names */
 	private enum TextObjectProperty { TEXT, TEXT_ARRAY_DIMENSIONS };
 
@@ -64,11 +68,6 @@ public class TextObject extends ContouredObject {
 		copy.setText(text);
 
 		return copy;
-	}
-
-	@Override
-	public void accept(IVisitor visitor) {
-		visitor.visit(this);
 	}
 
 	/**

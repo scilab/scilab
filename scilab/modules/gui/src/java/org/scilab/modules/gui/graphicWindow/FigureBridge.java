@@ -94,8 +94,8 @@ public class FigureBridge implements GraphicView {
                             String[] children = (String[]) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__);
                             for (String child : children) {
                                 Double[] angles = (Double[]) GraphicController.getController().getProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
-                                angles[0] += dy / 4.0;
-                                angles[1] += dx / 4.0;
+                                angles[0] -= dy / 4.0;
+                                angles[1] -= dx / 4.0;
                                 GraphicController.getController().setProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
                             }
 
