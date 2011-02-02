@@ -26,8 +26,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.IllegalFormatException;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -99,6 +99,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxICell;
@@ -818,11 +819,19 @@ public class XcosDiagram extends ScilabGraph {
     		
     		diagram.getModel().beginUpdate();
     		
-    		for (int i = 0; i < cells.length; ++i) {
-				if (cells[i] instanceof BasicBlock) {
-					// Update parent on cell addition
-					((BasicBlock) cells[i]).setParentDiagram(diagram);
+    		final Filter filter = new Filter() {
+				@Override
+				public boolean filter(Object cell) {
+					if (cell instanceof BasicBlock) {
+						// Update parent on cell addition
+						((BasicBlock) cell).setParentDiagram(diagram);
+					}
+					return false;
 				}
+			};
+    		
+    		for (int i = 0; i < cells.length; ++i) {
+    			mxGraphModel.filterDescendants(diagram.getModel(), filter, cells[i]);
     		}
     		
     		diagram.getModel().endUpdate();
