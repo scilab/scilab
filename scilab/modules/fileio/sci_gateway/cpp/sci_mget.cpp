@@ -15,8 +15,7 @@
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
-#include "double.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "file.hxx"
 #include "function.hxx"
 
@@ -44,38 +43,38 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     }
 
     //check parameter 1
-    if(in[0]->getType() != InternalType::RealDouble || in[0]->getAsDouble()->size_get() != 1)
+    if(in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"mget", 1);
         return Function::Error;
     }
 
-    iSize = static_cast<int>(in[0]->getAsDouble()->real_get()[0]);
+    iSize = static_cast<int>(in[0]->getAs<Double>()->getReal()[0]);
 
     if(in.size() >= 2)
     {//export format
-        if(in[1]->getType() != InternalType::RealString || in[1]->getAsString()->size_get() != 1)
+        if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mput", 2);
             return Function::Error;
         }
-        pstType = wide_string_to_UTF8(in[1]->getAsString()->string_get(0));
+        pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
 
     }
 
     if(in.size() == 3)
     {
-        if(in[2]->getType() != InternalType::RealDouble || in[2]->getAsDouble()->size_get() != 1)
+        if(in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"mput", 3);
             return Function::Error;
         }
 
-        iFile = static_cast<int>(in[2]->getAsDouble()->real_get()[0]);
+        iFile = static_cast<int>(in[2]->getAs<Double>()->getReal()[0]);
     }
 
     Double* pD = new Double(1, iSize);
-    pData = pD->real_get();
+    pData = pD->getReal();
 
     C2F(mget)(&iFile, pData, &iSize, pstType, &iErr);
 
@@ -91,7 +90,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
         if(iNewSize < iSize)
         {//read data are smaller then excepted size
             Double* pNewD = new Double(1, iNewSize);
-            double* pNewData = pNewD->real_get();
+            double* pNewData = pNewD->getReal();
             for(int i = 0 ; i < iNewSize ; i++)
             {
                 pNewData[i] = pData[i];

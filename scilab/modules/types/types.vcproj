@@ -285,6 +285,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\src\cpp\arrayof.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\bool.cpp"
 				>
 			</File>
@@ -313,7 +317,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\int.cpp"
+				RelativePath=".\src\cpp\int16.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\int32.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\int64.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\int8.cpp"
 				>
 			</File>
 			<File
@@ -345,15 +361,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\matrixpoly.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\mlist.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\poly.cpp"
+				RelativePath=".\src\cpp\polynom.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\singlepoly.cpp"
 				>
 			</File>
 			<File
@@ -380,6 +396,26 @@
 				RelativePath=".\src\cpp\types.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\cpp\types_tools.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\uint16.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\uint32.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\uint64.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\uint8.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -395,6 +431,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\arrayof.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\bool.hxx"
 				>
 			</File>
@@ -407,7 +447,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\colon.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\container.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\dollar.hxx"
 				>
 			</File>
 			<File
@@ -427,7 +475,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\ImplicitList.hxx"
+				RelativePath=".\includes\implicitlist.hxx"
 				>
 			</File>
 			<File
@@ -435,11 +483,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\internal.hxx"
+				RelativePath=".\includes\int16.hxx"
 				>
 			</File>
 			<File
-				RelativePath=".\includes\intt.hxx"
+				RelativePath=".\includes\int32.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\int64.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\int8.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\internal.hxx"
 				>
 			</File>
 			<File
@@ -471,15 +531,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\matrixpoly.hxx"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\mlist.hxx"
 				>
 			</File>
 			<File
-				RelativePath=".\includes\poly.hxx"
+				RelativePath=".\includes\polynom.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\singlepoly.hxx"
 				>
 			</File>
 			<File
@@ -504,6 +564,26 @@
 			</File>
 			<File
 				RelativePath=".\includes\types.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\types_tools.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\uint16.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\uint32.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\uint64.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\uint8.hxx"
 				>
 			</File>
 		</Filter>

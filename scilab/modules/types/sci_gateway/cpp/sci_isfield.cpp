@@ -12,8 +12,7 @@
 
 #include "function.hxx"
 #include "struct.hxx"
-#include "string.hxx"
-#include "bool.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -51,15 +50,15 @@ Function::ReturnValue sci_isfield(typed_list &in, int _iRetCount, typed_list &ou
     }
 
     Struct *pInStruct = in[0]->getAs<Struct>();
-    String *pInString = in[1]->getAs<String>();
+    String *pInString = in[1]->getAs<types::String>();
 
-    Bool *pOutBool = new Bool(pInString->rows_get(), pInString->cols_get());
+    Bool *pOutBool = new Bool(pInString->getRows(), pInString->getCols());
 
-    for (int i = 0 ; i < pInString->rows_get() ; ++i)
+    for (int i = 0 ; i < pInString->getRows() ; ++i)
     {
-        for(int j = 0 ; j < pInString->cols_get() ; ++j)
+        for(int j = 0 ; j < pInString->getCols() ; ++j)
         {
-            pOutBool->bool_set(i, j, pInStruct->exists(std::wstring(pInString->string_get(i,j))));
+            pOutBool->set(i, j, pInStruct->exists(std::wstring(pInString->get(i,j))));
         }
     }
 

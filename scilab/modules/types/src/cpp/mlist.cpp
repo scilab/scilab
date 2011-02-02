@@ -11,7 +11,7 @@
  */
 
 #include <sstream>
-#include "double.hxx"
+#include "arrayof.hxx"
 #include "mlist.hxx"
 
 namespace types
@@ -22,5 +22,4 @@ namespace types
     MList::MList() : List()
     {
     }
-
 }

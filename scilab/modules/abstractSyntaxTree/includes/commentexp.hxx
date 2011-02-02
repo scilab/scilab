@@ -41,7 +41,7 @@ namespace ast
         virtual CommentExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new CommentExp(location_get(), &comment_get());
+            return new CommentExp(*newloc, &comment_get());
         }
 
         /** \name Visitors entry point.

@@ -15,8 +15,7 @@ using regular express .                                         */
 /*------------------------------------------------------------------------*/
 
 #include "function.hxx"
-#include "double.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "funcmanager.hxx"
 extern "C"
 {
@@ -60,7 +59,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-    if(in[0]->getType() == InternalType::RealDouble && in[0]->getAsDouble()->size_get() == 0)
+    if(in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
     {
         Double *pD = Double::Empty();
         out.push_back(pD);
@@ -69,44 +68,44 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 
     if(in.size() == 3)
     {//"r" for regular expression
-        if(in[2]->getType() != InternalType::RealString)
+        if(in[2]->isString() == false)
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 3);
             return Function::Error;
         }
 
-        String* pS = in[2]->getAsString();
-        if(pS->size_get() != 1)
+        String* pS = in[2]->getAs<types::String>();
+        if(pS->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "grep", 3);
             return Function::Error;
         }
 
-        if(pS->string_get(0)[0] == 'r')
+        if(pS->get(0)[0] == 'r')
         {
             bRegularExpression = true;
         }
     }
 
-    if(in[0]->getType() != InternalType::RealString)
+    if(in[0]->isString() == false)
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 1);
         return Function::Error;
     }
 
-    if(in[1]->getType() != InternalType::RealString)
+    if(in[1]->isString() == false)
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 2);
         return Function::Error;
     }
 
-    String* pS1 = in[0]->getAsString();
-    String* pS2 = in[1]->getAsString();
+    String* pS1 = in[0]->getAs<types::String>();
+    String* pS2 = in[1]->getAs<types::String>();
 
 
-    for(int i = 0 ; i < pS2->size_get() ; i++)
+    for(int i = 0 ; i < pS2->getSize() ; i++)
     {
-        if(wcslen(pS2->string_get(i)) == 0)
+        if(wcslen(pS2->get(i)) == 0)
         {
 			Scierror(249,_("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"), "grep", 2);
             return Function::Error;
@@ -121,25 +120,25 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 	grepresults.positions = NULL;
 	grepresults.values = NULL;
 
-    char** pStr1 = (char**)MALLOC(sizeof(char*) * pS1->size_get());
-    for(int i = 0 ; i < pS1->size_get() ; i++)
+    char** pStr1 = (char**)MALLOC(sizeof(char*) * pS1->getSize());
+    for(int i = 0 ; i < pS1->getSize() ; i++)
     {
-        pStr1[i] = wide_string_to_UTF8(pS1->string_get(i));
+        pStr1[i] = wide_string_to_UTF8(pS1->get(i));
     }
 
-    char** pStr2 = (char**)MALLOC(sizeof(char*) * pS2->size_get());
-    for(int i = 0 ; i < pS2->size_get() ; i++)
+    char** pStr2 = (char**)MALLOC(sizeof(char*) * pS2->getSize());
+    for(int i = 0 ; i < pS2->getSize() ; i++)
     {
-        pStr2[i] = wide_string_to_UTF8(pS2->string_get(i));
+        pStr2[i] = wide_string_to_UTF8(pS2->get(i));
     }
 
     if(bRegularExpression)
     {
-        code_error_grep = GREP_NEW(&grepresults, pStr1, pS1->size_get(), pStr2, pS2->size_get());
+        code_error_grep = GREP_NEW(&grepresults, pStr1, pS1->getSize(), pStr2, pS2->getSize());
     }
     else
     {
-        code_error_grep = GREP_OLD(&grepresults, pStr1, pS1->size_get(), pStr2, pS2->size_get());
+        code_error_grep = GREP_OLD(&grepresults, pStr1, pS1->getSize(), pStr2, pS2->getSize());
     }
 
     switch (code_error_grep)
@@ -147,7 +146,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     case GREP_OK :
         {
             Double* pD1 = new Double(1, grepresults.currentLength);
-            double* pDbl1 = pD1->real_get();
+            double* pDbl1 = pD1->getReal();
             for (int i = 0 ; i < grepresults.currentLength ; i++ )
             {
                 pDbl1[i] = static_cast<double>(grepresults.values[i]);
@@ -158,7 +157,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
             if (_iRetCount == 2)
             {
                 Double* pD2 = new Double(1, grepresults.currentLength);
-                double* pDbl2 = pD2->real_get();
+                double* pDbl2 = pD2->getReal();
                 for (int i = 0 ; i < grepresults.currentLength ; i++ )
                 {
                     pDbl2[i] = static_cast<double>(grepresults.positions[i]);
@@ -182,13 +181,13 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         break;
     }
 
-    for(int i = 0 ; i < pS1->size_get() ; i++)
+    for(int i = 0 ; i < pS1->getSize() ; i++)
     {
         FREE(pStr1[i]);
     }
     FREE(pStr1);
 
-    for(int i = 0 ; i < pS2->size_get() ; i++)
+    for(int i = 0 ; i < pS2->getSize() ; i++)
     {
         FREE(pStr2[i]);
     }

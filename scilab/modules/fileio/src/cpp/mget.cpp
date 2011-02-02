@@ -179,7 +179,7 @@ void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
     *ierr=0;
     if(strlen(type) == 0) 
     {
-        sciprintW(_W("%ls: Wrong size for input argument #%d: Non-empty string expected.\n"), L"mput", 4, type);
+        sciprintW(_W("%ls: Wrong size for input argument #%d: Non-empty string expected.\n"), L"mget", 4, type);
         *ierr=2;
         return;
     }

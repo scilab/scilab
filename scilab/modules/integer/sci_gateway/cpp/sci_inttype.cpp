@@ -11,8 +11,7 @@
  */
 
 #include "function.hxx"
-#include "double.hxx"
-#include "int.hxx"
+#include "arrayof.hxx"
 #include "api_scilab.h"
 
 using namespace types;
@@ -33,30 +32,30 @@ Function::ReturnValue sci_inttype(typed_list &in, int _piRetCount, typed_list &o
     }
 
     Double *pRetVal = NULL;
-    switch(pitValue->getAsInt()->getIntType())
+    switch(pitValue->getType())
     {
-    case Int::Type8 :
+    case InternalType::RealInt8 :
         pRetVal = new Double(SCI_INT8);
         break;
-    case Int::TypeUnsigned8 :
+    case InternalType::RealUInt8 :
         pRetVal = new Double(SCI_UINT8);
         break;
-    case Int::Type16 :
+    case InternalType::RealInt16 :
         pRetVal = new Double(SCI_INT16);
         break;
-    case Int::TypeUnsigned16 :
+    case InternalType::RealUInt16 :
         pRetVal = new Double(SCI_UINT16);
         break;
-    case Int::Type32 :
+    case InternalType::RealInt32 :
         pRetVal = new Double(SCI_INT32);
         break;
-    case Int::TypeUnsigned32 :
+    case InternalType::RealUInt32 :
         pRetVal = new Double(SCI_INT32);
         break;
-    case Int::Type64 :
+    case InternalType::RealInt64 :
         pRetVal = new Double(SCI_INT64);
         break;
-    case Int::TypeUnsigned64 :
+    case InternalType::RealUInt64 :
         pRetVal = new Double(SCI_UINT64);
         break;
     }

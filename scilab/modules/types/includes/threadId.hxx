@@ -22,20 +22,21 @@ extern "C"
 
 namespace types
 {
-    class ThreadId : public GenericType
+    class ThreadId : public InternalType
     {
     public :
                                 ThreadId(__threadId _id);
         virtual                 ~ThreadId();
 
         ThreadId*               getAsThreadId(void);
+        bool                    isThreadId() { return true; }
         std::wstring            toString(int _iPrecision, int _iLineLen);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring    getTypeStr() {return L"ThreadId";}
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring    getShortTypeStr() {return L"tid";}
-        ThreadId*               clone();
+        InternalType*               clone();
 
         __threadId              getId();
         void                    setId(__threadId _id);

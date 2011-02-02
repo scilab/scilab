@@ -27,32 +27,33 @@ namespace types
                             Float(int _iRows, int _iCols, float **_pfReal);
                             Float(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
 
-        Float*              clone();
+        InternalType*       clone();
 
         /*data management*/
-        GenericType*        get_col_value(int _iPos);
+        GenericType*        getColumnValues(int _iPos);
 
-        float*              real_get() const;
-        float               real_get(int _iRows, int _iCols) const;
-        float*              img_get() const;
-        float               img_get(int _iRows, int _iCols) const;
+        float*              getReal() const;
+        float               getReal(int _iRows, int _iCols) const;
+        float*              getImg() const;
+        float               getImg(int _iRows, int _iCols) const;
 
-        bool                real_set(float *_pfReal);
-        bool                img_set(float *_pfImg);
+        bool                set(float *_pfReal);
+        bool                setImg(float *_pfImg);
 
 
-        bool                val_set(int _iRows, int _iCols, float _fReal);
-        bool                val_set(int _iRows, int _iCols, float _fReal, float _fImg);
+        bool                setValue(int _iRows, int _iCols, float _fReal);
+        bool                setValue(int _iRows, int _iCols, float _fReal, float _fImg);
 
         /*zero or one set filler*/
-        bool                zero_set();
-        bool                one_set();
+        bool                setZeros();
+        bool                setOnes();
 
         /*Config management*/
         void                whoAmI();
         bool                isComplex();
 
         Float*				getAsFloat(void);
+        bool                isFloat() { return true; }
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring getTypeStr() {return L"float";}
@@ -62,12 +63,12 @@ namespace types
         RealType            getType(void);
 
         /*clean values array*/
-        void                real_delete();
-        void                img_delete(bool _bSetReal = false);
-        void                all_delete(bool _bSetReal = false);
+        void                deleteReal();
+        void                deleteImg(bool _bSetReal = false);
+        void                deleteAll(bool _bSetReal = false);
 
         /*Internal "constructor*/
-        void                CreateFloat(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
+        void                createFloat(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
         std::wstring        toString(int _iPrecision, int _iLineLen);
 
         bool                operator==(const InternalType& it);

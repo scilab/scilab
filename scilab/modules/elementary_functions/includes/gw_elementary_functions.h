@@ -53,7 +53,6 @@ ELEMENTARY_FUNCTIONS_IMPEXP int sci_maxi(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_mini(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_nearfloat(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_number_properties(char *fname, int* _piKey);
-ELEMENTARY_FUNCTIONS_IMPEXP int sci_ones(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_prod(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_rand(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_real(char *fname, int* _piKey);
@@ -66,7 +65,6 @@ ELEMENTARY_FUNCTIONS_IMPEXP int sci_tan(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_testmatrix(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_tril(char *fname, int* _piKey);
 ELEMENTARY_FUNCTIONS_IMPEXP int sci_triu(char *fname, int* _piKey);
-ELEMENTARY_FUNCTIONS_IMPEXP int sci_zeros(char *fname, int* _piKey);
 
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/

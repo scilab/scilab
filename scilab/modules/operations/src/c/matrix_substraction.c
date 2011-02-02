@@ -12,6 +12,7 @@
 
 #include "core_math.h"
 #include "matrix_substraction.h"
+#include "operations_tools.h"
 #include "string.h"
 
 //Matrix - eye
@@ -65,20 +66,22 @@ int iSubstractComplexIdentityToComplexMatrix(double _dblReal1, double _dblImg1, 
 }
 
 //Scalar - Matrix
-int iSubstractRealMatrixToRealScalar(double* _pdblReal1, int _iRows, int _iCols, double _dblReal2, double* _pdblRealOut)
+int iSubstractRealMatrixToRealScalar(double* _pdblReal1, int* _piDims1, int _iDims1, double _dblReal2, double* _pdblRealOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize1 = GetSize(_piDims1, _iDims1);
+	for(i = 0 ; i < iSize1 ; i++)
 	{
 		_pdblRealOut[i] = _dblReal2 - _pdblReal1[i];
 	}
 	return 0;
 }
 
-int iSubstractComplexMatrixToRealScalar(double* _pdblReal1, double* _pdblImg1, int _iRows, int _iCols, double _dblReal2, double* _pdblRealOut, double* _pdblImgOut)
+int iSubstractComplexMatrixToRealScalar(double* _pdblReal1, double* _pdblImg1, int* _piDims1, int _iDims1, double _dblReal2, double* _pdblRealOut, double* _pdblImgOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize1 = GetSize(_piDims1, _iDims1);
+	for(i = 0 ; i < iSize1 ; i++)
 	{
 		_pdblRealOut[i] = _dblReal2 - _pdblReal1[i];
 		_pdblImgOut[i]	= - _pdblImg1[i];
@@ -86,10 +89,11 @@ int iSubstractComplexMatrixToRealScalar(double* _pdblReal1, double* _pdblImg1, i
 	return 0;
 }
 
-int iSubstractRealMatrixToComplexScalar(double* _pdblReal1, int _iRows, int _iCols, double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut)
+int iSubstractRealMatrixToComplexScalar(double* _pdblReal1, int* _piDims1, int _iDims1, double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize1 = GetSize(_piDims1, _iDims1);
+	for(i = 0 ; i < iSize1 ; i++)
 	{
 		_pdblRealOut[i] = _dblReal2 - _pdblReal1[i];
 		_pdblImgOut[i]	= _dblImg2;
@@ -97,10 +101,11 @@ int iSubstractRealMatrixToComplexScalar(double* _pdblReal1, int _iRows, int _iCo
 	return 0;
 }
 
-int iSubstractComplexMatrixToComplexScalar(double* _pdblReal1, double* _pdblImg1, int _iRows, int _iCols, double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut)
+int iSubstractComplexMatrixToComplexScalar(double* _pdblReal1, double* _pdblImg1, int* _piDims1, int _iDims1, double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize1 = GetSize(_piDims1, _iDims1);
+	for(i = 0 ; i < iSize1 ; i++)
 	{
 		_pdblRealOut[i] = _dblReal2 - _pdblReal1[i];
 		_pdblImgOut[i]	= _dblImg2  - _pdblImg1[i];
@@ -109,20 +114,22 @@ int iSubstractComplexMatrixToComplexScalar(double* _pdblReal1, double* _pdblImg1
 }
 
 //Matrix - Scalar
-int iSubstractRealScalarToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut)
+int iSubstractRealScalarToRealMatrix(double _dblReal1, double* _pdblReal2, int* _piDims2, int _iDims2, double* _pdblRealOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize2 = GetSize(_piDims2, _iDims2);
+	for(i = 0 ; i < iSize2 ; i++)
 	{
 		_pdblRealOut[i] = _pdblReal2[i] - _dblReal1;
 	}
 	return 0;
 }
 
-int iSubstractComplexScalarToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut)
+int iSubstractComplexScalarToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int* _piDims2, int _iDims2, double* _pdblRealOut, double* _pdblImgOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize2 = GetSize(_piDims2, _iDims2);
+	for(i = 0 ; i < iSize2 ; i++)
 	{
 		_pdblRealOut[i] = _pdblReal2[i] - _dblReal1;
 		_pdblImgOut[i]	= - _dblImg1;
@@ -130,10 +137,11 @@ int iSubstractComplexScalarToRealMatrix(double _dblReal1, double _dblImg1, doubl
 	return 0;
 }
 
-int iSubstractRealScalarToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut)
+int iSubstractRealScalarToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int* _piDims2, int _iDims2, double* _pdblRealOut, double* _pdblImgOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize2 = GetSize(_piDims2, _iDims2);
+	for(i = 0 ; i < iSize2 ; i++)
 	{
 		_pdblRealOut[i] = _pdblReal2[i] - _dblReal1;
 		_pdblImgOut[i]	= _pdblImg2[i];
@@ -141,10 +149,11 @@ int iSubstractRealScalarToComplexMatrix(double _dblReal1, double* _pdblReal2, do
 	return 0;
 }
 
-int iSubstractComplexScalarToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut)
+int iSubstractComplexScalarToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int* _piDims2, int _iDims2, double* _pdblRealOut, double* _pdblImgOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize2 = GetSize(_piDims2, _iDims2);
+	for(i = 0 ; i < iSize2 ; i++)
 	{
 		_pdblRealOut[i] = _pdblReal2[i] - _dblReal1;
 		_pdblImgOut[i]	= _pdblImg2[i] - _dblImg1;
@@ -154,20 +163,22 @@ int iSubstractComplexScalarToComplexMatrix(double _dblReal1, double _dblImg1, do
 
 
 //Matrix - Matrix
-int iSubstractRealMatrixToRealMatrix(double* _pdblReal1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut)
+int iSubstractRealMatrixToRealMatrix(double* _pdblReal1, double* _pdblReal2, int* _piDims, int _iDims, double* _pdblRealOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize = GetSize(_piDims, _iDims);
+	for(i = 0 ; i < iSize ; i++)
 	{
 		_pdblRealOut[i] = _pdblReal2[i] - _pdblReal1[i];
 	}
 	return 0;
 }
 
-int iSubstractComplexMatrixToRealMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut)
+int iSubstractComplexMatrixToRealMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize = GetSize(_piDims, _iDims);
+	for(i = 0 ; i < iSize ; i++)
 	{
 		_pdblRealOut[i] = _pdblReal2[i] - _pdblReal1[i];
 		_pdblImgOut[i]	= - _pdblImg1[i];
@@ -175,10 +186,11 @@ int iSubstractComplexMatrixToRealMatrix(double* _pdblReal1, double* _pdblImg1, d
 	return 0;
 }
 
-int iSubstractRealMatrixToComplexMatrix(double* _pdblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut)
+int iSubstractRealMatrixToComplexMatrix(double* _pdblReal1, double* _pdblReal2, double* _pdblImg2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize = GetSize(_piDims, _iDims);
+	for(i = 0 ; i < iSize ; i++)
 	{
 		_pdblRealOut[i] = _pdblReal2[i] - _pdblReal1[i];
 		_pdblImgOut[i]	= _pdblImg2[i];
@@ -186,10 +198,11 @@ int iSubstractRealMatrixToComplexMatrix(double* _pdblReal1, double* _pdblReal2, 
 	return 0;
 }
 
-int iSubstractComplexMatrixToComplexMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut)
+int iSubstractComplexMatrixToComplexMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, double* _pdblImg2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize = GetSize(_piDims, _iDims);
+	for(i = 0 ; i < iSize ; i++)
 	{
 		_pdblRealOut[i] = _pdblReal2[i] - _pdblReal1[i];
 		_pdblImgOut[i]	= _pdblImg2[i] - _pdblImg1[i];

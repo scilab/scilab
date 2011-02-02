@@ -13,8 +13,7 @@
 #include "core_gw.hxx"
 #include "funcmanager.hxx"
 #include "function.hxx"
-#include "bool.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "configvariable.hxx"
 
 
@@ -33,13 +32,13 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
 		ScierrorW(999, _W("%ls: Wrong type for input argument #%d: String expected.\n"), L"with_module", 1);
         return types::Function::Error;
     }
 
-    wchar_t* pwstModuleName = in[0]->getAsString()->string_get(0);
+    wchar_t* pwstModuleName = in[0]->getAs<types::String>()->get(0);
 
     types::Bool* pOut = new types::Bool(0);
     list<wstring> sModuleList = ConfigVariable::getModuleList();
@@ -48,7 +47,7 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
     {
         if(*it == pwstModuleName)
         {
-            pOut->bool_get()[0] = 1;
+            pOut->get()[0] = 1;
             break;
         }
     }

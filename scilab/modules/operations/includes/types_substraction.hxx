@@ -15,8 +15,7 @@
 #define __TYPES_SUB_H__
 
 #include "operation.hxx"
-#include "double.hxx"
-#include "matrixpoly.hxx"
+#include "arrayof.hxx"
 
 using namespace types;
 /*
@@ -30,8 +29,8 @@ using namespace types;
 EXTERN_OP InternalType* GenericMinus(InternalType *_pLeftOperand, InternalType *_pRightOperand);
 
 EXTERN_OP int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double **_pDoubleOut);
-EXTERN_OP int SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly, MatrixPoly **_pPolyOut);
-EXTERN_OP int SubstractDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly **_pPolyOut);
-EXTERN_OP int SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2, MatrixPoly **_pPolyOut);
+EXTERN_OP int SubstractPolyToDouble(Double *_pDouble, Polynom *_pPoly, Polynom **_pPolyOut);
+EXTERN_OP int SubstractDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom **_pPolyOut);
+EXTERN_OP int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut);
 
 #endif /* __TYPES_SUB_H__ */

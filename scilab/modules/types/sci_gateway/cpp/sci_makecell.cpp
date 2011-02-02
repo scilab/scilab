@@ -10,8 +10,7 @@
  *
  */
 
-#include "cell.hxx"
-#include "double.hxx"
+#include "arrayof.hxx"
 #include "function.hxx"
 #include "funcmanager.hxx"
 
@@ -30,15 +29,15 @@ Function::ReturnValue sci_makecell(typed_list &in, int _piRetCount, typed_list &
     //manage dims
 
     //check data type
-    if(in[0]->getType() != InternalType::RealDouble)
+    if(in[0]->isDouble() == false)
     {
         //FIXME: call overload function %_makecell to manage ohter input types
     }
 
-    Double* pD = in[0]->getAsDouble();
+    Double* pD = in[0]->getAs<Double>();
 
     //check vector format
-    if(pD->rows_get() != 1 && pD->cols_get() != 1 || pD->size_get() == 1)
+    if(pD->getRows() != 1 && pD->getCols() != 1 || pD->getSize() == 1)
     {
         return Function::Error;
     }
@@ -50,12 +49,12 @@ Function::ReturnValue sci_makecell(typed_list &in, int _piRetCount, typed_list &
     }
 
     Cell *pC  = NULL;
-    if(pD->rows_get() > 2 || pD->cols_get() > 2)
+    if(pD->getRows() > 2 || pD->getCols() > 2)
     {//arrayOf<Cell>
     }
     else
     {//2 dims
-        pC  = new Cell(static_cast<int>(pD->real_get()[0]), static_cast<int>(pD->real_get()[1]));
+        pC  = new Cell(static_cast<int>(pD->getReal()[0]), static_cast<int>(pD->getReal()[1]));
 
         for(int i = 1 ; i < in.size() ; i++)
         {
@@ -70,9 +69,9 @@ Function::ReturnValue sci_makecell(typed_list &in, int _piRetCount, typed_list &
 int prodDims(Double* _pVar)
 {
     int iProd = 1;
-    for(int i = 0 ; i < _pVar->size_get() ; i++)
+    for(int i = 0 ; i < _pVar->getSize() ; i++)
     {
-        iProd *= static_cast<int>(_pVar->real_get()[i]);
+        iProd *= static_cast<int>(_pVar->getReal()[i]);
     }
     return iProd;
 }

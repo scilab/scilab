@@ -9,7 +9,8 @@ OPERATIONS_C_SOURCES = 	src/c/doublecomplex.c \
 			src/c/matrix_substraction.c \
 			src/c/matrix_division.c \
 			src/c/matrix_power.c \
-			src/c/matrix_finite.c
+			src/c/matrix_finite.c \
+			src/c/operations_tools.c
 
 OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
 			src/cpp/types_substraction.cpp \

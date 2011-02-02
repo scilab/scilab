@@ -15,8 +15,7 @@
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
-#include "double.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -45,22 +44,22 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
 
     if(in.size() == 2)
     {//number of lines
-        if(in[1]->getType() != InternalType::RealDouble || in[1]->getAsDouble()->size_get() != 1)
+        if(in[1]->isDouble() == false || in[1]->getAs<Double>()->getSize() != 1)
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), "mgetl", 2);
             return Function::Error;
         }
 
-        iLinesExcepted = static_cast<int>(in[1]->getAsDouble()->real_get()[0]);
+        iLinesExcepted = static_cast<int>(in[1]->getAs<Double>()->getReal()[0]);
     }
 
-    if(in[0]->getType() == InternalType::RealDouble && in[0]->getAsDouble()->size_get() == 1)
+    if(in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 1)
     {
-        iFileID = static_cast<int>(in[0]->getAsDouble()->real_get()[0]);
+        iFileID = static_cast<int>(in[0]->getAs<Double>()->getReal()[0]);
     }
-    else if(in[0]->getType() == InternalType::RealString && in[0]->getAsString()->size_get() == 1)
+    else if(in[0]->isString() && in[0]->getAs<types::String>()->getSize() == 1)
     {
-        wchar_t *expandedFileName = expandPathVariableW(in[0]->getAsString()->string_get(0));
+        wchar_t *expandedFileName = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
 
         iErr = mopen(expandedFileName, L"rt", 0, &iFileID);
 
@@ -104,7 +103,7 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
 
     }
     String *pS = new String(iLinesRead, 1);
-    pS->string_set(wcReadedStrings);
+    pS->set(wcReadedStrings);
     out.push_back(pS);
 
     if(bCloseFile)

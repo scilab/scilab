@@ -30,7 +30,14 @@ namespace types
           RealInternal,
           /* Generic Types */
           RealGeneric,
-          RealInt,
+          RealInt8,
+          RealUInt8,
+          RealInt16,
+          RealUInt16,
+          RealInt32,
+          RealUInt32,
+          RealInt64,
+          RealUInt64,
           RealString,
           RealDouble,
           RealBool,
@@ -58,6 +65,8 @@ namespace types
           RealListDeleteOperation,
           RealListUndefinedOperation,
           RealFile,
+          RealColon,
+          RealDollar,
           RealThreadId
       };
 
@@ -110,36 +119,36 @@ namespace types
       T*                                getAs(void) { return dynamic_cast<T*>(this); }
 
       /* GenericType */
-      bool                              isGenericType(void);
+      virtual bool                      isGenericType(void);
       virtual GenericType*              getAsGenericType(void) { return NULL; }
 
-      /* String */
-      bool                              isString(void) { return (getType() == RealString); }
-      virtual String*                   getAsString(void) { return NULL; }
-
-      /* Double */
-      bool                              isDouble(void) { return (getType() == RealDouble); }
-      virtual Double*                   getAsDouble(void) { return NULL; }
+      virtual bool                      isString(void) { return false; }
+      virtual bool                      isDouble(void) { return false; }
 
       /* Float */
-      bool                              isFloat(void) { return (getType() == RealFloat); }
+      virtual bool                      isFloat(void) { return false; }
       virtual Float*                    getAsFloat(void) { return NULL; }
 
       /* Int */
-      bool                              isInt(void) { return (getType() == RealInt); }
-      virtual Int*                      getAsInt(void) { return NULL; }
+      virtual bool                      isInt(void) { return false; }
+      virtual bool                      isInt8(void) { return false; }
+      virtual bool                      isUInt8(void) { return false; }
+      virtual bool                      isInt16(void) { return false; }
+      virtual bool                      isUInt16(void) { return false; }
+      virtual bool                      isInt32(void) { return false; }
+      virtual bool                      isUInt32(void) { return false; }
+      virtual bool                      isInt64(void) { return false; }
+      virtual bool                      isUInt64(void) { return false; }
 
       /* Bool */
-      bool                              isBool(void) { return (getType() == RealBool); }
-      virtual Bool*                     getAsBool(void) { return NULL; }
+      virtual bool                      isBool(void) { return false; }
 
-      /* Poly Matrix */
-      bool                              isPoly(void) { return (getType() == RealPoly); }
-      virtual MatrixPoly*               getAsPoly(void) { return NULL; }
+      /* SinglePoly Matrix */
+      virtual bool                      isPoly(void) { return false; }
 
-      /* Single Poly */
-      bool                              isSinglePoly(void) { return (getType() == RealSinglePoly); }
-      virtual Poly*                     getAsSinglePoly(void) { return NULL; }
+      /* Single SinglePoly */
+      virtual bool                      isSinglePoly(void) { return false; }
+      virtual SinglePoly*               getAsSinglePoly(void) { return NULL; }
 
       /**
       ** \}
@@ -153,15 +162,15 @@ namespace types
       virtual Callable*                 getAsCallable(void) { return NULL; }
 
       /* Function */
-      bool                              isFunction(void) { return (getType() == RealFunction); }
+      virtual bool                      isFunction(void) { return false; }
       virtual Function*                 getAsFunction(void) { return NULL; }
 
       /* Macro */
-      bool                              isMacro(void) { return (getType() == RealMacro); }
+      virtual bool                      isMacro(void) { return false; }
       virtual Macro*                    getAsMacro(void) { return NULL; }
 
       /* MacroFile */
-      bool                              isMacroFile(void) { return (getType() == RealMacroFile); }
+      virtual bool                      isMacroFile(void) { return false; }
       virtual MacroFile*                getAsMacroFile(void) { return NULL; }
 
       /**
@@ -176,23 +185,22 @@ namespace types
       virtual Container*                getAsContainer(void) { return NULL; }
 
       /* List */
-      bool                              isList(void) { return (getType() == RealList); }
+      virtual bool                      isList(void) { return false; }
       virtual List*                     getAsList(void) { return NULL; }
 
       /* Struct */
-      bool                              isStruct(void) { return (getType() == RealStruct); }
+      virtual bool                      isStruct(void) { return false; }
       virtual Struct*                   getAsStruct(void) { return NULL; }
 
       /* Cell */
-      bool                              isCell(void) { return (getType() == RealCell); }
-      virtual Cell*                     getAsCell(void) { return NULL; }
+      virtual bool                      isCell(void) { return false; }
 
       /* TList */
-      bool                              isTList(void) { return (getType() == RealTList); }
+      virtual bool                      isTList(void) { return false; }
       virtual TList*                    getAsTList(void) { return NULL; }
 
       /* MList */
-      bool                              isMList(void) { return (getType() == RealMList); }
+      virtual bool                      isMList(void) { return false; }
       virtual MList*                    getAsMList(void) { return NULL; }
 
       /**
@@ -200,15 +208,19 @@ namespace types
       */
 
       /* ImplicitList */
-      bool                              isImplicitList(void) { return (getType() == RealImplicitList); }
+      virtual bool                      isImplicitList(void) { return false; }
       virtual ImplicitList*             getAsImplicitList(void) { return NULL; }
 
+      /* Colon & Dollar */
+      virtual bool                      isColon(void) { return false; }
+      virtual bool                      isDollar(void) { return false; }
+
       /* File */
-      bool                              isFile(void) { return (getType() == RealFile); }
+      virtual bool                      isFile(void) { return false; }
       virtual File*                     getAsFile(void) { return NULL; }
 
       /* ThreadId */
-      bool                              isThreadId(void) { return (getType() == RealThreadId); }
+      virtual bool                      isThreadId(void) { return false; }
       virtual ThreadId*                 getAsThreadId(void) { return NULL; }
 
       /**
@@ -217,16 +229,20 @@ namespace types
       */
 
       /* ListOperation */
-      bool                              isListOperation(void) { return (getType() == RealListOperation); }
+      virtual bool                      isListOperation(void) { return false; }
       virtual ListOperation*            getAsListOperation(void) { return NULL; }
 
       /* ListDelete */
-      bool                              isListDelete(void) { return (getType() == RealListDeleteOperation); }
+      virtual bool                      isListDelete(void) { return false; }
       virtual ListDelete*               getAsListDelete(void) { return NULL; }
 
       /* ListAdd */
-      bool                              isListInsert(void) { return (getType() == RealListInsertOperation); }
+      virtual bool                      isListInsert(void) { return false; }
       virtual ListInsert*               getAsListInsert(void) { return NULL; }
+
+      /* ListUndefined */
+      virtual bool                      isListUndefined(void) { return false; }
+      virtual ListUndefined*            getAsListUndefined(void) { return NULL; }
 
       /**
       ** \}

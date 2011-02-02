@@ -16,8 +16,7 @@ using regular expression .                                      */
 /*------------------------------------------------------------------------*/
 #include "function.hxx"
 #include "context.hxx"
-#include "types.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "string_gw.hxx"
 
 extern "C"
@@ -65,29 +64,29 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Single string expected.\n"), L"regexp", 1);
         return Function::Error;
     }
-    pwstInput = in[0]->getAsString()->string_get(0);
+    pwstInput = in[0]->getAs<types::String>()->get(0);
 
-    if(in[1]->isString() == false || in[1]->getAsString()->size_get() != 1)
+    if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Single string expected.\n"), L"regexp", 2);
         return Function::Error;
     }
-    pwstPattern = in[1]->getAsString()->string_get(0);
+    pwstPattern = in[1]->getAs<types::String>()->get(0);
 
     if(in.size() == 3)
     {
-        if(in[2]->isString() == false || in[2]->getAsString()->size_get() != 1)
+        if(in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Single string expected.\n"), L"regexp", 3);
             return Function::Error;
         }
 
-        if(in[2]->getAsString()->string_get(0)[0] != WSTR_ONCE)
+        if(in[2]->getAs<types::String>()->get(0)[0] != WSTR_ONCE)
         {
            ScierrorW(999,_W("%ls: Wrong type for input argument #%d: '%ls' expected.\n"), L"regexp", 3, L"o");
            return Function::Error;
@@ -137,7 +136,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
 
 
     Double* pStart = new Double(1, iOccurs);
-    double* pdblStart = pStart->real_get();
+    double* pdblStart = pStart->getReal();
 
     for(int i = 0 ; i < iOccurs ; i++)
     {
@@ -149,7 +148,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     if(_iRetCount > 1)
     {
         Double* pEnd = new Double(1, iOccurs);
-        double* pdblEnd = pEnd->real_get();
+        double* pdblEnd = pEnd->getReal();
         for(int i = 0 ; i < iOccurs ; i++)
         {
             pdblEnd[i]   = piEnd[i];
@@ -163,7 +162,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         if(iOccurs == 0)
         {
             pS = new String(1,1);
-            pS->string_set(0, L"");
+            pS->set(0, L"");
         }
         else
         {
@@ -173,7 +172,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
                 wchar_t* pwstTemp = new wchar_t[piEnd[i] - piStart[i] + 1];
                 wcsncpy(pwstTemp, pwstInput + piStart[i], piEnd[i] - piStart[i]);
                 pwstTemp[piEnd[i] - piStart[i]] = 0;
-                pS->string_set(i, 0, pwstTemp);
+                pS->set(i, 0, pwstTemp);
                 delete[] pwstTemp;
             }
         }

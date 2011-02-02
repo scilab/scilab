@@ -16,7 +16,7 @@
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -57,17 +57,17 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
     if(in.size() > 2)
     {
-        if(in[2]->isString() == false && in[2]->getAsString()->size_get() != 1)
+        if(in[2]->isString() == false && in[2]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"strindex", 3);
             return Function::Error;
         }
 
-        if(in[2]->getAsString()->string_get(0)[0] == WCHAR_R)
+        if(in[2]->getAs<types::String>()->get(0)[0] == WCHAR_R)
         {
             bRegExp = true;
         }
-        else if(in[2]->getAsString()->string_get(0)[0] == WCHAR_S)
+        else if(in[2]->getAs<types::String>()->get(0)[0] == WCHAR_S)
         {
             bRegExp = false;
         }
@@ -78,28 +78,28 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         }
     }
 
-    if(in[1]->isString() == false || (in[1]->getAsString()->rows_get() != 1 && in[1]->getAsString()->cols_get() != 1))
+    if(in[1]->isString() == false || (in[1]->getAs<types::String>()->getRows() != 1 && in[1]->getAs<types::String>()->getCols() != 1))
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string or a string vector expected.\n"), L"strindex", 2);
         return Function::Error;
     }
 
-    String* pS = in[1]->getAsString();
-    wchar_t** pwstSearch = pS->string_get();
+    String* pS = in[1]->getAs<types::String>();
+    wchar_t** pwstSearch = pS->get();
 
-    if(in[0]->isDouble() && in[0]->getAsDouble()->isEmpty())
+    if(in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
     {
         out.push_back(Double::Empty());
         return Function::OK;
     }
 
-    if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"strindex", 1);
         return Function::Error;
     }
 
-    wchar_t* pwstData = in[0]->getAsString()->string_get()[0];
+    wchar_t* pwstData = in[0]->getAs<types::String>()->get()[0];
 
     //be sure to not alloc 0
     In* pstrResult = new In[wcslen(pwstData) == 0 ? 1 : wcslen(pwstData)];
@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     if(bRegExp)
     {//pcre
         pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
-        for(int i = 0 ; i < pS->size_get() ; i++)
+        for(int i = 0 ; i < pS->getSize() ; i++)
         {
             int iStart      = 0;
             int iEnd        = 0;
@@ -140,7 +140,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     }
     else
     {
-        for(int i = 0 ; i < pS->size_get() ; i++)
+        for(int i = 0 ; i < pS->getSize() ; i++)
         {
             wchar_t* pCur = pwstData;
             do
@@ -162,7 +162,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     Double* pIndex = new Double(1, iValues);
     for(int i = 0 ; i < iValues ; i++)
     {
-        pIndex->val_set(0, i, pstrResult[i].data);
+        pIndex->set(0, i, pstrResult[i].data);
     }
 
     out.push_back(pIndex);
@@ -172,7 +172,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         Double* pPos = new Double(1, iValues);
         for(int i = 0 ; i < iValues ; i++)
         {
-            pPos->val_set(0, i, pstrResult[i].position);
+            pPos->set(0, i, pstrResult[i].position);
         }
         out.push_back(pPos);
     }

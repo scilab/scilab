@@ -26,11 +26,11 @@ namespace types
 
         virtual void            whoAmI(void) { std::cout << "types::Container"; }
 
-        virtual int             size_get() = 0 ;
+        virtual int             getSize() = 0 ;
 
-        virtual Container*  getAsContainer(void) { return this; }
+        virtual Container*      getAsContainer(void) { return this; }
 
-        virtual bool        isAssignable(void) { return true; }
+        virtual bool            isAssignable(void) { return true; }
 
         virtual RealType        getType(void) { return RealContainer; }
         virtual bool            isContainer(void) { return true; }

@@ -40,13 +40,14 @@ namespace types
                                 ~Function();
 
         //FIXME : Should not return NULL
-        Function*               clone();
+        InternalType*           clone();
 
         static Function*        createFunction(std::wstring _szName, GW_FUNC _pFunc, std::wstring _szModule);
         static Function*        createFunction(std::wstring _szName, OLDGW_FUNC _pFunc, std::wstring _szModule);
 
         Function*               getAsFunction(void);
         RealType                getType(void) { return RealFunction; }
+        bool                    isFunction() { return true; }
 
         void                    whoAmI();
 
@@ -72,9 +73,9 @@ namespace types
                                 WrapFunction(std::wstring _szName, OLDGW_FUNC _pFunc, std::wstring _szModule);
 
                                 Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
-   WrapFunction*                clone();
+        InternalType*           clone();
 
-    OLDGW_FUNC                  getFunc() { return m_pOldFunc; }
+        OLDGW_FUNC              getFunc() { return m_pOldFunc; }
 
     private :
         OLDGW_FUNC              m_pOldFunc;

@@ -12,16 +12,15 @@
 
 #include <stdlib.h>
 
-#include "sci_path.h"
-
 #include "configvariable.hxx"
 
 #include "setenvvar.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "context.hxx"
 
 extern "C"
 {
+#include "sci_path.h"
 #include "os_wcsdup.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"

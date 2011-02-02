@@ -12,8 +12,7 @@
 
 #include "localization_gw.hxx"
 #include "function.hxx"
-#include "bool.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -42,13 +41,13 @@ Function::ReturnValue sci_setlanguage(typed_list &in, int _piRetCount, typed_lis
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<String>()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"setlanguage", 1);
         return Function::Error;
     }
 
-    wchar_t *param = in[0]->getAs<String>()->string_get(0);
+    wchar_t *param = in[0]->getAs<types::String>()->get(0);
     wchar_t *newlanguage = convertlanguagealias(param);
 
     if ( !LanguageIsOK(param) && (newlanguage == NULL) )

@@ -311,8 +311,6 @@ sci_gateway/c/sci_sin.c \
 sci_gateway/c/sci_sqrt.c \
 sci_gateway/c/sci_asin.c \
 sci_gateway/c/sci_sign.c \
-sci_gateway/c/sci_zeros.c \
-sci_gateway/c/sci_ones.c \
 sci_gateway/c/sci_rat.c \
 sci_gateway/c/gw_elementary_functions.c \
 sci_gateway/c/sci_number_properties.c \
@@ -388,7 +386,9 @@ GATEWAY_CPP_SOURCES =  \
 	sci_gateway/cpp/sci_isequal.cpp \
 	sci_gateway/cpp/elem_func_gw.cpp \
 	sci_gateway/cpp/sci_size.cpp \
-	sci_gateway/cpp/sci_eye.cpp
+	sci_gateway/cpp/sci_eye.cpp \
+    sci_gateway/cpp/sci_zeros.cpp \
+    sci_gateway/cpp/sci_ones.cpp
 
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f

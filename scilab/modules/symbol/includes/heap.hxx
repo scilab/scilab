@@ -15,8 +15,7 @@
 
 #include <iostream>
 #include <list>
-#include "bool.hxx"
-#include "double.hxx"
+#include "arrayof.hxx"
 #include "symbol.hxx"
 #include "table.hxx"
 
@@ -164,8 +163,6 @@ namespace symbol
         */
         types::InternalType* getGlobalValue(const std::wstring& key) const
         {
-            bool isVisible = isGlobalVisible(key);
-
             std::list<Scope*>::const_reverse_iterator it_list_scope;
 
             for (it_list_scope = this->l_scope.rbegin() ; it_list_scope != this->l_scope.rend() ; ++it_list_scope)

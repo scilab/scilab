@@ -31,7 +31,7 @@
 #include "yaspio.hxx"
 #include "expandPathVariable.h"
 #include "configvariable.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -70,27 +70,27 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
 	//param 1, library name
 	InternalType* pIT = in[0];
-	if(pIT->getType() != InternalType::RealString)
+	if(pIT->isString() == false)
 	{
 		return Function::Error;
 	}
 
-	String *pS = pIT->getAsString();
-	if(pS->size_get() != 1)
+	String *pS = pIT->getAs<types::String>();
+	if(pS->getSize() != 1)
 	{
 		return Function::Error;
 	}
-	pstLibName = pS->string_get(0);
+	pstLibName = pS->get(0);
 
 	//param 2, library path
 	pIT = in[1];
-	if(pIT->getType() != InternalType::RealString)
+	if(pIT->isString() == false)
 	{
 		return Function::Error;
 	}
 
-	pS = pIT->getAsString();
-	if(pS->size_get() != 1)
+	pS = pIT->getAs<types::String>();
+	if(pS->getSize() != 1)
 	{
 		return Function::Error;
 	}
@@ -102,15 +102,15 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     if(in.size() > 3)
     {//versbose flag
         pIT = in[3];
-	    if(pIT->getType() != InternalType::RealBool)
+	    if(pIT->isBool() == false)
 	    {
 		    return Function::Error;
 	    }
 
-        bVerbose = pIT->getAsBool()->bool_get()[0] == 1;
+        bVerbose = pIT->getAs<types::Bool>()->get()[0] == 1;
     }
 
-	wchar_t* pstFile = pS->string_get(0);
+	wchar_t* pstFile = pS->get(0);
     pstParsePath = expandPathVariableW(pstFile);
 
 	os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%lslib", pstParsePath, FILE_SEPARATOR);

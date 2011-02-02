@@ -14,7 +14,7 @@
  */
 
 #include "function.hxx"
-#include "int.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -46,7 +46,33 @@ SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecis
 		return sciErr;
 	}
 
-	*_piPrecision = ((InternalType*)_piAddress)->getAsInt()->getIntType();
+    switch(((InternalType*)_piAddress)->getType())
+    {
+    case GenericType::RealInt8 :
+        *_piPrecision = SCI_INT8;
+        break;
+    case GenericType::RealUInt8 :
+        *_piPrecision = SCI_UINT8;
+        break;
+    case GenericType::RealInt16 :
+        *_piPrecision = SCI_INT16;
+        break;
+    case GenericType::RealUInt16 :
+        *_piPrecision = SCI_UINT16;
+        break;
+    case GenericType::RealInt32 :
+        *_piPrecision = SCI_INT32;
+        break;
+    case GenericType::RealUInt32 :
+        *_piPrecision = SCI_UINT32;
+        break;
+    case GenericType::RealInt64 :
+        *_piPrecision = SCI_INT64;
+        break;
+    case GenericType::RealUInt64 :
+        *_piPrecision = SCI_UINT64;
+        break;
+    }
 	return sciErr;
 }
 
@@ -125,7 +151,33 @@ SciErr getCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, 
 		return sciErr;
 	}
 
-	*_piData	= (void*)((InternalType*)_piAddress)->getAsInt()->data_get();
+    switch(((InternalType*)_piAddress)->getType())
+    {
+    case GenericType::RealInt8 :
+        *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::Int8>()->get();
+        break;
+    case GenericType::RealUInt8 :
+        *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::UInt8>()->get();
+        break;
+    case GenericType::RealInt16 :
+        *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::Int16>()->get();
+        break;
+    case GenericType::RealUInt16 :
+        *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::UInt16>()->get();
+        break;
+    case GenericType::RealInt32 :
+        *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::Int32>()->get();
+        break;
+    case GenericType::RealUInt32 :
+        *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::UInt32>()->get();
+        break;
+    case GenericType::RealInt64 :
+        *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::Int64>()->get();
+        break;
+    case GenericType::RealUInt64 :
+        *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::UInt64>()->get();
+        break;
+    }
 	return sciErr;
 }
 
@@ -435,29 +487,55 @@ SciErr allocMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _
 
 SciErr allocCommonMatrixOfInteger(void* _pvCtx, int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** _pvData)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 
-	if(_pvCtx == NULL)
-	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "allocMatrixOfInteger");
-		return sciErr;
-	}
+    if(_pvCtx == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "allocMatrixOfInteger");
+        return sciErr;
+    }
 
-	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-  InternalType** out = pStr->m_pOut;
+    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    InternalType** out = pStr->m_pOut;
 
-	Int *pI = Int::createInt(_iRows, _iCols, (Int::IntType)_iPrecision);
-	if(pI == NULL)
-	{
-		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfInteger");
-		return sciErr;
-	}
+    InternalType *pIT;
+    switch(_iPrecision)
+    {
+    case SCI_INT8 :
+        pIT = new Int8(_iRows, _iCols, (char**)_pvData);
+        break;
+    case SCI_UINT8 :
+        pIT = new UInt8(_iRows, _iCols, (unsigned char**)_pvData);
+        break;
+    case SCI_INT16 :
+        pIT = new Int16(_iRows, _iCols, (short**)_pvData);
+        break;
+    case SCI_UINT16 :
+        pIT = new UInt16(_iRows, _iCols, (unsigned short**)_pvData);
+        break;
+    case SCI_INT32 :
+        pIT = new Int32(_iRows, _iCols, (int**)_pvData);
+        break;
+    case SCI_UINT32 :
+        pIT = new UInt32(_iRows, _iCols, (unsigned int**)_pvData);
+        break;
+    case SCI_INT64 :
+        pIT = new Int64(_iRows, _iCols, (long long**)_pvData);
+        break;
+    case SCI_UINT64 :
+        pIT = new UInt64(_iRows, _iCols, (unsigned long long**)_pvData);
+        break;
+    }
 
-	int rhs = _iVar - api_Rhs((int*)_pvCtx);
-	out[rhs - 1] = pI;
+    if(pIT == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfInteger");
+        return sciErr;
+    }
 
-	*_pvData = (void*)pI->data_get();
-	return sciErr;
+    int rhs = _iVar - api_Rhs((int*)_pvCtx);
+    out[rhs - 1] = pIT;
+    return sciErr;
 }
 
 SciErr fillCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pvData)

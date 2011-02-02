@@ -18,35 +18,37 @@
 
 namespace types
 {
-    class Poly : public GenericType
+    class SinglePoly : public GenericType
     {
     public :
-                                Poly();
-                                Poly(double** _pdblCoefR, int _iRank);
-                                Poly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
-                                Poly(Double** _poCoefR, int _iRank);
-                                ~Poly();
+                                SinglePoly();
+                                SinglePoly(double** _pdblCoefR, int _iRank);
+                                SinglePoly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
+                                SinglePoly(Double** _poCoefR, int _iRank);
+        virtual                 ~SinglePoly();
 
         // FIXME : Should not return NULL;
-        Poly*                   clone() { std::cout << "Poly::clone" << std::endl; return NULL; }
+        SinglePoly*             clone();
 
-        Poly*                   getAsSinglePoly(void);
+        SinglePoly*             getAsSinglePoly(void);
+        bool                    isSinglePoly() { return true; }
         /*Config management*/
         void                    whoAmI();
         bool                    isComplex();
-        void                    complex_set(bool _bComplex);
+        void                    setComplex(bool _bComplex);
 
-        int                     rank_get();
-        bool                    rank_set(int _iRank, bool bSave = false);
-        Double*                 coef_get();
-        double*                 coef_real_get();
-        double*                 coef_img_get();
-        bool                    coef_set(Double *_poPow);
-        bool                    coef_set(double *_pdblCoefR, double *_pdblCoefI);
+        int                     getRank();
+        bool                    setRank(int _iRank, bool bSave = false);
+        Double*                 getCoef();
+        double*                 getCoefReal();
+        double*                 getCoefImg();
+        bool                    setCoef(Double *_poPow);
+        bool                    setCoef(double *_pdblCoefR, double *_pdblCoefI);
         bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
-        void                    update_rank(void);
+        void                    updateRank(void);
 
-        void                    CreatePoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
+        GenericType*            getColumnValues(int _iPos);
+        void                    createPoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
         void                    toStringReal(int _iPrecision, int _iLineLen, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
         void                    toStringImg(int _iPrecision, int _iLineLen, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 

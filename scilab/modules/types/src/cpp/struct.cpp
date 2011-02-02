@@ -40,8 +40,8 @@ namespace types
     */
     Struct::Struct(Struct *_oStructCopyMe)
     {
-        m_iRows = _oStructCopyMe->rows_get();
-        m_iCols = _oStructCopyMe->cols_get();
+        m_iRows = _oStructCopyMe->getRows();
+        m_iCols = _oStructCopyMe->getCols();
         std::map<std::wstring, InternalType *>::iterator itValues;
         m_plData = new std::map<std::wstring, InternalType *>;
 
@@ -63,7 +63,7 @@ namespace types
     ** size_get
     ** Return the number of elements in struct
     */
-    int Struct::size_get()
+    int Struct::getSize()
     {
         return (int)m_plData->size();
     }
@@ -133,11 +133,15 @@ namespace types
     ** Clone
     ** Create a new Struct and Copy all values.
     */
-    Struct *Struct::clone()
+    InternalType* Struct::clone()
     {
         return new Struct(this);
     }
 
+    GenericType* Struct::getColumnValues(int _iPos)
+    {
+        return NULL;
+    }
     /**
     ** toString to display Structs
     ** FIXME : Find a better indentation process
@@ -146,7 +150,7 @@ namespace types
     {
         std::wostringstream ostr;
 
-        if (size_get() == 0)
+        if (getSize() == 0)
         {
             ostr << L"Empty struct" << std::endl;
         }
@@ -160,8 +164,8 @@ namespace types
                 switch  ((itValues->second)->getType())
                 {
                 case RealStruct :
-                    ostr << L"[ " << (itValues->second)->getAsStruct()->rows_get()
-                        << L" x " << (itValues->second)->getAsStruct()->cols_get()
+                    ostr << L"[ " << (itValues->second)->getAsStruct()->getRows()
+                        << L" x " << (itValues->second)->getAsStruct()->getCols()
                         << L" struct ]";
                     break;
                 default :

@@ -9,6 +9,7 @@
 
 function %r_p(h)
 
+disp("coucou")
 if with_texmacs() then
   texout(h);
 else

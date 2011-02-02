@@ -45,7 +45,7 @@ namespace ast
         virtual DollarVar* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new DollarVar(location_get());
+            return new DollarVar(*newloc);
         }
 
         /** \name Visitors entry point.

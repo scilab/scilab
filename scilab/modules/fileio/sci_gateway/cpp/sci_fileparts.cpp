@@ -12,7 +12,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
@@ -59,7 +59,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
         return Function::Error;
     }
 
-    if(in[0]->isString() == false && in[0]->getAsString()->size_get() != 1)
+    if(in[0]->isString() == false && in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"fileparts", 1);
         return Function::Error;
@@ -67,13 +67,13 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 
     if(in.size() == 2)
     {
-        if(in[1]->isString() == false && in[1]->getAsString()->size_get() != 1)
+        if(in[1]->isString() == false && in[1]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"fileparts", 2);
             return Function::Error;
         }
 
-        wchar_t* pParts = in[1]->getAsString()->string_get()[0];
+        wchar_t* pParts = in[1]->getAs<types::String>()->get()[0];
 
         if(wcscmp(pParts, FILEPARTS_PATH_SELECTOR) == 0)
         {
@@ -97,7 +97,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
         }
     }
 
-    wchar_t* pPath = in[0]->getAsString()->string_get()[0];
+    wchar_t* pPath = in[0]->getAs<types::String>()->get()[0];
 
     wchar_t* pwstDrive      = new wchar_t[wcslen(pPath) + 1];
     wchar_t* pwstDirectory  = new wchar_t[wcslen(pPath) + 1];

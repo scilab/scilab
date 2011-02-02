@@ -14,7 +14,7 @@
 #include "funcmanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -41,13 +41,13 @@ Function::ReturnValue sci_createdir(typed_list &in, int _iRetCount, typed_list &
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"createdir", 1);
         return Function::Error;
     }
 
-    wchar_t* pwstPath = expandPathVariableW(in[0]->getAsString()->string_get(0));
+    wchar_t* pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
     int iRet = 0;
     if(!isdirW(pwstPath))
     {

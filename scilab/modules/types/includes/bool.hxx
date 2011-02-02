@@ -10,49 +10,40 @@
 *
 */
 
-#ifndef __BOOL_HH__
-#define __BOOL_HH__
+// This code is separated in bool.hxx
+// but will be inlined in arrayof.hxx
+//
+// If you need additionnal headers, please add it in arrayof.hxx
 
-#include "types.hxx"
+#ifndef __ARRAYOF_HXX__
+    #error This file must only be include by arrayof.hxx
+#endif
 
 namespace types
 {
-    class Bool : public GenericType
+    class Bool : public ArrayOf<int>
     {
     public :
                                 Bool(int _bReal);
                                 Bool(int _iRows, int _iCols);
+                                Bool(int _iDims, int* _piDims);
                                 Bool(int _iRows, int _iCols, int **_piData);
                                 ~Bool();
 
-		Bool*                   clone();
-
-		/*data management*/
-		int*                    bool_get() const;
-		int                     bool_get(int _iRows, int _iCols) const;
-
-		bool                    bool_set(int *_piData);
-		bool                    bool_set(int _iRows, int _iCols, int _iData);
+        InternalType*           clone();
 
 
-		/*zero or one set filler*/
-		bool                    false_set();
-		bool                    true_set();
+        /*zero or one set filler*/
+        bool                    setFalse();
+        bool                    setTrue();
 
-		/*Config management*/
+        /*Config management*/
         void                    whoAmI();
-		bool                    isComplex();
 
-        Bool*                   getAsBool(void);
-        std::wstring            toString(int _iPrecision, int _iLineLen);
+        bool                    isBool() { return true; }
 
-		bool                    resize(int _iNewRows, int _iNewCols);
-		InternalType*           insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-		static Bool*            insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Bool* _poSource, bool _bAsVector);
-		Bool*                   extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
-
-		bool                    operator==(const InternalType& it);
-		bool                    operator!=(const InternalType& it);
+        bool                    operator==(const InternalType& it);
+        bool                    operator!=(const InternalType& it);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring     getTypeStr() {return L"boolean";}
@@ -60,16 +51,17 @@ namespace types
         virtual std::wstring     getShortTypeStr() {return L"b";}
 
     protected :
-		RealType				getType(void);
+        RealType				getType(void);
 
     private :
-		/*clean values array*/
-		void                    all_delete();
-		void                    CreateBool(int _iRows, int _iCols, int **_ibData);
+        virtual void            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
 
-
-    private :
-        int*                    m_piData;
+        virtual int             getNullValue();
+        virtual Bool*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+        virtual int             copyValue(int _iData);
+        virtual void            deleteAll();
+        virtual void            deleteImg();
+        virtual int*            allocData(int _iSize);
     };
 }
-#endif /* ! __BOOL_HH__ */
+

@@ -632,10 +632,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_ones.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_prod.c"
 				>
 			</File>
@@ -693,10 +689,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_triu.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_zeros.c"
 				>
 			</File>
 			<File

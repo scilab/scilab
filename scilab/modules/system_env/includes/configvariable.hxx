@@ -17,7 +17,7 @@
 #include <map>
 #include <string>
 #include "threadId.hxx"
-#include "cell.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {

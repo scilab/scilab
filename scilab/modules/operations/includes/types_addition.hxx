@@ -16,9 +16,7 @@
 
 #include "operation.hxx"
 #include "internal.hxx"
-#include "double.hxx"
-#include "matrixpoly.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 using namespace types;
 
@@ -33,8 +31,8 @@ using namespace types;
 EXTERN_OP InternalType* GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOperand);
 
 EXTERN_OP int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut);
-EXTERN_OP int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOut);
-EXTERN_OP int AddPolyToPoly(MatrixPoly* pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPolyOut);
+EXTERN_OP int AddDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom ** _pPolyOut);
+EXTERN_OP int AddPolyToPoly(Polynom* pPoly1, Polynom* _pPoly2, Polynom ** _pPolyOut);
 EXTERN_OP int AddStringToString(String *_pString1, String *_pString2, String** _pStringOut);
 
 #endif /* __TYPES_ADD_H__ */

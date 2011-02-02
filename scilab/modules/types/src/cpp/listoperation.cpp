@@ -18,23 +18,16 @@
 
 namespace types
 {
-
-	/*--------------*/
-	/*	Destructor  */
-	/*--------------*/
 	ListOperation::~ListOperation()
 	{
 	}
 
-	/*--------------*/
-	/*	whoIAm		  */
-	/*--------------*/
 	void ListOperation::whoAmI()
 	{
 		std::cout << "types::ListDelete";
 	}
 
-	ListOperation* ListOperation::clone(void)
+	InternalType* ListOperation::clone(void)
 	{
 		return new ListOperation();
 	}

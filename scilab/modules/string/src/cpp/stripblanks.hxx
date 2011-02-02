@@ -14,16 +14,14 @@
 #define __STRIPBLANKS_HXX__
 
 #include "dynlib_string.h"
-#include "types.hxx"
-#include "string.hxx"
-#include "bool.hxx"
+#include "arrayof.hxx"
 
 using namespace types;
 
 /**
 * remove blank or tab characters in a string matrix
 * @param[in] String: input Strings
-* @param[in] Bool: remove TAB if bool_get() != 0  
+* @param[in] Bool: remove TAB if get() != 0  
 * @return String: output String
 */
 STRING_IMPEXP String * stripblanks(String *InputStrings, bool bWithTAB);

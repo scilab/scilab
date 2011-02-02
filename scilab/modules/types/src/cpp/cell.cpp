@@ -13,46 +13,45 @@
 #include <sstream>
 #include <math.h>
 #include "symbol.hxx"
-#include "cell.hxx"
-#include "double.hxx"
+#include "arrayof.hxx"
 #include "tostring_common.hxx"
 #include "core_math.h"
+#include "list.hxx"
 
 namespace types
 {
     /**
     ** Constructor & Destructor (public)
     */
-    Cell::Cell() : Container()
+    Cell::Cell()
     {
-        createCell(0, 0);
+        InternalType** pIT  = NULL;
+        int piDims[2] = {0, 0};
+		create(piDims, 2, &pIT, NULL);
     }
 
     Cell::Cell(int _iRows, int _iCols)
     {
-        int iRows = Max(0, _iRows);
-        int iCols = Max(0, _iCols);
-        createCell(iRows, iCols);
-    }
-
-    void Cell::createCell(int _iRows, int _iCols)
-    {
-        m_iRows = _iRows;
-        m_iCols = _iCols;
-        m_iSize = m_iRows * m_iCols;
-        m_iSizeMax = m_iSize;
-
-        m_vectData = new std::vector<InternalType*>;
-        if(m_iSize != 0)
-        {
-            m_vectData->resize(size_get());
-        }
-
+        InternalType** pIT  = NULL;
+        int piDims[2] = {_iRows, _iCols};
+		create(piDims, 2, &pIT, NULL);
         Double* pEmpty = Double::Empty();
-        for(int i = 0 ; i < size_get() ; i++)
+        for(int i = 0 ; i < getSize() ; i++)
         {
             pEmpty->IncreaseRef();
-            (*m_vectData)[i] = pEmpty;
+            m_pRealData[i] = pEmpty;
+        }
+    }
+
+    Cell::Cell(int _iDims, int* _piDims)
+    {
+        InternalType** pIT  = NULL;
+		create(_piDims, _iDims, &pIT, NULL);
+        Double* pEmpty = Double::Empty();
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            pEmpty->IncreaseRef();
+            m_pRealData[i] = pEmpty;
         }
     }
 
@@ -60,12 +59,12 @@ namespace types
     {
         if(isDeletable() == true)
         {
-            for(int i = 0 ; i < size_get() ; i++)
+            for(int i = 0 ; i < getSize() ; i++)
             {
-                (*m_vectData)[i]->DecreaseRef();
-                if((*m_vectData)[i]->isDeletable())
+                m_pRealData[i]->DecreaseRef();
+                if(m_pRealData[i]->isDeletable())
                 {
-                    delete (*m_vectData)[i];
+                    delete m_pRealData[i];
                 }
             }
         }
@@ -76,224 +75,256 @@ namespace types
     */
     Cell::Cell(Cell *_oCellCopyMe)
     {
-        createCell(_oCellCopyMe->rows_get(), _oCellCopyMe->cols_get());
-        for(int i = 0 ; i < size_get() ; i++)
+        InternalType** pIT = NULL;
+        create(_oCellCopyMe->getDimsArray(), _oCellCopyMe->getDims(), &pIT, NULL);
+        for(int i = 0 ; i < getSize() ; i++)
         {
-            set(i, _oCellCopyMe->get(i));
+            m_pRealData[i] = NULL;
         }
-    }
 
-    InternalType* Cell::get(int _iIndex)
-    {
-        if(_iIndex < size_get())
+        for(int i = 0 ; i < getSize() ; i++)
         {
-            return (*m_vectData)[_iIndex];
+            set(i, _oCellCopyMe->get(i)->clone());
         }
-        return NULL;
-    }
-
-    InternalType* Cell::get(int _iRows, int _iCols)
-    {
-        if(_iRows < rows_get() && _iCols < cols_get())
-        {
-            return get(_iCols * rows_get() + _iRows);
-        }
-        return NULL;
     }
 
     bool Cell::set(int _iRows, int _iCols, InternalType* _pIT)
     {
-        if(_iRows < rows_get() && _iCols < cols_get())
+        if(_iRows < getRows() && _iCols < getCols())
         {
-            return set(_iCols * rows_get() + _iRows, _pIT);
+            return set(_iCols * getRows() + _iRows, _pIT);
+        }
+        return false;
+    }
+
+    bool Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
+    {
+        if(_iRows < getRows() && _iCols < getCols())
+        {
+            return set(_iCols * getRows() + _iRows, _pIT);
         }
         return false;
     }
 
     bool Cell::set(int _iIndex, InternalType* _pIT)
     {
-        if(_iIndex < size_get())
+        if(_iIndex < getSize())
         {
-            if((*m_vectData)[_iIndex] != NULL)
+            if(m_pRealData[_iIndex] != NULL)
             {
-                (*m_vectData)[_iIndex]->DecreaseRef();
-                if((*m_vectData)[_iIndex]->isDeletable())
+                m_pRealData[_iIndex]->DecreaseRef();
+                if(m_pRealData[_iIndex]->isDeletable())
                 {
-                    delete (*m_vectData)[_iIndex];
+                    delete m_pRealData[_iIndex];
                 }
             }
 
             _pIT->IncreaseRef();
-            (*m_vectData)[_iIndex] = _pIT;
+            m_pRealData[_iIndex] = _pIT;
             return true;
         }
         return false;
     }
 
-    /**
-    ** size_get
-    ** Return the number of elements in struct
-    */
-    int Cell::size_get()
+    bool Cell::set(int _iIndex, const InternalType* _pIT)
     {
-        return m_iSize;
+        if(_iIndex < getSize())
+        {
+            if(m_pRealData[_iIndex] != NULL)
+            {
+                m_pRealData[_iIndex]->DecreaseRef();
+                if(m_pRealData[_iIndex]->isDeletable())
+                {
+                    delete m_pRealData[_iIndex];
+                }
+            }
+
+            const_cast<InternalType*>(_pIT)->IncreaseRef();
+            m_pRealData[_iIndex] = const_cast<InternalType*>(_pIT);
+            return true;
+        }
+        return false;
+    }
+
+    bool Cell::set(InternalType** _pIT)
+    {
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            if(set(i, _pIT[i]) == false)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
     ** Clone
     ** Create a new Struct and Copy all values.
     */
-    Cell *Cell::clone()
+    InternalType* Cell::clone()
     {
         return new Cell(this);
+    }
+
+    InternalType* Cell::getNullValue()
+    {
+        return Double::Empty();
+    }
+
+    Cell* Cell::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+    {
+        return new Cell(_iDims, _piDims);
+    }
+
+    InternalType* Cell::copyValue(InternalType* _pData)
+    {
+        _pData->IncreaseRef();
+        return _pData;
+    }
+
+    void Cell::deleteAll()
+    {
+		for(int i = 0 ; i < getSize() ; i++)
+		{
+            m_pRealData[i]->DecreaseRef();
+            if(m_pRealData[i]->isDeletable())
+            {
+                delete m_pRealData[i];
+            }
+		}
+		delete[] m_pRealData;
+        m_pRealData = NULL;
+    }
+
+    void Cell::deleteImg()
+    {
+        return;
+    }
+
+    bool Cell::isEmpty()
+    {
+        if(getDims() == 2 && getRows() == 0 && getCols() == 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
     ** toString to display Structs
     ** FIXME : Find a better indentation process
     */
-    std::wstring Cell::toString(int _iPrecision, int _iLineLen)
+    void Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
     {
-        std::wostringstream ostr;
-
-        if(size_get() == 0)
+        if(isEmpty())
         {
             ostr << L"   {}";
         }
         else
         {
             //max len for each column
-            int *piColLen = new int[cols_get()];
-            int *piILen = new int[cols_get()];
-            int *piJLen = new int[cols_get()];
-            int *piSumLen = new int[cols_get()];
+            int *piTypeLen = new int[getCols()];
+            int *piSizeLen = new int[getCols()];
 
-            memset(piColLen, 0x00, cols_get() * sizeof(int));
-            memset(piILen,  0x00, cols_get() * sizeof(int));
-            memset(piJLen, 0x00, cols_get() * sizeof(int));
-            memset(piSumLen, 0x00, cols_get() * sizeof(int));
+            memset(piTypeLen, 0x00, getCols() * sizeof(int));
+            memset(piSizeLen, 0x00, getCols() * sizeof(int));
 
-            for(int j = 0 ; j < cols_get() ; j++)
+            for(int j = 0 ; j < getCols() ; j++)
             {
-                for(int i = 0 ; i < rows_get() ; i++)
+                for(int i = 0 ; i < getRows() ; i++)
                 {
-                    InternalType* pIT = get(i,j);
+                    _piDims[0] = i;
+                    _piDims[1] = j;
 
-                    std::wstring strType = pIT->getTypeStr();
+                    int iPos = getIndex(_piDims);
+                    InternalType* pIT = get(iPos);
+
                     if(pIT->isAssignable())
                     {
-                        //compute number of digits to write rows and cols
-                        int iRowsLen = static_cast<int>(log10(static_cast<double>(pIT->getAsGenericType()->rows_get())) + 1);
-                        int iColsLen = static_cast<int>(log10(static_cast<double>(pIT->getAsGenericType()->cols_get())) + 1);
-
-                        if(piILen[j] < iRowsLen)
+                        //compute number of digits to write dimensions
+                        int iTypeLen = 0;
+                        if(pIT->getAsGenericType())
                         {
-                            piILen[j] = iRowsLen;
+                            GenericType* pGT = pIT->getAsGenericType();
+                            for(int k = 0 ; k < pGT->getDims() ; k++)
+                            {
+                                iTypeLen += static_cast<int>(log10(static_cast<double>(pGT->getDimsArray()[k])) + 1);
+                            }
+                            piSizeLen[j] = Max(piSizeLen[j], iTypeLen + (pGT->getDims() - 1));//add number of "x"
                         }
-
-                        if(piJLen[j] < iColsLen)
-                        {
-                            piJLen[j] = iColsLen;
-                        }
-
-                        if(piSumLen[j] < (iColsLen + iRowsLen + 1))
-                        {
-                            piSumLen[j] = iColsLen + iRowsLen + 1; //+1 for 'x' character
+                        else
+                        {//types non derived from ArrayOf.
+                            int iSize = static_cast<int>(log10(static_cast<double>(pIT->getAsGenericType()->getRows())) + 1);
+                            piSizeLen[j] = Max(piSizeLen[j], iSize);
                         }
                     }
-
-                    if(piColLen[j] < strType.size())
-                    {
-                        piColLen[j] = static_cast<int>(strType.size());
+                    else
+                    {//no size so let a white space, size == 1
+                        piSizeLen[j] = Max(piSizeLen[j], 1);
                     }
+
+                    piTypeLen[j] = Max(piTypeLen[j], static_cast<int>(pIT->getTypeStr().size()));
                 }
             }
 
-            for(int i = 0 ; i < rows_get() ; i++)
+            for(int i = 0 ; i < getRows() ; i++)
             {
-                for(int j = 0 ; j < cols_get() ; j++)
+                for(int j = 0 ; j < getCols() ; j++)
                 {
-                    InternalType* pIT = get(i,j);
+                    _piDims[0] = i;
+                    _piDims[1] = j;
+                    int iPos = getIndex(_piDims);
+                    InternalType* pIT = get(iPos);
 
                     ostr << L"  [";
                     if(pIT->isAssignable())
                     {
-                        std::wostringstream ostemp;
-                        Config_Stream(&ostemp, piILen[j], _iPrecision, ' ');
-                        ostemp << std::right << pIT->getAsGenericType()->rows_get();
-                        ostemp << L"x";
-                        Config_Stream(&ostemp, piJLen[j], _iPrecision, ' ');
-                        ostemp << std::left << pIT->getAsGenericType()->cols_get();
-                        Config_Stream(&ostemp, piSumLen[j] - static_cast<int>(ostemp.str().size()), _iPrecision, ' ');
-                        ostemp << L"";//fill with space
-                        ostr << ostemp.str();
+                        if(pIT->isGenericType())
+                        {//"  ixjxkxl type   "
+                            GenericType* pGT = pIT->getAsGenericType();
+                            std::wostringstream ostemp;
+                            for(int k = 0 ; k < pGT->getDims() ; k++)
+                            {
+                                if(k != 0)
+                                {
+                                    ostemp << L"x";
+                                }
+                                ostemp << pGT->getDimsArray()[k];
+                            }
+                            configureStream(&ostr, piSizeLen[j], _iPrecision, ' ');
+                            ostr << std::right << ostemp.str();
+                        }
+                        else
+                        {//" i   "
+                            configureStream(&ostr, piSizeLen[j], _iPrecision, ' ');
+                            if(pIT->isList())
+                            {
+                                ostr << std::right << pIT->getAsList()->getSize();
+                            }
+                            else
+                            {
+                                ostr << std::right << 1;
+                            }
+                        }
                     }
                     else
                     {
-                        Config_Stream(&ostr, piSumLen[j], _iPrecision, ' ');
+                        configureStream(&ostr, piSizeLen[j], _iPrecision, ' ');
                         ostr << L"";//fill with space
                     }
                     ostr << L" ";
-                    Config_Stream(&ostr, piColLen[j], _iPrecision, ' ');
+                    configureStream(&ostr, piTypeLen[j], _iPrecision, ' ');
                     ostr << std::left << pIT->getTypeStr();
                     ostr << L"]";
                 }
                 ostr << std::endl;
             }
 
-            delete[] piColLen;
-            delete[] piILen;
-            delete[] piJLen;
-            delete[] piSumLen;
+            delete[] piSizeLen;
+            delete[] piTypeLen;
         }
         ostr << std::endl;
-        return ostr.str();
-    }
-
-    bool Cell::resize(int _iNewRows, int _iNewCols)
-    {
-        if(_iNewRows <= rows_get() && _iNewCols <= cols_get())
-        {//nothing to do
-            return true;
-        }
-
-        if(m_iSizeMax < _iNewRows * _iNewCols)
-        {
-            //alloc 10% bigger than asked to prevent future resize
-            m_iSizeMax = static_cast<int>(_iNewRows * _iNewCols * 1.1);
-
-            //alloc new data array
-            std::vector<InternalType*>* pIT = NULL;
-
-            pIT = new std::vector<InternalType*>;
-            pIT->resize(m_iSizeMax);
-
-            for(int i = 0 ; i < _iNewRows ; i++)
-            {
-                for(int j = 0 ; j < _iNewCols ; j++)
-                {
-                    (*pIT)[j * _iNewRows + i] = Double::Empty();
-                }
-            }
-
-            //copy existing values
-            for(int i = 0 ; i < rows_get() ; i++)
-            {
-                for(int j = 0 ; j < cols_get() ; j++)
-                {
-                    delete (*pIT)[j * _iNewRows + i];
-                    (*pIT)[j * _iNewRows + i] = (*m_vectData)[j * rows_get() + i];
-                }
-            }
-            delete m_vectData;
-            m_vectData	= pIT;
-
-        }
-
-        m_iRows = _iNewRows;
-        m_iCols	= _iNewCols;
-        m_iSize = m_iRows * m_iCols;
-        return true;
     }
 
     bool Cell::append(int _iRows, int _iCols, Cell *_poSource)
@@ -303,26 +334,26 @@ namespace types
 
     bool Cell::operator==(const InternalType& it)
     {
-        if(const_cast<InternalType &>(it).getType() != RealCell)
+        if(const_cast<InternalType &>(it).isCell())
         {
             return false;
         }
 
-        Cell* pC = const_cast<InternalType &>(it).getAsCell();
+        Cell* pC = const_cast<InternalType &>(it).getAs<Cell>();
 
-        if(pC->rows_get() != rows_get() || pC->cols_get() != cols_get())
+        for(int i = 0 ; i < getDims() ; i++)
         {
-            return false;
-        }
-
-        for(int i = 0 ; i < m_iRows ; i++)
-        {
-            for(int j = 0 ; j < m_iCols ; j++)
+            if(pC->getDimsArray()[i] != getDimsArray()[i])
             {
-                if(get(i,j) != pC->get(i,j))
-                {
-                    return false;
-                }
+                return false;
+            }
+        }
+
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            if(get(i) != pC->get(i))
+            {
+                return false;
             }
         }
         return true;
@@ -333,283 +364,48 @@ namespace types
         return !(*this == it);
     }
 
-    Cell* Cell::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+    List* Cell::extractCell(typed_list* _pArgs)
     {
-        Cell* pOut		= NULL;
-        int iRowsOut	= 0;
-        int iColsOut	= 0;
-
-        //check input param
-
-        if(	(_bAsVector && _piMaxDim[0] > size_get()) ||
-            (_bAsVector == false && _piMaxDim[0] > rows_get()) ||
-            (_bAsVector == false && _piMaxDim[1] > cols_get()))
+        Cell* pCell = extract(_pArgs)->getAs<Cell>();
+        if(pCell == NULL)
         {
             return NULL;
         }
 
-        if(_bAsVector)
-        {//a([])
-            if(rows_get() == 1)
-            {
-                iRowsOut	= 1;
-                iColsOut	= _piDimSize[0];
-            }
-            else
-            {
-                iRowsOut	= _piDimSize[0];
-                iColsOut	= 1;
-            }
-        }
-        else
-        {//a([],[])
-            iRowsOut		= _piDimSize[0];
-            iColsOut		= _piDimSize[1];
-        }
-
-        pOut					= new Cell(iRowsOut, iColsOut);
-
-
-        if(_bAsVector)
+        List* pList = new List();
+        for(int i = 0 ; i < pCell->getSize() ; i++)
         {
-            for(int i = 0 ; i < _iSeqCount ; i++)
-            {
-                pOut->set(i, get(_piSeqCoord[i] - 1));
-            }
+            pList->append(pCell->get(i));
         }
-        else
-        {
-            for(int i = 0 ; i < _iSeqCount ; i++)
-            {
-                //convert vertical indexes to horizontal indexes
-                int iCurIndex		= (i % iColsOut) * iRowsOut + (i / iColsOut);
-                int iInIndex		= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-                pOut->set(iCurIndex, get(iInIndex));
-            }
-        }
+        delete pCell;
+        return pList;
+    }
+
+    Cell* Cell::insertCell(typed_list* _pArgs, InternalType* _pSource)
+    {
+        Cell* pCell = new Cell(1, 1);
+        pCell->set(0, _pSource);
+        Cell* pOut = insert(_pArgs, pCell)->getAs<Cell>();
         return pOut;
     }
 
-    std::vector<InternalType*> Cell::extract_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+    Cell* Cell::insertNewCell(typed_list* _pArgs, InternalType* _pSource)
     {
-        std::vector<InternalType*> vectRet;
-
-        //check input param
-        if(	(_bAsVector && _piMaxDim[0] > size_get()) ||
-            (_bAsVector == false && _piMaxDim[0] > rows_get()) ||
-            (_bAsVector == false && _piMaxDim[1] > cols_get()))
-        {
-            return vectRet;
-        }
-
-        if(_bAsVector)
-        {
-            for(int i = 0 ; i < _iSeqCount ; i++)
-            {
-                vectRet.push_back((*m_vectData)[_piSeqCoord[i] - 1]);
-            }
-        }
-        else
-        {
-            for(int i = 0 ; i < _iSeqCount ; i++)
-            {
-                //convert vertical indexes to horizontal indexes
-                int iInIndex = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-                vectRet.push_back((*m_vectData)[iInIndex]);
-            }
-        }
-
-        return vectRet;
+        Cell* pCell = new Cell(1, 1);
+        pCell->set(0, _pSource);
+        Cell* pOut = Cell::insertNew(_pArgs, pCell)->getAs<Cell>();
+        return pOut;
     }
 
-    InternalType* Cell::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+    InternalType** Cell::allocData(int _iSize)
     {
-        int iNewRows = rows_get();
-        int iNewCols = cols_get();
-        //check input size
-        if(_bAsVector == false)
+        InternalType** pData = new InternalType*[_iSize];
+        Double* pEmpty = Double::Empty();
+        for(int i = 0 ; i < _iSize ; i++)
         {
-            if(rows_get() < _piMaxDim[0] || cols_get() < _piMaxDim[1])
-            {//compute new dimensions
-                iNewRows = Max(_piMaxDim[0], rows_get());
-                iNewCols = Max(_piMaxDim[1], cols_get());
-            }
+            pEmpty->IncreaseRef();
+            pData[i] = pEmpty;
         }
-        else
-        {
-            if(size_get() < _piMaxDim[0])
-            {
-                if(rows_get() == 1 || size_get() == 0)
-                {
-                    iNewRows = 1;
-                    iNewCols = _piMaxDim[0];
-                }
-                else if(cols_get() == 1)
-                {
-                    iNewRows = _piMaxDim[0];
-                    iNewCols = 1;
-                }
-                else
-                {
-                    return NULL;
-                }
-            }
-        }
-
-        //check if the size of _poSource is compatible with the size of the variable
-        if(_bAsVector == false && (iNewRows < _poSource->rows_get() || iNewCols < _poSource->cols_get()))
-        {
-            return NULL;
-        }
-        else if(_bAsVector == true && (iNewRows * iNewCols < _poSource->size_get()))
-        {
-            return NULL;
-        }
-
-
-        //check if the count of values is compatible with indexes
-        if(_poSource->size_get() != 1 && _poSource->size_get() != _iSeqCount)
-        {
-            return NULL;
-        }
-
-
-        if(_poSource->isCell())
-        {
-            Cell *pIn = _poSource->getAsCell();
-
-            //Only resize after all tests !
-            if(resize(iNewRows, iNewCols) == false)
-            {
-                return NULL;
-            }
-
-            ////variable can receive new values.
-            if(pIn->size_get() == 1)
-            {//a(?) = x
-                if(_bAsVector)
-                {//a([]) = R
-                    for(int i = 0 ; i < _iSeqCount ; i++)
-                    {
-                        set(_piSeqCoord[i] - 1, pIn->get(0));
-                    }
-                }
-                else
-                {//a([],[]) = R
-                    for(int i = 0 ; i < _iSeqCount ; i++)
-                    {
-                        int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-                        set(iPos, pIn->get(0));
-                    }
-                }
-            }
-            else
-            {//a(?) = [x]
-                if(_bAsVector)
-                {//a([]) = [R]
-                    for(int i = 0 ; i < _iSeqCount ; i++)
-                    {
-                        set(_piSeqCoord[i] - 1, pIn->get(i));
-                    }
-                }
-                else
-                {//a([],[]) = [R]
-                    for(int i = 0 ; i < _iSeqCount ; i++)
-                    {
-                        int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-                        int iTempR = i / pIn->cols_get();
-                        int iTempC = i % pIn->cols_get();
-                        int iNew_i = iTempR + iTempC * pIn->rows_get();
-
-                        set(iPos, pIn->get(iNew_i));
-                    }
-                }
-            }
-        }
-        else
-        {
-            return NULL;
-        }
-        return this;
-    }
-
-    Cell* Cell::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
-    {
-        Cell *pCell = NULL;
-
-        if(_bAsVector)
-        {
-            pCell = new Cell(1, _piMaxDim[0]);
-        }
-        else
-        {
-            pCell = new Cell(_piMaxDim[0], _piMaxDim[1]);
-        }
-
-        if(pCell->insert_cell(_iSeqCount, _piSeqCoord, _piMaxDim, _poSource, _bAsVector) == false)
-        {
-            delete pCell;
-            return NULL;
-        }
-
-        return pCell;
-    }
-
-    bool Cell::insert_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
-    {
-        int iNewRows = rows_get();
-        int iNewCols = cols_get();
-        //check input size
-        if(_iSeqCount != 1)
-        {
-            return false;
-        }
-
-
-        if(_bAsVector == false)
-        {
-            if(rows_get() < _piMaxDim[0] || cols_get() < _piMaxDim[1])
-            {//compute new dimensions
-                iNewRows = Max(_piMaxDim[0], rows_get());
-                iNewCols = Max(_piMaxDim[1], cols_get());
-            }
-        }
-        else
-        {
-            if(size_get() < _piMaxDim[0])
-            {
-                if(rows_get() == 1 || size_get() == 0)
-                {
-                    iNewRows = 1;
-                    iNewCols = _piMaxDim[0];
-                }
-                else if(cols_get() == 1)
-                {
-                    iNewRows = _piMaxDim[0];
-                    iNewCols = 1;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        //Only resize after all tests !
-        if(resize(iNewRows, iNewCols) == false)
-        {
-            return false;
-        }
-
-        if(_bAsVector)
-        {//a{[]} = R
-            set(_piSeqCoord[0] - 1, _poSource);
-        }
-        else
-        {//a([],[]) = R
-            int iPos = (_piSeqCoord[0] - 1) + (_piSeqCoord[1] - 1) * rows_get();
-            set(iPos, _poSource);
-        }
-        return true;
+        return pData;
     }
 }

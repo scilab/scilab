@@ -12,8 +12,7 @@
 
 #include "localization_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
-#include "bool.hxx"
+#include "arrayof.hxx"
 
 #include "yaspio.hxx"
 
@@ -90,12 +89,12 @@ Function::ReturnValue sci_setdefaultlanguage(typed_list &in, int _piRetCount, ty
 
     return Function::OK;
 #else
-    if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"setdefaultlanguage" ,1);
         return Function::Error;
     }
-    wchar_t *newlang = getLanguageFromAlias(in[0]->getAs<String>()->string_get(0));
+    wchar_t *newlang = getLanguageFromAlias(in[0]->getAs<types::String>()->get(0));
 
     if ( !isValidLanguage(newlang) )
     {

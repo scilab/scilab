@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include "matrix_addition.h"
 #include "core_math.h"
+#include "operations_tools.h"
 #include <string.h>
 
 int iAddRealIdentityToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut)
@@ -64,66 +65,70 @@ int iAddComplexIdentityToComplexMatrix(double _dblReal1, double _dblImg1, double
 	return 0;
 }
 
-int iAddRealScalarToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut)
+int iAddRealScalarToRealMatrix(double _dblReal1, double* _pdblReal2, int* _piDims2, int _iDims2, double* _pdblRealOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    int iSize2 = GetSize(_piDims2, _iDims2);
+	for(i = 0 ; i < iSize2 ; i++)
 	{
 		_pdblRealOut[i]	= _dblReal1	+ _pdblReal2[i];
 	}
 	return 0;
 }
 
-int iAddRealScalarToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double *_pdblImgOut)
+int iAddRealScalarToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int* _piDims2, int _iDims2, double* _pdblRealOut, double *_pdblImgOut)
 {
-	iAddRealScalarToRealMatrix(_dblReal1, _pdblReal2, _iRows2, _iCols2, _pdblRealOut);
-	iAddRealScalarToRealMatrix(0, _pdblImg2, _iRows2, _iCols2, _pdblImgOut);
+	iAddRealScalarToRealMatrix(_dblReal1, _pdblReal2, _piDims2, _iDims2, _pdblRealOut);
+    iAddRealScalarToRealMatrix(0, _pdblImg2, _piDims2, _iDims2, _pdblImgOut);
 	return 0;
 }
 
-int iAddComplexScalarToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut, double *_pdblImgOut)
+int iAddComplexScalarToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int* _piDims2, int _iDims2, double* _pdblRealOut, double *_pdblImgOut)
 {
 	int i = 0;
-	iAddRealScalarToRealMatrix(_dblReal1, _pdblReal2, _iRows2, _iCols2, _pdblRealOut);
-	for(i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    int iSize2 = GetSize(_piDims2, _iDims2);
+
+    iAddRealScalarToRealMatrix(_dblReal1, _pdblReal2, _piDims2, _iDims2, _pdblRealOut);
+	for(i = 0 ; i < iSize2 ; i++)
 	{
 		_pdblImgOut[i]	= _dblImg1;
 	}
 	return 0;
 }
 
-int iAddComplexScalarToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double *_pdblImgOut)
+int iAddComplexScalarToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int* _piDims2, int _iDims2, double* _pdblRealOut, double *_pdblImgOut)
 {
-	iAddRealScalarToRealMatrix(_dblReal1, _pdblReal2, _iRows2, _iCols2, _pdblRealOut);
-	iAddRealScalarToRealMatrix(_dblImg1, _pdblImg2, _iRows2, _iCols2, _pdblImgOut);
+	iAddRealScalarToRealMatrix(_dblReal1, _pdblReal2, _piDims2, _iDims2, _pdblRealOut);
+	iAddRealScalarToRealMatrix(_dblImg1, _pdblImg2, _piDims2, _iDims2, _pdblImgOut);
 	return 0;
 }
 
-int iAddRealMatrixToRealMatrix(double* _pdblReal1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut)
+int iAddRealMatrixToRealMatrix(double* _pdblReal1, double* _pdblReal2, int* _piDims, int _iDims, double* _pdblRealOut)
 {
 	int i = 0;
-	for(i = 0 ; i < _iRows * _iCols ; i++)
+    int iSize = GetSize(_piDims, _iDims);
+	for(i = 0 ; i < iSize ; i++)
 	{
 		_pdblRealOut[i]	= _pdblReal1[i]	+ _pdblReal2[i];
 	}
 	return 0;
 }
 
-int iAddRealMatrixToComplexMatrix(double* _pdblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut)
+int iAddRealMatrixToComplexMatrix(double* _pdblReal1, double* _pdblReal2, double* _pdblImg2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut)
 {
-	iAddRealMatrixToRealMatrix(_pdblReal1, _pdblReal2, _iRows, _iCols, _pdblRealOut);
-	iAddRealScalarToRealMatrix(0, _pdblImg2, _iRows, _iCols, _pdblImgOut);
+	iAddRealMatrixToRealMatrix(_pdblReal1, _pdblReal2, _piDims, _iDims, _pdblRealOut);
+	iAddRealScalarToRealMatrix(0, _pdblImg2, _piDims, _iDims, _pdblImgOut);
 	return 0;
 }
 
-int iAddComplexMatrixToComplexMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut)
+int iAddComplexMatrixToComplexMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, double* _pdblImg2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut)
 {
-	iAddRealMatrixToRealMatrix(_pdblReal1, _pdblReal2, _iRows, _iCols, _pdblRealOut);
-	iAddRealMatrixToRealMatrix(_pdblImg1, _pdblImg2, _iRows, _iCols, _pdblImgOut);
+	iAddRealMatrixToRealMatrix(_pdblReal1, _pdblReal2, _piDims, _iDims, _pdblRealOut);
+	iAddRealMatrixToRealMatrix(_pdblImg1, _pdblImg2, _piDims, _iDims, _pdblImgOut);
 	return 0;
 }
 
-/* Poly + Poly*/
+/* SinglePoly + SinglePoly*/
 int iAddRealPolyToRealPoly(double* _pCoef1R, int _iRank1, double* _pCoef2R, int _iRank2, double* _pCoefOutR, int _iRanOut)
 {
 	int iRankMin			= Min(_iRank1, _iRank2);
@@ -197,4 +202,3 @@ int iAddComplexPolyToComplexPoly(double* _pCoef1R, double* _pCoef1I, int _iRank1
 	}
 	return 0;
 }
-

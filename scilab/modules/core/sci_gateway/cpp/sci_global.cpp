@@ -12,9 +12,7 @@
 
 #include "function.hxx"
 #include "context.hxx"
-#include "types.hxx"
-#include "double.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "core_gw.hxx"
 
 extern "C"
@@ -30,13 +28,13 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
     //check input arguments
     for(int i = 0 ; i < in.size() ; i++)
     {
-        if(in[i]->getType() != InternalType::RealString)
+        if(in[i]->isString() == false)
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "global", i + 1);
             return Function::Error;
         }
 
-        if(in[i]->getAsString()->size_get() != 1)
+        if(in[i]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "global", i + 1);
             return Function::Error;
@@ -54,7 +52,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
 
     for(int i = 0 ; i < in.size() ; i++)
     {
-        wchar_t* pstVar = in[i]->getAsString()->string_get(0);
+        wchar_t* pstVar = in[i]->getAs<types::String>()->get(0);
 
         //does it visible in current global scope
         if(pCtx->isGlobalVisible(pstVar) == false)

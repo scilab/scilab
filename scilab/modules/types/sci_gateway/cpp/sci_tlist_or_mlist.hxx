@@ -38,29 +38,29 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
         return Function::Error;
     }
 
-    if(in[0]->getType() != InternalType::RealString)
+    if(in[0]->isString() == false)
     {
         ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"), _pstrFunName, 1);
         return Function::Error;
     }
 
     //check uniqueness of fields name
-    String* pS = in[0]->getAsString();
+    String* pS = in[0]->getAs<types::String>();
 
     //first string is the tlist type
     list<wstring> fieldNames;
-    for(int i = 1 ; i < pS->size_get() ; i++)
+    for(int i = 1 ; i < pS->getSize() ; i++)
     {
         list<wstring>::iterator it;
         for(it = fieldNames.begin() ; it != fieldNames.end() ; it++)
         {
-            if(*it == wstring(pS->string_get(i)))
+            if(*it == wstring(pS->get(i)))
             {
                 ScierrorW(999, _W("%ls : Fields names must be unique"), _pstrFunName);
                 return Function::Error;
             }
         }
-        fieldNames.push_back(pS->string_get(i));
+        fieldNames.push_back(pS->get(i));
     }
 
     pRetVal = new TorMList();
@@ -70,7 +70,7 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     }
 
     //fill empty field with []
-    while(pRetVal->size_get() < pS->size_get())
+    while(pRetVal->getSize() < pS->getSize())
     {
         pRetVal->append(Double::Empty());
     }

@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "bool.hxx"
+#include "arrayof.hxx"
 #include "function.hxx"
 
 extern "C"
@@ -65,7 +65,7 @@ SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
 
 	if(_piBool)
 	{
-		*_piBool = ((InternalType*)_piAddress)->getAsBool()->bool_get();
+		*_piBool = ((InternalType*)_piAddress)->getAs<types::Bool>()->get();
 	}
 	return sciErr;
 }
@@ -95,7 +95,7 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
 
 	int rhs = _iVar - api_Rhs((int*)_pvCtx);
 	out[rhs - 1] = pBool;
-	*_piBool = pBool->bool_get();
+	*_piBool = pBool->get();
 	if(*_piBool == NULL)
 	{
 		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfBoolean");

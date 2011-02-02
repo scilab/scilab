@@ -18,7 +18,7 @@
 namespace types
 {
     template <typename T>
-    class User : public GenericType
+    class User : public InternalType
     {
     public :
         User()                                  {};
@@ -34,7 +34,7 @@ namespace types
         virtual std::wstring     toString(int _iPrecision, int _iLineLen) = 0;
         virtual std::wstring     getTypeStr() = 0;
         virtual std::wstring     getShortTypeStr() = 0;
-        virtual GenericType*    clone() = 0;
+        virtual InternalType*    clone() = 0;
     };
 }
 

@@ -31,8 +31,9 @@ namespace types
         void                            whoAmI(void) { std::cout << "types::TList"; };
 
         RealType                        getType(void) { return RealTList; }
+        bool                            isTList() { return true; }
 
-        TList*                          clone();
+        InternalType*                   clone();
 
         TList*                          getAsTList(void) { return this; }
 
@@ -43,7 +44,7 @@ namespace types
         bool                            set(const std::wstring& _sKey, InternalType* _pIT);
         bool                            set(const int _iIndex, InternalType* _pIT);
 
-        std::vector<InternalType*>      extract_string(std::list<std::wstring> _stFields);
+        std::vector<InternalType*>      extractStrings(std::list<std::wstring> _stFields);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring             getTypeStr();

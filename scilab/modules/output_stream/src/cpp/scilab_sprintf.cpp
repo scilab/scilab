@@ -11,8 +11,7 @@
  */
 
 #include "types.hxx"
-#include "double.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "scilab_sprintf.hxx"
 
 using namespace types;
@@ -153,7 +152,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                         ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
                         return NULL;
                     }
-                    pToken[iToken].outputType = InternalType::RealInt;
+                    pToken[iToken].outputType = InternalType::RealInt32;
                     break;
                 case L'f' : //float
                 case L'e' : //exp
@@ -187,7 +186,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
             iToken++;
         }
 
-        int iLoop = in[1]->getAsGenericType()->rows_get();
+        int iLoop = in[1]->getAsGenericType()->getRows();
         pwstFirstOutput = (wchar_t*)MALLOC(sizeof(wchar_t*) * iLoop * bsiz);
         memset(pwstFirstOutput, 0x00, sizeof(wchar_t*) * iLoop * bsiz);
         for(int j = 0 ; j < iLoop ; j++)
@@ -202,19 +201,19 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 void* pvVal = NULL;
                 if(_pArgs[i - 1].type == InternalType::RealDouble)
                 {
-                    double dblVal = in[_pArgs[i - 1].iArg]->getAsDouble()->real_get(j, _pArgs[i - 1].iPos);
+                    double dblVal = in[_pArgs[i - 1].iArg]->getAs<Double>()->getReal(j, _pArgs[i - 1].iPos);
                     if(pToken[i].outputType == InternalType::RealDouble)
                     {
                         swprintf(pwstTemp, bsiz, pToken[i].pwstToken, dblVal);
                     }
-                    else if(pToken[i].outputType == InternalType::RealInt)
+                    else if(pToken[i].outputType == InternalType::RealInt32)
                     {
                         swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
                     }
                 }
                 else if(_pArgs[i - 1].type == InternalType::RealString)
                 {
-                    wchar_t* pwstStr = in[_pArgs[i - 1].iArg]->getAsString()->string_get(j, _pArgs[i - 1].iPos);
+                    wchar_t* pwstStr = in[_pArgs[i - 1].iArg]->getAs<types::String>()->get(j, _pArgs[i - 1].iPos);
 
 #ifdef _MSC_VER
                     swprintf(pwstTemp, bsiz, pToken[i].pwstToken, pwstStr);

@@ -57,12 +57,12 @@ void visitprivate(const MatrixExp &e)
                         (*col)->accept (*execMe);
                     }
 
-                    if(execMe->result_get()->getType() == InternalType::RealImplicitList)
+                    if(execMe->result_get()->isImplicitList())
                     {
-                        if(execMe->result_get()->getAsImplicitList()->computable() == true)
+                        if(execMe->result_get()->getAsImplicitList()->isComputable() == true)
                         {
-                            execMe->result_set(execMe->result_get()->getAsImplicitList()->extract_matrix());
-                            iCurCol += ((GenericType*)execMe->result_get())->cols_get();
+                            execMe->result_set(execMe->result_get()->getAsImplicitList()->extractFullMatrix());
+                            iCurCol += ((GenericType*)execMe->result_get())->getCols();
                         }
                         else
                         {
@@ -71,22 +71,22 @@ void visitprivate(const MatrixExp &e)
                     }
                     else
                     {
-                        iCurCol += ((GenericType*)execMe->result_get())->cols_get();
+                        iCurCol += ((GenericType*)execMe->result_get())->getCols();
                     }
 
                     if(iCurRow == -1)
                     {
-                        iCurRow = ((GenericType*)execMe->result_get())->rows_get();
+                        iCurRow = ((GenericType*)execMe->result_get())->getRows();
                         if(iCurRow == 0)
                         {//to manage [] in MatrixExp
                             iCurRow = -1;
                         }
                     }
-                    else if(iCurRow != ((GenericType*)execMe->result_get())->rows_get() && ((GenericType*)execMe->result_get())->rows_get() != 0)
+                    else if(iCurRow != ((GenericType*)execMe->result_get())->getRows() && ((GenericType*)execMe->result_get())->getRows() != 0)
                     {
                         std::wostringstream os;
                         os << L"inconsistent row/column dimensions\n";
-                        //os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
+                        //os << ((Location)(*row)->location_get()).location_getString() << std::endl;
                         throw ScilabError(os.str(), 999, (*row)->location_get());
                     }
 
@@ -114,7 +114,7 @@ void visitprivate(const MatrixExp &e)
                     {
                         std::wostringstream os;
                         os << L"inconsistent row/column dimensions\n";
-                        //os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
+                        //os << ((Location)(*row)->location_get()).location_getString() << std::endl;
                         throw ScilabError(os.str(), 999, (*row)->location_get());
                     }
 
@@ -140,7 +140,7 @@ void visitprivate(const MatrixExp &e)
                 int iAddCol = 0;
                 for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
                 {
-                    if((*it_RL)->isDouble() && (*it_RL)->getAsDouble()->isEmpty())
+                    if((*it_RL)->isDouble() && (*it_RL)->getAs<Double>()->isEmpty())
                     {//manage []
                         continue;
                     }
@@ -151,14 +151,7 @@ void visitprivate(const MatrixExp &e)
 
                         if((*it_RL)->isDeletable() == true)
                         {
-                            if((*it_RL)->getType() == InternalType::RealDouble)
-                            {
-                                delete (*it_RL)->getAsDouble();
-                            }
-                            else
-                            {
-                                delete (*it_RL);
-                            }
+                            delete (*it_RL);
                         }
                         iCurCol += iAddCol;
                     }
@@ -167,14 +160,7 @@ void visitprivate(const MatrixExp &e)
                         poResult = AddElementToVariable(poResult, *it_RL, iCurRow, iCurCol, &iAddRow, &iAddCol);
                         if((*it_RL)->isDeletable() == true)
                         {
-                            if((*it_RL)->getType() == InternalType::RealDouble)
-                            {
-                                delete (*it_RL)->getAsDouble();
-                            }
-                            else
-                            {
-                                delete (*it_RL);
-                            }
+                            delete (*it_RL);
                         }
                         iCurCol += iAddCol;
                     }

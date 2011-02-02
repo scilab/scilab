@@ -39,7 +39,7 @@ using namespace std;
 //		*_postr << (_TVal < 0 ? MINUS_STRING_INT : NO_SIGN);
 //	}
 //
-//	Config_Stream(_postr, _iWidth, 0, ' ');
+//	configureStream(_postr, _iWidth, 0, ' ');
 //
 //	if(bPrintOne == true || _TVal != 1)
 //	{
@@ -47,9 +47,8 @@ using namespace std;
 //	}
 //}
 
-void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint)
+void getDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint)
 {
-
 	double dblDec				= 0;
 	double dblEnt				= 0;
 	double dblAbs				= fabs(_dblVal);
@@ -88,10 +87,10 @@ void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPr
 
 }
 
-void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI)
+void getComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI)
 {
-	GetDoubleFormat(_dblR, _iPrecNeeded, _piWidthR, _piPrecR, _pbFloatingPointR);
-	GetDoubleFormat(_dblI, _iPrecNeeded, _piWidthI, _piPrecI, _pbFloatingPointI);
+	getDoubleFormat(_dblR, _iPrecNeeded, _piWidthR, _piPrecR, _pbFloatingPointR);
+	getDoubleFormat(_dblI, _iPrecNeeded, _piWidthI, _piPrecI, _pbFloatingPointI);
 
 	*_piTotalWidth = 0;
 	if(_dblI == 0)
@@ -123,7 +122,7 @@ void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTota
 	}
 }
 
-void AddDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
+void addDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
 {
 	if(bPrintPlusSign == true)
 	{
@@ -141,15 +140,15 @@ void AddDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iP
 		}
 	}
 
-	Config_Stream(_postr, _iWidth/* + SIZE_BETWEEN_TWO_VALUES*/, _iPrec, ' ');
+	configureStream(_postr, _iWidth/* + SIZE_BETWEEN_TWO_VALUES*/, _iPrec, ' ');
 
 	if(bPrintOne == true || isEqual(_dblVal, 1) == false)
 	{
-		PrintDoubleVar(_postr, _dblVal);
+		printDoubleVar(_postr, _dblVal);
 	}
 }
 
-void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec)
+void addDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec)
 {
 	wostringstream ostemp;
 	/*
@@ -167,7 +166,7 @@ void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 
 			//0
 			ostemp << (_dblI < 0 ? MINUS_STRING : NO_SIGN);
-			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
+			configureStream(&ostemp, _iWidthI, _iPrec, ' ');
 			ostemp << left << 0;
 		}
 		else
@@ -175,10 +174,10 @@ void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 
 			//I
 			ostemp << (_dblI < 0 ? MINUS_STRING : NO_SIGN);
-			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
+			configureStream(&ostemp, _iWidthI, _iPrec, ' ');
 			if(fabs(_dblI) != 1)
 			{//specail case if I == 1 write only i and not 1i
-				PrintDoubleVar(&ostemp, _dblI);
+				printDoubleVar(&ostemp, _dblI);
 			}
 			ostemp << left << SYMBOL_I;
 		}
@@ -190,39 +189,39 @@ void AddDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 
 			//R
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
-			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
-			PrintDoubleVar(&ostemp, _dblR);
+			configureStream(&ostemp, _iWidthR, _iPrec, ' ');
+			printDoubleVar(&ostemp, _dblR);
 		}
 		else
 		{//imaginary part
 
 			//R
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
-			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
-			PrintDoubleVar(&ostemp, _dblR);
+			configureStream(&ostemp, _iWidthR, _iPrec, ' ');
+			printDoubleVar(&ostemp, _dblR);
 			ostemp << SPACE_BETWEEN_REAL_COMPLEX;
 
 			//I
 			ostemp << (_dblI < 0 ? MINUS_STRING : PLUS_STRING);
-			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
+			configureStream(&ostemp, _iWidthI, _iPrec, ' ');
 			if(fabs(_dblI) != 1)
 			{//special case if I == 1 write only i and not 1i
-				PrintDoubleVar(&ostemp, _dblI);
+				printDoubleVar(&ostemp, _dblI);
 			}
 			ostemp << left << SYMBOL_I;
 		}
 	}
 
-	Config_Stream(_postr, _iTotalWitdh, _iPrec, ' ');
+	configureStream(_postr, _iTotalWitdh, _iPrec, ' ');
 	*_postr << left << ostemp.str();
 
 }
 
-void PrintDoubleVar(wostringstream *_postr,  double _dblVal)
+void printDoubleVar(wostringstream *_postr,  double _dblVal)
 {
 	if(ISNAN(_dblVal) == 1)
 	{//NaN
-		Config_Stream(_postr, 0, 0, ' ');
+		configureStream(_postr, 0, 0, ' ');
 		*_postr << left << "Nan";
 	}
 	else if(finite(_dblVal))
@@ -231,12 +230,12 @@ void PrintDoubleVar(wostringstream *_postr,  double _dblVal)
 	}
 	else
 	{//Inf
-		Config_Stream(_postr, 0, 0, ' ');
+		configureStream(_postr, 0, 0, ' ');
 		*_postr << left << "Inf";
 	}
 
 }
-void Add_Space(wostringstream *_postr, int _iSpace)
+void addSpaces(wostringstream *_postr, int _iSpace)
 {
 	for(int i = 0 ; i < _iSpace ; i++)
 	{
@@ -244,7 +243,7 @@ void Add_Space(wostringstream *_postr, int _iSpace)
 	}
 }
 
-void Config_Stream(wostringstream *_postr, int _iWidth, int _iPrec, char _cFill)
+void configureStream(wostringstream *_postr, int _iWidth, int _iPrec, char _cFill)
 {
 	_postr->width(_iWidth);
 	_postr->precision(_iPrec);

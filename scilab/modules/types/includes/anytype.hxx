@@ -18,9 +18,16 @@
 namespace types
 {
     class String;
-    class Double;
     class Float;
-    class Int;
+    class Int8;
+    class UInt8;
+    class Int16;
+    class UInt16;
+    class Int32;
+    class UInt32;
+    class Int64;
+    class UInt64;
+    class Double;
     class Bool;
     class MatrixType;
     class GenericType;
@@ -30,8 +37,9 @@ namespace types
     class Macro;
     class MacroFile;
     class Dollar;
-    class Poly;
-    class MatrixPoly;
+    class Colon;
+    class SinglePoly;
+    class Polynom;
     class Container;
     class List;
     class Struct;
@@ -45,5 +53,6 @@ namespace types
     class File;
     class ThreadId;
 }
+
 
 #endif /* !__ANY_TYPES_HXX__ */

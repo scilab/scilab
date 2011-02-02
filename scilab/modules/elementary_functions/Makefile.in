@@ -428,8 +428,6 @@ am__objects_6 = libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_sqrt.lo \
 	libscielementary_functions_la-sci_asin.lo \
 	libscielementary_functions_la-sci_sign.lo \
-	libscielementary_functions_la-sci_zeros.lo \
-	libscielementary_functions_la-sci_ones.lo \
 	libscielementary_functions_la-sci_rat.lo \
 	libscielementary_functions_la-gw_elementary_functions.lo \
 	libscielementary_functions_la-sci_number_properties.lo \
@@ -458,7 +456,9 @@ am__objects_6 = libscielementary_functions_la-sci_matrix.lo \
 am__objects_7 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-elem_func_gw.lo \
 	libscielementary_functions_la-sci_size.lo \
-	libscielementary_functions_la-sci_eye.lo
+	libscielementary_functions_la-sci_eye.lo \
+	libscielementary_functions_la-sci_zeros.lo \
+	libscielementary_functions_la-sci_ones.lo
 am__objects_8 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_maxi.lo \
 	libscielementary_functions_la-sci_f_testmatrix.lo \
@@ -1110,8 +1110,6 @@ sci_gateway/c/sci_sin.c \
 sci_gateway/c/sci_sqrt.c \
 sci_gateway/c/sci_asin.c \
 sci_gateway/c/sci_sign.c \
-sci_gateway/c/sci_zeros.c \
-sci_gateway/c/sci_ones.c \
 sci_gateway/c/sci_rat.c \
 sci_gateway/c/gw_elementary_functions.c \
 sci_gateway/c/sci_number_properties.c \
@@ -1187,7 +1185,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_isequal.cpp \
 	sci_gateway/cpp/elem_func_gw.cpp \
 	sci_gateway/cpp/sci_size.cpp \
-	sci_gateway/cpp/sci_eye.cpp
+	sci_gateway/cpp/sci_eye.cpp \
+    sci_gateway/cpp/sci_zeros.cpp \
+    sci_gateway/cpp/sci_ones.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -2000,20 +2000,6 @@ libscielementary_functions_la-sci_sign.lo: sci_gateway/c/sci_sign.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_sign.lo `test -f 'sci_gateway/c/sci_sign.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sign.c
 
-libscielementary_functions_la-sci_zeros.lo: sci_gateway/c/sci_zeros.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_zeros.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_zeros.Tpo -c -o libscielementary_functions_la-sci_zeros.lo `test -f 'sci_gateway/c/sci_zeros.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zeros.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_zeros.Tpo $(DEPDIR)/libscielementary_functions_la-sci_zeros.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_zeros.c' object='libscielementary_functions_la-sci_zeros.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_zeros.lo `test -f 'sci_gateway/c/sci_zeros.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zeros.c
-
-libscielementary_functions_la-sci_ones.lo: sci_gateway/c/sci_ones.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_ones.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_ones.Tpo -c -o libscielementary_functions_la-sci_ones.lo `test -f 'sci_gateway/c/sci_ones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ones.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_ones.Tpo $(DEPDIR)/libscielementary_functions_la-sci_ones.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ones.c' object='libscielementary_functions_la-sci_ones.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_ones.lo `test -f 'sci_gateway/c/sci_ones.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ones.c
-
 libscielementary_functions_la-sci_rat.lo: sci_gateway/c/sci_rat.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_rat.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_rat.Tpo -c -o libscielementary_functions_la-sci_rat.lo `test -f 'sci_gateway/c/sci_rat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rat.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_rat.Tpo $(DEPDIR)/libscielementary_functions_la-sci_rat.Plo
@@ -2237,6 +2223,20 @@ libscielementary_functions_la-sci_eye.lo: sci_gateway/cpp/sci_eye.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_eye.cpp' object='libscielementary_functions_la-sci_eye.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_eye.lo `test -f 'sci_gateway/cpp/sci_eye.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_eye.cpp
+
+libscielementary_functions_la-sci_zeros.lo: sci_gateway/cpp/sci_zeros.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_zeros.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_zeros.Tpo -c -o libscielementary_functions_la-sci_zeros.lo `test -f 'sci_gateway/cpp/sci_zeros.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_zeros.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_zeros.Tpo $(DEPDIR)/libscielementary_functions_la-sci_zeros.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_zeros.cpp' object='libscielementary_functions_la-sci_zeros.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_zeros.lo `test -f 'sci_gateway/cpp/sci_zeros.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_zeros.cpp
+
+libscielementary_functions_la-sci_ones.lo: sci_gateway/cpp/sci_ones.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_ones.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_ones.Tpo -c -o libscielementary_functions_la-sci_ones.lo `test -f 'sci_gateway/cpp/sci_ones.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ones.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_ones.Tpo $(DEPDIR)/libscielementary_functions_la-sci_ones.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_ones.cpp' object='libscielementary_functions_la-sci_ones.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_ones.lo `test -f 'sci_gateway/cpp/sci_ones.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ones.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

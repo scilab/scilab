@@ -12,7 +12,7 @@
 
 #include "function.hxx"
 #include "struct.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "funcmanager.hxx"
 
 extern "C"
@@ -49,7 +49,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
 
     for (itInput = in.begin() ; itInput != in.end() ; ++itInput)
     {
-        std::wstring psFieldName = std::wstring((*itInput)->getAsString()->string_get(0));
+        std::wstring psFieldName = std::wstring((*itInput)->getAs<types::String>()->get(0));
         ++itInput;
         pFieldValue = *itInput;
         pRetVal->add(psFieldName, pFieldValue);

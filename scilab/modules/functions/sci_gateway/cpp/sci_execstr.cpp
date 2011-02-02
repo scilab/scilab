@@ -57,14 +57,14 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     //2nd parameter
 	if(in.size() > 1)
 	{//errcatch
-        if(in[1]->getType() != InternalType::RealString || in[1]->getAsString()->size_get() != 1)
+        if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"execstr", 2);
             return Function::Error;
         }
 
-        String* pS = in[1]->getAsString();
-        if(os_wcsicmp(pS->string_get(0), L"errcatch") == 0)
+        String* pS = in[1]->getAs<types::String>();
+        if(os_wcsicmp(pS->get(0), L"errcatch") == 0)
         {
             bErrCatch = true;
         }
@@ -78,17 +78,17 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	//3rd parameter
 	if(in.size() == 3)
 	{
-        if(in[2]->getType() != InternalType::RealString || in[2]->getAsString()->size_get() != 1)
+        if(in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
 		{
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"execstr", 3);
             return Function::Error;
         }
 
-		if(os_wcsicmp(in[2]->getAsString()->string_get(0), MUTE_FLAG) == 0)
+		if(os_wcsicmp(in[2]->getAs<types::String>()->get(0), MUTE_FLAG) == 0)
         {
             bMute = true;
         }
-        else if(os_wcsicmp(in[2]->getAsString()->string_get(0), NO_MUTE_FLAG) == 0)
+        else if(os_wcsicmp(in[2]->getAs<types::String>()->get(0), NO_MUTE_FLAG) == 0)
         {
             bMute = false;
         }
@@ -100,30 +100,30 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	}
 
     //1st argument
-    if(in[0]->isDouble() && in[0]->getAsDouble()->size_get() == 0)
+    if(in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
     {// execstr([])
         out.push_back(Double::Empty());
         return Function::OK;
     }
 
-    if(in[0]->getType() != InternalType::RealString || (in[0]->getAsString()->rows_get() != 1 && in[0]->getAsString()->cols_get() != 1))
+    if(in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
 	{
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Vector of strings expected.\n"), L"execstr", 1);
         return Function::Error;
     }
 
-	String* pS = in[0]->getAsString();
-	int iTotalLen = pS->size_get(); //add \n after each string
-	for(int i = 0 ; i < pS->size_get() ; i++)
+	String* pS = in[0]->getAs<types::String>();
+	int iTotalLen = pS->getSize(); //add \n after each string
+	for(int i = 0 ; i < pS->getSize() ; i++)
 	{
-		iTotalLen += (int)wcslen(pS->string_get(i));
+		iTotalLen += (int)wcslen(pS->get(i));
 	}
 
 	pstCommand = (wchar_t*)MALLOC(sizeof(wchar_t) * (iTotalLen + 1));//+1 for null termination
 
-	for(int i = 0, iPos = 0 ; i < pS->size_get() ; i++)
+	for(int i = 0, iPos = 0 ; i < pS->getSize() ; i++)
 	{
-		wcscpy(pstCommand + iPos, pS->string_get(i));
+		wcscpy(pstCommand + iPos, pS->get(i));
 		iPos = (int)wcslen(pstCommand);
 		pstCommand[iPos++] = L'\n';
 		pstCommand[iPos] = 0;

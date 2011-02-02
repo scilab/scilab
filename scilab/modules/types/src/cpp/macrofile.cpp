@@ -22,24 +22,18 @@
 using namespace ast;
 namespace types
 {
-
-    /*--------------*/
-    /*	Contructor  */
-    /*--------------*/
     MacroFile::MacroFile(wstring _stName, wstring _stPath, wstring _stModule) : Callable(), m_stPath(_stPath), m_pMacro(NULL)
     {
         setName(_stName);
         setModule(_stModule);
     }
 
-    MacroFile* MacroFile::clone()
+    InternalType* MacroFile::clone()
     {
         IncreaseRef();
         return this;
     }
-    /*--------------*/
-    /*	whoIAm		  */
-    /*--------------*/
+
     void MacroFile::whoAmI()
     {
         std::cout << "types::MacroFile";
@@ -55,7 +49,7 @@ namespace types
         return RealMacroFile; 
     }
 
-    Macro* MacroFile::macro_get(void)
+    Macro* MacroFile::getMacro(void)
     {
         return m_pMacro;
     }

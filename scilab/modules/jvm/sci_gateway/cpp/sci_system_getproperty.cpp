@@ -14,7 +14,7 @@
 #include "funcmanager.hxx"
 #include "jvm_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -36,7 +36,7 @@ Function::ReturnValue sci_system_getproperty(typed_list &in, int _piRetCount, ty
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"system_getproperty" ,1);
         return Function::Error;
@@ -48,7 +48,7 @@ Function::ReturnValue sci_system_getproperty(typed_list &in, int _piRetCount, ty
         return Function::Error;
     }
 
-    char* pstProperty   = wide_string_to_UTF8(in[0]->getAsString()->string_get(0));
+    char* pstProperty   = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
     char* pstValue      = system_getproperty(pstProperty, "unknown");
     String* pS          = new String(pstValue);
     out.push_back(pS);

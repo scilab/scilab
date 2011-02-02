@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "fileio_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -39,13 +39,13 @@ Function::ReturnValue sci_fullpath(typed_list &in, int _iRetCount, typed_list &o
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<String>()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"fullpath", 1);
         return Function::Error;
     }
 
-    wchar_t *relPath = in[0]->getAs<String>()->string_get(0);
+    wchar_t *relPath = in[0]->getAs<String>()->get(0);
     wchar_t fullpath[PATH_MAX*4];
 
     if( get_full_pathW( fullpath, relPath, PATH_MAX*4 ) != NULL )

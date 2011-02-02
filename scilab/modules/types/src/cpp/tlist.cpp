@@ -11,9 +11,8 @@
  */
 
 #include <sstream>
-#include "double.hxx"
+#include "arrayof.hxx"
 #include "tlist.hxx"
-#include "string.hxx"
 #include "listundefined.hxx"
 
 namespace types
@@ -46,24 +45,24 @@ namespace types
     ** Clone
     ** Create a new List and Copy all values.
     */
-    TList* TList::clone()
+    InternalType* TList::clone()
     {
         return new TList(this);
     }
 
     bool TList::exists(const std::wstring& _sKey)
     {
-        if(size_get() < 1)
+        if(getSize() < 1)
         {
             return false;
         }
 
-        String* pS = (*m_plData)[0]->getAsString();
+        String* pS = (*m_plData)[0]->getAs<types::String>();
 
         //first field is the tlist type
-        for(int i = 1 ; i < pS->size_get() ; i++)
+        for(int i = 1 ; i < pS->getSize() ; i++)
         {
-            if(std::wstring(pS->string_get(i)) == _sKey)
+            if(std::wstring(pS->get(i)) == _sKey)
             {
                 return true;
             }
@@ -78,12 +77,12 @@ namespace types
 
     InternalType* TList::get(const int _iIndex)
     {
-        if(size_get() < 2)
+        if(getSize() < 2)
         {
             return NULL;
         }
 
-        if(_iIndex > 0 && _iIndex < (*m_plData)[0]->getAsString()->size_get())
+        if(_iIndex > 0 && _iIndex < (*m_plData)[0]->getAs<types::String>()->getSize())
         {
             return (*m_plData)[_iIndex];
         }
@@ -92,16 +91,16 @@ namespace types
 
     int TList::getIndexFromString(const std::wstring _sKey)
     {
-        if(size_get() < 1)
+        if(getSize() < 1)
         {
             return -1;
         }
 
-        String* pS = (*m_plData)[0]->getAsString();
+        String* pS = (*m_plData)[0]->getAs<types::String>();
         //first field is the tlist type
-        for(int i = 1 ; i < pS->size_get() ; i++)
+        for(int i = 1 ; i < pS->getSize() ; i++)
         {
-            if(std::wstring(pS->string_get(i)) == _sKey)
+            if(std::wstring(pS->get(i)) == _sKey)
             {
                 return i;
             }
@@ -109,7 +108,7 @@ namespace types
         return -1;
     }
 
-    std::vector<InternalType*> TList::extract_string(std::list<std::wstring> _stFields)
+    std::vector<InternalType*> TList::extractStrings(std::list<std::wstring> _stFields)
     {
         std::vector<InternalType*> Result;
 
@@ -131,12 +130,12 @@ namespace types
 
     std::wstring TList::getTypeStr()
     {
-        if(size_get() < 1)
+        if(getSize() < 1)
         {
             return L"";
         }
 
-        return (*m_plData)[0]->getAsString()->string_get(0);
+        return (*m_plData)[0]->getAs<types::String>()->get(0);
     }
 
     std::wstring TList::getShortTypeStr()
@@ -159,7 +158,7 @@ namespace types
         while(m_plData->size() <_iIndex)
         {//incease list size and fill with "Undefined"
             m_plData->push_back(new ListUndefined());
-            m_iSize = size_get();
+            m_iSize = getSize();
         }
 
         //manage ref on the old value

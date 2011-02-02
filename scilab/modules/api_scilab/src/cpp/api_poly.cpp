@@ -14,7 +14,7 @@
  */
 
 #include "function.hxx"
-#include "matrixpoly.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -51,11 +51,11 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
 
     if(_pstVarName == NULL || *_piVarNameLen == 0)
     {
-        *_piVarNameLen = (int)((InternalType*)_piAddress)->getAsPoly()->var_get().size();
+        *_piVarNameLen = (int)((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().size();
         return sciErr; //No error
     }
 
-    char* pstTemp = wide_string_to_UTF8(((InternalType*)_piAddress)->getAsPoly()->var_get().c_str());
+    char* pstTemp = wide_string_to_UTF8(((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().c_str());
     strcpy(_pstVarName, pstTemp);
     FREE(pstTemp);
     return sciErr;
@@ -119,8 +119,8 @@ SciErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
         return sciErr;
     }
 
-    MatrixPoly *pMP = ((InternalType*)_piAddress)->getAsPoly();
-    pMP->rank_get(_piNbCoef);
+    Polynom *pMP = ((InternalType*)_piAddress)->getAs<types::Polynom>();
+    pMP->getRank(_piNbCoef);
 
     if(_pdblReal == NULL)
     {
@@ -129,14 +129,14 @@ SciErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
 
     for(int i = 0 ; i < iSize ; i++)
     {
-        memcpy(_pdblReal[i], pMP->poly_get(i)->coef_real_get(), sizeof(double) * pMP->poly_get(i)->rank_get());
+        memcpy(_pdblReal[i], pMP->get(i)->getCoefReal(), sizeof(double) * pMP->get(i)->getRank());
     }
 
     if(_iComplex == 1)
     {
         for(int i = 0 ; i < iSize ; i++)
         {
-            memcpy(_pdblImg[i], pMP->poly_get(i)->coef_img_get(), sizeof(double) * _piNbCoef[i]);
+            memcpy(_pdblImg[i], pMP->get(i)->getCoefImg(), sizeof(double) * _piNbCoef[i]);
         }
     }
     return sciErr;
@@ -165,7 +165,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
     InternalType** out = pStr->m_pOut;
 
     wchar_t* pstTemp = to_wide_string(_pstVarName);
-    MatrixPoly* pP = new MatrixPoly(pstTemp, _iRows, _iCols, _piNbCoef);
+    Polynom* pP = new Polynom(pstTemp, _iRows, _iCols, _piNbCoef);
     FREE(pstTemp);
     if(pP == NULL)
     {
@@ -175,21 +175,21 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
 
     if(_iComplex)
     {
-        pP->complex_set(true);
+        pP->setComplex(true);
     }
 
     int rhs = _iVar - api_Rhs((int*)_pvCtx);
     out[rhs - 1] = pP;
 
-    for(int i = 0 ; i < pP->size_get() ; i++)
+    for(int i = 0 ; i < pP->getSize() ; i++)
     {
         Double* pD = new Double(_piNbCoef[i], 1, _iComplex == 1);
-        pD->real_set(_pdblReal[i]);
+        pD->set(_pdblReal[i]);
         if(_iComplex)
         {
-            pD->img_set(_pdblImg[i]);
+            pD->setImg(_pdblImg[i]);
         }
-        pP->poly_set(i, pD);
+        pP->setCoef(i, pD);
     }
 
     return sciErr;

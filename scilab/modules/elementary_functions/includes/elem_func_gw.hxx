@@ -40,5 +40,7 @@ public :
 CPP_GATEWAY_PROTOTYPE(sci_isequal);
 CPP_GATEWAY_PROTOTYPE(sci_size);
 CPP_GATEWAY_PROTOTYPE(sci_eye);
+CPP_GATEWAY_PROTOTYPE(sci_zeros);
+CPP_GATEWAY_PROTOTYPE(sci_ones);
 
 #endif /* __ELEM_FUNC_GW_HXX__ */

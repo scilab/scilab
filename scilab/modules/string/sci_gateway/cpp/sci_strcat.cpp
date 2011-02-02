@@ -19,7 +19,7 @@
 
 #include "string_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -67,10 +67,10 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
         }
     }
 
-    if(in[0]->isDouble() && in[0]->getAsDouble()->size_get() == 0)
+    if(in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
     {
         String *pOut = new String(1,1);
-        pOut->string_set(0, L"");
+        pOut->set(0, L"");
         out.push_back(pOut);
         return Function::OK;
     }
@@ -82,7 +82,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 
     if(in.size() == 3)
     {
-        wchar_t wcMode = in[2]->getAsString()->string_get(0)[0];
+        wchar_t wcMode = in[2]->getAs<types::String>()->get(0)[0];
         switch(wcMode)
         {
         case L'r' :
@@ -99,16 +99,16 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
 
     if(in.size() > 1)
     {
-        if(in[1]->getAsString()->size_get() != 1)
+        if(in[1]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: String expected.\n"), L"strcat", 2);
             return Function::Error;
         }
 
-        pwstToInsert = in[1]->getAsString()->string_get(0);
+        pwstToInsert = in[1]->getAs<types::String>()->get(0);
     }
 
-    String* pS = in[0]->getAsString();
+    String* pS = in[0]->getAs<types::String>();
 
     String* pOut = NULL;
     switch(iMode)
@@ -118,95 +118,95 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
             pOut = new String(1, 1);
             /*compute final size*/
             int iLen = 1; //L'\0'
-            for(int i = 0 ; i < pS->size_get() ; i++)
+            for(int i = 0 ; i < pS->getSize() ; i++)
             {
-                iLen += (int)wcslen(pS->string_get(i));
+                iLen += (int)wcslen(pS->get(i));
             }
 
             if(pwstToInsert != NULL)
             {
-                iLen += (int)wcslen(pwstToInsert) * (pS->size_get() - 1);
+                iLen += (int)wcslen(pwstToInsert) * (pS->getSize() - 1);
             }
 
             wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
             pwstOut[0] = L'\0';
-            for(int i = 0 ; i < pS->size_get() ; i++)
+            for(int i = 0 ; i < pS->getSize() ; i++)
             {
                 size_t iOffset = wcslen(pwstOut);
                 if(iOffset != 0 && pwstToInsert != NULL)
                 {
                     wcscat(pwstOut + iOffset, pwstToInsert);
                 }
-                wcscat(pwstOut + iOffset, pS->string_get(i));
+                wcscat(pwstOut + iOffset, pS->get(i));
             }
 
-            pOut->string_set(0, pwstOut);
+            pOut->set(0, pwstOut);
             FREE(pwstOut);
         }
         break;
     case 1 : //"r"
         {
-            pOut = new String(1, pS->cols_get());
+            pOut = new String(1, pS->getCols());
             /*compute final size*/
-            for(int i = 0 ; i < pS->cols_get() ; i++)
+            for(int i = 0 ; i < pS->getCols() ; i++)
             {
                 int iLen = 1; //L'\0'
-                for(int j = 0 ; j < pS->rows_get() ; j++)
+                for(int j = 0 ; j < pS->getRows() ; j++)
                 {
-                    iLen += (int)wcslen(pS->string_get(j, i));
+                    iLen += (int)wcslen(pS->get(j, i));
                 }
 
                 if(pwstToInsert != NULL)
                 {
-                    iLen += (int)wcslen(pwstToInsert) * (pS->rows_get() - 1);
+                    iLen += (int)wcslen(pwstToInsert) * (pS->getRows() - 1);
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
                 pwstOut[0] = L'\0';
 
-                for(int j = 0 ; j < pS->rows_get() ; j++)
+                for(int j = 0 ; j < pS->getRows() ; j++)
                 {
                     size_t iOffset = wcslen(pwstOut);
                     if(iOffset != 0 && pwstToInsert != NULL)
                     {
                         wcscat(pwstOut + iOffset, pwstToInsert);
                     }
-                    wcscat(pwstOut + iOffset, pS->string_get(j, i));
+                    wcscat(pwstOut + iOffset, pS->get(j, i));
                 }
-                pOut->string_set(0, i, pwstOut);
+                pOut->set(0, i, pwstOut);
             }
             break;
         }
     case 2 : //"c"
         {
-            pOut = new String(pS->rows_get(), 1);
+            pOut = new String(pS->getRows(), 1);
             /*compute final size*/
-            for(int i = 0 ; i < pS->rows_get() ; i++)
+            for(int i = 0 ; i < pS->getRows() ; i++)
             {
                 int iLen = 1; //L'\0'
-                for(int j = 0 ; j < pS->cols_get() ; j++)
+                for(int j = 0 ; j < pS->getCols() ; j++)
                 {
-                    iLen += (int)wcslen(pS->string_get(i, j));
+                    iLen += (int)wcslen(pS->get(i, j));
                 }
 
                 if(pwstToInsert != NULL)
                 {
-                    iLen += (int)wcslen(pwstToInsert) * (pS->cols_get() - 1);
+                    iLen += (int)wcslen(pwstToInsert) * (pS->getCols() - 1);
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
                 pwstOut[0] = L'\0';
 
-                for(int j = 0 ; j < pS->cols_get() ; j++)
+                for(int j = 0 ; j < pS->getCols() ; j++)
                 {
                     size_t iOffset = wcslen(pwstOut);
                     if(iOffset != 0 && pwstToInsert != NULL)
                     {
                         wcscat(pwstOut + iOffset, pwstToInsert);
                     }
-                    wcscat(pwstOut + iOffset, pS->string_get(i, j));
+                    wcscat(pwstOut + iOffset, pS->get(i, j));
                 }
-                pOut->string_set(i, 0, pwstOut);
+                pOut->set(i, 0, pwstOut);
             }
             break;
         }

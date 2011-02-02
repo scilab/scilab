@@ -30,11 +30,12 @@ namespace types
         std::map<std::wstring, InternalType *>* getData();
 
     public :
-        int                                     size_get();
+        int                                     getSize();
 
         void                                    whoAmI(void) { std::cout << "types::Struct"; };
 
         RealType                                getType(void) { return RealStruct; }
+        bool                                    isStruct() { return true; }
 
         /**
         ** add(Symbol *_psKey, InternalType *_typedValue)
@@ -61,11 +62,13 @@ namespace types
 
         std::vector<InternalType*>              extract(std::list<std::wstring> _stFields);
 
+        GenericType*                            getColumnValues(int _iPos);
+
         /**
         ** Clone
         ** Create a new List and Copy all values.
         */
-        Struct*                                 clone();
+        InternalType*                           clone();
 
         std::wstring                            toString(int _iPrecision, int _iLineLen);
 

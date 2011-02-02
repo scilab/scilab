@@ -12,7 +12,7 @@
 
 #include "types.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -56,7 +56,7 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
 
     if(in.size() == 2)
     {
-        if(wcscmp(in[1]->getAs<String>()->string_get(0), L"string") == 0)
+        if(wcscmp(in[1]->getAs<types::String>()->get(0), L"string") == 0)
         {
             bStringMode = true;
         }
@@ -67,12 +67,12 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
         }
     }
 
-    String *pIn = in[0]->getAs<String>();
-    String *pOutput = new String(in[0]->getAs<String>()->rows_get(), in[0]->getAs<String>()->cols_get());
+    String *pIn = in[0]->getAs<types::String>();
+    String *pOutput = new String(in[0]->getAs<types::String>()->getRows(), in[0]->getAs<types::String>()->getCols());
 
-    for(int i = 0 ; i < in[0]->getAs<String>()->size_get() ; ++i)
+    for(int i = 0 ; i < in[0]->getAs<types::String>()->getSize() ; ++i)
     {
-        wchar_t *wcsCurrentIn = pIn->string_get(i);
+        wchar_t *wcsCurrentIn = pIn->get(i);
         wchar_t *pstMD5 = NULL;
 
         if(bStringMode)
@@ -112,7 +112,7 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
             }
         }
 
-        pOutput->string_set(i, pstMD5);
+        pOutput->set(i, pstMD5);
 
     }
 

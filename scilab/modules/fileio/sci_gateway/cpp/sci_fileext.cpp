@@ -15,7 +15,7 @@
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -44,20 +44,20 @@ Function::ReturnValue sci_fileext(typed_list &in, int _iRetCount, typed_list &ou
         return Function::Error;
     }
 
-    String* pS = in[0]->getAsString();
-    String* pOut = new String(pS->rows_get(), pS->cols_get());
+    String* pS = in[0]->getAs<types::String>();
+    String* pOut = new String(pS->getRows(), pS->getCols());
 
 
-    for(int i = 0 ; i < pS->size_get() ; i++)
+    for(int i = 0 ; i < pS->getSize() ; i++)
     {
-        wchar_t* pwstIn         = pS->string_get(i);
+        wchar_t* pwstIn         = pS->get(i);
         wchar_t* pwstDrive      = new wchar_t[wcslen(pwstIn) + 1];
         wchar_t* pwstDirectory  = new wchar_t[wcslen(pwstIn) + 1];
         wchar_t* pwstName       = new wchar_t[wcslen(pwstIn) + 1];
         wchar_t* pwstExtension  = new wchar_t[wcslen(pwstIn) + 1];
 
         splitpathW(pwstIn, FALSE, pwstDrive, pwstDirectory, pwstName, pwstExtension);
-        pOut->string_set(i, pwstExtension);
+        pOut->set(i, pwstExtension);
 
         delete[] pwstDirectory;
         delete[] pwstDrive;

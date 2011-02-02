@@ -13,7 +13,7 @@
 #include "time_gw.hxx"
 #include "function.hxx"
 #include "callable.hxx"
-#include "double.hxx"
+#include "arrayof.hxx"
 #include "timer.hxx"
 
 static Timer timer;

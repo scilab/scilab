@@ -14,7 +14,7 @@
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -44,13 +44,13 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-    if(in[1]->getType() == InternalType::RealDouble && in[1]->getAsDouble()->size_get() == 1)
+    if(in[1]->isDouble() && in[1]->getAs<Double>()->getSize() == 1)
     {
-        iFileID = static_cast<int>(in[1]->getAsDouble()->real_get()[0]);
+        iFileID = static_cast<int>(in[1]->getAs<Double>()->getReal()[0]);
     }
-    else if(in[1]->getType() == InternalType::RealString && in[1]->getAsString()->size_get() == 1)
+    else if(in[1]->isString() && in[1]->getAs<types::String>()->getSize() == 1)
     {
-        wchar_t *expandedFileName = expandPathVariableW(in[1]->getAsString()->string_get(0));
+        wchar_t *expandedFileName = expandPathVariableW(in[1]->getAs<types::String>()->get(0));
 
         iErr = mopen(expandedFileName, L"wt", 0, &iFileID);
         FREE(expandedFileName);
@@ -86,15 +86,15 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
     }
 
     //String vextor, row or col
-    if(in[0]->getType() != InternalType::RealString || (in[0]->getAsString()->rows_get() != 1 && in[0]->getAsString()->cols_get() != 1))
+    if(in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), "mputl", 1);
         return Function::Error;
     }
 
-    String* pS = in[0]->getAsString();
+    String* pS = in[0]->getAs<types::String>();
 
-    iErr = mputl(iFileID, pS->string_get(), pS->size_get());
+    iErr = mputl(iFileID, pS->get(), pS->getSize());
 
     out.push_back(new Bool(!iErr));
 

@@ -11,10 +11,18 @@
 */
 
 #include <sstream>
-#include "double.hxx"
+#include "arrayof.hxx"
 #include "list.hxx"
 #include "listundefined.hxx"
 #include "listinsert.hxx"
+#include "types_tools.hxx"
+#include "scilabexception.hxx"
+
+extern "C"
+{
+#include "localization.h"
+#include "charEncoding.h"
+}
 
 namespace types
 {
@@ -65,7 +73,7 @@ namespace types
     ** size_get
     ** Return the number of elements in list
     */
-    int List::size_get()
+    int List::getSize()
     {
         return static_cast<int>(m_plData->size());
     }
@@ -85,9 +93,14 @@ namespace types
     ** Clone
     ** Create a new List and Copy all values.
     */
-    List *List::clone()
+    InternalType *List::clone()
     {
         return new List(this);
+    }
+
+    GenericType* List::getColumnValues(int _iPos)
+    {
+		return NULL;
     }
 
     /**
@@ -98,7 +111,7 @@ namespace types
     {
         std::wostringstream ostr;
 
-        if (size_get() == 0)
+        if (getSize() == 0)
         {
             ostr << L"()" << std::endl;
         }
@@ -115,92 +128,139 @@ namespace types
         return ostr.str();
     }
 
-    std::vector<InternalType*>	List::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+    std::vector<InternalType*>	List::extract(typed_list* _pArgs)
     {
         std::vector<InternalType*> outList;
-
         //check input param
-        if(_bAsVector == false)
+        if(_pArgs->size() != 1)
         {
-            std::cout << "Extract from list must be \"as vector\"" << std::endl;
-        }
-
-        if(	_bAsVector && _piMaxDim[0] > size_get())
-        {
-            //retrun empty list
             return outList;
         }
 
-        for(int i = 0 ; i < _iSeqCount ; i++)
+        typed_list pArg;
+        int iDims           = (int)_pArgs->size();
+
+        int* piMaxDim       = new int[iDims];
+        int* piCountDim     = new int[iDims];
+
+        //evaluate each argument and replace by appropriate value and compute the count of combinations
+        int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+        if(iSeqCount == 0)
         {
-            InternalType* pIT = (*m_plData)[_piSeqCoord[i] - 1];
+            outList.push_back(Double::Empty());
+        }
+
+        for(int i = 0 ; i < iSeqCount ; i++)
+        {
+            int idx = (int)pArg[0]->getAs<Double>()->get(i);
+            if(idx > getSize() || idx < 1)
+            {
+                outList.clear();
+                break;
+            }
+            InternalType* pIT = (*m_plData)[idx - 1];
             outList.push_back(pIT);
         }
 
         return outList;
     }
 
-    InternalType* List::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, std::vector<types::InternalType*>* _poSource, bool _bAsVector)
+    InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         //check input param
-        if(_bAsVector == false)
-        {
-            std::cout << "Insertion in list must be \"as vector\"" << std::endl;
-            return NULL;
-        }
-
-        if(_poSource->size() != _iSeqCount)
+        if(_pArgs->size() != 1)
         {
             return NULL;
         }
 
+        typed_list pArg;
+        int iDims           = (int)_pArgs->size();
 
-        for(int i = 0 ; i < _iSeqCount ; i++)
+        int* piMaxDim       = new int[iDims];
+        int* piCountDim     = new int[iDims];
+
+        int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+        if(iSeqCount == 0)
+        {//do nothing
+            return this;
+        }
+        else if(iSeqCount > 1)
         {
-            if((*_poSource)[i]->isListDelete())
-            {//delete item
-                if((_piSeqCoord[i] - 1) < m_plData->size())
-                {
-                    m_plData->erase(m_plData->begin() + (_piSeqCoord[i] - 1));
-                }
+            std::wostringstream os;
+            os << _W("Unable to insert multiple item in a list.\n");
+            throw ast::ScilabError(os.str());
+        }
+
+
+        int idx = (int)pArg[0]->getAs<Double>()->get(0);
+        if(_pSource->isListDelete())
+        {//delete item
+            if(idx == 0)
+            {//do nothing
+                return this;
             }
-            else if((*_poSource)[i]->isListInsert())
-            {//insert item
-                ListInsert* pInsert = (*_poSource)[i]->getAsListInsert();
-                if(m_plData->size() < _piSeqCoord[i])
-                {//try to insert after the last index, increase list size and assign value
-                    while(m_plData->size() < _piSeqCoord[i])
-                    {//incease list size and fill with "Undefined"
-                        m_plData->push_back(new ListUndefined());
-                        m_iSize = size_get();
-                    }
-                    (*m_plData)[_piSeqCoord[i] - 1] = pInsert->insert_get();
-                }
-                else
+            else if(idx <= m_plData->size())
+            {
+                InternalType* pIT = (*m_plData)[idx - 1];
+                if(pIT)
                 {
-                    InternalType* pIT = pInsert->insert_get();
-                    pIT->IncreaseRef();
-                    m_plData->insert(m_plData->begin() + (_piSeqCoord[i] - 1), pIT);
+                    pIT->DecreaseRef();
+                    if(pIT->isDeletable())
+                    {
+                        delete pIT;
+                    }
                 }
+                m_plData->erase(m_plData->begin() + idx - 1);
+            }
+        }
+        else if(_pSource->isListInsert())
+        {//insert item
+            if(idx == 0)
+            {
+                std::wostringstream os;
+                os << _W("Index out of bounds.\n");
+                throw ast::ScilabError(os.str());
+            }
+
+            InternalType* pInsert = _pSource->getAsListInsert()->getInsert();
+            pInsert->IncreaseRef();
+            if(idx > m_plData->size())
+            {//try to insert after the last index, increase list size and assign value
+                while(m_plData->size() < idx)
+                {//incease list size and fill with "Undefined"
+                    InternalType* pUndef = new ListUndefined();
+                    pUndef->IncreaseRef();
+                    m_plData->push_back(new ListUndefined());
+                }
+                (*m_plData)[idx - 1] = pInsert;
             }
             else
             {
-                while(m_plData->size() < _piSeqCoord[i])
-                {//increase list size and fill with "Undefined"
-                    m_plData->push_back(new ListUndefined());
-                    m_iSize = size_get();
-                }
-
-                InternalType* pIT = (*m_plData)[_piSeqCoord[i] - 1];
-                pIT->DecreaseRef();
-                if(pIT->isDeletable())
-                {
-                    delete pIT;
-                }
-
-                (*_poSource)[i]->IncreaseRef();
-                (*m_plData)[_piSeqCoord[i] - 1] = (*_poSource)[i];
+                m_plData->insert(m_plData->begin() + idx - 1, pInsert);
             }
+        }
+        else if(idx == 0)
+        {//special cazse to insert at the first position
+            InternalType* pInsert = _pSource->getAsListInsert()->getInsert();
+            pInsert->IncreaseRef();
+            m_plData->insert(m_plData->begin(), pInsert);
+        }
+        else
+        {
+            while(m_plData->size() < idx)
+            {//incease list size and fill with "Undefined"
+                m_plData->push_back(new ListUndefined());
+            }
+
+            InternalType* pIT = (*m_plData)[idx - 1];
+            pIT->DecreaseRef();
+            if(pIT->isDeletable())
+            {
+                delete pIT;
+            }
+
+            _pSource->IncreaseRef();
+            (*m_plData)[idx - 1] = _pSource;
         }
         return this;
     }

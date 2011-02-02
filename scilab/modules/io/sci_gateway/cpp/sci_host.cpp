@@ -14,7 +14,7 @@
 #include <string.h>
 #include "funcmanager.hxx"
 #include "io_gw.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -35,13 +35,13 @@ types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, typ
 
     types::InternalType* pIT = in[0];
 
-    if(pIT->getType() != InternalType::RealString || pIT->getAsString()->size_get() != 1)
+    if(pIT->isString() == false || pIT->getAs<types::String>()->getSize() != 1)
     {
         Scierror(89,_("%s: Wrong size for input argument #%d: A string expected.\n"), "host", 1);
         return Function::Error;
     }
 
-    wchar_t* pstCommand = pIT->getAsString()->string_get(0);
+    wchar_t* pstCommand = pIT->getAs<types::String>()->get(0);
 
     int stat = 0;
     systemcW(pstCommand, &stat);

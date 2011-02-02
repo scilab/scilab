@@ -14,7 +14,7 @@
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -36,27 +36,27 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 
     if(in.size() > 2)
     {
-        if(in[2]->isBool() == false && in[2]->getAsBool()->size_get() != 1)
+        if(in[2]->isBool() == false && in[2]->getAs<types::Bool>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A boolean expected.\n"), L"basename", 3);
             return Function::Error;
         }
 
-        iExpand = in[2]->getAsBool()->bool_get()[0];
+        iExpand = in[2]->getAs<types::Bool>()->get()[0];
     }
 
     if(in.size() > 1)
     {
-        if(in[1]->isBool() == false && in[1]->getAsBool()->size_get() != 1)
+        if(in[1]->isBool() == false && in[1]->getAs<types::Bool>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A boolean expected.\n"), L"basename", 2);
             return Function::Error;
         }
 
-        iConvert = in[1]->getAsBool()->bool_get()[0];
+        iConvert = in[1]->getAs<types::Bool>()->get()[0];
     }
 
-    if(in[0]->isDouble() && in[0]->getAsDouble()->isEmpty())
+    if(in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
     {
         out.push_back(Double::Empty());
         return Function::OK;
@@ -67,11 +67,11 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
         return Function::Error;
     }
 
-    String* pS      = in[0]->getAsString();
-    String* pOut    = new String(pS->rows_get(), pS->cols_get());
-    for (int i = 0 ; i < pS->size_get() ; i++)
+    String* pS      = in[0]->getAs<types::String>();
+    String* pOut    = new String(pS->getRows(), pS->getCols());
+    for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        pS->string_set(i, basenameW(pS->string_get(i), iExpand));
+        pS->set(i, basenameW(pS->get(i), iExpand));
     }
 
 

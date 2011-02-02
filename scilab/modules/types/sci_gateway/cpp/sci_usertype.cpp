@@ -14,7 +14,7 @@
 #include "funcmanager.hxx"
 #include "user.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C" {
     #include "Scierror.h"
@@ -33,7 +33,7 @@ public:
     }
 
 public :
-    MyDataType * clone()
+    InternalType * clone()
     {
         return new MyDataType(m_shortName, m_longName);
     }
@@ -68,14 +68,14 @@ Function::ReturnValue sci_usertype(typed_list &in, int _piRetCount, typed_list &
     int i = 1;
     for (itInput = in.begin() ; itInput != in.end() ; itInput++, i++)
     {
-        if (!(*itInput)->isString() || (*itInput)->getAsString()->size_get() != 1)
+        if (!(*itInput)->isString() || (*itInput)->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "usertype", i);
             return Function::Error;
         }
     }
 
-    MyDataType *pRetVal = new MyDataType(in[0]->getAsString()->string_get(0), in[1]->getAsString()->string_get(0));
+    MyDataType *pRetVal = new MyDataType(in[0]->getAs<types::String>()->get(0), in[1]->getAs<types::String>()->get(0));
 
     out.push_back(pRetVal);
 

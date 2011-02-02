@@ -27,7 +27,7 @@ namespace types
 		std::cout << "types::ListUndefined";
 	}
 
-	ListUndefined* ListUndefined::clone(void)
+	InternalType* ListUndefined::clone(void)
 	{
 		return new ListUndefined();
 	}

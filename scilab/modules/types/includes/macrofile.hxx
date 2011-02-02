@@ -27,10 +27,11 @@ namespace types
         virtual                 ~MacroFile(){};
 
         //FIXME : Should not return NULL
-        MacroFile*              clone();
+        InternalType*           clone();
 
         MacroFile*              getAsMacroFile(void);
         RealType                getType(void);
+        bool                    isMacroFile() { return true; }
 
         void                    whoAmI();
 
@@ -39,7 +40,7 @@ namespace types
         Callable::ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         bool                    parse(void);
 
-        Macro*                  macro_get(void);
+        Macro*                  getMacro(void);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual wstring         getTypeStr() {return L"macrofile";}

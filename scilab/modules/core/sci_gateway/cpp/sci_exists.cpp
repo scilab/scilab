@@ -12,10 +12,7 @@
 
 #include "function.hxx"
 #include "context.hxx"
-#include "types.hxx"
-#include "double.hxx"
-#include "string.hxx"
-#include "bool.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -62,13 +59,13 @@ static PrivateResult sci_existsOrIsdef(types::typed_list &in, const char *fname)
         return FunctionFailed;
     }
 
-    if (!in[0]->isString() || in[0]->getAsString()->size_get() != 1)
+    if (!in[0]->isString() || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 1);
         return FunctionFailed;
     }
 
-    if (in.size() == 2 && (!in[1]->isString() || in[1]->getAsString()->size_get() != 1))
+    if (in.size() == 2 && (!in[1]->isString() || in[1]->getAs<types::String>()->getSize() != 1))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 2);
         return FunctionFailed;
@@ -77,7 +74,7 @@ static PrivateResult sci_existsOrIsdef(types::typed_list &in, const char *fname)
     const wchar_t *psScope = NULL;
     if (in.size() == 2)
     {
-        psScope = in[1]->getAsString()->string_get(0,0);
+        psScope = in[1]->getAs<types::String>()->get(0,0);
     }
     else
     {
@@ -90,13 +87,13 @@ static PrivateResult sci_existsOrIsdef(types::typed_list &in, const char *fname)
     switch (getScopeFromOption(psScope))
     {
     case All:
-        pitReturn = symbol::Context::getInstance()->get(in[0]->getAsString()->string_get(0,0));
+        pitReturn = symbol::Context::getInstance()->get(in[0]->getAs<types::String>()->get(0,0));
         break;
     case Local:
-        pitReturn = symbol::Context::getInstance()->getCurrentLevel(in[0]->getAsString()->string_get(0,0));
+        pitReturn = symbol::Context::getInstance()->getCurrentLevel(in[0]->getAs<types::String>()->get(0,0));
         break;
     case NoLocal:
-        pitReturn = symbol::Context::getInstance()->getAllButCurrentLevel(in[0]->getAsString()->string_get(0,0));
+        pitReturn = symbol::Context::getInstance()->getAllButCurrentLevel(in[0]->getAs<types::String>()->get(0,0));
         break;
     default :
         Scierror(36, _("%s: Wrong input argument %d.\n"), fname, 2);

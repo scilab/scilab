@@ -98,7 +98,7 @@ int iGetListItemType(int _iVar, int* _piParentList, int *_piItemNumber, int *_pE
 int* iGetListItemList(int _iVar, int* _piParentList, int iItemPos);
 /* Get Sparse Item */
 int iGetListItemSparse(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int* _piTotalElem, int* _piElemByRow, double **_pdblReal, double **_pdblImg);
-/* Get Poly Item */
+/* Get SinglePoly Item */
 int iGetListItemPoly(int _iVar, int _iItemNumber, int **_pVarName, int *_piRows, int *_piCols, int *_piPow, double **_pdblReal, double **_pdblImg);
 /* Get Double Item */
 int iGetListItemDouble(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, double **_pdblReal, double **_pdblImg);

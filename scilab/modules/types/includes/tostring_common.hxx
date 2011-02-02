@@ -19,6 +19,9 @@
 #define SPACE_BETWEEN_TWO_VALUES        L"  "
 #define SIZE_BETWEEN_REAL_COMPLEX       1
 #define SPACE_BETWEEN_REAL_COMPLEX      L" "
+#define SIZE_BOOL                       1
+#define SIZE_BETWEEN_BOOL               1
+#define SPACE_BETWEEN_BOOL              L" "
 #define SIGN_LENGTH                     2
 #define NO_SIGN                         L"  "
 #define MINUS_STRING                    L"- "
@@ -32,15 +35,15 @@
 #endif
 
 /*double*/
-void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
-void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
-void AddDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
-void AddDoubleComplexValue(std::wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
-void PrintDoubleVar(std::wostringstream *_postr,  double _dblVal);
+void getDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
+void getComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
+void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
+void addDoubleComplexValue(std::wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
+void printDoubleVar(std::wostringstream *_postr,  double _dblVal);
 
 /*Common*/
-void Config_Stream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
-void Add_Space(std::wostringstream *_postr, int _iSpace);
+void configureStream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
+void addSpaces(std::wostringstream *_postr, int _iSpace);
 
 /*int*/
 /*
@@ -48,26 +51,19 @@ void Add_Space(std::wostringstream *_postr, int _iSpace);
 */
 
 template <typename T>
-void GetUnsignedIntFormat(T _TVal, int *_piWidth)
+void getUnsignedIntFormat(T _TVal, int *_piWidth)
 {
     *_piWidth = static_cast<int>(log10(static_cast<long double>(_TVal)) + 1);
 }
 
 template <typename T>
-void GetSignedIntFormat(T _TVal, int *_piWidth)
+void getSignedIntFormat(T _TVal, int *_piWidth)
 {
-	if(_TVal < 0)
-	{
-		*_piWidth = static_cast<int>(log10(static_cast<long double>(_abs64(_TVal))) + 1);
-	}
-	else
-	{
-		*_piWidth = static_cast<int>(log10(static_cast<long double>(_TVal)) + 1);
-	}
+    *_piWidth = static_cast<int>(log10(static_cast<long double>(_abs64(_TVal))) + 1);
 }
 
 template <typename T>
-void AddUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void addUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
 {
 	if(bPrintPlusSign == true)
 	{
@@ -78,7 +74,7 @@ void AddUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool
 		*_postr << NO_SIGN;
 	}
 
-	Config_Stream(_postr, _iWidth, 0, ' ');
+	configureStream(_postr, _iWidth, 0, ' ');
 
 	if(bPrintOne == true || _TVal != 1)
 	{
@@ -87,7 +83,7 @@ void AddUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool
 }
 
 template <typename T>
-void AddSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void addSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
 {
 	if(bPrintPlusSign == true)
 	{
@@ -98,18 +94,11 @@ void AddSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool b
 		*_postr << (_TVal < 0 ? MINUS_STRING_INT : NO_SIGN);
 	}
 
-	Config_Stream(_postr, _iWidth, 0, ' ');
+	configureStream(_postr, _iWidth, 0, ' ');
 
 	if(bPrintOne == true || _TVal != 1)
 	{
-        if(_TVal < 0)
-        {
-            *_postr << std::right << static_cast<long long>(_abs64(_TVal));
-        }
-        else
-        {
-            *_postr << std::right << static_cast<unsigned long long>(_TVal);
-        }
+        *_postr << std::right << static_cast<long long>(_abs64(_TVal));
 	}
 }
 

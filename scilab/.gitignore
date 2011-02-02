@@ -71,6 +71,7 @@ Debug
 *.suo
 *.ncb
 VTune
+*.pdb
 
 #
 # F2C files (windows)

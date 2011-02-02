@@ -30,7 +30,7 @@ namespace types
         std::vector<InternalType *>*    getData();
 
     public :
-        int                             size_get();
+        int                             getSize();
 
         void                            whoAmI(void) { std::cout << "types::List"; };
 
@@ -46,14 +46,17 @@ namespace types
         ** Clone
         ** Create a new List and Copy all values.
         */
-        List*                           clone();
+        InternalType*                   clone();
+
+        GenericType*                    getColumnValues(int _iPos);
 
         std::wstring                    toString(int _iPrecision, int _iLineLen);
 
         List*                           getAsList(void) { return this; }
+        bool                            isList() { return true; }
 
-        InternalType*                   insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, std::vector<types::InternalType*>* _poSource, bool _bAsVector);
-        std::vector<InternalType*>      extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+        InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);
+        std::vector<InternalType*>      extract(typed_list* _pArgs);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring            getTypeStr() {return L"list";}

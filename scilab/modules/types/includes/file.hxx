@@ -13,7 +13,7 @@
 #ifndef __FILE_HH__
 #define __FILE_HH__
 
-#include "double.hxx"
+#include "arrayof.hxx"
 
 namespace types
 {
@@ -40,6 +40,7 @@ namespace types
         void                        setFilename(std::wstring _stFilename);
         std::wstring                getFilename();
 
+        bool                        isFile() { return true; }
     private :
         FILE*                       m_fileDesc;
         int                         m_iSwap; /* swap status for each file */

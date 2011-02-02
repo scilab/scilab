@@ -65,10 +65,10 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 	if(in.size() > 1)
 	{//errcatch or mode
-        if(in[1]->getType() == InternalType::RealString && in[1]->getAsString() ->size_get() == 1)
+        if(in[1]->isString() && in[1]->getAs<types::String>() ->getSize() == 1)
 		{//errcatch
-			String* pS = in[1]->getAsString();
-			if(os_wcsicmp(pS->string_get(0), L"errcatch") == 0)
+			String* pS = in[1]->getAs<types::String>();
+			if(os_wcsicmp(pS->get(0), L"errcatch") == 0)
 			{
 				bErrCatch = true;
 			}
@@ -80,18 +80,18 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 			if(in.size() > 2)
 			{
-                if(in[2]->getType() != InternalType::RealDouble || in[2]->getAsDouble()->size_get() != 1)
+                if(in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
 				{//mode
                     ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"exec", 3);
                     return Function::Error;
 				}
 
-                promptMode = (int)in[2]->getAsDouble()->real_get()[0];
+                promptMode = (int)in[2]->getAs<Double>()->getReal()[0];
 			}
 		}
-		else if(in[1]->getType() == InternalType::RealDouble && in[1]->getAsDouble()->size_get() == 1)
+		else if(in[1]->isDouble() && in[1]->getAs<Double>()->getSize() == 1)
         {//mode
-            promptMode = (int)in[1]->getAsDouble()->real_get()[0];
+            promptMode = (int)in[1]->getAs<Double>()->getReal()[0];
 		}
 		else
 		{//not managed
@@ -100,12 +100,12 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		}
 	}
 
-    if(in[0]->getType() == InternalType::RealString && in[0]->getAsString()->size_get() == 1)
+    if(in[0]->isString() && in[0]->getAs<types::String>()->getSize() == 1)
 	{//1st argument is a path, parse file and execute it
 		int iParsePathLen		= 0;
-		String* pS = in[0]->getAsString();
+		String* pS = in[0]->getAs<types::String>();
 
-        wchar_t* pstFile = pS->string_get(0);
+        wchar_t* pstFile = pS->get(0);
         wchar_t *expandedPath = expandPathVariableW(pstFile);
 
         /*fake call to mopen to show file within file()*/
@@ -127,11 +127,11 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 		pExp = parser.getTree();
 	}
-	else if(in[0]->getType() == InternalType::RealMacro)
+	else if(in[0]->isMacro())
 	{//1st argument is a macro name, execute it in the current environnement
-		pExp = in[0]->getAsMacro()->body_get();
+		pExp = in[0]->getAsMacro()->getBody();
 	}
-	else if(in[0]->getType() == InternalType::RealMacroFile)
+	else if(in[0]->isMacroFile())
 	{//1st argument is a macro name, parse and execute it in the current environnement
 		if(in[0]->getAsMacroFile()->parse() == false)
 		{
@@ -139,7 +139,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             mclose(iID);
 			return Function::Error;
 		}
-		pExp = in[0]->getAsMacroFile()->macro_get()->body_get();
+		pExp = in[0]->getAsMacroFile()->getMacro()->getBody();
 	}
 	else
 	{
@@ -156,7 +156,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	GetCurrentPrompt(stPrompt);
 //    MessageBoxA(NULL, stPrompt, "", 0);
 
-    wchar_t* pwstFile =  expandPathVariableW(in[0]->getAsString()->string_get(0));
+    wchar_t* pwstFile =  expandPathVariableW(in[0]->getAs<types::String>()->get(0));
     char* pstFile = wide_string_to_UTF8(pwstFile);
 	std::ifstream file(pstFile);
     FREE(pstFile);
@@ -400,8 +400,8 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 	{//1 line
 		strncpy(strLastLine, _pstPreviousBuffer + (loc.first_column - 1), loc.last_column - (loc.first_column - 1));
 		strLastLine[loc.last_column - (loc.first_column - 1)] = 0;
-        int iExpLen = strlen(strLastLine);
-        int iLineLen = strlen(_pstPreviousBuffer) - (loc.first_column - 1);
+        int iExpLen = (int)strlen(strLastLine);
+        int iLineLen = (int)strlen(_pstPreviousBuffer) - (loc.first_column - 1);
         if(iExpLen == iLineLen)
         {
             if(loc.first_column == 1)

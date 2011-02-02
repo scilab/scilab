@@ -246,7 +246,7 @@ int iPowerComplexScalarByRealScalar(
 			dblRealTemp				= *_pdblRealOut;
 			dblImgTemp				= *_pdblImgOut;
 
-			for(i = 2 ; i <= dabss(_dblReal1) ; i++)
+			for(i = 2 ; i <= dabss(_dblReal2) ; i++)
 			{
 				C2F(wmul)(&dblRealTemp, &dblImgTemp, _pdblRealOut, _pdblImgOut, _pdblRealOut, _pdblImgOut);
 			}

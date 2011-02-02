@@ -17,10 +17,10 @@
 #include "exp.hxx"
 
 #define bsiz	4096
+
 EXTERN_AST bool bConditionState(types::InternalType *_pITResult);
 
-EXTERN_AST void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
-EXTERN_AST int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
+//EXTERN_AST void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
 
 EXTERN_AST types::InternalType* AddElementToVariable(
 						types::InternalType* _poDest,
@@ -36,7 +36,6 @@ EXTERN_AST types::InternalType* AddElementToVariableFromRow(
                         types::InternalType* _poDest,
                         types::InternalType* _poSource,
                         int _iRows, int _iCols, int *_piRows);
-
 
 EXTERN_AST const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);
 

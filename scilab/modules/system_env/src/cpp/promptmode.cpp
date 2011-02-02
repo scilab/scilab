@@ -13,11 +13,9 @@
 #include <stdlib.h>
 
 #include "promptmode.h"
-
 #include "configvariable.hxx"
-
 #include "setenvvar.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "context.hxx"
 
 int getPromptMode(void)

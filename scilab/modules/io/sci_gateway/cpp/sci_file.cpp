@@ -18,7 +18,7 @@
 #include "io_gw.hxx"
 #include "setenvvar.hxx"
 #include "filemanager.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -336,7 +336,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
     if(piIds)
     {
         Double *pD = new Double(1, iCount);
-        pD->real_set(piIds);
+        pD->setInt(piIds);
         out.push_back(pD);
         delete[] piIds;
     }
@@ -347,7 +347,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         if(pstTypes != NULL)
         {
             String* pS = new String(1, iCount);
-            pS->string_set(pstTypes);
+            pS->set(pstTypes);
             out.push_back(pS);
             for(int i = 0 ; i < iCount ; i++)
             {
@@ -363,7 +363,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         if(pstNames != NULL)
         {
             String* pS = new String(1, iCount);
-            pS->string_set(pstNames);
+            pS->set(pstNames);
             out.push_back(pS);
             for(int i = 0 ; i < iCount ; i++)
             {
@@ -379,7 +379,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         if(pdblModes != NULL)
         {
             Double* pD = new Double(1, iCount);
-            pD->real_set(pdblModes);
+            pD->set(pdblModes);
             out.push_back(pD);
             delete[] pdblModes;
         }
@@ -391,7 +391,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         if(pdblSwaps != NULL)
         {
             Double* pD = new Double(1, iCount);
-            pD->real_set(pdblSwaps);
+            pD->set(pdblSwaps);
             out.push_back(pD);
             delete[] pdblSwaps;
         }
@@ -402,17 +402,17 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in[0]->getType() != InternalType::RealDouble || in[0]->getAsDouble()->size_get() != 1)
+    if(in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
     {
 		Scierror(201,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), "file", 1);
         return Function::Error;
     }
 
-    Double* pD = in[0]->getAsDouble();
-    int iID = static_cast<int>(pD->real_get()[0]);
+    Double* pD = in[0]->getAs<Double>();
+    int iID = static_cast<int>(pD->getReal()[0]);
 
     //check if double value is an integer to exclude decimal values
-    if(static_cast<double>(iID) != pD->real_get()[0])
+    if(static_cast<double>(iID) != pD->getReal()[0])
     {
  		Scierror(201,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), "file", 1);
         return Function::Error;

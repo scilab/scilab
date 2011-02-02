@@ -25,10 +25,11 @@ namespace types
         virtual                 ~ListUndefined();
 
         // FIXME : Should not return NULL;
-        ListUndefined*          clone();
+        InternalType*           clone();
 
         ListUndefined*          getAsListUndefined(void);
         RealType                getType(void);
+        bool                    is() { return true; }
 
         void                    whoAmI();
 

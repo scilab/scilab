@@ -41,18 +41,18 @@ void visitprivate(const CallExp &e)
                 continue;
             }
 
-            if(execVar[j].result_get()->getType() == InternalType::RealImplicitList)
+            if(execVar[j].result_get()->isImplicitList())
             {
                 ImplicitList* pIL = execVar[j].result_get()->getAsImplicitList();
-                if(pIL->computable() == false)
+                if(pIL->isComputable() == false)
                 {
                     Double* pVal = new Double(-1, -1);
-                    pVal->real_get()[0] = 1;
+                    pVal->getReal()[0] = 1;
                     execVar[j].result_set(pVal);
                 }
                 else
                 {
-                    execVar[j].result_set(pIL->extract_matrix());
+                    execVar[j].result_set(pIL->extractFullMatrix());
                 }
             }
 
@@ -63,7 +63,7 @@ void visitprivate(const CallExp &e)
             }
             else
             {
-                for(int i = 0 ; i < execVar[j].result_size_get() ; i++)
+                for(int i = 0 ; i < execVar[j].result_getSize() ; i++)
                 {
                     in.push_back(execVar[j].result_get(i));
                     execVar[j].result_get(i)->IncreaseRef();
@@ -71,7 +71,7 @@ void visitprivate(const CallExp &e)
             }
         }
 
-        int iRetCount = Max(1, expected_size_get());
+        int iRetCount = Max(1, expected_getSize());
 
         try
         {
@@ -80,12 +80,12 @@ void visitprivate(const CallExp &e)
 
             if(Ret == Callable::OK)
             {
-                if(expected_size_get() == 1 && out.size() == 0) //to manage ans
+                if(expected_getSize() == 1 && out.size() == 0) //to manage ans
                 {
-                    if(static_cast<int>(out.size()) < expected_size_get())
+                    if(static_cast<int>(out.size()) < expected_getSize())
                     {
                         std::wostringstream os;
-                        os << L"bad lhs, expected : " << expected_size_get() << L" returned : " << out.size() << std::endl;
+                        os << L"bad lhs, expected : " << expected_getSize() << L" returned : " << out.size() << std::endl;
                         throw ScilabError(os.str(), 999, e.location_get());
                     }
                 }
@@ -187,10 +187,11 @@ void visitprivate(const CallExp &e)
                 (*it1)->accept(execArg);
                 if(execArg.result_get()->isString())
                 {
-                    String *pString = execArg.result_get()->getAsString();
-                    for(int i = 0 ; i < pString->size_get() ; i++)
+                    InternalType* pVar  = execArg.result_get();
+                    String *pString = pVar->getAs<types::String>();
+                    for(int i = 0 ; i < pString->getSize() ; i++)
                     {
-                        stFields.push_back(pString->string_get(i));
+                        stFields.push_back(pString->get(i));
                     }
                 }
                 else
@@ -225,10 +226,11 @@ void visitprivate(const CallExp &e)
                 {
                     rtIndex = InternalType::RealString;
                     bTypeSet = true;
-                    String *pString = execArg.result_get()->getAsString();
-                    for(int i = 0 ; i < pString->size_get() ; i++)
+                    InternalType* pVar  = execArg.result_get();
+                    String *pString = pVar->getAs<types::String>();
+                    for(int i = 0 ; i < pString->getSize() ; i++)
                     {
-                        stFields.push_back(pString->string_get(i));
+                        stFields.push_back(pString->get(i));
                     }
                 }
                 else if(execArg.result_get()->isDouble())
@@ -242,29 +244,33 @@ void visitprivate(const CallExp &e)
             if(rtIndex  == InternalType::RealDouble)
             {
                 //Create list of indexes
-                bool bSeeAsVector   = iArgDim == 1;
-                int *piIndexSeq		= NULL;
-                int *piMaxDim       = NULL;
-                int *piDimSize		= new int[iArgDim];
-                int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+                //ArrayOf<double>* pArray = pIT->getAs<ArrayOf<double> >();
+                //bool bSeeAsVector   = iArgDim < pArray->getDims();
+                //int *piIndexSeq		= NULL;
+                //int *piMaxDim       = NULL;
+                //int *piDimSize		= new int[iArgDim];
+                //int iDims           = 0;
+                //int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, &iDims, pIT, piDimSize);
 
-                //check we don't have bad indexes like "< 1"
-                for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
-                {
-                    if(piIndexSeq[i] < 1)
-                    {
-                        //manage error
-                        std::wostringstream os;
-                        os << _W("Indexes must be positive .\n");
-                        os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
-                        throw ScilabError(os.str(), 999, e.name_get().location_get());
-                    }
-                }
-                ResultList = pIT->getAsTList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                ////typed_list *pArgs = GetArgumentList(e.args_get());
+
+                ////check we don't have bad indexes like "< 1"
+                //for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
+                //{
+                //    if(piIndexSeq[i] < 1)
+                //    {
+                //        //manage error
+                //        std::wostringstream os;
+                //        os << _W("Indexes must be positive .\n");
+                //        os << ((Location)e.name_get().location_get()).location_getString() << std::endl;
+                //        throw ScilabError(os.str(), 999, e.name_get().location_get());
+                //    }
+                //}
+                //ResultList = pIT->getAsTList()->extract(iTotalCombi, piIndexSeq, piMaxDim, iDims, piDimSize, bSeeAsVector);
             }
             else if(rtIndex  == InternalType::RealString)
             {
-                ResultList = pIT->getAsTList()->extract_string(stFields);
+                ResultList = pIT->getAsTList()->extractStrings(stFields);
             }
 
             if(ResultList.size() == 1)
@@ -282,65 +288,77 @@ void visitprivate(const CallExp &e)
         else
         {
             //Create list of indexes
-            bool bSeeAsVector   = iArgDim == 1;
-            int *piIndexSeq		= NULL;
-            int *piMaxDim       = NULL;
-            int *piDimSize		= new int[iArgDim];
-            int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
-
-            //check we don't have bad indexes like "< 1"
-            for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
-            {
-                if(piIndexSeq[i] < 1)
-                {
-                    //manage error
-                    std::wostringstream os;
-                    os << _W("Indexes must be positive .\n");
-                    //os << ((Location)e.name_get().location_get()).location_string_get() << std::endl;
-                    throw ScilabError(os.str(), 999, e.name_get().location_get());
-                }
-            }
+            typed_list *pArgs = GetArgumentList(e.args_get());
 
             switch(pIT->getType())
             {
             case InternalType::RealDouble :
-                pOut = pIT->getAsDouble()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-                break;
-            case InternalType::RealBool :
-                pOut = pIT->getAsBool()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-                break;
-            case InternalType::RealInt :
-                pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                pOut = pIT->getAs<Double>()->extract(pArgs);
                 break;
             case InternalType::RealString :
-                pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                pOut = pIT->getAs<String>()->extract(pArgs);
+                break;
+            case InternalType::RealBool :
+                pOut = pIT->getAs<Bool>()->extract(pArgs);
+                break;
+            case InternalType::RealPoly :
+                pOut = pIT->getAs<Polynom>()->extract(pArgs);
+                break;
+            case InternalType::RealInt8 :
+                pOut = pIT->getAs<Int8>()->extract(pArgs);
+                break;
+            case InternalType::RealUInt8 :
+                pOut = pIT->getAs<UInt8>()->extract(pArgs);
+                break;
+            case InternalType::RealInt16 :
+                pOut = pIT->getAs<Int16>()->extract(pArgs);
+                break;
+            case InternalType::RealUInt16 :
+                pOut = pIT->getAs<UInt16>()->extract(pArgs);
+                break;
+            case InternalType::RealInt32 :
+                pOut = pIT->getAs<Int32>()->extract(pArgs);
+                break;
+            case InternalType::RealUInt32 :
+                pOut = pIT->getAs<UInt32>()->extract(pArgs);
+                break;
+            case InternalType::RealInt64 :
+                pOut = pIT->getAs<Int64>()->extract(pArgs);
+                break;
+            case InternalType::RealUInt64 :
+                pOut = pIT->getAs<UInt64>()->extract(pArgs);
                 break;
             case InternalType::RealList :
-            {
-                ResultList = pIT->getAsList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-                if(ResultList.size() == 1)
                 {
-                    result_set(ResultList[0]);
-                }
-                else
-                {
-                    for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                    ResultList = pIT->getAsList()->extract(pArgs);
+
+                    switch(ResultList.size())
                     {
-                        result_set(i, ResultList[i]);
+                    case 0 :
+                        {
+                            std::wostringstream os;
+                            os << L"inconsistent dimensions\n";
+                            throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                        }
+                        break;
+                    case 1 :
+                        result_set(ResultList[0]);
+                        break;
+                    default :
+                        for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                        {
+                            result_set(i, ResultList[i]);
+                        }
+                        break;
                     }
                 }
                 break;
-            }
             case InternalType::RealCell :
-                pOut = pIT->getAsCell()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+                pOut = pIT->getAs<Cell>()->extract(pArgs);
                 break;
             default :
                 break;
             }
-
-            delete[] piDimSize;
-            delete[] piIndexSeq;
-            delete[] piMaxDim;
         }
 
         //List extraction can return multiple items
@@ -349,7 +367,7 @@ void visitprivate(const CallExp &e)
             if(pOut == NULL)
             {
                 // Special case, try to extract from an empty matrix.
-                if (pIT->isDouble() && pIT->getAs<Double>()->size_get() == 0)
+                if (pIT->isDouble() && pIT->getAs<Double>()->getSize() == 0)
                 {
                     pOut = Double::Empty();
                 }
@@ -357,7 +375,7 @@ void visitprivate(const CallExp &e)
                 {
                     std::wostringstream os;
                     os << L"inconsistent row/column dimensions\n";
-                    //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+                    //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
                     throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                 }
             }
@@ -375,7 +393,7 @@ void visitprivate(const CallExp &e)
                 {
                     std::wostringstream os;
                     os << L"inconsistent row/column dimensions\n";
-                    //os << ((*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+                    //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
                     throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                 }
             }

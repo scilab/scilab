@@ -67,7 +67,7 @@ int FileManager::addFile(types::File* _file)
     //if(isOpened(_file->getFilename()) == true)
     //{
     //    int iFile = getFileID(_file->getFilename());
-    //        _file->real_get()[0] = iFile;
+    //        _file->getReal()[0] = iFile;
     //    return iFile;
     //}
 

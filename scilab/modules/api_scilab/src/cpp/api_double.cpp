@@ -17,7 +17,7 @@
 #include <stdlib.h>
 
 #include "function.hxx"
-#include "double.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -97,12 +97,12 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int
 
     if(_pdblReal != NULL)
 	{
-		*_pdblReal	= ((InternalType*)_piAddress)->getAsDouble()->real_get();
+		*_pdblReal	= ((InternalType*)_piAddress)->getAs<Double>()->getReal();
 	}
 
 	if(_iComplex && _pdblImg != NULL)
 	{
-		*_pdblImg		= ((InternalType*)_piAddress)->getAsDouble()->img_get();
+		*_pdblImg		= ((InternalType*)_piAddress)->getAs<Double>()->getImg();
 	}
     return sciErr;
 }
@@ -167,7 +167,7 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iR
 
     int rhs = _iVar - api_Rhs((int*)_pvCtx);
     out[rhs - 1] = pDbl;
-    *_pdblReal = pDbl->real_get();
+    *_pdblReal = pDbl->getReal();
     if(*_pdblReal == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), _iComplex ? "allocComplexMatrixOfDouble" : "allocexMatrixOfDouble");
@@ -176,7 +176,7 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iR
 
     if(_iComplex && _pdblImg != NULL)
     {
-        *_pdblImg	= pDbl->img_get();
+        *_pdblImg	= pDbl->getImg();
         if(*_pdblImg == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), _iComplex ? "allocComplexMatrixOfDouble" : "allocexMatrixOfDouble");

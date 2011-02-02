@@ -33,14 +33,13 @@ TYPES_C_SOURCES =
 
 TYPES_CPP_SOURCES = \
 			src/cpp/types.cpp \
-			src/cpp/int.cpp \
 			src/cpp/string.cpp \
 			src/cpp/double.cpp \
 			src/cpp/bool.cpp \
 			src/cpp/float.cpp \
 			src/cpp/implicitlist.cpp \
-			src/cpp/poly.cpp \
-			src/cpp/matrixpoly.cpp \
+			src/cpp/polynom.cpp \
+			src/cpp/singlepoly.cpp \
 			src/cpp/tostring_common.cpp \
 			src/cpp/function.cpp \
 			src/cpp/macrofile.cpp \
@@ -55,7 +54,17 @@ TYPES_CPP_SOURCES = \
 			src/cpp/tlist.cpp \
 			src/cpp/file.cpp \
 			src/cpp/mlist.cpp \
-			src/cpp/threadId.cpp
+			src/cpp/threadId.cpp \
+			src/cpp/arrayof.cpp \
+			src/cpp/int8.cpp \
+			src/cpp/uint8.cpp \
+			src/cpp/int16.cpp \
+			src/cpp/uint16.cpp \
+			src/cpp/int32.cpp \
+			src/cpp/uint32.cpp \
+			src/cpp/int64.cpp \
+			src/cpp/uint64.cpp \
+            src/cpp/types_tools.cpp
 
 GIWS_WRAPPERS =
 

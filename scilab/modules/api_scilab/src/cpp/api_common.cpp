@@ -15,9 +15,8 @@
 
 
 #include "internal.hxx"
-#include "double.hxx"
+#include "arrayof.hxx"
 #include "function.hxx"
-#include "matrixpoly.hxx"
 
 extern "C"
 {
@@ -60,8 +59,8 @@ SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
     SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     if(_piAddress != NULL && isVarMatrixType(_pvCtx, _piAddress))
     {
-        *_piRows        = ((types::InternalType*)_piAddress)->getAsGenericType()->rows_get();
-        *_piCols        = ((types::InternalType*)_piAddress)->getAsGenericType()->cols_get();
+        *_piRows        = ((types::InternalType*)_piAddress)->getAsGenericType()->getRows();
+        *_piCols        = ((types::InternalType*)_piAddress)->getAsGenericType()->getCols();
     }
     else
     {
@@ -217,7 +216,14 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
         //case GenericType::RealMatlabSparse :
         //    *_piType = sci_matlab_sparse;
         //    break;
-    case GenericType::RealInt :
+    case GenericType::RealInt8 :
+    case GenericType::RealUInt8 :
+    case GenericType::RealInt16 :
+    case GenericType::RealUInt16 :
+    case GenericType::RealInt32 :
+    case GenericType::RealUInt32 :
+    case GenericType::RealInt64 :
+    case GenericType::RealUInt64 :
         *_piType = sci_ints;
         break;
         //case GenericType::RealHandle :
@@ -308,7 +314,7 @@ int isVarComplex(void* _pvCtx, int* _piAddress)
   iComplex = ((types::InternalType*)(_piAddress))->getAsDouble()->isComplex();
   break;
   case sci_poly :
-  iComplex = ((types::InternalType*)_piAddress)->getAsPoly()->isComplex();
+  iComplex = ((types::InternalType*)_piAddress)->getAs<types::Polynom>()->isComplex();
   case sci_sparse :
   //iComplex = ((InternalType*)_piAddress)->getAsSparse()->isComplex();
   break;

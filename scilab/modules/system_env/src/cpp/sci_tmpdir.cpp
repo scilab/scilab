@@ -12,12 +12,9 @@
 
 #include <stdlib.h>
 
-#include "sci_tmpdir.h"
-
 #include "configvariable.hxx"
-
 #include "setenvvar.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "context.hxx"
 
 extern "C"
@@ -25,6 +22,7 @@ extern "C"
 #ifdef _MSC_VER
 #include <process.h>
 #endif
+#include "sci_tmpdir.h"
 #include "os_wcsdup.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"

@@ -10,14 +10,18 @@
 *
 */
 
-#ifndef __DOUBLE_HXX__
-#define __DOUBLE_HXX__
+// This code is separated in double.hxx
+// but will be inlined in arrayof.hxx
+//
+// If you need additionnal headers, please add it in arrayof.hxx
 
-#include "types.hxx"
+#ifndef __ARRAYOF_HXX__
+    #error This file must only be include by arrayof.hxx
+#endif
 
 namespace types
 {
-    class Double : public GenericType
+    class Double : public ArrayOf<double>
     {
     public :
         virtual						~Double();
@@ -27,50 +31,31 @@ namespace types
                                     Double(int _iRows, int _iCols, bool _bComplex = false);
                                     Double(int _iRows, int _iCols, double **_pdblReal);
                                     Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+                        	        Double(int _iDims, int* _piDims, bool _bComplex = false);
+
         static Double*              Empty();
 
         /*data management*/
-        GenericType*                get_col_value(int _iPos);
-        double*                     real_get() const;
-        double                      real_get(int _iRows, int _iCols) const;
-        double*                     img_get() const;
-        double                      img_get(int _iRows, int _iCols) const;
-
-        bool                        real_set(double *_pdblReal);
-        bool                        real_set(const double *_pdblReal);
-        bool                        real_set(int* _piReal); //to translate int to double matrix
-        bool                        img_set(double *_pdblImg);
-        bool                        img_set(const double *_pdblImg);
-
-        bool                        val_set(int _iRows, int _iCols, double _dblReal);
-        bool                        val_set(int _iRows, int _iCols, double _dblReal, double _dblImg);
+        double*                     getReal() const;
+        double                      getReal(int _iRows, int _iCols);
+        bool                        setInt(int* _piReal); //to translate int to double matrix
 
         /*zero or one set filler*/
-        bool                        zero_set();
-        bool                        one_set();
+        bool                        setZeros();
+        bool                        setOnes();
 
         /*Config management*/
         void                        whoAmI();
         bool                        isEmpty();
-        bool                        isComplex();
-        void                        complex_set(bool _bComplex);
 
-        Double*                     getAsDouble(void);
-        std::wstring                toString(int _iPrecision, int _iLineLen);
-
-        Double*                     clone();
-        bool                        append(int _iRows, int _iCols, Double *_poSource);
+        InternalType*               clone();
         bool                        fillFromCol(int _iCols, Double *_poSource);
         bool                        fillFromRow(int _iRows, Double *_poSource);
 
-        bool                        resize(int _iNewRows, int _iNewCols);
-        InternalType*               insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-        static Double*              insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector);
-        Double*                     extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
-
-
         bool                        operator==(const InternalType& it);
         bool                        operator!=(const InternalType& it);
+
+        bool                        isDouble() { return true; }
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring        getTypeStr() {return L"constant";}
@@ -79,19 +64,15 @@ namespace types
     protected :
         RealType                    getType(void);
 
-        /*clean values array*/
-        void                        real_delete();
-        void                        img_delete(bool _bSetReal = false);
-        void                        all_delete(bool _bSetReal = false);
-
-        /*Internal "constructor*/
-        void                        CreateDouble(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
-
     private :
-        double*                       m_pdblReal;
-        double*                       m_pdblImg;
-        bool                          m_bComplex;
+        virtual void                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
+
+        virtual double              getNullValue();
+        virtual Double*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+        virtual double              copyValue(double _dblData);
+        virtual void                deleteAll();
+        virtual void                deleteImg();
+        virtual double*             allocData(int _iSize);
+
     };
 }
-
-#endif /* !__DOUBLE_HXX__ */

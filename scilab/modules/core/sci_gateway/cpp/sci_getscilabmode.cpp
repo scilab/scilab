@@ -12,7 +12,7 @@
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "core_gw.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {

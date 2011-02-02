@@ -12,13 +12,15 @@
 
 #include <stdlib.h>
 
-#include "sci_warning.h"
-
 #include "configvariable.hxx"
-
 #include "setenvvar.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "context.hxx"
+
+extern "C"
+{
+#include "sci_warning.h"
+}
 
 int getWarningMode(void)
 {

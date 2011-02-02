@@ -13,7 +13,7 @@
 #include <map>
 #include <sstream>
 #include "core_math.h"
-#include "cell.hxx"
+#include "arrayof.hxx"
 #include "threadId.hxx"
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
@@ -31,9 +31,6 @@ namespace types
 
 	ThreadId::ThreadId(__threadId _id)
 	{
-        m_iRows = 1;
-        m_iCols = 1;
-        m_iSize = 1;
         m_threadId = _id;
         m_threadStatus = Running;
 	}
@@ -48,7 +45,7 @@ namespace types
         this->m_threadId = _id;
     }
 
-	ThreadId *ThreadId::clone()
+	InternalType* ThreadId::clone()
 	{
         return this;
 	}

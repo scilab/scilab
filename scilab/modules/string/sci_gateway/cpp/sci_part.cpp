@@ -19,7 +19,7 @@
 #include "string_gw.hxx"
 #include "funcmanager.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -49,7 +49,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
     }
 
     //part([], ...
-    if(in[0]->isDouble() && in[0]->getAsDouble()->isEmpty())
+    if(in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
     {
         out.push_back(Double::Empty());
         return Function::OK;
@@ -61,7 +61,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-    String* pS = in[0]->getAsString();
+    String* pS = in[0]->getAs<types::String>();
 
     if(in[1]->isDouble() == false)
     {
@@ -70,7 +70,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
     }
 
 
-    Double* pD = in[1]->getAsDouble();
+    Double* pD = in[1]->getAs<Double>();
     if(pD->isEmpty())
     {
         out.push_back(new String(L""));
@@ -78,22 +78,22 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
     }
 
 
-    if(!((pD->rows_get() == 1 && pD->cols_get() >= 1) || (pD->rows_get() >= 1 && pD->cols_get() == 1)))
+    if(!((pD->getRows() == 1 && pD->getCols() >= 1) || (pD->getRows() >= 1 && pD->getCols() == 1)))
     {//non vector
         ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A vector expected.\n"), L"part", 2);
         return Function::Error;
     }
 
-    int* piIndex = new int[pD->size_get()];
-    for(int i = 0 ; i < pD->size_get() ; i++)
+    int* piIndex = new int[pD->getSize()];
+    for(int i = 0 ; i < pD->getSize() ; i++)
     {
-        piIndex[i] = static_cast<int>(pD->real_get()[i]);
+        piIndex[i] = static_cast<int>(pD->getReal()[i]);
     }
 
-    wchar_t** pwstOut = partfunctionW(pS->string_get(), pS->rows_get(), pS->cols_get(), piIndex, pD->size_get());
+    wchar_t** pwstOut = partfunctionW(pS->get(), pS->getRows(), pS->getCols(), piIndex, pD->getSize());
 
-    String* pOut = new String(pS->rows_get(), pS->cols_get());
-    pOut->string_set(pwstOut);
+    String* pOut = new String(pS->getRows(), pS->getCols());
+    pOut->set(pwstOut);
     out.push_back(pOut);
     return Function::OK;
 	//int i = 0;

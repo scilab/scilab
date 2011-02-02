@@ -21,18 +21,12 @@
 #endif
 
 #include "internal.hxx"
-#include "implicitlist.hxx"
 #include "types.hxx"
-#include "string.hxx"
-#include "int.hxx"
-#include "intt.hxx"
-#include "double.hxx"
+#include "arrayof.hxx"
 #include "float.hxx"
-#include "bool.hxx"
 #include "callable.hxx"
 #include "function.hxx"
-#include "poly.hxx"
-#include "matrixpoly.hxx"
+#include "singlepoly.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
 #include "list.hxx"
@@ -41,10 +35,10 @@
 #include "listdelete.hxx"
 #include "listinsert.hxx"
 #include "listundefined.hxx"
-#include "cell.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
 #include "file.hxx"
 #include "threadId.hxx"
+#include "arrayof.hxx"
 
 #endif /* !ALL_TYPES_HXX */

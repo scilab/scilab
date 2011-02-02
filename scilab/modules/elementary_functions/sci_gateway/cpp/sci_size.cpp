@@ -11,12 +11,11 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
-#include "elem_func_gw.hxx"
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "types.hxx"
+#include "arrayof.hxx"
 #include "container.hxx"
-#include "string.hxx"
 
 extern "C"
 {
@@ -51,7 +50,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 return Function::Error;
             }
 
-            Double* pD = new Double(in[0]->getAsContainer()->size_get());
+            Double* pD = new Double(in[0]->getAsContainer()->getSize());
             out.push_back(pD);
             break;
         }
@@ -69,6 +68,11 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             if(in.size() == 2)
             {
                 iMode = getProcessMode(in, 1, 0);
+                if((iMode == 1 || iMode == 2) && in[0]->getAs<Double>()->getDims() > 2)
+                {
+                    ScierrorW(999, _W("%ls: Wrong values for input argument #%d: '%ls' or '%ls' expected.\n"), L"size", 2, L"*", L"0");
+                    return Function::Error;
+                }
             }
 
             if(iMode == -2)
@@ -76,49 +80,69 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 return Function::Error;
             }
 
-            int iRows = in[0]->getAsGenericType()->rows_get();
-            int iCols = in[0]->getAsGenericType()->cols_get();
+            int iDims   = in[0]->getAsGenericType()->getDims();
+            int* piDims = in[0]->getAsGenericType()->getDimsArray();
 
             if(_iRetCount == 1)
             {
                 int iRowsOut = 1;
                 int iColsOut = 0;
-                double pdblReal[2] = {0,0};
+                double* pdblReal = NULL;
 
                 switch(iMode)
                 {
                 case -1 : //lhs == 1
-                    iColsOut = 2;
-                    pdblReal[0] = iRows;
-                    pdblReal[1] = iCols;
+                    iColsOut = iDims;
+                    //pdblReal[0] = iRows;
+                    //pdblReal[1] = iCols;
                     break;
                 case 0 : //"*"
                     iColsOut = 1;
-                    pdblReal[0] = iRows * iCols;
+                    //pdblReal[0] = iRows * iCols;
                     break;
                 case 1 : //"r"
                     iColsOut = 1;
-                    pdblReal[0] = iRows;
+                    //pdblReal[0] = iRows;
                     break;
                 case 2 : //"c"
                     iColsOut = 1;
-                    pdblReal[0] = iCols;
+                    //pdblReal[0] = iCols;
                     break;
                 }
+
                 Double* pD = new Double(iRowsOut, iColsOut);
-                pD->real_get()[0] = pdblReal[0];
-                if(iColsOut == 2)
+                
+                double* pdbl = pD->getReal();
+
+                switch(iMode)
                 {
-                    pD->real_get()[1] = pdblReal[1];
+                case -1 : //lhs == 1
+                    for(int i = 0 ; i < iDims ; i++)
+                    {
+                        pdbl[i] = piDims[i];
+                    }
+                    break;
+                case 0 : //"*"
+                    pdbl[0] = in[0]->getAsGenericType()->getSize();
+                    break;
+                case 1 : //"r"
+                    iColsOut = 1;
+                    pdbl[0] = in[0]->getAsGenericType()->getRows();
+                    break;
+                case 2 : //"c"
+                    iColsOut = 1;
+                    pdbl[0] = in[0]->getAsGenericType()->getCols();
+                    break;
                 }
                 out.push_back(pD);
             }
             else
             {
-                Double* pD1 = new Double(iRows);
-                Double* pD2 = new Double(iCols);
-                out.push_back(pD1);
-                out.push_back(pD2);
+                for(int i = 0 ; i < Min(_iRetCount, iDims) ; i++)
+                {
+                    Double* pD = new Double(piDims[i]);
+                    out.push_back(pD);
+                }
             }
             break;
         }
@@ -130,15 +154,15 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
 int getProcessMode(types::typed_list &in, int _iProcess, int _iRef)
 {
     int iMode = 0;
-    if(in[_iProcess]->getType() == InternalType::RealString)
+    if(in[_iProcess]->isString())
     {
-        String* pS = in[_iProcess]->getAsString();
-        if(pS->size_get() != 1)
+        String* pS = in[_iProcess]->getAs<types::String>();
+        if(pS->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
         }
 
-        switch(pS->string_get(0)[0])
+        switch(pS->get(0)[0])
         {
         case 'r' :
             iMode = 1;
@@ -158,16 +182,16 @@ int getProcessMode(types::typed_list &in, int _iProcess, int _iRef)
             break;
         }
     }
-    else if(in[1]->getType() == InternalType::RealDouble && in[1]->getAsDouble()->isComplex() == false)
+    else if(in[1]->isDouble() && in[1]->getAs<Double>()->isComplex() == false)
     {
-        Double* pD = in[_iProcess]->getAsDouble();
-        if(pD->size_get() != 1)
+        Double* pD = in[_iProcess]->getAs<Double>();
+        if(pD->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
             iMode = -2;
         }
 
-        iMode = pD->real_get()[0];
+        iMode = static_cast<int>(pD->getReal()[0]);
         if(iMode != -1 && iMode != 0 && iMode != 1 && iMode != 2)
         {
             Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "size", _iProcess + 1, "-1" , "0" , "1", "2");
@@ -184,11 +208,11 @@ int getProcessMode(types::typed_list &in, int _iProcess, int _iRef)
     if(iMode == -1)
     {
         iMode = 0;
-        if(in[_iRef]->getAsGenericType()->rows_get() > 1)
+        if(in[_iRef]->getAsGenericType()->getRows() > 1)
         {
             iMode = 1;
         }
-        else if(in[_iRef]->getAsGenericType()->cols_get() > 1)
+        else if(in[_iRef]->getAsGenericType()->getCols() > 1)
         {
             iMode = 2;
         }

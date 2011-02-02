@@ -377,6 +377,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\operations_tools.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\types_addition.cpp"
 				>
 			</File>
@@ -448,6 +452,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\operation.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\operations_tools.h"
 				>
 			</File>
 			<File

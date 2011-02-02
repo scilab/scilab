@@ -14,8 +14,7 @@
 /*--------------------------------------------------------------------------*/
 
 #include "function.hxx"
-#include "double.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
@@ -36,7 +35,7 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAsString()->cols_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getCols() != 1)
     {
         Scierror(999, _("%ls: Wrong type for input argument: Column vector expected.\n"), L"fileinfo");
         return Function::Error;
@@ -48,19 +47,19 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
         return Function::Error;
     }
 
-    String* pS = in[0]->getAsString();
+    String* pS = in[0]->getAs<types::String>();
 
-    int *piErr = new int[pS->rows_get()];
-    double* pData = filesinfoW(pS->string_get(), pS->rows_get(), piErr);
+    int *piErr = new int[pS->getRows()];
+    double* pData = filesinfoW(pS->get(), pS->getRows(), piErr);
 
-    Double *pOut = new Double(pS->rows_get(), FILEINFO_ARRAY_SIZE);
-    pOut->real_set(pData);
+    Double *pOut = new Double(pS->getRows(), FILEINFO_ARRAY_SIZE);
+    pOut->set(pData);
     out.push_back(pOut);
 
     if(_iRetCount == 2)
     {
-        Double* pErr = new Double(pS->rows_get(), 1);
-        pErr->real_set(piErr);
+        Double* pErr = new Double(pS->getRows(), 1);
+        pErr->setInt(piErr);
         out.push_back(pErr);
     }
 

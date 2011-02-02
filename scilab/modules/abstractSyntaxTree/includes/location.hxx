@@ -71,7 +71,7 @@ public:
     }
     /** \} */
 
-    std::wstring location_string_get() const
+    std::wstring location_getString() const
     {
         std::wostringstream os;
         os << L" (" << first_line << L"," << first_column << L")";

@@ -20,19 +20,19 @@ EXTERN_OP int iSubstractRealIdentityToComplexMatrix(double _dblReal1, double* _p
 EXTERN_OP int iSubstractComplexIdentityToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);
 EXTERN_OP int iSubstractComplexIdentityToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);
 
-EXTERN_OP int iSubstractRealMatrixToRealScalar(double* _pdblReal1, int _iRows, int _iCols, double _dblReal2, double* _pdblRealOut);
-EXTERN_OP int iSubstractComplexMatrixToRealScalar(double* _pdblReal1, double* _pdblImg1, int _iRows, int _iCols, double _dblReal2, double* _pdblRealOut, double* _pdblImgOut);
-EXTERN_OP int iSubstractRealMatrixToComplexScalar(double* _pdblReal1, int _iRows, int _iCols, double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut);
-EXTERN_OP int iSubstractComplexMatrixToComplexScalar(double* _pdblReal1, double* _pdblImg1, int _iRows, int _iCols, double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractRealMatrixToRealScalar(double* _pdblReal1, int* _piDims1, int _iDims1, double _dblReal2, double* _pdblRealOut);
+EXTERN_OP int iSubstractComplexMatrixToRealScalar(double* _pdblReal1, double* _pdblImg1, int* _piDims1, int _iDims1, double _dblReal2, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractRealMatrixToComplexScalar(double* _pdblReal1, int* _piDims1, int _iDims1, double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractComplexMatrixToComplexScalar(double* _pdblReal1, double* _pdblImg1, int* _piDims1, int _iDims1, double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut);
 
-EXTERN_OP int iSubstractRealScalarToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut);
-EXTERN_OP int iSubstractComplexScalarToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut);
-EXTERN_OP int iSubstractRealScalarToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut);
-EXTERN_OP int iSubstractComplexScalarToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractRealScalarToRealMatrix(double _dblReal1, double* _pdblReal2, int* _piDims2, int _iDims2, double* _pdblRealOut);
+EXTERN_OP int iSubstractComplexScalarToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int* _piDims2, int _iDims2, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractRealScalarToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int* _piDims2, int _iDims2, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractComplexScalarToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int* _piDims2, int _iDims2, double* _pdblRealOut, double* _pdblImgOut);
 
-EXTERN_OP int iSubstractRealMatrixToRealMatrix(double* _pdblReal1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut);
-EXTERN_OP int iSubstractComplexMatrixToRealMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut);
-EXTERN_OP int iSubstractRealMatrixToComplexMatrix(double* _pdblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut);
-EXTERN_OP int iSubstractComplexMatrixToComplexMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractRealMatrixToRealMatrix(double* _pdblReal1, double* _pdblReal2, int* _piDims, int _iDims, double* _pdblRealOut);
+EXTERN_OP int iSubstractComplexMatrixToRealMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractRealMatrixToComplexMatrix(double* _pdblReal1, double* _pdblReal2, double* _pdblImg2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractComplexMatrixToComplexMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, double* _pdblImg2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut);
 
 #endif /* __MATRIX_SUBSTRACT_H__ */

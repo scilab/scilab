@@ -27,14 +27,14 @@ static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos);
 /*--------------------------------------------------------------------------*/
 String * stripblanks(String *InputStrings, bool bWithTAB)
 {
-    String *pOutputStrings = new String(InputStrings->rows_get(), InputStrings->cols_get());
+    String *pOutputStrings = new String(InputStrings->getRows(), InputStrings->getCols());
     if(pOutputStrings)
     {
-        pOutputStrings->string_set(InputStrings->string_get());
+        pOutputStrings->set(InputStrings->get());
 
-        for(int x = 0 ; x < InputStrings->size_get() ; x++)
+        for(int x = 0 ; x < InputStrings->getSize() ; x++)
         {
-            wchar_t* pStr = InputStrings->string_get(x);
+            wchar_t* pStr = InputStrings->get(x);
             int iInputStartIndex    = static_cast<int>(wcslen(pStr) - 1);
             int iInputEndIndex      = 0;
 
@@ -63,7 +63,7 @@ String * stripblanks(String *InputStrings, bool bWithTAB)
                 /*Get the substring without tabs*/ 
                 wchar_t* pstReplace = subwcs(pStr, iInputStartIndex, iInputEndIndex + 1 );
                 /*To add the substring into the output matrix*/
-                pOutputStrings->string_set(x, pstReplace);
+                pOutputStrings->set(x, pstReplace);
                 if(pstReplace)
                 {
                     FREE(pstReplace);
@@ -72,7 +72,7 @@ String * stripblanks(String *InputStrings, bool bWithTAB)
             }
             else
             {//input string contains only BLANK or TAB characters
-                pOutputStrings->string_set(x, L"");
+                pOutputStrings->set(x, L"");
             }
         }
     }

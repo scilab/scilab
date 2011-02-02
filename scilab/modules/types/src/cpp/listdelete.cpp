@@ -27,7 +27,7 @@ namespace types
 		std::cout << "types::ListDelete";
 	}
 
-	ListDelete* ListDelete::clone(void)
+	InternalType* ListDelete::clone(void)
 	{
 		return new ListDelete();
 	}

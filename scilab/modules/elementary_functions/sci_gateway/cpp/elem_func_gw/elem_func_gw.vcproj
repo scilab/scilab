@@ -353,7 +353,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\sci_ones.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\sci_size.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_zeros.cpp"
 				>
 			</File>
 		</Filter>

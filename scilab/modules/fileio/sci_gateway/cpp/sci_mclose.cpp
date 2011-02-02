@@ -11,8 +11,7 @@
  */
 
 #include "function.hxx"
-#include "double.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 
@@ -35,16 +34,16 @@ Function::ReturnValue sci_mclose(typed_list &in, int _iRetCount, typed_list &out
     }
     else if(in.size() == 1)
     {
-        if(in[0]->getType() == InternalType::RealString)
+        if(in[0]->isString())
         {
-            String *pS = in[0]->getAsString();
-            if(pS->size_get() != 1)
+            String *pS = in[0]->getAs<types::String>();
+            if(pS->getSize() != 1)
             {
                 ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"mclose", 1);
                 return Function::Error;
             }
 
-            if(os_wcsicmp(pS->string_get(0), L"all") != 0)
+            if(os_wcsicmp(pS->get(0), L"all") != 0)
             {
                 ScierrorW(999, _W("%ls: Wrong input arguments: '%ls' expected.\n"), L"mclose", L"all");
                 return Function::Error;
@@ -52,16 +51,16 @@ Function::ReturnValue sci_mclose(typed_list &in, int _iRetCount, typed_list &out
 
             iRet = mcloseAll();
         }
-        else if(in[0]->getType() == InternalType::RealDouble)
+        else if(in[0]->isDouble())
         {
-            Double* pD = in[0]->getAsDouble();
-            if(pD->size_get() != 1 || pD->isComplex())
+            Double* pD = in[0]->getAs<Double>();
+            if(pD->getSize() != 1 || pD->isComplex())
             {
                 ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"mclose", 1);
                 return Function::Error;
             }
 
-            int iVal = static_cast<int>(pD->real_get()[0]);
+            int iVal = static_cast<int>(pD->getReal()[0]);
             iRet = mclose(iVal);
         }
         else

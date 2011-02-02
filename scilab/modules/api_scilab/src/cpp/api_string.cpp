@@ -16,7 +16,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -79,12 +79,12 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 		return sciErr;
 	}
 
-	String *pS = ((InternalType*)_piAddress)->getAsString();
+	String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
 
 	//non cummulative length
 	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
-		_piLength[i] = (int)wcslen(pS->string_get(i));
+		_piLength[i] = (int)wcslen(pS->get(i));
 	}
 
 	if(_pstStrings == NULL || *_pstStrings == NULL)
@@ -100,7 +100,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 			return sciErr;
 		}
 
-        char* pstTemp = wide_string_to_UTF8(pS->string_get(i));
+        char* pstTemp = wide_string_to_UTF8(pS->get(i));
 		strcpy(_pstStrings[i], pstTemp);
         FREE(pstTemp);
 	}
@@ -121,10 +121,10 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
 		return sciErr;
 	}
 
-	for(int i = 0 ; i < pS->size_get() ; i++)
+	for(int i = 0 ; i < pS->getSize() ; i++)
 	{
         wchar_t* pstTemp = to_wide_string(_pstStrings[i]);
-		pS->string_set(i, pstTemp);
+		pS->set(i, pstTemp);
         FREE(pstTemp);
 	}
 

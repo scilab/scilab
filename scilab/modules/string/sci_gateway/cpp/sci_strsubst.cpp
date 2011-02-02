@@ -14,7 +14,7 @@
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -43,17 +43,17 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
 
     if(in.size() > 3)
     {
-        if(in[3]->isString() == false && in[3]->getAsString()->size_get() != 1)
+        if(in[3]->isString() == false && in[3]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"strsubst", 4);
             return Function::Error;
         }
 
-        if(in[3]->getAsString()->string_get(0)[0] == WCHAR_R)
+        if(in[3]->getAs<types::String>()->get(0)[0] == WCHAR_R)
         {
             bRegExp = true;
         }
-        else if(in[3]->getAsString()->string_get(0)[0] == WCHAR_S)
+        else if(in[3]->getAs<types::String>()->get(0)[0] == WCHAR_S)
         {
             bRegExp = false;
         }
@@ -64,23 +64,23 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
         }
     }
 
-    if(in[2]->isString() == false || in[2]->getAsString()->size_get() != 1)
+    if(in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"strsubst", 3);
         return Function::Error;
     }
 
-    wchar_t* pwstReplace = in[2]->getAsString()->string_get()[0];
+    wchar_t* pwstReplace = in[2]->getAs<types::String>()->get()[0];
 
-    if(in[1]->isString() == false || in[1]->getAsString()->size_get() != 1)
+    if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"strsubst", 2);
         return Function::Error;
     }
 
-    wchar_t* pwstSearch = in[1]->getAsString()->string_get()[0];
+    wchar_t* pwstSearch = in[1]->getAs<types::String>()->get()[0];
 
-    if(in[0]->isDouble() && in[0]->getAsDouble()->isEmpty())
+    if(in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
     {
         out.push_back(Double::Empty());
         return Function::OK;
@@ -92,15 +92,15 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
         return Function::Error;
     }
 
-    String* pS = in[0]->getAsString();
+    String* pS = in[0]->getAs<types::String>();
 
-    String* pOut = new String(pS->rows_get(), pS->cols_get());
+    String* pOut = new String(pS->getRows(), pS->getCols());
     wchar_t** pwstOutput = NULL;
 
     if(bRegExp)
     {
         int iErr = 0;
-        pwstOutput = wcssubst_reg(pS->string_get(), pS->size_get(), pwstSearch, pwstReplace, &iErr);
+        pwstOutput = wcssubst_reg(pS->get(), pS->getSize(), pwstSearch, pwstReplace, &iErr);
         if(iErr != NO_MATCH)
         {
             pcre_error("strsubst", iErr);
@@ -110,11 +110,11 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
     }
     else
     {
-        pwstOutput = wcssubst(pS->string_get(), pS->size_get(), pwstSearch, pwstReplace);
+        pwstOutput = wcssubst(pS->get(), pS->getSize(), pwstSearch, pwstReplace);
     }
 
-    pOut->string_set(pwstOutput);
-    freeArrayOfWideString(pwstOutput, pOut->size_get());
+    pOut->set(pwstOutput);
+    freeArrayOfWideString(pwstOutput, pOut->getSize());
     out.push_back(pOut);
     return Function::OK;
 }

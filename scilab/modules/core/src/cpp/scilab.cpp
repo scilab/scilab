@@ -85,9 +85,7 @@ extern "C"
 
 #include "banner.hxx"
 
-#include "double.hxx"
-#include "string.hxx"
-#include "matrixpoly.hxx"
+#include "arrayof.hxx"
 
 #define INTERACTIVE     -1
 
@@ -615,8 +613,8 @@ void Add_i(void)
 void Add_s(void)
 {
     Double dblCoef(1,2);
-    dblCoef.val_set(0, 0, 0);
-    dblCoef.val_set(0, 1, 1);
+    dblCoef.set(0, 0, 0);
+    dblCoef.set(0, 1, 1);
 
     Add_Poly_Constant(L"%s",L"s", 2, &dblCoef);
 }
@@ -624,24 +622,25 @@ void Add_s(void)
 void Add_z(void)
 {
     Double dblCoef(1,2);
-    dblCoef.val_set(0, 0, 0);
-    dblCoef.val_set(0, 1, 1);
+    dblCoef.set(0, 0, 0);
+    dblCoef.set(0, 1, 1);
 
     Add_Poly_Constant(L"%z",L"z", 2, &dblCoef);
 }
 
 void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double *_pdbl)
 {
-    types::MatrixPoly *pVar = new types::MatrixPoly(_szPolyVar, 1, 1, &_iRank);
-    Poly *poPoly = pVar->poly_get(0,0);
-    poPoly->coef_set(_pdbl);
+    types::Polynom *pVar = new types::Polynom(_szPolyVar, 1, 1, &_iRank);
+    SinglePoly *poPoly = pVar->get(0,0);
+    poPoly->setCoef(_pdbl);
     Context::getInstance()->put(_szName, *pVar);
 }
 
 void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex)
 {
     types::Double* pVal = new types::Double(1,1,_bComplex);
-    pVal->val_set(0,0,_dblReal,_dblImg);
+    pVal->set(0, 0, _dblReal);
+    pVal->setImg(0, 0, _dblImg);
     symbol::Context::getInstance()->put(_szName, *pVal);
 }
 

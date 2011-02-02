@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "funcmanager.hxx"
 #include "core_gw.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -59,7 +59,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
             int iOption = 0;
             wchar_t** pwstOption = getScilabVersionOptions(&iOption);
             String* pOut2 = new String(1, iOption);
-            pOut2->string_set(pwstOption);
+            pOut2->set(pwstOption);
             out.push_back(pOut2);
             FREE(pwstOption);
         }
@@ -67,7 +67,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
     }
     else if(in.size() == 1)
     {
-        if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+        if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong size for input argument #%d: String expected.\n"), L"getversion", 1);
             return Function::Error;
@@ -79,7 +79,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
             return Function::Error;
        }
 
-        wchar_t* pwstModule = in[0]->getAsString()->string_get()[0];
+        wchar_t* pwstModule = in[0]->getAs<types::String>()->get()[0];
         if(with_module(pwstModule) || (wcscmp(pwstModule, L"scilab") == 0))
         {
             int versionSize = 0;
@@ -91,27 +91,27 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
             }
 
             Double* pOut = new Double(1, versionSize);
-            pOut->real_set(version);
+            pOut->setInt(version);
             out.push_back(pOut);
             FREE(version);
         }
     }
     else //in.size() == 2
     {
-        if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+        if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong size for input argument #%d: String expected.\n"), L"getversion", 1);
             return Function::Error;
         }
 
-        if(in[1]->isString() == false || in[1]->getAsString()->size_get() != 1)
+        if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong size for input argument #%d: String expected.\n"), L"getversion", 2);
             return Function::Error;
         }
 
-        wchar_t* pwstModule = in[0]->getAsString()->string_get()[0];
-        wchar_t* pwstOption = in[1]->getAsString()->string_get()[0];
+        wchar_t* pwstModule = in[0]->getAs<types::String>()->get()[0];
+        wchar_t* pwstOption = in[1]->getAs<types::String>()->get()[0];
 
         if( with_module(pwstModule) || (wcscmp(pwstModule, L"scilab") == 0) )
         {

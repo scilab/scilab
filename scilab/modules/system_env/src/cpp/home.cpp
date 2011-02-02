@@ -13,8 +13,7 @@
 #include "home.h"
 
 #include "configvariable.hxx"
-
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "context.hxx"
 #include "setenvvar.hxx"
 

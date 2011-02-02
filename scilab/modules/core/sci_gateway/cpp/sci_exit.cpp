@@ -12,8 +12,7 @@
 
 #include "function.hxx"
 #include "configvariable.hxx"
-#include "types.hxx"
-#include "double.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -44,14 +43,14 @@ types::Function::ReturnValue sci_exit(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
     
-    if (in.front()->getAsDouble()->size_get() != 1)
+    if (in.front()->getAs<types::Double>()->getSize() != 1)
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), "exit", 1);
         return types::Function::Error;
     }
     
-    double dExit = in.front()->getAsDouble()->real_get(0,0);
-    int iExit = (int) in.front()->getAsDouble()->real_get(0,0);
+    double dExit = in.front()->getAs<types::Double>()->getReal(0,0);
+    int iExit = (int) in.front()->getAs<types::Double>()->getReal(0,0);
 
     if (dExit != (double) iExit)
     {

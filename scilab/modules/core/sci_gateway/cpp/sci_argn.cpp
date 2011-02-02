@@ -12,9 +12,7 @@
 
 #include "function.hxx"
 #include "context.hxx"
-#include "types.hxx"
-#include "double.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -44,21 +42,21 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
     //check input arguments types
     for(int i = 0 ; i < in.size() ; i++)
     {
-        if(in[i]->getType() != InternalType::RealDouble)
+        if(in[i]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "argn", i + 1);
             return Function::Error;
         }
         else
         {
-            if(in[i]->getAsDouble()->size_get() != 1)
+            if(in[i]->getAs<Double>()->getSize() != 1)
             {
                 Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), "argn", i + 1);
                 return Function::Error;
             }
             else
             {
-                if(in[i]->getAsDouble()->isComplex())
+                if(in[i]->getAs<Double>()->isComplex())
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "argn", i + 1);
                     return Function::Error;
@@ -80,7 +78,7 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
     {
         if(iRhs == 1)
         {
-            double dblVal = in[0]->getAsDouble()->real_get(0,0);
+            double dblVal = in[0]->getAs<Double>()->getReal(0,0);
             if(dblVal == 1)
             {
                 out.push_back(pOut);

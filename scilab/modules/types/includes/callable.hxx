@@ -49,7 +49,7 @@ namespace types
       virtual std::wstring  getTypeStr() {return L"callable";}
       /* return type as short string ( s, i, ce, l, ... )*/
       virtual std::wstring  getShortTypeStr() = 0;
-      virtual Callable*     clone(void) = 0;
+      virtual InternalType* clone(void) = 0;
 
   protected :
       std::wstring           m_stName;

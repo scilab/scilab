@@ -14,7 +14,7 @@
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -48,13 +48,13 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
     //get type
     if(in.size() > 3)
     {
-        if(in[3]->isString() == false || in[3]->getAsString()->size_get() != 1)
+        if(in[3]->isString() == false || in[3]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"pathconvert", 4);
             return Function::Error;
         }
 
-        wchar_t* pwstType = in[3]->getAsString()->string_get(0);
+        wchar_t* pwstType = in[3]->getAs<types::String>()->get(0);
         if(wcscmp(pwstType, WINDOWS_TYPE) == 0)
         {
             PType = WINDOWS_STYLE;
@@ -72,27 +72,27 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 
     if(in.size() > 2)
     {
-        if(in[2]->isBool() == false || in[2]->getAsBool()->size_get() != 1)
+        if(in[2]->isBool() == false || in[2]->getAs<types::Bool>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A boolean expected.\n"), L"pathconvert", 3);
             return Function::Error;
         }
 
-        iPathExpand = in[2]->getAsBool()->bool_get()[0];
+        iPathExpand = in[2]->getAs<types::Bool>()->get()[0];
     }
 
     if(in.size() > 1)
     {
-        if(in[1]->isBool() == false || in[1]->getAsBool()->size_get() != 1)
+        if(in[1]->isBool() == false || in[1]->getAs<types::Bool>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A boolean expected.\n"), L"pathconvert", 2);
             return Function::Error;
         }
 
-        iPathTrail = in[1]->getAsBool()->bool_get()[0];
+        iPathTrail = in[1]->getAs<types::Bool>()->get()[0];
     }
 
-    if(in[0]->isDouble() && in[0]->getAsDouble()->isEmpty())
+    if(in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
     {
         out.push_back(Double::Empty());
         return Function::OK;
@@ -104,14 +104,14 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
         return Function::Error;
     }
 
-    String* pS      = in[0]->getAsString();
-    String* pOut    = new String(pS->rows_get(), pS->cols_get());
-    wchar_t** pStr  = pOut->string_get();
+    String* pS      = in[0]->getAs<types::String>();
+    String* pOut    = new String(pS->getRows(), pS->getCols());
+    wchar_t** pStr  = pOut->get();
 
 
-    for(int i = 0 ; i < pS->size_get() ; i++)
+    for(int i = 0 ; i < pS->getSize() ; i++)
     {
-        pStr[i] = pathconvertW(pS->string_get(i), iPathTrail, iPathExpand, PType);
+        pStr[i] = pathconvertW(pS->get(i), iPathTrail, iPathExpand, PType);
     }
 
     out.push_back(pOut);

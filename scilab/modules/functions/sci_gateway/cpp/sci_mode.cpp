@@ -49,13 +49,13 @@ Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, types::typ
     }
     else
     {
-        if(in[0]->isDouble() == false || in[0]->getAsDouble()->size_get() != 1)
+        if(in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
 	    {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Scalar expected.\n"), L"mode", 1);
             return Function::Error;
         }
 
-        ConfigVariable::setPromptMode((int)in[0]->getAsDouble()->real_get()[0]);
+        ConfigVariable::setPromptMode((int)in[0]->getAs<Double>()->getReal()[0]);
 
     }
 

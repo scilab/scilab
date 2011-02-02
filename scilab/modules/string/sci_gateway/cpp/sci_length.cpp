@@ -27,9 +27,8 @@
 /*------------------------------------------------------------------------*/
 
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 #include "list.hxx"
-#include "double.hxx"
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
 
@@ -62,7 +61,7 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
 
     if(in[0]->isString())
     {
-        pOut = lengthStrings(in[0]->getAsString());
+        pOut = lengthStrings(in[0]->getAs<types::String>());
     }
     else if(in[0]->isGenericType())
     {
@@ -92,12 +91,12 @@ static Double* lengthStrings(String* _pS)
         return Double::Empty();
     }
 
-    Double* pD = new Double(_pS->rows_get(), _pS->cols_get());
-    double* pdblData = pD->real_get();
+    Double* pD = new Double(_pS->getRows(), _pS->getCols());
+    double* pdblData = pD->getReal();
 
-    for(int i = 0 ; i < _pS->size_get() ; i++)
+    for(int i = 0 ; i < _pS->getSize() ; i++)
     {
-        pdblData[i] = static_cast<double>(wcslen(_pS->string_get()[i]));
+        pdblData[i] = static_cast<double>(wcslen(_pS->get()[i]));
    }
     return pD;
 }
@@ -109,7 +108,7 @@ static Double* lengthMatrix(GenericType* _pG)
         return Double::Empty();
     }
 
-    return new Double(static_cast<double>(_pG->size_get()));
+    return new Double(static_cast<double>(_pG->getSize()));
 }
 /*--------------------------------------------------------------------------*/
 static Double* lengthList(List* _pL)
@@ -119,7 +118,7 @@ static Double* lengthList(List* _pL)
         return Double::Empty();
     }
 
-    return new Double(static_cast<double>(_pL->size_get()));
+    return new Double(static_cast<double>(_pL->getSize()));
 }
 /*--------------------------------------------------------------------------*/
 //static Double lengthSparse(Sparse* _pS)

@@ -10,7 +10,7 @@
  *
  */
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -45,24 +45,24 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         return Function::Error;
     }
 
-    String *psInput = in[0]->getAs<String>();
+    String *psInput = in[0]->getAs<types::String>();
 
-    if (psInput->size_get() == 1)
+    if (psInput->getSize() == 1)
     {
         /* "on" "off" "query" */
-        if(wcscmp(psInput->string_get(0), L"on") == 0)
+        if(wcscmp(psInput->get(0), L"on") == 0)
         {
             setWarningMode(TRUE);
             return Function::OK;
         }
 
-        if(wcscmp(psInput->string_get(0), L"off") == 0)
+        if(wcscmp(psInput->get(0), L"off") == 0)
         {
             setWarningMode(FALSE);
             return Function::OK;
         }
 
-        if(wcscmp(psInput->string_get(0), L"query") == 0)
+        if(wcscmp(psInput->get(0), L"query") == 0)
         {
             if(getWarningMode())
             {
@@ -78,9 +78,9 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
 
     if (getWarningMode())
     {
-        for(int i = 0; i < psInput->size_get() ; ++i)
+        for(int i = 0; i < psInput->getSize() ; ++i)
         {
-            sciprintW(_W("WARNING: %ls\n"), psInput->string_get(i));
+            sciprintW(_W("WARNING: %ls\n"), psInput->get(i));
         }
         sciprintW(L"\n");
     }

@@ -15,7 +15,7 @@
 #include "funcmanager.hxx"
 #include "localization_gw.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -42,7 +42,7 @@ Function::ReturnValue sci_gettext(typed_list &in, int _piRetCount, typed_list &o
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"gettext" ,1);
         return Function::Error;
@@ -50,7 +50,7 @@ Function::ReturnValue sci_gettext(typed_list &in, int _piRetCount, typed_list &o
 
 
     bool bConveted      = false;
-    wchar_t* pwstCIn    = ScilabStringToCString(in[0]->getAsString()->string_get()[0], &bConveted);
+    wchar_t* pwstCIn    = ScilabStringToCString(in[0]->getAs<types::String>()->get()[0], &bConveted);
     char* pstCIn        = wide_string_to_UTF8(pwstCIn);
     wchar_t* pwstOut   = to_wide_string(gettext(pstCIn));
     if(bConveted)
@@ -60,7 +60,7 @@ Function::ReturnValue sci_gettext(typed_list &in, int _piRetCount, typed_list &o
     }
 
     String* pOut        = new String(1,1);
-    pOut->string_set(0, pwstOut);
+    pOut->set(0, pwstOut);
     out.push_back(pOut);
 
     FREE(pwstCIn);

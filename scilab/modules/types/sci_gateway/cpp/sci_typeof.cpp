@@ -12,7 +12,7 @@
 
 #include "types.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C" {
     #include "Scierror.h"
@@ -39,13 +39,13 @@ Function::ReturnValue sci_typeof(typed_list &in, int _piRetCount, typed_list &ou
     }
 
     // Check second argument is a string
-    if(in[1]->isString() == false || in[1]->getAsString()->size_get() != 1)
+    if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "typeof", 2);
         return Function::Error;
     }
 
-    if(wcscmp(in[1]->getAsString()->string_get(0,0), OPTION) == 0)
+    if(wcscmp(in[1]->getAs<types::String>()->get(0,0), OPTION) == 0)
     {
        out.push_back(new String(in[0]->getShortTypeStr().c_str()));
        return Function::OK;

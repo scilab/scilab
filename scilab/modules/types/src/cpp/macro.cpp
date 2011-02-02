@@ -30,10 +30,6 @@ extern "C"
 
 namespace types
 {
-
-    /*--------------*/
-    /*	Contructor  */
-    /*--------------*/
     Macro::Macro(const wstring& _stName, list<wstring> &_inputArgs, list<wstring> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule) :
     Callable(), m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body)
     {
@@ -47,14 +43,12 @@ namespace types
         delete m_body;
     }
 
-    Macro* Macro::clone()
+    InternalType* Macro::clone()
     {
         IncreaseRef();
         return this;
     }
-    /*--------------*/
-    /*	whoIAm		*/
-    /*--------------*/
+
     void Macro::whoAmI()
     {
         std::cout << "types::Macro";
@@ -70,7 +64,7 @@ namespace types
         return RealMacro;
     }
 
-    ast::SeqExp* Macro::body_get(void)
+    ast::SeqExp* Macro::getBody(void)
     {
         return m_body;
     }

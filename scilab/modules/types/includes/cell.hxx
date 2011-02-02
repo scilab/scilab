@@ -11,69 +11,69 @@
 */
 
 
-#ifndef __CELL_HXX__
-#define __CELL_HXX__
+#ifndef __ARRAYOF_HXX__
+    #error This file must only be include by arrayof.hxx
+#endif
 
 #include <vector>
-#include "container.hxx"
 
 namespace types
 {
-    class Cell : public Container
+    class Cell : public ArrayOf<InternalType*>
     {
     public :
+                            ~Cell();
                             Cell();
                             Cell(int _iRows, int _iCols);
-                            ~Cell();
+                        	Cell(int _iDims, int* _piDims);
 
     private :
                             Cell(Cell* _oCellCopyMe);
-        void                createCell(int _iRows, int _iCols);
 
     public :
-        int                 size_get();
 
         void                whoAmI(void) { std::cout << "types::Cell"; };
 
         RealType            getType(void) { return RealCell; }
+        bool                isCell() { return true; }
+        bool                isEmpty();
+
 
         /**
         ** Clone
         ** Create a new List and Copy all values.
         */
-        Cell*               clone();
+        InternalType*       clone();
 
-        std::wstring        toString(int _iPrecision, int _iLineLen);
-
-        Cell*               getAsCell(void) { return this; }
-
-        InternalType*       get(int _iRows, int _iCols);
-        InternalType*       get(int _iIndex);
         bool                set(int _iRows, int _iCols, InternalType* _pIT);
+        bool                set(int _iRows, int _iCols, const InternalType* _pIT);
         bool                set(int _iIndex, InternalType* _pIT);
+        bool                set(int _iIndex, const InternalType* _pIT);
+        bool                set(InternalType** _pIT);
 
-
-        bool                resize(int _iNewRows, int _iNewCols);
         bool                append(int _iRows, int _iCols, Cell *_poSource);
 
         bool                operator==(const InternalType& it);
         bool                operator!=(const InternalType& it);
 
-        InternalType*       insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-        bool                insert_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-        static Cell*        insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-        Cell*               extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
-
-        std::vector<InternalType*> extract_cell(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+        Cell*               insertCell(typed_list* _pArgs, InternalType* _pSource);
+        static Cell*        insertNewCell(typed_list* _pArgs, InternalType* _pSource);
+        List*               extractCell(typed_list* _pArgs);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring getTypeStr() {return L"cell";}
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring getShortTypeStr() {return L"ce";};
+        virtual bool        isContainer(void) { return true; }
+        void                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
 
     private :
-        std::vector<InternalType*>*   m_vectData;
+        virtual InternalType*   getNullValue();
+        virtual Cell*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+        virtual InternalType*   copyValue(InternalType* _pData);
+        virtual void            deleteAll();
+        virtual void            deleteImg();
+        virtual InternalType**  allocData(int _iSize);
+
     };
 }
-
-#endif /* !__CELL_HXX__ */

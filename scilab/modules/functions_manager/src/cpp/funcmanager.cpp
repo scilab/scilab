@@ -122,7 +122,6 @@ bool FuncManager::AppendModules()
 		xmlXPathObjectPtr xpathObj		= NULL;
 		char *name										= NULL;
 		int activate									= 0;
-		int indice										= 0;
 
 		doc = xmlParseFile (pstTemp);
 

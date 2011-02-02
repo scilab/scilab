@@ -12,8 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "fileio_gw.hxx"
 #include "function.hxx"
-#include "bool.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -45,14 +44,14 @@ Function::ReturnValue sci_getlongpathname(typed_list &in, int _iRetCount, typed_
         return Function::Error;
     }
 
-    String* pS  = in[0]->getAs<String>();
+    String* pS  = in[0]->getAs<types::String>();
 
-    String* pOut1 = new String(pS->rows_get() , pS->cols_get());
-    Bool* pOut2 = new Bool(pS->rows_get() , pS->cols_get());
-    int* pBool = pOut2->bool_get();
-    for(int i = 0 ; i < pS->size_get(); i++)
+    String* pOut1 = new String(pS->getRows() , pS->getCols());
+    Bool* pOut2 = new Bool(pS->getRows() , pS->getCols());
+    int* pBool = pOut2->get();
+    for(int i = 0 ; i < pS->getSize(); i++)
     {
-        pOut1->string_set(i, getlongpathnameW(pS->string_get(i), &pBool[i]));
+        pOut1->set(i, getlongpathnameW(pS->get(i), &pBool[i]));
     }
 
     out.push_back(pOut1);

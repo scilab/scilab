@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "funcmanager.hxx"
 #include "context.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C" {
 #include "Scierror.h"
@@ -42,17 +42,17 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 		return Function::Error;
 	}
 
-	if(in[0]->getType() == InternalType::RealString)
+	if(in[0]->isString())
 	{
-		types::String* pS = in[0]->getAsString();
+		types::String* pS = in[0]->getAs<types::String>();
 
-		if(pS->size_get() != 1)
+		if(pS->getSize() != 1)
 		{
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"whereis", 1);
 			return Function::Error;
 		}
 
-		wchar_t* pstFuncName = pS->string_get(0);
+		wchar_t* pstFuncName = pS->get(0);
 		symbol::Context* pContext = symbol::Context::getInstance();
 
 		wstring funcName(pstFuncName);

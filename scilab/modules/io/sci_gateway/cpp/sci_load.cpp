@@ -23,7 +23,7 @@
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "setenvvar.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -56,19 +56,19 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
 
 	InternalType* pIT = in[0];
 
-	if(pIT->getType() != InternalType::RealString)
+	if(pIT->isString() == false)
 	{
 		return Function::Error;
 	}
 
-	String *pS = pIT->getAsString();
+	String *pS = pIT->getAs<types::String>();
 
-	if(pS->size_get() != 1)
+	if(pS->getSize() != 1)
 	{
 		return Function::Error;
 	}
 
-	wchar_t* pstFile = pS->string_get(0);
+	wchar_t* pstFile = pS->get(0);
     pstXMLFile = expandPathVariableW(pstFile);
 
 	if(getMacros(pstXMLFile) == false)

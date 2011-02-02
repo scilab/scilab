@@ -14,7 +14,7 @@
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "configvariable.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 using namespace types;
 
@@ -32,7 +32,7 @@ Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, type
     list<wstring>::iterator it = sModuleList.begin();
     for(int i = 0; it != sModuleList.end() ; it++,i++)
     {
-        pOut->string_set(i, it->c_str());
+        pOut->set(i, it->c_str());
     }
 
     out.push_back(pOut);

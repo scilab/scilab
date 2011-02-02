@@ -13,9 +13,7 @@
 #define __TYPES_MULTIPLICATION_HXX__
 
 #include "operation.hxx"
-#include "double.hxx"
-#include "matrixpoly.hxx"
-
+#include "arrayof.hxx"
 
 
 EXTERN_OP types::InternalType *GenericDotTimes(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
@@ -23,9 +21,9 @@ EXTERN_OP types::InternalType *GenericTimes(types::InternalType *_pLeftOperand, 
 
 EXTERN_OP int MultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut);
 EXTERN_OP int MultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut);
-EXTERN_OP int MultiplyDoubleByPoly(types::Double* _pDouble, types::MatrixPoly* _pPoly, types::MatrixPoly** _pPolyOut);
-EXTERN_OP int MultiplyPolyByDouble(types::MatrixPoly* _pPoly, types::Double* _pDouble, types::MatrixPoly **_pPolyOut);
-EXTERN_OP int MultiplyPolyByPoly(types::MatrixPoly* _pPoly1, types::MatrixPoly* _pPoly2, types::MatrixPoly** _pPolyOut);
+EXTERN_OP int MultiplyDoubleByPoly(types::Double* _pDouble, types::Polynom* _pPoly, types::Polynom** _pPolyOut);
+EXTERN_OP int MultiplyPolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::Polynom **_pPolyOut);
+EXTERN_OP int MultiplyPolyByPoly(types::Polynom* _pPoly1, types::Polynom* _pPoly2, types::Polynom** _pPolyOut);
 
 EXTERN_OP int DotMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double**	 _pDoubleOut);
 

@@ -15,7 +15,7 @@
 #include "output_stream_gw.hxx"
 #include "scilab_sprintf.hxx"
 #include "function.hxx"
-#include "string.hxx"
+#include "arrayof.hxx"
 
 extern "C"
 {
@@ -35,7 +35,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _piRetCount
         return types::Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAsString()->size_get() != 1)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"msprintf" ,1);
         return types::Function::Error;
@@ -51,7 +51,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _piRetCount
         }
     }
 
-    wchar_t* pwstInput = in[0]->getAsString()->string_get()[0];
+    wchar_t* pwstInput = in[0]->getAs<types::String>()->get()[0];
     int iNumberPercent = 0;
     for(int i = 0 ; i < wcslen(pwstInput) ; i++)
     {
@@ -79,17 +79,17 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _piRetCount
     int iNumberCols = 0;
     if( in.size() > 1 )
     {
-        int iRefRows = in[1]->getAsGenericType()->rows_get();
+        int iRefRows = in[1]->getAsGenericType()->getRows();
         for(int i = 1 ; i < in.size() ; i++)
         {
             //all arguments must have the same numbers of rows !
-            if(iRefRows != in[i]->getAsGenericType()->rows_get())
+            if(iRefRows != in[i]->getAsGenericType()->getRows())
             {
                 ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), L"msprintf");
                 return types::Function::Error;
             }
 
-            iNumberCols += in[i]->getAsGenericType()->cols_get();
+            iNumberCols += in[i]->getAsGenericType()->getCols();
         }
     }
 
@@ -105,7 +105,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _piRetCount
     int idx = 0;
     for(int i = 1 ; i < in.size() ; i++)
     {
-        for(int j = 0 ; j < in[i]->getAsGenericType()->cols_get() ; j++)
+        for(int j = 0 ; j < in[i]->getAsGenericType()->getCols() ; j++)
         {
             pArgs[idx].iArg = i;
             pArgs[idx].iPos = j;
@@ -118,7 +118,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _piRetCount
     wchar_t** pwstOutput = scilab_sprintf(L"msprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows);
 
     types::String* pOut = new types::String(iOutputRows, 1);
-    pOut->string_set(pwstOutput);
+    pOut->set(pwstOutput);
     out.push_back(pOut);
 
     for(int i = 0 ; i < iOutputRows ; i++)
