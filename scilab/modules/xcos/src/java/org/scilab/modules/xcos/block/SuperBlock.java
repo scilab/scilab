@@ -509,8 +509,11 @@ public final class SuperBlock extends BasicBlock {
 	 * update super block ports in parent diagram
 	 */
 	public void updateExportedPort() {
-		if (child == null || getParentDiagram() == null) {
+		if (child == null) {
 			return;
+		}
+		if (getParentDiagram() == null) {
+			setParentDiagram(Xcos.findParent(this));
 		}
 
 		final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks.getAllBlocks(this);

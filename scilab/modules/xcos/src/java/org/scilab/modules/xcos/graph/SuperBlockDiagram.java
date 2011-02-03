@@ -238,7 +238,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     	clone.installSuperBlockListeners();
     	
     	clone.setScicosParameters((ScicosParameters) getScicosParameters().clone());
-    	clone.addCells(cloneCells(new Object[] {getModel().getRoot()}));
+    	clone.addCells(cloneCells(getChildCells(getDefaultParent())), clone.getDefaultParent());
     	
     	return clone;
     }
