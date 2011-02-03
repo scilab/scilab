@@ -160,8 +160,6 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
       <member><link linkend="functions">functions</link></member>
 
       <member><link linkend="exec">exec</link></member>
-
-      <member><link linkend="exec">exec</link></member>
     </simplelist>
   </refsection>
 </refentry>
