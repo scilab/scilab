@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.io.codec;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
@@ -22,6 +23,7 @@ import org.scilab.modules.graph.io.ScilabGraphCodec;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -197,9 +199,28 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 	 */
 	@Override
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
-		XcosDiagram diag = (XcosDiagram) obj;
+		final XcosDiagram diag = (XcosDiagram) obj;
 		
-		diag.setChildrenParentDiagram();
+		// main update loop 
+		final mxGraphModel model = (mxGraphModel) diag.getModel();
+		final Object parent = diag.getDefaultParent();
+		final mxGraphModel.Filter filter = new mxGraphModel.Filter() {
+			@Override
+			public boolean filter(Object cell) {
+				if (cell instanceof BasicBlock) {
+					final BasicBlock block = (BasicBlock) cell;
+					
+					// update parent diagram
+					block.setParentDiagram(diag);
+					
+					// restore default root in case of a wrong hierarchy.
+					return block.getParent() != parent;
+				}
+				return false;
+			}
+		};
+		final Collection<Object> blocks = mxGraphModel.filterDescendants(model, filter);
+		diag.addCells(blocks.toArray());
 		
 		// pre-5.3 diagram may be saved in a locked state
 		// unlock it
@@ -208,7 +229,6 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 		// 5.3.0-beta diagrams may contains invalid default parents, remove them.
 		{
 			final mxCell root = (mxCell) diag.getModel().getRoot();
-			final mxGraphModel model = (mxGraphModel) diag.getModel();
 			final ArrayList<Object> parents = new ArrayList<Object>(
 					Arrays.asList(mxGraphModel.getChildren(model, root)));
 			
