@@ -119,7 +119,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      */
     public void handleCommand(String seq) throws IOException {
         if (seq.equals(currentCommand)) {
-            buffer.append("<span class=\"command\">");
+            buffer.append("<span class=\"scilabcommand\">");
             buffer.append(seq);
             buffer.append("</span>");
         } else {
