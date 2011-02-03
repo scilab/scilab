@@ -99,6 +99,8 @@ trigger a warning and do not add a link on the function name.
 
 * bug 8756 fixed - The file id was expected only in refentry.
 
+* bug 8915 fixed - ASCII art removed in histplot help page.
+
 
 Scinotes:
 =========

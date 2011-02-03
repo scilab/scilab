@@ -61,13 +61,10 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis>
         (comportement par défaut) et sinon elle vaut simplement <emphasis>Ni</emphasis>. Quand l'histogramme
         est normalisé il vérifie la propriété suivante :
     </para>
-    <programlisting><![CDATA[ 
- x(n+1)
-/  
-|   h(x) dx = 1,  quand x(1)<=min(data) et max(data) <= x(n+1)) 
-/
-x(1)
- ]]></programlisting>
+    <para><latex style="display"><![CDATA[
+    \int_{x(1)}^{x(n+1)}h(x)\,\mathrm{d}x=1
+    ]]></latex></para>
+    <para>quand <emphasis>x(1)&lt;=min(data)</emphasis> et <emphasis>max(data) &lt;= x(n+1)</emphasis></para>
     <para>N'importe quel paramètre optionnel de <link linkend="plot2d">plot2d</link> peut être passé à  histplot ; par exemple
        pour dessiner votre histogramme avec la couleur numéro 2 (du bleu si vous utilisez la carte
        des couleurs standard) tout en restreignant le dessin au le rectangle [-3,3]x[0,0.5],
@@ -77,26 +74,34 @@ x(1)
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
-// exemple #1: variations sur l'histogramme d'un échantillon gaussien N(0,1)
+    <simplelist>
+      <member>
+	Exemple #1: variations sur l'histogramme d'un échantillon gaussien N(0,1)
+	<programlisting role="example"><![CDATA[ 
 d=rand(1,10000,'normal');
 clf();histplot(20,d)
 clf();histplot(20,d,normalization=%f)
 clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
 clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]); 
-
-// exemple #2: histogramme d'un échantillon de loi binomiale B(6,0.5)
+]]></programlisting>
+      </member>
+      <member>
+	Exemple #2: histogramme d'un échantillon de loi binomiale B(6,0.5)
+	<programlisting role="example"><![CDATA[
 d = grand(1000,1,"bin", 6, 0.5);
 c = linspace(-0.5,6.5,8);
 clf()
 subplot(2,1,1)
-  histplot(c, d, style=2)
-  xtitle("l''histogramme normalisé")
+histplot(c, d, style=2)
+xtitle("l''histogramme normalisé")
 subplot(2,1,2)
-  histplot(c, d, normalization=%f, style=5)
-  xtitle("l''histogramme non normalisé")
-
-// exemple #3: histogramme d'un échantillon de loi exponentielle E(lambda)
+histplot(c, d, normalization=%f, style=5)
+xtitle("l''histogramme non normalisé")
+]]></programlisting>
+      </member>
+      <member>
+	Exemple #3: histogramme d'un échantillon de loi exponentielle E(lambda)
+	<programlisting role="example"><![CDATA[
 lambda = 2;
 X = grand(100000,1,"exp", 1/lambda);
 Xmax = max(X);
@@ -105,7 +110,9 @@ histplot(40, X, style=2)
 x = linspace(0,max(Xmax),100)';
 plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
 legend(["histogramme d''un échantillon E(lambda)" "densité exacte"]);
- ]]></programlisting>
+]]></programlisting>
+      </member>
+    </simplelist>
   </refsection>
   <refsection role="see also">
 <title>Voir aussi</title>
