@@ -37,10 +37,13 @@ int get_children_property( sciPointObj * pobj )
     int status = 0;
     sciPointObj *pobjChildren = NULL;
     long *plChildren = NULL;
+    char **pstChildrenUID;
 
     // All Graphic Objects have __GO_CHILDREN__ & __GO_CHILDREN_COUNT__ properties.
-    int *piChildrenCount = getGraphicObjectProperty(pobj->UID, __GO_CHILDREN_COUNT__, jni_int);
-    char **pstChildrenUID = NULL;
+    int iChildrenCount = 0;
+    int *piChildrenCount = &iChildrenCount;
+    getGraphicObjectProperty(pobj->UID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
+
 
     if (piChildrenCount[0] == 0)
     {
@@ -48,7 +51,7 @@ int get_children_property( sciPointObj * pobj )
         return sciReturnEmptyMatrix();
     }
 
-    pstChildrenUID = getGraphicObjectProperty(pobj->UID, __GO_CHILDREN__, jni_string_vector);
+    getGraphicObjectProperty(pobj->UID, __GO_CHILDREN__, jni_string_vector, &pstChildrenUID);
 
     plChildren = MALLOC(piChildrenCount[0] * sizeof(long));
 

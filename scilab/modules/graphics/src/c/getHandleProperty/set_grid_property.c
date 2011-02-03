@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -36,7 +36,8 @@ int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 {
     BOOL status[3];
     int i;
-    int* gridColor;
+    int iGridColor = 0;
+    int* piGridColor = &iGridColor;
     int gridStyles[3];
     char* gridColorPropertiesNames[3] = {__GO_X_AXIS_GRID_COLOR__, __GO_Y_AXIS_GRID_COLOR__, __GO_Z_AXIS_GRID_COLOR__};
 
@@ -62,21 +63,21 @@ int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
         return SET_PROPERTY_ERROR ;
     }
 
-    gridColor = (int*) getGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[0], jni_int);
+    getGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[0], jni_int, &piGridColor);
 
-    if (gridColor == NULL)
+    if (piGridColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid");
         return SET_PROPERTY_ERROR;
     }
 
-    gridStyles[0] = *gridColor;
+    gridStyles[0] = iGridColor;
 
-    gridColor = (int*) getGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[1], jni_int);
-    gridStyles[1] = *gridColor;
+    getGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[1], jni_int, &piGridColor);
+    gridStyles[1] = iGridColor;
 
-    gridColor = (int*) getGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[2], jni_int);
-    gridStyles[2] = *gridColor;
+    getGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[2], jni_int, &piGridColor);
+    gridStyles[2] = iGridColor;
 
     for (  i = 0 ; i < nbCol ; i++ )
     {

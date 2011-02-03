@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,7 +31,8 @@
 /*------------------------------------------------------------------------*/
 int get_tics_style_property( sciPointObj * pobj )
 {
-    int* tmpTicksStyle;
+    int iTicksStyle = 0;
+    int* piTicksStyle = &iTicksStyle;
     char ticksStyle;
 
 #if 0
@@ -42,23 +43,23 @@ int get_tics_style_property( sciPointObj * pobj )
     }
 #endif
 
-    tmpTicksStyle = (int*) getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int, &piTicksStyle);
 
-    if (tmpTicksStyle == NULL)
+    if (piTicksStyle == NULL)
     {
         Scierror(999, _("Wrong value for '%s' property.\n"),"tics_direction");
         return -1;
     }
 
-    if (*tmpTicksStyle == 0)
+    if (iTicksStyle == 0)
     {
         ticksStyle = 'v';
     }
-    else if (*tmpTicksStyle == 1)
+    else if (iTicksStyle == 1)
     {
         ticksStyle = 'r';
     }
-    else if (*tmpTicksStyle == 2)
+    else if (iTicksStyle == 2)
     {
         ticksStyle = 'i';
     }

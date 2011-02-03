@@ -3,11 +3,11 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -40,10 +40,12 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
     int N = 0;
     double * vector = NULL;
     char c_format[5];
-    int* xNumberTicks;
+    int iXNumberTicks = 0;
+    int* piXNumberTicks = &iXNumberTicks;
     char** stringVector = NULL;
     double* coordsVector = NULL;
-    int* tmpTicksStyle;
+    int iTicksStyle = 0;
+    int* piTicksStyle = &iTicksStyle;
     char ticksStyle;
 
     if ( !isParameterDoubleMatrix( valueType ) )
@@ -66,21 +68,21 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
         return SET_PROPERTY_ERROR;
     }
 
-    xNumberTicks = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int, &piXNumberTicks);
 
-    if (xNumberTicks == NULL)
+    if (piXNumberTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"xtics_coord");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( *xNumberTicks == 1 && nbCol != 1 )
+    if ( iXNumberTicks == 1 && nbCol != 1 )
     {
         Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "xtics_coord");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( *xNumberTicks != 1 && nbCol == 1 )
+    if ( iXNumberTicks != 1 && nbCol == 1 )
     {
         Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "xtics_coord", 2);
         return SET_PROPERTY_ERROR;
@@ -100,17 +102,17 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
     FREE(coordsVector);
 
-    tmpTicksStyle = (int*) getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int, &piTicksStyle);
 
-    if (*tmpTicksStyle == 0)
+    if (iTicksStyle == 0)
     {
         ticksStyle = 'v';
     }
-    else if (*tmpTicksStyle == 1)
+    else if (iTicksStyle == 1)
     {
         ticksStyle = 'r';
     }
-    else if (*tmpTicksStyle == 2)
+    else if (iTicksStyle == 2)
     {
         ticksStyle = 'i';
     }

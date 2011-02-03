@@ -91,7 +91,7 @@ int NgonGeneralData::setDataProperty(int property, void* value, int numElements)
     }
     else if (property == COORDINATES)
     {
-        setData((double*) value, numElements); 
+        setData((double*) value, numElements);
     }
     else if (property == X_COORDINATES)
     {
@@ -117,11 +117,8 @@ int NgonGeneralData::setDataProperty(int property, void* value, int numElements)
     return 1;
 }
 
-void* NgonGeneralData::getDataProperty(int property)
+void NgonGeneralData::getDataProperty(int property, void **_pvData)
 {
-    /* Used for now to return the address of a single integer */
-    static int localIntResult;
-
     if (property == NUM_ELEMENTS_ARRAY)
     {
           /* Not implemented yet */
@@ -129,32 +126,31 @@ void* NgonGeneralData::getDataProperty(int property)
     }
     else if (property == COORDINATES)
     {
-        return getData();
+         *_pvData = getData();
     }
     else if (property == X_COORDINATES)
     {
-        return getDataX();
+         *_pvData = getDataX();
     }
     else if (property == Y_COORDINATES)
     {
-        return getDataY();
+         *_pvData = getDataY();
     }
     else if (property == Z_COORDINATES)
     {
-        return getDataZ();
+         *_pvData = getDataZ();
     }
     else if (property == COLORS)
     {
-        return getColors();
+        *_pvData = getColors();
     }
     else if (property == NUM_COLORS)
     {
-        localIntResult = getNumColors();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getNumColors();
     }
     else
     {
-        return NgonData::getDataProperty(property);
+        NgonData::getDataProperty(property, _pvData);
     }
 
 }
@@ -207,7 +203,7 @@ void NgonGeneralData::setDataX(double* data, int numElements)
     for (int i = 0; i < numElements; i++)
     {
         xCoordinates[i] = data[i];
-    } 
+    }
 
 }
 
@@ -220,7 +216,7 @@ void NgonGeneralData::setDataY(double* data, int numElements)
     for (int i = 0; i < numElements; i++)
     {
         yCoordinates[i] = data[i];
-    } 
+    }
 
 }
 

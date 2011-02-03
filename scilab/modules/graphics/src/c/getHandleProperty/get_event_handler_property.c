@@ -33,7 +33,8 @@
 /*------------------------------------------------------------------------*/
 int get_event_handler_property( sciPointObj * pobj )
 {
-    char* eventHandler = (char*)getGraphicObjectProperty(pobj->UID, __GO_EVENTHANDLER_NAME__, jni_string);
+    char* eventHandler;
+    getGraphicObjectProperty(pobj->UID, __GO_EVENTHANDLER_NAME__, jni_string, &eventHandler);
 
     if ( eventHandler == NULL )
     {

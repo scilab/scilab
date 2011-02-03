@@ -31,38 +31,40 @@
 /*------------------------------------------------------------------------*/
 int get_anti_aliasing_property( sciPointObj * pobj )
 {
-  int* antialiasing = (int *) getGraphicObjectProperty(pobj->UID, __GO_ANTIALIASING__, jni_int);
+    int iAntialiasing = 0;
+    int* piAntialiasing = &iAntialiasing;
+    getGraphicObjectProperty(pobj->UID, __GO_ANTIALIASING__, jni_int, &piAntialiasing);
 
-  if ( antialiasing == NULL )
-  {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"),"anti_aliasing");
-      return -1;
-  }
+    if ( piAntialiasing == NULL )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"anti_aliasing");
+        return -1;
+    }
 
-  switch(*antialiasing)
-  {
-  case 0:
-      return sciReturnString("off");
-      break;
-  case 2:
-      return sciReturnString("2x");
-      break;
-  case 4:
-      return sciReturnString("4x");
-      break;
-  case 8:
-      return sciReturnString("8x");
-      break;
-  case 16:
-      return sciReturnString("16x");
-      break;
-  default:
-      Scierror(999, _("Wrong value for '%s' property.\n"),"anti_aliasing");
-      return -1 ;
-      break;
-  }
+    switch(iAntialiasing)
+    {
+    case 0:
+        return sciReturnString("off");
+        break;
+    case 2:
+        return sciReturnString("2x");
+        break;
+    case 4:
+        return sciReturnString("4x");
+        break;
+    case 8:
+        return sciReturnString("8x");
+        break;
+    case 16:
+        return sciReturnString("16x");
+        break;
+    default:
+        Scierror(999, _("Wrong value for '%s' property.\n"),"anti_aliasing");
+        return -1 ;
+        break;
+    }
 
-  return sciReturnString("off");
+    return sciReturnString("off");
 
 }
 /*------------------------------------------------------------------------*/

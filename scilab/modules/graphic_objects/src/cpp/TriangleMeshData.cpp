@@ -141,36 +141,31 @@ int TriangleMeshData::setDataProperty(int property, void* value, int numElements
     return 1;
 }
 
-void* TriangleMeshData::getDataProperty(int property)
+void TriangleMeshData::getDataProperty(int property, void **_pvData)
 {
-    /* Used for now to return the address of a single unsigned integer */
-    static int localUIntResult;
-
     if (property == NUM_VERTICES)
     {
-        localUIntResult = getNumVertices();
-        return &localUIntResult;
+        ((int *)*_pvData)[0] = getNumVertices();
     }
     else if (property == NUM_INDICES)
     {
-        localUIntResult = getNumIndices();
-        return &localUIntResult;
+        ((int *)*_pvData)[0] = getNumIndices();
     }
     else if (property == COORDINATES)
     {
-        return getVertices();
+        *_pvData = getVertices();
     }
     else if (property == INDICES)
     {
-        return getIndices();
+        *_pvData = getIndices();
     }
     else if (property == VALUES)
     {
-        return getValues();
+        *_pvData = getValues();
     }
     else
     {
-        return Data3D::getDataProperty(property);
+        Data3D::getDataProperty(property, _pvData);
     }
 }
 

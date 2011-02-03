@@ -49,7 +49,7 @@ sciPointObj * sciGetCurrentFigure( void )
 {
   /* debug F.Leray 22.07.04 */
   sciPointObj * pFigure = getCurrentPointedFigure();
-  sciPointObj* newaxes = NULL;  
+  sciPointObj* newaxes = NULL;
 
   if( !sciHasFigures() )
   {
@@ -140,14 +140,15 @@ sciPointObj * sciGetCurrentSubWin( void )
 {
   sciPointObj * currentFigure = sciGetCurrentFigure();
   sciPointObj * currentSubwin = NULL;
-  int* nbChildren;
+  int iNbChildren = 0;
+  int *piNbChildren = &iNbChildren;
   char** children;
 
   if ( currentFigure == NULL ) { return NULL ; }
 
-  nbChildren = (int*) getGraphicObjectProperty(currentFigure->UID, __GO_CHILDREN_COUNT__, jni_int);
+  getGraphicObjectProperty(currentFigure->UID, __GO_CHILDREN_COUNT__, jni_int, &piNbChildren);
 
-  if (*nbChildren == 0)
+  if (iNbChildren == 0)
   {
     return NULL;
   }
@@ -156,7 +157,7 @@ sciPointObj * sciGetCurrentSubWin( void )
    * At the present moment, a figure is considered to have a unique Axes child object.
    * To be re-implemented, taking into account the last selected child object.
    */
-  children = (char**) getGraphicObjectProperty(currentFigure->UID, __GO_CHILDREN__, jni_string_vector);
+  getGraphicObjectProperty(currentFigure->UID, __GO_CHILDREN__, jni_string_vector, &children);
 
   currentSubwin = MALLOC(sizeof(sciPointObj));
 

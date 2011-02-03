@@ -34,7 +34,8 @@
 int get_figure_position_property( sciPointObj * pobj )
 {
   double figurePos[2] ;
-  int* position = (int*)getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_int_vector);
+  int* position;
+  getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_int_vector, &position);
 
   if (position == NULL)
   {

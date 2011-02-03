@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,27 +33,28 @@
 /*------------------------------------------------------------------------*/
 int get_text_box_mode_property( sciPointObj * pobj )
 {
-    int* textBoxMode;
+    int iTextBoxMode = 0;
+    int* piTextBoxMode = &iTextBoxMode;
 
-    textBoxMode = (int*) getGraphicObjectProperty(pobj->UID, __GO_TEXT_BOX_MODE__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_TEXT_BOX_MODE__, jni_int, piTextBoxMode);
 
-    if (textBoxMode == NULL)
+    if (piTextBoxMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"text_box_mode");
         return -1;
     }
 
-    if (*textBoxMode == 0)
+    if (iTextBoxMode == 0)
     {
-      return sciReturnString("off");
+        return sciReturnString("off");
     }
-    else if (*textBoxMode == 1)
+    else if (iTextBoxMode == 1)
     {
-      return sciReturnString("centered");
+        return sciReturnString("centered");
     }
-    else if (*textBoxMode == 2)
+    else if (iTextBoxMode == 2)
     {
-      return sciReturnString("filled");
+        return sciReturnString("filled");
     }
     else
     {

@@ -38,15 +38,15 @@ int Data3D::setDataProperty(int property, void* value, int numElements)
     return 0;
 }
 
-void* Data3D::getDataProperty(int property)
+void Data3D::getDataProperty(int property, void **_pvData)
 {
     if (property == UNKNOWN_DATA_PROPERTY)
     {
-        return NULL;
+        *_pvData = NULL;
     }
     else
     {
-        return NULL;
+        *_pvData = NULL;
     }
 }
 

@@ -33,14 +33,19 @@
 /*--------------------------------------------------------------------------*/
 int get_color_map_property( sciPointObj * pobj )
 {
-    double * colorMap = (double*) getGraphicObjectProperty(pobj->UID, __GO_COLORMAP__, jni_double_vector);
-    int * cmapSize = (int*) getGraphicObjectProperty(pobj->UID, __GO_COLORMAP_SIZE__, jni_int);
-    if ( colorMap == NULL )
+    double *pdblColorMap;
+
+    int iCmapSize = 0;
+    int * piCmapSize = &iCmapSize;
+
+    getGraphicObjectProperty(pobj->UID, __GO_COLORMAP_SIZE__, jni_int, &piCmapSize);
+    getGraphicObjectProperty(pobj->UID, __GO_COLORMAP__, jni_double_vector, &pdblColorMap);
+    if ( pdblColorMap == NULL )
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_map");
         return -1;
     }
 
-    return sciReturnMatrix (colorMap, cmapSize[0], 3);
+    return sciReturnMatrix (pdblColorMap, iCmapSize, 3);
 }
 /*--------------------------------------------------------------------------*/

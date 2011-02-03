@@ -34,7 +34,8 @@
 int get_figure_size_property( sciPointObj * pobj )
 {
   double figureSize[2] ;
-  int* intSize = (int*)getGraphicObjectProperty(pobj->UID, __GO_SIZE__, jni_int_vector);
+  int* intSize;
+  getGraphicObjectProperty(pobj->UID, __GO_SIZE__, jni_int_vector, &intSize);
 
   if (intSize == NULL)
   {

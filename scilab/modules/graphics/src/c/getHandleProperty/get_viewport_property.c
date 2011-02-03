@@ -32,14 +32,15 @@
 /*------------------------------------------------------------------------*/
 int get_viewport_property( sciPointObj * pobj )
 {
-  int* viewport = (int*)getGraphicObjectProperty(pobj->UID, __GO_VIEWPORT__, jni_int_vector);;
+    int* viewport;
+    getGraphicObjectProperty(pobj->UID, __GO_VIEWPORT__, jni_int_vector, &viewport);
 
-  if (viewport == NULL)
-  {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"), "viewport") ;
-      return -1 ;
-  }
+    if (viewport == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "viewport") ;
+        return -1 ;
+    }
 
-  return sciReturnRowIntVector(viewport , 2);
+    return sciReturnRowIntVector(viewport , 2);
 }
 /*------------------------------------------------------------------------*/

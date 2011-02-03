@@ -64,7 +64,7 @@ public :
 
     int setDataProperty(int property, void* value, int numElements);
 
-    void* getDataProperty(int property);
+    void getDataProperty(int property, void **_pvData);
 
     /**
      * Returns the number of elements (number of vertices making up the polyline)

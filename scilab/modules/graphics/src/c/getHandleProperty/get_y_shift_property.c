@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,26 +33,27 @@
 int get_y_shift_property( sciPointObj * pobj )
 {
     double* shiftCoordinates;
-    int* tmp;
+    int iSize = 0;
+    int* piSize = &iSize;
 
-    tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, jni_int, &piSize);
 
-    if (tmp == NULL)
+    if (piSize == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_shift");
         return -1;
     }
 
-    if (*tmp == 0)
+    if (iSize == 0)
     {
         return sciReturnEmptyMatrix();
     }
     else
-    {   
-        shiftCoordinates = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector);
-        tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int);
+    {
+        getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, &shiftCoordinates);
+        getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piSize);
 
-        return sciReturnRowVector(shiftCoordinates, *tmp);
+        return sciReturnRowVector(shiftCoordinates, iSize);
     }
 }
 /*------------------------------------------------------------------------*/

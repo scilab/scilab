@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -32,16 +32,17 @@
 /*------------------------------------------------------------------------*/
 int get_font_angle_property( sciPointObj * pobj )
 {
-    double* fontAngle;
+    double dblFontAngle = 0;
+    double* pdblFontAngle = &dblFontAngle;
 
-    fontAngle = (double*) getGraphicObjectProperty(pobj->UID, __GO_FONT_ANGLE__, jni_double);
+    getGraphicObjectProperty(pobj->UID, __GO_FONT_ANGLE__, jni_double, &pdblFontAngle);
 
-    if (fontAngle == NULL)
+    if (pdblFontAngle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_angle");
         return -1;
     }
 
-    return sciReturnDouble( RAD2DEG(*fontAngle) );
+    return sciReturnDouble( RAD2DEG(dblFontAngle) );
 }
 /*------------------------------------------------------------------------*/

@@ -8,7 +8,7 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -58,8 +58,10 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     int firstPlot;
     int logFlags[3];
     int autoSubticks;
-    int* tmp;
-  
+
+    int iTmp = 0;
+    int* piTmp = &iTmp;
+
     xx[0]=Mini(x,*n1);xx[1]=Maxi(x,*n1);
     yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
 
@@ -84,7 +86,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     else
     {
         pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-        pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+        pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;
     }
 #endif
 
@@ -100,17 +102,17 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     clipState = 1;
     setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool);
-    firstPlot = *tmp;
+    getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piTmp);
+    firstPlot = iTmp;
 
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool);
-    autoScale = *tmp;
+    getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
+    autoScale = iTmp;
 
     if (autoScale)
     {
         /* compute and merge new specified bounds with the data bounds */
         switch (strflag[1])  {
-          case '0': 
+          case '0':
             /* do not change data bounds */
             break;
           case '1' : case '3' : case '5' : case '7':
@@ -119,12 +121,12 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
             break;
           case '2' : case '4' : case '6' : case '8': case '9':
 
-            tmp = getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
-            logFlags[0] = *tmp;
-            tmp = getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
-            logFlags[1] = *tmp;
-            tmp = getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool);
-            logFlags[2] = *tmp;
+              getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+              logFlags[0] = iTmp;
+              getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+              logFlags[1] = iTmp;
+              getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+              logFlags[2] = iTmp;
 
             /* Conversion required by compute_data_bounds2 */
             textLogFlags[0] = getTextLogFlag(logFlags[0]);
@@ -139,7 +141,8 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
         /* merge data bounds and drect */
         if (!firstPlot &&(strflag[1] == '7' || strflag[1] == '8'))
         {
-            double* dataBounds = (double*) getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector);
+            double* dataBounds;
+            getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
             drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
             drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
@@ -147,7 +150,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
             drect[3] = Max(dataBounds[3],drect[3]); /*ymax*/
         }
 
-        if (strflag[1] != '0') 
+        if (strflag[1] != '0')
         {
             bounds_changed = update_specification_bounds(psubwin, drect,2);
         }
@@ -236,7 +239,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
         DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
     }
 #endif
-  
+
     return(0);
 }
 
@@ -262,7 +265,8 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     int logFlags[3];
     int autoSubticks;
 
-    int* tmp;
+    int iTmp = 0;
+    int* piTmp = &iTmp;
 
     xx[0] = 0.5;
     xx[1]= *n2+0.5;
@@ -301,11 +305,11 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     clipState = 1;
     setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool);
-    firstPlot = *tmp;
+    getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piTmp);
+    firstPlot = iTmp;
 
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool);
-    autoScale = *tmp;
+    getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
+    autoScale = iTmp;
 
     /*---- Boundaries of the frame ----*/
     if (autoScale)
@@ -320,12 +324,12 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
             re_index_brect(brect, drect);
             break;
         case '2' : case '4' : case '6' : case '8': case '9':
-            tmp = getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
-            logFlags[0] = *tmp;
-            tmp = getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
-            logFlags[1] = *tmp;
-            tmp = getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool);
-            logFlags[2] = *tmp;
+            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+            logFlags[0] = iTmp;
+            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+            logFlags[1] = iTmp;
+            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+            logFlags[2] = iTmp;
 
             /* Conversion required by compute_data_bounds2 */
             textLogFlags[0] = getTextLogFlag(logFlags[0]);
@@ -340,7 +344,8 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
         if (!firstPlot &&
           (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
         {
-            double* dataBounds = (double*) getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector);
+            double* dataBounds;
+            getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
             drect[0] = Min(dataBounds[0], drect[0]); /*xmin*/
             drect[2] = Min(dataBounds[2], drect[2]); /*ymin*/
@@ -434,11 +439,11 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
 
     return 0;
 }
-  
- 
+
+
 /*-------------------------------------------------------
- * like xgray1 : 
- * but xrect here give the rectangle in which the 
+ * like xgray1 :
+ * but xrect here give the rectangle in which the
  * grayplot is to be drawn using the current scale
  -------------------------------------------------------*/
 

@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,7 +33,8 @@
 /*------------------------------------------------------------------------*/
 int get_legend_location_property( sciPointObj * pobj )
 {
-    int* legendLocation;
+    int iLegendLocation = 0;
+    int* piLegendLocation = &iLegendLocation;
 
 #if 0
     if (sciGetEntityType (pobj) != SCI_LEGEND)
@@ -43,55 +44,55 @@ int get_legend_location_property( sciPointObj * pobj )
     }
 #endif
 
-    legendLocation = (int*) getGraphicObjectProperty(pobj->UID, __GO_LEGEND_LOCATION__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_LEGEND_LOCATION__, jni_int, &piLegendLocation);
 
-    if (legendLocation == NULL)
+    if (piLegendLocation == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"legend_location");
         return -1;
     }
 
-    if (*legendLocation == 0)
+    if (iLegendLocation == 0)
     {
         return sciReturnString("in_upper_right");
     }
-    else if (*legendLocation == 1)
-    { 
+    else if (iLegendLocation == 1)
+    {
         return sciReturnString("in_upper_left");
     }
-    else if (*legendLocation == 2)
+    else if (iLegendLocation == 2)
     {
         return sciReturnString("in_lower_right");
     }
-    else if (*legendLocation == 3)
+    else if (iLegendLocation == 3)
     {
         return sciReturnString("in_lower_left");
     }
-    else if (*legendLocation == 4)
+    else if (iLegendLocation == 4)
     {
         return sciReturnString("out_upper_right");
     }
-    else if (*legendLocation == 5)
+    else if (iLegendLocation == 5)
     {
         return sciReturnString("out_upper_left");
     }
-    else if (*legendLocation == 6)
+    else if (iLegendLocation == 6)
     {
         return sciReturnString("out_lower_right");
     }
-    else if (*legendLocation == 7)
+    else if (iLegendLocation == 7)
     {
         return sciReturnString("out_lower_left");
     }
-    else if (*legendLocation == 8)
+    else if (iLegendLocation == 8)
     {
         return sciReturnString("upper_caption");
     }
-    else if (*legendLocation == 9)
+    else if (iLegendLocation == 9)
     {
         return sciReturnString("lower_caption");
     }
-    else if (*legendLocation == 10)
+    else if (iLegendLocation == 10)
     {
         return sciReturnString("by_coordinates");
     }

@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -41,7 +41,7 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
   BOOL autoTicks;
   char ** values;
   int mSize = nbRow*nbCol;
-  
+
   char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
 
   if ( !isParameterStringMatrix( valueType ) )
@@ -63,7 +63,7 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
   if( mSize == 1 )
   {
     /* only one parameter to set the value for every axes.*/
-    if ( strcmp( values[0], "off" ) == 0 ) 
+    if ( strcmp( values[0], "off" ) == 0 )
     {
       autoTicks = FALSE;
     }
@@ -94,23 +94,24 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
   {
     int i ;
     BOOL autoTicks[3];
-    int* tmp;
+    int iAutoTicks = 0;
+    int *piAutoTicks = &iAutoTicks;
 
-    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[0], jni_bool);
+    getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[0], jni_bool, &piAutoTicks);
 
-    if (tmp == NULL)
+    if (piAutoTicks == NULL)
     {
       Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
       return SET_PROPERTY_ERROR;
     }
 
-    autoTicks[0] = *tmp;
+    autoTicks[0] = iAutoTicks;
 
-    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[1], jni_bool);
-    autoTicks[1] = *tmp;
+    getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[1], jni_bool, &piAutoTicks);
+    autoTicks[1] = iAutoTicks;
 
-    tmp = (int*) getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[2], jni_bool);
-    autoTicks[2] = *tmp;
+    getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[2], jni_bool, &piAutoTicks);
+    autoTicks[2] = iAutoTicks;
 
     for ( i = 0; i < mSize; i++ )
     {

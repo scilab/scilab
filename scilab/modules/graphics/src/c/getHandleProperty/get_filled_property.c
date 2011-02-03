@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -28,31 +28,32 @@
 /*------------------------------------------------------------------------*/
 int get_filled_property( sciPointObj * pobj )
 {
-  int* filled;
+    int iFilled = 0;
+    int* piFilled = &iFilled;
 
 #if 0
-  if (sciGetEntityType(pobj) != SCI_SUBWIN)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"), "filled") ;
-    return -1;
-  }
+    if (sciGetEntityType(pobj) != SCI_SUBWIN)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "filled") ;
+        return -1;
+    }
 #endif
 
-  filled = (int*) getGraphicObjectProperty(pobj->UID, __GO_FILLED__, jni_bool);
+    getGraphicObjectProperty(pobj->UID, __GO_FILLED__, jni_bool, &piFilled);
 
-  if (filled == NULL)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"), "filled") ;
-    return -1;
-  }
+    if (piFilled == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "filled") ;
+        return -1;
+    }
 
-  if (*filled)
-  {
-    return sciReturnString( "on" );
-  }
-  else
-  {
-    return sciReturnString( "off" );
-  }
+    if (iFilled)
+    {
+        return sciReturnString( "on" );
+    }
+    else
+    {
+        return sciReturnString( "off" );
+    }
 }
 /*------------------------------------------------------------------------*/

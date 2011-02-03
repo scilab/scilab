@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,17 +31,18 @@
 /*------------------------------------------------------------------------*/
 int get_auto_dimensionning_property( sciPointObj * pobj )
 {
-    int* autoDimensioning;
+    int iAutoDimensioning = 0;
+    int* piAutoDimensioning = &iAutoDimensioning;
 
-    autoDimensioning = (int*) getGraphicObjectProperty(pobj->UID, __GO_AUTO_DIMENSIONING__, jni_bool);
+    getGraphicObjectProperty(pobj->UID, __GO_AUTO_DIMENSIONING__, jni_bool, &piAutoDimensioning);
 
-    if (autoDimensioning == NULL)
+    if (piAutoDimensioning == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_dimensionning");
         return -1;
     }
 
-    if (*autoDimensioning)
+    if (iAutoDimensioning)
     {
         return sciReturnString( "on" );
     }

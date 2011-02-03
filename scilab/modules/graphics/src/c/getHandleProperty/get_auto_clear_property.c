@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -30,32 +30,33 @@
 /*------------------------------------------------------------------------*/
 int get_auto_clear_property( sciPointObj * pobj )
 {
-  int* autoClear;
+    int iAutoClear = 0;
+    int* piAutoClear = &iAutoClear;
 
 #if 0
-  if (   sciGetEntityType(pobj) != SCI_SUBWIN 
-      && sciGetEntityType(pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_clear property") ;
-    return -1 ;
-  }
+    if (   sciGetEntityType(pobj) != SCI_SUBWIN
+           && sciGetEntityType(pobj) != SCI_FIGURE )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_clear property") ;
+        return -1 ;
+    }
 #endif
 
-  autoClear = (int*) getGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, jni_bool);
+    getGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, jni_bool, &piAutoClear);
 
-  if (autoClear == NULL)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_clear property");
-    return -1;
-  }
+    if (piAutoClear == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_clear property");
+        return -1;
+    }
 
-  if (*autoClear)
-  {
-    return sciReturnString( "on" );
-  }
-  else
-  {
-    return sciReturnString( "off" );
-  }
+    if (iAutoClear)
+    {
+        return sciReturnString( "on" );
+    }
+    else
+    {
+        return sciReturnString( "off" );
+    }
 }
 /*------------------------------------------------------------------------*/

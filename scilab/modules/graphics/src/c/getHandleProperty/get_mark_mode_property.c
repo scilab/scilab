@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,17 +31,18 @@
 /*------------------------------------------------------------------------*/
 int get_mark_mode_property( sciPointObj * pobj )
 {
-    int* markMode;
+    int iMarkMode = 0;
+    int *piMarkMode = &iMarkMode;
 
-    markMode = (int*) getGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, jni_bool);
+    getGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, jni_bool, &piMarkMode);
 
-    if (markMode == NULL)
+    if (piMarkMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"mark_mode");
         return -1;
     }
 
-    if (*markMode)
+    if (iMarkMode)
     {
         return sciReturnString( "on" );
     }

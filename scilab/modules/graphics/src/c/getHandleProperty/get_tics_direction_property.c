@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,7 +31,8 @@
 /*------------------------------------------------------------------------*/
 int get_tics_direction_property( sciPointObj * pobj )
 {
-    int* ticksDirection;
+    int iTicksDirection = 0;
+    int* piTicksDirection = &iTicksDirection;
 
 #if 0
     if ( sciGetEntityType( pobj ) != SCI_AXES )
@@ -41,27 +42,27 @@ int get_tics_direction_property( sciPointObj * pobj )
     }
 #endif
 
-    ticksDirection = (int*) getGraphicObjectProperty(pobj->UID, __GO_TICKS_DIRECTION__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_TICKS_DIRECTION__, jni_int, &piTicksDirection);
 
-    if (ticksDirection == NULL)
+    if (piTicksDirection == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_direction");
         return -1;
     }
 
-    if (*ticksDirection == 0)
+    if (iTicksDirection == 0)
     {
         return sciReturnString("top");
     }
-    else if (*ticksDirection == 1)
+    else if (iTicksDirection == 1)
     {
         return sciReturnString("bottom");
     }
-    else if (*ticksDirection == 2)
+    else if (iTicksDirection == 2)
     {
         return sciReturnString("left");
     }
-    else if (*ticksDirection == 3)
+    else if (iTicksDirection == 3)
     {
         return sciReturnString("right");
     }

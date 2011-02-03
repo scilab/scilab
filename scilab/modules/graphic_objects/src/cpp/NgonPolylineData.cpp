@@ -10,6 +10,8 @@
  *
  */
 
+#include <iostream>
+
 #include "NgonPolylineData.hxx"
 #include "DataProperties.hxx"
 
@@ -103,7 +105,6 @@ int NgonPolylineData::getPropertyFromName(char* propertyName)
 
 int NgonPolylineData::setDataProperty(int property, void* value, int numElements)
 {
-
     if (property == NUM_ELEMENTS_ARRAY)
     {
         return setNumElementsArray((int*) value);
@@ -144,51 +145,43 @@ int NgonPolylineData::setDataProperty(int property, void* value, int numElements
     return 1;
 }
 
-void* NgonPolylineData::getDataProperty(int property)
+void NgonPolylineData::getDataProperty(int property, void **_pvData)
 {
-    /* Used for now to return the address of a single integer */
-    static int localIntResult;
-
     if (property == X_COORDINATES_SHIFT)
     {
-        return getXCoordinatesShift();
+        *_pvData = getXCoordinatesShift();
     }
     else if (property == Y_COORDINATES_SHIFT)
     {
-        return getYCoordinatesShift();
+        *_pvData = getYCoordinatesShift();
     }
     else if (property == Z_COORDINATES_SHIFT)
     {
-        return getZCoordinatesShift();
+        *_pvData = getZCoordinatesShift();
     }
     else if (property == NUM_ELEMENTS)
     {
-        localIntResult = getNumElements();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getNumElements();
     }
     else if (property == X_COORDINATES_SHIFT_SET)
     {
-        localIntResult = getXCoordinatesShiftSet();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getXCoordinatesShiftSet();
     }
     else if (property == Y_COORDINATES_SHIFT_SET)
     {
-        localIntResult = getYCoordinatesShiftSet();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getYCoordinatesShiftSet();
     }
     else if (property == Z_COORDINATES_SHIFT_SET)
     {
-        localIntResult = getZCoordinatesShiftSet();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getZCoordinatesShiftSet();
     }
     else if (property == Z_COORDINATES_SET)
     {
-        localIntResult = getZCoordinatesSet();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getZCoordinatesSet();
     }
     else
     {
-        return NgonGeneralData::getDataProperty(property);
+        NgonGeneralData::getDataProperty(property, _pvData);
     }
 
 }

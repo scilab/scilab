@@ -33,14 +33,15 @@
 /*------------------------------------------------------------------------*/
 int get_axes_size_property( sciPointObj * pobj )
 {
-  int* axesSize = (int*)getGraphicObjectProperty(pobj->UID, __GO_AXES_SIZE__, jni_int_vector);;
+    int* axesSize;
+    getGraphicObjectProperty(pobj->UID, __GO_AXES_SIZE__, jni_int_vector, &axesSize);
 
-  if ( axesSize == NULL )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_size");
-    return -1;
-  }
+    if ( axesSize == NULL )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_size");
+        return -1;
+    }
 
-  return sciReturnRowIntVector(axesSize, 2);
+    return sciReturnRowIntVector(axesSize, 2);
 }
 /*------------------------------------------------------------------------*/

@@ -71,25 +71,19 @@ int NgonData::setDataProperty(int property, void* value, int numElements)
     return 1;
 }
 
-void* NgonData::getDataProperty(int property)
+void NgonData::getDataProperty(int property, void **_pvData)
 {
-    /* Used for now to return the address of a single integer */
-    static int localIntResult;
-
-
     if (property == NUM_GONS)
     {
-        localIntResult = getNumGons();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getNumGons();
     }
     else if (property == NUM_VERTICES_PER_GON)
     {
-        localIntResult = getNumVerticesPerGon();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getNumVerticesPerGon();
     }
     else
     {
-        return Data3D::getDataProperty(property);
+        Data3D::getDataProperty(property, _pvData);
     }
 
 }

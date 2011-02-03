@@ -34,7 +34,7 @@ int get_parent_property( sciPointObj * pobj )
 	char* parentID;
 
 	/* All Graphic Objects have the __GO_PARENT__ property */
-	parentID = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string);
+	getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parentID);
 
 	if (strcmp(parentID, "") == 0)
 	{

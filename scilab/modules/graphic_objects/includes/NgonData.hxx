@@ -55,7 +55,7 @@ public :
     /**
      * Returns the data property
      */
-    void* getDataProperty(int property);
+    void getDataProperty(int property, void **_pvData);
 
     /**
      * Sets the number of n-gons

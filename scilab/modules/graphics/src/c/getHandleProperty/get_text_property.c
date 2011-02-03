@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -38,14 +38,14 @@ int get_text_property( sciPointObj * pobj )
     int* dimensions;
     char** textMatrix;
 
-    dimensions = (int*) getGraphicObjectProperty(pobj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector);
+    getGraphicObjectProperty(pobj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, &dimensions);
 
     if (dimensions == NULL) {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
         return -1;
     }
 
-    textMatrix = (char**) getGraphicObjectProperty(pobj->UID, __GO_TEXT_STRINGS__, jni_string_vector);
+    getGraphicObjectProperty(pobj->UID, __GO_TEXT_STRINGS__, jni_string_vector, &textMatrix);
 
     if (textMatrix == NULL)
     {

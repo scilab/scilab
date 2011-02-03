@@ -32,16 +32,19 @@
 /*------------------------------------------------------------------------*/
 int get_background_property( sciPointObj * pobj )
 {
-    int* background = (int*)getGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, jni_int);
+    int iBackground = 0;
+    int *piBackground = &iBackground;
 
-    if (background == NULL)
+    getGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, jni_int, &piBackground);
+
+    if (piBackground == NULL)
     {
         /* This object has not a background color */
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"background");
         return -1;
     }
 
-    return sciReturnDouble(*background);
+    return sciReturnDouble(iBackground);
 
 /* deactivated for now, to be implemented */
 #if 0

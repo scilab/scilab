@@ -33,21 +33,23 @@
 /*------------------------------------------------------------------------*/
 int get_pixmap_property( sciPointObj * pobj )
 {
-  int* pixmap = (int*) getGraphicObjectProperty(pobj->UID, __GO_PIXMAP__, jni_bool);
+    int iPixmap = 0;
+    int *piPixmap = &iPixmap;
+    getGraphicObjectProperty(pobj->UID, __GO_PIXMAP__, jni_bool, &piPixmap);
 
-  if ( pixmap == NULL )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
-    return -1;
-  }
+    if ( piPixmap == NULL )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixmap");
+        return -1;
+    }
 
-  if (*pixmap)
-  {
-    return sciReturnString( "on" ) ;
-  }
-  else
-  {
-    return sciReturnString( "off" ) ;
-  }
+    if (iPixmap)
+    {
+        return sciReturnString( "on" ) ;
+    }
+    else
+    {
+        return sciReturnString( "off" ) ;
+    }
 }
 /*------------------------------------------------------------------------*/

@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -48,7 +48,7 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
                              double * zMin, double * zMax )
 {
   double * bounds = getDoubleMatrixFromStack( stackPointer ) ;
-  
+
   /* initialize zMin and zMax to avoid checking between 2D and 3D */
   *zMin = 1.0 ;
   *zMax = 2.0 ;
@@ -116,13 +116,13 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
 
     /* copy the values in the axis */
     if ( nbRow * nbCol == 4 )
-    { 
+    {
         /* 2D */
         double bounds[6];
         double* tmpBounds;
 
         /* To get the Z coordinates */
-        tmpBounds = (double*) getGraphicObjectProperty(pobj->UID, __GO_DATA_BOUNDS__, jni_double_vector);
+        getGraphicObjectProperty(pobj->UID, __GO_DATA_BOUNDS__, jni_double_vector, &tmpBounds);
 
         if (tmpBounds == NULL)
         {

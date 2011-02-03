@@ -28,7 +28,9 @@
 /*------------------------------------------------------------------------*/
 int get_type_property( sciPointObj * pobj )
 {
-    return sciReturnString((char *) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string));
+    char *piResult;
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &piResult);
+    return sciReturnString(piResult);
     //return sciReturnString( sciGetCharEntityType( pobj ) ) ;
 }
 /*------------------------------------------------------------------------*/

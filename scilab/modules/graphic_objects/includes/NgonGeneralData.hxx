@@ -36,7 +36,7 @@ private :
     /** The size of the color values array */
     int numColors;
 
-protected : 
+protected :
     /** The coordinates array */
     double* coordinates;
 
@@ -72,7 +72,7 @@ public :
      * @param property the property value
      * @return a pointer to the property
      */
-    void* getDataProperty(int property);
+    void getDataProperty(int property, void **_pvData);
 
     /**
      * Returns the data coordinates array
@@ -132,7 +132,7 @@ public :
     int getNumElements(void);
 
     /**
-     * Sets the number of elements (number of n-gons, 
+     * Sets the number of elements (number of n-gons,
      * number of vertices per n-gon, and number of color values)
      * Resizes the data coordinates array if required, must therefore
      * be called before any setData call.

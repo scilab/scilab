@@ -35,7 +35,7 @@ BOOL DataModel::setGraphicObjectProperty(char *_pstID, char* _pstName, void* _db
     return returnValue;
 }
 
-void* DataModel::getGraphicObjectProperty(char *_pstID, char* _pstName)
+void DataModel::getGraphicObjectProperty(char *_pstID, char* _pstName, void **_pvData)
 {
     Data3D* dataObject;
     int property;
@@ -44,10 +44,10 @@ void* DataModel::getGraphicObjectProperty(char *_pstID, char* _pstName)
 
     property = dataObject->getPropertyFromName(_pstName);
 
-    return dataObject->getDataProperty(property);
+    dataObject->getDataProperty(property, _pvData);
 }
 
-int* DataModel::getGraphicObjectIntProperty(char *_pstID, char* _pstName)
+void DataModel::getGraphicObjectIntProperty(char *_pstID, char* _pstName, void **_pvData)
 {
     Data3D* dataObject;
     int property;
@@ -58,7 +58,7 @@ int* DataModel::getGraphicObjectIntProperty(char *_pstID, char* _pstName)
 
     property = dataObject->getPropertyFromName(_pstName);
 
-    return (int*) dataObject->getDataProperty(property);
+    dataObject->getDataProperty(property, _pvData);
 }
 
 char* DataModel::createDataObject(char* _pstID, char* _sType)
@@ -95,7 +95,7 @@ char* DataModel::createDataObject(char* _pstID, char* _sType)
     }
     else
     {
-        return NULL; 
+        return NULL;
     }
 
     (*m_dataMap)[std::string(_pstID)] = newObject;

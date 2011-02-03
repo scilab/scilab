@@ -279,12 +279,13 @@ sciGetNumColors (sciPointObj * pobj)
     if (pobj)
     {
         char* parentFigure;
-        int* numColors;
+        int iNumColors = 0;
+        int* piNumColors = &iNumColors;
 
-        parentFigure = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT_FIGURE__, jni_string);
-        numColors = (int*) getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int);
+        getGraphicObjectProperty(pobj->UID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
+        getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, &piNumColors);
 
-        return *numColors;
+        return iNumColors;
 
         /* To be deleted */
 #if 0
@@ -806,7 +807,7 @@ BOOL sciisTextEmpty(char* identifier)
     int nbElements;
     int* dimensions;
 
-    dimensions = (int*) getGraphicObjectProperty(identifier, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector);
+    getGraphicObjectProperty(identifier, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, &dimensions);
 
     if (dimensions == NULL)
     {
@@ -822,7 +823,8 @@ BOOL sciisTextEmpty(char* identifier)
 
     if (nbElements == 1)
     {
-        char** textMatrix = (char**) getGraphicObjectProperty(identifier, __GO_TEXT_STRINGS__, jni_string_vector);
+        char** textMatrix;
+        getGraphicObjectProperty(identifier, __GO_TEXT_STRINGS__, jni_string_vector, &textMatrix);
 
         if (textMatrix[0] == NULL)
         {
@@ -1725,17 +1727,18 @@ sciGetName (sciPointObj * pobj)
 int
 sciGetNum (sciPointObj * pobj)
 {
-    int* figureId;
+    int iFigureId = 0;
+    int* piFigureId = &iFigureId;
 
-    figureId = (int*) getGraphicObjectProperty(pobj->UID, __GO_ID__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_ID__, jni_int, &piFigureId);
 
-    if (figureId == NULL)
+    if (piFigureId == NULL)
     {
         printSetGetErrorMessage("figure_id");
         return -1;
     }
 
-    return *figureId;
+    return iFigureId;
 
     /*
      * Deactivated for now.
@@ -1983,7 +1986,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     double *tab;
     int i,k;
 
-    type = (char*) getGraphicObjectProperty(pthis->UID, __GO_TYPE__, jni_string);
+    getGraphicObjectProperty(pthis->UID, __GO_TYPE__, jni_string, &type);
 
 //    switch (sciGetEntityType (pthis))
 
@@ -2016,28 +2019,30 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         double* dataX = NULL;
         double* dataY = NULL;
         double* dataZ = NULL;
-        int* tmp;
-        int view;
+        int iTmp = 0;
+        int* piTmp = &iTmp;
+        int iView =0;
+        int *piView = &iView;
 
         /*
          * Testing whether data properties exist for this object
          * is currently done only for this property. The type comparison already
          * ensures that this is the case, though doing so is awkward.
          */
-        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int);
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piTmp);
 
-        if (tmp == NULL)
+        if (piTmp == NULL)
         {
             *numrow = -2;
             *numcol = -2;
             return NULL;
         }
 
-        *numrow = *tmp;
+        *numrow = iTmp;
 
-        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z_COORDINATES_SET__, jni_int);
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z_COORDINATES_SET__, jni_int, &piTmp);
 
-        if (*tmp)
+        if (iTmp)
         {
             *numcol = 3;
         }
@@ -2054,14 +2059,13 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             return NULL;
         }
 
-	parentAxes = (char*) getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string);
-	tmp = (int*) getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int);
-	view = *tmp;
+        getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
 
-        dataX = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_X__, jni_double_vector);
-        dataY = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Y__, jni_double_vector);
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
 
-        if (*numcol == 2 && view)
+        if (*numcol == 2 && iView)
         {
             *numcol = (*numcol)+1; /* colonne de 0. a prendre en compte / afficher => numcol+1*/
             if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
@@ -2089,7 +2093,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 
             if (*numcol == 3)
             {
-                dataZ = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, jni_double_vector);
+                getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
             }
 
             for ( i = 0 ; i < *numrow ; i++ )
@@ -2110,18 +2114,20 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         char* parentAxes;
         double* upperLeftPoint;
         double* tmpDouble;
-        double width;
-        double height;
+        double width = 0.0;
+        double *pdblWidth = &width;
+        double height = 0.0;
+        double *pdblHeight = &height;
         int* tmp;
-        int view;
+        int iView = 0;
+        int *piView = &iView;
 
         *numrow = 1;
 
-        parentAxes = (char*) getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string);
-        tmp = (int*) getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int);
-        view = *tmp;
+        getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
 
-        *numcol = view ? 5: 4;
+        *numcol = iView ? 5: 4;
 
         if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
         {
@@ -2130,17 +2136,15 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             return NULL;
         }
 
-        upperLeftPoint = (double*) getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector);
+        getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &upperLeftPoint);
 
-        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_WIDTH__, jni_double);
-        width = *tmpDouble;
-        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, jni_double);
-        height = *tmpDouble;
+        getGraphicObjectProperty(pthis->UID, __GO_WIDTH__, jni_double, &pdblWidth);
+        getGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, jni_double, &pdblHeight);
 
         tab[0] = upperLeftPoint[0];
         tab[1] = upperLeftPoint[1];
 
-        if (view)
+        if (iView)
         {
             tab[2] = upperLeftPoint[2];
             tab[3] = width;
@@ -2158,18 +2162,24 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
         char* parentAxes;
         double* upperLeftPoint;
         double* tmpDouble;
-        double width;
+        double width = 0.0;
+        double *pdblWidth = &width;
+
         double height;
+        double *pdblHeight = &height;
+
         double startAngle;
+        double *pdblStartAngle = &startAngle;
         double endAngle;
+        double *pdblEndAngle = &endAngle;
         int* tmp;
-        int view;
+        int view = 0;
+        int *piView = &view;
 
         *numrow = 1;
 
-        parentAxes = (char*) getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string);
-        tmp = (int*) getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int);
-        view = *tmp;
+        getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
 
         *numcol = view ? 7: 6;
 
@@ -2180,17 +2190,13 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             return NULL;
         }
 
-        upperLeftPoint = (double*) getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector);
+        getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &upperLeftPoint);
 
-        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_WIDTH__, jni_double);
-        width = *tmpDouble;
-        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, jni_double);
-        height = *tmpDouble;
+        getGraphicObjectProperty(pthis->UID, __GO_WIDTH__, jni_double, &pdblWidth);
+        getGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, jni_double, &pdblHeight);
 
-        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_START_ANGLE__, jni_double);
-        startAngle = *tmpDouble;
-        tmpDouble = (double*) getGraphicObjectProperty(pthis->UID, __GO_END_ANGLE__, jni_double);
-        endAngle = *tmpDouble;
+        getGraphicObjectProperty(pthis->UID, __GO_START_ANGLE__, jni_double, &pdblStartAngle);
+        getGraphicObjectProperty(pthis->UID, __GO_END_ANGLE__, jni_double, &pdblEndAngle);
 
         tab[0] = upperLeftPoint[0];
         tab[1] = upperLeftPoint[1];
@@ -2298,14 +2304,15 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     else if (strcmp(type, __GO_MATPLOT__) == 0)
     {
         int* tmp;
-        int nx;
-        int ny;
+        int nx = 0;
+        int *piNx = &nx;
+        int ny = 0;
+        int *piNy = &ny;
         double* data;
 
-        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_X__, jni_int);
-        nx = *tmp;
-        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_Y__, jni_int);
-        ny = *tmp;
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNx);
+
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNy);
 
         /* The z data matrix has (ny-1) rows and (nx-1) cols */
         nx = nx - 1;
@@ -2321,7 +2328,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             return (double*)NULL;
         }
 
-        data = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, jni_double_vector);
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, jni_double_vector, &data);
 
         for (i=0; i < nx*ny; i++)
         {
@@ -2334,12 +2341,13 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
     {
         double* coordinates;
         double* values;
-        int* tmp;
+        int iTmp = 0;
+        int* piTmp = &iTmp;
 
         *numcol = 3;
 
-        tmp = (int*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_VERTICES__, jni_int);
-        *numrow = *tmp;
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, &piTmp);
+        *numrow = iTmp;
 
         if ((tab = CALLOC(*numrow * 3,sizeof(double))) == NULL)
         {
@@ -2348,8 +2356,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             return (double*)NULL;
         }
 
-        coordinates = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_COORDINATES__, jni_double_vector);
-        values = (double*) getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_VALUES__, jni_double_vector);
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, &coordinates);
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_VALUES__, jni_double_vector, &values);
 
         for (i=0;i < *numrow;i++)
         {
@@ -2911,9 +2919,9 @@ BOOL sciGetLegendDefined( sciPointObj * pObj )
         return FALSE;
     }
 
-    xLabelId = (char*) getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string);
-    yLabelId = (char*) getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string);
-    zLabelId = (char*) getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string);
+    getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string, &xLabelId);
+    getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string, &yLabelId);
+    getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string, &zLabelId);
 
     /* get the text size of labels */
     if (sciisTextEmpty(xLabelId) &&
@@ -3403,19 +3411,20 @@ void sciGetLogFlags(sciPointObj * pObj, char flags[3])
 {
     char* logflagPropertyNames[3] = {__GO_X_AXIS_LOG_FLAG__, __GO_Y_AXIS_LOG_FLAG__, __GO_Z_AXIS_LOG_FLAG__};
     int i;
-    int* tmp;
+    int iLogFlag = 0;
+    int* piLogFlag = &iLogFlag;
 
     for (i = 0; i < 3; i++)
     {
-        tmp = (int*) getGraphicObjectProperty(pObj->UID, logflagPropertyNames[i], jni_bool);
+        getGraphicObjectProperty(pObj->UID, logflagPropertyNames[i], jni_bool, &piLogFlag);
 
-        if (tmp == NULL)
+        if (piLogFlag == NULL)
         {
             printSetGetErrorMessage("log_flags");
             return;
         }
 
-        if (*tmp)
+        if (iLogFlag)
         {
             flags[i] = 'l';
         }

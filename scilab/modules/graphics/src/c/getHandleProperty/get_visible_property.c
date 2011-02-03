@@ -33,7 +33,9 @@
 
 int get_visible_property( sciPointObj * pobj )
 {
-    int* visible = (int*)getGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, jni_bool);
+    int visible = 0;
+    int* piVisible = &visible;
+    getGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, jni_bool, &piVisible);
 
 #ifdef __OLD_IMPLEMENTATION__
     // Uicontrol should follow MVC implementation
@@ -43,14 +45,14 @@ int get_visible_property( sciPointObj * pobj )
     }
 #endif
 
-    if ( visible == NULL )
+    if ( piVisible == NULL )
 	{
 		Scierror(999, _("'%s' property does not exist for this handle.\n"),"visible");
 		return -1;
 	}
 
 
-    if (*visible)
+    if (visible)
     {
         return sciReturnString( "on" ) ;
     }

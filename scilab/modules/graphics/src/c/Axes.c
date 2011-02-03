@@ -99,14 +99,15 @@ void reinitSubWin( sciPointObj * pSubWin )
 /* reinit the viewing angles of a subwindow */
 void initSubWinAngles( sciPointObj * pSubWin )
 {
-    int* viewType;
+    int iViewType = 0;
+    int* piViewType = &iViewType;
     double* rotationAngles;
     sciPointObj* axesModel = getAxesModel();
 
-    viewType = (int*) getGraphicObjectProperty(axesModel->UID, __GO_VIEW__, jni_int);
-    setGraphicObjectProperty(pSubWin->UID, __GO_VIEW__, viewType, jni_int, 1);
+    getGraphicObjectProperty(axesModel->UID, __GO_VIEW__, jni_int, &piViewType);
+    setGraphicObjectProperty(pSubWin->UID, __GO_VIEW__, iViewType, jni_int, 1);
 
-    rotationAngles = (double*) getGraphicObjectProperty(axesModel->UID, __GO_ROTATION_ANGLES__, jni_double_vector);
+    getGraphicObjectProperty(axesModel->UID, __GO_ROTATION_ANGLES__, jni_double_vector, &rotationAngles);
     setGraphicObjectProperty(pSubWin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
    /* To be implemented: last known values of the rotation angles when VIEW was equal to 3D */
@@ -132,47 +133,48 @@ void initSubWinSize( sciPointObj * pSubWin )
 /* set the data_bounds of the axes to the default value */
 void initSubWinBounds( sciPointObj * pSubWin )
 {
-  double* dataBounds;
-  double* realDataBounds;
-  sciPointObj* axesModel;
+    double* dataBounds;
+    double* realDataBounds;
+    sciPointObj* axesModel;
 
-  axesModel = getAxesModel();
+    axesModel = getAxesModel();
 
-  dataBounds = (double*) getGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, jni_double_vector);
-  setGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    getGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+    setGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
-  realDataBounds = (double*) getGraphicObjectProperty(pSubWin->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector);
-  setGraphicObjectProperty(pSubWin->UID, __GO_REAL_DATA_BOUNDS__, realDataBounds, jni_double_vector, 6);
+    getGraphicObjectProperty(pSubWin->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &realDataBounds);
+    setGraphicObjectProperty(pSubWin->UID, __GO_REAL_DATA_BOUNDS__, realDataBounds, jni_double_vector, 6);
 }
 /*--------------------------------------------------------------------------------*/
 /* reinit the selected subwindow if the auto_clear property is set to on */
 /* return TRUE if the window has been redrawn */
 BOOL checkRedrawing( void )
 {
-  int* autoClear;
+    int iAutoClear = 0;
+    int* piAutoClear = &iAutoClear;
 
-  //  nbCheckRedraw++;
-  //  fprintf(stderr, "[DEBUG] checkRedrawing : %d\n", nbCheckRedraw);
-  sciPointObj * pSubWin = sciGetCurrentSubWin();
+    //  nbCheckRedraw++;
+    //  fprintf(stderr, "[DEBUG] checkRedrawing : %d\n", nbCheckRedraw);
+    sciPointObj * pSubWin = sciGetCurrentSubWin();
 
-  autoClear = (int*) getGraphicObjectProperty(pSubWin->UID, __GO_AUTO_CLEAR__, jni_bool);
+    getGraphicObjectProperty(pSubWin->UID, __GO_AUTO_CLEAR__, jni_bool, &piAutoClear);
 
-  if (*autoClear)
-  {
-    reinitSubWin(pSubWin);
+    if (iAutoClear)
+    {
+        reinitSubWin(pSubWin);
 
-   /*
-    * Deactivated for now: forces redrawing by telling the renderer module
-    * that the Axes object has changed
-    * To be implemented
-    */
+        /*
+         * Deactivated for now: forces redrawing by telling the renderer module
+         * that the Axes object has changed
+         * To be implemented
+         */
 #if 0
-    forceRedraw(pSubWin);
+        forceRedraw(pSubWin);
 #endif
-    return TRUE;
-  }
+        return TRUE;
+    }
 
-  return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------------*/
 /**

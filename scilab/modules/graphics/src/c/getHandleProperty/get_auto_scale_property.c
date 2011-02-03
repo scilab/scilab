@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,7 +31,8 @@
 /*------------------------------------------------------------------------*/
 int get_auto_scale_property( sciPointObj * pobj )
 {
-    int* autoScale;
+    int iAutoScale = 0;
+    int* piAutoScale = &iAutoScale;
 
 #if 0
     if (sciGetEntityType(pobj) != SCI_FIGURE && sciGetEntityType(pobj) != SCI_SUBWIN)
@@ -41,15 +42,15 @@ int get_auto_scale_property( sciPointObj * pobj )
     }
 #endif
 
-    autoScale = (int*) getGraphicObjectProperty(pobj->UID, __GO_AUTO_SCALE__, jni_bool);
+    getGraphicObjectProperty(pobj->UID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
 
-    if (autoScale == NULL)
+    if (piAutoScale == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_scale");
         return -1;
     }
 
-    if (*autoScale)
+    if (iAutoScale)
     {
         return sciReturnString( "on" );
     }

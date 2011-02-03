@@ -3,11 +3,11 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,7 +33,8 @@
 int get_tics_labels_property( sciPointObj * pobj )
 {
     char** labels;
-    int* numberTicksLabels;
+    int iNumberTicksLabels = 0;
+    int* piNumberTicksLabels = &iNumberTicksLabels;
 
 #if 0
     if ( sciGetEntityType (pobj) != SCI_AXES )
@@ -70,18 +71,18 @@ int get_tics_labels_property( sciPointObj * pobj )
     else
 #endif
     {
-        numberTicksLabels = (int*) getGraphicObjectProperty(pobj->UID, __GO_NUMBER_TICKS_LABELS__, jni_int);
+        getGraphicObjectProperty(pobj->UID, __GO_NUMBER_TICKS_LABELS__, jni_int, &piNumberTicksLabels);
 
-        labels = (char**) getGraphicObjectProperty(pobj->UID, __GO_TICKS_LABELS__, jni_string_vector);
+        getGraphicObjectProperty(pobj->UID, __GO_TICKS_LABELS__, jni_string_vector, &labels);
 
-        if (numberTicksLabels == NULL || labels == NULL)
+        if (piNumberTicksLabels == NULL || labels == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
             return -1;
         }
 
         /* User-specified ticks labels */
-        return sciReturnRowStringVector( labels, *numberTicksLabels);
+        return sciReturnRowStringVector( labels, iNumberTicksLabels);
     }
 }
 /*------------------------------------------------------------------------*/

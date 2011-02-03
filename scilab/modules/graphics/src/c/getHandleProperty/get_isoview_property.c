@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -30,31 +30,32 @@
 /*------------------------------------------------------------------------*/
 int get_isoview_property( sciPointObj * pobj )
 {
-  int* isoview;
+    int iIsoview = 0;
+    int* piIsoview = &iIsoview;
 
 #if 0
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"isoview");
-    return -1;
-  }
+    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"isoview");
+        return -1;
+    }
 #endif
 
-  isoview = (int*) getGraphicObjectProperty(pobj->UID, __GO_ISOVIEW__, jni_bool);
+    getGraphicObjectProperty(pobj->UID, __GO_ISOVIEW__, jni_bool, &piIsoview);
 
-  if (isoview == NULL)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"isoview");
-    return -1;
-  }
+    if (piIsoview == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"isoview");
+        return -1;
+    }
 
-  if (*isoview)
-  {
-    return sciReturnString( "on" );
-  }
-  else
-  {
-    return sciReturnString( "off" );
-  }
+    if (iIsoview)
+    {
+        return sciReturnString( "on" );
+    }
+    else
+    {
+        return sciReturnString( "off" );
+    }
 }
 /*------------------------------------------------------------------------*/

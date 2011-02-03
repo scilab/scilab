@@ -33,21 +33,24 @@
 /*------------------------------------------------------------------------*/
 int get_immediate_drawing_property( sciPointObj * pobj )
 {
-  int* immediateDrawing = (int *) getGraphicObjectProperty(pobj->UID, __GO_IMMEDIATE_DRAWING__, jni_bool);
+    int iImmediateDrawing = 0;
+    int *piImmediateDrawing = &iImmediateDrawing;
 
-  if ( immediateDrawing == NULL )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"immediate_drawing") ;
-    return -1;
-  }
+    getGraphicObjectProperty(pobj->UID, __GO_IMMEDIATE_DRAWING__, jni_bool, &piImmediateDrawing);
 
-  if (*immediateDrawing)
-  {
-    return sciReturnString( "on" ) ;
-  }
-  else
-  {
-    return sciReturnString( "off" ) ;
-  }
+    if ( piImmediateDrawing == NULL )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"immediate_drawing") ;
+        return -1;
+    }
+
+    if (iImmediateDrawing)
+    {
+        return sciReturnString( "on" ) ;
+    }
+    else
+    {
+        return sciReturnString( "off" ) ;
+    }
 }
 /*------------------------------------------------------------------------*/

@@ -89,7 +89,7 @@ public :
      * @param property the property value
      * @return a pointer to the property
      */
-    void* getDataProperty(int property);
+    void getDataProperty(int property, void **_pvData);
 
     /**
      * Returns the grid's x size

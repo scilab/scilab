@@ -3,11 +3,11 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -30,7 +30,8 @@
 /*------------------------------------------------------------------------*/
 int get_xtics_coord_property( sciPointObj * pobj )
 {
-    int* xNumberTicks;
+    int iXNumberTicks = 0;
+    int* xNumberTicks = &iXNumberTicks;
     double* xTicksCoords;
 
 #if 0
@@ -41,7 +42,7 @@ int get_xtics_coord_property( sciPointObj * pobj )
     }
 #endif
 
-    xTicksCoords = (double*) getGraphicObjectProperty(pobj->UID, __GO_X_TICKS_COORDS__, jni_double_vector);
+    getGraphicObjectProperty(pobj->UID, __GO_X_TICKS_COORDS__, jni_double_vector, &xTicksCoords);
 
     if (xTicksCoords == NULL)
     {
@@ -49,7 +50,7 @@ int get_xtics_coord_property( sciPointObj * pobj )
         return -1;
     }
 
-    xNumberTicks = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int, &xNumberTicks);
 
     return sciReturnRowVector(xTicksCoords, *xNumberTicks);
 }

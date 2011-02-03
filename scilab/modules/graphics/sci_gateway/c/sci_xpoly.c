@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -42,7 +42,8 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   int markMode;
   int lineMode;
   int foreground;
-  int* tmp;
+  int iTmp = 0;
+  int* piTmp = &iTmp;
   sciPointObj * pobj    = NULL ;
   sciPointObj * psubwin = NULL ;
   sciPointObj * pFigure = NULL;
@@ -56,22 +57,22 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   if (Rhs >= 3) {
     GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
     if ( strcmp(cstk(l3),"lines") == 0) {
-      strcpy(C2F(cha1).buf,"xlines"); 
+      strcpy(C2F(cha1).buf,"xlines");
       mark=1; /* NG */
     } else if (strcmp(cstk(l3),"marks") == 0) {
-      strcpy(C2F(cha1).buf,"xmarks"); 
+      strcpy(C2F(cha1).buf,"xmarks");
       mark=0; /* NG */
     } else {
       Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname,3, "lines","marks");
       return 0;
-    } 
+    }
   }
   else {
     strcpy(C2F(cha1).buf,"xlines");
     mark=1; /* NG */
   }
 
-  if (Rhs >= 4) { GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (int)  *stk(l4);} 
+  if (Rhs >= 4) { GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (int)  *stk(l4);}
   /* NG beg */
 
   /* Deactivated for now (synchronization) */
@@ -101,25 +102,25 @@ int sci_xpoly( char * fname, unsigned long fname_len )
    * already present and have been updated for the MVC.
    */
   if(mark == 0){
-    /* marks are enabled but markstyle & foreground 
+    /* marks are enabled but markstyle & foreground
     is determined by parents' markstyle & foreground */
 
     markMode = 1;
     lineMode = 0;
 
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_MARK_STYLE__, jni_int);
-    sciInitMarkStyle(pobj, *tmp);
+    getGraphicObjectProperty(psubwin->UID, __GO_MARK_STYLE__, jni_int, &piTmp);
+    sciInitMarkStyle(pobj, iTmp);
   }
   else{
     markMode = 0;
     lineMode = 1;
 
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_LINE_STYLE__, jni_int);
-    sciInitLineStyle(pobj, *tmp);
+    getGraphicObjectProperty(psubwin->UID, __GO_LINE_STYLE__, jni_int, &piTmp);
+    sciInitLineStyle(pobj, iTmp);
   }
 
-  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int);
-  foreground = *tmp;
+  getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int, &piTmp);
+  foreground = iTmp;
 
   setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
 

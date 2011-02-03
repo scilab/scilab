@@ -945,16 +945,20 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   double arrowSizeFactor;
   double* clipRegion;
   double* dataVector;
-  int clipState;
+  int clipState = 0;
+  int *piClipState = &clipState;
   int lineClosed;
   int numElementsArray[2];
   int polylineStyle;
-  int visible;
+  int visible = 0;
+  int* piVisible = &visible;
   int zCoordinatesSet;
   int* tmp;
-  int clipRegionSet;
+  int clipRegionSet = 0;
+  int *piClipRegionSet = &clipRegionSet;
 
-  type = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+
+  getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &type);
 
   if (strcmp(type, __GO_AXES__) != 0)
   {
@@ -1006,8 +1010,7 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   pPOLYLINE_FEATURE (pobj)->callbackevent = 100;
 #endif
 
-  tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
-  visible = *tmp;
+  getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
 
   setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
@@ -1022,15 +1025,13 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   /* Clip state and region */
   /* To be checked for consistency */
 
-  clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+  getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
   setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-  tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
-  clipRegionSet = *tmp;
+  getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
   setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-  tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
-  clipState = *tmp;
+  getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
   setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
 
@@ -1175,7 +1176,7 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &isline, jni_bool, 1);
   setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
 
-  /* shading interpolation vector and mode */ 
+  /* shading interpolation vector and mode */
   setGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_MODE__, &isinterpshaded, jni_bool, 1);
 
   if(foreground != NULL)
@@ -1291,7 +1292,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 
   /* allocatePolyline created a "fake" relationship, destroy it */
   /*
-   * Deactivated since the sciPolyline struct is not used anymore 
+   * Deactivated since the sciPolyline struct is not used anymore
    * and sciStandardBuildOperations uses the obsolete C hierarchical
    * relationships.
    * The operations still relevant are performed below
@@ -1341,13 +1342,17 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
     double upperLeftPoint[3];
     double* clipRegion;
     int* tmp;
-    int visible;
-    int arcDrawingMethod;
-    int clipRegionSet;
-    int clipState;
+    int visible = 0;
+    int *piVisible = &visible;
+    int arcDrawingMethod = 0;
+    int *piArcDrawingMethod = &arcDrawingMethod;
+    int clipRegionSet = 0;
+    int *piClipRegionSet = &clipRegionSet;
+    int clipState = 0;
+    int *piClipState = &clipState;
     sciPointObj * pobj  = (sciPointObj *) NULL;
 
-    type = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &type);
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
@@ -1392,13 +1397,11 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
     ppArc->isselected = TRUE;
 #endif
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
-    visible = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
 
     setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_ARC_DRAWING_METHOD__, jni_int);
-    arcDrawingMethod = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_ARC_DRAWING_METHOD__, jni_int, &piArcDrawingMethod);
 
     setGraphicObjectProperty(pobj->UID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
 
@@ -1415,15 +1418,13 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
      * Clip state and region
      * To be checked for consistency
      */
-    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+      getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+      setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
-    clipRegionSet = *tmp;
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+      getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+      setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
-    clipState = *tmp;
+      getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
 
@@ -1462,7 +1463,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
      * Sets the Axes as the arc's parent and adds the arc to
      * its parent's list of children.
      */
-    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID); 
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
     return pobj;
 }
@@ -1480,10 +1481,13 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     char* type;
     double upperLeftPoint[3];
     double* clipRegion;
-    int visible;
+    int visible = 0;
+    int *piVisible = &visible;
     int* tmp;
-    int clipRegionSet;
-    int clipState;
+    int clipRegionSet = 0;
+    int *piClipRegionSet = &clipRegionSet;
+    int clipState = 0;
+    int *piClipState = &clipState;
 
     sciPointObj *pobj = (sciPointObj *) NULL;
 
@@ -1493,7 +1497,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
         return NULL;
     }
 
-    type = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &type);
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
@@ -1535,9 +1539,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     pRECTANGLE_FEATURE (pobj)->isselected = TRUE;
 #endif
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
-    visible = *tmp;
-
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
     setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     /* Clipping: to be checked */
@@ -1550,15 +1552,13 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     /* Clip state and region */
     /* To be checked for consistency */
 
-    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
-    clipRegionSet = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
-    clipState = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /*
@@ -1600,7 +1600,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
      * Sets the Axes as the rectangle's parent and adds the rectangle to
      * its parent's list of children.
      */
-    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID); 
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
     return pobj;
 }
@@ -1634,11 +1634,15 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     int i=0, j=0;
     int nx,ny,nz,nc,izc=izcol;
     int result;
-    int clipRegionSet;
-    int clipState;
-    int visible;
+    int clipRegionSet = 0;
+    int *piClipRegionSet = &clipRegionSet;
+    int clipState = 0;
+    int *piClipState = &clipState;
+    int visible = 0;
+    int *piVisible = &visible;
     int cdataMapping;
-    int hiddenColor;
+    int hiddenColor = 0;
+    int *piHiddenColor = &hiddenColor;
     int surfaceMode;
     int* tmp;
 
@@ -1689,7 +1693,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
         }
     }
 
-    parentType = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &parentType);
 
     /* test using sciGetEntityType replaced by a test on the type string */
     if (strcmp(parentType, __GO_AXES__) != 0)
@@ -1723,20 +1727,17 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     /* Clip state and region */
     /* To be checked for consistency */
 
-    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
-    clipRegionSet = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
-    clipState = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /* Visibility */
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
-    visible = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
 
     setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
@@ -1824,9 +1825,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     psurf->ebox[5] = ebox[5];
 #endif
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_HIDDEN_COLOR__, jni_int);
-    hiddenColor = *tmp;
-
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_HIDDEN_COLOR__, jni_int, &piHiddenColor);
     setGraphicObjectProperty(pobj->UID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
 
     /*
@@ -1889,14 +1888,17 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     int dataMapping;
     int gridSize[4];
 
-    int parentVisible;
+    int parentVisible = 0;
+    int *piParentVisible = &parentVisible;
     double* clipRegion;
-    int clipRegionSet;
-    int clipState;
+    int clipRegionSet = 0;
+    int *piClipRegionSet = &clipRegionSet;
+    int clipState = 0;
+    int *piClipState = &clipState;
     int* tmp;
     int numElements;
 
-    typeParent = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &typeParent);
 
     if (strcmp(typeParent, __GO_AXES__) != 0)
     {
@@ -2014,23 +2016,20 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
-    parentVisible = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piParentVisible);
     setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
 
    /*
     * Clip state and region
     * To be checked for consistency
     */
-    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
-    clipRegionSet = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
-    clipState = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     if (sciInitGraphicContext (pobj) == -1)
@@ -2220,15 +2219,19 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
     int result;
 
     char* parentType;
-    int* parentVisible;
+    int parentVisible = 0;
+    int *piParentVisible = &parentVisible;
+
     int lineMode;
 
     double* clipRegion;
-    int clipRegionSet;
-    int clipState;
+    int clipRegionSet = 0;
+    int *piClipRegionSet = &clipRegionSet;
+    int clipState = 0;
+    int *piClipState = &piClipState;
     int* tmp;
 
-    parentType = (char*) getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &parentType);
 
     /* test using sciGetEntityType replaced by a test on the type string */
     if (strcmp(parentType, __GO_AXES__) != 0)
@@ -2315,8 +2318,8 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
     pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 #endif
 
-    parentVisible = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool);
-    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, parentVisible, jni_bool, 1);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piParentVisible);
+    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
 
     /* Clipping: to be checked */
 #if 0
@@ -2328,15 +2331,13 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
     * Clip state and region
     * To be checked for consistency
     */
-    clipRegion = (double*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector);
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool);
-    clipRegionSet = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int);
-    clipState = *tmp;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
     setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     if (sciInitGraphicContext (pobj) == -1)
@@ -2586,7 +2587,8 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
   sciAgreg    * ppCompound;
 #endif
   int i;
-  int* parentVisible;
+  int parentVisible = 0;
+  int *piParentVisible = &parentVisible;
   char* parentAxes;
 
   if ((compound = MALLOC ((sizeof (sciPointObj)))) == NULL)
@@ -2616,7 +2618,7 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 
   /* The Compound's parent Axes is considered to be the Compound's first child's own parent */
   firstMovedObject = sciGetPointerFromHandle( (long) handelsvalue[0]);
-  parentAxes = (char*) getGraphicObjectProperty(firstMovedObject->UID, __GO_PARENT__, jni_string);
+  getGraphicObjectProperty(firstMovedObject->UID, __GO_PARENT__, jni_string, &parentAxes);
 
   /* Set the parent-child relationship between the Compound and each aggregated object */
   for ( i = 0 ; i < number ; i++ )
@@ -2643,8 +2645,8 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
   ppCompound->visible = sciGetVisibility(sciGetParentSubwin(compound));
 #endif
 
-  parentVisible = (int*) getGraphicObjectProperty(parentAxes, __GO_VISIBLE__, jni_bool);
-  setGraphicObjectProperty(compound->UID, __GO_VISIBLE__, parentVisible, jni_bool, 1);
+  getGraphicObjectProperty(parentAxes, __GO_VISIBLE__, jni_bool, &piParentVisible);
+  setGraphicObjectProperty(compound->UID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
 
  /*
   * Not implemented within the MVC yet

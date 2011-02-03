@@ -72,22 +72,19 @@ int NgonGridMatplotData::setDataProperty(int property, void* value, int numEleme
     return 1;
 }
 
-void* NgonGridMatplotData::getDataProperty(int property)
+void NgonGridMatplotData::getDataProperty(int property, void **_pvData)
 {
-    /* Used for now to return the address of a single integer */
-    static int localIntResult;
-
     if (property == MATPLOT_BOUNDS)
     {
-        return getBounds();
+        *_pvData = getBounds();
     }
     else if (property == Z_COORDINATES)
     {
-        return getDataZ();
+        *_pvData = getDataZ();
     }
     else
     {
-        return NgonGridData::getDataProperty(property);
+        NgonGridData::getDataProperty(property, _pvData);
     }
 }
 

@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,28 +31,29 @@
 /*------------------------------------------------------------------------*/
 int get_box_property( sciPointObj * pobj )
 {
-    int* boxType;
+    int iBoxType = 0;
+    int* piBoxType = &iBoxType;
 
-    boxType = (int*) getGraphicObjectProperty(pobj->UID, __GO_BOX_TYPE__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_BOX_TYPE__, jni_int, &piBoxType);
 
-    if (boxType == NULL) {
+    if (piBoxType == NULL) {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
         return -1;
     }
 
-    if (*boxType == 0)
+    if (iBoxType == 0)
     {
         return sciReturnString("off");
     }
-    else if (*boxType == 1)
+    else if (iBoxType == 1)
     {
         return sciReturnString("on");
     }
-    else if (*boxType == 2)
+    else if (iBoxType == 2)
     {
         return sciReturnString("hidden_axes");
     }
-    else if (*boxType == 3)
+    else if (iBoxType == 3)
     {
         return sciReturnString("back_half");
     }
@@ -73,7 +74,7 @@ int get_box_property( sciPointObj * pobj )
     }
     else
     {
-      return sciReturnString( "off" );  
+      return sciReturnString( "off" );
     }
   }
 #endif

@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -35,61 +35,62 @@
 /*------------------------------------------------------------------------*/
 int get_axes_visible_property( sciPointObj * pobj )
 {
-  char * axes_visible[3]  = { NULL, NULL, NULL };
-  char* axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
-  int* axesVisible;
+    char * axes_visible[3]  = { NULL, NULL, NULL };
+    char* axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
+    int iAxesVisible = 0;
+    int* piAxesVisible = &iAxesVisible;
 
-  int i;
-  int j;
-  int status = -1;
+    int i;
+    int j;
+    int status = -1;
 
 #if 0
-  if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible");
-    return -1;
-  }
+    if ( sciGetEntityType (pobj) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible");
+        return -1;
+    }
 #endif
 
-  for ( i = 0 ; i < 3 ; i++ )
-  {
-    axesVisible = (int*) getGraphicObjectProperty(pobj->UID, axesVisiblePropertiesNames[i], jni_bool);
-
-    if (axesVisible == NULL)
+    for ( i = 0 ; i < 3 ; i++ )
     {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible");
-      return -1;
+        getGraphicObjectProperty(pobj->UID, axesVisiblePropertiesNames[i], jni_bool, &piAxesVisible);
+
+        if (piAxesVisible == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible");
+            return -1;
+        }
+
+        if (iAxesVisible)
+        {
+            axes_visible[i] = strdup("on");
+        }
+        else
+        {
+            axes_visible[i] = strdup("off");
+        }
+
+        if (axes_visible[i] == NULL)
+        {
+            for ( j = 0 ; j < i ; j++ )
+            {
+                FREE(axes_visible[j]);
+            }
+
+            Scierror(999, _("%s: No more memory.\n"),"get_axes_visible_property");
+            return -1;
+        }
+
     }
 
-    if (*axesVisible)
+    status = sciReturnRowStringVector( axes_visible, 3 );
+
+    for ( i = 0 ; i < 3 ; i++ )
     {
-      axes_visible[i] = strdup("on");
-    }
-    else
-    {
-      axes_visible[i] = strdup("off");
+        FREE( axes_visible[i] );
     }
 
-    if (axes_visible[i] == NULL)
-    {
-      for ( j = 0 ; j < i ; j++ )
-      {
-        FREE(axes_visible[j]);
-      }
-
-      Scierror(999, _("%s: No more memory.\n"),"get_axes_visible_property");
-      return -1;
-    }
-
-  }
-
-  status = sciReturnRowStringVector( axes_visible, 3 );
-
-  for ( i = 0 ; i < 3 ; i++ )
-  {
-    FREE( axes_visible[i] );
-  }
-
-  return status ;
+    return status ;
 }
 /*------------------------------------------------------------------------*/

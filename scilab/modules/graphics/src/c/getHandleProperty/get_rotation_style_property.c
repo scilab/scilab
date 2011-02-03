@@ -33,19 +33,21 @@
 /*------------------------------------------------------------------------*/
 int get_rotation_style_property( sciPointObj * pobj )
 {
-    int* rotationStyle = (int *) getGraphicObjectProperty(pobj->UID, __GO_ROTATION_TYPE__, jni_int);;
+    int iRotationStyle = 0;
+    int *piRotationStyle = &iRotationStyle;
+    getGraphicObjectProperty(pobj->UID, __GO_ROTATION_TYPE__, jni_int, &piRotationStyle);
 
-    if ( rotationStyle == NULL )
+    if ( piRotationStyle == NULL )
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_style");
         return -1;
     }
 
-    if (*rotationStyle == 0)
+    if (iRotationStyle == 0)
     {
         return sciReturnString( "unary" ) ;
     }
-    else if (*rotationStyle == 1)
+    else if (iRotationStyle == 1)
     {
         return sciReturnString( "multiple" ) ;
     }

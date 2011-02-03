@@ -9,24 +9,27 @@ extern "C"
 
 void loadGLData(float* buffer, char* id)
 {
-    int size;
-    double* t = (double*) getGraphicObjectProperty(id, __GO_DATA_MODEL_COORDINATES__, jni_double_vector);
-    int* size_p = (int*) getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int);
-    size = (*size_p);
-    
-    for (int i = 0 ; i < size ; i++)
+    int iSize = 0;
+    double* t;
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, (void**) &t);
+    int* piSize = &iSize;
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piSize);
+
+    for (int i = 0 ; i < iSize ; i++)
     {
       buffer[4*i+0] = t[i];
-      buffer[4*i+1] = t[i + size];
-      buffer[4*i+2] = t[i + 2*size]; 
+      buffer[4*i+1] = t[i + iSize];
+      buffer[4*i+2] = t[i + 2*iSize];
       buffer[4*i+3] = 1.0;
     }
 }
 
 int getGLDataLength(char* id)
 {
-  int* size_p = (int*) getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int);
-  return 4 * (*size_p);
+    int iSize = 0;
+    int *piSize = &iSize;
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piSize);
+    return 4 * iSize;
 }
 
 

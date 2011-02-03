@@ -24,7 +24,8 @@ using namespace org_scilab_modules_gui_bridge;
 
 int GetUiobjectTag(sciPointObj* sciObj)
 {
-    char *pstrObjectTag = (char *) getGraphicObjectProperty(sciObj->UID, __GO_TAG__, jni_string);
+    char *pstrObjectTag;
+    getGraphicObjectProperty(sciObj->UID, __GO_TAG__, jni_string, (void **)&pstrObjectTag);
 
     if (pstrObjectTag == NULL)
     {

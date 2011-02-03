@@ -310,8 +310,10 @@ sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
  */
 int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
 {
-    double* doubleTmp;
-    int* tmp;
+    double dblTmp = 0.0;
+    double *pdblTmp = &dblTmp;
+    int iTmp = 0;
+    int *piTmp = &iTmp;
 
     int lineMode;
     int foreground;
@@ -325,14 +327,14 @@ int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
     int markSizeUnit;
     double lineThickness;
 
-    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_LINE_MODE__, jni_bool);
-    lineMode = *tmp;
-    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_LINE_COLOR__, jni_int);
-    foreground = *tmp;
-    doubleTmp = (double*) getGraphicObjectProperty(sourceIdentifier, __GO_LINE_THICKNESS__, jni_double);
-    lineThickness = *doubleTmp;
-    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_LINE_STYLE__, jni_int);
-    lineStyle = *tmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_MODE__, jni_bool, &piTmp);
+    lineMode = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_COLOR__, jni_int, &piTmp);
+    foreground = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_THICKNESS__, jni_double, &pdblTmp);
+    lineThickness = dblTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_LINE_STYLE__, jni_int, &piTmp);
+    lineStyle = iTmp;
 
     /*
      * Commented out since there is a confusion between Axes' FILLED property
@@ -344,19 +346,19 @@ int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
     fillMode = *tmp;
 #endif
 
-    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_BACKGROUND__, jni_int);
-    background = *tmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_BACKGROUND__, jni_int, &piTmp);
+    background = iTmp;
 
-    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_FOREGROUND__, jni_int);
-    markForeground = *tmp;
-    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_BACKGROUND__, jni_int);
-    markBackground = *tmp;
-    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_STYLE__, jni_int);
-    markStyle = *tmp;
-    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE__, jni_int);
-    markSize = *tmp;
-    tmp = (int*) getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE_UNIT__, jni_int);
-    markSizeUnit = *tmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_FOREGROUND__, jni_int, &piTmp);
+    markForeground = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_BACKGROUND__, jni_int, &piTmp);
+    markBackground = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_STYLE__, jni_int, &piTmp);
+    markStyle = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE__, jni_int, &piTmp);
+    markSize = iTmp;
+    getGraphicObjectProperty(sourceIdentifier, __GO_MARK_SIZE_UNIT__, jni_int, &piTmp);
+    markSizeUnit = iTmp;
 
     setGraphicObjectProperty(destIdentifier, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
     setGraphicObjectProperty(destIdentifier, __GO_LINE_COLOR__, &foreground, jni_int, 1);

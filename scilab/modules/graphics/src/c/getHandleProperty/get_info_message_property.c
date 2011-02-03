@@ -33,7 +33,8 @@
 /*------------------------------------------------------------------------*/
 int get_info_message_property( sciPointObj * pobj )
 {
-	char *infoMessage =  (char *) getGraphicObjectProperty(pobj->UID, __GO_INFO_MESSAGE__, jni_string);
+	char *infoMessage;
+    getGraphicObjectProperty(pobj->UID, __GO_INFO_MESSAGE__, jni_string, &infoMessage);
 
 	if ( infoMessage == NULL )
 	{

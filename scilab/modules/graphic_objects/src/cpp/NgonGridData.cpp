@@ -129,49 +129,43 @@ int NgonGridData::setDataProperty(int property, void* value, int numElements)
     return 1;
 }
 
-void* NgonGridData::getDataProperty(int property)
+void NgonGridData::getDataProperty(int property, void **_pvData)
 {
-    /* Used for now to return the address of a single integer */
-    static int localIntResult;
-
     if (property == NUM_X)
     {
-        localIntResult = getNumX();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getNumX();
     }
     else if (property == NUM_Y)
     {
-        localIntResult = getNumY();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getNumY();
     }
     else if (property == NUM_Z)
     {
-        localIntResult = getNumZ();
-        return &localIntResult;
+        ((int *) *_pvData)[0] = getNumZ();
     }
     else if (property == X_DIMENSIONS)
     {
-        return getXDimensions();
+        *_pvData = getXDimensions();
     }
     else if (property == Y_DIMENSIONS)
     {
-        return getYDimensions();
+        *_pvData = getYDimensions();
     }
     else if (property == X_COORDINATES)
     {
-        return getDataX();
+        *_pvData = getDataX();
     }
     else if (property == Y_COORDINATES)
     {
-        return getDataY();
+        *_pvData = getDataY();
     }
     else if (property == Z_COORDINATES)
     {
-        return getDataZ();
+        *_pvData = getDataZ();
     }
     else
     {
-        return NgonData::getDataProperty(property);
+        NgonData::getDataProperty(property, _pvData);
     }
 
 }

@@ -45,69 +45,69 @@
 int setchampdata( sciPointObj * pobj, AssignedList * tlist )
 {
 
-  sciSegs * ppsegs = pSEGS_FEATURE (pobj);
+    sciSegs * ppsegs = pSEGS_FEATURE (pobj);
 
-  int nbRow[4] ;
-  int nbCol[4] ;
+    int nbRow[4] ;
+    int nbCol[4] ;
 
-  double * vx  = NULL ;
-  double * vy  = NULL ;
-  double * vfx = NULL ;
-  double * vfy = NULL ;
+    double * vx  = NULL ;
+    double * vy  = NULL ;
+    double * vfx = NULL ;
+    double * vfy = NULL ;
 
-  /* get parameters */
+    /* get parameters */
 
-  vx  = createCopyDoubleMatrixFromList( tlist, &nbRow[0], &nbCol[0] ) ;
-  vy  = createCopyDoubleMatrixFromList( tlist, &nbRow[1], &nbCol[1] ) ;
-  vfx = createCopyDoubleMatrixFromList( tlist, &nbRow[2], &nbCol[2] ) ;
-  vfy = createCopyDoubleMatrixFromList( tlist, &nbRow[3], &nbCol[3] ) ;
+    vx  = createCopyDoubleMatrixFromList( tlist, &nbRow[0], &nbCol[0] ) ;
+    vy  = createCopyDoubleMatrixFromList( tlist, &nbRow[1], &nbCol[1] ) ;
+    vfx = createCopyDoubleMatrixFromList( tlist, &nbRow[2], &nbCol[2] ) ;
+    vfy = createCopyDoubleMatrixFromList( tlist, &nbRow[3], &nbCol[3] ) ;
 
-  /* check dim */
-  if ( nbCol[0] != 1 || nbCol[1] != 1 )
-  {
-    Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
-    FREE( vx  ) ;
-    FREE( vy  ) ;
-    FREE( vfx ) ;
-    FREE( vfy ) ;
+    /* check dim */
+    if ( nbCol[0] != 1 || nbCol[1] != 1 )
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
+        FREE( vx  ) ;
+        FREE( vy  ) ;
+        FREE( vfx ) ;
+        FREE( vfy ) ;
 
-    return SET_PROPERTY_ERROR ;
-  }
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] || nbRow[3] != nbRow[2] || nbCol[3] != nbCol[2] )
-  {
-    Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",3,4);
-    FREE( vx  ) ;
-    FREE( vy  ) ;
-    FREE( vfx ) ;
-    FREE( vfy ) ;
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] || nbRow[3] != nbRow[2] || nbCol[3] != nbCol[2] )
+    {
+        Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",3,4);
+        FREE( vx  ) ;
+        FREE( vy  ) ;
+        FREE( vfx ) ;
+        FREE( vfy ) ;
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if ( nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 || nbRow[3] * nbCol[3] == 0 )
-  {
-    FREE( vx  ) ;
-    FREE( vy  ) ;
-    FREE( vfx ) ;
-    FREE( vfy ) ;
-    return sciReturnEmptyMatrix() ;
-  }
+    if ( nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 || nbRow[3] * nbCol[3] == 0 )
+    {
+        FREE( vx  ) ;
+        FREE( vy  ) ;
+        FREE( vfx ) ;
+        FREE( vfy ) ;
+        return sciReturnEmptyMatrix() ;
+    }
 
-  /* ok everything ok we can allocate new values */
-  /* Update the dimensions Nbr1 and Nbr2 */
-  ppsegs->Nbr1 = nbRow[0] ;
-  ppsegs->Nbr2 = nbRow[1] ;
+    /* ok everything ok we can allocate new values */
+    /* Update the dimensions Nbr1 and Nbr2 */
+    ppsegs->Nbr1 = nbRow[0] ;
+    ppsegs->Nbr2 = nbRow[1] ;
 
-  FREE( ppsegs->vx  ) ;
-  FREE( ppsegs->vy  ) ;
-  FREE( ppsegs->vfx ) ;
-  FREE( ppsegs->vfy ) ;
-  ppsegs->vx = vx;
-  ppsegs->vy = vy;
-  ppsegs->vfx = vfx;
-  ppsegs->vfy = vfy;
+    FREE( ppsegs->vx  ) ;
+    FREE( ppsegs->vy  ) ;
+    FREE( ppsegs->vfx ) ;
+    FREE( ppsegs->vfy ) ;
+    ppsegs->vx = vx;
+    ppsegs->vy = vy;
+    ppsegs->vfx = vfx;
+    ppsegs->vfy = vfy;
 
-  return SET_PROPERTY_SUCCEED ;
+    return SET_PROPERTY_SUCCEED ;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -140,7 +140,7 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
     {
         Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"),"Tlist",3);
         /* Was previously: */
-#if 0 
+#if 0
         Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"),"Tlist","Tlist",3);
 #endif
         return 0;
@@ -264,7 +264,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
         izcol = 0;
     }
 
-    type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
     if (strcmp(type, __GO_FAC3D__) == 0)
     {
@@ -412,7 +412,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     if( getAssignedListNbElement( tlist ) == 4 ) /* F.Leray There is a color matrix */
     {
         inputColors = getCurrentDoubleMatrixFromList( tlist, &m3n, &n3n );
-        nbInputColors = m3n * n3n; 
+        nbInputColors = m3n * n3n;
     }
     else
     {
@@ -445,31 +445,31 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
  */
 int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
 {
-  sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
-  double * new_bar = NULL ;
+    sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
+    double * new_bar = NULL ;
 
-  if( ppolyline->x_shift == NULL )
-  {
-    return SET_PROPERTY_ERROR ;
-  }
+    if( ppolyline->x_shift == NULL )
+    {
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if( ppolyline->n1 == numrow )
-  {
-    return SET_PROPERTY_UNCHANGED ;
-  }
+    if( ppolyline->n1 == numrow )
+    {
+        return SET_PROPERTY_UNCHANGED ;
+    }
 
-  new_bar = createNewArrayFromSource( numrow, ppolyline->x_shift, ppolyline->n1 ) ;
+    new_bar = createNewArrayFromSource( numrow, ppolyline->x_shift, ppolyline->n1 ) ;
 
-  if ( new_bar == NULL )
-  {
-    Scierror(999, _("%s: No more memory.\n"),"set_data_property") ;
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( new_bar == NULL )
+    {
+        Scierror(999, _("%s: No more memory.\n"),"set_data_property") ;
+        return SET_PROPERTY_ERROR ;
+    }
 
-  FREE( ppolyline->x_shift ) ;
-  ppolyline->x_shift = new_bar ;
+    FREE( ppolyline->x_shift ) ;
+    ppolyline->x_shift = new_bar ;
 
-  return SET_PROPERTY_SUCCEED ;
+    return SET_PROPERTY_SUCCEED ;
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -479,31 +479,31 @@ int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
  */
 int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
 {
-  sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
-  double * new_bar = NULL ;
+    sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
+    double * new_bar = NULL ;
 
-  if( ppolyline->y_shift == NULL )
-  {
-    return SET_PROPERTY_ERROR ;
-  }
+    if( ppolyline->y_shift == NULL )
+    {
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if( ppolyline->n1 == numrow )
-  {
-    return SET_PROPERTY_UNCHANGED ;
-  }
+    if( ppolyline->n1 == numrow )
+    {
+        return SET_PROPERTY_UNCHANGED ;
+    }
 
-  new_bar = createNewArrayFromSource( numrow, ppolyline->y_shift, ppolyline->n1 ) ;
+    new_bar = createNewArrayFromSource( numrow, ppolyline->y_shift, ppolyline->n1 ) ;
 
-  if ( new_bar == NULL )
-  {
-    Scierror(999, _("%s: No more memory.\n"),"CheckAndUpdate_y_shift") ;
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( new_bar == NULL )
+    {
+        Scierror(999, _("%s: No more memory.\n"),"CheckAndUpdate_y_shift") ;
+        return SET_PROPERTY_ERROR ;
+    }
 
-  FREE( ppolyline->y_shift ) ;
-  ppolyline->y_shift = new_bar ;
+    FREE( ppolyline->y_shift ) ;
+    ppolyline->y_shift = new_bar ;
 
-  return SET_PROPERTY_SUCCEED ;
+    return SET_PROPERTY_SUCCEED ;
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -513,31 +513,31 @@ int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
  */
 int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
 {
-  sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
-  double * new_bar = NULL ;
+    sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
+    double * new_bar = NULL ;
 
-  if( ppolyline->z_shift == NULL )
-  {
-    return SET_PROPERTY_ERROR ;
-  }
+    if( ppolyline->z_shift == NULL )
+    {
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if( ppolyline->n1 == numrow )
-  {
-    return SET_PROPERTY_UNCHANGED ;
-  }
+    if( ppolyline->n1 == numrow )
+    {
+        return SET_PROPERTY_UNCHANGED ;
+    }
 
-  new_bar = createNewArrayFromSource( numrow, ppolyline->z_shift, ppolyline->n1 ) ;
+    new_bar = createNewArrayFromSource( numrow, ppolyline->z_shift, ppolyline->n1 ) ;
 
-  if ( new_bar == NULL )
-  {
-    Scierror(999, _("%s: No more memory.\n"),"CheckAndUpdate_z_shift") ;
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( new_bar == NULL )
+    {
+        Scierror(999, _("%s: No more memory.\n"),"CheckAndUpdate_z_shift") ;
+        return SET_PROPERTY_ERROR ;
+    }
 
-  FREE( ppolyline->z_shift ) ;
-  ppolyline->z_shift = new_bar ;
+    FREE( ppolyline->z_shift ) ;
+    ppolyline->z_shift = new_bar ;
 
-  return SET_PROPERTY_SUCCEED ;
+    return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/
 /*
@@ -566,124 +566,124 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
  */
 int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-  char* type;
+    char* type;
 
-  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
-
-  /*
-   * 0 values put within the conditional expressions to prevent calling sciGetEntityType
-   * The last else block allows to set Polyline data (via sciSetPoint)
-   * To be implemented with string comparisons using the GO_TYPE property (see the sciSetPoint function)
-   */
-  if(0 && sciGetEntityType(pobj) == SCI_SEGS && pSEGS_FEATURE(pobj)->ptype == 1 )
-  {
-    AssignedList * tlist = NULL ;
-    int status = -1 ;
-
-    if( !isParameterTlist( valueType ) )
-    {
-      Scierror(999, "Incorrect argument, must be a Tlist!\n") ;
-      return SET_PROPERTY_ERROR ;
-    }
-
-    /* we should have 4 properties in the tlist */
-    tlist = createAssignedList( 3, 4 ) ;
-    if ( tlist == NULL )
-    {
-      return SET_PROPERTY_ERROR ;
-    }
-
-    status = setchampdata( pobj, tlist ) ;
-    destroyAssignedList( tlist ) ;
-    return status ;
-  }
-//  else if(0 && (sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
-  /* Only works for Grayplot (type 0) for now */
-  else if (strcmp(type, __GO_GRAYPLOT__) == 0)
-  {
-    AssignedList * tlist = NULL;
-    int status = -1;
-
-    if( !isParameterTlist( valueType ) )
-    {
-      Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
-      return SET_PROPERTY_ERROR;
-    }
-
-    /* we should have 3 properties in the tlist */
-    tlist = createAssignedList( 3, 3 ) ;
-    if ( tlist == NULL )
-    {
-      return SET_PROPERTY_ERROR;
-    }
-
-    status = setgrayplotdata( pobj, tlist );
-    destroyAssignedList( tlist );
-    return status;
-  }
-//  else if(0 && sciGetEntityType(pobj) == SCI_SURFACE)
-  else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
-  {
-    AssignedList * tlist = NULL ;
-    int status = -1 ;
-    int listSize = 0 ;
-
-    if( !isParameterTlist( valueType ) )
-    {
-      Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
-      return SET_PROPERTY_ERROR ;
-    }
-
-    listSize = getStackListNbElement( 3 ) ;
-
-    if ( listSize == 3 )
-    {
-      tlist = createAssignedList( 3, 3 ) ;
-    }
-    else if ( listSize == 4 )
-    {
-      tlist = createAssignedList( 3, 4 ) ;
-    }
-    else
-    {
-      Scierror(999, _("Wrong size for input argument: %d or %d expected.\n"),4,5);
-      return SET_PROPERTY_ERROR ;
-    }
-
-    if ( tlist == NULL )
-    {
-      return SET_PROPERTY_ERROR ;
-    }
-
-    status = set3ddata( pobj, tlist ) ;
-    destroyAssignedList( tlist ) ;
-    return status ;
-
-  }
-  else  /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
-  {
-    if ( !isParameterDoubleMatrix( valueType ) )
-    {
-      Scierror(999, _("Incompatible type for property %s.\n"),"data") ;
-      return SET_PROPERTY_ERROR ;
-    }
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
     /*
-     * Deactivated, since the update of the shift coordinates arrays is now implemented within the data model
-     * To be deleted.
+     * 0 values put within the conditional expressions to prevent calling sciGetEntityType
+     * The last else block allows to set Polyline data (via sciSetPoint)
+     * To be implemented with string comparisons using the GO_TYPE property (see the sciSetPoint function)
      */
-#if 0
-    if ( sciGetEntityType(pobj) == SCI_POLYLINE )
+    if(0 && sciGetEntityType(pobj) == SCI_SEGS && pSEGS_FEATURE(pobj)->ptype == 1 )
     {
-      CheckAndUpdate_x_shift( pobj, nbRow ) ; /* used only on Polyline */
-      CheckAndUpdate_y_shift( pobj, nbRow ) ; /* used only on Polyline */
-      CheckAndUpdate_z_shift( pobj, nbRow ) ; /* used only on Polyline */
+        AssignedList * tlist = NULL ;
+        int status = -1 ;
+
+        if( !isParameterTlist( valueType ) )
+        {
+            Scierror(999, "Incorrect argument, must be a Tlist!\n") ;
+            return SET_PROPERTY_ERROR ;
+        }
+
+        /* we should have 4 properties in the tlist */
+        tlist = createAssignedList( 3, 4 ) ;
+        if ( tlist == NULL )
+        {
+            return SET_PROPERTY_ERROR ;
+        }
+
+        status = setchampdata( pobj, tlist ) ;
+        destroyAssignedList( tlist ) ;
+        return status ;
     }
+//  else if(0 && (sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
+    /* Only works for Grayplot (type 0) for now */
+    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    {
+        AssignedList * tlist = NULL;
+        int status = -1;
+
+        if( !isParameterTlist( valueType ) )
+        {
+            Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
+            return SET_PROPERTY_ERROR;
+        }
+
+        /* we should have 3 properties in the tlist */
+        tlist = createAssignedList( 3, 3 ) ;
+        if ( tlist == NULL )
+        {
+            return SET_PROPERTY_ERROR;
+        }
+
+        status = setgrayplotdata( pobj, tlist );
+        destroyAssignedList( tlist );
+        return status;
+    }
+//  else if(0 && sciGetEntityType(pobj) == SCI_SURFACE)
+    else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
+    {
+        AssignedList * tlist = NULL ;
+        int status = -1 ;
+        int listSize = 0 ;
+
+        if( !isParameterTlist( valueType ) )
+        {
+            Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
+            return SET_PROPERTY_ERROR ;
+        }
+
+        listSize = getStackListNbElement( 3 ) ;
+
+        if ( listSize == 3 )
+        {
+            tlist = createAssignedList( 3, 3 ) ;
+        }
+        else if ( listSize == 4 )
+        {
+            tlist = createAssignedList( 3, 4 ) ;
+        }
+        else
+        {
+            Scierror(999, _("Wrong size for input argument: %d or %d expected.\n"),4,5);
+            return SET_PROPERTY_ERROR ;
+        }
+
+        if ( tlist == NULL )
+        {
+            return SET_PROPERTY_ERROR ;
+        }
+
+        status = set3ddata( pobj, tlist ) ;
+        destroyAssignedList( tlist ) ;
+        return status ;
+
+    }
+    else  /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
+    {
+        if ( !isParameterDoubleMatrix( valueType ) )
+        {
+            Scierror(999, _("Incompatible type for property %s.\n"),"data") ;
+            return SET_PROPERTY_ERROR ;
+        }
+
+        /*
+         * Deactivated, since the update of the shift coordinates arrays is now implemented within the data model
+         * To be deleted.
+         */
+#if 0
+        if ( sciGetEntityType(pobj) == SCI_POLYLINE )
+        {
+            CheckAndUpdate_x_shift( pobj, nbRow ) ; /* used only on Polyline */
+            CheckAndUpdate_y_shift( pobj, nbRow ) ; /* used only on Polyline */
+            CheckAndUpdate_z_shift( pobj, nbRow ) ; /* used only on Polyline */
+        }
 #endif
 
-    return sciSetPoint( pobj, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
-  }
-  return SET_PROPERTY_ERROR ;
+        return sciSetPoint( pobj, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
+    }
+    return SET_PROPERTY_ERROR ;
 
 }
 /*------------------------------------------------------------------------*/

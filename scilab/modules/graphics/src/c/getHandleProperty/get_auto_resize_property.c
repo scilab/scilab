@@ -33,21 +33,23 @@
 /*------------------------------------------------------------------------*/
 int get_auto_resize_property( sciPointObj * pobj )
 {
-  int* autoResize = (int*)getGraphicObjectProperty(pobj->UID, __GO_AUTORESIZE__, jni_bool);;
+    int iAutoResize = 0;
+    int* piAutoResize =  &iAutoResize;
+    getGraphicObjectProperty(pobj->UID, __GO_AUTORESIZE__, jni_bool, &piAutoResize);
 
-  if ( autoResize == NULL )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
-    return -1 ;
-  }
+    if ( piAutoResize == NULL )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
+        return -1 ;
+    }
 
-  if (*autoResize)
-  {
-     return sciReturnString( "on" ) ;
-  }
-  else
-  {
-    return sciReturnString( "off" ) ;
-  }
+    if (iAutoResize)
+    {
+        return sciReturnString( "on" ) ;
+    }
+    else
+    {
+        return sciReturnString( "off" ) ;
+    }
 }
 /*------------------------------------------------------------------------*/

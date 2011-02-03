@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,7 +31,8 @@
 /*------------------------------------------------------------------------*/
 int get_cdata_mapping_property( sciPointObj * pobj )
 {
-    int* cdataMapping;
+    int iCDataMapping = 0;
+    int* piCDataMapping = &iCDataMapping;
 
 #if 0
     if ( pSURFACE_FEATURE (pobj)->typeof3d != SCI_FAC3D )
@@ -41,19 +42,19 @@ int get_cdata_mapping_property( sciPointObj * pobj )
     }
 #endif
 
-    cdataMapping = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MAPPING__, jni_int, &piCDataMapping);
 
-    if (cdataMapping == NULL)
+    if (piCDataMapping == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"cdata_mapping");
         return -1;
     }
 
-    if (*cdataMapping == 0)
+    if (iCDataMapping == 0)
     {
         return sciReturnString("scaled");
     }
-    else if (*cdataMapping == 1)
+    else if (iCDataMapping == 1)
     {
         return sciReturnString("direct");
     }

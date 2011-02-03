@@ -2237,7 +2237,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
   double * pvfz = NULL ;
   int * pstyle = NULL;
 
-  type = (char*) getGraphicObjectProperty(pthis->UID, __GO_TYPE__, jni_string);
+  getGraphicObjectProperty(pthis->UID, __GO_TYPE__, jni_string, &type);
 
   /*
    * switch over sciGetEntityType replaced by object type string comparisons
@@ -2336,7 +2336,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
            * Needed in order to set the z coordinate if size == 4
            * Being able to set only the point's x and y coordinates values would avoid doing this.
            */
-          currentUpperLeftPoint = (double*) getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector);
+          getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &currentUpperLeftPoint);
           upperLeftPoint[2] = currentUpperLeftPoint[2];
       }
 
@@ -2392,7 +2392,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       else
       {
           /* Needed in order to set the z coordinate if size == 6 */
-          currentUpperLeftPoint = (double*) getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector);
+          getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &currentUpperLeftPoint);
 
           upperLeftPoint[2] = currentUpperLeftPoint[2];
           width = tab[2];

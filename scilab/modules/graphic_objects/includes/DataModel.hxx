@@ -63,7 +63,7 @@ public :
     BOOL setGraphicObjectProperty(char *_pstID, char* _pstName, void* _dblValue, int numElements);
 
     /** Returns a graphic object vector property */
-    void* getGraphicObjectProperty(char *_pstID, char* _pstName);
+    void getGraphicObjectProperty(char *_pstID, char* _pstName, void **_pvData);
 
     /**
      * Returns a graphic object integer property
@@ -72,7 +72,7 @@ public :
      * methods of the different Data classes when integer values are returned)
      * Probably redundant with getGraphicObjectProperty
      */
-    int* getGraphicObjectIntProperty(char *_pstID, char* _pstName);
+    void getGraphicObjectIntProperty(char *_pstID, char* _pstName, void **_pvData);
 
     /** Creates a data object */
     char* createDataObject(char* _pstID, char* _sType);

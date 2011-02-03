@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,21 +31,22 @@
 /*------------------------------------------------------------------------*/
 int get_mark_size_unit_property( sciPointObj * pobj )
 {
-    int* markSizeUnit;
+    int iMarkSizeUnit = 0;
+    int* piMarkSizeUnit = &iMarkSizeUnit;
 
-    markSizeUnit = (int*) getGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE_UNIT__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE_UNIT__, jni_int, &piMarkSizeUnit);
 
-    if (markSizeUnit == NULL)
+    if (piMarkSizeUnit == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"mark_size_unit");
         return -1;
     }
 
-    if (*markSizeUnit == 0)
+    if (iMarkSizeUnit == 0)
     {
         return sciReturnString( "point" );
     }
-    else if(*markSizeUnit == 1)
+    else if(iMarkSizeUnit == 1)
     {
         return sciReturnString( "tabulated" );
     }

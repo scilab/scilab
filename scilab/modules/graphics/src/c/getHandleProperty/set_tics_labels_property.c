@@ -3,11 +3,11 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -36,7 +36,8 @@
 int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
-    int* nbTicksLabels;
+    int iNbTicksLabels = 0;
+    int* piNbTicksLabels = &iNbTicksLabels;
     char** stringVector;
 
     if ( !isParameterStringMatrix( valueType ) )
@@ -53,17 +54,17 @@ int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int value
     }
 #endif
 
-    nbTicksLabels = (int*) getGraphicObjectProperty(pobj->UID, __GO_NUMBER_TICKS_LABELS__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_NUMBER_TICKS_LABELS__, jni_int, &piNbTicksLabels);
 
-    if (nbTicksLabels == NULL)
+    if (piNbTicksLabels == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( *nbTicksLabels > nbRow*nbCol )
+    if ( iNbTicksLabels > nbRow*nbCol )
     {
-        Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "tics_labels", *nbTicksLabels);
+        Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "tics_labels", iNbTicksLabels);
         return SET_PROPERTY_ERROR;
     }
 

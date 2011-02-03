@@ -35,14 +35,16 @@
 /*------------------------------------------------------------------------*/
 int get_figure_id_property( sciPointObj * pobj )
 {
-  int* figureId = (int*)getGraphicObjectProperty(pobj->UID, __GO_ID__, jni_int);;
+    int iFigureId = 0;
+    int *piFigureId = &iFigureId;
+    getGraphicObjectProperty(pobj->UID, __GO_ID__, jni_int, &piFigureId);
 
-  if ( figureId == NULL )
-  {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
-      return -1;
-  }
+    if ( piFigureId == NULL )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
+        return -1;
+    }
 
-  return sciReturnInt(*figureId);
+    return sciReturnInt(iFigureId);
 }
 /*------------------------------------------------------------------------*/

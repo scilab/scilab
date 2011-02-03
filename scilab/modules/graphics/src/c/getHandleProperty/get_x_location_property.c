@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,45 +31,46 @@
 /*------------------------------------------------------------------------*/
 int get_x_location_property( sciPointObj * pobj )
 {
-  int* location;
+    int iLocation = 0;
+    int* piLocation = &iLocation;
 
 #if 0
-  if (sciGetEntityType (pobj) != SCI_SUBWIN)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location");
-    return -1 ;
-  }
+    if (sciGetEntityType (pobj) != SCI_SUBWIN)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location");
+        return -1 ;
+    }
 #endif
 
-  location = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOCATION__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOCATION__, jni_int, &piLocation);
 
-  if (location == NULL)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location");
-    return -1;
-  }
+    if (piLocation == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location");
+        return -1;
+    }
 
-  if (*location == 0)
-  {
-    return sciReturnString( "bottom" );
-  }
-  else if (*location == 1)
-  {
-    return sciReturnString( "top" );
-  }
-  else if (*location == 2)
-  {
-    return sciReturnString( "middle" );
-  }
-  else if (*location == 3)
-  {
-    return sciReturnString( "origin" );
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property.\n"),"x_location");
-    return -1;
-  }
+    if (iLocation == 0)
+    {
+        return sciReturnString( "bottom" );
+    }
+    else if (iLocation == 1)
+    {
+        return sciReturnString( "top" );
+    }
+    else if (iLocation == 2)
+    {
+        return sciReturnString( "middle" );
+    }
+    else if (iLocation == 3)
+    {
+        return sciReturnString( "origin" );
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"),"x_location");
+        return -1;
+    }
 
 }
 /*------------------------------------------------------------------------*/

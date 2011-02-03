@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -38,7 +38,8 @@ int set_z_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
     BOOL result;
     double* shiftCoordinates;
     int nbElement = nbRow * nbCol;
-    int* numElements;
+    int iNumElements = 0;
+    int* piNumElements = &iNumElements;
 
     if ( !isParameterDoubleMatrix( valueType ) )
     {
@@ -52,17 +53,17 @@ int set_z_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
         return SET_PROPERTY_ERROR;
     }
 
-    numElements = (int*) getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piNumElements);
 
-    if (numElements == NULL)
+    if (piNumElements == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_shift");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbElement != 0 && nbElement != *numElements) /* we can specify [] (null vector) to reset to default */
+    if ( nbElement != 0 && nbElement != iNumElements) /* we can specify [] (null vector) to reset to default */
     {
-        Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "z_shift", 0, *numElements);
+        Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "z_shift", 0, iNumElements);
         return SET_PROPERTY_ERROR;
     }
 
@@ -70,7 +71,7 @@ int set_z_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
     {
         shiftCoordinates = (double*) getDoubleMatrixFromStack(stackPointer);
 
-        result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, *numElements);
+        result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, iNumElements);
 
         /* The FALSE value is used for now to identify a failed memory allocation */
         if (result == FALSE)

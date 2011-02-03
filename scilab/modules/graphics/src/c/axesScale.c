@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -52,7 +52,7 @@ int sciZoom2D(sciPointObj * subwin, const double zoomRect[4])
 
   // add Z scale to data bounds.
 
-  zoomBox = (double*) getGraphicObjectProperty(subwin->UID, __GO_DATA_BOUNDS__, jni_double_vector);
+  getGraphicObjectProperty(subwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &zoomBox);
 
 #if 0
   sciGetDataBounds(subwin, zoomBox);
@@ -269,7 +269,7 @@ void sciDefaultInteractiveZoom(void)
   curFigure = sciGetCurrentFigure();
   endGraphicDataWriting();
 
- 
+
   /* zoom current figure */
   interactiveZoom(curFigure);
 }
@@ -360,7 +360,7 @@ void unzoomSubwin(sciPointObj * pSubwin)
  */
 void sciUnzoomFigure(sciPointObj * figure)
 {
-  /* Copy subwins into the array */ 
+  /* Copy subwins into the array */
   sciSons * pSons = sciGetSons(figure);
   while (pSons != NULL)
   {
@@ -413,7 +413,7 @@ void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbObjects)
       /* Unzoom only figure */
       sciUnzoomSubwin(zoomedObjects[i]);
     }
-    
+
     if (List_find(redrawnFigures, parentFigure) == NULL)
     {
       /* figure not already added for redraw */

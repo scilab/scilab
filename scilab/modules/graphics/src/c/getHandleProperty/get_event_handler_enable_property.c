@@ -33,15 +33,18 @@
 /*------------------------------------------------------------------------*/
 int get_event_handler_enable_property( sciPointObj * pobj )
 {
-    int* eventHandlerEnable = (int *)getGraphicObjectProperty(pobj->UID, __GO_EVENTHANDLER_ENABLE__, jni_bool);
+    int iEventHandlerEnable = 0;
+    int *piEventHandlerEnable = &iEventHandlerEnable;
 
-    if ( eventHandlerEnable == NULL )
+    getGraphicObjectProperty(pobj->UID, __GO_EVENTHANDLER_ENABLE__, jni_bool, &piEventHandlerEnable);
+
+    if ( piEventHandlerEnable == NULL )
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable") ;
         return -1 ;
     }
 
-    if (*eventHandlerEnable)
+    if (iEventHandlerEnable)
     {
         return sciReturnString( "on" ) ;
     }

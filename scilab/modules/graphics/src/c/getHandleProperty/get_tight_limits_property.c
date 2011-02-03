@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -30,32 +30,33 @@
 /*------------------------------------------------------------------------*/
 int get_tight_limits_property( sciPointObj * pobj )
 {
-  int* tightLimits;
+    int iTightLimits = 0;
+    int* piTightLimits = &iTightLimits;
 
 #if 0
-  if (sciGetEntityType (pobj) != SCI_SUBWIN)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"tight_limits") ;
-    return -1 ;
-  }
+    if (sciGetEntityType (pobj) != SCI_SUBWIN)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tight_limits") ;
+        return -1 ;
+    }
 #endif
 
-  tightLimits = (int*) getGraphicObjectProperty(pobj->UID, __GO_TIGHT_LIMITS__, jni_bool);
+    getGraphicObjectProperty(pobj->UID, __GO_TIGHT_LIMITS__, jni_bool, &piTightLimits);
 
-  if (tightLimits == NULL)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"tight_limits");
-    return -1;
-  }
+    if (piTightLimits == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tight_limits");
+        return -1;
+    }
 
-  if (*tightLimits)
-  {
-    return sciReturnString( "on" );
-  }
-  else
-  {
-    return sciReturnString( "off" );
-  }
+    if (piTightLimits)
+    {
+        return sciReturnString( "on" );
+    }
+    else
+    {
+        return sciReturnString( "off" );
+    }
 
 }
 /*------------------------------------------------------------------------*/

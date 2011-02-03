@@ -25,14 +25,14 @@ public :
         return DataModel::get()->setGraphicObjectProperty(_pstID, _pstName, _dblValue, numElements);
     }
 
-    static void* getGraphicObjectProperty(char *_pstID, char* _pstName)
+    static void getGraphicObjectProperty(char *_pstID, char* _pstName, void **_pvData)
     {
-        return DataModel::get()->getGraphicObjectProperty(_pstID, _pstName);
+        return DataModel::get()->getGraphicObjectProperty(_pstID, _pstName, _pvData);
     }
 
-    static int* getGraphicObjectIntProperty(char* _pstID, char* _pstName)
+    static void getGraphicObjectIntProperty(char* _pstID, char* _pstName, void **_pvData)
     {
-        return DataModel::get()->getGraphicObjectIntProperty(_pstID, _pstName);
+        return DataModel::get()->getGraphicObjectIntProperty(_pstID, _pstName, _pvData);
     }
 
     static char* createDataObject(char* _pstID, char* _sType)

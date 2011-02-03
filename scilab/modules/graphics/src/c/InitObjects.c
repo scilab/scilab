@@ -320,7 +320,7 @@ sciInitGraphicContext (sciPointObj * pobj)
    * la colormap des fils est heritee du parent
    */
 
-  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+  getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
 
 //  switch (sciGetEntityType (pobj))
@@ -434,7 +434,7 @@ sciInitGraphicContext (sciPointObj * pobj)
   {
     char* parent;
 
-    parent = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string);
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
     cloneGraphicContext(parent, pobj->UID);
   }
   /*
@@ -444,7 +444,7 @@ sciInitGraphicContext (sciPointObj * pobj)
   {
     char* parent;
 
-    parent = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string);
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
     cloneGraphicContext(parent, pobj->UID);
 
     /*
@@ -459,14 +459,14 @@ sciInitGraphicContext (sciPointObj * pobj)
   {
     char* parent;
 
-    parent = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string);
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
     cloneGraphicContext(parent, pobj->UID);
   }
   else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
   {
     char* parent;
 
-    parent = (char*) getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string);
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
     cloneGraphicContext(parent, pobj->UID);
   }
 
@@ -567,7 +567,7 @@ sciInitFontContext (sciPointObj * pobj)
   /* static TCHAR inifontname[] = TEXT ("Times New Roman");*/
 
 
-  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+  getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
 //  switch (sciGetEntityType (pobj))
 
@@ -788,7 +788,8 @@ int InitAxesModel()
   int hiddenAxisColor;
   int hiddenColor;
   int isoview;
-  int visible;
+  int visible = 0;
+  int *piVisible = &visible;
   int clipState;
   int tightLimits;
   int arcDrawingMethod;
@@ -1025,9 +1026,7 @@ int InitAxesModel()
   setGraphicObjectProperty(paxesmdl->UID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
   /* visible */
-  tmp = (int*) getGraphicObjectProperty(pfiguremdl->UID, __GO_VISIBLE__, jni_bool);
-
-  visible = *tmp;
+  getGraphicObjectProperty(pfiguremdl->UID, __GO_VISIBLE__, jni_bool, &piVisible);
   setGraphicObjectProperty(paxesmdl->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
   /* 0: clipping off */
@@ -1254,7 +1253,7 @@ int InitAxesModel()
   /*
    * Label creation is done in the MVC Axes constructor for now.
    * However, the equivalent of initLabel (which initializes Label
-   * properties default values) must be implemented. 
+   * properties default values) must be implemented.
    */
 
   /* F.Leray 10.06.04 */
@@ -1386,7 +1385,7 @@ sciInitGraphicMode (sciPointObj * pobj)
 {
   char* type;
 
-  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+  getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
 //  switch (sciGetEntityType (pobj))
 
@@ -1472,14 +1471,15 @@ sciInitGraphicMode (sciPointObj * pobj)
        */
       else
 	{
-          int* tmp;
+        int iTmp = 0;
+          int* piTmp = &iTmp;
 
-          tmp = (int*) getGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_CLEAR__, jni_bool);
-          autoClear = *tmp;
-          tmp = (int*) getGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_SCALE__, jni_bool);
-          autoScale = *tmp;
-          tmp = (int*) getGraphicObjectProperty(paxesmdl->UID, __GO_ZOOM_ENABLED__, jni_bool);
-          zoom = *tmp;
+          getGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_CLEAR__, jni_bool, &piTmp);
+          autoClear = iTmp;
+          getGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
+          autoScale = iTmp;
+          getGraphicObjectProperty(paxesmdl->UID, __GO_ZOOM_ENABLED__, jni_bool, &piTmp);
+          zoom = iTmp;
 
           setGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
           setGraphicObjectProperty(pobj->UID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
@@ -1490,8 +1490,8 @@ sciInitGraphicMode (sciPointObj * pobj)
            * obsolete ? Not implemented yet within the MVC
            */
 
-          tmp = (int*) getGraphicObjectProperty(paxesmdl->UID, __GO_PIXEL_DRAWING_MODE__, jni_bool);
-          xormode = *tmp;
+          getGraphicObjectProperty(paxesmdl->UID, __GO_PIXEL_DRAWING_MODE__, jni_bool, &piTmp);
+          xormode = iTmp;
 
           setGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
 

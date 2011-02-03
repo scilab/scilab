@@ -2,14 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1998 - 2001 - ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2005-2008 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2001 -  Bruno Pincon (for gain in speed and added 
- *    possibilities to set zmin, zmax by the user and also to set the 
+ * Copyright (C) 2001 -  Bruno Pincon (for gain in speed and added
+ *    possibilities to set zmin, zmax by the user and also to set the
  *    first and last color of the colormap)
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,7 +19,7 @@
  */
 
 #include "machine.h"
-#include "math_graphics.h" 
+#include "math_graphics.h"
 #include "Axes.h"
 
 #include "SetProperty.h"
@@ -51,34 +51,34 @@
 static void coloutPatch(int colout[2]);
 
 /*------------------------------------------------------------
- *  Iso contour with grey level or colors 
- *  for a function defined by finite elements 
+ *  Iso contour with grey level or colors
+ *  for a function defined by finite elements
  *  ( f is linear on triangles )
- *  we give two versions of the function : 
- *     - a quick version wich only fill triangles according to the average 
+ *  we give two versions of the function :
+ *     - a quick version wich only fill triangles according to the average
  *     value of f on a triangle (no more such version now ?)
  *     - and a slow version but more sexy which use the fact that f is linear
  *     on each triangle.
  *  Nodes (x[no],y[no])
  *  Triangles (Matrix: [ numero, no1,no2,no3,iflag;...]
  *  func[no] : Function value on Nodes.
- *  Nnode : number of nodes 
- *  Ntr   : number of triangles 
+ *  Nnode : number of nodes
+ *  Ntr   : number of triangles
  *  strflag,legend,brect,aint : see plot2d
  *  zminmax   : to set (optionnaly) the min and max level
  *  colminmax : to set (optionnaly) the first and last color to use
  *
- *  modified by Bruno Pincon 01/02/2001 for gain in speed and added 
- *  possibilities to set zmin, zmax by the user and also to set the 
+ *  modified by Bruno Pincon 01/02/2001 for gain in speed and added
+ *  possibilities to set zmin, zmax by the user and also to set the
  *  first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
 ---------------------------------------------------------------*/
 
-int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, 
-	     char *strflag, char *legend, double *brect, int *aaint, double *zminmax, 
+int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr,
+	     char *strflag, char *legend, double *brect, int *aaint, double *zminmax,
 	     int *colminmax, int *colout, BOOL with_mesh, BOOL flagNax, int lstr1, int lstr2)
 {
   int n1=1;
-  
+
   /* Fec code */
 
   long hdltab[2];
@@ -94,11 +94,14 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
   char textLogFlags[3];
   int clipState;
-  int autoScale;
-  int firstPlot;
+  int autoScale = 0;
+  int *piAutoScale = &autoScale;
+  int firstPlot = 0;
+  int *piFirstPlot = &firstPlot;
   int logFlags[3];
   int autoSubticks;
-  int* tmp;
+  int iTmp = 0;
+  int *piTmp = &iTmp;
   double rotationAngles[2];
 
   psubwin = sciGetCurrentSubWin();
@@ -121,7 +124,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   else
   {
     pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;
   }
 #endif
 
@@ -140,17 +143,15 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   /* Force  axes_visible property */
   /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
 
-  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool);
-  firstPlot = *tmp;
+  getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
 
-  tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool);
-  autoScale = *tmp;
+  getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
 
   if (autoScale)
   {
     /* compute and merge new specified bounds with psubwin->Srect */
     switch (strflag[1])  {
-      case '0': 
+      case '0':
         /* do not change psubwin->Srect */
         break;
       case '1' : case '3' : case '5' : case '7':
@@ -159,12 +160,12 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
         break;
       case '2' : case '4' : case '6' : case '8':case '9':
 
-        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
-        logFlags[0] = *tmp;
-        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
-        logFlags[1] = *tmp;
-        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool);
-        logFlags[2] = *tmp;
+        getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+        logFlags[0] = iTmp;
+        getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+        logFlags[1] = iTmp;
+        getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+        logFlags[2] = iTmp;
 
         /* Conversion required by compute_data_bounds2 */
         textLogFlags[0] = getTextLogFlag(logFlags[0]);
@@ -182,9 +183,9 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
         drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
         drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
     }
-    if (strflag[1] != '0') 
+    if (strflag[1] != '0')
       bounds_changed = update_specification_bounds(psubwin, drect,2);
-  } 
+  }
 
   if (firstPlot)
   {
@@ -197,7 +198,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   firstPlot = 0;
   setGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
-  /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
+  /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and
   u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
 
   /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
@@ -207,10 +208,10 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
   if (flagNax == TRUE)
   {
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool);
-    logFlags[0] = *tmp;
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool);
-    logFlags[1] = *tmp;
+      getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+    logFlags[0] = iTmp;
+    getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+    logFlags[1] = iTmp;
 
     if (logFlags[0] == 0 && logFlags[1] == 0)
     {
@@ -253,7 +254,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 	/* [-1,-1] */
 	coloutPatch(colout);
   pFec = ConstructFec(psubwin,x,y,triangles,func,
-                      *Nnode,*Ntr,zminmax,colminmax,colout, with_mesh); 
+                      *Nnode,*Ntr,zminmax,colminmax,colout, with_mesh);
 
   if (pFec == NULL)
   {
@@ -267,9 +268,9 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
   /* retrieve the created object : fec */
   pptabofpointobj = pFec;
-  hdltab[cmpt] = sciGetHandle(pptabofpointobj);   
+  hdltab[cmpt] = sciGetHandle(pptabofpointobj);
   cmpt++;
-  
+
   parentCompound = ConstructCompound (hdltab, cmpt);
   sciSetCurrentObj(parentCompound);  /** construct Compound **/
 
@@ -281,9 +282,9 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 #if 0
   sciDrawObj(parentCompound);
 #endif
-   
+
   return(0);
-   
+
 }
 /*--------------------------------------------------------------------------*/
 static void coloutPatch(int colout[2])

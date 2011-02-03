@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -37,7 +37,8 @@ int set_interp_color_mode_property( sciPointObj * pobj, size_t stackPointer, int
 {
     BOOL status;
     int b =  (int)FALSE;
-    int* interpColorVectorSet;
+    int iInterpColorVectorSet = 0;
+    int* piInterpColorVectorSet = &iInterpColorVectorSet;
 #if 0
     if( sciGetEntityType(pobj) != SCI_POLYLINE )
     {
@@ -51,15 +52,15 @@ int set_interp_color_mode_property( sciPointObj * pobj, size_t stackPointer, int
 
     if (b == TRUE)
     {
-        interpColorVectorSet = (int*) getGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool);
+        getGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool, &piInterpColorVectorSet);
 
-        if (interpColorVectorSet == NULL)
+        if (piInterpColorVectorSet == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
             return SET_PROPERTY_ERROR;
         }
 
-        if (*interpColorVectorSet  == FALSE)
+        if (iInterpColorVectorSet  == FALSE)
         {
             Scierror(999, _("You must first specify an %s for this object.\n"), "interp_color_vector");
             return SET_PROPERTY_ERROR;

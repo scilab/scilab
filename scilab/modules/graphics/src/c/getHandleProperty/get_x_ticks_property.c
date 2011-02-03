@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,57 +33,55 @@
 /*------------------------------------------------------------------------*/
 int get_x_ticks_property( sciPointObj * pobj )
 {
-  int* tmp;
-  int nbTicks;
+    int iNbTicks = 0;
+    int *piNbTicks = &iNbTicks;
 
 #if 0
-  if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
-    return -1 ;
-  }
+    if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
+        return -1 ;
+    }
 #endif
 
-  /* retrieve number of ticks */
-  tmp = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_NUMBER_TICKS__, jni_int);
+    /* retrieve number of ticks */
+    getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, &piNbTicks);
 
-  if (tmp == NULL)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
-    return -1;
-  }
-
-  nbTicks = *tmp;
-
-  if (nbTicks == 0)
-  {
-    /* return empty matrices */
-    buildTListForTicks( NULL, NULL, 0);
-  }
-  else
-  {
-    char ** labels;
-    double * positions;
-
-    positions = (double*)getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LOCATIONS__, jni_double_vector);
-
-    labels = (char**)getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LABELS__, jni_string_vector);
-
-    if (positions == NULL || labels == NULL)
+    if (piNbTicks == NULL)
     {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
-      return -1;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
+        return -1;
     }
 
-    buildTListForTicks( positions, labels, nbTicks );
+    if (iNbTicks == 0)
+    {
+        /* return empty matrices */
+        buildTListForTicks( NULL, NULL, 0);
+    }
+    else
+    {
+        char ** labels;
+        double * positions;
 
-    /* free arrays */
+        getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LOCATIONS__, jni_double_vector, &positions);
+
+        getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LABELS__, jni_string_vector, &labels);
+
+        if (positions == NULL || labels == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
+            return -1;
+        }
+
+        buildTListForTicks( positions, labels, iNbTicks );
+
+        /* free arrays */
 #if 0
-    destroyStringArray(labels, nbTicks);
-    FREE(positions);
+        destroyStringArray(labels, iNbTicks);
+        FREE(positions);
 #endif
-  }
+    }
 
-  return 0;
+    return 0;
 }
 /*------------------------------------------------------------------------*/

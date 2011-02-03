@@ -43,6 +43,7 @@
 #include "stack-def.h" /* bsiz */
 
 #include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /**
@@ -186,42 +187,46 @@ void Objfpoly ( double  * x    ,
                 long    * hdl  ,
                 int   shading )
 {
-  int fillcolor, contourcolor;
-  int* tmp;
-  sciPointObj *psubwin, *pobj;
-  int closed = 1; /* we close the polyline by default */
-  psubwin = sciGetCurrentSubWin();
+    int fillcolor = 0;
+    int *piFillColor = &fillcolor;
+    int contourcolor = 0;
+    int *piContourColor = &contourcolor;
 
-  checkRedrawing();
+    sciPointObj *psubwin, *pobj;
+    int closed = 1; /* we close the polyline by default */
+    psubwin = sciGetCurrentSubWin();
 
-  if(shading == 2)
+    checkRedrawing();
+
+    if(shading == 2)
     {
-      /* interpolated shading is "on" */
-      pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
-	 		       1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE);
+        /* interpolated shading is "on" */
+        pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+                                 1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE);
     }
-  else
+    else
     {
 
-      /* flat mode is "on" */
-      if (*style < 0){
-	fillcolor = abs(*style);
-	pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
-			         1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE);
-      }
-      else if (*style == 0){
-        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int);
-	contourcolor = *tmp;
-	pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
-	                         1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
-      }
-      else{ /* *style > 0*/
-	fillcolor = *style;
-        tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int);
-	contourcolor = *tmp;
-	pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
-	                         1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE);
-      }
+        /* flat mode is "on" */
+        if (*style < 0)
+        {
+            fillcolor = abs(*style);
+            pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+                                     1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE);
+        }
+        else if (*style == 0)
+        {
+            getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int, &piContourColor);
+            pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+                                     1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
+        }
+        else
+        { /* *style > 0*/
+            fillcolor = *style;
+            getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int, &piContourColor);
+            pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+                                     1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE);
+        }
 
     }
 
@@ -433,11 +438,15 @@ void Objplot3d ( char    * fname ,
     int dimvecty = -1;
     int view;
     int linLogFlag;
-    int firstPlot;
+    int firstPlot = 0;
+    int *piFirstPlot = &firstPlot;
+
     int* tmp;
     int box;
     int axisVisible;
-    int autoScale;
+    int autoScale = 0;
+    int *piAutoScale = &autoScale;
+
     int isoview;
     int clipState;
 
@@ -501,7 +510,7 @@ void Objplot3d ( char    * fname ,
 
         if (legx != NULL)
         {
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
 
             setGraphicObjectProperty(labelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
             setGraphicObjectProperty(labelId, __GO_TEXT_STRINGS__, &legx, jni_string_vector, textDimensions[0]*textDimensions[1]);
@@ -511,7 +520,7 @@ void Objplot3d ( char    * fname ,
         legy=strtok((char *)NULL,"@"); /* NULL to begin at the last read character */
         if ( legy != NULL )
         {
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
 
             setGraphicObjectProperty(labelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
             setGraphicObjectProperty(labelId, __GO_TEXT_STRINGS__, &legy, jni_string_vector, textDimensions[0]*textDimensions[1]);
@@ -521,7 +530,7 @@ void Objplot3d ( char    * fname ,
         legz=strtok((char *)NULL,"@");
         if ( legz != NULL )
         {
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
 
             setGraphicObjectProperty(labelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
             setGraphicObjectProperty(labelId, __GO_TEXT_STRINGS__, &legz, jni_string_vector, textDimensions[0]*textDimensions[1]);
@@ -552,8 +561,7 @@ void Objplot3d ( char    * fname ,
     }
 #endif
 
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool);
-    firstPlot = *tmp;
+    getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
 
     if (firstPlot == 0 && (iflag[2] == 0 || iflag[2] == 1))
     {
@@ -583,11 +591,11 @@ void Objplot3d ( char    * fname ,
                 setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &box, jni_int, 1);
 
                 labelVisible = 0;
-                labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string);
+                getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
                 setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-                labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string);
+                getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
                 setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-                labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string);
+                getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
                 setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
             }
             /*else no changes : the axes visible properties are driven by the previous plot */
@@ -606,11 +614,11 @@ void Objplot3d ( char    * fname ,
             setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
             labelVisible = 0;
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
         else if(iflag[2] == 3)
@@ -627,11 +635,11 @@ void Objplot3d ( char    * fname ,
             setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
             labelVisible = 1;
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
         else if(iflag[2] == 4)
@@ -646,11 +654,11 @@ void Objplot3d ( char    * fname ,
             setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
             labelVisible = 1;
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            labelId = (char*) getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string);
+            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
     }
@@ -660,10 +668,9 @@ void Objplot3d ( char    * fname ,
 
     setGraphicObjectProperty(psubwin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
-    dataBounds = (double*) getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector);
+    getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
-    tmp = (int*) getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool);
-    autoScale = *tmp;
+    getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
 
     if (autoScale)
     {
@@ -887,31 +894,35 @@ void Objplot3d ( char    * fname ,
             Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
             Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
 
-            if ((*n > 0) && (zcol != (double *)NULL)) {
-                if ((int) zcol[i] > 0){
+            if ((*n > 0) && (zcol != (double *)NULL))
+            {
+                if ((int) zcol[i] > 0)
+                {
                     int intzcol = (int) zcol[i];
                     pNewPolyline = ConstructPolyline
                         (currentSubwin,
-                        &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-                        &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
+                         &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
+                         &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
                 }
-                else {
+                else
+                {
                     int intzcol = (int) -zcol[i];
                     pNewPolyline = ConstructPolyline
                         (currentSubwin,
-                        &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-                        NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
+                         &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
+                         NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
                 }
             }
-            else { /* default case, nothing is given */
-                int curcolor;
-                tmp = (int*) getGraphicObjectProperty(currentSubwin->UID, __GO_LINE_COLOR__, jni_int);
-                curcolor = *tmp;
+            else
+            { /* default case, nothing is given */
+                int curcolor = 0;
+                int *piCurColor = &curcolor;
 
-                pNewPolyline = ConstructPolyline
-                    (currentSubwin,
-                    &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
-                    &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
+                getGraphicObjectProperty(currentSubwin->UID, __GO_LINE_COLOR__, jni_int, &piCurColor);
+
+                pNewPolyline = ConstructPolyline(currentSubwin,
+                                                 &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
+                                                 &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
             }
 
             if (pNewPolyline == NULL)

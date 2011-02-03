@@ -99,23 +99,19 @@ int TriangleMeshFecData::setDataProperty(int property, void* value, int numEleme
     return 1;
 }
 
-void* TriangleMeshFecData::getDataProperty(int property)
+void TriangleMeshFecData::getDataProperty(int property, void **_pvData)
 {
-    /* Used for now to return the address of a single unsigned integer */
-    static int localUIntResult;
-
     if (property == NUM_INDICES)
     {
-        localUIntResult = getNumIndices();
-        return &localUIntResult;
+        ((int *) *_pvData)[0] = getNumIndices();
     }
     else if (property == FEC_TRIANGLES)
     {
-        return getFecTriangles();
+        *_pvData = getFecTriangles();
     }
     else
     {
-        return TriangleMeshData::getDataProperty(property);
+        TriangleMeshData::getDataProperty(property, _pvData);
     }
 
 }

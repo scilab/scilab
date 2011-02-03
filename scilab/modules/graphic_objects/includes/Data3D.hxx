@@ -42,7 +42,7 @@ public :
 
     virtual int setDataProperty(int property, void* value, int numElements);
 
-    virtual void* getDataProperty(int property);
+    virtual void getDataProperty(int property, void **_pvData);
 
     virtual void setData(double* data, int numElements) { return; }
 

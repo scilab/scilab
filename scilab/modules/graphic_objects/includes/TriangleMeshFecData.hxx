@@ -66,7 +66,7 @@ public:
      * @param property the property identifier
      * @return a pointer to the data property
      */
-    void* getDataProperty(int property);
+    void getDataProperty(int property, void **_pvData);
 
     /**
      * Returns the number of index triplets (number of triangles)

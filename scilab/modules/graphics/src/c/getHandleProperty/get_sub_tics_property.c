@@ -33,68 +33,68 @@
 /*------------------------------------------------------------------------*/
 int get_sub_tics_property( sciPointObj * pobj )
 {
-  char* type;
+    char* type;
+    int iSubTicks = 0;
+    int* piSubTicks = &iSubTicks;
 
-  /*Dj.A 17/12/2003*/
-  /* modified jb Silvy 01/2006 */
+    /*Dj.A 17/12/2003*/
+    /* modified jb Silvy 01/2006 */
 
-  type = (char*) getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string);
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
-  /*
-   * Type test required as the Axis object stores subticks as a single int
-   * whereas Axes maintain a 3-element int vector.
-   */
-  if (strcmp(type, __GO_AXIS__) == 0)
-  {
-    int* subTicks;
-
-    subTicks = (int*) getGraphicObjectProperty(pobj->UID, __GO_SUBTICKS__, jni_int);
-
-    if (subTicks == NULL)
+    /*
+     * Type test required as the Axis object stores subticks as a single int
+     * whereas Axes maintain a 3-element int vector.
+     */
+    if (strcmp(type, __GO_AXIS__) == 0)
     {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
-      return -1;
+        getGraphicObjectProperty(pobj->UID, __GO_SUBTICKS__, jni_int, &piSubTicks);
+
+        if (piSubTicks == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+            return -1;
+        }
+
+        return sciReturnDouble(iSubTicks);
     }
-
-    return sciReturnDouble(*subTicks);
-  }
-  else if (strcmp(type, __GO_AXES__) == 0)
-  {
-    double sub_ticks[3];
-    int* subTicks;
-    int* view;
-
-    subTicks = (int*) getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int);
-
-    if (subTicks == NULL)
+    else if (strcmp(type, __GO_AXES__) == 0)
     {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
-      return -1;
-    }
+        double sub_ticks[3];
+        int iView = 0;
+        int* piView = &iView;
 
-    sub_ticks[0] = *subTicks;
+        getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int, &piSubTicks);
 
-    subTicks = (int*) getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int);
-    sub_ticks[1] = *subTicks;
+        if (piSubTicks == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+            return -1;
+        }
 
-    subTicks = (int*) getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_SUBTICKS__, jni_int);
-    sub_ticks[2] = *subTicks;
+        sub_ticks[0] = iSubTicks;
 
-    view = (int*) getGraphicObjectProperty(pobj->UID, __GO_VIEW__, jni_int);
+        getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piSubTicks);
+        sub_ticks[1] = iSubTicks;
 
-    if (*view == 1)
-    {
-      return sciReturnRowVector( sub_ticks, 3 );
+        getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_SUBTICKS__, jni_int, &piSubTicks);
+        sub_ticks[2] = iSubTicks;
+
+        getGraphicObjectProperty(pobj->UID, __GO_VIEW__, jni_int, &piView);
+
+        if (iView == 1)
+        {
+            return sciReturnRowVector( sub_ticks, 3 );
+        }
+        else
+        {
+            return sciReturnRowVector( sub_ticks, 2 );
+        }
     }
     else
     {
-      return sciReturnRowVector( sub_ticks, 2 );
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+        return -1 ;
     }
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
-    return -1 ;
-  }
 }
 /*------------------------------------------------------------------------*/

@@ -36,15 +36,17 @@
 
 int get_pixel_drawing_mode_property( sciPointObj * pobj )
 {
-  int* pixelDrawingMode = (int*)getGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, jni_int);
+    int iPixelDrawingMode = 0;
+    int* pixelDrawingMode = &iPixelDrawingMode;
+    getGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, jni_int, &pixelDrawingMode);
 
-  if ( pixelDrawingMode == NULL)
-  {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixel_drawing_mode");
-      return -1 ;
-  }
+    if (pixelDrawingMode == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "pixel_drawing_mode");
+        return -1 ;
+    }
 
-  return sciReturnString( getPixelMode (*pixelDrawingMode) );
+    return sciReturnString( getPixelMode (*pixelDrawingMode) );
 
 }
 

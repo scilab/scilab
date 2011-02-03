@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,7 +31,8 @@
 /*------------------------------------------------------------------------*/
 int get_color_flag_property( sciPointObj * pobj )
 {
-    int* colorFlag;
+    int iColorFlag;
+    int* piColorFlag = &iColorFlag;
 
 #if 0
     if (sciGetEntityType (pobj) != SCI_SURFACE)
@@ -41,14 +42,14 @@ int get_color_flag_property( sciPointObj * pobj )
     }
 #endif
 
-    colorFlag = (int*) getGraphicObjectProperty(pobj->UID, __GO_COLOR_FLAG__, jni_int);
+    getGraphicObjectProperty(pobj->UID, __GO_COLOR_FLAG__, jni_int, &piColorFlag);
 
-    if (colorFlag == NULL)
+    if (piColorFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag");
         return -1;
     }
 
-    return sciReturnDouble(*colorFlag);
+    return sciReturnDouble(iColorFlag);
 }
 /*------------------------------------------------------------------------*/
