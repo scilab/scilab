@@ -184,12 +184,13 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
      */
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (getContents) {
-            getContents = false;
             if (localName.equals("refpurpose")) {
                 mapIdPurpose.put(lastId, buffer.toString().trim());
                 waitForRefpurpose = false;
-            } else {
+                getContents = false;
+            } else if (localName.equals("title") || localName.equals("refname")) {
                 toc.put(lastId, buffer.toString().trim());
+                getContents = false;
                 waitForRefname = false;
                 waitForTitle = false;
             }
