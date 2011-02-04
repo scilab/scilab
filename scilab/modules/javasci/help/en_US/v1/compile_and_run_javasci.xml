@@ -182,7 +182,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="java"><![CDATA[ 
 // A simple Java example 
 // Filename: BasicExample.java
 
