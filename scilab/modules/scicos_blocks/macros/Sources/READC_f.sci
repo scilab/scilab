@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2011 - Bernard DUJARDIN
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -60,8 +61,18 @@ case 'set' then
     frmt1=stripblanks(frmt1)
     fmts=['s','l','d','f','c','us','ul','uc','ull','uls','ubl','ubs',..
 	   'dl','fl','ll','sl','db','fb','lb','sb']
+
+    nout  =  size(outmask,"*")
+
     if prod(size(tmask1))>1 then
       message('Time record selection must be a scalar or an empty matrix')
+
+    elseif and(frmt1 <> fmts) then
+      message( ...
+          ["Incorrect input format, valid formats are:"; ...
+            strcat(fmts,', ')] ...
+          );
+
     elseif and(frmt1<>fmts) then
       message(['Incorrect format, valid formats are:'
 	      strcat(fmts,', ')])
@@ -71,10 +82,43 @@ case 'set' then
       message(['You cannot modify buffer length when running';'End current simulation first'])
     elseif alreadyran&size(tmask1)<>size(tmask) then
       message(['You cannot modify time management when running';'End current simulation first'])
-    elseif N<1 then
-      message('Buffer size must be at least 1')
+
+    elseif fname1 == "" then
+      message("You must provide a file name")
+
+    elseif M < 1 then
+      message("Record size must be at least 1")
+
+    elseif tmask1 ~= [] & (tmask1 < 1 | tmask1 > M) then
+      message( ...
+          "Time record index must be positive and " ...
+          + " at the most equal Record size=" + string (M) ...
+          );
+    elseif nout == 0 then
+      message("You must read at least one field in record")
+
+    elseif nout > M then
+      message( ...
+          "Number of outputs cannot be greater than  Record size = " ...
+          + string (M) ...
+          );
+
+    elseif max(outmask) > M | min(outmask) < 1 then
+      message( ...
+          "Outputs record indexes must be positive and " ...
+          + " at the most equal " + string (M) ...
+          );
+
+    elseif N < 1 then
+      message("Buffer size must be at least 1")
+
+
     elseif swap<>0&swap<>1 then
       message('Swap mode must be 0 or 1')
+
+    elseif offset < 1 then
+      message("Initial record index must be strictly positive")
+
     else
       if tmask1==[] then ievt=0;tmask1=0;outpt=[];else ievt=1;outpt=1;end
       out=size(outmask,'*')
