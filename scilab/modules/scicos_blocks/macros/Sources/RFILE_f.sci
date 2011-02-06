@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2011 - Bernard DUJARDIN
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -65,6 +66,11 @@ case 'set' then
     nout = size(outmask,'*')
     if prod(size(tmask1))>1 then
       message('Time record selection must be a scalar or an empty matrix')
+
+    elseif tmask1 ~= [] & tmask1 < 1 then
+        message( ...
+            "Time record selection must be strictly positive")
+
     elseif lunit>0&min(length(frmt),1)<>min(length(frmt1),1) then
       message(['You cannot swich from formatted to unformatted';
 	         'or  from unformatted to formatted when running';' '])
@@ -72,11 +78,24 @@ case 'set' then
       message('You cannot modify Output file name when running')
     elseif lunit>0&size(tmask1)<>size(tmask) then
       message('You cannot modify time management when running')
+
+    elseif fname1 == "" then
+        message("You must provide a file name")
+
+    // Simple check for including of the format's string  in parenthesis
+    elseif frmt1 ~= "" &  ...
+            (part(frmt1, 1) ~= "(" |  part(frmt1, length(frmt1)) ~= ")")
+            message("You must enclose the format''s string between parentheses")
+
     elseif N<2 then
       message('Buffer size must be at least 2')
-    elseif nout==0 then
-      message('You must read at least one record')
-    elseif min(outmask)<=0 then
+
+    elseif nout == 0 then
+      message("You must read at least one field in record")
+
+    elseif min(outmask) < 1 then
+      message("Outputs record selection indexes must be strictly positive.")
+
       message('Records must be > 0.')
     else
       if tmask1==[] then ievt=0;cout=[];tmask1=0;else ievt=1,cout=1;end
