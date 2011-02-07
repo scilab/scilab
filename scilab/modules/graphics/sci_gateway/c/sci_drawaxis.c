@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,6 +24,10 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "CurrentObjectsManagement.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*--------------------------------------------------------------------------*/
 static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
 					long unsigned int xl, int ypos, int yRow, int yCol, long unsigned int yl, 
@@ -125,9 +130,9 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   else 
   {
     static double x_def[1];
+	double* bounds;
 	sciPointObj * currentSubwin = sciGetCurrentSubWin();
-	double bounds[6];
-	sciGetDataBounds(currentSubwin, bounds);
+	getGraphicObjectProperty(currentSubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &bounds);
     nx = 1;
     x = x_def ;
     if ( dir == 'l' ) 
@@ -144,9 +149,9 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   else 
   {
     static double y_def[1];
+	double* bounds;
 	sciPointObj * currentSubwin = sciGetCurrentSubWin();
-	double bounds[6];
-	sciGetDataBounds(currentSubwin, bounds);
+	getGraphicObjectProperty(currentSubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &bounds);
     ny = 1;
     y = y_def ;
     if ( dir == 'd' ) 

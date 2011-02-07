@@ -119,7 +119,7 @@ int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
         ticksStyle = 'i';
     }
 
-    ComputeXIntervals( pobj, pAXES_FEATURE(pobj)->tics, &vector, &N, 0 );
+    ComputeXIntervals( pobj, ticksStyle, &vector, &N, 0 );
     ComputeC_format( pobj, c_format );
 
     stringVector = copyFormatedArray( vector, N, c_format, 256 );

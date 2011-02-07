@@ -2096,7 +2096,8 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 
 
 /**ConstructAxes
- * This function creates Axes structure
+ * This function creates an Axis object
+ * To do: rename to ConstructAxis
  * @author Djalel ABDEMOUCHE
  * @see sciSetCurrentObj
  *
@@ -2106,149 +2107,203 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 	       int nx, double *vy, int ny,char **str, int subint, char *format,
 	       int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciAxes *paxes = (sciAxes *) NULL;
-  int i;
+    char* parentType;
+    sciPointObj *pobj = (sciPointObj *) NULL;
+    int i;
+    int clipRegionSet;
+    int clipState;
+    int ticksDirection;
+    int ticksStyle;
+    double* clipRegion;
+    double doubleFontSize;
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-  {
-    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	    return (sciPointObj *) NULL;
-    sciSetEntityType (pobj, SCI_AXES);
-    if ((pobj->pfeatures = MALLOC ((sizeof (sciAxes)))) == NULL)
-	  {
-	    FREE(pobj);
-	    return (sciPointObj *) NULL;
-	  }
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &parentType);
 
-    if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
+    if (strcmp(parentType, __GO_AXES__) != 0)
     {
-      FREE( pobj->pfeatures ) ;
-      FREE( pobj ) ;
-      return NULL ;
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (sciPointObj*) NULL;
     }
 
+    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    {
+        return (sciPointObj *) NULL;
+    }
+
+    pobj->UID = (char*) createGraphicObject(__GO_AXIS__);
+
+    /* Required to initialize the default contour properties */
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+
+    /* To be implemented */
+#if 0
     pAXES_FEATURE (pobj)->callback = (char *)NULL;
     pAXES_FEATURE (pobj)->callbacklen = 0;
     pAXES_FEATURE (pobj)->callbackevent = 100;
     pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+#endif
 
-    /*pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-    pAXES_FEATURE (pobj)->clip_region_set = 0;
-    /*pAXES_FEATURE (pobj)->isclip = -1;*/  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
-    sciInitIsClipping( pobj, -1 ) ;
-    sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-    /*       pAXES_FEATURE (pobj)->clip_region = (double *) NULL; */
+    /* Clipping: to be checked for consistency */
+    clipRegionSet = 0;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    pAXES_FEATURE (pobj)->dir =dir;
-    pAXES_FEATURE (pobj)->tics =tics;
+    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    paxes = pAXES_FEATURE (pobj);
-    /* pour le moment je garde les vecteurs separes, et non en POINT2D */
-    if ((paxes->vx = MALLOC (nx * sizeof (double))) == NULL)
-	  {
-	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	    sciDelHandle (pobj);
-	    FREE(pAXES_FEATURE(pobj));
-	    FREE(pobj);
-	    return (sciPointObj *) NULL;
-	  }
-    if ((paxes->vy = MALLOC (ny * sizeof (double))) == NULL)
-	  {
-	    FREE(pAXES_FEATURE (pobj)->vx);
-	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	    sciDelHandle (pobj);
-	    FREE(pAXES_FEATURE(pobj));
-	    FREE(pobj);
-	    return (sciPointObj *) NULL;
-	  }
+    /* 0: OFF */
+    clipState = 0;
+    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    for (i = 0; i < nx; i++)
-	  {
-	    paxes->vx[i] = vx[i];
-	  }
-    for (i = 0; i < ny; i++)
-	  {
-	    paxes->vy[i] = vy[i];
-	  }
-
-    pAXES_FEATURE (pobj)->nx =nx;
-    pAXES_FEATURE (pobj)->ny =ny;
-
-    pAXES_FEATURE (pobj)->nb_tics_labels = nb_tics_labels; /* F.Leray 29.04.05 */
-
-    /* pAXES_FEATURE(pobj)->str = str;*/ /* Pb here, F.Leray : Weird init.: can not copy a string using '='*/
-    if(str != (char **) NULL)
-	  {
-	    if(pAXES_FEATURE (pobj)->nb_tics_labels == -1){
-	      Scierror(999, _("Impossible case when building axis\n"));
-	      return (sciPointObj *) NULL;
-	    }
-
-	    if ((pAXES_FEATURE(pobj)->str= MALLOC (pAXES_FEATURE (pobj)->nb_tics_labels * sizeof (char*))) == NULL)
-	      return (sciPointObj *) NULL;
-
-	    for(i=0;i<pAXES_FEATURE (pobj)->nb_tics_labels;i++)
-	    {
-	      if(str[i] != (char *) NULL)
-		    {
-		      if((pAXES_FEATURE (pobj)->str[i] = MALLOC( (strlen(str[i])+1) * sizeof(char))) == NULL)
-		        return (sciPointObj *) NULL;
-		      else
-		        strcpy(pAXES_FEATURE (pobj)->str[i],str[i]);
-		    }
-	      else
-		      pAXES_FEATURE (pobj)->str[i] = (char *) NULL;
-	    }
-	  }
+    /* The ticks style and direction MVC properties are Integers */
+    if (dir == 'u')
+    {
+        ticksDirection = 0;
+    }
+    else if (dir == 'd')
+    {
+        ticksDirection = 1;
+    }
+    else if (dir == 'l')
+    {
+        ticksDirection = 2;
+    }
+    else if (dir == 'r')
+    {
+        ticksDirection = 3;
+    }
     else
-	  {
-	    pAXES_FEATURE (pobj)->str = (char **) NULL;
-	  }
+    {
+        ticksDirection = 0;
+    }
 
-    pAXES_FEATURE (pobj)->subint = subint;
-    pAXES_FEATURE (pobj)->seg =seg;
-    if(format != (char *) NULL)
-	  {
-	    if((pAXES_FEATURE (pobj)->format = MALLOC( (strlen(format)+1) * sizeof(char))) == NULL)
-	      return (sciPointObj *) NULL;
-	    else
-	      strcpy(pAXES_FEATURE (pobj)->format,format);
-	  }
+    if (tics == 'v')
+    {
+        ticksStyle = 0;
+    }
+    else if (tics == 'r')
+    {
+        ticksStyle = 1;
+    }
+    else if (tics == 'i')
+    {
+        ticksStyle = 2;
+    }
     else
-	    pAXES_FEATURE (pobj)->format = (char *) NULL;
+    {
+        ticksStyle = 0;
+    }
+
+    setGraphicObjectProperty(pobj->UID, __GO_TICKS_DIRECTION__, &ticksDirection, jni_int, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, &ticksStyle, jni_int, 1);
+
+    setGraphicObjectProperty(pobj->UID, __GO_X_TICKS_COORDS__, vx, jni_double_vector, nx);
+    setGraphicObjectProperty(pobj->UID, __GO_Y_TICKS_COORDS__, vy, jni_double_vector, ny);
+
+    /*
+     * Labels are computed automatically depending on the ticks coordinates.
+     * The computation is performed by a C function which has been adapted
+     * to the MVC (property get calls) and was previously done in the
+     * tics labels property get C function.
+     * It should be done (or called) directly in the Java part of the model
+     * for the sake of efficiency.
+     * To be modified
+     */
+    if (str == NULL)
+    {
+        char** matData;
+        StringMatrix* tics_labels;
+
+        tics_labels = computeDefaultTicsLabels(pobj);
+
+        if (tics_labels == NULL)
+        {
+            deleteGraphicObject(pobj->UID);
+            FREE(pobj);
+            return (sciPointObj*) NULL;
+        }
+
+        matData = getStrMatData(tics_labels);
+
+        /*
+         * The labels vector size must be computed using the matrix's dimensions.
+         * To be modified when the labels computation is moved to the Model.
+         */
+        setGraphicObjectProperty(pobj->UID, __GO_TICKS_LABELS__, matData, jni_string_vector, tics_labels->nbCol*tics_labels->nbRow);
+
+        deleteMatrix(tics_labels);
+    }
+    else
+    {
+        /*
+         * Labels are set using the str argument; the previous code tested whether each element of the
+         * str array was null and set the corresponding Axis' element to NULL, though there was no
+         * apparent reason to do so. This is still checked, but now aborts building the Axis.
+         */
+
+        if(nb_tics_labels == -1)
+        {
+            Scierror(999, _("Impossible case when building axis\n"));
+            deleteGraphicObject(pobj->UID);
+            FREE(pobj);
+            return (sciPointObj*) NULL;
+        }
+
+        for (i = 0; i < nb_tics_labels; i++)
+        {
+            if (str[i] == NULL)
+            {
+                deleteGraphicObject(pobj->UID);
+                FREE(pobj);
+                return (sciPointObj*) NULL;
+            }
+        }
+
+        setGraphicObjectProperty(pobj->UID, __GO_TICKS_LABELS__, str, jni_string_vector, nb_tics_labels);
+    }
+
+    setGraphicObjectProperty(pobj->UID, __GO_SUBTICKS__, &subint, jni_int, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_TICKS_SEGMENT__, &seg, jni_bool, 1);
+
+    if (format != NULL)
+    {
+        setGraphicObjectProperty(pobj->UID, __GO_FORMATN__, format, jni_string, 1);
+    }
 
     if (sciInitGraphicContext (pobj) == -1)
-	  {
-      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-    	sciDelHandle (pobj);
-    	FREE(pAXES_FEATURE (pobj));
-    	FREE(pobj);
-    	return (sciPointObj *) NULL;
-	  }
+    {
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
 
     if ( sciInitFontContext( pobj ) == -1 )
     {
-      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-    	sciDelHandle (pobj);
-    	FREE(pAXES_FEATURE (pobj));
-    	FREE(pobj);
-    	return NULL;
+        deleteGraphicObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
     }
 
-    sciInitFontSize(pobj, fontsize);
-    sciInitFontForeground(pobj, textcolor);
-    sciInitForeground(pobj, ticscolor);
+    /* Parent reset to the null object */
+    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
+
+    if (sciAddNewHandle(pobj) == -1)
+    {
+        deleteGraphicObject(pobj->UID);
+        deleteDataObject(pobj->UID);
+        FREE(pobj);
+        return (sciPointObj*) NULL;
+    }
+
+    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+
+    doubleFontSize = (double) fontsize;
+
+    setGraphicObjectProperty(pobj->UID, __GO_FONT_SIZE__, &doubleFontSize, jni_double, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_FONT_COLOR__, &textcolor, jni_int, 1);
+    setGraphicObjectProperty(pobj->UID, __GO_TICKS_COLOR__, &ticscolor, jni_int, 1);
 
     return pobj;
-  }
-  else
-  {
-    Scierror(999, _("The parent has to be a SUBWIN\n"));
-    return (sciPointObj *) NULL;
-  }
 }
-
 
 
 /********************** 21/05/2002 *****

@@ -53,7 +53,7 @@ int get_labels_font_size_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_FONT_SIZE__, jni_double, pdblFontSize);
+    getGraphicObjectProperty(pobj->UID, __GO_FONT_SIZE__, jni_double, &pdblFontSize);
 
     if (pdblFontSize == NULL)
     {

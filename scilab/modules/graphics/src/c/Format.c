@@ -5,6 +5,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -44,6 +45,9 @@
 #include "localization.h"
 #include "Scierror.h"
 #include <machine.h>
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 #define MAX(A,B) ((A<B)?B:A)
 
@@ -1067,222 +1071,255 @@ int sciGetLogExponent( double minBound, double maxBound, double * expMin, double
   return -1 ;
 }
 /*--------------------------------------------------------------------------*/
+/*
+ * This function has been adapted to the MVC framework (property get calls)
+ * in order to be able to provide a valid format string when computing
+ * default labels for the Axis object. The algorithm is left untouched.
+ * Its code ought to be put within the Java part of the Model.
+ */
 int ComputeC_format(sciPointObj * pobj, char * c_format)
 {
 	int i,j;
-	char pos;
-	char xy_type;
+	int pos = 0;
+	int* piPos = &pos;
+        int xy_type = 0;
+	int* piXy_type = &xy_type;
+	int nx = 0;
+	int* piNx = &nx;
+	int ny = 0;
+	int* piNy = &ny;
 	double *x = NULL;
 	double *y = NULL;
-	int *nx = NULL;
-	int *ny = NULL;
-	sciPointObj * psubwin = sciGetParentSubwin(pobj);
+	double* tmpx;
+	double* tmpy;
+        char* type;
 	int  xpassed = 0, ypassed = 0, Nx = 0, Ny = 0, x3, y3;
+	char* parentAxesID;
+	int logFlag = 0;
+	int* piLogFlag = &logFlag;
 
+	getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
-	if(sciGetEntityType(pobj) != SCI_AXES){
-		Scierror(999, _("Error: ComputeFormat must be used with SCI_AXES objects\n"));
+	if(strcmp(type, __GO_AXIS__) != 0)
+	{
+		Scierror(999, _("Error: ComputeFormat must be used with AXIS objects\n"));
 		return -1;
 	}
 
-	pos = pAXES_FEATURE(pobj)->dir;
-	xy_type = pAXES_FEATURE (pobj)->tics;
-	/* Allocating space before re-copying values to not polluate the good values 
+	getGraphicObjectProperty(pobj->UID, __GO_PARENT_AXES__, jni_string, &parentAxesID);
+
+	getGraphicObjectProperty(pobj->UID, __GO_TICKS_DIRECTION__, jni_int, &piPos);
+	getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int, &piXy_type);
+
+	getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
+	getGraphicObjectProperty(pobj->UID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
+
+	/* Allocating space before re-copying values to not pollute the good values
 	that will be used inside Axes.c */
-	if((x=MALLOC((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
+	if((x=MALLOC(nx*sizeof(double)))==NULL){
 		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
 		return -1;
 	}
 
-	if((y=MALLOC((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
+	if((y=MALLOC(ny*sizeof(double)))==NULL){
 		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
 		return -1;
 	}
 
-	if((nx=MALLOC(sizeof(int)))==NULL){
-		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
-		return -1;
-	}  
+	getGraphicObjectProperty(pobj->UID, __GO_X_TICKS_COORDS__, jni_double_vector, &tmpx);
+	getGraphicObjectProperty(pobj->UID, __GO_Y_TICKS_COORDS__, jni_double_vector, &tmpy);
 
-	if((ny=MALLOC(sizeof(int)))==NULL){
-		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
-		return -1;
+	for(i=0;i<nx;i++)
+	{
+		x[i] = tmpx[i];
 	}
 
-	nx[0] = pAXES_FEATURE (pobj)->nx;
-	for(i=0;i<(*nx);i++) { x[i] = pAXES_FEATURE(pobj)->vx[i]; }
-
-	ny[0] = pAXES_FEATURE (pobj)->ny;
-	for(i=0;i<(*ny);i++) { y[i] = pAXES_FEATURE(pobj)->vy[i]; }
+	for(i=0;i<ny;i++)
+	{
+		y[i] = tmpy[i];
+	}
 
 	/* Algo. here */
-	if(xy_type == 'i') {  
-		switch ( pos ) {
-			case 'u' : case 'd' :  
-				if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n')
-				{
-					while (x[3]>10) { x[3]=floor(x[3]/2); }
-				}
-				else
-				{
-					if(x[3] > 12)
-					{ /* F.Leray arbitrary value=12 for the moment */
-						x3=(int)x[3];     /* if x[3]>12 algo is triggered to search a divisor */
-						for(j=x3-1;j>1;j--)
-						{
-							if(x3%j == 0){
-								x[3]=j; 
-								xpassed = 1;
-							}
-						}
-						if(xpassed != 1) { x[3] = 1; }
-					}
-				}
+	if (xy_type == 2)
+	{
+		if (pos == 0 || pos == 1)
+		{
+			getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_int, &piLogFlag);
 
-				break;
-			case 'r' : case 'l' :
-				if(pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
-				{
-					while (y[3]>10) { y[3]=floor(y[3]/2); }
-				}
-				else
-				{
-					if(y[3] > 12){
-						y3=(int)y[3];
-						for(j=y3-1;j>1;j--)
-						{
-							if(y3%j == 0){
-								y[3]=j;
-								ypassed = 1;
-							}
+			if(logFlag == 0)
+			{
+				while (x[3]>10) { x[3]=floor(x[3]/2); }
+			}
+			else
+			{
+				if(x[3] > 12)
+				{ /* F.Leray arbitrary value=12 for the moment */
+					x3=(int)x[3];     /* if x[3]>12 algo is triggered to search a divisor */
+					for(j=x3-1;j>1;j--)
+					{
+						if(x3%j == 0){
+							x[3]=j;
+							xpassed = 1;
 						}
-						if(ypassed != 1) { y[3] = 1; }
 					}
+					if(xpassed != 1) { x[3] = 1; }
 				}
-				break;
+			}
+		}
+		else if (pos == 2 || pos == 3)
+		{
+			getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_int, &piLogFlag);
+
+			if(logFlag == 0)
+			{
+				while (y[3]>10) { y[3]=floor(y[3]/2); }
+			}
+			else
+			{
+				if(y[3] > 12){
+					y3=(int)y[3];
+					for(j=y3-1;j>1;j--)
+					{
+						if(y3%j == 0){
+							y[3]=j;
+							ypassed = 1;
+						}
+					}
+					if(ypassed != 1) { y[3] = 1; }
+				}
+			}
 		}
 	}
 
 
 	/** Real to Pixel values **/
-	switch ( xy_type ) 
+	if (xy_type == 0)
 	{
-	case 'v' :
-		Nx= *nx;
-		Ny= *ny;
-		break;
-	case 'r' :
-		switch ( pos ) {
-			case 'u' : case 'd' :
-				Nx = (int) x[2]+1;
-				break;
-			case 'r' : case 'l' :
-				Ny = (int) y[2]+1;
-				break;
+		Nx = nx;
+		Ny = ny;
+	}
+	else if (xy_type == 1)
+	{
+		if (pos == 0 || pos == 1)
+		{
+			Nx = (int) x[2]+1;
 		}
-		break;
-	case 'i' : 
-		switch ( pos ) {
-			case 'u' : case 'd' :
-				Nx = (int) x[3]+1;
-				break; 
-			case 'r' : case 'l' :
-				Ny = (int) y[3]+1;
-				break;
+		else if (pos == 2 || pos == 3)
+		{
+			Ny = (int) y[2]+1;
 		}
-		break;
-	default: 
+	}
+	else if (xy_type == 2)
+	{
+		if (pos == 0 || pos == 1)
+		{
+			Nx = (int) x[3]+1;
+		}
+		else if (pos == 2 || pos == 3)
+		{
+			Ny = (int) y[3]+1;
+		}
+	}
+	else
+	{
 		Scierror(999, _("%s: Wrong type argument %s.\n"),"Sci_Axis","xy_type");
 		FREE(x); x = NULL;
 		FREE(y); y = NULL;
-		FREE(nx); nx = NULL;
-		FREE(ny); ny = NULL;
 		return -1;
 	}
 
-	switch (pos) 
+	if (pos == 0 || pos == 1)
 	{
-	case 'u' : 
-	case 'd' :
 		/** Horizontal axes **/
 		/** compute a format **/
-		switch (xy_type )
+		if (xy_type == 0)
 		{
-		case 'v' :
 			ChoixFormatE1(c_format,x,Nx);
-			break;
-		case 'r' :
-			ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);
-			break;
-		case 'i' : 
-			ChoixFormatE (c_format,
-										(x[0] * exp10(x[2])),
-										(x[1] * exp10(x[2])),
-										((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]);
-			break; /* Adding F.Leray 06.05.04 */
 		}
-		break;
+		else if (xy_type == 1)
+		{
+			ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);
+		}
+		else if (xy_type == 2)
+		{
+			ChoixFormatE (c_format,
+				(x[0] * exp10(x[2])),
+				(x[1] * exp10(x[2])),
+				((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]);
+			/* Adding F.Leray 06.05.04 */
+		}
 		/** the horizontal segment **/
-	case 'r' : 
-	case 'l' :
-
+	}
+	else if (pos == 2 || pos == 3)
+	{
 		/** Vertical axes **/
-		switch (xy_type ) {
-			case 'v' :
-				ChoixFormatE1(c_format,y,Ny);
-				break;
-			case 'r' : 
-				ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);
-				break;
-			case 'i' : 
-				ChoixFormatE (c_format,
-											(y[0] * exp10(y[2])),
-											(y[1] * exp10(y[2])),
-											((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]);
-				break; /* Adding F.Leray 06.05.04 */
+		if (xy_type == 0)
+		{
+			ChoixFormatE1(c_format,y,Ny);
+		}
+		else if (xy_type == 1)
+		{
+			ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);
+		}
+		else if (xy_type == 2)
+		{
+			ChoixFormatE (c_format,
+				(y[0] * exp10(y[2])),
+				(y[1] * exp10(y[2])),
+				((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]);
+				/* Adding F.Leray 06.05.04 */
 		}
 		/** the vertical segment **/
-		break;
 	}
 
 	/* c_format should be filled now */
 
 	FREE(x); x = NULL;
 	FREE(y); y = NULL;
-	FREE(nx); nx = NULL;
-	FREE(ny); ny = NULL;
 
 	return 0;
-
 }
 /*--------------------------------------------------------------------------*/
+/*
+ * This function has been updated for the MVC (property get calls).
+ * Its code ought to be put within the Java part of the Model.
+ */
 int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim )
 {
   int i;
-  sciAxes * ppaxes = pAXES_FEATURE (pobj);
-  double * val = NULL; /* reprensents ppaxes->x or ppaxes->y */
+  double * val = NULL; /* represents the x or y ticks coordinates */
   int nval;
 
   int n;
+  int nx = 0;
+  int* piNx = &nx;
+  int ny = 0;
+  int* piNy = &ny;
+
+  getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
+  getGraphicObjectProperty(pobj->UID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
 
   /* draw an horizontal axis : YES (horizontal axis) or NO (vertical axis) */
-  BOOL ishoriz = (ppaxes->nx > ppaxes->ny)? TRUE : FALSE; 
+  BOOL ishoriz = (nx > ny)? TRUE : FALSE;
 
-  if(ishoriz == TRUE){
-    val  = ppaxes->vx;
-    nval = ppaxes->nx; 
+  if(ishoriz == TRUE)
+  {
+    getGraphicObjectProperty(pobj->UID, __GO_X_TICKS_COORDS__, jni_double_vector, &val);
+    nval = nx;
   }
-  else{
-    val  = ppaxes->vy;
-    nval = ppaxes->ny;
+  else
+  {
+    getGraphicObjectProperty(pobj->UID, __GO_Y_TICKS_COORDS__, jni_double_vector, &val);
+    nval = ny;
   }
 
   if(xy_type == 'v')
   {
     *N = n = nval;
 
-    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
-			Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
+    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL)
+    {
+      Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1295,19 +1332,22 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 
     *N = n = (int)val[2]+1; /* intervals number is given by  ppaxes->x or ppaxes->y */
 
-    if(checkdim){
+    if(checkdim)
+    {
       if(nval != 3)
         sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"),"tics_coord","xy_type","r","tics_coord",3);
 
-      if(nval < 3){
+      if(nval < 3)
+      {
         Scierror(999, _("%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"),"tics_coord","xy_type","r","tics_coord",3);
         *vector = (double *) NULL;
         return -1;
       }
     }
 
-    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
-			Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
+    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL)
+    {
+      Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1364,54 +1404,82 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
 {
   StringMatrix * ticsLabels = NULL   ;
   int            nbTics     = 0      ;
-	char           tempFormat[5]       ;
+  char           tempFormat[5]       ;
   char         * c_format   = NULL   ;
   double       * vector     = NULL   ; /* position of labels */
   char           curLabelBuffer[257] ;
   int            i                   ;
 
-  if ( pAXES_FEATURE(pobj)->format == NULL )
+  int tmp = 0;
+  int* piTmp = &tmp;
+  char ticksStyle;
+
+  getGraphicObjectProperty(pobj->UID, __GO_FORMATN__, jni_string, &c_format);
+
+  /*
+   * If different from the empty string, the format is already specified,
+   * if equal, it needs to be computed.
+   */
+  if (strcmp(c_format, "") == 0)
   {
-    /* we need to compute c_format */
-    ComputeC_format( pobj, tempFormat ) ;
-		c_format = tempFormat;
+      ComputeC_format( pobj, tempFormat );
+      c_format = tempFormat;
   }
-  else
+
+  getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int, &piTmp);
+
+  if (tmp == 0)
   {
-		/* the format is already specified */
-		c_format = pAXES_FEATURE(pobj)->format;
+    ticksStyle = 'v';
+  }
+  else if (tmp == 1)
+  {
+    ticksStyle = 'r';
+  }
+  else if (tmp == 2)
+  {
+    ticksStyle = 'i';
   }
 
   /* vector is allocated here */
-  if( ComputeXIntervals( pobj, pAXES_FEATURE (pobj)->tics, &vector, &nbTics, 1 ) != 0 )
+  if ( ComputeXIntervals( pobj, ticksStyle, &vector, &nbTics, 1 ) != 0 )
   {
-    Scierror(999,_("Bad size in %s: you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
-    return 0;
+      Scierror(999,_("Bad size in %s: you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
+      return 0;
   }
 
   /* create a vector of strings */
-  ticsLabels = newMatrix( 1, nbTics ) ;
+  ticsLabels = newMatrix( 1, nbTics );
 
   if ( curLabelBuffer == NULL )
   {
-	  Scierror(999, _("%s: No more memory.\n"),"computeDefaultTicsLabels");
-	  return NULL ;
+      Scierror(999, _("%s: No more memory.\n"),"computeDefaultTicsLabels");
+      return NULL ;
   }
 
   for( i = 0 ; i < nbTics ; i++ )
   {
-    sprintf(curLabelBuffer, c_format, vector[i]) ; /* we can't know for sure the size of the label */
-                                                 /* That's why it is first stored in a big array */
-    copyStrMatElement(ticsLabels, 0, i, curLabelBuffer) ;
+      sprintf(curLabelBuffer, c_format, vector[i]) ; /* we can't know for sure the size of the label */
+                                                   /* That's why it is first stored in a big array */
+      copyStrMatElement(ticsLabels, 0, i, curLabelBuffer);
   }
-  FREE(vector) ;
+
+  FREE(vector);
   vector = NULL;
 
   /* I recompute the nb_tics_labels */
   /* Why ??? jb Silvy */
+  /*
+   * This was required as the number of labels
+   * was -1, before this function's execution.
+   * It is now set within the MVC, when setting
+   * the labels.
+   */
+#if 0
   pAXES_FEATURE (pobj)->nb_tics_labels = nbTics;
+#endif
 
-  return ticsLabels ;
+  return ticsLabels;
 
 }
 /*--------------------------------------------------------------------------*/

@@ -483,6 +483,13 @@ sciInitGraphicContext (sciPointObj * pobj)
     getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
     cloneGraphicContext(parent, pobj->UID);
   }
+  else if (strcmp(type, __GO_AXIS__) == 0)
+  {
+    char* parent;
+
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+    cloneGraphicContext(parent, pobj->UID);
+  }
   else if (strcmp(type, __GO_LEGEND__) == 0)
   {
     char* parent;
@@ -701,6 +708,13 @@ sciInitFontContext (sciPointObj * pobj)
     cloneFontContext(parent, pobj->UID);
   }
   else if (strcmp(type, __GO_TEXT__) == 0)
+  {
+    char* parent;
+
+    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parent);
+    cloneFontContext(parent, pobj->UID);
+  }
+  else if (strcmp(type, __GO_AXIS__) == 0)
   {
     char* parent;
 
