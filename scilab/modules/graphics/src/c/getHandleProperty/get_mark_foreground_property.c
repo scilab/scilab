@@ -34,7 +34,7 @@
 int get_mark_foreground_property( sciPointObj * pobj )
 {
     int iMarkForeground = 0;
-    int* piMarkForeground = &piMarkForeground;
+    int* piMarkForeground = &iMarkForeground;
 
     getGraphicObjectProperty(pobj->UID, __GO_MARK_FOREGROUND__, jni_int, &piMarkForeground);
 
