@@ -23,6 +23,7 @@
 
 #include "machine.h"
 #include "scicos_block4.h"
+#include "import.h"
 
 /* maximum value for sum of number of inputs and outputs ports of a given 
 block of type 2 */
@@ -89,7 +90,25 @@ typedef  struct  {
 /**
 *
 */
-int C2F(scicos)();
+int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
+                void **work,int *zptr,int *modptr_in,
+                void **oz,int *ozsz,int *oztyp,int *ozptr,
+                int *iz,int *izptr,double *t0_in,
+                double *tf_in,double *tevts_in,int *evtspt_in,
+                int *nevts,int *pointi_in,void **outtbptr_in,
+                int *outtbsz_in,int *outtbtyp_in,
+                outtb_el *outtb_elem_in,int *nelem1,int *nlnk1,
+                int *funptr,int *funtyp_in,int *inpptr_in,
+                int *outptr_in, int *inplnk_in,int *outlnk_in,
+                double *rpar,int *rpptr,int *ipar,int *ipptr,
+                void **opar,int *oparsz,int *opartyp,int *opptr,
+                int *clkptr_in,int *ordptr_in,int *nordptr1,
+                int *ordclk_in,int *cord_in,int *ncord1,
+                int *iord_in,int *niord1,int *oord_in,
+                int *noord1,int *zord_in,int *nzord1,
+                int *critev_in,int *nblk1,int *ztyp,
+                int *zcptr_in,int *subscr,int *nsubs,
+                double *simpar,int *flag__,int *ierr_out);
 
 /**
 *
