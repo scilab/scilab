@@ -549,8 +549,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 				return false;
 			}
 		};
-		mxGraphModel.filterCells(new Object[] { from.getDefaultParent() },
-				filter);
+		mxGraphModel.filterDescendants(from.getModel(), filter);
 		
 		/*
 		 * Use a predictable block and links order when debug is enable
