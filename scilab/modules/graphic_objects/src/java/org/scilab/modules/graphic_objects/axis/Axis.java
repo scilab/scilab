@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -96,8 +96,8 @@ public class Axis extends ClippableContouredObject {
 		ticksColor = 0;
 		ticksSegment = false;
 		ticksLabels = new ArrayList<String>(DEFAULT_NUMBER_OF_TICKS);
-		formatn = null;
-		font = null;
+		formatn = new String("");
+		font = new Font();
 	}
 
     @Override
@@ -488,9 +488,15 @@ public class Axis extends ClippableContouredObject {
 	}
 
 	/**
+	 * Sets the x ticks coordinates
+	 * Resizes the array if required
 	 * @param ticksCoords the xTicksCoords to set
 	 */
 	public void setXTicksCoords(Double[] ticksCoords) {
+		if (ticksCoords.length != xTicksCoords.length) {
+			xTicksCoords = new double[ticksCoords.length];
+		}
+
 		for (int i = 0; i < xTicksCoords.length; i++) {
 			xTicksCoords[i] = ticksCoords[i];
 		}
@@ -510,9 +516,15 @@ public class Axis extends ClippableContouredObject {
 	}
 
 	/**
+	 * Sets the y ticks coordinates
+	 * Resizes the array if required
 	 * @param ticksCoords the yTicksCoords to set
 	 */
 	public void setYTicksCoords(Double[] ticksCoords) {
+		if (ticksCoords.length != yTicksCoords.length) {
+			yTicksCoords = new double[ticksCoords.length];
+		}
+
 		for (int i = 0; i < yTicksCoords.length; i++) {
 			yTicksCoords[i] = ticksCoords[i];
 		}
