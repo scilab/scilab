@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright 2011 - Bernard DUJARDIN
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,17 +41,25 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Datatype,rule,bit,scal,exprs]=scicos_getvalue(...
-        ['            Set EXTRACTBITS block parameters';'';'-Datatype : set the integer type';..
-         '&nbsp;&nbsp;3=int32, 4=int16, 5=int8, ...';..
-         '-Bits to extract :';'&nbsp;&nbsp;1=Upper Half';'&nbsp;&nbsp;2=Lower Half';..
-         '&nbsp;&nbsp;3=Range from MSB';'&nbsp;&nbsp;4=Range to LSB';'&nbsp;&nbsp;5=Range of bits';..
-         '-Number of bits or index of bit :';'&nbsp;&nbsp;case range of bits:[start,end],0 is LSB';..
-         '-Treat bit field as an integer (0=no 1=yes)';''],..
+    [ok,Datatype,rule,bit,scal,exprs]=scicos_getvalue( ..
+        ['            Set EXTRACTBITS block parameters'; ..
+        ' '; ..
+        '&nbsp;-Datatype : set the integer type';..
+        '&nbsp;&nbsp;&nbsp;&nbsp;3=int32, 4=int16, 5=int8, ...'; ..
+        '&nbsp;- Bits to extract :'; ..
+        '&nbsp;&nbsp;&nbsp;&nbsp;1=Upper Half';  ..
+        '&nbsp;&nbsp;&nbsp;&nbsp;2=Lower Half';..
+        '&nbsp;&nbsp;&nbsp;&nbsp;3=Range from MSB'; ..
+        '&nbsp;&nbsp;&nbsp;&nbsp;4=Range to LSB'; ..
+        '&nbsp;&nbsp;&nbsp;&nbsp;5=Range of bits';..
+        '&nbsp;- Number of bits or index of bit :'; ..
+        '&nbsp;&nbsp;&nbsp;&nbsp;Index O is LSB';..
+        '&nbsp;&nbsp;&nbsp;&nbsp;Case range of bits:[start,end], 0 is LSB';..
+        ' '],..
     ['Datatype';..
      'Bits to extract';..
      'Number of bits or index of bit';..
-     'Treat bit field as an integer'],..
+     'Treat bit field as an integer (0=no 1=yes)'],..
     list('vec',1,'vec',1,'vec',-1,'vec',1),exprs)
     if ~ok then break,end
     if (rule<1)|(rule>5) then message('Incorrect index '+string(rule)+' ; must be 1 to 5.');ok=%f;end
