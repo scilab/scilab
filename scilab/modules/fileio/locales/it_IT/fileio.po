@@ -501,10 +501,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"%s: L'argomento in ingresso #%d ha un valore sbagliato ('%ls'): era atteso un "
 "nomefile valido o una directory.\n"
 
 #, c-format

@@ -489,10 +489,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un nom de fichier ou un "
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d ('%ls'): Un nom de fichier ou un "
 "répertoire valide attendu.\n"
 
 #, c-format

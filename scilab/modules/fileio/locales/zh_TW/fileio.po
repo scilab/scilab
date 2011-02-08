@@ -548,9 +548,9 @@ msgstr "%s: 第#%d個參數值有誤: 有效的檔案描述子才對.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
-msgstr "%s: 第#%d個參數值有誤:有效的檔名或目錄才對.\n"
+msgstr "%s: 第#%d個參數值有誤 ('%ls'):有效的檔名或目錄才對.\n"
 
 #
 # File: src/c/mget.c, line: 181

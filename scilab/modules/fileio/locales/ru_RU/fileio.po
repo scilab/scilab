@@ -435,10 +435,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось допустимое имя файла "
+"%s: Неверное значение входного параметра №%d ('%ls'): ожидалось допустимое имя файла "
 "или каталога.\n"
 
 #, c-format

@@ -396,9 +396,9 @@ msgstr "%s：输入参数#%d的值错误：应该为一个正确的文件描述�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为一个正确的文件名或目录。\n"
+msgstr "%s：输入参数#%d的值错误 ('%ls')：应该为一个正确的文件名或目录。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"

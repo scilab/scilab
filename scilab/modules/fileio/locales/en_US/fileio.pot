@@ -688,7 +688,7 @@ msgstr ""
 # File: sci_gateway/c/sci_movefile.c, line: 231
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
 msgstr ""
 #

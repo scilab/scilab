@@ -477,10 +477,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати коректну "
+"%s: помилкове значення вхідного параметра №%d ('%ls'): слід використовувати коректну "
 "назву файла або каталогу.\n"
 
 #, c-format

@@ -683,9 +683,9 @@ msgstr "%s: 入力引数 #%d で不正な値: 適切なファイル記述子を�
 # File: macros/copyfile.sci, line: 36
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 適切なファイル名、または、ディレクトリ を想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値 ('%ls'): 適切なファイル名、または、ディレクトリ を想定します。\n"
 
 #
 # File: src/c/mget.c, line: 193
