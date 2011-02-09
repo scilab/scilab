@@ -32,7 +32,7 @@ HISTORY_BROWSER_IMPEXP void CommandHistoryDeleteLine(int lineNumber);
 
 #ifdef __cplusplus
 }; 
-#endif /
+#endif
 
 #endif /* __COMMANDHISTORY_WRAP_H__ */
 
