@@ -318,23 +318,23 @@ Optimization:
   * Provide documentation for the stopping rule.
 
 * bug 7193 fixed - The karmarkar help page did not document the
-                   parameters eps, gamma, and crit.
+                   eps, gamma, and crit arguments.
 
 * bug 8719 fixed - The karmarkar function printed unwanted messages.
 
-* bug 8720 fixed - The karmarkar function stoped too early in the iterations.
+* bug 8720 fixed - The karmarkar function stopped too early in the iterations.
 
 * bug 8726 fixed - The karmarkar function produced a division-by-zero error.
 
-* bug 8727 fixed - The karmarkar function requires the initial guess x0.
+* bug 8727 fixed - The karmarkar function required the initial guess x0.
 
 * bug 8775 fixed - The karmarkar function did not detect unbounded problems.
 
 Bug fixes:
 ==========
 
-* bug 4930 fixed - When the console was resized from 0-height to x-height, lines()
-                   was not correctly updated.
+* bug 4930 fixed - When the console was resized from 0-height to x-height,
+                   lines() was not correctly updated.
 
 * bug 5551 fixed - With the function dir(), add a trailing filesep() for each
                    directory.
@@ -345,6 +345,9 @@ Bug fixes:
 
 * bug 7691 fixed - Giving complex arguments to inverse degree trigonometric
                    functions produced inconsistent results.
+
+* bug 8435 fixed - squarewave(t) failed for t<0. Thanks to Samuel Gougeon for
+                   the fix.
 
 * bug 8478 fixed - A searched path was missing for docbook xsl under Gentoo.
 
@@ -1293,11 +1296,12 @@ Thanks to Samuel Gougeon.
 
 * bug 6910 fixed - The font size in LaTeX labels was too big.
 
-* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was problematic when
-                   fontUnits was 'normalized'.
+* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was 
+                   problematic when fontUnits was 'normalized'.
 
-* bug 7857 fixed - If an event_handler was previously assigned to a graphic window
-                   the datatips toogle tool icon had to be clicked twice to make it active.
+* bug 7857 fixed - If an event_handler was previously assigned to a graphic
+                   window the datatips toogle tool icon had to be clicked twice
+                   to make it active.
 
 
 Xcos:
