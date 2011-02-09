@@ -257,21 +257,61 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 
 
 /**ConstructSubWin
- * This function creates the Subwindow (the Axe) and the elementaries structures
+ * This function creates the Subwindow (the Axes) and the elementary structures.
+ * It has been adapted to the MVC: all the initialization operations are now performed
+ * within the Model. The update of color properties (foreground, background, etc.)
+ * according to the assigned parent Figure's colormap is not implemented yet.
+ * To be implemented.
  */
 sciPointObj *
 ConstructSubWin(sciPointObj * pparentfigure)
 {
+    /*
+     * These variables were used by the now commented out
+     * initialization code.
+     * To be deleted
+     */
+#if 0
+    char logFlags[3];
+    int i;
+    char dir;
+    BOOL autoTicks[3];
+    sciSubWindow * ppsubwin = NULL;
+    sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
+#endif
 
-	char logFlags[3];
-	int i;
-	char dir;
-	BOOL autoTicks[3];
-	sciPointObj *pobj = (sciPointObj *) NULL;
-	sciSubWindow * ppsubwin = NULL;
-	sciPointObj * paxesmdl = getAxesModel() ;
-	sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
+    char* parentType;
 
+    sciPointObj *pClone = (sciPointObj *) NULL;
+    sciPointObj * paxesmdl = getAxesModel();
+
+    getGraphicObjectProperty(pparentfigure->UID, __GO_TYPE__, jni_string, &parentType);
+
+    if (strcmp(parentType, __GO_FIGURE__) != 0)
+    {
+        Scierror(999, _("The parent has to be a FIGURE\n"));
+        return (sciPointObj*) NULL;
+    }
+
+    pClone = sciCloneObj(paxesmdl);
+
+    if ( sciAddNewHandle(pClone) == -1 )
+    {
+        deleteGraphicObject(pClone->UID);
+        FREE(pClone);
+        return (sciPointObj*) NULL;
+    }
+
+    setGraphicObjectRelationship(pparentfigure->UID, pClone->UID);
+
+    return pClone;
+
+   /*
+    * The following operations are now performed within the Model
+    * when cloning the Axes from the Axes model.
+    * To be deleted
+    */
+#if 0
 	if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
 	{
 
@@ -591,6 +631,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
 		Scierror(999, _("The parent has to be a FIGURE\n"));
 		return NULL;
 	}
+#endif
 }
 
 
