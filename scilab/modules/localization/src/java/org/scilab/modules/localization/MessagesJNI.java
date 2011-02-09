@@ -9,6 +9,7 @@
 package org.scilab.modules.localization;
 
 
+
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
  /** 
@@ -26,7 +27,9 @@ public class MessagesJNI {
 
   static {
     try {
+        if (System.getProperty("os.name").toLowerCase().contains("windows") != true) {
         System.loadLibrary("scilab");
+        }
         System.loadLibrary("scilocalization");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
