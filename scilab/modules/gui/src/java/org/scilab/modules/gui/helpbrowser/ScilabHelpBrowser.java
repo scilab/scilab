@@ -124,6 +124,22 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
     }
 
     /**
+     * Display the home page
+     */
+    public void showSearchField() {
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        browser.showSearchField();
+    }
+
+    /**
+     * Display the home page
+     */
+    public void hideSearchField() {
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        browser.hideSearchField();
+    }
+
+    /**
      * Get the Scilab Help Browser
      * @return the console
      */

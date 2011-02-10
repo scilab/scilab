@@ -11,6 +11,8 @@
  */
 
 package org.scilab.modules.gui.bridge.helpbrowser;
+
+import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -19,6 +21,9 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Locale;
+
+import javax.swing.JPanel;
+
 import javax.help.BadIDException;
 import javax.help.DefaultHelpHistoryModel;
 import javax.help.DefaultHelpModel;
@@ -29,6 +34,8 @@ import javax.help.JHelpIndexNavigator;
 import javax.help.JHelpSearchNavigator;
 import javax.help.JHelpTOCNavigator;
 import javax.help.SwingHelpUtilities;
+import javax.help.event.HelpModelEvent;
+import javax.help.event.HelpModelListener;
 import javax.help.plaf.basic.BasicSearchNavigatorUI;
 import javax.help.search.SearchQuery;
 
@@ -36,13 +43,14 @@ import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.SimpleHelpBrowser;
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
+import org.scilab.modules.gui.utils.HelpSearchField;
 import org.scilab.modules.localization.Messages;
 
 /**
  * Scilab Help Browser in GUIs
  * @author Vincent COUVERT
  */
-public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
+public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser, HelpModelListener {
 
     private static final long serialVersionUID = 5306766011092074961L;
 
@@ -50,8 +58,10 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
     private String mainJarPath = System.getenv("SCI") + "/modules/helptools/jar/scilab_";
     private String defaultLanguage = "en_US";
     private String currentLanguage = "";
+    private JHelp jhelp;
     private HelpSet helpSet;
     private URL homePageURL;
+    private HelpSearchField searchField;
 
     /* We are storing the HelpHistory model to be able to
      * use the back/forward feature from the jpopupmenu
@@ -77,7 +87,10 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
      * @param language Scilab current language
      */
     public SwingScilabHelpBrowser(String[] helps, String language) {
-        super();
+        super(new BorderLayout());
+        jhelp = new JHelp();
+        add(jhelp);
+        searchField = new HelpSearchField(this, null);
 
         /* Send information to the user using status bar and cursor */
         if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
@@ -164,7 +177,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
                 }
             }
         }
-        this.setModel(new DefaultHelpModel(new HelpSet()));
+        jhelp.setModel(new DefaultHelpModel(new HelpSet()));
 
         for (int i = 0; i < nbFilesToLoad; ++i) {
             URI jarURI = jarFiles[i].toURI();
@@ -195,15 +208,15 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
                 }
                 return;
             }
-            this.getModel().getHelpSet().add(helpSet);
+            jhelp.getModel().getHelpSet().add(helpSet);
         }
 
         /** Disable Index navigator because no index in Scilab help files */
-        Enumeration navigators = getHelpNavigators();
+        Enumeration navigators = jhelp.getHelpNavigators();
         while (navigators.hasMoreElements()) {
             Object nav = navigators.nextElement();
             if (nav instanceof JHelpIndexNavigator) {
-                removeHelpNavigator((JHelpIndexNavigator) nav);
+                jhelp.removeHelpNavigator((JHelpIndexNavigator) nav);
                 break;
             }
         }
@@ -213,11 +226,36 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
             ScilabConsole.getConsole().getInfoBar().setText("");
             ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
-        helpHistory = new DefaultHelpHistoryModel(this);
+        helpHistory = new DefaultHelpHistoryModel(jhelp);
 
         try {
-            homePageURL = new URL(this.getModel().getHelpSet().getHelpSetURL().toString().replace("jhelpset.hs", "ScilabHomePage.html"));
+            homePageURL = new URL(jhelp.getModel().getHelpSet().getHelpSetURL().toString().replace("jhelpset.hs", "ScilabHomePage.html"));
         } catch (MalformedURLException ex) { }
+
+        setVisible(true);
+        jhelp.getContentViewer().addHelpModelListener(this);
+    }
+
+    /**
+     * Show the search field
+     */
+    public void showSearchField() {
+        searchField.setTextComponent(((SwingScilabHelpBrowserViewer) jhelp.getContentViewer().getUI()).getAccessibleHTML());
+        searchField.showField();
+    }
+
+    /**
+     * Hide the search field
+     */
+    public void hideSearchField() {
+        searchField.hideField();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void idChanged(HelpModelEvent e) {
+        searchField.setTextComponent(((SwingScilabHelpBrowserViewer) jhelp.getContentViewer().getUI()).getAccessibleHTML());
     }
 
     /**
@@ -225,7 +263,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
      */
     public void displayHomePage() {
         if (homePageURL != null) {
-            setCurrentURL(homePageURL);
+            jhelp.setCurrentURL(homePageURL);
         }
     }
 
@@ -239,16 +277,16 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
      * @param keyword the keyword
      */
     public void searchKeywork(String keyword) {
-        Enumeration navigators = getHelpNavigators();
+        Enumeration navigators = jhelp.getHelpNavigators();
         if (navigators.hasMoreElements()) {
-            setCurrentNavigator((JHelpTOCNavigator) navigators.nextElement());
+            jhelp.setCurrentNavigator((JHelpTOCNavigator) navigators.nextElement());
         } else {
             System.out.println("Scilab help files not loaded. Please check if "
                                + mainJarPath + "*" + jarExtension + " files exist and are Java Help files.");
             return;
         }
         try {
-            setCurrentID(keyword);
+            jhelp.setCurrentID(keyword);
         } catch (BadIDException e) {
             fullTextSearch(keyword);
         }
@@ -259,12 +297,12 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
      * @param keyword the keyword to search
      */
     public void fullTextSearch(String keyword) {
-        Enumeration navigators = getHelpNavigators();
+        Enumeration navigators = jhelp.getHelpNavigators();
         while (navigators.hasMoreElements()) {
             Object nav = navigators.nextElement();
             if (nav instanceof JHelpSearchNavigator) {
                 JHelpSearchNavigator searchNav = (JHelpSearchNavigator) nav;
-                setCurrentNavigator(searchNav);
+                jhelp.setCurrentNavigator(searchNav);
                 SearchQuery query = searchNav.getSearchEngine().createQuery();
                 query.addSearchListener((BasicSearchNavigatorUI) searchNav.getUI());
                 query.start(keyword, new Locale(currentLanguage));

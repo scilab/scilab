@@ -2128,6 +2128,13 @@ public class CallScilabBridge {
         ScilabHelpBrowser.getHelpBrowser().close();
     }
 
+    /**
+     * Show search field in Scilab Help Browser
+     */
+    public static void showSearchFieldInHelp() {
+        ScilabHelpBrowser.getHelpBrowser().showSearchField();
+    }
+
     /************/
     /*          */
     /* WEBLINKS */

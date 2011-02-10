@@ -69,6 +69,9 @@ Demonstration:
 Documentation:
 ==============
 
+* In the help browser, add an incremental search bar to search for text in the
+right area.
+
 * In the help, allow the creation of links between modules with the following
 syntax: 
 <link type="scilab" linkend="mytoolbox/exec/macros/fooexec.sce">macros/fooexec.sce</link>
@@ -89,6 +92,8 @@ trigger a warning and do not add a link on the function name.
 
 * In the documentation, Java, C, C++ and XML codes are now colorized if the role
   in programlisting is set (role='java', role='c', role='cpp' or role='xml')
+
+* bug 3716 fixed - No way to search a word in the right area.
 
 * bug 7069 fixed - Old documentation about the documentation build process
                    removed.

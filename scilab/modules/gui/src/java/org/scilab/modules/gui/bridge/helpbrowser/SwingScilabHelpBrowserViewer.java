@@ -32,6 +32,7 @@ import javax.help.JHelpContentViewer;
 import javax.help.HelpSet;
 import javax.help.plaf.basic.BasicContentViewerUI;
 import javax.swing.JComponent;
+import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
@@ -73,7 +74,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
      * Therefor, I am changing the permission here to make it available
      * to the methods of this object
      */
-    private javax.swing.JEditorPane accessibleHtml;
+    private JEditorPane accessibleHtml;
 
     private JHelpContentViewer x;
     private List<HelpSet> helpSets;
@@ -85,6 +86,13 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
 
     public static javax.swing.plaf.ComponentUI createUI(JComponent x) {
         return new SwingScilabHelpBrowserViewer((JHelpContentViewer) x);
+    }
+
+    /**
+     * @return the JEditorPane used in the HTML view
+     */
+    public JEditorPane getAccessibleHTML() {
+        return accessibleHtml;
     }
 
     /**
