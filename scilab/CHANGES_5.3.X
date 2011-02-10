@@ -69,6 +69,9 @@ Demonstration:
 Documentation:
 ==============
 
+* In the help browser, add the possibility to increase or to decrease the font
+size.
+
 * In the help browser, add an incremental search bar to search for text in the
 right area.
 
@@ -94,6 +97,8 @@ trigger a warning and do not add a link on the function name.
   in programlisting is set (role='java', role='c', role='cpp' or role='xml')
 
 * bug 3716 fixed - No way to search a word in the right area.
+
+* bug 5796 fixed - No way to increase/decrease font size.
 
 * bug 7069 fixed - Old documentation about the documentation build process
                    removed.

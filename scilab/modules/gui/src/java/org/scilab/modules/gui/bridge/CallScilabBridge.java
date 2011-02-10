@@ -2136,6 +2136,20 @@ public class CallScilabBridge {
         ScilabHelpBrowser.getHelpBrowser().showSearchField();
     }
 
+    /**
+     * Increase the font in the help viewer
+     */
+    public static void increaseFontInHelpViewer() {
+        ScilabHelpBrowser.getHelpBrowser().increaseFont();
+    }
+
+    /**
+     * Decrease the font in the help viewer
+     */
+    public static void decreaseFontInHelpViewer() {
+        ScilabHelpBrowser.getHelpBrowser().decreaseFont();
+    }
+
     /************/
     /*          */
     /* WEBLINKS */

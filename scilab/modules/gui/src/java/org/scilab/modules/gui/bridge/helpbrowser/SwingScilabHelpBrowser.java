@@ -252,6 +252,20 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
     }
 
     /**
+     * Increase the font of the help viewer
+     */
+    public void increaseFont() {
+        ((SwingScilabHelpBrowserViewer) jhelp.getContentViewer().getUI()).increaseFont();
+    }
+
+    /**
+     * Decrease the font of the help viewer
+     */
+    public void decreaseFont() {
+        ((SwingScilabHelpBrowserViewer) jhelp.getContentViewer().getUI()).decreaseFont();
+    }
+
+    /**
      * {@inheritDoc}
      */
     public void idChanged(HelpModelEvent e) {

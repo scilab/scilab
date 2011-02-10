@@ -52,4 +52,14 @@ public interface HelpBrowser extends Dockable {
      * Show the search field in Help Browser
      */
     void showSearchField();
+
+    /**
+     * Increase the font in the viewer
+     */
+    void increaseFont();
+
+    /**
+     * Decrease the font in the viewer
+     */
+    void decreaseFont();
 }
