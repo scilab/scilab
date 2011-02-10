@@ -42,9 +42,10 @@ import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
+import javax.swing.text.Document;
 
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
@@ -2340,13 +2341,13 @@ public class CallScilabBridge {
     public static void printConsoleContents() {
 
         SciConsole scilabConsole = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-        StyledDocument doc = scilabConsole.getConfiguration().getOutputViewStyledDocument();
+        Document doc = ((JEditorPane) scilabConsole.getConfiguration().getOutputView()).getDocument();
         String textToPrint = null;
 
         /* Text selected in the input */
         String strInputSelected = ((JTextPane) scilabConsole.getConfiguration().getInputCommandView()).getSelectedText();
         /* Text selected in the output */
-        String strOutputSelected = ((JTextPane) scilabConsole.getConfiguration().getOutputView()).getSelectedText();
+        String strOutputSelected = ((JEditorPane) scilabConsole.getConfiguration().getOutputView()).getSelectedText();
 
         try {
             textToPrint = doc.getText(0, doc.getLength());

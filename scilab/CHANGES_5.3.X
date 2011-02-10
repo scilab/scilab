@@ -388,6 +388,9 @@ Bug fixes:
 
 * bug 8897 fixed - Typo fixed.
 
+* bug 8954 fixed - Print the console led to an exception.
+
+
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
 
