@@ -106,6 +106,8 @@ trigger a warning and do not add a link on the function name.
 
 * bug 8915 fixed - ASCII art removed in histplot help page.
 
+* bug 8937 fixed - The tag <screenshot> was not handled.
+
 
 Scinotes:
 =========

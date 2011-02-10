@@ -1147,6 +1147,22 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Handle a screenshot
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleScreenshot(Map<String, String> attributes, String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "screenshot", contents);
+        } else {
+            return encloseContents("div", "screenshot", contents);
+        }
+    }
+
+    /**
      * Handle a mediaobject
      * @param attributes the tag attributes
      * @param contents the tag contents
