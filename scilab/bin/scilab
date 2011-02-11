@@ -180,7 +180,7 @@ detect_scilab_path() {
         PATH="$curdir:$PATH"
         cd "$curdir/../"
         SCIBINARYBASE=$(pwd)
-        SCI=$SCIBINARYBASE/share/scilab/
+        SCI=$SCIBINARYBASE/share/scilab
         export SCI
         return
     fi
