@@ -22,6 +22,7 @@ import java.lang.reflect.Method;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -50,6 +51,7 @@ public final class ScilabSpecialTextUtilities {
 
     private static boolean loadedLaTeX;
     private static boolean loadedMathML;
+    private static Thread loadJLM;
 
     /**
      * @param component where to set a LaTeX icon
@@ -100,11 +102,23 @@ public final class ScilabSpecialTextUtilities {
      */
     public static Icon compilePartialLaTeXExpression(String exp, int fontSize) {
         if (!loadedLaTeX) {
-            LoadClassPath.loadOnUse("graphics_latex_textrendering");
-            loadedLaTeX = true;
+            if (loadJLM == null) {
+                loadJLM = new Thread(new Runnable() {
+/* Create a thread in the background to avoid a lag in the loading of jar */
+                        public void run() {
+                            LoadClassPath.loadOnUse("graphics_latex_textrendering");
+                            LaTeXCompiler.compilePartial("", 0);
+                            loadedLaTeX = true;
+                            loadJLM = null;
+                        }
+                    });
+                loadJLM.setPriority(Thread.MIN_PRIORITY);
+                loadJLM.start();
+            }
+            return null;
+        } else {
+            return LaTeXCompiler.compilePartial(exp, fontSize);
         }
-
-        return LaTeXCompiler.compilePartial(exp, fontSize);
     }
 
     /**

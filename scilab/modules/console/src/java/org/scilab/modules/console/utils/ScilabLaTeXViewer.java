@@ -56,7 +56,6 @@ public final class ScilabLaTeXViewer extends JPanel {
      * {@inheritedDoc}
      */
     public void paint(Graphics g) {
-        //super.paint(g);
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, width + 2 * INSET, height + 2 * INSET);
         g.setColor(Color.LIGHT_GRAY);
@@ -107,7 +106,7 @@ public final class ScilabLaTeXViewer extends JPanel {
 
         viewer.icon = ScilabSpecialTextUtilities.compilePartialLaTeXExpression(latex, defaultSize);
         if (viewer.icon == null) {
-            viewer.icon = ScilabSpecialTextUtilities.compileLaTeXExpression("", 0);
+            return 0;
         }
 
         width = viewer.icon.getIconWidth();
