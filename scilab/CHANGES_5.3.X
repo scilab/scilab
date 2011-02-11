@@ -160,6 +160,9 @@ Xcos:
 
 * bug 7194 fixed - Block UUID could not be used on a block implementation.
 
+* bug 7363 fixed - Linking CBLOCKs implementation with an external library was
+                   impossible.
+
 * bug 7424 fixed - Integer parameters could be modified when loading a diagram.
 
 * bug 7639 fixed - Generating code for scilab function block was failing with

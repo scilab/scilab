@@ -427,7 +427,7 @@ public final class Xcos {
 		final Xcos instance = getInstance();
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs();");
+		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -452,7 +452,7 @@ public final class Xcos {
 		final File filename = new File(fileName);
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs();");
+		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
 		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
