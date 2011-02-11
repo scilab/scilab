@@ -16,8 +16,10 @@ Makefile
 #
 # Java compilation output dir
 #
-build
-jar
+modules/*/build
+modules/jar
+modules/*/jar
+modules/*/test-output
 
 #
 # Documentation generation output files
