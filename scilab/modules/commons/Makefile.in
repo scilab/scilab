@@ -65,10 +65,7 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_2 = test
-@GUI_TRUE@am__append_3 = libscicommons.la 
+@GUI_TRUE@am__append_2 = libscicommons.la 
 subdir = modules/commons
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -445,7 +442,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -513,7 +510,7 @@ libscicommons_disable_la_CFLAGS =
 COMMONS_DISABLE_C_SOURCES = 
 libscicommons_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libscicommons-disable.la $(am__append_3)
+pkglib_LTLIBRARIES = libscicommons-disable.la $(am__append_2)
 libscicommons_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(COMMONS_CPP_SOURCES)
 

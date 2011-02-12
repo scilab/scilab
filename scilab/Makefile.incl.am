@@ -113,11 +113,6 @@ clean-macros:
 		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
 
-if COMPILATION_TESTS
-# With --enable-compilation-tests, launch java unitary tests
-TARGETS_ALL+=test
-endif
-
 test:
 # More tests could be added here
 	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \

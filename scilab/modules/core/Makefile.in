@@ -71,9 +71,6 @@ host_triplet = @host@
 DIST_COMMON = $(libscicore_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_4 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_5 = test
 subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -892,7 +889,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_4) $(am__append_5)
+TARGETS_ALL = $(am__append_4)
 
 ################ MACROS ######################
 # Rule to build a macro

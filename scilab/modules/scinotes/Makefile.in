@@ -65,10 +65,7 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_2 = test
-@GUI_TRUE@am__append_3 = libsciscinotes.la 
+@GUI_TRUE@am__append_2 = libsciscinotes.la 
 subdir = modules/scinotes
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -456,7 +453,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -549,7 +546,7 @@ libsciscinotes_disable_la_CFLAGS = -Iincludes/ \
 SCINOTES_DISABLE_C_SOURCES = src/noscinotes/noscinotes.c
 libsciscinotes_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciscinotes_disable_la_SOURCES = $(SCINOTES_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libsciscinotes-disable.la $(am__append_3)
+pkglib_LTLIBRARIES = libsciscinotes-disable.la $(am__append_2)
 libsciscinotes_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libsciscinotes_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(SCINOTES_CPP_SOURCES)
 

@@ -65,10 +65,7 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_2 = test
-@GUI_TRUE@am__append_3 = libsciui_data.la 
+@GUI_TRUE@am__append_2 = libsciui_data.la 
 subdir = modules/ui_data
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -455,7 +452,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -544,7 +541,7 @@ libsciui_data_disable_la_CFLAGS = -Iincludes/ \
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
 libsciui_data_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libsciui_data-disable.la $(am__append_3)
+pkglib_LTLIBRARIES = libsciui_data-disable.la $(am__append_2)
 libsciui_data_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libsciui_data_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(UI_DATA_CPP_SOURCES)
 

@@ -75,13 +75,7 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@@PVM_TRUE@am__append_1 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@@PVM_TRUE@am__append_2 = test
-@NEED_JAVA_TRUE@@PVM_FALSE@am__append_3 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@@PVM_FALSE@am__append_4 = test
+@NEED_JAVA_TRUE@@PVM_FALSE@am__append_2 = java
 subdir = modules/pvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -583,15 +577,14 @@ top_srcdir = @top_srcdir@
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@PVM_FALSE@TARGETS_ALL = $(am__append_3) $(am__append_4)
+@PVM_FALSE@TARGETS_ALL = $(am__append_2)
 
 ########################### JAVA ######################################
 #### We are delegating java compilation to ant... Thanks to that
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-@PVM_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2) \
-@PVM_TRUE@	$(am__append_3) $(am__append_4)
+@PVM_TRUE@TARGETS_ALL = $(am__append_1) $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro

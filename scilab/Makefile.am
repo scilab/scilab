@@ -287,7 +287,7 @@ endif
 # For each module, build and call Java unitary tests
 # If fails, stops the call
 check-java:
-	@echo "-- Launch all testng (Java) unitary tests"; \
+	@echo "-- Launch all TestNG (Java) unitary tests"; \
 	MASK="$(top_srcdir)/modules/*/tests/java/"; \
 	MODULES=`ls -d $$MASK`; \
 	for M in $$MODULES; do \
