@@ -14,6 +14,8 @@ package org.scilab.modules.gui.bridge.helpbrowser;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -36,6 +38,7 @@ import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.text.BadLocationException;
@@ -72,7 +75,7 @@ import org.scilab.modules.localization.Messages;
  * @author Sylvestre LEDRU
  * @author Calixte DENIZET
  */
-public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
+public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implements MouseWheelListener {
 
     private static final String SCILAB_PROTO = "scilab://";
     private static final String SCI = ScilabConstants.SCI.getPath();
@@ -407,6 +410,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
                         SwingScilabHelpBrowserViewer.this.increaseFont();
                     }
                 });
+            SwingUtilities.getAncestorOfClass(JScrollPane.class, accessibleHtml).addMouseWheelListener(this);
         } catch (IllegalArgumentException e) {
             System.err.println("Illegal argument in the retrieval of the html component of Javahelp");
             e.printStackTrace();
@@ -550,6 +554,20 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
     }
 
     /**
+     * {@inheritedDoc}
+     */
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        if (e.isControlDown()) {
+            int n = e.getWheelRotation();
+            if (currentFontSize != Math.min(Math.max(0, currentFontSize + n), 6)) {
+                modifyFont(n);
+                ConfigManager.setHelpFontSize(currentFontSize);
+            }
+            e.consume();
+        }
+    }
+
+    /**
      * Modify the current base font size
      * @param s the size to add to the current size
      */
@@ -566,9 +584,8 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
      * Increase the font size +1
      */
     public void increaseFont() {
-        int ssize = currentFontSize;
-        modifyFont(1);
-        if (ssize != currentFontSize) {
+        if (currentFontSize != Math.min(Math.max(0, currentFontSize + 1), 6)) {
+            modifyFont(1);
             ConfigManager.setHelpFontSize(currentFontSize);
         }
     }
@@ -577,9 +594,8 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI {
      * Decrease the font size -1
      */
     public void decreaseFont() {
-        int ssize = currentFontSize;
-        modifyFont(-1);
-        if (ssize != currentFontSize) {
+        if (currentFontSize != Math.min(Math.max(0, currentFontSize - 1), 6)) {
+            modifyFont(-1);
             ConfigManager.setHelpFontSize(currentFontSize);
         }
     }
