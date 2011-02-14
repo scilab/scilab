@@ -533,7 +533,7 @@
 
 
 #ifdef DIR_SEPARATOR
-	   #undef DIR_SEPARATOR
+       #undef DIR_SEPARATOR
 #endif
 #define DIR_SEPARATOR "/"
 

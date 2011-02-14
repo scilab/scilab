@@ -300,6 +300,9 @@ Compilation:
 
 * Upgrade to autoconf 2.67
 
+* Bug 8961 fixed - Ubuntu 11.04 explicitly forces the as-needed option to the
+                   linker. Disable it.
+
 Dynamic link:
 =============
 
