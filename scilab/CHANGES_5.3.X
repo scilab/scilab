@@ -224,6 +224,9 @@ Xcos:
 
 * bug 8896 fixed - On windows, a multi-line context could not be edited twice.
 
+* bug 8952 fixed - "lincos" did not produce a valid error message when the
+                   diagram has no inputs nor outputs.
+
 
 Module skeleton:
 ================
