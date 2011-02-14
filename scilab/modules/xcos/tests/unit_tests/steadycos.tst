@@ -7,13 +7,13 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- NOT FIXED -->
+
 
 ilib_verbose(0);
 
-exec(fullfile(SCI,"modules","xcos","tests","unit_tests","PENDULUM_ANIM.sci"));
-exec(fullfile(SCI,"modules","xcos","tests","unit_tests","anim_pen.sci"));
-importXcosDiagram(fullfile(SCI,"modules","xcos","tests","unit_tests","pendulum_anim45.xcos"));
+exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
+exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
+importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.xcos");
 
 M  = 10;
 m  = 3;
