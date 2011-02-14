@@ -23,7 +23,7 @@
     <synopsis>[bytes, msgtag, tid, info] = pvm_bufinfo(bufid)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>bufid</term>

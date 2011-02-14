@@ -1,0 +1,18 @@
+<html>
+<body>
+
+This package provides a way to use and call Scilab engine from a Java 
+application or library.<br />
+<br />
+Example:<br />
+<code>
+Scilab sci = new Scilab();<br />
+sci.open();<br />
+sci.exec("b = matrix(1:100,10,10)");<br />
+ScilabType b = sci.get("b");<br />
+b.getHeight(); // 10 <br />
+b.getWidth(); // 10<br />
+ScilabDouble b2 = (ScilabDouble)sci.get("b");<br />
+b2.equals(b); // true<br />
+</body>
+</html>

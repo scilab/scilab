@@ -17,10 +17,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s：内存申请错误。\n"
-
-#, c-format
 msgid "%s : No more memory.\n"
 msgstr "%s：无更多内存。\n"
 
@@ -73,6 +69,10 @@ msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr "%s：已匹配的文本超出了缓存限制。\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
 
@@ -100,6 +100,10 @@ msgstr "%s：未知错误。\n"
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s：第一个输入参数值错误：应该为%d。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -202,6 +206,10 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个标量。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
@@ -212,10 +220,6 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Character expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
@@ -284,12 +288,16 @@ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为 %s 或 %s 。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为'%s'或'%s'。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为\"%s\"。\n"
+msgstr "%s：输入参数#%d的值错误：应该为''%s''。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -327,11 +335,6 @@ msgstr "%s：输入参数#%d的值错误：应该为一个字符串，而不是�
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为''r''、''l''或''c''。\n"
-
-#, c-format
-msgid ""
 "%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为一个非负整数。\n"
 
@@ -354,15 +357,3 @@ msgstr "%s：无法得到这个矩阵的维数。\n"
 
 msgid "WARNING : \n"
 msgstr "警告： \n"
-
-#, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "警告：函数%s已废弃。\n"
-
-#, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "警告：请用%s代替。\n"
-
-#, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "警告：这个函数将从Scilab %s中永久地移除。\n"

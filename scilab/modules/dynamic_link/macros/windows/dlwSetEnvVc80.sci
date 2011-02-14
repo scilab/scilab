@@ -22,6 +22,11 @@ function bOK = dlwSetEnvVc80(msCompiler)
     return
   end
 
+  // MS compiler path is wrong
+  if MSVSDir == [] then
+    return
+  end
+
   PATH = getenv('PATH','ndef');
   if (PATH == 'ndef') then
     bOK = %F;

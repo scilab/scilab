@@ -12,20 +12,20 @@
 
 package org.scilab.modules.xcos.block;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
@@ -42,16 +42,20 @@ import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.swing.GraphComponent;
+import org.scilab.modules.xcos.io.XcosCodec;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.w3c.dom.Node;
 
 import com.mxgraph.model.mxICell;
+import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxUtils;
 
 /**
  * A SuperBlock contains an entire diagram on it. Thus it can be easily
@@ -70,7 +74,6 @@ import com.mxgraph.util.mxUtils;
  * @see SuperblockMaskRemoveAction
  */
 public final class SuperBlock extends BasicBlock {
-	private static final char UNDERSCORE = '_';
 	private static final long serialVersionUID = 3005281208417373333L;
 	/**
 	 * The simulation name (linked to Xcos-core)
@@ -199,7 +202,7 @@ public final class SuperBlock extends BasicBlock {
 		} else {
 			// reassociate (useful on clone and load operation)
 			getChild().setContainer(this);
-			getChild().setComponent(new ScilabComponent(getChild()));
+			getChild().setComponent(new GraphComponent(getChild()));
 			
 			getChild().initComponent();
 			getChild().installStylesheet();
@@ -216,6 +219,7 @@ public final class SuperBlock extends BasicBlock {
 			getChild().setModifiedNonRecursively(false);
 			
 			new XcosTab(getChild()).setVisible(true);
+			getChild().fireEvent(new mxEventObject(mxEvent.ROOT));
 			getChild().getView().invalidate();
 		}
 		
@@ -307,8 +311,14 @@ public final class SuperBlock extends BasicBlock {
 		if (child == null) {
 			child = new SuperBlockDiagram(this);
 			child.installListeners();
+			
+			final DiagramElement element = new DiagramElement();
+			if (!element.canDecode(getRealParameters())) {
+				return false;
+			}
+			
 			try {
-				new DiagramElement().decode(getRealParameters(), child, false);
+				element.decode(getRealParameters(), child, false);
 			} catch (ScicosFormatException e) {
 				LogFactory.getLog(SuperBlock.class).error(e);
 				return false;
@@ -434,7 +444,9 @@ public final class SuperBlock extends BasicBlock {
 
 		// populate
 		for (int i = 0; i < array.length; i++) {
-			int index = (Integer) ((BasicBlock) blocks.get(i)).getValue();
+			final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks.get(i)).getIntegerParameters();
+			final int index = (int) data.getRealPart()[0][0];
+			
 			if (index <= array.length) {
 				array[index - 1] = 1;
 			}
@@ -478,7 +490,8 @@ public final class SuperBlock extends BasicBlock {
 			Arrays.fill(isDone, false);
 
 			for (int i = 0; i < blocks.size(); i++) {
-				int index = (Integer) ((BasicBlock) blocks.get(i)).getValue();
+				final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks.get(i)).getIntegerParameters();
+				final int index = (int) data.getRealPart()[0][0];
 				if (index > countUnique || isDone[index - 1]) {
 					child.getAsComponent().setCellWarning(blocks.get(i),
 							"Wrong port number");
@@ -535,6 +548,7 @@ public final class SuperBlock extends BasicBlock {
 	public void mask() {
 		setInterfaceFunctionName(MASKED_INTERFUNCTION_NAME);
 		setSimulationFunctionName(MASKED_SIMULATION_NAME);
+		setIntegerParameters(new ScilabDouble(1));
 	}
 
 	/**
@@ -543,6 +557,7 @@ public final class SuperBlock extends BasicBlock {
 	public void unmask() {
 		setInterfaceFunctionName(INTERFUNCTION_NAME);
 		setSimulationFunctionName(SIMULATION_NAME);
+		setIntegerParameters(new ScilabDouble());
 	}
 
 	/**
@@ -566,45 +581,48 @@ public final class SuperBlock extends BasicBlock {
 		}
 		
 		if (getChild() != null) {
-			getChild().setTitle(toValidCIdentifier(value.toString()));
+			getChild().setTitle(FileUtils.toValidCIdentifier(value.toString()));
 			setRealParameters(new DiagramElement().encode(getChild()));
 		}
 	}
 
 	/**
-	 * Export an HTML label String to a valid C identifier String. 
+	 * Clone the child safely.
 	 * 
-	 * @param label the HTML label
-	 * @return a valid C identifier String
+	 * @return a new clone instance
+	 * @throws CloneNotSupportedException never
+	 * @see org.scilab.modules.xcos.block.BasicBlock#clone()
 	 */
-	private String toValidCIdentifier(final String label) {
-		final String text = mxUtils.getBodyMarkup(label, true);
-		final StringBuilder cFunctionName = 
-			new StringBuilder();
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		SuperBlock clone = (SuperBlock) super.clone();
 		
-		for (int i = 0; i < text.length(); i++) {
-			final char ch = text.charAt(i);
-			
-			// Adding upper case chars
-			if (ch >= 'A' && ch <= 'Z') {
-				cFunctionName.append(ch);
-			} else
-			
-			// Adding lower case chars
-			if (ch >= 'a' && ch <= 'z') {
-				cFunctionName.append(ch);
-			} else
-				
-			// Adding number chars
-			if (ch >= '0' && ch <= '9') {
-				cFunctionName.append(ch);
-			} else
-			
-			// Specific chars
-			if (ch == UNDERSCORE || ch == ' ') {
-				cFunctionName.append(UNDERSCORE);
-			}
+		// clone the diagram
+		if (child != null) {
+			clone.child = (SuperBlockDiagram) child.clone();
+			clone.child.setContainer(clone);
 		}
-		return cFunctionName.toString();
+		
+		return clone;
+		
+	}
+	
+	/*
+	 * Serializable custom implementation need to handle any copy / DnD case.
+	 */
+	
+	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+		out.writeObject(new XcosCodec().encode(this));
+	}
+
+	private void readObject(java.io.ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		new XcosCodec().decode((Node) in.readObject(), this);
+		
+		/*
+		 * Specific post serialization things
+		 */
+		this.child.setContainer(this);
+		this.child.installSuperBlockListeners();
 	}
 }

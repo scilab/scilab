@@ -59,14 +59,14 @@ static int findMatchingPrefixSuffix(const char* string, const char* find)
         {
             FREE(pointerOnFindCopy);
             pointerOnFindCopy = NULL;
-            return pointerOnString - string;
+            return (int)(pointerOnString - string);
         }
 
     }
     //if no return, no position is correct, return last char of string.
     FREE(pointerOnFindCopy);
     pointerOnFindCopy = NULL;
-    return stringLength - 1;
+    return (int)stringLength;
 }
 /*--------------------------------------------------------------------------*/
 char *completeLine(char *currentline,char *stringToAdd,char *filePattern,

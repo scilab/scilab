@@ -12,7 +12,7 @@
     <synopsis>[tab]=wigner(x,h,deltat,zp)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>tab</term>

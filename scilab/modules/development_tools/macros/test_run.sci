@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -1088,7 +1089,7 @@ function st = st_run(st)
     ]
 
     if st.xcos then
-        head = [ head ; "loadScicosLibs();"];
+        head = [ head ; "loadXcosLibs();"];
     end
 
     if st.try_catch then
@@ -1219,12 +1220,25 @@ function st = st_run(st)
 
     if (st.error_output == "check") & (testsuite.error_output == "check") then
 
+        if getos() == "Darwin" then
+            tmp_errfile_info = fileinfo(st.tmp_err);
+            msg = "JavaVM: requested Java version (1.5) not available. Using Java at ""/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"" instead."
+
+            if ~isempty(tmp_errfile_info) then
+                txt = mgetl(st.tmp_err);
+                txt(txt==msg) = [];
+                if isempty(txt) then
+                    deletefile(st.tmp_err);
+                end
+            end
+        end
+
         tmp_errfile_info = fileinfo(st.tmp_err);
 
         if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
             st.status = status_set_id(st.status,5);
-            st.status = status_set_message(st.status,"failed  : error_output not empty");
-            st.status = status_set_details(st.status,sprintf("     Check the following file : \n     - %s",st.tmp_err));
+            st.status = status_set_message(st.status,"failed  : error_output not empty\n     Use ''no_check_error_output'' option to disable this check.");
+            st.status = status_set_details(st.status,st_checkthefile(st.tmp_err));
             return;
         end
     end
@@ -1238,8 +1252,8 @@ function st = st_run(st)
 
     //Check for execution errors
     if st.try_catch & grep(dia,"<--Error on the test script file-->")<>[] then
-        details = [ sprintf("     Check the following file : \n     - %s",st.tmp_dia); ..
-                    sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
+        details = [ st_checkthefile(st.tmp_dia); ..
+                    st_launchthecommand(st.path) ];
         st.status = status_set_id(st.status,3);
         st.status = status_set_message(st.status,"failed  : premature end of the test script");
         st.status = status_set_details(st.status,details);
@@ -1254,8 +1268,8 @@ function st = st_run(st)
     dia_tmp(grep(dia_tmp,"//")) = [];  // remove commented lines
 
     if st.try_catch & grep(dia_tmp,"!--error")<>[] then
-        details = [ sprintf("     Check the following file : \n     - %s",st.tmp_dia); ..
-                    sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
+        details = [ st_checkthefile(st.tmp_dia); ..
+                    st_launchthecommand(st.path) ];
         st.status = status_set_id(st.status,1);
         st.status = status_set_message(st.status,"failed  : the string (!--error) has been detected");
         st.status = status_set_details(st.status,details);
@@ -1264,8 +1278,8 @@ function st = st_run(st)
 
 
     if grep(dia_tmp,"error on test")<>[] then
-        details = [ sprintf("     Check the following file : \n     - %s",st.tmp_dia); ..
-                    sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
+        details = [ st_checkthefile(st.tmp_dia); ..
+                    st_launchthecommand(st.path) ];
         st.status = status_set_id(st.status,2);
         st.status = status_set_message(st.status, "failed  : one or several tests failed");
         st.status = status_set_details(st.status,details);
@@ -1276,7 +1290,7 @@ function st = st_run(st)
     if tmpdir1_line == [] then
         st.status = status_set_id(st.status,6);
         st.status = status_set_message(st.status, "failed  : the dia file is not correct");
-        st.status = status_set_details(st.status,sprintf("     Check the following file : \n     - %s",st.tmp_dia));
+        st.status = status_set_details(st.status,st_checkthefile(st.tmp_dia));
         return;
     end
 
@@ -1289,8 +1303,8 @@ function st = st_run(st)
     if (st.reference=="check") & (testsuite.reference=="check")  then
         if isempty(fileinfo(st.path_dia_ref)) then
             st.status = status_set_id(st.status,5);
-            st.status = status_set_message(st.status,"failed  : the ref file doesn''t exist");
-            st.status = status_set_details(st.status,sprintf("     Add or create the following file : \n     - %s",st.path_dia_ref));
+            st.status = status_set_message(st.status,"failed  : the ref file doesn''t exist\n     Use ''no_check_ref'' option to disable this check.");
+            st.status = status_set_details(st.status,st_createthefile(st.path_dia_ref));
             return;
         end
     end
@@ -1385,7 +1399,7 @@ function st = st_run(st)
                 if or(ref<>dia) then
                     st.status = status_set_id(st.status,4);
                     st.status = status_set_message(st.status,"failed  : dia and ref are not equal");
-                    st.status = status_set_details(st.status,sprintf("     Compare the following files : \n     - %s\n     - %s",st.path_dia,st.path_dia_ref));
+                    st.status = status_set_details(st.status,st_comparethefiles(st.path_dia,st.path_dia_ref));
                     return;
                 end
 
@@ -1403,6 +1417,58 @@ function st = st_run(st)
 
 endfunction
 
+
+// st_checkthefile
+// -----------------------------------------------------------------------------
+
+function msg = st_checkthefile ( filename )
+  // Returns a 2-by-1 matrix of strings, containing a message such as:
+  //     Check the following file :
+  //     - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.tst
+  // Workaround for bug #4827
+  msg(1) = "     Check the following file :"
+  msg(2) = "     - "+filename
+endfunction
+
+
+
+// st_launchthecommand
+// -----------------------------------------------------------------------------
+
+function msg = st_launchthecommand ( filename )
+  // Returns a 2-by-1 matrix of strings, containing a message such as:
+  //     Or launch the following command :
+  //     - exec("C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.tst")
+  // Workaround for bug #4827
+  msg(1) = "     Or launch the following command :"
+  msg(2) = "     - exec(""" + filename + """);"
+endfunction
+
+// st_comparethefiles
+// -----------------------------------------------------------------------------
+
+function msg = st_comparethefiles ( filename1 , filename2 )
+  // Returns a 3-by-1 matrix of strings, containing a message such as:
+  //     Compare the following files :
+  //     - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia
+  //     - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia.ref
+  // Workaround for bug #4827
+  msg(1) = "     Compare the following files :"
+  msg(2) = "     - "+filename1
+  msg(3) = "     - "+filename2
+endfunction
+
+// st_createthefile
+// -----------------------------------------------------------------------------
+
+function msg = st_createthefile ( filename )
+  // Returns a 2-by-1 matrix of strings, containing a message such as:
+  //     Add or create the following file :
+  //     - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia.ref
+  // Workaround for bug #4827
+  msg(1) = "     Add or create the following file : "
+  msg(2) = "     - "+filename
+endfunction
 
 
 
@@ -1639,7 +1705,11 @@ function testsuite_run(testsuite)
 
         test = st_run(test);
 
-        printf("%s \n",test.status.message);
+        msg = sprintf(test.status.message);
+        printf("%s \n", msg(1));
+        for kline = 2:size(msg, "*")
+          printf(part(" ", 1:62) + "%s \n", msg(2));
+        end
 
         // Recencement des tests
 

@@ -54,7 +54,7 @@ import javax.swing.text.Element;
         breakstring = false;
         yyreset(new ScilabDocumentReader(doc, p0, p1));
         int currentLine = elem.getElementIndex(start);
-        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBroken()) {
+        if (currentLine != 0 && ((ScilabDocument.ScilabLeafElement) elem.getElement(currentLine - 1)).isBrokenString()) {
            yybegin(QSTRING);
         }
     }
@@ -66,7 +66,7 @@ import javax.swing.text.Element;
     public int scan() throws IOException {
         int ret = yylex();
         if (start + yychar + yylength() == end - 1) {
-           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBroken(breakstring);
+           ((ScilabDocument.ScilabLeafElement) elem.getElement(elem.getElementIndex(start))).setBrokenString(breakstring);
            breakstring = false;
         }
         return ret;
@@ -118,13 +118,15 @@ operator = ".'" | ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | 
 
 functionKwds = "function" | "endfunction"
 
-structureKwds = "then" | "else" | "elseif" | "end" | "do" | "catch" | "case"
+structureKwds = "then" | "do" | "catch" | "case"
 
-openstructureKwds = "if" | "for" | "while" | "try" | "select"
+elseif = "elseif" | "else"
+
+openCloseStructureKwds = "if" | "for" | "while" | "try" | "select" | "end"
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
-authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Allan Simon" | "Allan SIMON" | "Antoine Elias" | "Antoine ELIAS" | "Bernard Hugueney" | "Bernard HUGUENEY" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Jerome Picard" | "Jerome PICARD" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Vincent Lejeune" | "Vincent LEJEUNE" | "Sylvestre Koumar" | "Sylvestre KOUMAR" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "ENPC"
+authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Allan Simon" | "Allan SIMON" | "Antoine Elias" | "Antoine ELIAS" | "Bernard Hugueney" | "Bernard HUGUENEY" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Jerome Picard" | "Jerome PICARD" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Zhour Madini-Zouine" | "Zhour MADINI-ZOUINE" | "Vincent Lejeune" | "Vincent LEJEUNE" | "Sylvestre Koumar" | "Sylvestre KOUMAR" | "Simon Gareste" | "Simon GARESTE" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "ENPC"
 
 break = ".."(".")*
 breakinstring = {break}[ \t]*{comment}
@@ -135,15 +137,20 @@ string = (([^ \t\'\"\r\n\.]*)|([\'\"]{2}))+
 
 id = ([a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*)|("$"[a-zA-Z0-9_#!$?]+)
 
+badid = ([0-9$][a-zA-Z0-9_#!$?]+)
+whitabs = (" "+"\t" | "\t"+" ")[ \t]*
+badop = [+-]([*+/\\\^] | "."[*+-/\\\^]) | ":=" | "->" | " !=" | ([*+-/\\\^]"=")
+
 dot = "."
 
 url = "http://"[^ \t\f\n\r\'\"]+
 mail = "<"[ \t]*[a-zA-Z0-9_\.\-]+"@"([a-zA-Z0-9\-]+".")+[a-zA-Z]{2,5}[ \t]*">"
 
 latex = "$"(([^$]*|"\\$")+)"$"
+latexinstring = (\"|\')"$"(([^$\'\"]*|"\\$"|([\'\"]{2}))+)"$"(\"|\')
 
 digit = [0-9]
-exp = [eE][+-]?{digit}+
+exp = [dDeE][+-]?{digit}*
 number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
 %x QSTRING, COMMENT, FIELD, COMMANDS, COMMANDSWHITE, BREAKSTRING
@@ -167,7 +174,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.FKEYWORD;
                                  }
 
-  {openstructureKwds}            {
+  {openCloseStructureKwds}       {
                                    transposable = false;
                                    return ScilabLexerConstants.OSKEYWORD;
                                  }
@@ -175,6 +182,11 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
   {structureKwds}                {
                                    transposable = false;
                                    return ScilabLexerConstants.SKEYWORD;
+                                 }
+
+  {elseif}                       {
+                                   transposable = false;
+                                   return ScilabLexerConstants.ELSEIF;
                                  }
 
   {controlKwds}                  {
@@ -226,6 +238,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.OPERATOR;
                                  }
 
+  {latexinstring}                {
+                                   return ScilabLexerConstants.LATEX;
+                                 }
+
   {quote}                        {
                                     if (transposable) {
                                        return ScilabLexerConstants.TRANSP;
@@ -253,6 +269,12 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.STRING;
                                  }
 
+  {badid}                        |
+  {badop}                        |
+  {whitabs}                      {
+                                   return ScilabLexerConstants.ERROR;
+                                 }
+
   " "                            {
                                    return ScilabLexerConstants.WHITE;
                                  }
@@ -266,7 +288,6 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    transposable = false;
                                    return ScilabLexerConstants.DEFAULT;
                                  }
-
 }
 
 <COMMANDS> {
@@ -294,7 +315,13 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <COMMANDSWHITE> {
-  [^ \t,;]*                      {
+  {comment}                      {
+                                   transposable = false;
+                                   yypushback(2);
+                                   yybegin(COMMENT);
+                                 }
+
+  ([^ \t,;/]*) | ("/"[^ /]*)     {
                                    return ScilabLexerConstants.STRING;
                                  }
 

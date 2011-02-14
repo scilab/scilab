@@ -24,8 +24,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.logging.LogManager;
 
 import javax.swing.SwingUtilities;
+import javax.xml.transform.TransformerFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -59,8 +61,8 @@ public final class Xcos {
 	/*
 	 * Dependencies version
 	 */
-	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.0.2");
-	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]");
+	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.1.0");
+	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]");
 	private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
 	
 	private static final String UNABLE_TO_LOAD_JGRAPHX = 
@@ -71,6 +73,8 @@ public final class Xcos {
 		Messages.gettext("Unable to load the native HDF5 library.");
 	private static final String UNABLE_TO_LOAD_BATIK = 
 		Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
+	private static final String UNABLE_TO_USE_DOM = 
+		Messages.gettext("Saxon provides only an immutable DOM, please configure another implementation");
 	
 	private static final String CALLED_OUTSIDE_THE_EDT_THREAD = "Called outside the EDT thread.";
 	private static final Log LOG = LogFactory.getLog(Xcos.class);
@@ -97,9 +101,18 @@ public final class Xcos {
 	 * There must be only one Xcos instance per Scilab application
 	 */
 	private Xcos() {
-		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadScicosLibs();");
-
+		/*
+		 * Read the configuration to support dynamic (before Xcos launch)
+		 * settings. 
+		 */
+		try {
+			LogManager.getLogManager().readConfiguration();
+		} catch (final SecurityException e) {
+			LOG.error(e);
+		} catch (final IOException e) {
+			LOG.error(e);
+		}
+		
 		/* Check the dependencies at startup time */
 		checkDependencies();
 		
@@ -120,7 +133,7 @@ public final class Xcos {
 		try {
 			FileUtils.decodeStyle(styleSheet);
 		} catch (final IOException e) {
-			LogFactory.getLog(Xcos.class).error(e);
+			LOG.error(e);
 		}
 	}
 
@@ -198,6 +211,12 @@ public final class Xcos {
 			throw new RuntimeException(String.format(UNABLE_TO_LOAD_BATIK,
 					BATIK_VERSIONS.get(0), batikVersion), e);
 		}
+		
+		/* DOM implementation must be writable */
+		final String title = TransformerFactory.newInstance().getClass().getName();
+		if (title.contains("saxon")) {
+			throw new RuntimeException(UNABLE_TO_USE_DOM);
+		}
 	}
 	// CSON: MagicNumber
 	// CSON: IllegalCatch
@@ -245,7 +264,7 @@ public final class Xcos {
 	 * @param filename
 	 *            the file to open. If null an empty diagram is created.
 	 */
-	public void open(final String filename) {
+	public void open(final File filename) {
 		if (!SwingUtilities.isEventDispatchThread()) {
 			LOG.error(CALLED_OUTSIDE_THE_EDT_THREAD);
 		}
@@ -260,7 +279,7 @@ public final class Xcos {
 			 */
 			for (final XcosDiagram diagram : diagrams) {
 				if (diagram.getSavedFile() != null
-						&& diagram.getSavedFile().compareTo(filename) == 0) {
+						&& diagram.getSavedFile().equals(filename)) {
 					diag = diagram;
 					break;
 				}
@@ -274,14 +293,17 @@ public final class Xcos {
 			 */
 			diag = new XcosDiagram();
 			diag.installListeners();
+			final XcosTab tab = new XcosTab(diag);
 
 			if (filename != null) {
+				// wait the end of the load before displaying the tab.
 				diag.openDiagramFromFile(filename);
+			} else {
+				// empty tab, display it
+				tab.setVisible(true);
 			}
 
 			diagrams.add(diag);
-			new XcosTab(diag).setVisible(true);
-
 		} else {
 
 			/*
@@ -346,7 +368,7 @@ public final class Xcos {
 			return;
 		}
 		
-		final Xcos instance = getInstance();
+		final Xcos instance = sharedInstance;
 		final List<XcosDiagram> diagrams = instance.diagrams;
 
 		/*
@@ -365,6 +387,13 @@ public final class Xcos {
 			instance.palette.getView().close();
 			instance.palette.setView(null);
 		}
+		
+		/* terminate any remaining simulation */
+		InterpreterManagement.requestScilabExec("haltscicos");
+
+		/* Saving modified data */
+		instance.palette.saveConfig();
+		instance.configuration.saveConfig();
 	}
 
 	/**
@@ -396,6 +425,9 @@ public final class Xcos {
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos() {
 		final Xcos instance = getInstance();
+		
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec("loadXcosLibs();");
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -416,14 +448,31 @@ public final class Xcos {
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos(final String fileName) {
-		final String filename = fileName;
-
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				getInstance().open(filename);
+		final Xcos instance = getInstance();
+		final File filename = new File(fileName);
+		
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec("loadXcosLibs();");
+		
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
+				public void run() {
+					instance.open(filename);
+				}
+			});
+		} catch (final InterruptedException e) {
+			LOG.error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
 			}
-		});
+			
+			throw new RuntimeException(firstMessage, e);
+		}
 	}
 
 	/**
@@ -438,10 +487,6 @@ public final class Xcos {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-					// Saving modified data
-					getInstance().palette.saveConfig();
-					getInstance().configuration.saveConfig();
-					
 					closeSession();
 					clearInstance();
 				}
@@ -449,7 +494,14 @@ public final class Xcos {
 		} catch (final InterruptedException e) {
 			LOG.error(e);
 		} catch (final InvocationTargetException e) {
-			LOG.error(e);
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 
@@ -497,7 +549,7 @@ public final class Xcos {
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static int xcosDiagramToHDF5(final String xcosFile, final String h5File,
 			final boolean forceOverwrite) {
-		final String file = xcosFile;
+		final File file = new File(xcosFile);
 		final File temp = new File(h5File);
 		final boolean overwrite = forceOverwrite;
 
@@ -515,13 +567,20 @@ public final class Xcos {
 				public void run() {
 					final XcosDiagram diagram = new XcosDiagram();
 					diagram.openDiagramFromFile(file);
-					diagram.dumpToHdf5File(temp.getAbsolutePath());
+					diagram.dumpToHdf5File(temp);
 				}
 			});
 		} catch (final InterruptedException e) {
 			throw new RuntimeException(e);
 		} catch (final InvocationTargetException e) {
-			throw new RuntimeException(e.getCause());
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 
 		return 0;
@@ -578,7 +637,14 @@ public final class Xcos {
 		} catch (final InterruptedException e) {
 			LOG.error(e);
 		} catch (final InvocationTargetException e) {
-			LOG.error(e);
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 
@@ -610,7 +676,14 @@ public final class Xcos {
 		} catch (final InterruptedException e) {
 			LOG.error(e);
 		} catch (final InvocationTargetException e) {
-			LOG.error(e);
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
 		}
 	}
 }

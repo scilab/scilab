@@ -39,7 +39,11 @@ case "operation" then
       if e.operands(i)==list("EOL") then
 	continue
       end
-      operands=[operands;expression2code(e.operands(i))]
+      expression = expression2code(e.operands(i));
+      if expression == "eye()" then
+        expression = ":";
+      end
+      operands=[operands;expression]
     end
   end
 

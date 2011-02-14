@@ -14,26 +14,23 @@ package org.scilab.modules.graph;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Dimension2D;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
-import org.apache.batik.ext.awt.RenderingHintsKeyExt;
 import org.apache.batik.gvt.GraphicsNode;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.shape.LatexTextShape;
 import org.scilab.modules.graph.shape.MathMLTextShape;
+import org.scilab.modules.graph.shape.SvgShape;
 import org.scilab.modules.graph.utils.MathMLRenderUtils;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import org.scilab.modules.graph.view.SupportedLabelType;
 import org.xml.sax.SAXException;
 
+import com.mxgraph.canvas.mxGraphics2DCanvas;
 import com.mxgraph.shape.mxITextShape;
 import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
@@ -57,28 +54,15 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	private static final double BORDER_RATIO = 0.9;
 	
 	static {
+		putShape(mxConstants.SHAPE_IMAGE, new SvgShape());
 		putTextShape(SupportedLabelType.Latex.name(), new LatexTextShape());
 		putTextShape(SupportedLabelType.MathML.name(), new MathMLTextShape());
 	}
 	
-	private URL svgBackgroundImage; 
+	private URL urlBasePath; 
 
 	/** Default constructor */
 	public ScilabCanvas() { }
-
-	/**
-	 * @param svgBackgroundImage the svgBackgroundImage to set
-	 */
-	public void setSvgBackgroundImage(URL svgBackgroundImage) {
-		this.svgBackgroundImage = svgBackgroundImage;
-	}
-
-	/**
-	 * @return the svgBackgroundImage
-	 */
-	public URL getSvgBackgroundImage() {
-		return svgBackgroundImage;
-	}
 	
 	/**
 	 * Get the text shape associated with the text
@@ -177,7 +161,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#createTemporaryGraphics(java.util.Map, float, com.mxgraph.util.mxRectangle)
 	 */
 	@Override
-	protected Graphics2D createTemporaryGraphics(Map<String, Object> style,
+	public Graphics2D createTemporaryGraphics(Map<String, Object> style,
 			float opacity, mxRectangle bounds) {
 		Graphics2D temporaryGraphics = super.createTemporaryGraphics(style, opacity, bounds);
 		
@@ -185,9 +169,12 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		
 		return temporaryGraphics;
 	}
-
+	
 	/**
 	 * Draw the text label on the cell state.
+	 * 
+	 * This method is extracted from {@link mxGraphics2DCanvas} to add a text 
+	 * argument to {@link #getTextShape(Map, boolean)}.
 	 * 
 	 * @param text the current text
 	 * @param state the cell state
@@ -199,109 +186,30 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	public Object drawLabel(String text, mxCellState state, boolean html) {
 		Map<String, Object> style = state.getStyle();
 		mxITextShape shape = getTextShape(text, style, html);
-		
+
 		if (g != null && shape != null && drawLabels && text != null
 				&& text.length() > 0)
 		{
-			mxRectangle translatedBounds = new mxRectangle(state.getLabelBounds());
-			translatedBounds.setX(translatedBounds.getX() + translate.x);
-			translatedBounds.setY(translatedBounds.getY() + translate.y);
-
 			// Creates a temporary graphics instance for drawing this shape
+			float opacity = mxUtils.getFloat(style,
+					mxConstants.STYLE_TEXT_OPACITY, 100);
 			Graphics2D previousGraphics = g;
-			g = createTemporaryGraphics(style, 100, null);
+			g = createTemporaryGraphics(style, opacity, null);
 
 			// Draws the label background and border
 			Color bg = mxUtils.getColor(style,
 					mxConstants.STYLE_LABEL_BACKGROUNDCOLOR);
 			Color border = mxUtils.getColor(style,
 					mxConstants.STYLE_LABEL_BORDERCOLOR);
-			paintRectangle(translatedBounds, bg, border);
+			paintRectangle(state.getLabelBounds().getRectangle(), bg, border);
 
 			// Paints the label and restores the graphics object
-			shape.paintShape(this, text, translatedBounds, style);
+			shape.paintShape(this, text, state, style);
 			g.dispose();
 			g = previousGraphics;
 		}
-		
+
 		return shape;
-	}
-	
-	/**
-	 * Paint the image.
-	 * 
-	 * This function handle all the awt supported {@link Image} plus the SVG
-	 * format.
-	 * 
-	 * @param bounds
-	 *            the current bounds
-	 * @param style
-	 *            the current style
-	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#paintImage(com.mxgraph.util.mxRectangle,
-	 *      java.util.Map)
-	 */
-	@Override
-	public void paintImage(mxRectangle bounds, Map<String, Object> style) {
-		String image = getImageForStyle(style);
-		
-		if (image != null) {
-			if (image.endsWith(".svg")) {
-				// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
-				// message and tweak Batik rendering options to increase performance.
-				g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-						RenderingHints.VALUE_ANTIALIAS_ON);
-				g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-						RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
-				g.setRenderingHint(RenderingHintsKeyExt.KEY_TRANSCODING,
-						RenderingHintsKeyExt.VALUE_TRANSCODING_PRINTING);
-				
-				Rectangle rect = bounds.getRectangle();
-				
-				// Translate from (0,0) to icon base point.
-				g.translate(rect.x, rect.y);
-				
-				// Paint the background image if applicable
-				if (svgBackgroundImage != null) {
-					paintSvgBackgroundImage(rect.width, rect.height);
-				}
-
-				paintSvgForegroundImage(rect.width, rect.height, image);
-
-			} else {
-				super.paintImage(bounds, style);
-			}
-		}
-	}
-
-	/**
-	 * Paint the background image.
-	 * 
-	 * @param w background width
-	 * @param h background height
-	 */
-	private void paintSvgBackgroundImage(int w, int h) {
-		GraphicsNode background = ScilabGraphUtils
-				.getSVGComponent(svgBackgroundImage);
-
-		if (background == null) {
-			return;
-		}
-
-		// Scale to the bounds
-		Dimension2D bounds = ScilabGraphUtils.getSVGDocumentSizes(svgBackgroundImage);
-
-		double sh = h / bounds.getHeight();
-		double sw = w / bounds.getWidth();
-
-		AffineTransform scaleTransform = new AffineTransform(new double[] {
-				sw,   0.0,
-				0.0,     sh
-		});
-
-		background.setTransform(scaleTransform);
-
-		// Paint
-		background.paint(g);
 	}
 
 	/**
@@ -313,7 +221,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 * @param h the height
 	 * @param image the current image
 	 */
-	private void paintSvgForegroundImage(int w, int h, String image) {
+	public void paintSvgForegroundImage(int w, int h, String image) {
 		/*
 		 * Fetch SVG file representation
 		 */
@@ -376,6 +284,40 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 		// Paint
 		icon.paint(g);
+	}
+	
+	/**
+	 * Set the image path and store the path as a URL.
+	 * @param imageBasePath the new path
+	 * @see com.mxgraph.canvas.mxBasicCanvas#setImageBasePath(java.lang.String)
+	 */
+	@Override
+	public void setImageBasePath(String imageBasePath) {
+		super.setImageBasePath(imageBasePath);
+		
+		try {
+			this.urlBasePath = new URL(imageBasePath);
+		} catch (MalformedURLException e) {
+			LogFactory.getLog(ScilabCanvas.class).error(e);
+		}
+	}
+	
+	/**
+	 * Gets the image path from the given style. If the path is relative (does
+	 * not start with a slash) then it is appended to the imageBasePath.
+	 * 
+	 * @param style the current style
+	 * @return the image path
+	 */
+	@Override
+	public String getImageForStyle(Map<String, Object> style) {
+		String filename = mxUtils.getString(style, mxConstants.STYLE_IMAGE);
+
+		try {
+			return new URL(this.urlBasePath, filename).toExternalForm();
+		} catch (MalformedURLException e) {}
+
+		return null;
 	}
 }
 

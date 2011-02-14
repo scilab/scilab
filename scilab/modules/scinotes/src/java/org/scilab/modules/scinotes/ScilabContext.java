@@ -23,7 +23,9 @@ import javax.swing.text.ViewFactory;
 import javax.swing.text.View;
 import javax.swing.text.Element;
 
+import org.scilab.modules.gui.utils.ScilabFontUtils;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+
 
 /**
  * The class ScilabContext provides a context to render a Scilab's document.
@@ -34,17 +36,17 @@ public class ScilabContext implements ViewFactory {
     /**
      * Contains the colors of the different tokens
      */
-    Color[] tokenColors;
+    public Color[] tokenColors;
 
     /**
      * Contains the fonts of the different tokens
      */
-    Font[] tokenFonts;
+    public Font[] tokenFonts;
 
     /**
      * Contains the attrib (underline or stroke) of the different tokens
      */
-    int[] tokenAttrib;
+    public int[] tokenAttrib;
 
     private View view;
     private boolean plain;
@@ -77,6 +79,7 @@ public class ScilabContext implements ViewFactory {
     public void genAttribute(String keyword, int type) {
         tokenAttrib[ScilabLexerConstants.TOKENS.get(keyword)] = type;
         tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
+        tokenAttrib[ScilabLexerConstants.ELSEIF] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
         if (ScilabLexerConstants.TOKENS.get(keyword) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
                 tokenAttrib[i] = tokenAttrib[0];
@@ -100,6 +103,7 @@ public class ScilabContext implements ViewFactory {
             tokenAttrib[i] = tokenAttrib[0];
         }
         tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
+        tokenAttrib[ScilabLexerConstants.ELSEIF] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
@@ -127,6 +131,7 @@ public class ScilabContext implements ViewFactory {
         /* Special case : Scilab's developers in comments */
         tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
         tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
+        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
@@ -143,6 +148,7 @@ public class ScilabContext implements ViewFactory {
         tokenColors[ScilabLexerConstants.TOKENS.get(name)] = color;
         tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
         tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
+        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
 
         if (ScilabLexerConstants.TOKENS.get(name) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
@@ -177,6 +183,7 @@ public class ScilabContext implements ViewFactory {
 
         tokenFonts[ScilabLexerConstants.TOKENS.get(name)] = font;
         tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
+        tokenFonts[ScilabLexerConstants.ELSEIF] = tokenFonts[ScilabLexerConstants.SKEYWORD];
         if (ScilabLexerConstants.TOKENS.get(name) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
                 tokenFonts[i] = tokenFonts[0];
@@ -197,18 +204,24 @@ public class ScilabContext implements ViewFactory {
      */
     public void genFonts(Font font) {
         Map map;
-        if (font != null) {
-            map = ConfigSciNotesManager.getAllFontStyle(font);
-        } else {
-            map = ConfigSciNotesManager.getAllFontStyle();
+        Font f = font;
+        if (f == null) {
+            f = ConfigSciNotesManager.getFont();
         }
+
+        map = ConfigSciNotesManager.getAllFontStyle(f);
+        boolean compatible = ScilabFontUtils.isAllStylesSameWidths(f);
 
         tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
 
         Iterator it = map.keySet().iterator();
         while (it.hasNext()) {
             String tokenType = (String) it.next();
-            tokenFonts[ScilabLexerConstants.TOKENS.get(tokenType)] = (Font) map.get(tokenType);
+            f = (Font) map.get(tokenType);
+            if (!compatible && (f.isBold() || f.isItalic())) {
+                f = f.deriveFont(Font.PLAIN);
+            }
+            tokenFonts[ScilabLexerConstants.TOKENS.get(tokenType)] = f;
         }
 
         for (int i = 0; i < tokenFonts.length; i++) {
@@ -220,13 +233,16 @@ public class ScilabContext implements ViewFactory {
         /* Special case : Scilab's developers in comments */
         Font c = tokenFonts[ScilabLexerConstants.COMMENT];
         int style = c.getStyle();
-        if (c.isBold()) {
-            tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style ^ Font.BOLD);
-        } else {
-            tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style | Font.BOLD);
+        if (compatible) {
+            if (c.isBold()) {
+                tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style ^ Font.BOLD);
+            } else {
+                tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style | Font.BOLD);
+            }
         }
 
         tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
+        tokenFonts[ScilabLexerConstants.ELSEIF] = tokenFonts[ScilabLexerConstants.SKEYWORD];
     }
 
     /**

@@ -93,7 +93,7 @@ function scs_m=delete_unconnected(scs_m);
 			ind_k=find(k<>DELL)
 			if ind_k<>[] then
 				k=k(ind_k)
-				msg = ['Hilited block(s) or link(s) are ignored because of'
+				msg = ['Highlighted block(s) or link(s) are ignored because of'
 					'undefined input(s)'];
 			else
 				msg = '';

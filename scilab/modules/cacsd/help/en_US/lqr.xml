@@ -23,7 +23,7 @@
     <synopsis>[K,X]=lqr(P12)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P12</term>

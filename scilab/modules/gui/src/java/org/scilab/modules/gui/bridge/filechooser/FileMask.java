@@ -41,6 +41,7 @@ package org.scilab.modules.gui.bridge.filechooser;
 import java.io.File;
 import java.util.Enumeration;
 import java.util.Vector;
+
 import javax.swing.filechooser.FileFilter;
 
 /**
@@ -89,6 +90,7 @@ public class FileMask extends FileFilter {
 	 * Allow the file to be display
 	 * @param f a File
 	 */
+	@Override
 	public boolean accept(File f) {
 		if(f != null) {
 			if(f.isDirectory() || filters.size()==0) {
@@ -105,8 +107,9 @@ public class FileMask extends FileFilter {
 	/**
 	 * Get the file's extension
 	 * @param f a File
+	 * @return the extension without the dot
 	 */
-	public String getExtension(File f) {
+	public static String getExtension(File f) {
 		if(f != null) {
 			String filename = f.getName();
 			int i = filename.lastIndexOf('.');
@@ -123,7 +126,7 @@ public class FileMask extends FileFilter {
 	public String getExtensionFromFilter() {
 		if(filters != null && filters.size()>0) {
 			/* If exists, retrieve the actual extension from the filter */
-			return (String)filters.elementAt(0);
+			return filters.elementAt(0);
 		}
 		return null;
 	}
@@ -131,6 +134,7 @@ public class FileMask extends FileFilter {
 	/**
 	 * Get description of the mask
 	 */
+	@Override
 	public String getDescription() {
 		if(fullDescription == null) {
 			if(description == null) {

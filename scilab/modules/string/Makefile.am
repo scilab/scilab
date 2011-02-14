@@ -53,7 +53,6 @@ sci_gateway/c/sci_isascii.c \
 sci_gateway/c/sci_strchr.c \
 sci_gateway/c/sci_strcspn.c \
 sci_gateway/c/sci_strncpy.c \
-sci_gateway/c/sci_strrchr.c \
 sci_gateway/c/sci_strrev.c \
 sci_gateway/c/sci_strspn.c \
 sci_gateway/c/sci_strstr.c \
@@ -87,7 +86,7 @@ INCLUDE_FLAGS = $(libscistring_la_CFLAGS)
 
 # commented since it is the first module to be processed
 #  $(top_builddir)/modules/polynomials/libscipolynomials.la 
-libscistring_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscistring_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
 modulename=string
 

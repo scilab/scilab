@@ -31,7 +31,7 @@
         <synopsis xml:id="freeAllocatedSingleWideString">void freeAllocatedSingleWideString(wchar_t* _pwstData)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pstData</term>

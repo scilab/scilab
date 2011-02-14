@@ -26,7 +26,7 @@ h=arl2(y,den0,n [,imp],'all')
 [den,num,err]=arl2(y,den0,n [,imp],'all')</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>y</term>

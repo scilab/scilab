@@ -11,13 +11,15 @@
  */
 package org.scilab.modules.ui_data.variablebrowser;
 
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
-
 
 /**
  * 
@@ -75,6 +77,10 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
 		if (instance == null) {
 			instance = new ScilabVariableBrowser(columnNames);
 			instance.setVisible(true);
+		} else {
+		    SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabVariableBrowser) browserTab);
+		    window.setVisible(true);
+		    window.toFront();
 		}
 		browserTab.setName(UiDataMessages.VARIABLE_BROWSER);
 		return instance;

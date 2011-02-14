@@ -9,22 +9,22 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-04-27 11:40+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2010-09-17 22:00+0000\n"
+"Last-Translator: Eliovir <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr "                 Consortium Scilab (DIGITEO)\n"
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Consortium Scilab (DIGITEO)\n"
 
-msgid "               Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
+msgid "Copyright (c) 1989-2010 (INRIA)\n"
+msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: etc/scilab.start, line: 40
@@ -33,7 +33,10 @@ msgstr "  Chargement de l'environnement de travail"
 
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
-msgstr " et %10d variables parmis %10d.\n"
+msgstr " et %10d variables parmi %10d.\n"
+
+msgid " by "
+msgstr " par "
 
 #
 # File: includes/stack-c.h, line: 305
@@ -43,16 +46,12 @@ msgstr " Les résultats peuvent être inexacts. rcond = %s1\n"
 
 #, c-format
 msgid " using %10d elements out of  %10d.\n"
-msgstr " utilise %10d éléments parmis %10d.\n"
+msgstr " utilise %10d éléments parmi %10d.\n"
 
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
 msgstr ""
 "%f : Plus de place pour stocker les arguments de type chaîne de caractères.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid "%s and %s arguments"
@@ -142,24 +141,8 @@ msgstr ""
 "intersiz.\n"
 
 #, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-"%s : Impossible d'allouer plus de mémoire.\n"
-"Essayez gstacksize('max').\n"
-
-#, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: Ne peut allouer de la mémoire.\n"
-
-#, c-format
-msgid ""
-"%s: Cannot allocate more memory.\n"
-"Try stacksize('max').\n"
-msgstr ""
-"%s : Ne peux pas allouer plus de mémoire.\n"
-"Essayez stacksize('max').\n"
 
 #, c-format
 msgid "%s: File doesn''t exist: %s"
@@ -174,12 +157,12 @@ msgid "%s: Incompatible sizes.\n"
 msgstr "%s : Tailles incompatibles.\n"
 
 #, c-format
-msgid "%s: Invalid '%s' value.\n"
-msgstr "%s : Valeur '%s' incorrecte.\n"
-
-#, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s : Nom de module invalide : %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation de mémoire.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -241,7 +224,7 @@ msgstr "%s : Impossible de trouver le fichier Perl : %s"
 
 #, c-format
 msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s : Impossible de trouver Perl dans \"%s\""
+msgstr "%s : Impossible de trouver Perl dans ''%s''"
 
 #, c-format
 msgid "%s: Unable to find Perl.\n"
@@ -272,12 +255,8 @@ msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s : Mauvaise valeur %s %d au lieu de %d.\n"
 
 #, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr "%s : Mauvais fichier VERSION %s.\n"
-
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr "%s : Mauvais fichier VERSION dans %s.\n"
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr "%s: fichier version.xml incorrect %s.\n"
 
 #, c-format
 msgid "%s: Wrong fromwhat value %s.\n"
@@ -345,6 +324,11 @@ msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr "%s : Mauvaise taille pour l'argument %d : Au moins %d attendu.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : un booléen attendu.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un scalaire "
@@ -357,13 +341,25 @@ msgstr ""
 "caractères attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s : Mauvaise dimension pour les arguments d'entrée.\n"
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s : Taille incorrecte pour l'argument d'entrée n°%d  : un entier est "
+"attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n°%d : Scalaire, '%s' ou '%s' attendu.\n"
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s : Mauvaise dimension pour les arguments d'entrée.\n"
 
 #, c-format
 msgid ""
@@ -548,6 +544,11 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s : Mauvais type pour l'argument d'entrée n°%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : un booléen attendu.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Un réel est attendu.\n"
@@ -589,18 +590,6 @@ msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Macro compilée attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Variable nommée attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Scalaire, '%s' ou '%s' "
-"attendu.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Scalaire, '%s' ou '%s'.\n"
@@ -633,6 +622,11 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s : Mauvais type pour les arguments d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -725,13 +719,6 @@ msgid ""
 msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Doit être dans "
 "l'intervalle [%d, %d].\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Scalaire, '%s' ou '%s' "
-"attendu.\n"
 
 #, c-format
 msgid ""
@@ -855,6 +842,9 @@ msgstr "Boites à ou&tils"
 msgid "A non square matrix!\n"
 msgstr "Une matrice non carrée !\n"
 
+msgid "Bytes"
+msgstr "Octets"
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Ne trouve pas le répertoire temporaire de Windows (1)."
 
@@ -883,6 +873,17 @@ msgstr "Erreur"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Erreur en retournant un tlist, mémoire pleine.\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+"Error(x) est déprécié and sera retiré de Scilab 5.4. Beuillez considérer "
+"SciError(x).\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "Erreur: Ne peut pas créer %s: %s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -1001,6 +1002,9 @@ msgstr "Domaine de temps invalide.\n"
 msgid "List full.\n"
 msgstr "Liste pleine.\n"
 
+msgid "Name"
+msgstr "Nom"
+
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Pas assez de mémoire pour allouer le coeur (stack) de Scilab.\n"
 
@@ -1021,6 +1025,9 @@ msgstr "Variable SCIHOME non définie.\n"
 msgid "SIGSTP: aborting current computation\n"
 msgstr "SIGSTP : Arrêt du calcul en cours\n"
 
+msgid "Scilab Console"
+msgstr "Console Scilab"
+
 #
 # File: src/c/version.c, line: 25
 msgid "Scilab Version Info."
@@ -1038,6 +1045,9 @@ msgstr ""
 "Scilab version \"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Size"
+msgstr "Taille"
+
 msgid "Startup execution:"
 msgstr "Initialisation :"
 
@@ -1051,6 +1061,9 @@ msgstr "La variable d'environnement SCI n'est pas définie.\n"
 
 msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr "Tentative d'arrêt de Scilab au milieu d'une interface.\n"
+
+msgid "Type"
+msgstr "Type"
 
 #
 # File: src/c/stack3.c, line: 74
@@ -1071,6 +1084,14 @@ msgstr "Variable indéfinie %s.\n"
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
 "Code opérateur inattendu. Merci de reporter un bug sur le bug tracker Scilab."
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr "Retire %s de la queue - Pas d'option.\n"
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr "Retire %s de la queue - seq.\n"
 
 #
 # File: sci_gateway/c/sci_who.c, line: 303
@@ -1211,6 +1232,10 @@ msgstr "tlist partiellement remplie.\n"
 #~ msgstr "Impossible d'obtenir le répertoire courant.\n"
 
 #, c-format
+#~ msgid "%s: Invalid '%s' value.\n"
+#~ msgstr "%s : Valeur '%s' incorrecte.\n"
+
+#, c-format
 #~ msgid "Compilation date: %s"
 #~ msgstr "Date de compilation : %s"
 
@@ -1271,6 +1296,49 @@ msgstr "tlist partiellement remplie.\n"
 #~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
 #~ msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
 
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot alloc more memory.\n"
+#~ "Try gstacksize('max').\n"
+#~ msgstr ""
+#~ "%s : Impossible d'allouer plus de mémoire.\n"
+#~ "Essayez gstacksize('max').\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION %s.\n"
+#~ msgstr "%s : Mauvais fichier VERSION %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION in %s.\n"
+#~ msgstr "%s : Mauvais fichier VERSION dans %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s : Mauvais type pour l'argument d'entrée n°%d : Scalaire, '%s' ou '%s' "
+#~ "attendu.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s : Mauvais type pour l'argument n°%d : Scalaire, '%s' ou '%s' attendu.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot allocate more memory.\n"
+#~ "Try stacksize('max').\n"
+#~ msgstr ""
+#~ "%s : Ne peux pas allouer plus de mémoire.\n"
+#~ "Essayez stacksize('max').\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Scalaire, '%s' ou '%s' "
+#~ "attendu.\n"
+
 #~ msgid "Free Physical Memory (Kbytes): %*I64d"
 #~ msgstr "Mémoire physique libre (Kbytes) : %*I64d"
 
@@ -1291,6 +1359,11 @@ msgstr "tlist partiellement remplie.\n"
 #~ msgstr "Mémoire virtuelle totale (Kbytes) : %*I64d"
 
 #, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
+#~ msgstr ""
+#~ "%s : Mauvais type pour l'argument d'entrée n°%d : Variable nommée attendue.\n"
+
+#, c-format
 #~ msgid ""
 #~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 #~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
@@ -1298,6 +1371,10 @@ msgstr "tlist partiellement remplie.\n"
 #~ "Erreur : Fichier version %s invalide (devrait commencer par <MODULE_VERSION> "
 #~ "et contenir <VERSION major='' minor='' maintenance='' revision='' "
 #~ "string=''>)\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #~ msgid "Total Paging File (Kbytes): %*I64d"
 #~ msgstr "Taille fichiers paginés totale : %*I64d"

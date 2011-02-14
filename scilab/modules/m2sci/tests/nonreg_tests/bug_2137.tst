@@ -33,10 +33,10 @@
 
 MFILECONTENTS=[
 "R = randn;";
-]
+];
 
-MFILE=TMPDIR+"/bug2137.m"
-SCIFILE=TMPDIR+"/bug2137.sci"
+MFILE=TMPDIR+"/bug2137.m";
+SCIFILE=TMPDIR+"/bug2137.sci";
 
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
@@ -56,7 +56,7 @@ SCIFILECONTENTSREF=["";
 "ieee(1);";
 "";
 "R = rand(1,1,""normal"");";
-]
+];
 
-correct=%T
+correct=%T;
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

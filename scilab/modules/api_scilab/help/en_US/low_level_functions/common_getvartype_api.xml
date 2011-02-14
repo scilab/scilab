@@ -30,10 +30,10 @@
         <para>Input argument profile:</para>
         <synopsis>SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)</synopsis>
+        <synopsis>SciErr getNamedVarType(void* _pvCtx, const char* _pstName, int* _piType)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>

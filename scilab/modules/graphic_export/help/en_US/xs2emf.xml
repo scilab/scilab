@@ -36,7 +36,7 @@ xs2emf(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

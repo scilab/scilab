@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MAX_f">
   <refnamediv>
     <refname>MAX_f</refname>
-    <refpurpose>MAX</refpurpose>
+    <refpurpose>Maximum  value of a vector's elements</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MAX_f">MAX</link>
+          <link linkend="MAX_f">Maximum  value of a vector's elements</link>
         </para>
       </listitem>
       <listitem>
@@ -71,6 +71,11 @@
               <xref linkend="Computationalfunction_MAX_f">Computational function</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_MAX_f">See also</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -88,9 +93,8 @@
   <refsection id="Description_MAX_f">
     <title>Description</title>
     <para>
-That block find the max value in the elements of its input vector.
-
-</para>
+      This block finds the maximum value of the elements of its input vector.
+    </para>
   </refsection>
   <refsection id="Defaultproperties_MAX_f">
     <title>Default properties</title>
@@ -159,6 +163,21 @@ That block find the max value in the elements of its input vector.
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/fortran/maxblk.f (Type 0)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_MAX_f">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="MIN_f">MIN_f - Minimum value of a vector's elements (Xcos block)</link>
+        </para>
+      </listitem>
+       <listitem>
+        <para>
+          <link linkend="MAXMIN">MAXMIN - Maximum or minimum value of vectors's elements (Xcos block)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

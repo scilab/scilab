@@ -49,13 +49,13 @@ public class ScilabPlainView extends PlainView {
     private boolean lexerValid;
     private ScilabDocument doc;
     private Segment text = new Segment();
-    private boolean isLaTeXViewable;
     private boolean isTabViewable = true;
     private boolean isWhiteViewable = true;
     private boolean enable = true;
 
     private int tabType;
     private String tabCharacter = " ";
+    private int tabLength = 4;
 
     private int numOfColumns = 80;
     private Color lineColor = new Color(220, 220, 220);
@@ -86,14 +86,6 @@ public class ScilabPlainView extends PlainView {
         lexer = doc.createLexer();
         lexerValid = false;
         setTabRepresentation(ScilabView.TABVERTICAL);
-    }
-
-    /**
-     * To render LaTeX in this view (unused for the moment)
-     * @param b true if viewable or not
-     */
-    public void setLaTeXViewable(boolean b) {
-        isLaTeXViewable = b;
     }
 
     /**
@@ -136,6 +128,20 @@ public class ScilabPlainView extends PlainView {
     }
 
     /**
+     * @return the width of a white
+     */
+    public int getWhiteWidth() {
+        return whiteWidth;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public float nextTabStop(float x, int tabOffset) {
+        return x + whiteWidth * tabLength;
+    }
+
+    /**
      * This method can be used to draw anything you want in the editor (such as
      * the line of maximum recommanded chars).
      * @param g the graphics where to draw
@@ -160,8 +166,9 @@ public class ScilabPlainView extends PlainView {
         rect.setLocation(0, 4); // Why 4 ?? Because it works with 4 !
         try {
             return lineToRect(rect, n).y;
-        } catch (ArrayIndexOutOfBoundsException e) { }
-        return 0;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
+        }
     }
 
     /**
@@ -287,11 +294,6 @@ public class ScilabPlainView extends PlainView {
                         paintTab(text, x, y, g, mark);
                     }
                     break;
-                case ScilabLexerConstants.LATEX :
-                    if (isLaTeXViewable) {
-                        //LaTeXUtilities.drawText(text, x, y, g, mark);
-                    }
-                    break;
                 default :
                     break;
                 }
@@ -304,6 +306,52 @@ public class ScilabPlainView extends PlainView {
         }
 
         return x;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected void drawLine(int lineIndex, Graphics g, int x, int y) {
+        Element elem = doc.getDefaultRootElement().getElement(lineIndex);
+        int p0 = elem.getStartOffset();
+        int p1 = elem.getEndOffset();
+        ScilabEditorPane pane = (ScilabEditorPane) getContainer();
+        int sel0 = pane.getSelectionStart();
+        int sel1 = pane.getSelectionEnd();
+        int[] selC = pane.isNearColumnSelection(p0);
+
+        try {
+            if (sel0 == sel1) {
+                if (selC == null) {
+                    drawUnselectedText(g, x, y, p0, p1);
+                    return;
+                }
+                sel0 = selC[0];
+                sel1 = selC[1];
+                if (sel0 == sel1) {
+                    drawUnselectedText(g, x, y, p0, p1);
+                    return;
+                }
+            }
+
+            if ((p0 >= sel0 && p0 <= sel1) && (p1 >= sel0 && p1 <= sel1)) {
+                drawSelectedText(g, x, y, p0, p1);
+            } else if (sel0 >= p0 && sel0 <= p1) {
+                if (sel1 >= p0 && sel1 <= p1) {
+                    x = drawUnselectedText(g, x, y, p0, sel0);
+                    x = drawSelectedText(g, x, y, sel0, sel1);
+                    drawUnselectedText(g, x, y, sel1, p1);
+                } else {
+                    x = drawUnselectedText(g, x, y, p0, sel0);
+                    drawSelectedText(g, x, y, sel0, p1);
+                }
+            } else if (sel1 >= p0 && sel1 <= p1) {
+                x = drawSelectedText(g, x, y, p0, sel1);
+                drawUnselectedText(g, x, y, sel1, p1);
+            } else {
+                drawUnselectedText(g, x, y, p0, p1);
+            }
+        } catch (BadLocationException e) { }
     }
 
     /**
@@ -351,6 +399,7 @@ public class ScilabPlainView extends PlainView {
         } else {
             setTabRepresentation(tabulation.type);
         }
+        tabLength = tabulation.number;
     }
 
     /**

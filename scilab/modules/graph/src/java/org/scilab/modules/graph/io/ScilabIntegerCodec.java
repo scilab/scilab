@@ -15,8 +15,8 @@ package org.scilab.modules.graph.io;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.types.scilabTypes.ScilabInteger;
-import org.scilab.modules.types.scilabTypes.ScilabInteger.IntegerType;
+import org.scilab.modules.types.ScilabInteger;
+import org.scilab.modules.types.ScilabIntegerTypeEnum;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -28,21 +28,22 @@ import com.mxgraph.io.mxCodecRegistry;
  */
 public class ScilabIntegerCodec extends ScilabObjectCodec {
 
-    private static final String BUNSIGNED = "bUnsigned";
-    private static final String VALUE = "value";
-    private static final String PREC = "precision";
+	private static final String BUNSIGNED = "bUnsigned"; /* With old IntegerType */
+	private static final String VALUE = "value";
+	private static final String PREC = "precision"; /* With old IntegerType */
+	private static final String PRECISION = "intPrecision"; /* with ScilabIntegerTypeEnum */
 
-    /**
-     * Default constructor
+	/**
+	 * Default constructor
 	 * @param template Prototypical instance of the object to be encoded/decoded.
 	 * @param exclude Optional array of fieldnames to be ignored.
 	 * @param idrefs Optional array of fieldnames to be converted to/from references.
 	 * @param mapping Optional mapping from field- to attributenames.
-     */
-    public ScilabIntegerCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
+	 */
+	public ScilabIntegerCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
 
-    }
+	}
 
 	/**
 	 * Encodes the specified object and returns a node representing then given
@@ -53,41 +54,40 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 	 * @param obj Object to be encoded.
 	 * @return Returns the resulting XML node that represents the given object. 
 	 */
-    @Override
-    public Node encode(mxCodec enc, Object obj) {
-    	String name = mxCodecRegistry.getName(obj);
+	@Override
+	public Node encode(mxCodec enc, Object obj) {
+		String name = mxCodecRegistry.getName(obj);
 	Node node = enc.getDocument().createElement(name);
 
 	ScilabInteger scilabInteger = (ScilabInteger) obj;
 	mxCodec.setAttribute(node, WIDTH, scilabInteger.getWidth());
 	mxCodec.setAttribute(node, HEIGHT, scilabInteger.getHeight());
-	mxCodec.setAttribute(node, PREC, scilabInteger.getPrec().name());
+	mxCodec.setAttribute(node, PRECISION, scilabInteger.getPrec().name());
 
 	for (int i = 0; i < scilabInteger.getHeight(); ++i) {
-	    for (int j = 0; j < scilabInteger.getWidth(); ++j) {
+		for (int j = 0; j < scilabInteger.getWidth(); ++j) {
 		Node data = enc.getDocument().createElement(DATA);
 		mxCodec.setAttribute(data, LINE, i);
 		mxCodec.setAttribute(data, COLUMN, j);
 		mxCodec.setAttribute(data, VALUE, scilabInteger.getData()[i][j]);
-		mxCodec.setAttribute(data, BUNSIGNED, scilabInteger.isUnsigned());
 		node.appendChild(data);
-	    }
+		}
 	}
 	return node;
-    }
+	}
 
 	/**
 	 * Parses the given node into the object or returns a new object
 	 * representing the given node.
 	 * 
 	 * @param dec
-	 *            Codec that controls the encoding process.
+	 *			Codec that controls the encoding process.
 	 * @param node
-	 *            XML node to be decoded.
+	 *			XML node to be decoded.
 	 * @param into
-	 *            Optional object to encode the node into.
+	 *			Optional object to encode the node into.
 	 * @return Returns the resulting object that represents the given XML node
-	 *         or the object given to the method as the into parameter.
+	 *		 or the object given to the method as the into parameter.
 	 */
 	@Override
 	public Object decode(mxCodec dec, Node node, Object into) {
@@ -112,38 +112,56 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 				return obj;
 			}
 			
-			final Node u = attrs.getNamedItem(BUNSIGNED);
-			final boolean unsigned;
-			/*
-			 * the default boolean value is false, this value is not serialized
-			 * by jgraphx this if we doesn't have attribute the value is
-			 * "false".
-			 */
-			unsigned = u != null;
-			
+			/* Default values */
+			final Node precNode = attrs.getNamedItem(PRECISION);
+			ScilabIntegerTypeEnum precision;
+			if (precNode != null) {
+				precision = ScilabIntegerTypeEnum.valueOf(precNode.getNodeValue());
+			} else {
+				precision = ScilabIntegerTypeEnum.sci_uint8;
+			}
+
+			/* Compatibility for pre-5.2.2 version */
 			final Node prec = attrs.getNamedItem(PREC);
-			final IntegerType precision = IntegerType.valueOf(prec.getNodeValue());
-			
+			if (prec != null) {
+				/* Old version, we have to convert to the new one */
+				final Node u = attrs.getNamedItem(BUNSIGNED);
+				final boolean unsigned;
+				/*
+				 * the default boolean value is false, this value is not serialized
+				 * by jgraphx this if we doesn't have attribute the value is
+				 * "false".
+				 */
+				unsigned = u != null;
+				
+				precision = ScilabInteger.convertOldType(prec.getNodeValue(), unsigned);
+
+			}
+
+
 			switch (precision) {
-				case TYPE8:
+				case sci_int8:
+				case sci_uint8:
 					final byte[][] data8 = new byte[height][width];
 					fillData(node, data8);
-					obj.setData(data8, unsigned);
+					obj.setData(data8, precision == ScilabIntegerTypeEnum.sci_uint8);
 					break;
-				case TYPE16:
+				case sci_int16:
+				case sci_uint16:
 					final short[][] data16 = new short[height][width];
 					fillData(node, data16);
-					obj.setData(data16, unsigned);
+					obj.setData(data16, precision == ScilabIntegerTypeEnum.sci_uint16);
 					break;
-				case TYPE32:
+				case sci_int32:
+				case sci_uint32:
 					final int[][] data32 = new int[height][width];
 					fillData(node, data32);
-					obj.setData(data32, unsigned);
+					obj.setData(data32, precision == ScilabIntegerTypeEnum.sci_uint32);
 					break;
 				default:
 					final long[][] data64 = new long[height][width];
 					fillData(node, data64);
-					obj.setData(data64, unsigned);
+					obj.setData(data64, precision == ScilabIntegerTypeEnum.sci_uint64);
 					break;
 			}
 
@@ -159,11 +177,11 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 	 * Fill the data from the node.
 	 * 
 	 * @param node
-	 *            the ScilabInteger node
+	 *			the ScilabInteger node
 	 * @param data
-	 *            the allocated data
+	 *			the allocated data
 	 * @throws UnrecognizeFormatException
-	 *             when we are unable to decode the node.
+	 *			 when we are unable to decode the node.
 	 */
 	private void fillData(Node node, byte[][] data)
 			throws UnrecognizeFormatException {
@@ -193,11 +211,11 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 	 * Fill the data from the node.
 	 * 
 	 * @param node
-	 *            the ScilabInteger node
+	 *			the ScilabInteger node
 	 * @param data
-	 *            the allocated data
+	 *			the allocated data
 	 * @throws UnrecognizeFormatException
-	 *             when we are unable to decode the node.
+	 *			 when we are unable to decode the node.
 	 */
 	private void fillData(Node node, short[][] data)
 			throws UnrecognizeFormatException {
@@ -227,11 +245,11 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 	 * Fill the data from the node.
 	 * 
 	 * @param node
-	 *            the ScilabInteger node
+	 *			the ScilabInteger node
 	 * @param data
-	 *            the allocated data
+	 *			the allocated data
 	 * @throws UnrecognizeFormatException
-	 *             when we are unable to decode the node.
+	 *			 when we are unable to decode the node.
 	 */
 	private void fillData(Node node, int[][] data)
 			throws UnrecognizeFormatException {
@@ -261,11 +279,11 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 	 * Fill the data from the node.
 	 * 
 	 * @param node
-	 *            the ScilabInteger node
+	 *			the ScilabInteger node
 	 * @param data
-	 *            the allocated data
+	 *			the allocated data
 	 * @throws UnrecognizeFormatException
-	 *             when we are unable to decode the node.
+	 *			 when we are unable to decode the node.
 	 */
 	private void fillData(Node node, long[][] data)
 			throws UnrecognizeFormatException {

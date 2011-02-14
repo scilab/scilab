@@ -10,12 +10,10 @@
  *
  */
 
-
-/* Copyright INRIA 2007 */
-
 package org.scilab.modules.console;
 
 import org.scilab.modules.history_manager.HistoryManagement;
+import org.scilab.modules.commons.gui.ScilabCaret;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FontMetrics;
@@ -40,7 +38,7 @@ import com.artenum.rosetta.ui.ConsoleTextPane;
 import com.artenum.rosetta.util.StringConstants;
 
 /**
- * Scilab UI that contains the line edited by th euser
+ * Scilab UI that contains the line edited by the user
  * @author Vincent COUVERT
  */
 public class SciInputCommandView extends ConsoleTextPane implements InputCommandView {
@@ -62,11 +60,14 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * Constructor
      */
     public SciInputCommandView() {
-	super();
-	setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
+        super();
+        setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
 
-	// Input command line is not editable when created
-	this.setEditable(false);
+        // Input command line is not editable when created
+        this.setEditable(false);
+        ScilabCaret caret = new ScilabCaret(this);
+        caret.setBlinkRate(getCaret().getBlinkRate());
+        setCaret(caret);
     }
 
     /**
@@ -75,27 +76,27 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * @see com.artenum.rosetta.interfaces.ui.InputCommandView#getCaretLocation()
      */
     public Point getCaretLocation() {
-	FontMetrics fontMetric = getFontMetrics(getFont());
-	String[] lines = null;
-	try {
-	    lines = getStyledDocument().getText(0, getCaretPosition()).split(END_LINE);
-	} catch (BadLocationException e1) {
-	    e1.printStackTrace();
-	    return ERROR_POINT;
-	}
+        FontMetrics fontMetric = getFontMetrics(getFont());
+        String[] lines = null;
+        try {
+            lines = getStyledDocument().getText(0, getCaretPosition()).split(END_LINE);
+        } catch (BadLocationException e1) {
+            e1.printStackTrace();
+            return ERROR_POINT;
+        }
 
-	Point result = new Point(fontMetric.stringWidth(lines[lines.length - 1]), (lines.length * fontMetric.getHeight()));
+        Point result = new Point(fontMetric.stringWidth(lines[lines.length - 1]), (lines.length * fontMetric.getHeight()));
 
-	// Translate for absolute coordinates
-	Component currentComponent = this;
-	while (currentComponent != null) {
-	    result.translate(currentComponent.getLocation().x, currentComponent.getLocation().y);
-	    currentComponent = currentComponent.getParent();
-	    if (currentComponent instanceof JPanel) {
-		return result;
-	    }
-	}
-	return result;
+        // Translate for absolute coordinates
+        Component currentComponent = this;
+        while (currentComponent != null) {
+            result.translate(currentComponent.getLocation().x, currentComponent.getLocation().y);
+            currentComponent = currentComponent.getParent();
+            if (currentComponent instanceof JPanel) {
+                return result;
+            }
+        }
+        return result;
     }
 
     /**
@@ -103,29 +104,29 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * @return the command buffer
      */
     public String getCmdBuffer() {
-	String command = null;
-	try {
-	    if (concurrentThread == null) {
-		concurrentThread = Thread.currentThread();
-	    }
-	    else {
-		concurrentThread.interrupt();
-	    }
-	    command = queue.take();
-	    if (displayQueue.take()) {
-		OutputView outputView = console.getConfiguration().getOutputView();
-		PromptView promptView = console.getConfiguration().getPromptView();
-		outputView.append(StringConstants.NEW_LINE + promptView.getDefaultPrompt() + command + StringConstants.NEW_LINE);
-	    }
-	} catch (InterruptedException e) {
-	    /*
-	     * If we have concurrent access let's interrupt the first one, then allow
-	     * the second to return the command.
-	     */
-	    return "";
-	}
-	concurrentThread = null;
-	return command;
+        String command = null;
+        try {
+            if (concurrentThread == null) {
+                concurrentThread = Thread.currentThread();
+            }
+            else {
+                concurrentThread.interrupt();
+            }
+            command = queue.take();
+            if (displayQueue.take()) {
+                OutputView outputView = console.getConfiguration().getOutputView();
+                PromptView promptView = console.getConfiguration().getPromptView();
+                outputView.append(StringConstants.NEW_LINE + promptView.getDefaultPrompt() + command + StringConstants.NEW_LINE);
+            }
+        } catch (InterruptedException e) {
+            /*
+             * If we have concurrent access let's interrupt the first one, then allow
+             * the second to return the command.
+             */
+            return "";
+        }
+        concurrentThread = null;
+        return command;
     }
 
     /**
@@ -134,12 +135,12 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * @param displayFlag boolean indicating if the command has to be displayed
      */
     public void setCmdBuffer(String command, boolean displayFlag) {
-	try {
-	    queue.put(command);
-	    displayQueue.put(displayFlag);
-	} catch (InterruptedException e) {
-	    e.printStackTrace();
-	}
+        try {
+            queue.put(command);
+            displayQueue.put(displayFlag);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -147,53 +148,53 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * @param c the console associated
      */
     public void setConsole(SciConsole c) {
-	console = c;
+        console = c;
 
-	// Drag n' Drop handling
-	this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(console)));
+        // Drag n' Drop handling
+        this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, new SciDropTargetListener(console)));
 
-	// BUG 2510 fix: automatic validation of pasted lines
-	this.getDocument().addDocumentListener(new DocumentListener() {
-	    public void changedUpdate(DocumentEvent e) {
-	    	// Nothing to do in Scilab
-	    }
+        // BUG 2510 fix: automatic validation of pasted lines
+        this.getDocument().addDocumentListener(new DocumentListener() {
+                public void changedUpdate(DocumentEvent e) {
+                    // Nothing to do in Scilab
+                }
 
-	    public void insertUpdate(DocumentEvent e) {
-	    	// Validates commands if followed by a carriage return
-	    	String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-	    	if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
-	    		EventQueue.invokeLater(new Runnable() {
-	    			public void run() {
-	    				String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-	    				console.sendCommandsToScilab(wholeTxt, true, true);
-	    			};
-	    		});
-	    	}
-	    }
+                public void insertUpdate(DocumentEvent e) {
+                    // Validates commands if followed by a carriage return
+                    String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+                    if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
+                        EventQueue.invokeLater(new Runnable() {
+                                public void run() {
+                                    String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+                                    console.sendCommandsToScilab(wholeTxt, true, true);
+                                };
+                            });
+                    }
+                }
 
-	    public void removeUpdate(DocumentEvent e) {
-	    	// Nothing to do in Scilab
-	    }
-	});
+                public void removeUpdate(DocumentEvent e) {
+                    // Nothing to do in Scilab
+                }
+            });
 
-	this.addKeyListener(new KeyListener() {
-	    public void keyPressed (KeyEvent e) {
-	    	if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
-	    		if (console.getConfiguration().getHistoryManager().isInHistory()) {
-	    			//console.getConfiguration().getInputParsingManager().reset();
-	    			//console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
-	    			console.getConfiguration().getHistoryManager().setInHistory(false);
-	    		}
-	    	}
-	    }
+        this.addKeyListener(new KeyListener() {
+                public void keyPressed (KeyEvent e) {
+                    if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
+                        if (console.getConfiguration().getHistoryManager().isInHistory()) {
+                            //console.getConfiguration().getInputParsingManager().reset();
+                            //console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
+                            console.getConfiguration().getHistoryManager().setInHistory(false);
+                        }
+                    }
+                }
 
-	    public void keyReleased (KeyEvent e) {
-	    	// Nothing to do in Scilab
-	    }
+                public void keyReleased (KeyEvent e) {
+                    // Nothing to do in Scilab
+                }
 
-	    public void keyTyped (KeyEvent e) {
-	    	// Nothing to do in Scilab
-	    }
-});
+                public void keyTyped (KeyEvent e) {
+                    // Nothing to do in Scilab
+                }
+            });
     }
 }

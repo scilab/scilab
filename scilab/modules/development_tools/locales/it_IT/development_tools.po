@@ -26,7 +26,7 @@ msgstr "%s non è un modulo o un toolbox installato"
 
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-msgstr "%s: Il test \"%s\" non esiste o non è possibile leggerlo.\n"
+msgstr "%s: Il test ''%s'' non esiste o non è possibile leggerlo.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
@@ -42,9 +42,6 @@ msgstr "%s: La grandezza dell'argomento in ingresso è sbagliata."
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
-
-msgid "Generating loader.sce...\n"
-msgstr "Generazione di loader.sce in corso...\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

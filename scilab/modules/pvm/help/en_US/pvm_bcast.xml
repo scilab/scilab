@@ -23,7 +23,7 @@
     <synopsis>[info] = pvm_bcast(group, buff, msgtag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>group</term>

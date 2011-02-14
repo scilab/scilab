@@ -8,56 +8,62 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-05-04 12:22+0000\n"
-"Last-Translator: Kamil Strojek <Unknown>\n"
+"PO-Revision-Date: 2010-06-29 09:46+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-04 21:28+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
+msgstr ""
+"%s: niekompatybilne typy parametrów wejściowych nr %d i nr %d. Oczekiwano "
+"ten sam typ.\n"
+
+#, c-format
 msgid "%s: Log of a singular matrix.\n"
-msgstr "%s : Log z pojedynczych macierzy.\n"
+msgstr "%s : Logarytm macierzy osobliwej.\n"
 
 #, c-format
 msgid "%s: Matrix is not diagonalisable.\n"
-msgstr "%s: Macierz nie jest rozpoznawalna.\n"
+msgstr "%s: Macierz nie da się diagonalizować.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: Brak pamieci.\n"
+msgstr "%s: Brak pamięci.\n"
 
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
-msgstr "%s: Nie możliwy do rozpoznania.\n"
+msgstr "%s: Brak możliwości diagonalizacji.\n"
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr "%s: Zły argument #%d: Oczekiwana jest liczba całkowita dodatnia.\n"
+msgstr ""
+"%s: Nieprawidłowy argument nr %d: oczekiwano liczbę całkowitą dodatnią.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
 msgstr ""
-"%s: Nieprawidłowy argument wejściowy #%d: Nie przypisana oczekiwana liczba "
-"całkowita.\n"
+"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
+"znaku.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"
 msgstr ""
-"%s:  Nieprawidłowy argument wejściowy  #%d: Oczekiwany Skalar/macierz z  "
-"liczb całkowitych dodatnich.\n"
+"%s:  Nieprawidłowy argument wejściowy  nr %d: Oczekiwany skalar lub macierz "
+"z liczb całkowitych bez znaku.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: %d lub %d oczekiwano.\n"
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -68,22 +74,27 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: Najbardziej oczekiwano %d.\n"
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected."
 msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: Oczekiwano %d."
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: Oczekiwano przynajmniej "
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
 "%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: Najbardziej oczekiwano %d.\n"
+"%s: Nieprawidłowa liczba argumentów wejściowych: najwyżej oczekiwano %d.\n"
 
 #, c-format
 msgid ""
@@ -96,85 +107,88 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of output arguments: At most %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowa liczba argumentów wyjściowych: Najbardziej oczekiwano %d.\n"
+"%s: Nieprawidłowa liczba argumentów wyjściowych: najwyżej oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s: Nieprawidłowy rozmiar argumentu #%d: Oczekiwano wektoru.\n"
+msgstr "%s: Nieprawidłowy rozmiar argumentu nr %d: Oczekiwano wektora.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Niewłaściwy rozmiar argumentu wejściowego #%d.\n"
+msgstr "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: Oczekiwana liczba "
-"całkowita dodatnia.\n"
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwano liczby "
+"całkowitej dodatniej.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: Oczekiwana wartość "
-"rzeczywista\n"
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
+"wartości typu real.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano macierz "
-"kwadratową.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwana macierz "
+"kwadratowa.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu string.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
+"znaków.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwana liczba "
-"integer.\n"
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano liczby "
+"całkowitej.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: At least the size of input argument "
 "#%d expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d:  Najmniejszy "
-"rozmiar argumentu wejściowego #%d oczekiwany\n"
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d:  oczekiwano "
+"rozmiar przynajmniej jak u argumentu wejściowego nr %d\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr "%s: Zły rozmiar dla argumentu wejściowego #%d: Musi być <= %d.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Musi być <= %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
 msgstr ""
-"%s:  Zły rozmiar parametru wejściowego #%d: Musi zawierać mniej niż %d "
-"znaków.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Musi zawierać mniej "
+"niż %d znaków.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
-"%s:  Zły rozmiar parametru wejściowego #%d: Oczekiwano niepustego ciągu "
-"znaków.\n"
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano "
+"niepustego łańcuchu znaków.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano macierzy kwadratowej.\n"
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwano macierzy "
+"kwadratowej.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr "%s: Zły rozmiar argumentu wejściowego #%d: Oczekiwano wektora.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Oczekiwano wektora.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: oczekiwany wektor "
-"którego elementami są często zera.\n"
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwany wektor "
+"rzadki.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
@@ -197,81 +211,80 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu #%d: Oczekiwano wartości typu real.\n"
+"%s: Nieprawidłowy typ dla argumentu nr %d: oczekiwano wartości typu real.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego #%d.\n"
+msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwana macierz.\n"
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwana liczba "
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana liczba "
 "całkowita dodatnia.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwana liczb "
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwana liczb "
 "rzeczywista dodatnia\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu real.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano wartości typu "
+"real.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano wartości "
-"typu string.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwano łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwana liczba "
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana liczba "
 "całkowita.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano tablicy liczb "
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano tablicy liczb "
 "rzeczywistych.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla parametru wejściowego #%d: Oczekiwana komórka.\n"
+"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: oczekiwana komórka.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwana macierz typu "
-"string.\n"
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz "
+"łańcuchów.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwana macierz ciągów "
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz ciągów "
 "znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
-"%s: Niewłaściwy typ argumentu wejściowego #%d: oczekiwana macierz wartości "
-"real.\n"
+"%s: Niewłaściwy typ argumentu wejściowego nr %d: oczekiwana macierz wartości "
+"typu real.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwana macierz  liczb "
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana macierz  liczb "
 "rzeczywistych lub zespolonych.\n"
 
 #, c-format
@@ -279,33 +292,34 @@ msgid ""
 "%s: Wrong type for input argument #%d: Real, complex, int matrix or matrix "
 "of strings expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwana liczba "
-"rzeczywista, zespolona, macierz typu integer lub macierz typu string.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano macierz liczb "
+"rzeczywistych, zespolonych lub całkowitych albo macierz łańcuchów.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Same type expected for all cell "
 "contents"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwany  ten sam typ dla "
-"wszystkich wartości zbioru"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwany  ten sam typ "
+"dla zawartości wszystkich komórek"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
 "expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla parametru wejściowego #%d: Oczekiwany "
+"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Oczekiwany "
 "skalar/macierz z liczbami całkowitymi bez znaku.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
-msgstr "%s: Nieprawidłowy typ dla parametru wejściowego #%d: Nieznany typ.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Nieznany typ.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwana liczba "
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana liczba "
 "całkowita.\n"
 
 #, c-format
@@ -316,108 +330,111 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: Niewłaściwa wartość argumentu wejściowego #%d.\n"
+msgstr "%s: Nieprawidłowa wartość argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwano %d,''%s'',%d "
-"or ''%s''\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: Oczekiwano %d,''%s'',%d "
+"lub ''%s''\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
-msgstr "%s: Zła wartość parametru wejściowego #%d: Oczekiwano ''%s''.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwana ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwany \"%s\" lub "
-"\"%s\" .\n"
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano ''%s'' lub "
+"''%s'' .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or "
 "''%s'' expected.\n"
 msgstr ""
-"%s:  Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwano ''%s'', "
-"''%s'', ''%s'', ''%s'' or ''%s''\n"
+"%s:  Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwano ''%s'', "
+"''%s'', ''%s'', ''%s'' albo ''%s''\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwano 0 lub 1\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwano 0 lub 1\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive integer expected"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwana liczba "
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwana liczba "
 "całkowita dodatnia"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d:Oczekiwano wartości "
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwano wartości "
 "Integer >= %d\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Macierz nie jest "
-"rozpoznawalna.\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: macierz nie można "
+"zdiagonalizować.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix of strings made of zeros and "
 "ones expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwana macierz z "
-"ciągu zer i jedynek.\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwano macierz "
+"łańcuchów, składających się z zer i jedynek.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Pomiędzy musi być %d i %d."
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: musi być pomiędzy %d i "
+"%d."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Pomiędzy musi być %d i "
-"%d.\n"
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
+"i %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
 msgstr ""
-"%s: Niewłaściwa wartość parametru wejściowego #%d: Nie macierz hermitiana.\n"
+"%s: Niewłaściwa wartość parametru wejściowego nr %d: macierz nie hermitowska "
+"(samosprężona).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integer matrix "
 "expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwana macierz z "
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwana macierz z "
 "liczb całkowitych nieujemnych.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwana macierz typu "
-"real.\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwana macierz "
+"wartości typu real.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwany skalar liczb "
-"całkowitych dodatnich.\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwana pojedyncza "
+"liczba całkowita.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwany "
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany "
 "skalar/wektor/macierz liczb całkowitych dodatnich.\n"
 
 #, c-format
@@ -425,51 +442,46 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwany "
-"skalar/wektor/macierz/hiper-macierz z liczb całkowitych dodatnich.\n"
+"%s: Niepoprawna wartość argumentu wejściowego nr %d: Oczekiwany "
+"skalar/wektor/macierz/hipermacierz z liczb całkowitych dodatnich.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
 "or %s expected"
 msgstr ""
-"%s: Niewłaściwa wartość parametru wejściowego #%d: Nieznane rozszerzenie "
-"pliku, %s, %s, %s lub %s oczekiwane"
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: nieznane rozszerzenie "
+"pliku, oczekiwane %s, %s, %s lub %s"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Valid hexadecimal representations "
 "expected.\n"
 msgstr ""
-"%s: Zła wartość argumentu wejściowego #%d: Oczekiwany zapis szesnastkowy.\n"
+"%s: Niepoprawna wartość argumentu wejściowego nr %d: oczekiwana poprawna "
+"szesnastkowa reprezentacja.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Valid octal representations "
 "expected.\n"
 msgstr ""
-"%s: Zła wartość argumentu wejściowego #%d: Oczekiwany zapis ósemkowy.\n"
+"%s: Niepoprawna wartość argumentu wejściowego nr %d: oczekiwana poprawna "
+"ósemkowa reprezentacja.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: [''d'' ''i''] expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwane [\"d\" "
-"\"i\"].\n"
+"%s: Niepoprawna wartość argumentu wejściowego nr %d: oczekiwane [''d'' "
+"''i''].\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: [''g'' ''r'' ''c'' ''lc'' ''lr''] "
 "expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwane [''g'' ''r'' "
+"%s: Niepoprawna wartość argumentu wejściowego nr %d: oczekiwane [''g'' ''r'' "
 "''c'' ''lc'' ''lr''].\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: [''g'' ''r'' ''c''] expected.\n"
-msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: Oczekiwane [''g'' ''r'' "
-"''c''].\n"
 
 #, c-format
 msgid ""
@@ -477,24 +489,27 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu(ów) wejściowego: Oczekiwano "
-"przedstawienia %d ważnych podstaw.\n"
+"poprawnej reprezentacji dla podstawy %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
 "r(1).\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego #%d: i #%d: c(1) musi być "
+"%s: Niepoprawne wartości argumentów wejściowych nr %d: i %d: c(1) musi być "
 "równe do r(1).\n"
 
 #, c-format
-msgid "WARNING: Function %s is obsolete.\n"
-msgstr "UWAGA: Funkcja %s jest już nieaktualna.\n"
+msgid "Function %s is obsolete."
+msgstr "Funkcja %s jest zdezaktualizowana."
 
 #, c-format
-msgid "WARNING: Please use %s instead.\n"
-msgstr "UWAGA: Proszę w zamian użyć %s.\n"
+msgid "Please use %s instead."
+msgstr "Proszę w zamian użyć %s."
 
 #, c-format
-msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-msgstr "UWAGA: Ta funkcja zostanie na stałe usunięta w Scilab %s.\n"
+msgid "This function will be permanently removed in Scilab %s"
+msgstr "Ta funkcja zostanie na stałe usunięta w Scilab %s"
+
+msgid "Warning: "
+msgstr "Ostrzeżenie: "

@@ -438,8 +438,6 @@ static void getSST(int *fd,short Len,int BIFF,int *ns,char ***sst,int *err)
   int nm;/*Number of following strings*/
   short count=0;
 
-  char *transfert;  /*temp*/
-  transfert=(char *)NULL;
   *ns=0;
   *sst=NULL;
 

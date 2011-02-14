@@ -24,7 +24,7 @@
 [A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>S</term>

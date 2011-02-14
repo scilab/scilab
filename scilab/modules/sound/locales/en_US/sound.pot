@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-11-18 15:37+0100\n"
 
 # File: macros/savewave.sci, line: 146
 # File: macros/savewave.sci, line: 185
@@ -169,6 +169,10 @@ msgstr ""
 msgid ".wav file does not contain the wave identifier."
 msgstr ""
 #
+# File: demos/sound.dem.sce, line: 36
+msgid "A complete picture of the sound."
+msgstr ""
+#
 # File: sci_gateway/c/sci_PlaySound.c, line: 110
 msgid "Cannot play file."
 msgstr ""
@@ -198,6 +202,10 @@ msgstr ""
 #
 # File: macros/auwrite.sci, line: 88
 msgid "Error while writing sound file."
+msgstr ""
+#
+# File: demos/sound.dem.sce, line: 21
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
 msgstr ""
 #
 # File: macros/wavread.sci, line: 150
@@ -247,4 +255,8 @@ msgstr ""
 #
 # File: macros/savewave.sci, line: 146
 msgid "only 8/16/24/32 bits for the encoding."
+msgstr ""
+#
+# File: demos/sound.dem.sce, line: 36
+msgid "see ''mapsound'' function"
 msgstr ""

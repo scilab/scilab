@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-06-29 10:00+0100\n"
+"Revision-Date: 2010-11-18 15:37+0100\n"
 
 # File: macros/init_param.sci, line: 14
 #, c-format
@@ -36,11 +36,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 237
-# File: src/c/parameters.c, line: 384
-# File: src/c/parameters.c, line: 501
-# File: src/c/parameters.c, line: 676
-# File: src/c/parameters.c, line: 853
+# File: src/c/parameters.c, line: 241
+# File: src/c/parameters.c, line: 388
+# File: src/c/parameters.c, line: 505
+# File: src/c/parameters.c, line: 683
+# File: src/c/parameters.c, line: 886
 #, c-format
 msgid "%s: awaited parameters: "
 msgstr ""
@@ -55,114 +55,114 @@ msgstr ""
 msgid "%s: parameter doesn''t exist"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 148
-# File: src/c/parameters.c, line: 572
+# File: src/c/parameters.c, line: 152
+# File: src/c/parameters.c, line: 579
 #, c-format
 msgid "%s: parameter not found. Return default value %d.\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 295
-# File: src/c/parameters.c, line: 750
+# File: src/c/parameters.c, line: 299
+# File: src/c/parameters.c, line: 758
 #, c-format
 msgid "%s: parameter not found. Return default value %f.\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 456
+# File: src/c/parameters.c, line: 460
 #, c-format
 msgid "%s: parameter not found. Return default value %s.\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 187
-# File: src/c/parameters.c, line: 190
-# File: src/c/parameters.c, line: 215
-# File: src/c/parameters.c, line: 218
-# File: src/c/parameters.c, line: 626
-# File: src/c/parameters.c, line: 629
-# File: src/c/parameters.c, line: 654
-# File: src/c/parameters.c, line: 657
+# File: src/c/parameters.c, line: 191
+# File: src/c/parameters.c, line: 194
+# File: src/c/parameters.c, line: 219
+# File: src/c/parameters.c, line: 222
+# File: src/c/parameters.c, line: 633
+# File: src/c/parameters.c, line: 636
+# File: src/c/parameters.c, line: 661
+# File: src/c/parameters.c, line: 664
 #, c-format
 msgid "%s: wrong max bound for parameter %s: max bound %d, value %d\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 334
-# File: src/c/parameters.c, line: 337
-# File: src/c/parameters.c, line: 362
-# File: src/c/parameters.c, line: 365
-# File: src/c/parameters.c, line: 804
-# File: src/c/parameters.c, line: 807
-# File: src/c/parameters.c, line: 832
-# File: src/c/parameters.c, line: 835
+# File: src/c/parameters.c, line: 338
+# File: src/c/parameters.c, line: 341
+# File: src/c/parameters.c, line: 366
+# File: src/c/parameters.c, line: 369
+# File: src/c/parameters.c, line: 822
+# File: src/c/parameters.c, line: 830
+# File: src/c/parameters.c, line: 860
+# File: src/c/parameters.c, line: 868
 #, c-format
 msgid "%s: wrong max bound for parameter %s: max bound %f, value %f\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 173
-# File: src/c/parameters.c, line: 176
-# File: src/c/parameters.c, line: 201
+# File: src/c/parameters.c, line: 177
+# File: src/c/parameters.c, line: 180
 # File: src/c/parameters.c, line: 205
-# File: src/c/parameters.c, line: 612
-# File: src/c/parameters.c, line: 615
-# File: src/c/parameters.c, line: 640
-# File: src/c/parameters.c, line: 644
+# File: src/c/parameters.c, line: 209
+# File: src/c/parameters.c, line: 619
+# File: src/c/parameters.c, line: 622
+# File: src/c/parameters.c, line: 647
+# File: src/c/parameters.c, line: 651
 #, c-format
 msgid "%s: wrong min bound for parameter %s: min bound %d, value %d\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 320
-# File: src/c/parameters.c, line: 323
-# File: src/c/parameters.c, line: 348
+# File: src/c/parameters.c, line: 324
+# File: src/c/parameters.c, line: 327
 # File: src/c/parameters.c, line: 352
-# File: src/c/parameters.c, line: 790
-# File: src/c/parameters.c, line: 793
-# File: src/c/parameters.c, line: 818
-# File: src/c/parameters.c, line: 822
+# File: src/c/parameters.c, line: 356
+# File: src/c/parameters.c, line: 803
+# File: src/c/parameters.c, line: 811
+# File: src/c/parameters.c, line: 841
+# File: src/c/parameters.c, line: 850
 #, c-format
 msgid "%s: wrong min bound for parameter %s: min bound %f, value %f\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 139
-# File: src/c/parameters.c, line: 562
+# File: src/c/parameters.c, line: 143
+# File: src/c/parameters.c, line: 569
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 286
-# File: src/c/parameters.c, line: 740
+# File: src/c/parameters.c, line: 290
+# File: src/c/parameters.c, line: 748
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %f.\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 447
+# File: src/c/parameters.c, line: 451
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %s.\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 598
-# File: src/c/parameters.c, line: 601
-# File: src/c/parameters.c, line: 776
-# File: src/c/parameters.c, line: 779
+# File: src/c/parameters.c, line: 605
+# File: src/c/parameters.c, line: 608
+# File: src/c/parameters.c, line: 784
+# File: src/c/parameters.c, line: 792
 #, c-format
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 236
-# File: src/c/parameters.c, line: 251
-# File: src/c/parameters.c, line: 675
-# File: src/c/parameters.c, line: 690
+# File: src/c/parameters.c, line: 240
+# File: src/c/parameters.c, line: 255
+# File: src/c/parameters.c, line: 682
+# File: src/c/parameters.c, line: 697
 #, c-format
 msgid "%s: wrong value for parameter %s: value %d\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 383
-# File: src/c/parameters.c, line: 398
-# File: src/c/parameters.c, line: 852
-# File: src/c/parameters.c, line: 867
+# File: src/c/parameters.c, line: 387
+# File: src/c/parameters.c, line: 402
+# File: src/c/parameters.c, line: 885
+# File: src/c/parameters.c, line: 902
 #, c-format
 msgid "%s: wrong value for parameter %s: value %f\n"
 msgstr ""
 #
-# File: src/c/parameters.c, line: 500
-# File: src/c/parameters.c, line: 521
+# File: src/c/parameters.c, line: 504
+# File: src/c/parameters.c, line: 525
 #, c-format
 msgid "%s: wrong value for parameter %s: value %s\n"
 msgstr ""

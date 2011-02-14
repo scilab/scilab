@@ -25,7 +25,7 @@
 S=dir([path])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>path</term>
@@ -51,8 +51,7 @@ S=dir([path])</synopsis>
       <literal>dir</literal> commands in order to get information on files. 
       Thus in order to write portable Scilab script valid wildcard patterns 
       for both os are to be given. Note that Pathname conversion is
-      performed and for example <literal>SCI/modules/core/macros/*.sci</literal> is a valid 
-      pattern for both unix and windows.
+      performed and for example <literal>SCI/modules/core/macros/*.sci</literal> is a valid pattern for both unix and windows.
     </para>
     <para>
       The <literal>name</literal> field of the returned variable is the column vector
@@ -67,8 +66,11 @@ S=dir([path])</synopsis>
       of boolean true if the corresponding name is a directory.
     </para>
     <para>
-      The  default display of the returned structure is a column formatted list
+      The default display of the returned structure is a column formatted list
       of files. It can be changed redefining the function <literal>%dir_p</literal>
+    </para>
+    <para>
+        Since Scilab 5.3.1, a trailing "/" or "\" (See <link linkend="filesep">filesep</link>) is displayed for each directory.
     </para>
   </refsection>
   <refsection>

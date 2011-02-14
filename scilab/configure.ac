@@ -16,15 +16,26 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
-AC_PREREQ(2.60)
+AC_PREREQ(2.62)
 AC_CONFIG_MACRO_DIR([m4/])
 
 SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCILAB_LIBRARY_VERSION=5:3:0
+SCILAB_VERSION_MAJOR=5
+SCILAB_VERSION_MINOR=4
+SCILAB_VERSION_MAINTENANCE=0
+AC_SUBST(SCILAB_VERSION_MAJOR)
+AC_SUBST(SCILAB_VERSION_MINOR)
+AC_SUBST(SCILAB_VERSION_MAINTENANCE)
+
+
+SCILAB_LIBRARY_VERSION=$SCILAB_VERSION_MAJOR:$SCILAB_VERSION_MINOR:$SCILAB_VERSION_MAINTENANCE
 AC_SUBST(SCILAB_LIBRARY_VERSION)
+
+SCILAB_BINARY_VERSION=$SCILAB_VERSION_MAJOR.$SCILAB_VERSION_MINOR.$SCILAB_VERSION_MAINTENANCE
+AC_SUBST(SCILAB_BINARY_VERSION)
 
 #shared library versioning
 #GENERIC_LIBRARY_VERSION=1:2:0
@@ -95,6 +106,9 @@ AC_ARG_ENABLE(debug-fortran,
 
 AC_ARG_ENABLE(debug-linker,
    AC_HELP_STRING([--enable-debug-linker],[Print warning messages from the linker (ld)]))
+
+AC_ARG_ENABLE(code-coverage,
+   AC_HELP_STRING([--enable-code-coverage],[Enable code coverage]))
 
 AC_ARG_ENABLE(stopOnWarning,
    AC_HELP_STRING([--enable-stop-on-warning],[Stop the compilation on the first warning found in the C/C++ code]))
@@ -355,10 +369,16 @@ fi
 
 if test -n "$F77"; then
 dnl @TODO : Maybe we should check that it is actually gfortran
+
+   # enable the code coverage
+   if test "$enable_code_coverage" = yes; then
+    FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
+   fi
+
    if test "$enable_debug_fortran" = yes; then
 	# -D_FORTIFY_SOURCE=2
 	AC_LANG_PUSH([Fortran 77])
-	for flag in -g -Wall -Wimplicit -Wsurprising ; do
+	for flag in -g -Wall -Wsurprising; do
 		case " ${FFLAGS} " in
 			*\ ${flag}\ *)
 				# flag is already present
@@ -470,8 +490,14 @@ fi
 case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
+
+   # enable the code coverage
+   if test "$enable_code_coverage" = yes; then
+    CPPFLAGS="$CPPFLAGS -fprofile-arcs -ftest-coverage"
+   fi
+
    if test "$enable_debug_CXX" = yes; then
-	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3"
+	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
@@ -502,6 +528,12 @@ esac
 case "$CC" in
 	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
+
+   # enable the code coverage
+   if test "$enable_code_coverage" = yes; then
+    CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage"
+   fi
+
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
 	  # used to be -O
@@ -521,10 +553,6 @@ case "$CC" in
    CFLAGS="$CFLAGS -fno-stack-protector" # bug 3131
 
    case "$host" in
-   # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
-	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
-	    CFLAGS="$CFLAGS -fwritable-strings"
-	;;
 	 x86_64-*-linux-gnu | x86_64-linux-gnu)
 		CFLAGS="$CFLAGS -DNARROWPROTO -m64"
     ;;
@@ -535,11 +563,11 @@ case "$CC" in
 		CFLAGS="$CFLAGS -DNARROWPROTO"
     ;;
 	 alpha-*-linux-gnu)
-		CFLAGS="$CFLAGS  -mieee-with-inexact -fwritable-strings"
+		CFLAGS="$CFLAGS  -mieee-with-inexact"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
 	;;
 	 powerpc-*-linux-gnu)
-		CFLAGS="$CFLAGS -D_GNU_SOURCE -fwritable-strings"
+		CFLAGS="$CFLAGS -D_GNU_SOURCE"
 	;;
 	 *-*-solaris*)
         if test "$enable_debug_C" = yes; then
@@ -628,6 +656,19 @@ esac
 ;; # end of not a gcc compiler
 esac
 
+# enable the code coverage
+if test "$enable_code_coverage" = yes; then
+   AC_PATH_PROG(LCOV, lcov)
+   if test -z "$LCOV" ; then
+		AC_MSG_ERROR([Cannot find lcov. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
+   fi
+   AC_PATH_PROG(GENHTML, genhtml)
+   if test -z "$GENHTML" ; then
+		AC_MSG_ERROR([Cannot find genhtml. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
+   fi
+   LDFLAGS="$LDFLAGS -coverage"
+fi
+AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
@@ -674,6 +715,12 @@ AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
 ###########################
 
 if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
+   # Need MacosX Version to specify some path.
+   case "$host_os" in
+                   *Darwin* | *darwin*)
+                   AC_GET_MACOSX_VERSION;;
+  esac
+
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -694,6 +741,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 		AC_JAVA_TOOLS
 		AC_JAVA_ANT
 
+		case "$host_os" in
+                     *Darwin* | *darwin*)
+		        JAVA_HOME="";;
+		esac
+
+
 		if test "$with_gui" != no; then
 
 				# jgraphx
@@ -701,12 +754,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JGRAPHX=$PACKAGE_JAR_FILE
 				AC_SUBST(JGRAPHX)
 
-				AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.0.2],[mxGraph.VERSION])
+				AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
 
 				# Docking system
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
 				FLEXDOCK=$PACKAGE_JAR_FILE
 				AC_SUBST(FLEXDOCK)
+
+				AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[0.5.2],[Utilities.VERSION])
 
 				# Swing look&feel implementations
 				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel],"yes")
@@ -856,7 +911,7 @@ the the JNI libraries."])],
                 JLATEXMATH=$PACKAGE_JAR_FILE
                 AC_SUBST(JLATEXMATH)
 
-				AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.8.8],[TeXFormula.VERSION])
+				AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.9.3],[TeXFormula.VERSION])
 
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
@@ -1491,7 +1546,7 @@ AC_SUBST(HELP_ENABLE)
 
 AM_CONDITIONAL(BUILD_HELP, test $HELP_ENABLE = yes)
 
-## Install XML help files ###
+## Install XML help files ###
 
 AC_ARG_WITH(install-help-xml,
 		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files])
@@ -1650,6 +1705,7 @@ modules/shell/Makefile
 modules/completion/Makefile
 modules/history_manager/Makefile
 modules/jvm/Makefile
+modules/commons/Makefile
 modules/sound/Makefile
 modules/statistics/Makefile
 modules/mexlib/Makefile
@@ -1719,8 +1775,10 @@ scilab.pc
 etc/modules.xml
 etc/classpath.xml
 etc/jvm_options.xml
+etc/Info.plist
 scilab-lib.properties
 scilab-lib-doc.properties
+modules/core/includes/version.h
 ])
 
 # Detection of the module for the future version of Scilab 6
@@ -1849,6 +1907,15 @@ fi
 fi
 
 echo ""
+if test "$enable_code_coverage" = yes;  then
+   echo "Code coverage configuration:"
+   echo "  LCOV .............. = $LCOV"
+   echo "  GENHTML ........... = $GENHTML"
+else
+   echo "Not using code coverage"
+fi
+
+echo ""
 if test $OPENMP_ENABLE = yes; then
    echo "OpenMP Configuration:"
    echo "OpenMP CFLAGS ...... = $OPENMP_CFLAGS"
@@ -1963,6 +2030,7 @@ echo "  JAVA_JNI_INCLUDE .... = $JAVA_JNI_INCLUDE"
 echo "  JAVA_JNI_LIBS ....... = $JAVA_JNI_LIBS"
 echo "  JAVA_JNI_LIBS_PRELOAD = $JAVA_JNI_LIBS_PRELOAD"
 echo "  JAVA ................ = $JAVA"
+echo "  JAVADOC ............. = $JAVADOC"
 echo "  JAR ................. = $JAR"
 echo "  ANT ................. = $ANT"
 else
@@ -2083,6 +2151,7 @@ echo "  hostname ....... = $ac_hostname"
 echo "  CPU 64 bits .... = $IS_64_BITS_CPU"
 if test -n "$MAC_DETECTED_ARCH"; then
 echo "  Mac OS X arch .. = $MAC_DETECTED_ARCH"
+echo "  Mac OS X version = $macosx_version"
 fi
 
 echo ""

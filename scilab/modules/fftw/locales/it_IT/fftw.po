@@ -24,7 +24,7 @@ msgstr "%s: Si è verificato il seg. errore: %s\n"
 msgid ""
 "%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
 msgstr ""
-"%s: Gli argomenti \"#%d\" e \"#%d\" sono incompatibili: erano attese le "
+"%s: Gli argomenti '#%d' e '#%d' sono incompatibili: erano attese le "
 "stesse dimensioni.\n"
 
 #, c-format

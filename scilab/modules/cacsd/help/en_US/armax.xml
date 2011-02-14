@@ -23,7 +23,7 @@
     <synopsis>[arc,la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>y</term>

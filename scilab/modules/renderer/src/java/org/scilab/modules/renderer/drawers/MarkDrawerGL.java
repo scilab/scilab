@@ -37,7 +37,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	private Vector3D[] markPos;
 	
 	private int nbMarks;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -64,6 +64,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	public void initializeDrawing(int parentFigureIndex) {
 		super.initializeDrawing(parentFigureIndex);
 		drawer.initializeDrawing(parentFigureIndex);
+		drawer.setMarkDrawingStrategy(getParentFigureGL().getMarkDrawingStrategy());
 	}
 	
 	/**

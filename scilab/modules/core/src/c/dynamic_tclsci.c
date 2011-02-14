@@ -34,40 +34,48 @@ static PROC_TERMINATETCLTK ptr_TerminatTclTk = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_tclsci(void)
 {
-	return gw_dynamic_generic(TCLSCI_MODULE_NAME,
-		&dynlibname_tclsci,
-		&gatewayname_tclsci,
-		&hTclsciLib,
-		&ptr_gw_tclsci);
+    return gw_dynamic_generic(TCLSCI_MODULE_NAME,
+        &dynlibname_tclsci,
+        &gatewayname_tclsci,
+        &hTclsciLib,
+        &ptr_gw_tclsci);
 }
 /*--------------------------------------------------------------------------*/
 int dynamic_setenvtcl(char *string,char *value)
 {
-	if (hTclsciLib)
-	{
-		if (ptr_setenvtcl == NULL)
-		{
-			ptr_setenvtcl = (PROC_SETENVTCL) GetDynLibFuncPtr(hTclsciLib, 
-											 SETENVTCL_NAME);
-			if (ptr_setenvtcl == NULL) return 0;
-		}
-		return (ptr_setenvtcl)(string , value);
-	}
-	return 0;
+    if (hTclsciLib)
+    {
+        if (ptr_setenvtcl == NULL)
+        {
+            ptr_setenvtcl = (PROC_SETENVTCL) GetDynLibFuncPtr(hTclsciLib, 
+                SETENVTCL_NAME);
+            if (ptr_setenvtcl == NULL) return 0;
+        }
+        return (ptr_setenvtcl)(string , value);
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 BOOL dynamic_TerminateTclTk(void)
 {
-	if (hTclsciLib)
-	{
-		if (ptr_TerminatTclTk == NULL)
-		{
-			ptr_TerminatTclTk = (PROC_TERMINATETCLTK) GetDynLibFuncPtr(hTclsciLib, 
-															TERMINATETCLTK_NAME);
-			if (ptr_TerminatTclTk == NULL) return FALSE;
-		}
-		return (ptr_TerminatTclTk)();
-	}
-	return FALSE;
+    if (hTclsciLib)
+    {
+        BOOL bResult = FALSE;
+        if (ptr_TerminatTclTk == NULL)
+        {
+            ptr_TerminatTclTk = (PROC_TERMINATETCLTK) GetDynLibFuncPtr(hTclsciLib, 
+                TERMINATETCLTK_NAME);
+            if (ptr_TerminatTclTk == NULL) return FALSE;
+        }
+        bResult = (ptr_TerminatTclTk)();
+
+        freeDynamicGateway(&dynlibname_tclsci,
+            &gatewayname_tclsci,
+            &hTclsciLib,
+            &ptr_gw_tclsci);
+
+        return bResult;
+    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/

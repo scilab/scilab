@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-16 12:24+0000\n"
+"PO-Revision-Date: 2010-10-07 09:48+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "%s (Vedere la funzione fileinfo())."
 
 #, c-format
 msgid "%s considered to be a Scilab macro."
-msgstr "%s è considerato essere una macro di Scilab"
+msgstr "%s è considerato come una macro di Scilab"
 
 #, c-format
 msgid "%s is an empty matrix, so result is set to []."
@@ -106,7 +106,7 @@ msgstr "%s: il modulo %s non è installato.\n"
 
 #, c-format
 msgid "%s: Output value set to ''on''."
-msgstr "%s valore in uscita impostato a \"on\"."
+msgstr "%s valore in uscita impostato a ''on''."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -126,7 +126,7 @@ msgid "&Tools"
 msgstr "&Strumenti"
 
 msgid "''nobalance'' option, IGNORED."
-msgstr "opzione \"nobalance\",IGNORATA."
+msgstr "opzione ''nobalance'', IGNORATA."
 
 #, c-format
 msgid "(Find this function in matlab/%s)."
@@ -169,6 +169,10 @@ msgid ""
 "// Input: tree = Matlab funcall tree\n"
 "// Output: tree = Scilab equivalent for tree"
 msgstr ""
+"// Diritto d'autore INRIA (Generato da M2SCI)\n"
+"// Funzione di conversione per %s() di Matlab\n"
+"// Ingresso: albero = albero funcall di Matlab\n"
+"// Uscita: albero = equivalente di Scilab per albero"
 
 msgid "// Display mode"
 msgstr "// Modalità mostra"
@@ -183,6 +187,10 @@ msgid ""
 "// Input: tree = Matlab funcall tree\n"
 "// Output: tree = Scilab equivalent for tree"
 msgstr ""
+"// Generato da M2SCI\n"
+"// Funzione di conversione per %s di Matlab\n"
+"// Ingresso: albero = albero funcall di Matlab\n"
+"// Uscita: albero = equivalente di Scilab per albero"
 
 msgid "// Inference for varargout"
 msgstr "// Deduzione per varargout"
@@ -253,8 +261,7 @@ msgid "Bad use of isdefinedvar() with input: %s."
 msgstr "Uso sbagliato di isdefinedvar() con un ingresso: %s."
 
 msgid "Bessel function is not implemented for 2 outputs arguments."
-msgstr ""
-"La funzione di Bessel non è implementata per due argomenti in uscita."
+msgstr "La funzione di Bessel non è realizzata per due argomenti in uscita."
 
 msgid "Browse"
 msgstr "Esplora"
@@ -317,7 +324,7 @@ msgstr "L'estrazione da stringhe con più di due indici non è sviluppata."
 
 #, c-format
 msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
-msgstr "L'estrazione di %s dalla tlist \"%s\" non è ancora sviluppata."
+msgstr "L'estrazione di %s dalla tlist ''%s'' non è ancora sviluppata."
 
 msgid "File"
 msgstr "File"
@@ -364,11 +371,19 @@ msgstr ""
 
 #, c-format
 msgid ""
+"If %s is outside [-1,1]\n"
+"   real part of output of %s will be the opposite of Matlab one."
+msgstr ""
+"Se %s è fuori da [-1,1]\n"
+"   la parte reale del risultato di %s sarà l'opposto di quello di Matlab."
+
+#, c-format
+msgid ""
 "In %s %s is a String,\n"
 "So result is set to %s."
 msgstr ""
-"In %s %s è una stringa\n"
-"Quindi il risultato è impostato a %s."
+"In %s , %s è una stringa\n"
+"quindi il risultato è impostato a %s."
 
 msgid "Input directory"
 msgstr "Directory di origine"
@@ -671,7 +686,7 @@ msgstr "I dati utente sono di dimensioni sbagliate."
 
 msgid "Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."
 msgstr ""
-"C'è un argomento sbagliato in getrhs() (deve essere una tlist \"funcall\")."
+"C'è un argomento sbagliato in getrhs() (deve essere una tlist ''funcall'')."
 
 msgid "Wrong number of inputs."
 msgstr "Il numero di ingressi è sbagliato."
@@ -684,7 +699,7 @@ msgstr "Sì"
 
 #, c-format
 msgid "contents must be a ''contents'' tlist instead of a: %s."
-msgstr "contents deve essere una tlist \"contents\" invece di un: %s."
+msgstr "contents deve essere una tlist ''contents'' invece di un: %s."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling è utilizzato solo in modalità 3D."
@@ -723,10 +738,10 @@ msgstr "index deve essere una lista invece di un: %s."
 
 #, c-format
 msgid "infer must be an ''infer'' tlist instead of a: %s."
-msgstr "infer deve essere una tlist \"infer\" invece di un: %s."
+msgstr "infer deve essere una tlist ''infer'' invece di un: %s."
 
 msgid "input argument must be an ''operation'' tlist."
-msgstr "l'argomento in ingresso deve essere una tlist \"operation\""
+msgstr "l'argomento in ingresso deve essere una tlist ''operation''"
 
 msgid "is Real."
 msgstr "è reale"
@@ -781,7 +796,7 @@ msgid "matname must be a string instead of a: %s."
 msgstr "matname deve essere una stringa invece di un: %s."
 
 msgid "message_id ignored in following line."
-msgstr "message_id è ignorato nella seguente riga."
+msgstr "message_id è ignorato nella riga successiva."
 
 #, c-format
 msgid ""
@@ -870,7 +885,7 @@ msgstr "il tipo %d non è sviluppato."
 
 #, c-format
 msgid "type must be a ''type'' tlist instead of a: %s."
-msgstr "type deve essere una tlist \"type\" invece di un: %s."
+msgstr "type deve essere una tlist ''type'' invece di un: %s."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"

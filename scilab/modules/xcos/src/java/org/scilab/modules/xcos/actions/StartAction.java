@@ -26,8 +26,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
+import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -37,7 +37,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Start the simulation
  */
-public class StartAction extends DefaultAction {
+public class StartAction extends OneBlockDependantAction {
 	/** Name of the action */
 	public static final String NAME = XcosMessages.START;
 	/** Icon name of the action */
@@ -131,7 +131,7 @@ public class StartAction extends DefaultAction {
 		 * Import a valid scs_m structure into Scilab
 		 */
 		final File temp = FileUtils.createTempFile();
-		diagram.dumpToHdf5File(temp.getAbsolutePath());
+		diagram.dumpToHdf5File(temp);
 
 		command.append(buildCall("import_from_hdf5", temp.getAbsolutePath()));
 		command.append(buildCall("scicos_debug", diagram.getScicosParameters().getDebugLevel()));

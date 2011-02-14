@@ -16,6 +16,7 @@
 Name: "en_US"; MessagesFile: "compiler:Default.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "ru_RU"; MessagesFile: "compiler:Languages\Russian.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "zh_CN"; MessagesFile: "{#BinariesSourcePath}\tools\innosetup\zh_CN.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
+Name: "zh_TW"; MessagesFile: "{#BinariesSourcePath}\tools\innosetup\zh_TW.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "ja_JP"; MessagesFile: "{#BinariesSourcePath}\tools\innosetup\ja_JP.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "uk_UA"; MessagesFile: "{#BinariesSourcePath}\tools\innosetup\uk_UA.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "pl_PL"; MessagesFile: "{#BinariesSourcePath}\tools\innosetup\pl_PL.isl"; LicenseFile: {#BinariesSourcePath}\COPYING

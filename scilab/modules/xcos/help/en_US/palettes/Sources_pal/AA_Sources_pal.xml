@@ -168,7 +168,7 @@
     generators. That palette also contains blocks to read data from files and
     input ports used in superblocks.</para>
 
-    <para>The blocks of that palette doesn't have regular input ports.</para>
+    <para>The blocks of that palette does not have regular input ports.</para>
   </refsection>
 
   <refsection id="Blocks_Sources_pal">

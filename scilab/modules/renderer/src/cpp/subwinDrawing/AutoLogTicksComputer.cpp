@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Compute automatic ticks with logarithmic scaling
  * 
  * This file must be used under the terms of the CeCILL.
@@ -63,47 +64,48 @@ int AutoLogTicksComputer::getNbTicks(void)
 void AutoLogTicksComputer::getTicksPosition(double positions[], char * labels[], char * labelsExponents[])
 {
 
-	if (m_iNbTicks < 0)
-	{
-		GradLog(m_dMinBounds, m_dMaxBounds, positions, &m_iNbTicks, FALSE);
-	}
-	else
-	{
-		GradLog(m_dMinBounds, m_dMaxBounds, positions, &m_iNbTicks, TRUE);
-	}
+  if (m_iNbTicks < 0)
+  {
+    GradLog(m_dMinBounds, m_dMaxBounds, positions, &m_iNbTicks, FALSE);
+  }
+  else
+  {
+    GradLog(m_dMinBounds, m_dMaxBounds, positions, &m_iNbTicks, TRUE);
+  }
 
-  // ticks labels are 10^i
-  // i is computed by grad log
-  char labelsExponentFormat[5];
-  int lastIndex = Max( m_iNbTicks - 1, 0 ) ;
+  /* Build the tick labels if neither labels nor labelsExponents is null. */
+  if( labels != NULL &&  labelsExponents != NULL )
+  {
+    // ticks labels are 10^i
+    // i is computed by grad log
+    char labelsExponentFormat[5];
+    int lastIndex = Max( m_iNbTicks - 1, 0 ) ;
 
-  ChoixFormatE( labelsExponentFormat,
+    ChoixFormatE( labelsExponentFormat,
                 positions[0],
                 positions[lastIndex],
                 (positions[lastIndex] - positions[0]) / lastIndex ); /* Adding F.Leray 06.05.04 */
   
-  // copy exponents
-  char buffer[BUFFER_LENGTH];
-  for (int i = 0; i < m_iNbTicks; i++)
-  {
-    // convert current position into a string
-    sprintf(buffer, labelsExponentFormat, positions[i]);
+    // copy exponents
+    char buffer[BUFFER_LENGTH];
+    for (int i = 0; i < m_iNbTicks; i++)
+    {
+      // convert current position into a string
+      sprintf(buffer, labelsExponentFormat, positions[i]);
 
-    // add the string to labels
-    if (labelsExponents[i] != NULL) {delete labelsExponents[i];}
+      // add the string to labels
+      if (labelsExponents[i] != NULL) {delete labelsExponents[i];}
 
-    labelsExponents[i] = new char[strlen(buffer) + 1];
-    strcpy(labelsExponents[i], buffer);
+      labelsExponents[i] = new char[strlen(buffer) + 1];
+      strcpy(labelsExponents[i], buffer);
 
-    // copy "10" in each labem
-    if  (labels[i] != NULL) {delete labels[i];}
+      // copy "10" in each labem
+      if  (labels[i] != NULL) {delete labels[i];}
 
-    labels[i] = new char[strlen(LOG_BASE) + 1];
-    strcpy(labels[i], LOG_BASE);
+      labels[i] = new char[strlen(LOG_BASE) + 1];
+      strcpy(labels[i], LOG_BASE);
+    }
   }
-
-
-
 
 }
 /*------------------------------------------------------------------------------------------*/

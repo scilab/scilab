@@ -606,29 +606,26 @@ int Name2where(char *namex)
  *             since it can be wrong (ex when name is transmited
  *             by fort (intfort : function )
  *----------------------------------------------------------------*/
-int C2F(str2name)(char *namex, int *id, unsigned long name_len)
+int C2F(str2name)(const char *namex, int *id, unsigned long name_len)
 {
 	int ix = 0;
-	int lon = 0;
+    int i = 0;
+	char* temp = 0;
 
-	for (ix = 0 ; ix < (int)  name_len ; ix++ )
-	{
-		if ( namex[ix] == '\0') break;
-		lon++;
-	}
+    /* initialize id array */
+    for (i = 0; i < nsiz;i++) id[i] = 0;
 
-	lon = (int)strlen(namex);
-	/* remove blanks in namex */
-	for (ix = 0; ix < lon; ix++)
-	{
-		if ( namex[ix] == ' ')
-		{
-			namex[ix] = '\0';
-			lon = (int)strlen(namex);
-			break;
-		}
-	}
-	C2F(cvname)(id, namex, &cx0, lon);
+	for (ix = 0; namex[ix] != ' ' && namex[ix] != '\0'; ix++);
+      
+	temp = (char*)MALLOC((ix + 1) * sizeof(char) );
+    if (temp)
+    {
+	    memcpy(temp, namex, ix);
+	    temp[ix] = '\0';
+        /* cx0 = 0 convert name to ID */
+	    C2F(cvname)(id, temp, &cx0, ix);
+        FREE(temp);
+    }
 	return 0;
 }
 /*----------------------------------------------------------------
@@ -1973,13 +1970,13 @@ int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen,
 	return 0;
 }
 
-void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
+void vGetPointerFromDoubleComplex(const doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
 
 	int iTwo	= 2;
 	int iOne	= 1;
-	double *pReal = &_poComplex[0].r;
-	double *pImg = &_poComplex[0].i;
+	double *pReal = (double*)&_poComplex[0].r;
+	double *pImg = (double*)&_poComplex[0].i;
 
 	if(_pdblReal != NULL && _pdblImg != NULL)
 	{

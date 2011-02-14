@@ -1,21 +1,35 @@
-                      Scilab 5.3.0 beta 2 Release_Notes
+                      Scilab 5.3.0 beta 5 Release_Notes
                       =================================
 
-- editvar and browsevar do not support all Scilab datatypes.
+- New Nvidia drivers 260.xx can crash scilab (bug #7575)
+  Workaround: You need to create a 3D graphic profile for wscilex.exe.
+  start Nvidia control panel --> 3d settings --> Manage 3D settings --> Add and 
+  select  wscilex.exe" for Scilab and you disable ("off") for "Threaded 
+  optimization".
+  A warning on Scilab startup should be displayed.
 
-- The history browser, editvar and browsevar will be updated in the beta 3.
-  (features, usability and stability)
+- All portability issues of Scilab under Mac OS X (both 10.5 and 10.6) should be
+  fixed. 
+  However, if any problems is encounter, please:
+  * Test the workaround described here:
+    http://bugzilla.scilab.org/show_bug.cgi?id=7012#c10
+  * Do not hesitate to report your problem as comment of the bug:
+    http://bugzilla.scilab.org/show_bug.cgi?id=7012
 
-- A new javasci API (Javasci => SCilab) should be available in the beta 3.
+- Some issues on startup under Mac OS X 10.6 have been reported.
+  If you have "Audio Hijack" installed on your Mac OS X, it prevents some
+  applications to work including Scilab. See bug #7012.
+  Uninstall / disable Audio Hijack should fix this problem.
 
-- Some issues on startup under Mac OS X have been reported and should be fixed
-  in the beta 3 of Scilab 5.3.0:
-  Bug #7012: Error in the detection of the version of Java available.
-  Bug #7433: A segmentation fault on Scilab startup on some Mac OS X 
-  installations.
+- Support of Mac OS X 10.5 can be partial. This should be fixed with version
+  5.3.1.
 
-- Under Linux, the binary requires at least the GLIBC version 2.7. This should
-  be fixed in the beta 3.
+- The dependencies on the GLIBC 2.7 have been removed. However, on old system,
+  the function parallel_run will not work since it needs a recent version
+  of the OpenMP runtime.
+
+- The accuracy of inversion of most distribution functions is increased: see
+  bug #7569 for details.
 
 Besides these points, do not hesitate to report bugs on:
 http://bugzilla.scilab.org/

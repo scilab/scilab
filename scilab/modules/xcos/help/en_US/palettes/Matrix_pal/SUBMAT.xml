@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>SUBMAT</refname>
 
-    <refpurpose>Sub-matrix extraction</refpurpose>
+    <refpurpose>Sub-matrix Extraction</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -52,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="SUBMAT">Sub-matrix extraction</link>
+          <link linkend="SUBMAT">Sub-matrix Extraction</link>
         </para>
       </listitem>
 
@@ -78,22 +78,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_SUBMAT">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_SUBMAT">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_SUBMAT">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_SUBMAT">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_SUBMAT">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_SUBMAT">Computational function</xref>
             </para>
           </listitem>
 
@@ -122,8 +119,27 @@
   <refsection id="Description_SUBMAT">
     <title>Description</title>
 
-    <para>This block outputs a sub matrix of the input matrix. The output
-    matrix will be defining by using the parameters of this block.</para>
+    <para>
+      This block outputs a sub matrix of the input matrix. The dimensions of the input matrix are specified
+      in the <emphasis role="bold">Input Dimension</emphasis> parameter. The user gives the range of extraction
+      with four parameters:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          The parameters <emphasis role="bold">Starting Row Index</emphasis> and
+          <emphasis role="bold">Ending Row Index</emphasis> specify the lines range to be extracted.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          The parameters <emphasis role="bold">Starting Column Index</emphasis> and
+          <emphasis role="bold">Ending Column Index</emphasis> specify the column range to be extracted.
+        </para>
+      </listitem>
+    </itemizedlist>
 
     <para />
   </refsection>
@@ -149,7 +165,10 @@
           <emphasis role="bold">Datatype (1=real double 2=Complex)</emphasis>
         </para>
 
-        <para>Type of the output matrix. It can be double or complex.</para>
+        <para>
+          It indicates the type of the output. It support only the two types double (1) and complex (2).
+          If we input another entry in this label xcos will print the message "Datatype is not supported".
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -159,7 +178,7 @@
           <emphasis role="bold">Starting Row Index</emphasis>
         </para>
 
-        <para>The first row of the submatrix.</para>
+        <para>The first row of the sub-matrix.</para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -169,7 +188,7 @@
           <emphasis role="bold">Ending Row Index</emphasis>
         </para>
 
-        <para>The last row of the Submatrix.</para>
+        <para>The last row of the sub-matrix.</para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -179,7 +198,7 @@
           <emphasis role="bold">Starting Column Index</emphasis>
         </para>
 
-        <para>The first column of the submatrix.</para>
+        <para>The first column of the sub-matrix.</para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -189,7 +208,7 @@
           <emphasis role="bold">Ending Column Index</emphasis>
         </para>
 
-        <para>The last row of the submatrix.</para>
+        <para>The last column of the sub-matrix.</para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -247,18 +266,15 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -266,8 +282,7 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>

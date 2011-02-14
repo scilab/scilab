@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-27 16:04+0100\n"
-"PO-Revision-Date: 2009-11-23 17:03+0000\n"
-"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"PO-Revision-Date: 2010-09-02 14:24+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,11 +24,9 @@ msgstr ""
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s を開けません。\n"
 
-#
-# File: sci_gateway/c/sci_xls_read.c, line: 70
 #, c-format
 msgid "%s: End of file.\n"
-msgstr "%s: ファイルの終わり。\n"
+msgstr "%s: ファイルの終端に達しました.\n"
 
 #
 # File: sci_gateway/c/sci_xls_read.c, line: 66
@@ -36,24 +34,17 @@ msgstr "%s: ファイルの終わり。\n"
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
 msgstr "%s: 予想したデータを読み込めません、無効なxlsファイルかもしれません。\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 89
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
-msgstr "%s: ファイルむ %s はOLE2ファイルではありません。\n"
+msgstr "%s: ファイル %s は OLE2ファイルではありません.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 139
 #, c-format
 msgid "%s: Incorrect or corrupted file.\n"
-msgstr "%s: ダメな不正確なファイルです。\n"
+msgstr "%s: 無効または破損したファイルです.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 134
-# File: sci_gateway/c/sci_xls_read.c, line: 62
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: これ以上メモリがありません。\n"
+msgstr "%s: メモリ不足です.\n"
 
 #
 # File: sci_gateway/c/sci_xls_open.c, line: 124
@@ -61,63 +52,50 @@ msgstr "%s: これ以上メモリがありません。\n"
 msgid "%s: Not an ole2 file.\n"
 msgstr "%s: OLE2 ファイルではありません。\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 144
 #, c-format
 msgid "%s: Only BIFF8 file format is handled.\n"
-msgstr "%s: 唯一BIFF８ファイル形式は、処理されます。\n"
+msgstr "%s: 処理できるのは,BIFF8ファイル形式のみです.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 129
 #, c-format
 msgid "%s: The file has no Workbook directory.\n"
-msgstr "%s: ファイルは、ワークブック・ディレクトリーを持っていません。\n"
+msgstr "%s: このファイルにはワークブックディレクトリがありません.\n"
 
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 102
 #, c-format
 msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: OLE２ファイル %s に xlsストリームがありません。\n"
+msgstr "%s: OLE2ファイル %s にxlsストリームがありません.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ''%s'' または ''%s'' を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ''%s''または''%s''を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_xls_read.c, line: 39
-# File: sci_gateway/c/sci_xls_read.c, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または ''%s'' を想定します。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してください.\n"
 
 #, c-format
 msgid "%s: file %s does not exist.\n"
 msgstr "%s: ファイル %s は存在しません。\n"
 
-#
-# File: src/c/ripole/ole.c, line: 372
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
-msgstr "%s:%d:バイト読み込みが一致しません、%d を要求して %d が得られました。\n"
+msgstr "%s:%d:読み込んだバイト数が一致しません. %d バイトを要求しましたが, %d バイトが読み込まれました.\n"
 
-#
-# File: src/c/ripole/olestream-unwrap.c, line: 281
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr "%s:%d:OLEUNWRAP_decode_attachment:デバッグ: 取り付け %s:%s:%s サイズ=%d\n"
+msgstr "%s:%d:OLEUNWRAP_decode_attachment:デバッグ: 添付 %s:%s:%s サイズ=%d\n"
 
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 293
@@ -134,20 +112,17 @@ msgid ""
 "'%s' and '%s'"
 msgstr "%s:%d:OLEUNWRAP_save_stream:エラー: '%s' と '%s' からファイル名文字を作成できません"
 
-#
-# File: src/c/ripole/olestream-unwrap.c, line: 175
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
-msgstr "%1$s:%2$d:OLEUNWRAP_save_stream:エラー: 書き込み(%4$s)で %3$s を開けません\n"
+msgstr "%1$s:%2$d:OLEUNWRAP_save_stream:エラー: 書き込み用(%4$s)に %3$s をオープン出来ません.\n"
 
-#
-# File: src/c/ripole/olestream-unwrap.c, line: 168
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
 msgstr ""
-"%1$s:%2$d:OLEUNWRAP_save_stream:警告: 単に、ファイル %5$s へ %4$d バイトの %3$d を書きました。\n"
+"%1$s:%2$d:OLEUNWRAP_save_stream:警告: ファイル %5$s へ %4$d バイトのうち,%3$d "
+"のみが書き込まれました.\n"
 
 #
 # File: src/c/ripole/ole.c, line: 333
@@ -167,11 +142,9 @@ msgstr "%s:%d:OLE_get_block:エラー: OLEブロックで、%d バイトの割�
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
 msgstr "%s:%d:OLE_get_block:エラー: OLEファイルは閉じられました。\n"
 
-#
-# File: src/c/ripole/ole.c, line: 362
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
-msgstr "%s:%d:OLE_get_block:エラー: 位置づけ失敗(ブロック =%d:%d)"
+msgstr "%s:%d:OLE_get_block:エラー:シークに失敗しました(ブロック =%d:%d)"
 
 #
 # File: src/c/ripole/ole.c, line: 1314
@@ -187,13 +160,11 @@ msgstr "%s:%d:OLE_get_miniblock:エラー: miniChainのためのメモリを十�
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
 msgstr "%s:%d:OLE_load_FAT:エラー: FATメモリの限界境界を越えました %p>=%p"
 
-#
-# File: src/c/ripole/ole.c, line: 1032
 #, c-format
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
-msgstr "%s:%d:OLE_load_FAT:エラー: ブロックをロードできません、 扇型取り込み = 0x%x, fat 位置 = 0x%x"
+msgstr "%s:%d:OLE_load_FAT:エラー: ブロックをロードできません、 読み込みセクタ = 0x%x, FAT位置 = 0x%x"
 
 #
 # File: src/c/ripole/ole.c, line: 978
@@ -201,11 +172,9 @@ msgstr "%s:%d:OLE_load_FAT:エラー: ブロックをロードできません、
 msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
 msgstr "%s:%d:OLE_load_FAT:エラー: %d バイトを割り当てることが出来ません。\n"
 
-#
-# File: src/c/ripole/ole.c, line: 1060
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
-msgstr "%s:%d:OLE_load_FAT:エラー: 扇形要求は、負数(%d)でした"
+msgstr "%s:%d:OLE_load_FAT:エラー: 要求セクタが負(%d)でした"
 
 #
 # File: src/c/ripole/ole.c, line: 1392
@@ -237,25 +206,20 @@ msgstr "%1$s:%2$d:OLE_open_file:エラー: 読み込み(%4$s)の %3$s を開け�
 msgid "%s:%d:OLE_set_debug: Debug level set to %d"
 msgstr "%s:%d:OLE_set_debug: デバックレベルを %d に設定"
 
-#
-# File: src/c/ripole/ole.c, line: 1549
 #, c-format
 msgid ""
 "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
 "and '%s'"
-msgstr "%s:%d:OLE_store_stream:エラー: ’%s’と’%s’ から満足なファイル名文字を作成できません"
+msgstr "%s:%d:OLE_store_stream:エラー: ’%s’と’%s’ から完全なファイル名を構築できません"
 
-#
-# File: src/c/ripole/ole.c, line: 1557
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr "%1$s:%2$d:OLE_store_stream:エラー: 書き込み(%4$s) の %3$s を開けません"
+msgstr "%1$s:%2$d:OLE_store_stream:エラー: 書き込み用(%4$s) に %3$s をオープンできません"
 
-#
-# File: src/c/ripole/ole.c, line: 1566
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
-msgstr "%1$s:%2$d:OLE_store_stream:警告: 単に、ファイル %5$s に、%4$d バイトの %3$d を書きました。"
+msgstr ""
+"%1$s:%2$d:OLE_store_stream:警告: ファイル %5$s に %4$d バイトのうち %3$d のみが書き込まれました."
 
 #
 # File: src/c/ripole/pldstr.c, line: 500
@@ -291,11 +255,9 @@ msgstr ""
 msgid "Cannot locate input file '%s'"
 msgstr "入力ファイル '%s' を置くことができません"
 
-#
-# File: src/c/ripole/ripole.c, line: 206
 #, c-format
 msgid "Decoding filename=%s"
-msgstr "ファイル名の復号化=%s"
+msgstr "ファイル名=%s をデコード中"
 
 #
 # File: src/c/ripole/ripole.c, line: 349
@@ -361,14 +323,10 @@ msgstr "ripOLE: %s\n"
 msgid "ripOLE: Cannot allocate memory for OLE object."
 msgstr "ripOLE: OLDオブジェクトへメモリの割り当てができません。"
 
-#
-# File: src/c/ripole/ripole.c, line: 355
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE: %s の復号化は、間違っています、エラー %d\n"
+msgstr "ripOLE: %s のデコード時にエラー %d を発生しました\n"
 
-#
-# File: src/c/ripole/ripole.c, line: 399
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
-msgstr "ripOLE: %s の復号化は、間違っています、エラー %d\n"
+msgstr "ripOLE: %s のデコード時にエラー %d を発生しました.\n"

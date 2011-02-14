@@ -37,7 +37,7 @@ save(fd [,x1,x2,...,xn])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

@@ -113,26 +113,28 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 
     int iNbItem = 0;
     iNbItem = getVariableNames(iFile, NULL);
-    char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
-    iNbItem = getVariableNames(iFile, pstVarNameList);
-
-    //import all data
-    for(int i = 0 ; i < iNbItem ; i++)
+    if(iNbItem != 0)
     {
-        int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
-        if(iDataSetId == 0)
-        {
-            return 0;
-        }
+        char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
+        iNbItem = getVariableNames(iFile, pstVarNameList);
 
-        bImport = import_data(iDataSetId, 0, NULL, pstVarNameList[i]);
-        if(bImport == false)
+        //import all data
+        for(int i = 0 ; i < iNbItem ; i++)
         {
-            break;
-        }
+            int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
+            if(iDataSetId == 0)
+            {
+                return 0;
+            }
 
+            bImport = import_data(iDataSetId, 0, NULL, pstVarNameList[i]);
+            if(bImport == false)
+            {
+                break;
+            }
+
+        }
     }
-
     //close the file
     closeHDF5File(iFile);
 
@@ -213,10 +215,13 @@ static bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
         }
     default : 
         {
+            Scierror(999,_("%s: Invalid HDF5 Scilab format.\n"), "import_from_hdf5");
 #ifdef PRINT_DEBUG
-            char pstMsg[512];
-            sprintf(pstMsg, "Unknown type : %d", iVarType);
-            print_tree(pstMsg);
+            {
+                char pstMsg[512];
+                sprintf(pstMsg, "Unknown type : %d", iVarType);
+                print_tree(pstMsg);
+            }
 #endif
         }
     }

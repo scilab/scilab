@@ -1,0 +1,54 @@
+.ccomment {
+ font-style: italic;
+ color: #b22222
+}
+
+.cdefault {
+ font-style: normal;
+ color: #000000
+}
+
+.copenclose {
+ font-style: normal;
+ color: #000000
+}
+
+.coperator {
+ font-style: normal;
+ color: #000000
+}
+
+.cstring {
+ font-style: normal;
+ color: #a6557a
+}
+
+.ctype {
+ font-style: normal;
+ color: #55a655
+}
+
+.cpreprocessor {
+ font-style: normal;
+ color: #9965a6
+}
+
+.cid {
+ font-style: normal;
+ color: #000000
+}
+
+.ckeyword {
+ font-style: normal;
+ color: #ad3ff2
+}
+
+.cmodifier {
+ font-style: normal;
+ color: #ad3ff2
+}
+
+.cnumber {
+ font-style: normal;
+ color: #008b8b
+}

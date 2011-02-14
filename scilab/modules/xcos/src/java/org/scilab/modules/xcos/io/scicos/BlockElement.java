@@ -19,16 +19,17 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
@@ -101,7 +102,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * @param into the target, if null a new instance is allocated and returned.
 	 * @return the decoded block.
 	 * @throws ScicosFormatException when e decoding error occurred.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType, java.lang.Object)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType, java.lang.Object)
 	 */
 	@Override
 	public BasicBlock decode(ScilabType element, BasicBlock into) throws ScicosFormatException {
@@ -127,13 +128,21 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		InputPortElement inElement = new InputPortElement(data);
 		final int numberOfInputPorts = inElement.getNumberOfInputPort();
 		for (int i = 0; i < numberOfInputPorts; i++) {
-			block.addPort(inElement.decode(data, null));
+			final BasicPort port = inElement.decode(data, null);
+			
+			// do not use BasicPort#addPort() to avoid the view update
+			port.setOrdering(i + 1);
+			block.insert(port, i);
 		}
 		
 		OutputPortElement outElement = new OutputPortElement(data);
 		final int numberOfOutputPorts = outElement.getNumberOfOutputPort();
 		for (int i = 0; i < numberOfOutputPorts; i++) {
-			block.addPort(outElement.decode(data, null));
+			final BasicPort port = outElement.decode(data, null);
+			
+			// do not use BasicPort#addPort() to avoid the view update
+			port.setOrdering(i + 1);
+			block.insert(port, i);
 		}
 		
 		/*
@@ -301,7 +310,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * 
 	 * @param element the current element
 	 * @return true, if the element can be decoded, false otherwise
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -317,7 +326,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * @param from the source instance
 	 * @param element the previously allocated element.
 	 * @return the element parameter
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(BasicBlock from, ScilabType element) {
@@ -386,12 +395,16 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 */
 	private void setupPortSize(BasicBlock from) {
 		// Getting children size per type.
-		int in, out, ein, eout;
+		int in;
+		int out;
+		int ein;
+		int eout;
+
 		in = BasicBlockInfo.getAllTypedPorts(from, false, InputPort.class).size();
 		out = BasicBlockInfo.getAllTypedPorts(from, false, OutputPort.class).size();
 		ein = BasicBlockInfo.getAllTypedPorts(from, false, ControlPort.class).size();
 		eout = BasicBlockInfo.getAllTypedPorts(from, false, CommandPort.class).size();
-		
+
 		// Setup the graphics and model ports size
 		graphicElement.setPortsSize(in, out, ein, eout);
 		modelElement.setPortsSize(in, out, ein, eout);

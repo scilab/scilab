@@ -12,7 +12,7 @@
     <synopsis>C_ptr = taucs_chfact(A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -84,7 +84,7 @@ A = sparse( [ 2 -1  0  0  0;
 b = [0 ; 0; 0; 0; 6];
 Cp = taucs_chfact(A);
 x = taucs_chsolve(Cp,b)
-// don't forget to clear memory with
+// do not forget to clear memory with
 taucs_chdel(Cp)
 
 // Example #2 a real example
@@ -99,7 +99,7 @@ norm(A*x - b)
 // the same with one iterative refinement step
 x = taucs_chsolve(Cp,b,A);
 norm(A*x - b)
-// don't forget to clear memory
+// do not forget to clear memory
 taucs_chdel(Cp)
  ]]></programlisting>
   </refsection>

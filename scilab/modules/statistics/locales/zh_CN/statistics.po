@@ -200,7 +200,7 @@ msgstr "%s：输入参数#%d的值错误：行数应该应该跟第一个参数�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
-msgstr "%s：输入参数的值错误：应该为\"%s\"，\"%s\"，%d或者%d。\n"
+msgstr "%s：输入参数的值错误：应该为''%s''，''%s''，%d或者%d。\n"
 
 #, c-format
 msgid ""
@@ -218,6 +218,10 @@ msgstr "A、B、P和Q"
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "答案好像比最高搜索边界%f还高\n"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr ""
 
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
@@ -255,14 +259,6 @@ msgstr "F、Dfn和Dfd"
 
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr "F、Dfn、Dfd和Pnonc"
-
-#, c-format
-msgid ""
-"Input argument %c is out of range.\n"
-"Bound exceeded: %f\n"
-msgstr ""
-"输入参数%c超出范围。\n"
-"超出的边界：%f\n"
 
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"

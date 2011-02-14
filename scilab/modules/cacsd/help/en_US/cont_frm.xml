@@ -23,7 +23,7 @@
     <synopsis>[sl]=cont_frm(NUM,den)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>NUM</term>

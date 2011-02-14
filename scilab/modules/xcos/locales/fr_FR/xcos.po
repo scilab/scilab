@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-06-04 14:01+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2010-09-20 11:53+0000\n"
+"Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,31 +17,116 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s n'est pas un nom valide, changez, svp, le titre du diagramme."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s : Tous les chemins définis par la variable %s doivent exister.\n"
+
+#, c-format
 msgid "%s: File ''%s'' does not exist.\n"
 msgstr "%s: Le fichier ''%s'' n'existe pas.\n"
+
+#, c-format
+msgid "%s: File ''%s'' is not a valid palette file.\n"
+msgstr "%s : Le fichier ''%s'' n'est pas un fichier de palette valide.\n"
+
+#, c-format
+msgid "%s: Found ''%s'' instead of a block.\n"
+msgstr "%s : ''%s'' trouvé au lieu d'un bloc.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: Le répertoire %s ne peux pas être créé, vérifiez si vous avez les droits "
+" en écriture sur ce répertoire.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s : Impossible d'exporter %s vers %s.\n"
+
+#, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr "%s: Impossible d'exporter ''XX'' vers %s"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s : Impossible d'exporter la palette vers hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s : Impossible de générer l'image %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s : Impossible de générer l'icône de palette : %s existe déjà.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr "%s: Impossible d'importer les données de %s"
+
+#, c-format
 msgid "%s: Unable to import xcos file %s.\n"
 msgstr "%s: Impossible d'importer le fichier xcos %s.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr ""
+"%s : Impossible de charger le bloc depuis %s : un fichier hdf5 est attendu.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
+msgstr ""
+"%s : Impossible de charger le bloc depuis %s : aucune variable  `scs_m'' "
+"trouvée.\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+msgstr "%s : Argument d'entrée incorrect %s : SVG ou GIF attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s : Mauvais nombre d'argument(s) en entrée : %d attendu.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Mauvais nombre d'arguments d'entrée : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s : Mauvais nombre d'arguments de sortie : %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s : Mauvais nombre d'argument de sortie : %d à %d attendus.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un booléen attendu.\n"
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s : Type incorrect pour la variable de %s : Une chaîne de caractères est "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String or diagram structure expected"
@@ -55,10 +140,112 @@ msgstr ""
 "%s: mauvais type pour l'argument %d: Structure du diagramme attendue."
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : un booléen attendu.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : Un vecteur de chaîne de "
+"caractères attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : Le type bloc est attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : Fichier non trouvé.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr "%s : Type incorrect pour l'argument d'entrée %s : booléen attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : type diagramme attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : chaîne de chemin "
+"d'annuaire attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : chaîne de chemin d'accès "
+"complet attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée %s: fonction sous la forme de "
+"chaîne de caractères ou un type de block ou un chemin complet sous la forme "
+"de chaîne de caractères attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée %s: un type handle attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : type palette attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : type palette ou chemin "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : chaîne de chemin d'accès "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr "%s : Type incorrect pour l'argument d'entrée %s : chaîne attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : chaîne ou structure "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : type chaîne attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+"%s : Type incorrect pour l'argument d'entrée %s : vecteur de chaîne "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée %s: Un fichier existant "
+"attendu.\n"
 
 msgid "?"
 msgstr "?"
@@ -71,6 +258,9 @@ msgstr "À propos de Xcos"
 
 msgid "Add to"
 msgstr "Ajouter"
+
+msgid "Add to a new category"
+msgstr "Ajouter à une nouvelle catégorie"
 
 msgid "Add to new diagram"
 msgstr "Ajouter à un nouveau schéma"
@@ -90,6 +280,9 @@ msgstr "Aide du bloc"
 msgid "Block Parameters"
 msgstr "Paramètres du bloc"
 
+msgid "Bold"
+msgstr "Gras"
+
 msgid "Border Color"
 msgstr "Couleur de la bordure"
 
@@ -101,6 +294,9 @@ msgstr "CVODE"
 
 msgid "Cancel"
 msgstr "Annuler"
+
+msgid "Category"
+msgstr "Catégorie"
 
 msgid "Center"
 msgstr "Centrer"
@@ -132,11 +328,14 @@ msgstr ""
 msgid "Compile"
 msgstr "Compiler"
 
+msgid "Compiling"
+msgstr "Compile"
+
+msgid "Computing"
+msgstr "Calcule"
+
 msgid "Continuous time systems"
 msgstr "Systèmes à temps continu"
-
-msgid "Copy"
-msgstr "Copier"
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Copyright (c) 1989-2009 (INRIA)"
@@ -147,11 +346,11 @@ msgstr "Ne peux pas sauver le schéma"
 msgid "Create"
 msgstr "Créer"
 
+msgid "Create a category"
+msgstr "Créer une catégorie"
+
 msgid "Customize"
 msgstr "Personnaliser"
-
-msgid "Cut"
-msgstr "Couper"
 
 msgid "Debug block calls without trace"
 msgstr "Appels au bloc Debug, sans trace"
@@ -182,8 +381,14 @@ msgid ""
 msgstr ""
 "Le schéma a été modifié. Voulez-vous l'enregistrer avant de quitter ?"
 
+msgid "Diff. States"
+msgstr "Etat Diff."
+
 msgid "Discontinuities"
 msgstr "Fonctions discontinues"
+
+msgid "Discrete"
+msgstr "Discret"
 
 msgid "Discrete time systems"
 msgstr "Systèmes à temps discret"
@@ -206,6 +411,15 @@ msgstr "Éditable"
 msgid "Electrical"
 msgstr "Électrique"
 
+msgid "Enable"
+msgstr "Activer"
+
+msgid "Equations"
+msgstr "Equations"
+
+msgid "Error"
+msgstr "Erreur"
+
 msgid "Event handling"
 msgstr "Gestion d'évènements"
 
@@ -227,12 +441,14 @@ msgstr ""
 msgid "Export"
 msgstr "Exporter"
 
+msgid "Export in progress"
+msgstr "Export en cours"
+
 msgid "Export to XML"
 msgstr "Exporter en XML"
 
-#, c-format
-msgid "FAILED TO EXPORT: %s\n"
-msgstr "L'EXPORTATION A ECHOUE: %s\n"
+msgid "Extended"
+msgstr "Étendu"
 
 msgid "Failed to load Diagram"
 msgstr "Le chargement du schéma a échoué"
@@ -249,14 +465,38 @@ msgstr "Temps d'intégration final"
 msgid "Fit diagram to view"
 msgstr "Ajuster le diagramme à la vue"
 
+msgid "Fix derivatives"
+msgstr "Fixe les dérivées"
+
+msgid "Fix states"
+msgstr "Fixe les états"
+
+msgid "Fixed parameters"
+msgstr "Paramètres fixés"
+
+msgid "Fixed variables"
+msgstr "Variables fixées"
+
 msgid "Flip"
 msgstr "Retourner"
+
+msgid "Font name"
+msgstr "Nom de la police"
+
+msgid "Font size"
+msgstr "Taille de la police"
+
+msgid "Font style"
+msgstr "Style de police"
 
 msgid "Format"
 msgstr "Format"
 
 msgid "From %s"
 msgstr "De %s"
+
+msgid "Generate Jacobian"
+msgstr "Génère le Jacobien"
 
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Generation SuperBlock, veuillez patienter ..."
@@ -267,14 +507,14 @@ msgstr "Génère le code C du superbloc"
 msgid "Get infos"
 msgstr "Récupérer les informations"
 
+msgid "Global"
+msgstr "Global"
+
 msgid "Goto %s"
 msgstr "Aller à %s"
 
 msgid "Grid"
 msgstr "Grille"
-
-msgid "Group"
-msgstr "Grouper"
 
 msgid "Horizontal"
 msgstr "Horizontal"
@@ -303,6 +543,12 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importer à partir du XML"
 
+msgid "Initial computing method"
+msgstr "Méthode de calcul initiale"
+
+msgid "Input"
+msgstr "Entrée"
+
 msgid "Insert"
 msgstr "Insérer"
 
@@ -315,8 +561,8 @@ msgstr "Tolérance absolue de l'intégrateur"
 msgid "Integrator relative tolerance"
 msgstr "Tolérance relative de l'intégrateur"
 
-msgid "Invert selection"
-msgstr "Inverser la sélection"
+msgid "Italic"
+msgstr "Italique"
 
 msgid "Left"
 msgstr "Gauche"
@@ -335,6 +581,9 @@ msgstr "Charger un diagramme"
 
 msgid "Loading palettes"
 msgstr "Chargement des palettes"
+
+msgid "Loading the block"
+msgstr "Charge le block"
 
 msgid "Loading user defined palettes"
 msgstr "Chargement de la palette personnalisée"
@@ -359,6 +608,12 @@ msgstr "Milieu"
 
 msgid "Mirror"
 msgstr "Miroir"
+
+msgid "Modelica initialize"
+msgstr "Initialisation de Modelica"
+
+msgid "Modelica settings"
+msgstr "Paramètres de Modelica"
 
 msgid "Move Down"
 msgstr "Descendre"
@@ -393,14 +648,20 @@ msgstr "Ouvrir"
 msgid "Palette browser"
 msgstr "Navigateur de palettes"
 
+msgid "Palette name"
+msgstr "Nom de palette"
+
 msgid "Palettes"
 msgstr "Palettes"
 
-msgid "Paste"
-msgstr "Coller"
+msgid "Parameter embedding"
+msgstr "Paramètre embarqué"
 
 msgid "Per block execution trace and Debug block calls"
 msgstr "Trace de l'exécution pour chaque block et appels du bloc Debug"
+
+msgid "Please take a look into the Scilab console"
+msgstr "Regardez dans la console Scilab SVP"
 
 msgid "Port & Subsystem"
 msgstr "Port & Sous systeme"
@@ -423,11 +684,17 @@ msgstr "Mise à l'échelle temps réel"
 msgid "Recent Files"
 msgstr "Fichiers récents"
 
-msgid "Redo"
-msgstr "Rétablir"
+msgid "Reduced"
+msgstr "Réduit"
 
 msgid "Region to superblock"
 msgstr "Zone vers superbloc"
+
+msgid "Relaxed parameters"
+msgstr "Paramètres relaxés"
+
+msgid "Relaxed variables"
+msgstr "Variables relaxées"
 
 msgid "Remove"
 msgstr "Supprimer"
@@ -443,9 +710,6 @@ msgstr "Rotation"
 
 msgid "Rows"
 msgstr "Lignes"
-
-msgid "Same command executed again"
-msgstr "La même commande s'est encore exécutée."
 
 msgid "Save"
 msgstr "Enregistrer"
@@ -476,9 +740,6 @@ msgstr "Le module '%s' de Scilab n'est pas installé.\n"
 msgid "Scilab file"
 msgstr "Fichier Scilab"
 
-msgid "Select all"
-msgstr "Tout sélectionner"
-
 msgid "Set Context"
 msgstr "Modifier le Contexte"
 
@@ -492,6 +753,9 @@ msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 "Configurer le niveau de débogue (0, 1, 2, 3)  <br/> Cela va utiliser "
 "scicos_debug(n)"
+
+msgid "Setting up Modelica Compiler."
+msgstr "Paramètrer le compilateur Modelica"
 
 msgid "Setup"
 msgstr "Configuration"
@@ -517,6 +781,12 @@ msgstr "Simulation en cours"
 msgid "Sinks"
 msgstr "Sinks"
 
+msgid "Solve"
+msgstr "Résoudre"
+
+msgid "Solver"
+msgstr "Solveur"
+
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Solveur 0 (CVODE) - 100 (IDA)"
 
@@ -535,6 +805,12 @@ msgstr "Droit"
 msgid "Superblock mask"
 msgstr "Masque du superbloc"
 
+msgid "Text Color"
+msgstr "Couleur du texte"
+
+msgid "Text settings"
+msgstr "Paramétrage du texte"
+
 msgid "The Scicos libraries are not loaded"
 msgstr "Les bibliothèques Scicos ne sont pas chargées"
 
@@ -548,6 +824,20 @@ msgstr ""
 "Le fichier %s n'existe pas\n"
 "Voulez vous le créer ?"
 
+msgid ""
+"The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
+"default one."
+msgstr ""
+"Le fichier de configuration d'utilisateur (xcos.xml) est invalide.<BR> "
+"Passage à celui par défaut."
+
+msgid ""
+"The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
+"to the default one."
+msgstr ""
+"Le fichier de configuration de palette d'utilisateur (palettes.xml) est "
+"invalide.<BR> Passage à celui par défaut."
+
 msgid "Thermo-Hydraulics"
 msgstr "Thermo-Hydrauliques"
 
@@ -560,11 +850,38 @@ msgstr "Outils"
 msgid "Top"
 msgstr "Haut"
 
-msgid "UnGroup"
-msgstr "Dégrouper"
+msgid "Unable to delete "
+msgstr "Impossible de supprimer "
 
-msgid "Unable to communicate with the interpreter"
-msgstr "Impossible de communiquer avec l'interprète."
+msgid "Unable to import %s .\n"
+msgstr "Impossible d'importer %s.\n"
+
+msgid "Unable to load block from %s ."
+msgstr "Impossible de charger le bloc depuis %s."
+
+msgid ""
+"Unable to load the Batik library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Incapable de charger la bibliothèque Batik. \n"
+"Version attendue %s ; Obtention de la version %s."
+
+msgid ""
+"Unable to load the hdf5-java (jhdf5) library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Impossible de charger la librairie hdf5-java (jhdf5).\n"
+"Version attendue %s ; Version obtenue %s."
+
+msgid ""
+"Unable to load the jgraphx library.\n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Incapable de charger la bibliothèque jgraphx.\n"
+"Version attendue %s ; Obtention de la version %s."
+
+msgid "Unable to load the native HDF5 library."
+msgstr "Impossible de charger la librairie HDF5 native."
 
 #, c-format
 msgid "Unable to open %s"
@@ -574,11 +891,14 @@ msgstr "Impossible d'ouvrir %s"
 msgid "Unable to simulate %s"
 msgstr "Impossible de simuler %s"
 
-msgid "Undo"
-msgstr "Annuler"
-
 msgid "Unknown Diagram Version : "
 msgstr "Version inconnue de diagramme : "
+
+msgid "Unknowns"
+msgstr "Inconnues"
+
+msgid "Unknowns not equals to Equations"
+msgstr "Inconnues pas égales aux équations"
 
 msgid "Untitled"
 msgstr "Sans titre"
@@ -622,6 +942,15 @@ msgstr "TitreFenêtre"
 msgid "Window title"
 msgstr "Titre de la fenêtre"
 
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
+msgstr ""
+"Mauvais argument d'entrée \"%s\": Noeud invalue, utiliser 'xcosPalDisable' à "
+"la place.\n"
+
+msgid "Wrong input argument \"%s\": invalid tree path.\n"
+msgstr "Argument d'entrée \"%s\" incorrect  : chemin d'arbre non valide.\n"
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -651,14 +980,51 @@ msgstr ""
 msgid "Zero crossing detection"
 msgstr "Détection de passage à zéro"
 
-msgid "Zoom In"
-msgstr "Zoom avant"
-
-msgid "Zoom Out"
-msgstr "Zoom arrière"
+msgid "comment"
+msgstr "commentaire"
 
 msgid "control port must be connected to command port"
 msgstr "Le port de contrôle doit être connecté au port de commande"
 
+msgid "fixed"
+msgstr "fixé"
+
+msgid "id"
+msgstr "id"
+
+msgid "initial"
+msgstr "initial"
+
+msgid "kind"
+msgstr "genre"
+
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+"autorise l'utilisateur à changer les paramètres et appeler le solveur sans "
+"regénérer le code."
+
+msgid "max"
+msgstr "max"
+
 msgid "maximum step size (0 means no limit)"
 msgstr "taille de pas maximum (0 signifie pas de limite)"
+
+msgid "min"
+msgstr "min"
+
+msgid "model is not valid"
+msgstr "modèle n'est pas valide"
+
+msgid "name"
+msgstr "nom"
+
+msgid "nominal"
+msgstr "nominal"
+
+msgid "selected"
+msgstr "sélectionné"
+
+msgid "weight"
+msgstr "poids"

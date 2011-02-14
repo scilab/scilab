@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-05-05 14:26+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"PO-Revision-Date: 2010-11-03 00:26+0000\n"
+"Last-Translator: Matteo Ruffini <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,7 @@ msgstr "\"dati sconosciuti\""
 
 #, c-format
 msgid "%d graphic terminal?\n"
-msgstr ""
+msgstr "%d terminale grafico?\n"
 
 #, c-format
 msgid "%d: logical unit already used.\n"
@@ -62,10 +62,6 @@ msgstr "%d: l'unità logica è già usata.\n"
 #, c-format
 msgid "%dth argument type must be boolean.\n"
 msgstr "l'argomento %d-esimo deve essere di tipo booleano\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Errore di allocazione della memoria\n"
 
 #, c-format
 msgid "%s and %s must have equal dimensions.\n"
@@ -114,14 +110,14 @@ msgstr "%s: Si è verificato il seg. errore: %s\n"
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
 msgstr ""
-"%s: Conversione sbagliata: il flag ''l'' o quello ''h'' è stato mischiato "
-"con la direttiva ''c''.\n"
+"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato "
+"con la direttiva 'c'.\n"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
 msgstr ""
-"%s: Conversione sbagliata: il flag ''l'' o quello ''h'' è stato mischiato "
-"con la direttiva ''s''.\n"
+"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato "
+"con la direttiva 's'.\n"
 
 #, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
@@ -165,6 +161,10 @@ msgstr ""
 #, c-format
 msgid "%s: Loop on two orders detected.\n"
 msgstr "%s: È stato trovato un ciclo in due ordini.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -390,7 +390,7 @@ msgid ""
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso "
-"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\" o \"%s\".\n"
+"''%s'',''%s'',''%s'',''%s'',''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -569,9 +569,6 @@ msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr ""
 "%s: le dimensioni della finestra sono state impostate a meno di 2^16.\n"
 
-msgid "'o' format not allowed."
-msgstr "il formato ''o'' non è permesso."
-
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
 "Una voce della matrice sparsa è definito con due valori differenti.\n"
@@ -596,6 +593,7 @@ msgstr "Conversione sbagliata."
 
 msgid "Binary direct access files must be opened by 'file'.\n"
 msgstr ""
+"I file ad accesso diretto binario devono essere aperti tramite 'file'.\n"
 
 #, c-format
 msgid "Breakpoints of function : %s\n"
@@ -677,12 +675,14 @@ msgstr "La variabile eye non è definita in questo contesto.\n"
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
-"Bad call to a scilab function ?\n"
-"Otherwise, send a bug report to :\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
 msgstr ""
-"Errore fatale!!! Le variabili dell'utente sono state salvate nel file : %s\n"
-"C'è stata una chiamata sbagliata ad una funzione di Scilab?\n"
-"Altrimenti, inviare un rapporto sul bug a :\n"
+"Errore fatale!!! Le variabili dell'utente sono state salvate nel file: %s\n"
+"                                   Una chiamata sbagliata ad una funzione di "
+"Scilab ?\n"
+"                                   Altrimenti, inviare un rapporto sul bug a "
+":\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -767,10 +767,10 @@ msgid "Inconsistent subtraction.\n"
 msgstr "La sottrazione è incoerente.\n"
 
 msgid "Incorrect assignment.\n"
-msgstr "L'assegnamento è incoerente.\n"
+msgstr "Assegnazione sbagliata.\n"
 
 msgid "Incorrect command!\n"
-msgstr "Il comando non è corretto!\n"
+msgstr "Comando sbagliato!\n"
 
 msgid "Incorrect control instruction syntax.\n"
 msgstr "La sintassi dell'istruzione di controllo non è corretta.\n"
@@ -1041,7 +1041,7 @@ msgstr "La sotto-matrice non è definita correttamente.\n"
 
 #, c-format
 msgid "Syntax error in a '%s' instruction.\n"
-msgstr "C'è un errore di sintassi in una istruzione \"%s\".\n"
+msgstr "C'è un errore di sintassi in una istruzione '%s'.\n"
 
 msgid "System functions:\n"
 msgstr "Funzioni di sistema:\n"
@@ -1090,7 +1090,7 @@ msgid "Too large, can't be displayed.\n"
 msgstr "È troppo lungo, non può essere mostrato.\n"
 
 msgid "Too many ':'\n"
-msgstr "Troppi \":\"\n"
+msgstr "Troppi ':'\n"
 
 msgid "Too many arguments in fort (max 30).\n"
 msgstr "Ci sono troppi argomenti in fort (max 30)\n"
@@ -1147,6 +1147,9 @@ msgstr "La funzione non è definita.\n"
 msgid "Undefined operation for the given operands.\n"
 msgstr "C'è una operazione non definita per gli operandi forniti.\n"
 
+msgid "Undefined variable.\n"
+msgstr "Variabile non definita.\n"
+
 #, c-format
 msgid "Undefined variable: %s\n"
 msgstr "C'è una variabile non definita: %s\n"
@@ -1187,6 +1190,7 @@ msgstr "La variabile o funzione %s non è nel file.\n"
 
 msgid "Variable returned by scilab argument function is incorrect.\n"
 msgstr ""
+"La variabile restituita dalla funzione argomento di Scilab non è corretta.\n"
 
 msgid "Waiting for end of command.\n"
 msgstr "Il sistema attende la fine del comando.\n"
@@ -1208,7 +1212,7 @@ msgstr ""
 "questo messaggio"
 
 msgid "Warning : singularity of 'log' or 'tan' function.\n"
-msgstr "Attenzine c'è una singolarità della funzione \"log\" o \"tan\".\n"
+msgstr "Attenzine c'è una singolarità della funzione 'log' o 'tan'.\n"
 
 msgid "Warning:\n"
 msgstr "Attenzione:\n"
@@ -1260,7 +1264,7 @@ msgstr ""
 "differente.\n"
 
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
-msgstr "Attenzione: uso obsoleto di \"=\" invece di \"==\".\n"
+msgstr "Attenzione: uso obsoleto di '=' invece di '=='.\n"
 
 msgid "Warning: obsolete use of eye, rand, or ones.\n"
 msgstr "Attenzione: uso obsoleto di eye, rand o ones.\n"

@@ -37,7 +37,7 @@ string_out=strsubst(string_in,searchStr,replaceStr,[flag])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

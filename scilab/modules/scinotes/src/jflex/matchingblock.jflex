@@ -118,6 +118,8 @@ transp = ({spec} | ")" | "]" | "}") "'"
 openK = ("if" | "for" | "while" | "select" | "try" | "function")
 openKx = {openK}{spec}+
 
+elseif = "elseif" | "else"
+
 openS = "(" | "[" | "{"
 closeK = ("end" | "endfunction")
 closeKx = {closeK}{spec}+
@@ -126,6 +128,7 @@ closeS =  ")" | "]" | "}"
 
 esolcK = ("fi" | "rof" | "elihw" | "tceles" | "yrt" | "noitcnuf")
 esolcKx = {spec}{esolcK}
+xesolcK = {esolcK}{spec}
 nepoK = ("dne" | "noitcnufdne")
 nepoKx = {spec}{nepoK}
 
@@ -173,6 +176,7 @@ nepoKx = {spec}{nepoK}
   "fiesle"                       |
   {tnemmoc}                      |
   {esolcKx}                      |
+  {xesolcK}                      |
   {gnirtsq}                      { }
 
   {closeS}                       |
@@ -194,20 +198,20 @@ nepoKx = {spec}{nepoK}
   \'                             {
                                    if (scilabLexer.getKeyword(start - yychar, false) == ScilabLexerConstants.STRING) {
                                       savePos = start - yychar - scilabLexer.beginString - scilabLexer.start;
-				      yybegin(SPEC);
-				   } else {
-				      yybegin(RL);
-				   }
+                                      yybegin(SPEC);
+                                   } else {
+                                      yybegin(RL);
+                                   }
                                  }
 }
 
 <SPEC> {
-  .				 |
-  {eol}				 {
-				   if (--savePos == 0) {
-				      yybegin(RL);
-				   }
-  				 }
+  .                              |
+  {eol}                          {
+                                   if (--savePos == 0) {
+                                      yybegin(RL);
+                                   }
+                                 }
 }
 
 <OPENCLOSE> {
@@ -215,6 +219,7 @@ nepoKx = {spec}{nepoK}
                                    return 0;
                                  }
 
+  {elseif}                       |
   {openS}                        |
   {openK}                        {
                                    return 1;

@@ -2,6 +2,7 @@
 // Copyright (C) Rainer von Seggern
 // Copyright (C) Bruno Pincon
 // Copyright (C) 2009 - INRIA - Michael Baudin
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -35,33 +36,33 @@
 function [J,H] = derivative(F, x, h, order, H_form, Q , verbose )
    [lhs,rhs]=argn();
    if rhs<2 | rhs>6 then
-     error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),'derivative',2,6));
+     error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"derivative",2,6));
    end
    if type(x) ~= 1 then
-     error(msprintf(gettext("%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"),'derivative',2));
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"),"derivative",2));
    end
    [n,p] = size(x)
    if p ~= 1 then
-     error(msprintf(gettext("%s: Wrong size for input argument #%d: A column vector expected.\n"),'derivative',2));
+     error(msprintf(gettext("%s: Wrong size for input argument #%d: A column vector expected.\n"),"derivative",2));
    end
-   if ~exists('order','local') then
+   if ~exists("order","local") then
       order = 2
    elseif (order ~= 1 & order ~= 2 & order ~= 4) then
-     error(msprintf(gettext("%s: Order must be 1, 2 or 4.\n"),'derivative'));
+     error(msprintf(gettext("%s: Order must be 1, 2 or 4.\n"),"derivative"));
    end
     
-   if ~exists('H_form','local') then
-     H_form = 'default'
+   if ~exists("H_form","local") then
+     H_form = "default"
    end
    
-   if ~exists('Q','local') then 
+   if ~exists("Q","local") then 
      Q = eye(n,n);
    else
      if norm(clean(Q*Q'-eye(n,n)))>0 then
-     error('Q must be orthogonal');
+       error(msprintf(gettext("%s: Q must be orthogonal.\n"),"derivative"));
      end
    end   
-   if ~exists('h','local') then
+   if ~exists("h","local") then
       h_not_given = %t
       // stepsizes for approximation of first derivatives
       select order  
@@ -77,7 +78,7 @@ function [J,H] = derivative(F, x, h, order, H_form, Q , verbose )
        h_not_given = %f	
    end
    
-   if ~exists('verbose','local') then
+   if ~exists("verbose","local") then
      verbose = 0
    end
    
@@ -109,19 +110,19 @@ function [J,H] = derivative(F, x, h, order, H_form, Q , verbose )
    end
    // H is a mxn^2 block matrix
    H = %deriv1_(%DF_, x, h, order, Q)
-   if     H_form == 'default' then
+   if     H_form == "default" then
      // H has the old scilab form
      H = matrix(H',n*n,m)'
    end
-   if H_form == 'hypermat' then
+   if H_form == "hypermat" then
      if m>1 then
        // H is a hypermatrix if m>1
        H=H'; 
        H=hypermat([n n m],H(:)); 
      end 
    end
-   if (H_form ~= 'blockmat')&(H_form ~= 'default')&(H_form ~= 'hypermat') then 
-     error('H_form must be ''default'',''blockmat'' or ''hypermat''')
+   if (H_form ~= "blockmat")&(H_form ~= "default")&(H_form ~= "hypermat") then 
+     error(msprintf(gettext("%s: H_form must be ""default"",""blockmat"" or ""hypermat"", but current H_form=%s\n"),"derivative",H_form));
    end
 endfunction
 
@@ -159,9 +160,15 @@ function g=%deriv1_(F_, x, h, order, Q)
     end
 endfunction
 
-function y=%R_(F_,x)  
+function y=%R_(F_,x) 
   if type(F_)==15 then  
+    if ( length(F_) < 2 ) then
+      error(msprintf(gettext("%s: Wrong number of elements in input argument #%d: At least %d elements expected, but current number is %d.\n"),"derivative",1,2,length(F_)));
+    end
     R=F_(1); 
+    if ( and(typeof(R) <> ["function" "funptr"]) ) then
+      error(msprintf(gettext("%s: Wrong type for element #%d in input argument #%d: A function is expected, but current type is %s.\n"),"derivative",1,1,typeof(R)));
+    end
     y=R(x,F_(2:$)); 
     // See extraction, list or tlist case: ...
     // But if the extraction syntax is used within a function
@@ -170,7 +177,7 @@ function y=%R_(F_,x)
   elseif  type(F_)==13 | type(F_)==11 then
     y=F_(x);
   else
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: A function expected.\n"),'%%R_',1));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A function expected.\n"),"derivative",1));
   end
 endfunction
 

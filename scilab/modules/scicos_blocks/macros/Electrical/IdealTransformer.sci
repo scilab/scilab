@@ -52,7 +52,7 @@ PrametersValue=[1]
 ParametersName=["N"]
 model=scicos_model()                  
 Typein=[];Typeout=[];MI=[];MO=[]       
-P=[2.5,90,2,0;2.5,10,2,0;97.5,90,2,0;97.5,10,2,0]
+P=[2.5,90,2,0;2.5,10,2,0;97.5,90,-2,0;97.5,10,-2,0]
 PortName=["p1";"n1";"p2";"n2"]
 for i=1:size(P,'r')                                             
   if P(i,3)==1  then  Typein= [Typein; 'E'];MI=[MI;PortName(i)];end
@@ -87,7 +87,7 @@ function trns_draw_ports(o)
   // draw input/output ports
   //------------------------
   // [x_in_Icon,y_in_Icon,type(2=imp_in/-2:imp_out/1=exp_input/-1_exp_output),orientation(degree)]
-  P=[2.5,90,2,0;2.5,10,2,0;97.5,90,2,0;97.5,10,2,0]
+  P=[2.5,90,2,0;2.5,10,2,0;97.5,90,-2,0;97.5,10,-2,0]
 
   //============================
   // setting the input/ outputs and direction

@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) DIGITEO - Allan CORNET
+* Copyright (C) DIGITEO - 2010 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -18,6 +18,12 @@
 * Initialize signals Scilab Launched
 */
 void InitializeLaunchScilabSignal(void);
+
+
+/**
+* Release signals Scilab Launched
+*/
+void ReleaseLaunchScilabSignal(void);
 
 #endif /* __LAUNCHSCILABSIGNAL_H__ */
 /*--------------------------------------------------------------------------*/

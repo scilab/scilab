@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -24,12 +24,12 @@
 sp=sparse(ij,v [,mn])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
         <listitem>
-          <para>real or complex full (or sparse) matrix</para>
+          <para>real or complex or boolean full (or sparse) matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -66,7 +66,7 @@ sp=sparse(ij,v [,mn])</synopsis>
      squeezing out any zero elements. (If <literal>X</literal> is already sparse
     <literal>sp</literal> is <literal>X</literal>).</para>
     <para><literal>sp=sparse(ij,v [,mn])</literal>  builds an <literal>mn(1)</literal>-by-<literal>mn(2)</literal>
-    sparse matrix with <literal>sp(ij(k,1),ij(k,2))=v(k)</literal>. 
+    sparse matrix with <literal>sp(ij(k,1),ij(k,2))=v(k)</literal>.
     <literal>ij</literal> and <literal>v</literal> must have the same column dimension.
     If optional <literal>mn</literal> parameter is not given the <literal>sp</literal>
     matrix dimensions are the max value of <literal>ij(:,1)</literal> and <literal>ij(:,2)</literal>
@@ -79,14 +79,39 @@ sp=sparse(ij,v [,mn])</synopsis>
     for sparse matrices.</para>
     <para>
     Mixed operations (full-sparse) are allowed. Results are full or sparse
-    depending on the operations.</para>
+    depending on the operations.
+    </para>
+    <para>
+      Note : Any operation involing dense matrices of the same size, either as argument (e.g. <literal>sp=sparse(d)</literal>)
+      or as result (e.g.  <literal>d= sp + 1.</literal>) is provided for convenience purposes but should of course be avoided.
+      Furthermore, random access to elements (<literal>sp(r,c)</literal>), especially for insertions, is not efficient, so
+      any performance-constrained access should be done in batches with <link linkend="spget">spget</link> for read access
+      and the three arguments constructor <literal>sp=sparse(ij, v, mn)</literal> for write access.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 sp=sparse([1,2;4,5;3,10],[1,2,3])
 size(sp)
 x=rand(2,2);abs(x)-full(abs(sparse(x)))
+// sparse constructor taking a single dense matrix
+// removes the zeros.
+dense=[0., 1., 0., 0., 0.,
+1., 0., 2., 0., 0.
+0., 0., 0., 0., 0.
+0., 0., 0., 0., -0.5];
+sp=sparse(dense)
+// complex matrices are also supported
+sp=sparse(dense*(1+2*%i))
+// for boolean matrices, the boolean sparse matrix
+// only stores true values (and removes false values).
+dense=[%F, %F, %T, %F, %F
+%T, %F, %F, %F, %F
+%F, %F, %F, %F, %F
+%F, %F, %F, %F, %T];
+sp=sparse(dense)
+
  ]]></programlisting>
   </refsection>
   <refsection>

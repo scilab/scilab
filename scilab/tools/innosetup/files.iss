@@ -31,6 +31,7 @@
 #include BinariesSourcePath + "\modules\overloading\overloading.iss"
 #include BinariesSourcePath + "\modules\elementary_functions\elementary_functions.iss"
 #include BinariesSourcePath + "\modules\jvm\jvm.iss"
+#include BinariesSourcePath + "\modules\commons\commons.iss"
 #include BinariesSourcePath + "\modules\time\time.iss"
 #include BinariesSourcePath + "\modules\localization\localization.iss"
 #include BinariesSourcePath + "\modules\boolean\boolean.iss"

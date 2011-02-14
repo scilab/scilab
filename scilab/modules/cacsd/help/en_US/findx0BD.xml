@@ -24,7 +24,7 @@
 [x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>

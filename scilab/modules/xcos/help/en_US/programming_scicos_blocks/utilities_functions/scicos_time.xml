@@ -40,7 +40,7 @@ t=scicos_time()
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_scicos_time">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">t :</emphasis> that is the current simulated time returned in real number.</para>

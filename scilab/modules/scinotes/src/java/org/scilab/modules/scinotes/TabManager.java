@@ -60,8 +60,8 @@ public class TabManager {
         } else {
             this.tab = "\t";
             lengthTab = 1;
-            doc.putProperty("tabSize", new Integer(Math.max(n, 1)));
         }
+        doc.putProperty("tabSize", new Integer(Math.max(n, 1)));
         if (indent != null) {
             indent.setProperties(tab, n);
         }
@@ -100,8 +100,9 @@ public class TabManager {
     /**
      * Insert a tab just after the caret position (depends on setTabInsertable)
      * @param position the position in the doc
+     * @return the length of a tab
      */
-    public void insertTab(int position) {
+    public int insertTab(int position) {
         try {
             if (isTabInsertable) {
                 doc.insertString(position, tab, null);
@@ -111,6 +112,8 @@ public class TabManager {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
+
+        return lengthTab;
     }
 
     /**
@@ -145,15 +148,18 @@ public class TabManager {
     }
 
     /**
-     * Suppress a tabulation inside a text or untabify line (depends on setTabInsertable)
+     * Suppress a tabulation just before the position or untabify line (depends on setTabInsertable)
      * @param position of the caret
+     * @return the length of a tab
      */
-    public void untabifyText(int position) {
+    public int removeTab(int position) {
         try {
             if (isTabInsertable) {
-                int end = elem.getElement(elem.getElementIndex(position)).getEndOffset();
-                if (end - position >= lengthTab && tab.equals(doc.getText(position, lengthTab))) {
-                    doc.remove(position, lengthTab);
+                int pos = Math.max(0, position - lengthTab);
+                if (tab.equals(doc.getText(pos, lengthTab))) {
+                    doc.remove(pos, lengthTab);
+                } else {
+                    return 0;
                 }
             } else {
                 untabifyLine(position);
@@ -161,6 +167,8 @@ public class TabManager {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
+
+        return lengthTab;
     }
 
     /**

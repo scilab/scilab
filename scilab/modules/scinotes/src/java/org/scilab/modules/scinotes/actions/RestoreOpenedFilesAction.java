@@ -28,14 +28,17 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 
+import javax.swing.AbstractAction;
 import javax.swing.AbstractCellEditor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -67,6 +70,7 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
 public class RestoreOpenedFilesAction extends DefaultCheckAction {
 
     private static final int GAP = 10;
+    private static final String ESCAPE = "ESCAPE";
     private static final Icon SCILAB_ICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
     private static JDialog dialog;
     private static JTree tree;
@@ -119,6 +123,13 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         int dimY = 300;
 
         dialog = new JDialog(owner);
+        dialog.getRootPane().getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
+        dialog.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    dialog.dispose();
+                }
+            });
+
         dialog.setPreferredSize(new Dimension(dimX, dimY));
 
         JButton ok = new JButton(SciNotesMessages.OK);

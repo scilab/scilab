@@ -23,7 +23,7 @@
     <synopsis>[sl2]=invsyslin(sl1)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl1,sl2</term>

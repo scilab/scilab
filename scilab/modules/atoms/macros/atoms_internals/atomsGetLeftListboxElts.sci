@@ -80,7 +80,7 @@ function elements = atomsGetLeftListboxElts(category)
 
             thisItem  =            "<html>";
             thisItem  = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/folder.png"" /></td>";
+            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/folder.png"" /></td>";
             thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;"">"+categories(i)+"</div></td>";
             thisItem  = thisItem + "</tr></table>";
             thisItem  = thisItem + "</html>";
@@ -140,7 +140,7 @@ function elements = atomsGetLeftListboxElts(category)
 
             thisItem  =            "<html>";
             thisItem  = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/folder.png"" /></td>";
+            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/folder.png"" /></td>";
             thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;"">"+categories(i)+"</div></td>";
             thisItem  = thisItem + "</tr></table>";
             thisItem  = thisItem + "</html>";

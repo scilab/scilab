@@ -67,3 +67,18 @@ msgstr "%s: erro número %d\n"
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s: overflow ou underflow de um número de intervalo estendido\n"
+
+#, c-format
+msgid "Function %s is obsolete."
+msgstr ""
+
+#, c-format
+msgid "Please use %s instead."
+msgstr ""
+
+#, c-format
+msgid "This function will be permanently removed in Scilab %s"
+msgstr ""
+
+msgid "Warning: "
+msgstr ""

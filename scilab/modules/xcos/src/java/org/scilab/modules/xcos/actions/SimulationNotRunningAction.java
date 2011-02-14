@@ -32,6 +32,7 @@ public abstract class SimulationNotRunningAction extends DefaultAction {
 		super(scilabGraph);
 		
 		GraphActionManager.get(scilabGraph, StartAction.class).addPropertyChangeListener(new PropertyChangeListener() {
+			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				setEnabled((Boolean) evt.getNewValue());
 			}

@@ -466,7 +466,11 @@ c     exec
       lin(k+5) = bot0
 c     two following lines set information necessary for  stackp to know
 c     current macro context
-      if(macr.ge.1) lin(k+5)=lin(lpt(1)-(8+nsiz))
+      if(macr.ge.1.or.paus.ge.1) then
+c     .  exec called within a pause or a macro. 
+c     .  The context is set to  the calling context
+         lin(k+5)=lin(lpt(1)-(8+nsiz))
+      endif
       if(rio.eq.rte) lin(k+5)=bot
 
       lin(k+6) = lct(4)

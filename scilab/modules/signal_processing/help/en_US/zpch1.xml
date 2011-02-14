@@ -12,7 +12,7 @@
     <synopsis>[poles,gain]=zpch1(n,epsilon,omegac)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>

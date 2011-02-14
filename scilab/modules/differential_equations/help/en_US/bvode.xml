@@ -32,7 +32,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>

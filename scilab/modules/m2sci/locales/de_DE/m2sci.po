@@ -108,7 +108,7 @@ msgstr "%s: %s Modul ist nicht installiert.\n"
 
 #, c-format
 msgid "%s: Output value set to ''on''."
-msgstr "%s: Ausgabe Wert nach 'ein' gesetzt."
+msgstr "%s: Ausgabe Wert nach ''ein'' gesetzt."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -127,7 +127,7 @@ msgid "&Tools"
 msgstr "&Zusatzprogramme"
 
 msgid "''nobalance'' option, IGNORED."
-msgstr "'nobalance' Option, ignoriert."
+msgstr "''nobalance'' Option, ignoriert."
 
 #, c-format
 msgid "(Find this function in matlab/%s)."
@@ -326,7 +326,7 @@ msgstr ""
 
 #, c-format
 msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
-msgstr "Extraktion von %s aus '%s'  tlist ist noch nicht implementiert."
+msgstr "Extraktion von %s aus ''%s''  tlist ist noch nicht implementiert."
 
 msgid "File"
 msgstr "Datei"
@@ -369,6 +369,12 @@ msgid ""
 msgstr ""
 "Wenn %s außerhalb [-1,1] liegt\n"
 "   komplexer Teil der Ausgabe von %s wird das Gegenteil der von Matlab sein."
+
+#, c-format
+msgid ""
+"If %s is outside [-1,1]\n"
+"   real part of output of %s will be the opposite of Matlab one."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -713,7 +719,7 @@ msgid "fopen used with three outputs."
 msgstr "fopen wird mit drei Ausgängen verwendet."
 
 msgid "fopen(''all'') has no translation."
-msgstr "fopen('alle') hat keine Übersetzung."
+msgstr "fopen(''alle'') hat keine Übersetzung."
 
 msgid "if"
 msgstr "wenn"

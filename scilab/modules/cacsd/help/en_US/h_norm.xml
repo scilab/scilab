@@ -23,7 +23,7 @@
     <synopsis>[hinfnorm [,frequency]]=h_norm(sl [,rerr])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl</term>

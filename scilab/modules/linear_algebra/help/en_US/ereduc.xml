@@ -23,7 +23,7 @@
     <synopsis>[E,Q,Z [,stair [,rk]]]=ereduc(X,tol)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>

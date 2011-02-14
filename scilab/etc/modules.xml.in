@@ -37,6 +37,7 @@
 <module name="output_stream" activate="yes"/>
 <module name="intersci" activate="yes"/>
 <module name="jvm" activate="@JAVA_ENABLE@"/>
+<module name="commons" activate="yes"/>
 <module name="linear_algebra" activate="yes"/>
 <module name="localization" activate="yes"/>
 <module name="optimization" activate="yes"/>
@@ -68,7 +69,6 @@
 <module name="scicos_blocks" activate="@SCICOS_ENABLE@"/>
 <!-- comments -->
 <module name="pvm" activate="@PVM_ENABLE@"/>
-<module name="sci2c" activate="no"/>
 <module name="fftw" activate="@FFTW_ENABLE@"/>
 <module name="umfpack" activate="@UMFPACK_ENABLE@"/>
 <module name="module_skeleton" activate="no"/>

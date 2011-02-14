@@ -470,10 +470,13 @@ int ParseLine(char *s,char *words[])
     int inword = 1;
     int i = 0;
     if(*s == ' ' || *s == '\t') inword = 0;
-    while (*s) {
-        if (inword) {
+    while (*s) 
+    {
+        if (inword) 
+        {
             w[i++] = *s++;
-            if (*s == ' ' || *s == '\t' || *s == '\n') {
+            if (*s == ' ' || *s == '\t' || *s == '\n') 
+            {
                 w[i] = '\0';
                 words[nwords] = (char *)malloc((unsigned)(i+1));
                 strcpy(words[nwords],w);
@@ -481,14 +484,26 @@ int ParseLine(char *s,char *words[])
                 inword = 0;
             }
         }
-        else {
+        else 
+        {
             s++; /* *s++; */
-            if (*s != ' ' && *s != '\t') {
+            if (*s != ' ' && *s != '\t') 
+            {
                 i = 0;
                 inword = 1;
             }
         }
     }
+
+    /* bug 7599 fixed: if the last line end with eof, not eol then one word missed */
+    if (i > 1) 
+    {
+        w[i] = '\0';
+        words[nwords] = (char *)malloc((unsigned)(i+1));
+        strcpy(words[nwords], w);
+        nwords++;
+    }
+
     return(nwords);
 }
 

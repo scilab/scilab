@@ -4,6 +4,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -228,6 +229,8 @@ GRAPHICS_IMPEXP void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3]); /* 
 
 GRAPHICS_IMPEXP BOOL sciGetAutoSubticks(sciPointObj * pObj); /* GET */
 
+GRAPHICS_IMPEXP void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3]); /* GET */
+
 GRAPHICS_IMPEXP void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]); /* GET */
 
 GRAPHICS_IMPEXP void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]); /* GET */
@@ -273,5 +276,7 @@ GRAPHICS_IMPEXP int sciGetAntialiasingQuality(sciPointObj * pObj); /* GET */
 GRAPHICS_IMPEXP sciLegendPlace sciGetLegendLocation(sciPointObj * pObj); /* GET */
 
 GRAPHICS_IMPEXP void printSetGetErrorMessage(const char * propertyName);
+
+GRAPHICS_IMPEXP void sciGetNbSubticks(sciPointObj * pSubwin, double nbsubtics[3]);
 
 #endif /* __SCI_GET_PROPERTY__ */

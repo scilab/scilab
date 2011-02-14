@@ -23,4 +23,5 @@
 -->
 <!-- =================== -->
 <PRIMITIVE gatewayId="66" primitiveId="1" primitiveName="parallel_run" />
+<PRIMITIVE gatewayId="66" primitiveId="2" primitiveName="parallel_concurrency" />
 </GATEWAY>

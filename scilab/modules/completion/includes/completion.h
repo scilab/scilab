@@ -72,6 +72,13 @@ COMPLETION_IMPEXP char **completionOnVariablesWithoutMacros(char *somechars, int
 */
 COMPLETION_IMPEXP char **completionOnFiles(char *somechars, int *sizeArrayReturned);
 
+/**
+* completion function on files for scilab
+* @param[in] the line before the caret
+* @param[in] the part
+* @return a array of chars 
+*/
+COMPLETION_IMPEXP char **completionOnFields(char *lineBeforeCaret, char *pattern, int *sizeArrayReturned);
 
 /**
 * completion handle graphics properties for scilab

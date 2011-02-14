@@ -48,18 +48,6 @@ function out = importScicosDiagram(source)
   end
   
   version = getDiagramVersion(out);
-  if version <> get_scicos_version() then
-    out = do_version(out, version);
-  end
-  
-  // Clear the doc fields of all the blocks
-  if typeof(out) == "diagram" then
-    for k=1:lstsize(out.objs)
-      o=out.objs(k);
-      if (typeof(o) == "Block") & (size(o.doc) <> 0) then
-          out.objs(k).doc = list();
-      end
-    end
-  end
-
+  out = do_version(out, version);
 endfunction
+

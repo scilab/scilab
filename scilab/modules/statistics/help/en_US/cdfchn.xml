@@ -26,7 +26,7 @@
 [Pnonc]=cdfchn("Pnonc",P,Q,X,Df)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,X,Df,Pnonc</term>

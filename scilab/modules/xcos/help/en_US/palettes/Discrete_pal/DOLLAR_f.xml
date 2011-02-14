@@ -122,7 +122,7 @@
     <title>Description</title>
 
     <para>The Unit Delay block delays its input by the specified sample
-    period. This block is equivalent to the z-1 discrete-time operator. The
+    period. This block is equivalent to the 1/z discrete-time operator. The
     block accepts one input and generates one output, which can be either both
     scalar or both vector. If the input is a vector, all elements of the
     vector are delayed by the same sample period.</para>

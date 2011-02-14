@@ -11,13 +11,14 @@ package org.scilab.tests.modules.hdf5;
  *
  */
 
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
 import org.scilab.modules.hdf5.read.H5Read;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
+import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.hdf5.write.H5Write;
 
 
@@ -37,9 +38,9 @@ public class testScilabDouble {
 
 		ScilabDouble data = new ScilabDouble();
 		fileId = H5Read.openFile(tempDir + "/emptyDoubleFromJava.h5");
-		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
+		Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_DOUBLE);
 		H5Read.readDataFromFile(fileId, data);
-		assert data.isEmpty()==true;
+		Assert.assertEquals(data.isEmpty(), true);
     }
 
 	@Test
@@ -61,12 +62,12 @@ public class testScilabDouble {
 		ScilabDouble data = new ScilabDouble();
 
 		fileId = H5Read.openFile(tempDir + "/realDoubleFromJava.h5");
-		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
+		Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_DOUBLE);
 		H5Read.readDataFromFile(fileId, data);
-		assert data.isReal()==true;
+		Assert.assertEquals(data.isReal(), true);
 		for (int i = 0 ; i < ROWS ; ++i) {
 			for (int j = 0 ; j < COLS ; ++j) {
-				assert realPart[i][j] == data.getRealPart()[i][j];
+				Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j]);
 			}
 		}
     }
@@ -92,12 +93,12 @@ public class testScilabDouble {
 		ScilabDouble data = new ScilabDouble();
 
 		fileId = H5Read.openFile(tempDir + "/complexDoubleFromJava.h5");
-		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
+		Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_DOUBLE);
 		H5Read.readDataFromFile(fileId, data);
 		for (int i = 0 ; i < ROWS ; ++i) {
 			for (int j = 0 ; j < COLS ; ++j) {
-				assert realPart[i][j] == data.getRealPart()[i][j];
-				assert imagPart[i][j] == data.getImaginaryPart()[i][j];
+				Assert.assertEquals(realPart[i][j], data.getRealPart()[i][j]);
+				Assert.assertEquals(imagPart[i][j], data.getImaginaryPart()[i][j]);
 			}
 		}
     }

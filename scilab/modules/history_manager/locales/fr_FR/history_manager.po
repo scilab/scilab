@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2009-11-23 12:06+0000\n"
+"PO-Revision-Date: 2010-10-07 11:49+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,17 +48,14 @@ msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Doit être dans "
 "l'intervalle [%d, %d].\n"
 
-msgid "Begin Session : "
-msgstr "Début de  la Session : "
-
-msgid "End Session   : "
-msgstr "Fin de la Session : "
-
 msgid "Apr"
 msgstr "Avr"
 
 msgid "Aug"
 msgstr "Août"
+
+msgid "Begin Session : "
+msgstr "Début de session : "
 
 msgid "Dec"
 msgstr "Déc"
@@ -95,9 +92,6 @@ msgstr "Oct"
 
 msgid "Sat"
 msgstr "Sam"
-
-msgid "Scilab history_manager module not installed.\n"
-msgstr "Module Scilab history_manager non installé.\n"
 
 msgid "Sep"
 msgstr "Sept"

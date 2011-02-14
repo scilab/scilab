@@ -19,6 +19,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
  * Class Page setup action for SciNotes
@@ -28,6 +29,11 @@ import org.scilab.modules.scinotes.SciNotes;
 public class PageSetupAction extends DefaultAction {
 
     private static PageFormat pageFormat;
+
+    static {
+        pageFormat = new PageFormat();
+        pageFormat.setPaper(ConfigSciNotesManager.getPaperFormat());
+    }
 
     /**
      * Default constructor
@@ -42,12 +48,8 @@ public class PageSetupAction extends DefaultAction {
      * Function Run
      */
     public void doAction() {
-        PrinterJob printTask = PrinterJob.getPrinterJob();
-        if (pageFormat == null) {
-            pageFormat = printTask.pageDialog(new HashPrintRequestAttributeSet());
-        } else {
-            pageFormat = printTask.pageDialog(pageFormat);
-        }
+        pageFormat = PrinterJob.getPrinterJob().pageDialog(pageFormat);
+        ConfigSciNotesManager.savePaperFormat(pageFormat.getPaper());
     }
 
     /**

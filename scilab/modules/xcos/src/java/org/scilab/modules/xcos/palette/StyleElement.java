@@ -17,9 +17,9 @@ import static java.util.Arrays.asList;
 import java.util.List;
 import java.util.Map;
 
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabTList;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.io.scicos.AbstractElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
@@ -52,7 +52,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 	 * @return <code>false</code> if {@link #decode(ScilabType, mxStylesheet)}
 	 *         will always throw an exception, <code>false</code> is sometimes
 	 *         only.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -72,7 +72,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 	 * @return the filled instance
 	 * @throws ScicosFormatException
 	 *             on decoding error
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
 	 *      java.lang.Object)
 	 */
 	@Override
@@ -105,8 +105,10 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 
 		for (int i = 0; i < blockNames.length; i++) {
 			for (int j = 0; j < blockNames[i].length; j++) {
-				final Map<String, Object> style = styleSheet.getCellStyle(
-						styles[i][j], styleSheet.getDefaultVertexStyle());
+				final Map<String, Object> style = 
+					styleSheet.getCellStyle(styles[i][j],
+					styleSheet.getCellStyle("Icon",
+							styleSheet.getDefaultVertexStyle()));
 				styleSheet.putCellStyle(blockNames[i][j], style);
 			}
 		}
@@ -195,7 +197,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 	 *            Not used
 	 * @return null
 	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-	 *      org.scilab.modules.types.scilabTypes.ScilabType)
+	 *      org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	@Deprecated

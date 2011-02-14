@@ -78,7 +78,7 @@ msgid ""
 "Type '%s' or '%s' to return to standard level prompt.\n"
 "\n"
 msgstr ""
-"Digitare \"%s\" o \"%s\" per tornare al prompt di livello standard.\n"
+"Digitare '%s' o '%s' per tornare al prompt di livello standard.\n"
 "\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"

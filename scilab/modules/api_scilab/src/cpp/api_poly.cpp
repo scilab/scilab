@@ -153,17 +153,17 @@ SciErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
 	return sciErr;
 }
 
-SciErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+SciErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal)
 {
 	return createCommonMatrixOfPoly(_pvCtx, _iVar, 0, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
 }
 
-SciErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+SciErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
 	return createCommonMatrixOfPoly(_pvCtx, _iVar, 1, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr				= NULL;
@@ -186,7 +186,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
 	return sciErr;
 }
 
-SciErr fillCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen)
+SciErr fillCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg, int* _piTotalLen)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piOffset			= NULL;
@@ -245,17 +245,17 @@ SciErr fillCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, char* _pstVarName, 
 	return sciErr;
 }
 
-SciErr createNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+SciErr createNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal)
 {
 	return createCommonNamedMatrixOfPoly(_pvCtx, _pstName, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
 }
 
-SciErr createNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+SciErr createNamedComplexMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
 	return createCommonNamedMatrixOfPoly(_pvCtx, _pstName, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
@@ -291,17 +291,17 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVar
 	return sciErr;
 }
 
-SciErr readNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
+SciErr readNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
 {
 	return readCommonNamedMatrixOfPoly(_pvCtx, _pstName, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
 }
 
-SciErr readNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+SciErr readNamedComplexMatrixOfPoly(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	return readCommonNamedMatrixOfPoly(_pvCtx, _pstName, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-SciErr readCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+SciErr readCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -339,7 +339,7 @@ int isPolyType(void* _pvCtx, int* _piAddress)
 	return checkVarType(_pvCtx, _piAddress, sci_poly);
 }
 /*--------------------------------------------------------------------------*/
-int isNamedPolyType(void* _pvCtx, char* _pstName)
+int isNamedPolyType(void* _pvCtx, const char* _pstName)
 {
 	return checkNamedVarType(_pvCtx, _pstName, sci_poly);
 }
@@ -396,17 +396,17 @@ static int getCommonAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int _iCom
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getAllocatedNamedSinglePoly(void* _pvCtx, char* _pstName, int* _piNbCoef, double** _pdblReal)
+int getAllocatedNamedSinglePoly(void* _pvCtx, const char* _pstName, int* _piNbCoef, double** _pdblReal)
 {
 	return getCommonAllocatedNamedSinglePoly(_pvCtx, _pstName, 0, _piNbCoef, _pdblReal, NULL);
 }
 /*--------------------------------------------------------------------------*/
-int getAllocatedNamedSingleComplexPoly(void* _pvCtx, char* _pstName, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+int getAllocatedNamedSingleComplexPoly(void* _pvCtx, const char* _pstName, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	return getCommonAllocatedNamedSinglePoly(_pvCtx, _pstName, 1, _piNbCoef, _pdblReal, _pdblImg);
 }
 /*--------------------------------------------------------------------------*/
-static int getCommonAllocatedNamedSinglePoly(void* _pvCtx, char* _pstName, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+static int getCommonAllocatedNamedSinglePoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	SciErr sciErr;
 	int iRows	= 0;
@@ -502,17 +502,17 @@ static int getCommonAllocatedMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iC
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getAllocatedNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal)
+int getAllocatedNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal)
 {
 	return getCommonAllocatedNamedMatrixOfPoly(_pvCtx, _pstName, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
 }
 /*--------------------------------------------------------------------------*/
-int getAllocatedNamedMatrixOfComplexPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
+int getAllocatedNamedMatrixOfComplexPoly(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
 {
 	return getCommonAllocatedNamedMatrixOfPoly(_pvCtx, _pstName, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 /*--------------------------------------------------------------------------*/
-static int getCommonAllocatedNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
+static int getCommonAllocatedNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
 {
 	SciErr sciErr;
 	int iRows	= 0;

@@ -1,0 +1,9 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;
+getSCIHOME
+getTMPDIR

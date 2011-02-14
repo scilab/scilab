@@ -23,7 +23,7 @@
     <synopsis>[W,rk]=rowcomp(A [,flag [,tol]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>

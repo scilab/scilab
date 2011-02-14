@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,73 +25,99 @@ import javax.swing.JEditorPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
 
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 
 /**
  * Save File utility class
  * @author Allan CORNET
- *
+ * @author Calixte DENIZET
  */
 public final class SaveFile {
 
-	private static final String LINE_SEPARATOR = "line.separator";
-	
-	/**
-	 * private Constructor
-	 */
-	private SaveFile() {
-	}
-	/**
-	 * save text in JEditorPane
-	 * @param textPane JEditorPane
-	 * @param fOut File
-	 * @param editorKit EditorKit
-	 * @return true if saved
-	 */
-	public static boolean doSave(JEditorPane textPane, File fOut, EditorKit editorKit) {
-		
-		ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
+    private static final String LINE_SEPARATOR = "line.separator";
 
-		// get default eol
-		String defaultEol = System.getProperty(LINE_SEPARATOR);
+    /**
+     * private Constructor
+     */
+    private SaveFile() { }
 
-		// set eol used to save file 
-		if (styledDocument.getEOL().compareTo(defaultEol) != 0) {
-			System.setProperty(LINE_SEPARATOR, styledDocument.getEOL());
-		}
-		boolean bReturn = false;
-		
-		BufferedWriter out = null;
-		try {
-			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fOut), styledDocument.getEncoding()));
-			try {
-				editorKit.write(out, styledDocument, 0, styledDocument.getLength());
-				out.flush();
-				out.close();
-				
-				// restore default eol
-				System.setProperty(LINE_SEPARATOR, defaultEol);
-				
-				bReturn = true;
-				
-			} catch (IOException e) {
-				// restore default eol
-				System.setProperty(LINE_SEPARATOR, defaultEol);
-				bReturn = false;
-			} catch (BadLocationException e) {
-				// restore default eol
-				System.setProperty(LINE_SEPARATOR, defaultEol);
-				bReturn = false;
-			}
-		} catch (UnsupportedEncodingException e) {
-			// restore default eol
-			System.setProperty(LINE_SEPARATOR, defaultEol);
-			bReturn = false;
-		} catch (FileNotFoundException e) {
-			// restore default eol
-			System.setProperty(LINE_SEPARATOR, defaultEol);
-			bReturn = false;
-		}
-		return bReturn;
-	}
+    /**
+     * save text in JEditorPane
+     * @param textPane JEditorPane
+     * @param fOut File
+     * @param editorKit EditorKit
+     * @return true if saved
+     */
+    public static boolean doSave(ScilabEditorPane textPane, int index, File fOut, EditorKit editorKit) {
+
+        ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
+        boolean enc = false;
+        if (!styledDocument.getEncoding().equalsIgnoreCase(ConfigSciNotesManager.getDefaultEncoding())) {
+            String msg = String.format(SciNotesMessages.DIFFERENT_ENCODINGS, styledDocument.getEncoding(), ConfigSciNotesManager.getDefaultEncoding());
+            if (ScilabModalDialog.show(textPane.getEditor(), msg, SciNotesMessages.DIFFERENT_ENCODINGS_TITLE, IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
+                return false;
+            }
+            enc = true;
+        }
+
+        if (!fOut.canWrite()) {
+            ScilabModalDialog.show(textPane.getEditor(), SciNotesMessages.NOTWRITABLE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+            return false;
+        }
+
+        // get default eol
+        String defaultEol = System.getProperty(LINE_SEPARATOR);
+
+        // set eol used to save file
+        if (styledDocument.getEOL().compareTo(defaultEol) != 0) {
+            System.setProperty(LINE_SEPARATOR, styledDocument.getEOL());
+        }
+        boolean bReturn = false;
+
+        BufferedWriter bw = null;
+        OutputStreamWriter osw = null;
+        FileOutputStream fos = null;
+
+        try {
+            fos = new FileOutputStream(fOut);
+            osw = new OutputStreamWriter(fos, ConfigSciNotesManager.getDefaultEncoding());
+            bw = new BufferedWriter(osw);
+            editorKit.write(bw, styledDocument, 0, styledDocument.getLength());
+            bw.flush();
+            bReturn = true;
+        } catch (IOException e) {
+            System.err.println(e);
+            bReturn = false;
+        } catch (BadLocationException e) {
+            System.err.println(e);
+            bReturn = false;
+        } finally {
+            try {
+                if (fos != null) {
+                    fos.close();
+                }
+                if (osw != null) {
+                    osw.close();
+                }
+                if (bw != null) {
+                    bw.close();
+                }
+            } catch (IOException e) {
+                System.err.println(e);
+            }
+        }
+
+        // restore default eol
+        System.setProperty(LINE_SEPARATOR, defaultEol);
+        if (enc) {
+            textPane.getEditor().reload(index);
+        }
+
+        return bReturn;
+    }
 }

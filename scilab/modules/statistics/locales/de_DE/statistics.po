@@ -145,7 +145,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr ""
-"%s: falscher Wert für %d Eingangsargument: '%s', '%s', %d oder %d erwartet.\n"
+"%s: falscher Wert für %d Eingangsargument: ''%s'', ''%s'', %d oder %d erwartet.\n"
 
 #, c-format
 msgid ""
@@ -171,13 +171,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument '%d: '%s', '%s', %d oder %d "
+"%s: falscher Wert für Eingangsargument '%d: ''%s'', ''%s'', %d oder %d "
 "erwartet.\n"
 
 #, c-format
@@ -185,7 +185,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
 "expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s', %d oder %d "
+"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'', %d oder %d "
 "erwartet.\n"
 
 #, c-format
@@ -193,14 +193,14 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
 "number expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s' oder eine "
+"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'' oder eine "
 "positive Zahl erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s', %d oder %d.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'', %d oder %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
@@ -239,7 +239,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument: '%s', '%s', %d oder %d erwartet.\n"
+"%s: falscher Wert für Eingangsargument: ''%s'', ''%s'', %d oder %d erwartet.\n"
 
 #, c-format
 msgid ""
@@ -259,6 +259,10 @@ msgstr "A,B,P und Q"
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "Antwort scheint größer als die höchste Suchgrenze zu sein %f\n"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr ""
 
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
@@ -296,14 +300,6 @@ msgstr "F,Dfn und Dfd"
 
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr "F,Dfn,Dfd und Pnonc"
-
-#, c-format
-msgid ""
-"Input argument %c is out of range.\n"
-"Bound exceeded: %f\n"
-msgstr ""
-"Eingangsargument %c ist außerhalb der Grenze.\n"
-"Schranken überschritten %f\n"
 
 #, c-format
 msgid "Keeping %i values from %i to %i in sorted order\n"

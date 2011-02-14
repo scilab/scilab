@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-05-22 18:57+0000\n"
+"PO-Revision-Date: 2010-07-29 09:40+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -201,16 +201,12 @@ msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
 msgstr "%s: No existeix el ftixer %s, o no hi teniu accés de lectura.\n"
 
 #, c-format
-msgid "%s: The file %s is not well formated at line %d\n"
-msgstr "%s: El fitxer %s té un format incorrecte a la línia %d\n"
-
-#, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
-"the ScilabVersion field\n"
+"the %s field\n"
 msgstr ""
-"%s: El fitxer %s té un format incorrecte. La caixa d'eines %s - %s no conté "
-"el camp ScilabVersion\n"
+"%s: El fitxer %s no té un format correcte, la caixa d'eines %s - %s no conté "
+"el camp %s\n"
 
 #, c-format
 msgid "%s: The file ''%s'' cannot be written.\n"
@@ -223,6 +219,10 @@ msgstr "%s: El fitxer ''%s'' no existeix, o no hi teniu accés de lectura\n"
 #, c-format
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
 msgstr "%s: El fitxer ''%s'' no existeix o no hi teniu accés de lectura.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' is not well formated at line %d\n"
+msgstr "%s: El fitxer ''%s'' no té un format correcte a la línia %d\n"
 
 #, c-format
 msgid "%s: The following file hasn''t been copied:\n"
@@ -299,6 +299,11 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
@@ -321,6 +326,24 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
 "1x2.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"text de 1x1 o 1x2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -370,6 +393,17 @@ msgstr ""
 "mx3.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
@@ -417,10 +451,24 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una mlist.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: ''%s'' no és una "
+"categoria registrada"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: ''%s'' no és un URL "
 "vàlid.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''all'' o "
+"''main''.\n"
 
 #, c-format
 msgid ""
@@ -437,6 +485,14 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''all'', "
 "''user'', ''allusers'' o ''official''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
+"valid main category expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser "
+"''filter:all'', ''filter:main'' o una categoria principal vàlida.\n"
 
 #, c-format
 msgid ""
@@ -477,6 +533,12 @@ msgstr ""
 "''allusers'' o ''all''.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una categoria "
+"vàlida.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ASC o DESC.\n"
@@ -487,6 +549,14 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Cal identificar les "
 "versions de tots els mòduls.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: It should have a field named "
+"''%s''.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Hauria de tenir un camp "
+"anomenat ''%s''.\n"
 
 #, c-format
 msgid ""
@@ -582,6 +652,10 @@ msgid "%s: You haven''t write access on this directory : %s.\n"
 msgstr "%s: No teniu accés d'escriptura a aquest directori: %s.\n"
 
 #, c-format
+msgid "%s: name and version are not both defined\n"
+msgstr "%s: No s'ha definit el nom i la versió\n"
+
+#, c-format
 msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
 msgstr "%s: El paquet ''%s'' no conté el camp ''%s''.\n"
 
@@ -604,14 +678,21 @@ msgstr "Ei&nes"
 msgid "?"
 msgstr "?"
 
-msgid "Atoms"
-msgstr "Atoms"
+#, c-format
+msgid "A new version (''%s'') of ''%s'' is available"
+msgstr "Hi ha disponible una nova versió (''%s'') de ''%s''"
+
+msgid "ATOMS"
+msgstr "ATOMS"
+
+msgid "ATOMS error"
+msgstr "Error d'ATOMS"
+
+msgid "All modules"
+msgstr "Tots els mòduls"
 
 msgid "Atoms Help..."
 msgstr "Ajuda d'Atoms..."
-
-msgid "Atoms error"
-msgstr "Instal·lació d'Atoms"
 
 msgid "Author(s)"
 msgstr "Autor(s)"
@@ -643,6 +724,9 @@ msgstr "Entitat"
 msgid "File"
 msgstr "Fitxer"
 
+msgid "Home"
+msgstr "Inici"
+
 msgid "Install"
 msgstr "Instal·la"
 
@@ -658,8 +742,8 @@ msgstr ""
 msgid "Installation failed!"
 msgstr "La instal·lació ha anat malament."
 
-msgid "Installing..."
-msgstr "S'està instal·lant..."
+msgid "Installing"
+msgstr "S'està instal·lant"
 
 msgid "KB"
 msgstr "KB"
@@ -667,27 +751,31 @@ msgstr "KB"
 msgid "License"
 msgstr "Llicència"
 
+msgid "List of installed modules"
+msgstr "Llista dels mòduls instal·lats"
+
 msgid "MB"
 msgstr "MB"
+
+msgid "Main categories"
+msgstr "Categories principals"
 
 msgid "Maintainer(s)"
 msgstr "Mantenidor(s)"
 
-msgid "Modules"
-msgstr "Mòduls"
-
-msgid "No Atoms module is available. Please, check your Internet connection."
+msgid "No ATOMS module is available. Please, check your Internet connection."
 msgstr ""
-"El mòdul Atoms no està disponible. Comproveu la vostra connexió a Internet."
+"No hi ha cap mòdul ATOMS disponible. Comproveu la vostra connexió a Internet."
 
-msgid "No Atoms module is available: your repository list is empty."
-msgstr "El mòdul Atoms no està disponible: la vostra llista és buida."
-
-msgid "No module selected"
-msgstr "No heu seleccionat cap mòdul"
+msgid "No ATOMS module is available: your repository list is empty."
+msgstr ""
+"No hi ha cap mòdul ATOMS disponible. La llista del repositori és buida."
 
 msgid "Package"
 msgstr "Paquet"
+
+msgid "Release date"
+msgstr "Data de publicació"
 
 msgid "Remove"
 msgstr "Elimina"
@@ -698,11 +786,14 @@ msgstr "S'ha eliminat. Reinicieu l'Scilab perquè els canvis tinguin efecte. "
 msgid "Remove failed!"
 msgstr "L'eliminació ha anat malament."
 
-msgid "Removing..."
-msgstr "S'està eliminant..."
+msgid "Removing"
+msgstr "S'està eliminant"
 
 msgid "Scilab Version"
 msgstr "Versió d'Scilab"
+
+msgid "See also"
+msgstr "Vegeu també"
 
 msgid "Status"
 msgstr "Estat"
@@ -724,8 +815,8 @@ msgstr ""
 msgid "Update failed!"
 msgstr "L'actualització ha anat malament."
 
-msgid "Updating..."
-msgstr "S'està actualitzant..."
+msgid "Updating"
+msgstr "S'està actualitzant"
 
 msgid "Version"
 msgstr "Versió"

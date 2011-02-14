@@ -23,7 +23,7 @@
     <synopsis>[y]=rtitr(Num,Den,u [,up,yp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Num,Den</term>

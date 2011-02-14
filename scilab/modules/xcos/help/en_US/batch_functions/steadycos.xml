@@ -52,7 +52,7 @@ This function finds the steady state for a given system described by a xcos diag
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_steadycos">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scs_m :</emphasis> a xcos data structure</para>

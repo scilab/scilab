@@ -5,7 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //<-- JVM NOT MANDATORY -->
-
+//
+// <-- ENGLISH IMPOSED -->
+//
 // Elementary setbpt tests with scalar line number argument
 // Order of the commands is important to guarantee
 // the full coverage of the tests

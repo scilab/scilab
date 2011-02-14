@@ -4,5 +4,6 @@
 EXPORTS
 	cvstr_
 	SciStrtoStr
+	strsub
 	
 	

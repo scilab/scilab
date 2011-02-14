@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-02-26 20:33+0000\n"
-"Last-Translator: Kamil Dąbrowski <Unknown>\n"
+"PO-Revision-Date: 2010-07-02 12:47+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-04 21:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -28,13 +27,12 @@ msgstr "%s: Nieobsługiwany język '%s'.\n"
 #, c-format
 msgid "%s: Wrong type for first input argument: String expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ pierwszego argumentu wejściowego: Oczekiwano typu "
-"string.\n"
+"%s: Nieprawidłowy typ pierwszego argumentu wejściowego: oczekiwano łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwano typu string.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 msgid "Restart Scilab to apply to menus.\n"
 msgstr "Zrestartuj Scilab, aby zastosować zmiany w menu.\n"

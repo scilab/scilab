@@ -12,7 +12,7 @@
     <synopsis>lnf=getlookandfeel()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lnf</term>

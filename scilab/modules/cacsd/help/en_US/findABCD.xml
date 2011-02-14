@@ -27,7 +27,7 @@ SYS = findABCD(S,N,L,R,METH)
 [SYS,RCND] = findABCD(S,N,L,R,METH)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>S</term>
