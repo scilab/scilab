@@ -50,7 +50,7 @@ Javasci:
 ========
 
 * Bug 8807 fixed - Javadoc of javasci v2 was not installed under GNU/Linux and
-                   Mac OS X. 
+                   Mac OS X.
 
 
 Packaging:
@@ -76,11 +76,11 @@ size.
 right area.
 
 * In the help, allow the creation of links between modules with the following
-syntax: 
+syntax:
 <link type="scilab" linkend="mytoolbox/exec/macros/fooexec.sce">macros/fooexec.sce</link>
 
 * In the help, allow the creation of links between a module to the Scilab
-documentation with the following syntax: 
+documentation with the following syntax:
 <link type="scilab" linkend="scilab/help/bvode">bvode</link>
 
 * In the help, allow the execution and the edition of any example.
@@ -99,7 +99,7 @@ trigger a warning and do not add a link on the function name.
 * bug 3716 fixed - No way to search a word in the right area.
 
 * bug 5362 fixed - There were problems with the same xml:id but having a
-                   different case. 
+                   different case.
 
 * bug 5796 fixed - No way to increase/decrease font size.
 
@@ -261,7 +261,7 @@ Graphics:
 * bug 7990 fixed - Box thickness was badly exported in vectorial formats (svg/pdf/...)
                    Thanks to Paul Griffiths for the patch.
 
-* bug 8163 fixed - datatipToggle could not be called without argument as 
+* bug 8163 fixed - datatipToggle could not be called without argument as
                    stated in the help page.
 
 * bug 8518 fixed - When graphic export failed, some error messages were not
@@ -361,6 +361,9 @@ Optimization:
 
 Bug fixes:
 ==========
+
+* bug 476  fixed - find did not work when there are most output arguments
+                   than matrix dimensions
 
 * bug 4930 fixed - When the console was resized from 0-height to x-height,
                    lines() was not correctly updated.
@@ -1328,7 +1331,7 @@ Thanks to Samuel Gougeon.
 
 * bug 6910 fixed - The font size in LaTeX labels was too big.
 
-* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was 
+* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was
                    problematic when fontUnits was 'normalized'.
 
 * bug 7857 fixed - If an event_handler was previously assigned to a graphic
