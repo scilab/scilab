@@ -1295,12 +1295,13 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
   int* piNx = &nx;
   int ny = 0;
   int* piNy = &ny;
+  BOOL ishoriz;
 
   getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
   getGraphicObjectProperty(pobj->UID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
 
   /* draw an horizontal axis : YES (horizontal axis) or NO (vertical axis) */
-  BOOL ishoriz = (nx > ny)? TRUE : FALSE;
+  ishoriz = (nx > ny)? TRUE : FALSE;
 
   if(ishoriz == TRUE)
   {
