@@ -45,26 +45,25 @@ case 'set' then
     in=[model.in model.in2];
 
     if floor(bit) <> bit then
-      message([msprintf(gettext("Wrong type for ''Index of Bit'' parameter: %5.1f."), bit); ..
-          gettext("Must be integer.")]);
-      ok=%f;
-
-    elseif (Datatype==3)|(Datatype==6) then
+        block_parameter_error(msprintf(gettext("Wrong type for ''Index of Bit'' parameter: %5.1f."), bit), ..
+            gettext("Must be integer.") ..
+        );
+        ok=%f;
+    elseif (Datatype == 3) | (Datatype == 6) then
         if bit > 31 | bit < 0 then
-            message([msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d."), bit); ..
-                msprintf(gettext("Must be in the interval %s."), "[0, 31]")]);
+            block_parameter_error(msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d."), bit), ..
+                msprintf(gettext("Must be in the interval %s."), "[0, 31]"));
             ok=%f;
-
     else
      bit=uint32(bit)
      n=(2^32-1)-2^bit;
      n=uint32(n)
      model.sim=list('bit_clear_32',4)
     end
-    elseif (Datatype==4)|(Datatype==7) then
+    elseif (Datatype == 4)|(Datatype == 7) then
         if bit > 15 | bit < 0 then
-            message([msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d "), bit); ..
-              msprintf(gettext("Must be in the interval %s."), "[0, 15]")]);
+            block_parameter_error(msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d "), bit), ..
+              msprintf(gettext("Must be in the interval %s."), "[0, 15]"));
             ok=%f;
         else
      bit=uint16(bit)
@@ -72,11 +71,11 @@ case 'set' then
      n=uint16(n)
      model.sim=list('bit_clear_16',4)
     end
-    elseif (Datatype==5)|(Datatype==8) then
-        if bit > 7 | bit < 0 then
-            message([msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d."), bit); ..
-              msprintf(gettext("Must be in the interval %s."), "[0, 7]")]);
-            ok=%f;
+    elseif (Datatype == 5)|(Datatype == 8) then
+    if bit > 7 | bit < 0 then
+        block_parameter_error(msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d."), bit), ..
+          msprintf(gettext("Must be in the interval %s."), "[0, 7]"));
+        ok=%f;
     else
      bit=uint8(bit)
      n=(2^8-1)-2^bit;
@@ -84,8 +83,8 @@ case 'set' then
      model.sim=list('bit_clear_8',4)
     end
     else
-        message([msprintf(gettext( "Wrong value for ''Data Type'' parameter: %d."), Datatype); ..
-          msprintf(gettext( "Must be in the interval %s."), "[3, 8]")]);
+        block_parameter_error(msprintf(gettext( "Wrong value for ''Data Type'' parameter: %d."), Datatype),..
+          msprintf(gettext( "Must be in the interval %s."), "[3, 8]"));
         ok=%f;
     end
       if ok then
