@@ -56,7 +56,9 @@ libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
 CHECK_SRC= $(libscilocalization_la_SOURCES)
 INCLUDE_FLAGS = $(libscilocalization_la_CFLAGS)
 
-libscilocalization_la_LIBADD =   $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscilocalization_la_LIBADD =   $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+$(top_builddir)/modules/api_scilab/libsciapi_scilab.la
 # $(top_builddir)/modules/io/libsciio.la
 #### Target ######
 modulename=localization

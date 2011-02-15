@@ -107,8 +107,8 @@
     course are required for executing the Makefile.</para>
 	 <para><emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addinter">addinter</link>

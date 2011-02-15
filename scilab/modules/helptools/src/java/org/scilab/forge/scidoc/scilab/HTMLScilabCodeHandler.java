@@ -21,20 +21,32 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
 
     private static final int BUFCAPACITY = 8192;
     private static HTMLScilabCodeHandler handler = new HTMLScilabCodeHandler();
+    private static LinkWriter linkWriter = new LinkWriter();
 
     private List<String> undoc = new ArrayList();
 
-    protected Map<String, String> mapId;
     protected String currentCommand;
     protected Appendable buffer;
 
+    /**
+     * Default constructor
+     */
     protected HTMLScilabCodeHandler() {
         buffer = new StringBuilder(BUFCAPACITY);
     }
 
-    public static AbstractScilabCodeHandler getInstance(String currentCommand, Map<String, String> mapId) {
+    /**
+     * @param lw the LinkWriter to use to handle links
+     */
+    public static void setLinkWriter(LinkWriter lw) {
+        handler.linkWriter = lw;
+    }
+
+    /**
+     * @return an instance of HTMLScilabCodeHandler
+     */
+    public static AbstractScilabCodeHandler getInstance(String currentCommand) {
         handler.currentCommand = currentCommand;
-        handler.mapId = mapId;
         ((StringBuilder) handler.buffer).setLength(0);
         return handler;
     }
@@ -107,12 +119,12 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      */
     public void handleCommand(String seq) throws IOException {
         if (seq.equals(currentCommand)) {
-            buffer.append("<span class=\"command\">");
+            buffer.append("<span class=\"scilabcommand\">");
             buffer.append(seq);
             buffer.append("</span>");
         } else {
-            String link = mapId.get(seq);
-            if (link == null) {
+            String link = linkWriter.getLink(seq);
+            if (link == null) {// the command is not internal
                 buffer.append("<span class=\"scilabcommand\">");
                 buffer.append(seq);
                 buffer.append("</span>");
@@ -122,7 +134,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
                 }
             } else {
                 buffer.append("<a class=\"scilabcommand\" href=\"");
-                buffer.append(mapId.get(seq));
+                buffer.append(link);
                 buffer.append("\">");
                 buffer.append(seq);
                 buffer.append("</a>");
@@ -139,7 +151,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
             buffer.append(seq);
             buffer.append("</span>");
         } else {
-            String link = mapId.get(seq);
+            String link = linkWriter.getLink(seq);
             if (link == null) {
                 buffer.append("<span class=\"scilabmacro\">");
                 buffer.append(seq);

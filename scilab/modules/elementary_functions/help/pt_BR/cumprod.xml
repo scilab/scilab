@@ -98,8 +98,8 @@ for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cumsum">cumsum</link></member>

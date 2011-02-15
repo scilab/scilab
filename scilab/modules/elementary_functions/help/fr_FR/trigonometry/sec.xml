@@ -76,8 +76,8 @@ plot(x,sec(x))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="secd">secd</link></member>

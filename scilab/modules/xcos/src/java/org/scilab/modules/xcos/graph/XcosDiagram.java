@@ -26,8 +26,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.IllegalFormatException;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -99,6 +99,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxICell;
@@ -393,28 +394,47 @@ public class XcosDiagram extends ScilabGraph {
 		
 		getModel().beginUpdate();
 		try {
-			splitBlock.addConnection(linkSource);
+			// Origin of the parent, (0,0) as default may be different in case
+			mxPoint orig = link.getParent().getGeometry();
+			if (orig == null) {
+				orig = new mxPoint();
+			}
 			
+			splitBlock.addConnection(linkSource);
+
 			addCell(splitBlock);
 			// force resize and align on the grid
 			resizeCell(splitBlock, new mxRectangle(splitPoint.getX(), splitPoint.getY(), 0, 0));
 
 			// Update old link
 
-			// get breaking segment
-			final int pos = link.findNearestSegment(splitPoint);
+			// get breaking segment and related point
+			mxPoint splitTr = new mxPoint(splitPoint.getX() - orig.getX(), splitPoint.getY() - orig.getY());
+			final int pos = link.findNearestSegment(splitTr);
 
 			// save points after breaking point
 			final List<mxPoint> saveStartPoints = link.getPoints(pos, true);
 			final List<mxPoint> saveEndPoints = link.getPoints(pos, false);
 
+			// remove the first end point if the position is near the split
+			// position
+			if (saveEndPoints.size() > 0) {
+				final mxPoint p = saveEndPoints.get(0);
+				final double dx = p.getX() - splitTr.getX();
+				final double dy = p.getY() - splitTr.getY();
+				
+				if (!getAsComponent().isSignificant(dx, dy)) {
+					saveEndPoints.remove(0);
+				}
+			}
+			
 			// disable events
 			getModel().beginUpdate();
 			getModel().remove(link);
 			getModel().endUpdate();
 
-			connect(linkSource, splitBlock.getIn(), saveStartPoints);
-			connect(splitBlock.getOut1(), linkTarget, saveEndPoints);
+			connect(linkSource, splitBlock.getIn(), saveStartPoints, orig);
+			connect(splitBlock.getOut1(), linkTarget, saveEndPoints, orig);
 
 			refresh();
 		} finally {
@@ -425,7 +445,10 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	/**
-	 * Connect two port together with the associated points
+	 * Connect two port together with the associated points.
+	 * 
+	 * This method perform the connection in two step in order to generate the
+	 * right UndoableChangeEdits.
 	 * 
 	 * @param src
 	 *            the source port
@@ -433,16 +456,30 @@ public class XcosDiagram extends ScilabGraph {
 	 *            the target port
 	 * @param points
 	 *            the points
+	 * @param the origin point (may be (0,0))
 	 */
-	public void connect(BasicPort src, BasicPort trg, List<mxPoint> points) {
-		BasicLink newLink1 = BasicLink.createLinkFromPorts(src, trg);
-		newLink1.setGeometry(new mxGeometry(0, 0, 80, 80));
-
-		// add points after breaking point in the new link
-		if (points != null) {
-			newLink1.getGeometry().setPoints(points);
-		}
+	public void connect(BasicPort src, BasicPort trg, List<mxPoint> points, mxPoint orig) {
+		/*
+		 * Add the link with a default geometry
+		 */
+		final Object newLink1 = createEdge(null, null, null, src, trg, null);
 		addCell(newLink1, null, null, src, trg);
+		{
+			final mxGeometry geometry = getModel().getGeometry(newLink1);
+			geometry.setPoints(points);
+			getModel().setGeometry(newLink1, geometry);
+		}
+
+		/*
+		 * Update the geometry
+		 */
+		// should be cloned to generate an event
+		final mxGeometry geometry = (mxGeometry) getModel().getGeometry(newLink1).clone();
+		final double dx = orig.getX();
+		final double dy = orig.getY();
+		
+		geometry.translate(dx, dy);
+		getModel().setGeometry(newLink1, geometry);
 	}
     
     /**
@@ -818,11 +855,19 @@ public class XcosDiagram extends ScilabGraph {
     		
     		diagram.getModel().beginUpdate();
     		
-    		for (int i = 0; i < cells.length; ++i) {
-				if (cells[i] instanceof BasicBlock) {
-					// Update parent on cell addition
-					((BasicBlock) cells[i]).setParentDiagram(diagram);
+    		final Filter filter = new Filter() {
+				@Override
+				public boolean filter(Object cell) {
+					if (cell instanceof BasicBlock) {
+						// Update parent on cell addition
+						((BasicBlock) cell).setParentDiagram(diagram);
+					}
+					return false;
 				}
+			};
+    		
+    		for (int i = 0; i < cells.length; ++i) {
+    			mxGraphModel.filterDescendants(diagram.getModel(), filter, cells[i]);
     		}
     		
     		diagram.getModel().endUpdate();
@@ -1023,7 +1068,7 @@ public class XcosDiagram extends ScilabGraph {
 			for (int i = 0; i < connectedCells.size(); i++) {
 				final BasicPort[] connection = connectedCells.get(i);
 				final List<mxPoint> points = connectedPoints.get(i);
-				connect(connection[0], connection[1], points);
+				connect(connection[0], connection[1], points, new mxPoint());
 			}
 		} finally {
 			getModel().endUpdate();

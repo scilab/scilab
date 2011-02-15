@@ -30,6 +30,6 @@ RANDLIB_IMPEXP void advance_state_clcg4(int g, int k);
 
 RANDLIB_IMPEXP int set_initial_seed_clcg4(double s0, double s1, double s2, double s3);
 
-RANDLIB_IMPEXP unsigned long clcg4(int g);
+RANDLIB_IMPEXP unsigned int clcg4(int g);
 
 #endif

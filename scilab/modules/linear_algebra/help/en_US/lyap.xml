@@ -57,8 +57,8 @@ X=lyap(A,C,'d');
 A'*X*A - X -C
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sylv">sylv</link>

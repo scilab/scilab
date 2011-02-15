@@ -170,7 +170,7 @@ msgstr ""
 "função do Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
 "inteiro.\n"
@@ -221,7 +221,7 @@ msgid "Exit"
 msgstr "Sair"
 
 #, c-format
-msgid "Function %s is obsolete."
+msgid "Feature %s is obsolete."
 msgstr "A função %s está obsoleta."
 
 #, c-format
@@ -244,7 +244,7 @@ msgid "Please use %s instead."
 msgstr "Por favor, utilize %s no lugar."
 
 #, c-format
-msgid "This function will be permanently removed in Scilab %s"
+msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Esta função será permanentemente removida no Scilab %s"
 
 msgid "Tools"

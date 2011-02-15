@@ -92,8 +92,8 @@ B(p,q) - L*U  // must be a (quasi) nul matrix
 umf_ludel(Lup) // clear memory
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="umfpack">umfpack</link>

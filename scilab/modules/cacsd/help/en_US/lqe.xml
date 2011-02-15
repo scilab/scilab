@@ -123,8 +123,8 @@ S=G*N;Q=B1*B1';
 spec(A+K*C)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lqr">lqr</link>

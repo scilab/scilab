@@ -510,7 +510,7 @@ libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
 libsciscicos_blocks_la_etc_DATA = etc/scicos_blocks.quit etc/scicos_blocks.start
 
 #### scicos_blocks : include files ####
-libsciscicos_blocks_la_includedir=$(pkgincludedir)/scicos_blocks
+libsciscicos_blocks_la_includedir=$(pkgincludedir)
 libsciscicos_blocks_la_include_HEADERS = includes/scicos_block.h \
 includes/scicos_block4.h \
 includes/blocks.h

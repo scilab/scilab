@@ -438,8 +438,8 @@ subplot(212)
 surf(Z,'edgeco','b','marker','d','markersiz',9,'markerfac','k','xdata',-50:-41)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="LineSpec">LineSpec</link>

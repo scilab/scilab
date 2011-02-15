@@ -79,7 +79,7 @@ xcosPalExport(pal, TMPDIR + "/palette.h5");
 
    ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>See also</title>
     <simplelist type="inline">
       <member>

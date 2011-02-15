@@ -66,8 +66,8 @@ sp=sparse([1,2;4,5;3,10],[1,2,3])
 [ij,v,mn]=spget(sp);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

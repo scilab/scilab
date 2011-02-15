@@ -68,6 +68,7 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 
 #  The user wants to compile the localization files
 @GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
+@COMPILATION_TESTS_TRUE@am__append_4 = check-java
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
 	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
@@ -96,16 +97,16 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -614,7 +615,7 @@ scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_3)
+TARGETS_ALL = macros $(am__append_3) $(am__append_4)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
@@ -1789,6 +1790,17 @@ clean-generated:
 
 distclean-generated: 
 	rm -f $(top_builddir)/modules/core/includes/stack.h 2> /dev/null
+
+# For each module, build and call Java unitary tests
+# If fails, stops the call
+check-java:
+	@echo "-- Launch all TestNG (Java) unitary tests"; \
+	MASK="$(top_srcdir)/modules/*/tests/java/"; \
+	MODULES=`ls -d $$MASK`; \
+	for M in $$MODULES; do \
+		BASE=`echo $$M|sed -e "s|tests/java/$$||g"`; \
+		$(ANT) -buildfile $$BASE/build.xml test || exit $$?; \
+	done
 
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac

@@ -62,8 +62,8 @@
     joins a group it will get the lowest available instance number.
     A task can be a member of multiple groups simultaneously.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_lvgroup">pvm_lvgroup</link>

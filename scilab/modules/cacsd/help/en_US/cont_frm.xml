@@ -58,8 +58,8 @@ sl=cont_frm(NUM,den);
 slss=ss2tf(sl);       //Compare with NUM/den
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tf2ss">tf2ss</link>

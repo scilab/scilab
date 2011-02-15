@@ -47,8 +47,8 @@ m=0.4;
 %k(m)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="asn">%asn</link>

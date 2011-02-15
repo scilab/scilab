@@ -1149,8 +1149,8 @@ pal = xcosPalAddBlock(pal, TMPDIR + "/MyBlock.h5", "SCI\modules\xcos\images\pale
 //deploy palette
 xcosPalAdd(pal);]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xcosPal">xcosPal</link>

@@ -176,8 +176,8 @@ int sci_mysci_typesrhs(char * fname)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="sciprint">sciprint</link></member>

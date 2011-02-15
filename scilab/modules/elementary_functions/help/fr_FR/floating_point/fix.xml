@@ -35,8 +35,8 @@
     <para><literal>fix(x)</literal> renvoie une matrice d'entiers dont les éléments sont les arrondis vers zéro des éléments de x (la partie décimale est supprimée) c'est à dire que <literal>y=sign(x).*floor(abs(x))</literal>. Cette fonction est la même que la fonction <literal>int</literal>.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="round">round</link>

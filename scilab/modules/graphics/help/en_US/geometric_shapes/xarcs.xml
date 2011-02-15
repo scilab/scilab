@@ -60,8 +60,8 @@ arcs=[-1.0 0.0 0.5; // upper left x
 xarcs(arcs,[1,2,3])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xarc">xarc</link>

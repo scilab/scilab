@@ -56,8 +56,8 @@
     </itemizedlist>
     <para>Caution: <literal>mtlb_grid</literal> has not to be used for hand coded functions.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="axes_properties">axes_properties</link>

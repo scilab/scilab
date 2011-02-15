@@ -121,8 +121,8 @@ Crossed_Indiv2 = (1-mix)*Indiv1 +     mix*Indiv2;
     to explore the domain beyond the domain explored by their parents.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="crossover_ga_binary"> crossover_ga_binary

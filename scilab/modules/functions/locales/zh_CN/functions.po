@@ -151,7 +151,7 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该是一个整数。\n"
 
 #, c-format
@@ -196,7 +196,7 @@ msgid "Exit"
 msgstr "退出"
 
 #, c-format
-msgid "Function %s is obsolete."
+msgid "Feature %s is obsolete."
 msgstr "函数 %s 已被弃用。"
 
 #, c-format
@@ -219,7 +219,7 @@ msgid "Please use %s instead."
 msgstr "请使用 %s 替代。"
 
 #, c-format
-msgid "This function will be permanently removed in Scilab %s"
+msgid "This feature will be permanently removed in Scilab %s"
 msgstr "该函数将被永久地从 Scilab %s 中移除。"
 
 msgid "Tools"

@@ -10,7 +10,8 @@ myTree2 = uiCreateTree(root, node1, node2)
 // Compare myTree1 with myTree2
 isEqual = uiEqualsTree(myTree1, myTree2)
 
-// will return 'isEqual = T' ]]></programlisting>  </refsection>  <refsection>    <title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
+// will return 'isEqual = T' ]]></programlisting>  </refsection>  <refsection role="see also">
+<title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
       <member>        <link linkend="uiDisplayTree">uiDisplayTree</link>       </member>      <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>
       <member>        <link linkend="uiInsertNode">uiInsertNode</link>       </member>
       <member>        <link linkend="uiDeleteNode">uiDeleteNode</link>       </member>      <member>        <link linkend="uiConcatTree">uiConcatTree</link>       </member>      <member>        <link linkend="uiFindNode">uiFindNode</link>       </member>

@@ -119,8 +119,8 @@
     <para> <literal>`</literal> as the same meaning as &lt;</para>
     <para> It is highly recommended not to use these features because they will be removed in the future </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="overloading">overloading</link>

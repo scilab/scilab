@@ -16,9 +16,9 @@
 // mputl fails to write some accents
 
 ref = [194,176];
-fd = mopen("toto","wb");
+fd = mopen(TMPDIR + "/toto","wb");
 mput(ref, 'uc', fd);
 mclose(fd);
-fd = mopen("toto","rb");
+fd = mopen(TMPDIR + "/toto", "rb");
 res = mget(2,'uc',fd);
 if or(ref<>res) then pause,end

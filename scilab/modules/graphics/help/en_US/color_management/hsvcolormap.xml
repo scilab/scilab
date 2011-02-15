@@ -70,8 +70,8 @@ plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colormap">colormap</link>

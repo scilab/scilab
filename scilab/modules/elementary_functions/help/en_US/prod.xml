@@ -186,8 +186,8 @@ prod(B,"native") //similar to or(B)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="cumprod">cumprod</link></member>
       <member><link linkend="sum">sum</link></member>

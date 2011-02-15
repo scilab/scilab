@@ -101,12 +101,18 @@
       The Trigonometric Function block performs numerous common trigonometric functions. You can select a function
       among those quoted in this table :
     </para>
-    <para />
+    <para/>
     <informaltable border="1" cellpadding="2">
       <tr>
-        <td align="left"><emphasis role="bold">Function</emphasis></td>
-        <td align="left"><emphasis role="bold">Definition</emphasis></td>
-        <td align="left"><emphasis role="bold">Output</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">Function</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Definition</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Output</emphasis>
+        </td>
       </tr>
       <tr>
         <td align="left">sin</td>
@@ -143,23 +149,22 @@
         <td align="left">Four quadrant inverse tangent (radians) of the input</td>
         <td align="left">y = atan2(u)</td>
       </tr>
-       <tr>
+      <tr>
         <td align="left">sinh</td>
         <td align="left">Hyperbolic sine of the input</td>
         <td align="left">y = sinh(u)</td>
       </tr>
-       <tr>
+      <tr>
         <td align="left">cosh</td>
         <td align="left">Hyperbolic cosine of the input</td>
         <td align="left">y = cosh(u)</td>
       </tr>
-       <tr>
+      <tr>
         <td align="left">tanh</td>
         <td align="left">Hyperbolic tangent of the input</td>
         <td align="left">y = tanh(u)</td>
       </tr>
     </informaltable>
-
     <para>
       The block output is the result of the applied function on the scalar input or on the vector's elements of input.
     </para>
@@ -252,7 +257,40 @@
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/sin_blk.c (Type 4)</para>
+        <para>SCI/modules/scicos_blocks/src/c/acos_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/acosh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/asin_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/asinh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/atan_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/atanh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/cos_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/cosh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/sin_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/sinh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/tan_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/tanh_blk.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

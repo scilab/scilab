@@ -107,8 +107,8 @@ xtitle('z=x2-y ^2');
 mesh(X,Y,Z);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="surf">surf</link>

@@ -834,8 +834,8 @@ a.y_ticks.labels=["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"];
 
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lines">lines</link>

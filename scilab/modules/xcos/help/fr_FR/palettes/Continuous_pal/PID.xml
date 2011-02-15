@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="PID"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>PID</refname>
+    <refpurpose>Régulateur PID</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/PID.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_PID">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="PID">Régulateur PID</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_PID">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_PID">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_PID">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_PID">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_PID">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="PID">Contenu du Superbloc compilé</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_PID">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_PID">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Continuous_pal">Palette Systèmes à temps continu</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_PID">
+    <title>Description</title>
+    <para>
+      Ce bloc implante un régulateur PID. Le calcul (algorithme) du régulateur PID invoque trois paramètres séparés; Les coefficients d'action Proportionnelle, Intégrale et Dérivée. Le coefficient d'action Proportionnelle détermine la réaction à l'erreur courante, l'Intégrale détermine la réaction à la somme des erreurs récentes et la Dérivée détermine la réaction à la vitesse à laquelle l'erreur est modifiée. La somme pondérée de ces trois actions est utilisée pour ajuster le processus à travers un élément de contrôle tel que la position d'une vanne de régulation ou l'alimentation de puissance d'un élément chauffant.
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Dialogbox_PID">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/gui/PID_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Proportional</emphasis>
+        </para>
+        <para> La valeur du gain qui multiplie l'erreur.</para>
+        <para> Propriétés Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Integral</emphasis>
+        </para>
+        <para> La valeur du temps d'intégration de l'erreur.(1/Integral)</para>
+        <para> Propriétés Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Derivation</emphasis>
+        </para>
+        <para> La valeur du temps de dérivation de l'erreur.</para>
+        <para> Propriétés Type 'vec' de taille -1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Defaultproperties_PID">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">csuper</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_PID">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Linear/PID.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="CompiledSuperBlockcontent_PID">
+    <title>Contenu du Superbloc compilé</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/PID_img3_eng.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Authors_PID">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

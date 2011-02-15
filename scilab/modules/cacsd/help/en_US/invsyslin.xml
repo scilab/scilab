@@ -42,8 +42,8 @@
     The <literal>D</literal>-matrix is supposed to be full rank. Old stuff used by 
     <literal>inv(S)</literal> when <literal>S</literal> is a <literal>syslin</literal> list.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rowregul">rowregul</link>

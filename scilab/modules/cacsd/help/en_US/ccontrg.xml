@@ -61,8 +61,8 @@ B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
  ]]></programlisting>
     <para><literal>r(1)</literal> and <literal>r(2)</literal> are the dimensions of <literal>D22</literal> (rows x columns)</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gamitg">gamitg</link>

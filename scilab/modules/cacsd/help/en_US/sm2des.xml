@@ -50,8 +50,8 @@ Sm = [-sE + A   B;
     <para>
     to descriptor system <literal>Des=list('des',A,B,C,D,E)</literal>).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ss2des">ss2des</link>

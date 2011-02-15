@@ -73,8 +73,8 @@ Sys=syslin('c',[1,1/(s+1);2*s/(s^2+2),1/s])
 ss2tf(dscr(tf2ss(Sys),0.1))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

@@ -11,9 +11,14 @@
  */
 package org.scilab.modules.xcos.block;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Type;
@@ -23,6 +28,7 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
@@ -101,22 +107,25 @@ public final class SplitBlock extends BasicBlock {
 	/**
 	 * @return input port
 	 */
+	@SuppressWarnings("unchecked")
 	public BasicPort getIn() {
-		return getChild(0, BasicPort.class, 1);
+		return getChild(0, Arrays.asList(ExplicitInputPort.class,ImplicitInputPort.class, ControlPort.class), 1);
 	}
 
 	/**
 	 * @return first output port
 	 */
+	@SuppressWarnings("unchecked")
 	public BasicPort getOut1() {
-		return getChild(1, BasicPort.class, 1);
+		return getChild(1, Arrays.asList(ExplicitOutputPort.class, ImplicitOutputPort.class, CommandPort.class), 1);
 	}
 
 	/**
 	 * @return second output port
 	 */
+	@SuppressWarnings("unchecked")
 	public BasicPort getOut2() {
-		return getChild(2, BasicPort.class, 2);
+		return getChild(2, Arrays.asList(ExplicitOutputPort.class, ImplicitOutputPort.class, CommandPort.class), 2);
 	}
 
 	/**
@@ -126,18 +135,20 @@ public final class SplitBlock extends BasicBlock {
 	 * @param ordering the ordering of the port
 	 * @return the found port or null.
 	 */
-	private BasicPort getChild(int startIndex, Class<? extends BasicPort> kind, int ordering) {
+	private BasicPort getChild(int startIndex, List<Class<? extends BasicPort>> kind, int ordering) {
 		final int size = children.size();
 
 		int loopCount = size;
 		for (int i = startIndex; loopCount > 0; i = (i + 1) % size, loopCount--) {
 			Object child = children.get(i);
-			if (kind.isInstance(child)) {
-				BasicPort port = kind.cast(child);
+			for (Class<? extends BasicPort> klass : kind) {
+				if (klass.isInstance(child)) {
+					BasicPort port = klass.cast(child);
 
-				if (port.getOrdering() == ordering) {
-					// end of the loop
-					return kind.cast(child);
+					if (port.getOrdering() == ordering) {
+						// end of the loop
+						return klass.cast(child);
+					}
 				}
 			}
 		}
@@ -149,17 +160,23 @@ public final class SplitBlock extends BasicBlock {
 	 * delete split block child before delete
 	 */
 	public void unlinkAndClean() {
-
-		Object[] objs = getParentDiagram().getAllEdges(
+		XcosDiagram graph = getParentDiagram();
+		if (graph == null) {
+			setParentDiagram(Xcos.findParent(this));
+			graph = getParentDiagram();
+			LogFactory.getLog(getClass()).error("Parent diagram was null");
+		}
+		
+		Object[] objs = graph.getAllEdges(
 				new Object[] {getChildAt(0), getChildAt(1), getChildAt(2)});
 		getParentDiagram().getModel().beginUpdate();
 		for (Object obj : objs) {
 			if (obj instanceof BasicLink) {
 				BasicLink link = (BasicLink) obj;
-				getParentDiagram().getModel().remove(link);
+				graph.getModel().remove(link);
 			}
 		}
-		getParentDiagram().getModel().endUpdate();
+		graph.getModel().endUpdate();
 	}
 
 	/**

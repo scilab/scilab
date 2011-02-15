@@ -292,21 +292,22 @@ public abstract class ContextUpdate extends BasicBlock {
 			}
 
 			/* Loop all over the children */
-			final Object defaultParent = graph.getDefaultParent();
 			final mxIGraphModel defaultModel = graph.getModel();
-			final Object[] children = mxGraphModel.getChildCells(
-					defaultModel, defaultParent, true, false);
-			
-			for (Object element : children) {
-				final mxICell child = (mxICell) element;
-
-				/* if compatible add it to the list */
-				for (IOBlocks b : IOBlocks.values()) {
-					if (child.getClass().equals(b.getReferencedClass())) {
-						ret.get(b).add(child);
+			mxGraphModel.filterDescendants(defaultModel, new mxGraphModel.Filter() {
+				@Override
+				public boolean filter(Object cell) {
+					if (cell instanceof BasicBlock) {
+						final BasicBlock block = (BasicBlock) cell;
+						/* if compatible add it to the list */
+						for (IOBlocks b : IOBlocks.values()) {
+							if (block.getClass().equals(b.getReferencedClass())) {
+								ret.get(b).add(block);
+							}
+						}
 					}
+					return false;
 				}
-			}
+			});
 
 			return ret;
 		}
@@ -377,9 +378,16 @@ public abstract class ContextUpdate extends BasicBlock {
 	@Override
 	protected void setDefaultValues() {
 		super.setDefaultValues();
+		
+		/*
+		 * Fill parameters with non empty values.
+		 */
 		setNbZerosCrossing(new ScilabDouble(0));
 		setNmode(new ScilabDouble(0));
 		setODState(new ScilabList());
+		setRealParameters(new ScilabDouble());
+		setObjectsParameters(new ScilabDouble());
+		
 		setValue(1);
 	}
 	

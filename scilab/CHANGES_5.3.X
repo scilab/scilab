@@ -35,6 +35,7 @@ New functions
 
 * 'repmat' added a missing basic function.
 
+
 Obsolete Functions:
 ===================
 
@@ -43,6 +44,19 @@ Obsolete Functions:
 
 * ilib_for_link, ilib_build will not accept files with ".o" or ".obj" extensions
   for source files in Scilab 5.4.0.
+
+
+Javasci:
+========
+
+* Bug 8807 fixed - Javadoc of javasci v2 was not installed under GNU/Linux and
+                   Mac OS X. 
+
+
+Packaging:
+==========
+
+* Update of JLaTeXMath to version 0.9.4
 
 
 Demonstration:
@@ -55,20 +69,49 @@ Demonstration:
 Documentation:
 ==============
 
+* In the help browser, add the possibility to increase or to decrease the font
+size.
+
+* In the help browser, add an incremental search bar to search for text in the
+right area.
+
+* In the help, allow the creation of links between modules with the following
+syntax: 
+<link type="scilab" linkend="mytoolbox/exec/macros/fooexec.sce">macros/fooexec.sce</link>
+
+* In the help, allow the creation of links between a module to the Scilab
+documentation with the following syntax: 
+<link type="scilab" linkend="scilab/help/bvode">bvode</link>
+
+* In the help, allow the execution and the edition of any example.
+
+* In the help, allow the execution of the demos with the following syntax:
+<link type="scilab" linkend="scilab/demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link>
+
 * In an example in the documentation, when an undocumented function is used,
 trigger a warning and do not add a link on the function name.
+
+* "See also" links have now the function description shown.
 
 * In the documentation, Java, C, C++ and XML codes are now colorized if the role
   in programlisting is set (role='java', role='c', role='cpp' or role='xml')
 
+* bug 3716 fixed - No way to search a word in the right area.
+
+* bug 5796 fixed - No way to increase/decrease font size.
+
 * bug 7069 fixed - Old documentation about the documentation build process
                    removed.
 
-* bug 8463 fixed - scilab pdfs (fr_FR and pt_BR) were not fully generated.
+* bug 8463 fixed - scilab PDF (fr_FR and pt_BR) were not fully generated.
 
 * bug 8690 fixed - Typo fixed in the french min help page.
 
 * bug 8756 fixed - The file id was expected only in refentry.
+
+* bug 8915 fixed - ASCII art removed in histplot help page.
+
+* bug 8937 fixed - The tag <screenshot> was not handled.
 
 
 Scinotes:
@@ -117,6 +160,9 @@ Xcos:
 
 * bug 7194 fixed - Block UUID could not be used on a block implementation.
 
+* bug 7363 fixed - Linking CBLOCKs implementation with an external library was
+                   impossible.
+
 * bug 7424 fixed - Integer parameters could be modified when loading a diagram.
 
 * bug 7639 fixed - Generating code for scilab function block was failing with
@@ -150,10 +196,10 @@ Xcos:
 * bug 8658 fixed - Use accentuated characters on file name lead to a modelica
                    compiler error.
 
-* bug 8674 fixed - xcosShowBlockWarning was not protected against arbitrary 
+* bug 8674 fixed - xcosShowBlockWarning was not protected against arbitrary
                    arguments.
 
-* bug 8696 fixed - An exception was thrown while linking and deleting the 
+* bug 8696 fixed - An exception was thrown while linking and deleting the
                    source block.
 
 * bug 8711 fixed - The "Cont. Plant-Hybrid Observer" demo contains a translated
@@ -194,6 +240,9 @@ Installer:
 Graphics:
 =========
 
+* bug 2913 fixed - In the histplot function, the legend was displayed over the
+                   graphic.
+
 * bug 4818 fixed - It was not possible to export a figure with a lot of circle
                    marks.
 
@@ -205,6 +254,9 @@ Graphics:
 
 * bug 7990 fixed - Box thickness was badly exported in vectorial formats (svg/pdf/...)
                    Thanks to Paul Griffiths for the patch.
+
+* bug 8163 fixed - datatipToggle could not be called without argument as 
+                   stated in the help page.
 
 * bug 8518 fixed - When graphic export failed, some error messages were not
                    clear.
@@ -235,6 +287,12 @@ Quality assurance:
   Start the unitary tests or launch Scilab
   "make code-coverage" creates the report into "/coverage/results/"
 
+* Using the configure with the option "--enable-compilation-tests" launchs Java
+  unitary tests (based on TestNG).
+
+* bug 6684 fixed - Some Xcos unitary tests had problems loading native libraries.
+
+* bug 6873 fixed - A jar file was not available when testng was called.
 
 Compilation:
 ============
@@ -243,6 +301,10 @@ Compilation:
 
 * Intel Compiler XE 2011 update 1 C++/Fortran used to build Scilab on Windows.
 
+* Upgrade to autoconf 2.67
+
+* Bug 8961 fixed - Ubuntu 11.04 explicitly forces the as-needed option to the
+                   linker. Disable it.
 
 Dynamic link:
 =============
@@ -255,6 +317,13 @@ Scilab:
 
 * Scilab startup script of the binary is now automatically synchronized with
   the one from the source tree.
+
+
+Statistics:
+==========
+
+* bug 8560 fixed - The grand function failed on 64 bits machines.
+
 
 Optimization:
 =============
@@ -272,23 +341,23 @@ Optimization:
   * Provide documentation for the stopping rule.
 
 * bug 7193 fixed - The karmarkar help page did not document the
-                   parameters eps, gamma, and crit.
+                   eps, gamma, and crit arguments.
 
 * bug 8719 fixed - The karmarkar function printed unwanted messages.
 
-* bug 8720 fixed - The karmarkar function stoped too early in the iterations.
+* bug 8720 fixed - The karmarkar function stopped too early in the iterations.
 
 * bug 8726 fixed - The karmarkar function produced a division-by-zero error.
 
-* bug 8727 fixed - The karmarkar function requires the initial guess x0.
+* bug 8727 fixed - The karmarkar function required the initial guess x0.
 
 * bug 8775 fixed - The karmarkar function did not detect unbounded problems.
 
 Bug fixes:
 ==========
 
-* bug 4930 fixed - When the console was resized from 0-height to x-height, lines()
-                   was not correctly updated.
+* bug 4930 fixed - When the console was resized from 0-height to x-height,
+                   lines() was not correctly updated.
 
 * bug 5551 fixed - With the function dir(), add a trailing filesep() for each
                    directory.
@@ -300,10 +369,16 @@ Bug fixes:
 * bug 7691 fixed - Giving complex arguments to inverse degree trigonometric
                    functions produced inconsistent results.
 
+* bug 8435 fixed - squarewave(t) failed for t<0. Thanks to Samuel Gougeon for
+                   the fix.
+
 * bug 8478 fixed - A searched path was missing for docbook xsl under Gentoo.
 
 * bug 8492 fixed - When the documentation was generated, error messages were not
                    displayed in the console but in the terminal.
+
+* bug 8563 fixed - Scilab under GNU/Linux 64 bit was unable to load files bigger
+                   than 2GB.
 
 * bug 8732 fixed - strchr and strrchr did not work with a non-ASCII character needle.
 
@@ -323,9 +398,15 @@ Bug fixes:
 * bug 8836 fixed - fileparts crashed when a matrix of strings was passed as
                    input argument.
 
+* bug 8845 fixed - a example in call_scilab module with Visual Studio has been
+                   rewritten to use api_scilab.
+
 * bug 8837 fixed - fscanfMat did not read a malformated text with many blanks
                    at the end of file.
 
+* bug 8897 fixed - Typo fixed.
+
+* bug 8954 fixed - Print the console led to an exception.
 
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
@@ -829,7 +910,6 @@ Bug Fixes:
 * bug 8413 fixed - fscanfMat crashed when file included text lines at the
                    beginning.
 
-
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
 
@@ -1242,11 +1322,12 @@ Thanks to Samuel Gougeon.
 
 * bug 6910 fixed - The font size in LaTeX labels was too big.
 
-* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was problematic when
-                   fontUnits was 'normalized'.
+* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was 
+                   problematic when fontUnits was 'normalized'.
 
-* bug 7857 fixed - If an event_handler was previously assigned to a graphic window
-                   the datatips toogle tool icon had to be clicked twice to make it active.
+* bug 7857 fixed - If an event_handler was previously assigned to a graphic
+                   window the datatips toogle tool icon had to be clicked twice
+                   to make it active.
 
 
 Xcos:

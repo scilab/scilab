@@ -227,7 +227,7 @@ extern "C"
             {
                 doc->setWorkingLanguage((char *) language.c_str());
                 doc->setExportFormat((char *) exportFormat.c_str());
-
+		doc->setIsToolbox(Rhs == 4);
                 doc->process((char *) masterXML.c_str(), (char *) styleSheet.c_str());
             }
             else

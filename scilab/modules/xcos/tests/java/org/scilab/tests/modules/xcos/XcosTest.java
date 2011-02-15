@@ -13,8 +13,8 @@
 package org.scilab.tests.modules.xcos;
 
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.palette.PaletteManager;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 /**
@@ -33,15 +33,19 @@ public class XcosTest {
 	
 	@Test
 	public void launchWithoutFilename() {
-		Xcos.xcos();
-		
-		assert PaletteManager.isVisible();
-		assert Xcos.getInstance().getDiagrams().size() == 1;
-		
-		Xcos.closeSession();
-		
-		assert !PaletteManager.isVisible();
-		assert Xcos.getInstance().getDiagrams().size() == 0;
+		try {
+			Xcos.xcos();
+			
+			assert PaletteManager.isVisible();
+			assert Xcos.getInstance().getDiagrams().size() == 1;
+			
+			Xcos.closeSession();
+			
+			assert !PaletteManager.isVisible();
+			assert Xcos.getInstance().getDiagrams().size() == 0;
+		} catch (RuntimeException e) {
+			throw new SkipException("wrong dependency check failed", e);
+		}
 	}
 	
 }

@@ -65,8 +65,8 @@ copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
  </programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
     	<member><link linkend="movefile">movefile</link></member>

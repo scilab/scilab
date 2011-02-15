@@ -50,8 +50,8 @@ H=unglue(h)</synopsis>
     <literal>glue</literal> returns a vector of handles on these individual
     children.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>

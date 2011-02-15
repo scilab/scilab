@@ -96,8 +96,8 @@ b=int32([1 -120 127 312])
 y=iconvert(b,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="double">double</link>

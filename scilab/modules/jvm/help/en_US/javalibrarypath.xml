@@ -47,8 +47,8 @@ javalibrarypath(SCI);
 javalibrarypath([SCI,SCI+'/libs']);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="javaclasspath">javaclasspath</link>

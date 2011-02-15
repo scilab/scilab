@@ -26,7 +26,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import org.xml.sax.SAXException;
 
@@ -36,6 +38,7 @@ import org.scilab.forge.scidoc.image.MathMLImageConverter;
 import org.scilab.forge.scidoc.image.SVGImageConverter;
 import org.scilab.forge.scidoc.scilab.ScilabLexer;
 import org.scilab.forge.scidoc.scilab.HTMLScilabCodeHandler;
+import org.scilab.forge.scidoc.scilab.AbstractScilabCodeHandler;
 import org.scilab.forge.scidoc.XML.XMLLexer;
 import org.scilab.forge.scidoc.XML.HTMLXMLCodeHandler;
 import org.scilab.forge.scidoc.c.CLexer;
@@ -54,6 +57,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     private int latexCompt;
     private String imageDir;
     private String outName;
+    private String urlBase;
+    private boolean linkToTheWeb;
     private boolean hasExamples;
     private int warnings;
     private int nbFiles;
@@ -62,6 +67,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected Map<String, String> tocitem;
     protected HTMLDocbookLinkResolver.TreeId tree;
     protected Map<String, HTMLDocbookLinkResolver.TreeId> mapTreeId;
+    protected Map<String, String> mapIdPurpose;
 
     protected TemplateHandler templateHandler;
 
@@ -79,20 +85,25 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String refpurpose = "";
     protected String refname = "";
     protected String version;
-
+    protected String appendToProgramListing;
+    protected String prependToProgramListing;
     protected String currentId;
 
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
 
     /**
      * Constructor
-     * @param in the input stream
      * @param inName the name of the input stream
+     * @param outName the output directory
      * @param primConf the file containing the primitives of Scilab
      * @param macroConf the file containing the macros of Scilab
-     * @param out the output stream
+     * @param template the template to use
+     * @param version the version
+     * @param imageDir the image directory (relative to outName)
+     * @param isToolbox is true when compile a toolbox' help
+     * @param urlBase the base url for external link
      */
-    public HTMLDocbookTagConverter(String inName, String outName, String primConf, String macroConf, String template, String version, String imageDir) throws IOException, SAXException {
+    public HTMLDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase) throws IOException, SAXException {
         super(inName);
 
         this.version = version;
@@ -103,7 +114,29 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         tocitem = resolver.getToc();
         tree = resolver.getTree();
         mapTreeId = resolver.getMapTreeId();
+        mapIdPurpose = resolver.getMapIdPurpose();
         scilabLexer = new ScilabLexer(primConf, macroConf);
+        this.urlBase = urlBase;
+        this.linkToTheWeb = urlBase != null && !urlBase.equals("scilab://");
+        if (isToolbox) {// we generate a toolbox's help
+            HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
+                    public String getLink(String id) {
+                        String link = mapId.get(id);
+                        if (link == null) {
+                            return HTMLDocbookTagConverter.this.urlBase + id;
+                        } else {
+                            return link;
+                        }
+                    }
+                });
+        } else {// we generate Scilab's help
+            HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
+                    public String getLink(String id) {
+                        return mapId.get(id);
+                    }
+                });
+        }
+
         xmlLexer = new XMLLexer();
         cLexer = new CLexer();
         javaLexer = new JavaLexer();
@@ -445,8 +478,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleRefentry(Map<String, String> attributes, String contents) throws SAXException {
-        if (currentId == null) {
-            currentId = attributes.get("id");
+        String id = attributes.get("id");
+        if (id != null) {
+            currentId = id;
         }
         String fileName = currentId + ".html";
         createHTMLFile(currentId, fileName, refpurpose, contents);
@@ -493,8 +527,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleBook(Map<String, String> attributes, String contents) throws SAXException {
         String str = encloseContents("ul", "list-part", contents);
-        String title = encloseContents("h3", "book-title", bookTitle);
-        createHTMLFile("index", indexFilename, bookTitle, title + "\n" + str);
+        String btitle = bookTitle.replaceFirst("Scilab", version);
+        String title = encloseContents("h3", "book-title", btitle);
+        createHTMLFile("index", indexFilename, btitle, title + "\n" + str);
 
         if (warnings != 0) {
             System.err.println("Total files without example: " + warnings);
@@ -561,7 +596,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             bookTitle = contents;
         } else if (parent.equals("section")) {
             sectionTitle = contents;
-        } else if (parent.equals("refsection") && contents.toLowerCase().startsWith("example")) {
+        } else if (parent.equals("refsection") && Pattern.matches("^[ \\t]*ex[ea]mpl[eo].*", contents.toLowerCase())) {
             hasExamples = true;
             return encloseContents("h3", clazz, contents);
         } else {
@@ -710,7 +745,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String role = attributes.get("role");
         String str;
         if (role == null) {
-            str = encloseContents("div", "programlisting", encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, mapId), contents)));
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
+                if (prependToProgramListing != null) {
+                    code = prependToProgramListing + code;
+                }
+                if (appendToProgramListing != null) {
+                    code += appendToProgramListing;
+                }
+                str = encloseContents("div", "programlisting", code);
         } else {
             if (role.equals("xml")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "xmlcode", xmlLexer.convert(HTMLXMLCodeHandler.getInstance(), contents)));
@@ -719,7 +761,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             } else if (role.equals("java")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else {
-                str = encloseContents("div", "programlisting", encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, mapId), contents)));
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
+                if (prependToProgramListing != null) {
+                    code = prependToProgramListing + code;
+                }
+                if (appendToProgramListing != null) {
+                    code += appendToProgramListing;
+                }
+                str = encloseContents("div", "programlisting", code);
             }
         }
         if (id != null) {
@@ -794,14 +843,60 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             throw new SAXException("No linkend attribute in tag link");
         }
 
-        String id = mapId.get(link);
+        String type = attributes.get("type");
+        String id;
+        if (type != null && type.equals("scilab")) {
+            id = resolvScilabLink(link);
+        } else {
+            id = mapId.get(link);
+        }
         if (id == null) {
             warnings++;
             System.err.println("Warning (should be fixed): invalid internal link to " + link + " in " + currentFileName + "\nat line " + locator.getLineNumber());
             return null;
         }
 
+        Stack<DocbookElement> stack = getStack();
+        int s = stack.size();
+        if (s >= 3) {
+            DocbookElement elem = stack.get(s - 3);
+            if (elem.getName().equals("refsection")) {
+                String role = elem.getAttributes().get("role");
+                if (role != null && role.equals("see also")) {
+                    return encloseContents("a", new String[]{"href", id, "class", "link"}, contents) + " &#8212; " + mapIdPurpose.get(link);
+                }
+            }
+        }
+
         return encloseContents("a", new String[]{"href", id, "class", "link"}, contents);
+    }
+
+    /**
+     * Rewrite a link when its type is "scilab"
+     * @param link the link
+     * @return the modified link with protocol scilab:// for example
+     */
+    protected String resolvScilabLink(String link) {
+        int pos = link.indexOf("/");
+        if (pos == -1) {
+            return null;
+        }
+        String first = link.substring(0, pos);
+        String second = link.substring(pos + 1);
+        String[] toks = first.split("\\.");
+        if (toks == null || toks.length != 2) {
+            return null;
+        }
+
+        if (!linkToTheWeb) {
+            return urlBase + link;
+        } else {
+            if (toks[0].equals("scilab") && toks[1].equals("help")) {
+                return urlBase + second + ".html";
+            } else {
+                return "#";
+            }
+        }
     }
 
     /**
@@ -1020,8 +1115,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         }
 
         try {
-           String path = new File(new URI(currentFileName)).getParent();
-           return ImageConverter.getImageByFile(attributes, path, fileref, outName, imageDir);
+            String path = new File(new URI(currentFileName)).getParent();
+            return ImageConverter.getImageByFile(attributes, path, fileref, outName, imageDir);
         }  catch (URISyntaxException e) {
             System.err.println(e);
         }
@@ -1049,6 +1144,22 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleInlinemediaobject(Map<String, String> attributes, String contents) throws SAXException {
         return encloseContents("span", contents);
+    }
+
+    /**
+     * Handle a screenshot
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleScreenshot(Map<String, String> attributes, String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "screenshot", contents);
+        } else {
+            return encloseContents("div", "screenshot", contents);
+        }
     }
 
     /**

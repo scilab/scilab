@@ -97,8 +97,8 @@ eye(3,3)-full(speye(3,3))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>

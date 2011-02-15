@@ -22,7 +22,8 @@ result = uiFindNode(treeRoot, '3.1')
 
 // Find node where 'text' equals 'Node 2'
 result = uiFindNode(treeRoot, 'label', 'Node 2')
-//will return 'result = list(node2)' ]]></programlisting>  </refsection>  <refsection>    <title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
+//will return 'result = list(node2)' ]]></programlisting>  </refsection>  <refsection role="see also">
+<title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
       <member>        <link linkend="uiDisplayTree">uiDisplayTree</link>       </member>      <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>
       <member>        <link linkend="uiInsertNode">uiInsertNode</link>       </member>
       <member>        <link linkend="uiDeleteNode">uiDeleteNode</link>       </member>

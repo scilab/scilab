@@ -95,8 +95,8 @@ z=bitor(x,y)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="bitand">bitand</link></member>

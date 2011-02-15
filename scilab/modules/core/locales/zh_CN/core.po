@@ -601,7 +601,7 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该一个整数。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该是一个整数。\n"
 
 #, c-format

@@ -74,8 +74,8 @@ poly2bis = copy( poly2 ) ; // make a copy of the polyline
 relocate_handle( poly2bis, axes1 ) ;
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="graphics_entities">graphics_entities</link>

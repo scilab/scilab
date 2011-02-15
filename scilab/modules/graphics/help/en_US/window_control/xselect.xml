@@ -33,8 +33,8 @@
 	    It has been replaced by the show_window function.
     </para>
   </refsection>
-   <refsection>
-    <title>See Also</title>
+   <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="show_window">show_window</link>

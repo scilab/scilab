@@ -74,8 +74,8 @@ x=-3:0.2:3 ;y=x ;
 clf() ;fplot3d(x,y,f,alpha=5,theta=31)  
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>
