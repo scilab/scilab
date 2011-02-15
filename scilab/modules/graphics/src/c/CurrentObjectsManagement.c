@@ -69,6 +69,9 @@ sciPointObj * sciGetCurrentFigure( void )
       /* Sets the parent-child relationship within the MVC */
       setGraphicObjectRelationship(pFigure->UID, newaxes->UID);
 
+      /* Sets the newly created Axes as the Figure's current selected child */
+      setGraphicObjectProperty(pFigure->UID, __GO_SELECTED_CHILD__, newaxes->UID, jni_string, 1);
+
       /*
        * Added back to avoid creating a new Figure each time gcf() is executed.
        * This was previously done in ConstructFigure, called by createFullFigure
@@ -142,7 +145,7 @@ sciPointObj * sciGetCurrentSubWin( void )
   sciPointObj * currentSubwin = NULL;
   int iNbChildren = 0;
   int *piNbChildren = &iNbChildren;
-  char** children;
+  char* selectedChild;
 
   if ( currentFigure == NULL ) { return NULL ; }
 
@@ -153,17 +156,18 @@ sciPointObj * sciGetCurrentSubWin( void )
     return NULL;
   }
 
-  /*
-   * At the present moment, a figure is considered to have a unique Axes child object.
-   * To be re-implemented, taking into account the last selected child object.
-   */
-  getGraphicObjectProperty(currentFigure->UID, __GO_CHILDREN__, jni_string_vector, &children);
+  /* The figure's current selected child corresponds to the current subwindow */
+  getGraphicObjectProperty(currentFigure->UID, __GO_SELECTED_CHILD__, jni_string, &selectedChild);
 
   currentSubwin = MALLOC(sizeof(sciPointObj));
 
-  currentSubwin->UID = children[0];
+  currentSubwin->UID = selectedChild;
   sciAddNewHandle(currentSubwin);
 
+  /*
+   * Former way to get the Figure's current selected Axes.
+   * To be deleted
+   */
 #if 0
   currentSubwin = sciGetFirstTypedSelectedSon( currentFigure, SCI_SUBWIN ) ;
 #endif
