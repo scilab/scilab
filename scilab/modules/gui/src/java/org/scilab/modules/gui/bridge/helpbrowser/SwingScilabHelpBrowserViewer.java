@@ -48,6 +48,7 @@ import javax.swing.text.EditorKit;
 import javax.swing.text.Element;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
@@ -399,8 +400,10 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                             accessibleHtml.setVisible(false);
                         }
                         if (evt.getPropertyName().equals("page")) {
-                            modifyFont(0);
-                            accessibleHtml.setVisible(true);
+                            if (!accessibleHtml.isVisible()) {
+                                modifyFont(0);
+                                accessibleHtml.setVisible(true);
+                            }
                         }
                     }
                 });
@@ -574,6 +577,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     public void modifyFont(int s) {
         EditorKit kit = accessibleHtml.getEditorKit();
         MutableAttributeSet attrs = ((HTMLEditorKit) kit).getInputAttributes();
+        attrs.removeAttribute(HTML.Tag.A);// If we opened a foo.html#anchor, then there is an attribute "a"
         currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
         StyleConstants.setFontSize(attrs, fontSizes[currentFontSize]);
         HTMLDocument doc = (HTMLDocument) accessibleHtml.getDocument();
