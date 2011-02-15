@@ -551,7 +551,11 @@ case "$CC" in
    # Explictly disable the as needed. It was disable by default but Ubuntu
    # activated it by default since release 11.04. See bug #8961.
    # Once all cyclic dependencies have been dropped, this line could be removed.
-   LDFLAGS="-Wl,--no-as-needed"
+   # Check if linker supports --as-needed and --no-as-needed options
+   if $LD --help 2>/dev/null | grep no-as-needed > /dev/null; then
+      LDFLAGS="-Wl,--no-as-needed"
+   fi
+
 
    case "$host" in
      x86_64-*-linux-gnu | x86_64-linux-gnu)
