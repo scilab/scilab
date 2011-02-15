@@ -36,7 +36,7 @@ public abstract class GraphicObject implements Cloneable {
 	
 	/** GraphicObject properties */
 	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
-		PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, UNKNOWNPROPERTY };
+		PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, SELECTEDCHILD, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -59,6 +59,14 @@ public abstract class GraphicObject implements Cloneable {
 	/** User data */
 	private Object userData;
 
+	/**
+	 * Identifier of the selected child
+	 * This was previously implemented as a list, but is used in practice
+	 * to store only the identifier of the currently selected child.
+	 * To do: use a list if required
+	 */
+	private String selectedChild;
+
 	/** Constructor */
 	public GraphicObject() {
 		identifier = null;
@@ -68,6 +76,7 @@ public abstract class GraphicObject implements Cloneable {
 		userData = null;
 		valid = true;
 		referenced = false;
+		selectedChild = "";
 	}
 
 	public GraphicObject clone() {
@@ -91,6 +100,11 @@ public abstract class GraphicObject implements Cloneable {
              * when the Axes model is cloned.
              */
             copy.setParent("");
+
+            /*
+             * Sets no object as the selected child.
+             */
+            copy.setSelectedChild("");
 
 	    return (GraphicObject) copy;
 	}
@@ -172,6 +186,8 @@ public abstract class GraphicObject implements Cloneable {
 			return GraphicObjectPropertyType.PARENT_AXES;
 		} else if (propertyName.equals(__GO_HAS_LEGEND_CHILD__)) {
 			return GraphicObjectPropertyType.HASLEGENDCHILD;
+		} else if (propertyName.equals(__GO_SELECTED_CHILD__)) {
+			return GraphicObjectPropertyType.SELECTEDCHILD;
 		} else if (propertyName.equals(__GO_TYPE__)) {
 			return GraphicObjectPropertyType.TYPE;
 		}  else if (propertyName.equals(__GO_DATA_MODEL__)) {
@@ -205,6 +221,8 @@ public abstract class GraphicObject implements Cloneable {
 			return getParentAxes();
 		} else if (property == GraphicObjectPropertyType.HASLEGENDCHILD) {
 			return getHasLegendChild();
+		} else if (property == GraphicObjectPropertyType.SELECTEDCHILD) {
+			return getSelectedChild();
 		} else if (property == GraphicObjectPropertyType.TYPE) {
             return getType();
         }  else if (property == GraphicObjectPropertyType.DATA) {
@@ -233,6 +251,8 @@ public abstract class GraphicObject implements Cloneable {
 			setUserData(value);
 		} else if (property == GraphicObjectPropertyType.USERDATASIZE) {
 			return false;
+		} else if (property == GraphicObjectPropertyType.SELECTEDCHILD) {
+			setSelectedChild((String) value);
         } else if (property == GraphicObjectPropertyType.DATA) {
 			return true;
 		} else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
@@ -404,6 +424,23 @@ public abstract class GraphicObject implements Cloneable {
 		}
 
 		return false;
+	}
+
+
+	/**
+	 * Get selected child method
+	 * @return the selected child
+	 */
+	public String getSelectedChild() {
+		return selectedChild;
+	}
+
+	/**
+	 * Set selected child method
+	 * @param selectedChild the selected child to set
+	 */
+	public void setSelectedChild(String selectedChild) {
+		this.selectedChild = selectedChild;
 	}
 
 	/**
