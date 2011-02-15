@@ -86,7 +86,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/FORCE:MULTIPLE "
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
@@ -190,7 +189,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/FORCE:MULTIPLE "
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"

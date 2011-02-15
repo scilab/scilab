@@ -88,7 +88,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/FORCE:MULTIPLE "
 				AdditionalDependencies="&quot;$(IFORT_COMPILER12)compiler\lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\ia32\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\ia32\libmmdd.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\ia32\svml_disp.lib&quot;"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="1"
@@ -194,7 +193,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/FORCE:MULTIPLE "
 				AdditionalDependencies="&quot;$(IFORT_COMPILER12)compiler\lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\intel64\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\intel64\libmmdd.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\intel64\svml_disp.lib&quot;"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="1"
@@ -307,7 +305,6 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/FORCE:MULTIPLE "
 				AdditionalDependencies="&quot;$(IFORT_COMPILER12)compiler\lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\ia32\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\ia32\libmmd.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\ia32\svml_disp.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\ia32\libiomp5md.lib&quot;"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
@@ -419,7 +416,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/FORCE:MULTIPLE "
 				AdditionalDependencies="&quot;$(IFORT_COMPILER12)compiler\lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\intel64\libifcoremd.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\intel64\libmmd.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\intel64\svml_disp.lib&quot; &quot;$(IFORT_COMPILER12)compiler\lib\intel64\libiomp5md.lib&quot;"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"

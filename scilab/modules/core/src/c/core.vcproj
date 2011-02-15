@@ -337,10 +337,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\call_scilab\src\c\call_scilab.c"
-				>
-			</File>
-			<File
 				RelativePath=".\callDynamicGateway.c"
 				>
 			</File>
@@ -846,10 +842,6 @@
 			</File>
 			<File
 				RelativePath="..\cpp\search_functions.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\call_scilab\src\c\SendScilabJobs.c"
 				>
 			</File>
 			<File
