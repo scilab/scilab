@@ -249,7 +249,6 @@
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
-
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
@@ -337,7 +336,6 @@
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
-
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
@@ -410,10 +408,6 @@
 			</File>
 			<File
 				RelativePath=".\hashtable_utility.h"
-				>
-			</File>
-			<File
-				RelativePath=".\resource.h"
 				>
 			</File>
 		</Filter>

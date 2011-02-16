@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -498,10 +498,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\dynlib_api_scilab.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\resource.h"
 				>
 			</File>
 		</Filter>

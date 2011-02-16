@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -378,10 +378,6 @@
 				RelativePath="..\..\includes\libinter.h"
 				>
 			</File>
-			<File
-				RelativePath=".\resource.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -396,10 +392,6 @@
 		<Filter
 			Name="localization"
 			>
-			<File
-				RelativePath="..\..\locales\en_US\messages.pot"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Libraries Dependencies"

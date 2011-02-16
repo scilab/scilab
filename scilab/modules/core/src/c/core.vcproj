@@ -37,9 +37,6 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 			/>
 			<Tool
@@ -112,9 +109,6 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -185,9 +179,6 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -263,9 +254,6 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -954,10 +942,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\CallScilab.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\commandwords.h"
 				>
 			</File>
@@ -979,10 +963,6 @@
 			</File>
 			<File
 				RelativePath=".\dynamic_gateways.h"
-				>
-			</File>
-			<File
-				RelativePath=".\dynamic_menus.h"
 				>
 			</File>
 			<File
@@ -1042,10 +1022,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\getmemory.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\getmodules.h"
 				>
 			</File>
@@ -1098,10 +1074,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\inffic.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\inisci-c.h"
 				>
 			</File>
@@ -1123,10 +1095,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\isanan.h"
-				>
-			</File>
-			<File
-				RelativePath=".\IsAScalar.h"
 				>
 			</File>
 			<File
@@ -1158,10 +1126,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\msgstxt.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\PARAMS.h"
 				>
 			</File>
@@ -1183,10 +1147,6 @@
 			</File>
 			<File
 				RelativePath=".\readGateway.h"
-				>
-			</File>
-			<File
-				RelativePath=".\readline.h"
 				>
 			</File>
 			<File
@@ -1327,10 +1287,6 @@
 			</File>
 			<File
 				RelativePath="..\cpp\unrolled_algorithms.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\userf2.h"
 				>
 			</File>
 			<File
