@@ -186,7 +186,7 @@ public class DrawerVisitor implements IVisitor, Drawer {
             }
 
             // Rotate.
-            Transformation alphaRotation = TransformationFactory.getRotationTransformation(axes.getRotationAngles()[0], 1.0, 0.0, 0.0);
+            Transformation alphaRotation = TransformationFactory.getRotationTransformation(-axes.getRotationAngles()[0], 1.0, 0.0, 0.0);
             transformation = transformation.rightTimes(alphaRotation);
 
             Transformation thetaRotation = TransformationFactory.getRotationTransformation(DEFAULT_THETA - axes.getRotationAngles()[1], 0.0, 0.0, 1.0);
