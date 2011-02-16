@@ -402,6 +402,8 @@ Bug fixes:
 
 * bug 6884 fixed - Some issues in the buttmag help page were present.
 
+* bug 7152 fixed - It was not possible to export LaTeX in SVG.
+
 * bug 7377 fixed - Thrownan failed on empty matrix.
 
 * bug 7691 fixed - Giving complex arguments to inverse degree trigonometric
