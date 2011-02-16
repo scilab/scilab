@@ -8,7 +8,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
 
-%module NativeGL
+%module DataLoader
 
 %define NIO_BUFFER_TYPEMAP(CTYPE, LABEL, BUFFERTYPE)
 %typemap(jni) CTYPE* LABEL "jobject"
@@ -142,8 +142,20 @@ UNSIGNED_NIO_BUFFER_TYPEMAP(unsigned long, 4, java.nio.LongBuffer, permafrost.hd
   }
 %}
 
+%include "arrays_java.i"
 %inline %{
-    extern int getGLDataLength(char* id);
-    extern void loadGLData(float* BUFF, char* id);
+
+    extern int getDataSize(char* id);
+    extern void fillVertices(char* id, float* BUFF, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[]);
+    extern void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize);
+    
+    extern int getIndicesSize(char* id);    
+    extern int fillIndices(char* id, int* BUFF, int bufferLength);
+    
+    extern int getWireIndicesSize(char* id);    
+    extern void fillWireIndices(char* id, int* BUFF, int bufferLength);
+
+    extern int getMarkIndicesSize(char* id);
+    extern int fillMarkIndices(char* id, int* BUFF, int bufferLength);
 %}
 

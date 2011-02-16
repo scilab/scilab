@@ -14,14 +14,10 @@ package org.scilab.modules.renderer.JoGLView.mark;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,7 +26,7 @@ import java.util.Map;
  *
  * @author Pierre Lando
  */
-public class MarkSpriteManager implements GraphicView {
+public class MarkSpriteManager {
 
     /**
      * The SciRender sprite manager.
@@ -49,7 +45,6 @@ public class MarkSpriteManager implements GraphicView {
      */
     public MarkSpriteManager(SpriteManager spriteManager) {
         this.spriteManager = spriteManager;
-        GraphicController.getController().register(this);
     }
 
 
@@ -70,8 +65,12 @@ public class MarkSpriteManager implements GraphicView {
         return sprite;
     }
 
-    @Override
-    public void updateObject(String id, String property) {
+    /**
+     * Update the data if needed.
+     * @param id the modified object.
+     * @param property the changed property.
+     */
+    public void update(String id, String property) {
 
         /**
          * If the Mark properties have changed.
@@ -80,53 +79,23 @@ public class MarkSpriteManager implements GraphicView {
         if (property.startsWith(GraphicObjectProperties.__GO_MARK__)) {
             dispose(id);
         }
-
-        /**
-         * If a colormap have changed.
-         * Dispose all involved mark sprite.
-         */
-        if (property.equals(GraphicObjectProperties.__GO_COLORMAP__)) {
-
-            List<String> toRemove = new ArrayList<String>();
-
-            /**
-             * Make list of involved mark sprite.
-             */
-            for (String  childId : spriteMap.keySet()) {
-                String parentFigureID = String.valueOf(GraphicController.getController().getProperty(childId, GraphicObjectProperties.__GO_PARENT_FIGURE__));
-                if (id.equals(parentFigureID)) {
-                    toRemove.add(childId);
-                }
-            }
-
-            /**
-             * Dispose involved mark sprite.
-             */
-            for (String childId : toRemove) {
-                dispose(childId);
-            }
-        }
-    }
-
-    @Override
-    public void deleteObject(String id) {
-        dispose(id);
     }
 
     /**
      * Dispose the sprite corresponding to the given id.
      * @param id the given id.
      */
-    private void dispose(String id) {
+    public void dispose(String id) {
         Sprite sprite = spriteMap.get(id);
         spriteManager.dispose(sprite);
         spriteMap.remove(id);
     }
 
     /**
-     * Nothing to do.
+     * Dispose all the mark sprite.
      */
-    @Override
-    public void createObject(String id) {
+    public void disposeAll() {
+        spriteManager.dispose(spriteMap.values());
+        spriteMap.clear();
     }
 }

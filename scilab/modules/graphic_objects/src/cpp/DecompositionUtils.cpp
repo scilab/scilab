@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010 - DIGITEO - Pierre Lando
+ *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,13 +10,22 @@
  *
  */
 
-#ifndef NATIVE_GL_HXX
-#define NATIVE_GL_HXX
+#include "DecompositionUtils.hxx"
 
 extern "C"
 {
-  int getGLDataLength(char* id);
-  void loadGLData(float* buffer, char* id);
+#include <math.h>
 }
 
-#endif NATIVE_GL_HXX
+int DecompositionUtils::isValid(double x, double y, double z)
+{
+    if (isnan(x) || isnan(y) || isnan(z))
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+

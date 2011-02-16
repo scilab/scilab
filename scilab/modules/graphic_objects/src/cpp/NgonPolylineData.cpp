@@ -424,6 +424,15 @@ int NgonPolylineData::setNumElementsArray(int* numElementsArray)
                 delete [] coordinates;
             }
 
+            /*
+             * Initialize the new coordinates' z values to 0 in case
+             * they are not set afterwards.
+             */
+            for (int i = 0; i < newNumElements; i++)
+            {
+                newCoordinates[2*newNumElements+i] = 0.0;
+            }
+
             coordinates = newCoordinates;
 
             if (xShiftSet)

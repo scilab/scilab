@@ -14,9 +14,7 @@ package org.scilab.modules.renderer.JoGLView.axes.ruler;
 import org.scilab.forge.scirenderer.ruler.RulerSpriteManager;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,7 +28,7 @@ import java.util.Set;
  *
  * @author Pierre Lando
  */
-class RulerSpriteManagerSet implements GraphicView {
+public class RulerSpriteManagerSet {
 
     /**
      * Set of properties that affect ruler sprites.
@@ -59,7 +57,6 @@ class RulerSpriteManagerSet implements GraphicView {
      */
     public RulerSpriteManagerSet(SpriteManager spriteManager) {
         this.spriteManager = spriteManager;
-        GraphicController.getController().register(this);
     }
 
     /**
@@ -78,34 +75,26 @@ class RulerSpriteManagerSet implements GraphicView {
     }
 
 
-    @Override
-    public void updateObject(String id, String property) {
+    /**
+     * Update the data if needed.
+     * @param id the modified object.
+     * @param property the changed property.
+     */
+    public void update(String id, String property) {
 
         /**
          * If update affect {@see Axes} ruler sprites, we clear the corresponding {@see RulerSpriteManager}.
          */
         if (SPRITE_PROPERTIES.contains(property)) {
-            RulerSpriteManager spriteManager = rulerSpriteManagerMap.get(id);
-            if (spriteManager != null) {
-                spriteManager.clear();
-            }
-        }
-
-        /**
-         * If update affect the {@see Axes} {@see ColorMap}, we clear the corresponding {@see RulerSpriteManager}.
-         */
-        if (GraphicObjectProperties.__GO_COLORMAP__.equals(property)) {
-            for (Map.Entry<String, RulerSpriteManager> entry : rulerSpriteManagerMap.entrySet()) {
-                String parentFigureId = (String) GraphicController.getController().getProperty(entry.getKey(), GraphicObjectProperties.__GO_PARENT_FIGURE__);
-                if (id.equals(parentFigureId)) {
-                    entry.getValue().clear();
-                }
-            }
+            dispose(id);
         }
     }
 
-    @Override
-    public void deleteObject(String id) {
+    /**
+     * Dispose the {@see RulerSpriteManager} of the given axes.
+     * @param id the {@see Axes} id.
+     */
+    public void dispose(String id) {
         RulerSpriteManager spriteManager = rulerSpriteManagerMap.get(id);
         if (spriteManager != null) {
             spriteManager.clear();
@@ -113,7 +102,13 @@ class RulerSpriteManagerSet implements GraphicView {
         rulerSpriteManagerMap.remove(id);
     }
 
-    @Override
-    public void createObject(String id) {
+    /**
+     * Dispose all the {@see RulerSpriteManager}.
+     */
+    public void disposeAll() {
+        for (RulerSpriteManager spriteManager : rulerSpriteManagerMap.values()) {
+            spriteManager.clear();
+        }
+        rulerSpriteManagerMap.clear();
     }
 }

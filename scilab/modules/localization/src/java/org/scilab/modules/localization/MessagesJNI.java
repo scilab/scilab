@@ -27,12 +27,11 @@ public class MessagesJNI {
 
   static {
     try {
-
-         if (System.getProperty("os.name").toLowerCase().contains("windows") != true) {
-             if (System.getProperty("testngTests")!=null) {
-                 System.loadLibrary("scilab");
-             }
-         }
+        if (System.getProperty("os.name").toLowerCase().contains("windows") != true) {
+            if (System.getProperty("testngTests")!=null) {
+                System.loadLibrary("scilab");
+            }
+        }
         System.loadLibrary("scilocalization");
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");

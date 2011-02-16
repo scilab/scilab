@@ -17,8 +17,6 @@ import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.graphic_objects.textObject.Text;
 
 import java.util.HashMap;
@@ -36,7 +34,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  *
  * @author Pierre Lando
  */
-public class TextManager implements GraphicView {
+public class TextManager {
 
     /**
      * The {@see Map} off existing {@see TextEntity}.
@@ -55,7 +53,6 @@ public class TextManager implements GraphicView {
      */
     public TextManager(SpriteManager spriteManager) {
         this.spriteManager = spriteManager;
-        GraphicController.getController().register(this);
     }
 
     /**
@@ -69,21 +66,15 @@ public class TextManager implements GraphicView {
         drawingTools.draw(sprite, SpriteAnchorPosition.LOWER_LEFT, new Vector3d(text.getPosition()));
     }
 
-    @Override
-    public void updateObject(String id, String property) {
-        // TODO : check property.
+    /**
+     * Update the data if needed.
+     * @param id the modified object.
+     * @param property the changed property.
+     */
+    public void update(String id, String property) {
         if (!__GO_POSITION__.equals(property)) {
-            killSprite(id);
+            dispose(id);
         }
-    }
-
-    @Override
-    public void createObject(String id) {
-    }
-
-    @Override
-    public void deleteObject(String id) {
-        killSprite(id);
     }
 
     /**
@@ -118,11 +109,19 @@ public class TextManager implements GraphicView {
      * Dispose the sprite corresponding to the given id.
      * @param id the given id.
      */
-    private void killSprite(String id) {
+    public void dispose(String id) {
         Sprite sprite = spriteMap.get(id);
         if (sprite != null) {
             spriteManager.dispose(sprite);
             spriteMap.remove(id);
         }
+    }
+
+    /**
+     * Dispose all the text sprites.
+     */
+    public void disposeAll() {
+        spriteManager.dispose(spriteMap.values());
+        spriteMap.clear();
     }
 }

@@ -23,6 +23,7 @@ import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerDrawer;
+import org.scilab.modules.renderer.JoGLView.axes.ruler.RulerSpriteManagerSet;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 import java.awt.geom.Rectangle2D;
@@ -41,6 +42,7 @@ public class AxesDrawer {
     private final Geometries geometries;
 
     private final AxesRulerDrawer rulerDrawer;
+    private final RulerSpriteManagerSet rulerSpriteManagerSet;
 
 
     /**
@@ -50,7 +52,9 @@ public class AxesDrawer {
     public AxesDrawer(DrawerVisitor visitor) {
         this.visitor = visitor;
         this.geometries = new Geometries(visitor.getCanvas());
-        rulerDrawer = new AxesRulerDrawer(visitor.getCanvas().getSpriteManager());
+
+        rulerSpriteManagerSet = new RulerSpriteManagerSet(visitor.getCanvas().getSpriteManager());
+        rulerDrawer = new AxesRulerDrawer(rulerSpriteManagerSet);
     }
 
 
@@ -313,5 +317,9 @@ public class AxesDrawer {
         transformation = transformation.leftTimes(isoScale);
 
         return transformation;
+    }
+
+    public RulerSpriteManagerSet getRulerSpriteManagerSet() {
+        return rulerSpriteManagerSet;
     }
 }

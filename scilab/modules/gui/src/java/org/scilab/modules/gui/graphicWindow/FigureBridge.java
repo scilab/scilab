@@ -178,12 +178,11 @@ public class FigureBridge implements GraphicView {
         }
     }
 
+    @Override
     public void updateObject(String id, String property) {
         if (id != null && id.equals(this.id)) {
             updateGUI();
         }
-
-        canvas.display();
     }
 
     @Override

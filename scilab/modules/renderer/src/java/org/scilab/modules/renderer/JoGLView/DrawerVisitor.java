@@ -15,9 +15,9 @@ import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
+import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
-import org.scilab.forge.scirenderer.shapes.geometry.GeometryImpl;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.modules.graphic_objects.arc.Arc;
@@ -29,7 +29,9 @@ import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.graphic_objects.imageplot.Grayplot;
 import org.scilab.modules.graphic_objects.imageplot.Matplot;
 import org.scilab.modules.graphic_objects.label.Label;
@@ -50,11 +52,11 @@ import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 /**
  * @author Pierre Lando
  */
-public class DrawerVisitor implements IVisitor, Drawer {
+public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     private final Canvas canvas;
     private final Figure figure;
     private final DataManager dataManager;
-    private final MarkSpriteManager MarkManager;
+    private final MarkSpriteManager markManager;
     private final TextManager textManager;
     private final AxesDrawer axesDrawer;
 
@@ -62,11 +64,13 @@ public class DrawerVisitor implements IVisitor, Drawer {
     private DrawingTools drawingTools = null;
 
     public DrawerVisitor(Canvas canvas, Figure figure) {
+        GraphicController.getController().register(this);
+
         this.canvas = canvas;
         this.figure = figure;
 
         this.dataManager = new DataManager(canvas);
-        this.MarkManager = new MarkSpriteManager(canvas.getSpriteManager());
+        this.markManager = new MarkSpriteManager(canvas.getSpriteManager());
         this.textManager = new TextManager(canvas.getSpriteManager());
         this.axesDrawer = new AxesDrawer(this);
     }
@@ -177,26 +181,49 @@ public class DrawerVisitor implements IVisitor, Drawer {
     }
 
     @Override
-    public void visit(Polyline polyline) {
+    public void visit(final Polyline polyline) {
         if (polyline.getVisible()) {
-            if (polyline.getLineMode()) {
-                Geometry geometry = new GeometryImpl(
-                        Geometry.DrawingMode.SEGMENTS_STRIP,
-                        dataManager.getVertexBuffer(polyline.getIdentifier())
-                );
 
-                Appearance appearance = new Appearance();
+            Geometry geometry = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.SEGMENTS;
+                }
 
-                appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
-                appearance.setLineWidth(polyline.getLineThickness().floatValue());
-                appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(polyline.getIdentifier());
+                }
 
-                drawingTools.draw(geometry, appearance);
-            }
+                @Override
+                public ElementsBuffer getColors() {
+                    return null;
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getIndexBuffer(polyline.getIdentifier());
+                    System.out.println("indices size : " + indices.getSize());
+                    return indices;
+                }
+            };
+
+            Appearance appearance = new Appearance();
+            appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+            appearance.setLineWidth(polyline.getLineThickness().floatValue());
+            appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
+
+            drawingTools.draw(geometry, appearance);
+
 
             if (polyline.getMarkMode()) {
-                Sprite sprite = MarkManager.getMarkSprite(polyline, colorMap);
-                ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
+                Sprite sprite = markManager.getMarkSprite(polyline, colorMap);
+                ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());  // TODO : getMarkVertexBuffer
                 drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
             }
         }
@@ -244,4 +271,50 @@ public class DrawerVisitor implements IVisitor, Drawer {
         // TODO
         System.out.println("How can I draw a segs ?");
     }
+
+
+
+
+
+    @Override
+    public void updateObject(String id, String property) {
+        if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
+            markManager.disposeAll();
+            textManager.disposeAll();
+            axesDrawer.getRulerSpriteManagerSet().disposeAll();
+            canvas.redraw();
+        } else if (isFigureChild(id)) {
+            dataManager.update(id, property);
+            markManager.update(id, property);
+            textManager.update(id, property);
+            axesDrawer.getRulerSpriteManagerSet().update(id, property);
+            canvas.redraw();
+        }
+    }
+
+    @Override
+    public void createObject(String id) {
+    }
+
+    @Override
+    public void deleteObject(String id) {
+        if (isFigureChild(id)) {
+            dataManager.dispose(id);
+            markManager.dispose(id);
+            textManager.dispose(id);
+            axesDrawer.getRulerSpriteManagerSet().dispose(id);
+            canvas.redraw();
+        }
+    }
+
+    /**
+     * Check if the given id correspond to a child of the current {@see Figure}.
+     * @param id the given id.
+     * @return true if the given id correspond to a child of the current {@see Figure}.
+     */
+    private boolean isFigureChild(String id) {
+        String parentFigureID = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        return figure.getIdentifier().equals(parentFigureID);
+    }
 }
+

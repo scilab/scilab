@@ -19,7 +19,6 @@ import org.scilab.forge.scirenderer.ruler.RulerModel;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.shapes.geometry.GeometryImpl;
-import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
@@ -39,8 +38,8 @@ public class AxesRulerDrawer {
     private final RulerSpriteManagerSet rulerSpriteManagerSet;
     private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
 
-    public AxesRulerDrawer(SpriteManager spriteManager) {
-        rulerSpriteManagerSet = new RulerSpriteManagerSet(spriteManager);
+    public AxesRulerDrawer(RulerSpriteManagerSet rulerSpriteManagerSet) {
+        this.rulerSpriteManagerSet = rulerSpriteManagerSet;
     }
 
     /**

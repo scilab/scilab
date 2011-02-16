@@ -129,7 +129,7 @@ libscigraphic_objects_disable_la_LINK = $(LIBTOOL) --tag=CC \
 libscigraphic_objects_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_2 = libscigraphic_objects_la-NativeGL_wrap.lo
+am__objects_2 = libscigraphic_objects_la-DataLoader_wrap.lo
 am__objects_3 = libscigraphic_objects_la-CallGraphicController.lo
 am__objects_4 = libscigraphic_objects_la-gw_graphic_objects.lo
 am__objects_5 = libscigraphic_objects_la-sci_graphicfunction.lo
@@ -139,14 +139,16 @@ am__objects_6 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-deleteGraphicObject.lo \
 	libscigraphic_objects_la-dataModel.lo \
 	libscigraphic_objects_la-Data3D.lo \
-	libscigraphic_objects_la-NativeGL.lo \
+	libscigraphic_objects_la-DataLoader.lo \
 	libscigraphic_objects_la-NgonData.lo \
 	libscigraphic_objects_la-NgonGeneralData.lo \
 	libscigraphic_objects_la-NgonGridData.lo \
 	libscigraphic_objects_la-NgonGridMatplotData.lo \
 	libscigraphic_objects_la-NgonPolylineData.lo \
 	libscigraphic_objects_la-TriangleMeshData.lo \
-	libscigraphic_objects_la-TriangleMeshFecData.lo
+	libscigraphic_objects_la-TriangleMeshFecData.lo \
+	libscigraphic_objects_la-DecompositionUtils.lo \
+	libscigraphic_objects_la-PolylineDecomposer.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
 	$(am__objects_6)
@@ -522,21 +524,23 @@ BUILT_SOURCES = includes/graphicObjectsProperties.h $(am__append_2) \
 #This file is also generated, but can not be listed to prevent GCJ call.
 #src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
-GRAPHIC_OBJECTS_C_SOURCES = src/jni/NativeGL_wrap.c
+GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c
 GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
 								src/cpp/setGraphicObjectProperty.cpp \
 								src/cpp/deleteGraphicObject.cpp \
 								src/cpp/dataModel.cpp \
 								src/cpp/Data3D.cpp \
-								src/cpp/NativeGL.cpp \
+								src/cpp/DataLoader.cpp \
 								src/cpp/NgonData.cpp \
 								src/cpp/NgonGeneralData.cpp \
 								src/cpp/NgonGridData.cpp \
 								src/cpp/NgonGridMatplotData.cpp \
 								src/cpp/NgonPolylineData.cpp \
 								src/cpp/TriangleMeshData.cpp \
-								src/cpp/TriangleMeshFecData.cpp
+								src/cpp/TriangleMeshFecData.cpp \
+								src/cpp/DecompositionUtils.cpp \
+								src/cpp/PolylineDecomposer.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
@@ -576,7 +580,7 @@ CHECK_SRC = $(GRAPHIC_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigraphic_objects_la_CFLAGS)
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/NativeGL.i
+SWIG_WRAPPERS = src/jni/DataLoader.i
 libscigraphic_objects_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
@@ -665,13 +669,15 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_disable_la-nographic_objects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-CallGraphicController.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-Data3D.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NativeGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NativeGL_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-DataLoader.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-DecompositionUtils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGeneralData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGridData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGridMatplotData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonPolylineData.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-createGraphicObject.Plo@am__quote@
@@ -710,12 +716,12 @@ libscigraphic_objects_disable_la-nographic_objects.lo: src/nographic_objects/nog
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_disable_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_disable_la-nographic_objects.lo `test -f 'src/nographic_objects/nographic_objects.c' || echo '$(srcdir)/'`src/nographic_objects/nographic_objects.c
 
-libscigraphic_objects_la-NativeGL_wrap.lo: src/jni/NativeGL_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-NativeGL_wrap.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-NativeGL_wrap.Tpo -c -o libscigraphic_objects_la-NativeGL_wrap.lo `test -f 'src/jni/NativeGL_wrap.c' || echo '$(srcdir)/'`src/jni/NativeGL_wrap.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-NativeGL_wrap.Tpo $(DEPDIR)/libscigraphic_objects_la-NativeGL_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/NativeGL_wrap.c' object='libscigraphic_objects_la-NativeGL_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+libscigraphic_objects_la-DataLoader_wrap.lo: src/jni/DataLoader_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-DataLoader_wrap.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Tpo -c -o libscigraphic_objects_la-DataLoader_wrap.lo `test -f 'src/jni/DataLoader_wrap.c' || echo '$(srcdir)/'`src/jni/DataLoader_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Tpo $(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/DataLoader_wrap.c' object='libscigraphic_objects_la-DataLoader_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-NativeGL_wrap.lo `test -f 'src/jni/NativeGL_wrap.c' || echo '$(srcdir)/'`src/jni/NativeGL_wrap.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -c -o libscigraphic_objects_la-DataLoader_wrap.lo `test -f 'src/jni/DataLoader_wrap.c' || echo '$(srcdir)/'`src/jni/DataLoader_wrap.c
 
 libscigraphic_objects_la-gw_graphic_objects.lo: sci_gateway/c/gw_graphic_objects.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(libscigraphic_objects_la_CFLAGS) $(CFLAGS) -MT libscigraphic_objects_la-gw_graphic_objects.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-gw_graphic_objects.Tpo -c -o libscigraphic_objects_la-gw_graphic_objects.lo `test -f 'sci_gateway/c/gw_graphic_objects.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphic_objects.c
@@ -801,12 +807,12 @@ libscigraphic_objects_la-Data3D.lo: src/cpp/Data3D.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-Data3D.lo `test -f 'src/cpp/Data3D.cpp' || echo '$(srcdir)/'`src/cpp/Data3D.cpp
 
-libscigraphic_objects_la-NativeGL.lo: src/cpp/NativeGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-NativeGL.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-NativeGL.Tpo -c -o libscigraphic_objects_la-NativeGL.lo `test -f 'src/cpp/NativeGL.cpp' || echo '$(srcdir)/'`src/cpp/NativeGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-NativeGL.Tpo $(DEPDIR)/libscigraphic_objects_la-NativeGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/NativeGL.cpp' object='libscigraphic_objects_la-NativeGL.lo' libtool=yes @AMDEPBACKSLASH@
+libscigraphic_objects_la-DataLoader.lo: src/cpp/DataLoader.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-DataLoader.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-DataLoader.Tpo -c -o libscigraphic_objects_la-DataLoader.lo `test -f 'src/cpp/DataLoader.cpp' || echo '$(srcdir)/'`src/cpp/DataLoader.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-DataLoader.Tpo $(DEPDIR)/libscigraphic_objects_la-DataLoader.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DataLoader.cpp' object='libscigraphic_objects_la-DataLoader.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-NativeGL.lo `test -f 'src/cpp/NativeGL.cpp' || echo '$(srcdir)/'`src/cpp/NativeGL.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-DataLoader.lo `test -f 'src/cpp/DataLoader.cpp' || echo '$(srcdir)/'`src/cpp/DataLoader.cpp
 
 libscigraphic_objects_la-NgonData.lo: src/cpp/NgonData.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-NgonData.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-NgonData.Tpo -c -o libscigraphic_objects_la-NgonData.lo `test -f 'src/cpp/NgonData.cpp' || echo '$(srcdir)/'`src/cpp/NgonData.cpp
@@ -856,6 +862,20 @@ libscigraphic_objects_la-TriangleMeshFecData.lo: src/cpp/TriangleMeshFecData.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/TriangleMeshFecData.cpp' object='libscigraphic_objects_la-TriangleMeshFecData.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-TriangleMeshFecData.lo `test -f 'src/cpp/TriangleMeshFecData.cpp' || echo '$(srcdir)/'`src/cpp/TriangleMeshFecData.cpp
+
+libscigraphic_objects_la-DecompositionUtils.lo: src/cpp/DecompositionUtils.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-DecompositionUtils.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-DecompositionUtils.Tpo -c -o libscigraphic_objects_la-DecompositionUtils.lo `test -f 'src/cpp/DecompositionUtils.cpp' || echo '$(srcdir)/'`src/cpp/DecompositionUtils.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-DecompositionUtils.Tpo $(DEPDIR)/libscigraphic_objects_la-DecompositionUtils.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DecompositionUtils.cpp' object='libscigraphic_objects_la-DecompositionUtils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-DecompositionUtils.lo `test -f 'src/cpp/DecompositionUtils.cpp' || echo '$(srcdir)/'`src/cpp/DecompositionUtils.cpp
+
+libscigraphic_objects_la-PolylineDecomposer.lo: src/cpp/PolylineDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-PolylineDecomposer.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Tpo -c -o libscigraphic_objects_la-PolylineDecomposer.lo `test -f 'src/cpp/PolylineDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/PolylineDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Tpo $(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/PolylineDecomposer.cpp' object='libscigraphic_objects_la-PolylineDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-PolylineDecomposer.lo `test -f 'src/cpp/PolylineDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/PolylineDecomposer.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
