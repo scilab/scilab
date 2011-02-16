@@ -17,6 +17,7 @@ c     ----------------------------
       double precision eps
       integer job,ido
       integer iadr,sadr
+      character tmpbuf * (bsiz)
 
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -223,7 +224,8 @@ c
 c
       if (ierr.eq.1)then
 c     matrice est quasi singuliere ou mal normalisee
-         write(buf(1:13),'(1pd13.4)') stk(lw)
+         write(tmpbuf(1:13),'(1pd13.4)') stk(lw)
+         buf = tmpbuf
          call msgs(5,0)
       endif
       if (ierr .eq. 2) then
