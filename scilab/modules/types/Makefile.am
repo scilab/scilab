@@ -15,7 +15,7 @@ modulename=types
 
 #### types : Conf files ####
 libscitypes_la_rootdir = $(mydatadir)
-libscitypes_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscitypes_la_root_DATA =  license.txt version.xml
 
 
 #### types : init scripts ####

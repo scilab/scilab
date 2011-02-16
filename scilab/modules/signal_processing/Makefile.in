@@ -531,7 +531,7 @@ modulename = signal_processing
 
 #### signal_processing : Conf files ####
 libscisignal_processing_la_rootdir = $(mydatadir)
-libscisignal_processing_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscisignal_processing_la_root_DATA = license.txt version.xml
 
 ####�signal_processing : init scripts ####
 libscisignal_processing_la_etcdir = $(mydatadir)/etc

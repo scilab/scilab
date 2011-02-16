@@ -55,7 +55,7 @@ INCLUDE_FLAGS = $(MEXLIB_FLAGS)
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(mydatadir)
-libmex_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libmex_la_root_DATA =  license.txt version.xml
 
 #### mexlib : init scripts ####
 libmex_la_etcdir = $(mydatadir)/etc

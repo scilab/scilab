@@ -1,1 +1,0 @@
-readme.txt about special_functions module

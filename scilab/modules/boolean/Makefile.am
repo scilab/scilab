@@ -43,7 +43,7 @@ modulename=boolean
 
 #### boolean : Conf files ####
 libsciboolean_la_rootdir = $(mydatadir)
-libsciboolean_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciboolean_la_root_DATA =  license.txt version.xml
 
 
 ####�boolean : init scripts ####

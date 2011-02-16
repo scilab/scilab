@@ -43,7 +43,7 @@ modulename=symbolic
 
 #### symbolic : Conf files ####
 libscisymbolic_la_rootdir = $(mydatadir)
-libscisymbolic_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscisymbolic_la_root_DATA =  license.txt version.xml
 
 
 #### symbolic : init scripts ####

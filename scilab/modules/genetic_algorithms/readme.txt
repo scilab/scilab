@@ -1,1 +1,0 @@
-readme.txt about genetic_algorithms module

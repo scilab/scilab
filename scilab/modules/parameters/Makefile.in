@@ -415,7 +415,7 @@ modulename = parameters
 
 #### parameters : Conf files ####
 libparameters_la_rootdir = $(mydatadir)
-libparameters_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libparameters_la_root_DATA = license.txt version.xml
 
 #### parameters : init scripts ####
 libparameters_la_etcdir = $(mydatadir)/etc

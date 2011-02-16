@@ -22,9 +22,7 @@ Source: bin\{#MATIO}.dll; DestDir: {app}\bin; Components: {#COMPN_MATIO}
 Source: bin\lib{#MATIO}.dll; DestDir: {app}\bin; Components: {#COMPN_MATIO}
 ;
 Source: modules\{#MATIO}\VERSION.xml; DestDir: {app}\modules\{#MATIO}; Components: {#COMPN_MATIO}
-Source: modules\{#MATIO}\readme.txt; DestDir: {app}\modules\{#MATIO}; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\license.txt; DestDir: {app}\modules\{#MATIO}; Components: {#COMPN_MATIO}
-Source: modules\{#MATIO}\changelog.txt; DestDir: {app}\modules\{#MATIO}; Components: {#COMPN_MATIO}
 ;
 Source: modules\{#MATIO}\etc\{#MATIO}.quit; DestDir: {app}\modules\{#MATIO}\etc; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\etc\{#MATIO}.start; DestDir: {app}\modules\{#MATIO}\etc; Components: {#COMPN_MATIO}

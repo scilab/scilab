@@ -49,7 +49,7 @@ modulename=double
 
 #### double : Conf files ####
 libscidouble_la_rootdir = $(mydatadir)
-libscidouble_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscidouble_la_root_DATA =  license.txt version.xml
 
 
 #### double : init scripts ####
