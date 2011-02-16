@@ -33,29 +33,27 @@
 int get_x_shift_property( sciPointObj * pobj )
 {
     double* shiftCoordinates;
-    int iState = 0;
-    int* piState = &iState;
-    int iSize = 0;
-    int* piSize = &iSize;
+    int iValue = 0;
+    int* piValue = &iValue;
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, jni_int, &piState);
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, jni_int, &piValue);
 
-    if (piState == NULL)
+    if (piValue == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_shift");
         return -1;
     }
 
-    if (iState == 0)
+    if (iValue == 0)
     {
         return sciReturnEmptyMatrix();
     }
     else
     {
         getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, jni_double_vector, &shiftCoordinates);
-        getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, piSize);
+        getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piValue);
 
-        return sciReturnRowVector(shiftCoordinates, iSize);
+        return sciReturnRowVector(shiftCoordinates, iValue);
     }
 }
 /*------------------------------------------------------------------------*/
