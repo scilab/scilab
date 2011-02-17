@@ -142,6 +142,9 @@ in the status bar of Scinotes.
 * A rectangular selection tool is now available. CTRL+selection will enable it.
   This improves the selection (of data for example).
 
+* When typing a closing char (e.g. ')',']',...), do not print it if already 
+  here (like in Eclipse).
+
 * bug 8095 fixed - With OpenJDK, the size of the dialog 'Set colors' was bad.
 
 * bug 8697 fixed - An exception was thrown when an empty document was reload.
