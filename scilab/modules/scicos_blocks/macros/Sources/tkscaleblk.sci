@@ -1,6 +1,6 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) DIGITEO - Clément DAVID <clement.david@scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -20,47 +20,65 @@
 //
 
 function block=tkscaleblk(block,flag)
-  blknb=string(curblock())
-  if flag==4 then
-    cur=%cpr.corinv(curblock())
-    if size(cur,'*')==1 then // open widget only if the block 
-                             // is in main Scicos editor window
-      o=scs_m.objs(cur).graphics.orig;
-      sz=scs_m.objs(cur).graphics.sz
-      pos=point2pixel(1000,o)
-      pos(1)=pos(1)+width2pixel(1000,sz(1)) // widget position 
-      geom='wm geometry $w +'+string(pos(1))+'+'+ string(pos(2));
-      titled=block.label
-      if titled==[] then titled="TK source",end
-      tit='wm title $w Scale'+blknb // write block label
-      bounds=block.rpar(1:2)
-      bnds='-from '+string(bounds(1))+' -to '+string(bounds(2))
-      cmd='-command ""f'+blknb+' $w.frame.scale""'
-      lab='-label ""'+titled+'""';
-      L='-length 100'
-      I='-tickinterval '+string((bounds(2)-bounds(1))/4)
-      scale=strcat(['scale $w.frame.scale -orient vertical',..
-                    lab,bnds,cmd,L,I],' ')
-      initial=mean(bounds) // initial value is the mean
-      txt=['set w .vscale'+blknb;
-           'set y'+blknb+' 0';
-           'catch {destroy $w}';
-           'toplevel $w';
-           tit
-           geom
-           'frame $w.frame -borderwidth 10';
-           'pack $w.frame';
-           scale
-           'frame $w.frame.right -borderwidth 15';
-           'pack $w.frame.scale -side left -anchor ne';
-           '$w.frame.scale set '+string(initial);
-           'proc f'+blknb+' {w height} {global y'+blknb+';set y'+blknb+' $height}'
-          ];
-      TCL_EvalStr(txt) // call TCL interpretor to create widget
-      block.outptr(1)=mean(block.rpar(1:2))/block.rpar(3);
+  if flag == 1 then
+    // Output update
+    slider = findobj("Tag", block.label + "#slider");
+    if slider <> [] then
+      // calculate real value
+      value = (block.rpar(1) + block.rpar(2) - slider.value) / block.rpar(3);
+      
+      w = slider.parent;
+      if w <> [] then
+        w.info_message = string(value);
+      end
+
+      block.outptr(1) = value;
     end
-  elseif flag==1 then // evaluate output during simulation
-    block.outptr(1)=evstr(TCL_GetVar('y'+blknb))/block.rpar(3);
+  elseif flag == 4 then
+    // Initialization
+
+    // if already exists (stopped) then reuse
+    f = findobj("Tag", block.label);
+    if f <> [] then
+      return;
+    end
+
+    f = figure("Tag", block.label, "Figure_name", "TK Source: " + block.label);
+
+    // delete standard menus
+    delmenu(f.figure_id, gettext("&File"));
+    delmenu(f.figure_id, gettext("&Tools"));
+    delmenu(f.figure_id, gettext("&Edit"));
+    delmenu(f.figure_id, gettext("&?"));
+    toolbar(f.figure_id, "off");
+
+    f.position = [0 0 80 200];
+
+    // slider
+    bounds = block.rpar(1:2);
+    initial = mean(bounds);
+    uicontrol(f, "Style", "slider", "Tag", block.label + "#slider", ..
+      "Min", bounds(1), "Max", bounds(2), "Value", initial, ..
+      "Position", [0 0 20 200], "SliderStep", [block.rpar(3) 2*block.rpar(3)]);
+    
+    // labels
+    labels = string([bounds(1)                  ;..
+                     mean([bounds(1) initial])  ;..
+                     initial                    ;..
+                     mean([bounds(2) initial])  ;..
+                     bounds(2)]);
+    labels = strcat(labels, "<br /><br /><br />");
+    uicontrol(f, "Style", "text", "String", labels(1), ..
+              "Position", [30  0 50 200]);
+    
+    // update default value
+    block.outptr(1) = initial / block.rpar(3);
+  elseif flag == 5 then
+    // Ending
+    f = findobj("Tag", block.label);
+    if f <> [] then
+      close(f);
+    end
   end
 endfunction
-///\withPrompt{}
+
