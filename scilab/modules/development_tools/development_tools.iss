@@ -34,6 +34,14 @@ Source: modules\{#DEVTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#DEV
 Source: modules\{#DEVTOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#DEVTOOLS}\macros; Components: {#COMPN_DEVTOOLS}
 Source: modules\{#DEVTOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#DEVTOOLS}\macros; Components: {#COMPN_DEVTOOLS}
 ;
+Source: modules\{#DEVTOOLS}\macros\assert\lib; DestDir: {app}\modules\{#DEVTOOLS}\macros\assert; Components: {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\macros\assert\names; DestDir: {app}\modules\{#DEVTOOLS}\macros\assert; Components: {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\macros\assert\*.bin; DestDir: {app}\modules\{#DEVTOOLS}\macros\assert; Components: {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\macros\assert\*.sci; DestDir: {app}\modules\{#DEVTOOLS}\macros\assert; Components: {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\macros\assert\buildmacros.sce; DestDir: {app}\modules\{#DEVTOOLS}\macros\assert; Components: {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\macros\assert\buildmacros.bat; DestDir: {app}\modules\{#DEVTOOLS}\macros\assert; Components: {#COMPN_DEVTOOLS}
+Source: modules\{#DEVTOOLS}\macros\assert\cleanmacros.bat; DestDir: {app}\modules\{#DEVTOOLS}\macros\assert; Components: {#COMPN_DEVTOOLS}
+;
 ;Source: modules\{#DEVTOOLS}\demos\*.*; DestDir: {app}\modules\{#DEVTOOLS}\demos; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
 ;Source: modules\{#DEVTOOLS}\examples\*.*; DestDir: {app}\modules\{#DEVTOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}

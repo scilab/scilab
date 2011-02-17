@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="assert_generror" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+
+  <refnamediv>
+    <refname>assert_generror</refname><refpurpose>Generates an error.</refpurpose>
+  </refnamediv>
+
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   assert_generror ( errormsg )
+   assert_generror ( errormsg , errornb )
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>expectedmsg :</term>
+      <listitem><para> a 1x1 matrix of strings, the error message to be produced</para></listitem></varlistentry>
+   <varlistentry><term>expectederrnb :</term>
+      <listitem><para> a 1x1 matrix of floating point integers, the error number (default expectederrnb=[]).</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Calls the error function, with the given arguments.
+   </para>
+   <para>
+This function is called by the assert_check* function each time an error
+produced by the wrong match between expected and computed outputs is generated.
+In the case where a assert_check* function receives a wrong number of input arguments,
+a wrong number of ouput arguments, a wrong type of input argument or a wrong content
+of input arguments, the regular error function is called.
+This function can be customized to modify the behaviour of the assert_check* functions.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+// Both these calls generate an error
+assert_generror ( "oups" );
+assert_generror ( "oups" , 123456789 );
+
+// The following call generates an error.
+assert_checktrue ( [%t %f] );
+//
+// Define our own error handler
+function myerror ( varargin )
+[lhs,rhs]=argn()
+errormsg = varargin(1)
+if ( rhs == 1 ) then
+mprintf( "myerror: %s\n", errormsg )
+else
+errornb = varargin(2)
+mprintf( "myerror: %s (%d)\n", errormsg , errornb )
+end
+endfunction
+//
+// Configure the new error handler
+back=funcprot();
+funcprot(0);
+olderrorfunction = assert_generror;
+assert_generror = myerror;
+funcprot(back);
+//
+// Check that the new error handler is in place
+assert_checktrue ( [%t %f] );
+//
+// Put back the regular error handler in place
+back=funcprot();
+funcprot(0);
+assert_generror = olderrorfunction;
+funcprot(back);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin</member>
+   </simplelist>
+</refsection>
+</refentry>
