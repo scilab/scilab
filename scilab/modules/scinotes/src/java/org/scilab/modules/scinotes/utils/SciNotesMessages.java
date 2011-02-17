@@ -199,8 +199,8 @@ public class SciNotesMessages {
     public static final String MAILTO = Messages.gettext("Mail to ");
     public static final String OPENSOURCE = Messages.gettext("Open the source of the macro ");
     public static final String SHOWSOURCE = Messages.gettext("Show the definition of the macro ");
-    public static final String POSFUN_IN_DOC = Messages.gettext("Function '%s'. Line %s. Column %s.");
-    public static final String POS_IN_DOC = Messages.gettext("Line %s. Column %s.");
+    public static final String POSFUN_IN_DOC = Messages.gettext("Line %s, Column %s. Function '%s' at Line %s.");
+    public static final String POS_IN_DOC = Messages.gettext("Line %s, Column %s.");
 
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";
