@@ -392,6 +392,10 @@
 		<Filter
 			Name="localization"
 			>
+			<File
+				RelativePath="..\..\locales\en_US\intersci.pot"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Libraries Dependencies"

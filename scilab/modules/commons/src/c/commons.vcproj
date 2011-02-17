@@ -380,10 +380,6 @@
 		<Filter
 			Name="localization"
 			>
-			<File
-				RelativePath="..\..\locales\en_US\messages.pot"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Libraries Dependencies"

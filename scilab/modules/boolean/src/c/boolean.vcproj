@@ -408,6 +408,10 @@
 		<Filter
 			Name="localization"
 			>
+			<File
+				RelativePath="..\..\locales\en_US\boolean.pot"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Libraries Dependencies"

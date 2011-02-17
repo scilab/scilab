@@ -372,6 +372,10 @@
 		<Filter
 			Name="localization"
 			>
+			<File
+				RelativePath="..\..\locales\en_US\double.pot"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Libraries Dependencies"

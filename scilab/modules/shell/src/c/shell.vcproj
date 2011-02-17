@@ -509,10 +509,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\resource.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\scilines.h"
 				>
 			</File>
@@ -553,7 +549,7 @@
 			Name="localization"
 			>
 			<File
-				RelativePath="..\..\locales\en_US\messages.pot"
+				RelativePath="..\..\locales\en_US\shell.pot"
 				>
 			</File>
 		</Filter>

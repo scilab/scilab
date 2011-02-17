@@ -420,6 +420,10 @@
 		<Filter
 			Name="localization"
 			>
+			<File
+				RelativePath=".\locales\en_US\arnoldi.pot"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Libraries Dependencies"

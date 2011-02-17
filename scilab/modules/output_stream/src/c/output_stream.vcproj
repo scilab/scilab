@@ -597,7 +597,7 @@
 			Name="localization"
 			>
 			<File
-				RelativePath="..\..\locales\en_US\messages.pot"
+				RelativePath="..\..\locales\en_US\output_stream.pot"
 				>
 			</File>
 		</Filter>
