@@ -145,6 +145,7 @@ in the status bar of Scinotes.
 
 * bug 8885 fixed - Anchors were removed on a Replace All action.
 
+* bug 9000 fixed - '1+..' was miscolorized
 
 Xcos:
 =====
