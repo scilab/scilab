@@ -175,8 +175,8 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             parent.add(this, BorderLayout.PAGE_END);
             setVisible(true);
             parent.revalidate();
-            requestFocus();
         }
+        requestFocus();
     }
 
     /**
