@@ -48,6 +48,7 @@ import javax.swing.text.EditorKit;
 import javax.swing.text.Element;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
@@ -402,7 +403,11 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                         if (evt.getPropertyName().equals("page")) {
                             if (!accessibleHtml.isVisible()) {
                                 modifyFont(0);
-                                accessibleHtml.setVisible(true);
+                                SwingUtilities.invokeLater(new Runnable() {
+                                        public void run() {
+                                            accessibleHtml.setVisible(true);
+                                        }
+                                    });
                             }
                         }
                     }
@@ -540,7 +545,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                 if (keyword == null) {
                     helpMenuItem.setText(Messages.gettext("Help about a selected text"));
                 } else {
-                    int nbOfDisplayedOnlyXChar=10;
+                    int nbOfDisplayedOnlyXChar = 10;
                     if (keyword.length() > nbOfDisplayedOnlyXChar) {
                         keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
                     }
@@ -575,13 +580,16 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * @param s the size to add to the current size
      */
     public void modifyFont(int s) {
-        EditorKit kit = accessibleHtml.getEditorKit();
-        MutableAttributeSet attrs = ((HTMLEditorKit) kit).getInputAttributes();
-        attrs.removeAttribute(HTML.Tag.A);// If we opened a foo.html#anchor, then there is an attribute "a"
-        currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
-        StyleConstants.setFontSize(attrs, fontSizes[currentFontSize]);
-        HTMLDocument doc = (HTMLDocument) accessibleHtml.getDocument();
-        doc.setCharacterAttributes(0, doc.getLength() + 1, attrs, false);
+        try {
+            HTMLDocument doc = (HTMLDocument) accessibleHtml.getDocument();
+            StyleContext.NamedStyle style = (StyleContext.NamedStyle) doc.getStyleSheet().getStyle("body");
+            MutableAttributeSet attr = (MutableAttributeSet) style.getResolveParent();
+            currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
+            StyleConstants.setFontSize(attr, fontSizes[currentFontSize]);
+            style.setResolveParent(attr);
+        } catch (NullPointerException e) {
+            // Can occur if the user is changing quickly the document
+        }
     }
 
     /**
