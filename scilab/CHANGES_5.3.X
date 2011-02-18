@@ -98,6 +98,9 @@ trigger a warning and do not add a link on the function name.
 
 * bug 3716 fixed - No way to search a word in the right area.
 
+* bug 5362 fixed - There were problems with the same xml:id but having a
+                   different case. 
+
 * bug 5796 fixed - No way to increase/decrease font size.
 
 * bug 7069 fixed - Old documentation about the documentation build process

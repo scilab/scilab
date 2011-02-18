@@ -30,13 +30,18 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
+
 /**
  * Class the convert a DocBook xml file
  * @author Calixte DENIZET
  */
 public class HTMLDocbookLinkResolver extends DefaultHandler {
 
+    private static boolean isCaseInsensitiveOS = System.getProperty("os.name").toLowerCase().contains("windows");
+
     private Map<String, String> mapId = new LinkedHashMap();
+    private List<String> listIdIgnoreCase = new ArrayList();
     private Map<String, String> toc = new LinkedHashMap();
     private Map<String, String> mapIdPurpose = new LinkedHashMap();
     private Map<String, TreeId> mapTreeId = new HashMap();
@@ -158,7 +163,8 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             if (id == null) {
                 throw new SAXException(errorMsg());
             }
-            current = id + ".html";
+            current = makeFileName(id);
+            listIdIgnoreCase.add(id.toLowerCase());
             lastId = id;
             if (mapIdDeclaringFile.containsKey(id)) {
                 String prev = mapIdDeclaringFile.get(id);
@@ -177,6 +183,20 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
         } else if (id != null && current != null) {
             mapId.put(id, current + "#" +id);
         }
+    }
+
+    /**
+     * Make a file name which take into account that under Windows the file name
+     * is case insensitive and the xml:id is case sensitive.
+     * @param id the xml:id
+     * @return an unique file name
+     */
+    public String makeFileName(String id) {
+        if (isCaseInsensitiveOS && listIdIgnoreCase.contains(id.toLowerCase())) {
+            return id + "-" + ScilabCommonsUtils.getMD5(id) + ".html";
+        }
+
+        return id + ".html";
     }
 
     /**

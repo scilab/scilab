@@ -88,7 +88,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String appendToProgramListing;
     protected String prependToProgramListing;
     protected String currentId;
-
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
 
     /**
@@ -482,7 +481,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         if (id != null) {
             currentId = id;
         }
-        String fileName = currentId + ".html";
+        String fileName = mapId.get(currentId);
         createHTMLFile(currentId, fileName, refpurpose, contents);
         if (!hasExamples) {
             warnings++;
