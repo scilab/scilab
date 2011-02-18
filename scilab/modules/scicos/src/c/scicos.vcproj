@@ -574,10 +574,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\slider.c"
-				>
-			</File>
-			<File
 				RelativePath=".\tree.c"
 				>
 			</File>

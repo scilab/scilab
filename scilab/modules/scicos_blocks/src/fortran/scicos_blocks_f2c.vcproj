@@ -398,10 +398,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\affich.c"
-				>
-			</File>
-			<File
 				RelativePath=".\csslti.c"
 				>
 			</File>
@@ -645,10 +641,6 @@
 		<Filter
 			Name="Fortran files"
 			>
-			<File
-				RelativePath=".\affich.f"
-				>
-			</File>
 			<File
 				RelativePath=".\csslti.f"
 				>

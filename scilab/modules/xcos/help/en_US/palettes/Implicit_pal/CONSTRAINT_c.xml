@@ -21,9 +21,9 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CONSTRAINT_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CONSTRAINT_c">
   <refnamediv>
-    <refname>CONSTRAINT_f</refname>
+    <refname>CONSTRAINT_c</refname>
     <refpurpose>Constraint</refpurpose>
   </refnamediv>
   <refsection>
@@ -31,61 +31,61 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/CONSTRAINT_f.png" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/CONSTRAINT_c.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents_CONSTRAINT_f">
+  <refsection id="Contents_CONSTRAINT_c">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CONSTRAINT_f">Constraint</link>
+          <link linkend="CONSTRAINT_c">Constraint</link>
         </para>
       </listitem>
       <listitem>
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette_CONSTRAINT_f">Palette</xref>
+              <xref linkend="Palette_CONSTRAINT_c">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description_CONSTRAINT_f">Description</xref>
+              <xref linkend="Description_CONSTRAINT_c">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialogbox_CONSTRAINT_f">Dialog box</xref>
+              <xref linkend="Dialogbox_CONSTRAINT_c">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_CONSTRAINT_f">Default properties</xref>
+              <xref linkend="Defaultproperties_CONSTRAINT_c">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_CONSTRAINT_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CONSTRAINT_c">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_CONSTRAINT_f">Computational function</xref>
+              <xref linkend="Computationalfunction_CONSTRAINT_c">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors_CONSTRAINT_f">Authors</xref>
+              <xref linkend="Authors_CONSTRAINT_c">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette_CONSTRAINT_f">
+  <refsection id="Palette_CONSTRAINT_c">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,19 +95,19 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description_CONSTRAINT_f">
+  <refsection id="Description_CONSTRAINT_c">
     <title>Description</title>
     <para>
 Defines implicit algebraic relations.
 
 </para>
   </refsection>
-  <refsection id="Dialogbox_CONSTRAINT_f">
+  <refsection id="Dialogbox_CONSTRAINT_c">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/CONSTRAINT_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/gui/CONSTRAINT_c_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -124,7 +124,7 @@ Defines implicit algebraic relations.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Defaultproperties_CONSTRAINT_f">
+  <refsection id="Defaultproperties_CONSTRAINT_c">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -178,15 +178,15 @@ Defines implicit algebraic relations.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacingfunction_CONSTRAINT_f">
+  <refsection id="Interfacingfunction_CONSTRAINT_c">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Misc/CONSTRAINT_f.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/Misc/CONSTRAINT_c.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computationalfunction_CONSTRAINT_f">
+  <refsection id="Computationalfunction_CONSTRAINT_c">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ Defines implicit algebraic relations.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors_CONSTRAINT_f">
+  <refsection id="Authors_CONSTRAINT_c">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
