@@ -95,6 +95,13 @@ trigger a warning and do not add a link on the function name.
 
 * In the documentation, Java, C, C++ and XML codes are now colorized if the role
   in programlisting is set (role='java', role='c', role='cpp' or role='xml')
+  
+* The categories "Bitwise", "Elementary matrices", "Matrix manipulation", 
+  "Matrix operations", "Set operations", "Signal processing", "Symbolic", 
+  "Search and sort" have been created for the elementary functions module.
+  
+* Help pages for the bitxor, bitcmp, bitget and bitset have been 
+  created.
 
 * bug 3716 fixed - No way to search a word in the right area.
 
@@ -108,6 +115,8 @@ trigger a warning and do not add a link on the function name.
 
 * bug 8463 fixed - scilab PDF (fr_FR and pt_BR) were not fully generated.
 
+* bug 8677 fixed - The factorial function was not documented.
+
 * bug 8690 fixed - Typo fixed in the french min help page.
 
 * bug 8756 fixed - The file id was expected only in refentry.
@@ -115,7 +124,6 @@ trigger a warning and do not add a link on the function name.
 * bug 8915 fixed - ASCII art removed in histplot help page.
 
 * bug 8937 fixed - The tag <screenshot> was not handled.
-
 
 Scinotes:
 =========
