@@ -72,6 +72,10 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sci$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -285,7 +289,6 @@ lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT
     <ClInclude Include="..\..\includes\InitializeConsole.h" />
     <ClInclude Include="..\..\includes\PromptToHome.h" />
     <ClInclude Include="..\cpp\PromptToHome.hxx" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\includes\ScilabLinesUpdate.h" />
     <ClInclude Include="..\cpp\ScilabLinesUpdate.hxx" />
     <ClInclude Include="..\..\includes\SetConsolePrompt.h" />

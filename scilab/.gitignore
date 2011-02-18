@@ -92,6 +92,7 @@ modules/*/sci_gateway/fortran/*.c
 *.opensdf
 *.sdf
 *.old
+ipch
 _UpgradeReport_Files/
 UpgradeLog.XML
 Visual-Studio-settings/f2c.props

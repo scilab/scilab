@@ -385,6 +385,9 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
+    <Library Include="..\..\..\..\bin\scicos_blocks_f.lib" />
+    <Library Include="..\..\..\..\bin\scicos_f.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
@@ -399,16 +402,8 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 
       <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\elementary_functions_f2c.vcxproj">
-      <Project>{dbc45b0d-6e0a-4107-b284-5a3b0c5bb50d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\scicos_blocks\src\c\scicos_blocks.vcxproj">
       <Project>{70f677f1-b535-4d0f-a16f-5093b799a540}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\scicos_blocks\src\fortran\scicos_blocks_f2c.vcxproj">
-      <Project>{2f7b6080-8d84-43a7-a967-13fc8aa83deb}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\time\time.vcxproj">
@@ -417,10 +412,6 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 
     </ProjectReference>
     <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\fortran\scicos_f2c.vcxproj">
-      <Project>{566e524b-d327-4416-a865-9c83503fab7b}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\scicos_sundials\scicos_sundials.vcxproj">

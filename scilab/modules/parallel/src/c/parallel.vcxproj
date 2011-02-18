@@ -19,14 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0AEC8745-BB5B-4E66-A59A-7251412C3605}</ProjectGuid>
-    <RootNamespace>libmex</RootNamespace>
+    <ProjectGuid>{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}</ProjectGuid>
+    <RootNamespace>parallel</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -35,6 +36,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -75,36 +77,29 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <OpenMPSupport>true</OpenMPSupport>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
-      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <DisableSpecificWarnings>4800;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
-      <Command>cd $(IntDir) &gt; nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
-copy *.def ..\libmextemp.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-copy *.def libmex.def &gt;nul
-del libmextemp.def &gt;nul
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>libmex.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(Configuration)/libmex.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
@@ -113,6 +108,10 @@ del libmextemp.def &gt;nul
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -120,36 +119,29 @@ del libmextemp.def &gt;nul
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <OpenMPSupport>true</OpenMPSupport>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
-      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <DisableSpecificWarnings>4800;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
-      <Command>cd $(IntDir) &gt; nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
-copy *.def ..\libmextemp.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-copy *.def libmex.def &gt;nul
-del libmextemp.def &gt;nul
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>libmex.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(Configuration)/libmex.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
@@ -158,38 +150,45 @@ del libmextemp.def &gt;nul
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <OpenMPSupport>true</OpenMPSupport>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <DisableSpecificWarnings>4800;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
-      <Command>cd $(IntDir) &gt; nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
-copy *.def ..\libmextemp.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-copy *.def libmex.def &gt;nul
-del libmextemp.def &gt;nul
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>libmex.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
@@ -197,40 +196,47 @@ del libmextemp.def &gt;nul
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../../libs/MALLOC/includes;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <OpenMPSupport>true</OpenMPSupport>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <DisableSpecificWarnings>4800;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
-      <Command>cd $(IntDir) &gt; nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
-copy *.def ..\libmextemp.def &gt;nul
-del *.def &gt;nul
-cd .. &gt;nul
-copy *.def libmex.def &gt;nul
-del libmextemp.def &gt;nul
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libintl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>libmex.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
@@ -238,62 +244,71 @@ del libmextemp.def &gt;nul
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\c\mexlib.c" />
-    <ClCompile Include="..\c\sci_gateway.c" />
+    <ClCompile Include="DllmainParallel.c" />
+    <ClCompile Include="forkWindows.c" />
+    <ClCompile Include="..\..\sci_gateway\c\gw_parallel.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_parallel_concurrency.c" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_parallel_run.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_SCL_SECURE_NO_WARNINGS  ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4800;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_SCL_SECURE_NO_WARNINGS  ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4800;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">_SCL_SECURE_NO_WARNINGS  ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4800;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">_SCL_SECURE_NO_WARNINGS  ;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4800;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\mex.h" />
-    <ClInclude Include="..\..\includes\sci_gateway.h" />
+    <ClInclude Include="..\..\includes\concurrency.h" />
+    <ClInclude Include="..\..\includes\dynlib_parallel.h" />
+    <ClInclude Include="forkWindows.h" />
+    <ClInclude Include="..\..\includes\gw_parallel.h" />
+    <ClInclude Include="..\cpp\parallel_run.hxx" />
+    <ClInclude Include="semWindows.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="libmex.rc" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\parallel.iss" />
+    <None Include="..\..\sci_gateway\parallel_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\LibScilab.lib" />
+    <ResourceCompile Include="parallel.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\mexlib.iss" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\LibScilab\LibScilab.vcxproj">
-      <Project>{64bc155e-292f-484f-9404-76ee6ae67a43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
       <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
-      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+    <ProjectReference Include="..\..\..\..\Visual-Studio-settings\rename-vc-files\rename-vc-files.vcxproj">
+      <Project>{dd8a0506-8d31-4cf8-856a-c10ece9c13a4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\data_structures\src\c\data_structures.vcxproj">
-      <Project>{b7a168a0-dfc0-4c6d-b0cc-6079912a4a76}</Project>
+    <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
-      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\io\src\c\io.vcxproj">
-      <Project>{80c0f142-184b-4e08-a8ee-5e71437cf904}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
-      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    <ProjectReference Include="..\..\..\dynamic_link\src\c\dynamic_link.vcxproj">
+      <Project>{eab6c580-22b3-4359-ba1d-dd7499a96163}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\string\src\c\string.vcxproj">
-      <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
+    <ProjectReference Include="..\..\..\parameters\parameters.vcxproj">
+      <Project>{a09e8584-0713-48a5-97ba-aced0f3728f8}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
+      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

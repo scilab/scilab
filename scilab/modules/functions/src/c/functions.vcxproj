@@ -262,7 +262,6 @@ lib /DEF:"$(ProjectDir)functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /
     <ClInclude Include="..\..\includes\gw_functions.h" />
     <ClInclude Include="..\..\includes\librarieslist.h" />
     <ClInclude Include="..\..\includes\libraryinfo.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="searchmacroinlibraries.h" />
   </ItemGroup>
   <ItemGroup>

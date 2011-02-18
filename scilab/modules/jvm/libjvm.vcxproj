@@ -302,7 +302,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /
     <ClInclude Include="includes\loadBackGroundClassPath.h" />
     <ClInclude Include="src\c\loadClasspath.h" />
     <ClInclude Include="src\c\loadLibrarypath.h" />
-    <ClInclude Include="src\c\resource.h" />
     <ClInclude Include="src\c\system_getproperty.h" />
     <ClInclude Include="src\c\system_setproperty.h" />
     <ClInclude Include="includes\TerminateJVM.h" />

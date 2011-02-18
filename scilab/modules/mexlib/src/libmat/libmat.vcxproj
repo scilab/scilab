@@ -255,12 +255,13 @@ del libmattemp.def &gt;nul
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
     <Library Include="..\..\..\..\bin\lapack.lib" />
     <Library Include="..\..\..\..\bin\LibScilab.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\LibScilab\LibScilab_f2c.vcxproj">
-      <Project>{8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942}</Project>
+    <ProjectReference Include="..\..\..\..\libs\LibScilab\LibScilab.vcxproj">
+      <Project>{64bc155e-292f-484f-9404-76ee6ae67a43}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
@@ -273,10 +274,6 @@ del libmattemp.def &gt;nul
     </ProjectReference>
     <ProjectReference Include="..\..\..\data_structures\src\c\data_structures.vcxproj">
       <Project>{b7a168a0-dfc0-4c6d-b0cc-6079912a4a76}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\elementary_functions_f2c.vcxproj">
-      <Project>{dbc45b0d-6e0a-4107-b284-5a3b0c5bb50d}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">

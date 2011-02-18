@@ -265,7 +265,6 @@
     <ClInclude Include="..\..\includes\h5_readDataFromFile.h" />
     <ClInclude Include="..\..\includes\h5_writeDataToFile.h" />
     <ClInclude Include="..\jni\jhdf5load.hxx" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LibScilab_Import.def" />

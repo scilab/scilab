@@ -261,7 +261,6 @@ lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X6
     <ClInclude Include="..\..\includes\GetFunctionByName.h" />
     <ClInclude Include="..\..\includes\gw_dynamic_link.h" />
     <ClInclude Include="..\..\includes\ilib_verbose.h" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\en_US\dynamic_link.pot" />

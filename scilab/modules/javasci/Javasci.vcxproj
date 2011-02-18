@@ -234,7 +234,6 @@
     <ClInclude Include="includes\javasci_Scilab.h" />
     <ClInclude Include="includes\javasci_Scilab2.h" />
     <ClInclude Include="includes\javasci_SciStringArray.h" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="javasci.rc" />
@@ -244,8 +243,8 @@
     <None Include="Makefile.am" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\LibScilab\LibScilab_f2c.vcxproj">
-      <Project>{8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942}</Project>
+    <ProjectReference Include="..\..\libs\LibScilab\LibScilab.vcxproj">
+      <Project>{64bc155e-292f-484f-9404-76ee6ae67a43}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">

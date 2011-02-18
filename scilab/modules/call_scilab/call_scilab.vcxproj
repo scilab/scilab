@@ -242,7 +242,6 @@
     <ClInclude Include="src\c\fromc.h" />
     <ClInclude Include="includes\fromjava.h" />
     <ClInclude Include="includes\gw_call_scilab.h" />
-    <ClInclude Include="src\c\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\call_scilab.rc" />

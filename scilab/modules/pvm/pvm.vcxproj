@@ -278,7 +278,6 @@
   <ItemGroup>
     <ClInclude Include="includes\dynlib_pvm.h" />
     <ClInclude Include="includes\gw_pvm.h" />
-    <ClInclude Include="src\c\resource.h" />
     <ClInclude Include="src\c\sci_pvm.h" />
   </ItemGroup>
   <ItemGroup>
@@ -313,10 +312,9 @@
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\sparse\src\fortran\sparse_f2c.vcxproj">
-      <Project>{13082624-97f9-47db-a9a1-ad7d6bf3856a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\sparse_f.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

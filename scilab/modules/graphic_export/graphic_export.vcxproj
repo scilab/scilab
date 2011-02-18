@@ -72,6 +72,10 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sci$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -272,7 +276,6 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT
     <ClInclude Include="src\cpp\exportToFile.hxx" />
     <ClInclude Include="src\jni\FileExporter.hxx" />
     <ClInclude Include="src\cpp\GL2PSConstant.hxx" />
-    <ClInclude Include="C:\Documents and Settings\koumar\Desktop\GL2PSToJOGL\GL2PSToJOGL\GL2PSToJOGL.hxx" />
     <ClInclude Include="src\cpp\GL2PSWrapping.hxx" />
     <ClInclude Include="src\jni\JOGLConstant.hxx" />
   </ItemGroup>

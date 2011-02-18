@@ -72,6 +72,8 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sci$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -382,7 +384,6 @@
     <ClInclude Include="..\cpp\CallFontChooser.hxx" />
     <ClInclude Include="..\..\includes\CallHelpBrowser.h" />
     <ClInclude Include="..\cpp\CallHelpBrowser.hxx" />
-    <ClInclude Include="CallJuigetfile.hxx" />
     <ClInclude Include="..\..\includes\CallJxclick.h" />
     <ClInclude Include="..\cpp\CallJxclick.hxx" />
     <ClInclude Include="..\..\includes\CallJxgetmouse.h" />
@@ -489,7 +490,6 @@
     <ClInclude Include="..\..\includes\RadioButton.h" />
     <ClInclude Include="..\cpp\RadioButton.hxx" />
     <ClInclude Include="..\jni\ScilabDisplayTree.hxx" />
-    <ClInclude Include="setlookandfeel.h" />
     <ClInclude Include="setMainWindowTitle.h" />
     <ClInclude Include="..\..\includes\SetUicontrolBackgroundColor.h" />
     <ClInclude Include="..\cpp\SetUicontrolBackgroundColor.hxx" />

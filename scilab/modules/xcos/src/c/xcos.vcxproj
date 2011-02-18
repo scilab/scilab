@@ -258,7 +258,6 @@
     <ClInclude Include="..\..\includes\gw_xcos.h" />
     <ClInclude Include="..\jni\Modelica.hxx" />
     <ClInclude Include="..\jni\Palette.hxx" />
-    <ClInclude Include="..\jni\Signal.hxx" />
     <ClInclude Include="..\jni\Xcos.hxx" />
   </ItemGroup>
   <ItemGroup>

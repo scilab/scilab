@@ -260,6 +260,7 @@
     <ResourceCompile Include="statistics.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="..\..\..\..\bin\dcd_f.lib" />
     <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
   <ItemGroup>
@@ -273,10 +274,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\dcdflib\dcd_f\dcd_f2c.vcxproj">
-      <Project>{18f043da-1db5-464f-b67d-cf1c23be7ea0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

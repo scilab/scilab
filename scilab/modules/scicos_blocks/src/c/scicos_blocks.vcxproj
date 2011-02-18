@@ -99,10 +99,11 @@ lib /DEF:"$(ProjectDir)Linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)Render_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>
@@ -145,10 +146,11 @@ lib /DEF:"$(ProjectDir)Linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)Render_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>
@@ -191,10 +193,11 @@ lib /DEF:"$(ProjectDir)Linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)Render_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -242,10 +245,11 @@ lib /DEF:"$(ProjectDir)Linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)Render_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)scirenderer.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -603,11 +607,13 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"
     <ClInclude Include="..\..\includes\scoWindowScope.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="elementary_functions_f_Import.def" />
     <None Include="fileio_Import.def" />
     <None Include="graphics_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="Linear_algebra_f_Import.def" />
     <None Include="Output_stream_Import.def" />
+    <None Include="polynomials_f_Import.def" />
     <None Include="Render_Import.def" />
     <None Include="scicos_blocks_f_Import.def" />
     <None Include="Scicos_Import.def" />
@@ -633,10 +639,6 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\elementary_functions_f2c.vcxproj">
-      <Project>{dbc45b0d-6e0a-4107-b284-5a3b0c5bb50d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -649,10 +651,6 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\polynomials\src\fortran\polynomials_f2c.vcxproj">
-      <Project>{3a72c3ed-98f7-49c7-b59c-2c6c47ff9390}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\scicos\src\scicos_sundials\scicos_sundials.vcxproj">
       <Project>{c781737a-7c97-4cf9-acbc-f68c2bbf0ffa}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -663,10 +661,6 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"
     </ProjectReference>
     <ProjectReference Include="..\..\..\xcos\src\c\xcos.vcxproj">
       <Project>{494fa8c9-6c85-4175-be4c-9a113c7a3278}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\fortran\scicos_blocks_f2c.vcxproj">
-      <Project>{2f7b6080-8d84-43a7-a967-13fc8aa83deb}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

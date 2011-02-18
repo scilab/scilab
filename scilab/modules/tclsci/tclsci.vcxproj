@@ -277,7 +277,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X6
     <ClInclude Include="includes\GlobalTclInterp.h" />
     <ClInclude Include="includes\gw_tclsci.h" />
     <ClInclude Include="includes\InitializeTclTk.h" />
-    <ClInclude Include="src\c\resource.h" />
     <ClInclude Include="includes\ScilabEval.h" />
     <ClInclude Include="src\c\setvar.h" />
     <ClInclude Include="src\c\TCL_ArrayDim.h" />

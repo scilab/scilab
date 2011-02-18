@@ -252,7 +252,6 @@
     <ClInclude Include="src\c\ripole\ole.h" />
     <ClInclude Include="src\c\ripole\olestream-unwrap.h" />
     <ClInclude Include="src\c\ripole\pldstr.h" />
-    <ClInclude Include="src\c\resource.h" />
     <ClInclude Include="src\c\ripole\ripole.h" />
     <ClInclude Include="src\c\xls.h" />
   </ItemGroup>

@@ -72,6 +72,10 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sci$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -261,7 +265,6 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X6
     <ClInclude Include="..\..\includes\getmacrosdictionary.h" />
     <ClInclude Include="..\..\includes\getPartLine.h" />
     <ClInclude Include="..\..\includes\gw_completion.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="toolsdictionary.h" />
   </ItemGroup>
   <ItemGroup>

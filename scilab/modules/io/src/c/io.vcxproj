@@ -264,7 +264,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X6
     <ClInclude Include="..\..\includes\getenvc.h" />
     <ClInclude Include="getpidc.h" />
     <ClInclude Include="..\..\includes\gw_io.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\includes\setenvc.h" />
     <ClInclude Include="systemc.h" />
     <ClInclude Include="v2cuniterror.h" />

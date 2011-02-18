@@ -239,7 +239,6 @@
     <ClInclude Include="..\..\includes\dynlib_helptools.h" />
     <ClInclude Include="..\jni\GiwsException.hxx" />
     <ClInclude Include="..\..\includes\gw_helptools.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="..\jni\SciDocMain.hxx" />
   </ItemGroup>
   <ItemGroup>
