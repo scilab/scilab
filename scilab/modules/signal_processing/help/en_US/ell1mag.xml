@@ -65,8 +65,8 @@ z=alpha*%asn(sample/omegac,m)+Beta*ones(sample);
 plot(sample,ell1mag(epsilon,m1,z))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="buttmag">buttmag</link>

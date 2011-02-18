@@ -629,7 +629,7 @@ msgstr "Propietats dels &eixos"
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "&Base de dades d'errors i consultes"
 
 msgid "&Change current directory..."
@@ -782,7 +782,7 @@ msgstr ""
 msgid "&Vectorial export"
 msgstr "Exportació &vectorial"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "&Enllaços"
 
 msgid "&Xcos"

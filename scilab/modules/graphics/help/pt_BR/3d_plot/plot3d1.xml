@@ -374,8 +374,8 @@ plot3d1(xx,yy,zz) // os dois gráficos são similares
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="plot3d">plot3d</link></member>

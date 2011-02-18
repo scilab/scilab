@@ -42,8 +42,8 @@
     "exec" ou "execstr" si l'instruction est dans un script ou dans une chaîne argument de execstr.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="whereami">whereami</link>

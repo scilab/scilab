@@ -44,8 +44,8 @@
     <para>
     returns the matrix of highest degrees of <literal>M</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

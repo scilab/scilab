@@ -28,8 +28,8 @@
     <para>You can use the scroll bar to see the history of previous functions.</para>
     <para>Note that <literal>tohome()</literal> cannot be used under Windows platforms when Scilab used in no window mode.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="clc">clc</link>

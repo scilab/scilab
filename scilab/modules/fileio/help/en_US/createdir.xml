@@ -41,8 +41,8 @@ createdir(SCIHOME+'/Directory_test')
 removedir(SCIHOME+'/Directory_test')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mkdir">mkdir</link>

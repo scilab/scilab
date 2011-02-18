@@ -30,8 +30,8 @@ level-int=debug()</synopsis>
     sont ciblés sur le déboggage de l'interpréteur et non des scripts Scilab,
     et sont dédiés aux experts de Scilab.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

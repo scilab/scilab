@@ -7,9 +7,12 @@
 // are also available at;
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 function datatipRemoveAll(curve_handles)
 //remove all the datatips for the given curves
+  if argn(2)<1 then
+    error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"datatipRemoveAll",1))
+  end
+
   drawlater()
 
   for k=1:size(curve_handles,'*')

@@ -211,8 +211,8 @@ gam=111.30;
 [AK,BK,CK,DK] = dhinf(A,B,C,D,ncon,nmeas,gam)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hinf">hinf</link>

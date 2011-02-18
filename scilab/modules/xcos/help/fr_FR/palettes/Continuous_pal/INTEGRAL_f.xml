@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="INTEGRAL_f"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>INTEGRAL_f</refname>
+
+    <refpurpose>Intégration</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/INTEGRAL_f.png"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_INTEGRAL_f">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_f">Intégration</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_INTEGRAL_f">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_INTEGRAL_f">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_INTEGRAL_f">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_INTEGRAL_f">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_INTEGRAL_f">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_INTEGRAL_f">Fonction de calcul</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_INTEGRAL_f">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Continuous_pal">Palette Systèmes à temps continu</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_INTEGRAL_f">
+    <title>Description</title>
+
+    <para>Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.</para>
+  </refsection>
+
+  <refsection id="Dialogbox_INTEGRAL_f">
+    <title>Boîte de dialogue</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/gui/INTEGRAL_f_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Initial Condition</emphasis>
+        </para>
+
+        <para>Un scalaire qui donne les conditions initiales.</para>
+
+        <para>Propriétés Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_INTEGRAL_f">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis>oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis>non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">integr</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_INTEGRAL_f">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Linear/INTEGRAL_f.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_INTEGRAL_f">
+    <title>Fonction de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/fortran/integr.f (Type 0)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

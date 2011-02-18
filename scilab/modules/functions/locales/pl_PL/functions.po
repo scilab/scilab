@@ -170,7 +170,7 @@ msgstr ""
 "funkcji Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: Oczekiwano "
 "wartości całkowitej.\n"
@@ -221,7 +221,7 @@ msgid "Exit"
 msgstr "Wyjście"
 
 #, c-format
-msgid "Function %s is obsolete."
+msgid "Feature %s is obsolete."
 msgstr "Funkcja %s jest zdezaktualizowana."
 
 #, c-format
@@ -245,7 +245,7 @@ msgid "Please use %s instead."
 msgstr "Proszę w zamian użyć %s."
 
 #, c-format
-msgid "This function will be permanently removed in Scilab %s"
+msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Ta funkcja zostanie na stałe usunięta w Scilab %s"
 
 msgid "Tools"

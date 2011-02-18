@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="CLSS"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>CLSS</refname>
+
+    <refpurpose>Représentation d'état en temps continu</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/CLSS.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_CLSS">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="CLSS">Représentation d'état en temps continu</link></para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para><xref linkend="Palette_CLSS">Palette</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Description_CLSS">Description</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Dialogbox_CLSS">Boîte de dialogue</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Defaultproperties_CLSS">Propriétés par défaut</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Interfacingfunction_CLSS">Fonction d'interfaçage</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Computationalfunction_CLSS">Fonction de calcul</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Example_CLSS">CLSS Example</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Authors_CLSS">Auteurs</xref></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_CLSS">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="Continuous_pal">Palette Systèmes à temps continu
+        palette</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_CLSS">
+    <title>Description</title>
+
+    <para>Ce bloc réalise une représentation d'état linéaire en temps continu</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/CLSS_eq.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>où <emphasis role="bold">x</emphasis> est le vecteur  des
+    variables d'état, <emphasis role="bold">u</emphasis> le vecteur des fonctions d'entrée et
+    <emphasis role="bold">y</emphasis> le vecteur des variables de sortie.</para>
+
+    <para>Le système est défini par les matrices <emphasis role="bold">(A, B, C, D)</emphasis> et l'état initial  <emphasis role="bold">X0</emphasis>.
+	Les dimensions doivent être compatibles.</para>
+  </refsection>
+
+  <refsection id="Dialogbox_CLSS">
+    <title>Boîte de dialogue</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/gui/CLSS_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">A matrix</emphasis></para>
+
+        <para>La matrice carrée <emphasis role="bold">A</emphasis>.</para>
+
+        <para>Propriétés Type 'mat' de taille [-1,-1].</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">B matrix</emphasis></para>
+
+        <para>La matrice <emphasis role="bold">B</emphasis> , [] Ssi le système n'a pas d'entrées.</para>
+
+        <para>Propriétés Type 'mat' de taille ["size(%1,2)","-1"].</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">C matrix</emphasis></para>
+
+        <para>La matrice <emphasis role="bold">C</emphasis>, [] si le système n'a pas de sorties.</para>
+
+        <para>Propriétés Type 'mat' de taille ["-1","size(%1,2)"].</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">D matrix</emphasis></para>
+
+        <para>La matrice <emphasis role="bold">D</emphasis>, [] si le système n'a pas de terme D.</para>
+
+        <para>Propriétés Type 'mat' de taille [-1,-1].</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Initial state</emphasis></para>
+
+        <para>Un vecteur/scalaire : l'état initial du système.</para>
+
+        <para>Propriétés Type 'vec' de taille "size(%1,2)".</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_CLSS">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">regular inputs:</emphasis></para>
+
+        <para><emphasis role="bold">- port 1 : size [1,1] / type
+        1</emphasis></para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">regular outputs:</emphasis></para>
+
+        <para><emphasis role="bold">- port 1 : size [1,1] / type
+        1</emphasis></para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis>oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis>non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">name of computational function:</emphasis>
+        <emphasis role="italic">csslti4</emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_CLSS">
+    <title>CLSS : Exemple</title>
+
+    <para>Cet exemple illustre l'utilisation du bloc CLSS pour simuler et afficher
+    la forme d'onde en sortie <emphasis
+    role="bold">y(t)=Vc(t)</emphasis> du circuit RLC ci-dessous.</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/clss_d1.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Les équations pour un circuit RLC sont les suivantes. Elles résultent des lois en tension
+    de Kirchhoff's et de la loi de Newton.</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/CLSS_eq2.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>R, L et C sont les résistance, inductance et capacité du système.</para>
+
+    <para>Nous définissons la tension aux bornes de la capacité <literal>Vc</literal> et le courant
+    dans l'inductance <literal>iL</literal> comme variables d'état
+    <literal>X1</literal> et <literal>X2.</literal></para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/CLSS_eq3.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>thus</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/CLSS_eq4.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>En réarrangeant ces équations on obtient :</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/CLSS_eq5.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Ces équations peuvent être mises sous forme d'un système matriciel comme suit ,</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/CLSS_eq6.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>L'équation de sortie requise est :</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/CLSS_eq1.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Le schéma suivant montre ces équations modéllisées dans Xcos où
+    R=10Ω, L=5 mΗ et C=0,1µF; Les états initiaux  sont x1=0 et x2=0,5.</para>
+
+    <para>Pour obtenir la sortie Vc(t) on utilise le bloc CLSS de la palette Systèmes à temps continu.</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/clss_d.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Interfacingfunction_CLSS">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Linear/CLSS.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_CLSS">
+    <title>Fonction de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/csslti4.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_CLSS">
+    <title>Auteurs</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Zhour Madini-Zouine</emphasis>
+        DIGITEO</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

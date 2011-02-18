@@ -45,8 +45,8 @@
     <para>
     mputstr function allows to write a character string  in a binary file.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>

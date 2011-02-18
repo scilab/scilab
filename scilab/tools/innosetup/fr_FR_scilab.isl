@@ -133,12 +133,11 @@ fr_FR.DownloadMKLDescription =Merci de patienter durant le telechargement de fic
 ;
 fr_FR.DownloadMKLFFTWLabel =Telechargement de la librairie FFTW3 optimisée par Intel Math Kernel Library.
 ;
-fr_FR.DoTasksJustAfterInstallMsg1 =Certains fichiers telecharges ont un mauvais MD5 checksum.
-fr_FR.DoTasksJustAfterInstallMsg2 =Les librairies Blas, lapack de reference seront installes.
-fr_FR.DoTasksJustAfterInstallMsg3 =La librairie FFTW3 de reference sera installée.
+fr_FR.DoTasksJustAfterInstallMsg2 =Les bibliothèques de référence BLAS, LAPACK seront installées et utilisées.
+fr_FR.DoTasksJustAfterInstallMsg3 =La bibliothèque de référence FFTW3 sera installée et utilisée.
 ;
-fr_FR.NextButtonClickwpReadyMsg1 =Impossible de telecharger les fichiers Intel Math Kernel Library pour Scilab.
-fr_FR.NextButtonClickwpReadyMsg2 =Impossible de telecharger la librairie FFTW3 optimisée par Intel Math Kernel Library.
+fr_FR.NextButtonClickwpReadyMsg1 =Il a été impossible de télécharger la bibliothèque Intel Math Kernel pour Scilab (La bibliothèque par défaut sera utilisée).
+fr_FR.NextButtonClickwpReadyMsg2 =Il a été impossible de télécharger la bibliothèque FFTW3 optimisée par Intel Math Kernel Library (La bibliothèque par défaut sera utilisée).
 ;
 fr_FR.DescriptionAtoms =ATOMS
 ;

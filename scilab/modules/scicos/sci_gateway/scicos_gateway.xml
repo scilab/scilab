@@ -58,4 +58,5 @@
 <PRIMITIVE gatewayId="45" primitiveId="31" primitiveName="model2blk" />
 <PRIMITIVE gatewayId="45" primitiveId="32" primitiveName="callblk" />
   <!-- =================== -->
+<PRIMITIVE gatewayId="45" primitiveId="33" primitiveName="loadScicos" />
 </GATEWAY>

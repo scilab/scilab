@@ -56,8 +56,8 @@ or([%t %t %f])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline"> 
       <member><link linkend="or_op">opérateur logique ou (|)</link></member>

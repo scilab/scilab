@@ -586,7 +586,7 @@ msgstr "&Voreinstellungen der Achsen"
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "&Fehler und Anfrage Datenbank"
 
 msgid "&Change current directory..."
@@ -739,7 +739,7 @@ msgstr "&Variablen-Browser"
 msgid "&Vectorial export"
 msgstr "&Vektorielles Exportieren"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "&Web Verweise"
 
 msgid "&Xcos"

@@ -50,8 +50,8 @@
     <para><literal>getcallbackobject</literal> must not be used directly out of a Java callback.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="gcbo">gcbo</link></member>

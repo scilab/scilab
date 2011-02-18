@@ -27,8 +27,8 @@
     <para>Returns <literal>%t</literal> if Scilab is called from javasci or <literal>%f</literal> if not.</para>
   </refsection>
 
-   <refsection>
-    <title>See Also</title>
+   <refsection role="see also">
+<title>See Also</title>
      <simplelist type="inline">
       <member>
 	<link linkend="call_scilab">Call_Scilab</link>

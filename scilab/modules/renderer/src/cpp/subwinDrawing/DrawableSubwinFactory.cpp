@@ -102,6 +102,11 @@ void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
 
   // box drawing
   subwin->removeAxesBoxDrawers();
+  if (sciGetIsFilled(pSubwin))
+  {
+    subwin->addAxesBoxDrawer(new SubwinBackgroundDrawerJoGL(subwin));
+  }
+
   switch(sciGetBoxType(pSubwin))
   {
   case BT_HIDDEN_AXES:
@@ -116,11 +121,6 @@ void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
   case BT_OFF:
   default:
     break;
-  }
-
-  if (sciGetIsFilled(pSubwin))
-  {
-    subwin->addAxesBoxDrawer(new SubwinBackgroundDrawerJoGL(subwin));
   }
 
   // ticks computation

@@ -80,8 +80,8 @@ xs2bmp(0,'foo.bmp');
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="xs2gif">xs2gif</link></member>

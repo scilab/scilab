@@ -147,7 +147,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_file.c, line: 461
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 #
 # File: macros/unix_s.sci, line: 44

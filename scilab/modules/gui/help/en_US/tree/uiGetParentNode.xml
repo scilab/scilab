@@ -13,7 +13,8 @@ parentNode = uiGetParentNode(treeRoot, node1)
 // will return 'parentNode = root'
 // Search parent node of 'leaf31'
 parentNode = uiGetParentNode(treeRoot, leaf31)
-// will return 'parentNode = node3' ]]></programlisting>  </refsection>  <refsection>    <title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
+// will return 'parentNode = node3' ]]></programlisting>  </refsection>  <refsection role="see also">
+<title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
       <member>        <link linkend="uiDisplayTree">uiDisplayTree</link>       </member>      <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>
       <member>        <link linkend="uiInsertNode">uiInsertNode</link>       </member>
       <member>        <link linkend="uiDeleteNode">uiDeleteNode</link>       </member>

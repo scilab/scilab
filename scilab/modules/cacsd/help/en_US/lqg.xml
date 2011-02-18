@@ -58,8 +58,8 @@
     is the controller gain and <literal>Kf=lqe(P21)</literal> is the filter gain.
     See example in <literal>lqg2stan</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lqg2stan">lqg2stan</link>

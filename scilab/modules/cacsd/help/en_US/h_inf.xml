@@ -85,8 +85,8 @@
     Algorithm is adapted from Safonov-Limebeer. Note that <literal>P</literal> is assumed to be 
     a continuous-time plant.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gamitg">gamitg</link>

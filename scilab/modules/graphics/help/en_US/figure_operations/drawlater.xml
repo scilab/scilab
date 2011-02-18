@@ -77,8 +77,8 @@ draw(a) // ...axes only is visible providing you not redraw the window
 drawnow() // all is visible
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>

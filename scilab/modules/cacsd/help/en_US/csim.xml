@@ -109,8 +109,8 @@ deff('u=input(t)','u=abs(sin(t))')
 clf();plot2d([t',t'],[(csim(input,t,w))',0*t'])
 ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

@@ -88,9 +88,10 @@
   <refsection id="Description_VariableResistor">
     <title>Description</title>
     <para>
-This component represents a variable ohmic resistor. The resistance
- () is controlled via an explicit input port.
-</para>
+      This component represents a variable ohmic resistor. The resistance
+      (<emphasis role="bold"><emphasis>Rx</emphasis></emphasis>) is controlled
+      via an explicit input port.
+    </para>
     <para>
 </para>
     <para>
@@ -110,22 +111,13 @@ This component represents a variable ohmic resistor. The resistance
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'
-</para>
-            <para>
-Implicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
           </listitem>
+
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'R'
-</para>
-            <para>
-Explicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'R'</para>
+            <para>Explicit <emphasis role="bold">variable.</emphasis></para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -135,13 +127,8 @@ Explicit <emphasis role="bold">variable.</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'
-</para>
-            <para>
-Implicit <emphasis role="bold">variable.</emphasis>
-
-
-</para>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'</para>
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
           </listitem>
         </itemizedlist>
       </listitem>

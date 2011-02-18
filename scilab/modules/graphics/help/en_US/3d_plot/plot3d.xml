@@ -673,8 +673,8 @@ h.z_ticks = tlist(['ticks','locations','labels'],[-1,0,1],['Point 1','Point 2','
     <para></para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="eval3dp">eval3dp</link></member>

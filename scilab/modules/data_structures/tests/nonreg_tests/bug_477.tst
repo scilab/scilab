@@ -33,15 +33,15 @@
 //                     !--error    78
 // ...
 
-a   = hypermat([3,3,1],1:9);
-[m] = max(a);
+a   = hypermat([1,3,3],1:9);
+if max(a)<>9 then pause,end
 
 result = execstr("[n,i]=max(a)","errcatch","n");
 
 if result <> 0 then pause,end
 
 if result == 0 then
-   if execstr("[m,i,j,k]=max(a)","errcatch","n") <> 78 then pause,end
-   if m<>n then pause,end
-   if or(i<>[3,3,1]) then pause,end
+   if n<>9 then pause,end
+   if or(i<>[1,3,3]) then pause,end        
 end
+if execstr("[m,i,j,k]=max(a)","errcatch","n") <> 78 then pause,end

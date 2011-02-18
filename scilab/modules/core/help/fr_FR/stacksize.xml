@@ -49,8 +49,8 @@ stacksize('max')</synopsis>
     utilisée.</para>
     <para>Pour les plateformes 64 bit, la taille maximale de la pile est limitée à 268435454.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="who">who</link>

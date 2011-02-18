@@ -29,8 +29,8 @@
     <para><literal>%helps(k,2)</literal> is a title for this help directory.</para>
      <para> To add a new help directory, the user should use <literal>add_help_chapter</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="add_help_chapter">add_help_chapter</link>

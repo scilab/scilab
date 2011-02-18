@@ -48,8 +48,8 @@
     Si <literal>flag=1</literal> une croix est dessinée aux points sélectionnés.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xclick">xclick</link>

@@ -59,8 +59,8 @@
     La valeur par défaut de <literal>w</literal> est <literal> eye(v)</literal>. Dans ce cas le vecteur <literal> (eye()-2*u*u')*v</literal> est égal à <literal> eye(v)*norm(v)</literal>.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="qr">qr</link>

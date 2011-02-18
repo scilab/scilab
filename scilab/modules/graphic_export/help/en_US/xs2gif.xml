@@ -94,8 +94,8 @@ xs2gif(gcf(),'foo.gif');
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="xs2bmp">xs2bmp</link></member>

@@ -52,8 +52,8 @@ dos('taskkill /IM notepad.exe') // Caution, this command will kill all launched 
 [s, w, code] = dos('foo')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="unix">unix</link>

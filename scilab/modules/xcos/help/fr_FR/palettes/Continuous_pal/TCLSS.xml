@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="TCLSS"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>TCLSS</refname>
+    <refpurpose>Système continu linéaire avec saut</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/TCLSS.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_TCLSS">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="TCLSS">Système continu linéaire avec saut</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_TCLSS">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_TCLSS">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_TCLSS">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_TCLSS">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_TCLSS">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_TCLSS">Fonction de calcul</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_TCLSS">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Continuous_pal">Palette Systèmes à temps continu</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_TCLSS">
+    <title>Description</title>
+    <para>
+      Ce bloc réalise une représentation d'état d'un système continu linéaire
+      avec la possibilité de sauts dans les états. Le nombre d'entrées de ce
+      bloc est de deux. La première entrée est l'entrée régulière du système linéaire,
+      la seconde transporte la nouvelle valeur de l'état qui est copié
+      dans l'état du système quand un événement se produit sur l'unique port d'entrée d'activation de ce bloc.
+      Ce qui signifie que l'état du système saute à la valeur présente sur la seconde entrée
+      (de taille égale à celle de l'état). Le système est défini par les matrices et l'état initial.
+      Les dimensions doivent être compatibles. Les tailles des entrées et sorties sont ajustées automatiquement.
+
+</para>
+  </refsection>
+  <refsection id="Dialogbox_TCLSS">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/gui/TCLSS_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">A matrix</emphasis>
+        </para>
+        <para> La matrice carrée <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>.
+	</para>
+        <para> Propriétés Type 'mat' de taille [-1,-1]. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">B matrix</emphasis>
+        </para>
+        <para> La matrice <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>, [] si le système n'a pas d'entrées.</para>
+        <para> Propriétés Type 'mat' de taille ["size(%1,2)","-1"]. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">C matrix</emphasis>
+        </para>
+        <para> La matrice <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img7_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>, [] si le système n'a pas de sorties.</para>
+        <para> Propriétés Type 'mat' de taille ["-1","size(%1,2)"]. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">D matrix</emphasis>
+        </para>
+        <para> La matrice <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img8_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>, [] si le système n'a pas de terme D.</para>
+        <para> Propriétés Type 'mat' de taille [-1,-1]. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Initial state</emphasis>
+        </para>
+        <para> Un vecteur/scalaire : l'état initial du système.</para>
+        <para> Propriétés Type 'vec' de taille "size(%1,2)". </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Defaultproperties_TCLSS">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">tcslti4</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_TCLSS">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Linear/TCLSS.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Computationalfunction_TCLSS">
+    <title>Fonction de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/tcslti4.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

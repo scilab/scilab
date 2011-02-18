@@ -172,7 +172,7 @@ msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s:  Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwano wartości "
 "całkowitej.\n"
@@ -196,7 +196,7 @@ msgstr ""
 "logicznej.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano wartości "
 "całkowitej.\n"

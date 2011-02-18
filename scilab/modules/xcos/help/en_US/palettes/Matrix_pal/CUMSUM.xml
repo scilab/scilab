@@ -21,7 +21,7 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="CUMSUM_blk"
+<refentry version="5.0-subset Scilab" xml:id="CUMSUM"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CUMSUM_blk">Cumulative Sum</link>
+          <link linkend="CUMSUM">Cumulative Sum</link>
         </para>
       </listitem>
 
@@ -84,22 +84,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_CUMSUM">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_CUMSUM">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_CUMSUM">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_CUMSUM">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_CUMSUM">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_CUMSUM">Computational function</xref>
             </para>
           </listitem>
 
@@ -134,20 +131,35 @@
   <refsection id="Description_CUMSUM">
     <title>Description</title>
 
-    <para>The CUMSUM block sums the element of an input m*n matrix u along
-    either the rows, the columns or the first non singleton dimension. When
-    the "Sum along" parameter is set to "1", the block sums across the
-    elements of each row. The result will be displayed as a m*1 matrix.</para>
-
-    <para>When the "Sum along" parameter is set to "2", the block sums across
-    the elements of each column. The result will be display as a 1*n
-    matrix.</para>
-
-    <para>When the "Sum along" parameter is set to "0", the block sums across
-    the first non singleton dimension. The result will be displayed as one
-    element. This block is equivalent to cumsum in scilab.</para>
-
-    <para />
+    <para>
+      The CUMSUM block sums the element of an input MxN matrix U along either the rows, the columns or the first non singleton dimension.
+    </para>
+    <para>
+      When the <emphasis role="bold">Sum along</emphasis> parameter is set to :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">1</emphasis> : the block sums across the elements of each row. The output result will
+          be a Mx1 matrix.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">2</emphasis> : the block sums across the elements of each column. The output result will
+          be a 1xN matrix.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">0</emphasis> : the block sums across the first non singleton dimension.
+          The output result will be a scalar.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>The equivalent function in Scilab is <link linkend="cumsum">cumsum</link>.</para>
   </refsection>
 
   <refsection id="Dialogbox_CUMSUM">
@@ -171,22 +183,22 @@
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
 
-        <para>It indicates the type of the output. It support only the two
-        types double (1) and complex (2). If we input another entry in this
-        label Scicos will print the message "Datatype is not
-        supported".</para>
+        <para>
+          It indicates the type of the output. It support only the two types double (1) and complex (2).
+          If we input another entry in this label Scicos will print the message "Datatype is not supported".
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
 
       <listitem>
         <para>
-          <emphasis role="bold">Sum along (0=the first non singleton dimension
-          1=Rows 2=Columns)</emphasis>
+          <emphasis role="bold">Sum along (0=the first non singleton dimension 1=Rows 2=Columns)</emphasis>
         </para>
 
-        <para>Indicate whether to sum across the rows, the columns or the
-        first non singleton dimension.</para>
+        <para>
+          Indicate whether to sum across the rows, the columns or the first non singleton dimension.
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -196,7 +208,7 @@
   <refsection id="Example_CUMSUM">
     <title>Example</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
 A=[1 2 3;4 5 6;7 8 9]
 If the sum is along the row the result will be
 B=[12;15;18]
@@ -244,18 +256,15 @@ B=[12;15;18]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -263,8 +272,7 @@ B=[12;15;18]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -323,11 +331,17 @@ B=[12;15;18]
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATSUM">MATSUM - Matrix Sum (xcos Block)</link>
+          <link linkend="MATSUM">MATSUM - Sum of Matrix's Elements (xcos Block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="cumsum">cumsum (Scilab function)</link>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
+
 
   <refsection id="Authors_CUMSUM">
     <title>Authors</title>

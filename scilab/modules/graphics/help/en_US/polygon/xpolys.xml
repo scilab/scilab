@@ -67,8 +67,8 @@ xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
 xset("default")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xfpoly">xfpoly</link>

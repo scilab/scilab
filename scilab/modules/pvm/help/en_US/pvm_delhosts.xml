@@ -57,8 +57,8 @@
     It is the responsibility of the application developer to make his
     application tolerant of host failure.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_addhosts">pvm_addhosts</link>

@@ -45,8 +45,8 @@
     c'est-à -dire toutes les dimensions de taille 1.
     Les matrices sont quant à  elles inchangées. </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="hypermat">hypermat</link>

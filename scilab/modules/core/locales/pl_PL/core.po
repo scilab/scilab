@@ -685,7 +685,7 @@ msgstr ""
 "całkowitej (int).\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwano "
 "wartości całkowitej.\n"

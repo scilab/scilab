@@ -113,8 +113,8 @@ pr-binomial(p,n)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cdfbin">cdfbin</link></member>

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010-2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -78,19 +78,9 @@ public final class IncrementalSearchAction extends DefaultAction {
      */
     public void doAction() {
         if (!fields.containsKey(getEditor())) {
-            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, getEditor().getTextPane());
-            info = getEditor().getInfoBar();
-            info.setVisible(false);
-            window.remove((Component) info.getAsSimpleTextBox());
-
             SearchField field = new SearchField();
             fields.put(getEditor(), field);
-            panelInfoSearch = new JPanel(new BorderLayout());
-            panelInfoSearch.add(field, BorderLayout.PAGE_START);
-            panelInfoSearch.add((Component) info.getAsSimpleTextBox(), BorderLayout.PAGE_END);
-            panelInfoSearch.setVisible(true);
-            info.setVisible(true);
-            window.add(panelInfoSearch, BorderLayout.PAGE_END);
+            getEditor().getTextPane().getEditorComponent().insertBottomComponent(field);
             field.requestFocus();
         } else {
             fields.get(getEditor()).requestFocus();
@@ -173,7 +163,7 @@ public final class IncrementalSearchAction extends DefaultAction {
          * {@inheritDoc}
          */
         public void focusGained(FocusEvent e) {
-            if (text == null) {
+            if (text == null && getEditor().getTextPane() != null) {
                 ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
                 text = doc.getText().toLowerCase();
             }
@@ -201,12 +191,7 @@ public final class IncrementalSearchAction extends DefaultAction {
         public void hideField() {
             removeListeners();
             fields.remove(getEditor());
-            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, getEditor().getTextPane());
-            panelInfoSearch.setVisible(false);
-            window.remove(panelInfoSearch);
-            info.setVisible(true);
-            window.add((Component) info.getAsSimpleTextBox(), BorderLayout.PAGE_END);
-            info = null;
+            getEditor().getTextPane().getEditorComponent().insertBottomComponent(null);
         }
 
         /**

@@ -986,7 +986,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 
 
     /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
-    if (sciInitGraphicContext (pobj) == -1) 
+    if (sciInitGraphicContext (pobj) == -1)
     {
         deleteGraphicObject(pobj->UID);
         FREE(pobj);

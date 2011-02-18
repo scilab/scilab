@@ -11,8 +11,12 @@
 function datatipToggle(fig)
 //Toggles activation of the datatip edition mode for the given or current
 //figure
-  if type(fig)<>9|or(fig.type<>"Figure") then
-    error(msprintf(_("%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"),"datatipCreate",1,"Figure"))
+  if argn(2)<1 then
+    fig=gcf();
+  else
+    if type(fig)<>9|or(fig.type<>"Figure") then
+      error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipCreate",1,"Figure"))
+    end
   end
   datatipManagerMode(fig)
 endfunction

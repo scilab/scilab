@@ -132,7 +132,7 @@
       </inlinemediaobject></para>
 
     <para>At the current time step t, the block outputs the delayed data input
-    u(ϴ) where ϴ is the current simulation time t minus the time delay
+    u(θ) where θ is the current simulation time t minus the time delay
     parameter τ.</para>
 
     <para>The equation of the output signal is:</para>

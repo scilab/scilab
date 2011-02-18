@@ -33,7 +33,7 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.ScilabSpecialTextUtilities;
+import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 
 /**
  * Swing implementation for Scilab PushButtons in GUIs

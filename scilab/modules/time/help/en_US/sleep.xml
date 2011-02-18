@@ -35,8 +35,8 @@
 tic;sleep(6000);toc
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xpause">xpause</link>

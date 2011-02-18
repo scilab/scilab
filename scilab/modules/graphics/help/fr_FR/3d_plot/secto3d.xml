@@ -68,8 +68,8 @@
       de l'axe des x pour toutes les sections 
     </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>

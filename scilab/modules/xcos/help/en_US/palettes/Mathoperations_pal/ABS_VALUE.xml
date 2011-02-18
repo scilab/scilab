@@ -98,9 +98,8 @@
   <refsection id="Description_ABS_VALUE">
     <title>Description</title>
     <para>
-The Abs block outputs the absolute value of the input.
-
-</para>
+      That block computes the absolute value of the elements of the input vector.
+    </para>
   </refsection>
   <refsection id="Dialogbox_ABS_VALUE">
     <title>Dialog box</title>
@@ -112,8 +111,7 @@ The Abs block outputs the absolute value of the input.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+    </para>
     <itemizedlist>
       <listitem>
         <para>

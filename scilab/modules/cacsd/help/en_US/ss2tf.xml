@@ -79,8 +79,8 @@ h=clean(ss2tf(sl))
 [Ds,NUM,chi]=ss2tf(sl)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tf2ss">tf2ss</link>

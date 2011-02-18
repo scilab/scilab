@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+ <refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="PotentialSensor"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>PotentialSensor</refname>
+    <refpurpose>Capteur de tension</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/PotentialSensor.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_PotentialSensor">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="PotentialSensor">Capteur de tension</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_PotentialSensor">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_PotentialSensor">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_PotentialSensor">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_PotentialSensor">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="PotentialSensor">Modèle Modelica</link>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_PotentialSensor">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils électrique</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_PotentialSensor">
+    <title>Description</title>
+    <para>
+      Ce bloc est utilisée pour mesurer un potentiel par rapport au potentiel de référence
+      (bloc <emphasis role="bold">Ground</emphasis>) dans un circuit électrique. Le potentiel
+      est fourni à la partie explicite du modèle à travers un port de sortie explicite.
+    </para>
+  </refsection>
+  <refsection id="Defaultproperties_PotentialSensor">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Outputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'v'</para>
+            <para>Explicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis> PotentialSensor</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_PotentialSensor">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/PotentialSensor.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Modelicamodel_PotentialSensor">
+    <title>Modèle Modelica</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/PotentialSensor.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

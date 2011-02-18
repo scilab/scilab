@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+ <refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="NPN"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>NPN</refname>
+    <refpurpose>Transistor NPN</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/NPN.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_NPN">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="NPN">Transistor NPN</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_NPN">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_NPN">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_NPN">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_NPN">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_NPN">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="NPN">Modèle Modelica</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_NPN">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_NPN">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_NPN">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils électrique</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_NPN">
+    <title>Description</title>
+    <para>
+      Ce modèle est celui d'un simple transistor à jonction bipolaire NPN conforme au modèle d'Ebers-Moll.
+    </para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Dialogbox_NPN">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/gui/NPN_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+</para>
+    <para>
+</para>
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left">Parameter</td>
+        <td align="left">Default value</td>
+        <td align="left">Description</td>
+      </tr>
+      <tr>
+        <td align="left">Bf</td>
+        <td align="left">50</td>
+        <td align="left">Forward beta</td>
+      </tr>
+      <tr>
+        <td align="left">Br</td>
+        <td align="left">0.1</td>
+        <td align="left">Reverse beta</td>
+      </tr>
+      <tr>
+        <td align="left">Is</td>
+        <td align="left">1.e-16</td>
+        <td align="left">Transport saturation current [A]</td>
+      </tr>
+      <tr>
+        <td align="left">Vak</td>
+        <td align="left">0.02</td>
+        <td align="left">Early voltage (inverse), 1/Volt [1/V]</td>
+      </tr>
+      <tr>
+        <td align="left">Tauf</td>
+        <td align="left">0.12e-9</td>
+        <td align="left">Ideal forward transit time [s]</td>
+      </tr>
+      <tr>
+        <td align="left">Taur</td>
+        <td align="left">5e-9</td>
+        <td align="left">Ideal reverse transit time [s]</td>
+      </tr>
+      <tr>
+        <td align="left">Ccs</td>
+        <td align="left">1e-12</td>
+        <td align="left">Collector-substrat(ground) cap. [F]</td>
+      </tr>
+      <tr>
+        <td align="left">Cje</td>
+        <td align="left">0.4e-12</td>
+        <td align="left">Base-emitter zero bias depletion cap. [F]</td>
+      </tr>
+      <tr>
+        <td align="left">Cjc</td>
+        <td align="left">0.5e-12</td>
+        <td align="left">Base-coll. zero bias depletion cap. [F]</td>
+      </tr>
+      <tr>
+        <td align="left">Phie</td>
+        <td align="left">0.8</td>
+        <td align="left">Base-emitter diffusion voltage [V]</td>
+      </tr>
+      <tr>
+        <td align="left">Me</td>
+        <td align="left">0.4</td>
+        <td align="left">Base-emitter gradation exponent</td>
+      </tr>
+      <tr>
+        <td align="left">Phic</td>
+        <td align="left">0.8</td>
+        <td align="left">Base-collector diffusion voltage [V]</td>
+      </tr>
+      <tr>
+        <td align="left">Mc</td>
+        <td align="left">0.333</td>
+        <td align="left">Base-collector gradation exponent</td>
+      </tr>
+      <tr>
+        <td align="left">Gbc</td>
+        <td align="left">1e-15</td>
+        <td align="left">Base-collector conductance [S]</td>
+      </tr>
+      <tr>
+        <td align="left">Gbe</td>
+        <td align="left">1e-15</td>
+        <td align="left">Base-emitter conductance [S]</td>
+      </tr>
+      <tr>
+        <td align="left">Vt</td>
+        <td align="left">0.02585</td>
+        <td align="left">Voltage equivalent of temperature [V]</td>
+      </tr>
+      <tr>
+        <td align="left">EMin</td>
+        <td align="left">-100</td>
+        <td align="left">if x &lt; EMin, the exp(x) function is linearized</td>
+      </tr>
+      <tr>
+        <td align="left">EMax</td>
+        <td align="left">40</td>
+        <td align="left">if x &gt; EMax, the exp(x) function is linearized</td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection id="Defaultproperties_NPN">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'B'</para>
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Outputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'C'</para>
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'E'</para>
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameters :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Bf'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 50</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Br'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0.1</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Is'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Vak'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0.02</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Tauf'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 1.200E-10</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Taur'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 5.000E-09</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Ccs'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 1.000E-12</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Cje'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 4.000E-13</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Cjc'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 5.000E-13</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Phie'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0.8</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Me'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0.4</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Phic'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0.8</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Mc'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0.333</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Gbc'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 1.000E-15</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Gbe'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 1.000E-15</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Vt'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0.02585</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'EMinMax'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 40</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis> NPN</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_NPN">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/NPN.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Modelicamodel_NPN">
+    <title>Modèle Modelica</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/NPN.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_NPN">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="PNP">PNP - Transistor PNP</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_NPN">
+    <title>Auteurs</title>
+    <para><emphasis role="bold"/> - www.modelica.org</para>
+  </refsection>
+</refentry>

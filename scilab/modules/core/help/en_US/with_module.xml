@@ -35,8 +35,8 @@
     <title>Description</title>
     <para>Returns <literal>%t</literal> Checks if a Scilab module is installed.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getmodules">getmodules</link>

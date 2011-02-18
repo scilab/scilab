@@ -20,7 +20,7 @@ xmltohtml(my_french_help_dir,my_french_help_title,"fr_FR");
 Construit le document maître:
 	SCI\modules\helptools\examples\example_1\help\fr_FR
 
-Construction du fichier manuel [html] dans SCI\modules\helptools\examples\example_1\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
+Building the manual file [html] in SCI\modules\helptools\examples\example_1\help\fr_FR.
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_french_help_dir);
@@ -35,7 +35,7 @@ xmltohtml(my_english_help_dir,my_english_help_title,'en_US');
 Building the master document:
 	SCI\modules\helptools\examples\example_1\help\en_US
 
-Building the manual file [html] in SCI\modules\helptools\examples\example_1\help\en_US. (Please wait building ... this can take a while)
+Building the manual file [html] in SCI\modules\helptools\examples\example_1\help\en_US.
 html_info =  fileinfo(my_module_path+"/html/en_US/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_english_help_dir);
@@ -54,7 +54,7 @@ xmltohtml(my_french_help_dir,my_french_help_title,'fr_FR');
 Construit le document maître:
 	SCI\modules\helptools\examples\example_2\help\fr_FR
 
-Construction du fichier manuel [html] dans SCI\modules\helptools\examples\example_2\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
+Building the manual file [html] in SCI\modules\helptools\examples\example_2\help\fr_FR.
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_french_help_dir);
@@ -69,7 +69,7 @@ xmltohtml(my_english_help_dir,my_english_help_title,'en_US');
 Building the master document:
 	SCI\modules\helptools\examples\example_2\help\en_US
 
-Building the manual file [html] in SCI\modules\helptools\examples\example_2\help\en_US. (Please wait building ... this can take a while)
+Building the manual file [html] in SCI\modules\helptools\examples\example_2\help\en_US.
 html_info =  fileinfo(my_module_path+"/html/en_US/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_english_help_dir);
@@ -88,7 +88,7 @@ xmltohtml(my_french_help_dir,my_french_help_title,"fr_FR");
 Construit le document maître:
 	SCI\modules\helptools\examples\example_3\help\fr_FR
 
-Construction du fichier manuel [html] dans SCI\modules\helptools\examples\example_3\help\fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
+Building the manual file [html] in SCI\modules\helptools\examples\example_3\help\fr_FR.
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_french_help_dir);
@@ -103,7 +103,7 @@ xmltohtml(my_english_help_dir,my_english_help_title,"en_US","fr_FR");
 Building the master document:
 	SCI\modules\helptools\examples\example_3\help\en_US
 
-Building the manual file [html] in SCI\modules\helptools\examples\example_3\help\en_US. (Please wait building ... this can take a while)
+Building the manual file [html] in SCI\modules\helptools\examples\example_3\help\en_US.
 html_info =  fileinfo(my_module_path+"/html/en_US/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_english_help_dir);

@@ -99,8 +99,8 @@ setdiff(a,b)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="unique">unique</link></member>

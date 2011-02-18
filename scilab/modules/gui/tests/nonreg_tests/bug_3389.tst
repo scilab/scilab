@@ -53,8 +53,6 @@ f.listboxtop = 1;
 
 f.value = 1;
 
-f.units = "pixels";
-
 execstr("f.relief = ""raised""", "errcatch");
 if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Relief") then pause; end
 

@@ -496,7 +496,7 @@ msgstr "坐标轴属性(&A)"
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "错误和新功能需求数据库(&B)"
 
 msgid "&Change current directory..."
@@ -649,7 +649,7 @@ msgstr ""
 msgid "&Vectorial export"
 msgstr "导出为矢量图(&V)"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "网页链接(&W)"
 
 msgid "&Xcos"

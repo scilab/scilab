@@ -66,8 +66,8 @@ plot2d(0,0,-1,"012"," ",[0,0,10,10])
 xrpoly([5,5],5,5)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xrect">xrect</link>

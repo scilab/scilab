@@ -38,6 +38,7 @@ import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
+import com.mxgraph.swing.util.mxGraphTransferable;
 import com.mxgraph.util.mxConstants;
 
 /**
@@ -45,7 +46,7 @@ import com.mxgraph.util.mxConstants;
  * operations there are used to render, load and put (on a diagram) a block.
  */
 public final class PaletteBlockCtrl {
-
+	private static final double BLOCK_DEFAULT_POSITION = 10.0;
 	private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
 	private static final Log LOG = LogFactory.getLog(PaletteBlockCtrl.class);
 	
@@ -120,10 +121,13 @@ public final class PaletteBlockCtrl {
 			getView().setEnabled(true);
 			
 			/* Render it and export it */
+			block.getGeometry().setX(BLOCK_DEFAULT_POSITION);
+			block.getGeometry().setY(BLOCK_DEFAULT_POSITION);
+			
 			INTERNAL_GRAPH.addCell(block);
 			INTERNAL_GRAPH.selectAll();
 			
-			INTERNAL_GRAPH.updateCellSize(block);
+			INTERNAL_GRAPH.updateCellSize(block, false);
 			
 			mxGraphTransferHandler handler = ((mxGraphTransferHandler) INTERNAL_GRAPH
 					.getAsComponent().getTransferHandler());
@@ -137,7 +141,7 @@ public final class PaletteBlockCtrl {
 	/**
 	 * @return the loaded block.
 	 */
-	public BasicBlock loadBlock() {
+	private BasicBlock loadBlock() {
 		BasicBlock block;
 		if (model.getName().compareTo("TEXT_f") != 0) {
 			// Load the block from the file
@@ -156,6 +160,17 @@ public final class PaletteBlockCtrl {
 			block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
 		}
 		return block;
+	}
+
+	/**
+	 * This function load the block and render it on the hidden diagram. This
+	 * can be time-consuming and each block should be cached on the caller when
+	 * possible.
+	 * 
+	 * @return a rendered block
+	 */
+	public BasicBlock getBlock() {
+		return (BasicBlock) ((mxGraphTransferable) getTransferable()).getCells()[0];
 	}
 	
 	/**
@@ -184,6 +199,7 @@ public final class PaletteBlockCtrl {
 	public void installDnd() {
 		// Install the handler for dragging nodes into a graph
 		DragGestureListener dragGestureListener = new DragGestureListener() {
+			@Override
 			public void dragGestureRecognized(DragGestureEvent e) {
 				final PaletteManagerView winView = PaletteManager.getInstance()
 						.getView();

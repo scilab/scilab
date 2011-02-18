@@ -38,8 +38,8 @@ oldnew=predef('clear')</synopsis>
 			<literal>SCIHOME/.scilab</literal> and <literal>SCIHOME/scilab.ini</literal>
 		</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="clear">clear</link>

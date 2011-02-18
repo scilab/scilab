@@ -48,8 +48,8 @@ xfrect(-1,1,2,2)
 xset("default")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xrect">xrect</link>

@@ -80,8 +80,8 @@ base2dec(['ABC','0','A'],16)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="bin2dec">bin2dec</link></member>

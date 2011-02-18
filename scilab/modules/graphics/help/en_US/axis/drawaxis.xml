@@ -153,8 +153,8 @@ drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="axis_properties">axis_properties</link>

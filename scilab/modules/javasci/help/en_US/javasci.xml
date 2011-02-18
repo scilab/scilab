@@ -26,7 +26,7 @@
   </refsection>
   <refsection>
     <title>Example of Javasci v2</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="java"><![CDATA[ 
 // A simple Java example with javasci v2
 // Filename: DisplayPI.java
 
@@ -62,7 +62,7 @@ class Example1 {
   </refsection>
   <refsection>
     <title>Example of Javasci v1 (deprecated)</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="java"><![CDATA[
 // A simple Java example with javasci v1
 // Filename: DisplayPI.java
 import javasci.Scilab;
@@ -72,8 +72,8 @@ public class DisplayPI {
         } 
 } ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
     <member>
         Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink> (this will open the web browser).

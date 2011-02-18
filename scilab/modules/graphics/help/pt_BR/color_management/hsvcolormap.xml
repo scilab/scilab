@@ -91,8 +91,8 @@ plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
     </variablelist>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="colormap">colormap</link></member>

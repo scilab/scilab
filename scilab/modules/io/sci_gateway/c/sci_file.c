@@ -458,7 +458,7 @@ static int sci_file_one_rhs(char *fname)
 
 	if (*pdVarOne != (double)iID)
 	{
-		Scierror(999,_("%s: Wrong value for input argument #%d: A integer expected.\n"),fname,1);
+		Scierror(999,_("%s: Wrong value for input argument #%d: An integer expected.\n"),fname,1);
 		return 0;
 	}
 

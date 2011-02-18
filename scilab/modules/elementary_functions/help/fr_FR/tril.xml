@@ -63,8 +63,8 @@ tril([1/s,1/s;1/s,1])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="triu">triu</link></member>

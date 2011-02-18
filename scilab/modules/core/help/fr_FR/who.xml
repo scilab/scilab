@@ -36,8 +36,8 @@ names=who('global','sorted')
     <para><literal>who('sorted')</literal> affiche les noms des variables courantes triees par ordre alphabetique.
 		</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="whos">whos</link>

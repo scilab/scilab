@@ -25,7 +25,6 @@ import org.scilab.modules.xcos.port.Orientation;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
-import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -120,33 +119,6 @@ public final class BlockPositioning {
 				- (BasicPort.DEFAULT_PORTSIZE / 2.0);
 		
 		return alignedPosition;
-	}
-	
-	/**
-	 * Align the point on the grid (assuming the grid is rectangular).
-	 * 
-	 * @param p the point
-	 * @param gridSize the gridSize
-	 * @param increment the increment to apply on x and y (typically block size / 2).
-	 */
-	public static void alignPoint(mxPoint p, final double gridSize, final double increment) {
-		double x = p.getX();
-		double y = p.getY();
-		
-		/*
-		 * Align the base point
-		 */
-		x = x - Math.IEEEremainder(x, gridSize);
-		y = y - Math.IEEEremainder(y, gridSize);
-		
-		/*
-		 * Translate from increment
-		 */
-		x = x - increment;
-		y = y - increment;
-		
-		p.setX(x);
-		p.setY(y);
 	}
 
     /**

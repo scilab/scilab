@@ -21,7 +21,7 @@ function version = getDiagramVersion(diagram)
 //  version:    the version of the diagram
 //
 // Example
-//  loadScicosLibs();
+//  loadXcosLibs();
 //  version = getDiagramVersion(scicos_diagram())
 
     [lhs,rhs] = argn(0);

@@ -54,7 +54,6 @@ public class SvgShape extends mxImageShape {
 			final Rectangle rect = getImageBounds(canvas, state);
 			canvas.getGraphics().translate(rect.x, rect.y);
 			
-			((ScilabCanvas) canvas).paintSvgBackgroundImage(rect.width, rect.height);
 			((ScilabCanvas) canvas).paintSvgForegroundImage(rect.width, rect.height, image);
 		} else {
 			super.paintShape(canvas, state);

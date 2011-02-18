@@ -67,8 +67,8 @@ erf([0.5,0.2])+erfc([0.5,0.2])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="erf">erf</link></member>

@@ -51,8 +51,8 @@ for k=1:1000
 end
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="figure_properties">figure_properties</link>

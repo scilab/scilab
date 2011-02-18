@@ -83,8 +83,8 @@ xnumb(x,500*ones(x),[10,20,35],1)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="xstring">xstring</link></member>

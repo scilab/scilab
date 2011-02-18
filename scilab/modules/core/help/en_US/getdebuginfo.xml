@@ -37,8 +37,8 @@ dynamic_info = getdebuginfo();
     about your system and about Scilab.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="getversion">getversion</link></member>

@@ -417,8 +417,8 @@ e.color_flag=2; // back to default mode
 e.color_flag= 3; // interpolated shading mode (based on blue default color because field data.color is not filled)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>

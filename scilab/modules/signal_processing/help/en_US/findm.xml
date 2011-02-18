@@ -17,8 +17,8 @@
     Search for <literal>m</literal> such that <literal>chi = %k(1-m)/%k(m)</literal>
     (For use with <literal>find_freq</literal>).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="k">%k</link>

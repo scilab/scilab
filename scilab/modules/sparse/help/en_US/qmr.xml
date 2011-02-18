@@ -129,8 +129,8 @@
     <title>Description</title>
     <para>Solves the linear system <literal>Ax=b</literal> using the Quasi Minimal Residual Method with preconditioning.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gmres">gmres</link>

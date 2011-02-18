@@ -68,8 +68,8 @@ A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
     If called with two output arguments, <literal>riccati</literal> returns <literal>X1,X2</literal>
     such that <literal>X=X1/X2</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ricc">ricc</link>

@@ -285,7 +285,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 
 		if (results == NULL)
 		{
-			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+			FREE(lenStVarOne); lenStVarOne = NULL;
 			freeArrayOfWideString(pStVarOne, m1 * n1);
 			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;

@@ -137,8 +137,8 @@ Arma1est=armax(2,-1,y,[]);
 [A,B,D]=arma2p(Arma1est)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="imrep2ss">imrep2ss</link>

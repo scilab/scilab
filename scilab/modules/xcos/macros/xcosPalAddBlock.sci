@@ -32,7 +32,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 //
 //
 // Examples
-//  loadScicosLibs();
+//  loadXcosLibs();
 //  pal = xcosPal();
 //
 //  sumPath = TMPDIR + "/sum.h5";
@@ -134,9 +134,17 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         if typeof(pal_block_img) <> "string" then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": path string expected.\n"), "xcosPalAddBlock", "pal_block_img"));
         end
+
         if ~isfile(pal_block_img) then
             error(msprintf(gettext("%s: Wrong value for input argument ""%s"": An existing file expected.\n"), "xcosPalAddBlock", "pal_block_img"));
         end
+
+        valid_ext = ["png" "jpg" "gif" "PNG" "JPG" "JPEG" "GIF"];
+        ext = strrchr(pal_block_img, '.');
+        if isempty(strstr(emptystr(valid_ext) + ext, valid_ext)) then
+            error(msprintf(gettext("%s: Wrong value for input argument ""%s"": A valid file format (png, jpg, gif) expected.\n"), "xcosPalAddBlock", "pal_block_img"));
+        end
+        clear valid_ext ext;
         pal_block_img = fullpath(pathconvert(pal_block_img, %f));
     end
 
@@ -169,7 +177,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         elseif typeof(style) == "string" then
             if isfile(style) then
                 style = fullpath(pathconvert(style, %f));
-                style = "noLabel=1;image=file:" + style + ";";
+                style = "shape=image;image=file:" + style + ";";
 //          else
 //              assume a well formatted string, do nothing
             end
@@ -183,3 +191,4 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     pal.style($+1) = style; // block style (linked to style definition)
 
 endfunction
+

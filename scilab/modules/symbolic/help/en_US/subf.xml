@@ -48,8 +48,8 @@ subf('2','1')
 subf('a','0')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mulf">mulf</link>

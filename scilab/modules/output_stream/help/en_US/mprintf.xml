@@ -78,8 +78,8 @@ mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="disp">disp</link></member>

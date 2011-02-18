@@ -70,8 +70,8 @@ norm(markpar-Markpar,1)
 //Caution... c*a^5*b is not C*A^5*B !
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="frep2tf">frep2tf</link>

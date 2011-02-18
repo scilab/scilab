@@ -60,8 +60,7 @@
         <term>files</term>
 
         <listitem>
-          <para>string matrix giving source (from Scilab 5.0) or object files
-          needed for shared library creation</para>
+          <para>string matrix giving source files needed for shared library creation. Since Scilab 5.3.1, object files are deprecated.</para>
         </listitem>
       </varlistentry>
 
@@ -534,8 +533,8 @@ if abs(m-3.)>%eps then pause,end
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="addinter">addinter</link></member>

@@ -13,8 +13,8 @@
     Used at end of loops or conditionals.
     <literal>for, while, if, select</literal> must be terminated by <literal>end</literal> .</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="for">for</link>

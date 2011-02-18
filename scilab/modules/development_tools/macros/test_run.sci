@@ -1089,7 +1089,7 @@ function st = st_run(st)
     ]
 
     if st.xcos then
-        head = [ head ; "loadScicosLibs();"];
+        head = [ head ; "loadXcosLibs();"];
     end
 
     if st.try_catch then
@@ -1237,7 +1237,7 @@ function st = st_run(st)
 
         if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
             st.status = status_set_id(st.status,5);
-            st.status = status_set_message(st.status,"failed  : error_output not empty");
+            st.status = status_set_message(st.status,"failed  : error_output not empty\n     Use ''no_check_error_output'' option to disable this check.");
             st.status = status_set_details(st.status,st_checkthefile(st.tmp_err));
             return;
         end
@@ -1303,7 +1303,7 @@ function st = st_run(st)
     if (st.reference=="check") & (testsuite.reference=="check")  then
         if isempty(fileinfo(st.path_dia_ref)) then
             st.status = status_set_id(st.status,5);
-            st.status = status_set_message(st.status,"failed  : the ref file doesn''t exist");
+            st.status = status_set_message(st.status,"failed  : the ref file doesn''t exist\n     Use ''no_check_ref'' option to disable this check.");
             st.status = status_set_details(st.status,st_createthefile(st.path_dia_ref));
             return;
         end
@@ -1705,7 +1705,11 @@ function testsuite_run(testsuite)
 
         test = st_run(test);
 
-        printf("%s \n",test.status.message);
+        msg = sprintf(test.status.message);
+        printf("%s \n", msg(1));
+        for kline = 2:size(msg, "*")
+          printf(part(" ", 1:62) + "%s \n", msg(2));
+        end
 
         // Recencement des tests
 

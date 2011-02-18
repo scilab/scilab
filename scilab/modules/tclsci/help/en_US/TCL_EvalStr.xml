@@ -97,7 +97,8 @@ res = TCL_EvalStr("tk_messageBox -message Hello -type okcancel")
 res = TCL_EvalStr(["expr 4+5" "lsearch -all {a b c a b c} c" ; "list [list a b c] [list d e f] [list g h i]" "llength  {a b c d e}"])
  ]]></programlisting></refsection>
 
-  <refsection><title>See Also</title><simplelist type="inline">
+  <refsection role="see also">
+<title>See Also</title><simplelist type="inline">
     <member>
       <link linkend="ScilabEval">ScilabEval</link>
     </member>

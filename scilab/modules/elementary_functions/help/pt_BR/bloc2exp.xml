@@ -191,8 +191,8 @@ w=bloc2exp(syst);
     <para><literal>P11+P12*invr(eye()-K*P22)*K*P21;</literal></para>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="bloc2ss">bloc2ss</link></member>

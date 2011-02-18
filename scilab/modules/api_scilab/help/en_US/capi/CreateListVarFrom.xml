@@ -213,8 +213,8 @@ int sci_create_list(char * fname)
     SCI/modules/core/example/create_list.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="ScilabCTypes">Scilab C Type</link></member>

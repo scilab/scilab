@@ -40,7 +40,7 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
     char **pstData = NULL;
     char *var = NULL;
     char *lineBeforePoint = NULL;
-    int pos = strlen(lineBeforeCaret) - strlen(pattern) - 1;
+    int pos = (int)(strlen(lineBeforeCaret) - strlen(pattern) - 1);
 
     if (pos <= 0 || lineBeforeCaret[pos] != '.')
     {

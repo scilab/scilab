@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry version="5.0-subset Scilab" xml:id="xcos_menu_entries"
@@ -44,16 +44,14 @@
       <listitem>
         <para><emphasis role="bold">File:New</emphasis></para>
 
-        <para>Clicking on the New menu item loads an empty diagram in the
-        active editor xcos window. If the previous content of the window is
-        not saved, it will be lost. With this menu, you can open a new diagram
-        or a new palette.</para>
+        <para>Clicking on the New menu item loads an empty diagram in another
+	xcos diagram window. With this menu, you can open a new diagram or a new palette.</para>
       </listitem>
 
       <listitem>
         <para><emphasis role="bold">File:Open (Ctrl+o)</emphasis></para>
 
-        <para>Select the Open menu item to load an ASCII or binary file
+        <para>Select the Open menu item to load a XML file (.xcos) or a binary file (.cos)
         containing a saved block diagram or palette. A dialog box allows user
         choosing the file.</para>
       </listitem>
@@ -61,13 +59,11 @@
       <listitem>
         <para><emphasis role="bold">File:Save (Ctrl+s)</emphasis></para>
 
-        <para>Select the save menu item to save the block diagram in a binary
-        file already selected by a previous select the Save As menu item. If
-        you select this menu item and you have never clicked on the Save As
-        menu item, the diagram is saved in the current directory as
-        "window_name".cos where "window_name" is the name of the window
-        appearing on top of the window (usually Untitled or Super Block). The
-        .cos binary files are machine independent.</para>
+        <para>Select the Save menu item to save the block diagram in a XML
+        file. If you select this menu item and you have never clicked on the Save or Save As
+        menu item, a dialog box allows user to choose a directory and specify
+	a file name. The diagram takes the name of the file (without the extension).
+	The default extension is .xcos</para>
       </listitem>
 
       <listitem>
@@ -75,20 +71,17 @@
         (Ctrl+Shift+s)</emphasis></para>
 
         <para>Select the Save As menu item to save the block diagram or
-        palette in a file. A dialog box allows choosing the file which must
-        have a .cos or .cosf extension. The diagram takes the name of the file
-        (without the extension). If extension is ".cosf" an ASCII formatted
-        save is performed instead of binary save. Formatted save is slower
-        than regular save.</para>
+        palette in a file with a new name. A dialog box allows specifying a
+	filename which must have a .xcos extension. The diagram takes the name
+	of the file (without the extension).</para>
       </listitem>
 
       <listitem>
         <para><emphasis role="bold">File:Export (Ctrl+e)</emphasis></para>
 
         <para>This menu is used to export a figure of the current xcos
-        diagram. The export can be done directly in postscript format or done
-        first in a graphic window to export in a second step in all the format
-        that scilab can provide.</para>
+        diagram. The export can be done directly in WBMP, GIF, HTML, JPEG, JPG, PNG,
+	SVG or VML formats.</para>
       </listitem>
 
       <listitem>
@@ -170,10 +163,10 @@
       <listitem>
         <para><emphasis role="bold">Edit:Delete (Delete)</emphasis></para>
 
-        <para>To delete blocks or a links, select first the Delete menu item,
-        then click successively on the selected objects (with left button).
-        When you delete a block all links connected to it are deleted as
-        well.</para>
+        <para>To delete blocks or a links, select objects to be deleted with
+	left mouse button (for select several objects, press Ctrl at the same time)
+	and select the Delete menu item. When you delete a block all links connected to it
+	are deleted as well.</para>
       </listitem>
 
       <listitem>
@@ -400,19 +393,27 @@
         <para><emphasis role="bold">Format:Rotate (Ctrl+r)</emphasis></para>
 
         <para>Rotate allows to turn a block on the Left. Each time the block
-        is turned left, his angle is decresead of 45 degrees. If no blocks or
-        many blocks are selected, this is the block under the mouse pointer
-        which turns.</para>
+        is turned left, his angle is decresead of 90 degrees. Rotation affects
+	all the selected blocks.</para>
       </listitem>
 
       <listitem>
         <para><emphasis role="bold">Format:Flip (Ctrl+f)</emphasis></para>
 
+        <para>To reverse the positions of the (activation) inputs and outputs of
+        a block placed on its sides, select a block and select the Flip menu item.
+	This does not affect the order, nor the position of the input and output
+	event ports which are numbered from left to right. Flipping affects all
+	the selected blocks.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Format:Mirror (Ctrl+m)</emphasis></para>
+
         <para>To reverse the positions of the (regular) inputs and outputs of
-        a block placed on its sides, select the Flip menu item first and then
-        click on the selected block. This does not affect the order, nor the
-        position of the input and output event ports which are numbered from
-        left to right.</para>
+        a block placed on its sides, select a block and select the Mirror menu item.
+	This does not affect the order, nor the position of the input and output ports
+	which are numbered from top to bottom. Mirroring affects all the selected blocks.
+	</para>
       </listitem>
 
       <listitem>
@@ -444,9 +445,9 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">Format:Line Color</emphasis></para>
+        <para><emphasis role="bold">Format:Fill Color</emphasis></para>
 
-        <para>This menu allows to change the line color.</para>
+        <para>This menu allows to change the fill color.</para>
       </listitem>
 
       <listitem>
@@ -459,7 +460,7 @@
           </imageobject>
         </mediaobject>
 
-        <para>This menu allows to the the style of the link:</para>
+        <para>This menu allows to change the style of the link.</para>
 
         <itemizedlist>
           <listitem>
@@ -539,8 +540,7 @@
         <para><emphasis role="bold">Help:Block Help</emphasis></para>
 
         <para>To get help on a Xcos object (a block), select first an object
-        (a block) and then click on this menuHelp menu item and then on the
-        selected object or menu item.</para>
+        (a block) and then click on this Help menu item.</para>
       </listitem>
 
       <listitem>

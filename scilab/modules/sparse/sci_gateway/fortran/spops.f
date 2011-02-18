@@ -1907,13 +1907,15 @@ c               arg4(arg1,[])=[] --> arg4
                lstk(top+1)=l+mn4*(it4+1)
                goto 999
             else
-c               lw=lw1
                call indxgc(il1,m4,ili,mi,mxi,lw)
                if(err.gt.0) return
                if(mi.eq.0) then
 c     .           arg4(1:m4,arg2)=[] 
                   call indxg(il1,m4,ili,mi,mxi,lw,11)
                   if(err.gt.0) return
+C     .           given set is larger than 1:m4
+                  mi=min(m4,mi)
+
                   if(mi.lt.0) then
                      mr=mxi
                   else

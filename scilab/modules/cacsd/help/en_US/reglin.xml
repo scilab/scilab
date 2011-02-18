@@ -48,8 +48,8 @@ y= [ 2,3]*x+ 10*ones(f) + 0.1*rand(f);
 [a,b]=reglin(x,y)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pinv">pinv</link>

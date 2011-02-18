@@ -71,7 +71,7 @@ JavaVM *FindCreatedJavaVM(char *SCILAB_PATH);
 * Load Functions for JVM
 * @return TRUE or FALSE
 */
-BOOL LoadFuntionsJVM(char *filedynlib);
+BOOL LoadFunctionsJVM(char *filedynlib);
 
 
 /**

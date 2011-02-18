@@ -62,7 +62,7 @@ rmdir(TMPDIR + filesep() + dir1, 's');
 rmdir(TMPDIR + filesep() + dir2, 's');
 // =============================================================================
 removedir(TMPDIR+'/etc');
-ierr = execstr("movefile(SCI+""etc"",TMPDIR)","errcatch");
+ierr = execstr("movefile(TMPDIR+""/etc"",TMPDIR)","errcatch");
 if ierr <> 999 then pause,end
 // =============================================================================
 ref_files = ['fileio.start','fileio.quit'];

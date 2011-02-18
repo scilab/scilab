@@ -217,7 +217,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 			{
 				if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 				if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
-				Scierror(999,_("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+				Scierror(999,_("%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory expected.\n"), fname, 1, pStVarOne);
 			}
 		}
 		else
@@ -233,7 +233,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+		Scierror(999,_("%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory expected.\n"), fname, 1, pStVarOne);
 	}
 
 	if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}

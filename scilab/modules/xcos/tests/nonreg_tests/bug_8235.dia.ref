@@ -1,0 +1,18 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH XCOS -->
+//
+// <-- Non-regression test for bug 8235 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=8235
+//
+// <-- Short Description -->
+// Masked superblock has their parameters overriden by the context.
+importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8235.xcos");
+xcos_simulate(scs_m, 4);
+if or(B.values <> 2*A.values) then bugmes();quit;end
+if or(C.values <> 3*A.values) then bugmes();quit;end

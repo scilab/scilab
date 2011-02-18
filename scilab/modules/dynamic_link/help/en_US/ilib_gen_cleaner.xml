@@ -58,8 +58,8 @@
     This function generates a cleaner file.</para>
     <para><emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ilib_gen_loader">ilib_gen_loader</link>

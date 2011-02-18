@@ -58,8 +58,8 @@
     If <literal>sz</literal> or <literal>orig</literal> are given by strings generated instructions
     are relative use then as formal expressions.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="execstr">execstr</link>

@@ -262,7 +262,7 @@ msgstr ""
 "fitxer.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
 
@@ -343,13 +343,13 @@ msgstr ""
 "descriptor de fitxer.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A integer or string expected.\n"
+"%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter o "
 "una cadena de caràcters.\n"
@@ -483,10 +483,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un nom de "
+"%s: L'argument d'entrada #%d té un valor incorrecte ('%ls'): Ha de ser un nom de "
 "fitxer o de directori vàlid.\n"
 
 #, c-format

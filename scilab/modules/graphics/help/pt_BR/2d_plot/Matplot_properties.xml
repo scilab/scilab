@@ -143,8 +143,8 @@ e.data=e.data($:-1:1) // ordem inversa
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="set">set</link></member>

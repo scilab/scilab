@@ -148,8 +148,8 @@ plot2d(fr,20*log10(W),style=color('blue'))
 set(gca(),'grid',[1 1]*color('gray'))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="wfir">wfir</link>

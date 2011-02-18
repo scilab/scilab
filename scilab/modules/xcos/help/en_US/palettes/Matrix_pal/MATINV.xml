@@ -78,22 +78,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_MATINV">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_MATINV">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_MATINV">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_MATINV">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_MATINV">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_MATINV">Computational function</xref>
             </para>
           </listitem>
 
@@ -128,10 +125,13 @@
   <refsection id="Description_MATINV">
     <title>Description</title>
 
-    <para>The MATINV Block outputs the inverse of a square input matrix using
-    the LU factorization. A warning message is printed if the input is badly
-    scaled or nearly singular. The equivalent function of this block in Scilab
-    is "inv".</para>
+    <para>
+      The MATINV block outputs the inverse of a square input matrix calculated by using the LU factorization.
+      A warning message is printed if the input is badly scaled or nearly singular.
+    </para>
+    <para>
+      The equivalent function of this block in Scilab is <link linkend="inv">inv</link>.
+    </para>
 
     <para />
   </refsection>
@@ -157,10 +157,10 @@
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
 
-        <para>It indicates the type of the output. It support only the two
-        types double (1) and complex (2). If we input another entry in this
-        label xcos will print the message "Datatype is not
-        supported".</para>
+        <para>
+          It indicates the type of the output. It support only the two types double (1) and complex (2).
+          If we input another entry in this label xcos will print the message "Datatype is not supported".
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -208,18 +208,15 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -227,8 +224,7 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -271,15 +267,17 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATLU">MATLU - MATLU LU Factorization (xcos
-          Block)</link>
+          <link linkend="MATLU">MATLU - LU Factorization (xcos Block)</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
-          <link linkend="MATPINV">MATPINV - MATPINV Matrix PseudoInverse
-          (xcos Block)</link>
+          <link linkend="MATPINV">MATPINV - Matrix PseudoInverse (xcos Block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="inv">inv (Scilab function)</link>
         </para>
       </listitem>
     </itemizedlist>

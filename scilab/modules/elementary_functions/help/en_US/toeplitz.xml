@@ -75,8 +75,8 @@ t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="matrix">matrix</link></member>

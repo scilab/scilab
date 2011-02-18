@@ -8,5 +8,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function datatipSetStruct(curve,t)
+  if argn(2)<>2 then
+    error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"datatipSetStruct",2))
+  end
   set(curve,'user_data',t)
 endfunction

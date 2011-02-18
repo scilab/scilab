@@ -53,10 +53,12 @@ public class CopyAsHTMLAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        String selection = getEditor().getTextPane().getSelectedText();
-        if (selection != null) {
-            HTMLSelection sel = new HTMLSelection((ScilabEditorPane) getEditor().getTextPane(), selection, printLineNumber);
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
+        if (!getEditor().getTextPane().copyColumnSelectionInClipBoard()) {
+            String selection = getEditor().getTextPane().getSelectedText();
+            if (selection != null) {
+                HTMLSelection sel = new HTMLSelection((ScilabEditorPane) getEditor().getTextPane(), selection, printLineNumber);
+                Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
+            }
         }
     }
 

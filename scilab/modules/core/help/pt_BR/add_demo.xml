@@ -78,8 +78,8 @@ add_demo('My first demo',path)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link

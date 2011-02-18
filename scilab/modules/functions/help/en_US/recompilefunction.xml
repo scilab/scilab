@@ -61,8 +61,8 @@ for i=1:100; asinh(rand(100,100)); end
 showprofile(asinh)   
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="function">function</link>

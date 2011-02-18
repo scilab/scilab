@@ -89,8 +89,8 @@ y=X*x
 norm(y(dim+1:$))/norm(y(1:dim)) // la norme est petite
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="colcomp">colcomp</link>

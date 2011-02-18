@@ -19,7 +19,6 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,i
 {
 	BOOL bOK = TRUE;
 	int i=0,j=0;
-	int k=0;
 
 	double *MatrixDouble=(double*)MALLOC((m*n)*sizeof(double));
 
@@ -31,7 +30,7 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,i
 		MatrixDouble[i]=*stk(ptrValues++);
 	}
 
-	k=0;
+
 	for (i=1;i<m+1;i++)
 	{
 		char VarValueWithIndice[2048];

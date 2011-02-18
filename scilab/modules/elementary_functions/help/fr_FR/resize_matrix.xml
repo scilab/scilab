@@ -110,8 +110,8 @@ myMatString = resize_matrix( myMatString, 3, 1 )
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="matrix">matrix</link></member>

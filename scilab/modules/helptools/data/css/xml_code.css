@@ -1,0 +1,94 @@
+.xmlcomment {
+ font-style: italic;
+ color: #01a801
+}
+
+.xmldefault {
+ font-style: normal;
+ color: #000000
+}
+
+.xmlentity {
+ font-style: normal;
+ color: #ffaa00
+}
+
+.xmlopeninstr {
+ font-style: normal;
+ color: #000000
+}
+
+.xmlcloseinstr {
+ font-style: normal;
+ color: #000000
+}
+
+.xmlinstrname {
+ font-style: normal;
+ color: #9965a6
+}
+
+.xmllowtag {
+ font-style: normal;
+ color: #000000
+}
+
+.xmltagname {
+ font-style: normal;
+ color: #0303ff
+}
+
+.xmllowclose {
+ font-style: normal;
+ color: #000000
+}
+
+.xmlopencomment {
+ font-style: italic;
+ color: #01a801
+}
+
+.xmlcommentend {
+ font-style: italic;
+ color: #01a801
+}
+
+.xmlcomment {
+ font-style: italic;
+ color: #01a801
+}
+
+.xmlopencdata {
+ font-style: normal;
+ color: #c45555
+}
+
+.xmlcdataend {
+ font-style: normal;
+ color: #c45555
+}
+
+.xmlcdata {
+ font-style: normal;
+ color: #000000
+}
+
+.xmlattributename {
+ font-style: normal;
+ color: #9965a6
+}
+
+.xmlequal {
+ font-style: normal;
+ color: #000000
+}
+
+.xmlattributevalue {
+ font-style: normal;
+ color: #973964
+}
+
+.xmlautoclose {
+ font-style: normal;
+ color: #000000
+}

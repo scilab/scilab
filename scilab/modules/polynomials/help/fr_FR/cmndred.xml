@@ -35,8 +35,8 @@
     La matrice de polynômes définie par <literal>num./den</literal> est <literal>n/d</literal>.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="simp">simp</link>

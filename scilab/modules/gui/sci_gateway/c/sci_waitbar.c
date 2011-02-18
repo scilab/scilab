@@ -73,7 +73,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
         {
           setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
         }
-      else if (messageAdr != 0)
+      else if (messageAdr != NULL)
         {
           setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
           freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);

@@ -115,8 +115,8 @@ txt2.font_style = 2;
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="titlepage">titlepage</link></member>

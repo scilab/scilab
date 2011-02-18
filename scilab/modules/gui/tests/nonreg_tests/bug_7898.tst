@@ -15,8 +15,7 @@
 // In an uicontrol of style "popupmenu", when the list in the "String" parameter has several repeated values, the returned selected value was always the first value in the list and not the currently selected one.
 
 f = figure("figure_name", "bug_7898", ...
-    "Position",[50 50 300 195], ...
-    "Units","pixels");
+    "Position",[50 50 300 195]);
 
 // Create the popup with two identicals items (first one and last one)
 popup = uicontrol("Parent", f, ...

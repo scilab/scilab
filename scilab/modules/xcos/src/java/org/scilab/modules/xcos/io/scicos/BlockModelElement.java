@@ -399,7 +399,8 @@ class BlockModelElement extends BlockPartsElement {
 
 		// opar
 		field++;
-		if (!(data.get(field) instanceof ScilabList)) {
+		if (!(data.get(field) instanceof ScilabDouble)
+				&& !(data.get(field) instanceof ScilabList)) {
 			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
@@ -554,7 +555,7 @@ class BlockModelElement extends BlockPartsElement {
 		data.set(field, new ScilabBoolean(dependsOnUandT));
 		
 		field++; // label
-		data.set(field, new ScilabString(""));
+		data.set(field, new ScilabString(from.getId()));
 		
 		field++; // nzcross
 		data.set(field, from.getNbZerosCrossing());

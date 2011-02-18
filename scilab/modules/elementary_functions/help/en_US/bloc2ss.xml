@@ -179,8 +179,8 @@ K=syslin('c',Ak,Bk,Ck,Dk);
     <literal>P</literal> and <literal>K</literal>.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="bloc2exp">bloc2exp</link></member>

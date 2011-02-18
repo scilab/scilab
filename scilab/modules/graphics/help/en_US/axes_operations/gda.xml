@@ -75,8 +75,8 @@ clf()
 plot2d(sin(t),cos(t))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gdf">gdf</link>

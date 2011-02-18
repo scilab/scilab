@@ -641,7 +641,7 @@ msgstr "&Proprietà degli assi"
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "Archivio &Bug e Richieste"
 
 msgid "&Change current directory..."
@@ -794,7 +794,7 @@ msgstr ""
 msgid "&Vectorial export"
 msgstr "&Esportazione vettoriale"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "&Collegamenti internet"
 
 msgid "&Xcos"

@@ -780,7 +780,7 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是整數．\n"
 
 #, c-format

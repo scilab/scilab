@@ -143,8 +143,8 @@ w=ss2ss(Sl,inv(U)); //undo the random change of basis => form as above
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="syslin">syslin</link></member>

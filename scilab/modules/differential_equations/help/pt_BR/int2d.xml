@@ -191,8 +191,8 @@ deff('z=f(x,y)','z=cos(x+y)')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="intc">intc</link></member>

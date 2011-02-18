@@ -68,7 +68,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
           if (isModalOption(getStringMatrixFromStack((size_t)titleAdr)[0]))
             {
               modalOptionAdr = titleAdr;
-              titleAdr = 0;
+              titleAdr = NULL;
             }
         }
       else
@@ -90,14 +90,14 @@ int sci_messagebox(char *fname,unsigned long fname_len)
               if (isModalOption(getStringMatrixFromStack((size_t)iconAdr)[0]))
                 {
                   modalOptionAdr = (char **)iconAdr;
-                  iconAdr = 0;
+                  iconAdr = NULL;
                 }
               else if(!isIconName(getStringMatrixFromStack((size_t)iconAdr)[0]))
                 {
                   buttonsTextAdr = (char **)iconAdr;
                   nbRowButtons = nbRow;
                   nbColButtons = nbCol;
-                  iconAdr = 0;
+                  iconAdr = NULL;
                 }
             }
           else  /* More than one string --> buttons names */
@@ -105,7 +105,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
               buttonsTextAdr = (char **)iconAdr;
               nbRowButtons = nbRow;
               nbColButtons = nbCol;
-              iconAdr = 0;
+              iconAdr = NULL;
             }
 
         }
@@ -128,7 +128,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
               if (isModalOption(getStringMatrixFromStack((size_t)buttonsTextAdr)[0]))
                 {
                   modalOptionAdr = buttonsTextAdr;
-                  buttonsTextAdr = 0;
+                  buttonsTextAdr = NULL;
                 }
             }
         }
@@ -164,7 +164,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
   setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
 
   /* Title */
-  if (titleAdr != 0)
+  if (titleAdr != NULL)
     {
       setMessageBoxTitle(messageBoxID, getStringMatrixFromStack((size_t)titleAdr)[0]);
     }
@@ -174,19 +174,19 @@ int sci_messagebox(char *fname,unsigned long fname_len)
     }
 
   /* Icon */
-  if (iconAdr != 0)
+  if (iconAdr != NULL)
     {
       setMessageBoxIcon(messageBoxID, getStringMatrixFromStack((size_t)iconAdr)[0]);
     }
     
   /* Buttons */
-  if (buttonsTextAdr != 0)
+  if (buttonsTextAdr != NULL)
     {
       setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack((size_t)buttonsTextAdr), nbColButtons*nbRowButtons);
     }
 
   /* Modal ? */
-  if (modalOptionAdr != 0)
+  if (modalOptionAdr != NULL)
     {
       setMessageBoxModal(messageBoxID, !stricmp(getStringMatrixFromStack((size_t)modalOptionAdr)[0],"modal"));
     }

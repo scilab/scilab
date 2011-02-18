@@ -14,11 +14,12 @@ package org.scilab.modules.scinotes.actions;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.utils.PrinterWriter;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.SciNotesPrintPreviewWindow;
+import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.utils.CodeExporter;
 
 /**
  * PrintPreviewAction class
@@ -26,6 +27,8 @@ import org.scilab.modules.scinotes.SciNotesPrintPreviewWindow;
  *
  */
 public final class PrintPreviewAction extends DefaultAction {
+
+    private boolean codeConverterLoaded;
 
     /**
      * serialVersionUID
@@ -45,8 +48,13 @@ public final class PrintPreviewAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        PrinterWriter printerWriter = new PrinterWriter(getEditor().getTextPane());
-        new SciNotesPrintPreviewWindow(printerWriter, getEditor());
+        if (!codeConverterLoaded) {
+            LoadClassPath.loadOnUse("copyAsHTMLinScinotes");
+            LoadClassPath.loadOnUse("pdf_ps_eps_graphic_export");
+            codeConverterLoaded = true;
+        }
+        ScilabEditorPane pane = (ScilabEditorPane) getEditor().getTextPane();
+        CodeExporter.convert(pane, null, CodeExporter.PREVIEW, PageSetupAction.getPageFormat());
     }
 
     /**

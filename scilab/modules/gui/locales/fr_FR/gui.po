@@ -618,7 +618,7 @@ msgstr "Propriétés des axes"
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "Gestionnaire de &Bugs"
 
 msgid "&Change current directory..."
@@ -771,7 +771,7 @@ msgstr "Navigateur de &Variable"
 msgid "&Vectorial export"
 msgstr "Export &Vectoriel"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "&Liens Internet"
 
 msgid "&Xcos"

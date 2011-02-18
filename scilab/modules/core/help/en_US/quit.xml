@@ -57,8 +57,8 @@ foo1(%t) //enter quit at the following prompt
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pause">pause</link>

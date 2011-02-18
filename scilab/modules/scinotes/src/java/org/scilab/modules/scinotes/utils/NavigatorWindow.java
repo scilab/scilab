@@ -1,6 +1,6 @@
 /*
  * Scilab (http://www.scilab.org/) - This file is part of Scilab
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010 - 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -714,7 +714,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
                 ScilabEditorPane sep = (ScilabEditorPane) ((DefaultMutableTreeNode) node.getParent().getParent()).getUserObject();
                 int pos = ((ScilabDocument.ScilabLeafElement) node.getUserObject()).getStart();
                 if (pos != -1) {
-                    sep.getEditor().getTabPane().setSelectedComponent(sep.getParentComponent());
+                    sep.getEditor().getTabPane().setSelectedComponent(sep.getEditorComponent());
                     sep.scrollTextToPos(pos);
                     pos = sep.getDocument().getDefaultRootElement().getElementIndex(pos) + 1;
                     numType.setSelectedItem(SciNotesMessages.ABSOLUTE);
@@ -772,7 +772,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         if (sep != pane) {
             pane = sep;
             doc = (ScilabDocument) pane.getDocument();
-            pane.getEditor().getTabPane().setSelectedComponent(pane.getParentComponent());
+            pane.getEditor().getTabPane().setSelectedComponent(pane.getEditorComponent());
         }
     }
 

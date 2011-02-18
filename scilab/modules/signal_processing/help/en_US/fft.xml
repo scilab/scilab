@@ -166,8 +166,8 @@ clf()
 plot2d(f,abs(y(1:n)))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="corr">corr</link>

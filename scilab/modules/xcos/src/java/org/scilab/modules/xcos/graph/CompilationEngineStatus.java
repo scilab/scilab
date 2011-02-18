@@ -167,4 +167,12 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 	public void propertyChange(PropertyChangeEvent evt) {
 		setCompilationNeeded(true);
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

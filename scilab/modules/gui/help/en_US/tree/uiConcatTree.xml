@@ -15,7 +15,8 @@ myTree2 = uiCreateTree(node2, leaf21, leaf22)
 
 concatTree = uiConcatTree(myTree1, myTree2)
 
-uiDisplayTree(concatTree) ]]></programlisting>  </refsection>  <refsection>    <title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
+uiDisplayTree(concatTree) ]]></programlisting>  </refsection>  <refsection role="see also">
+<title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
       <member>        <link linkend="uiDisplayTree">uiDisplayTree</link>       </member>      <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>
       <member>        <link linkend="uiInsertNode">uiInsertNode</link>       </member>
       <member>        <link linkend="uiDeleteNode">uiDeleteNode</link>       </member>      <member>        <link linkend="uiEqualsTree">uiEqualsTree</link>       </member>      <member>        <link linkend="uiFindNode">uiFindNode</link>       </member>

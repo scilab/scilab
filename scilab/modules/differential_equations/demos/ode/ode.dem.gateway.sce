@@ -11,6 +11,7 @@ subdemolist = ["Simple ODE"                   ,"ode_simple/ode_simple.dem.sce"  
                "Lorenz equation"              ,"ode_lorentz/ode_lorentz.dem.sce"     ; ..
                "ODE 1D vector field"          ,"ode_1dvect/ode_1dvect.dem.sce"       ; ..
                "Van der Pol vector field"     ,"ode_vanderpol/ode_vanderpol.dem.sce" ; ..
+               "Nonisothermal plug flow reactor model"     ,"ode_reactor/ode_reactor.sce" ; ..
                "Lotka-Volterra vector field"  ,"ode_lotka/ode_lotka.dem.sce"         ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

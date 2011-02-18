@@ -182,13 +182,6 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		int nbvars;
 	} intersci_list ;
 
-	typedef struct /* declaration of outtb_elem -valable dans inctscicos.c- */
-	{
-		int lnk;
-		int pos;
-	} outtb_el;
-
-
 	intersci_list *loc = NULL;
 	intersci_state *new = NULL ;
 

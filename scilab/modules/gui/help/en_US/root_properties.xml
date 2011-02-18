@@ -80,8 +80,8 @@ get(0, "screensize_px")
 get(0, "screendepth")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>

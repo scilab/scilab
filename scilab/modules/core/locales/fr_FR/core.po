@@ -699,7 +699,7 @@ msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Un int attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un entier attendu.\n"
 

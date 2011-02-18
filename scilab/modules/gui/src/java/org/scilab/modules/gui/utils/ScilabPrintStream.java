@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
@@ -24,12 +25,13 @@ import org.scilab.modules.gui.console.ScilabConsole;
 public final class ScilabPrintStream extends PrintStream {
 
     private static ScilabPrintStream stream;
+    private static SciOutputStream output;
 
     /**
      * Constructor
      */
     private ScilabPrintStream() {
-        super(new SciOutputStream(), true);
+        super(output, true);
     }
 
     /**
@@ -45,6 +47,7 @@ public final class ScilabPrintStream extends PrintStream {
      */
     public static ScilabPrintStream getInstance() {
         if (stream == null) {
+            output = new SciOutputStream();
             stream = new ScilabPrintStream();
         }
 
@@ -52,14 +55,30 @@ public final class ScilabPrintStream extends PrintStream {
     }
 
     /**
+     * @param out the PrintStream where to redirect
+     */
+    public static void setRedirect(PrintStream out) {
+        output.setRedirect(out);
+    }
+
+    /**
      * Inner class to simulate an outputstream which display datas in console
      */
     private static final class SciOutputStream extends OutputStream {
+
+        private PrintStream out;
 
         /**
          * Constructor
          */
         private SciOutputStream() { }
+
+        /**
+         * @param out the OutputStream where to redirect
+         */
+        public void setRedirect(PrintStream out) {
+            this.out = out;
+        }
 
         /**
          * {@inheritDoc}
@@ -74,22 +93,31 @@ public final class ScilabPrintStream extends PrintStream {
         /**
          * {@inheritDoc}
          */
-        public void write(byte[] b) {
+        public void write(byte[] b) throws IOException {
             CallScilabBridge.display(new String(b));
+            if (out != null) {
+                out.write(b);
+            }
         }
 
         /**
          * {@inheritDoc}
          */
-        public void write(byte[] b, int off, int len) {
+        public void write(byte[] b, int off, int len) throws IOException {
             CallScilabBridge.display(new String(b, off, len));
+            if (out != null) {
+                out.write(b, off, len);
+            }
         }
 
         /**
          * {@inheritDoc}
          */
-        public void write(int b) {
+        public void write(int b) throws IOException {
             CallScilabBridge.display(new String (new byte[]{(byte) b}));
+            if (out != null) {
+                out.write(b);
+            }
         }
     }
 }

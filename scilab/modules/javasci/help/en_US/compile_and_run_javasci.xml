@@ -132,7 +132,7 @@
         <itemizedlist>
           <listitem>
             <para><literal>LD_LIBRARY_PATH=/path/to/libjavasci/ SCI=/path/to/scilab/
-            java -cp modules/javasci/jar/org.scilab.modules.javasci.jar:modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal></para>
+            java -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal></para>
           </listitem>
         </itemizedlist>
 
@@ -140,7 +140,7 @@
           <listitem>
             <para><literal>SCI=/path/to/scilab/ java
             -Djava.library.path=/path/to/libjavasci/ -cp
-            modules/javasci/jar/org.scilab.modules.javasci.jar:modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal></para>
+            $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal></para>
           </listitem>
         </itemizedlist>
 
@@ -182,7 +182,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="java"><![CDATA[ 
 // A simple Java example 
 // javasci v2
 // Filename: BasicExample.java
@@ -205,8 +205,8 @@ class BasicExample {
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
     <member>

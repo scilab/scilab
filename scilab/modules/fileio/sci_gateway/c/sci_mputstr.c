@@ -55,13 +55,13 @@ int sci_mputstr(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,2);
+				Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname,2);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,2);
+			Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname,2);
 			return 0;
 		}
 	}

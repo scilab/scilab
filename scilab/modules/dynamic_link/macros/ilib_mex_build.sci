@@ -12,7 +12,7 @@
 function ilib_mex_build(ilib_name, table, files, libs, makename, ldflags, cflags, fflags, cc)
 
   if ~haveacompiler() then
-    error(msprintf(gettext("%s: A Fortran or C compiler is required.\n"), 'ilib_mex_build'));
+    error(msprintf(gettext("%s: A Fortran or C compiler is required.\n"), "ilib_mex_build"));
     return;
   end
 
@@ -22,21 +22,25 @@ function ilib_mex_build(ilib_name, table, files, libs, makename, ldflags, cflags
     return
   end
 
-  if rhs > 4 & makename <> [] & makename <> '' then
-    warning(msprintf(_("%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"),'ilib_mex_build', 5));
+  if rhs > 4 & makename <> [] & makename <> "" then
+    warning(msprintf(_("%s: Wrong value for input argument #%d: """" or ""[]"" expected.\n"),"ilib_mex_build", 5));
+  end
+
+  if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
+    warnobsolete(msprintf(_("A managed file extension for input argument #%d"), 3), "5.4.0");
   end
   
-  if rhs <= 5 then ldflags = ''; end
-  if rhs <= 6 then cflags  = ''; end
-  if rhs <= 7 then fflags  = ''; end
-  if rhs <= 8 then cc  = ''; end
+  if rhs <= 5 then ldflags = ""; end
+  if rhs <= 6 then cflags  = ""; end
+  if rhs <= 7 then fflags  = ""; end
+  if rhs <= 8 then cc  = ""; end
 
-  if ~isdef('makename') then
-    makename = '';
+  if ~isdef("makename") then
+    makename = "";
   end
 
 
-  if getos() <> 'Windows' then
+  if getos() <> "Windows" then
     // These flags are important... The rename of the fly the name of the
     // function in the C / C++ / Fortran code
     cflags=" -DmexFunction=mex_\$* " + cflags

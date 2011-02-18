@@ -70,8 +70,8 @@ inv(evstr(A))*evstr(b)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="trianfml">trianfml</link></member>

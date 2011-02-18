@@ -129,8 +129,8 @@ fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
 [a,S]=fftw_flags("FFTW_PATIENT")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="fftw">fftw</link>

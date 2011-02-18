@@ -45,8 +45,8 @@
     <literal>db(k)=20*log(abs(repf(k)))/log(10)</literal> and <literal>phi(k)</literal> is the phase
     of <literal>repf(k)</literal> expressed in degrees.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="repfreq">repfreq</link>

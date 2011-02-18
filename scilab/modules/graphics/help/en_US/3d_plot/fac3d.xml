@@ -29,8 +29,8 @@ fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])</synopsis>
     These functions are obsolete and have been replaced by
     <literal>plot3d</literal> and <literal>plot3d1</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>

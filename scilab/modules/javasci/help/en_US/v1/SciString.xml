@@ -50,8 +50,8 @@
 // See SCI/modules/Javasci/examples directory
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
     <member>
         Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink>

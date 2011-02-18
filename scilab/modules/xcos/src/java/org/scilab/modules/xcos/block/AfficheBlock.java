@@ -33,6 +33,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.AbstractElement;
 
@@ -96,8 +97,11 @@ public final class AfficheBlock extends BasicBlock {
 		 */
 		@Override
 		public synchronized void actionPerformed(ActionEvent e) {
-			if (block.getParentDiagram() == null) {
-				return;
+			XcosDiagram graph = block.getParentDiagram();
+			if (graph == null) {
+				block.setParentDiagram(Xcos.findParent(block));
+				graph = block.getParentDiagram();
+				LogFactory.getLog(getClass()).error("Parent diagram was null");
 			}
 			
 			/*

@@ -61,8 +61,8 @@ plot2d([ima_val1',ima_val2'],[imag(z1)',imag(z2)']);
 xgrid(3)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="asn">%asn</link>

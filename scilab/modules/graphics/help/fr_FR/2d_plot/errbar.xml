@@ -43,8 +43,8 @@ plot2d(x,y)
 errbar(x,y,0.05*ones(x),0.03*ones(x))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot2d">plot2d</link>

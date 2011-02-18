@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="VARIABLE_DELAY"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>VARIABLE_DELAY</refname>
+
+    <refpurpose>Retard pur variable</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/VARIABLE_DELAY.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_VARIABLE_DELAY">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="VARIABLE_DELAY">Retard pur variable</link></para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para><xref linkend="Palette_VARIABLE_DELAY">Palette</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref
+            linkend="Description_VARIABLE_DELAY">Description</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Dialogbox_VARIABLE_DELAY">Boîte de dialogue</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Defaultproperties_VARIABLE_DELAY">Propriétés par défaut</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref
+            linkend="Interfacingfunction_VARIABLE_DELAY">Fonction d'interfaçage</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref
+            linkend="Computationalfunction_VARIABLE_DELAY">Fonction de calcul</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Example_VARIABLE_DELAY">VARIABLE_DELAY : Exemple</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Authors_VARIABLE_DELAY">Auteurs</xref></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_VARIABLE_DELAY">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="Continuous_pal">Palette Systèmes à temps continu</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_VARIABLE_DELAY">
+    <title>Description</title>
+
+    <para>Le bloc Retard pur variable peut être utilisé pour simuler un délai variable
+    entre une action et son effet. Le bloc est utilisé, par exemple, pour modéliser
+    un système avec un tube où la vitesse de pompage du fluide dans le tube est variable.
+    </para>
+
+    <para>Le bloc accepte deux entrées et une sortie : la première entrée est le
+    signal u(t) qui passe à travers le bloc (entrée de donnée); la seconde entrée
+    est le temps de retard variable τ(t).</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../examples/variable_delay_with_equations.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>A l'instant t, le bloc sort l'entrée retardée u(θ) où θ
+     est le temps de simulation courant t moins le paramètre de retard τ.</para>[]
+
+    <para>L'équation du signal de sortie est :</para>
+e est
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../examples/variable_delay_eq.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Dialogbox_VARIABLE_DELAY">
+    <title>Boîte de dialogue</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../examples/variable_delay1.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para></para>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Max delay</emphasis></para>
+
+        <para>Il définit la plus grande valeur admissible sur l'entrée de retard. La
+	valeur ne peut pas être négative.</para>
+
+        <para>Propriétés Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">initial input</emphasis></para>
+
+        <para>La sortie générée par le bloc jusqu'à ce que le temps de simulation
+	atteigne pour la première fois le temps donné sur l'entrée de retard.</para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Buffer size</emphasis></para>
+
+        <para>Le nombre de points que le bloc peut mémoriser.</para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_VARIABLE_DELAY">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">regular inputs:</emphasis></para>
+
+        <para><emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis></para>
+
+        <para><emphasis role="bold">- port 2 : size [1,1] / type 1</emphasis></para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">regular outputs:</emphasis></para>
+
+        <para><emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis></para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis>non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis>non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">name of computational function:</emphasis>
+        <emphasis role="italic">variable_delay</emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_VARIABLE_DELAY">
+    <title>VARIABLE_DELAY Example</title>
+
+    <para>Dans cet exemple, le temps de retard maximum dans le dialogue des Paramètres de Bloc
+    est mis à 4. Le signal d'entrée est une onde sinusoïdale d'amplitude 1 et de fréquence 0,2 Hz.</para>
+
+    <para>Le bloc constant est initialisé à 2 pour introduire un délai de 2 secondes. Les formes d'ondes en entrée et
+    en sortie du bloc VARIABLE_DELAY sont montrées ci-dessous :</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../examples/variable_delay2.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Interfacingfunction_VARIABLE_DELAY">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Linear/VARIABLE_DELAY.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_VARIABLE_DELAY">
+    <title>Fonction de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/variable_delay.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_VARIABLE_DELAY">
+    <title>Auteurs</title>
+
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+
+    <para><emphasis role="bold">Zhour MADINI-ZOUINE</emphasis> -
+    DIGITEO</para>
+  </refsection>
+</refentry>

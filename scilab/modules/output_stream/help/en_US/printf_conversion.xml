@@ -324,8 +324,8 @@ printf('a character: %c\n', 'aaa');
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="printf">printf</link></member>

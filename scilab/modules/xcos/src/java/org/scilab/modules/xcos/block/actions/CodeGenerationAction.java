@@ -26,6 +26,7 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -108,12 +109,19 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 							return;
 						}
 						
-						block.getParentDiagram().getModel().beginUpdate();
-						doAction(block, tempInput);
-						block.getParentDiagram().getModel().endUpdate();
+						XcosDiagram graph = block.getParentDiagram();
+						if (graph == null) {
+							block.setParentDiagram(Xcos.findParent(block));
+							graph = block.getParentDiagram();
+							LogFactory.getLog(getClass()).error("Parent diagram was null");
+						}
 						
-						block.getParentDiagram().getView().clear(block, true, false);
-						block.getParentDiagram().getView().validate();
+						graph.getModel().beginUpdate();
+						doAction(block, tempInput);
+						graph.getModel().endUpdate();
+						
+						graph.getView().clear(block, true, false);
+						graph.getView().validate();
 						
 						delete(tempOutput);
 						delete(tempInput);

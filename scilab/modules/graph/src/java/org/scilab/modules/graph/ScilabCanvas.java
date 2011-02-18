@@ -14,7 +14,6 @@ package org.scilab.modules.graph;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Dimension2D;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -60,24 +59,10 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		putTextShape(SupportedLabelType.MathML.name(), new MathMLTextShape());
 	}
 	
-	private URL svgBackgroundImage; 
+	private URL urlBasePath; 
 
 	/** Default constructor */
 	public ScilabCanvas() { }
-
-	/**
-	 * @param svgBackgroundImage the svgBackgroundImage to set
-	 */
-	public void setSvgBackgroundImage(URL svgBackgroundImage) {
-		this.svgBackgroundImage = svgBackgroundImage;
-	}
-
-	/**
-	 * @return the svgBackgroundImage
-	 */
-	public URL getSvgBackgroundImage() {
-		return svgBackgroundImage;
-	}
 	
 	/**
 	 * Get the text shape associated with the text
@@ -226,42 +211,6 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 		return shape;
 	}
-	
-	/**
-	 * Paint the background image.
-	 * 
-	 * @param w background width
-	 * @param h background height
-	 */
-	public void paintSvgBackgroundImage(int w, int h) {
-		if (svgBackgroundImage == null) {
-			LogFactory.getLog(ScilabCanvas.class).error("background image not set");
-			return;
-		}
-		
-		GraphicsNode background = ScilabGraphUtils
-				.getSVGComponent(svgBackgroundImage);
-
-		if (background == null) {
-			return;
-		}
-
-		// Scale to the bounds
-		Dimension2D bounds = ScilabGraphUtils.getSVGDocumentSizes(svgBackgroundImage);
-
-		double sh = h / bounds.getHeight();
-		double sw = w / bounds.getWidth();
-
-		AffineTransform scaleTransform = new AffineTransform(new double[] {
-				sw,   0.0,
-				0.0,     sh
-		});
-
-		background.setTransform(scaleTransform);
-
-		// Paint
-		background.paint(g);
-	}
 
 	/**
 	 * Paint the foreground image.
@@ -338,21 +287,37 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	}
 	
 	/**
+	 * Set the image path and store the path as a URL.
+	 * @param imageBasePath the new path
+	 * @see com.mxgraph.canvas.mxBasicCanvas#setImageBasePath(java.lang.String)
+	 */
+	@Override
+	public void setImageBasePath(String imageBasePath) {
+		super.setImageBasePath(imageBasePath);
+		
+		try {
+			this.urlBasePath = new URL(imageBasePath);
+		} catch (MalformedURLException e) {
+			LogFactory.getLog(ScilabCanvas.class).error(e);
+		}
+	}
+	
+	/**
 	 * Gets the image path from the given style. If the path is relative (does
 	 * not start with a slash) then it is appended to the imageBasePath.
 	 * 
-	 * @param style the curernt style
+	 * @param style the current style
 	 * @return the image path
 	 */
 	@Override
 	public String getImageForStyle(Map<String, Object> style) {
 		String filename = mxUtils.getString(style, mxConstants.STYLE_IMAGE);
 
-		if (filename != null && !filename.startsWith("/") && !filename.startsWith("file:/")) {
-			filename = imageBasePath + filename;
-		}
+		try {
+			return new URL(this.urlBasePath, filename).toExternalForm();
+		} catch (MalformedURLException e) {}
 
-		return filename;
+		return null;
 	}
 }
 

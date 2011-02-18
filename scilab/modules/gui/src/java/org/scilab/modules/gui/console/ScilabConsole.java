@@ -16,6 +16,7 @@ package org.scilab.modules.gui.console;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.io.PrintStream;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.dockable.ScilabDockable;
@@ -49,7 +50,14 @@ public class ScilabConsole extends ScilabDockable implements Console {
         if (instance == null) {
             instance = new ScilabConsole();
             if (ScilabPrintStream.isAvailable()) {
+                /* Get usual stderr */
+                PrintStream err = System.err;
+
+                /* Now stderr is the console */
                 System.setErr(ScilabPrintStream.getInstance());
+
+                /* Bug 8748: Xcos needs to have the usual stderr too */
+                ScilabPrintStream.setRedirect(err);
             }
         }
         return instance;
@@ -323,7 +331,19 @@ public class ScilabConsole extends ScilabDockable implements Console {
 
     public void helpOnTheKeyword() {
         ScilabBridge.helpOnTheKeyword(this);
-
     }
 
+    /**
+     * Evaluate the selection with echo
+     */
+    public void evaluateSelectionWithEcho() {
+        ScilabBridge.evaluateSelectionWithEcho(this);
+    }
+
+    /**
+     * Evaluate the selection with no echo
+     */
+    public void evaluateSelectionWithNoEcho() {
+        ScilabBridge.evaluateSelectionWithNoEcho(this);
+    }
 }

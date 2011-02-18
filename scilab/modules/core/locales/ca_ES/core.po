@@ -707,7 +707,7 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un enter.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un enter.\n"
 

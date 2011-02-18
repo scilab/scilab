@@ -15,3 +15,6 @@ newfun("MY_PWD",ptr);
 
 if clearfun("MY_PWD") <> %T then pause,end
 //================================================
+
+ierr = execstr('a = clearfun(2);','errcatch');
+if ierr <> 999 then pause,end

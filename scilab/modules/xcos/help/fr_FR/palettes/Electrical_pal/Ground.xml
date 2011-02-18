@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="Ground"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>Ground</refname>
+    <refpurpose>Masse (Référence du potentiel zéro)</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/Ground.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_Ground">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Ground">Masse (Référence du potentiel zéro)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_Ground">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_Ground">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_Ground">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_Ground">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="Ground">Modèle Modelica</link>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_Ground">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils Electrique</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_Ground">
+    <title>Description</title>
+    <para>
+      L'élément Ground est composant à port unique fournissant une référence de tension
+      dans les circuits électriques. Le potentiel au noeud de masse est nul.
+      Chaque circuit électrique doit contenir au moins un élément Ground.
+     </para>
+  </refsection>
+  <refsection id="Defaultproperties_Ground">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis> Ground</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_Ground">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Ground.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Modelicamodel_Ground">
+    <title>Modèle Modelica</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Ground.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

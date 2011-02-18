@@ -262,7 +262,7 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: ein Dateiname erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Integer erwartet.\n"
 
 #, c-format
@@ -336,12 +336,12 @@ msgstr ""
 "Dateideskriptor erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: ein Integer erwartet.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A integer or string expected.\n"
+"%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: ein Integer oder Zeichenkette "
 "erwartet.\n"
@@ -459,10 +459,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ein gültiger Dateiname oder "
+"%s: falscher Wert für Eingangsargument #%d ('%ls'): ein gültiger Dateiname oder "
 "Zeichenkette erwartet.\n"
 
 #, c-format

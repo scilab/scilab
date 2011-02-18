@@ -73,8 +73,8 @@ linspace(1+1*%i,2+2*%i,10)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="logspace">logspace</link></member>

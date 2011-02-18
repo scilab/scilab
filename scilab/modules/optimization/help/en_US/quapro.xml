@@ -30,8 +30,8 @@
     http://www.scilab.org/contrib/index_contrib.php?page=download.php.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="qld">qpsolve</link></member>

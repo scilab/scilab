@@ -18,6 +18,7 @@ import java.util.Arrays;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
@@ -90,6 +91,12 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 			);
 			
 			block.setExprs(exprs);
+			
+			/*
+			 * Open the customization UI on a new mask creation
+			 */
+			GraphActionManager.getInstance(getGraph(e),
+					SuperblockMaskCustomizeAction.class).actionPerformed(e);
 		}
 	}
 }

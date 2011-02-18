@@ -32,7 +32,7 @@ char *FindFileAssociation (char *ptrFindStr,char *Extra)
 		wchar_t szDefault[PATH_MAX + FILENAME_MAX];
 		DWORD ccDefault = PATH_MAX + FILENAME_MAX;
 
-		if (wcptrFindStr && wcptrFindStr)
+		if (wcptrFindStr)
 		{
 			HRESULT rc = AssocQueryStringW (0, ASSOCSTR_EXECUTABLE,wcptrFindStr, wcExtra, szDefault, &ccDefault);
 			if (ccDefault)

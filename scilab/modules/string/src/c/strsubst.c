@@ -155,7 +155,7 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 	wcreplacement_string = to_wide_string((char*)replacement_string);
 	wcinput_string = to_wide_string((char*)input_string);
 
-	if (wcreplacement_string == NULL || wcreplacement_string == NULL) 
+	if (wcreplacement_string == NULL) 
 	{
 		*ierr = (int)NOT_ENOUGH_MEMORY_FOR_VECTOR;
 		return strdup(input_string);

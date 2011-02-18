@@ -114,7 +114,7 @@ int C2F(sci_newfun) (char *fname,unsigned long fname_len)
     ifptr = (int) *pdVarTwo;
     if (*pdVarTwo != (double)ifptr)
     {
-        Scierror(999,_("%s: Wrong value for input argument #%d: A integer expected.\n"),fname,2);
+        Scierror(999,_("%s: Wrong value for input argument #%d: An integer expected.\n"),fname,2);
         return 0;
     }
 

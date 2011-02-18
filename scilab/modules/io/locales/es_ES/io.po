@@ -98,7 +98,7 @@ msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
 
