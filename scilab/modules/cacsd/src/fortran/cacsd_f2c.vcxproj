@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>cacsd_f</ProjectName>
+    <ProjectGuid>{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}</ProjectGuid>
+    <RootNamespace>cacsd_f2c</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)cacsd.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CACSD_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build cacsd_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n cacsd_f.dll %%f &gt;nul
+copy *.def cacsd_f.def &gt;nul
+copy cacsd_f.def ..\cacsd_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy cacsd_f_header.def+cacsd_f.vcdef cacsd_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)cacsd.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CACSD_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build cacsd_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n cacsd_f.dll %%f &gt;nul
+copy *.def cacsd_f.def &gt;nul
+copy cacsd_f.def ..\cacsd_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy cacsd_f_header.def+cacsd_f.vcdef cacsd_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)cacsd.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CACSD_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build cacsd_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n cacsd_f.dll %%f &gt;nul
+copy *.def cacsd_f.def &gt;nul
+copy cacsd_f.def ..\cacsd_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy cacsd_f_header.def+cacsd_f.vcdef cacsd_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)cacsd_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)cacsd.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CACSD_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build cacsd_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n cacsd_f.dll %%f &gt;nul
+copy *.def cacsd_f.def &gt;nul
+copy cacsd_f.def ..\cacsd_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy cacsd_f_header.def+cacsd_f.vcdef cacsd_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;cacsd.lib;elementary_functions.lib;elementary_functions_f.lib;slicot_f.lib;polynomials_f.lib;output_stream_f.lib;output_stream.lib;slatec_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>cacsd_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="arl2.c" />
+    <ClCompile Include="arl2a.c" />
+    <ClCompile Include="calsca.c" />
+    <ClCompile Include="deg1l2.c" />
+    <ClCompile Include="degl2.c" />
+    <ClCompile Include="dfrmg.c" />
+    <ClCompile Include="dhetr.c" />
+    <ClCompile Include="dlslv.c" />
+    <ClCompile Include="domout.c" />
+    <ClCompile Include="dzdivq.c" />
+    <ClCompile Include="expan.c" />
+    <ClCompile Include="feq.c" />
+    <ClCompile Include="fout.c" />
+    <ClCompile Include="front.c" />
+    <ClCompile Include="giv.c" />
+    <ClCompile Include="hessl2.c" />
+    <ClCompile Include="jacl2.c" />
+    <ClCompile Include="lq.c" />
+    <ClCompile Include="modul.c" />
+    <ClCompile Include="mzdivq.c" />
+    <ClCompile Include="onface.c" />
+    <ClCompile Include="optml2.c" />
+    <ClCompile Include="outl2.c" />
+    <ClCompile Include="phi.c" />
+    <ClCompile Include="qhesz.c" />
+    <ClCompile Include="qitz.c" />
+    <ClCompile Include="qvalz.c" />
+    <ClCompile Include="ricd.c" />
+    <ClCompile Include="rilac.c" />
+    <ClCompile Include="rootgp.c" />
+    <ClCompile Include="rtitr.c" />
+    <ClCompile Include="scaleg.c" />
+    <ClCompile Include="scapol.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_arl2.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dhinf.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ereduc.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_findbd.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_freq.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fstair.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_gschur.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_gspec.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_hinf.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ldiv.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_linmeq.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ltitr.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lyap.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mucomp.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ppol.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rankqr.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_residu.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ricc.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ricc2.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rtitr.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sident.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sorder.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sylv.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tzer.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_zrankqr.c" />
+    <ClCompile Include="shrslv.c" />
+    <ClCompile Include="sszer.c" />
+    <ClCompile Include="storl2.c" />
+    <ClCompile Include="tild.c" />
+    <ClCompile Include="watfac.c" />
+    <ClCompile Include="wdegre.c" />
+    <ClCompile Include="wesidu.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="arl2.f" />
+    <f2c_rule Include="arl2a.f" />
+    <f2c_rule Include="calsca.f" />
+    <f2c_rule Include="deg1l2.f" />
+    <f2c_rule Include="degl2.f" />
+    <f2c_rule Include="dfrmg.f" />
+    <f2c_rule Include="dhetr.f" />
+    <f2c_rule Include="dlslv.f" />
+    <f2c_rule Include="domout.f" />
+    <f2c_rule Include="dzdivq.f" />
+    <f2c_rule Include="expan.f" />
+    <f2c_rule Include="feq.f" />
+    <f2c_rule Include="fout.f" />
+    <f2c_rule Include="front.f" />
+    <f2c_rule Include="giv.f" />
+    <f2c_rule Include="hessl2.f" />
+    <f2c_rule Include="jacl2.f" />
+    <f2c_rule Include="lq.f" />
+    <f2c_rule Include="modul.f" />
+    <f2c_rule Include="mzdivq.f" />
+    <f2c_rule Include="onface.f" />
+    <f2c_rule Include="optml2.f" />
+    <f2c_rule Include="outl2.f" />
+    <f2c_rule Include="phi.f" />
+    <f2c_rule Include="qhesz.f" />
+    <f2c_rule Include="qitz.f" />
+    <f2c_rule Include="qvalz.f" />
+    <f2c_rule Include="ricd.f" />
+    <f2c_rule Include="rilac.f" />
+    <f2c_rule Include="rootgp.f" />
+    <f2c_rule Include="rtitr.f" />
+    <f2c_rule Include="scaleg.f" />
+    <f2c_rule Include="scapol.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_arl2.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dhinf.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ereduc.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_findbd.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_freq.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fstair.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_gschur.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_gspec.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_hinf.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ldiv.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_linmeq.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ltitr.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lyap.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mucomp.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ppol.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rankqr.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_residu.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ricc.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ricc2.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rtitr.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sident.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sorder.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sylv.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tzer.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_zrankqr.f" />
+    <f2c_rule Include="shrslv.f" />
+    <f2c_rule Include="sszer.f" />
+    <f2c_rule Include="storl2.f" />
+    <f2c_rule Include="tild.f" />
+    <f2c_rule Include="watfac.f" />
+    <f2c_rule Include="wdegre.f" />
+    <f2c_rule Include="wesidu.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cacsd_Import.def" />
+    <None Include="Differential_equations_f_Import.def" />
+    <None Include="Elementary_functions_f_Import.def" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Output_stream_f_Import.def" />
+    <None Include="Output_stream_Import.def" />
+    <None Include="Polynomials_f_Import.def" />
+    <None Include="Slatec_f_Import.def" />
+    <None Include="Slicot_f_Import.def" />
+    <None Include="..\..\sci_gateway\cacsd_gateway.xml" />
+    <None Include="..\..\Makefile.am" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\eispack\eispack_f2c.vcxproj">
+      <Project>{96248e56-c84a-4803-9f50-25e2089ab6b8}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\linpack\linpack_f2c.vcxproj">
+      <Project>{f0f55692-0355-4bc3-be9d-552c8aac5238}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.targets" />
+  </ImportGroup>
+</Project>

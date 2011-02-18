@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup
+    Condition="'$(rename_vc_extension_filesBeforeTargets)' == '' and '$(rename_vc_extension_filesAfterTargets)' == '' and '$(ConfigurationType)' != 'Makefile'">
+    <rename_vc_extension_filesBeforeTargets>Midl</rename_vc_extension_filesBeforeTargets>
+    <rename_vc_extension_filesAfterTargets>CustomBuild</rename_vc_extension_filesAfterTargets>
+  </PropertyGroup>
+  <PropertyGroup>
+    <rename_vc_extension_filesDependsOn
+      Condition="'$(ConfigurationType)' != 'Makefile'">_SelectedFiles;$(rename_vc_extension_filesDependsOn)</rename_vc_extension_filesDependsOn>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <rename_vc_extension_files>
+      <CommandLineTemplate>copy "%(RootDir)%(Directory)%(Filename)%(Extension)" "%(RootDir)%(Directory)%(Filename)" 1&gt;NUL</CommandLineTemplate>
+      <Outputs>%(RootDir)%(Directory)%(Filename) </Outputs>
+      <ExecutionDescription>Copy %(RootDir)%(Directory)%(Filename)%(Extension) --&gt; %(RootDir)%(Directory)%(Filename)</ExecutionDescription>
+    </rename_vc_extension_files>
+  </ItemDefinitionGroup>
+</Project>

@@ -1,0 +1,740 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}</ProjectGuid>
+    <RootNamespace>graphics</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>LibScilab.lib;scigui.lib;scilab_windows.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>LibScilab.lib;scigui.lib;scilab_windows.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>LibScilab.lib;scigui.lib;scilab_windows.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>LibScilab.lib;scigui.lib;scilab_windows.lib;../../bin/blasplus.lib;../../bin/lapack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\c\Axes.c" />
+    <ClCompile Include="src\c\axesScale.c" />
+    <ClCompile Include="src\c\BasicAlgos.c" />
+    <ClCompile Include="src\c\BuildObjects.c" />
+    <ClCompile Include="src\c\Champ.c" />
+    <ClCompile Include="src\c\getHandleProperty\CheckTicksProperty.c" />
+    <ClCompile Include="src\c\CloneObjects.c" />
+    <ClCompile Include="src\c\ColorMapManagement.c" />
+    <ClCompile Include="src\c\Contour.c" />
+    <ClCompile Include="src\c\CurrentObjectsManagement.c" />
+    <ClCompile Include="src\c\DefaultCommandArg.c" />
+    <ClCompile Include="src\c\DestroyObjects.c" />
+    <ClCompile Include="src\c\DllmainGraphics.c" />
+    <ClCompile Include="src\c\DrawObjects.c" />
+    <ClCompile Include="src\c\FeC.c" />
+    <ClCompile Include="src\c\Format.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_alignment_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_anti_aliasing_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_arc_drawing_method_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_arrow_size_factor_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_arrow_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_auto_clear_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_auto_dimensionning_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_auto_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_auto_resize_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_auto_rotation_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_auto_scale_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_auto_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_axes_bounds_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_axes_reverse_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_axes_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_axes_visible_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_background_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_bar_layout_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_bar_width_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_callback_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_callback_type_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_callbackmevent_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_cdata_mapping_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_children_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_clip_box_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_clip_state_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_closed_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_color_flag_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_color_map_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_color_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_color_range_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_colored_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_cube_scaling_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_current_axes_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_current_entity_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_current_figure_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_data_bounds_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_data_mapping_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_default_axes_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_dimension_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_event_handler_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_figure_id_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_figure_name_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_figure_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_figure_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_figure_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_figures_id_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_fill_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_filled_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_font_angle_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_font_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_font_foreground_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_font_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_font_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_foreground_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_format_n_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_fractional_font_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_grid_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_grid_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_handle_visible_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_hidden_axis_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_hidden_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_immediate_drawing_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_info_message_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_interp_color_mode.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_interp_color_vector.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_isoview_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_labels_font_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_labels_font_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_labels_font_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_legend_location_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_line_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_line_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_links_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_log_flags_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_margins_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_background_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_foreground_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_size_unit_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_old_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_outside_colors_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_parent_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_pixel_drawing_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_pixmap_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_polyline_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_rotation_angles_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_rotation_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_screen_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_segs_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_sub_tics_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_surface_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_surface_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_text_box_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_text_box_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_text_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
+    <ClCompile Include="src\c\get_ticks_utils.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tics_direction_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tics_label_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tics_segment_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tics_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tight_limits_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_title_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_triangles_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_type_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_user_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_view_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_viewport_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_visible_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_x_label_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_x_location_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_x_shift_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_x_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_xtics_coord_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_y_label_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_y_location_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_y_shift_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_y_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_ytics_coord_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_z_bounds_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_z_label_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_z_shift_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_z_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_zoom_box_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_zoom_state_property.c" />
+    <ClCompile Include="src\c\GetCommandArg.c" />
+    <ClCompile Include="src\c\getHandleProperty\GetHashTable.c" />
+    <ClCompile Include="src\c\GetProperty.c" />
+    <ClCompile Include="src\c\getHandleProperty\getPropertyAssignedValue.c" />
+    <ClCompile Include="src\c\graphicModuleLoad.c" />
+    <ClCompile Include="src\c\Gray.c" />
+    <ClCompile Include="sci_gateway\c\gw_graphics.c" />
+    <ClCompile Include="src\c\HandleManagement.c" />
+    <ClCompile Include="src\c\InitObjects.c" />
+    <ClCompile Include="src\c\Interaction.c" />
+    <ClCompile Include="src\c\loadTextRenderingAPI.c" />
+    <ClCompile Include="src\c\math_graphics.c">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
+    </ClCompile>
+    <ClCompile Include="src\c\ObjectSelection.c" />
+    <ClCompile Include="src\c\pixel_mode.c" />
+    <ClCompile Include="src\c\Plo2dEch.c" />
+    <ClCompile Include="src\c\Plo2dn.c" />
+    <ClCompile Include="sci_gateway\c\sci_addcb.c" />
+    <ClCompile Include="sci_gateway\c\sci_champ.c" />
+    <ClCompile Include="sci_gateway\c\sci_clear_pixmap.c" />
+    <ClCompile Include="sci_gateway\c\sci_contour2di.c" />
+    <ClCompile Include="sci_gateway\c\sci_copy.c" />
+    <ClCompile Include="sci_gateway\c\sci_delete.c" />
+    <ClCompile Include="sci_gateway\c\sci_demo.c" />
+    <ClCompile Include="sci_gateway\c\sci_draw.c" />
+    <ClCompile Include="sci_gateway\c\sci_drawaxis.c" />
+    <ClCompile Include="sci_gateway\c\sci_drawlater.c" />
+    <ClCompile Include="sci_gateway\c\sci_drawnow.c" />
+    <ClCompile Include="sci_gateway\c\sci_fec.c" />
+    <ClCompile Include="sci_gateway\c\sci_geom3d.c" />
+    <ClCompile Include="sci_gateway\c\sci_get.c" />
+    <ClCompile Include="sci_gateway\c\sci_glue.c" />
+    <ClCompile Include="sci_gateway\c\sci_grayplot.c" />
+    <ClCompile Include="sci_gateway\c\sci_is_handle_valid.c" />
+    <ClCompile Include="sci_gateway\c\sci_Legend.c" />
+    <ClCompile Include="sci_gateway\c\sci_matplot.c" />
+    <ClCompile Include="sci_gateway\c\sci_matplot1.c" />
+    <ClCompile Include="sci_gateway\c\sci_move.c" />
+    <ClCompile Include="sci_gateway\c\sci_newaxes.c" />
+    <ClCompile Include="sci_gateway\c\sci_param3d.c" />
+    <ClCompile Include="sci_gateway\c\sci_param3d1.c" />
+    <ClCompile Include="sci_gateway\c\sci_plot2d.c" />
+    <ClCompile Include="sci_gateway\c\sci_plot2d1.c" />
+    <ClCompile Include="sci_gateway\c\sci_plot3d.c" />
+    <ClCompile Include="sci_gateway\c\sci_relocate_handle.c" />
+    <ClCompile Include="sci_gateway\c\sci_rotate_axes.c" />
+    <ClCompile Include="sci_gateway\c\sci_rubberbox.c" />
+    <ClCompile Include="sci_gateway\c\sci_set.c" />
+    <ClCompile Include="sci_gateway\c\sci_show_pixmap.c" />
+    <ClCompile Include="sci_gateway\c\sci_show_window.c" />
+    <ClCompile Include="sci_gateway\c\sci_showalluimenushandles.c" />
+    <ClCompile Include="sci_gateway\c\sci_StringBox.c" />
+    <ClCompile Include="sci_gateway\c\sci_swap_handles.c" />
+    <ClCompile Include="sci_gateway\c\sci_unglue.c" />
+    <ClCompile Include="sci_gateway\c\sci_unzoom.c" />
+    <ClCompile Include="sci_gateway\c\sci_winsid.c" />
+    <ClCompile Include="sci_gateway\c\sci_xarc.c" />
+    <ClCompile Include="sci_gateway\c\sci_xarcs.c" />
+    <ClCompile Include="sci_gateway\c\sci_xarrows.c" />
+    <ClCompile Include="sci_gateway\c\sci_xchange.c" />
+    <ClCompile Include="sci_gateway\c\sci_xclick.c" />
+    <ClCompile Include="sci_gateway\c\sci_xdel.c" />
+    <ClCompile Include="sci_gateway\c\sci_xfarcs.c" />
+    <ClCompile Include="sci_gateway\c\sci_xfpoly.c" />
+    <ClCompile Include="sci_gateway\c\sci_xfpolys.c" />
+    <ClCompile Include="sci_gateway\c\sci_xget.c" />
+    <ClCompile Include="sci_gateway\c\sci_xgetech.c" />
+    <ClCompile Include="sci_gateway\c\sci_xgetmouse.c" />
+    <ClCompile Include="sci_gateway\c\sci_xgraduate.c" />
+    <ClCompile Include="sci_gateway\c\sci_xgrid.c" />
+    <ClCompile Include="sci_gateway\c\sci_xlfont.c" />
+    <ClCompile Include="sci_gateway\c\sci_xname.c" />
+    <ClCompile Include="sci_gateway\c\sci_xpoly.c" />
+    <ClCompile Include="sci_gateway\c\sci_xpolys.c" />
+    <ClCompile Include="sci_gateway\c\sci_xrect.c" />
+    <ClCompile Include="sci_gateway\c\sci_xrects.c" />
+    <ClCompile Include="sci_gateway\c\sci_xsegs.c" />
+    <ClCompile Include="sci_gateway\c\sci_xset.c" />
+    <ClCompile Include="sci_gateway\c\sci_xsetech.c" />
+    <ClCompile Include="sci_gateway\c\sci_xstring.c" />
+    <ClCompile Include="sci_gateway\c\sci_xstringb.c" />
+    <ClCompile Include="sci_gateway\c\sci_xtitle.c" />
+    <ClCompile Include="sci_gateway\c\sci_zoom_rect.c" />
+    <ClCompile Include="src\c\sciCall.c" />
+    <ClCompile Include="src\c\SciHandleTab.c" />
+    <ClCompile Include="src\c\sciMatrix.c" />
+    <ClCompile Include="src\c\scitokenize.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_alignment_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_anti_aliasing_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_arc_drawing_method_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_arrow_size_factor_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_arrow_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_auto_clear_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_auto_dimensionning_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_auto_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_auto_resize_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_auto_rotation_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_auto_scale_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_auto_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_axes_bounds_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_axes_reverse_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_axes_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_axes_visible_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_background_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_bar_layout_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_bar_width_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_box_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_callback_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_callback_type_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_callbackmevent_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_cdata_mapping_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_children_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_clip_box_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_clip_state_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_closed_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_color_flag_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_color_map_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_color_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_color_range_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_colored_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_cube_scaling_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_current_axes_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_current_entity_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_current_figure_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_data_bounds_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_data_mapping_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_dimension_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_event_handler_enable_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_event_handler_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_figure_id_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_figure_name_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_figure_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_figure_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_figure_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_fill_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_filled_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_font_angle_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_font_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_font_foreground_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_font_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_font_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_foreground_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_format_n_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_fractional_font_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_grid_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_grid_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_handle_visible_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_hidden_axis_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_hidden_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_immediate_drawing_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_info_message_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_interp_color_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_interp_color_vector_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_isoview_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_label_font_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_labels_font_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_labels_font_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_legend_location_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_line_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_line_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_links_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_log_flags_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_margins_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_background_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_foreground_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_size_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_size_unit_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_old_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_outside_colors_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_parent_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_pixel_drawing_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_pixmap_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_polyline_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_rotation_angles_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_rotation_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_screen_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_segs_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_sub_tics_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_surface_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_surface_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_text_box_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_text_box_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_text_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tics_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tics_direction_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tics_labels_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tics_segment_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tics_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tight_limits_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_title_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_triangles_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_user_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_view_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_viewport_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_visible_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_x_label_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_x_location_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_x_shift_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_x_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_xtics_coord_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_y_label_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_y_location_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_y_shift_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_y_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_yticks_coord_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_z_bounds_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_z_label_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_z_shift_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_z_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_zoom_box_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_zoom_state_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\setGetHashTable.c" />
+    <ClCompile Include="src\c\getHandleProperty\SetHashTable.c" />
+    <ClCompile Include="src\c\SetProperty.c" />
+    <ClCompile Include="src\c\getHandleProperty\SetPropertyStatus.c" />
+    <ClCompile Include="src\c\StringBox.c" />
+    <ClCompile Include="src\c\StringMatrix.c" />
+    <ClCompile Include="src\c\TerminateGraphics.c" />
+    <ClCompile Include="src\c\WindowList.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\Axes.h" />
+    <ClInclude Include="includes\axesScale.h" />
+    <ClInclude Include="includes\BasicAlgos.h" />
+    <ClInclude Include="includes\BuildObjects.h" />
+    <ClInclude Include="includes\Champ.h" />
+    <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
+    <ClInclude Include="includes\CloneObjects.h" />
+    <ClInclude Include="src\c\ColorMapManagement.h" />
+    <ClInclude Include="includes\Contour.h" />
+    <ClInclude Include="includes\CurrentObjectsManagement.h" />
+    <ClInclude Include="includes\DefaultCommandArg.h" />
+    <ClInclude Include="includes\DestroyObjects.h" />
+    <ClInclude Include="includes\DrawObjects.h" />
+    <ClInclude Include="includes\dynlib_graphics.h" />
+    <ClInclude Include="src\c\Fec.h" />
+    <ClInclude Include="includes\Format.h" />
+    <ClInclude Include="src\c\getHandleProperty\get_data_property.h" />
+    <ClInclude Include="src\c\get_ticks_utils.h" />
+    <ClInclude Include="includes\GetCommandArg.h" />
+    <ClInclude Include="includes\getDictionaryGetProperties.h" />
+    <ClInclude Include="includes\getDictionarySetProperties.h" />
+    <ClInclude Include="src\c\getHandleProperty\getHandleProperty.h" />
+    <ClInclude Include="src\c\getHandleProperty\GetHashTable.h" />
+    <ClInclude Include="includes\GetProperty.h" />
+    <ClInclude Include="src\c\getHandleProperty\getPropertyAssignedValue.h" />
+    <ClInclude Include="includes\graphicModuleLoad.h" />
+    <ClInclude Include="includes\GrayPlot.h" />
+    <ClInclude Include="includes\gw_graphics.h" />
+    <ClInclude Include="includes\HandleManagement.h" />
+    <ClInclude Include="includes\InitObjects.h" />
+    <ClInclude Include="includes\Interaction.h" />
+    <ClInclude Include="includes\math_graphics.h" />
+    <ClInclude Include="includes\ObjectSelection.h" />
+    <ClInclude Include="includes\ObjectStructure.h" />
+    <ClInclude Include="includes\pixel_mode.h" />
+    <ClInclude Include="includes\PloEch.h" />
+    <ClInclude Include="includes\Plot2d.h" />
+    <ClInclude Include="includes\sciCall.h" />
+    <ClInclude Include="src\c\SciHandleTab.h" />
+    <ClInclude Include="includes\sciMatrix.h" />
+    <ClInclude Include="src\c\scitokenize.h" />
+    <ClInclude Include="src\c\getHandleProperty\set_data_property.h" />
+    <ClInclude Include="src\c\getHandleProperty\setGetHashTable.h" />
+    <ClInclude Include="src\c\getHandleProperty\setHandleProperty.h" />
+    <ClInclude Include="src\c\getHandleProperty\SetHashTable.h" />
+    <ClInclude Include="includes\SetProperty.h" />
+    <ClInclude Include="src\c\getHandleProperty\SetPropertyStatus.h" />
+    <ClInclude Include="src\c\StringBox.h" />
+    <ClInclude Include="includes\StringMatrix.h" />
+    <ClInclude Include="includes\TerminateGraphics.h" />
+    <ClInclude Include="includes\WindowList.h" />
+    <ClInclude Include="src\c\XsetXgetParameters.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="locales\en_US\graphics.pot" />
+    <None Include="Gui_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="scilab_windows_Import.def" />
+    <None Include="graphics.iss" />
+    <None Include="sci_gateway\graphics_gateway.xml" />
+    <None Include="Makefile.am" />
+    <None Include="version.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="graphic.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\doublylinkedlist\doublylinkedlist.vcxproj">
+      <Project>{ed02137f-0a4f-4ef0-ac58-97ace37fa89d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\hashtable\hashtable.vcxproj">
+      <Project>{2daec214-b0b4-4bc3-96b2-77c6ad1450cd}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
+      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\action_binding\src\c\action_binding.vcxproj">
+      <Project>{8a654cc5-22c1-4972-a8cf-1b89f78b5383}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\elementary_functions\src\fortran\elementary_functions_f2c.vcxproj">
+      <Project>{dbc45b0d-6e0a-4107-b284-5a3b0c5bb50d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\fileio\fileio.vcxproj">
+      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\jvm\libjvm.vcxproj">
+      <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\renderer\renderer.vcxproj">
+      <Project>{b23b01c1-a545-4ba0-9950-7bcade201c5b}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\tclsci\tclsci.vcxproj">
+      <Project>{c456d5b8-8a32-496a-a2ee-164b0d734126}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

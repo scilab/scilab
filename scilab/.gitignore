@@ -89,7 +89,6 @@ modules/*/sci_gateway/fortran/*.c
 # VS 2010 files
 # 
 *.filters
-*.vcxproj
 *.opensdf
 *.sdf
 *.old

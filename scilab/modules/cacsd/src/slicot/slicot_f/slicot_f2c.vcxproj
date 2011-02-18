@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>slicot_f</ProjectName>
+    <ProjectGuid>{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}</ProjectGuid>
+    <RootNamespace>slicot_f2c</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\..\..\..\..\Visual-Studio-settings\f2c.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Message>Build linear_algebra_f.lib (dependencies)</Message>
+      <Command>lib /DEF:"$(ProjectDir)linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)linear_algebra_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)libscilab.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SLICOT_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build slicot_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
+copy *.def slicot_f.def &gt;nul
+copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>linear_algebra_f.lib;libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>slicot_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Message>Build linear_algebra_f.lib (dependencies)</Message>
+      <Command>lib /DEF:"$(ProjectDir)linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)linear_algebra_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)libscilab.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SLICOT_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build slicot_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
+copy *.def slicot_f.def &gt;nul
+copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>linear_algebra_f.lib;libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>slicot_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Message>Build linear_algebra_f.lib (dependencies)</Message>
+      <Command>lib /DEF:"$(ProjectDir)linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)linear_algebra_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)libscilab.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SLICOT_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build slicot_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
+copy *.def slicot_f.def &gt;nul
+copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>linear_algebra_f.lib;libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>slicot_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Message>Build linear_algebra_f.lib (dependencies)</Message>
+      <Command>lib /DEF:"$(ProjectDir)linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)linear_algebra_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)libscilab.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SLICOT_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build slicot_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
+copy *.def slicot_f.def &gt;nul
+copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>linear_algebra_f.lib;libscilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>slicot_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ab01nd.c" />
+    <ClCompile Include="..\ab01od.c" />
+    <ClCompile Include="..\ab13md.c" />
+    <ClCompile Include="common_f2c.c" />
+    <ClCompile Include="..\ereduc.c" />
+    <ClCompile Include="..\Ex-schur.c" />
+    <ClCompile Include="..\fstair.c" />
+    <ClCompile Include="..\ib01ad.c" />
+    <ClCompile Include="..\ib01bd.c" />
+    <ClCompile Include="..\ib01cd.c" />
+    <ClCompile Include="..\ib01md.c" />
+    <ClCompile Include="..\ib01my.c" />
+    <ClCompile Include="..\ib01nd.c" />
+    <ClCompile Include="..\ib01od.c" />
+    <ClCompile Include="..\ib01oy.c" />
+    <ClCompile Include="..\ib01pd.c" />
+    <ClCompile Include="..\ib01px.c" />
+    <ClCompile Include="..\ib01py.c" />
+    <ClCompile Include="..\ib01qd.c" />
+    <ClCompile Include="..\ib01rd.c" />
+    <ClCompile Include="..\inva.c" />
+    <ClCompile Include="..\ma02ad.c" />
+    <ClCompile Include="..\ma02ed.c" />
+    <ClCompile Include="..\ma02fd.c" />
+    <ClCompile Include="..\mb01pd.c" />
+    <ClCompile Include="..\mb01qd.c" />
+    <ClCompile Include="..\mb01rd.c" />
+    <ClCompile Include="..\mb01ru.c" />
+    <ClCompile Include="..\mb01rx.c" />
+    <ClCompile Include="..\mb01ry.c" />
+    <ClCompile Include="..\mb01sd.c" />
+    <ClCompile Include="..\mb01td.c" />
+    <ClCompile Include="..\mb01ud.c" />
+    <ClCompile Include="..\mb01vd.c" />
+    <ClCompile Include="..\mb02pd.c" />
+    <ClCompile Include="..\mb02qy.c" />
+    <ClCompile Include="..\mb02ud.c" />
+    <ClCompile Include="..\mb03od.c" />
+    <ClCompile Include="..\mb03oy.c" />
+    <ClCompile Include="..\mb03ud.c" />
+    <ClCompile Include="..\mb04id.c" />
+    <ClCompile Include="..\mb04iy.c" />
+    <ClCompile Include="..\mb04kd.c" />
+    <ClCompile Include="..\mb04nd.c" />
+    <ClCompile Include="..\mb04ny.c" />
+    <ClCompile Include="..\mb04od.c" />
+    <ClCompile Include="..\mb04oy.c" />
+    <ClCompile Include="..\polmc.c" />
+    <ClCompile Include="..\riccpack.c" />
+    <ClCompile Include="..\sb02mr.c" />
+    <ClCompile Include="..\sb02ms.c" />
+    <ClCompile Include="..\sb02mt.c" />
+    <ClCompile Include="..\sb02nd.c" />
+    <ClCompile Include="..\sb02od.c" />
+    <ClCompile Include="..\sb02ou.c" />
+    <ClCompile Include="..\sb02ov.c" />
+    <ClCompile Include="..\sb02oy.c" />
+    <ClCompile Include="..\sb02qd.c" />
+    <ClCompile Include="..\sb02rd.c" />
+    <ClCompile Include="..\sb02ru.c" />
+    <ClCompile Include="..\sb02sd.c" />
+    <ClCompile Include="..\sb03md.c" />
+    <ClCompile Include="..\sb03mv.c" />
+    <ClCompile Include="..\sb03mw.c" />
+    <ClCompile Include="..\sb03mx.c" />
+    <ClCompile Include="..\sb03my.c" />
+    <ClCompile Include="..\sb03od.c" />
+    <ClCompile Include="..\sb03or.c" />
+    <ClCompile Include="..\sb03ot.c" />
+    <ClCompile Include="..\sb03ou.c" />
+    <ClCompile Include="..\sb03ov.c" />
+    <ClCompile Include="..\sb03oy.c" />
+    <ClCompile Include="..\sb03qx.c" />
+    <ClCompile Include="..\sb03qy.c" />
+    <ClCompile Include="..\sb03sx.c" />
+    <ClCompile Include="..\sb03sy.c" />
+    <ClCompile Include="..\sb04md.c" />
+    <ClCompile Include="..\sb04mr.c" />
+    <ClCompile Include="..\sb04mu.c" />
+    <ClCompile Include="..\sb04mw.c" />
+    <ClCompile Include="..\sb04my.c" />
+    <ClCompile Include="..\sb04nd.c" />
+    <ClCompile Include="..\sb04nv.c" />
+    <ClCompile Include="..\sb04nw.c" />
+    <ClCompile Include="..\sb04nx.c" />
+    <ClCompile Include="..\sb04ny.c" />
+    <ClCompile Include="..\sb04pd.c" />
+    <ClCompile Include="..\sb04px.c" />
+    <ClCompile Include="..\sb04py.c" />
+    <ClCompile Include="..\sb04qd.c" />
+    <ClCompile Include="..\sb04qr.c" />
+    <ClCompile Include="..\sb04qu.c" />
+    <ClCompile Include="..\sb04qy.c" />
+    <ClCompile Include="..\sb04rd.c" />
+    <ClCompile Include="..\sb04rv.c" />
+    <ClCompile Include="..\sb04rw.c" />
+    <ClCompile Include="..\sb04rx.c" />
+    <ClCompile Include="..\sb04ry.c" />
+    <ClCompile Include="..\sb10dd.c" />
+    <ClCompile Include="..\sb10fd.c" />
+    <ClCompile Include="..\sb10pd.c" />
+    <ClCompile Include="..\sb10qd.c" />
+    <ClCompile Include="..\sb10rd.c" />
+    <ClCompile Include="..\select.c" />
+    <ClCompile Include="..\ssxmc.c" />
+    <ClCompile Include="..\tb01wd.c" />
+    <ClCompile Include="..\ZB03OD.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="..\ab01nd.f" />
+    <f2c_rule Include="..\ab01od.f" />
+    <f2c_rule Include="..\ab13md.f" />
+    <f2c_rule Include="..\ereduc.f" />
+    <f2c_rule Include="..\Ex-schur.f" />
+    <f2c_rule Include="..\fstair.f" />
+    <f2c_rule Include="..\ib01ad.f" />
+    <f2c_rule Include="..\ib01bd.f" />
+    <f2c_rule Include="..\ib01cd.f" />
+    <f2c_rule Include="..\ib01md.f" />
+    <f2c_rule Include="..\ib01my.f" />
+    <f2c_rule Include="..\ib01nd.f" />
+    <f2c_rule Include="..\ib01od.f" />
+    <f2c_rule Include="..\ib01oy.f" />
+    <f2c_rule Include="..\ib01pd.f" />
+    <f2c_rule Include="..\ib01px.f" />
+    <f2c_rule Include="..\ib01py.f" />
+    <f2c_rule Include="..\ib01qd.f" />
+    <f2c_rule Include="..\ib01rd.f" />
+    <f2c_rule Include="..\inva.f" />
+    <f2c_rule Include="..\ma02ad.f" />
+    <f2c_rule Include="..\ma02ed.f" />
+    <f2c_rule Include="..\ma02fd.f" />
+    <f2c_rule Include="..\mb01pd.f" />
+    <f2c_rule Include="..\mb01qd.f" />
+    <f2c_rule Include="..\mb01rd.f" />
+    <f2c_rule Include="..\mb01ru.f" />
+    <f2c_rule Include="..\mb01rx.f" />
+    <f2c_rule Include="..\mb01ry.f" />
+    <f2c_rule Include="..\mb01sd.f" />
+    <f2c_rule Include="..\mb01td.f" />
+    <f2c_rule Include="..\mb01ud.f" />
+    <f2c_rule Include="..\mb01vd.f" />
+    <f2c_rule Include="..\mb02pd.f" />
+    <f2c_rule Include="..\mb02qy.f" />
+    <f2c_rule Include="..\mb02ud.f" />
+    <f2c_rule Include="..\mb03od.f" />
+    <f2c_rule Include="..\mb03oy.f" />
+    <f2c_rule Include="..\mb03ud.f" />
+    <f2c_rule Include="..\mb04id.f" />
+    <f2c_rule Include="..\mb04iy.f" />
+    <f2c_rule Include="..\mb04kd.f" />
+    <f2c_rule Include="..\mb04nd.f" />
+    <f2c_rule Include="..\mb04ny.f" />
+    <f2c_rule Include="..\mb04od.f" />
+    <f2c_rule Include="..\mb04oy.f" />
+    <f2c_rule Include="..\polmc.f" />
+    <f2c_rule Include="..\riccpack.f" />
+    <f2c_rule Include="..\sb02mr.f" />
+    <f2c_rule Include="..\sb02ms.f" />
+    <f2c_rule Include="..\sb02mt.f" />
+    <f2c_rule Include="..\sb02nd.f" />
+    <f2c_rule Include="..\sb02od.f" />
+    <f2c_rule Include="..\sb02ou.f" />
+    <f2c_rule Include="..\sb02ov.f" />
+    <f2c_rule Include="..\sb02oy.f" />
+    <f2c_rule Include="..\sb02qd.f" />
+    <f2c_rule Include="..\sb02rd.f" />
+    <f2c_rule Include="..\sb02ru.f" />
+    <f2c_rule Include="..\sb02sd.f" />
+    <f2c_rule Include="..\sb03md.f" />
+    <f2c_rule Include="..\sb03mv.f" />
+    <f2c_rule Include="..\sb03mw.f" />
+    <f2c_rule Include="..\sb03mx.f" />
+    <f2c_rule Include="..\sb03my.f" />
+    <f2c_rule Include="..\sb03od.f" />
+    <f2c_rule Include="..\sb03or.f" />
+    <f2c_rule Include="..\sb03ot.f" />
+    <f2c_rule Include="..\sb03ou.f" />
+    <f2c_rule Include="..\sb03ov.f" />
+    <f2c_rule Include="..\sb03oy.f" />
+    <f2c_rule Include="..\sb03qx.f" />
+    <f2c_rule Include="..\sb03qy.f" />
+    <f2c_rule Include="..\sb03sx.f" />
+    <f2c_rule Include="..\sb03sy.f" />
+    <f2c_rule Include="..\sb04md.f" />
+    <f2c_rule Include="..\sb04mr.f" />
+    <f2c_rule Include="..\sb04mu.f" />
+    <f2c_rule Include="..\sb04mw.f" />
+    <f2c_rule Include="..\sb04my.f" />
+    <f2c_rule Include="..\sb04nd.f" />
+    <f2c_rule Include="..\sb04nv.f" />
+    <f2c_rule Include="..\sb04nw.f" />
+    <f2c_rule Include="..\sb04nx.f" />
+    <f2c_rule Include="..\sb04ny.f" />
+    <f2c_rule Include="..\sb04pd.f" />
+    <f2c_rule Include="..\sb04px.f" />
+    <f2c_rule Include="..\sb04py.f" />
+    <f2c_rule Include="..\sb04qd.f" />
+    <f2c_rule Include="..\sb04qr.f" />
+    <f2c_rule Include="..\sb04qu.f" />
+    <f2c_rule Include="..\sb04qy.f" />
+    <f2c_rule Include="..\sb04rd.f" />
+    <f2c_rule Include="..\sb04rv.f" />
+    <f2c_rule Include="..\sb04rw.f" />
+    <f2c_rule Include="..\sb04rx.f" />
+    <f2c_rule Include="..\sb04ry.f" />
+    <f2c_rule Include="..\sb10dd.f" />
+    <f2c_rule Include="..\sb10fd.f" />
+    <f2c_rule Include="..\sb10pd.f" />
+    <f2c_rule Include="..\sb10qd.f" />
+    <f2c_rule Include="..\sb10rd.f" />
+    <f2c_rule Include="..\select.f" />
+    <f2c_rule Include="..\ssxmc.f" />
+    <f2c_rule Include="..\tb01wd.f" />
+    <f2c_rule Include="..\ZB03OD.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\elementary_functions\src\fortran\elementary_functions_f2c.vcxproj">
+      <Project>{dbc45b0d-6e0a-4107-b284-5a3b0c5bb50d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\elementary_functions\src\fortran\linpack\linpack_f2c.vcxproj">
+      <Project>{f0f55692-0355-4bc3-be9d-552c8aac5238}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\..\..\Visual-Studio-settings\f2c.targets" />
+  </ImportGroup>
+</Project>

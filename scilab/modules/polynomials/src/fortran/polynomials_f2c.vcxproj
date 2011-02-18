@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>polynomials_f</ProjectName>
+    <ProjectGuid>{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}</ProjectGuid>
+    <RootNamespace>polynomials_f2c</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)polynomials.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linear_algebra_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)linear_algebra.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build polynomials_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n polynomials_f.dll %%f &gt;nul
+copy *.def polynomials_f.def &gt;nul
+copy polynomials_f.def ..\polynomials_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy polynomials_f_header.def+polynomials_f.vcdef polynomials_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>Libscilab.lib;polynomials.lib;output_stream.lib;linear_algebra.lib;elementary_functions_f.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>polynomials_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)polynomials.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linear_algebra_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)linear_algebra.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build polynomials_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n polynomials_f.dll %%f &gt;nul
+copy *.def polynomials_f.def &gt;nul
+copy polynomials_f.def ..\polynomials_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy polynomials_f_header.def+polynomials_f.vcdef polynomials_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>Libscilab.lib;polynomials.lib;output_stream.lib;linear_algebra.lib;elementary_functions_f.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>polynomials_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)polynomials.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linear_algebra_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)linear_algebra.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build polynomials_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n polynomials_f.dll %%f &gt;nul
+copy *.def polynomials_f.def &gt;nul
+copy polynomials_f.def ..\polynomials_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy polynomials_f_header.def+polynomials_f.vcdef polynomials_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>Libscilab.lib;polynomials.lib;output_stream.lib;linear_algebra.lib;elementary_functions_f.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>polynomials_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)polynomials_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)polynomials.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linear_algebra_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)linear_algebra.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build polynomials_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n polynomials_f.dll %%f &gt;nul
+copy *.def polynomials_f.def &gt;nul
+copy polynomials_f.def ..\polynomials_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy polynomials_f_header.def+polynomials_f.vcdef polynomials_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>Libscilab.lib;polynomials.lib;output_stream.lib;linear_algebra.lib;elementary_functions_f.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>polynomials_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="bezout.c" />
+    <ClCompile Include="bezstp.c" />
+    <ClCompile Include="blktit.c" />
+    <ClCompile Include="calcsc.c" />
+    <ClCompile Include="ddmpev.c" />
+    <ClCompile Include="dimin.c" />
+    <ClCompile Include="dmp2pm.c" />
+    <ClCompile Include="dmpad.c" />
+    <ClCompile Include="dmpadj.c" />
+    <ClCompile Include="dmpcle.c" />
+    <ClCompile Include="dmpcnc.c" />
+    <ClCompile Include="dmpext.c" />
+    <ClCompile Include="dmpins.c" />
+    <ClCompile Include="dmpmu.c" />
+    <ClCompile Include="dmptld.c" />
+    <ClCompile Include="dmptra.c" />
+    <ClCompile Include="dpmul.c" />
+    <ClCompile Include="dpmul1.c" />
+    <ClCompile Include="dpodiv.c" />
+    <ClCompile Include="dprxc.c" />
+    <ClCompile Include="dpsimp.c" />
+    <ClCompile Include="dwmpmu.c" />
+    <ClCompile Include="..\..\..\elementary_functions\src\c\f2c_workaround.c" />
+    <ClCompile Include="fxshfr.c" />
+    <ClCompile Include="horner.c" />
+    <ClCompile Include="idegre.c" />
+    <ClCompile Include="impcnc.c" />
+    <ClCompile Include="impext.c" />
+    <ClCompile Include="impins.c" />
+    <ClCompile Include="imptra.c" />
+    <ClCompile Include="matra.c" />
+    <ClCompile Include="mpdegr.c" />
+    <ClCompile Include="mpdiag.c" />
+    <ClCompile Include="mpinsp.c" />
+    <ClCompile Include="mptri.c" />
+    <ClCompile Include="newest.c" />
+    <ClCompile Include="nextk.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\polops.c" />
+    <ClCompile Include="quad.c" />
+    <ClCompile Include="quadit.c" />
+    <ClCompile Include="quadsd.c" />
+    <ClCompile Include="realit.c" />
+    <ClCompile Include="recbez.c" />
+    <ClCompile Include="residu.c" />
+    <ClCompile Include="rpoly.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_bezout.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_coeff.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_degree.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_diag.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_div.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_pclean.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_poly.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_prod.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_psimp.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_roots.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rsimp.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sfact.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_simp.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_simpmd.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sum.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_triu_tril.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_varn.c" />
+    <ClCompile Include="sfact1.c" />
+    <ClCompile Include="sfact2.c" />
+    <ClCompile Include="wdmpad.c" />
+    <ClCompile Include="wdmpmu.c" />
+    <ClCompile Include="wmpad.c" />
+    <ClCompile Include="wmpadj.c" />
+    <ClCompile Include="wmpcle.c" />
+    <ClCompile Include="wmpcnc.c" />
+    <ClCompile Include="wmpins.c" />
+    <ClCompile Include="wmpmu.c" />
+    <ClCompile Include="wmptra.c" />
+    <ClCompile Include="wpmul.c" />
+    <ClCompile Include="wpmul1.c" />
+    <ClCompile Include="wpodiv.c" />
+    <ClCompile Include="wprxc.c" />
+    <ClCompile Include="writebufsfact.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="bezout.f" />
+    <f2c_rule Include="bezstp.f" />
+    <f2c_rule Include="blktit.f" />
+    <f2c_rule Include="calcsc.f" />
+    <f2c_rule Include="ddmpev.f" />
+    <f2c_rule Include="dimin.f" />
+    <f2c_rule Include="dmp2pm.f" />
+    <f2c_rule Include="dmpad.f" />
+    <f2c_rule Include="dmpadj.f" />
+    <f2c_rule Include="dmpcle.f" />
+    <f2c_rule Include="dmpcnc.f" />
+    <f2c_rule Include="dmpext.f" />
+    <f2c_rule Include="dmpins.f" />
+    <f2c_rule Include="dmpmu.f" />
+    <f2c_rule Include="dmptld.f" />
+    <f2c_rule Include="dmptra.f" />
+    <f2c_rule Include="dpmul.f" />
+    <f2c_rule Include="dpmul1.f" />
+    <f2c_rule Include="dpodiv.f" />
+    <f2c_rule Include="dprxc.f" />
+    <f2c_rule Include="dpsimp.f" />
+    <f2c_rule Include="dwmpmu.f" />
+    <f2c_rule Include="fxshfr.f" />
+    <f2c_rule Include="horner.f" />
+    <f2c_rule Include="idegre.f" />
+    <f2c_rule Include="impcnc.f" />
+    <f2c_rule Include="impext.f" />
+    <f2c_rule Include="impins.f" />
+    <f2c_rule Include="imptra.f" />
+    <f2c_rule Include="matra.f" />
+    <f2c_rule Include="mpdegr.f" />
+    <f2c_rule Include="mpdiag.f" />
+    <f2c_rule Include="mpinsp.f" />
+    <f2c_rule Include="mptri.f" />
+    <f2c_rule Include="newest.f" />
+    <f2c_rule Include="nextk.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\polops.f" />
+    <f2c_rule Include="quad.f" />
+    <f2c_rule Include="quadit.f" />
+    <f2c_rule Include="quadsd.f" />
+    <f2c_rule Include="realit.f" />
+    <f2c_rule Include="recbez.f" />
+    <f2c_rule Include="residu.f" />
+    <f2c_rule Include="rpoly.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_bezout.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_coeff.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_degree.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_diag.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_div.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_pclean.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_poly.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_prod.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_psimp.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_roots.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rsimp.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sfact.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_simp.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_simpmd.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sum.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_triu_tril.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_varn.f" />
+    <f2c_rule Include="sfact1.f" />
+    <f2c_rule Include="sfact2.f" />
+    <f2c_rule Include="wdmpad.f" />
+    <f2c_rule Include="wdmpmu.f" />
+    <f2c_rule Include="wmpad.f" />
+    <f2c_rule Include="wmpadj.f" />
+    <f2c_rule Include="wmpcle.f" />
+    <f2c_rule Include="wmpcnc.f" />
+    <f2c_rule Include="wmpins.f" />
+    <f2c_rule Include="wmpmu.f" />
+    <f2c_rule Include="wmptra.f" />
+    <f2c_rule Include="wpmul.f" />
+    <f2c_rule Include="wpmul1.f" />
+    <f2c_rule Include="wpodiv.f" />
+    <f2c_rule Include="wprxc.f" />
+    <f2c_rule Include="writebufsfact.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\sci_gateway\polynomials_gateway.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\cacsd\src\fortran\cacsd_f2c.vcxproj">
+      <Project>{0bb16c71-0fcd-4fb9-b7c0-f2601330c980}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\linpack\linpack_f2c.vcxproj">
+      <Project>{f0f55692-0355-4bc3-be9d-552c8aac5238}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.targets" />
+  </ImportGroup>
+</Project>

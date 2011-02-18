@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}</ProjectGuid>
+    <RootNamespace>core</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libs\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)libs\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)libs\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)libs\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <PostBuildEvent>
+      <Command>cd "$(IntDir)" &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
+copy *.def core.def &gt;nul
+copy core.def ..\..\..\..\..\libs\core.vcdef &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <PostBuildEvent>
+      <Command>cd "$(IntDir)" &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
+copy *.def core.def &gt;nul
+copy core.def ..\..\..\..\..\libs\core.vcdef &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <PostBuildEvent>
+      <Command>cd "$(IntDir)" &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
+copy *.def core.def &gt;nul
+copy core.def ..\..\..\..\..\libs\core.vcdef &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <PostBuildEvent>
+      <Command>cd "$(IntDir)" &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
+copy *.def core.def &gt;nul
+copy core.def ..\..\..\..\..\libs\core.vcdef &gt;nul
+del *.def &gt;nul
+cd.. &gt;nul
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="banier.c" />
+    <ClCompile Include="callDynamicGateway.c" />
+    <ClCompile Include="callFunctionFromGateway.c" />
+    <ClCompile Include="callinterf.c" />
+    <ClCompile Include="commandwords.c" />
+    <ClCompile Include="comparehandles.c" />
+    <ClCompile Include="coretable.c" />
+    <ClCompile Include="cs2st.c" />
+    <ClCompile Include="csignal.c" />
+    <ClCompile Include="dynamic_gateways.c" />
+    <ClCompile Include="dynamic_parallel.c" />
+    <ClCompile Include="dynamic_tclsci.c" />
+    <ClCompile Include="eqid.c" />
+    <ClCompile Include="ExceptionMessage.c" />
+    <ClCompile Include="exitCodeValue.c" />
+    <ClCompile Include="expr.c" />
+    <ClCompile Include="force_link.c" />
+    <ClCompile Include="freeArrayOfString.c" />
+    <ClCompile Include="funcprot.c" />
+    <ClCompile Include="Funtab.c" />
+    <ClCompile Include="getcommandlineargs.c" />
+    <ClCompile Include="getdynamicDebugInfo_Windows.c" />
+    <ClCompile Include="GetExceptionCode.c" />
+    <ClCompile Include="getmemory.c" />
+    <ClCompile Include="getmodules.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="getos.c" />
+    <ClCompile Include="getstaticdebuginfo.c" />
+    <ClCompile Include="getstaticDebugInfo_Windows.c" />
+    <ClCompile Include="getval.c" />
+    <ClCompile Include="getvariablesname.c" />
+    <ClCompile Include="getversion.c" />
+    <ClCompile Include="GetXmlFileEncoding.c" />
+    <ClCompile Include="..\..\sci_gateway\c\gw_core.c" />
+    <ClCompile Include="gw_dynamic_generic.c" />
+    <ClCompile Include="..\..\sci_gateway\c\gw_user.c" />
+    <ClCompile Include="..\..\sci_gateway\c\gw_user2.c" />
+    <ClCompile Include="..\cpp\hashtable_core.cpp" />
+    <ClCompile Include="ifexpr.c" />
+    <ClCompile Include="inffic.c" />
+    <ClCompile Include="inisci-c.c" />
+    <ClCompile Include="InitializeCore.c" />
+    <ClCompile Include="InitScilab.c" />
+    <ClCompile Include="inittypenames.c" />
+    <ClCompile Include="intmacr2tree.c" />
+    <ClCompile Include="isanan.c" />
+    <ClCompile Include="IsAScalar.c" />
+    <ClCompile Include="islittleendian.c" />
+    <ClCompile Include="LaunchScilabSignal.c" />
+    <ClCompile Include="LoadFunctionsTab.c" />
+    <ClCompile Include="loadversion.c" />
+    <ClCompile Include="md5.c" />
+    <ClCompile Include="..\..\..\mexlib\src\c\mexlib.c" />
+    <ClCompile Include="mode_exec.c" />
+    <ClCompile Include="..\cpp\namstr.cpp" />
+    <ClCompile Include="parse.c" />
+    <ClCompile Include="predef.c" />
+    <ClCompile Include="readGateway.c" />
+    <ClCompile Include="realmain.c" />
+    <ClCompile Include="recursionFunction.c" />
+    <ClCompile Include="returnanan.c" />
+    <ClCompile Include="returnProperty.c" />
+    <ClCompile Include="returnPropertyList.c" />
+    <ClCompile Include="run.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_arg.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_banner.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_clear.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_clearfun.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_clearglobal.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_comp.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_debug.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_delbpt.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_dispbpt.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_errcatch.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_errclear.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_error.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_exists.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_exit.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_format.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_funcprot.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_funptr.c" />
+    <ClCompile Include="..\..\..\mexlib\src\c\sci_gateway.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_getmd5.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_getmemory.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_getmodules.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_getos.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_getscilabmode.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_getvariablesonstack.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_getversion.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_global.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_gstacksize.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_havewindow.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_ieee.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_intppty.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_isdef.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_iserror.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_isglobal.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_islittleendian.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_lasterror.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_macr2lst.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_macr2tree.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_mode.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_mtlb_mode.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_newfun.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_predef.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_readgateway.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_resume.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_return.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_sciargs.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_setbpt.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_stacksize.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_type.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_typename.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_warning.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_what.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_where.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_who.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_with_module.c" />
+    <ClCompile Include="SCIHOME.c" />
+    <ClCompile Include="scilabmode.c" />
+    <ClCompile Include="scimem.c" />
+    <ClCompile Include="sciquit.c" />
+    <ClCompile Include="scirun.c" />
+    <ClCompile Include="..\cpp\search_functions.cpp" />
+    <ClCompile Include="setgetSCIpath.c" />
+    <ClCompile Include="SetScilabEnvironment.c" />
+    <ClCompile Include="stack1.c" />
+    <ClCompile Include="stack2.c" />
+    <ClCompile Include="stack3.c" />
+    <ClCompile Include="stackinfo.c" />
+    <ClCompile Include="storeCommand.c" />
+    <ClCompile Include="str2sci.c" />
+    <ClCompile Include="syncexec.c" />
+    <ClCompile Include="terme.c" />
+    <ClCompile Include="TerminateCore.c" />
+    <ClCompile Include="texmacs.c" />
+    <ClCompile Include="timer.c" />
+    <ClCompile Include="tmpdir.c" />
+    <ClCompile Include="transposeMatrix.c" />
+    <ClCompile Include="typename.c" />
+    <ClCompile Include="version.c" />
+    <ClCompile Include="warningmode.c" />
+    <ClCompile Include="with_module.c" />
+    <ClCompile Include="xscion.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="banier.h" />
+    <ClInclude Include="..\..\includes\BOOL.h" />
+    <ClInclude Include="callDynamicGateway.h" />
+    <ClInclude Include="..\..\includes\callFunctionFromGateway.h" />
+    <ClInclude Include="..\..\includes\callinter.h" />
+    <ClInclude Include="..\..\includes\callinterf.h" />
+    <ClInclude Include="..\..\includes\commandwords.h" />
+    <ClInclude Include="..\..\includes\core_math.h" />
+    <ClInclude Include="cs2st.h" />
+    <ClInclude Include="csignal.h" />
+    <ClInclude Include="..\..\includes\doublecomplex.h" />
+    <ClInclude Include="dynamic_gateways.h" />
+    <ClInclude Include="dynamic_parallel.h" />
+    <ClInclude Include="dynamic_tclsci.h" />
+    <ClInclude Include="eqid.h" />
+    <ClInclude Include="..\..\includes\ExceptionMessage.h" />
+    <ClInclude Include="..\..\includes\existfunction.h" />
+    <ClInclude Include="exitCodeValue.h" />
+    <ClInclude Include="expr.h" />
+    <ClInclude Include="..\..\includes\freeArrayOfString.h" />
+    <ClInclude Include="funcprot.h" />
+    <ClInclude Include="getdebuginfo.h" />
+    <ClInclude Include="getdynamicdebuginfo.h" />
+    <ClInclude Include="getdynamicDebugInfo_Windows.h" />
+    <ClInclude Include="..\..\includes\GetExceptionCode.h" />
+    <ClInclude Include="..\..\includes\getfunctionslist.h" />
+    <ClInclude Include="..\..\includes\getmodules.h" />
+    <ClInclude Include="..\..\includes\getos.h" />
+    <ClInclude Include="getstaticDebugInfo_Windows.h" />
+    <ClInclude Include="getval.h" />
+    <ClInclude Include="..\..\includes\getvariablesname.h" />
+    <ClInclude Include="..\..\includes\getversion.h" />
+    <ClInclude Include="..\..\includes\GetXmlFileEncoding.h" />
+    <ClInclude Include="..\..\includes\gw_core.h" />
+    <ClInclude Include="gw_dynamic_generic.h" />
+    <ClInclude Include="..\..\includes\gw_user.h" />
+    <ClInclude Include="..\..\includes\gw_user2.h" />
+    <ClInclude Include="hashtable_core.h" />
+    <ClInclude Include="ifexpr.h" />
+    <ClInclude Include="..\..\includes\inisci-c.h" />
+    <ClInclude Include="..\..\includes\InitializeCore.h" />
+    <ClInclude Include="InitScilab.h" />
+    <ClInclude Include="inittypenames.h" />
+    <ClInclude Include="..\..\includes\intmacr2tree.h" />
+    <ClInclude Include="..\..\includes\isanan.h" />
+    <ClInclude Include="..\..\includes\islittleendian.h" />
+    <ClInclude Include="..\..\includes\LaunchScilabSignal.h" />
+    <ClInclude Include="LoadFunctionsTab.h" />
+    <ClInclude Include="..\..\includes\loadversion.h" />
+    <ClInclude Include="..\..\includes\machine.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="..\..\includes\mode_exec.h" />
+    <ClInclude Include="..\..\includes\PARAMS.h" />
+    <ClInclude Include="parse.h" />
+    <ClInclude Include="..\cpp\partition.hxx" />
+    <ClInclude Include="..\..\includes\PATH_MAX.h" />
+    <ClInclude Include="predef.h" />
+    <ClInclude Include="readGateway.h" />
+    <ClInclude Include="..\..\includes\realmain.h" />
+    <ClInclude Include="..\..\includes\recursionFunction.h" />
+    <ClInclude Include="..\..\includes\returnanan.h" />
+    <ClInclude Include="..\..\includes\returnProperty.h" />
+    <ClInclude Include="..\..\includes\returnPropertyList.h" />
+    <ClInclude Include="run.h" />
+    <ClInclude Include="..\..\..\mexlib\includes\sci_gateway.h" />
+    <ClInclude Include="..\..\includes\SCIHOME.h" />
+    <ClInclude Include="..\..\includes\scilabDefaults.h" />
+    <ClInclude Include="..\..\includes\scilabmode.h" />
+    <ClInclude Include="..\..\includes\scimem.h" />
+    <ClInclude Include="..\..\includes\sciquit.h" />
+    <ClInclude Include="..\..\includes\scirun.h" />
+    <ClInclude Include="..\..\includes\scisparse.h" />
+    <ClInclude Include="..\..\includes\setgetSCIpath.h" />
+    <ClInclude Include="..\..\includes\SetScilabEnvironment.h" />
+    <ClInclude Include="..\..\includes\stack-c.h" />
+    <ClInclude Include="..\..\includes\stack-def.h" />
+    <ClInclude Include="..\..\includes\stack.h" />
+    <ClInclude Include="..\..\includes\stack1.h" />
+    <ClInclude Include="..\..\includes\stack2.h" />
+    <ClInclude Include="..\..\includes\stack3.h" />
+    <ClInclude Include="..\..\includes\stackinfo.h" />
+    <ClInclude Include="..\..\includes\storeCommand.h" />
+    <ClInclude Include="str2sci.h" />
+    <ClInclude Include="..\..\includes\syncexec.h" />
+    <ClInclude Include="terme.h" />
+    <ClInclude Include="TerminateCore.h" />
+    <ClInclude Include="..\..\includes\texmacs.h" />
+    <ClInclude Include="..\..\includes\Thread_Wrapper.h" />
+    <ClInclude Include="..\..\includes\timerEvents.h" />
+    <ClInclude Include="..\..\includes\tmpdir.h" />
+    <ClInclude Include="..\..\includes\transposeMatrix.h" />
+    <ClInclude Include="typename.h" />
+    <ClInclude Include="..\cpp\unrolled_algorithms.hxx" />
+    <ClInclude Include="..\..\includes\version.h" />
+    <ClInclude Include="..\..\includes\warningmode.h" />
+    <ClInclude Include="with_module.h" />
+    <ClInclude Include="..\..\includes\xscion.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\locales\en_US\core.pot" />
+    <None Include="..\..\core.iss" />
+    <None Include="..\..\sci_gateway\core_gateway.xml" />
+    <CustomBuildStep Include="..\..\includes\machine.h.vc">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\version.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
