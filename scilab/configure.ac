@@ -189,7 +189,7 @@ PKG_PROG_PKG_CONFIG
 #####################################################
 
 if test "$with_g77" = yes -a "$with_gfortran" = yes; then
-    AC_MSG_ERROR([Conflicting options : you specified two fortran compiler])
+    AC_MSG_ERROR([Conflicting options : you specified two fortran compilers])
 fi
 
 if test "$with_intelcompilers" = yes -a "$with_gcc" = yes; then
@@ -373,13 +373,15 @@ fi
 ######################
 ######## With F77 / G77 / GFortran ...
 ######################
-
 if test -n "$F77"; then
-
-   # enable the code coverage
-   if test "$enable_code_coverage" = yes; then
-    FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
-   fi
+   case "$F77" in
+     gfortran*)
+        ## With GNU Compiler enable the code coverage
+        if test "$enable_code_coverage" = yes; then
+            FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
+        fi
+     ;;
+   esac
 
    if test "$enable_debug_fortran" = yes; then
     AC_LANG_PUSH([Fortran 77])
