@@ -20,6 +20,9 @@
 //
 
 function loadpallibs()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //to be called by exec(loadpallibs)
    if ~(exists('scicos_pal_libs')) then
       // this is for make tests

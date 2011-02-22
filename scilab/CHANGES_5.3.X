@@ -50,7 +50,13 @@ Javasci:
 ========
 
 * Bug 8807 fixed - Javadoc of javasci v2 was not installed under GNU/Linux and
-                   Mac OS X. 
+                   Mac OS X.
+
+
+File I/O:
+=========
+
+* mkdir is now able to create recursively directories (see bug 8529).
 
 
 Packaging:
@@ -76,11 +82,11 @@ size.
 right area.
 
 * In the help, allow the creation of links between modules with the following
-syntax: 
+syntax:
 <link type="scilab" linkend="mytoolbox/exec/macros/fooexec.sce">macros/fooexec.sce</link>
 
 * In the help, allow the creation of links between a module to the Scilab
-documentation with the following syntax: 
+documentation with the following syntax:
 <link type="scilab" linkend="scilab/help/bvode">bvode</link>
 
 * In the help, allow the execution and the edition of any example.
@@ -96,7 +102,17 @@ trigger a warning and do not add a link on the function name.
 * In the documentation, Java, C, C++ and XML codes are now colorized if the role
   in programlisting is set (role='java', role='c', role='cpp' or role='xml')
 
+* The categories "Bitwise", "Elementary matrices", "Matrix manipulation",
+  "Matrix operations", "Set operations", "Signal processing", "Symbolic",
+  "Search and sort" have been created for the elementary functions module.
+
+* Help pages for the bitxor, bitcmp, bitget and bitset have been
+  created.
+
 * bug 3716 fixed - No way to search a word in the right area.
+
+* bug 5362 fixed - There were problems with the same xml:id but having a
+                   different case.
 
 * bug 5796 fixed - No way to increase/decrease font size.
 
@@ -105,6 +121,8 @@ trigger a warning and do not add a link on the function name.
 
 * bug 8463 fixed - scilab PDF (fr_FR and pt_BR) were not fully generated.
 
+* bug 8677 fixed - The factorial function was not documented.
+
 * bug 8690 fixed - Typo fixed in the french min help page.
 
 * bug 8756 fixed - The file id was expected only in refentry.
@@ -112,7 +130,6 @@ trigger a warning and do not add a link on the function name.
 * bug 8915 fixed - ASCII art removed in histplot help page.
 
 * bug 8937 fixed - The tag <screenshot> was not handled.
-
 
 Scinotes:
 =========
@@ -131,6 +148,9 @@ in the status bar of Scinotes.
 * A rectangular selection tool is now available. CTRL+selection will enable it.
   This improves the selection (of data for example).
 
+* When typing a closing char (e.g. ')',']',...), do not print it if already
+  here (like in Eclipse).
+
 * bug 8095 fixed - With OpenJDK, the size of the dialog 'Set colors' was bad.
 
 * bug 8697 fixed - An exception was thrown when an empty document was reload.
@@ -145,14 +165,21 @@ in the status bar of Scinotes.
 
 * bug 8885 fixed - Anchors were removed on a Replace All action.
 
+* bug 9000 fixed - '1+..' was miscolorized
 
 Xcos:
 =====
+
+* Add a specific display function to improve the display of errors on block
+  parameters.
 
 * Many improvements on the english documentation of Xcos (better description
   of the blocks, arguments, etc). Many thanks to Bernard Dujardin.
 
 * The demos have been updated to use the latest features.
+
+* Most of the old user interface control Xcos/Scicos functions are now
+  deprecated and will be removed in Scilab 5.4.0. See bug 7232.
 
 * bug 5680 fixed - Labels are not visible as default.
 
@@ -215,8 +242,15 @@ Xcos:
 
 * bug 8867 fixed - Unconnected links could not be deleted.
 
+* bug 8870 fixed - TKSCALE block did not work without TCL.
+
 * bug 8884 fixed - Using region to super block with ports on the same position
                    was resulting to a non-reconnected link.
+
+* bug 8896 fixed - On windows, a multi-line context could not be edited twice.
+
+* bug 8952 fixed - "lincos" did not produce a valid error message when the
+                   diagram has no inputs nor outputs.
 
 
 Module skeleton:
@@ -255,7 +289,7 @@ Graphics:
 * bug 7990 fixed - Box thickness was badly exported in vectorial formats (svg/pdf/...)
                    Thanks to Paul Griffiths for the patch.
 
-* bug 8163 fixed - datatipToggle could not be called without argument as 
+* bug 8163 fixed - datatipToggle could not be called without argument as
                    stated in the help page.
 
 * bug 8518 fixed - When graphic export failed, some error messages were not
@@ -353,8 +387,12 @@ Optimization:
 
 * bug 8775 fixed - The karmarkar function did not detect unbounded problems.
 
+
 Bug fixes:
 ==========
+
+* bug 476  fixed - find did not work when there are most output arguments
+                   than matrix dimensions
 
 * bug 4930 fixed - When the console was resized from 0-height to x-height,
                    lines() was not correctly updated.
@@ -363,6 +401,8 @@ Bug fixes:
                    directory.
 
 * bug 6884 fixed - Some issues in the buttmag help page were present.
+
+* bug 7152 fixed - It was not possible to export LaTeX in SVG.
 
 * bug 7377 fixed - Thrownan failed on empty matrix.
 
@@ -390,6 +430,9 @@ Bug fixes:
 
 * bug 8809 fixed - Bad top link in the chm files.
 
+* bug 8820 fixed - squeeze function returned 2D hypermatrix instead of regular 2D array
+                   function also extended to all array types included cells ans structs
+
 * bug 8828 fixed - "savematfile" could no more save a structure.
 
 * bug 8830 fixed - In call_scilab, TerminateScilab did not clear the last
@@ -406,7 +449,11 @@ Bug fixes:
 
 * bug 8897 fixed - Typo fixed.
 
+* bug 8912 fixed - fullpath did not return same result on Windows and Linux.
+
 * bug 8954 fixed - Print the console led to an exception.
+
+* bug 9034 fixed - atomsVersionCompare failed on version with '-0'.
 
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
@@ -525,6 +572,7 @@ Bug Fixes:
 * bug 8601 fixed - An help page was misdiplayed when the title contains html tag.
 
 * bug 8611 fixed - Path of few images in documentation was bad.
+
 
 
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
@@ -1322,7 +1370,7 @@ Thanks to Samuel Gougeon.
 
 * bug 6910 fixed - The font size in LaTeX labels was too big.
 
-* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was 
+* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was
                    problematic when fontUnits was 'normalized'.
 
 * bug 7857 fixed - If an event_handler was previously assigned to a graphic

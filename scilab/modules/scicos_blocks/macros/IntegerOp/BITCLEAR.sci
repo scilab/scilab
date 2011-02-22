@@ -36,41 +36,56 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Datatype,bit,exprs]=scicos_getvalue('Set BITCLEAR block parameters',..
-    ['Datatype (3=int32 4=int16 5=int8 ...)';..
-     'Index of bit (0 is least significant)'],..
-    list('vec',1,'vec',1),exprs)
+
+    [ok,Datatype,bit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "BITCLEAR"); " ";          gettext("Clear a bit");" "],..
+        [gettext("Data Type (3:int32, 4:int16, 5:int8, ...)"); gettext("Index of Bit (0 is least significant)")],..
+        list('vec',1,'vec',1), exprs);
+
     if ~ok then break,end
     in=[model.in model.in2];
-    if (bit<0) then
-      message('Incorrect index '+string(bit)+' ; must be &gt;0.');ok=%f;
-    end
-    if floor(bit)<> bit then message("Index of bit must be integer");ok=%f;end
-    if (Datatype==3)|(Datatype==6) then
-    if bit > 31 then message ('Incorrect index '+string(bit)+' ; must be &lt;32.');ok=%f;
+
+    if floor(bit) <> bit then
+        block_parameter_error(msprintf(gettext("Wrong type for ''Index of Bit'' parameter: %5.1f."), bit), ..
+            gettext("Must be integer.") ..
+        );
+        ok=%f;
+    elseif (Datatype == 3) | (Datatype == 6) then
+        if bit > 31 | bit < 0 then
+            block_parameter_error(msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d."), bit), ..
+                msprintf(gettext("Must be in the interval %s."), "[0, 31]"));
+            ok=%f;
     else
      bit=uint32(bit)
      n=(2^32-1)-2^bit;
      n=uint32(n)
      model.sim=list('bit_clear_32',4)
     end
-    elseif (Datatype==4)|(Datatype==7) then
-    if bit > 15 then message ('Incorrect index '+string(bit)+' ; must be &lt;16.');ok=%f;
-    else
+    elseif (Datatype == 4)|(Datatype == 7) then
+        if bit > 15 | bit < 0 then
+            block_parameter_error(msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d "), bit), ..
+              msprintf(gettext("Must be in the interval %s."), "[0, 15]"));
+            ok=%f;
+        else
      bit=uint16(bit)
      n=(2^16-1)-2^bit;
      n=uint16(n)
      model.sim=list('bit_clear_16',4)
     end
-    elseif (Datatype==5)|(Datatype==8) then
-    if bit > 7 then message ('Incorrect index '+string(bit)+' ; must be &lt;8.');ok=%f;
+    elseif (Datatype == 5)|(Datatype == 8) then
+    if bit > 7 | bit < 0 then
+        block_parameter_error(msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d."), bit), ..
+          msprintf(gettext("Must be in the interval %s."), "[0, 7]"));
+        ok=%f;
     else
      bit=uint8(bit)
      n=(2^8-1)-2^bit;
      n=uint8(n)
      model.sim=list('bit_clear_8',4)
     end
-    else message ('Datatype '+string(Datatype)+' is not supported ; It must be 3 to 8');ok=%f;
+    else
+        block_parameter_error(msprintf(gettext( "Wrong value for ''Data Type'' parameter: %d."), Datatype),..
+          msprintf(gettext( "Must be in the interval %s."), "[3, 8]"));
+        ok=%f;
     end
       if ok then
     it=Datatype
@@ -98,10 +113,10 @@ case 'define' then
   model.opar=list(int32(0))
   model.blocktype='c'
   model.dep_ut=[%t %f]
-  
+
   exprs=[sci2exp(3);sci2exp(0)]
   gr_i=['xstringb(orig(1),orig(2),[''Clear'';''bit: ''+OPER],sz(1),sz(2),''fill'');']
   x=standard_define([2 2],model,exprs,gr_i)
-  
+
 end
 endfunction

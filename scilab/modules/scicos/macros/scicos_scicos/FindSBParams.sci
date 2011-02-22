@@ -20,6 +20,9 @@
 //
 
 function [params,param_types]=FindSBParams(scs_m,params)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   prot = funcprot();
   funcprot(0);
   deff('varargout=scicos_getvalue(a,b,c,d)',..

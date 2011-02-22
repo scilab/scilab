@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright 2011 - Bernard DUJARDIN
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,11 +39,15 @@ function [x,y,typ] = JKFLIPFLOP(job,arg1,arg2)
     model=xx.model;
     init_old= model.odstate(1)
     while %t do
-      [ok,init,exprs0]=scicos_getvalue(['Set JKFLIPFLOP block parameters';'The Initial Value must be 0 or 1 of type int8';..
-                           'Negative values are considered as int8(0)';..
-                   'Positive values are considered as int8(1)'] ,..
-               ['Initial Value'],..
-               list('vec',1),exprs)
+      [ok,init,exprs0]=scicos_getvalue(..
+        ["Set JKFLIPFLOP block parameters'; ..
+        " "; ..
+        "&nbsp;The Initial Value must be 0 or 1 of type int8"; ..
+        "&nbsp;- Negative values are considered as int8(0)"; ..
+        "&nbsp;- Positive values are considered as int8(1)"; ..
+        " "], ..
+        ['Initial Value'],..
+        list('vec',1),exprs)
       if ~ok then break,end
       if init<=0 then init=int8(0);
       elseif init >0 then init=int8(1);

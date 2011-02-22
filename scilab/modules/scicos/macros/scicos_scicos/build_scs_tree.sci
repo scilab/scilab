@@ -20,6 +20,9 @@
 //
 
 function [xx,yy,lp,larg]=build_scs_tree(scs_m,flag)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   [lhs,rhs]=argn(0) 
   if rhs<2 then
     flag='super'

@@ -139,7 +139,7 @@ modulename=integer
 
 #### integer : Conf files ####
 libsciinteger_la_rootdir = $(mydatadir)
-libsciinteger_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciinteger_la_root_DATA =  license.txt version.xml
 
 
 #### integer : init scripts ####

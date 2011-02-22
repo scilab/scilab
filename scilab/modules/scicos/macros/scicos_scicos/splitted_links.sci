@@ -20,6 +20,9 @@
 //
 
 function prt=splitted_links(scs_m,keep,del)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //
 //
 // given a vectors of indexes of "kept" blocks and "deleted" blocks 

@@ -139,14 +139,20 @@ static JavaVM *SearchCreatedJavaVMPath(void)
 JavaVM *FindCreatedJavaVM(char *SCILAB_PATH)
 {
 	JavaVM *jvm = NULL;
-
+#ifndef __APPLE__
+/* Under Mac OS X, we are using the JVM provided by the distribution.
+ * However, this might change with Java 7 since Apple will no longer provide
+ * Java with Mac OS X */
 	jvm = SearchCreatedJavaVMEmbedded(SCILAB_PATH);
 	if (jvm) return jvm;
 	else
 	{
+#endif
 			jvm = SearchCreatedJavaVMPath();
 			if (jvm) return jvm;
+#ifndef __APPLE__
 	}
+#endif
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/ 

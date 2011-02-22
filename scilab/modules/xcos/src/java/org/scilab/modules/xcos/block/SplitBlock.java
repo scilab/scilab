@@ -93,17 +93,16 @@ public final class SplitBlock extends BasicBlock {
 
 	/**
 	 * Add a port on the block.
-	 *
-	 * @param port
-	 *            The port to be added to the block
-	 * @see org.scilab.modules.xcos.block.BasicBlock#addPort(org.scilab.modules.xcos.port.BasicPort)
+	 * 
+	 * @param child the port to add
+	 * @param index index where to put the child
 	 */
 	@Override
-	public void addPort(BasicPort port) {
-		super.addPort(port);
-		port.setVisible(false);
+	public mxICell insert(mxICell child, int index) {
+		child.setVisible(false);
+		return super.insert(child, index);
 	}
-
+	
 	/**
 	 * @return input port
 	 */

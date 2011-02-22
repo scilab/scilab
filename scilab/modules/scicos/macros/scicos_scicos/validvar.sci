@@ -20,6 +20,9 @@
 //
 
 function r=validvar(s)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //Serge Steer, 08/10/2007
 //Alan restricted validvar for operation, 29/03/08
 

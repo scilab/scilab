@@ -509,6 +509,10 @@ case "$CXX" in
    fi
    CPPFLAGS="$CPPFLAGS -fno-stack-protector" # bug 3131
    ;;
+   clang-* | clang) 
+           # clang expect an explict declaration
+           LDFLAGS="$LDFLAGS -lstdc++"
+   ;;
 esac
 
 #### 64 bits detection
@@ -553,7 +557,7 @@ case "$CC" in
    # Once all cyclic dependencies have been dropped, this line could be removed.
    # Check if linker supports --as-needed and --no-as-needed options
    if $LD --help 2>/dev/null | grep no-as-needed > /dev/null; then
-      LDFLAGS="-Wl,--no-as-needed"
+      LDFLAGS="$LDFLAGS -Wl,--no-as-needed"
    fi
 
 

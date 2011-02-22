@@ -15,7 +15,7 @@ modulename=commons
 
 #### commons : Conf files ####
 libscicommons_la_rootdir = $(mydatadir)
-libscicommons_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscicommons_la_root_DATA =  license.txt version.xml
 
 
 #### commons : init scripts ####

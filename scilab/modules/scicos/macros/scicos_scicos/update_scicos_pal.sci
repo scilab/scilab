@@ -20,6 +20,9 @@
 //
 
 function scicos_pal=update_scicos_pal(path,name,fname)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   scicos_pal;
 
   inde=find(scicos_pal(:,1)==name);

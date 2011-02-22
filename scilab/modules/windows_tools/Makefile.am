@@ -30,7 +30,7 @@ modulename=windows_tools
 
 #### windows_tools : Conf files ####
 libsciwindows_tools_la_rootdir = $(mydatadir)
-libsciwindows_tools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciwindows_tools_la_root_DATA =  license.txt version.xml
 
 #### windows_tools : init scripts ####
 libsciwindows_tools_la_etcdir = $(mydatadir)/etc

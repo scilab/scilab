@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function [ok, t] = cos2xml(scs_m, name, atomicflag)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
  ok = %t;
  t=[];
  ft = format();
@@ -110,6 +113,9 @@ function [ok, t] = cos2xml(scs_m, name, atomicflag)
 endfunction
 
 function xml_txt=block2xml(o,flag,t1,atomicflag)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
  xml_txt=[];format(20);
  x=getfield(1,o);
  for i=2:size(x,'*')
@@ -176,6 +182,9 @@ function xml_txt=block2xml(o,flag,t1,atomicflag)
 endfunction
 
 function field=xml_subst(field)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   field=strsubst(field,'&','&amp;');
   field=strsubst(field,'<','&lt;');
   field=strsubst(field,'>','&gt;');

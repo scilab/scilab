@@ -20,6 +20,9 @@
 //
 
 function scs_m = changeports(scs_m, path, o_n)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //**
 //** 27 July 2007
 //**
@@ -111,6 +114,9 @@ endfunction
 //**-------------------------------------------------------------------------------------------------
 
 function [scs_m, o_n, LinkToDel] = match_ports(scs_m, path, o_n)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** ---- INITIALIZATION ----
 
 

@@ -479,7 +479,7 @@ modulename = completion
 
 #### completion : Conf files ####
 libscicompletion_la_rootdir = $(mydatadir)
-libscicompletion_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscicompletion_la_root_DATA = license.txt version.xml
 
 #### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc

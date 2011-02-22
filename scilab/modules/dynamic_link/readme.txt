@@ -1,1 +1,0 @@
-readme.txt about dynamic_link module

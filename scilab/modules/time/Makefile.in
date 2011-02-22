@@ -430,7 +430,7 @@ modulename = time
 
 #### time : Conf files ####
 libscitime_la_rootdir = $(mydatadir)
-libscitime_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscitime_la_root_DATA = license.txt version.xml
 
 #### time : init scripts ####
 libscitime_la_etcdir = $(mydatadir)/etc

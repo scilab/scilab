@@ -620,7 +620,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 break;
             case ScilabLeafElement.FUN :
                 if (compt == 0) {
-                    return String.format(SciNotesMessages.POSFUN_IN_DOC, e.getFunctionInfo().functionName, line + 1, pos - root.getElement(line).getStartOffset());
+                    return String.format(SciNotesMessages.POSFUN_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset(), e.getFunctionInfo().functionName, line - index);
                 } else {
                     compt++;
                 }

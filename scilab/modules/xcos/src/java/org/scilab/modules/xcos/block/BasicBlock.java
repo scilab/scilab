@@ -872,12 +872,15 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     
     /**
      * Add a port on the block.
+     * 
+     * This call should only be used when a port reordering operation must be performed.
+     * 
      * @param port The port to be added to the block
      */
     public void addPort(BasicPort port) {
     	insert(port);
-    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllTypedPorts(this, false, port.getClass()).size());
+    	BlockPositioning.updateBlockView(this);
     }
 
 	/**

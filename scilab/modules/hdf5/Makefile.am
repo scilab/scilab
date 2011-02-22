@@ -126,7 +126,7 @@ modulename=hdf5
 
 #### hdf5 : Conf files ####
 libscihdf5_la_rootdir = $(mydatadir)
-libscihdf5_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscihdf5_la_root_DATA =  license.txt version.xml
 
 
 #### hdf5 : init scripts ####

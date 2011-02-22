@@ -431,7 +431,7 @@ modulename = ui_data
 
 #### ui_data : Conf files ####
 libsciui_data_la_rootdir = $(mydatadir)
-libsciui_data_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciui_data_la_root_DATA = license.txt version.xml
 
 #### ui_data : init scripts ####
 libsciui_data_la_etcdir = $(mydatadir)/etc

@@ -17,7 +17,7 @@
 /* desc : function to modify in Scilab the x_ticks field of               */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include <math.h>
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "GetProperty.h"

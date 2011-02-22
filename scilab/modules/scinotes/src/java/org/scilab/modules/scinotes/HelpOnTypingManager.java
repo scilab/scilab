@@ -148,9 +148,22 @@ public final class HelpOnTypingManager implements KeyListener {
                             break;
                         default :
                         }
-                    } catch (BadLocationException exc) { }
+                    } catch (BadLocationException exc) {
+                        System.err.println(exc);
+                    }
                 }
             } else if (openers) {
+                try {
+                    char ch = doc.getText(pos, 1).charAt(0);
+                    if (c == ch && (c == ')' || c == ']' || c == '}' || c == '\"')) {
+                        e.consume();
+                        textPane.setCaretPosition(pos + 1);
+                        return;
+                    }
+                } catch (BadLocationException exc) {
+                    System.err.println(exc);
+                }
+
                 String str = null;
                 switch (c) {
                 case '(' :
@@ -173,7 +186,9 @@ public final class HelpOnTypingManager implements KeyListener {
                         doc.insertString(pos, str, null);
                         e.consume();
                         textPane.setCaretPosition(pos + 1);
-                    } catch (BadLocationException exc) { }
+                    } catch (BadLocationException exc) {
+                        System.err.println(exc);
+                    }
                 }
             }
         }

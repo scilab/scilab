@@ -20,6 +20,9 @@
 //
 
 function syst=analyse(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Analyse le graphique pour rechercher les connections
 //given	a block-diagram	representation of a linear system bloc2exp returns
 //  its symbolic evaluation.  The	first element of the list blocd	must be	the
