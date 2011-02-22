@@ -81,6 +81,7 @@ import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Type;
+import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.PortCheck;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -519,15 +520,14 @@ public class XcosDiagram extends ScilabGraph {
 
 	/* Labels use HTML if not equal to interface function name */
 	setHtmlLabels(true);
-	/**
+	/*
 	 * by default every label is movable, see
 	 * XcosDiagram##isLabelMovable(java.lang.Object) for restrictions
 	 */
 	setVertexLabelsMovable(true);
 	setEdgeLabelsMovable(true);
 	
-	//
-	//setCloneInvalidEdges(false);
+	// 
 	setCloneInvalidEdges(true);
 
 	// Override isCellEditable to filter what the user can edit
@@ -1331,6 +1331,25 @@ public class XcosDiagram extends ScilabGraph {
     	return status;
     }
 
+	/**
+	 * {@inheritDoc}
+	 * Do not extends if the port position is north or south.
+	 */
+	@Override
+	public boolean isExtendParent(Object cell) {
+		final boolean extendsParents;
+		
+		if (cell instanceof BasicPort) {
+			final BasicPort p = (BasicPort) cell;
+			extendsParents = !(p.getOrientation() == Orientation.NORTH || p
+					.getOrientation() == Orientation.SOUTH)
+					&& super.isExtendParent(p);
+		} else {
+			extendsParents = super.isExtendParent(cell);
+		}
+		return extendsParents;
+	}
+	
     /**
      * @param fileName HDF5 filename
      */
