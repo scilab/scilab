@@ -95,12 +95,12 @@ trigger a warning and do not add a link on the function name.
 
 * In the documentation, Java, C, C++ and XML codes are now colorized if the role
   in programlisting is set (role='java', role='c', role='cpp' or role='xml')
-  
-* The categories "Bitwise", "Elementary matrices", "Matrix manipulation", 
-  "Matrix operations", "Set operations", "Signal processing", "Symbolic", 
+
+* The categories "Bitwise", "Elementary matrices", "Matrix manipulation",
+  "Matrix operations", "Set operations", "Signal processing", "Symbolic",
   "Search and sort" have been created for the elementary functions module.
-  
-* Help pages for the bitxor, bitcmp, bitget and bitset have been 
+
+* Help pages for the bitxor, bitcmp, bitget and bitset have been
   created.
 
 * bug 3716 fixed - No way to search a word in the right area.
@@ -142,7 +142,7 @@ in the status bar of Scinotes.
 * A rectangular selection tool is now available. CTRL+selection will enable it.
   This improves the selection (of data for example).
 
-* When typing a closing char (e.g. ')',']',...), do not print it if already 
+* When typing a closing char (e.g. ')',']',...), do not print it if already
   here (like in Eclipse).
 
 * bug 8095 fixed - With OpenJDK, the size of the dialog 'Set colors' was bad.
@@ -442,6 +442,8 @@ Bug fixes:
 * bug 8897 fixed - Typo fixed.
 
 * bug 8954 fixed - Print the console led to an exception.
+
+* bug 9034 fixed - atomsVersionCompare failed on version with '-0'.
 
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
