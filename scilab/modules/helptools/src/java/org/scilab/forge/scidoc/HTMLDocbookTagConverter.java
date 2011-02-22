@@ -86,6 +86,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String refname = "";
     protected String version;
     protected String appendToProgramListing;
+    protected String appendForExecToProgramListing;
     protected String prependToProgramListing;
     protected String currentId;
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
@@ -759,6 +760,15 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", cLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("java")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
+            } else if (role.equals("exec")) {
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
+                if (prependToProgramListing != null) {
+                    code = prependToProgramListing + code;
+                }
+                if (appendForExecToProgramListing != null) {
+                    code += appendForExecToProgramListing;
+                }
+                str = encloseContents("div", "programlisting", code);
             } else {
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
                 if (prependToProgramListing != null) {

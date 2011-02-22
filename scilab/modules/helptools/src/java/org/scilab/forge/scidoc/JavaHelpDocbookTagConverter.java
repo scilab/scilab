@@ -57,6 +57,7 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
         super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase);
         prependToProgramListing = "<table border=\"0\" width=\"100%\"><tr><td width=\"98%\">";
         appendToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"ScilabExecute.png\" border=\"0\"/></a></td><td valign=\"top\"><a href=\"scilab://scilab.editexample/\"><img src=\"ScilabEdit.png\" border=\"0\"/></a></td><td></td></tr></table>";
+        appendForExecToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"ScilabExecute.png\" border=\"0\"/></a></td><td></td></tr></table>";
     }
 
     /**
