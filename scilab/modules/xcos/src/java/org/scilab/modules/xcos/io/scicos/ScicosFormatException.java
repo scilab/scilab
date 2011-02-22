@@ -21,7 +21,7 @@ import org.scilab.modules.localization.Messages;
  */
 public abstract class ScicosFormatException extends Exception {
 	private static final String UNABLE_TO_DECODE_INVALID_DATA = Messages.gettext("Unable to decode \"%s\" : invalid data.");
-	private static final String UNABLE_TO_DECODE__INVALID_FIELD = Messages.gettext("Unable to decode \"%s.%s\" : invalid field.");
+	private static final String UNABLE_TO_DECODE_INVALID_FIELD = Messages.gettext("Unable to decode \"%s.%s\" : invalid field.");
 	
 	/**
 	 * Used when the {@link Element} cannot be used to decode/encode the instance.
@@ -69,7 +69,7 @@ public abstract class ScicosFormatException extends Exception {
 		 * @param index the buggy index
 		 */
 		public WrongTypeException(List<String> fields, int index) {
-			super(String.format(UNABLE_TO_DECODE__INVALID_FIELD, fields.get(0), fields.get(index)));
+			super(String.format(UNABLE_TO_DECODE_INVALID_FIELD, fields.get(0), fields.get(index)));
 		}
 	}
 	
