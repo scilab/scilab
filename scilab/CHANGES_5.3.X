@@ -131,6 +131,8 @@ trigger a warning and do not add a link on the function name.
 
 * bug 8937 fixed - The tag <screenshot> was not handled.
 
+* bug 9019 fixed - The help page of dsearch was unclear.
+
 Scinotes:
 =========
 
