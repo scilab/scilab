@@ -38,13 +38,12 @@
     <para>-- MinGW requires to install a ATOMS module:<programlisting role="exec">atomsInstall('mingw'); atomsLoad('mingw');</programlisting></para>
   </refsection>
   <refsection>
-    <title>Linux</title>
-    <para>On linux, The GNU compiler (gcc) is included with linux
-    distributions.</para>
+    <title>GNU/Linux</title>
+    <para>On GNU/Linux, GNU compilers (gcc, g++ and gfortran) are packaged in all distributions.</para>
   </refsection>
   <refsection>
     <title>Mac OS X</title>
-    <para>Apple's development environment for OS X (Xcode) is available from
+    <para>Apple's development environment for OS X, <ulink url="http://developer.apple.com/technologies/tools/xcode.html">Xcode</ulink>, is available from
     Apple at no charge.</para>
   </refsection>
   <refsection role="see also">
