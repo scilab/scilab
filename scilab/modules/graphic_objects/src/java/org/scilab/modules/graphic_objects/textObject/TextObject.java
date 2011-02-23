@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -161,15 +161,29 @@ public class TextObject extends ContouredObject {
 	}
 
 	/**
+	 * Sets the text array dimensions
+	 * Recreates an array of formatted text objects.
+	 * If there was an existing array, the new array's objects' font properties
+	 * are set to those of the existing array's first element, as all the array's objects
+	 * are supposed to have the same font properties for now.
+	 *
 	 * @param dimensions the text array dimensions to set
 	 */
 	public void setTextArrayDimensions(Integer[] dimensions) {
-		if (dimensions[0]*dimensions[1] != this.dimensions[0]*this.dimensions[1]) {
-			text = new FormattedText[dimensions[0]*dimensions[1]];
+		int currentSize = this.dimensions[0]*this.dimensions[1];
+
+		if (dimensions[0]*dimensions[1] != currentSize) {
+			FormattedText[] newText = new FormattedText[dimensions[0]*dimensions[1]];
 
 			for (int i = 0; i < dimensions[0]*dimensions[1]; i++) {
-				text[i] = new FormattedText();
+				newText[i] = new FormattedText();
+
+				if(currentSize >= 1) {
+					newText[i].setFont(new Font(text[0].getFont()));
+				}
 			}
+
+			text = newText;
 		}
 
 		this.dimensions[0] = dimensions[0];
