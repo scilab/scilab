@@ -1,60 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Xcos
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
- * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
- * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- * 
- * See the file ./license.txt
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
-
 <refentry
-  version="5.0-subset Scilab" xml:id="BITCLEAR"
+  version="5.0-subset Scilab" xml:id="BITCLEAR" xml:lang="fr_FR"
   xmlns="http://docbook.org/ns/docbook"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmln.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:ns4="http://www.w3.org/1999/xhtml"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
   xmlns:db="http://docbook.org/ns/docbook"
 >
   <refnamediv>
     <refname>BITCLEAR</refname>
 
-    <refpurpose>Clear a Bit</refpurpose>
+    <refpurpose>Positionne un bit à 0</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Block Screenshot</title>
+    <title>Aperçu</title>
 
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
           <imagedata align="center" fileref="../../../../images/palettes/BITCLEAR.png"
-                     valign="middle"></imagedata>
+                     valign="middle" />
         </imageobject>
       </inlinemediaobject></para>
   </refsection>
 
   <refsection id="Contents_BITCLEAR">
-    <title>Contents</title>
+    <title>Contenu</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="BITCLEAR">Clear a Bit</link>
+          <link linkend="BITCLEAR">Positionne un bit à 0</link>
         </para>
       </listitem>
 
@@ -74,49 +63,49 @@
 
           <listitem>
             <para>
-              <xref linkend="Data_Type_BITCLEAR">Data types</xref>
+              <xref linkend="Data Type_BITCLEAR">Types de données</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Dialogbox_BITCLEAR">Dialog box</xref>
+              <xref linkend="Dialogbox_BITCLEAR">Boîte de dialogue</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_BITCLEAR">Default properties</xref>
+              <xref linkend="Defaultproperties_BITCLEAR">Propriétés par défaut</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Example_BITCLEAR">Example</xref>
+              <xref linkend="Example_BITCLEAR">Exemple</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_BITCLEAR">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_BITCLEAR">Fonction d'interfaçage</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_BITCLEAR">Computational function</xref>
+              <xref linkend="Computationalfunction_BITCLEAR">Fonctions de calcul</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Seealso_BITCLEAR">See also</xref>
+              <xref linkend="Seealso_BITCLEAR">Voir aussi</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Authors_BITCLEAR">Authors</xref>
+              <xref linkend="Authors_BITCLEAR">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -130,7 +119,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Integer_pal">Integer palette</link>
+          <link linkend="Integer_pal">Palette Entier</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -140,120 +129,122 @@
     <title>Description</title>
 
     <para>
-      This block sets to <literal>0</literal> the specified bit of its input.
-      The user gives the bit index in the field <emphasis role="bold">Index of Bit</emphasis>
-      with index <literal>0</literal>, as that of the least significant bit.The operation can be
-      summarized by this expression:
+      Ce bloc met à <literal>0</literal> un bit spécifié de son entrée. L'utilisateur donne
+      l'indice du bit dans le champ <emphasis role="bold">Index of Bit</emphasis>, l'indice
+      <literal>0</literal> étant celui du bit le moins significatif. L'opération
+      peut être résumée par cette expression
     </para>
     <para>
-      <latex><![CDATA[ Output=Input \wedge Mask]]></latex>
+      <latex><![CDATA[ Sortie=Entrée \wedge Masque]]> </latex>
     </para>
     <para>
-      i.e. a bitwise <literal>AND</literal> between <literal>Input</literal> and
-      <literal>Mask</literal>, an integer of the same length as the input with a value
-      <literal>0</literal> for the bit to clear and a value <literal>1</literal>
-      for the other bits.
+      i.e. un <literal>ET</literal> bit à bit entre <literal>Entrée</literal> et
+      <literal>Masque</literal>, un entier de même longueur que l'entrée avec une valeur
+      <literal>0</literal> pour le bit à modifier et une valeur <literal>1</literal>
+      pour les autres bits.
     </para>
     <para />
   </refsection>
 
-  <refsection id="Data_Type_BITCLEAR">
-    <title>Data types</title>
+  <refsection id="Data Type_BITCLEAR">
+    <title>Types de données</title>
 
-   <para>
-      The block supports the following types :
+    <para>
+      Le bloc supporte les types de données suivants  :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-          Input : scalar. All Scilab's integer type (<emphasis role="bold">Data type</emphasis> parameter).
+          Entrée : scalaire. Tout type entier de Scilab (paramètre <emphasis role="bold">Input Type</emphasis>).
         </para>
       </listitem>
       <listitem>
         <para>
-          Output : same type and dimensions than input.
+          Sortie : scalaire. Même type que l'entrée.
         </para>
       </listitem>
-      </itemizedlist>
+    </itemizedlist>
   </refsection>
 
   <refsection id="Dialogbox_BITCLEAR">
-    <title>Dialog box</title>
+    <title>Boîte de dialogue</title>
 
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../gui/integer_pal/en_US/BITCLEAR_gui.png"
+          <imagedata align="center" fileref="../../../gui/integer_pal/fr_FR/BITCLEAR_gui.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject>
     </para>
+
     <para />
 
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Data Type (3=int32 4=int16 5=int8 ...)</emphasis>
+          <emphasis role="bold">Data Type (3=int32 4=int16 5=int8...)</emphasis>
         </para>
 
         <para>
-          It indicates the integer type of the input (output) data : between 3 and 8.
+          Indique le type entier des données en entrée (sortie) : entre 3 et 8.
         </para>
 
-        <para>Properties : Type 'vec' of size 1.</para>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
       </listitem>
 
       <listitem>
         <para>
           <emphasis role="bold">Index of Bit (0 is least significant)</emphasis>
         </para>
-        <para>It indicate the index of the bit to clear. The index must be, when the type is:</para>
+        <para>
+          Indique le bit à mettre à 0. L'indice doit être, quand le type est :
+        </para>
         <itemizedlist>
           <listitem>
             <para>
-              int32 or uint32:  positive and less than 32.
+              int32 or uint32 : positif et inférieur à 32.
             </para>
           </listitem>
           <listitem>
             <para>
-              int16 or uint16: positive and less than 16.
+              int16 or uint16 : positif et inférieur à  16.
             </para>
           </listitem>
           <listitem>
             <para>
-              int8 or uint8: positive and less than 8.
+              int8 or uint8 : positif et inférieur à  8.
             </para>
           </listitem>
         </itemizedlist>
-
-        <para>Properties : Type 'vec' of size 1.</para>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
 
   <refsection id="Defaultproperties_BITCLEAR">
-    <title>Default properties</title>
+    <title>Propriétés par défaut</title>
 
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
+                <para>
+                  <emphasis role="bold">regular inputs:</emphasis>
         </para>
 
         <para>
@@ -280,21 +271,20 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
       </listitem>
 
       <listitem>
         <para>
           <emphasis role="bold">name of computational function:</emphasis>
-
           <emphasis role="italic">bit_clear_32</emphasis>
         </para>
       </listitem>
@@ -302,21 +292,21 @@
   </refsection>
 
   <refsection id="Example_BITCLEAR">
-    <title>Example</title>
+    <title>Exemple</title>
 
     <para>
-      Below a simple use case of the block.
+      Ci-dessous un cas simple d'utilisation du bloc.
     </para>
     <para />
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../../../examples/integer_pal/en_US/bitclear_diagram_en_US.png" />
+        <imagedata align="center" fileref="../../../examples/integer_pal/fr_FR/bitclear_diagram_fr_FR.png" />
       </imageobject>
-      </mediaobject>
+    </mediaobject>
   </refsection>
 
   <refsection id="Interfacingfunction_BITCLEAR">
-    <title>Interfacing function</title>
+    <title>Fonction d'interfaçage</title>
 
     <itemizedlist>
       <listitem>
@@ -326,7 +316,7 @@
   </refsection>
 
   <refsection id="Computationalfunction_BITCLEAR">
-    <title>Computational function</title>
+    <title>Fonctions de calcul</title>
 
     <itemizedlist>
       <listitem>
@@ -344,7 +334,7 @@
   </refsection>
 
   <refsection role="see also" id="Seealso_BITCLEAR">
-    <title>See also</title>
+    <title>Voir aussi</title>
 
     <itemizedlist>
       <listitem>
@@ -360,7 +350,7 @@
   </refsection>
 
   <refsection id="Authors_BITCLEAR">
-    <title>Authors</title>
+    <title>Auteurs</title>
 
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
