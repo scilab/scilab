@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="scf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>scf</refname>
+    <refpurpose>カレントの図に指定する
+  (window)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>f = scf()
+f = scf(h)
+f = scf(num)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>図のハンドル (ハンドル型)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>num</term>
+        <listitem>
+          <para>figure_id (数値型)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>カレントの図のハンドル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	カレントの図が描画対象となります.
+    <literal>scf</literal>関数によりカレントの図を変更したり,
+	まだ存在しない場合には作成することができます.</para>
+    <para/>
+    <para><literal>scf(num)</literal> は<literal>figure_id==num</literal>の図を
+	カレントの図に指定します.
+	まだ存在しない場合には作成されます.</para>
+    <para/>
+    <para><literal>scf(h)</literal> はハンドル<literal>h</literal>が指す
+	図をカレントの図に指定します.まだ存在しない場合には作成されます.</para>
+    <para><literal>scf()</literal> は <literal>scf(max(winsid())+1) </literal>と等価で,
+	新規にグラフィックウインドウを作成する際にしようすることができます</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+f4=scf(4); //id==4 の図を作成し,カレントの図に設定
+f0=scf(0); //id==0 の図を作成し,カレントの図に設定
+plot2d() //カレントの図 (id=0)に描画
+scf(f4); // 最初に作成した図をカレントの図に設定
+plot3d() //カレントの図 (id=4)に描画
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>参考</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="gcf">gcf</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="get_figure_handle">get_figure_handle</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>S. Steer INRIA</para>
+  </refsection>
+</refentry>

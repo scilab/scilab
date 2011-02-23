@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mese">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mese</refname>
+    <refpurpose> スペクトル推定の最大エントロピ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[sm,fr]=mese(x [,npts]);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>入力標本化データ系列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>npts</term>
+        <listitem>
+          <para><literal>fr</literal> および <literal>sm</literal>の点の数
+	(デフォルトは256)を指定するオプションパラメータ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sm</term>
+        <listitem>
+          <para>周波数グリッド<literal>fr</literal>における
+	スペクトル推定の標本</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fr</term>
+        <listitem>
+          <para>
+	<literal>[0,.5)</literal>の範囲のnpts個の等間隔周波数の標本</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>x</literal>の最大エントロピスペクトル推定を計算</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>C. B.  </para>
+  </refsection>
+</refentry>

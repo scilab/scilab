@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bessel" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv xml:id="besseli">
+    <refname>besseli</refname>
+
+    <refpurpose>第1種修正ベッセル関数 (I_alpha).</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="besselj">
+    <refname>besselj</refname>
+
+    <refpurpose>第1種ベッセル関数 (J_alpha).</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="besselk">
+    <refname>besselk</refname>
+
+    <refpurpose>第2種修正ベッセル関数 (K_alpha).</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="bessely">
+    <refname>bessely</refname>
+
+    <refpurpose>第2種ベッセル関数 (Y_alpha).</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="besselh">
+    <refname>besselh</refname>
+
+    <refpurpose>第3種ベッセル関数 (ハンケル関数と同じ)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y = besseli(alpha,x [,ice])
+y = besselj(alpha,x [,ice])
+y = besselk(alpha,x [,ice])
+y = bessely(alpha,x [,ice])
+y = besselh(alpha,x)
+y = besselh(alpha,K,x [,ice])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数または複素数のベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>alpha</term>
+
+        <listitem>
+          <para>r実数ベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ice</term>
+
+        <listitem>
+          <para>整数フラグ, デフォルト値: 0</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>K</term>
+
+        <listitem>
+          <para>整数, 指定可能な値は 1 または 2, ハンケル関数の型.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>注意: これらの関数の構文は Scilab-3.0 および Scilab-3.1の間で
+	変更されました.
+	古い構文は互換性のために
+    <link linkend="oldbesseli">oldbesseli</link>, <link
+    linkend="oldbesselj">oldbesselj</link>, <link
+    linkend="oldbesselk">oldbesselk</link>, <link
+    linkend="oldbessely">oldbessely</link> 関数により利用可能です.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>besseli(alpha,x)</literal> は,
+	実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関する
+	第1種修正ベッセル関数(I_alpha)を計算します, 
+        <literal>besseli(alpha,x,1)</literal> は
+        <literal>besseli(alpha,x).*exp(-abs(real(x)))</literal>を計算します.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>besselj(alpha,x)</literal> は第1種のベッセル関数(J_alpha)を
+	実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関して
+	計算します.
+        <literal>besselj(alpha,x,1)</literal> は
+        <literal>besselj(alpha,x).*exp(-abs(imag(x)))</literal>を計算します.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>besselk(alpha,x)</literal> は第2種修正ベッセル関数
+         (K_alpha)を
+	実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関して
+	計算します.
+        <literal>besselk(alpha,x,1)</literal> は
+        <literal>besselk(alpha,x).*exp(x)</literal>を計算します.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>bessely(alpha,x)</literal>は第2種のベッセル関数(Y_alpha)を
+	実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関して
+	計算します.
+        <literal>bessely(alpha,x,1)</literal> は
+        <literal>bessely(alpha,x).*exp(-abs(imag(x)))</literal>を計算します.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>besselh(alpha [,K] ,x)</literal> は第3種のベッセル関数
+	(<literal>K</literal>に依存してハンケル関数 H1 または H2)を
+	実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関して
+	計算します.<literal>K</literal>が省略された場合,
+	1に等しいと仮定されます.
+	<literal>besselh(alpha,1,x,1)</literal>は
+        <literal>besselh(alpha,1,x).*exp(-%i*x)</literal>を計算し,
+        <literal>besselh(alpha,2,x,1)</literal> は
+        <literal>besselh(alpha,2,x).*exp(%i*x)</literal>を計算します.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para><literal>alpha</literal>および <literal>x</literal>が同じ大きさの
+	配列の場合,結果<literal>y</literal>も同じ大きさとなります.
+	入力のどちらかがスカラーの場合,
+	もう片方の大きさにまで拡張されます.
+	片方の入力が行ベクトルでもう片方が列ベクトルの場合,
+	結果<literal>y</literal>は関数値の二次元テーブルとなります.</para>
+
+    <para>Y_alpha および J_alpha ベッセル関数はベッセルの微分方程式の
+	2つの独立解です:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/bessel_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>修正ベッセル関数K_alpha および I_alphaは
+	修正ベッセル微分方程式の2つの独立解です:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/bessel_equation2.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>H^1_alpha および H^2_alphaは第1種および第2種のハンケル関数
+	で,第1種および第2種のベッセル関数の線形結合です:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/bessel_equation3.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+//  besselI 関数
+// ==================
+   x = linspace(0.01,10,5000)';
+   clf()
+   subplot(2,1,1)
+   plot2d(x,besseli(0:4,x), style=2:6)
+   legend('I'+string(0:4),2);
+   xtitle("Some modified Bessel functions of the first kind")
+   subplot(2,1,2)
+   plot2d(x,besseli(0:4,x,1), style=2:6)
+   legend('I'+string(0:4),1);
+   xtitle("Some modified scaled Bessel functions of the first kind")
+
+// besselJ 関数
+// =================
+   x = linspace(0,40,5000)';
+   clf()
+   plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
+   legend('I'+string(0:4),1);
+   xtitle("Some Bessel functions of the first kind")
+
+// J_(1/2)(x) = sqrt(2/(x pi)) sin(x)　の関係を用いて
+//  besselj(0.5,x) のアルゴリズムをより直接的な式と比較します
+   x = linspace(0.1,40,5000)';
+   y1 = besselj(0.5, x);
+   y2 = sqrt(2 ./(%pi*x)).*sin(x);
+   er = abs((y1-y2)./y2);
+   ind = find(er &gt; 0 &amp; y2 ~= 0);
+   clf()
+   subplot(2,1,1)
+   plot2d(x,y1,style=2)
+   xtitle("besselj(0.5,x)")
+   subplot(2,1,2)
+   plot2d(x(ind), er(ind), style=2, logflag="nl")
+   xtitle("relative error between 2 formulae for besselj(0.5,x)") 
+
+// besselK 関数
+// =================
+   x = linspace(0.01,10,5000)';
+   clf()
+   subplot(2,1,1)
+   plot2d(x,besselk(0:4,x), style=0:4, rect=[0,0,6,10])
+   legend('K'+string(0:4),1);
+   xtitle("Some modified Bessel functions of the second kind")
+   subplot(2,1,2)
+   plot2d(x,besselk(0:4,x,1), style=0:4, rect=[0,0,6,10])
+   legend('K'+string(0:4),1);
+   xtitle("Some modified scaled Bessel functions of the second kind")
+
+// besselY 関数
+// =================
+   x = linspace(0.1,40,5000)'; // Y ベッセル関数は x -&gt; 0+ については制限されません
+   clf()
+   plot2d(x,bessely(0:4,x), style=0:4, rect=[0,-1.5,40,0.6])
+   legend('Y'+string(0:4),4);
+   xtitle("Some Bessel functions of the second kind")
+
+// besselH 関数
+// =================
+   x=-4:0.025:2; y=-1.5:0.025:1.5;
+   [X,Y] = ndgrid(x,y);
+   H = besselh(0,1,X+%i*Y); 
+   clf();f=gcf();
+   xset("fpf"," ")
+   f.color_map=jetcolormap(16);
+   contour2d(x,y,abs(H),0.2:0.2:3.2,strf="034",rect=[-4,-1.5,3,1.5])
+   legends(string(0.2:0.2:3.2),1:16,"ur")
+   xtitle("Level curves of |H1(0,z)|")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Amos, D. E., (SNLA)</member>
+
+      <member>Daniel, S. L., (SNLA)</member>
+
+      <member>Weston, M. K., (SNLA)</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>使用される関数</title>
+
+    <para>ソースコードは SCI/modules/special_functions/src/fortran/slatec および
+	    SCI/modules/special_functions/src/fortran にあります</para>
+
+    <para>Slatec : dbesi.f, zbesi.f, dbesj.f, zbesj.f, dbesk.f, zbesk.f,
+    dbesy.f, zbesy.f, zbesh.f</para>
+
+    <para>拡張定義領域(Serge Steer INRIA)のドライバ (Serge Steer INRIA): dbesig.f,
+    zbesig.f, dbesjg.f, zbesjg.f, dbeskg.f, zbeskg.f, dbesyg.f, zbesyg.f,
+    zbeshg.f</para>
+  </refsection>
+</refentry>

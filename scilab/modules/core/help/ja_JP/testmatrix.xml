@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="testmatrix">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>testmatrix</refname>
+    <refpurpose> ヒルバート,フランクのような特殊行列を作成</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>[y]=testmatrix(name,n)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>整数, 行列の大きさ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para> <literal>n</literal> x <literal>m</literal> 行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    特定の行列を作成します.
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>testmatrix('magi',n)</term>
+        <listitem>
+          <para>大きさ <literal>n</literal> の魔方陣の正方行列を返します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>testmatrix('frk',n)</term>
+        <listitem>
+          <para>フランク行列を返します :</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>testmatrix('hilb',n)</term>
+        <listitem>
+          <para>ヒルバート行列の逆です  <literal> (Hij= 1/(i+j-1))</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

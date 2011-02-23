@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="orthProj">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>orthProj</refname>
+    <refpurpose>
+	点の平面上のポリラインへの直交射影を計算する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[d,ptp,ind,c] = orthProj(data,pt)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>data</term>
+        <listitem>
+          <para>
+            n 行 2 列配列. 最初の列にはポリラインのX座標,
+	2番目の列にはY座標を有します.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pt</term>
+        <listitem>
+          <para>
+		2個のエントリを有する配列: 点の座標
+          </para>
+        </listitem>
+      </varlistentry>
+     
+      <varlistentry>
+        <term>d</term>
+        <listitem>
+          <para>
+	指定した点とポリラインのデータ点の間の最小距離.
+          </para>
+        </listitem>
+      </varlistentry>
+     <varlistentry>
+        <term>ptp</term>
+        <listitem>
+          <para>
+            2個のエントリを有する配列: 距離が最小となる点の座標
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind</term>
+        <listitem>
+	  <para>
+	セグメント<literal>[ind ind+1]</literal>で
+	ポリラインに最も近い点となる>.
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+	  <para>
+	直交射影の補間係数.
+	  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	平面上のポリラインへの点の直交射影を計算します.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[
+    x=linspace(0,1,30)';
+    y=sin(4*x.^3)/2;
+    clf();a=gca();a.isoview='on';
+    plot(x,y)
+    pt=[0.7 0.3];
+    plot(pt(1),pt(2),'xb')
+    [d,ptp,ind,c]=orthProj([x y],pt);
+    plot(x(ind:ind+1),y(ind:ind+1),'+r')
+    xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
+    e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
+
+    pt=[0.75 -0.3];
+    plot(pt(1),pt(2),'xb')
+    [d,ptp,ind,c]=orthProj([x y],pt);
+    plot(x(ind:ind+1),y(ind:ind+1),'+r')
+    xpoly([pt(1);ptp(1)],[pt(2);ptp(2)])
+    e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
+
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/orthProj.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xsegs">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xsegs</refname>
+    <refpurpose>接続されていない線分を描画</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>
+      xsegs(xv,yv,[style])
+      xsegs(xv,yv,zv,[style])
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>xv, yv, zv</term>
+        <listitem>
+          <para>同じ大きさの行列. <literal>zv</literal>が指定されない場合, ゼロベクトルを使用します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style</term>
+        <listitem>
+          <para>ベクトルまたはスカラー.  <literal>style</literal>が正のスカラーの場合,
+          全ての線分で使用される色を指定します. <literal>style</literal>が負のスカラーの場合
+          , カレントの色が使用されます. <literal>style</literal>
+          がベクトルの場合, <literal>style(i)</literal> は線分<literal>i</literal>に関する
+	色を指定します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>xsegs</literal> は
+	<literal>xv</literal>, <literal>yv</literal> および <literal>zv</literal>
+	で指定した接続されていない一連の線分を描画します.
+	<literal>xv</literal>, <literal>yv</literal> および <literal>zv</literal> 
+	が行列の場合,列を結合したベクトルとみなされます.
+	ある線分を定義する2つ点の座標は
+	<literal>xv</literal>, <literal>yv</literal> および
+    <literal>zv</literal>の連続する2つの値で指定されます:</para>
+    <para><literal>(xv(i),yv(i),zv(i))--&gt;(xv(i+1),yv(i+1),zv(i+1))</literal>.</para>
+    <para>例えば, 大きさ (2,n)の行列の場合, 線分は以下のように定義されます:</para>
+    <programlisting><![CDATA[ 
+xv=[xi_1 xi_2 ...; xf_1 xf_2...]
+yv=[yi_1 yi_2 ...; yf_1 yf_2...]
+zv=[zi_1 zi_2 ...; zf_1 zf_2...]
+ ]]></programlisting>
+    <para>そして,線分は <literal>(xi_k,yi_k,zi_k)--&gt;(xf_k,yf_k,zf_k)</literal>となります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[
+
+// 2次元の例
+x=2*%pi*(0:9)/10;
+xv=[sin(x);9*sin(x)];
+yv=[cos(x);9*cos(x)];
+plot2d([-10,10],[-10,10],[-1,-1],"022")
+xsegs(xv,yv,1:10)
+
+// 3次元の例
+clf();
+a=gca();
+a.view="3d";
+f=gcf();
+f.color_map=rainbowcolormap(120);
+alpha=2*%pi*(0:119)/40;
+xv=[sin(alpha)/2;sin(alpha)/3];
+yv=[cos(alpha)/2;cos(alpha)/3];
+zv=[alpha/8;alpha/8];
+xsegs(xv,yv,zv,1:120);
+// Now adjust the data_bounds
+a.data_bounds = [min(xv) min(yv) min(zv); ...
+                 max(xv) max(yv) max(zv)];
+// 矢印を各線分に追加できます
+e = gce();
+e.arrow_size = 0.4;
+
+
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

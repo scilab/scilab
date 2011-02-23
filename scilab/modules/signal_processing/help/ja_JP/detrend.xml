@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="detrend">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>detrend</refname>
+    <refpurpose>
+	ベクトルから定数, 線形または区分線形トレンドを削除する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>y = detrend(x)
+y = detrend(x,flag)
+y = detrend(x,flag,bp)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数または複素数のベクトルまたは行列 (扱う信号)
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>
+	線形または区分線形処理の場合は "linear" (または "l"),
+	定数処理の場合は "constant" (または "c") に等しい文字列.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bp</term>
+        <listitem>
+          <para>
+	区分線形処理を行う場合に使用する区切点. 
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>出力, 信号x からトレンドを除いたもの.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数は,ベクトル<literal>x</literal>から定数または線形または
+	区分線形トレンドを削除します. 一般に
+	この関数はフーリエ解析の前に使うと便利です.
+	<literal>x</literal> が行列の場合, この関数は
+	x の各列のトレンドを除去します.
+      </para>
+    <para>
+     <literal>flag</literal> = "constant" or "c"  <literal>detrend</literal> 
+	が定数トレンドを削除する場合,
+	そして,<literal>flag</literal> = "linear"または"l"の場合,
+	この関数は線形トレンドを削除します.
+	3番目の引数<literal>bp</literal>を追加することにより,
+	連続<emphasis>区分線形</emphasis>トレンドを削除することができます.
+	信号 <literal>x</literal>の"instants" は 0 から m-1 となることに注意してください
+	(xがベクトルの場合は m = length(x), x が行列の場合はm = size(x,1)).
+	このため,区切点<literal>bp(i)</literal>は,
+	<emphasis>[0 m-1]</emphasis> の範囲の実数とする必要があります
+	（範囲外の区切点は<literal>bp</literal>ベクトルから除かれます).
+     </para>
+    <para>
+	トレンドは,適当な関数空間における<literal>x</literal>の最小二乗フィッティング
+	により取得されます.
+     </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// 例 #1
+t = linspace(0,16*%pi,1000)';
+x = -20 + t + 0.3*sin(0.5*t) + sin(t) + 2*sin(2*t) + 0.5*sin(3*t); 
+y = detrend(x);
+clf()
+plot2d(t,[x y],style=[2 5])
+legend(["before detrend","after detrend"]);
+xgrid()
+
+// 例 #2
+t = linspace(0,32*%pi,2000)';
+x = abs(t-16*%pi) + 0.3*sin(0.5*t) + sin(t) + 2*sin(2*t) + 0.5*sin(3*t); 
+y = detrend(x,"linear",1000);
+clf()
+plot2d(t,[x y],style=[2 5])
+legend(["before detrend","after detrend"]);
+xgrid()
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>
+    Bruno Pincon
+  </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="Graphics">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Graphics</refname>
+    <refpurpose>グラフィックライブラリの概要</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>2次元プロット</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="plot2d">plot2d</link></term>
+        <listitem>
+          <para>曲線をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/plot2d.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="plot2d2">plot2d2</link></term>
+        <listitem>
+          <para>曲線をステップ関数としてプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/plot2d2.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="plot2d3">plot2d3</link></term>
+        <listitem>
+          <para>垂直棒グラフで曲線をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/plot2d3.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="plot2d4">plot2d4</link></term>
+        <listitem>
+          <para>矢印で曲線をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/plot2d4.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="fplot2d">fplot2d</link></term>
+        <listitem>
+          <para>関数で定義された曲線をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/fplot2d.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="champ">champ</link></term>
+        <listitem>
+          <para>2次元ベクトルフィールド</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/champ.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="champ1">champ1</link></term>
+        <listitem>
+          <para>カラー矢印で2次元ベクトルフィールド</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/champ1.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="fchamp">fchamp</link></term>
+        <listitem>
+          <para>2次元1階ODE方向フィールド</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/fchamp.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="contour2d">contour2d</link></term>
+        <listitem>
+          <para>2次元プロット上に曲面の等高線をプロット</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="fcontour2d">fcontour2d</link></term>
+        <listitem>
+          <para>2次元プロット上に関数で定義された曲面の等高線をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/fcontour2d.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="grayplot">grayplot</link></term>
+        <listitem>
+          <para>カラーで曲面の2次元プロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/grayplot.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="fgrayplot">fgrayplot</link></term>
+        <listitem>
+          <para>関数で定義された曲面をカラーで2次元プロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/fgrayplot.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="Sgrayplot">Sgrayplot</link></term>
+        <listitem>
+          <para>曲面の平滑化されたカラー2次元プロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/Sgrayplot.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="Sfgrayplot">Sfgrayplot</link></term>
+        <listitem>
+          <para>関数により定義された曲面の平滑化されたカラー2次元プロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/Sfgrayplot.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xgrid">xgrid</link></term>
+        <listitem>
+          <para>2次元プロットにグリッドを追加</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/xgrid.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="errbar">errbar</link></term>
+        <listitem>
+          <para>2次元プロットに垂直誤差バーを追加</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/errbar.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="histplot">histplot</link></term>
+        <listitem>
+          <para>ヒストグラムをプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/histplot.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="Matplot">Matplot</link></term>
+        <listitem>
+          <para>行列の2次元カラープロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/Matplot.png" /></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>3次元プロット</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="plot3d">plot3d</link></term>
+        <listitem>
+          <para>曲面をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/plot3d.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="plot3d1">plot3d1</link></term>
+        <listitem>
+          <para>曲面を白黒またはカラーレベルでプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/plot3d1.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="fplot3d">fplot3d</link></term>
+        <listitem>
+          <para>関数で定義された曲面をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/fplot3d.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="fplot3d1">fplot3d1</link></term>
+        <listitem>
+          <para>関数で定義された曲面を白黒またはカラーレベルでプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/fplot3d1.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="param3d">param3d</link></term>
+        <listitem>
+          <para>曲面をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/param3d.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="param3d1">param3d1</link></term>
+        <listitem>
+          <para>複数の曲線をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/param3d1.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="contour">contour</link></term>
+        <listitem>
+          <para>3次元曲面の上に等高線をプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/contour.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="fcontour">fcontour</link></term>
+        <listitem>
+          <para>関数で定義された3次元曲面に等高線を描画</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/fcontour.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="hist3d">hist3d</link></term>
+        <listitem>
+          <para>ヒストグラムの3次元表現3</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/hist3d.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="genfac3d">genfac3d</link></term>
+        <listitem>
+          <para>3次元曲面の小平面を計算</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/genfac3d.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="eval3dp">eval3dp</link></term>
+        <listitem>
+          <para>3次元曲面の小平面を計算</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/eval3dp.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="geom3d">geom3d</link></term>
+        <listitem>
+          <para>3次元プロットの後,3次元から2次元に投影</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/geom3d.png" /></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>線およびポリゴンのプロット</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="xpoly">xpoly</link></term>
+        <listitem>
+          <para>ポリラインまたはポリゴンを描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xpolys">xpolys</link></term>
+        <listitem>
+          <para>複数のポリラインまたはポリゴンを描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xrpoly">xrpoly</link></term>
+        <listitem>
+          <para>基準ポリゴンを描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xsegs">xsegs</link></term>
+        <listitem>
+          <para>未接続の線分を描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xfpoly">xfpoly</link></term>
+        <listitem>
+          <para>ポリゴンを塗りつぶす</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xfpolys">xfpolys</link></term>
+        <listitem>
+          <para>複数のポリゴンを塗りつぶす</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>矩形のプロット</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="xrect">xrect</link></term>
+        <listitem>
+          <para>矩形を描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xfrect">xfrect</link></term>
+        <listitem>
+          <para>矩形を塗りつぶす</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xrects">xrects</link></term>
+        <listitem>
+          <para>複数の矩形を描画または塗りつぶす</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>弧のプロット</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="xarc">xarc</link></term>
+        <listitem>
+          <para>楕円の一部を描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xarcs">xarcs</link></term>
+        <listitem>
+          <para>複数の楕円の一部を描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xfarc">xfarc</link></term>
+        <listitem>
+          <para>楕円の一部を塗りつぶす</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xfarcs">xfarcs</link></term>
+        <listitem>
+          <para>複数の楕円の一部を塗りつぶす</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>矢印のプロット</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="xarrows">xarrows</link></term>
+        <listitem>
+          <para>複数の矢印を描画</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>文字列</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="xstring">xstring</link></term>
+        <listitem>
+          <para>文字列を描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xstringl">xstringl</link></term>
+        <listitem>
+          <para>文字列を囲うボックスを計算</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xstringb">xstringb</link></term>
+        <listitem>
+          <para>ボックス内に文字列を描画</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/xstringb.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xtitle">xtitle</link></term>
+        <listitem>
+          <para>グラフィックウインドウにタイトルを追加</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/xtitle.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="titlepage">titlepage</link></term>
+        <listitem>
+          <para>グラフィックウインドウの中央にタイトルを追加</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xinfo">xinfo</link></term>
+        <listitem>
+          <para>メッセージサブウインドウにinfo 文字列を描画</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>フレームおよび軸</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="drawaxis">drawaxis</link></term>
+        <listitem>
+          <para>軸を描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="graduate">graduate</link></term>
+        <listitem>
+          <para>見栄えの良い軸のグラデーション</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="plotframe">plotframe</link></term>
+        <listitem>
+          <para>目盛およびグリッドを有するフレームをプロット</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>座標変換</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="isoview">isoview</link></term>
+        <listitem>
+          <para>等軸プロットにスケールを設定 (ウインドウの大きさは変更されません)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="square">square</link></term>
+        <listitem>
+          <para>等軸プロットにスケールを設定 (ウインドウの大きさを変更)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="scaling">scaling</link></term>
+        <listitem>
+          <para>複数の点のアフィン変換</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="rotate">rotate</link></term>
+        <listitem>
+          <para>複数の点の回転</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xsetech">xsetech</link></term>
+        <listitem>
+          <para>グラフィックウインドウの中にプロット用のサブウインドウを設定</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="subplot">subplot</link></term>
+        <listitem>
+          <para>グラフィックウインドウをサブウインドウの行列に分割</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xgetech">xgetech</link></term>
+        <listitem>
+          <para>カレントのグラフィックのスケールを取得</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xchange">xchange</link></term>
+        <listitem>
+          <para>実際の値からピクセル座標に変換</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>色</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="colormap">colormap</link></term>
+        <listitem>
+          <para>カラーマップを使用</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="getcolor">getcolor</link></term>
+        <listitem>
+          <para>カレントのカラーマップの色を選択するためのダイアログを表示</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="addcolor">addcolor</link></term>
+        <listitem>
+          <para>カレントのカラーマップに新しい色を追加</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="graycolormap">graycolormap</link></term>
+        <listitem>
+          <para>線形グレーカラーマップ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="hotcolormap">hotcolormap</link></term>
+        <listitem>
+          <para>赤から黄色に至るカラーマップ</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>グラフィックコンテキスト</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="xset">xset</link></term>
+        <listitem>
+          <para>グラフィックコンテキストの値を設定</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xget">xget</link></term>
+        <listitem>
+          <para>グラフィックコンテキストのカレントの値を取得</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xlfont">xlfont</link></term>
+        <listitem>
+          <para>グラフィックコンテキストにフォントをロード,
+	またはロード済みのフォントを検索する</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="getsymbol">getsymbol</link></term>
+        <listitem>
+          <para>記号およびその大きさを選択するためのダイアログを表示</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>保存および読み込み</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="xsave">xsave</link></term>
+        <listitem>
+          <para>グラフィックをファイルに保存</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xload">xload</link></term>
+        <listitem>
+          <para>保存されたグラフィックを読み込む</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xs2fig">xs2fig</link></term>
+        <listitem>
+          <para>グラフィックをXfig 形式でファイルに保存</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xs2gif">xs2gif</link></term>
+        <listitem>
+          <para>グラフィックをGif形式でファイルに保存</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xs2ppm">xs2ppm</link></term>
+        <listitem>
+          <para>グラフィックをPPM形式でファイルに保存</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>グラフィックプリミティブ</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="clf">clf</link></term>
+        <listitem>
+          <para>グラフィックウインドウをクリアし,関連する
+	記録済みのグラフィックを消去します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xclear">xclear</link></term>
+        <listitem>
+          <para>グラフィックウインドウをクリア</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="driver">driver</link></term>
+        <listitem>
+          <para>グラフィックドライバを選択</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xinit">xinit</link></term>
+        <listitem>
+          <para>グラフィックドライバの初期化</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xend">xend</link></term>
+        <listitem>
+          <para>グラフィックセッションを閉じる</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xbasr">xbasr</link></term>
+        <listitem>
+          <para>グラフィックウインドウを再描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="replot">replot</link></term>
+        <listitem>
+          <para>カレントのグラフィックウインドを新しい境界値で再描画</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xpause">xpause</link></term>
+        <listitem>
+          <para>Scilab処理を中断する</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="show_window">show_window</link></term>
+        <listitem>
+          <para>カレントのグラフィックウインドウを前面に移動</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xdel">xdel</link></term>
+        <listitem>
+          <para>グラフィックウインドウを削除</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="winsid">winsid</link></term>
+        <listitem>
+          <para>グラフィックウインドウのリストを返す</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xname">xname</link></term>
+        <listitem>
+          <para>カレントのグラフィックウインドウの名前を変更</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>マウスの位置</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="xclick">xclick</link></term>
+        <listitem>
+          <para>マウスクリックを待つ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="locate">locate</link></term>
+        <listitem>
+          <para>マウスで複数の点を選択</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="xgetmouse">xgetmouse</link></term>
+        <listitem>
+          <para>マウスの現在位置を取得</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>対話的エディタ</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="edit_curv">edit_curv</link></term>
+        <listitem>
+          <para>対話的なグラフィック曲線エディタ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="sd2sci">sd2sci</link></term>
+        <listitem>
+          <para>Scilab命令コンバータ用のgr_menu 構造体</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>自動制御用のグラフィック関数</title>
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="bode">bode</link></term>
+        <listitem>
+          <para>ボード線図</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/bode.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="gainplot">gainplot</link></term>
+        <listitem>
+          <para>ゲインプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/gainplot.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="nyquist">nyquist</link></term>
+        <listitem>
+          <para>ナイキストプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/nyquist.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="m_circle">m_circle</link></term>
+        <listitem>
+          <para>M-サークル プロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/m_circle.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="chart">chart</link></term>
+        <listitem>
+          <para>ニコルス線図</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/chart.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="black">black</link></term>
+        <listitem>
+          <para>ブラック線図</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/black.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="evans">evans</link></term>
+        <listitem>
+          <para>根軌跡</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/evans.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="sgrid">sgrid</link></term>
+        <listitem>
+          <para>s面グリッド線</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/sgrid.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="plzr">plzr</link></term>
+        <listitem>
+          <para>極ゼロプロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/plzr.png" /></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><link linkend="zgrid">zgrid</link></term>
+        <listitem>
+          <para>zgrid プロット</para>
+		  <para><emphasis role="bold">例:</emphasis></para>
+		  <para><imagedata fileref="../images/zgrid.png" /></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

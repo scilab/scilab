@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cont_mat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cont_mat</refname>
+    <refpurpose>可制御行列</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出しの手順</title>
+    <synopsis>Cc=cont_mat(A,B)
+Cc=cont_mat(sl)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>a,b</term>
+        <listitem>
+          <para>2個の適当な次元の実数行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>線形システム (<literal>syslin</literal> リスト)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>cont_mat</literal> は、行列の組 <literal>A,B</literal>
+      (システム<literal>sl=[A,B,C,D]</literal>の応答)に
+      関する可制御行列を返す.</para>
+    <programlisting role = ""><![CDATA[ 
+Cc=[B, AB, A^2 B,..., A^(n-1) B]  
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ctr_gram">ctr_gram</link>
+      </member>
+      <member>
+        <link linkend="contr">contr</link>
+      </member>
+      <member>
+        <link linkend="canon">canon</link>
+      </member>
+      <member>
+        <link linkend="st_ility">st_ility</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="svd">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>svd</refname>
+    <refpurpose>特異値分解</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>s=svd(X)
+[U,S,V]=svd(X)
+[U,S,V]=svd(X,0) (obsolete)
+[U,S,V]=svd(X,"e")
+[U,S,V,rk]=svd(X [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>実数または複素行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>実数ベクトル (特異値)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>実数対角行列 (特異値)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U,V</term>
+        <listitem>
+          <para>直交またはユニタリ正方行列(特異値).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>実数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>[U,S,V] = svd(X)</literal> は
+      <literal>X</literal> と同次元で
+      降順に非負の対角要素を有する
+      対角行列 <literal>S</literal>および
+      <literal>X = U*S*V'</literal>となる
+      ユニタリ行列 <literal>U</literal> と <literal>V</literal>
+      を出力する.
+    </para>
+    <para><literal>[U,S,V] = svd(X,0)</literal> は
+      "エコノミーサイズ"分解を出力する.
+      <literal>X</literal> がm行n列 (m &gt; n)の場合,
+      <literal>U</literal> の最初のn列のみが計算され,
+      <literal>S</literal>は n行n列となる.</para>
+    <para><literal>s = svd(X)</literal> は
+      特異値を含むベクトル<literal>s</literal>を返す.</para>
+    <para><literal>[U,S,V,rk]=svd(X,tol)</literal> は
+      <literal>rk</literal>に加えて,
+      <literal>X</literal> の数値ランク,すなわち
+      <literal>tol</literal>より大きな特異値の数を出力する.</para>
+    <para>
+      <literal>tol</literal>のデフォルト値は
+      <literal>rank</literal>とのもの同じである.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+X=rand(4,2)*rand(2,4)
+svd(X)
+sqrt(spec(X*X'))
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>参考</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rank">rank</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+      <member>
+        <link linkend="sva">sva</link>
+      </member>
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>使用される関数</title>
+    <para>
+   svd 分解はLapackのルーチン DGESVD (実数行列の場合)および
+   ZGESVD (複素数の場合)に基づいている.
+    </para>
+  </refsection>
+</refentry>

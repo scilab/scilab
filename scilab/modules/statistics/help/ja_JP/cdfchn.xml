@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cdfchn">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cdfchn</refname>
+    <refpurpose>累積分布関数:非心カイ二乗分布</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[P,Q]=cdfchn("PQ",X,Df,Pnonc)
+[X]=cdfchn("X",Df,Pnonc,P,Q);
+[Df]=cdfchn("Df",Pnonc,P,Q,X)
+[Pnonc]=cdfchn("Pnonc",P,Q,X,Df)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Pパラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>P,Q,X,Df,Pnonc</term>
+        <listitem>
+          <para>同じ大きさの実数ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P,Q (Q=1-P)  </term>
+        <listitem>
+          <para>非心カイ二乗分布の0からXまでの積分. 入力範囲: [0, 1-1E-16).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>非心カイ二乗分布の積分の上限. 入力範囲: [0, +infinity). 探索範囲: [0,1E300]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Df</term>
+        <listitem>
+          <para>非心カイ二乗分布の自由度. 入力範囲: (0, +infinity). 探索範囲: [ 1E-300, 1E300]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Pnonc</term>
+        <listitem>
+          <para>非心カイ二乗分布の非心パラメータ. 入力範囲: [0, +infinity). 探索範囲: [0,1E4]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	非心カイ二乗分布のパラメータの一つをそれ以外のパラメータの値を
+	指定して計算します.</para>
+    <para>
+    AbramowitzおよびStegunによる, Handbook  of
+    Mathematical Functions   (1966)の式26.4.25が
+	累積分布関数を計算するために使用されます.</para>
+    <para>
+	その他のパラメータの計算には,
+	Pの指定された値を出力する値の探索を含みます.
+	この探索は他のパラメータに対するPの単調性に依存します.</para>
+    <para>
+	このルーチンに必要な計算時間は,非中心パラメータ (PNONC)に
+	比例します.
+	この値が非常に大きな値となると,
+	計算機リソースを大量に消費します.
+	これが,探索範囲が10,000に制限されている理由です.
+	</para>
+    <para>
+    DCDFLIBから: 累積分布関数, 逆, および他のパラメータ用のFortranルーチンの
+	ライブラリ(February, 1994)
+     Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</para>
+  </refsection>
+</refentry>

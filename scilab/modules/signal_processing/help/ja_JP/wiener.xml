@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="wiener">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>wiener</refname>
+    <refpurpose>ウイナー推定</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>f, g, h</term>
+        <listitem>
+          <para>s間隔 <literal>[t0,tf]</literal>におけるシステム行列</para>
+          <variablelist>
+            <varlistentry>
+              <term>f</term>
+              <listitem>
+                <para>=<literal>[f0,f1,...,ff]</literal>, および <literal>fk</literal>は
+		 nxn行列です</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>g</term>
+              <listitem>
+                <para>=<literal>[g0,g1,...,gf]</literal>, および
+		 <literal>gk</literal> は nxn 行列です</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>h</term>
+              <listitem>
+                <para>=<literal>[h0,h1,...,hf]</literal>,および
+	 <literal>hk</literal> は mxn 行列です</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>q, r</term>
+        <listitem>
+          <para>
+		ダイナミクスおよび観測ノイズの共分散行列
+		</para>
+          <variablelist>
+            <varlistentry>
+              <term>q</term>
+              <listitem>
+                <para>=<literal>[q0,q1,...,qf]</literal>, and <literal>qk</literal> is a nxn matrix</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>r</term>
+              <listitem>
+                <para>=<literal>[r0,r1,...,rf]</literal>, および
+	 <literal>gk</literal> は mxm 行列です</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0, p0</term>
+        <listitem>
+          <para>
+	初期状態量推定値および誤差共分散</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>間隔 <literal>[t0,tf]</literal>における観測量. 
+	<literal>y=[y0,y1,...,yf]</literal>, および <literal>yk</literal> は
+	m次列ベクトルです</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xs</term>
+        <listitem>
+          <para>
+	平滑化された状態推定値 <literal>xs= [xs0,xs1,...,xsf]</literal>, および
+	<literal>xsk</literal> はn次列ベクトルです</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ps</term>
+        <listitem>
+          <para>
+	平滑化された推定値の誤差共分散 <literal>ps=[p0,p1,...,pf]</literal>, および
+	 <literal>pk</literal> は nxn 行列です</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xf</term>
+        <listitem>
+          <para>平滑化された状態推定値 <literal>xf= [xf0,xf1,...,xff]</literal>, および
+	 <literal>xfk</literal> はn次列ベクトルです</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pf</term>
+        <listitem>
+          <para>平滑化された推定値の誤差共分散 <literal>pf=[p0,p1,...,pf]</literal>, 
+	および <literal>pk</literal> が nxn行列です</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	フォワード-バックワードカルマンフィルタ定式化により
+	ウイナー推定を出力する関数</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>C. B.  </para>
+  </refsection>
+</refentry>

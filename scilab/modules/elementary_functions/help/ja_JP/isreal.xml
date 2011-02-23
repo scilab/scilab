@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="isreal" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>isreal</refname>
+
+    <refpurpose>変数が実数または複素数のエントリかどうかを調べるc</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>t=isreal(x)
+t=isreal(x,eps)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>
+	浮動小数点数のエントリまたは係数を有するベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>論理値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>isreal(x)</literal> は,
+	<literal>x</literal>が実数変数として保持されている場合に真,
+	<literal>x</literal>に虚部(0の場合もある)を保持する変数の場合に偽
+	を返します.</para>
+
+    <para><literal>isreal(x,eps)</literal> は
+	<literal>x</literal>が実数変数として保持されているか,
+	虚部の浮動小数点数の絶対値の最大値が <literal>eps</literal>以下の場合に
+	真を返します.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+isreal([1 2])
+isreal(1+0*%i)
+isreal(1+0*%i,0)
+isreal(1+%s)
+isreal(sprand(3,3,0.1))
+ ]]></programlisting>
+  </refsection>
+</refentry>

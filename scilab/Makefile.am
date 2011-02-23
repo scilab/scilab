@@ -155,19 +155,17 @@ macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 javadoc:
 	$(JAVADOC) -noindex -nohelp -nonavbar -notree -d $(top_builddir)/modules/javasci/javadoc -sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java org.scilab.modules.javasci org.scilab.modules.types
 
+LANGDOC=en_US fr_FR pt_BR ja_JP
+
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
-		echo "-- Building documentation (English) --"; \
-		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
-		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
-		echo "-- Building documentation (French) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
-		echo "-- Building documentation (portugues do Brasil) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'pt_BR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'pt_BR');exit;"; \
+		for l in $(LANGDOC); do \
+			echo "-- Building documentation ($$l) --"; \
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'$$l');exit;\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltojar([],[],'$$l');exit;";\
+		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
 	fi
@@ -179,15 +177,11 @@ doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
-		echo "-- Building documentation (English) --"; \
-		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'en_US');exit;\"";\
-		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltoweb([],[],'en_US');exit;";\
-		echo "-- Building documentation (French) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'fr_FR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltoweb([],[],'fr_FR');exit;"; \
-		echo "-- Building documentation (portugues do Brasil) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'pt_BR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltoweb([],[],'pt_BR');exit;"; \
+		for l in $(LANGDOC); do \
+			echo "-- Building documentation ($$l) --"; \
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'$$l');exit;\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltoweb([],[],'$$l');exit;";\
+		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
 	fi
@@ -197,10 +191,10 @@ endif
 
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
-		echo "-- Checking documentation (English) --"; \
-		$(top_builddir)/bin/scilab-cli -nb -l en -e 'check_help();exit;';\
-		echo "-- Checking documentation (French) --"; \
-		$(top_builddir)/bin/scilab-cli  -nb -l fr -e 'check_help();exit;';\
+		for l in $(LANGDOC); do \
+			echo "-- Checking documentation ($$l) --"; \
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -e 'check_help();exit;';\
+		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi

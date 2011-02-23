@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="modulo" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>modulo</refname>
+
+    <refpurpose>対称剰余モジュロm演算</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="pmodulo">
+    <refname>pmodulo</refname>
+
+    <refpurpose>正の剰余モジュロm演算</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>i=modulo(n,m)
+i=pmodulo(n,m)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>n,m</term>
+
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>modulo</literal> は,
+	<literal>i= n (modulo m)</literal>,
+	すなわち, <literal>n</literal>を<literal>m</literal>で
+	割った剰余を計算します(<literal>n</literal> および <literal>m</literal>
+    は整数).</para>
+
+    <para>i = n - m .* int (n ./ m). ここで,
+	<literal>n</literal> または <literal>m</literal>が負の場合,
+	答えが負となる可能性があります.</para>
+
+    <para><literal>pmodulo</literal> は <literal>i = n - m .* floor (n
+    ./ m)</literal>を計算します, 答えは正またはゼロとなります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+n=[1,2,10,15];m=[2,2,3,5];
+modulo(n,m)
+
+modulo(-3,9)
+pmodulo(-3,9)
+ ]]></programlisting>
+  </refsection>
+</refentry>

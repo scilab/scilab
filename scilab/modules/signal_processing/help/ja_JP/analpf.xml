@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="analpf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>analpf</refname>
+    <refpurpose> アナログローパスフィルタを作成する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>正の整数 : フィルタ次数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fdesign</term>
+        <listitem>
+          <para>文字列 : フィルタ設計法 : <literal>'butt'</literal> 
+		または <literal>'cheb1'</literal> または 
+	<literal>'cheb2'</literal> または <literal>'ellip'</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rp</term>
+        <listitem>
+          <para>cheb1, cheb2 または ellipフィルタ用のエラー値の2要素ベクトルで,
+	cheb1では<literal>rp(1)</literal> のみ,
+	cheb2では<literal>rp(2)</literal> のみ,
+	ellipでは<literal>rp(1)</literal> と <literal>rp(2)</literal>の
+	両方が使用されます.
+	<literal>0&lt;rp(1),rp(2)&lt;1</literal>です.</para>
+          <variablelist>
+            <varlistentry>
+              <term>-  </term>
+              <listitem>
+                <para>cheb1フィルタの場合, 通過域では, <literal>1-rp(1)&lt;リップル&lt;1</literal>です</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>-  </term>
+              <listitem>
+                <para>cheb2フィルタの場合,阻止域では <literal>0&lt;リップル&lt;rp(2)</literal> です</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>-  </term>
+              <listitem>
+		<para>ellipフィルタの場合, 通過域では<literal>1-rp(1)&lt;リップル&lt;1</literal> ,
+		阻止域では <literal>0&lt;リップル&lt;rp(2)</literal>です</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>omega</term>
+        <listitem>
+          <para>ローパスフィルタのカットオフ周波数(単位:Hz)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hs</term>
+        <listitem>
+          <para>有理数多項式伝達関数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pols</term>
+        <listitem>
+          <para>伝達関数の極</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zers</term>
+        <listitem>
+          <para>伝達関数のゼロ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gain</term>
+        <listitem>
+          <para>伝達関数のゲイン</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	omegaをカットオフ周波数とするアナログローパスフィルタを作成します.</para>
+    <para>
+      <literal>hs=gain*poly(zers,'s')/poly(pols,'s')</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//連続時間系の振幅応答を評価
+hs=analpf(4,'cheb1',[.1 0],5)
+fr=0:.1:15;
+hf=freq(hs(2),hs(3),%i*fr);
+hm=abs(hf);
+plot(fr,hm)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>C. B.  </para>
+  </refsection>
+</refentry>

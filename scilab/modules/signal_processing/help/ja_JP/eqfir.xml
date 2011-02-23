@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="eqfir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>eqfir</refname>
+    <refpurpose>FIRフィルタのミニマックス近似</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[hn]=eqfir(nf,bedge,des,wate)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>nf</term>
+        <listitem>
+          <para>指定する出力フィルタ点の数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bedge</term>
+        <listitem>
+          <para>Mx2 行列で, 各バンドの境界の組を指定</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>des</term>
+        <listitem>
+          <para>M次ベクトルで,各バンドで指定する振幅を指定</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wate</term>
+        <listitem>
+          <para>M次ベクトルで,各バンドの誤差の相対重みを指定</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hn</term>
+        <listitem>
+          <para>出力:線形位相FIRフィルタの係数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	マルチバンド,線形位相,FIRフィルタのミニマックス近似</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+hn=eqfir(33,[0 .2;.25 .35;.4 .5],[0 1 0],[1 1 1]);
+[hm,fr]=frmag(hn,256);
+plot(fr,hm),
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>C. B.  </para>
+  </refsection>
+</refentry>

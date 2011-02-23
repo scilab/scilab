@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xarrows">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xarrows</refname>
+    <refpurpose> 一連の矢印を描画</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>xarrows(nx,ny,[arsize,style])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>nx,ny</term>
+        <listitem>
+          <para>同じ大きさの実数のベクトルまたは行列e.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arsize</term>
+        <listitem>
+          <para>実数スカラー, 矢じりの大きさ. 
+		デフォルト値は arsize を -1 に設定することにより得られます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style</term>
+        <listitem>
+          <para>行列またはスカラー. 
+	<literal>style</literal>が正のスカラーの場合,
+	この値は全ての矢印に使用される色を指定します.
+	負のスカラーの場合,カレントの色が使用されます.
+	ベクトルの場合,<literal>style(i)</literal> は <literal>i</literal>番目の
+	矢印に使用される色を指定します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>xarrows</literal>は<literal>nx</literal> および <literal>ny</literal>
+	により指定される矢印の集合を描画します.
+	<literal>nx</literal> および <literal>ny</literal>がベクトルの場合,
+	i番目の矢印は
+    <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>により定義されます.
+    <literal>nx</literal> および <literal>ny</literal> が行列の場合:</para>
+    <programlisting role = ""><![CDATA[ 
+nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
+ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
+ ]]></programlisting>
+    <para>
+    <literal>k</literal>番目の矢印は <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>
+	により定義されます.</para>
+    <para><literal>xarrows</literal>は,
+	<literal>plot2d</literal>のような高レベル関数をコールすることにより
+	設定可能なカレントのグラフィックスケールを使用します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=2*%pi*(0:9)/8;
+x1=[sin(x);9*sin(x)];
+y1=[cos(x);9*cos(x)];
+plot2d([-10,10],[-10,10],[-1,-1],"022")
+xset("clipgrf")
+xarrows(x1,y1,1,1:10)
+xset("clipoff")
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>
