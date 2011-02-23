@@ -116,6 +116,8 @@ trigger a warning and do not add a link on the function name.
 
 * bug 5796 fixed - No way to increase/decrease font size.
 
+* bug 6514 fixed - 'help %k' didn't open the good help file.
+
 * bug 7069 fixed - Old documentation about the documentation build process
                    removed.
 

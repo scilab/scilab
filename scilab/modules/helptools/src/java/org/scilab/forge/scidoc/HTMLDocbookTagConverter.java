@@ -121,6 +121,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         if (isToolbox) {// we generate a toolbox's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
                     public String getLink(String id) {
+                        if (id.length() > 0 && id.charAt(0) == '%') {
+                            id = id.replace("%", "percent");
+                        }
                         String link = mapId.get(id);
                         if (link == null) {
                             return HTMLDocbookTagConverter.this.urlBase + id;
@@ -132,6 +135,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         } else {// we generate Scilab's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
                     public String getLink(String id) {
+                        if (id.length() > 0 && id.charAt(0) == '%') {
+                            id = id.replace("%", "percent");
+                        }
                         return mapId.get(id);
                     }
                 });

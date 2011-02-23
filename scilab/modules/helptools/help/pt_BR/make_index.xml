@@ -41,7 +41,7 @@
     no diretório <literal>SCIDIR/man/&lt;language&gt;</literal> (ver <link
     linkend="man">man</link>). É possível modificar este arquivo de índice
     enquanto se adiciona interativamente novos arquivos. Para isto, modifique
-    a variável <link linkend="helps">%helps</link> e então utilize a função
+    a variável <link linkend="percenthelps">%helps</link> e então utilize a função
     <literal>make_index</literal>.</para>
   </refsection>
 
@@ -49,7 +49,7 @@
 <title>Ver Também</title>
 
     <simplelist type="inline">
-      <member><link linkend="helps">%helps</link></member>
+      <member><link linkend="percenthelps">%helps</link></member>
 
       <member><link linkend="man">man</link></member>
     </simplelist>
