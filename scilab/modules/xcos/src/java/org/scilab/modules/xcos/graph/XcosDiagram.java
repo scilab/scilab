@@ -1580,6 +1580,11 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setMultipleSelection(false);
 	    if (getSavedFile() != null) {
 	    	fc.setSelectedFile(getSavedFile());
+	    } else {
+	    	final String title = getTitle();
+	    	if (title != null) {
+	    		fc.setSelectedFile(new File(title + XcosFileType.XCOS.getDottedExtension()));
+	    	}
 	    }
 
 	    final SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
