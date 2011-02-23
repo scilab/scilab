@@ -17,7 +17,7 @@
 // printed on the scilab console but must not deactivate xcos simulation.
 //
 
-loadScicosLibs();
+loadXcosLibs();
 
 src_file = TMPDIR + "/sample_imf.mo";
 function_file = TMPDIR + "/sample_imf_functions.mo";

@@ -20,9 +20,6 @@
 //
 
 function mac=genmac(tt,nin,nout)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 [txt1,txt0,txt2,txt3,txt4,txt5,txt6]=tt(1:7)
 mac=null()
 //    [y,  x,  z,  tvec,xd]=func(flag,nevprt,t,x,z,rpar,ipar,u)

@@ -20,9 +20,6 @@
 //
 //
 function xcos_workspace_init()
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //preserve all variables of type struct having a "time" and a "value"
 //field in temporary binary files 
   path=TMPDIR+"/Workspace/"
