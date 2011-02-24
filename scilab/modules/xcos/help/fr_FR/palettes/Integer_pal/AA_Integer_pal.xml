@@ -1,41 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Xcos
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
- * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
- * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- * 
- * See the file ./license.txt
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Integer_pal"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+
+<refentry
+  version="5.0-subset Scilab" xml:id="Integer_pal" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
   <refnamediv>
     <refname>Integer_pal</refname>
 
-    <refpurpose>Integer palette</refpurpose>
+    <refpurpose>Palette Entier</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Block Screenshot</title>
+    <title>Aperçu</title>
 
     <para>
       <inlinemediaobject>
@@ -86,8 +78,7 @@
       <inlinemediaobject>
         <imageobject>
           <imagedata linkend="SHIFT" fileref="../../../../images/palettes/SHIFT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
+        </imageobject>    </inlinemediaobject>
       <inlinemediaobject>
         <imageobject>
           <imagedata linkend="SRFLIPFLOP" fileref="../../../../images/palettes/SRFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
@@ -112,79 +103,79 @@
     <title>Description</title>
 
     <para>
-      That palette is dedicated to handle integer numbers. Various basic
-      operators for the management of bit fields and for logic are implemented
-      as well as common gates encountered in digital circuits.
+      Cette palette est dédiée à la manipulation des nombres entiers. Divers opérateurs
+      logiques et de gestion des champs de bits sont implantés ainsi que les portes logiques
+      communément rencontrées dans les circuits digitaux.
     </para>
   </refsection>
 
   <refsection id="Blocks_Integer_pal">
-    <title>Blocks</title>
+    <title>Blocs</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="BITCLEAR">BITCLEAR - Clear a Bit</link>
+          <link linkend="BITCLEAR">BITCLEAR - Positionne un bit à 0</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="BITSET">BITSET - Set a Bit</link>
+          <link linkend="BITSET">BITSET - Positionne un bit à 1</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="CONVERT">CONVERT - Data Type Conversion</link>
+          <link linkend="CONVERT">CONVERT - Conversion de type de données</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DFLIPFLOP">DFLIPFLOP - D Flip-Flop</link>
+          <link linkend="DFLIPFLOP">DFLIPFLOP - Bascule D</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLATCH">DLATCH - Transparent D Latch Flip-Flop</link>
+          <link linkend="DLATCH">DLATCH - Bascule D transparente</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="EXTRACTBITS">EXTRACTBITS - Bits Extraction</link>
+          <link linkend="EXTRACTBITS">EXTRACTBITS - Extraction de bits</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="INTMUL">INTMUL - Integer Matrix Multiplication</link>
+          <link linkend="INTMUL">INTMUL - Multiplication de matrices entières</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK Flip-Flop</link>
+          <link linkend="JKFLIPFLOP">JKFLIPFLOP - Bascule JK</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="LOGIC">LOGIC - Combinatorial Logic</link>
+          <link linkend="LOGIC">LOGIC - Logique combinatoire</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="SHIFT">SHIFT - Shift/Rotate Bits</link>
+          <link linkend="SHIFT">SHIFT - Décalage de bits</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR Flip-Flop</link>
+          <link linkend="SRFLIPFLOP">SRFLIPFLOP - Bascule SR</link>
         </para>
       </listitem>
     </itemizedlist>
