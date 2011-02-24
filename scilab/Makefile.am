@@ -304,11 +304,11 @@ localization:
 	MASK="modules/*/locales/"; \
 	LC="LC_MESSAGES"; \
 	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
-	FILENAME="*.po*"; \
-	rm modules/*/locales/*/*~ 2> /dev/null; \
+	EXTENSION="*.po"; \
+	rm modules/*/locales/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		echo "        -- Building for $$LOCALE --"; \
-		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
+		FILES=`ls $$MASK/$$LOCALE$$EXTENSION`; \
 		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
 		if test ! -d $$PATHTO; then \
 			echo "        Creating $$PATHTO"; \
