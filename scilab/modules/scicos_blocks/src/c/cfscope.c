@@ -41,6 +41,8 @@
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
+extern int C2F(getouttb)();
+/*--------------------------------------------------------------------------*/ 
 /** \fn cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
