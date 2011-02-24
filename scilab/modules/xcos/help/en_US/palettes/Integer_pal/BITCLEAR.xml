@@ -306,6 +306,9 @@
 
     <para>
       Below a simple use case of the block.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/BITCLEAR_en_US.xcos">
+        Open this example in Xcos
+      </link>
     </para>
     <para />
     <mediaobject>
