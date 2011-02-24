@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{b3401862-567e-40d3-8c6c-db62d17946f3}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{36e94b3d-d27b-409c-8a2e-6ceea6a26de1}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="localization">
+      <UniqueIdentifier>{4242c55c-083f-438c-b50f-b636b2c9ec66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{34a7eadf-4f56-49b2-a370-30b197fb2277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{6a4c7e46-d044-44ad-80ec-cc10860daa18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Import">
+      <UniqueIdentifier>{bc2a274a-b8fb-4e17-aff8-8195f11bb59f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Export">
+      <UniqueIdentifier>{9d239146-cb99-4bc6-a80e-44910402da1a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="clc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\clrscr_nw.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\clrscrPart_nw.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\DllmainShell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GetCommandLine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_shell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InitializeShell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="more.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prompt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="promptecho.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_clc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_iswaitingforinput.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_lines.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_prompt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_tohome.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scilines.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\TermCommand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\TermCompletion.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\TermConsole.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TerminateShell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\TermLine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\TermPosition.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\TermPrintf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\TermReadAndProcess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tohome.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="clc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\clrscr_nw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\clrscrPart_nw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_shell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\GetCommandLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_shell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\InitializeShell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\prompt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\promptecho.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\scilines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\TermCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\TermCompletion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\TermConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\TerminateShell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\TermLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\TermPosition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\TermPrintf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TermReadAndProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\locales\en_US\shell.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="fileio_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="libjvm_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="Localization_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="scicompletion_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="sciconsole_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="Scilab_windows_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="shell_export.def">
+      <Filter>Libraries Dependencies\Export</Filter>
+    </None>
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\shell.iss" />
+    <None Include="..\..\sci_gateway\shell_gateway.xml" />
+    <None Include="..\..\version.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="shell.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

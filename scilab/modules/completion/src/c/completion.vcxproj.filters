@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ad687e14-f73e-44d1-b54d-e18012fe1ab7}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{81d3fcfb-fa9e-44ca-82f8-f19b3a7beefe}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="localization">
+      <UniqueIdentifier>{f75b76f3-ab8f-4d5e-ba4e-af1e56f77448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Swig Files">
+      <UniqueIdentifier>{7b3cd816-630e-4cc3-a647-f52648c8ad08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{9e8611a6-4cba-4ba5-8ac1-a83cceba5f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{4ad53753-5887-4dff-b846-d04e29ac60dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Imports">
+      <UniqueIdentifier>{0f3f4bfc-acef-4a7e-bb4a-0033b39389de}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="completeLine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="completeLine_wrap_java.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="completion.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="completion_generic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\Completion_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="completion_wrap_java.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllmainCompletion.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getCommonPart.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getfieldsdictionary.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getfilesdictionary.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getfulldictionary.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmacrosdictionary.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getPartLine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_completion.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_completion.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="toolsdictionary.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\completeLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="completeLine_wrap_java.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\completion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="completion_generic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="completion_wrap_java.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_completion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getCommonPart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getfieldsdictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="getfilesdictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="getfulldictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getmacrosdictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getPartLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_completion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="toolsdictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\locales\en_US\completion.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="..\jni\Completion.i">
+      <Filter>Swig Files</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="Scilab_windows_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\completion.iss" />
+    <None Include="..\..\sci_gateway\completion_gateway.xml" />
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\version.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="completion.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

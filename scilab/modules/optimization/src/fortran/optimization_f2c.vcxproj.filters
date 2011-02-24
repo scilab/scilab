@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Fortran files">
+      <UniqueIdentifier>{22478cf1-68c4-4544-9d95-e0fff23c39d3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ajour.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bfgsd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bjlsqrsolv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bjsolv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\blsqrsolv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\boptim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bsolv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calbx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calmaj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ctcab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ctonb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dcube.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ddd2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\dogleg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\dpmpar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\enorm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\Ex-fsolve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\Ex-lsqrsolve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\Ex-optim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fajc1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fcomp1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fcube.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\fdjac1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\fdjac2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ffinf1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fmani1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fmc11a.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fmc11b.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fmc11e.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fmc11z.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fmlag1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fmulb1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fmuls1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fpq2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fprf2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frdf1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fremf1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fremf2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fretc1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fuclid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gcbd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gcp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\hybrd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\hybrd1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\hybrj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\hybrj1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icscof.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icse0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icse1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icse2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icsec2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icsei.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\intlsqrsolve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="intreadmps.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\lmder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\lmdif.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\lmpar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="majour.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="majysa.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="majz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1fc1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1fc1a.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1fc1o.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1gc2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1gc2a.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1gc2b.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1qn1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1qn1a.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1qn2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1qn2a.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1qn3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="n1qn3a.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nlis0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nlis2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="proj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\qform.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ql0001.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qnbd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qpgen1sci.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qpgen2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\qrfac.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\qrsolv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\r1mpyq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minpack\r1updt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rdmps1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rdmpsz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rednor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="relvar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rlbd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="satur.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fsolve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_optim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_semidef.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shanph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strang.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="writebuf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zgcbd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zqnbd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="ajour.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="bfgsd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bjlsqrsolv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bjsolv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\blsqrsolv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\boptim.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bsolv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="calbx.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="calmaj.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ctcab.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ctonb.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dcube.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ddd2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\dogleg.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\dpmpar.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\enorm.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-fsolve.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-lsqrsolve.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-optim.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fajc1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fcomp1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fcube.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\fdjac1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\fdjac2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ffinf1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fmani1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fmc11a.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fmc11b.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fmc11e.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fmc11z.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fmlag1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fmulb1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fmuls1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fpq2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fprf2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="frdf1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fremf1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fremf2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fretc1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fuclid.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gcbd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gcp.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\hybrd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\hybrd1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\hybrj.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\hybrj1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="icscof.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="icse.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="icse0.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="icse1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="icse2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="icsec2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="icsei.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\intlsqrsolve.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\lmder.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\lmdif.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\lmpar.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="majour.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="majysa.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="majz.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1fc1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1fc1a.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1fc1o.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1gc2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1gc2a.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1gc2b.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1qn1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1qn1a.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1qn2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1qn2a.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1qn3.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="n1qn3a.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="nlis0.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="nlis2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="proj.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\qform.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ql0001.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="qnbd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="qpgen1sci.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="qpgen2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\qrfac.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\qrsolv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\r1mpyq.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minpack\r1updt.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="rdmps1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="rdmpsz.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="rednor.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="relvar.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="rlbd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="satur.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fsolve.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_optim.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_semidef.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="shanph.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="strang.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="writebuf.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zgcbd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zqnbd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="intreadmps.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\sci_gateway\optimization_gateway.xml" />
+    <None Include="Optimization_Import.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

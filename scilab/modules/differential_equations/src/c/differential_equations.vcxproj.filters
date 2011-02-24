@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{f9a90e4f-9351-4467-8798-48191a9df869}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{d6c29247-2ffd-4f8c-b671-e06968c21254}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="localization">
+      <UniqueIdentifier>{6c591ec8-f5fc-447c-9dad-43fc66c1fa93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{5181bf70-a912-4986-8345-c3e21297dfb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Imports">
+      <UniqueIdentifier>{50085a97-ce54-4fea-94f7-3c5bf7eb6095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource File">
+      <UniqueIdentifier>{95a638f6-feb6-49cc-82fa-ef82e0e424db}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="arnol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="colnewtable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dassl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dassltable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllmainDifferential_equations.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="feval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fevaltable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fydot2table.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fydottable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations6.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="impltable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="int2dtable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="int3dtable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="intgtable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rk4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_bvode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_feval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_int2d.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_int3d.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_intg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_odc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_ode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="arnol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_differential_equations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="feval.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_differential_equations1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_differential_equations2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_differential_equations3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_differential_equations4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_differential_equations6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rk4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\locales\en_US\differential_equations.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="differential_equations_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\differential_equations.iss" />
+    <None Include="..\..\sci_gateway\differential_equations_gateway.xml" />
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\version.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="differential_equations.rc">
+      <Filter>Resource File</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
+  </ItemGroup>
+</Project>

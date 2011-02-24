@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5c5e1adc-2a57-45a2-9bcc-0d584f86aaf8}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{fe205ab9-974b-42cf-8f22-9886967a1c5c}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{36da833f-eb67-489f-a609-9921cae3b997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{c2601202-2c27-49e6-b2e5-500839247091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Imports">
+      <UniqueIdentifier>{f93061bc-eb15-411c-883c-7d772d9c3eed}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="buildMainWindowTitle_Windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="console.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="console_main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConvertSlash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllmainScilab_Windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FilesAssociations.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FindScilab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FocusOnConsole.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="forbiddenToUseScilab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getScilabDirectory.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InnosetupMutex.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="killScilabProcess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mmapWindows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MutexClosingScilab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scilab_main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SetScilabEnvironmentVariables.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spawncommand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="splashScreen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StartupMessageBox.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strdup_windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stristr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextToPrint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows_main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowShow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wmcopydata.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WndThread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="buildMainWindowTitle_Windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console_main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\includes\ConvertSlash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dynlib_scilab_windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilesAssociations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FindScilab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\includes\FocusOnConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="forbiddenToUseScilab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="getScilabDirectory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InnosetupMutex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="killScilabProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mmapWindows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\includes\MutexClosingScilab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource_scilab_windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scilab_main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SetHeapOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SetScilabEnvironmentVariables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spawncommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="splashScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StartupMessageBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\includes\strdup_windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stristr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextToPrint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows_main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowShow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wmcopydata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WndThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resources\scilab_splashscreen.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Gui_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="Localization_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="windows_tools_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="scilab_windows.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

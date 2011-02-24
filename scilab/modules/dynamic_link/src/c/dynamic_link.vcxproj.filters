@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{1908c64b-306b-4895-b2bf-e6bb67b7ef8c}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{aec3120c-99cc-4123-a6a8-92b4104f96a3}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="localization">
+      <UniqueIdentifier>{c194a197-da99-42ca-a4f4-8257b4138067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{472545a1-64bf-478f-9ace-2dbcec3ada7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{30d3cba2-6407-4ffb-bf82-3222d75f5884}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="addinter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dl_genErrorMessage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllmainDynamic_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GetFunctionByName.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_dynamic_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ilib_verbose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_addinter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_c_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_call.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_getdynlibext.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_ilib_verbose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_ulink.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\addinter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dl_genErrorMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynamic_link.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_dynamic_link.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\GetFunctionByName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_dynamic_link.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\ilib_verbose.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\locales\en_US\dynamic_link.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="dynamic_link_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Io_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="scilab_windows_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="..\..\dynamic_link.iss" />
+    <None Include="..\..\sci_gateway\dynamic_link_gateway.xml" />
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\version.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="dynamic_link.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
