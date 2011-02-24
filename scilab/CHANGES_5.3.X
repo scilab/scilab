@@ -243,7 +243,7 @@ Xcos:
 * bug 8737 fixed - Compilation failed when a diagram contains any hidden links
                    (wrong indexes issues).
 
-* bug 8798 fixed - The context parameter of scicos_simulate was not taken into 
+* bug 8798 fixed - The context parameter of scicos_simulate was not taken into
                    account.
 
 * bug 8818 fixed - Generic modelica blocks did not transform Scilab exponential
@@ -293,6 +293,9 @@ Graphics:
 
 * bug 7509 fixed - Update of the legend help page regarding some previous
                    changes.
+
+* bug 7526 fixed - Scilab crashed on Windows and Intel HD graphics cards
+                   when executing any plot command.
 
 * bug 7836 fixed - The sub_tics property was not correctly tracking the number
                    of displayed sub-ticks. Thanks to Paul Griffiths.
