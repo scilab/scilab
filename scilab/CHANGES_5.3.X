@@ -467,6 +467,8 @@ Bug fixes:
 
 * bug 9034 fixed - atomsVersionCompare failed on version with '-0'.
 
+* bug 9047 fixed - The macro edit couldn't open a file at a given line number.
+
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
             ========================================================
