@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
@@ -81,6 +82,9 @@ public class GraphHandler extends mxGraphHandler {
 					clickOnLink(e, (BasicLink) cell);
 				} else if (cell instanceof BasicBlock) {
 					openBlock(e, (BasicBlock) cell);
+				} else if (cell instanceof BasicPort) {
+					// translated to the parent
+					openBlock(e, (BasicBlock) ((BasicPort) cell).getParent());
 				} else if (cell == null) {
 					createTextBlock(e);
 				}
