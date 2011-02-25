@@ -108,8 +108,8 @@ public final class ModelicaController {
 			public void stateChanged(ChangeEvent e) {
 				final ModelStatistics stats = (ModelStatistics) e.getSource();
 
-				// Validate equation == unknowns
-				setValid(stats.getEquations() == stats.getUnknowns());
+				// Validate equation == (unknowns + discretes)
+				setValid(stats.getEquations() == (stats.getUnknowns() + stats.getDiscreteStates()));
 			}
 		});
 
