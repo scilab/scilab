@@ -14,7 +14,7 @@
  */
 
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {

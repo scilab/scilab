@@ -11,7 +11,7 @@
  */
 
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
 #include "list.hxx"
 
 extern "C"

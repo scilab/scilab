@@ -12,7 +12,7 @@
 
 #include <sstream>
 #include "core_math.h"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "tostring_common.hxx"
 
 extern "C"
@@ -382,7 +382,7 @@ namespace types
         int piIndexes[2] = {_iRows, _iCols};
         return set(getIndex(piIndexes), _pwstData);
     }
-        
+
     bool String::set(int _iRows, int _iCols, wchar_t* _pwstData)
     {
         int piIndexes[2] = {_iRows, _iCols};

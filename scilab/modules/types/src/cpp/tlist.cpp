@@ -12,7 +12,7 @@
 
 #include <cstring>
 #include <sstream>
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "list.hxx"
 #include "tlist.hxx"
 #include "listundefined.hxx"

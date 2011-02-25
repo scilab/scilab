@@ -15,9 +15,14 @@
 //
 // If you need additionnal headers, please add it in arrayof.hxx
 
-#ifndef __ARRAYOF_HXX__
-    #error This file must only be include by arrayof.hxx
-#endif
+//#ifndef __ARRAYOF_HXX__
+//    #error This file must only be include by arrayof.hxx
+//#endif
+
+#ifndef __UINT16_HXX__
+#define __UINT16_HXX__
+
+#include "arrayof.hxx"
 
 namespace types
 {
@@ -62,3 +67,4 @@ namespace types
     };
 }
 
+#endif /* !__UINT16_HXX__ */

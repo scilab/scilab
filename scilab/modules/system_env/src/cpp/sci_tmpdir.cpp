@@ -14,7 +14,7 @@
 
 #include "configvariable.hxx"
 #include "setenvvar.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "context.hxx"
 
 extern "C"

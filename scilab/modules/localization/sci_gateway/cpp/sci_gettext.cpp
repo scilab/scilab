@@ -15,7 +15,7 @@
 #include "funcmanager.hxx"
 #include "localization_gw.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

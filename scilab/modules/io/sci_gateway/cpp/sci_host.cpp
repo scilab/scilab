@@ -14,7 +14,7 @@
 #include <string.h>
 #include "funcmanager.hxx"
 #include "io_gw.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

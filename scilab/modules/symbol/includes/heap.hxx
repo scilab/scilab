@@ -15,10 +15,11 @@
 
 #include <iostream>
 #include <list>
-#include "arrayof.hxx"
 #include "symbol.hxx"
 #include "table.hxx"
 
+#include "bool.hxx"
+#include "double.hxx"
 
 #define UNNAMED L"unnamed"
 

@@ -14,7 +14,7 @@
  */
 
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "int.hxx"
 
 extern "C"
 {

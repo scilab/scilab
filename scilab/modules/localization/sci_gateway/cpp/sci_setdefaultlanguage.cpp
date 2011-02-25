@@ -12,7 +12,8 @@
 
 #include "localization_gw.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
+#include "bool.hxx"
 
 #include "yaspio.hxx"
 

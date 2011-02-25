@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "funcmanager.hxx"
 #include "core_gw.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

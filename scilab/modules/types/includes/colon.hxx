@@ -15,10 +15,15 @@
 //
 // If you need additionnal headers, please add it in arrayof.hxx
 
-#ifndef __ARRAYOF_HXX__
-    #error This file must only be include by arrayof.hxx
-#endif
+//#ifndef __ARRAYOF_HXX__
+//    #error This file must only be include by arrayof.hxx
+//#endif
 
+#ifndef __COLON_HXX__
+#define __COLON_HXX__
+
+#include "implicitlist.hxx"
+#include "double.hxx"
 #include "dollar.hxx"
 
 namespace types
@@ -55,3 +60,4 @@ namespace types
     };
 }
 
+#endif /* !__COLON_HXX__ */

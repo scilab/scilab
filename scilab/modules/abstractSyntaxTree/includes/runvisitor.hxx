@@ -27,12 +27,7 @@
 #include "shortcutvisitor.hxx"
 #include "printvisitor.hxx"
 
-#include "arrayof.hxx"
-#include "dollar.hxx"
-#include "tlist.hxx"
-#include "struct.hxx"
-#include "macro.hxx"
-#include "macrofile.hxx"
+#include "alltypes.hxx"
 
 // Needed by visitprivate(const OpExp &)
 // Needed by visitprivate(const LogicalOpExp &)
@@ -1139,7 +1134,7 @@ namespace ast
 
         void visitprivate(const AssignListExp  &e)
         {
-            
+
         }
         /** \} */
 

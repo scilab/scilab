@@ -18,7 +18,7 @@
 #include "io_gw.hxx"
 #include "setenvvar.hxx"
 #include "filemanager.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

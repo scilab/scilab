@@ -15,7 +15,8 @@
 #define __TYPES_SUB_H__
 
 #include "operation.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
+#include "polynom.hxx"
 
 using namespace types;
 /*

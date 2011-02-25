@@ -17,7 +17,7 @@
 #include <stdlib.h>
 
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
 
 extern "C"
 {

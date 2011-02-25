@@ -12,7 +12,7 @@
 
 #include "localization_gw.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -37,7 +37,7 @@ Function::ReturnValue sci_getdefaultlanguage(typed_list &in, int _piRetCount, ty
         ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"getdefaultlanguage", 1);
         return Function::Error;
     }
-    
+
     out.push_back(new String(SCILABDEFAULTLANGUAGE));
 
     return Function::OK;

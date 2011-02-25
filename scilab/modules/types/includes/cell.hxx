@@ -11,11 +11,16 @@
 */
 
 
-#ifndef __ARRAYOF_HXX__
-    #error This file must only be include by arrayof.hxx
-#endif
+//#ifndef __ARRAYOF_HXX__
+//    #error This file must only be include by arrayof.hxx
+//#endif
+
+#ifndef __CELL_HXX__
+#define __CELL_HXX__
 
 #include <vector>
+
+#include "arrayof.hxx"
 
 namespace types
 {
@@ -77,3 +82,5 @@ namespace types
 
     };
 }
+
+#endif /* !__CELL_HXX__ */

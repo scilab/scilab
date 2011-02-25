@@ -16,7 +16,7 @@
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

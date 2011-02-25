@@ -10,7 +10,7 @@
  *
  */
 
-#include "arrayof.hxx"
+#include "double.hxx"
 
 namespace types
 {

@@ -12,7 +12,6 @@
  */
 
 #include "tlist.hxx"
-#include "arrayof.hxx"
 #include "function.hxx"
 #include "sci_tlist_or_mlist.hxx"
 

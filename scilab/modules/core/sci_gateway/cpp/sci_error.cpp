@@ -12,7 +12,8 @@
 
 #include "types.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
+#include "string.hxx"
 
 extern "C"
 {

@@ -11,7 +11,7 @@
  */
 #include "function.hxx"
 #include "context.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

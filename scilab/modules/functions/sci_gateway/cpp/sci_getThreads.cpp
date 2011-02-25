@@ -13,7 +13,7 @@
 #include "functions_gw.hxx"
 #include "configvariable.hxx"
 #include "funcmanager.hxx"
-#include "arrayof.hxx"
+#include "cell.hxx"
 #include "threadId.hxx"
 
 extern "C"

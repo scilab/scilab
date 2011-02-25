@@ -85,7 +85,8 @@ extern "C"
 
 #include "banner.hxx"
 
-#include "arrayof.hxx"
+#include "string.hxx"
+#include "polynom.hxx"
 
 #define INTERACTIVE     -1
 

@@ -12,7 +12,7 @@
 
 #include "function.hxx"
 #include "context.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "core_gw.hxx"
 
 extern "C"

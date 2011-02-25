@@ -10,9 +10,12 @@
 *
 */
 
-#ifndef __ARRAYOF_HXX__
-    #error This file must only be include by arrayof.hxx
-#endif
+//#ifndef __ARRAYOF_HXX__
+//    #error This file must only be include by arrayof.hxx
+//#endif
+
+#ifndef __INT_HXX__
+#define __INT_HXX__
 
 #include "int8.hxx"
 #include "uint8.hxx"
@@ -22,3 +25,5 @@
 #include "uint32.hxx"
 #include "int64.hxx"
 #include "uint64.hxx"
+
+#endif /* !__INT_HXX__ */

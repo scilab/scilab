@@ -14,7 +14,7 @@
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "types.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "container.hxx"
 
 extern "C"
@@ -111,7 +111,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 }
 
                 Double* pD = new Double(iRowsOut, iColsOut);
-                
+
                 double* pdbl = pD->getReal();
 
                 switch(iMode)

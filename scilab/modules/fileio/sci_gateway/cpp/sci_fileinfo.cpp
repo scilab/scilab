@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"

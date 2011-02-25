@@ -20,7 +20,7 @@
 #include "struct.hxx"
 #include "context.hxx"
 
-#include "arrayof.hxx"
+#include "alltypes.hxx"
 
 bool bConditionState(types::InternalType *_pITResult)
 {

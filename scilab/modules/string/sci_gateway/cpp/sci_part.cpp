@@ -19,7 +19,7 @@
 #include "string_gw.hxx"
 #include "funcmanager.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

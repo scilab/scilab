@@ -13,7 +13,7 @@
 #include <sstream>
 #include "symbol.hxx"
 #include "struct.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 namespace types
 {

@@ -16,7 +16,7 @@ using regular expression .                                      */
 /*------------------------------------------------------------------------*/
 #include "function.hxx"
 #include "context.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "string_gw.hxx"
 
 extern "C"

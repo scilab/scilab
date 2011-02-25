@@ -15,7 +15,7 @@
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "file.hxx"
 #include "function.hxx"
 

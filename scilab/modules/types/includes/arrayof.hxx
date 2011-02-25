@@ -95,7 +95,7 @@ namespace types
             //    throw(ast::ScilabError(message));
             //}
         }
-        
+
         virtual T               getNullValue() = 0;
         virtual ArrayOf<T>*     createEmpty(int _iDims, int* _piDims, bool _bComplex = false) = 0;
         virtual T               copyValue(T _data) = 0;
@@ -159,7 +159,7 @@ namespace types
 			    }
 		    }
 	    }
-        
+
         virtual bool set(int _iPos, T _data)
         {
             if(m_pRealData == NULL || _iPos >= m_iSize)
@@ -169,13 +169,13 @@ namespace types
             m_pRealData[_iPos] = copyValue(_data);
             return true;
         }
-        
+
         virtual bool set(int _iRows, int _iCols, T _data)
         {
             int piIndexes[2] = {_iRows, _iCols};
             return set(getIndex(piIndexes), copyValue(_data));
         }
-        
+
         virtual bool set(T* _pdata)
         {
             if(m_pRealData == NULL)
@@ -189,7 +189,7 @@ namespace types
             }
             return true;
         }
-        
+
         virtual bool set(const T* _pdata)
         {
             if(m_pRealData == NULL)
@@ -203,12 +203,12 @@ namespace types
             }
             return true;
         }
-        
+
         T* get() const
         {
             return m_pRealData;
         }
-        
+
         T get(int _iPos)
         {
             if(m_pRealData)
@@ -217,7 +217,7 @@ namespace types
             }
             return T();
         }
-        
+
         T get(int _iRows, int _iCols)
         {
             int piIndexes[2] = {_iRows, _iCols};
@@ -235,7 +235,7 @@ namespace types
             return true;
         }
 
-        
+
         bool setImg(int _iRows, int _iCols, T _data)
         {
             int piIndexes[2] = {_iRows, _iCols};
@@ -256,7 +256,7 @@ namespace types
             return true;
         }
 
-        
+
         bool setImg(const T* _pdata)
         {
             if(m_pImgData == NULL)
@@ -275,7 +275,7 @@ namespace types
         {
             return m_pImgData;
         }
-        
+
         T getImg(int _iPos)
         {
             if(m_pImgData)
@@ -284,13 +284,13 @@ namespace types
             }
             return T();
         }
-        
+
         T getImg(int _iRows, int _iCols)
         {
             int piIndexes[2] = {_iRows, _iCols};
             return getImg(getIndex(piIndexes));
         }
-        
+
         InternalType* insert(typed_list* _pArgs, InternalType* _pSource)
         {
             bool bNeedToResize  = false;
@@ -465,7 +465,7 @@ namespace types
             {
                 delete[] piNewDims;
             }
-            
+
             delete[] piMaxDim;
             delete[] piCountDim;
             delete[] piIndex;
@@ -474,7 +474,7 @@ namespace types
 
             return this;
         }
-        
+
         static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource)
 	    {
             typed_list pArg;
@@ -586,7 +586,7 @@ namespace types
 
             return pOut2;
 	    }
-   
+
         bool append(int _iRows, int _iCols, InternalType* _poSource)
         {
             ArrayOf* pGT = _poSource->getAs<ArrayOf>();
@@ -800,13 +800,13 @@ namespace types
 
             return pOut;
 	    }
-        
+
         bool resize(int _iNewRows, int _iNewCols)
         {
             int piDims[2] = {_iNewRows, _iNewCols};
             return resize(piDims, 2);
         }
-        
+
         bool resize(int* _piDims, int _iDims)
         {
             if(_iDims == m_iDims)
@@ -991,7 +991,7 @@ namespace types
             m_iSize = iNewSize;
             return true;
         }
-        
+
         /* ArrayOf */
         template <typename V>
         V* getAs(void) {return dynamic_cast<V*>(this);}
@@ -1008,7 +1008,7 @@ namespace types
             }
             return idx;
         }
-        
+
         int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims)
         {
             int idx = 0;
@@ -1020,7 +1020,7 @@ namespace types
             }
             return idx;
         }
-        
+
         void getIndexes(int _iIndex, int* _piIndexes)
         {
             getIndexesWithDims(_iIndex, _piIndexes, m_piDims, m_iDims);
@@ -1044,7 +1044,7 @@ namespace types
             // (12 / 8) % 3 -> 1
 
             //matrix [3,4,3]
-            //index = 22 
+            //index = 22
             //loop 1
             // (22 / 1) % 3 -> 1
             //loop 2
@@ -1053,7 +1053,7 @@ namespace types
             // (22 / 12) % 3 -> 1
 
             //matrix [3,4,3]
-            //index = 35 
+            //index = 35
             //loop 1
             // (35 / 1) % 3 -> 2
             //loop 2
@@ -1085,7 +1085,7 @@ namespace types
 			    }
 		    }
 		    return pOut;
-	    }	
+	    }
 
         virtual std::wstring toString(int _iPrecision, int _iLineLen)
         {
@@ -1125,16 +1125,16 @@ namespace types
 
         virtual void subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
         {
-        }   
+        }
     };
 }
 
-#include "int.hxx"
-#include "double.hxx"
-#include "implicitlist.hxx"
-#include "polynom.hxx"
-#include "bool.hxx"
-#include "colon.hxx"
-#include "string.hxx"
-#include "cell.hxx"
+//#include "int.hxx"
+//#include "double.hxx"
+//#include "implicitlist.hxx"
+//#include "polynom.hxx"
+//#include "bool.hxx"
+//#include "colon.hxx"
+//#include "string.hxx"
+//#include "cell.hxx"
 #endif /* !__ARRAYOF_HXX__ */

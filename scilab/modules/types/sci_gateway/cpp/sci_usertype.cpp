@@ -14,7 +14,7 @@
 #include "funcmanager.hxx"
 #include "user.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C" {
     #include "Scierror.h"

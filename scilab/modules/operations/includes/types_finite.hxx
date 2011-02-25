@@ -14,7 +14,7 @@
 #define __TYPES_FINITE__
 
 #include "operation.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
 
 extern "C"
 {

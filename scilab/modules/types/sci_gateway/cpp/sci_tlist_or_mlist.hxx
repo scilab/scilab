@@ -13,9 +13,9 @@
 #ifndef __SCI_TLIST_OR_MLIST_HXX__
 #define __SCI_TLIST_OR_MLIST_HXX__
 
-#include "alltypes.hxx"
+#include "string.hxx"
+#include "double.hxx"
 #include "funcmanager.hxx"
-#include "sci_tlist_or_mlist.hxx"
 
 extern "C"
 {

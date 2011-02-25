@@ -12,8 +12,8 @@
 #include <sstream>
 #include <math.h>
 #include "singlepoly.hxx"
+#include "double.hxx"
 #include "tostring_common.hxx"
-#include "arrayof.hxx"
 
 extern "C"
 {

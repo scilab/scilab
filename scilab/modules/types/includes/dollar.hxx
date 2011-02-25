@@ -13,7 +13,7 @@
 #ifndef __DOLLAR_HXX__
 #define __DOLLAR_HXX__
 
-//#include "matrixpoly.hxx"
+#include "polynom.hxx"
 //#include "arrayof.hxx"
 
 namespace types
@@ -45,7 +45,7 @@ namespace types
         {
             return RealDollar;
         }
-   
+
         bool isDollar()
         {
             return true;

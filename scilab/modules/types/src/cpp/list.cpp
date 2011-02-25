@@ -11,7 +11,7 @@
 */
 
 #include <sstream>
-#include "arrayof.hxx"
+#include "double.hxx"
 #include "list.hxx"
 #include "listundefined.hxx"
 #include "listinsert.hxx"

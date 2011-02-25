@@ -12,7 +12,7 @@
 
 #include <sstream>
 #include <math.h>
-#include "arrayof.hxx"
+#include "double.hxx"
 #include "tostring_common.hxx"
 
 extern "C"
@@ -466,7 +466,7 @@ namespace types
                         int iWidth			= 0;
                         int iPrec				= 0;
                         bool bFP				= false; // FloatingPoint
-                        
+
                         _piDims[0] = iRows2;
                         _piDims[1] = iCols2;
 
@@ -679,7 +679,7 @@ namespace types
     {
         return 0;
     }
-    
+
     Double* Double::createEmpty(int _iDims, int* _piDims, bool _bComplex)
     {
         return new Double(_iDims, _piDims, _bComplex);

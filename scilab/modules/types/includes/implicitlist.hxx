@@ -15,9 +15,12 @@
 //
 // If you need additionnal headers, please add it in arrayof.hxx
 
-#ifndef __ARRAYOF_HXX__
-    #error This file must only be include by arrayof.hxx
-#endif
+//#ifndef __ARRAYOF_HXX__
+//    #error This file must only be include by arrayof.hxx
+//#endif
+
+#ifndef __IMPLICITLIST_HXX__
+#define __IMPLICITLIST_HXX__
 
 namespace types
 {
@@ -94,3 +97,4 @@ namespace types
     };
 }
 
+#endif /* !__IMPLICITLIST_HXX__ */

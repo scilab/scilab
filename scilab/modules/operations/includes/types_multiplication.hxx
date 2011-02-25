@@ -13,7 +13,8 @@
 #define __TYPES_MULTIPLICATION_HXX__
 
 #include "operation.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
+#include "polynom.hxx"
 
 
 EXTERN_OP types::InternalType *GenericDotTimes(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);

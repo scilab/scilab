@@ -13,7 +13,10 @@
 #include <sstream>
 #include <math.h>
 #include "symbol.hxx"
-#include "arrayof.hxx"
+#include "cell.hxx"
+#include "double.hxx"
+#include "list.hxx"
+#include "colon.hxx"
 #include "tostring_common.hxx"
 #include "core_math.h"
 #include "list.hxx"

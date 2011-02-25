@@ -16,7 +16,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

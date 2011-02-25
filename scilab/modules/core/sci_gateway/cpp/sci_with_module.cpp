@@ -13,7 +13,7 @@
 #include "core_gw.hxx"
 #include "funcmanager.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "configvariable.hxx"
 
 

@@ -10,8 +10,8 @@
  *
  */
 
+#include "mlist.hxx"
 #include "function.hxx"
-#include "funcmanager.hxx"
 #include "sci_tlist_or_mlist.hxx"
 
 using namespace types;

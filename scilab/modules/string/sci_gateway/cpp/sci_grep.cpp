@@ -15,7 +15,8 @@ using regular express .                                         */
 /*------------------------------------------------------------------------*/
 
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
+#include "string.hxx"
 #include "funcmanager.hxx"
 extern "C"
 {

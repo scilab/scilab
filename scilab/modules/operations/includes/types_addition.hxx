@@ -16,7 +16,9 @@
 
 #include "operation.hxx"
 #include "internal.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
+#include "string.hxx"
+#include "polynom.hxx"
 
 using namespace types;
 

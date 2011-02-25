@@ -12,7 +12,7 @@
 
 #include <math.h>
 #include <sstream>
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "string_gw.hxx"
 #include "tostring_common.hxx"
 

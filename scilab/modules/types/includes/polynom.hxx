@@ -15,10 +15,16 @@
 //
 // If you need additionnal headers, please add it in arrayof.hxx
 
-#ifndef __ARRAYOF_HXX__
-    #error This file must only be include by arrayof.hxx
-#endif
+//#ifndef __ARRAYOF_HXX__
+//    #error This file must only be include by arrayof.hxx
+//#endif
+
+#ifndef __POLYNOM_HXX__
+#define __POLYNOM_HXX__
+
+#include "arrayof.hxx"
 #include "singlepoly.hxx"
+#include "double.hxx"
 
 namespace types
 {
@@ -81,3 +87,4 @@ namespace types
     };
 }
 
+#endif /* !__POLYNOM_HXX__ */

@@ -14,7 +14,8 @@
 #define __TYPES_POWER_HXX__
 
 #include "operation.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
+#include "polynom.hxx"
 
 using namespace types;
 

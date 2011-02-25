@@ -12,7 +12,8 @@
 
 #include "function.hxx"
 #include "struct.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
+#include "string.hxx"
 #include "list.hxx"
 
 extern "C"

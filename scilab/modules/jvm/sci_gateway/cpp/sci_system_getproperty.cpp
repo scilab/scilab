@@ -14,7 +14,7 @@
 #include "funcmanager.hxx"
 #include "jvm_gw.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

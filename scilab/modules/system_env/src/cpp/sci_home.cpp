@@ -13,7 +13,7 @@
 
 #include "configvariable.hxx"
 
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "context.hxx"
 #include "setenvvar.hxx"
 

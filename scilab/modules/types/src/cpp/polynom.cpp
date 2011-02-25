@@ -14,7 +14,7 @@
 #include "core_math.h"
 #include "tostring_common.hxx"
 #include "singlepoly.hxx"
-#include "arrayof.hxx"
+#include "polynom.hxx"
 
 using namespace std;
 

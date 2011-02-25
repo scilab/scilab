@@ -11,7 +11,7 @@
 */
 
 #include <sstream>
-#include "arrayof.hxx"
+#include "uint16.hxx"
 #include "tostring_common.hxx"
 
 extern "C"

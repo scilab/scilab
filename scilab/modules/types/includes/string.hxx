@@ -15,12 +15,17 @@
 //
 // If you need additionnal headers, please add it in arrayof.hxx
 
-#ifndef __ARRAYOF_HXX__
-    #error This file must only be include by arrayof.hxx
-#endif
+//#ifndef __ARRAYOF_HXX__
+//    #error This file must only be include by arrayof.hxx
+//#endif
+
+#ifndef __STRING_HXX__
+#define __STRING_HXX__
 
 #include <string>
 #include <list>
+
+#include "arrayof.hxx"
 
 namespace types
 {
@@ -71,3 +76,4 @@ namespace types
     };
 }
 
+#endif /* !__STRING_HXX__ */

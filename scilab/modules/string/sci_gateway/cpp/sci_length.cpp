@@ -27,7 +27,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "list.hxx"
 #include "funcmanager.hxx"
 #include "string_gw.hxx"

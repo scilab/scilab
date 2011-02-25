@@ -14,7 +14,7 @@
 
 #include <wchar.h>
 #include "context.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 #include "expandPathVariable.h"
 
 extern "C"

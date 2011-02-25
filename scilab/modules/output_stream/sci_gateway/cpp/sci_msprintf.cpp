@@ -15,7 +15,7 @@
 #include "output_stream_gw.hxx"
 #include "scilab_sprintf.hxx"
 #include "function.hxx"
-#include "arrayof.hxx"
+#include "string.hxx"
 
 extern "C"
 {

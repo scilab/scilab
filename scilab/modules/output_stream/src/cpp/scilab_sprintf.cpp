@@ -11,7 +11,8 @@
  */
 
 #include "types.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
+#include "string.hxx"
 #include "scilab_sprintf.hxx"
 
 using namespace types;
