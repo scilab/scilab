@@ -323,6 +323,8 @@ GUI:
 
 * bug 8717 fixed - Bad window's title just after creation.
 
+* bug 8793 fixed - 'waitbar' function crashed when the handle was not initialized.
+
 * bug 8826, 8827 fixed - userdata property for a menu crashed Scilab.
 
 * bug 8838 fixed - uimenu without input argument crashed Scilab.
