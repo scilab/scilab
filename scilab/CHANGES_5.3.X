@@ -313,6 +313,11 @@ Graphics:
 
 * bug 8766 fixed - For small input matrices, the "Matplot1" function was not
                    correctly taking its rectangle argument into account.
+
+* bug 8786 fixed - When entering wrong input arguments in 'getcolor' function,
+                   the error message had no sense.
+
+
 GUI:
 ====
 
