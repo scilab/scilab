@@ -90,7 +90,7 @@ AC_CANONICAL_HOST
 
 
 AC_ARG_ENABLE(debug,
-   AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran code)]))
+   AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran/Java code)]))
 
 AC_ARG_ENABLE(debug-C,
    AC_HELP_STRING([--enable-debug-C],[Do not optimize and print warning messages (C code)]))
@@ -306,6 +306,7 @@ esac
 AM_PROG_CC_C_O
 AC_PROG_F77_C_O
 
+
 # If this option is provided, enable the debug on C & C++
 if test "$enable_stop_on_warning" = yes; then
    enable_debug_C=yes
@@ -316,6 +317,7 @@ if test "$enable_debug" = yes; then
    enable_debug_fortran=yes
    enable_debug_C=yes
    enable_debug_CXX=yes
+   enable_debug_java=yes
 else
    enable_debug=no
 fi
@@ -976,10 +978,11 @@ the the JNI libraries."])],
 
 
     if test "$enable_debug_java" = yes; then
-       JAVA_DEBUG_OPTIONS="<option value='-verbose:jni'/>
-       <option value='-Xcheck:jni'/>"
-       AC_SUBST(JAVA_DEBUG_OPTIONS)
+        JAVAC_DEBUG="on"
+    else
+        JAVAC_DEBUG="off"
     fi
+    AC_SUBST(JAVAC_DEBUG)
 
     if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
         SWIG_PROG()
@@ -1785,8 +1788,8 @@ Makefile
 scilab.pc
 etc/modules.xml
 etc/classpath.xml
-etc/jvm_options.xml
 etc/Info.plist
+scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties
 modules/helptools/etc/SciDocConf.xml
@@ -1865,15 +1868,15 @@ echo "Host system type : $host"
 echo ""
 echo "                  Option                        Value"
 echo "-------------------------------------------------------------------------"
-echo "Shared libraries.......      --enable-shared=$libtool_build_shared_libs    $libtool_build_shared_libs"
-echo "Static libraries.......      --enable-static=$libtool_build_static_libs    $libtool_build_static_libs"
-echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld        $lt_cv_prog_gnu_ld"
-echo "Enable debug ..........      --enable-debug=$enable_debug    $enable_debug"
-echo "Enable debug C.........      --enable-debug-C=$enable_debug_C    $enable_debug_C"
-echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX    $enable_debug_CXX"
-echo "Enable debug Java......      --enable-debug-java=$enable_debug_java    $enable_debug_java"
-echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran    $enable_debug_fortran"
-echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning    $enable_stop_on_warning"
+echo "Shared libraries.......      --enable-shared=$libtool_build_shared_libs"
+echo "Static libraries.......      --enable-static=$libtool_build_static_libs"
+echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld"
+echo "Enable debug ..........      --enable-debug=$enable_debug"
+echo "Enable debug C.........      --enable-debug-C=$enable_debug_C"
+echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX"
+echo "Enable debug Java......      --enable-debug-java=$enable_debug_java"
+echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran"
+echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning"
 
 echo ""
 echo "Compiler Configuration:"

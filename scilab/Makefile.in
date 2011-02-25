@@ -72,10 +72,10 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
 	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
+	$(srcdir)/scilab.properties.in \
 	$(top_srcdir)/Makefile.call_scilab.am $(top_srcdir)/configure \
 	$(top_srcdir)/etc/Info.plist.in \
 	$(top_srcdir)/etc/classpath.xml.in \
-	$(top_srcdir)/etc/jvm_options.xml.in \
 	$(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/core/includes/version.h.in \
@@ -115,8 +115,8 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
-	scilab.pc etc/modules.xml etc/classpath.xml \
-	etc/jvm_options.xml etc/Info.plist scilab-lib.properties \
+	scilab.pc etc/modules.xml etc/classpath.xml etc/Info.plist \
+	scilab.properties scilab-lib.properties \
 	scilab-lib-doc.properties modules/helptools/etc/SciDocConf.xml \
 	modules/core/includes/version.h
 CONFIG_CLEAN_VPATH_FILES =
@@ -399,10 +399,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
 JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -775,9 +775,9 @@ etc/modules.xml: $(top_builddir)/config.status $(top_srcdir)/etc/modules.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 etc/classpath.xml: $(top_builddir)/config.status $(top_srcdir)/etc/classpath.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-etc/jvm_options.xml: $(top_builddir)/config.status $(top_srcdir)/etc/jvm_options.xml.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
 etc/Info.plist: $(top_builddir)/config.status $(top_srcdir)/etc/Info.plist.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+scilab.properties: $(top_builddir)/config.status $(srcdir)/scilab.properties.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 scilab-lib.properties: $(top_builddir)/config.status $(srcdir)/scilab-lib.properties.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
