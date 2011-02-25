@@ -1252,6 +1252,17 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Handle a superscript
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleSuperscript(Map<String, String> attributes, String contents) throws SAXException {
+        return encloseContents("sup", contents);
+    }
+
+    /**
      * Handle a replaceable
      * @param attributes the tag attributes
      * @param contents the tag contents
