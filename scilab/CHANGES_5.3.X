@@ -465,6 +465,8 @@ Bug fixes:
 * bug 8837 fixed - fscanfMat did not read a malformated text with many blanks
                    at the end of file.
 
+* bug 8854 fixed - warning about bug 7575 disabled for new Nvidia drivers.
+
 * bug 8897 fixed - Typo fixed.
 
 * bug 8912 fixed - fullpath did not return same result on Windows and Linux.
