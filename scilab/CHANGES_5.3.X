@@ -94,6 +94,8 @@ Documentation:
 * bug 9019 fixed - The help page of dsearch was unclear.
 
 
+* bug 9060 fixed - It was not possible to save as an unexisting file
+
 Xcos:
 =====
 
