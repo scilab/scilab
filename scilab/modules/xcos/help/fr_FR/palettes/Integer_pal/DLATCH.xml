@@ -1,42 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Xcos
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
- * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
- * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- * 
- * See the file ./license.txt
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
 <refentry
-  version="5.0-subset Scilab" xml:id="DLATCH"
+  version="5.0-subset Scilab" xml:id="DLATCH" xml:lang="fr_FR"
   xmlns="http://docbook.org/ns/docbook"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmln.mml="http://www.w3.org/1998/Math/MathML"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
   xmlns:db="http://docbook.org/ns/docbook"
 >
   <refnamediv>
     <refname>DLATCH</refname>
-    <refpurpose>D latch flip-flop</refpurpose>
+    <refpurpose>Bascule D transparente</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Block Screenshot</title>
+    <title>Aperçu</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -47,11 +36,11 @@
   </refsection>
 
   <refsection id="Contents_DLATCH">
-    <title>Contents</title>
+    <title>Contenu</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DLATCH">D latch flip-flop</link>
+          <link linkend="DLATCH">Bascule D transparente</link>
         </para>
       </listitem>
       <listitem>
@@ -66,34 +55,36 @@
               <xref linkend="Description_DLATCH">Description</xref>
             </para>
           </listitem>
+
           <listitem>
             <para>
-              <xref linkend="Data_Type_DLATCH">Data types</xref>
+              <xref linkend="Data_Type_DLATCH">Types de données</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_DLATCH">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_DLATCH">Default properties</xref>
+              <xref linkend="Example_DLATCH">Exemple</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_DLATCH">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DLATCH">Fonction d'interfaçage</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Example_DLATCH">Example</xref>
+              <xref linkend="Seealso_DLATCH">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Seealso_DLATCH">See also</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_DLATCH">Authors</xref>
+              <xref linkend="Authors_DLATCH">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -106,7 +97,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Integer_pal">Integer palette</link>
+          <link linkend="Integer_pal">Palette Entier</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -115,18 +106,19 @@
   <refsection id="Description_DLATCH">
     <title>Description</title>
     <para>
-      This block copies its input state (<emphasis role="bold">D</emphasis>) on the output
-      (<emphasis role="bold">Q</emphasis>) when the enable input (<emphasis role="bold">C</emphasis>)
-      is high and in this configuration it appears as transparent. The <emphasis role="bold">!Q</emphasis> output is the logical negation of <emphasis role="bold">Q</emphasis>
+      Ce bloc copie son état d'entrée (<emphasis role="bold">D</emphasis>) sur la sortie
+      (<emphasis role="bold">Q</emphasis>) quand l'entrée de validation
+      (<emphasis role="bold">C</emphasis>) est haute et dans cette configuration, il apparaît comme transparent. La sortie <emphasis role="bold">!Q</emphasis> est la négation logique de
+      <emphasis role="bold">Q</emphasis>.
     </para>
     <para>
-      When the enable input goes low, the output keeps its previous state and acts like a memory.
+      Quand l'entrée de validation devient basse, la sortie garde son état antérieur et agit comme une mémoire.
     </para>
     <para>
-      This block can be typically used in I/O ports.
+      Ce bloc peut être typiquement utilisé dans les ports d'entrée/sortie.
     </para>
     <para>
-      The truth table of the block is the following ones:
+      La table de vérité du bloc est la suivante :
     </para>
     <para />
     <informaltable border="1" cellpadding="3">
@@ -135,86 +127,84 @@
         <td align="left"><latex><![CDATA[\boldsymbol{D}]]></latex></td>
         <td align="left"><latex><![CDATA[\boldsymbol{Q_n}]]></latex></td>
         <td align="left"><latex><![CDATA[\boldsymbol{!Q_n}]]></latex></td>
-        <td align="left"></td>
       </tr>
       <tr>
         <td align="left"><latex><![CDATA[0]]></latex></td>
         <td align="left"><latex><![CDATA[X]]></latex></td>
         <td align="left"><latex><![CDATA[Q_{n-1}]]></latex></td>
         <td align="left"><latex><![CDATA[!Q_{n-1}]]></latex></td>
-        <td align="left">No changes</td>
+        <td align="left">Sans changements</td>
       </tr>
       <tr>
         <td align="left"><latex><![CDATA[1]]></latex></td>
         <td align="left"><latex><![CDATA[0]]></latex></td>
         <td align="left"><latex><![CDATA[0]]></latex></td>
         <td align="left"><latex><![CDATA[1]]></latex></td>
-        <td align="left">Reset</td>
+        <td align="left">Remise à 0</td>
       </tr>
       <tr>
         <td align="left"><latex><![CDATA[1]]></latex></td>
         <td align="left"><latex><![CDATA[1]]></latex></td>
         <td align="left"><latex><![CDATA[1]]></latex></td>
         <td align="left"><latex><![CDATA[0]]></latex></td>
-        <td align="left">Set</td>
+        <td align="left">Mise à 1</td>
       </tr>
     </informaltable>
     <para>
-      où <emphasis><literal>X</literal></emphasis> signifie "indifférent" et  <emphasis><literal>Q<subscript>n-1</subscript></literal></emphasis>
-      l'état antérieur de <emphasis><literal>Q<subscript>n</subscript></literal></emphasis>.
+      où <emphasis><literal>X</literal></emphasis> signifie "indifférent" et <emphasis><literal>Q<subscript>n-1</subscript></literal></emphasis> l'état antérieur de <emphasis><literal>Q<subscript>n</subscript></literal></emphasis>.
     </para>
   </refsection>
 
   <refsection id="Data_Type_DLATCH">
-    <title>Data types</title>
+    <title>Types de données</title>
 
     <para>
-      The block supports the following types :
+      Le bloc supporte les types suivants :
     </para>
+
     <itemizedlist>
       <listitem>
         <para>
-          Inputs:
+          Entrées :
         </para>
         <itemizedlist>
-          <listitem>
-            <para>
-              <emphasis role="bold">D</emphasis>: scalar. Scilab's int8 data type only.
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <emphasis role="bold">C</emphasis>: scalar. Scilab's real double.
-            </para>
-          </listitem>
+            <listitem>
+              <para>
+                <emphasis role="bold">D</emphasis> : scalaire. Seulement le type entier int8 de Scilab.
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <emphasis role="bold">C</emphasis> : scalaire. Le type réel double de Scilab.
+              </para>
+            </listitem>
         </itemizedlist>
         <para>
-          A positive input is considered as logical 1, a negative or a null input as logical 0.
+          Une entrée positive est considérée comme un 1 logique, une entrée négative ou nulle comme un 0 logique.
         </para>
       </listitem>
       <listitem>
         <para>
-          Ouputs: scalar. Scilab's int8 data type.
+          Sorties : scalaires. Type int8 de Scilab.
         </para>
       </listitem>
     </itemizedlist>
-
   </refsection>
 
   <refsection id="Defaultproperties_DLATCH">
-    <title>Default properties</title>
+    <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -245,13 +235,13 @@
         <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -263,23 +253,23 @@
   </refsection>
 
   <refsection id="Example_DLATCH">
-    <title>Example</title>
+    <title>Exemple</title>
     <para>
-      The following figure shows a simple use case of the DLATCH block with
-      its timing diagram.
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/DLATCH_en_US.xcos">
-        Open this example in Xcos
+      La figure suivante montre un cas simple d'utilisation du bloc DLATCH avec
+      son chronogramme.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/DLATCH_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
       </link>
     </para>
     <mediaobject>
         <imageobject>
-          <imagedata fileref="../../../examples/integer_pal/en_US/dlatch_diagram_en_US.png" align="center" />
+          <imagedata fileref="../../../examples/integer_pal/fr_FR/dlatch_diagram_fr_FR.png" align="center" />
         </imageobject>
     </mediaobject>
   </refsection>
 
   <refsection id="Interfacingfunction_DLATCH">
-    <title>Interfacing function</title>
+    <title>Fonction d'interfaçage</title>
     <itemizedlist>
       <listitem>
         <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/DLATCH.sci">SCI/modules/scicos_blocks/macros/IntegerOp/DLATCH.sci</link></para>
@@ -288,7 +278,7 @@
   </refsection>
 
   <refsection role="see also" id="Seealso_DLATCH">
-    <title>See also</title>
+    <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
           <link linkend="DFLIPFLOP">DFLIPFLOP</link>
@@ -301,9 +291,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Authors_DLATCH">
-    <title>Authors</title>
+    <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>
