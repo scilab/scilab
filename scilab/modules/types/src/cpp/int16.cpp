@@ -171,8 +171,7 @@ namespace types
                             _piDims[1]  = iCols2;
                             int iPos    = getIndex(_piDims);
 
-                            getSignedIntFormat(get(iPos), &iWidth);
-                            addSignedIntValue(&ostemp, get(iPos), iWidth);
+                            addSignedIntValue(&ostemp, get(iPos), piSize[iCols2]);
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
                         }
                         ostemp << std::endl;
@@ -196,8 +195,7 @@ namespace types
                     _piDims[1]  = iCols2;
                     int iPos    = getIndex(_piDims);
 
-                    getSignedIntFormat(get(iPos), &iWidth);
-                    addSignedIntValue(&ostemp, get(iPos), iWidth);
+                    addSignedIntValue(&ostemp, get(iPos), piSize[iCols2]);
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
                 }
                 ostemp << std::endl;
