@@ -506,6 +506,7 @@ GUI:
 
 * bug 8838 fixed - uimenu without input argument crashed Scilab.
 
+* bug 9044 fixed - Updating a LaTeXed label of uimenu() misworked.
 
 Statistics:
 ==========

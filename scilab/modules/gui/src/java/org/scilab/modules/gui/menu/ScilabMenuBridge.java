@@ -86,7 +86,7 @@ public class ScilabMenuBridge {
 	 * @return the text of the menu
 	 */
 	public static String getText(Menu menu) {
-		return menu.getAsSimpleMenu().getText();
+	    return menu.getAsSimpleMenu().getBaseText();
 	}
 	
 	/**

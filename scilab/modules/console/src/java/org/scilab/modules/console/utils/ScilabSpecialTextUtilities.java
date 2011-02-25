@@ -68,12 +68,10 @@ public final class ScilabSpecialTextUtilities {
             }
         }
 
-        if (icon != null) {
-            try {
-                setIcon(component, icon);
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
+        try {
+            setIcon(component, icon);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
 
         return icon != null;
@@ -104,7 +102,7 @@ public final class ScilabSpecialTextUtilities {
         if (!loadedLaTeX) {
             if (loadJLM == null) {
                 loadJLM = new Thread(new Runnable() {
-/* Create a thread in the background to avoid a lag in the loading of jar */
+                        /* Create a thread in the background to avoid a lag in the loading of jar */
                         public void run() {
                             LoadClassPath.loadOnUse("graphics_latex_textrendering");
                             LaTeXCompiler.compilePartial("", 0);
@@ -143,8 +141,12 @@ public final class ScilabSpecialTextUtilities {
     private static void setIcon(JComponent component, Icon icon) throws InvocationTargetException {
         try {
             Class clazz = component.getClass();
-            Method method = clazz.getMethod("setIcon", new Class[]{Icon.class});
-            method.invoke(component, new Object[]{icon});
+            Method method = clazz.getMethod("getIcon", new Class[]{});
+            Object obj = method.invoke(component, new Object[]{});
+            if (obj != null || icon != null) {
+                method = clazz.getMethod("setIcon", new Class[]{Icon.class});
+                method.invoke(component, new Object[]{icon});
+            }
         } catch (NoSuchMethodException e) {
             throw new InvocationTargetException(e, "No valid method setIcon");
         } catch (IllegalAccessException e) {
