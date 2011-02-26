@@ -21,6 +21,9 @@
     <Filter Include="swig">
       <UniqueIdentifier>{e80c00e9-808d-4fe1-ae70-8b758e25110f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{b5e2adde-d2fd-4625-9c9b-654817244158}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\BrowseVar.cpp">
@@ -70,5 +73,10 @@
     <None Include="..\..\ui_data.iss" />
     <None Include="..\..\sci_gateway\ui_data_gateway.xml" />
     <None Include="..\..\version.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ui_data.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

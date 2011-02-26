@@ -64,12 +64,12 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "dynamic_link_f module"
+            VALUE "FileDescription", "ui_data module"
             VALUE "FileVersion", "5, 4, 0, 0"
-            VALUE "InternalName", "dynamic_link_f module"
+            VALUE "InternalName", "ui_data module"
             VALUE "LegalCopyright", "Copyright (C) 2011"
-            VALUE "OriginalFilename", "dynamic_link_f.dll"
-            VALUE "ProductName", "dynamic_link_f module"
+            VALUE "OriginalFilename", "ui_data.dll"
+            VALUE "ProductName", "ui_data module"
             VALUE "ProductVersion", "5, 4, 0, 0"
         END
     END

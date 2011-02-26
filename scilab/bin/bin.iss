@@ -16,6 +16,7 @@ Source: bin\blasplus.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #ifndef SCILAB_X64
 ; JRE x86 requires this files
 Source: bin\msvcr71.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
 ;
 #ifdef SCILAB_X64
@@ -40,8 +41,6 @@ Source: bin\svml_dispmd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\dynamiclibrary.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\libst.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;
-Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 ; used for localization
 Source: bin\libintl.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

@@ -21,6 +21,9 @@
     <Filter Include="swig">
       <UniqueIdentifier>{02063f4a-e400-4e3c-8e5b-bd6f2482d652}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{305b5756-3bed-4018-9588-9d7b4f74b668}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\CommandHistory.cpp">
@@ -57,5 +60,10 @@
     <None Include="..\..\history_browser.iss" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\version.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="history_browser.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

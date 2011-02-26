@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "Scilab library"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "Scilab library"
-            VALUE "LegalCopyright", "Copyright (C) 2010"
+            VALUE "LegalCopyright", "Copyright (C) 2011"
             VALUE "OriginalFilename", "libscilab.dll"
             VALUE "ProductName", "Scilab library (f2c)"
             VALUE "ProductVersion", "5, 4, 0, 0"
