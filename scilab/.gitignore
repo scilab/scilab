@@ -67,6 +67,7 @@ Scilab.ncb
 Release
 Debug
 *.icproj
+*.vcproj
 *.user
 *.u2d
 *.suo
