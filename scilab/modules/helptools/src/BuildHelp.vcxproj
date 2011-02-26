@@ -56,38 +56,27 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
-
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],%27en_US%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],%27fr_FR%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],%27en_US%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],%27fr_FR%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+exit /B 0
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
 IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\jar" del  /q "$(SolutionDir)modules\scicos\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
 
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\scilab_en_US_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\en_US\scilab_en_US_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\en_US\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\en_US\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\scilab_fr_FR_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\fr_FR\scilab_fr_FR_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\fr_FR\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\fr_FR\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\scilab_pt_BR_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\pt_BR\scilab_pt_BR_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\pt_BR\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit(0);
+exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -98,38 +87,27 @@ IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHel
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
-
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],%27en_US%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],%27fr_FR%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],%27en_US%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],%27fr_FR%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+exit /B 0
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
 IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\jar" del  /q "$(SolutionDir)modules\scicos\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
 
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\scilab_en_US_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\en_US\scilab_en_US_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\en_US\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\en_US\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\scilab_fr_FR_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\fr_FR\scilab_fr_FR_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\fr_FR\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\fr_FR\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\scilab_pt_BR_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\pt_BR\scilab_pt_BR_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\pt_BR\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit(0);
+exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -140,38 +118,27 @@ IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHel
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
-
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],%27en_US%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],%27fr_FR%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],%27en_US%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],%27fr_FR%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+exit /B 0
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
 IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\jar" del  /q "$(SolutionDir)modules\scicos\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
 
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\scilab_en_US_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\en_US\scilab_en_US_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\en_US\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\en_US\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\scilab_fr_FR_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\fr_FR\scilab_fr_FR_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\fr_FR\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\fr_FR\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\scilab_pt_BR_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\pt_BR\scilab_pt_BR_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\pt_BR\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit(0);
+exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -182,38 +149,27 @@ IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHel
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
-
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],%27en_US%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],%27fr_FR%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],%27en_US%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],%27fr_FR%27)%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+exit /B 0
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
 IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\jar" del  /q "$(SolutionDir)modules\scicos\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
 
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\scilab_en_US_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\en_US\scilab_en_US_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\en_US\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\en_US\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\en_US\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\scilab_fr_FR_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\fr_FR\scilab_fr_FR_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\fr_FR\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\fr_FR\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\fr_FR\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\scilab_pt_BR_help"  rmdir /s /q "$(SolutionDir)modules\scicos\help\pt_BR\scilab_pt_BR_help"
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\master_help.xml"  del /q "$(SolutionDir)modules\scicos\help\pt_BR\master_help.xml"  1&gt;NUL 2&gt;NUL
-IF EXIST "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHelp"  del /q "$(SolutionDir)modules\scicos\help\pt_BR\.last_successful_build_javaHelp"  1&gt;NUL 2&gt;NUL
-
-"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit(0);
+exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
