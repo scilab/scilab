@@ -2,6 +2,12 @@
             =================================================
 
 
+Compilation:
+============
+
+* Under Windows, Scilab uses VS 2010 Pro and Express solution.
+
+
 Bug Fixes:
 ==========
 
