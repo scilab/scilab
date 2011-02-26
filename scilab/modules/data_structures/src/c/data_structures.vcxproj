@@ -288,12 +288,20 @@ lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\linpack\linpack_f2c.vcxproj">
+      <Project>{f0f55692-0355-4bc3-be9d-552c8aac5238}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\integer\src\c\integer.vcxproj">
       <Project>{c7865caa-ec7c-41eb-8324-2b81c384ca20}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\polynomials\src\fortran\polynomials_f2c.vcxproj">
+      <Project>{3a72c3ed-98f7-49c7-b59c-2c6c47ff9390}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\string\src\c\string.vcxproj">

@@ -294,6 +294,10 @@
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\sparse\src\fortran\sparse_f2c.vcxproj">
+      <Project>{13082624-97f9-47db-a9a1-ad7d6bf3856a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
