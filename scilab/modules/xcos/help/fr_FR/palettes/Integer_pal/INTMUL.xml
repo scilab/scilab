@@ -1,46 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Xcos
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
- * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
- * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- * 
- * See the file ./license.txt
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
 <refentry
-  version="5.0-subset Scilab" xml:id="INTMUL"
+  version="5.0-subset Scilab" xml:id="INTMUL" xml:lang="fr_FR"
   xmlns="http://docbook.org/ns/docbook"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmln.mml="http://www.w3.org/1998/Math/MathML"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
   xmlns:db="http://docbook.org/ns/docbook"
 >
   <refnamediv>
     <refname>INTMUL</refname>
 
-    <refpurpose>Integer matrix multiplication</refpurpose>
+    <refpurpose>Multiplication de matrices entières</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Block Screenshot</title>
+    <title>Aperçu</title>
 
     <para><inlinemediaobject>
         <imageobject>
@@ -51,12 +37,12 @@
   </refsection>
 
   <refsection id="Contents_INTMUL">
-    <title>Contents</title>
+    <title>Contenu</title>
 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="INTMUL">Integer matrix multiplication</link>
+          <link linkend="INTMUL">Multiplication de matrices entières</link>
         </para>
       </listitem>
 
@@ -76,49 +62,49 @@
 
           <listitem>
             <para>
-              <xref linkend="Data_Type_INTMUL">Data types</xref>
+              <xref linkend="Data_Type_INTMUL">Types de données</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Dialogbox_INTMUL">Dialog box</xref>
+              <xref linkend="Dialogbox_INTMUL">Boîte de dialogue</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_INTMUL">Default properties</xref>
+              <xref linkend="Defaultproperties_INTMUL">Propriétés par défaut</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Example_INTMUL">Example</xref>
+              <xref linkend="Example_INTMUL">Exemple</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_INTMUL">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_INTMUL">Fonction d'interfaçage</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_INTMUL">Computational function</xref>
+              <xref linkend="Computationalfunction_INTMUL">Fonctions de calcul</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Seealso_INTMUL">See also</xref>
+              <xref linkend="Seealso_INTMUL">Voir aussi</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Authors_INTMUL">Authors</xref>
+              <xref linkend="Authors_INTMUL">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -132,7 +118,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Integer_pal">Integer palette</link>
+          <link linkend="Integer_pal">Palette Entier</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -142,68 +128,71 @@
     <title>Description</title>
 
     <para>
-      That block computes the matrix multiplication of two integer input matrices. The number of rows
-      of the second matrix must be equal to the number of columns of the first matrix.
+      Ce bloc calcule la multiplication de deux entrées constituées par des matrices d'entiers.
+      Le nombre de lignes de la seconde matrice doit être égal au nombre de colonnes de la première
+      matrice.
     </para>
     <para>
-      The output is a matrix where the number of rows is equal to the number of rows of the first input
-      matrix and the number of columns is equal to the number of columns of the second input matrix.
+      La sortie est une matrice où le nombre de lignes est égal au nombre de lignes de la première
+      matrice d'entrée et le nombre de colonnes est égal au nombre de colonnes de la seconde matrice
+      d'entrée.
     </para>
-    <para>On overflow, the result can take different forms:</para>
+    <para>Lors d'un dépassement de capacité, le résultat peut prendre trois formes :</para>
     <orderedlist>
       <listitem>
-      <para>
-         A normal non saturated result. By example, if type is int8 and the result is 128, the block output value will be -128.
-      </para>
-      </listitem>
-      <listitem>
         <para>
-          A saturated result. For the previous example the block output value will be 127
+          Un résultat normal non saturé. Par exemple, si le type est int8 et le résultat 128, la valeur de sortie du bloc sera -128.
         </para>
       </listitem>
       <listitem>
         <para>
-          An error message warning the user about the overflow.
+          Un résultat saturé. Pour l'exemple précédent la valeur de sortie du bloc sera 127
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Un message d'erreur prévenant l'utilisateur du dépassement de capacité.
         </para>
       </listitem>
     </orderedlist>
     <para>
-      The user can select one of these three forms by setting the
-      <emphasis role="bold">Do on Overflow</emphasis>
-      field to 0,1 or 2.
+      L'utilisateur peut sélectionner l'une de ces trois formes en mettant le champ
+      <emphasis role="bold">Do on Overflow</emphasis> à 0,1 ou 2.
     </para>
 
     <para />
   </refsection>
 
   <refsection id="Data_Type_INTMUL">
-    <title>Data types</title>
+    <title>Types de données</title>
 
     <para>
-      The block supports the following types :
+      Le bloc supporte les types de données suivants  :
     </para>
-      <itemizedlist>
+    <itemizedlist>
       <listitem>
         <para>
-          Input : matrices, vectors or scalars. Scilab's integer data types (<emphasis role="bold">Data Type</emphasis> parameter).
+          Entrées : matrices, vecteurs ou scalaires. Type entiers de Scilab
+          (paramètre <emphasis role="bold">Data Type</emphasis>).
         </para>
 	<para />
       </listitem>
       <listitem>
         <para>
-          Output : same type that the inputs.
+          Sortie : même type que les entrées.
         </para>
       </listitem>
-      </itemizedlist>
-   </refsection>
+    </itemizedlist>
+  </refsection>
+
 
   <refsection id="Dialogbox_INTMUL">
-    <title>Dialog box</title>
+    <title>Boîte de dialogue</title>
 
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../gui/integer_pal/en_US/INTMUL_gui.png"
+          <imagedata align="center" fileref="../../../gui/integer_pal/fr_FR/INTMUL_gui.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject>
@@ -217,10 +206,9 @@
         </para>
 
         <para>
-          It indicates the type of the input/output data : between 3 and 8.
+          Indique le type de données des entrées : entre 3 et 8.
         </para>
-
-        <para>Properties : Type 'vec' of size 1.</para>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
       </listitem>
 
       <listitem>
@@ -228,42 +216,42 @@
           <emphasis role="bold">Do on Overflow (0:Nothing, 1:Saturate, 2:Error)</emphasis>
         </para>
         <para>
-          Between 0 and 2. When there are an overflowing, if parameter is equal to :
+          Entre 0 et 2. Lors d'un dépassement de capacité, si le paramètre est égal à :
         </para>
-       <itemizedlist>
+        <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">0</emphasis> : the result is non saturated.</para>
+            <para><emphasis role="bold">0</emphasis> : le résultat est non saturé.</para>
           </listitem>
           <listitem>
-              <para><emphasis role="bold">1</emphasis> : the result is saturated.</para>
+              <para><emphasis role="bold">1</emphasis> : le résultat est saturé.</para>
           </listitem>
           <listitem>
-              <para><emphasis role="bold">2</emphasis> : the simulation displays en error message.</para>
+              <para><emphasis role="bold">2</emphasis> : la simulation affiche un message d'erreur.</para>
           </listitem>
         </itemizedlist>
-        <para>Properties : Type 'vec' of size 1.</para>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
 
   <refsection id="Defaultproperties_INTMUL">
-    <title>Default properties</title>
+    <title>Propriétés par défaut</title>
 
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
 
       <listitem>
@@ -299,21 +287,20 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
       </listitem>
 
       <listitem>
         <para>
           <emphasis role="bold">name of computational function:</emphasis>
-
           <emphasis role="italic">matmul_i32</emphasis>
         </para>
       </listitem>
@@ -321,24 +308,23 @@
   </refsection>
 
   <refsection id="Example_INTMUL">
-    <title>Example</title>
+    <title>Exemple</title>
     <para>
-      The goal of this example is to code two decimals digits in an only byte. It makes exactly the inverse work of the example of 
-      the <link linkend="EXTRACTBITS">EXTRACTBITS</link> block.
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/INTMUL_en_US.xcos">
-        Open this example in Xcos
+      Le but de cet exemple est de coder deux chiffres décimaux dans un seul octet. Il fait exactement
+      le travail inverse de l'exemple du bloc <link linkend="EXTRACTBITS">EXTRACTBITS</link>.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/INTMUL_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
       </link>
     </para>
     <para />
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../../../examples/integer_pal/en_US/intmul_diagram_en_US.png" />
-      </imageobject>
+        <imagedata align="center" fileref="../../../examples/integer_pal/fr_FR/intmul_diagram_fr_FR.png" />        </imageobject>
     </mediaobject>
   </refsection>
 
   <refsection id="Interfacingfunction_INTMUL">
-    <title>Interfacing function</title>
+    <title>Fonction d'interfaçage</title>
 
     <itemizedlist>
       <listitem>
@@ -348,7 +334,7 @@
   </refsection>
 
   <refsection id="Computationalfunction_INTMUL">
-    <title>Computational function</title>
+    <title>Fonctions de calcul</title>
 
     <itemizedlist>
       <listitem>
@@ -426,20 +412,20 @@
   </refsection>
 
   <refsection role="see also" id="Seealso_INTMUL">
-    <title>See also</title>
+    <title>Voir aussi</title>
 
     <itemizedlist>
       <listitem>
         <link linkend="MATMUL">MATMUL</link>
       </listitem>
-      <listitem>
+      <listitem>  
         <link linkend="EXTRACTBITS">EXTRACTBITS</link>
-      </listitem>
+      </listitem>  
     </itemizedlist>
   </refsection>
 
   <refsection id="Authors_INTMUL">
-    <title>Authors</title>
+    <title>Auteurs</title>
 
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
