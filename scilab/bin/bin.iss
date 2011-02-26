@@ -19,19 +19,17 @@ Source: bin\msvcr71.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
 ;
 #ifdef SCILAB_X64
-;used by libifcoremd
 Source: bin\msvcrt.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+;used by libifcoremd
 Source: bin\msvcr80.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\msvcm80.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\msvcp80.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\Microsoft.VC80.CRT.manifest; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
 ;
-Source: bin\msvcr90.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\msvcm90.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\msvcp90.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\Microsoft.VC90.CRT.manifest; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\msvcr100.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\msvcp100.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\LIBMMD.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcoremd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -42,15 +40,13 @@ Source: bin\svml_dispmd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\dynamiclibrary.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\libst.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-
+;
+Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 ; used for localization
-Source: bin\libiconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libintl.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libintl.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\GNU_gettext.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-#ifndef SCILAB_X64
-Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-#endif
 ;
 Source: bin\zlib1.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\DetectFramework.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -83,5 +79,4 @@ Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\jhdf5.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\szip.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hdf5dll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\hdf5_cppdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
