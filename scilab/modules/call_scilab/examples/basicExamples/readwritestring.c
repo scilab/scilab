@@ -37,10 +37,13 @@ int main(void)
 		int row = 2, col = 1; /* Size of the matrix */
 		/* Declare the string */
 		char **myMatrixOfString = (char**)malloc(sizeof(char*) * row * col);
-		myMatrixOfString[0]="my Message";
-		myMatrixOfString[1]="on two lines";
 		char variableName[] = "A";
 		SciErr sciErr;
+
+		myMatrixOfString[0]="my Message";
+		myMatrixOfString[1]="on two lines";
+		
+
 
 		/* Write it into Scilab's memory */
 		sciErr = createNamedMatrixOfString(pvApiCtx, variableName, row, col, myMatrixOfString);
@@ -59,24 +62,27 @@ int main(void)
 	}
 
 	{
+		
 		/* 
 		 * Write a matrix into Scilab
 		 * B=['My' 'Great' ; 
 		 *    'String' ';)' ]
 		 * Note that it is done column by column
-		 */ 
-		printf("\n");
-
+		 */
+	
 		int row = 2, col = 2; /* Size of the matrix */
 		/* Declare the string */
 		char **myMatrixOfStringB = (char**)malloc(sizeof(char*) * row * col);
 		SciErr sciErr;
+		char variableNameB[] = "B";
+
+		printf("\n");
 
 		myMatrixOfStringB[0]="My";
 		myMatrixOfStringB[1]="String";
 		myMatrixOfStringB[2]="Great";
 		myMatrixOfStringB[3]=";)";
-		char variableNameB[] = "B";
+		
 		sciErr = createNamedMatrixOfString(pvApiCtx, variableNameB, row, col, myMatrixOfStringB);
 		if(sciErr.iErr)
 		{
