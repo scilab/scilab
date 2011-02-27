@@ -9,11 +9,24 @@ Scinotes:
                    definition of foo.
 
 
+Compilation:
+============
+
+* Option --without-scicos renamed to --without-xcos
+
+* Option --without-ocaml renamed to --without-modelica
+
+* Bug 7049 fixed - jgraphx version was checked even if the --without-xcos
+                   flag is set.
+
+* Bug 9018 fixed - --without-xcos disabled the detection of jhdf5 but was still
+                   building xcos.
+
+
 Bug fixes:
 ==========
 
 * bug 9113 fixed - setlookandfeel could lead to an exception.
-
 
 
             Changes between version 5.3.0 and 5.3.1 of Scilab

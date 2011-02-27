@@ -716,6 +716,48 @@ fi
 AC_SUBST(HDF5_ENABLE)
 AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
 
+#################
+## XCOS
+#################
+
+AC_ARG_WITH(xcos,
+    AC_HELP_STRING([--without-xcos],[Disable Xcos]))
+
+AC_ARG_WITH(modelica,
+    AC_HELP_STRING([--without-modelica],[Disable the OCaml module (modelica)]))
+
+
+XCOS_ENABLE=no
+
+if test "$with_xcos" != no -a "$GUI_ENABLE" != no; then
+   AC_DEFINE([WITH_XCOS], [], [With XCOS])
+
+   save_LIBS="$LIBS"
+
+   AC_CHECK_LIB([rt], [clock_gettime],
+              [RT_LIB="-lrt";
+              AC_DEFINE([HAVE_CLOCK_GETTIME], [1],[Whether clock_gettime is available]) ],
+        [AC_MSG_WARN([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
+   )
+   LIBS="$save_LIBS"
+   AC_SUBST(RT_LIB)
+
+
+#################
+## ocaml which only called when using Xcos
+#################
+
+   if test "$with_modelica" != no; then
+      AC_CHECK_PROG_OCAML()
+   fi
+   XCOS_ENABLE=yes
+
+fi
+
+AC_SUBST(XCOS_ENABLE)
+
+AM_CONDITIONAL(OCAML, test "$with_modelica" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
+AM_CONDITIONAL(XCOS, test "$XCOS_ENABLE" != no)
 
 ###########################
 ## test for JAVA compiler
@@ -749,19 +791,33 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         AC_JAVA_ANT
 
         case "$host_os" in
-                     *Darwin* | *darwin*)
-                JAVA_HOME="";;
+             *Darwin* | *darwin*)
+                  JAVA_HOME=""
+             ;;
         esac
 
 
         if test "$with_gui" != no; then
 
-                # jgraphx
-                AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
-                JGRAPHX=$PACKAGE_JAR_FILE
-                AC_SUBST(JGRAPHX)
+                if test $XCOS_ENABLE = yes; then
+                   # jgraphx
+                   AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
+                   JGRAPHX=$PACKAGE_JAR_FILE
+                   AC_SUBST(JGRAPHX)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+
+                   # Java HDF5 is only needed for Xcos
+                   if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
+                      AC_JAVA_HDF5()
+                      if test "$MACOSX" = 1; then
+                         echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
+                      else
+                         AC_JNI_HDF5()
+                      fi
+                   fi #HDF5_ENABLE
+
+                fi
 
                 # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
@@ -1001,6 +1057,7 @@ fi
 
 AC_SUBST(JAVA_ENABLE)
 
+# Xcos is not checked here because gui=no disables it
 AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
@@ -1200,73 +1257,6 @@ fi
 AC_CHECK_LIB(dl, dlopen)
 
 AC_SEARCH_LIBS([pthread_join],[pthread])
-
-#################
-## SCICOS
-#################
-
-AC_ARG_WITH(scicos,
-    AC_HELP_STRING([--without-scicos],[Disable Scicos]))
-
-AC_ARG_WITH(ocaml,
-    AC_HELP_STRING([--without-ocaml],[Disable the OCaml modules (modelica)]))
-
-
-SCICOS_ENABLE=no
-
-if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
-   AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
-
-   save_LIBS="$LIBS"
-
-   AC_CHECK_LIB([rt], [clock_gettime],
-              [RT_LIB="-lrt";
-              AC_DEFINE([HAVE_CLOCK_GETTIME], [1],[Whether clock_gettime is available]) ],
-        [AC_MSG_WARN([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
-   )
-   LIBS="$save_LIBS"
-   AC_SUBST(RT_LIB)
-
-
-#################
-## ocaml which only called when using Scicos
-#################
-
-   if test "$with_ocaml" != no; then
-      AC_CHECK_PROG_OCAML()
-   fi
-   SCICOS_ENABLE=yes
-
-# Java HDF5 is only needed for Xcos
-if test $HDF5_ENABLE = yes -a "$with_scicos" != no -a "$with_gui" != no;  then
-AC_JAVA_HDF5()
-   if test "$MACOSX" = 1; then
-         echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
-   else
-      AC_JNI_HDF5()
-   fi
-fi #HDF5_ENABLE
-
-#################
-## ocaml which only called when using Scicos
-#################
-
-        if test "$with_ocaml" != no; then
-           AC_CHECK_PROG_OCAML()
-        fi
-        SCICOS_ENABLE=yes
-fi
-
-
-
-
-
-
-AC_SUBST(SCICOS_ENABLE)
-
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
-AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
-
 
 #################
 ## FFTW
@@ -1799,7 +1789,7 @@ if test "$enable_yasp" = yes; then
   ])
 fi
 
-# This script is used by Scicos in order to regenerate the function/block list
+# This script is used by Xcos in order to regenerate the function/block list
 AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
 
 
@@ -1883,7 +1873,6 @@ echo "Options:"
 echo "  Use PVM (--without-pvm) .......................... = $with_pvm"
 echo "  PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
 echo "  PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
-echo "  Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
 echo "  Do not use TCL/TK (--without-tk) ................. = $with_tk"
 echo "  TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
 echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
@@ -1897,21 +1886,22 @@ echo "  Use MATIO (--without-matio) ...................... = $with_matio"
 
 echo ""
 if test "$with_gui" = no; then
-   echo "Not using Scicos because of the option --without-gui"
+   echo "Not using Xcos because of the option --without-gui"
 else
-if test $SCICOS_ENABLE = yes; then
-   echo "Scicos enable"
+if test $XCOS_ENABLE = yes; then
+   echo "Xcos enable"
+   echo "Build modelica compiler (--without-modelica) ....... = $with_modelica"
    echo ""
-if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
-   echo "Ocaml Configuration (for Modelica compiler):"
-   echo "  OCAMLC ............. = $OCAMLC"
-   echo "  OCAMLOPT ........... = $OCAMLOPT"
-   echo "  OCAMLDEP ........... = $OCAMLDEP"
+   if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
+     echo "Ocaml Configuration (for Modelica compiler):"
+     echo "  OCAMLC ............. = $OCAMLC"
+     echo "  OCAMLOPT ........... = $OCAMLOPT"
+     echo "  OCAMLDEP ........... = $OCAMLDEP"
+   else
+     echo "Will not build Modelica compiler"
+   fi
 else
-    echo "Will not build Modelica compiler"
-fi
-else
-   echo "Not using Scicos"
+   echo "Not using Xcos"
 fi
 fi
 

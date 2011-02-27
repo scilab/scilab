@@ -63,7 +63,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@am__append_1 = libscixcos.la
+@GUI_TRUE@@XCOS_TRUE@am__append_1 = libscixcos.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_2 = java
@@ -154,7 +154,7 @@ libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
 libscixcos_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscixcos_la_LDFLAGS) $(LDFLAGS) -o $@
-@GUI_TRUE@am_libscixcos_la_rpath = -rpath $(pkglibdir)
+@GUI_TRUE@@XCOS_TRUE@am_libscixcos_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -343,7 +343,6 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
@@ -369,6 +368,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -809,7 +809,7 @@ images/palettes/WRITEAU_f.png \
 images/palettes/WRITEC_f.png \
 images/palettes/ZCROSS_f.png
 
-@GUI_TRUE@@HDF5_TRUE@USEANT = 1
+@GUI_TRUE@@HDF5_TRUE@@XCOS_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)

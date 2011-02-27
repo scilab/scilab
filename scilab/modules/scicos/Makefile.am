@@ -20,7 +20,7 @@ include $(top_srcdir)/Makefile.incl.am
 include $(srcdir)/Makefile.modelica.am
 
 
-if SCICOS
+if XCOS
 # Code not factorized with the one on the bottom since sundials must be
 # compiled first
 pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la

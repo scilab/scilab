@@ -100,8 +100,10 @@ libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscixcos-disable.la
 
+if XCOS
 if GUI
 pkglib_LTLIBRARIES += libscixcos.la
+endif
 endif
 
 libscixcos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
@@ -399,9 +401,11 @@ images/palettes/WRITEAU_f.png \
 images/palettes/WRITEC_f.png \
 images/palettes/ZCROSS_f.png
 
+if XCOS
 if GUI
 if HDF5
 USEANT=1
+endif
 endif
 endif
 

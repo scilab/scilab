@@ -16,7 +16,7 @@ modulename=scicos_blocks
 
 include $(top_srcdir)/Makefile.incl.am
 
-if SCICOS
+if XCOS
 
 # All the filename are important here.
 # The filename must be the same as the function name
