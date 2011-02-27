@@ -509,6 +509,8 @@ Bug fixes:
 
 * bug 8897 fixed - Typo fixed.
 
+* bug 8906 fixed - Bad links to javasci javadoc on the website.
+
 * bug 8912 fixed - fullpath did not return same result on Windows and Linux.
 
 * bug 8919 fixed - Fix a typo.

@@ -862,9 +862,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String id;
         if (type != null && type.equals("scilab")) {
             id = resolvScilabLink(link);
+        } else if (type != null && type.equals("remote")) {
+            id = makeRemoteLink(link);
         } else {
             id = mapId.get(link);
         }
+
         if (id == null) {
             warnings++;
             System.err.println("Warning (should be fixed): invalid internal link to " + link + " in " + currentFileName + "\nat line " + locator.getLineNumber());
@@ -878,7 +881,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             if (elem.getName().equals("refsection")) {
                 String role = elem.getAttributes().get("role");
                 if (role != null && role.equals("see also")) {
-                    return encloseContents("a", new String[]{"href", id, "class", "link"}, contents) + " &#8212; " + mapIdPurpose.get(link);
+                    String purpose = mapIdPurpose.get(link);
+                    if (purpose != null) {
+                        return encloseContents("a", new String[]{"href", id, "class", "link"}, contents) + " &#8212; " + purpose;
+                    } else {
+                        return encloseContents("a", new String[]{"href", id, "class", "link"}, contents);
+                    }
                 }
             }
         }
@@ -912,6 +920,15 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 return "#";
             }
         }
+    }
+
+    /**
+     * Make a remote link
+     * @param link the link
+     * @return the good link
+     */
+    protected String makeRemoteLink(String link) {
+        return link;
     }
 
     /**

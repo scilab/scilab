@@ -41,6 +41,7 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
     private String outName;
     private List<String> filesList = new ArrayList();
     private String language;
+    private String docWebsite;
 
     /**
      * Constructor
@@ -55,10 +56,11 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
      * @param urlBase the base url for external link
      * @param language the language to use ('en_US', 'fr_FR', ...)
      */
-    public CHMDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase, String language) throws IOException, SAXException {
+    public CHMDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, String docWebsite, boolean isToolbox, String urlBase, String language) throws IOException, SAXException {
         super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase);
         this.outName = new File(outName).getCanonicalPath() + File.separator;
         this.language = language;
+        this.docWebsite = docWebsite;
     }
 
     /**
@@ -218,6 +220,13 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
             buffer.append(s);
             buffer.append("\n");
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected String makeRemoteLink(String link) {
+        return docWebsite + link;
     }
 
     private void convertTreeId(HTMLDocbookLinkResolver.TreeId leaf, Appendable buffer) throws IOException {

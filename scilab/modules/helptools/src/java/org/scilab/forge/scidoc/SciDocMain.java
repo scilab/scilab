@@ -121,7 +121,7 @@ public final class SciDocMain {
                 if (format.equalsIgnoreCase("html") || format.equalsIgnoreCase("web")) {
                     converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase);
                 } else if (format.equalsIgnoreCase("chm")) {
-                    converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, language);
+                    converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, conf.getWebSiteURL(), isToolbox, urlBase, language);
                 }
             }
 
