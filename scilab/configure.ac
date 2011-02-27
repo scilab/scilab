@@ -1789,6 +1789,7 @@ etc/jvm_options.xml
 etc/Info.plist
 scilab-lib.properties
 scilab-lib-doc.properties
+modules/helptools/etc/SciDocConf.xml
 modules/core/includes/version.h
 ])
 
