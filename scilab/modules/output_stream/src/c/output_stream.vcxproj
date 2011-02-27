@@ -180,6 +180,7 @@ lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -233,6 +234,7 @@ lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>

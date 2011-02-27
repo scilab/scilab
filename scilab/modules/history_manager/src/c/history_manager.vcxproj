@@ -172,6 +172,7 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -219,6 +220,7 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
