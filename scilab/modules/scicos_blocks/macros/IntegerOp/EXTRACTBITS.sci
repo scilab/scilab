@@ -1,7 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright 2011 - Bernard DUJARDIN
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,50 +41,66 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Datatype,rule,bit,scal,exprs]=scicos_getvalue( ..
-        ['            Set EXTRACTBITS block parameters'; ..
-        ' '; ..
-        '&nbsp;-Datatype : set the integer type';..
-        '&nbsp;&nbsp;&nbsp;&nbsp;3=int32, 4=int16, 5=int8, ...'; ..
-        '&nbsp;- Bits to extract :'; ..
-        '&nbsp;&nbsp;&nbsp;&nbsp;1=Upper Half';  ..
-        '&nbsp;&nbsp;&nbsp;&nbsp;2=Lower Half';..
-        '&nbsp;&nbsp;&nbsp;&nbsp;3=Range from MSB'; ..
-        '&nbsp;&nbsp;&nbsp;&nbsp;4=Range to LSB'; ..
-        '&nbsp;&nbsp;&nbsp;&nbsp;5=Range of bits';..
-        '&nbsp;- Number of bits or index of bit :'; ..
-        '&nbsp;&nbsp;&nbsp;&nbsp;Index O is LSB';..
-        '&nbsp;&nbsp;&nbsp;&nbsp;Case range of bits:[start,end], 0 is LSB';..
-        ' '],..
-    ['Datatype';..
-     'Bits to extract';..
-     'Number of bits or index of bit';..
-     'Treat bit field as an integer (0=no 1=yes)'],..
-    list('vec',1,'vec',1,'vec',-1,'vec',1),exprs)
+      [ok,Datatype,rule,bit,scal,exprs]=scicos_getvalue( ..
+          [msprintf(gettext("Set %s block parameters"),"EXTRACTBITS");" "; gettext("Bits Extraction");" "; ..
+            gettext("&nbsp;- Bits to Extract:"); ..
+            gettext("&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"); gettext("&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"); ..
+            gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"); gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"); ..
+            gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"); gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"); ..
+            gettext("&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': [Start, End]");" "],..
+          [gettext("Data Type (3:int32, 4:int16, 5:int8, ...)"); gettext("Bits to extract"); ..
+            gettext("Number of Bits or Index of Bit"); gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")],..
+          list('vec',1,'vec',1,'vec',-1,'vec',1), exprs);
+
     if ~ok then break,end
-    if (rule<1)|(rule>5) then message('Incorrect index '+string(rule)+' ; must be 1 to 5.');ok=%f;end
+    bitstr = strcat(string(bit(:))," ")
+    if (rule < 1) | (rule > 5) then
+        block_parameter_error(msprintf(gettext("Wrong value for ''Bits to Extract'' parameter: %d."), rule), ..
+          msprintf(gettext("Must be in the interval %s."), "[1, 5]"));
+        ok = %f;
+    elseif scal < 0 | scal > 1 then
+        block_parameter_error(msprintf(gettext("Wrong value for ''Treat Bit Field as an Integer'' parameter: %d."), scal), ..
+        msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
+        ok = %f
+    else
+
     in=[model.in model.in2];bit=int(bit);rule=int(rule);
-    if (or(bit(:)<0)) then
-      message('Incorrect index '+string(min(bit))+' ; must be &gt;0.');ok=%f;
-    end
-    if (rule==3)|(rule==4) then 
-    if (size(bit,'*')~=1) then message('Index of bit must be a single value');ok=%f;
-    else numb=bit;
-    end
+
+    if (rule==3)|(rule==4) then
+      if (size(bit,'*') ~= 1) then
+          block_parameter_error(msprintf(gettext("Wrong size for ''Number of Bits or Index of Bit'' parameter: %s."), bitstr), ..
+          gettext("Must be a single value."));
+          ok=%f;
+      else numb=bit;
+      end
     elseif (rule==5)
-        if (size(bit,'*')~=2) then message('Must have this form:[start,end]');ok=%f;
+    if (size(bit,'*') ~= 2) then
+        block_parameter_error(msprintf(gettext("Wrong size for ''Number of Bits or Index of Bit'' parameter: %s."), bitstr), ..
+          gettext("Must have this form: [Start, End]."));
+        ok=%f;
+    elseif bit(1) > bit(2) then
+        block_parameter_error(msprintf(gettext("Wrong values for ''Number of Bits or Index of Bit'' parameter: %s."), bitstr), ..
+          msprintf(gettext("''Start'' must be less than ''End''.")));
+        ok=%f;
     else numb=bit(2)-bit(1);
     end ;
     else bit=0;numb=[]
     end
-    if (Datatype==3 | Datatype==6) then
-        if or(bit(:) > 31) then message ('Incorrect index '+string(max(bit))+' ; must be &lt;32.');ok=%f;
     end
+
+    if ok then
+      if (Datatype==3 | Datatype==6) then
+
+        if or(bit(:) > 31) | or(bit(:) < 0) then
+            block_parameter_error(msprintf(gettext("Wrong value for ''Bits to Extract'' parameter: %s."), bitstr), ..
+            msprintf(gettext("Indexes must be in the interval %s."), "[0, 31]"));
+            ok=%f;
+      end
     select rule
         case 1 then
         select scal
         case 0 then model.sim=list('extract_bit_32_UH0',4)
-        case 1 then 
+        case 1 then
             select Datatype
                 case 3 then model.sim=list('extract_bit_32_UH1',4)
                 case 6 then model.sim=list('extract_bit_u32_UH1',4)
@@ -95,7 +111,7 @@ case 'set' then
          case 3 then
         select scal
         case 0 then model.sim=list('extract_bit_32_MSB0',4)
-        case 1 then 
+        case 1 then
             select Datatype
                 case 3 then model.sim=list('extract_bit_32_MSB1',4)
                 case 6 then model.sim=list('extract_bit_u32_MSB1',4)
@@ -114,13 +130,16 @@ case 'set' then
         end
     end
     elseif (Datatype==4 | Datatype==7) then
-    if or(bit(:) > 15) then message ('Incorrect index '+string(max(bit))+' ; must be &lt;16.');ok=%f;
-    end
+        if or(bit(:) > 15) | or(bit(:) < 0) then
+            block_parameter_error(msprintf(gettext("Wrong value for ''Bits to Extract'' parameter: %s."), bitstr), ..
+                msprintf(gettext("Indexes must be in the interval %s."), "[0, 15]"));
+            ok=%f;
+        end
     select rule
         case 1 then
         select scal
         case 0 then model.sim=list('extract_bit_16_UH0',4)
-        case 1 then 
+        case 1 then
             select Datatype
                 case 4 then model.sim=list('extract_bit_16_UH1',4)
                 case 7 then model.sim=list('extract_bit_u16_UH1',4)
@@ -131,7 +150,7 @@ case 'set' then
          case 3 then
         select scal
         case 0 then model.sim=list('extract_bit_16_MSB0',4)
-        case 1 then 
+        case 1 then
             select Datatype
                 case 4 then model.sim=list('extract_bit_16_MSB1',4)
                 case 7 then model.sim=list('extract_bit_u16_MSB1',4)
@@ -142,22 +161,25 @@ case 'set' then
          case 5 then
         select scal
         case 0 then model.sim=list('extract_bit_16_RB0',4)
-        case 1 then 
-            select Datatype 
+        case 1 then
+            select Datatype
                 case 4 then model.sim=list('extract_bit_16_RB1',4)
                 case 7 then model.sim=list('extract_bit_u16_RB1',4)
             end
         end
     end
-    elseif (Datatype==5 | Datatype==8) then
-    if or(bit(:) > 7) then message ('Incorrect index '+string(max(bit))+' ; must be &lt;8.');ok=%f;
-    end
+    elseif (Datatype == 5 | Datatype == 8) then
+        if or(bit(:) > 7) | or(bit(:) < 0) then
+            block_parameter_error(msprintf(gettext("Wrong value for ''Bits to Extract'' parameter: %s."), bitstr), ..
+                msprintf(gettext("Indexes must be in the interval %s."), "[0, 7]"));
+            ok=%f;
+        end
     select rule
         case 1 then
         select scal
         case 0 then model.sim=list('extract_bit_8_UH0',4)
-        case 1 then 
-            select Datatype 
+        case 1 then
+            select Datatype
                 case 5 then model.sim=list('extract_bit_8_UH1',4)
                 case 8 then model.sim=list('extract_bit_u8_UH1',4)
             end
@@ -167,7 +189,7 @@ case 'set' then
          case 3 then
         select scal
         case 0 then model.sim=list('extract_bit_8_MSB0',4)
-        case 1 then 
+        case 1 then
             select Datatype
                 case 5 then model.sim=list('extract_bit_8_MSB1',4)
                 case 8 then model.sim=list('extract_bit_u8_MSB1',4)
@@ -178,15 +200,20 @@ case 'set' then
          case 5 then
         select scal
         case 0 then model.sim=list('extract_bit_8_RB0',4)
-        case 1 then 
+        case 1 then
             select Datatype
                 case 5 then model.sim=list('extract_bit_8_RB1',4)
                 case 8 then model.sim=list('extract_bit_u8_RB1',4)
             end
         end
     end
-    else message ('Datatype '+string(Datatype)+' is not supported ; It must be 3 to 8');ok=%f;
+    else
+        block_parameter_error(msprintf(gettext("Wrong value for ''Data Type'' parameter: %d."), Datatype), ..
+            msprintf(gettext("Must be in the interval %s."), "[3, 8]"));
+        ok=%f;
     end
+    end
+
       if ok then
     it=Datatype
     ot=Datatype
