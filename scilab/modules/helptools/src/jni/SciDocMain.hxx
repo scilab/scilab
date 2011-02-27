@@ -57,7 +57,7 @@ typedef signed char byte;
 #endif
 #endif
 
-namespace org_scilab_forge_scidoc {
+namespace org_scilab_modules_helptools {
 class SciDocMain {
 
 private:
@@ -146,7 +146,7 @@ char * process(char * sourceDoc, char * styleSheet);
                         
                 static const std::string className()
                 {
-                return "org/scilab/forge/scidoc/SciDocMain";
+                return "org/scilab/modules/helptools/SciDocMain";
                 }
                 
 };

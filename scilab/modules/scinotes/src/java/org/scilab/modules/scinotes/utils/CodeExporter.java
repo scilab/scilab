@@ -30,7 +30,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.forge.scidoc.scilab.AbstractScilabCodeHandler;
+import org.scilab.modules.helptools.scilab.AbstractScilabCodeHandler;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 
 import org.apache.fop.apps.FopFactory;
