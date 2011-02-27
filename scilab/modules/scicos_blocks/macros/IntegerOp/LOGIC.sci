@@ -1,7 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright 2011 - Bernard DUJARDIN
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,27 +36,29 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,mat,herit,exprs]=scicos_getvalue( ..
-        ['Set LOGIC block parameters'; ..
-        " "; ..
-        "&nbsp;The rows of the matrix contains output values"; ..
-        "&nbsp;for all combinations of inputs. The number of rows"; ..
-        "&nbsp;must be a power of two"; ..
-        "&nbsp;The number of columns gives the number of outputs."; ..
-        " "], ..
-        ['Truth table (matrix of outputs)'; ..
-         'Accepts inherited events (0=no 1=yes)'], ..
-        list('mat',[-1,-2],'vec',1),exprs)
+      [ok,mat,herit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "LOGIC"); " ";gettext("Combinatorial logic");" ";
+           gettext("&nbsp; Rows of the matrix are the output values"); gettext("&nbsp; Number of rows must be a power of two."); ..
+           gettext("&nbsp; Number of columns gives the number of outputs.");" "], ..
+          [gettext("Truth Table (matrix of outputs)"); gettext("Accepts Inherited Events (0:No, 1:Yes)")], ..
+          list("mat",[-1,-2],"vec",1), exprs);
+
       if ~ok then break,end
       nout=size(mat,2)
       nin=(log(size(mat,1))/log(2))
       u1=floor(nin)
       if (herit<>0) then herit=1;end;
-      if (u1<>nin) then
-        message ("The number of rows of the truth table must be a power of two");
-        ok=%f;
-      elseif (find(mat(:)<>0&mat(:)<>1)<>[]) then
-        message ("Number in truth table must be 0 or 1");ok=%f;
+      if (u1 <> nin) then
+          block_parameter_error(msprintf(gettext("Wrong size for ''Truth Table'' parameter: %d."), size(mat,1)), ..
+            gettext("Number of rows must be a power of two."));
+          ok=%f;
+      elseif (find(mat(:) <> 0 & mat(:) <> 1) <> []) then
+          block_parameter_error(gettext("Wrong value for elements of ''Truth Table'' parameter."), ..
+              msprintf(gettext( "Must be in the interval %s."),"[0, 1]"));
+          ok=%f;
+      elseif herit <0 | herit > 1 then
+          block_parameter_error(gettext(msprintf("Wrong value for ''Accepts Inherited Events'' parameter: %d.", herit), ..
+              msprintf(gettext( "Must be in the interval %s."),"[0, 1]")));
+          ok=%f;
       end
       if ok then
         in=[ones(nin,1) ones(nin,1)]
@@ -93,3 +95,4 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
    x=standard_define([2 2],model,exprs,gr_i)
   end
 endfunction
+
