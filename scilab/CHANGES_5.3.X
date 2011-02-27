@@ -439,6 +439,9 @@ Bug fixes:
 * bug 7691 fixed - Giving complex arguments to inverse degree trigonometric
                    functions produced inconsistent results.
 
+* bug 8007 fixed - Hit UP key when the message 'Continue display...' was
+                   displayed could lead to a crash. 
+
 * bug 8435 fixed - squarewave(t) failed for t<0. Thanks to Samuel Gougeon for
                    the fix.
 
