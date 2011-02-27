@@ -72,6 +72,8 @@ Documentation:
 * bug 5362 fixed - There were problems with the same xml:id but having a
                    different case.
 
+* bug 5511 fixed - printf_conversion help page was unclear.
+
 * bug 5796 fixed - No way to increase/decrease font size.
 
 * bug 6514 fixed - 'help %k' didn't open the good help file.
