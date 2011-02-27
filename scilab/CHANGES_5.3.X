@@ -26,6 +26,9 @@ Compilation:
 Bug fixes:
 ==========
 
+* Bug 8423 fixed - With certain options of the configure, the build process
+                   failed.
+
 * bug 9113 fixed - setlookandfeel could lead to an exception.
 
 

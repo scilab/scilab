@@ -510,7 +510,7 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### types : gateway declaration ####
 libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitypes_la_sci_gateway_DATA = 
-@GUI_TRUE@USEANT = 1
+@NEED_JAVA_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

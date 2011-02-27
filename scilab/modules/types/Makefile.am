@@ -88,6 +88,6 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitypes_la_sci_gateway_DATA = 
 
-if GUI
+if NEED_JAVA
 USEANT=1
 endif
