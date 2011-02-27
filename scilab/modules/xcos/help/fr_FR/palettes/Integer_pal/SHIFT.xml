@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+-->
+<refentry
+  version="5.0-subset Scilab" xml:id="SHIFT" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <refnamediv>
+    <refname>SHIFT</refname>
+
+    <refpurpose>Décalage/Rotation de bits</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../../images/palettes/SHIFT.png" valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_SHIFT">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="SHIFT">Décalage/Rotation de bits</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_SHIFT">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_SHIFT">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Data_Type_SHIFT">Types de données</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_SHIFT">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_SHIFT">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Example_SHIFT">Exemple</xref>
+            </para>
+          </listitem>          
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_SHIFT">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_SHIFT">Fonctions de calcul</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_SHIFT">Voir aussi</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_SHIFT">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_SHIFT">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Integer_pal">Palette Entier</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_SHIFT">
+    <title>Description</title>
+
+    <para>
+      Ce bloc décale les bits du signal d'entrée. Dans cette opération les chiffres sont
+      déplacés vers la droite ou la gauche. L'utilisateur peut choisir la méthode de
+      décalage qui peut être normale ou cyclique en plaçant le paramètre
+      <emphasis role="bold">Shift Type</emphasis> à 0 ou 1.
+      Le nombre et la direction des décalages sont réglés avec le paramètre
+      <emphasis role="bold">Number of Bits to Shift Left</emphasis>.
+      Si ce nombre est positif l'entrée est décalée à gauche, sinon elle est décalée à droite.
+    </para>
+    <para>
+      Quand le paramètre <emphasis role="bold">Shift Type</emphasis> est :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">0</emphasis> : un décalage arithmétique est appliqué au signal d'entrée.
+          Dans ce cas, les bits qui sont sortis à l'une ou l'autre extrémité sont perdus. Des zéros sont
+          insérés à droite, dans le cas d'un décalage à gauche;dans le cas d'un décalage à droite, des
+          copies du bit de signe sont insérées à gauche.
+        </para>
+        <para>
+          Par exemple un décalage arithmétique à droite de 1 bit donne : <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_arithmetic_right_fr_FR.png" />
+          </imageobject>
+          </inlinemediaobject> et un décalage arithmétique à gauche donne :<inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/integer_pal/fr_FR/shift_arithmetic_left_fr_FR.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+        <para/>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">1</emphasis> : un décalage circulaire est appliqué au signal d'entrée.
+          Dans ce cas, il y a rotation des bits comme si les extrémités de droite et de gauche du
+          registre étaient jointes. La valeur qui est insérée à droite pendant un décalage à gauche
+          est la valeur qui est décalée et sortie à gauche et vice et versa.
+        </para>
+        <para>
+          Par exemple une rotation à droite de 1 bit donne : <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_rotate_right_fr_FR.png" />
+          </imageobject>
+          </inlinemediaobject> et une rotation à gauche : <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/integer_pal/fr_FR/shift_rotate_left_fr_FR.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Le registre à décalage effectue une multiplication par <literal>2<superscript>n</superscript></literal>
+      (décalage à gauche arithmétique) ou une division entière par <literal>2<superscript>n</superscript></literal>
+      (décalage à droite arithmétique), où <literal>n</literal> est le nombre de décalages.
+      Il peut également être utilisé pour sérialiser des données ou créer une mémoire tampon.
+    </para>
+    <para />
+  </refsection>
+
+  <refsection id="Data_Type_SHIFT">
+    <title>Types de données</title>
+
+    <para>
+      Le bloc supporte les types de données suivants  :
+    </para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            Entrée : scalaire. Tout type entier de Scilab (paramètre <emphasis role="bold">Data Type</emphasis>).
+          </para>
+          <para />
+        </listitem>
+        <listitem>
+          <para>
+            Sortie : scalaire. Même type que l'entrée.
+          </para>
+        </listitem>
+      </itemizedlist>
+  </refsection>
+
+  <refsection id="Dialogbox_SHIFT">
+    <title>Boîte de dialogue</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../gui/integer_pal/fr_FR/SHIFT_gui.png" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Data Type (3:int32, 4:int16, 5:int8, ...)</emphasis>
+        </para>
+        <para>
+          Indique le type de données en entrée : entre 3 et 8.
+        </para>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Number of Bits to Shift Left (Negative number to shift right)</emphasis>
+        </para>
+        <para>
+          Indique le nombre de bits du signal d'entrée à décaler. Une valeur positive indique un décalage à gauche, une valeur négative un décalage à droite. L'indice doit être, quand le type est :
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              int32 or uint32 : positif et inférieur à 32.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              int16 or uint16 : positif et inférieur à  16.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              int8 or uint8 : positif et inférieur à  8.
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Shift Type (0:Arithmetic, 1:Circular)</emphasis>
+        </para>
+        <para>
+          O ou 1. Indique la règle utilisée pour le décalage des bits. Il peut être arithmétique
+          ou circulaire. Voir la description pour plus d'information. Quand il est égal à :
+        </para>
+         <itemizedlist>
+          <listitem>
+            <para>
+              <emphasis role="bold">0</emphasis>, un décalage arithmétique est appliqué au signal
+              d'entrée.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">1</emphasis>, un décalage circulaire est appliqué au signal
+              d'entrée.
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para>Voir la description pour plus d'information.</para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_SHIFT">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 3</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 3</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">shift_32_LA</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_SHIFT">
+    <title>Exemple</title>
+
+    <para>
+      Dans cet exemple le Super bloc est un compteur binaire 3 bits. De façon à obtenir les données décimales correspondantes, 
+      les sorties <emphasis><literal>Q<subscript>1</subscript></literal></emphasis>
+      et <emphasis><literal>Q<subscript>2</subscript></literal></emphasis> du compteur sont respectivement 
+      décalées à gauche de un et de deux bits. Finalement la sortie <emphasis><literal>Q<subscript>0</subscript></literal></emphasis>  
+      et les sorties décalées sont additionnées.
+    </para>
+    <para>
+      Pour bien voir l'évolution, mettre le paramètre <emphasis>Mise à l'échelle temps réel
+      </emphasis> à 0.5 s dans le sous-menu <emphasis>Configurer</emphasis> du menu
+      <emphasis>Simulation</emphasis>.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../../../examples/integer_pal/fr_FR/shift_diagram_fr_FR.png" />
+      </imageobject>
+    </mediaobject>
+    <para>
+      Ci-dessous le détail du compteur binaire.
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../../../examples/integer_pal/fr_FR/shift_diagram_superbloc_fr_FR.png" />
+      </imageobject>
+    </mediaobject>
+  </refsection>
+
+  <refsection id="Interfacingfunction_SHIFT">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+         <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/SHIFT.sci">SCI/modules/scicos_blocks/macros/IntegerOp/SHIFT.sci</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_SHIFT">
+    <title>Fonctions de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_32_LA.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_32_LC.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_32_RA.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_u32_RA.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_32_RC.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_16_LA.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_16_LC.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_16_RA.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_u16_RA.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_16_RC.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_8_LA.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_8_LC.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_8_RA.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_u8_RA.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/shift_8_RC.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_SHIFT">
+    <title>Voir aussi</title>
+
+    <itemizedlist>
+      <listitem>
+        <link linkend="BITSET">BITSET</link>
+      </listitem>
+      <listitem>
+        <link linkend="BITCLEAR">BITCLEAR</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_SHIFT">
+    <title>Auteurs</title>
+
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>
