@@ -62,7 +62,7 @@
 [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

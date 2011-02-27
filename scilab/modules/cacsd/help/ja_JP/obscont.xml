@@ -135,7 +135,7 @@ K=lft(J,r,Q);
 spec(h_cl(P,K))  // 閉ループ A 行列 (要安定);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

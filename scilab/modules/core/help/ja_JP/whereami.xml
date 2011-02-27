@@ -27,7 +27,7 @@ deff('y=t1(y)',['y=y^2';'whereami()'])
 test(1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

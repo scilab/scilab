@@ -33,7 +33,7 @@
 	この関数は,show_window関数で代替されています.
     </para>
   </refsection>
-   <refsection>
+   <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

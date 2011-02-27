@@ -23,7 +23,7 @@
 	<literal>user</literal>に数行を追加する必要があります.
 	詳細については,<literal>intersci</literal>またはScilabのドキュメントを参照ください.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

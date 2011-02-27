@@ -82,7 +82,7 @@ t2=[2004 06 24 162 5 10 17 01 13 965]
 E2=etime(t2,t1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

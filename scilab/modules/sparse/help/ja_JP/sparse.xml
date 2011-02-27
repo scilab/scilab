@@ -94,7 +94,7 @@ size(sp)
 x=rand(2,2);abs(x)-full(abs(sparse(x)))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

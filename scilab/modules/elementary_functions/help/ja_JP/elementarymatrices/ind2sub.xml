@@ -97,7 +97,7 @@ ind2sub([2,3,2],1:12)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

@@ -302,7 +302,7 @@ scf(2);
 plot3d1(xx,yy,zz) // 2つのグラフィックは同じ
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

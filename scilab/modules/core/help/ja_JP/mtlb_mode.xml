@@ -61,7 +61,7 @@ a-[] -->[]
 </para>
     <para><literal> mtlb_mode()</literal>はカレントの mmodeの値を返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

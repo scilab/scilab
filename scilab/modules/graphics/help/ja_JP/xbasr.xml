@@ -30,7 +30,7 @@
 	この関数は,ドライバ<literal>"Rec"</literal>でのみ
 	動作します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

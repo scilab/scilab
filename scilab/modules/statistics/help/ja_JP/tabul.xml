@@ -113,7 +113,7 @@ m = tabul(words);                           // 各単語の出現頻度を計算
 results = [m(1)(p) string(occ)]             // 結果を表示
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -54,11 +54,11 @@
 	<literal>K=%k(m)</literal> は,パラメータ<literal>m</literal>を指定した
 	完全楕円積分です.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>
-        <link linkend="k">%k</link>
+        <link linkend="percentk">%k</link>
       </member>
     </simplelist>
   </refsection>

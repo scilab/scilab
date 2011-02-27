@@ -59,7 +59,7 @@
     Matlab バイナリ MATファイルをデータ読み込み用または書き込み用に
 	開きます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

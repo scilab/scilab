@@ -35,7 +35,7 @@
     コメント <literal>//</literal> は, 特定の行をコメントにします.
 	すなわち, <literal>//</literal> で始まる行はインタプリタから無視されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

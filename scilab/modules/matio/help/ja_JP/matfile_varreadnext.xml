@@ -65,7 +65,7 @@
 	<link linkend="matfile_open">matfile_open</link>により開かれた
     Matlabバイナリ MATファイルの次の変数を読み込みます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

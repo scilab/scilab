@@ -79,7 +79,7 @@ rect=[1,ymn,prod(size(y)),ymx];
 clf();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
 ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

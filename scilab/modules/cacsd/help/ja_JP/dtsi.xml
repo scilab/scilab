@@ -65,7 +65,7 @@
     <para><literal>G = Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal></para>
     <para><literal>G</literal> は状態空間形式または伝達関数形式とすることができます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

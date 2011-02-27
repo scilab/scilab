@@ -40,7 +40,7 @@
 	行列式<literal>d</literal>を返します.
 	Leverrierのアルゴリズムに基づきます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

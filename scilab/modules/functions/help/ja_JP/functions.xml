@@ -139,7 +139,7 @@ deff('[x,y]=myfct(a,b)',['x=a+b';
 exec SCI/modules/elementary_functions/macros/asinh.sci;
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member> <link linkend="function">function</link> </member>

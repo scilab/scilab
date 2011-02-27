@@ -60,7 +60,7 @@
 	を返します.</para>
     <para><literal>G</literal> は可安定で可検出である必要があります.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

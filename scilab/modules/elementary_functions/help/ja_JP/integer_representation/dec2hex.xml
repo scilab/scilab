@@ -71,7 +71,7 @@ dec2hex([2748 10;11 3])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

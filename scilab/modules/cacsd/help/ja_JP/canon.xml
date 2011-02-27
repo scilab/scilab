@@ -98,7 +98,7 @@ Ac+Bc*F         // コンパニオン形式
 spec(A+B*F/U)   // F/U は元の基底のゲイン行列.
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

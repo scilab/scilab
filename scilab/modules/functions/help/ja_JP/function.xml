@@ -125,7 +125,7 @@ foo(%pi/3)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

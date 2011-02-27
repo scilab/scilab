@@ -46,7 +46,7 @@
     <para><literal>clc([nblines])</literal> は,ウインドウモードではない
 	Scilabの時, Unix/Linuxプラットフォームでは使用できないことに注意してください.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

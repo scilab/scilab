@@ -71,7 +71,7 @@ oct2dec(["1" "756115"; "0" "23"])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

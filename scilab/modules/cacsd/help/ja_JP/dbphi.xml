@@ -45,7 +45,7 @@
 	すなわち <literal>db(k)=20*log(abs(repf(k)))/log(10)</literal> です.
 	<literal>phi(k)</literal> は<literal>repf(k)</literal>の位相 (単位:度)です.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

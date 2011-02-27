@@ -60,7 +60,7 @@
    そして, <literal>H=-(B*D'+Z*C')*Ri</literal> は
 	 <literal>A+H*C</literal> が安定となるよう設定されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

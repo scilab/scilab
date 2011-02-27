@@ -87,7 +87,7 @@ strcspn(["fcba73","f7cba73"],["312","34567890"])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

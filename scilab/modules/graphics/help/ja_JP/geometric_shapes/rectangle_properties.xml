@@ -247,7 +247,7 @@ r.data(:,[1 2])=[1/2 1/2];
 r.clip_state="off"
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

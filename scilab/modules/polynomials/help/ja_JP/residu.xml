@@ -62,7 +62,7 @@ a=a+0*%i;b=b+0*%i;
 real(residu(b*btild,z*a,atild)-2.9488038) //複素数の場合
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -85,7 +85,7 @@
 	<literal>f(z)dz</literal>の積分を計算します.</para>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

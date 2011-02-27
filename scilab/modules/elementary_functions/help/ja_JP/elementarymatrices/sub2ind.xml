@@ -105,7 +105,7 @@ sub2ind([2,3,2],[i',j',k'])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

@@ -73,7 +73,7 @@ c=rand(2,2*64)
 H=hank(4,5,c);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

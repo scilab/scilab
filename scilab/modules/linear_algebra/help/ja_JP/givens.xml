@@ -73,7 +73,7 @@ U=givens(A(:,1));
 U*A
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

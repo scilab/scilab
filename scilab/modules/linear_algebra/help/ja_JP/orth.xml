@@ -59,7 +59,7 @@ A=rand(5,3)*rand(3,4);
 svd([orth(A),X(:,1:dim)])
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

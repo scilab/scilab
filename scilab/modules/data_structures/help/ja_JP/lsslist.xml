@@ -35,7 +35,7 @@ lsslist(a1,....an)</synopsis>
 	を作成します.
 	 <literal>ai</literal>に関して型や大きさの確認は行われません.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

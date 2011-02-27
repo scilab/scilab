@@ -26,7 +26,7 @@
     <title>説明</title>
     <para>Scilabにインストールされているモジュールの一覧を返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

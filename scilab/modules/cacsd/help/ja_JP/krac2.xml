@@ -56,7 +56,7 @@ hf1=h/.g(1);roots(denom(hf1))
 hf2=h/.g(2);roots(denom(hf2))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

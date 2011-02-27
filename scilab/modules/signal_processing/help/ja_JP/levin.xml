@@ -258,7 +258,7 @@ s2=gsort(imag(s2));s2=s2(1:d*n/2);//just the positive ones !
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

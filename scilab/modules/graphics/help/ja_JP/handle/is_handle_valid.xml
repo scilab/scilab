@@ -70,7 +70,7 @@ delete(polylines(3:7));
 is_handle_valid(polylines)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

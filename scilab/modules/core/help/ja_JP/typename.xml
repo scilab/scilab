@@ -67,7 +67,7 @@ typename(name,type)</synopsis>
     <para>定義済みの型の最大数は 50です.</para>
     
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

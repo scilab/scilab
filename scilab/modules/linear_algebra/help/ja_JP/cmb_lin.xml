@@ -28,7 +28,7 @@
     <literal>alfa*x-beta*y</literal>を評価します. <literal> alfa, beta, x, y</literal> 
 	は文字列です. (低レベルルーチン)</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

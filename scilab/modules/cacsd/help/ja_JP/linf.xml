@@ -56,7 +56,7 @@ n=sup [sigmax(g(jw)]
     <para>
     (sigmax 最大固有値).</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

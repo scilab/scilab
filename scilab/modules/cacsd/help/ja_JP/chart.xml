@@ -105,7 +105,7 @@ set(gca(),'data_bounds',[-180 -30;180 30]) //enlarge the frame
 chart(list(1,0));
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

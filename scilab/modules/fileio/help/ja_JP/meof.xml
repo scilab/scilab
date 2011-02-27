@@ -52,7 +52,7 @@
 	関数 <literal>clearerr</literal> はエラーフラグおよびEOFフラグを 0 にリセットする
 	ために使用されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

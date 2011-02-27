@@ -66,7 +66,7 @@ z=alpha*%asn(sample/omegac,m)+Beta*ones(sample);
 plot(sample,ell1mag(epsilon,m1,z))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -97,7 +97,7 @@ eye(3,3)-full(speye(3,3))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

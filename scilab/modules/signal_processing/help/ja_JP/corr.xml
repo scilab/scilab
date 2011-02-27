@@ -233,7 +233,7 @@ y=ymacro(100,1);
 [max(abs(cc-cc1)),max(abs(mm-mm1)),max(abs(cc-cc2)),max(abs(mm-mm2))]
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

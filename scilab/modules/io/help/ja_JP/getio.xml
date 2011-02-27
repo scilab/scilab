@@ -66,7 +66,7 @@
     <para><literal>getio</literal> はメインScilabウインドウの入出力にアサイン
 	された論理ユニットを返します</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

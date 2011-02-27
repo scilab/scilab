@@ -64,7 +64,7 @@ A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   //複素数の場合
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

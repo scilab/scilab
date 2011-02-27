@@ -48,7 +48,7 @@ sz=gstacksize()</synopsis>
     <para><literal>gstacksize('min')</literal> により,ユーザは
 	グローバルスタックの大きさを最小値に減少させることができます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

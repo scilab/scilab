@@ -23,7 +23,7 @@ result = perl(...)</synopsis>
 	引数として arg1, arg2, ... を渡します.</para>
     <para>result = perl(...) は実行したPerlコールの結果を result に返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

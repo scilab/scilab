@@ -429,7 +429,7 @@ plot2d(x-4,sin(x),1,"185","sin(x)")
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

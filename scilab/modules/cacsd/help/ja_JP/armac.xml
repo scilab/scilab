@@ -87,7 +87,7 @@ ar=armac(a,b,d,2,1,sig)
 [A,B,D]=arma2p(ar);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

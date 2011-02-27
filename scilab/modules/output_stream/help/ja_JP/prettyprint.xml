@@ -119,7 +119,7 @@ xstring(0.2,0.2,prettyprint(G*s-1)); // LaTeX表現により多項式を表示
  ]]></programlisting>
   </refsection>
   
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member><link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link></member>

@@ -193,7 +193,7 @@ h=fact*(b0+b1*%z+b2*%z^2)./(c0+c1*%z+%z^2)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

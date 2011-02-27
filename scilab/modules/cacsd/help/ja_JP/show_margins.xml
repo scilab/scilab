@@ -62,7 +62,7 @@ show_margins(h)
 show_margins(h,'nyquist')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member><link linkend="p_margin">p_margin</link></member>

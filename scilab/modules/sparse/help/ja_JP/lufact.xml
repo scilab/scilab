@@ -124,7 +124,7 @@ x=lusolve(h,b);a*x-b
 ludel(h)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

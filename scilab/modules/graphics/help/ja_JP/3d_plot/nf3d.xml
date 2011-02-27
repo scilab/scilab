@@ -54,7 +54,7 @@ z= sin(u)'*ones(v);
 [xx,yy,zz]=nf3d(x,y,z); plot3d(xx,yy,zz)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

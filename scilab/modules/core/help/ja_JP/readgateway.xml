@@ -50,7 +50,7 @@ gatewayID(1) // 13 is ID of 'core' gateway in scilab
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

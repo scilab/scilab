@@ -124,7 +124,7 @@ x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
 barh(x,y,0.2,'green');
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -49,7 +49,7 @@ H=unglue(h)</synopsis>
 	Compoundを分解し,その要素エンティティをその親に関連付けます.
     <literal>glue</literal>は個々の子のハンドルのベクトルをを返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -62,7 +62,7 @@ U=rand(3,3);A1=U*A/U;B1=U*B;
 Wc1=ctr_gram(A1,B1)    //Not invariant!
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

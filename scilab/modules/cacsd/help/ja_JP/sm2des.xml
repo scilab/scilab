@@ -50,7 +50,7 @@ Sm = [-sE + A   B;
     <para>
     を記述子システム <literal>Des=list('des',A,B,C,D,E)</literal>)に変換します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

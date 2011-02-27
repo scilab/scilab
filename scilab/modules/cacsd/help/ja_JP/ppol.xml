@@ -69,7 +69,7 @@ F=ppol(A,B,[-1,-2,-3]);
 spec(A-B*F)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -96,7 +96,7 @@ b=int32([1 -120 127 312])
 y=iconvert(b,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

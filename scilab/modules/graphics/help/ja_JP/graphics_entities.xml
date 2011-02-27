@@ -242,7 +242,7 @@ set("current_figure",f) //前の図をカレントの図にする
 plot2d(x,x^3)  //描画データは最初の図に送信される
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -53,7 +53,8 @@ a=[1 0 0 0 2];
 nnz(a)
  ]]></programlisting>
   </refsection>
-  <refsection><title>参照</title>
+  <refsection role="see also">
+    <title>参照</title>
     <simplelist type="inline">
       <member>
         <link linkend="spget">spget</link>

@@ -34,7 +34,7 @@ E=[1/s,0;s,1/(s+1)]
 E=['A11','A12';'A21','A22']
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -65,7 +65,7 @@ p=[s;s*(s+1)^2;2*s^2+s^3];
 p*p'*Y
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

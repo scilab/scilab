@@ -47,7 +47,7 @@
 	<link linkend="matfile_open">matfile_open</link>により開かれた
     Matlab バイナリ MATファイルを閉じます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

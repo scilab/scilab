@@ -227,7 +227,7 @@ xtitle(" different way to evaluate a spline outside its domain")
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

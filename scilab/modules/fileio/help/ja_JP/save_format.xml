@@ -335,7 +335,7 @@
 	詳細は cvname.f ファイルを参照ください.</para>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

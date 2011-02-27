@@ -36,7 +36,7 @@
 	Scilabモジュールがインストールされている場合に
 	<literal>%t</literal>を返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

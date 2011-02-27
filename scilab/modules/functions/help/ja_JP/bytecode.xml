@@ -78,7 +78,7 @@ function a=foo(),a=sin(3),endfunction
 bytecode(foo)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

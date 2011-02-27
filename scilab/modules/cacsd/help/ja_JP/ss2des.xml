@@ -75,7 +75,7 @@ Des=des2ss(S);Des(5)=clean(Des(5))
 Des1=des2ss(S1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -33,7 +33,7 @@ rlist(a1,....an)</synopsis>
 	<literal>tlist</literal>を作成します.
 	<literal>ai</literal>の型も大きさも確認されません.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

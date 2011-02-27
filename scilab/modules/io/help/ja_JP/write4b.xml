@@ -55,7 +55,7 @@
 	<literal>file-name</literal> は<literal>file</literal> 
 	関数の結果である必要があります.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -42,7 +42,7 @@
     <para>関数<literal>clearerr</literal> はエラーインジケータおよび
 	EOFインジケータを 0にリセットするために使用されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

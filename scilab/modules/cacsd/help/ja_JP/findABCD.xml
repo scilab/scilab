@@ -238,7 +238,7 @@ Y1=flts(U,SYS1);
 clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

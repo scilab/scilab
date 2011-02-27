@@ -57,7 +57,7 @@
 	状態空間システムの離散時間無限大ノルムを出力します
     (最大特異値が単位円上にある周波数の最大値).</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

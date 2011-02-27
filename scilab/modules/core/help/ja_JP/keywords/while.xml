@@ -52,7 +52,7 @@ while norm(a-(a+e),1) > %eps, e=e/2; k=k+1; end
 e,k
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -110,7 +110,7 @@ a=rand(100,10,'n');
 [facpr,comprinc,lambda,tsquare] = princomp(a);
  ]]></programlisting>
   </refsection>
- <refsection>
+ <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

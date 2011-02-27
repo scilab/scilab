@@ -123,7 +123,7 @@ plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
 legend(["exponential random sample histogram" "exact density curve"]);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -55,7 +55,7 @@ trace(P)    // This is dim(X2)
 svd([Q,X2])   // span(Q) = span(X2)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

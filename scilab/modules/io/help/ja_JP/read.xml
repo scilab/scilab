@@ -120,7 +120,7 @@ B=read('foo',-1,5)
 read(%io(1),1,1,'(a)')  // ユーザ入力を待つ
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

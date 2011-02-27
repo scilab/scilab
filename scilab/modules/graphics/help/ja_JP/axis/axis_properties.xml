@@ -269,7 +269,7 @@ a3.tics_labels= 'B'  +string(0:7);
 a3.tics_direction="left";
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

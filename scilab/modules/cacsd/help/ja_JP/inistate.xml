@@ -135,7 +135,7 @@ y(k)   = Cx(k) + Du(k),
 	解く最小二乗問題の係数行列の条件数の逆数の推定値
 	も返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

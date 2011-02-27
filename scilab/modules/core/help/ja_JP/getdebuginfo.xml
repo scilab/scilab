@@ -36,7 +36,7 @@ dynamic_info = getdebuginfo();
 	関する情報を返します.</para>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

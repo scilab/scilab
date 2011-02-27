@@ -75,7 +75,7 @@ delete(a); //軸を削除
 delete("all"); //図の全てのグラフィックオブジェクトを削除
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

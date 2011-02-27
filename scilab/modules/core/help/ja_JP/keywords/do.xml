@@ -15,7 +15,7 @@
 　　ループ変数の定義と命令を分離するために使用されます.
     </para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

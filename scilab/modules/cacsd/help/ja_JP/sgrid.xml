@@ -67,7 +67,7 @@ sgrid()
 sgrid(0.6,2,7)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

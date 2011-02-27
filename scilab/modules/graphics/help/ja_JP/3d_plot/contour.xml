@@ -319,7 +319,7 @@ z=feval(t,t,my_surface);
 plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

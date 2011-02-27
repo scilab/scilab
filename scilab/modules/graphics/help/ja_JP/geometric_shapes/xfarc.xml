@@ -61,7 +61,7 @@ xset("color",2)
 xfarc(0.5,0.5,1,1,0,360*64)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

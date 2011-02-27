@@ -255,7 +255,7 @@ e.visible='off';
 e.visible='on'; // メッシュビューに戻す
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

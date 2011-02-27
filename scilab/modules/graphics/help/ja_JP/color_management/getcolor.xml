@@ -55,7 +55,7 @@ c=getcolor()</synopsis>
 	<literal>getcolor</literal> は選択された色のID,または
 	"Cancel"ボタンがクリックされたかウインドウがクローズされた場合に []を返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

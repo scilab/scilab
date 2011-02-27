@@ -73,7 +73,7 @@ plot2d((-4:45)',yi',[3],"000");
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

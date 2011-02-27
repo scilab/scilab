@@ -59,7 +59,7 @@
 	<literal>p=prod(f)</literal>となるような<literal>f=[f0 f1 ... fn]</literal>
 	を返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

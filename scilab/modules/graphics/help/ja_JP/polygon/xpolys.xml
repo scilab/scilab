@@ -75,7 +75,7 @@ xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
 xset("default")
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

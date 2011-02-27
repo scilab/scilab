@@ -114,7 +114,7 @@ H=time_id(2,'step',rep)
 H=time_id(3,u,rep)    // uを入力として指定, 高次過ぎる系を指定
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

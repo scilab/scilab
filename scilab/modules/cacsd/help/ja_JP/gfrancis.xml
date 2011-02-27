@@ -98,7 +98,7 @@ norm(G*M-T*B,1)
 norm(J*M-D,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

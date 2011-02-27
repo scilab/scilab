@@ -15,7 +15,7 @@
     <title>説明</title>
     <para><literal>who_user</literal> は,ユーザの変数名を表示します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

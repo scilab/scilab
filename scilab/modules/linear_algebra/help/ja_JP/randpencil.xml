@@ -91,7 +91,7 @@ F=randpencil([],[1,2],s^3-2,[]); //通常のペンシル
 det(F)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

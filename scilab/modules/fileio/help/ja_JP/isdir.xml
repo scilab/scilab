@@ -44,7 +44,7 @@
     <title>説明</title>
     <para><literal>r=isdir(path)</literal> は, <literal>path</literal> がディレクトリへのパスかどうかを調べます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <para>
     この関数はC関数 stat に基づいています. <literal>SCI</literal> および  
@@ -58,7 +58,7 @@ isdir(TMPDIR)
 isdir SCI/etc/scilab.start
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

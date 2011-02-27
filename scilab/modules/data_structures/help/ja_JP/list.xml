@@ -129,7 +129,7 @@ lter = lstcat(l,lbis)
 size(lter) - size(lbis) - size(l)  // must be zero
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

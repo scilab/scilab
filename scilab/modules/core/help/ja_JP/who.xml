@@ -31,7 +31,7 @@ names=who('global','sorted')
     <para><literal>who('sorted')</literal> は
 	アルファベット順に全ての変数を表示します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

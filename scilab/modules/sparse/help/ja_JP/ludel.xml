@@ -44,7 +44,7 @@
 	により線形疎行列システム<literal>A*x = b</literal>を解き,
 	<literal>p</literal>を消去することができます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

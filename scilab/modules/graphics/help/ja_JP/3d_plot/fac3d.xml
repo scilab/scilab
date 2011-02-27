@@ -29,7 +29,7 @@ fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])</synopsis>
 	これらの関数は古い関数であり,
     <literal>plot3d</literal> および <literal>plot3d1</literal>で置き換えられています.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

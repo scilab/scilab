@@ -187,7 +187,7 @@ y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

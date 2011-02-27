@@ -55,7 +55,7 @@ bode(h)
 g=20*log(abs(repfreq(h,fr)))/log(10)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

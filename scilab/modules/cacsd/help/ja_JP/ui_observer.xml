@@ -149,7 +149,7 @@ C1=rand(1,nx);D1=[0,1];
 UIobs=ui_observer(Sys,1,C1,D1);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

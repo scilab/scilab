@@ -132,7 +132,7 @@ T1n=Oloop*inv(eye(Oloop)+Oloop);
 clean(T1tf(1,1)-T1n(1,1))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

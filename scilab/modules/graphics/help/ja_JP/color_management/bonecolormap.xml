@@ -52,7 +52,7 @@ plot3d1();
 f.color_map = bonecolormap(32);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

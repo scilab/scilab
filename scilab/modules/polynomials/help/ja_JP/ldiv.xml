@@ -62,7 +62,7 @@ wtfbis=clean(ss2tf(wssbis))
 x3=ldiv(numer(wtfbis),denom(wtfbis),5)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

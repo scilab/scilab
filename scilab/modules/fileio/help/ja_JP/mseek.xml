@@ -94,7 +94,7 @@ mclearerr(fd1)
 mclose(fd1);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -65,7 +65,7 @@ P0=G*R0 *G'
 	収束しないことに注意してください.
 	この場合には,srfaur関数を使用する方が良いでしょう.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

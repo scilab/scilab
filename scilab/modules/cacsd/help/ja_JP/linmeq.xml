@@ -364,7 +364,7 @@ X=linmeq(3,A,C,[1 0]);
 norm(A'*X'*X*A - X'*X +C'*C,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

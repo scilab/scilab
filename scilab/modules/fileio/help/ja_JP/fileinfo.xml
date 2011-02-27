@@ -237,7 +237,7 @@ FILES = [SCI;SCIHOME;'not_exist_file';TMPDIR]
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

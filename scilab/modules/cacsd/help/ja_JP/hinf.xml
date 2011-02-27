@@ -196,7 +196,7 @@ Gamma=10.18425636157899;
 [AK,BK,CK,DK] = hinf(A,B,C,D,2,2,Gamma)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

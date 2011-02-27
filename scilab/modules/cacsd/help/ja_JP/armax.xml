@@ -144,7 +144,7 @@ Arma1est=armax(2,-1,y,[]);
 [A,B,D]=arma2p(Arma1est)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

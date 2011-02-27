@@ -112,7 +112,7 @@ hn(nc+1:2*nc-1)=an(2:nc)/2;
 plot(.5*(0:255)/256,frmag(hn,256));
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

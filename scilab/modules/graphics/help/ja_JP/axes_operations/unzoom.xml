@@ -73,7 +73,7 @@ zoom_rect(rect) // 再度ズーム
 unzoom(gcf()) // 全ての軸のズームを解除, unzoom()と等価
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

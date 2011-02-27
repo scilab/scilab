@@ -2867,7 +2867,7 @@ disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
     </itemizedlist>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

@@ -119,7 +119,7 @@ xtitle('z=x2-y ^2');
 mesh(X,Y,Z);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

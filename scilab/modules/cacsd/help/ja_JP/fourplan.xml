@@ -59,7 +59,7 @@ P=[ P11 P12;
 	この関数は4つの線形システム
     <literal>P11,P12,P21,P22</literal>を返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

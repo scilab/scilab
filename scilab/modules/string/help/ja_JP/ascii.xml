@@ -80,7 +80,7 @@ ascii([115 99 105 108 97 98])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

@@ -42,7 +42,7 @@
 	名前<literal>xi</literal>に代入します.</para>
     <para><literal>resume</literal> は <literal>return</literal>と等価です.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

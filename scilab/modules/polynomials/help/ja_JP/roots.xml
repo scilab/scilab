@@ -97,7 +97,7 @@ spec(A)
     </simplelist>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <para>RPOLYアルゴリズムは以下の文献に記述されている.

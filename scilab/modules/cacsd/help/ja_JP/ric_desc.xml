@@ -94,7 +94,7 @@ E=[eye(n,n),G;               H=[A, 0*ones(n,n);
     解 <literal>X</literal> <literal>X=riccati(A,G,C,'d')</literal>  
     'ただし,<literal>G=B/R*B'</literal>) によっても得られます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

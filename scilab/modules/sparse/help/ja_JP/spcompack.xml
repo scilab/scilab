@@ -93,7 +93,7 @@ xlindx=[1,2,3,8,9,11];
 adjncy-spcompack(xadj,xlindx,lindx)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

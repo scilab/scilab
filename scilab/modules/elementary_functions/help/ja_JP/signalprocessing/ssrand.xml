@@ -147,7 +147,7 @@ w=ss2ss(Sl,inv(U)); //undo the random change of basis => form as above
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

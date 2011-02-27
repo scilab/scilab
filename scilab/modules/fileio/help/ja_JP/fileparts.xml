@@ -80,7 +80,7 @@ v=fileparts(fullpath,sel)</synopsis>
 fileparts('SCI/etc/scilab.start','extension')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

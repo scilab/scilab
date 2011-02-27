@@ -115,7 +115,7 @@ w=exp(2*%i*%pi*[0:0.1:1]);
 norm(abs(horner(R1,w))-abs(horner(R,w)))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

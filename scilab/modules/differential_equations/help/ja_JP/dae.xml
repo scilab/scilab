@@ -514,7 +514,7 @@ xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

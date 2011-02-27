@@ -85,7 +85,7 @@ linspace(1+%i,2+2*%i,10)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

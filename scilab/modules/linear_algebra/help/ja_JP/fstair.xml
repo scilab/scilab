@@ -164,7 +164,7 @@
 	ペンシルを計算する際に使用されます.
 	ただし, E は列階段形です (ereduc参照)</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

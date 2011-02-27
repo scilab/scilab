@@ -48,7 +48,7 @@
     <literal>invr(X)</literal> は <literal>invsyslin(X)</literal>に等しくなる.
     </para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <para>数値行列用の<literal>inv</literal> 関数は Lapack ルーチン
       DGETRF, DGETRI (実数行列の場合)および  ZGETRF, ZGETRI

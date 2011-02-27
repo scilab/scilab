@@ -61,7 +61,7 @@
       <literal>detr(X)</literal>に等しい.
     </para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <para>
      det の計算は Lapack ルーチン DGETRF (実数行列の場合) および

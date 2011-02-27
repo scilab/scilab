@@ -82,7 +82,7 @@ x=linspace(0,2*%pi,50);theta=0:0.05:1;
 paramfplot2d(f,x,theta);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

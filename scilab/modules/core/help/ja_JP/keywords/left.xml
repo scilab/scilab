@@ -51,7 +51,7 @@ s=poly(0,'s');[1/s,2/s]
 [u,s]=schur(rand(3,3))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

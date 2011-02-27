@@ -79,7 +79,7 @@ roots(f)    //f is stable
 clean(f*gtild(f,'c')-p)    //f(s)*f(-s) is p(s)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

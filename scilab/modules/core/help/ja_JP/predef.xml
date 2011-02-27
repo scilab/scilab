@@ -44,7 +44,7 @@ oldnew=predef('clear')</synopsis>
 	<literal>SCIHOME/.scilab</literal> および <literal>SCIHOME/scilab.ini</literal>
 	により設定することができます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

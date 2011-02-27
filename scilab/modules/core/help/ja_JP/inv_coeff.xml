@@ -55,7 +55,7 @@ P1=inv_coeff(A)
 norm(coeff(P1)-A)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

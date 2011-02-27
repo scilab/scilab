@@ -50,7 +50,7 @@
 	行列 <literal>K</literal> を計算します
 	(Parrotの問題).</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

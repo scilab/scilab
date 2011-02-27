@@ -63,7 +63,7 @@ arcs=[-1.0 0.0 0.5; // 左上 x
 xfarcs(arcs,[1,2,3])
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

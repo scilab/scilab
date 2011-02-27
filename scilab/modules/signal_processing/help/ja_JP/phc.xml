@@ -96,7 +96,7 @@ s=s/2/%pi/.1;
 imag(s),
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

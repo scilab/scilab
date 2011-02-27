@@ -72,7 +72,7 @@ svd(A),svd([X1,A])   // X1 in span(A)
 svd(B),svd([B,X1])   // X1 in span(B)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

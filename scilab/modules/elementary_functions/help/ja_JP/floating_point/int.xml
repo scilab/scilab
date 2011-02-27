@@ -44,7 +44,7 @@
     <para><literal>int(X)</literal> は実数行列 <literal>X</literal>の整数部を返します.
     <literal>fix</literal>と同じです.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

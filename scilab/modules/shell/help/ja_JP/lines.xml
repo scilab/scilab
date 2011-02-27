@@ -63,7 +63,7 @@ ncl=lines()</synopsis>
 	これらのパラメータはウインドウの大きさが変更された場合にも
 	自動的に修正されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

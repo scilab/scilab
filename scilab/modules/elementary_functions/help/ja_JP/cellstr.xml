@@ -89,7 +89,7 @@ cellstr(["abc","def",'gh';"i","j","klm"])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

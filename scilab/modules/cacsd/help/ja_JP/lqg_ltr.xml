@@ -81,7 +81,7 @@ J    =  | tr[S  W  W  S ] + tr[T  T]dw
  T = G*K*(I+G*K)^(-1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -72,7 +72,7 @@
     datatipSetOrientation(d2,"lower left") 
     ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member><link linkend="datatips" >datatips</link></member>

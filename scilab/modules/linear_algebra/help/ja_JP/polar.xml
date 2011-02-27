@@ -62,7 +62,7 @@ A=rand(5,5);
 norm(A-Ro*expm(%i*Theta),1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

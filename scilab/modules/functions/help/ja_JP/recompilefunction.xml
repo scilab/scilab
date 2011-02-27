@@ -60,7 +60,7 @@ for i=1:100; asinh(rand(100,100)); end
 showprofile(asinh)   
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

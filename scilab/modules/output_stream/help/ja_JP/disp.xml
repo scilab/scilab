@@ -52,7 +52,7 @@ deff('[]=%t_p(l)','disp(l(3),l(2))')
 disp(tlist('t',1,2))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

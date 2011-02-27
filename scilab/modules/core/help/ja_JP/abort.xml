@@ -13,7 +13,7 @@
 	プロンプトを表示します.<literal>pause</literal> 中の場合,
   <literal>abort</literal>はレベル0プロンプトに戻します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

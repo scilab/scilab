@@ -341,7 +341,7 @@ link(lp,'mytestf','f');
 [As,Es,Z,dim] = schur(A,E,'mytestf')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

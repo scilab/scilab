@@ -87,7 +87,7 @@
      130
     : Scilab 内部コード (C または Fortran コード).</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -62,7 +62,7 @@
     <literal>x</literal>の虚部です. ( 複素数を入力するには<literal>%i</literal> を参照ください).</para>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

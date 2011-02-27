@@ -57,7 +57,7 @@
     <link linkend="matfile_open">matfile_open</link>により開かれた
 	MatlabバイナルMATファイルの中の変数の一覧を取得します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

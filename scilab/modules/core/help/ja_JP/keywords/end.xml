@@ -14,7 +14,7 @@
     <literal>for, while, if, select</literal> は <literal>end</literal> で
 	終わる必要があります.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

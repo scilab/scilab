@@ -19,11 +19,11 @@
 	(<literal>find_freq</literal>で使用されます).
 	</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>
-        <link linkend="k">%k</link>
+        <link linkend="percentk">%k</link>
       </member>
     </simplelist>
   </refsection>

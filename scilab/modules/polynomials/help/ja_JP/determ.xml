@@ -64,7 +64,7 @@ determ(w)
 det(coeff(w,1))*s^10
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

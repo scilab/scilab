@@ -63,7 +63,7 @@ subplot(2,2,4)
 hist3d()
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

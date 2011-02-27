@@ -275,7 +275,7 @@ xtitle('The filtered gaussian noise','t','y');
     linkend="csim">csim</link> 関数は時間刻みを使用します.</para>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

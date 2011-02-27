@@ -77,7 +77,7 @@ p1.foreground=color("purple"); p2.foreground=color("navy blue");
 p1.foreground=color(255,128,128);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

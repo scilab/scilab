@@ -79,7 +79,7 @@ ls SCI/modules/core/macros/*.sci
 x=ls('SCI/modules/core/macros/*.sci')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

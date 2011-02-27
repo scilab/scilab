@@ -73,7 +73,7 @@ txt=lmitool(probname,varlist,datalist)</synopsis>
 	このファイルはソルバー関数のスケルトンで,
 	<literal>lmisolver</literal>により必要とされる評価関数です.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

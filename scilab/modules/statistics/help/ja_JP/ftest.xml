@@ -60,7 +60,7 @@ samples=[46 55 54;
 [f,p]=ftest(samples)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

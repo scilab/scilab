@@ -58,7 +58,7 @@ sl=cont_frm(NUM,den);
 slss=ss2tf(sl);       //NUM/denと比較
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

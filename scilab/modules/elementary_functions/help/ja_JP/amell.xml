@@ -54,17 +54,17 @@
 	はベクトル, <literal>sn</literal> は(要素毎の)計算値のベクトルです.
 	関数<literal>%sn</literal>で使用されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>
         <link linkend="delip">delip</link>
       </member>
       <member>
-        <link linkend="sn">%sn</link>
+        <link linkend="percentsn">%sn</link>
       </member>
       <member>
-        <link linkend="asn">%asn</link>
+        <link linkend="percentasn">%asn</link>
       </member>
     </simplelist>
   </refsection>

@@ -33,7 +33,7 @@
 	上限はシャノン周波数<literal>( 1/dt &gt; 2*f )</literal>に
 	一致します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

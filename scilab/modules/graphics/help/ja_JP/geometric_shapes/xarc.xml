@@ -60,7 +60,7 @@ xarc(-1,1,2,2,0,90*64)
 xarc(-1.5,1.5,3,3,0,360*64)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -63,7 +63,7 @@
     はコントローラゲインで <literal>Kf=lqe(P21)</literal> はフィルタゲインです.
     <literal>lqg2stan</literal>の例を参照ください.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

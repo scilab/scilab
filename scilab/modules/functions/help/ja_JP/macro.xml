@@ -47,7 +47,7 @@ function [y1,...,yn]=foo(x1,...,xm)
 	(すなわち, 多項式<literal>n</literal> および
 	 <literal>d</literal> を指定した <literal>x=list('r',n,d,[])</literal>)</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

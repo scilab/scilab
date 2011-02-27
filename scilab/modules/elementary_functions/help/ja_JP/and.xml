@@ -60,7 +60,7 @@ b=and(A,'c'), b=and(A,2)
 	</para>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

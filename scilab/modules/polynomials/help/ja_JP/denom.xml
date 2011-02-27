@@ -51,7 +51,7 @@
     <literal>r('den')</literal> または <literal>r.den</literal>と
 	同じになります.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

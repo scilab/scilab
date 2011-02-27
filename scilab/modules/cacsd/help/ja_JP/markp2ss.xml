@@ -72,7 +72,7 @@ norm(markpar-Markpar,1)
 //注意... c*a^5*b は C*A^5*B ではありません!
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

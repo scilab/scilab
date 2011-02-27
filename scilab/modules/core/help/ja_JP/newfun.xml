@@ -26,7 +26,7 @@
 	<literal>funptr</literal> および <literal>clearfun</literal>と共に使用すると,
 	同じ名前の関数によりプリミティブを再定義できます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

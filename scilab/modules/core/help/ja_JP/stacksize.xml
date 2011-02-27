@@ -51,7 +51,7 @@ sz=stacksize()</synopsis>
     <para><literal>sz=stacksize()</literal> は, カレントの全スタックの大きさと
 	使用中のスタックの大きさを含む要素2個のベクトルを返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

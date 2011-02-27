@@ -81,7 +81,7 @@ draw(a) // ...指定した軸のみが可視で,ウインドウは再描画さ�
 drawnow() // 全て可視
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

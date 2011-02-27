@@ -102,7 +102,7 @@
     逆に <literal>A</literal> が安定または非安定の場合, 
 	下界および上界は対応するリアプノフ解により計算されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

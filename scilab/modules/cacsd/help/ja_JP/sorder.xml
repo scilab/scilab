@@ -356,7 +356,7 @@ y(k)   = Cx(k) + Du(k) + e(k),
     2. ldwork が指定されたが,  ワークスペースの大きさの最小値よりも小さい場合,
 	替わりに最小値が使用されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

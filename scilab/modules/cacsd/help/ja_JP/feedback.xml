@@ -76,7 +76,7 @@ ss2tf(W1)
 ss2tf(S1*inv(eye()+S2*S1))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

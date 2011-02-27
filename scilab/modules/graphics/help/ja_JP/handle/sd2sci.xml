@@ -58,7 +58,7 @@
     <literal>sz</literal> または <literal>orig</literal> が文字列で指定される場合,
 	生成される命令は通常の式として使用します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

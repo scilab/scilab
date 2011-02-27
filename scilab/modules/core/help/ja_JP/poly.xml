@@ -81,7 +81,7 @@ A=rand(2,2);poly(A,"x")
 h=(1+2*%s)/poly(1:4,'s','c')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

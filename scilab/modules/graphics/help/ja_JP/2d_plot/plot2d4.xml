@@ -62,7 +62,7 @@ e.children(2).polyline_style=4;
 e.children(3).polyline_style=4;
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

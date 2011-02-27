@@ -44,7 +44,7 @@
 	<literal>S</literal>が<literal>syslin</literal>リストの場合,
 	<literal>inv(S)</literal>による古い処理が使用されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -139,7 +139,7 @@
 	プリコンディショナ付きのQuasi Minimal Residual法により,
 	線形システム<literal>Ax=b</literal>を解きます. </para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

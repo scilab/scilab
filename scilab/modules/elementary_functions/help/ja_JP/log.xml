@@ -63,7 +63,7 @@ exp(log([1,%i,-1,-%i]))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

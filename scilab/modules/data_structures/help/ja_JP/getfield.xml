@@ -63,7 +63,7 @@ a(1) // the a(1,1,1) entry
 getfield(1,a) // the mlist first field
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

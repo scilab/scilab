@@ -70,7 +70,7 @@ mom=cmoment(x,2,'r')
 mom=cmoment(x,3,'c')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

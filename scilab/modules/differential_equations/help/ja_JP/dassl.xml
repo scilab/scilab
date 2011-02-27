@@ -452,7 +452,7 @@ y=dassl([y0,yd0],0,t,'chemres','chemjac');
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

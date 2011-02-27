@@ -54,7 +54,7 @@
 	多項式<literal>D</literal>行列が付属する可能性がある状態空間表現の
 	左可逆線形システム(<literal>syslin</literal> リスト)であると仮定されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

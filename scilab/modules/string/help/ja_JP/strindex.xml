@@ -146,7 +146,7 @@ k=strindex('2' ,'/2(]*)?$\1/' ,'r')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

@@ -58,7 +58,7 @@ foo1(%t) //以下のプロンプトでquitを入力してください
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

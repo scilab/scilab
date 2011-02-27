@@ -150,7 +150,7 @@ plot2d(fr,20*log10(W),style=color('blue'))
 set(gca(),'grid',[1 1]*color('gray'))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

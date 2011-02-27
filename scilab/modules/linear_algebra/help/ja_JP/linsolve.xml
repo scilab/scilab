@@ -89,7 +89,7 @@ res = A\b;
 printf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

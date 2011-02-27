@@ -89,7 +89,7 @@ r0=c(1:2,1:2);
 Rt=(Rt+Rt')/2
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

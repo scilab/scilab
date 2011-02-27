@@ -62,7 +62,7 @@ kdf=tokenpos(str)
 first=part(str,kdf(1,1):kdf(1,2))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

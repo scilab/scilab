@@ -691,7 +691,7 @@ scale       x          e          /  gamma(shape)
 	保証されます.
 	両方の処理が完了した時,両方の生成器のブロックを前に進めます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

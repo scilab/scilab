@@ -111,7 +111,7 @@ e=gce(); // カレントのエンティティを取得
 e.data=e.data($:-1:1) // 逆順
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

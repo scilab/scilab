@@ -95,7 +95,7 @@ clf(gcf(),'reset')
 plot3d1(t,t,sin(t)'*cos(t));  // color_map changed (back to the default one with 32 colors)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

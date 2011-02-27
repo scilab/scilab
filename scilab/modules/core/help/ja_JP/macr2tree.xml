@@ -44,7 +44,7 @@ txt=tree2code(tree,%T);
 write(%io(2),txt,'(a)');
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

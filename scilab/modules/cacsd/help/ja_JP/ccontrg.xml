@@ -63,7 +63,7 @@ B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
     <para><literal>r(1)</literal> および <literal>r(2)</literal> は,
 	<literal>D22</literal> の次元(行 x 列)です.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

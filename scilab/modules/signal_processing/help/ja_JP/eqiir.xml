@@ -130,7 +130,7 @@ h=fact*poly(zzeros,'z')/poly(zpoles,'z')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member><link linkend="eqfir">eqfir</link></member>

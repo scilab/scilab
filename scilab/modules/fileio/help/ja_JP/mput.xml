@@ -122,7 +122,7 @@ if   98<>mget(1,'cb') then pause,end
 mclose();
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

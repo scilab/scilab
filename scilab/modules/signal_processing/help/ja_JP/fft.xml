@@ -162,7 +162,7 @@ clf()
 plot2d(f,abs(y(1:n)))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -57,7 +57,7 @@
 M=hypermat([2 3 2 2],1:24)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

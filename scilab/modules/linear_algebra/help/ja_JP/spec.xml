@@ -205,7 +205,7 @@ evals=spec(A,B)
     <para>大きな完全 / 疎行列の場合, Arnoldi モジュールを使用することができます.</para>
   </refsection>
   
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <para>行列の固有値計算は Lapack ルーチンに基づいています</para>
@@ -302,7 +302,7 @@ roots(det(A-%s*E))   //complex case
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

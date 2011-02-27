@@ -72,7 +72,7 @@ slr=projsl(sl,Q,M);  //reduced model
 hankelsv(slr)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

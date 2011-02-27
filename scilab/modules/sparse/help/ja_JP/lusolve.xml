@@ -68,7 +68,7 @@ x=lusolve(sp,-ones(4,1));
 sp*x
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

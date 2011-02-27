@@ -79,7 +79,7 @@ simp_mode(%F);hns=s/s
 simp_mode(%T);hns=s/s
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

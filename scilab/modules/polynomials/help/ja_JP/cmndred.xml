@@ -46,7 +46,7 @@
 	<literal>num./den</literal>により定義される有理行列は
 	 <literal>n/d</literal>です.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

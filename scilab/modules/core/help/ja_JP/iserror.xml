@@ -21,7 +21,7 @@
     <para><literal>n&gt;0</literal> はエラー番号です ; 
 	<literal>n&lt;0</literal>を指定すると全てのエラーが確認されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -73,7 +73,7 @@ plot(fg(1:n),hst1);
 plot2d(fg(1:n)',hst2',[3],"000");
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

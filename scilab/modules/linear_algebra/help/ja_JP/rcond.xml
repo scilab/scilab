@@ -59,7 +59,7 @@ A(1,1)=0.000001;
 rcond(A)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

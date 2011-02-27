@@ -139,7 +139,7 @@ Ham=[F+G*Fit*H -G*Fit;-Fit*H Fit];
 norm(X2-X,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

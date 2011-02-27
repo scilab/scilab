@@ -14,7 +14,7 @@
 	<literal>ans</literal>は,直近の代入されていない評価式の値を有しています.</para>
     <para>変数 <literal>ans</literal> は <literal>predef</literal>で保護されません.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

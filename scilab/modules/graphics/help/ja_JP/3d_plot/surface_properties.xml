@@ -443,7 +443,7 @@ e.color_flag=2; // デフォルトモードに戻す
 e.color_flag= 3; // 補間影モード (data.colorフィールドが指定されていないため,デフォルトの青色に基づく)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

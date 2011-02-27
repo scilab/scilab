@@ -111,7 +111,7 @@ genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])<
 	関数<literal>foo</literal>が参照された後でのみ
 	Scilabから既知となります.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

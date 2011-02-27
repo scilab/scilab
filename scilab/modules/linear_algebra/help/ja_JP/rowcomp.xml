@@ -93,7 +93,7 @@ y=X*x
 norm(y(dim+1:$))/norm(y(1:dim))     // 小さい
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

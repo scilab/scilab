@@ -20,7 +20,7 @@
     <literal>n</literal> が正の場合,クリアされるエラーの番号となります ;
 	それ以外の場合,全ての誤差がクリアされます (デフォルトの場合)</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

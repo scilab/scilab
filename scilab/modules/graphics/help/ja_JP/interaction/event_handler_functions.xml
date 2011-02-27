@@ -210,7 +210,7 @@ fig.event_handler_enable = "on" ;
 fig.event_handler_enable = "off" ; //イベントハンドラを停止
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

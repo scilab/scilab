@@ -76,7 +76,7 @@ x=-3:0.2:3 ;y=x ;
 clf() ;fplot3d(x,y,f,alpha=5,theta=31)  
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

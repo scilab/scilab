@@ -109,7 +109,7 @@ errcatch()</synopsis>
 	<literal>errcatch</literal>は,関数のリターンの時に自動的にリセットされます.
 	</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

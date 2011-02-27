@@ -58,7 +58,7 @@
 	<literal>v</literal>の次数の行列の係数を返します
 	(<literal>v</literal> は行または列ベクトルです).</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -131,7 +131,7 @@ fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

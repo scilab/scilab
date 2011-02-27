@@ -138,7 +138,7 @@ Q=full(Q);
 norm(P*L*U*Q-a)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

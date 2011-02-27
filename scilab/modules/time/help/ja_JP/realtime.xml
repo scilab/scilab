@@ -73,7 +73,7 @@ realtimeinit(1);realtime(0);
 dt=getdate('s'); realtime(10);   getdate('s')-dt
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

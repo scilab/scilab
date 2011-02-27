@@ -77,7 +77,7 @@ coeffs=X(1:dim,:)*y1     // 基底Iに関連るy1の要素
 norm(I*coeffs-y1)        //check
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

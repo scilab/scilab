@@ -64,7 +64,7 @@ cosm(A)-0.5*(expm(%i*A)+expm(-%i*A))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

@@ -81,7 +81,7 @@ norm(Q*M-A,1)
 svd([A,Y(:,1:d),Q])        //span(Q) = span(A) = span(Y(:,1:2))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

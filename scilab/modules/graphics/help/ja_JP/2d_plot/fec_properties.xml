@@ -193,7 +193,7 @@ f.data(:,3)=(1:size(f.data,1))';
 a.parent.color_map=hotcolormap(64);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

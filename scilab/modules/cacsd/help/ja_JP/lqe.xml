@@ -127,7 +127,7 @@ S=G*N;Q=B1*B1';
 spec(A+K*C)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

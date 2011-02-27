@@ -42,7 +42,7 @@ print(%io(2),a,p,l)
 write(%io(2),a)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

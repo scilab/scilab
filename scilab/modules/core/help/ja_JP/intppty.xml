@@ -76,7 +76,7 @@ foo(A,1+2)
 	この関数は動的にロードされるインターフェイスの場合に有用です
 	(addinter参照).</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

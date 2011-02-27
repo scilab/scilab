@@ -64,7 +64,7 @@ sl1t=ss2tf(sl1) // Converts in transfer form
 sl2=horner(sl,(2/0.2)*(z-1)/(z+1))   //Compare sl2 and sl1
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

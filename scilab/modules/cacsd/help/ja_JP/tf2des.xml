@@ -70,7 +70,7 @@ S1=tf2des(G);des2tf(S1)
 S2=tf2des(G,"withD");des2tf(S2)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

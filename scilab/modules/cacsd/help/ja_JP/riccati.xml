@@ -70,7 +70,7 @@ A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
 	<literal>riccati</literal> は
     <literal>X=X1/X2</literal>となるような<literal>X1,X2</literal>を返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

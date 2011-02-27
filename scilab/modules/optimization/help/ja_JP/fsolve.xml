@@ -253,7 +253,7 @@ a=gca();a.grid=[5 5];
 	終了インジケータと残差を確認するようにしてください.</para>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

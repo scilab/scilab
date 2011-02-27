@@ -60,7 +60,7 @@ newest(['SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode
 newest('SCI/modules/graphics/macros/bode.'+['sci','bin'])
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

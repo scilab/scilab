@@ -125,7 +125,7 @@ frq=(0:0.01:0.5)/dom;repf=repfreq(h,frq);
 clf();plot2d1("onn",frq',abs([repf;rep2])');
 ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -74,7 +74,7 @@ deff("[z]=my_surface(x,y)","z=x**2+y**2")
 fgrayplot(t,t,my_surface,rect=[-2,-2,2,2])
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

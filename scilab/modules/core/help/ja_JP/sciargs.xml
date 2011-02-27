@@ -21,7 +21,7 @@
     <para>
 	この関数はC言語の<literal>getarg</literal>関数と等価です.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

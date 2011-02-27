@@ -146,7 +146,7 @@ legends(string(-0.75:0.25:0.75),1:7,"lr");
 xtitle("Some level curves of the function cos(x)cos(y)")
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

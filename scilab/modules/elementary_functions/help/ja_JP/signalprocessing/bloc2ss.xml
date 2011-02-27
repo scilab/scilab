@@ -188,7 +188,7 @@ K=syslin('c',Ak,Bk,Ck,Dk);
     <literal>P</literal> および <literal>K</literal>のLFT表現を返します.</para>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

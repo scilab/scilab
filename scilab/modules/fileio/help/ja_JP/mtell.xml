@@ -42,7 +42,7 @@
 	名前付きのストリーム<literal>fd</literal>が指すファイルの先頭に対して
 	相対的なカレントのバイトのオフセットを返します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

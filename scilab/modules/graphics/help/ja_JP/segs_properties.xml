@@ -246,7 +246,7 @@ a.thickness=4;
 xrect(s.clip_box);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

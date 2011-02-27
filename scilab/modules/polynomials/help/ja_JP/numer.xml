@@ -48,7 +48,7 @@
 	(<literal>R</literal> は定数または多項式行列とすることができます).
     <literal>numer(R)</literal> は <literal>R(2)</literal>, <literal>R('num')</literal> または <literal>R.num</literal>に等しくなります</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

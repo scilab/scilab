@@ -140,7 +140,7 @@ c.data // scichampdata"型のtlistを表示
 a.data_bounds=[-5,-5;5,5];
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

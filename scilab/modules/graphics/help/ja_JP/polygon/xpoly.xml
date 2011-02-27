@@ -71,7 +71,7 @@ e=gce(); // カレントのエンティティを取得 (the last created: here t
 e.closed = 'off' // ポリラインはオープンになります
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

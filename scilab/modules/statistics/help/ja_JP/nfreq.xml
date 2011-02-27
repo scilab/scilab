@@ -58,7 +58,7 @@ x=[2 8 0 3 7 6 8 7 9 1]
 m=nfreq(x)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

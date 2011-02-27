@@ -86,7 +86,7 @@ ss2tf(Sys*Z)
 ss2tf(Sys*sysfact(Sys,F,'post')*U)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

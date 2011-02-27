@@ -84,7 +84,7 @@ subplot(2,1,1);Matplot(abs(y))
 subplot(2,1,2);Matplot(fftshift(abs(y)))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

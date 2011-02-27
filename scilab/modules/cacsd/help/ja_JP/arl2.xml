@@ -125,7 +125,7 @@ plot2d1('enn',0,ldiv(n,d,100),5,'000')
 plot2d1('enn',0,ldiv(n(1),d(1),100),10,'000')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

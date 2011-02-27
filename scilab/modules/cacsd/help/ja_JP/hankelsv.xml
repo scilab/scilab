@@ -64,7 +64,7 @@ sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
 slr=projsl(sl,Q,M);hankelsv(slr)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

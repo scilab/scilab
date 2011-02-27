@@ -105,7 +105,7 @@ s=poly(0,'s')
 lqg2stan(1/(s+2),eye(2,2),eye(2,2))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

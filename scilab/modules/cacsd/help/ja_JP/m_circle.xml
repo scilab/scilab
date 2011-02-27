@@ -68,7 +68,7 @@ nyquist([h1;h],0.01,100,['h1';'h'])
 m_circle([-8 -6 -4]);
 ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

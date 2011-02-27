@@ -65,7 +65,7 @@ z=feval(x,y,f);
 plot3d(x,y,z);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

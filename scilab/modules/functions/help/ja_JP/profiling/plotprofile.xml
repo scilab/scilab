@@ -75,7 +75,7 @@ foo(30)
 plotprofile(foo) // 終了するには Exit をクリック
   ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

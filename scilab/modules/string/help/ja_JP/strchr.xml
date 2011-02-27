@@ -60,7 +60,7 @@ strchr(['This is a sample string','in scilab'],'s')
 strchr(['This is a sample string','in scilab'],['s','a'])
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

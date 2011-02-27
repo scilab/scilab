@@ -75,7 +75,7 @@ plot2d(yi(1,:)',yi(2,:)',[1],"000");
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

@@ -31,7 +31,7 @@
     <para><literal>tohome()</literal> は,Scilabがウインドウモードではない場合に
 	Windowsプラットフォームでは使用できません.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

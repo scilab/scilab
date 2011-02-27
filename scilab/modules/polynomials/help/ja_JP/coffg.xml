@@ -51,7 +51,7 @@ a=[ s, s^2+1; s  s^2-1];
 (a1/d)-inv(a)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

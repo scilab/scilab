@@ -19,7 +19,7 @@
 	ライブラリのパス名は<literal>"librname"</literal>と入力することにより
 	返されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

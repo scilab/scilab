@@ -123,7 +123,7 @@ l.legend_location="in_lower_left";
     <title>作者</title>
     <para>Carey Bunks ;   </para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member><link linkend="iir">iir</link></member>

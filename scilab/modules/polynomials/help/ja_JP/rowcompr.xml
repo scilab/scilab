@@ -62,7 +62,7 @@
     <para>
     警告: "小さい"項は削除されます (注意して使用してください!).</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -200,7 +200,7 @@ w=bloc2exp(syst);
     <para><literal>P11+P12*invr(eye()-K*P22)*K*P21;</literal></para>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

@@ -116,7 +116,7 @@ Gt=gtild(Gss);    //状態空間形式で計算
 Gt2=clean(ss2tf(Gt));clean(Gt1-Gt2)  //確認
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

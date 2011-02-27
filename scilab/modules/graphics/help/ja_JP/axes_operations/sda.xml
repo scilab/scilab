@@ -73,7 +73,7 @@ xdel(0)
 plot2d(x-2,sin(x))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

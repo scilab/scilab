@@ -79,7 +79,7 @@ base2dec(['ABC','0','A'],16)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

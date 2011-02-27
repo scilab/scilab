@@ -56,7 +56,7 @@ draw(f.children([3 4])); // 指定した軸とその子を描画
 drawnow(); // カレントの図を描画
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

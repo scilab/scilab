@@ -219,7 +219,7 @@ gam=111.30;
 [AK,BK,CK,DK] = dhinf(A,B,C,D,ncon,nmeas,gam)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

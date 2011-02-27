@@ -95,7 +95,7 @@ plot(real(Y),imag(Y),'+r')
     <title>作者</title>
     <para>Serge Steer, INRIA</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

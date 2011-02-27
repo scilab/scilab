@@ -114,7 +114,7 @@ file('close',u) //結果ファイルを閉じる
 fprintf(0,'My error which is going to be displayed on the stderr') 
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

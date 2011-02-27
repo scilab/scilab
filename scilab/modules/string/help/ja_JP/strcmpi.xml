@@ -64,7 +64,7 @@ strcmpi(TXT1,TXT2)
 strcmpi(TXT1,'scilab')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

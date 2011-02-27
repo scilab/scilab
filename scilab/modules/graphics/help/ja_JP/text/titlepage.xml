@@ -39,7 +39,7 @@
 	の中央にできるだけ大きなフォントで
 	文字列の行列<literal>str</literal>を表示します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

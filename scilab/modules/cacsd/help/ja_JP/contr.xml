@@ -111,7 +111,7 @@
                    |  |                            p+1,p+1|
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <para>
 	    Slicot ライブラリ (SCI/modules/cacsd/src/slicotのab01od参照).</para>
@@ -127,7 +127,7 @@ spec(A1(n+1:$,n+1:$))  //uncontrollable modes
 spec(A+B*rand(3,5))    
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

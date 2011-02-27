@@ -53,7 +53,7 @@
     <para>
     は,<literal>Sl</literal>に関連するハンケル演算子のH無限大ノルムです.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

@@ -366,7 +366,7 @@ dts(2).a=33
 dts(2)('b')(1,2)=-100
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

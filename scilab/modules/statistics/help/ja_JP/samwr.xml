@@ -67,7 +67,7 @@ a=[0.33 1.24 2.1 1.03]
 s=samwr(4,12,a)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

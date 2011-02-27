@@ -93,7 +93,7 @@ H=rand(4,3,5); //ハイパー行列
 H(i(1),j(1),k(1))
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

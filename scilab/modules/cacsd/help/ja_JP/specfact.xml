@@ -57,7 +57,7 @@ Ws=ss2tf(W);
 horner(Ws,-s)*Ws
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

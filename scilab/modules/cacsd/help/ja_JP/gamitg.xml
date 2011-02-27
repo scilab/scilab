@@ -82,7 +82,7 @@ B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
 
 	</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

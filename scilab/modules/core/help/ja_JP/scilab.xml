@@ -396,7 +396,7 @@ echo "if 1&lt;&gt;2 then exit(99) end"|scilab-cli
 echo $? </programlisting>
   </refsection>
 
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
 
     <simplelist type="inline">

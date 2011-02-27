@@ -74,7 +74,7 @@
 	<literal>[m]=secto3d(seclist ,x)</literal> の場合,
 	xベクトルが全ての断面に関するx軸の離散化を指定します.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

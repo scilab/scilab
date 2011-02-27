@@ -39,7 +39,7 @@ set_fftw_wisdom(txt);
 fftw_forget_wisdom();
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

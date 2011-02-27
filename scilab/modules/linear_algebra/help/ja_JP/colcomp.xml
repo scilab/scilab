@@ -84,7 +84,7 @@ A=rand(5,2)*rand(2,5);
 norm(A*X(:,1:$-r),1)
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

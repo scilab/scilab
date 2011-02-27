@@ -49,7 +49,7 @@
 	Fortran プログラムを参照ください.
 	この関数は <literal>chsolve</literal>と共に使用されます.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

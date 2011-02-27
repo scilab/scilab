@@ -47,7 +47,7 @@
 	入力が行列の場合,変更されません.
 	</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

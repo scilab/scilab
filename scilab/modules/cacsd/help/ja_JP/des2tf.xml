@@ -82,7 +82,7 @@ Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
 [A,B,C,D,E]=Descrip2(2:6);Tf3=C*inv(s*E-A)*B+D
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

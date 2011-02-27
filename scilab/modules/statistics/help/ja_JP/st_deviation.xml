@@ -74,7 +74,7 @@ st_deviation(A,'r')
 st_deviation(A,'c')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

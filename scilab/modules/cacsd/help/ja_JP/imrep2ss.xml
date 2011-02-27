@@ -69,7 +69,7 @@ w=z*imrep2ss(rep)   //シフトされたインパルス応答を有する実現
 H2=ss2tf(w);
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

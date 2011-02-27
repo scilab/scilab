@@ -59,7 +59,7 @@
 	この場合,ベクトル<literal> (eye()-2*u*u')*v</literal> はベクトル 
     <literal> eye(v)*norm(v)</literal>です.</para>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

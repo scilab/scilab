@@ -127,7 +127,7 @@ Xsol=vec2list(Xf+KerAf*rand(q,1),dimX);
 C=Xsol(:); A*C-C*A
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>

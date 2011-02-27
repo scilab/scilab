@@ -77,7 +77,7 @@ mclose(fd);
 a1=fscanfMat(TMPDIR+'/Mat')
  ]]></programlisting>
   </refsection>
-  <refsection>
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>
