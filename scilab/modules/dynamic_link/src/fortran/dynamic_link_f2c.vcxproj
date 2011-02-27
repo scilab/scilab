@@ -197,6 +197,7 @@ lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build dynamic_link_f.def</Message>
@@ -251,6 +252,7 @@ lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build dynamic_link_f.def</Message>

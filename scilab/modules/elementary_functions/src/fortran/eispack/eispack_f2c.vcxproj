@@ -177,6 +177,7 @@ copy eispack_f_header.def+eispack_f.vcdef eispack_f.def &gt;nul
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build eispack_f.def</Message>
@@ -225,6 +226,7 @@ copy eispack_f_header.def+eispack_f.vcdef eispack_f.def &gt;nul
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build eispack_f.def</Message>

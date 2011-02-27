@@ -354,6 +354,10 @@
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\modules\core\src\fortran\core_f2c.vcxproj">
+      <Project>{c352587b-f5e4-457c-80ee-a1aeab176c8e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\data_structures\src\c\data_structures.vcxproj">
       <Project>{b7a168a0-dfc0-4c6d-b0cc-6079912a4a76}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -366,12 +370,24 @@
       <Project>{f0190b5d-fb21-47a2-99ac-06627cdd0f8a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\modules\differential_equations\src\fortran\differential_equations_f2c.vcxproj">
+      <Project>{28e4e9ca-3eec-43ee-9f15-56259c6677b8}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\double\src\c\double.vcxproj">
       <Project>{e61feba7-c98e-4c42-96ca-fc03f0db26b2}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\modules\double\src\fortran\double_f2c.vcxproj">
+      <Project>{97b3664e-1186-400a-aec0-ac3f23087689}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\dynamic_link\src\c\dynamic_link.vcxproj">
       <Project>{eab6c580-22b3-4359-ba1d-dd7499a96163}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\modules\dynamic_link\src\fortran\dynamic_link_f2c.vcxproj">
+      <Project>{9bc28602-73b4-4fbb-9583-478d2f047ca4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\modules\elementary_functions\src\c\elementary_functions.vcxproj">
@@ -400,6 +416,10 @@
     </ProjectReference>
     <ProjectReference Include="..\..\modules\gui\src\c\gui.vcxproj">
       <Project>{45ca5b12-7601-4968-ae16-16069fd1a152}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\modules\history_browser\src\c\history_browser.vcxproj">
+      <Project>{ab1eeb8f-86f7-45b7-8cec-b18c8e97eeff}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\modules\history_manager\src\c\history_manager.vcxproj">

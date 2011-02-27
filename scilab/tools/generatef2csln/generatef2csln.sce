@@ -16,8 +16,8 @@ function generatef2csln(defaultSLNpath)
   FORTRAN_GUID = "{6989167D-11E4-40FE-8C1A-2192A86A7E90}";
   VFPROJ = "_f.vfproj";
   VCPROJ = "_f2c.vcproj";
-  LIBSCILAB_VCPROJ = "libs\LibScilab\LibScilab.vcproj";
-  LIBSCILAB_F2C_VCPROJ = "libs\LibScilab\LibScilab_f2c.vcproj";
+  LIBSCILAB_VCPROJ = "libs\LibScilab\LibScilab.vcxproj";
+  LIBSCILAB_F2C_VCPROJ = "libs\LibScilab\LibScilab_f2c.vcxproj";
   SLN_NAME_F2C = "Scilab_f2c.sln";
   SLN_NAME = "Scilab.sln";
 

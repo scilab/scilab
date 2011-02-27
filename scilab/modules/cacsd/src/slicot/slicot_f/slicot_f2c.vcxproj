@@ -185,6 +185,7 @@ lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build slicot_f.def</Message>
@@ -236,6 +237,7 @@ lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build slicot_f.def</Message>

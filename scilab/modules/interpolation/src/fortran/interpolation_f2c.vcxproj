@@ -185,6 +185,7 @@ lib /DEF:"$(ProjectDir)interpolation_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build interpolation_f.def</Message>
@@ -236,6 +237,7 @@ lib /DEF:"$(ProjectDir)interpolation_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build interpolation_f.def</Message>

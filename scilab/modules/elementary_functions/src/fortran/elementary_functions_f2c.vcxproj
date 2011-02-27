@@ -194,6 +194,7 @@ lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build elementary_functions_f.def</Message>
@@ -248,6 +249,7 @@ lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
       <Message>Build elementary_functions_f.def</Message>
