@@ -483,6 +483,8 @@ Bug fixes:
 
 * bug 8912 fixed - fullpath did not return same result on Windows and Linux.
 
+* bug 8919 fixed - Fix a typo.
+
 * bug 8954 fixed - Print the console led to an exception.
 
 * bug 9034 fixed - atomsVersionCompare failed on version with '-0'.
