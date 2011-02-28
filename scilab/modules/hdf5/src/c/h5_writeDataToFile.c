@@ -15,6 +15,7 @@
 #include <hdf5.h>
 #include <MALLOC.h>
 #include <math.h>
+#include <string.h>
 #include "sci_types.h"
 #include "core_math.h"
 #include "h5_writeDataToFile.h"

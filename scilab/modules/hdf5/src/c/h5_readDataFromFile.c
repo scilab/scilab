@@ -19,6 +19,7 @@
 //#include <winbase.h>
 #endif
 
+#include <string.h>
 #include <hdf5.h>
 #include <stdlib.h>
 #include "MALLOC.h"
