@@ -151,7 +151,7 @@ extern "C" {
 #define API_ERROR_ITEM_LIST_NUMBER												1511
 #define API_ERROR_NON_ORDERED_INSERTION										1512
 #define API_ERROR_ALLOC_IN_LIST														1513
-
+#define API_ERROR_CREATE_VOID_IN_LIST                                       1514
 		/*double in list*/
 #define API_ERROR_GET_DOUBLE_IN_LIST											1520
 #define API_ERROR_ALLOC_DOUBLE_IN_LIST										1521

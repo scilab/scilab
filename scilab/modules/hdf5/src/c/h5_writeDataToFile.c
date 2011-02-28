@@ -417,6 +417,110 @@ char* createPathName(char* _pstGroupName, int _iIndex)
 	return pstPathName;
 }
 
+int writeVoid(int _iFile, char* _pstDatasetName)
+{
+	hsize_t piDims[1]   = {1};
+	herr_t status       = 0;
+	hid_t iSpace        = 0;
+	hid_t iDataset      = 0;
+	hid_t iCompress     = 0;
+    char cData          = 0;
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (1, piDims, NULL);
+	if(iSpace < 0)
+	{
+		return -1;
+	}
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 1, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
+	if(iDataset < 0)
+	{
+		return -1;
+	}
+
+	status = H5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, &cData);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	//Add attribute SCILAB_Class = double to dataset
+	status = addAttribute(iDataset, g_SCILAB_CLASS, g_SCILAB_CLASS_VOID);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	status = H5Sclose (iSpace);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	return 0;
+}
+
+int writeUndefined(int _iFile, char* _pstDatasetName)
+{
+	hsize_t piDims[1]   = {1};
+	herr_t status       = 0;
+	hid_t iSpace        = 0;
+	hid_t iDataset      = 0;
+	hid_t iCompress     = 0;
+    char cData          = 0;
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (1, piDims, NULL);
+	if(iSpace < 0)
+	{
+		return -1;
+	}
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 1, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
+	if(iDataset < 0)
+	{
+		return -1;
+	}
+
+	status = H5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, &cData);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	//Add attribute SCILAB_Class = double to dataset
+	status = addAttribute(iDataset, g_SCILAB_CLASS, g_SCILAB_CLASS_UNDEFINED);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	status = H5Sclose (iSpace);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	return 0;
+}
+
 static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char* _pstDatasetName, int _iIndex, int _iRows, int _iCols, double *_pdblData)
 {
 	hid_t space;
