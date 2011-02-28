@@ -1706,8 +1706,11 @@ doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@			echo "-- Building documentation ($$l) --"; \
 @BUILD_HELP_TRUE@			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'$$l');exit;\"";\
 @BUILD_HELP_TRUE@			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltoweb([],[],'$$l');exit;";\
-@BUILD_HELP_TRUE@			mkdir $(top_builddir)/modules/helptools/web/$$l/javasci; \
-@BUILD_HELP_TRUE@			ln -s ../../../../javasci/javadoc/ $(top_builddir)/modules/helptools/web/$$l/javasci/; \
+@BUILD_HELP_TRUE@			JAVADOC_TARGET=$(top_builddir)/modules/helptools/web/$$l/javasci; \
+@BUILD_HELP_TRUE@			if test ! -d $$JAVADOC_TARGET; then \
+@BUILD_HELP_TRUE@				mkdir $$JAVADOC_TARGET; \
+@BUILD_HELP_TRUE@				ln -s ../../../../javasci/javadoc/ $$JAVADOC_TARGET/; \
+@BUILD_HELP_TRUE@			fi; \
 @BUILD_HELP_TRUE@		done; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab-adv-cli binary"; \

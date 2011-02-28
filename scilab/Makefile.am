@@ -184,8 +184,11 @@ if BUILD_HELP
 			echo "-- Building documentation ($$l) --"; \
 			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'$$l');exit;\"";\
 			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltoweb([],[],'$$l');exit;";\
-			mkdir $(top_builddir)/modules/helptools/web/$$l/javasci; \
-			ln -s ../../../../javasci/javadoc/ $(top_builddir)/modules/helptools/web/$$l/javasci/; \
+			JAVADOC_TARGET=$(top_builddir)/modules/helptools/web/$$l/javasci; \
+			if test ! -d $$JAVADOC_TARGET; then \
+				mkdir $$JAVADOC_TARGET; \
+				ln -s ../../../../javasci/javadoc/ $$JAVADOC_TARGET/; \
+			fi; \
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
