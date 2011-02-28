@@ -114,7 +114,9 @@ public final class TerminalTableModel extends AbstractTableModel {
 			
 			final int columnIndex = Arrays.asList(TerminalAccessor.values()).indexOf(source);
 			final int rowIndex = model.getTerminals().indexOf(terminal);
-			model.fireTableChanged(new TableModelEvent(model, rowIndex, rowIndex, columnIndex));
+			if (rowIndex < model.getRowCount() && columnIndex < model.getColumnCount()) {
+				model.fireTableChanged(new TableModelEvent(model, rowIndex, rowIndex, columnIndex));
+			}
 		}
 		
 	}

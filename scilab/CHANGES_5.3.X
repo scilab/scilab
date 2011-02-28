@@ -196,6 +196,9 @@ Xcos:
 * bug 8741 fixed - In the Modelica initialization GUI, the "fixed" checkbox 
                    disabled some fields.
 
+* bug 8743 fixed - In the Modelica initialization GUI, the fixing states did 
+                   not de-fix derivatives.
+
 * bug 8798 fixed - The context parameter of scicos_simulate was not taken into
                    account.
 

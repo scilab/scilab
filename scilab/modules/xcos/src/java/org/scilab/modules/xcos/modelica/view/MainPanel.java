@@ -102,6 +102,9 @@ public final class MainPanel extends JPanel {
 		initComponents();
 		installListeners();
 
+		// register the model to the controller
+		controller.setModel(tableModel);
+		
 		fireChange();
 	}
 	
@@ -123,7 +126,7 @@ public final class MainPanel extends JPanel {
 		tree.setModel(createTreeModel());
 		treeScrollPane.setViewportView(tree);
 		splitPanel.setLeftComponent(treeScrollPane);
-
+		
 		table.setModel(tableModel);
 		table.setAutoCreateRowSorter(true);
 		tableScrollPane.setViewportView(table);
@@ -504,7 +507,7 @@ public final class MainPanel extends JPanel {
 						final Double weight = TerminalAccessor.getData(
 								TerminalAccessor.WEIGHT, terminal);
 
-						if (weight.doubleValue() == 1.0) {
+						if (weight.doubleValue() >= 1.0) {
 							controller.setCompileNeeded(true);
 						}
 					}
