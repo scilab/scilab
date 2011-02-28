@@ -49,10 +49,6 @@ extern "C"
     /*--------------------------------------------------------------------------*/
     int sci_buildDoc(char *fname,unsigned long l)
     {
-        static int l1 = 0,n1 = 0,m1 = 0;
-        static int l2 = 0,n2 = 0,m2 = 0;
-        static int l3 = 0,n3 = 0,m3 = 0;
-        static int l4 = 0,n4 = 0,m4 = 0;
         //	static int Row_Output = 0, Col_Output = 0;
         std::string exportFormat;
         std::string SciPath = getSCIpath(); /* Scilab path */
