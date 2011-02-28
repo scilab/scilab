@@ -17,7 +17,7 @@
   </info>
   <refnamediv>
     <refname>pathconvert</refname>
-    <refpurpose>posixおよびwindowsの間でパス名を変換.  </refpurpose>
+    <refpurpose>POSIXおよびwindowsの間でパス名を変換.  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -57,7 +57,7 @@
     <para><literal>pathconvert</literal> は,
 	(文字列行列 <literal>paths</literal>で指定した)
 	パス名の集合を
-	windowsネーティブなファイル名からposix形式のファイル名に変換したり,
+	windowsネーティブなファイル名からPOSIX形式のファイル名に変換したり,
 	戻すことができます.
 	変換後の形式はオプションの文字列<literal>type</literal>で指定でき,
 	Unixの場合は <literal>'u'</literal>,Windowsの場合は<literal>'w'</literal>
