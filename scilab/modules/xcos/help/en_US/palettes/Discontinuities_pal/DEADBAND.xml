@@ -75,8 +75,7 @@
           </listitem>
 
           <listitem>
-            <para><xref linkend="Example_DEADBAND">Deadband
-            Example</xref></para>
+            <para><xref linkend="Example_DEADBAND">Example</xref></para>
           </listitem>
 
           <listitem>
@@ -102,7 +101,7 @@
 
     <itemizedlist>
       <listitem>
-        <para><link linkend="discontinuities_pal">discontinuities
+        <para><link linkend="discontinuities_pal">Discontinuities
         palette</link></para>
       </listitem>
     </itemizedlist>
@@ -122,31 +121,25 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../examples/deadband_desc.png"
+                     fileref="../../../examples/discontinuities_pal/en_US/deadband_desc_en_US.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject></para>
 
     <para>It is defined by:</para>
-
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center"
-                     fileref="../../../examples/deadband_eq.gif"
-                     valign="middle" />
-        </imageobject>
-      </inlinemediaobject></para>
-
-    <para>Where <para>
-        <inlinemediaobject>
-          <imageobject>
-            <imagedata align="center"
-                       fileref="../../../examples/deadband_eq1.gif"
-                       valign="middle" />
-          </imageobject>
-        </inlinemediaobject>
-      </para></para>
-
+  
+        
+    <para>
+      <latex><![CDATA[
+        v\left(k\right)=\begin{cases}u\left(k\right)-c_{S} & \textrm{ for }u\left(k\right)<c_{S}\\0 & \textrm{ for }c_{S}\leq u\left(k\right)\leq c_{E}\\u\left(k\right)-c_{E} & \textrm{ for }u\left(k\right)>c_{E}
+        \end{cases}
+      ]]></latex>
+    </para>
+    
+    <para>Where </para>
+    
+    <para><latex><![CDATA[c_{E}>c_{S}]]></latex></para>
+    
     <para>When the input u(k) is between Cs and CE, the output v(k) is zero.
     When the input is greater than or equal to the upper limit CE, the output
     is the input minus the upper limit. When the input is less than or equal
@@ -160,7 +153,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../examples/deadband_screen.png"
+                     fileref="../../../gui/discontinuities_pal/en_US/DEADBAND_gui.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject></para>
@@ -263,32 +256,23 @@
   <refsection id="Example_DEADBAND">
     <title>Deadband Example</title>
 
-    <para>The following is an example of a system with deadband.</para>
-
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../../examples/deadband_d.png"
-                     valign="middle" />
-        </imageobject>
-      </inlinemediaobject></para>
+    <para>The following is an example of a system with deadband.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/en_US/deadband_en_US.xcos">
+          Open this example in Xcos
+      </link>
+    </para>
 
     <para>The input is a sine wave. The magnitude is set to 2, the frequency
     to 1.25 and the phase to 0. The Deadband block has the following
     parameters:</para>
-
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center"
-                     fileref="../../../examples/deadband_eq2.gif"
-                     valign="middle" />
-        </imageobject>
-      </inlinemediaobject></para>
-
+    
+    <para><latex><![CDATA[\begin{cases}c{}_{S} & =-1.5\\c_{E} & =-1\end{cases}]]></latex></para>
+    
     <para>This plot shows the effect of the dead band on the sine wave.</para>
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../examples/deadband_c.png"
+          <imagedata align="center" fileref="../../../examples/discontinuities_pal/en_US/deadband_c_en_US.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject></para>
@@ -299,7 +283,7 @@
 
     <itemizedlist>
       <listitem>
-        <para>SCI/modules/scicos_blocks/macros/Misc/DEADBAND.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Misc/DEADBAND.sci">SCI/modules/scicos_blocks/macros/Misc/DEADBAND.sci</link></para> 
       </listitem>
     </itemizedlist>
   </refsection>

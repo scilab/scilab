@@ -31,7 +31,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/DEADBAND_modif.png"
+                     fileref="../../../../images/palettes/DEADBAND.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject></para>
@@ -65,7 +65,7 @@
           </listitem>
 
           <listitem>
-            <para><xref linkend="Example_DEADBAND">Zone morte : Exemple</xref></para>
+            <para><xref linkend="Example_DEADBAND">Exemple</xref></para>
           </listitem>
 
           <listitem>
@@ -89,7 +89,7 @@
 
     <itemizedlist>
       <listitem>
-        <para><link linkend="discontinuities_pal">discontinuities
+        <para><link linkend="discontinuities_pal">Discontinuities
         palette</link></para>
       </listitem>
     </itemizedlist>
@@ -111,31 +111,23 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../examples/deadband_desc.png"
+                     fileref="../../../images/discontinuities_pal/fr_FR/deadband_desc_fr_FR.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject></para>
 
     <para>It is defined by:</para>
 
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center"
-                     fileref="../../../examples/deadband_eq.gif"
-                     valign="middle" />
-        </imageobject>
-      </inlinemediaobject></para>
+    <para>
+      <latex><![CDATA[
+        v\left(k\right)=\begin{cases}u\left(k\right)-c_{S} & \textrm{ for }u\left(k\right)<c_{S}\\0 & \textrm{ for }c_{S}\leq u\left(k\right)\leq c_{E}\\u\left(k\right)-c_{E} & \textrm{ for }u\left(k\right)>c_{E}
+        \end{cases}
+      ]]></latex>
+    </para>
 
-    <para>Where <para>
-        <inlinemediaobject>
-          <imageobject>
-            <imagedata align="center"
-                       fileref="../../../examples/deadband_eq1.gif"
-                       valign="middle" />
-          </imageobject>
-        </inlinemediaobject>
-      </para></para>
-
+    <para>Where </para>
+    
+    <para><latex><![CDATA[c_{E}>c_{S}]]></latex></para>
     <para>
       Quand l'entrée u(k) est entre Cs et CE, la sortie v(k) est zéro.
       Quand l'entrée est supérieure ou égale à la limite haute CE, la sortie
@@ -151,7 +143,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../examples/deadband_screen.png"
+                     fileref="../../../gui/discontinuities_pal/fr_FR/DEADBAND_gui.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject></para>
@@ -190,19 +182,19 @@
 
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> yes</para>
+        <para><emphasis role="bold">zero-crossing:</emphasis> oui</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> yes</para>
+        <para><emphasis role="bold">mode:</emphasis> oui</para>
       </listitem>
 
       <listitem>
@@ -231,16 +223,16 @@
 
       <listitem>
         <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        non</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
       </listitem>
 
       <listitem>
         <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        non</para>
       </listitem>
 
       <listitem>
@@ -253,31 +245,28 @@
   <refsection id="Example_DEADBAND">
     <title>Deadband : Exemple</title>
 
-    <para>Ce qui sut est un exemple de système avec zone morte.</para>
-
+    <para>Ce qui suit est un exemple de système avec zone morte.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos">
+          Ouvrir cet exemple dans Xcos
+      </link>
+    </para>
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../examples/deadband_d.png"
+          <imagedata align="center" fileref="../../../examples/discontinuities_pal/fr_FR/deadband_d_fr_FR.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject></para>
 
-    <para>L'entrée est un signal sinusoïdal. L'amplitude  est initialisée à 2, la fréquence
+    <para>L'entrée est un signal sinusoïdal. L'amplitude est initialisée à 2, la fréquence
     à 1,25 et la phase à 0. Le bloc Zone morte a les paramètres suivants :</para>
-
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata align="center"
-                     fileref="../../../examples/deadband_eq2.gif"
-                     valign="middle" />
-        </imageobject>
-      </inlinemediaobject></para>
+    
+    <para><latex><![CDATA[\begin{cases}c{}_{S} & =-1.5\\c_{E} & =-1\end{cases}]]></latex></para>
 
     <para>Ce graphique montre l'effet de la zone morte sur un signal sinusoïdal.</para>
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../examples/deadband_c.png"
+          <imagedata align="center" fileref="../../../examples/discontinuities_pal/fr_FR/deadband_c_fr_FR.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject></para>
@@ -288,7 +277,7 @@
 
     <itemizedlist>
       <listitem>
-        <para>SCI/modules/scicos_blocks/macros/Misc/DEADBAND.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Misc/DEADBAND.sci">SCI/modules/scicos_blocks/macros/Misc/DEADBAND.sci</link></para>       
       </listitem>
     </itemizedlist>
   </refsection>
