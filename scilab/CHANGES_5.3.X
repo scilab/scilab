@@ -2,100 +2,55 @@
             =================================================
 
 
+The version 5.3.1 is focussed on three main aspects:
+* Improvement of the current features, especially usuability, better user
+  experiences  and stabilisation of the existing features.
+* Continuing the strong efforts in the documentation (content, integration with
+  Scilab and Xcos, etc).
+* The integration of the Japanese documentation into the Scilab distribution.
+  Thanks to Rui Hirokawa.
+
+
 Console:
 ========
 
 * The console could be scrolled with Page Up/Down. See bug #6251.
 
-* Add Evaluate Selection With Echo/No Echo in popup menu (Right Click) in
-  console. See bug #8749.
-
 * Performance improvements on the display of long computation with a lot of
   output (the more text in the console, the slower was the display).
   See bug #4840.
 
-Removed functions (previously declared as obsolete):
-====================================================
-
-* 'maxi' removed. Please use 'max' instead.
-
-* 'mini' removed. Please use 'min' instead.
-
-* 'VCtoLCCLib', 'configure_lcc', 'with_lcc', 'chooselcccompiler', 'findlcccompiler'
-  are now available as ATOMS modules.
-  See http://atoms.scilab.org/toolboxes/LCC-windows
-  or type atomsInstall('lcc-windows') in Scilab.
-
-* 'oldbesseli', 'oldbesselj', 'oldbesselk' and 'oldbessely' removed.
-  Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
-
-
-New functions
-=============
-
-* 'repmat' added a missing basic function.
-
-
-Obsolete Functions:
-===================
-
-* 'loadScicosLibs' is obsolete and will be removed on 5.4.0, please use
-  'loadXcosLibs' instead.
-
-* ilib_for_link, ilib_build will not accept files with ".o" or ".obj" extensions
-  for source files in Scilab 5.4.0.
-
-
-Javasci:
-========
-
-* Bug 8807 fixed - Javadoc of javasci v2 was not installed under GNU/Linux and
-                   Mac OS X.
-
-
-File I/O:
-=========
-
-* mkdir is now able to create recursively directories (see bug 8529).
-
-
-Packaging:
-==========
-
-* Update of JLaTeXMath to version 0.9.4
-
-
-Demonstration:
-==============
-
-* A demonstration (Nonisothermal plug flow reactor model) of ode usage has been
-  added. Thanks to Jakub Kopac.
+* Add Evaluate Selection With Echo/No Echo in popup menu (Right Click) in
+  console. See bug #8749.
 
 
 Documentation:
 ==============
 
-* In the help browser, add the capability to increase or to decrease the font
-size.
+* Add the capability to increase or to decrease the font size. 
+  Shortcuts: CTRL + + / CTRL + - or CTRL + mouse wheel increases/decreases.
 
-* In the help browser, add an incremental search bar to search for text in the
-right area.
+* Add an incremental search bar to search for text in the browser.
+  Shortcut: CTRL + F
 
-* In the help, allow the creation of links between modules with the following
-syntax:
+* Enable the creation of links between external modules with the following
+  syntax:
 <link type="scilab" linkend="mytoolbox/exec/macros/fooexec.sce">macros/fooexec.sce</link>
 
-* In the help, allow the creation of links between a module and the Scilab
-documentation with the following syntax:
+* Enable the creation of links between a module and the Scilab main documentation
+  with the following syntax:
 <link type="scilab" linkend="scilab/help/bvode">bvode</link>
 
-* In the help, allow the execution and the edition of any example.
+* Enalbe the execution and the edition of any Scilab example.
 
-* In the help, allow the execution of the demos with the following syntax:
+* Enable the execution of the demos with the following syntax:
 <link type="scilab" linkend="scilab/demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link>
 
-* In documentation's examples, when an undocumented function is used,
-trigger a warning and do not add a link on that function name.
+* Enable the opening of a Xcos diagram from the help browser:
+<link type="scilab" linkend="scilab.xcos/xcos/demos/bounce.xcos">Open bounce.xcos</link>
+
+* Enable the opening of a Scilab macros with Scinotes from the help browser:
+<link type="scilab" linkend="scilab.scinotes/elementary_functions/macros/log2.sci">Edit log2.sci</link>
 
 * "See also" links have now the function description shown.
 
@@ -108,6 +63,9 @@ trigger a warning and do not add a link on that function name.
 
 * Help pages for the bitxor, bitcmp, bitget and bitset have been
   created.
+
+* In documentation's examples, when an undocumented function is used,
+  trigger a warning and do not add a link on that function name.
 
 * bug 3716 fixed - No way to search a word in the right area.
 
@@ -135,41 +93,6 @@ trigger a warning and do not add a link on that function name.
 
 * bug 9019 fixed - The help page of dsearch was unclear.
 
-Scinotes:
-=========
-
-* Refactorization of the printing.
-
-* Add the capability to export code to PDF, PS, EPS and RTF.
-
-* Name of the current function and position (line, column) are now displayed
-in the status bar of Scinotes.
-
-* A bad identifier is now shown in the text editor.
-
-* Replace CTRL key by META key under Mac OS.
-
-* A rectangular selection tool is now available. CTRL+selection will enable it.
-  This improves the selection (of data for example).
-
-* When typing a closing char (e.g. ')',']',...), do not print it if already
-  here (like in Eclipse).
-
-* bug 8095 fixed - With OpenJDK, the size of the dialog 'Set colors' was bad.
-
-* bug 8697 fixed - An exception was thrown when an empty document was reload.
-
-* bug 8709 fixed - Default font had no japanese glyphs.
-
-* bug 8714 fixed - Problem with Incremental Search bar when Code Navigator is docked.
-
-* bugs 8715, 8716 fixed - Problems with dnd'ed tabs.
-
-* bug 8764 fixed - File permissions were not checked.
-
-* bug 8885 fixed - Anchors were removed on a Replace All action.
-
-* bug 9000 fixed - '1+..' was miscolorized
 
 Xcos:
 =====
@@ -270,21 +193,50 @@ Xcos:
                    diagram has no inputs nor outputs.
 
 
-Module skeleton:
-================
+Scinotes:
+=========
 
-* New example added (function with copy instead of reference)
+* Refactorization of the printing.
 
-Localization:
+* Add the capability to export code to PDF, PS, EPS and RTF.
+
+* Name of the current function and position (line, column) are now displayed
+  in the status bar of Scinotes.
+
+* A bad identifier is now shown in the text editor.
+
+* Replace CTRL key by META key under Mac OS.
+
+* A rectangular selection tool is now available. CTRL+selection will enable it.
+  This improves the selection (of data for example).
+
+* When typing a closing char (e.g. ')',']',...), do not print it if already
+  here (like in Eclipse).
+
+* Function "edit" can now open a file at a given line number (See bug #9047)
+
+* bug 8095 fixed - With OpenJDK, the size of the dialog 'Set colors' was bad.
+
+* bug 8697 fixed - An exception was thrown when an empty document was reload.
+
+* bug 8709 fixed - Default font had no japanese glyphs.
+
+* bug 8714 fixed - Problem with Incremental Search bar when Code Navigator is docked.
+
+* bugs 8715, 8716 fixed - Problems with dnd'ed tabs.
+
+* bug 8764 fixed - File permissions were not checked.
+
+* bug 8885 fixed - Anchors were removed on a Replace All action.
+
+* bug 9000 fixed - '1+..' was miscolorized.
+
+
+New functions
 =============
 
-* bug 8096 fixed - With Russian localization, the banner was not centered.
-
-
-Installer:
-==========
-
-* bug 8825 fixed - Mac OS X installer reported a wrong version of Scilab.
+* 'repmat' function added. This function replicates and tiles a matrix. See
+  SEP 49.
 
 
 Graphics:
@@ -305,8 +257,8 @@ Graphics:
 * bug 7836 fixed - The sub_tics property was not correctly tracking the number
                    of displayed sub-ticks. Thanks to Paul Griffiths.
 
-* bug 7990 fixed - Box thickness was badly exported in vectorial formats (svg/pdf/...)
-                   Thanks to Paul Griffiths for the patch.
+* bug 7990 fixed - Box thickness was badly exported in vectorial formats
+                   (SVG/PDF/...). Thanks to Paul Griffiths for the patch.
 
 * bug 8163 fixed - datatipToggle could not be called without argument as
                    stated in the help page.
@@ -336,51 +288,6 @@ GUI:
 * bug 8826, 8827 fixed - userdata property for a menu crashed Scilab.
 
 * bug 8838 fixed - uimenu without input argument crashed Scilab.
-
-
-
-Quality assurance:
-==================
-
-* C/C++/Fortran test coverage available on the Scilab source code.
-  Add "--enable-code-coverage" to the configure under GNU/Linux and Mac OS X
-  Start the unitary tests or launch Scilab
-  "make code-coverage" creates the report into "/coverage/results/"
-
-* Using the configure with the option "--enable-compilation-tests" launchs Java
-  unitary tests (based on TestNG).
-
-* bug 6684 fixed - Some Xcos unitary tests had problems loading native libraries.
-
-* bug 6873 fixed - A jar file was not available when testng was called.
-
-Compilation:
-============
-
-* -Wimplicit removed for gfortran in the enable debug mode
-
-* Intel Compiler XE 2011 update 1 C++/Fortran used to build Scilab on Windows.
-
-* Upgrade to autoconf 2.67
-
-* Bug 8053 fixed - For an unknown reason, libtool refused to set the Wl flag
-                   when the gfortran compiler was set as
-                   ./configure F77=gfortran
-
-* Bug 8961 fixed - Ubuntu 11.04 explicitly forces the as-needed option to the
-                   linker. Disable it.
-
-Dynamic link:
-=============
-
-* Intel Fortran Composer XE 2011 (12) used by default if it is detected.
-
-
-Scilab:
-=======
-
-* Scilab startup script of the binary is now automatically synchronized with
-  the one from the source tree.
 
 
 Statistics:
@@ -418,6 +325,120 @@ Optimization:
 * bug 8775 fixed - The karmarkar function did not detect unbounded problems.
 
 
+File I/O:
+=========
+
+* mkdir is now able to create recursively directories (See bug #8529).
+
+
+Obsolete Functions:
+===================
+
+* 'loadScicosLibs' is obsolete and will be removed on 5.4.0, please use
+  'loadXcosLibs' instead.
+
+* ilib_for_link, ilib_build will not accept files with ".o" or ".obj" extensions
+  for source files in Scilab 5.4.0.
+
+
+Removed functions (previously declared as obsolete):
+====================================================
+
+* 'maxi' removed. Please use 'max' instead.
+
+* 'mini' removed. Please use 'min' instead.
+
+* 'VCtoLCCLib', 'configure_lcc', 'with_lcc', 'chooselcccompiler', 'findlcccompiler'
+  are now available as ATOMS modules.
+  See http://atoms.scilab.org/toolboxes/LCC-windows
+  or type atomsInstall('lcc-windows') in Scilab.
+
+* 'oldbesseli', 'oldbesselj', 'oldbesselk' and 'oldbessely' removed.
+  Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
+
+
+Javasci:
+========
+
+* Bug 8807 fixed - Javadoc of javasci v2 was not installed under GNU/Linux and
+                   Mac OS X.
+
+
+Demonstration:
+==============
+
+* A demonstration (Nonisothermal plug flow reactor model) of ode usage has been
+  added. Thanks to Jakub Kopac.
+
+
+Module skeleton:
+================
+
+* New example added (function with copy instead of reference)
+
+
+Localization:
+=============
+
+* bug 8096 fixed - With Russian localization, the banner was not centered.
+
+
+Installer:
+==========
+
+* bug 8825 fixed - Mac OS X installer reported a wrong version of Scilab.
+
+
+Quality assurance:
+==================
+
+* C/C++/Fortran test coverage available on the Scilab source code.
+  Add "--enable-code-coverage" to the configure under GNU/Linux and Mac OS X
+  Start the unitary tests or launch Scilab
+  "make code-coverage" creates the report into "/coverage/results/"
+
+* Using the configure with the option "--enable-compilation-tests" launchs Java
+  unitary tests (based on TestNG).
+
+* bug 6684 fixed - Some Xcos unitary tests had problems loading native
+                   libraries.
+
+* bug 6873 fixed - A jar file was not available when testng was called.
+
+
+Compilation:
+============
+
+* -Wimplicit removed for gfortran in the enable debug mode
+
+* Intel Compiler XE 2011 update 1 C++/Fortran used to build Scilab on Windows.
+
+* Upgrade to autoconf 2.67
+
+* Update of JLaTeXMath to version 0.9.4
+
+* Bug 8053 fixed - For an unknown reason, libtool refused to set the Wl flag
+                   when the gfortran compiler was set as
+                   ./configure F77=gfortran
+
+* Bug 8961 fixed - Ubuntu 11.04 explicitly forces the as-needed option to the
+                   linker. Disable it.
+
+
+Dynamic link:
+=============
+
+* Intel Fortran Composer XE 2011 (12) used by default if it is detected.
+
+
+Scilab:
+=======
+
+* Scilab startup script of the binary is now automatically synchronized with
+  the one from the source tree.
+
+
+
 Bug fixes:
 ==========
 
@@ -453,7 +474,8 @@ Bug fixes:
 * bug 8563 fixed - Scilab under GNU/Linux 64 bit was unable to load files bigger
                    than 2GB.
 
-* bug 8732 fixed - strchr and strrchr did not work with a non-ASCII character needle.
+* bug 8732 fixed - strchr and strrchr did not work with a non-ASCII character
+                   needle.
 
 * bug 8765 fixed - A(1:N,j)=[] returned wrong values if N>size(A,1).
 
@@ -463,8 +485,9 @@ Bug fixes:
 
 * bug 8809 fixed - Bad top link in the chm files.
 
-* bug 8820 fixed - squeeze function returned 2D hypermatrix instead of regular 2D array
-                   function also extended to all array types included cells ans structs
+* bug 8820 fixed - squeeze function returned 2D hypermatrix instead of regular
+                   2D array function also extended to all array types included
+                   cells ans structs.
 
 * bug 8828 fixed - "savematfile" could no more save a structure.
 
@@ -492,7 +515,6 @@ Bug fixes:
 
 * bug 9034 fixed - atomsVersionCompare failed on version with '-0'.
 
-* bug 9047 fixed - The macro edit couldn't open a file at a given line number.
 
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
