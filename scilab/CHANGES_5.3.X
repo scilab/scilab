@@ -2,6 +2,13 @@
             =================================================
 
 
+Scinotes:
+=========
+
+* bug 9047 fixed - edit('foo',12) now opens the function foo 12 lines after the
+                   definition of foo.
+
+
 Bug fixes:
 ==========
 

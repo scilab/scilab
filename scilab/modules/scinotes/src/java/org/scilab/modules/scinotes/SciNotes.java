@@ -277,12 +277,12 @@ public class SciNotes extends SwingScilabTab implements Tab {
      *
      * This method *must not* be called on the EDT thread.
      */
-    public static void scinotes(final String filePath, final int lineNumber) {
+    public static void scinotes(final String filePath, final int lineNumber, final String functionName) {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
                     public void run() {
-                        launchSciNotes().openFile(filePath, lineNumber, null);
+                        launchSciNotes().openFile(filePath, lineNumber, functionName);
                     }
                 });
         } catch (InterruptedException e) {
@@ -451,7 +451,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
 
         readFileAndWait(f);
-        getTextPane().scrollTextToLineNumber(lineNumber, true);
+        if (option == null || option.length() == 0 || "readonly".equals(option.toLowerCase())) {
+            getTextPane().scrollTextToLineNumber(lineNumber, true);
+        } else {
+            getTextPane().scrollTextToLineNumberInWhereami(lineNumber, option, true);
+        }
         if ((option != null && "readonly".equals(option.toLowerCase()))) {
             getTextPane().setReadOnly(true);
             getInfoBar().setText(getTextPane().getInfoBarText());
