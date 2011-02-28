@@ -303,6 +303,7 @@ namespace types
             //on case of resize
             int* piNewDims      = NULL;
             int iNewDims        = 0;
+            ArrayOf* pSource = _pSource->getAs<ArrayOf>();
 
             //evaluate each argument and replace by appropriate value and compute the count of combinations
             int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
@@ -356,7 +357,8 @@ namespace types
                     double* pIdx = getDoubleArrayFromDouble(pArg[i]);
                     //InternalType* pVar = pArg[i];
                     //double* pIdx = static_cast<double*>(pVar->getAs<Double>()->get());
-                    for(int j = 0 ; j < pArg[i]->getAs<ArrayOf>()->getSize() ; j++)
+                    int iSize = pArg[i]->getAs<ArrayOf>()->getSize();
+                    for(int j = 0 ; j < iSize ; j++)
                     {
                         if(pIdx[j] >= m_piDims[i])
                         {
@@ -370,7 +372,8 @@ namespace types
                 double* pIdx = getDoubleArrayFromDouble(pArg[pArg.size() - 1]);
                 //InternalType* pVar = pArg[pArg.size() - 1];
                 //double* pIdx = static_cast<double*>(pVar->getAs<Double>()->get());
-                for(int i = 0 ; i < pArg[pArg.size() - 1]->getAsGenericType()->getSize() ; i++)
+                int iSize = pArg[pArg.size() - 1]->getAsGenericType()->getSize();
+                for(int i = 0 ; i < iSize ; i++)
                 {
                     if(pIdx[i] > iMaxLastDim)
                     {
@@ -380,9 +383,9 @@ namespace types
             }
 
             //before resize, check input dimension
-            if(_pSource->getAs<ArrayOf>()->isScalar() == false)
+            if(pSource->isScalar() == false)
             {
-                if(_pSource->getAs<ArrayOf>()->getSize() != iSeqCount)
+                if(pSource->getSize() != iSeqCount)
                 {
                     return NULL;
                 }
@@ -403,7 +406,7 @@ namespace types
             }
 
             //update complexity
-            if(_pSource->getAs<ArrayOf>()->isComplex() && isComplex() == false)
+            if(pSource->isComplex() && isComplex() == false)
             {
                 setComplex(true);
             }
@@ -419,9 +422,9 @@ namespace types
                 piViewDims[i] = getVarMaxDim(i, iDims);
             }
 
-            T* pRealData    = _pSource->getAs<ArrayOf>()->get();
-            T* pImgData     = _pSource->getAs<ArrayOf>()->getImg();
-            bool bComplex   = _pSource->getAs<ArrayOf>()->isComplex();
+            T* pRealData    = pSource->get();
+            T* pImgData     = pSource->getImg();
+            bool bComplex   = pSource->isComplex();
 
             for(int i = 0 ; i < iSeqCount ; i++)
             {
@@ -440,7 +443,7 @@ namespace types
 
                 int iPos = getIndexWithDims(piCoord, piViewDims, iDims);
 
-                if(_pSource->getAs<ArrayOf>()->isScalar())
+                if(pSource->isScalar())
                 {//element-wise insertion
                     set(iPos, pRealData[0]);
                     if(bComplex)
@@ -565,10 +568,11 @@ namespace types
             }
 
             //fill with null item
-            T* pRealData = pOut->getAs<ArrayOf>()->get();
-            T* pImgData = pOut->getAs<ArrayOf>()->getImg();
+            ArrayOf* pArrayOut = pOut->getAs<ArrayOf>();
+            T* pRealData = pArrayOut->get();
+            T* pImgData = pArrayOut->getImg();
 
-            for(int i = 0 ; i < pOut->getAs<ArrayOf>()->getSize() ; i++)
+            for(int i = 0 ; i < pArrayOut->getSize() ; i++)
             {
                 pRealData[i] = pSource->getNullValue();
                 if(bComplex)
@@ -578,7 +582,7 @@ namespace types
             }
 
             //insert values in new matrix
-            InternalType* pOut2 = pOut->getAs<ArrayOf>()->insert(&pArg, _pSource);
+            InternalType* pOut2 = pArrayOut->insert(&pArg, _pSource);
             if(pOut != pOut2)
             {
                 delete pOut;
@@ -630,7 +634,7 @@ namespace types
             int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
             if(iSeqCount == 0)
             {
-                return createEmptyDouble()->getAs<Double>();
+                return createEmptyDouble();
             }
 
             if(iDims < m_iDims)
@@ -694,12 +698,12 @@ namespace types
                 if(piCountDim[0] == 0)
                 {
                     //pOut = createEmptyDouble()->getAs<Double>();
-                    return createEmptyDouble()->getAs<Double>();
+                    return createEmptyDouble();
                 }
                 else
                 {
                     //two cases, depends of original matrix/vector
-                    if((*_pArgs)[0]->getAs<Colon>() == NULL && m_iDims == 2 && m_piDims[1] != 1)
+                    if((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[1] != 1)
                     {//special case for row vector
                         int piRealDim[2] = {1, piCountDim[0]};
                         pOut = createEmpty(2, piRealDim, isComplex());

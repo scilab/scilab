@@ -216,12 +216,15 @@ namespace ast
         {
             typed_list* pArgs = new typed_list();
             std::list<ast::Exp *>::const_iterator it;
+            T *execMeArg  = new T();
             for(it = _plstArg.begin() ; it != _plstArg.end() ; it++)
             {
-                T execMeArg;
-                (*it)->accept(execMeArg);
-                pArgs->push_back(execMeArg.result_get()->clone());
+                (*it)->accept(*execMeArg);
+                pArgs->push_back(execMeArg->result_get());
             }
+            //to be sure, delete operation does not delete result
+            execMeArg->result_set(NULL);
+            delete execMeArg;
             return pArgs;
         }
 
@@ -700,6 +703,7 @@ namespace ast
                 wstring varName = e.vardec_get().name_get();
                 symbol::Context::getInstance()->put(varName, *pIT);
 
+                Double *pDouble = pIT->getAs<Double>();
                 for(int i = 0 ; i < pVar->getSize() ; i++)
                 {
                     bool bNew = false;
@@ -711,8 +715,7 @@ namespace ast
 
                     if(pIT->isDouble())
                     {
-                        Double *pDouble = pIT->getAs<Double>();
-                        pDouble->getReal()[0] = pVar->extractValueInDouble(i);
+                        pDouble->get()[0] = pVar->extractValueInDouble(i);
                     }
                     else if(pIT->isInt())
                     {

@@ -22,6 +22,8 @@
 #ifndef __IMPLICITLIST_HXX__
 #define __IMPLICITLIST_HXX__
 
+#include "internal.hxx"
+#include "double.hxx"
 namespace types
 {
     /*
@@ -33,6 +35,11 @@ namespace types
         InternalType*		    m_poStart;
         InternalType*		    m_poStep;
         InternalType*		    m_poEnd;
+
+        Double*		            m_pDblStart;
+        Double*		            m_pDblStep;
+        Double*		            m_pDblEnd;
+
         int			            m_iSize;
 
         InternalType::RealType  m_eStartType;

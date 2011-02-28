@@ -21,11 +21,21 @@ namespace types
         int iDims       = static_cast<int>(_pArgsIn->size());
         int iSeqCount   = 1;
         bool bUndefine  = false;
-
         for(int i = 0 ; i < iDims ; i++)
         {
             InternalType* pIT = (*_pArgsIn)[i];
-            if(pIT->isColon() || pIT->isImplicitList())
+            Double *pCurrentArg = NULL;
+            
+            if(pIT->isDouble())
+            {
+                pCurrentArg = pIT->getAs<Double>();
+                if(pCurrentArg->isEmpty())
+                {
+                    return 0;
+                }
+
+            }
+            else if(pIT->isColon() || pIT->isImplicitList())
             {//: or a:b:c
                 if(_pRef == NULL)
                 {
@@ -57,7 +67,7 @@ namespace types
                     }
                 }
 
-                _pArgsOut->push_back(pIL->extractFullMatrix());
+                pCurrentArg = pIL->extractFullMatrix()->getAs<Double>();
             }
             else if(pIT->getAs<types::String>())
             {//see later for extract from struct or Tlist
@@ -67,7 +77,7 @@ namespace types
                 Polynom* pMP = pIT->getAs<types::Polynom>();
                 int iMaxDim     = _pRef->getAsGenericType()->getVarMaxDim(i, iDims);
                 Double dbl(iMaxDim); // $
-                _pArgsOut->push_back(pMP->evaluate(&dbl));
+                pCurrentArg = pMP->evaluate(&dbl);
             }
             else if(pIT->getAs<types::Bool>())
             {//[T F F T F]
@@ -96,26 +106,18 @@ namespace types
                         pdbl[j++] = l + 1;
                     }
                 }
-                _pArgsOut->push_back(pDbl);
-            }
-            else
-            {//Double
-                if(pIT->getAs<Double>()->isEmpty())
-                {
-                    return 0;
-                }
-
-                _pArgsOut->push_back(pIT);
+                pCurrentArg = pDbl;
             }
 
-            _piCountDim[i] = (*_pArgsOut)[i]->getAs<GenericType>()->getSize();
+            _piCountDim[i] = pCurrentArg->getSize();
             _piMaxDim[i] = 0;
             for(int j = 0 ; j < _piCountDim[i] ; j++)
             {
-                _piMaxDim[i] = Max(_piMaxDim[i], static_cast<int>((*_pArgsOut)[i]->getAs<Double>()->get(j)));
+                _piMaxDim[i] = Max(_piMaxDim[i], static_cast<int>(pCurrentArg->get(j)));
             }
 
             iSeqCount *= _piCountDim[i];
+            _pArgsOut->push_back(pCurrentArg);
         }
 
         //returns a negative value if at least one parameter is undefined

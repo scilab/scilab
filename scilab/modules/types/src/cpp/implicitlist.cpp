@@ -172,9 +172,14 @@ namespace types
             m_iSize = 0;
             if(m_eOutType == RealDouble)
             {
-                double dblStart	= m_poStart->getAs<Double>()->getReal(0,0);
-                double dblStep	= m_poStep->getAs<Double>()->getReal(0,0);
-                double dblEnd   = m_poEnd->getAs<Double>()->getReal(0,0);
+                m_pDblStart = m_poStart->getAs<Double>();
+                double dblStart	= m_pDblStart->get(0);
+
+                m_pDblStep = m_poStep->getAs<Double>();
+                double dblStep	= m_pDblStep->get(0);
+
+                m_pDblEnd = m_poEnd->getAs<Double>();
+                double dblEnd	= m_pDblEnd->get(0);
 
                 if(dblStep > 0)
                 {
@@ -331,8 +336,8 @@ namespace types
 
     double ImplicitList::extractValueInDouble(int _iOccur)
     {
-        double dblStart		= m_poStart->getAs<Double>()->getReal(0,0);
-        double dblStep		= m_poStep->getAs<Double>()->getReal(0,0);
+        double dblStart		= m_pDblStart->get(0);
+        double dblStep		= m_pDblStep->get(0);
         return dblStart + _iOccur * dblStep;
     }
 
