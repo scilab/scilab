@@ -193,6 +193,9 @@ Xcos:
 * bug 8740 fixed - In the Modelica initialization GUI, discrete parameters were
                    not added to the unknown sum.
 
+* bug 8741 fixed - In the Modelica initialization GUI, the "fixed" checkbox 
+                   disabled some fields.
+
 * bug 8798 fixed - The context parameter of scicos_simulate was not taken into
                    account.
 

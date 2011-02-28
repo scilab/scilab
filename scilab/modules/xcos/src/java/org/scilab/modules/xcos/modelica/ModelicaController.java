@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
@@ -136,6 +137,8 @@ public final class ModelicaController {
 		JDialog dialog = new JDialog();
 		dialog.setTitle(ModelicaMessages.MODELICA_SETTINGS);
 		dialog.setAlwaysOnTop(false);
+		dialog.setIconImage(new ImageIcon(System.getenv("SCI")
+				+ "/modules/gui/images/icons/scilab.png").getImage());
 
 		ModelicaController controller;
 		try {
@@ -378,13 +381,13 @@ public final class ModelicaController {
 	 */
 	private void incrementTerminalWeight(final String kind, final double weight) {
 		if (FIXED_PARAMETER.equals(kind)) {
-			if (weight == 1) {
+			if (weight >= 1.0) {
 				statistics.incFixedParameters();
 			} else {
 				statistics.incRelaxedParameters();
 			}
 		} else if (VARIABLE.equals(kind)) {
-			if (weight == 1) {
+			if (weight >= 1.0) {
 				statistics.incFixedVariables();
 			} else {
 				statistics.incRelaxedVariables();
