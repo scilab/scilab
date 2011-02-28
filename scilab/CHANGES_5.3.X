@@ -75,7 +75,7 @@ Demonstration:
 Documentation:
 ==============
 
-* In the help browser, add the possibility to increase or to decrease the font
+* In the help browser, add the capability to increase or to decrease the font
 size.
 
 * In the help browser, add an incremental search bar to search for text in the
@@ -85,7 +85,7 @@ right area.
 syntax:
 <link type="scilab" linkend="mytoolbox/exec/macros/fooexec.sce">macros/fooexec.sce</link>
 
-* In the help, allow the creation of links between a module to the Scilab
+* In the help, allow the creation of links between a module and the Scilab
 documentation with the following syntax:
 <link type="scilab" linkend="scilab/help/bvode">bvode</link>
 
@@ -94,13 +94,13 @@ documentation with the following syntax:
 * In the help, allow the execution of the demos with the following syntax:
 <link type="scilab" linkend="scilab/demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link>
 
-* In an example in the documentation, when an undocumented function is used,
-trigger a warning and do not add a link on the function name.
+* In documentation's examples, when an undocumented function is used,
+trigger a warning and do not add a link on that function name.
 
 * "See also" links have now the function description shown.
 
 * In the documentation, Java, C, C++ and XML codes are now colorized if the role
-  in programlisting is set (role='java', role='c', role='cpp' or role='xml')
+  in programlisting is set (role='java', role='c', role='cpp' or role='xml').
 
 * The categories "Bitwise", "Elementary matrices", "Matrix manipulation",
   "Matrix operations", "Set operations", "Signal processing", "Symbolic",
@@ -138,9 +138,9 @@ trigger a warning and do not add a link on the function name.
 Scinotes:
 =========
 
-* Refactorization of the printing
+* Refactorization of the printing.
 
-* Add the possibility to export code to PDF, PS, EPS and RTF.
+* Add the capability to export code to PDF, PS, EPS and RTF.
 
 * Name of the current function and position (line, column) are now displayed
 in the status bar of Scinotes.
@@ -177,7 +177,7 @@ Xcos:
 * Add a specific display function to improve the display of errors on block
   parameters.
 
-* Many improvements on the english documentation of Xcos (better description
+* Many improvements on Xcos' english documentation (better description
   of the blocks, arguments, etc). Many thanks to Bernard Dujardin.
 
 * The demos have been updated to use the latest features.
@@ -187,7 +187,7 @@ Xcos:
 
 * bug 5346 fixed - Title was not used as default file name.
 
-* bug 5680 fixed - Labels are not visible as default.
+* bug 5680 fixed - Labels are not visible by default.
 
 * bug 6705 fixed - When drag and drop was used, port alignement was not correct.
 
@@ -212,7 +212,7 @@ Xcos:
                    XML DOM implementation.
 
 * bug 8235 fixed - Using masked super-block did not work when parameters are
-                   defined on the sub-context.
+                   defined in the inner-context.
 
 * bug 8440 fixed - The SVG background was not exported to SVG.
 
@@ -222,7 +222,7 @@ Xcos:
 
 * bug 8639 fixed - Simulations were not halted on Xcos close.
 
-* bug 8642 fixed - The getDiagramVersion unit test could not pass.
+* bug 8642 fixed - The getDiagramVersion unit test failed.
 
 * bug 8644 fixed - Add an simple example to define their own block.
 
@@ -252,7 +252,7 @@ Xcos:
 * bug 8818 fixed - Generic modelica blocks did not transform Scilab exponential
                    notation to Modelica one.
 
-* bug 8822 fixed - Remove an implicit link connected to a spli block could lead
+* bug 8822 fixed - Remove an implicit link connected to a split block could lead
                    to an unconnectable port.
 
 * bug 8867 fixed - Unconnected links could not be deleted.
@@ -290,7 +290,7 @@ Installer:
 Graphics:
 =========
 
-* bug 2913 fixed - In the histplot function, the legend was displayed over the
+* bug 2913 fixed - In the histplot function, the legend displayed over the
                    graphic.
 
 * bug 4818 fixed - It was not possible to export a figure with a lot of circle
@@ -422,7 +422,7 @@ Bug fixes:
 ==========
 
 * bug 476  fixed - find did not work when there are most output arguments
-                   than matrix dimensions
+                   than matrix dimensions.
 
 * bug 4930 fixed - When the console was resized from 0-height to x-height,
                    lines() was not correctly updated.
@@ -440,7 +440,7 @@ Bug fixes:
                    functions produced inconsistent results.
 
 * bug 8007 fixed - Hit UP key when the message 'Continue display...' was
-                   displayed could lead to a crash. 
+                   displayed could lead to a crash.
 
 * bug 8435 fixed - squarewave(t) failed for t<0. Thanks to Samuel Gougeon for
                    the fix.
@@ -471,7 +471,7 @@ Bug fixes:
 * bug 8830 fixed - In call_scilab, TerminateScilab did not clear the last
                    error.
 
-* bug 8836 fixed - fileparts crashed when a matrix of strings was passed as
+* bug 8836 fixed - fileparts crashed when a matrix of strings was given as
                    input argument.
 
 * bug 8845 fixed - a example in call_scilab module with Visual Studio has been
@@ -780,7 +780,7 @@ SciNotes:
 
 * Incremental search added with the shortcut: the F2 key.
 
-* Add a "Save file in..." menu which gives the possibility to save a file
+* Add a "Save file in..." menu which gives the capability to save a file
   in favorite directories.
 
 * bug 4399 fixed - It was not possible to distinguish lines from inner functions
