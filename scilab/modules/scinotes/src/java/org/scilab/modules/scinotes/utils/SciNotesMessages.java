@@ -42,8 +42,8 @@ public class SciNotesMessages {
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
     public static final String OPEN_ERROR = Messages.gettext("The file could not be created, check the path");
     public static final String READONLY = Messages.gettext("The file is not writable so it is opened in read-only mode");
-    public static final String NOTWRITABLE = Messages.gettext("You don't have the permissions to write this file");
-    public static final String NOTREADABLE = Messages.gettext("You don't have the permissions to read this file");
+    public static final String NOTWRITABLE = Messages.gettext("You do not have the permissions to write this file");
+    public static final String NOTREADABLE = Messages.gettext("You do not have the permissions to read this file");
 
     /**
      * "Save All" message
@@ -164,7 +164,7 @@ public class SciNotesMessages {
     public static final String BEGIN_OF_DOCUMENT = Messages.gettext("You have reached the beginning of the document");
     public static final String STRING_NOT_FOUND = Messages.gettext("String %s not found");
 
-    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
+    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s does not exist\nDo you want to create it?");
     public static final String CLOSE_TAB_TIP = Messages.gettext("close this tab");
     public static final String THIS_FILE = Messages.gettext("This file");
     public static final String MODIFIED = Messages.gettext(" has been modified since last save\nsave it?");
