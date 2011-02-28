@@ -28,6 +28,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.regex.Matcher;
 
 import javax.help.DefaultHelpHistoryModel;
 import javax.help.JHelpContentViewer;
@@ -55,6 +56,7 @@ import javax.swing.text.html.HTMLEditorKit;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -80,7 +82,8 @@ import org.scilab.modules.localization.Messages;
 public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implements MouseWheelListener {
 
     private static final String SCILAB_PROTO = "scilab://";
-    private static final String SCI = ScilabConstants.SCI.getPath();
+    private static final String FILE_PROTO = "file://";
+    private static final String SCI = ScilabConstants.SCI.getPath().replaceAll("\\\\", "/");;
     private static final String SHIFTEQ = "shiftEquals";
     private static final long serialVersionUID = -2593697956426596790L;
     private static final int[] fontSizes = new int[]{8, 10, 12, 14, 18, 24, 36};
@@ -127,9 +130,9 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                 if (url != null) {
                     super.hyperlinkUpdate(new HyperlinkEvent(event.getSource(), event.getEventType(), url, ""));
                 }
-            } else if (event.getDescription().startsWith("file://")) {
+            } else if (event.getDescription().startsWith(FILE_PROTO)) {
                 String url = event.getDescription();
-                url = url.replaceFirst("SCI", SCI);
+                url = url.replaceFirst("SCI", Matcher.quoteReplacement(SCI));
                 WebBrowser.openUrl(url);
             } else {
                 super.hyperlinkUpdate(event);

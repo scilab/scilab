@@ -153,7 +153,10 @@ macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 # This is not done in the module itself because its needs also the "types"
 # module
 javadoc:
-	$(JAVADOC) -noindex -nohelp -nonavbar -notree -d $(top_builddir)/modules/javasci/javadoc -sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java org.scilab.modules.javasci org.scilab.modules.types
+	$(JAVADOC) -noindex -nohelp -nonavbar -notree \
+	-d $(top_builddir)/modules/javasci/javadoc \
+	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java \
+	org.scilab.modules.javasci org.scilab.modules.types
 
 LANGDOC=en_US fr_FR pt_BR ja_JP
 
@@ -181,6 +184,8 @@ if BUILD_HELP
 			echo "-- Building documentation ($$l) --"; \
 			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'$$l');exit;\"";\
 			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltoweb([],[],'$$l');exit;";\
+			mkdir $(top_builddir)/modules/helptools/web/$$l/javasci; \
+			ln -s ../../../../javasci/javadoc/ $(top_builddir)/modules/helptools/web/$$l/javasci/; \
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
