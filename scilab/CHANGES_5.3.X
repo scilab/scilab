@@ -99,11 +99,19 @@ Documentation:
 Xcos:
 =====
 
+* Many improvements on Xcos english documentation (better description
+  of the blocks, arguments, examples, etc).
+  For now, EXTRACTBITS, DLATCH, DFLIPFLOP, INTMUL, SRFLIPFLOP, CONVERT, BITSET, 
+  BITCLEAR, etc have been fully documented and provided with usage examples.
+  Many thanks to Bernard Dujardin.
+
+* Direct access from the help browser to Xcos sample schemas added.
+  
+* Beginning of the french translation of the Xcos documentation.
+  Thanks to Bernard Dujardin.
+
 * Add a specific display function to improve the display of errors on block
   parameters.
-
-* Many improvements on Xcos' english documentation (better description
-  of the blocks, arguments, etc). Many thanks to Bernard Dujardin.
 
 * The demos have been updated to use the latest features.
 
