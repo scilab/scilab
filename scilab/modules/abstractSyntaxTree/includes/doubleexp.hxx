@@ -17,6 +17,8 @@
 
 #include "visitor.hxx"
 
+#include "double.hxx"
+
 namespace ast
 {
     /** \brief Abstract an Double Expression node.
@@ -25,9 +27,10 @@ namespace ast
     class DoubleExp : public ConstExp
     {
     public:
-        DoubleExp (const Location& location, double value) 
+        DoubleExp (const Location& location, double value)
             : ConstExp (location),
-            _value (value)
+              _value (value),
+              _bigDouble (NULL)
         {
         }
         /** \brief Destroy an Double Expression node.
@@ -69,8 +72,19 @@ namespace ast
         }
         /** \} */
 
+        types::Double* getBigDouble() const
+        {
+            return _bigDouble;
+        }
+
+        void setBigDouble(types::Double *pdbl)
+        {
+            _bigDouble = pdbl;
+        }
+
     protected:
         double     _value;
+        types::Double*    _bigDouble;
     };
 
 } // namespace ast

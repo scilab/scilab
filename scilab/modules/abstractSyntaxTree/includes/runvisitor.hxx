@@ -317,8 +317,14 @@ namespace ast
 
         void visitprivate(const DoubleExp  &e)
         {
-            Double *pdbl = new Double(e.value_get());
-            result_set(pdbl);
+            if(e.getBigDouble() == NULL)
+            {
+                Double *pdbl = new Double(e.value_get());
+                pdbl->IncreaseRef();
+                (const_cast<DoubleExp *>(&e))->setBigDouble(pdbl);
+
+            }
+            result_set(e.getBigDouble());
         }
 
 
