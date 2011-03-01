@@ -601,17 +601,21 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * Modify the current base font size
      * @param s the size to add to the current size
      */
-    public void modifyFont(int s) {
-        try {
-            HTMLDocument doc = (HTMLDocument) accessibleHtml.getDocument();
-            StyleContext.NamedStyle style = (StyleContext.NamedStyle) doc.getStyleSheet().getStyle("body");
-            MutableAttributeSet attr = (MutableAttributeSet) style.getResolveParent();
-            currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
-            StyleConstants.setFontSize(attr, fontSizes[currentFontSize]);
-            style.setResolveParent(attr);
-        } catch (NullPointerException e) {
-            // Can occur if the user is changing quickly the document
-        }
+    public void modifyFont(final int s) {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        HTMLDocument doc = (HTMLDocument) accessibleHtml.getDocument();
+                        StyleContext.NamedStyle style = (StyleContext.NamedStyle) doc.getStyleSheet().getStyle("body");
+                        MutableAttributeSet attr = (MutableAttributeSet) style.getResolveParent();
+                        currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
+                        StyleConstants.setFontSize(attr, fontSizes[currentFontSize]);
+                        style.setResolveParent(attr);
+                    } catch (NullPointerException e) {
+                        // Can occur if the user is changing quickly the document
+                    }
+                }
+            });
     }
 
     /**
