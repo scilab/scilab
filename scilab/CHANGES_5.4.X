@@ -11,6 +11,8 @@ Bug Fixes:
 * bug 8608 - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
              and optimized.
 
+* bug 8608 - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified and optimized.
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
