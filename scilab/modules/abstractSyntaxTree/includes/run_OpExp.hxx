@@ -58,7 +58,7 @@ void visitprivate(const OpExp &e)
         }
 
         InternalType *pResult   = NULL;
-        
+
         switch(e.oper_get())
         {
         case OpExp::plus :
@@ -827,8 +827,8 @@ void visitprivate(const LogicalOpExp &e)
 
     e.left_get().accept(execMeL);
     InternalType *pITL          = execMeL.result_get();
-    InternalType *pITR          = execMeR.result_get();
-    
+    InternalType *pITR          = NULL;
+
     GenericType::RealType TypeL = pITL->getType();
     Bool *pL	= NULL;
 
@@ -886,6 +886,7 @@ void visitprivate(const LogicalOpExp &e)
     case LogicalOpExp::logicalOr :
         {
             e.right_get().accept(execMeR);
+            pITR = execMeR.result_get();
             GenericType::RealType TypeR = pITR->getType();
 
             if(TypeR == GenericType::RealBool)
@@ -963,6 +964,7 @@ void visitprivate(const LogicalOpExp &e)
     case LogicalOpExp::logicalAnd :
         {
             e.right_get().accept(execMeR);
+            pITR = execMeR.result_get();
             GenericType::RealType TypeR = pITR->getType();
 
             if(TypeR == GenericType::RealBool)
@@ -1020,7 +1022,7 @@ void visitprivate(const LogicalOpExp &e)
             }
             break;
         }
-        
+
     default :
         {
             result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
