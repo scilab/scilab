@@ -278,6 +278,10 @@ New Functions
 Graphics:
 =========
 
+* Fix a critical bug in the graphic rendering which was crashing Scilab.
+  This bug was occuring on some buggy drivers (Intel HD graphics for example).
+  See bug #7526 for more information.
+
 * bug 2913 fixed - In the histplot function, the legend was displayed over the
                    graphic.
 
