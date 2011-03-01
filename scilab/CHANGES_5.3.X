@@ -31,6 +31,9 @@ Console:
 Documentation:
 ==============
 
+* Homepage added in the help browser to highlight the new features of Scilab
+  and list the online available resources.
+
 * Add the capability to increase or decrease font size. 
   Shortcuts under Windows and Linux: CTRL + + / CTRL + - or CTRL + mouse wheel 
   increases/decreases.

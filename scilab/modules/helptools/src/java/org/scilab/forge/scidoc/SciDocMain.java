@@ -137,8 +137,18 @@ public final class SciDocMain {
             if (format.equalsIgnoreCase("javahelp")) {
                 if (!isToolbox) {
                     Helpers.copyFile(new File(SCI + "/modules/helptools/data/pages/error.html"), new File(outputDirectory + "/ScilabErrorPage.html"));
-                    Helpers.copyFile(new File(SCI + "/modules/helptools/data/pages/homepage-en_US.html"), new File(outputDirectory + "/ScilabHomePage.html"));
-                    Helpers.copyFile(new File(SCI + "/modules/helptools/data/pages/ban_en_US.png"), new File(outputDirectory + "/ban_en_US.png"));
+                    File homepage = new File(SCI + "/modules/helptools/data/pages/homepage-"+language+".html");
+                    if (!homepage.isFile()) {
+                        /* could not find the localized homepage. Switch to english */
+                        homepage=new File(SCI + "/modules/helptools/data/pages/homepage-en_US.html");
+                    } 
+                    Helpers.copyFile(homepage, new File(outputDirectory + "/ScilabHomePage.html"));
+
+                    File homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-"+language+".png");
+                    if (!homepageImage.isFile()) {
+                        homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-en_US.png");
+                    }
+                    Helpers.copyFile(homepageImage, new File(outputDirectory + "/ban_en_US.png"));
                 }
                 BuildJavaHelp.buildJavaHelp(outputDirectory, language);
             }
