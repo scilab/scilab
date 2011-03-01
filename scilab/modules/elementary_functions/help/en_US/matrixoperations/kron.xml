@@ -45,7 +45,7 @@ A.*.B</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/kron_equation_1.mml" />
+          <imagedata fileref="../../mml/kron_equation_1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>

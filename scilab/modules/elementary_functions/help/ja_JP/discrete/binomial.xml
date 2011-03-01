@@ -81,7 +81,7 @@
       <mediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../mml/binomial_equation_1_en_US.mml" />
+                     fileref="../../mml/binomial_equation_1_en_US.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
