@@ -56,7 +56,6 @@ import javax.swing.text.html.HTMLEditorKit;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
