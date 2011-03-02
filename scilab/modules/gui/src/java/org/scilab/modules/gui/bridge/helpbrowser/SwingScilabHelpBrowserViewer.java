@@ -86,6 +86,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     private static final String SHIFTEQ = "shiftEquals";
     private static final long serialVersionUID = -2593697956426596790L;
     private static final int[] fontSizes = new int[]{8, 10, 12, 14, 18, 24, 36};
+    private static final boolean isMac = System.getProperty("os.name").toLowerCase().indexOf("mac") != -1;
 
     private static int currentFontSize = ConfigManager.getHelpFontSize();
 
@@ -434,6 +435,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                         }
                     }
                 });
+
             accessibleHtml.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(ScilabKeyStroke.getKeyStroke("OSSCKEY shift EQUALS"), SHIFTEQ);
             accessibleHtml.getActionMap().put(SHIFTEQ, new AbstractAction() {
                     public void actionPerformed(ActionEvent e) {
@@ -587,7 +589,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * {@inheritedDoc}
      */
     public void mouseWheelMoved(MouseWheelEvent e) {
-        if (e.isControlDown()) {
+        if ((isMac && e.isMetaDown()) || e.isControlDown()) {
             int n = e.getWheelRotation();
             if (currentFontSize != Math.min(Math.max(0, currentFontSize + n), 6)) {
                 modifyFont(n);
