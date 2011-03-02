@@ -162,9 +162,13 @@ public abstract class SciConsole extends JPanel {
         // Bug 8055 : update the lines/columns only when the console is resized
         addComponentListener(new ComponentAdapter() {
                 public void componentResized(ComponentEvent evt) {
-                    scilabLinesUpdate();
-                    jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
-                    jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
+                    SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                scilabLinesUpdate();
+                                jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
+                                jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
+                            }
+                        });
                 }
             });
     }

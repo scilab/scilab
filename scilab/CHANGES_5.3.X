@@ -564,6 +564,7 @@ Bug Fixes:
 
 * bug 9034 fixed - atomsVersionCompare failed on version with '-0'.
 
+* bug 9096 fixed - Sometimes an exception was thrown at the Scilab's startup.
 
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
