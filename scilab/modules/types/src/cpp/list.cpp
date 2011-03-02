@@ -241,7 +241,15 @@ namespace types
         }
         else if(idx == 0)
         {//special cazse to insert at the first position
-            InternalType* pInsert = _pSource->getAsListInsert()->getInsert();
+            InternalType* pInsert = NULL;
+            if(_pSource->isListInsert())
+            {
+                pInsert = _pSource->getAs<ListInsert>()->getInsert();
+            }
+            else
+            {
+                pInsert = _pSource;
+            }
             pInsert->IncreaseRef();
             m_plData->insert(m_plData->begin(), pInsert);
         }
