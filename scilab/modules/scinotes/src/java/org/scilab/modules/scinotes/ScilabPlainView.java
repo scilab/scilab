@@ -218,6 +218,7 @@ public class ScilabPlainView extends PlainView {
         int tok = -1;
         int mark = p0;
         int start = p0;
+        int sstart = -1;
         int x = sx;
         int y = sy;
         boolean isBroken = false;
@@ -241,7 +242,7 @@ public class ScilabPlainView extends PlainView {
             lexer.setRange(start, endL);
         }
 
-        while (start < p1) {
+        while (start < p1 && sstart != start) {
             try {
                 if (!isBroken) {
                     tok = lexer.scan();
@@ -250,7 +251,9 @@ public class ScilabPlainView extends PlainView {
                 }
             } catch (IOException e) { }
 
+            sstart = start;
             start = lexer.start + lexer.yychar();
+
             int end = Math.min(p1, start + lexer.yylength());
 
             if (end != mark) {

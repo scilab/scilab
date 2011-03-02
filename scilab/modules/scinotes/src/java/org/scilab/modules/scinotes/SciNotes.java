@@ -1411,6 +1411,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     sep.copyProps(pane);
                     pane.setDocument(sep.getDocument());
                     pane.setCaretPosition(sep.getCaretPosition());
+                    pane.getXln().setWhereamiLineNumbering(ConfigSciNotesManager.getLineNumberingState());
                     ed.tabPane.setComponentAt(i, pane.getEditorComponent());
                     ed.activateHelpOnTyping(pane);
                     ed.initInputMap(pane);
