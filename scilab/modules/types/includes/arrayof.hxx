@@ -352,35 +352,58 @@ namespace types
             }
             else // _iDims < m_iDims
             {
-                //each index before last index must be in range of his dimension
-                //and last given dimension can not be > prod(last dimensions)
-                for(int i = 0 ; i < iDims - 1 ; i++)
+                if(isVector() || isScalar())
                 {
-                    //indexes are always doubles
-                    double* pIdx = getDoubleArrayFromDouble(pArg[i]);
-                    //InternalType* pVar = pArg[i];
-                    //double* pIdx = static_cast<double*>(pVar->getAs<Double>()->get());
-                    int iSize = pArg[i]->getAs<ArrayOf>()->getSize();
-                    for(int j = 0 ; j < iSize ; j++)
+                    if(getSize() < piMaxDim[0])
                     {
-                        if(pIdx[j] >= m_piDims[i])
-                        {
-                            return false;
+                        bNeedToResize = true;
+                        iNewDims = 2;
+                        piNewDims = new int[2];
+
+                        if(getCols() == 1)
+                        {//column vector
+                            piNewDims[0] = piMaxDim[0];
+                            piNewDims[1] = 1;
+                        }
+                        else if(getRows() == 1)
+                        {//row vector
+                            piNewDims[0] = 1;
+                            piNewDims[1] = piMaxDim[0];
                         }
                     }
                 }
-
-                //check last dim
-                int iMaxLastDim = getVarMaxDim(iDims - 1, iDims);
-                double* pIdx = getDoubleArrayFromDouble(pArg[pArg.size() - 1]);
-                //InternalType* pVar = pArg[pArg.size() - 1];
-                //double* pIdx = static_cast<double*>(pVar->getAs<Double>()->get());
-                int iSize = pArg[pArg.size() - 1]->getAsGenericType()->getSize();
-                for(int i = 0 ; i < iSize ; i++)
+                else
                 {
-                    if(pIdx[i] > iMaxLastDim)
+                    //each index before last index must be in range of his dimension
+                    //and last given dimension can not be > prod(last dimensions)
+                    for(int i = 0 ; i < iDims - 1 ; i++)
                     {
-                        return false;
+                        //indexes are always doubles
+                        double* pIdx = getDoubleArrayFromDouble(pArg[i]);
+                        //InternalType* pVar = pArg[i];
+                        //double* pIdx = static_cast<double*>(pVar->getAs<Double>()->get());
+                        int iSize = pArg[i]->getAs<ArrayOf>()->getSize();
+                        for(int j = 0 ; j < iSize ; j++)
+                        {
+                            if(pIdx[j] >= m_piDims[i])
+                            {
+                                return false;
+                            }
+                        }
+                    }
+
+                    //check last dim
+                    int iMaxLastDim = getVarMaxDim(iDims - 1, iDims);
+                    double* pIdx = getDoubleArrayFromDouble(pArg[pArg.size() - 1]);
+                    //InternalType* pVar = pArg[pArg.size() - 1];
+                    //double* pIdx = static_cast<double*>(pVar->getAs<Double>()->get());
+                    int iSize = pArg[pArg.size() - 1]->getAsGenericType()->getSize();
+                    for(int i = 0 ; i < iSize ; i++)
+                    {
+                        if(pIdx[i] > iMaxLastDim)
+                        {
+                            return false;
+                        }
                     }
                 }
             }
