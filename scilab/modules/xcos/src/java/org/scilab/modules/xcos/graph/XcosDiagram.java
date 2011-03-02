@@ -1581,7 +1581,7 @@ public class XcosDiagram extends ScilabGraph {
 			close();
 		}
 		
-		return true;
+		return wantToClose;
 	}
 
 	/**
