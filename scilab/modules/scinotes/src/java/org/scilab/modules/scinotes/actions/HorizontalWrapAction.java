@@ -65,6 +65,7 @@ public final class HorizontalWrapAction extends DefaultCheckAction  {
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         final CheckBoxMenuItem horizontalWrap = createCheckBoxMenu(label, null, new HorizontalWrapAction(label, editor), key);
+        horizontalWrap.setChecked(ConfigSciNotesManager.getHorizontalWrap());
         ((JCheckBoxMenuItem) horizontalWrap.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     horizontalWrap.setChecked(ConfigSciNotesManager.getHorizontalWrap());
