@@ -353,10 +353,13 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 		switch(TypeDest)
 		{
 		case types::GenericType::RealDouble :
-			poResult->getAs<types::Double>()->append(iCurRow, iCurCol, _poSource->getAs<types::Double>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
+    		{
+            types::Double* pDblSource = _poSource->getAs<types::Double>();
+			poResult->getAs<types::Double>()->append(iCurRow, iCurCol, pDblSource);
+			*_piRows = pDblSource->getRows();
+			*_piCols = pDblSource->getCols();
 			break;
+			}
 		case types::GenericType::RealPoly :
 			poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<types::Polynom>());
 			*_piRows = _poSource->getAsGenericType()->getRows();

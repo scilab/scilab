@@ -172,8 +172,11 @@ namespace types
 
         virtual bool set(int _iRows, int _iCols, T _data)
         {
-            int piIndexes[2] = {_iRows, _iCols};
-            return set(getIndex(piIndexes), copyValue(_data));
+//            int piIndexes[2];
+//            piIndexes[0] = _iRows;
+//            piIndexes[1] = _iCols;
+//            return set(getIndex(piIndexes), _data);
+            return set(_iCols * getRows() + _iRows, _data);
         }
 
         virtual bool set(T* _pdata)

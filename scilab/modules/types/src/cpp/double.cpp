@@ -710,4 +710,63 @@ namespace types
     {
         return new double[_iSize];
     }
+
+	bool Double::append(int _iRows, int _iCols, Double *_poSource)
+	{
+		int iSourceRows = _poSource->getRows();
+		int iSourceCols = _poSource->getCols();
+		int iOrigRows   = getRows();
+		int iOrigCols   = getCols();
+
+		//insert without resize
+		if(iSourceRows + _iRows > iOrigRows || iSourceCols + _iCols > iOrigCols)
+		{
+			return false;
+		}
+
+        double* pSourceReal = _poSource->get();
+        double* pSourceImg  = _poSource->getImg();
+        double* pOrigReal   = get();
+        double* pOrigImg    = getImg();
+        
+		if(m_bComplex)
+		{
+			for(int iRow = 0 ; iRow < iSourceRows ; iRow++)
+			{
+                int iDestOffset = _iCols * iOrigRows + iRow;
+                int iOrigOffset = iSourceCols * iSourceRows + iRow;
+                memcpy(pOrigReal + iDestOffset, pSourceReal + iOrigOffset, iSourceCols * sizeof(double));
+                if(_poSource->isComplex())
+                {
+                    memcpy(pOrigImg + iDestOffset, pSourceImg + iOrigOffset, iSourceCols * sizeof(double));
+                }
+                else
+                {
+                    memset(pOrigImg + iDestOffset, 0x00, iSourceCols * sizeof(double));
+                }
+			}
+		}
+		else
+		{
+            if(iSourceRows != 1)
+            {
+                for(int iCol = 0 ; iCol < iSourceCols ; iCol++)
+                {
+                    int iDestOffset = (iCol + _iCols ) * iOrigRows + _iRows;
+                    int iOrigOffset = iCol * iSourceRows;
+                    memcpy(pOrigReal + iDestOffset, pSourceReal + iOrigOffset, iSourceRows * sizeof(double));
+                }
+            }
+            else
+            {
+                for(int iCol = 0 ; iCol < iSourceCols ; iCol++)
+                {
+                    //set(_iRows, _iCols + iCol, pSourceReal[iCol]);
+                    set((_iCols + iCol) * iOrigRows + _iRows, pSourceReal[iCol]);
+                }
+            }
+		}
+		return true;
+	}
+    
 }
