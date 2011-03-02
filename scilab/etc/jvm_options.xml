@@ -28,7 +28,7 @@ $SCILAB : scilab path (SCI in Scilab)
   <!--
 <option value="-Djava.compiler=NONE"/>
 -->
-  <!-- --enable-debug-java enables also some more checks -->
+  <!-- enable-debug-java enables also some more checks -->
 <!--
 <option value='-verbose:jni'/>
 	   <option value='-Xcheck:jni'/>
