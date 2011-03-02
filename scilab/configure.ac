@@ -583,11 +583,7 @@ case "$CC" in
         CFLAGS="$CFLAGS -D_GNU_SOURCE"
     ;;
      *-*-solaris*)
-        if test "$enable_debug_C" = yes; then
-             CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
-        else
-             CFLAGS="-O2 -DNDEBUG -DSVR4 -DSYSV -Dsolaris"
-        fi
+        CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
     ;;
    *-*-freebsd*)
      CFLAGS="$CFLAGS -Dfreebsd"
@@ -625,9 +621,7 @@ esac
    *)
 
         ## CC compiler (not GCC)
-        if test "$enable_debug_C" = yes; then
-             CFLAGS="$CFLAGS -g"
-        else
+        if test "$enable_debug_C" != yes; then
              CFLAGS="$CFLAGS -DNDEBUG"
         fi
 
