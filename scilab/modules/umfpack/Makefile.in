@@ -429,7 +429,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
-libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) \
+libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) \
 	$(am__append_1)
 
 #### umfpack : Conf files ####

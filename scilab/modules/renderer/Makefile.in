@@ -1007,7 +1007,7 @@ src/jni/SubwinBackgroundDrawerGL.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@pkglib_LTLIBRARIES = libscirenderer.la
-libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscirenderer_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)

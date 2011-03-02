@@ -109,7 +109,7 @@ libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscipolynomials.la
 
-libscipolynomials_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscipolynomials_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 

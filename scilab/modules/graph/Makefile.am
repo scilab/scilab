@@ -52,7 +52,7 @@ libscigraph_la_CPPFLAGS =
 libscigraph_disable_la_CFLAGS = 
 
 GRAPH_DISABLE_C_SOURCES = 
-libscigraph_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscigraph_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigraph_disable_la_SOURCES = $(GRAPH_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscigraph-disable.la
@@ -61,7 +61,7 @@ if GUI
 pkglib_LTLIBRARIES += libscigraph.la 
 endif
 
-libscigraph_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscigraph_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscigraph_la_SOURCES = $(GRAPH_C_SOURCES) $(GRAPH_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GRAPH_CPP_SOURCES)
 

@@ -120,7 +120,7 @@ libsciinteger_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciinteger.la
 
-libsciinteger_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciinteger_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

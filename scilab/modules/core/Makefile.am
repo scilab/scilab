@@ -310,7 +310,7 @@ endif
 
 pkglib_LTLIBRARIES = libscicore.la
 
-libscicore_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)

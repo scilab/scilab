@@ -59,7 +59,7 @@ libscipvm_la_CFLAGS=  -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscipvm.la
 
-libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
+libscipvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -92,7 +92,7 @@ PVM_C_SOURCES = src/nopvm/nopvm.c
 
 pkglib_LTLIBRARIES = libscipvm.la
 
-libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscipvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) 
 

@@ -44,11 +44,11 @@ src/c/javasci2_helper.c
 
 pkglib_LTLIBRARIES = libjavasci.la libjavasci2.la
 
-libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libjavasci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libjavasci_la_SOURCES = $(JAVASCI_V1_C_SOURCES)
 
-libjavasci2_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libjavasci2_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libjavasci2_la_SOURCES = $(JAVASCI_V2_C_SOURCES)
 

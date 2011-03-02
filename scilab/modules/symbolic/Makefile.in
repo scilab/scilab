@@ -421,7 +421,7 @@ libscisymbolic_la_CFLAGS = -I$(srcdir)/includes/ \
 
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisymbolic.la
-libscisymbolic_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscisymbolic_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)

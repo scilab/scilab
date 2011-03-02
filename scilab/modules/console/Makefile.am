@@ -84,7 +84,7 @@ if GUI
 pkglib_LTLIBRARIES += libsciconsole.la 
 endif
 
-libsciconsole_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciconsole_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciconsole.la
 libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES)

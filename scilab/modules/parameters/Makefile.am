@@ -21,7 +21,7 @@ libsciparameters_la_CFLAGS=-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciparameters.la
 
-libsciparameters_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciparameters_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 

@@ -208,7 +208,7 @@ libscicacsd_la_CFLAGS= 	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscicacsd.la
 
-libscicacsd_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)  $(ATLAS_LIBS)
+libscicacsd_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)  $(ATLAS_LIBS)
 
 libscicacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 

@@ -531,8 +531,8 @@ top_srcdir = @top_srcdir@
 
 @PVM_FALSE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@pkglib_LTLIBRARIES = libscipvm.la
-@PVM_FALSE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-@PVM_TRUE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
+@PVM_FALSE@libscipvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+@PVM_TRUE@libscipvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
 @PVM_FALSE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) 
 @PVM_TRUE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 

@@ -26,7 +26,7 @@ libsciintersci_la_include_HEADERS = includes/libinter.h
 
 pkglib_LTLIBRARIES = libsciintersci.la
 
-libsciintersci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciintersci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 bin_PROGRAMS = intersci
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)

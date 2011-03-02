@@ -459,9 +459,9 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@src/c/javasci2_helper.c
 
 @JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci.la libjavasci2.la
-@JAVASCI_TRUE@libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+@JAVASCI_TRUE@libjavasci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 @JAVASCI_TRUE@libjavasci_la_SOURCES = $(JAVASCI_V1_C_SOURCES)
-@JAVASCI_TRUE@libjavasci2_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+@JAVASCI_TRUE@libjavasci2_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 @JAVASCI_TRUE@libjavasci2_la_SOURCES = $(JAVASCI_V2_C_SOURCES)
 
 # For the code check (splint)

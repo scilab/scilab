@@ -46,7 +46,7 @@ endif
 
 pkglib_LTLIBRARIES = libscitclsci.la
 
-libscitclsci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
+libscitclsci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
 
 libscitclsci_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \

@@ -73,7 +73,7 @@ if GUI
 pkglib_LTLIBRARIES += libsciaction_binding.la
 endif
 
-libsciaction_binding_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libsciaction_binding_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
 # All the sources needed by libsciaction_binding.la
 libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(ACTION_BINDING_CPP_SOURCES) $(CONSOLE_C_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)

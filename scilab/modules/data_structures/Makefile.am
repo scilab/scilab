@@ -53,7 +53,7 @@ libdummy_data_structures_la_FFLAGS = $(FFLAGS:-O%=)
 
 pkglib_LTLIBRARIES = libscidata_structures.la
 
-libscidata_structures_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscidata_structures_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

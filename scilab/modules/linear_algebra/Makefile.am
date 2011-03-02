@@ -97,7 +97,7 @@ libscilinear_algebra_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 
-libscilinear_algebra_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscilinear_algebra_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

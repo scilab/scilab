@@ -135,7 +135,7 @@ libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscidifferential_equations.la
 
-libscidifferential_equations_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscidifferential_equations_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

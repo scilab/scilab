@@ -12,7 +12,7 @@ modulename=fftw
 
 pkglib_LTLIBRARIES = libscifftw.la
 
-libscifftw_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
+libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
 
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)

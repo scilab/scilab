@@ -49,7 +49,7 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
-libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWAY_CPP_SOURCES)
 

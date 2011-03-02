@@ -471,7 +471,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_UpVar.c
 
 pkglib_LTLIBRARIES = libscitclsci.la
-libscitclsci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
+libscitclsci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
 libscitclsci_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
 			-I$(srcdir)/sci_gateway/c/ \

@@ -24,7 +24,7 @@ libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscitime.la
 
-libscitime_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscitime_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 

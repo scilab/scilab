@@ -480,11 +480,11 @@ top_srcdir = @top_srcdir@
 @HDF5_TRUE@sci_gateway/cpp/sci_import_from_hdf5.cpp
 
 @HDF5_TRUE@FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
-@HDF5_TRUE@libscihdf5_forceload_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+@HDF5_TRUE@libscihdf5_forceload_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
 @HDF5_TRUE@libscihdf5_forceload_la_SOURCES = $(FORCE_LOAD_SOURCES)
 @HDF5_TRUE@libscihdf5_forceload_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 @HDF5_TRUE@libscihdf5_forceload_la_CFLAGS = $(libscihdf5_la_CFLAGS)
-@HDF5_TRUE@libscihdf5_forceload_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+@HDF5_TRUE@libscihdf5_forceload_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
 @HDF5_TRUE@libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
 @HDF5_TRUE@libscihdf5_forceload_disable_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 @HDF5_TRUE@libscihdf5_forceload_disable_la_CFLAGS = $(libscihdf5_la_CFLAGS)
@@ -518,7 +518,7 @@ libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 pkglib_LTLIBRARIES = libscihdf5.la $(am__append_1) $(am__append_2)
-libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
+libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES)
 
 # For the code check (splint)

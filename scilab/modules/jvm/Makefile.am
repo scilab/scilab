@@ -45,7 +45,7 @@ USEANT=1
 pkglib_LTLIBRARIES += libscijvm.la
 endif
 
-libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS)
+libscijvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS)
 
 if IS_MACOSX 
 libscijvm_la_LDFLAGS += -framework JavaVM

@@ -374,7 +374,7 @@ USEANT=1
 pkglib_LTLIBRARIES = libscirenderer.la
 endif
 
-libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscirenderer_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### renderer : gateway declaration ####
 #libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway

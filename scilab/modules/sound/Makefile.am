@@ -17,7 +17,7 @@ libscisound_la_CFLAGS=  -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscisound.la
 
-libscisound_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscisound_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscisound_la_SOURCES = $(GATEWAY_C_SOURCES)
 

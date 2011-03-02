@@ -439,7 +439,7 @@ libsciparallel_la_CPPFLAGS = $(OPENMP_CXXFLAGS) \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libsciparallel.la
-libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-info $(SCILAB_LIBRARY_VERSION)
+libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-number $(SCILAB_LIBRARY_VERSION)
 @OPENMP_FALSE@libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
 @OPENMP_FALSE@src/noparallel/noparallel.c
 

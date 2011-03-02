@@ -27,7 +27,7 @@ libscicall_scilab_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscicall_scilab.la
 
-libscicall_scilab_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscicall_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscicall_scilab_la_SOURCES = $(CALLSCILAB_C_SOURCES) $(GATEWAY_C_SOURCES)
 
