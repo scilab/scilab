@@ -2,6 +2,13 @@
             =================================================
 
 
+Bug fixes:
+==========
+
+* bug 9113 fixed - setlookandfeel could lead to an exception.
+
+
+
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
 
