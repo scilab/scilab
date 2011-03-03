@@ -211,11 +211,12 @@ public class GraphicController {
             }
         }
 
+        /* Insertion occurs at the head of the children list */
         if (parentId != null && !parentId.equals("")) {
             String[] children = (String[]) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__);
             String[] newChildren = new String[children.length + 1];
-            System.arraycopy(children, 0, newChildren, 0, children.length);
-            newChildren[children.length] = childId;
+            System.arraycopy(children, 0, newChildren, 1, children.length);
+            newChildren[0] = childId;
             setProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__, Arrays.asList(newChildren));
         }
 

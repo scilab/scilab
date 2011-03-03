@@ -951,7 +951,12 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
         sciPointObj* tmpObj;
 
         tmpObj =  sciGetPointerFromHandle(tabofhandles[i]);
-        lineIDS[i] = tmpObj->UID;
+
+        /*
+         * Links are ordered from most recent to least recent,
+         * as their referred-to Polylines in the latter's parent Compound object.
+         */
+        lineIDS[nblegends-i-1] = tmpObj->UID;
     }
 
     setGraphicObjectProperty(pobj->UID, __GO_LINKS__, lineIDS, jni_string_vector, nblegends);
@@ -2820,12 +2825,13 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 /**sciConstructCompoundSeq
  * constructs a Compound of with the last n entities created in the current subwindow
  on entry the subwin children list is
- s1->s2->...->sk->sk+1->...->sk+n-1
- with sk the first of the last n created entities
+ s1->s2->...->sn->sn+1->...->sN
+ with sn the least recent of the last n entities created and s1 the most recent one
+ (that is, the last entity created), and N the subwin's initial number of children
  on exit it is
- s1->s2->...->sk-1->A
- with A a Compound whose children list is:
- sk->sk+1->...->sk+n-1
+ A->sn+1->sn+2->...->sN
+ with A a Compound object whose children list is:
+ s1->s2->...->sn-1->sn
 */
 sciPointObj *
 ConstructCompoundSeq (int number)
@@ -2864,13 +2870,17 @@ ConstructCompoundSeq (int number)
     getGraphicObjectProperty(psubwin->UID, __GO_CHILDREN__, jni_string_vector, &children);
 
     /*
-     * Remove the last "number" created objects (located at the children list's end)
+     * Remove the last "number" created objects (located at the children list's head)
      * and add them to the compound in the same order
      */
     for ( i = 0 ; i < number ; i++ )
     {
-        /* Set the parent-child relationship between the Compound and each aggregated object */
-        setGraphicObjectRelationship(pobj->UID, children[numberChildren-number+i]);
+        /*
+         * Set the parent-child relationship between the Compound and each aggregated object.
+         * Children are added to the Compound from the least recent to the most recent, to
+         * preserve their former ordering.
+         */
+        setGraphicObjectRelationship(pobj->UID, children[number-i-1]);
     }
 
     /* Sets the parent-child relationship for the Compound */
