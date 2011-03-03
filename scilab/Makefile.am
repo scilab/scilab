@@ -106,9 +106,7 @@ $(top_builddir)/etc/jvm_options.xml \
 $(top_builddir)/etc/modules.xml \
 $(top_builddir)/etc/classpath.xml \
 $(top_builddir)/etc/logging.properties \
-$(top_builddir)/etc/librarypath.xml \
-$(top_builddir)/Version.incl
-
+$(top_builddir)/etc/librarypath.xml
 
 infofilesdir=$(pkgdatadir)/
 infofiles_DATA = $(top_srcdir)/CHANGES_2.X \
@@ -128,7 +126,8 @@ $(top_srcdir)/RELEASE_NOTES_5.1.X \
 $(top_srcdir)/RELEASE_NOTES_5.2.X \
 $(top_srcdir)/RELEASE_NOTES_5.3.X \
 $(top_srcdir)/Readme_Visual.txt \
-$(top_srcdir)/README_Windows.txt
+$(top_srcdir)/README_Windows.txt \
+$(top_builddir)/Version.incl
 
 iconsdir=$(pkgdatadir)/icons/
 icons_DATA = $(top_srcdir)/icons/scilab.xpm \
