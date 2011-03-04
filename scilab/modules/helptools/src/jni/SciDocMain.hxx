@@ -39,8 +39,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_FORGE_SCIDOC_SCIDOCMAIN__
-#define __ORG_SCILAB_FORGE_SCIDOC_SCIDOCMAIN__
+#ifndef __ORG_SCILAB_MODULES_HELPTOOLS_SCIDOCMAIN__
+#define __ORG_SCILAB_MODULES_HELPTOOLS_SCIDOCMAIN__
 #include <iostream>
 #include <string>
 #include <string.h>
