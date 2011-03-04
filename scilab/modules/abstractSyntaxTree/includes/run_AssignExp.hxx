@@ -123,7 +123,7 @@ void visitprivate(const AssignExp  &e)
                     std::wostringstream ostr;
                     if(pVar)
                     {
-                        ostr << pVar->name_get() << L" = " << std::endl;
+                        ostr << pVar->name_get().name_get() << L" = " << std::endl;
                     }
                     else
                     {
@@ -396,7 +396,7 @@ void visitprivate(const AssignExp  &e)
                     std::wostringstream ostr;
                     if(pVar)
                     {
-                        ostr << pVar->name_get() << L" = " << std::endl;
+                        ostr << pVar->name_get().name_get() << L" = " << std::endl;
                     }
                     else
                     {
@@ -458,7 +458,7 @@ void visitprivate(const AssignExp  &e)
             if(e.is_verbose())
             {
                 std::wostringstream ostr;
-                ostr << pVar->name_get() << L" = " << std::endl << std::endl;
+                ostr << pVar->name_get().name_get() << L" = " << std::endl << std::endl;
                 ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                 YaspWriteW(ostr.str().c_str());
             }
@@ -489,7 +489,7 @@ void visitprivate(const AssignExp  &e)
                 if(e.is_verbose())
                 {
                     std::wostringstream ostr;
-                    ostr << pListVar->name_get() << L" = " << std::endl;
+                    ostr << pListVar->name_get().name_get() << L" = " << std::endl;
                     ostr << std::endl;
                     ostr << execMeR.result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                     YaspWriteW(ostr.str().c_str());
@@ -522,7 +522,7 @@ void visitprivate(const AssignExp  &e)
             {
                 pHead = pHead->clone();
                 const wstring *pstName = getStructNameFromExp(pField);
-                symbol::Context::getInstance()->put(*pstName, *pHead);
+                symbol::Context::getInstance()->put(*new symbol::Symbol(*pstName), *pHead);
             }
             /*getting what to assign*/
             execMeR.expected_size_set(1);
@@ -559,14 +559,14 @@ void visitprivate(const AssignExp  &e)
 
             if(pHead->isStruct())
             {
-                pHead->getAsStruct()->add(pTail->name_get(), pIT);
+                pHead->getAsStruct()->add(pTail->name_get().name_get(), pIT);
             }
             else if(pHead->isTList())
             {
                 TList* pT = pHead->getAsTList();
-                if(pT->exists(pTail->name_get()))
+                if(pT->exists(pTail->name_get().name_get()))
                 {
-                    pT->set(pTail->name_get(), pIT);
+                    pT->set(pTail->name_get().name_get(), pIT);
                 }
                 else
                 {
@@ -586,7 +586,7 @@ void visitprivate(const AssignExp  &e)
 
                 std::wostringstream ostr;
                 ostr << *pstName << L" = " << std::endl << std::endl;
-                ostr << symbol::Context::getInstance()->get(*pstName)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                ostr << symbol::Context::getInstance()->get(* new symbol::Symbol(*pstName))->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                 YaspWriteW(ostr.str().c_str());
             }
         }

@@ -21,6 +21,7 @@
 #include <list>
 
 #include "dec.hxx"
+#include "symbol.hxx"
 #include "exp.hxx"
 #include "arraylistvar.hxx"
 
@@ -46,7 +47,7 @@ namespace ast
         ** \param body
         */
         FunctionDec (const Location& location,
-            const std::wstring name,
+            symbol::Symbol& name,
             ArrayListVar& args,
             ArrayListVar& returns,
             Exp& body) 
@@ -87,7 +88,7 @@ namespace ast
 
         // \name Accessors.
     public:
-        const wstring& name_get (void) const
+        symbol::Symbol& name_get (void) const
         {
             return _name;
         }
@@ -128,7 +129,7 @@ namespace ast
         }
 
     protected:
-        std::wstring	_name;
+        symbol::Symbol&    _name;
         ArrayListVar*	_args;
         ArrayListVar*	_returns;
         Exp*		_body;

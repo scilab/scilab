@@ -42,7 +42,7 @@ types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunct
 
 types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe)
 {
-    types::InternalType *pIT = symbol::Context::getInstance()->get(_stOverloadingFunctionName);
+    types::InternalType *pIT = symbol::Context::getInstance()->get(* new symbol::Symbol(_stOverloadingFunctionName));
 
     if(pIT == NULL || pIT->isCallable() == false)
     {

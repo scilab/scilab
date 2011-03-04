@@ -52,7 +52,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
 
     for(int i = 0 ; i < in.size() ; i++)
     {
-        wchar_t* pstVar = in[i]->getAs<types::String>()->get(0);
+        symbol::Symbol pstVar = *new symbol::Symbol(in[i]->getAs<types::String>()->get(0));
 
         //does it visible in current global scope
         if(pCtx->isGlobalVisible(pstVar) == false)

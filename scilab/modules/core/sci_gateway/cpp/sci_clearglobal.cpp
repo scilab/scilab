@@ -48,7 +48,7 @@ Function::ReturnValue sci_clearglobal(types::typed_list &in, int _iRetCount, typ
 
         for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
         {
-            symbol::Context::getInstance()->removeGlobal((*inIterator)->getAs<String>()->get(0,0));
+            symbol::Context::getInstance()->removeGlobal(*new symbol::Symbol((*inIterator)->getAs<String>()->get(0,0)));
         }
     }
     return Function::OK;

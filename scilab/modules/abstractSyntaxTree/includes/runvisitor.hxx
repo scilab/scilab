@@ -352,7 +352,7 @@ namespace ast
                 if(pI != NULL && pI->getAsCallable() == false && e.is_verbose())
                 {
                     std::wostringstream ostr;
-                    ostr << e.name_get() << L" = " << L"(" << pI->getRef() << L")"<< std::endl;
+                    ostr << e.name_get().name_get() << L" = " << L"(" << pI->getRef() << L")"<< std::endl;
                     ostr << std::endl;
                     ostr << pI->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                     YaspWriteW(ostr.str().c_str());
@@ -361,7 +361,7 @@ namespace ast
             else
             {
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().c_str());
+                os_swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().name_get().c_str());
                 throw ScilabError(szError, 999, e.location_get());
                 //Err, SimpleVar doesn't exist in Scilab scopes.
             }
@@ -437,15 +437,15 @@ namespace ast
                 if(psvRightMember != NULL)
                 {
                     Struct* psValue = execHead.result_get()->getAsStruct();
-                    if(psValue->exists(psvRightMember->name_get()))
+                    if(psValue->exists(psvRightMember->name_get().name_get()))
                     {
-                        InternalType* pIT = psValue->get(psvRightMember->name_get());
+                        InternalType* pIT = psValue->get(psvRightMember->name_get().name_get());
                         result_set(pIT);
                     }
                     else
                     {
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
+                        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().name_get().c_str());
                         throw ScilabError(szError, 999, psvRightMember->location_get());
                     }
                 }
@@ -462,15 +462,15 @@ namespace ast
                 if(psvRightMember != NULL)
                 {
                     TList* psValue = execHead.result_get()->getAsTList();
-                    if(psValue->exists(psvRightMember->name_get()))
+                    if(psValue->exists(psvRightMember->name_get().name_get()))
                     {
-                        InternalType* pIT = psValue->get(psvRightMember->name_get());
+                        InternalType* pIT = psValue->get(psvRightMember->name_get().name_get());
                         result_set(pIT);
                     }
                     else
                     {
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().c_str());
+                        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().name_get().c_str());
                         throw ScilabError(szError, 999, psvRightMember->location_get());
                     }
                 }
@@ -706,7 +706,7 @@ namespace ast
 
                 InternalType *pIT = NULL;
                 pIT = pVar->extractValue(0);
-                wstring varName = e.vardec_get().name_get();
+                symbol::Symbol varName = e.vardec_get().name_get();
                 symbol::Context::getInstance()->put(varName, *pIT);
 
                 Double *pDouble = pIT->getAs<Double>();
@@ -1028,7 +1028,7 @@ namespace ast
                         //don't output Simplevar and empty result
                         if(execMe.result_get() != NULL && (pVar == NULL || bImplicitCall))
                         {
-                            symbol::Context::getInstance()->put(L"ans", *execMe.result_get());
+                            symbol::Context::getInstance()->put(* new symbol::Symbol(L"ans"), *execMe.result_get());
                             if((*itExp)->is_verbose())
                             {
                                 //TODO manage multiple returns
@@ -1328,7 +1328,7 @@ namespace ast
             std::list<ast::Var *>::const_iterator	i;
 
             //get input parameters list
-            std::list<wstring> *pVarList = new std::list<wstring>();
+            std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
             const ArrayListVar *pListVar = &e.args_get();
             for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
             {
@@ -1336,7 +1336,7 @@ namespace ast
             }
 
             //get output parameters list
-            std::list<wstring> *pRetList = new std::list<wstring>();
+            std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
             const ArrayListVar *pListRet = &e.returns_get();
             for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
             {
@@ -1346,7 +1346,7 @@ namespace ast
 //            Location* newloc = const_cast<Location*>(&location_get())->clone();
             Exp* exp = const_cast<Exp*>(&e.body_get())->clone();
             //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-            types::Macro *pMacro = new types::Macro(e.name_get(), *pVarList, *pRetList,
+            types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList,
                 static_cast<SeqExp&>(*exp), L"script");
             symbol::Context::getInstance()->AddMacro(pMacro);
         }

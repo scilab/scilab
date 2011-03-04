@@ -21,6 +21,7 @@
 #include <assert.h>
 
 #include "dec.hxx"
+#include "symbol.hxx"
 
 namespace ast
 {
@@ -59,7 +60,7 @@ namespace ast
         ** \li "2097" is the initial value of the variable
         */
         VarDec (const Location& location,
-            std::wstring name, Exp& init) 
+            symbol::Symbol& name, Exp& init)
             : Dec (location),
             _name (name),
             _init (&init),
@@ -101,7 +102,7 @@ namespace ast
         ** \{ */
     public:
         /** \brief Return the variable name (read only). */
-        const std::wstring& name_get (void) const
+        symbol::Symbol& name_get (void) const
         {
             return _name;
         }
@@ -132,7 +133,7 @@ namespace ast
 
     protected:
         /** \brief Name of the declared variable. */
-        std::wstring _name;
+        symbol::Symbol& _name;
         /** \brief The initial value (expression) assigned to the variable. */
         Exp* _init;
 

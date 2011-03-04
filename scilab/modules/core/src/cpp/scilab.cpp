@@ -634,7 +634,7 @@ void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double *
     types::Polynom *pVar = new types::Polynom(_szPolyVar, 1, 1, &_iRank);
     SinglePoly *poPoly = pVar->get(0,0);
     poPoly->setCoef(_pdbl);
-    Context::getInstance()->put(_szName, *pVar);
+    Context::getInstance()->put(*new symbol::Symbol(_szName), *pVar);
 }
 
 void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex)
@@ -642,17 +642,18 @@ void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool 
     types::Double* pVal = new types::Double(1,1,_bComplex);
     pVal->set(0, 0, _dblReal);
     pVal->setImg(0, 0, _dblImg);
-    symbol::Context::getInstance()->put(_szName, *pVal);
+    symbol::Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
 }
 
 void Add_Boolean_Constant(wstring _szName, bool _bBool)
 {
     types::Bool* pVal = new types::Bool(_bBool);
-    symbol::Context::getInstance()->put(_szName, *pVal);
+    symbol::Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
 }
 
 void Add_String_Constant(wstring _szName, const char* _pstString)
 {
     types::String* ps = new types::String(_pstString);
-    symbol::Context::getInstance()->put(_szName, *ps);
+    symbol::Context::getInstance()->put(*new symbol::Symbol(_szName), *ps);
 }
+

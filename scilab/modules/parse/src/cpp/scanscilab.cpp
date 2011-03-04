@@ -1814,8 +1814,8 @@ YY_RULE_SETUP
             yyterminate();
         }
         yylval.str = new std::wstring(pwText);
-        if (symbol::Context::getInstance()->get(*yylval.str) != NULL
-            && symbol::Context::getInstance()->get(*yylval.str)->isCallable())
+        if (symbol::Context::getInstance()->get(*new symbol::Symbol(*yylval.str)) != NULL
+            && symbol::Context::getInstance()->get(*new symbol::Symbol(*yylval.str))->isCallable())
         {
             scan_throw(ID);
             BEGIN(SHELLMODE);

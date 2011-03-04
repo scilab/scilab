@@ -160,7 +160,7 @@ namespace ast {
      ** \{ */
     void PrintVisitor::visit (const SimpleVar &e)
     {
-        *ostr << e.name_get();
+        *ostr << e.name_get().name_get();
     }
 
     void PrintVisitor::visit (const ColonVar &e)
@@ -557,7 +557,7 @@ namespace ast {
     /** \brief Visit Var declarations. */
     void PrintVisitor::visit (const VarDec  &e)
     {
-        *ostr << e.name_get();
+        *ostr << e.name_get().name_get();
         *ostr << SCI_ASSIGN;
         e.init_get ().accept (*this);
     }
@@ -573,7 +573,7 @@ namespace ast {
         *ostr << SCI_ASSIGN << " ";
 
         // Then get the function name
-        *ostr << e.name_get();
+        *ostr << e.name_get().name_get();
 
         // Then get function args
         *ostr << SCI_OPEN_ARGS;

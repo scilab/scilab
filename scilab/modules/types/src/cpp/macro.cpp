@@ -16,6 +16,7 @@
 #include "macro.hxx"
 #include "list.hxx"
 #include "context.hxx"
+#include "symbol.hxx"
 #include "localization.h"
 #include "yaspio.hxx"
 #include "scilabexception.hxx"
@@ -30,7 +31,7 @@ extern "C"
 
 namespace types
 {
-    Macro::Macro(const wstring& _stName, list<wstring> &_inputArgs, list<wstring> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule) :
+    Macro::Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule):
     Callable(), m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body)
     {
         setName(_stName);
@@ -88,7 +89,7 @@ namespace types
         // Scilab Macro can be called with less than prototyped arguments,
         // but not more execpts with varargin
         // TODO: Manage varargin here
-        if(m_inputArgs->size() > 0 && m_inputArgs->back() == L"varargin")
+        if(m_inputArgs->size() > 0 && m_inputArgs->back().name_get() == L"varargin")
         {
             //open a new scope
             pContext->scope_begin();
@@ -100,7 +101,7 @@ namespace types
             }
 
             //add all standard variable in function context but not varargin
-            list<wstring>::const_iterator itName = m_inputArgs->begin();
+            std::list<symbol::Symbol>::const_iterator itName = m_inputArgs->begin();
             typed_list::const_iterator itValue = in.begin();
             while(iVarPos > 0)
             {
@@ -120,7 +121,7 @@ namespace types
                     pL->append(*itValue);
                     itValue++;
                 }
-                pContext->put(L"varargin", *pL);
+                pContext->put(*new symbol::Symbol(L"varargin"), *pL);
             }
         }
 		else if(in.size() > m_inputArgs->size())
@@ -133,9 +134,9 @@ namespace types
             {
                 ostr << _W("Arguments are:") << std::endl << std::endl;
                 ostr << " ";
-                for (list<wstring>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
+                for (std::list<symbol::Symbol>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
                 {
-                    ostr << *it << L"    ";
+                    ostr << (*it).name_get() << L"    ";
                 }
                 ostr << std::endl;
             }
@@ -148,7 +149,7 @@ namespace types
             pContext->scope_begin();
 
             //assign value to variable in the new context
-            list<wstring>::const_iterator i;
+            std::list<symbol::Symbol>::const_iterator i;
             typed_list::const_iterator j;
 
             for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
@@ -160,8 +161,8 @@ namespace types
         //common part with or without varargin
 
         // Declare nargin & nargout in function context.
-        pContext->put(wstring(L"nargin"), *new Double(static_cast<double>(in.size())));
-        pContext->put(wstring(L"nargout"), *new Double(static_cast<double>(_iRetCount)));
+        pContext->put(symbol::Symbol(L"nargin"), *new Double(static_cast<double>(in.size())));
+        pContext->put(symbol::Symbol(L"nargout"), *new Double(static_cast<double>(_iRetCount)));
 
         try
         {
@@ -177,8 +178,7 @@ namespace types
                 m_body->returnable_set();
             }
 
-
-            list<wstring>::const_iterator i;
+            std::list<symbol::Symbol>::const_iterator i;
             for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
             {
                 InternalType *pIT = pContext->get((*i));
@@ -190,7 +190,7 @@ namespace types
                 else
                 {
                     wchar_t sz[bsiz];
-                    os_swprintf(sz, bsiz, _W("Undefined variable %ls.\n"), (*i).c_str());
+                    os_swprintf(sz, bsiz, _W("Undefined variable %ls.\n"), (*i).name_get().c_str());
                     YaspWriteW(sz);
                 }
             }
@@ -216,12 +216,12 @@ namespace types
         return RetVal;
     }
 
-    std::list<wstring>* Macro::inputs_get()
+    std::list<symbol::Symbol>* Macro::inputs_get()
     {
         return m_inputArgs;
     }
 
-    std::list<wstring>* Macro::outputs_get()
+    std::list<symbol::Symbol>* Macro::outputs_get()
     {
         return m_outputArgs;
     }

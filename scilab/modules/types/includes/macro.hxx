@@ -25,7 +25,7 @@ namespace types
     {
     public :
                                     Macro(): Callable(){};
-                                    Macro(const wstring& _stName, list<wstring> &_inputArgs, list<wstring> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule);
+                                    Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule);
         virtual                     ~Macro();
 
         // FIXME : Should not return NULL;
@@ -48,12 +48,12 @@ namespace types
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual wstring             getShortTypeStr() {return L"function";}
 
-        list<wstring>*              inputs_get();
-        list<wstring>*              outputs_get();
+        list<symbol::Symbol>*       inputs_get();
+        list<symbol::Symbol>*       outputs_get();
 
     private :
-        list<wstring>*              m_inputArgs;
-        list<wstring>*              m_outputArgs;
+        std::list<symbol::Symbol>*  m_inputArgs;
+        std::list<symbol::Symbol>*  m_outputArgs;
         ast::SeqExp*                m_body;
         bool                        bAutoAlloc;
 

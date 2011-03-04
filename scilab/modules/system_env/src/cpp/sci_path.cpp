@@ -60,7 +60,7 @@ void setSCI(const char* _sci_path)
     //SCI
     wchar_t* pwstSCI = to_wide_string(pstSlash);
     types::String *pSSCI = new types::String(pwstSCI);
-    symbol::Context::getInstance()->put(L"SCI", *pSSCI);
+    symbol::Context::getInstance()->put(*new symbol::Symbol(L"SCI"), *pSSCI);
 
     //WSCI
     wchar_t* pwstWSCI = NULL;
@@ -70,7 +70,7 @@ void setSCI(const char* _sci_path)
     SlashToAntislash(_sci_path, pstBackSlash);
     pwstWSCI = to_wide_string(pstBackSlash);
     types::String *pSWSCI = new types::String(pwstWSCI);
-    symbol::Context::getInstance()->put(L"WSCI", *pSWSCI);
+    symbol::Context::getInstance()->put(*new symbol::Symbol(L"WSCI"), *pSWSCI);
     FREE(pstBackSlash);
 #else
     pwstWSCI = to_wide_string(_sci_path);

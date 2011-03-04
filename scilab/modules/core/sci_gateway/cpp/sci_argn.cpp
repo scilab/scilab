@@ -66,8 +66,8 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
     }
 
     symbol::Context* pContext = symbol::Context::getInstance();
-    InternalType *pOut = pContext->get(L"nargout");
-    InternalType *pIn = pContext->get(L"nargin");
+    InternalType *pOut = pContext->get(*new symbol::Symbol(L"nargout"));
+    InternalType *pIn = pContext->get(*new symbol::Symbol(L"nargin"));
 
     if(pIn == NULL || pOut == NULL)
     {

@@ -174,9 +174,9 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 				ast::FunctionDec* pFD = dynamic_cast<ast::FunctionDec*>(*j);
 				if(pFD)
 				{
-					if(AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get(), pstPath[k])) == false)
+					if(AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get().name_get(), pstPath[k])) == false)
                     {
-                        os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"), L"genlib", pFD->name_get().c_str(), pstPath[k]);
+                        os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"), L"genlib", pFD->name_get().name_get().c_str(), pstPath[k]);
                         YaspWriteW(pstVerbose);
                     }
 				}

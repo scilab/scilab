@@ -38,19 +38,19 @@ namespace symbol
         /** \brief Construct a Scope */
         explicit Scope()
         {
-            _scope = new std::map<std::wstring, types::InternalType*>();
+            _scope = new std::map<symbol::Symbol, types::InternalType*>();
             _name = L"";
         }
         /** \brief Construct a named Scope i.e Namespace */
         explicit Scope(std::wstring name)
         {
-            _scope = new std::map<std::wstring, types::InternalType*>();
+            _scope = new std::map<symbol::Symbol, types::InternalType*>();
             _name = name;
         }
 
         ~Scope()
         {
-            std::map<std::wstring, types::InternalType*>::const_iterator i;
+            std::map<symbol::Symbol, types::InternalType*>::const_iterator i;
             for(i = _scope->begin() ; i != _scope->end() ; ++i)
             {
                 //std::cout << i->first << std::endl;
@@ -70,7 +70,7 @@ namespace symbol
 
         bool isUsed(types::InternalType* pIT) const
         {
-            std::map<std::wstring, types::InternalType*>::const_iterator it_scope;
+            std::map<symbol::Symbol, types::InternalType*>::const_iterator it_scope;
             for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
             {
                 if((*it_scope).second == pIT)
@@ -80,7 +80,7 @@ namespace symbol
         }
 
         /** Associate value to key in the current scope. */
-        types::InternalType*	put (const std::wstring& key, types::InternalType &value)
+        types::InternalType*	put (const symbol::Symbol& key, types::InternalType &value)
         {
             types::InternalType *pOld = (*_scope)[key];
 
@@ -113,7 +113,7 @@ namespace symbol
             return NULL;
         }
 
-        void remove(const std::wstring& key)
+        void remove(const symbol::Symbol& key)
         {
             if((*_scope).find(key) != (*_scope).end())
             {
@@ -134,9 +134,9 @@ namespace symbol
 
         /** If key was associated to some Entry_T in the open scopes, return the
         ** most recent insertion. Otherwise return the empty pointer. */
-        types::InternalType*	get (const std::wstring& key) const
+        types::InternalType*	get (const symbol::Symbol& key) const
         {
-            std::map<std::wstring, types::InternalType*>::const_iterator it_scope;
+            std::map<symbol::Symbol, types::InternalType*>::const_iterator it_scope;
 
             it_scope = (*_scope).find(key);
             if (it_scope == (*_scope).end())
@@ -151,10 +151,10 @@ namespace symbol
         }
 
         /** Return name of current scope, use for namespace. */
-        std::list<std::wstring>& get_names(const std::wstring& _stModuleName) const
+        std::list<symbol::Symbol>& get_names(const std::wstring& _stModuleName) const
         {
-            std::list<std::wstring>* pNames = new std::list<std::wstring>;
-            std::map<std::wstring, types::InternalType*>::const_iterator it_scope;
+            std::list<symbol::Symbol>* pNames = new std::list<symbol::Symbol>;
+            std::map<symbol::Symbol, types::InternalType*>::const_iterator it_scope;
             for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
             {
                 if(it_scope->second->isFunction() || it_scope->second->isMacro() || it_scope->second->isMacroFile())
@@ -174,20 +174,20 @@ namespace symbol
         ** of the stack being displayed last. */
         void	print (std::wostream& ostr) const
         {
-            std::map<std::wstring, types::InternalType*>::const_iterator it_scope;
+            std::map<symbol::Symbol, types::InternalType*>::const_iterator it_scope;
             for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
             {
-                ostr << it_scope->first << " = " << it_scope->second->toString(10,75) << std::endl;
+                ostr << it_scope->first.name_get() << " = " << it_scope->second->toString(10,75) << std::endl;
             }
         }
 
-        std::map<std::wstring, types::InternalType*>* getInternalMap()
+        std::map<symbol::Symbol, types::InternalType*>* getInternalMap()
         {
             return _scope;
         }
 
     private:
-        std::map<std::wstring, types::InternalType*>* 	_scope;
+        std::map<symbol::Symbol, types::InternalType*>* 	_scope;
         std::wstring				            _name;
     };
 

@@ -465,7 +465,7 @@ const std::wstring* getStructNameFromExp(const Exp* _pExp)
     }
     else if(pVar)
     {
-        return &(pVar->name_get());
+        return &(pVar->name_get().name_get());
     }
     else if(pCall)
     {
@@ -491,12 +491,12 @@ types::Struct* getStructFromExp(const Exp* _pExp)
 
         types::Struct *pStr        = getStructFromExp(pField->head_get());
 
-        pStr->add(pTail->name_get());
-        types::InternalType* pIT = pStr->get(pTail->name_get());
+        pStr->add(pTail->name_get().name_get());
+        types::InternalType* pIT = pStr->get(pTail->name_get().name_get());
         if(pIT == NULL)
         {
             types::Struct* pStruct = new types::Struct();
-            pStr->add(pTail->name_get(), pStruct);
+            pStr->add(pTail->name_get().name_get(), pStruct);
             pIT = pStruct;
         }
         return pIT->getAsStruct();
