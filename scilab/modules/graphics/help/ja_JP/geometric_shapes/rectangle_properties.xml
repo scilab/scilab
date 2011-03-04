@@ -65,7 +65,7 @@
 	<para>
 	  <inlinemediaobject>
 	    <imageobject>
-	      <imagedata fileref="../images/marks.svg"/>
+	      <imagedata fileref="../../images/marks.svg"/>
 	    </imageobject>
 	  </inlinemediaobject>
 	</para>

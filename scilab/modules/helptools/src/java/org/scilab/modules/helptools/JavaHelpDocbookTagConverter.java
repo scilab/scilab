@@ -104,7 +104,7 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
             outIndex.flush();
             outIndex.close();
         } catch (IOException e) {
-            exceptionOccured(e);
+            fatalExceptionOccured(e);
         }
     }
 

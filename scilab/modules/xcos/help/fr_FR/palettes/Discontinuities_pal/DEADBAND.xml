@@ -111,7 +111,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../images/discontinuities_pal/fr_FR/deadband_desc_fr_FR.png"
+                     fileref="../../../examples/discontinuities_pal/fr_FR/deadband_desc_fr_FR.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject></para>

@@ -117,7 +117,7 @@ surf(&lt;axes_handle&gt;,...)</synopsis>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../images/surf_01.gif"/>
+          <imagedata fileref="../../images/surf_01.gif"/>
         </imageobject>
       </inlinemediaobject>
     </para>

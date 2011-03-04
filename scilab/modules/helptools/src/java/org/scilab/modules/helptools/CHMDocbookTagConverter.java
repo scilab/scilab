@@ -182,7 +182,7 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
             outFiles.flush();
             outFiles.close();
         } catch (IOException e) {
-            exceptionOccured(e);
+            fatalExceptionOccured(e);
         }
     }
 

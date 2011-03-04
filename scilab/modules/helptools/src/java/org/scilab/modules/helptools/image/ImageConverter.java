@@ -137,6 +137,21 @@ public final class ImageConverter {
     }
 
     /**
+     * Test if an image file exists.
+     * @param path of the parsed file
+     * @param image the image name
+     * @return true if the image exists
+     */
+    public static boolean imageExists(String path, String image) {
+        File f = new File(image);
+        if (!f.isAbsolute()) {
+            f = new File(path + File.separator + image);
+        }
+
+        return f.exists();
+    }
+
+    /**
      * @param f the file to copy
      * @param destDir the destination directory
      */

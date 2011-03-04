@@ -53,11 +53,15 @@ public class DocbookTagConverter extends DefaultHandler {
     private Map<String, Method> mapMeth = new HashMap();
     private Map<String, ExternalXMLHandler> externalHandlers = new HashMap();
     private List<DocbookTagConverter> converters;
-
     private final File in;
     private DocbookElement baseElement = new DocbookElement(null, null);
-
     private Stack<DocbookElement> stack = new Stack();
+    private String errors = "";
+
+    /**
+     * True when an error is met during the parsing
+     */
+    protected boolean hasError;
 
     /**
      * The file which is parsed
@@ -75,9 +79,9 @@ public class DocbookTagConverter extends DefaultHandler {
      */
     public DocbookTagConverter(String in) throws IOException {
         if (in != null && !in.isEmpty()) {
-                this.in = new File(in);
+            this.in = new File(in);
         } else {
-                this.in = null;
+            this.in = null;
         }
     }
 
@@ -217,6 +221,10 @@ public class DocbookTagConverter extends DefaultHandler {
         } catch (IOException e) {
             System.err.println(e);
         }
+
+        if (hasError) {
+            throw new SAXException(errors);
+        }
     }
 
     /**
@@ -263,12 +271,12 @@ public class DocbookTagConverter extends DefaultHandler {
      */
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         if (uri.equals(DOCBOOKURI)) {
-                int len = attributes.getLength();
-                Map<String, String> map = new HashMap(len);
-                for (int i = 0; i < len; i++) {
-                    map.put(attributes.getLocalName(i), attributes.getValue(i));
-                }
-                stack.push(baseElement.getNewInstance(localName, map));
+            int len = attributes.getLength();
+            Map<String, String> map = new HashMap(len);
+            for (int i = 0; i < len; i++) {
+                map.put(attributes.getLocalName(i), attributes.getValue(i));
+            }
+            stack.push(baseElement.getNewInstance(localName, map));
         } else {
             ExternalXMLHandler h = externalHandlers.get(uri);
             if (h == null) {
@@ -293,7 +301,7 @@ public class DocbookTagConverter extends DefaultHandler {
     /**
      * {@inheritDoc}
      */
-    public void endElement(String uri, String localName, String qName) throws SAXException {//if (localName.equals("member")&&titi>1){titi=0;System.out.println(currentFileName);}
+    public void endElement(String uri, String localName, String qName) throws SAXException {
         if (uri.equals(DOCBOOKURI)) {
             DocbookElement elem = stack.pop();
             if (!elem.getName().equals(localName)) {
@@ -409,23 +417,39 @@ public class DocbookTagConverter extends DefaultHandler {
      * @param e the exception to handle
      * @throws SAXException if problem
      */
-    protected void exceptionOccured(Exception e) throws SAXException {
+    protected void fatalExceptionOccured(Exception e) throws SAXException {
+        throw new SAXException(errors + "\nFATAL error:\n" + e.getMessage());
+    }
+
+    /**
+     * Handle an exception depending on the presence of a locator
+     * @param e the exception to handle
+     * @throws SAXException if problem
+     */
+    protected void exceptionOccured(Exception e){
+        if (!hasError) {
+            hasError = true;
+        }
+        errors += makeErrorMessage(e);
+    }
+
+    private String makeErrorMessage(Exception e) {
         String sId = "";
         if (currentFileName != null) {
             sId = "SystemID:" + currentFileName;
         }
 
         String file;
-                try {
-                        file = in.getCanonicalPath();
-                } catch (IOException e1) {
-                        e1.printStackTrace();
-                        file = null;
-                }
+        try {
+            file = in.getCanonicalPath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            file = null;
+        }
         if (locator != null) {
-            throw new SAXException("Cannot parse " + file + ":\n" + e.getMessage() + "\n" + sId + " at line " + locator.getLineNumber());
+            return "\nCannot parse " + file + ":\n" + e.getMessage() + "\n" + sId + " at line " + locator.getLineNumber();
         } else {
-            throw new SAXException("Cannot parse " + file + ":\n" + e.getMessage() + "\n" + sId);
+            return "\nCannot parse " + file + ":\n" + e.getMessage() + "\n" + sId;
         }
     }
 
