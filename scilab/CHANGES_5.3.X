@@ -11,7 +11,7 @@ Scinotes:
 Xcos:
 =====
 
-Update the documentation with examples of the blocks and their translations to
+* Update the documentation with examples of the blocks and their translations to
 French:
 - OUT_f - Regular Output Port
 - IN_f - Regular Input Port
