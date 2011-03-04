@@ -26,6 +26,8 @@ Xcos:
   - Counter
   - RAMP
 
+* bug 6416 fixed - GENSQR_f block documentation was not complete.
+
 * bug 9077 fixed - Automotive Suspension demo was modified on loading.
 
 * bug 9122 fixed - Java check failed on diagram validation.
