@@ -18,6 +18,7 @@ French:
 - Modulo_Count - Modulo counter (0 to N counter)
 - OUTIMPL_f - Output implicit port
 - CLKINV_f - Input activation port
+- INIMPL_f - Implicit Input port
 
 * bug 9122 fixed - Java check failed on diagram validation.
 

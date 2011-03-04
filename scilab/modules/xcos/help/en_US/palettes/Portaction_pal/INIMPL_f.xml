@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scicos
- * 
+ * Xcos
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ * Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,11 +22,20 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="INIMPL_f">
+<refentry
+  version="5.0-subset Scilab" xml:id="INIMPL_f" xml:lang="en_US"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
   <refnamediv>
     <refname>INIMPL_f</refname>
-    <refpurpose>Input implicit port</refpurpose>
+    <refpurpose>Implicit Input port</refpurpose>
   </refnamediv>
+
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -36,12 +46,13 @@
       </inlinemediaobject>
     </para>
   </refsection>
+
   <refsection id="Contents_INIMPL_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="INIMPL_f">Input implicit port</link>
+          <link linkend="INIMPL_f">Implicit Input port</link>
         </para>
       </listitem>
       <listitem>
@@ -68,7 +79,17 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_INIMPL_f">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_INIMPL_f">Interfacing function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_INIMPL_f">See also</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,45 +101,58 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Palette_INIMPL_f">
-    <title>Palette</title>
+    <title>Palettes</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Sources_pal">Sources palette</link>
+          <link linkend="Portaction_pal">Port &amp; Subsystem</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Sources_pal">Sources</link>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Description_INIMPL_f">
     <title>Description</title>
-    <para>
-Inport blocks are the links from outside a system into the system.
 
-</para>
+    <para>
+      This block represent an implicit input port. It must only be used inside a Xcos Super Block
+      and be connected to an implicit input in the subsystem.
+    </para>
+    <para>
+      This block is a signal link from outside of a system into a sub-system. In a Super Block, the implicit's input ports must be numbered from 1 to the total number of implicit's input ports.
+      You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
+    </para>
   </refsection>
+
   <refsection id="Dialogbox_INIMPL_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/INIMPL_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/portaction_pal/en_US/INIMPL_f_gui.png" align="center" />
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
+    <para />
 
-</para>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Port number</emphasis>
         </para>
-        <para> Specify the port number of the Inport block.</para>
+        <para> Specify the port number of the input port.</para>
         <para> Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Defaultproperties_INIMPL_f">
     <title>Default properties</title>
     <itemizedlist>
@@ -165,14 +199,46 @@ Inport blocks are the links from outside a system into the system.
       </listitem>
     </itemizedlist>
   </refsection>
+
+  <refsection id="Example_INIMPL_f">
+    <title>Exemple</title>
+    <para>
+      The following example shows the use of the INIMPL_f block. The Super block contains a simple electrical circuit with two inputs, one on the
+      resistor and the other for the ground. These inputs are connected to the external environment of the bloc via two INIMPL_f blocks numbered 1
+      and 2. The Super block output is connected via a <link linkend="OUTIMPL_f">OUTIMPL_f</link> block.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.xcos">
+        Open this example in Xcos
+      </link>.
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/portaction_pal/en_US/inimpl_f_diagram_en_US.png" />
+      </imageobject>
+    </mediaobject>
+  </refsection>
+
   <refsection id="Interfacingfunction_INIMPL_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Sources/INIMPL_f.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/INIMPL_f.sci">SCI/modules/scicos_blocks/macros/Sources/INIMPL_f.sci</link></para>
       </listitem>
     </itemizedlist>
   </refsection>
+
+  <refsection id="Seealso_INIMPL_f">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="OUTIMPL_f">OUTIMPL_f</link>
+      </listitem>
+      <listitem>
+        <link linkend="SUPER_f">SUPER_f</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
   <refsection id="Authors_INIMPL_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
