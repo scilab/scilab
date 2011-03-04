@@ -33,10 +33,11 @@ Bug fixes:
 * Bug 8423 fixed - With certain options of the configure, the build process
                    failed.
 
-
 * bug 9113 fixed - setlookandfeel could lead to an exception.
 
 * bug 9121 fixed - Doc generation did not fail when an invalid image was met. 
+
+* bug 9128 fixed - In help page of dir(), infos about bytes field were missing.
 
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
