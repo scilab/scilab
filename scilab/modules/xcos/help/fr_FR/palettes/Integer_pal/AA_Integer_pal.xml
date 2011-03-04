@@ -169,7 +169,7 @@
 
       <listitem>
         <para>
-          <link linkend="SHIFT">SHIFT - Décalage de bits</link>
+          <link linkend="SHIFT">SHIFT - Décalage/Rotation de bits</link>
         </para>
       </listitem>
 

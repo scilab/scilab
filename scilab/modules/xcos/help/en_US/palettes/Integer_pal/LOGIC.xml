@@ -149,6 +149,7 @@
         <para>
           The number of inputs is defined by the equation:
         </para>
+        <para />
         <para>
           <latex><![CDATA[Line\,number = {(Input\,number)}^2]]></latex>
         </para>
@@ -372,7 +373,7 @@
           <td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td>
         </tr>
       </informaltable>
-      <para>where <literal>X</literal> stands for "indifferent".</para>
+      <para>where <emphasis><literal>X</literal></emphasis> stands for "indifferent".</para>
       <para>
         To set this table in the <emphasis role="bold">Truth Table</emphasis> parameter, we can
         simply write:

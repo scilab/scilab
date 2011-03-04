@@ -135,7 +135,7 @@
           If <emphasis role="bold">S</emphasis> (Set) is pulsed high while
           <emphasis role="bold">R</emphasis> is held low, then the
           <emphasis role="bold">Q</emphasis> output is forced high, and stays high when
-          <emphasis role="bold">S</emphasis> returns low;
+          <emphasis role="bold">S</emphasis> returns low.
         </para>
         <para />
       </listitem>

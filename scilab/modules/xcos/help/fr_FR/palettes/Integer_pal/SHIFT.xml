@@ -185,7 +185,6 @@
       (décalage à droite arithmétique), où <literal>n</literal> est le nombre de décalages.
       Il peut également être utilisé pour sérialiser des données ou créer une mémoire tampon.
     </para>
-    <para />
   </refsection>
 
   <refsection id="Data_Type_SHIFT">

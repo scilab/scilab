@@ -137,6 +137,7 @@
       <para>
         Le nombre d'entrées est défini par la relation :
       </para>
+      <para />
       <para>
         <latex><![CDATA[Nombre\,de\,lignes = {(Nombre\,d'entrées)}^2]]></latex>
       </para>
@@ -357,7 +358,7 @@
         <td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td>
       </tr>
     </informaltable>
-    <para>où <literal>X</literal> signifie "indifférent".</para>
+    <para>où <emphasis><literal>X</literal></emphasis> signifie "indifférent".</para>
 
     <para>
       Pour mettre cette table dans le paramètre <emphasis role="bold">Truth Table</emphasis>, on peut simplement écrire :

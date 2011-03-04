@@ -143,7 +143,6 @@
       <literal>0</literal> pour le bit à modifier et une valeur <literal>1</literal>
       pour les autres bits.
     </para>
-    <para />
   </refsection>
 
   <refsection id="Data Type_BITCLEAR">
@@ -313,7 +312,7 @@
 
     <itemizedlist>
       <listitem>
-        <para>SCI/modules/scicos_blocks/macros/IntegerOp/BITCLEAR.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/IntegerOp/BITCLEAR.sci">SCI/modules/scicos_blocks/macros/IntegerOp/BITCLEAR.sci</link></para>
       </listitem>
     </itemizedlist>
   </refsection>

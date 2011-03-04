@@ -1,6 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -62,7 +63,7 @@ case 'set' then
     end
     elseif (Datatype == 4)|(Datatype == 7) then
         if bit > 15 | bit < 0 then
-            block_parameter_error(msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d "), bit), ..
+            block_parameter_error(msprintf(gettext("Wrong value for ''Index of Bit'' parameter: %d."), bit), ..
               msprintf(gettext("Must be in the interval %s."), "[0, 15]"));
             ok=%f;
         else
