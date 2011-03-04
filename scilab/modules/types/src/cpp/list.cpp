@@ -147,7 +147,7 @@ namespace types
         int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
         if(iSeqCount == 0)
         {
-            outList.push_back(Double::Empty());
+            //outList.push_back(Double::Empty());
         }
 
         for(int i = 0 ; i < iSeqCount ; i++)

@@ -336,9 +336,10 @@ void visitprivate(const CallExp &e)
                     {
                     case 0 :
                         {
-                            std::wostringstream os;
-                            os << L"inconsistent dimensions\n";
-                            throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                            //std::wostringstream os;
+                            //os << L"inconsistent dimensions\n";
+                            //throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                            result_set(NULL);
                         }
                         break;
                     case 1 :
