@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Xcos
- *
- * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
- * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- * 
- * See the file ./license.txt
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
 <refentry
-  version="5.0-subset Scilab" xml:id="Sources_pal" xml:lang="en_US"
+  version="5.0-subset Scilab" xml:id="Sources_pal" xml:lang="fr_FR"
   xmlns="http://docbook.org/ns/docbook"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:svg="http://www.w3.org/2000/svg"
@@ -31,14 +19,15 @@
   xmlns:mml="http://www.w3.org/1998/Math/MathML"
   xmlns:db="http://docbook.org/ns/docbook"
 >
+
   <refnamediv>
     <refname>Sources_pal</refname>
 
-    <refpurpose>Sources palette</refpurpose>
+    <refpurpose>Palette Sources</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Block Screenshot</title>
+    <title>Aperçu</title>
 
     <para>
     <inlinemediaobject>
@@ -167,105 +156,110 @@
   <refsection id="Description_Sources_pal">
     <title>Description</title>
 
-    <para>Most of blocks of the Source palette can be viewed as data
-    generators. That palette also contains blocks to read data from files and
-    input ports used in superblocks.</para>
+    <para>
+    La plupart des blocs de la palette Source peuvent être vus comme des générateurs de données.
+    Cette palette contient aussi des blocs pour lire des données à partir de fichiers et des ports
+    d'entrée à utiliser dans les Super blocs.</para>
 
-    <para>The blocks of that palette does not have regular input ports.</para>
+    <para>Les blocs de cette palette n'ont pas de port d'entrée régulier.</para>
   </refsection>
 
   <refsection id="Blocks_Sources_pal">
-    <title>Blocks</title>
+    <title>Blocs</title>
 
     <itemizedlist>
       <listitem>
-        <para><link linkend="CLKINV_f">CLKINV_f -  Activation Input Port</link></para>
+        <para><link linkend="CLKINV_f">CLKINV_f - Port d'entrée d'activation</link></para>
       </listitem>
 
       <listitem>
-        <para><link linkend="CLOCK_c">CLOCK_c - Activation Clock</link></para>
+        <para><link linkend="CLOCK_c">CLOCK_c - Horloge d'activation</link></para>
       </listitem>
 
       <listitem>
-        <para><link linkend="CONST_m">CONST_m - Constant</link></para>
+        <para><link linkend="CONST_m">CONST_m - Constante</link></para>
       </listitem>
 
       <listitem>
-        <para><link linkend="Counter">Counter - Counter</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="CURV_f">CURV_f - Signal Generator (defined by a curve)</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="FROMWSB">FROMWSB - Data from Scilab Workspace to Xcos</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="GENSIN_f">GENSIN_f - Sine wave generator</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="GENSQR_f">GENSQR_f - Square Wave Generator</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="IN_f">IN_f - Regular Input Port</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="INIMPL_f">INIMPL_f - Implicit Input Port</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="Modulo_Count">Modulo_Count - Modulo Counter</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="RAMP">RAMP - Ramp Function</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="RAND_m">RAND_m - Random Generator</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="READAU_f">READAU_f - Read AU Sound File</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="READC_f">READC_f - Read Binary Data</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="RFILE_f">RFILE_f - Read From File</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="SampleCLK">SampleCLK - Sample Time Clock</link></para>
-      </listitem>
-
-      <listitem>
-        <para><link linkend="SAWTOOTH_f">SAWTOOTH_f - Sawtooth Generator</link></para>
+        <para><link linkend="Counter">Counter - Compteur</link></para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="Sigbuilder">Sigbuilder - Signal Creator/Generator</link>
+          <link linkend="CURV_f">CURV_f - Générateur de signal (défini par une courbe)</link>
         </para>
       </listitem>
 
       <listitem>
-        <para><link linkend="STEP_FUNCTION">STEP_FUNCTION - Step Function </link></para>
+        <para>
+          <link linkend="FROMWSB">FROMWSB - Données de l'espace de travail Scilab vers  Xcos</link>
+        </para>
       </listitem>
 
       <listitem>
-        <para><link linkend="TIME_f">TIME_f - Simulation Time</link></para>
+        <para><link linkend="GENSIN_f">GENSIN_f - Générateur sinusoïdal</link></para>
       </listitem>
 
       <listitem>
-        <para><link linkend="TKSCALE">TKSCALE - Adjust constant value with a tk widget</link></para>
+        <para><link linkend="GENSQR_f">GENSQR_f - Générateur d'onde carrée</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="IN_f">IN_f - Port d'entrée régulier</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="INIMPL_f">INIMPL_f - Port d'entrée implicite</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="Modulo_Count">Modulo_Count - Compteur Modulo</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="RAMP">RAMP - Fonction Rampe</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="RAND_m">RAND_m - Générateur aléatoire</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="READAU_f">READAU_f - Lit un fichier son</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="READC_f">READC_f - Lire des données binaires</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="RFILE_f">RFILE_f - Lire à partir d'un fichier</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="SampleCLK">SampleCLK - Horloge d'échantillonage</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="SAWTOOTH_f">SAWTOOTH_f - Générateur de dents de scie</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="Sigbuilder">Sigbuilder - Créateur/Générateur de signal</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="STEP_FUNCTION">STEP_FUNCTION - Fonction échelon</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="TIME_f">TIME_f - Temps de simulation</link></para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TKSCALE">TKSCALE - Constante réglable par un composant graphique</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
