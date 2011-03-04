@@ -4,6 +4,7 @@
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,12 +22,21 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CLKOUTV_f">
+<refentry 
+  version="5.0-subset Scilab" xml:id="CLKOUTV_f" xml:lang="en_US"
+  xmlns="http://docbook.org/ns/docbook" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:svg="http://www.w3.org/2000/svg" 
+  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+  xmlns:db="http://docbook.org/ns/docbook" 
+>
   <refnamediv>
     <refname>CLKOUTV_f</refname>
     <refpurpose>Output activation port</refpurpose>
   </refnamediv>
   <refsection>
+  
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
@@ -36,6 +46,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
+  
   <refsection id="Contents_CLKOUTV_f">
     <title>Contents</title>
     <itemizedlist>
@@ -68,9 +79,19 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_CLKOUTV_f">Example</xref>
+            </para>
+          </listitem>           
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_CLKOUTV_f">Interfacing function</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_CLKOUTV_f">See also</xref>
+            </para>
+          </listitem>          
           <listitem>
             <para>
               <xref linkend="Authors_CLKOUTV_f">Authors</xref>
@@ -80,47 +101,61 @@
       </listitem>
     </itemizedlist>
   </refsection>
+  
   <refsection id="Palette_CLKOUTV_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Events_pal">Event handling palette</link>
+          <link linkend="Portaction_pal">Port &amp; Subsystem palette</link>
         </para>
+      </listitem>    
+      <listitem>
+        <para>
+          <link linkend="Sinks_pal">Sinks palette</link>
+        </para>
+      </listitem>    
+      <listitem>
+        <para>
+          <link linkend="Events_pal">Event handling palette</link>
+        </para>                
       </listitem>
     </itemizedlist>
   </refsection>
+    
   <refsection id="Description_CLKOUTV_f">
     <title>Description</title>
     <para>
-This block must only be used inside Xcos Super Blocks to represent 
-an event output port. In a Super Block, the event output ports must be
-numbered from 1 to the number of event output ports.
-
-</para>
+      This block represent an activation output port. It must only be used inside a Xcos Super Blockand be connected
+      to an activation output on an internal activation output in the subsystem.
+    </para>
+    <para>
+      This block is an event link from outside of a system into a sub-system. In a Super Block, the activation's output
+      ports must be numbered from 1 to the total number of activation's output ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
+    </para>    
   </refsection>
+  
   <refsection id="Dialogbox_CLKOUTV_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/CLKOUTV_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/portaction_pal/en_US/CLKOUTV_f_gui.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-</para>
+    <para />
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Port number</emphasis>
         </para>
-        <para> an integer defining the port number.</para>
+        <para> An integer defining the port number.</para>
         <para> Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
+  
   <refsection id="Defaultproperties_CLKOUTV_f">
     <title>Default properties</title>
     <itemizedlist>
@@ -159,14 +194,44 @@ numbered from 1 to the number of event output ports.
       </listitem>
     </itemizedlist>
   </refsection>
+  
+  <refsection id="Example_CLKOUTV_f">
+    <title>Example</title>
+    <para>
+      The Super bloc below is mainly a frequency divider by 4, associated to an one event generation at time <emphasis><literal>t = 3 s</literal></emphasis>.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/CLKOUTV_f_en_US.xcos">
+        Open this example in Xcos
+      </link>:
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/portaction_pal/en_US/clkoutv_f_diagram_en_US.png" />
+      </imageobject>
+    </mediaobject>
+  </refsection>  
+  
   <refsection id="Interfacingfunction_CLKOUTV_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/CLKOUTV_f.sci">SCI/modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci</link></para>        
       </listitem>
     </itemizedlist>
   </refsection>
+  
+  <refsection role="see also" id="Seealso_CLKOUTV_f">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="CLKINV_f">CLKINV_f</link>
+      </listitem>
+      <listitem>
+        <link linkend="SUPER_f">SUPER_f</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>  
+  
   <refsection id="Authors_CLKOUTV_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
