@@ -23,6 +23,7 @@ namespace symbol
   Symbol::Symbol (const std::wstring &s):
     _set_node (_set.insert(s).first)
   {
+    //std::wcout << L"size : " <<_set.size() << std::endl;
   }
 
   // Accessor
@@ -40,17 +41,29 @@ namespace symbol
   // Operators for better performances.
   bool Symbol::operator== (const Symbol &rhs) const
   {
-    return this->name_get() == rhs.name_get();
+    std::wcout << L"operator==" << std::endl;
+    std::wcout << L"this :" << name_get() << std::endl;
+    std::wcout << L"Rhs  :" << rhs.name_get() << std::endl;
+    std::wcout << (this == &rhs) << std::endl;
+    return _set_node == rhs.get_node();
   }
 
   bool Symbol::operator!= (const Symbol &rhs) const
   {
-    return this->name_get() != rhs.name_get();
+    std::wcout << L"operator!=" << std::endl;
+    std::wcout << L"this :" << name_get() << std::endl;
+    std::wcout << L"Rhs  :" << rhs.name_get() << std::endl;
+    std::wcout << (this != &rhs) << std::endl;
+    return this != &rhs;
   }
 
-  bool Symbol::operator<  (const Symbol &rhs) const
+  bool Symbol::operator<(const Symbol &rhs) const
   {
-    return this->name_get() < rhs.name_get();
+//    std::wcout << L"operator<" << std::endl;
+//    std::wcout << this << L" : " << L"!" << name_get() << L"!" << std::endl;
+//    std::wcout << &rhs << L" : " << L"!" << rhs.name_get() << L"!" << std::endl;
+//    std::wcout << (*_set_node != *rhs.get_node()) << std::endl;
+    return (&(*_set_node) < &(*rhs.get_node()));
   }
 
   std::wostream& operator<< (std::wostream &ostr, const Symbol &the)

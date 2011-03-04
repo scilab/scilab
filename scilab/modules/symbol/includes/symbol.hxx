@@ -36,7 +36,7 @@ namespace symbol
   class EXTERN_SYMBOL Symbol
   {
     /** \brief Define the type "set of wstring". */
-    typedef std::set < std::wstring > string_set_type;
+    typedef std::set < std::wstring> string_set_type;
     /** \brief Define the type used for the size of wstring set. */
     typedef string_set_type::size_type size_type;
 
@@ -72,7 +72,8 @@ namespace symbol
      ** \param rhs Symbol to compare with. */
     bool operator<  (const Symbol &rhs) const;
     /** \} */
-
+    
+    const string_set_type::const_iterator get_node() const {return _set_node;}
 
   private:
     /** \brief Static (global to all instance of Symbol) strings container. */
@@ -85,7 +86,7 @@ namespace symbol
    ** \param ostr the destination output stream
    ** \param the a reference to the symbol to redirect
    */
-  EXTERN_SYMBOL std::ostream& operator<< (std::ostream &ostr, const Symbol &the);
+  EXTERN_SYMBOL std::wostream& operator<< (std::wostream &ostr, const Symbol &the);
 
   /** Typedef for the list of Symbol */
   typedef std::list<const Symbol*> symbols_t;
