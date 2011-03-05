@@ -215,18 +215,16 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
      * This method is used to display the prompt
      */
     public void displayPrompt() {
-
-        final InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
-        // Show the prompt
-        this.getConfiguration().getPromptView().setVisible(true);
-
-        // Show the input command view and its hidden components
-        inputCmdView.setEditable(true);
-
-        ((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
-
         SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
+                    InputCommandView inputCmdView = SwingScilabConsole.this.getConfiguration().getInputCommandView();
+
+                    // Show the prompt
+                    SwingScilabConsole.this.getConfiguration().getPromptView().setVisible(true);
+
+                    // Show the input command view and its hidden components
+                    inputCmdView.setEditable(true);
+                    ((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
                     ((JTextPane) inputCmdView).getCaret().setVisible(true);
                 }
             });
