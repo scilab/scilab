@@ -20,6 +20,7 @@ French:
 - CLKINV_f - Input activation port
 - CLKOUTV_f - Output activation port
 - INIMPL_f - Implicit Input port
+- GENSIM_f - Sine wave generator
 - Counter
 - RAMP
 
