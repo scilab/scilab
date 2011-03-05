@@ -12769,7 +12769,7 @@ $as_echo_n "checking looks... " >&6; }
 
     cat << \EOF > conftest.java
 // #line 12771 "configure"
-import com.jgoodies.looks.common.RenderingUtils;
+import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -12844,10 +12844,10 @@ $as_echo "$jar_resolved" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 	  if test ""yes"" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&2;}
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" >&2;}
 	  else
-		  as_fn_error $? "Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" "$LINENO" 5
+		  as_fn_error $? "Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" "$LINENO" 5
 	  fi
     fi
 
@@ -12876,7 +12876,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
 
     cat << \EOF > conftest.java
 // #line 12878 "configure"
-import com.jgoodies.looks.common.RenderingUtils;
+import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -12951,10 +12951,10 @@ $as_echo "$jar_resolved" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 	  if test "" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&2;}
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" >&2;}
 	  else
-		  as_fn_error $? "Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" "$LINENO" 5
+		  as_fn_error $? "Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" "$LINENO" 5
 	  fi
     fi
 

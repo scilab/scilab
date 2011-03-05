@@ -20,6 +20,8 @@ Compilation:
 
 * Option --without-ocaml renamed to --without-modelica
 
+* Update the detection of Jgoodies / looks.
+
 * Bug 7049 fixed - jgraphx version was checked even if the --without-xcos
                    flag is set.
 
