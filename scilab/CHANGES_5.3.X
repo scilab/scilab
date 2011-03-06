@@ -11,6 +11,13 @@ Scinotes:
 Xcos:
 =====
 
+Update the documentation with examples of the blocks and their translations to
+French:
+- OUT_f - Regular Output Port
+- IN_f - Regular Input Port
+- Modulo_Count - Modulo counter (0 to N counter)
+- OUTIMPL_f - Output implicit port
+
 * bug 9122 fixed - Java check failed on diagram validation.
 
 Compilation:
