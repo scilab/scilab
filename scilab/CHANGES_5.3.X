@@ -20,6 +20,7 @@ French:
 - CLKINV_f - Input activation port
 - CLKOUTV_f - Output activation port
 - INIMPL_f - Implicit Input port
+- Counter
 
 * bug 9122 fixed - Java check failed on diagram validation.
 
