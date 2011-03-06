@@ -22,6 +22,7 @@ French:
 - INIMPL_f - Implicit Input port
 - GENSIM_f - Sine wave generator
 - STEP_FUNCTION - Step Function
+- SAWTOOTH_f - Sawtooth generator
 - Counter
 - RAMP
 
