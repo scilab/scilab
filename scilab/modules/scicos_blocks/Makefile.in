@@ -65,6 +65,7 @@ DIST_COMMON = $(am__libsciscicos_blocks_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
+@GIWS_TRUE@@XCOS_TRUE@am__append_2 = giws
 subdir = modules/scicos_blocks
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -1301,6 +1302,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@src/jni/GiwsException.cpp \
 @XCOS_TRUE@src/jni/AfficheBlock.cpp
 
+@XCOS_TRUE@GIWS_WRAPPERS = \
+@XCOS_TRUE@src/jni/Blocks.giws.xml
+
 @XCOS_TRUE@SCICOS_BLOCKS_FORTRAN_SOURCES = \
 @XCOS_TRUE@src/fortran/affich.f \
 @XCOS_TRUE@src/fortran/csslti.f \
@@ -1403,7 +1407,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 #$(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
-@XCOS_TRUE@BUILT_SOURCES = includes/blocks.h
+@XCOS_TRUE@BUILT_SOURCES = includes/blocks.h $(am__append_2)
 @XCOS_TRUE@CLEANFILES = $(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 @XCOS_TRUE@	$(top_srcdir)/modules/scicos_blocks/build/Cblocknames \
 @XCOS_TRUE@	$(top_srcdir)/modules/scicos_blocks/build/Fblocknames \

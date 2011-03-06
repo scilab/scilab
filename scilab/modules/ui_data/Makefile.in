@@ -508,7 +508,10 @@ UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 
 UI_DATA_C_SOURCES = 
 UI_DATA_CPP_SOURCES = 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS = \
+src/jni/BrowseVar.giws.xml \
+src/jni/EditVar.giws.xml
+
 @GIWS_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
