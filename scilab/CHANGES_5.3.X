@@ -21,6 +21,7 @@ French:
 - CLKOUTV_f - Output activation port
 - INIMPL_f - Implicit Input port
 - GENSIM_f - Sine wave generator
+- STEP_FUNCTION - Step Function
 - Counter
 - RAMP
 
