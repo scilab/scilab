@@ -32,6 +32,9 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 5687 fixed - The window title of a figure was not immediately updated when
+                   figure_name was changed.
+
 * Bug 8423 fixed - With certain options of the configure, the build process
                    failed.
 
