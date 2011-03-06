@@ -21,6 +21,7 @@ French:
 - CLKOUTV_f - Output activation port
 - INIMPL_f - Implicit Input port
 - Counter
+- RAMP
 
 * bug 9122 fixed - Java check failed on diagram validation.
 
