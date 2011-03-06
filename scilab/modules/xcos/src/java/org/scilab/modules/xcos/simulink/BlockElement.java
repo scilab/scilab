@@ -33,7 +33,7 @@ import edu.tum.cs.simulink.model.SimulinkInPort;
 import edu.tum.cs.simulink.model.SimulinkOutPort;
 
 public class BlockElement extends AbstractElement<BasicBlock> {
-	
+
 	private SimulinkBlock base;
 	private BlockGraphicElement graphicElement = new BlockGraphicElement();
 	/*
@@ -42,7 +42,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	private TraceElement traceElement;
 	private BlockModelElement modelElement = new BlockModelElement();
 	private static final Log LOG = LogFactory.getLog(BlockElement.class);
-	
+
 	// FIXME: check if those functions are necessary
 	/** 
 	 * Map from index to blocks 
@@ -59,7 +59,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * instance so be careful when allocated a new {@link BlockElement}.
 	 */
 	private int ordering;
-	
+
 	/**
 	 * @param from - source SimulinkBlock
 	 * @param into - BasicBlock to translate SimulinkBlock into
@@ -67,22 +67,27 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * @return
 	 */
 	public BasicBlock decode(SimulinkBlock from, BasicBlock into, XcosDiagram diag, TraceElement trace) {
-				
+
 		BasicBlock block = into;
 		base = from;
 		traceElement = trace;
-		
-		if(LOG.isTraceEnabled()) {
-			LOG.trace("== Decoding block: " + from.getName() + " of type: " + modelElement.getInterFunctionName(base) + ".==");
-		}
-		
-		if (block == null) {
-			block = BlockFactory.createBlock(modelElement.getInterFunctionName(base));
-		}
-		block.setParentDiagram(diag);
 
-		decodeParams(block);
-		
+		try {
+			if(LOG.isTraceEnabled()) {
+				LOG.trace("== Decoding block: " + from.getName() + " of type: " + modelElement.getInterFunctionName(base) + ".==");
+			}
+
+			if (block == null) {
+				block = BlockFactory.createBlock(modelElement.getInterFunctionName(base));
+			}
+			block.setParentDiagram(diag);
+
+			decodeParams(block);
+		} catch (PatternBindingException pbe) {
+			// TODO: some handling here, probably add blocks patterns unable to bind to some list
+			LOG.error(pbe);
+		}
+
 		return block;
 	}
 	/**
@@ -90,8 +95,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 	 * @param block to decode parameters into
 	 */
 	private void decodeParams(BasicBlock block) {
-		// TODO Auto-generated method stub
-		
+
 		OutputPortElement outElement = new OutputPortElement(base);
 		UnmodifiableIterator<SimulinkOutPort> portOutIter = base.getOutPorts().iterator();
 		OutputPort[] outPortTempTable= new OutputPort[base.getOutPorts().size() + 1];
@@ -102,7 +106,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		for(int i = 1 ; i < outPortTempTable.length ; i++){
 			block.addPort(outPortTempTable[i]);
 		}
-		
+
 		InputPortElement inElement = new InputPortElement(base);
 		UnmodifiableIterator<SimulinkInPort> portInIter = base.getInPorts().iterator();
 		InputPort[] inPortTempTable= new InputPort[base.getInPorts().size() + 1];
@@ -116,29 +120,42 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		/*
 		 * Add control and command ports
 		 */
-		for(int i=0 ; i< modelElement.getControlPorts(base) ; i++ ){
-			ControlPort portAdd = inElement.decodeControlPort();
-			block.addPort(portAdd);
+		try {
+			for(int i=0 ; i< modelElement.getControlPorts(base) ; i++ ){
+				ControlPort portAdd = inElement.decodeControlPort();
+				block.addPort(portAdd);
+			}
+		} catch (PatternBindingException pbe) {
+			// TODO: some handling here, probably add blocks patterns unable to bind to some list
+			LOG.error(pbe);
 		}
-		
+
 		/*
 		 * Add control and command ports
 		 */
-		for(int i=0 ; i< modelElement.getCommandPorts(base) ; i++ ){
-			CommandPort portAdd = outElement.decodeCommandPort();
-			block.addPort(portAdd);
+		try {
+			for(int i=0 ; i< modelElement.getCommandPorts(base) ; i++ ){
+				CommandPort portAdd = outElement.decodeCommandPort();
+				block.addPort(portAdd);
+			}
+		} catch (PatternBindingException pbe) {
+			// TODO: some handling here, probably add blocks patterns unable to bind to some list
+			LOG.error(pbe);
 		}
 		/*
 		 * decode graphics elements of BasicBlock
 		 */
 		graphicElement.decode(base, block);
-		
+
 		try {
 			modelElement.decode(base, block, traceElement);
 		} catch(SimulinkFormatException se) {
-			LogFactory.getLog(BlockElement.class).error(se);
+			LOG.error(se);
+		} catch (PatternBindingException pbe) {
+			// TODO: some handling here, probably add blocks patterns unable to bind to some list
+			LOG.error(pbe);
 		}
-		
+
 		block.generateId();
 		/*
 		 * Set state dependent informations.
@@ -165,7 +182,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 			child.setContainer(sBlock);
 			child.installListeners();
 			try {
-			diagram.decode(base, child, traceElement);
+				diagram.decode(base, child, traceElement);
 			} catch(SimulinkFormatException e1) {
 				LogFactory.getLog(ImportMdl.class).error(e1);
 			}

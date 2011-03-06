@@ -22,31 +22,31 @@ public class BlockModelElement{
 	private PatternElement patternElement;
 	private TraceElement traceElement;
 	SimulinkBlock data;
-	
-	public BasicBlock decode(SimulinkBlock from, BasicBlock into, TraceElement trace) throws SimulinkFormatException {
-	if (into == null) {
-		throw new IllegalArgumentException();
-	}
-	validate();
-	/*
-	 * mutable field for passing to submethods
-	 */
-	BasicBlock base = into;
-	data = from;
-	traceElement = trace;
-	/*
-	 * initialize patterns for particular block type
-	 */
-	patternElement = new PatternElement(data.getParameter("BlockType"), traceElement);
-	/*
-	 * fill the data
-	 */
-	fillSimulationFunction(base);
-	fillParameters(base);
 
-	return into;
+	public BasicBlock decode(SimulinkBlock from, BasicBlock into, TraceElement trace) throws SimulinkFormatException, PatternBindingException {
+		if (into == null) {
+			throw new IllegalArgumentException();
+		}
+		validate();
+		/*
+		 * mutable field for passing to submethods
+		 */
+		BasicBlock base = into;
+		data = from;
+		traceElement = trace;
+		/*
+		 * initialize patterns for particular block type
+		 */
+		patternElement = new PatternElement(data.getParameter("BlockType"), traceElement);
+		/*
+		 * fill the data
+		 */
+		fillSimulationFunction(base);
+		fillParameters(base);
+
+		return into;
 	}
-	
+
 	private void fillSimulationFunction(BasicBlock base) {
 		// TODO Auto-generated method stub
 		base.setSimulationFunctionName(patternElement.decodeFunctionName(data));
@@ -80,7 +80,7 @@ public class BlockModelElement{
 		// blocktype - Character that can be set to 'c' or 'd' indifferently for standard blocks. 'x' is used if we want to force the computational function to be called during the simulation phase even if the block does not contribute to computation of the state derivative. 
 		// l', 'm' and 's' are reserved. Not to be used. 
 		base.setBlockType(patternElement.decodeBlockType(data));
-		
+
 		// depends on time
 		base.setDependsOnT(patternElement.decodeDependsOnT(data));
 
@@ -93,33 +93,33 @@ public class BlockModelElement{
 		// equation Used in case of implicit blocks. 
 		//Data structure of type modelica which contains modelica code description if any. That list contains four entries :
 		base.setEquations((ScilabType)patternElement.decodeEquations(data));
-		
-		
+
+
 		// firing
 		// Vector of initial event firing times of size equal to the number of activation output ports (see evout). It contains output initial event dates (Events generated before any input event arises). Negative values stands for no initial event on the corresponding port.
 		base.setInterfaceFunctionName(patternElement.decodeInterfaceFunctionName(data));
 	}
-	
-	public String getInterFunctionName(SimulinkBlock from){
+
+	public String getInterFunctionName(SimulinkBlock from) throws PatternBindingException{
 		//FIXME: shouldn't have to multiple initialize
 		patternElement = new PatternElement(from.getParameter("BlockType"));
 		return patternElement.decodeInterfaceFunctionName(from);
 	}
-	
-	public int getControlPorts(SimulinkBlock from){
+
+	public int getControlPorts(SimulinkBlock from) throws PatternBindingException{
 		//FIXME: shouldn't have to multiple initialize
 		patternElement = new PatternElement(from.getParameter("BlockType"));
 		return patternElement.decodeControlPorts(from);
 	}
 
-	public int getCommandPorts(SimulinkBlock from){
+	public int getCommandPorts(SimulinkBlock from) throws PatternBindingException{
 		//FIXME: shouldn't have to multiple initialize
 		patternElement = new PatternElement(from.getParameter("BlockType"));
 		return patternElement.decodeCommandPorts(from);
 	}
-	
+
 	private void validate() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

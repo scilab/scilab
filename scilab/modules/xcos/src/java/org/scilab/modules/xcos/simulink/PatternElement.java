@@ -49,27 +49,28 @@ import edu.tum.cs.simulink.model.SimulinkBlock;
 public class PatternElement {
 	private static final Log LOG = LogFactory.getLog(PatternElement.class);
 	private TraceElement traceElement = null;
-	private JAXBContext jc;
-	private Unmarshaller u;
-	private BlockPalette blocks;
-	
+	private JAXBContext jc = null;
+	private Unmarshaller u = null;
+	private BlockPalette blocks = null;
+
 	final String file = "simulinkImportBlocks.xml";
 	final String homePath = ScilabConstants.SCIHOME.getAbsolutePath();
 	final File userPatternSheet = new File(homePath + '/' + file);
 	/**
 	 * General version of patternElement initialization
+	 * @throws PatternBindingException 
 	 */
-	public PatternElement(){
-	/*
-	 * Copy the base patternsheet into the user dir when it doesn't exist.
-	 */
+	public PatternElement() throws PatternBindingException{
+		/*
+		 * Copy the base patternsheet into the user dir when it doesn't exist.
+		 */
 		if (!userPatternSheet.exists()) {
 			final String sciPath = ScilabConstants.SCI.getAbsolutePath();
-		
+
 			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
 			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
 		}
-		bindPatterns();
+		bindPatterns(blocks);
 	}
 	/*
 	 * block that compatibility patterns are being processed for
@@ -83,8 +84,9 @@ public class PatternElement {
 	 * specific block patternElement initialization
 	 * @param simulinkBlockName
 	 * @param trace
+	 * @throws PatternBindingException 
 	 */
-	public PatternElement(String simulinkBlockName, TraceElement trace){
+	public PatternElement(String simulinkBlockName, TraceElement trace) throws PatternBindingException{
 		/*
 		 * Copy the base patternsheet into the user dir when it doesn't exist.
 		 */
@@ -97,28 +99,31 @@ public class PatternElement {
 			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
 			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
 		}
-		bindPatterns();
+		bindPatterns(blocks);
 		traceElement = trace;
 		/*
 		 * Initialize patterns for specific block
+		 * TODO: this is very uncool.
 		 */
-		Iterator<Block> blockIter = blocks.getBlock().iterator();
-		while (blockIter.hasNext()){
-			Block block = blockIter.next();
-			if(block.getSim().contentEquals(simulinkBlockName)){
-				currentBlock = block;
+		if(blocks != null) {
+			Iterator<Block> blockIter = blocks.getBlock().iterator();
+			while (blockIter.hasNext()){
+				Block block = blockIter.next();
+				if(block.getSim().contentEquals(simulinkBlockName)){
+					currentBlock = block;
+				}
+				if(block.getSim().contentEquals("GeneralParameters")){
+					generalParameters = block;
+				}
 			}
-			if(block.getSim().contentEquals("GeneralParameters")){
-				generalParameters = block;
+			if(currentBlock == null) {
+				LOG.trace("Missing compatibility pattern!");
+				traceElement.addUnknownBlock(simulinkBlockName);
 			}
-		}
-		if(currentBlock == null) {
-			LOG.trace("Missing compatibility pattern!");
-			traceElement.addUnknownBlock(simulinkBlockName);
 		}
 	}
-	
-	public PatternElement(String simulinkBlockName){
+
+	public PatternElement(String simulinkBlockName) throws PatternBindingException{
 		/*
 		 * Copy the base patternsheet into the user dir when it doesn't exist.
 		 */
@@ -128,26 +133,30 @@ public class PatternElement {
 			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
 			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
 		}
-		bindPatterns();
+		bindPatterns(blocks);
 		/*
 		 * Initialize patterns for specific block
+		 * TODO: this is very uncool.
 		 */
-		Iterator<Block> blockIter = blocks.getBlock().iterator();
-		while (blockIter.hasNext()){
-			Block block = blockIter.next();
-			if(block.getSim().contentEquals(simulinkBlockName)){
-				currentBlock = block;
+		if(blocks != null) {
+			Iterator<Block> blockIter = blocks.getBlock().iterator();
+			while (blockIter.hasNext()){
+				Block block = blockIter.next();
+				if(block.getSim().contentEquals(simulinkBlockName)){
+					currentBlock = block;
+				}
+				if(block.getSim().contentEquals("GeneralParameters")){
+					generalParameters = block;
+				}
 			}
-			if(block.getSim().contentEquals("GeneralParameters")){
-				generalParameters = block;
+			if(currentBlock == null) {
+				LOG.trace("Missing compatibility pattern!");
+				traceElement.addUnknownBlock(simulinkBlockName);
 			}
-		}
-		if(currentBlock == null) {
-			LOG.trace("Missing compatibility pattern!");
-		}
+		} 
 	}
-	
-	private void bindPatterns(){
+
+	private void bindPatterns(BlockPalette blocks) throws PatternBindingException{
 		try{
 			JAXBContext jc = JAXBContext.newInstance( "org.scilab.modules.xcos.simulink.patterns" );
 			Unmarshaller u = jc.createUnmarshaller();
@@ -156,13 +165,16 @@ public class PatternElement {
 					new StreamSource(ScilabConstants.SCIHOME + "/simulinkImportBlocks.xml"),
 					BlockPalette.class );
 			blocks = element.getValue();
+
 		} catch( UnmarshalException ue ) {
 			LogFactory.getLog(PatternElement.class).error(ue);
+			throw new PatternBindingException(ue.getMessage());
 		} catch( JAXBException je ) {
 			LogFactory.getLog(PatternElement.class).error(je);
+			throw new PatternBindingException(je.getMessage());
 		}
 	}
-	
+
 
 	/**
 	 * For now I'm using simple parameter for translating FunctionName and FunctionType
@@ -192,7 +204,7 @@ public class PatternElement {
 		}
 		return "xcos_simulate";
 	}
-	
+
 	public boolean haveFunctionType(SimulinkBlock data){
 		if(currentBlock!=null){
 			Iterator<SimpleParameter> simpleParamIter = currentBlock.getSimple().iterator();
@@ -204,7 +216,7 @@ public class PatternElement {
 					} else {
 						return true;
 					}
-						
+
 				}
 			}
 		}
@@ -232,11 +244,11 @@ public class PatternElement {
 				SimpleParameter simpleParam = simpleParamIter.next();
 				if(simpleParam.getSim().contentEquals("FunctionType")){
 					try {
-					/*if(LOG.isTraceEnabled()){
+						/*if(LOG.isTraceEnabled()){
 						LOG.trace(currentBlock.getXcos() + "FunctionType:");
 						LOG.trace(simpleParam.getXcos());
 					}*/
-					return Integer.parseInt(simpleParam.getXcos());
+						return Integer.parseInt(simpleParam.getXcos());
 					} catch(NumberFormatException ne) {
 						LogFactory.getLog(PatternElement.class).error(ne);
 					}
@@ -512,7 +524,7 @@ public class PatternElement {
 
 	public ScilabType decodeExprs(SimulinkBlock data) {
 		// TODO Auto-generated method stub
-		
+
 		String[][] exprsData;
 		/*
 		 * Check if current block is well initialized for coresponding SimulinkBlock
@@ -542,11 +554,11 @@ public class PatternElement {
 						} else {
 							exprsData[x][y] = valueMap.getSimName();
 						}
-/*						if(LOG.isTraceEnabled()){
+						/*						if(LOG.isTraceEnabled()){
 							LOG.trace(currentBlock.getXcos() + "exprs:");
 							LOG.trace(exprsData[x][y]);
 						}
-*/					}
+						 */					}
 					return new ScilabString(exprsData);
 				}
 			}
@@ -602,7 +614,7 @@ public class PatternElement {
 		}
 		return 0;
 	}
-	
+
 
 	/**
 	 * Function without target functionality yet
@@ -637,11 +649,11 @@ public class PatternElement {
 							String returnValue = integerParam.getXcos() + ": ";
 							Iterator<IntegerValueMap> valueMapIter = integerParam.getMap().iterator();
 							//while (valueMapIter.hasNext()){
-								returnValue += simulinkValue;
+							returnValue += simulinkValue;
 							//}
 							//TODO: enable compatibility patterns
 							return returnValue;
-							}
+						}
 					}
 					/*
 					 * checking string parameters
@@ -689,7 +701,7 @@ public class PatternElement {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * Functions printPattern is created for debugging compatibility patterns
 	 */
