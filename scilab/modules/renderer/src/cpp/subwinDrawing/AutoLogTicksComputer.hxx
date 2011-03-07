@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Compute automatic ticks with logarithmic scaling  
  * 
  * This file must be used under the terms of the CeCILL.
@@ -35,6 +36,7 @@ public:
   /**
    * Fill positions parameters
    * with the ticks abscissas, ordinate, ...
+   * If labels or labelsExponents is NULL, then only the positions are computed.
    */
   virtual void getTicksPosition(double positions[], char * labels[], char * labelsExponents[]);
 

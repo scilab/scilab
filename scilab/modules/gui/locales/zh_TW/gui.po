@@ -70,7 +70,7 @@ msgstr "%s: 無效的父節點.\n"
 
 #, c-format
 msgid "%s: Invalid position ''%s''.\n"
-msgstr "%s: \"%s\" 位置無效.\n"
+msgstr "%s: ''%s'' 位置無效.\n"
 
 #, c-format
 msgid "%s: No matching node.\n"
@@ -402,7 +402,7 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串向量.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
 "''callback''.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 必須是 \"label\", \"icon\" 或 \"callback\".\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 必須是 ''label'', ''icon'' 或 ''callback''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
@@ -1317,36 +1317,36 @@ msgstr "屬性 '%s' 型態錯誤:  應為一字串或 1 x %d 之實數行向量.
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: '%s' or 應為 '%s'.\n"
+msgstr "屬性 '%s' 數值錯誤: '%s' or 應為 '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: '%s', '%s', '%s' or 應為 '%s'.\n"
+msgstr "屬性 '%s' 數值錯誤: '%s', '%s', '%s' or 應為 '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤:  應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
+msgstr "屬性 '%s' 數值錯誤:  應為 '%s', '%s', '%s', '%s' 或 '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
+msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為 '%s', '%s', 或  '%s'.\n"
+msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s', 或  '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
 "expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為 'light', 'normal', 'demi' 或 'bold'.\n"
+msgstr "屬性 '%s' 數值錯誤: 應為 'light', 'normal', 'demi' 或 'bold'.\n"
 
 #, c-format
 msgid ""
@@ -1366,11 +1366,11 @@ msgstr "'%s' 屬性值有誤: 字串中含有 numeric value 才對.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為一實數.\n"
+msgstr "屬性 '%s' 數值錯誤: 應為一實數.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "屬性 ''%s'' 數值錯誤: 應為一字串.\n"
+msgstr "屬性 '%s' 數值錯誤: 應為一字串.\n"
 
 #, c-format
 msgid ""

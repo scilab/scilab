@@ -19,8 +19,10 @@ import java.util.List;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 
 import com.mxgraph.model.mxICell;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.handler.mxConnectPreview;
 import com.mxgraph.swing.handler.mxConnectionHandler;
+import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.view.mxCellState;
 import com.mxgraph.view.mxGraph;
@@ -53,6 +55,23 @@ public class ConnectionHandler extends mxConnectionHandler {
 		return new ConnectPreview((GraphComponent) graphComponent);
 	}
 
+	/**
+	 * Enable or disable the reset handler which reset any action on graph
+	 * modification.
+	 * 
+	 * @param status the enable status
+	 */
+	protected void setResetEnable(boolean status) {
+		final mxIGraphModel model = graphComponent.getGraph().getModel();
+		
+		if (status) {
+			model.addListener(mxEvent.CHANGE, resetHandler);
+		} else {
+			model.removeListener(resetHandler, mxEvent.CHANGE);
+		}
+	}
+	
+	
 	/*
 	 * mxMouseAdapter specific reimplementation
 	 */

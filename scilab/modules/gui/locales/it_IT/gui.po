@@ -72,7 +72,7 @@ msgstr "%s: Nodo padre non valido.\n"
 
 #, c-format
 msgid "%s: Invalid position ''%s''.\n"
-msgstr "%s: La posizione \"%s\" non è valida.\n"
+msgstr "%s: La posizione ''%s'' non è valida.\n"
 
 #, c-format
 msgid "%s: No matching node.\n"
@@ -199,7 +199,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"gestore \"Figura\" o un numero reale.\n"
+"gestore ''Figura'' o un numero reale.\n"
 
 #, c-format
 msgid ""
@@ -304,7 +304,7 @@ msgstr "%s: %s è di tipo sbagliato: era attesa una stringa.\n"
 #, c-format
 msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
 msgstr ""
-"%s: La proprietà \"%s\" è di tipo sbagliato: era attesa una stringa.\n"
+"%s: La proprietà ''%s'' è di tipo sbagliato: era attesa una stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
@@ -518,8 +518,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
 "''callback''.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: deve essere \"label\", "
-"\"icon\" o \"callback\".\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: deve essere ''label'', "
+"''icon'' o ''callback''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
@@ -537,19 +537,19 @@ msgid ""
 "%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
 "or pixels expected.\n"
 msgstr ""
-"%s: La proprietà \"%s\" ha un valore sbagliato: erano attesi punti, unità "
+"%s: La proprietà '%s' ha un valore sbagliato: erano attesi punti, unità "
 "normalizzate, pollici, centimetri o pixel.\n"
 
 #, c-format
 msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
 msgstr ""
-"%s: La proprietà \"%s\" ha un valore sbagliato: era atteso %d, %d o %d.\n"
+"%s: La proprietà ''%s'' ha un valore sbagliato: era atteso %d, %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid ""
@@ -561,30 +561,30 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\", "
-"\"%s\" o \"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'', "
+"''%s'' o ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
 "exist.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: \"Graphic Window "
-"Number %d\" non esiste.\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: 'Graphic Window "
+"Number %d' non esiste.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un valido "
-"gestore \"%s\".\n"
+"gestore '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
@@ -1077,7 +1077,7 @@ msgstr "Menù"
 
 #, c-format
 msgid "Menu ''%s'' is %s."
-msgstr "Il menù \"%s\" è %s."
+msgstr "Il menù ''%s'' è %s."
 
 msgid "Menu status"
 msgstr "Stato del menù"
@@ -1093,11 +1093,11 @@ msgstr "No"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
-msgstr "Nessuna proprietà \"%s\" per questo oggetto.\n"
+msgstr "Nessuna proprietà '%s' per questo oggetto.\n"
 
 #, c-format
 msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "Non c'è la proprietà \"%s\" per questi uicontrol di stile: %s.\n"
+msgstr "Non c'è la proprietà '%s' per questi uicontrol di stile: %s.\n"
 
 msgid "No color selected."
 msgstr "Nessun colore selezionato."
@@ -1195,11 +1195,11 @@ msgstr "&Sito web di Scilab"
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
-"Il modulo \"%s\" di Scilab è disabilitato in modalità -nogui o -nwni.\n"
+"Il modulo '%s' di Scilab è disabilitato in modalità -nogui o -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "Il modulo \"%s\" di Scilab non è installato.\n"
+msgstr "Il modulo '%s' di Scilab non è installato.\n"
 
 msgid ""
 "Scilab 5.0 and future versions are released under the terms of the CeCILL "
@@ -1346,8 +1346,8 @@ msgid ""
 "Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
 "property value.\n"
 msgstr ""
-"Attenzione: la proprietà \"Valore\" \"%s\" deve essere uguale al valore di "
-"proprietà \"%s\" o \"%s\".\n"
+"Attenzione: la proprietà 'Valore' '%s' deve essere uguale al valore di "
+"proprietà '%s' o '%s'.\n"
 
 msgid "Windows BMP image"
 msgstr "Immagine BMP Windows"
@@ -1355,249 +1355,249 @@ msgstr "Immagine BMP Windows"
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era attesa  \"%s\",  \"%s\" "
-"o  \"%s\".\n"
+"La proprietà '%s' ha una dimensione sbagliata: era attesa  '%s',  '%s' "
+"o  '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era attesa \"%s\", \"%s\", "
-"\"%s\" o '\"%s\".\n"
+"La proprietà '%s' ha una dimensione sbagliata: era attesa '%s', '%s', "
+"'%s' o ''%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso \"%s\", \"%s\", "
-"\"%s\", \"%s\" o '\"%s\".\n"
+"La proprietà '%s' ha una dimensione sbagliata: era atteso '%s', '%s', "
+"'%s', '%s' o ''%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso \"%s\", \"%s\", "
-"\"%s\", \"%s\", \"%s\" o \"%s\".\n"
+"La proprietà '%s' ha una dimensione sbagliata: era atteso '%s', '%s', "
+"'%s', '%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso \"%s\", \"%s\" o "
-"\"%s\".\n"
+"La proprietà '%s' ha una dimensione sbagliata: era atteso '%s', '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso un vettore reale "
-"1 x 3 o una stringa \"R|G|B\".\n"
+"La proprietà '%s' ha una dimensione sbagliata: era atteso un vettore reale "
+"1 x 3 o una stringa 'R|G|B'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso un vettore riga "
+"La proprietà '%s' ha una dimensione sbagliata: era atteso un vettore riga "
 "reale 1 x %d.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A graphic handle expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso un gestore "
+"La proprietà '%s' ha una dimensione sbagliata: era atteso un gestore "
 "grafico.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era atteso un numero "
+"La proprietà '%s' ha una dimensione sbagliata: era atteso un numero "
 "reale.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un dimensione sbagliata: era atteso un vettore riga "
+"La proprietà '%s' ha un dimensione sbagliata: era atteso un vettore riga "
 "reale.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era attesa una stringa.\n"
+"La proprietà '%s' ha una dimensione sbagliata: era attesa una stringa.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era attesa una stringa o un "
+"La proprietà '%s' ha una dimensione sbagliata: era attesa una stringa o un "
 "vettore riga reale 1 x %d.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
-"La proprietà \"%s\"  ha una dimensione sbagliata: era attesa una stringa o "
+"La proprietà '%s'  ha una dimensione sbagliata: era attesa una stringa o "
 "un vettore di stringhe.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha una dimensione sbagliata: era attesa una lista a 2 "
+"La proprietà '%s' ha una dimensione sbagliata: era attesa una lista a 2 "
 "elementi.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso  \"%s\",  \"%s\" o  "
-"\"%s\".\n"
+"La proprietà '%s' è di tipo sbagliato: era atteso  '%s',  '%s' o  "
+"'%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso \"%s\", \"%s\", \"%s\" o "
-"'\"%s\".\n"
+"La proprietà '%s' è di tipo sbagliato: era atteso '%s', '%s', '%s' o "
+"''%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso \"%s\", \"%s\", \"%s\", "
-"\"%s\" o '\"%s\".\n"
+"La proprietà '%s' è di tipo sbagliato: era atteso '%s', '%s', '%s', "
+"'%s' o ''%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso \"%s\", \"%s\", \"%s\", "
-"\"%s\", \"%s\" o \"%s\".\n"
+"La proprietà '%s' è di tipo sbagliato: era atteso '%s', '%s', '%s', "
+"'%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso \"%s\", \"%s\" o "
-"\"%s\".\n"
+"La proprietà '%s' è di tipo sbagliato: era atteso '%s', '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso un vettore reale 1 x 3 o "
-"una stringa \"R|G|B\".\n"
+"La proprietà '%s' è di tipo sbagliato: era atteso un vettore reale 1 x 3 o "
+"una stringa 'R|G|B'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso un vettore riga reale 1 "
+"La proprietà '%s' è di tipo sbagliato: era atteso un vettore riga reale 1 "
 "x %d.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso un numero reale.\n"
+"La proprietà '%s' è di tipo sbagliato: era atteso un numero reale.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era atteso un vettore riga reale o "
+"La proprietà '%s' è di tipo sbagliato: era atteso un vettore riga reale o "
 "una stringa.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
-msgstr "La proprietà \"%s\" è di tipo sbagliato: era attesa una stringa.\n"
+msgstr "La proprietà '%s' è di tipo sbagliato: era attesa una stringa.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" è di tipo sbagliato: era attesa una stringa o un vettore "
+"La proprietà '%s' è di tipo sbagliato: era attesa una stringa o un vettore "
 "riga reale 1 x %d.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso  \"%s\" o \"%s\".\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso  '%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso \"%s\",   \"%s\", o  "
-"\"%s\".\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso '%s',   '%s', o  "
+"'%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso \"%s\", \"%s\", "
-"\"%s\" o '\"%s\".\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso '%s', '%s', "
+"'%s' o ''%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso \"%s\", '\"%s\",  "
-"\"%s\",  \"%s\", o  \"%s\".\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso '%s', ''%s',  "
+"'%s',  '%s', o  '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso \"%s\", '\"%s\",  "
-"\"%s\",  \"%s\",  \"%s\" o  \"%s\".\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso '%s', ''%s',  "
+"'%s',  '%s',  '%s' o  '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso  \"%s\",  \"%s\" o  "
-"\"%s\".\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso  '%s',  '%s' o  "
+"'%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
 "expected.\n"
 msgstr ""
-"La proprietà ''%s'' ha un valore sbagliato: era atteso ''light'', "
-"''normal'', ''demi'' o ''bold''.\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso 'light', "
+"'normal', 'demi' o 'bold'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso un vettore reale 1 x "
-"3 o una stringa \"R|G|B\".\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso un vettore reale 1 x "
+"3 o una stringa 'R|G|B'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso un gestore \"%s\" o "
-"\"%s\".\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso un gestore '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: A String containing a numeric value "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era attesa una stringa "
+"La proprietà '%s' ha un valore sbagliato: era attesa una stringa "
 "contenente un valore numerico.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era atteso un numero reale.\n"
+"La proprietà '%s' ha un valore sbagliato: era atteso un numero reale.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A string expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era attesa una stringa.\n"
+"La proprietà '%s' ha un valore sbagliato: era attesa una stringa.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
-"La proprietà \"%s\" ha un valore sbagliato: era attesa una stringa o un "
+"La proprietà '%s' ha un valore sbagliato: era attesa una stringa o un "
 "vettore riga reale 1 x %d.\n"
 
 msgid "Xcos"
@@ -1611,11 +1611,11 @@ msgstr "Sì"
 
 #, c-format
 msgid "You clicked on menu ''%s''."
-msgstr "È stato fatto un clic sul menù \"%s\"."
+msgstr "È stato fatto un clic sul menù ''%s''."
 
 #, c-format
 msgid "You selected ''%s''."
-msgstr "È stato selezionato \"%s\"."
+msgstr "È stato selezionato ''%s''."
 
 msgid "Zoom Area"
 msgstr "Ingrandisci l'Area"

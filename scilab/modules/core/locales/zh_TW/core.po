@@ -12,14 +12,14 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 11:26+0100\n"
 
-msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr "                 Scilab 協會 (DIGITEO)\n"
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Scilab 協會 (DIGITEO)\n"
 
-msgid "               Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "               版權 (c) 1989-2007 (ENPC)\n"
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "版權 (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "               版權 (c) 1989-2010 (INRIA)\n"
+msgid "Copyright (c) 1989-2010 (INRIA)\n"
+msgstr "版權 (c) 1989-2010 (INRIA)\n"
 
 #
 # File: etc/scilab.start, line: 42

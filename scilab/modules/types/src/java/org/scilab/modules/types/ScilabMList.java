@@ -93,7 +93,9 @@ public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
 	}
 	
 	/**
-	 * Display the representation in the Scilab language of the type
+	 * Display the representation in the Scilab language of the type<br />
+	 * Note that the representation can be copied/pasted straight into Scilab 
+     *
 	 * @return the pretty-printed data 
 	 * @see java.util.AbstractCollection#toString()
 	 */

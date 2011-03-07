@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -994,6 +996,18 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		for (Class< ? extends mxICell> type : types) {
 			oldPorts.put(type, new LinkedList<mxICell>());
 		}
+		
+		// sort children according to the ordering parameter (useful on scilab-5.2.x diagrams)
+		Collections.sort(children, new Comparator<Object>() {
+			@Override
+			public int compare(Object o1, Object o2) {
+				if (o1 instanceof BasicPort && o2 instanceof BasicPort) {
+					return ((BasicPort) o1).getOrdering() - ((BasicPort) o2).getOrdering();
+				} else {
+					return 0;
+				}
+			}
+		});
 		
 		// children lookup
 		for (Object cell : children) {

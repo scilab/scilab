@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -36,6 +36,9 @@
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -126,6 +129,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -214,6 +220,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 			/>
 			<Tool
@@ -255,7 +264,6 @@
 				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
-
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
@@ -303,6 +311,9 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
 				Name="VCMIDLTool"
 				TargetEnvironment="3"
 			/>
@@ -344,7 +355,6 @@
 				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="localization_export.def"
-
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				SupportUnloadOfDelayLoadedDLL="true"
@@ -391,6 +401,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\c\getLcidString.h"
+				>
+			</File>
+			<File
 				RelativePath=".\c\getLocaleInfo_Windows.h"
 				>
 			</File>
@@ -404,6 +418,10 @@
 			</File>
 			<File
 				RelativePath=".\c\LanguagePreferences_Windows.h"
+				>
+			</File>
+			<File
+				RelativePath=".\c\LocaleNameToLCID_Windows.h"
 				>
 			</File>
 			<File
@@ -464,6 +482,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\c\getLcidString.c"
+				>
+			</File>
+			<File
 				RelativePath=".\c\getLocaleInfo_Windows.c"
 				>
 			</File>
@@ -477,6 +499,14 @@
 			</File>
 			<File
 				RelativePath=".\c\LanguagePreferences_Windows.c"
+				>
+			</File>
+			<File
+				RelativePath=".\c\LocaleNameToLCID_Windows.c"
+				>
+			</File>
+			<File
+				RelativePath=".\jni\LocaleToLCID_wrap.c"
 				>
 			</File>
 			<File

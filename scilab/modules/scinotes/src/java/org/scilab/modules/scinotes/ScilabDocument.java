@@ -34,6 +34,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * The class ScilabDocument is used to render a document .sci or .sce
@@ -578,6 +579,37 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             }
         }
         return null;
+    }
+
+    /**
+     * Get the function name where the caret is
+     * @param pos the position in the document
+     * @return the nearest function name
+     */
+    public String getCurrentFunction(int pos) {
+        Element root = getDefaultRootElement();
+        int index = root.getElementIndex(pos);
+        int line = index;
+        int compt = 0;
+        while (index != -1) {
+            ScilabLeafElement e = (ScilabLeafElement) root.getElement(index--);
+            switch (e.getType()) {
+            case ScilabLeafElement.NOTHING :
+                break;
+            case ScilabLeafElement.FUN :
+                if (compt == 0) {
+                    return String.format(SciNotesMessages.POSFUN_IN_DOC, e.getFunctionInfo().functionName, line + 1, pos - root.getElement(line).getStartOffset());
+                } else {
+                    compt++;
+                }
+                break;
+            case ScilabLeafElement.ENDFUN :
+                compt--;
+                break;
+            default :
+            }
+        }
+        return String.format(SciNotesMessages.POS_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset());
     }
 
     /**

@@ -100,7 +100,7 @@ msgstr "%s: DESCRIPTION ファイルはパッケージ ''%s'' に見つかりま
 
 #, c-format
 msgid "%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
-msgstr "%s: ファイル\"%s\" をディレクトリ\"%s\"へコピーする際にエラーが発生しました.\n"
+msgstr "%s: ファイル''%s'' をディレクトリ''%s''へコピーする際にエラーが発生しました.\n"
 
 #, c-format
 msgid "%s: Error while creating the directory ''%s''.\n"
@@ -138,7 +138,7 @@ msgstr "%s: 複数のバージョンのパッケージ (%s) を同じScilabセ�
 
 #, c-format
 msgid "%s: The config file (''%s'') is not well formated at line %d\n"
-msgstr "%s: 設定ファイル(\"%s\")の%d行目は整形式ではありません.\n"
+msgstr "%s: 設定ファイル(''%s'')の%d行目は整形式ではありません.\n"
 
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
@@ -162,7 +162,7 @@ msgstr "%s: ディレクトリ %s は存在しません。\n"
 msgid ""
 "%s: The directory ''%s'' cannot been created, please check if you have write "
 "access on this directory.\n"
-msgstr "%s: ディレクトリー \"%s\" を作成できません. このディレクトリーへの書き込みアクセス権の有無を確認ください.\n"
+msgstr "%s: ディレクトリー ''%s'' を作成できません. このディレクトリーへの書き込みアクセス権の有無を確認ください.\n"
 
 #, c-format
 msgid ""
@@ -199,7 +199,7 @@ msgstr "%s: ファイル %s は整形式ではありません.ツールボック
 
 #, c-format
 msgid "%s: The file ''%s'' cannot be written.\n"
-msgstr "%s: ファイル %s を書き込めません。\n"
+msgstr "%s: ファイル ''%s'' を書き込めません。\n"
 
 #, c-format
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible\n"
@@ -211,7 +211,7 @@ msgstr "%s: ファイル ''%s'' が存在しないか、読み取り可能では
 
 #, c-format
 msgid "%s: The file ''%s'' is not well formated at line %d\n"
-msgstr "%s: ファイル \"%s\" の %d 行目は整形式ではありません.\n"
+msgstr "%s: ファイル ''%s'' の %d 行目は整形式ではありません.\n"
 
 #, c-format
 msgid "%s: The following file hasn''t been copied:\n"
@@ -392,7 +392,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: mlistを指定し�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\" は登録済みのカテゴリではありません"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' は登録済みのカテゴリではありません"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
@@ -401,14 +401,14 @@ msgstr "%s: 入力引数 #%d で不正な値: ''%s'' は妥当なURLではあり
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"all\" または \"main\" を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''all'' または ''main'' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
 "''session'' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: \"all\", \"allusers\", \"user\" または \"session\" "
+"%s: 入力引数 #%d の値が間違っています: ''all'', ''allusers'', ''user'' または ''session'' "
 "を指定してください.\n"
 
 #, c-format
@@ -416,7 +416,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
 "''official'' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: \"all\", \"users\", \"alluser\" または \"official\" "
+"%s: 入力引数 #%d の値が間違っています: ''all'', ''users'', ''alluser'' または ''official'' "
 "を指定してください.\n"
 
 #, c-format
@@ -424,7 +424,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: \"'filter:all'',''filter:main'' "
+"%s: 入力引数 #%d の値が間違っています: '''filter:all'',''filter:main'' "
 "または有効なmainカテゴリを指定してください.\n"
 
 #, c-format
@@ -442,21 +442,21 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'user'' または ''allusers''  または \"all\" を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: 'user'' または ''allusers''  または ''all'' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'user'' , ''allusers''  または \"all\" を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: 'user'' , ''allusers''  または ''all'' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'user'' , ''allusers''  または \"all\" を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: 'user'' , ''allusers''  または ''all'' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -475,12 +475,12 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 全てのモジュ�
 msgid ""
 "%s: Wrong value for input argument #%d: It should have a field named "
 "''%s''.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\"という名前のフォールドを有する必要があります.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s''という名前のフォールドを有する必要があります.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 文字\"A\"または\"l\"を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 文字''A''または''l''を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -538,7 +538,7 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 有効なバージ�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"error\"または\"warning\"を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''error''または''warning''を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -559,7 +559,7 @@ msgstr "%s: name および version が定義されていません.\n"
 
 #, c-format
 msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
-msgstr "%s: パッケージ \"%s\" は,フィールド \"%s\" を有しません.\n"
+msgstr "%s: パッケージ ''%s'' は,フィールド ''%s'' を有しません.\n"
 
 #, c-format
 msgid "%s: the package ''%s'' doesn''t exist.\n"
@@ -582,7 +582,7 @@ msgstr "その他"
 
 #, c-format
 msgid "A new version (''%s'') of ''%s'' is available"
-msgstr "新しいバージョン(\"%s\")の \"%s\" が利用可能です."
+msgstr "新しいバージョン(''%s'')の ''%s'' が利用可能です."
 
 msgid "ATOMS"
 msgstr "ATMOS"

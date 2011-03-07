@@ -182,7 +182,7 @@
       <classfileset dir="${build.test.dir}" includes="**/*.class"/>
       <jvmarg value="-DdisableLoadJNIScilab=1"/>
       <jvmarg value="-DSCI=${base.dir}"/>
-      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/"/>
+      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:/usr/lib/jni/"/>
     </testng>
   </target>
 

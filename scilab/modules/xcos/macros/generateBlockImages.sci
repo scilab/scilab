@@ -19,7 +19,9 @@
 // @param imagesOutPath output path of the graph images (SVG files).
 //             The default is the common `palFiles' dir.
 // @param[opt] traceEnable %T if a trace output must be printed, %F if not (default=%F).
-function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable)
+// @param[opt] handle the graphical handle to use
+//             The default is to get the current handle with gcf().
+function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable, handle)
     [lhs, rhs] = argn(0);
     if rhs < 3 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "generateBlockImages", 3));
@@ -92,14 +94,19 @@ function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable)
     end
   
     varsToLoad = gsort(varsToLoad, "r", "i");
-    f = gcf();
+    if exists(handle, 'l') == 0 | type(handle) <> 9 then
+        f = gcf();
+    else
+        f = handle;
+    end
+
     for kBlock = 1 : size(varsToLoad, "*")
         ierr = execstr("scs_m  = " + varsToLoad(kBlock) + "(""define"")", "errcatch");
         if traceEnable then
             mprintf("%d: %s",  kBlock, varsToLoad(kBlock));
         end
         if ierr == 0 then
-            status = generateBlockImage(scs_m, imagesOutPath, handle=f, imageType="svg");
+            status = generateBlockImage(scs_m, imagesOutPath, handle=f, imageType="svg", %f);
             if status & traceEnable then
                 mprintf(" SUCCEED\n");
             elseif traceEnable then

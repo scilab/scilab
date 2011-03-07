@@ -310,7 +310,9 @@ end
       if kfun<>0 then  //** block error
         path=corinv(kfun)
         //** get error cmd for the block
+        disp(str_err);
         get_errorcmd(path,'Initialisation problem.',str_err);
+        
 
       else //** simulator error
         message(['Initialisation problem:';str_err])

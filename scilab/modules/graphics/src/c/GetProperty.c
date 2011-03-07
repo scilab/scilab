@@ -5,6 +5,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Serge Steer
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -3476,6 +3477,27 @@ BOOL sciGetAutoSubticks(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
+* Get nbsubtics for each axis
+*/
+void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3])
+{
+    switch(sciGetEntityType(pObj))
+    {
+    case SCI_SUBWIN:
+        nbsubtics[0] = pSUBWIN_FEATURE(pObj)->axes.nbsubtics[0];
+        nbsubtics[1] = pSUBWIN_FEATURE(pObj)->axes.nbsubtics[1];
+        nbsubtics[2] = pSUBWIN_FEATURE(pObj)->axes.nbsubtics[2];
+        break;
+    default:
+        nbsubtics[0] = 0;
+        nbsubtics[1] = 0;
+        nbsubtics[2] = 0;
+        printSetGetErrorMessage("nbsubtics");
+        break;
+    }
+}
+/*----------------------------------------------------------------------------------*/
+/**
 * Get the axes visible property for each axis.
 */
 void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
@@ -3694,6 +3716,15 @@ BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj)
     }
     printSetGetErrorMessage("fractional_font");
     return FALSE;
+}
+/*----------------------------------------------------------------------------------*/
+/**
+* Get number of subticks on the x,y, and z axes.
+* This property is determined by the renderer module.
+*/
+void sciGetNbSubticks(sciPointObj * pSubwin, double nbsubtics[3])
+{
+    sciGetJavaNbSubticks(pSubwin, nbsubtics);
 }
 /*----------------------------------------------------------------------------------*/
 /**

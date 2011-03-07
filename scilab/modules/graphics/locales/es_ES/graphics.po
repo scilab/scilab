@@ -495,7 +495,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada %d: Se esperaba un manejador "
-"de \"Ejes\".\n"
+"de ''Ejes''.\n"
 
 #, c-format
 msgid ""
@@ -635,13 +635,13 @@ msgid ""
 "expected."
 msgstr ""
 "%s: Tipo incorrecto del argumento del entrada #%d: Se esperaba un manejador "
-"de un vector \"Figura\"."
+"de un vector ''Figura''."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un manejador "
-"de \"Ejes\".\n"
+"de ''Ejes''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
@@ -772,7 +772,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
 msgstr ""
 "%s: Tipo incorrecto de argumento del entrada %d: Se esperaba un manejador de "
-"\"Ejes\".\n"
+"''Ejes''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"

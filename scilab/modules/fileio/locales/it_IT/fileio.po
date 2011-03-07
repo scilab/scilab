@@ -162,7 +162,7 @@ msgstr "%s: Le opzioni sono state ignorate.\n"
 
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
-msgstr "%s: Il formato specificato non può includere alcun ''\\n''\n"
+msgstr "%s: Il formato specificato non può includere alcun '\\n'\n"
 
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
@@ -186,7 +186,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Warning: Directory '%s' already exists.\n"
-msgstr "%s: Attenzione: la directory ''%s'' già esiste.\n"
+msgstr "%s: Attenzione: la directory '%s' già esiste.\n"
 
 #, c-format
 msgid ""
@@ -232,7 +232,7 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d (''%s'') ha una dimensione sbagliata: era "
+"%s: L'argomento in ingresso #%d ('%s') ha una dimensione sbagliata: era "
 "attesa una stringa non-vuota.\n"
 
 #, c-format
@@ -452,13 +452,13 @@ msgid ""
 "%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d (%s) ha un valore sbagliato: era atteso "
-"''%s'' o ''%s'' o ''%s''.\n"
+"'%s' o '%s' o '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d (''%s'') ha un valore sbagliato : formato "
+"%s: L'argomento in ingresso #%d ('%s') ha un valore sbagliato : formato "
 "non riconosciuto.\n"
 
 #, c-format
@@ -468,29 +468,29 @@ msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: ''%s'' non è un "
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: '%s' non è un "
 "percorso valido.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
-"''%s'' o ''%s''.\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
+"'%s' o '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'', "
-"''%s'' o ''%s''.\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s', "
+"'%s' o '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''w'' or ''u'' string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
-"stringa \"w\" o \"u\".\n"
+"stringa ''w'' o ''u''.\n"
 
 #, c-format
 msgid ""
@@ -516,7 +516,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere \"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: no empty string expected.\n"
@@ -533,7 +533,7 @@ msgid ""
 "%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
 "corrupted.\n"
 msgstr ""
-"%s: È stato trovato un tipo di variabile sbagliato (%s) in \"%s\". Il file "
+"%s: È stato trovato un tipo di variabile sbagliato (%s) in ''%s''. Il file "
 "potrebbe essere sbagliato o danneggiato.\n"
 
 #, c-format
@@ -617,7 +617,7 @@ msgstr "Attenzione: c'è stato un errore durante l'apertura di %s: %s\n"
 
 #, c-format
 msgid "Warning: file '%s' already opened in Scilab.\n"
-msgstr "Attenzione: il file ''%s'' è già aperto in Scilab.\n"
+msgstr "Attenzione: il file '%s' è già aperto in Scilab.\n"
 
 msgid "unclosed [ directive."
 msgstr "la direttiva [ non è chiusa."

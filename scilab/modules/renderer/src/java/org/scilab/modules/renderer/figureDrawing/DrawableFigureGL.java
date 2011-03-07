@@ -36,6 +36,8 @@ import org.scilab.modules.renderer.utils.textRendering.JOGLTextRendererFactory;
 import org.scilab.modules.renderer.utils.textRendering.TextRendererFactory;
 import org.scilab.modules.renderer.utils.textRendering.TextRendererManager;
 import org.scilab.modules.renderer.ObjectGLCleaner;
+import org.scilab.modules.renderer.utils.MarkDrawing.DotMarkDrawer;
+import org.scilab.modules.renderer.utils.MarkDrawing.MarkDrawingStrategy;
 
 
 
@@ -77,6 +79,8 @@ public class DrawableFigureGL extends ObjectGL {
 
 	/** Default ArcRenderer */
 	private ArcRendererFactory arcRendererFactory;
+    
+        private MarkDrawingStrategy markDrawingStrategy;
 	
 	/** index of the background color */
 	private int backGroundColorIndex;
@@ -121,6 +125,7 @@ public class DrawableFigureGL extends ObjectGL {
       	setDefaultTextRenderer();
       	setDefaultArcRendererFactory();
       	setDefaultShadeFacetDrawer();
+	setDefaultMarkDrawingStrategy();
       	backGroundColorIndex = 0;
       	rubberBox = null;
       	renderRequested = false;
@@ -144,6 +149,21 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void setDefaultArcRendererFactory() {
 		arcRendererFactory = new NurbsArcRendererFactory();
+	}
+
+	/**
+	 * Set the default MarkDrawing
+	 */
+	public void setDefaultMarkDrawingStrategy() {
+		markDrawingStrategy = new DotMarkDrawer();
+	}
+
+        public void setMarkDrawingStrategy(MarkDrawingStrategy strategy) {
+	        markDrawingStrategy = strategy;
+	}
+
+        public MarkDrawingStrategy getMarkDrawingStrategy() {
+	        return markDrawingStrategy;
 	}
 	
 	/**

@@ -28,7 +28,7 @@ msgstr "%s はインストール済みのモジュールまたはツールボッ
 
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-msgstr "%s: テスト \"%s\" は存在しないか,読み込み可能ではありません.\n"
+msgstr "%s: テスト ''%s'' は存在しないか,読み込み可能ではありません.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."

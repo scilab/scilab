@@ -23,7 +23,7 @@ function demo_riemann()
 
   // Add "see code" menu item
   // =========================================================================
-  demo_viewCode("SCI/modules/graphics/demos/anim/anim8/anim8.sci");
+  demo_viewCode(SCI+"/modules/graphics/demos/anim/anim8/anim8.sci");
 
   // Drawlater
   // =========================================================================

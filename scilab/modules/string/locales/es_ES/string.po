@@ -46,7 +46,7 @@ msgstr "%s: La biblioteca PCRE actual no soporta UTF-8.\n"
 
 #, c-format
 msgid "%s: Delimiter must not be alphameric.\n"
-msgstr "%s: El delimitador no debe ser \"alphameric\".\n"
+msgstr "%s: El delimitador no debe ser alphameric.\n"
 
 #, c-format
 msgid "%s: Duplicate name status changes.\n"

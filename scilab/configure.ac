@@ -96,6 +96,9 @@ AC_ARG_ENABLE(debug-fortran,
 AC_ARG_ENABLE(debug-linker,
    AC_HELP_STRING([--enable-debug-linker],[Print warning messages from the linker (ld)]))
 
+AC_ARG_ENABLE(code-coverage,
+   AC_HELP_STRING([--enable-code-coverage],[Enable code coverage]))
+
 AC_ARG_ENABLE(stopOnWarning,
    AC_HELP_STRING([--enable-stop-on-warning],[Stop the compilation on the first warning found in the C/C++ code]))
 
@@ -355,10 +358,16 @@ fi
 
 if test -n "$F77"; then
 dnl @TODO : Maybe we should check that it is actually gfortran
+
+   # enable the code coverage
+   if test "$enable_code_coverage" = yes; then
+    FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
+   fi
+
    if test "$enable_debug_fortran" = yes; then
 	# -D_FORTIFY_SOURCE=2
 	AC_LANG_PUSH([Fortran 77])
-	for flag in -g -Wall -Wimplicit -Wsurprising ; do
+	for flag in -g -Wall -Wsurprising; do
 		case " ${FFLAGS} " in
 			*\ ${flag}\ *)
 				# flag is already present
@@ -470,6 +479,12 @@ fi
 case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
+
+   # enable the code coverage
+   if test "$enable_code_coverage" = yes; then
+    CPPFLAGS="$CPPFLAGS -fprofile-arcs -ftest-coverage"
+   fi
+
    if test "$enable_debug_CXX" = yes; then
 	  CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
           case "$host" in
@@ -502,6 +517,12 @@ esac
 case "$CC" in
 	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
+
+   # enable the code coverage
+   if test "$enable_code_coverage" = yes; then
+    CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage"
+   fi
+
    if test "$enable_debug_C" = yes; then
 	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
 	  # used to be -O
@@ -624,6 +645,19 @@ esac
 ;; # end of not a gcc compiler
 esac
 
+# enable the code coverage
+if test "$enable_code_coverage" = yes; then
+   AC_PATH_PROG(LCOV, lcov)
+   if test -z "$LCOV" ; then
+		AC_MSG_ERROR([Cannot find lcov. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
+   fi
+   AC_PATH_PROG(GENHTML, genhtml)
+   if test -z "$GENHTML" ; then
+		AC_MSG_ERROR([Cannot find genhtml. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
+   fi
+   LDFLAGS="$LDFLAGS -coverage"
+fi
+AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
@@ -1872,6 +1906,15 @@ fi
 else
    echo "Not using Scicos"
 fi
+fi
+
+echo ""
+if test "$enable_code_coverage" = yes;  then
+   echo "Code coverage configuration:"
+   echo "  LCOV .............. = $LCOV"
+   echo "  GENHTML ........... = $GENHTML"
+else
+   echo "Not using code coverage"
 fi
 
 echo ""

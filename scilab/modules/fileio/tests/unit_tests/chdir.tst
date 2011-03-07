@@ -19,3 +19,7 @@ c = chdir(pathconvert(SCI+"/nowhere"));
 warning(wm);
 
 if c then pause, end
+
+ierr = execstr('chdir(1)','errcatch');
+if ierr <> 999 then pause,end
+

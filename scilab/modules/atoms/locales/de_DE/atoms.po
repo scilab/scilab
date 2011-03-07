@@ -26,11 +26,11 @@ msgstr "\t - ''%s - %s'' ist bereits geladen\n"
 
 #, c-format
 msgid "\t - ''%s - %s'' is needed by ''%s - %s''\n"
-msgstr "\t - ''%s - %s'' wird durch '%s - %s' benötigt\n"
+msgstr "\t - ''%s - %s'' wird durch ''%s - %s'' benötigt\n"
 
 #, c-format
 msgid "\t - ''%s - %s'' is needed by ''%s''\n"
-msgstr "\t - ''%s - %s'' wird benötigt durch '%s'\n"
+msgstr "\t - ''%s - %s'' wird benötigt durch ''%s''\n"
 
 #, c-format
 msgid "\t - Local location : ''%s''\n"
@@ -70,7 +70,7 @@ msgstr "%s: %s (%s) ist nicht installiert.\n"
 
 #, c-format
 msgid "%s: ''%s - %s'' (''%s'' section) is not installed.\n"
-msgstr "%s: ''%s - %s'' ('%s' Sektion) ist nicht installiert.\n"
+msgstr "%s: ''%s - %s'' (''%s'' Sektion) ist nicht installiert.\n"
 
 #, c-format
 msgid "%s: ''%s - %s'' is not installed.\n"

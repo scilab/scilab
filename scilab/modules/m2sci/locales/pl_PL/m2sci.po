@@ -105,7 +105,7 @@ msgstr "%s: moduł %s nie jest zainstalowany.\n"
 
 #, c-format
 msgid "%s: Output value set to ''on''."
-msgstr "%s: Wartość wyjściowa ustawiona na  \"on\""
+msgstr "%s: Wartość wyjściowa ustawiona na  ''on''"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -124,7 +124,7 @@ msgid "&Tools"
 msgstr "&Narzędzia"
 
 msgid "''nobalance'' option, IGNORED."
-msgstr "Opcja \"nobalance\", ZIGNOROWANA"
+msgstr "Opcja ''nobalance'', ZIGNOROWANA"
 
 #, c-format
 msgid "(Find this function in matlab/%s)."
@@ -690,7 +690,7 @@ msgstr "Tak"
 
 #, c-format
 msgid "contents must be a ''contents'' tlist instead of a: %s."
-msgstr "zawartością musi być tlist'a \"contents\" zamiast :%s."
+msgstr "zawartością musi być tlist'a ''contents'' zamiast :%s."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling może być użyte tylko w trybie 3d."
@@ -719,7 +719,7 @@ msgid "fopen used with three outputs."
 msgstr "fopen wykozystana z trzema parametrami wejściowymi."
 
 msgid "fopen(''all'') has no translation."
-msgstr "fopen(\"all\") nie ma tłumaczenia."
+msgstr "fopen(''all'') nie ma tłumaczenia."
 
 msgid "if"
 msgstr "jeśli"
@@ -733,7 +733,7 @@ msgid "infer must be an ''infer'' tlist instead of a: %s."
 msgstr "infer musi być tlistą ''infer'' zamiast: %s."
 
 msgid "input argument must be an ''operation'' tlist."
-msgstr "argument wejściowy musi być tlist'a \"operation''."
+msgstr "argument wejściowy musi być tlist'a ''operation''."
 
 msgid "is Real."
 msgstr "jest typu real."

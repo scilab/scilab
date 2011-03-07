@@ -74,7 +74,7 @@ msgstr "%s: Nó pai inválido.\n"
 
 #, c-format
 msgid "%s: Invalid position ''%s''.\n"
-msgstr "%s: Posição inválida \"%s\".\n"
+msgstr "%s: Posição inválida ''%s''.\n"
 
 #, c-format
 msgid "%s: No matching node.\n"
@@ -194,7 +194,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"manipulador de \"Figura\" ou um número real.\n"
+"manipulador de ''Figura'' ou um número real.\n"
 
 #, c-format
 msgid ""
@@ -298,7 +298,7 @@ msgstr "%s: Tipo incorreto para %s: esperava-se um texto.\n"
 #, c-format
 msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
 msgstr ""
-"%s: Tipo incorreto para a propriedade \"%s\": esperava-se um texto.\n"
+"%s: Tipo incorreto para a propriedade ''%s'': esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
@@ -510,8 +510,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
 "''callback''.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: deve ser \"label\", "
-"\"icon\" ou \"callback\".\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: deve ser ''label'', "
+"''icon'' ou ''callback''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
@@ -527,54 +527,54 @@ msgid ""
 "%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
 "or pixels expected.\n"
 msgstr ""
-"%s: Valor incorreto para a propriedade \"%s\": esperava-se \"points\", "
-"\"normalized\", \"inches\", \"centimeters\" ou \"pixels\".\n"
+"%s: Valor incorreto para a propriedade '%s': esperava-se points, "
+"normalized, inches, centimeters ou pixels.\n"
 
 #, c-format
 msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
 msgstr ""
-"%s: Valor incorreto para a propriedade \"%s\": esperava-se %d, %d ou %d.\n"
+"%s: Valor incorreto para a propriedade ''%s'': esperava-se %d, %d ou %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\" ou "
-"\"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s' ou "
+"'%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
-"\"%s\" ou \"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s', "
+"'%s' ou '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\" ou "
-"\"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'' ou "
+"''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
-"\"%s\" ou \"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'', "
+"''%s'' ou ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
 "exist.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: a \"Janela gráfica "
-"número %d\" não existe.\n"
+"%s: Valor incorreto para o argumento de entrada #%d: a 'Janela gráfica "
+"número %d' não existe.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um "
-"manipulador \"%s\" válido.\n"
+"manipulador '%s' válido.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
@@ -795,7 +795,7 @@ msgid ""
 "'.\n"
 " Please specify a valid file format."
 msgstr ""
-"\".\n"
+"'.\n"
 " Especifique um formato válido de arquivo."
 
 msgid "2D/3D &Rotation"
@@ -1017,7 +1017,7 @@ msgid "Help Browser"
 msgstr "Navegador da ajuda"
 
 msgid "Help about '"
-msgstr "Ajuda sobre \""
+msgstr "Ajuda sobre '"
 
 msgid "Help about a selected text"
 msgstr "Ajuda sobre um texto selecionado"
@@ -1081,11 +1081,11 @@ msgstr "Não"
 
 #, c-format
 msgid "No '%s' property for this object.\n"
-msgstr "Não existe a propriedade \"%s\" para este objeto.\n"
+msgstr "Não existe a propriedade '%s' para este objeto.\n"
 
 #, c-format
 msgid "No '%s' property for uicontrols of style: %s.\n"
-msgstr "Não existe a propriedade \"%s\" para uicontrol do estilo: %s.\n"
+msgstr "Não existe a propriedade '%s' para uicontrol do estilo: %s.\n"
 
 msgid "No color selected."
 msgstr "Nenhuma cor está selecionada."
@@ -1182,11 +1182,11 @@ msgstr "&Website do Scilab"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "O módulo \"%s\" do Scilab é desabilitado em modo -nogui ou -nwni.\n"
+msgstr "O módulo '%s' do Scilab é desabilitado em modo -nogui ou -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "O módulo \"%s\" do Scilab não está instalado.\n"
+msgstr "O módulo '%s' do Scilab não está instalado.\n"
 
 msgid ""
 "Scilab 5.0 and future versions are released under the terms of the CeCILL "
@@ -1315,7 +1315,7 @@ msgid "Uicontrols demo with LaTeX"
 msgstr "Demonstração dos Uicontrols com LaTeX"
 
 msgid "Unrecognized extension '"
-msgstr "Extensão desconhecida: \""
+msgstr "Extensão desconhecida: '"
 
 msgid "Untitled-export"
 msgstr "Exportação sem nome"
@@ -1333,8 +1333,8 @@ msgid ""
 "Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
 "property value.\n"
 msgstr ""
-"Aviso: A propriedade \"Value\" de \"%s\" deve ser igual ao valor da "
-"propriedade \"%s\" ou \"%s\".\n"
+"Aviso: A propriedade 'Value' de '%s' deve ser igual ao valor da "
+"propriedade '%s' ou '%s'.\n"
 
 msgid "Windows BMP image"
 msgstr "Imagem BMP do Windows"
@@ -1342,222 +1342,222 @@ msgstr "Imagem BMP do Windows"
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\" ou "
-"\"%s\".\n"
+"Tamanho incorreto para a propriedade '%s': esperava-se '%s', '%s' ou "
+"'%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\", "
-"\"%s\" ou \"%s\".\n"
+"Tamanho incorreto para a propriedade '%s': esperava-se '%s', '%s', "
+"'%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\", "
-"\"%s\", \"%s\" ou \"%s\".\n"
+"Tamanho incorreto para a propriedade '%s': esperava-se '%s', '%s', "
+"'%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\", "
-"\"%s\", \"%s\", \"%s\" ou \"%s\".\n"
+"Tamanho incorreto para a propriedade '%s': esperava-se '%s', '%s', "
+"'%s', '%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\" ou "
-"\"%s\".\n"
+"Tamanho incorreto para a propriedade '%s': esperava-se '%s', '%s' ou "
+"'%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se um vetor 1 x 3 de "
-"números reais ou um texto \"R|G|B\".\n"
+"Tamanho incorreto para a propriedade '%s': esperava-se um vetor 1 x 3 de "
+"números reais ou um texto 'R|G|B'.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se um vetor linha 1 x "
+"Tamanho incorreto para a propriedade '%s': esperava-se um vetor linha 1 x "
 "%d de números reais.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A graphic handle expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se um manipulador "
+"Tamanho incorreto para a propriedade '%s': esperava-se um manipulador "
 "gráfico.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se um número real.\n"
+"Tamanho incorreto para a propriedade '%s': esperava-se um número real.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se um vetor linha de "
+"Tamanho incorreto para a propriedade '%s': esperava-se um vetor linha de "
 "números reais.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A string expected.\n"
-msgstr "Tamanho incorreto para a propriedade \"%s\": esperava-se um texto.\n"
+msgstr "Tamanho incorreto para a propriedade '%s': esperava-se um texto.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se um texto ou um "
+"Tamanho incorreto para a propriedade '%s': esperava-se um texto ou um "
 "vetor linha 1 x %d de números reais.\n"
 
 #, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se um texto ou um "
+"Tamanho incorreto para a propriedade '%s': esperava-se um texto ou um "
 "vetor de textos.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr ""
-"Tamanho incorreto para a propriedade \"%s\": esperava-se uma lista com 2 "
+"Tamanho incorreto para a propriedade '%s': esperava-se uma lista com 2 "
 "itens.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\" ou "
-"\"%s\".\n"
+"Tipo incorreto para a propriedade '%s': esperava-se '%s', '%s' ou "
+"'%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\", \"%s\" "
-"ou \"%s\".\n"
+"Tipo incorreto para a propriedade '%s': esperava-se '%s', '%s', '%s' "
+"ou '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\", "
-"\"%s\", \"%s\" ou \"%s\".\n"
+"Tipo incorreto para a propriedade '%s': esperava-se '%s', '%s', "
+"'%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\", "
-"\"%s\", \"%s\", \"%s\" ou \"%s\".\n"
+"Tipo incorreto para a propriedade '%s': esperava-se '%s', '%s', "
+"'%s', '%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\" ou "
-"\"%s\".\n"
+"Tipo incorreto para a propriedade '%s': esperava-se '%s', '%s' ou "
+"'%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se um vetor 1 x 3 de "
-"números reais ou um texto \"R|G|B\".\n"
+"Tipo incorreto para a propriedade '%s': esperava-se um vetor 1 x 3 de "
+"números reais ou um texto 'R|G|B'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se um vetor linha 1 x %d "
+"Tipo incorreto para a propriedade '%s': esperava-se um vetor linha 1 x %d "
 "de números reais.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se um número real.\n"
+"Tipo incorreto para a propriedade '%s': esperava-se um número real.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se um texto ou um vetor "
+"Tipo incorreto para a propriedade '%s': esperava-se um texto ou um vetor "
 "linha de números reais.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
-msgstr "Tipo incorreto para a propriedade \"%s\": esperava-se um texto.\n"
+msgstr "Tipo incorreto para a propriedade '%s': esperava-se um texto.\n"
 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
-"Tipo incorreto para a propriedade \"%s\": esperava-se um texto ou um vetor "
+"Tipo incorreto para a propriedade '%s': esperava-se um texto ou um vetor "
 "linha 1 x %d de números reais.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se \"%s\" ou \"%s\".\n"
+"Valor incorreto para a propriedade '%s': esperava-se '%s' ou '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\" ou "
-"\"%s\".\n"
+"Valor incorreto para a propriedade '%s': esperava-se '%s', '%s' ou "
+"'%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\", "
-"\"%s\" ou \"%s\".\n"
+"Valor incorreto para a propriedade '%s': esperava-se '%s', '%s', "
+"'%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\", "
-"\"%s\", \"%s\" ou \"%s\".\n"
+"Valor incorreto para a propriedade '%s': esperava-se '%s', '%s', "
+"'%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se \"%s\", \"%s\", "
-"\"%s\", \"%s\", \"%s\" ou \"%s\".\n"
+"Valor incorreto para a propriedade '%s': esperava-se '%s', '%s', "
+"'%s', '%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se \"%s\",  \"%s\" ou "
-"\"%s\".\n"
+"Valor incorreto para a propriedade '%s': esperava-se '%s',  '%s' ou "
+"'%s'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
 "expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se \"light\", "
-"\"normal\", \"demi\" ou \"bold\".\n"
+"Valor incorreto para a propriedade '%s': esperava-se 'light', "
+"'normal', 'demi' ou 'bold'.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se um vetor 1x3 de "
-"números reais ou um texto \"R|G|B\".\n"
+"Valor incorreto para a propriedade '%s': esperava-se um vetor 1x3 de "
+"números reais ou um texto 'R|G|B'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se um manipulador \"%s\" "
-"ou \"%s\".\n"
+"Valor incorreto para a propriedade '%s': esperava-se um manipulador '%s' "
+"ou '%s'.\n"
 
 #, c-format
 msgid ""
@@ -1570,18 +1570,18 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se um número real.\n"
+"Valor incorreto para a propriedade '%s': esperava-se um número real.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A string expected.\n"
-msgstr "Valor incorreto para a propriedade \"%s\": esperava-se um texto.\n"
+msgstr "Valor incorreto para a propriedade '%s': esperava-se um texto.\n"
 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
-"Valor incorreto para a propriedade \"%s\": esperava-se um texto ou um vetor "
+"Valor incorreto para a propriedade '%s': esperava-se um texto ou um vetor "
 "linha 1 x %d de números reais.\n"
 
 msgid "Xcos"
@@ -1595,11 +1595,11 @@ msgstr "Sim"
 
 #, c-format
 msgid "You clicked on menu ''%s''."
-msgstr "Você clicou no menu \"%s\"."
+msgstr "Você clicou no menu ''%s''."
 
 #, c-format
 msgid "You selected ''%s''."
-msgstr "Você selecionou \"%s\"."
+msgstr "Você selecionou ''%s''."
 
 msgid "Zoom Area"
 msgstr "Aproximar área"

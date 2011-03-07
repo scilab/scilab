@@ -237,6 +237,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -281,6 +282,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -646,7 +648,7 @@ images/palettes/CUMSUM.png \
 images/palettes/CurrentSensor.png \
 images/palettes/CURV_f.png \
 images/palettes/CVS.png \
-images/palettes/DEADBAND.png \
+images/palettes/DEADBAND_modif.png \
 images/palettes/DEBUG_SCICOS.png \
 images/palettes/DELAY_f.png \
 images/palettes/DELAYV_f.png \

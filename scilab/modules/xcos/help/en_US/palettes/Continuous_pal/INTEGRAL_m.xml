@@ -76,6 +76,10 @@
           </listitem>
 
           <listitem>
+            <para><xref linkend="Example_INTEGRAL_m">Example</xref></para>
+          </listitem>
+
+          <listitem>
             <para><xref linkend="Interfacingfunction_INTEGRAL_m">Interfacing
             function</xref></para>
           </listitem>
@@ -165,9 +169,7 @@
 
     <itemizedlist>
       <listitem>
-        <para>
-          <emphasis role="bold">Initial Condition</emphasis>
-        </para>
+        <para><emphasis role="bold">Initial Condition</emphasis></para>
 
         <para>A vector/scalar initial conditions.</para>
 
@@ -178,9 +180,7 @@
       </listitem>
 
       <listitem>
-        <para>
-          <emphasis role="bold">With re-initialization</emphasis>
-        </para>
+        <para><emphasis role="bold">With re-initialization</emphasis></para>
 
         <para>To reset its state to the specified initial condition based on
         an external signal select<emphasis role="bold">1</emphasis> .</para>
@@ -189,9 +189,7 @@
       </listitem>
 
       <listitem>
-        <para>
-          <emphasis role="bold">With saturation</emphasis>
-        </para>
+        <para><emphasis role="bold">With saturation</emphasis></para>
 
         <para>If selected, limits the states to a value between the Lower
         saturation limit and Upper saturation limit parameters.</para>
@@ -200,9 +198,7 @@
       </listitem>
 
       <listitem>
-        <para>
-          <emphasis role="bold">Upper limit</emphasis>
-        </para>
+        <para><emphasis role="bold">Upper limit</emphasis></para>
 
         <para>The upper limit for the integral.</para>
 
@@ -210,29 +206,14 @@
       </listitem>
 
       <listitem>
-        <para>
-          <emphasis role="bold">Lower limit</emphasis>
-        </para>
+        <para><emphasis role="bold">Lower limit</emphasis></para>
 
         <para>The lower limit for the integral.</para>
 
         <para>Properties : Type 'mat' of size [-1,-1].</para>
 
-        <para />
+        <para></para>
       </listitem>
-
-      <para>This sample model demonstrates how to use the integrator's state
-      port.</para>
-
-      <para>
-        <inlinemediaobject>
-          <imageobject>
-            <imagedata align="center"
-                       fileref="../../../examples/INTEGRAL_m.png"
-                       valign="middle" />
-          </imageobject>
-        </inlinemediaobject>
-      </para>
     </itemizedlist>
   </refsection>
 
@@ -301,6 +282,24 @@
     </itemizedlist>
   </refsection>
 
+  <refsection id="Example_INTEGRAL_m">
+    <title>Example</title>
+
+    <para>This sample model demonstrates how to use the integrator's state
+    port.</para>
+
+    <para>The re-initialization parameter is set to 1, the Upper limit to 1
+    and the lower limit to -1.</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../examples/INTEGRAL_diagram.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
   <refsection id="Interfacingfunction_INTEGRAL_m">
     <title>Interfacing function</title>
 
@@ -342,10 +341,11 @@
       <listitem>
         <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
       </listitem>
+
       <listitem>
-        <para><emphasis role="bold">Zhour Madini-Zouine</emphasis> INRIA</para>
+        <para><emphasis role="bold">Zhour Madini-Zouine</emphasis>
+        DIGITEO</para>
       </listitem>
-	  
     </itemizedlist>
   </refsection>
 </refentry>

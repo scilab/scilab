@@ -13,7 +13,7 @@ function y = tand(x)
 // But floating point numbers behave differently.
 // For example, tand(180) = 0 while tan(pi) = -1.225D-16
   if ( ~isreal(x) ) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"tand",1)); 
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"tand",1)); 
   end
   // Argument reduction toward [-90,90[
   n = round(x/180)

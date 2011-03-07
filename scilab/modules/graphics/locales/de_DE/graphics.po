@@ -530,7 +530,7 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
 msgstr ""
-"%s: falsche Größe für Eingangsargumente '%s' und '%s': gleiche Größe "
+"%s: falsche Größe für Eingangsargumente ''%s'' und ''%s'': gleiche Größe "
 "erwartet.\n"
 
 #, c-format

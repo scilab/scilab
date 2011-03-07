@@ -17,14 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr "                 Consortium Scilab (DIGITEO)\n"
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Consortium Scilab (DIGITEO)\n"
 
-msgid "               Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
+msgid "Copyright (c) 1989-2010 (INRIA)\n"
+msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: etc/scilab.start, line: 40
@@ -224,7 +224,7 @@ msgstr "%s : Impossible de trouver le fichier Perl : %s"
 
 #, c-format
 msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s : Impossible de trouver Perl dans \"%s\""
+msgstr "%s : Impossible de trouver Perl dans ''%s''"
 
 #, c-format
 msgid "%s: Unable to find Perl.\n"

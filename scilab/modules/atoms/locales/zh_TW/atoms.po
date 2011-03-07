@@ -194,11 +194,11 @@ msgstr "%s: 檔案 %s 格式不夠良好,  toolbox %s - %s 無法獲得 %s 域\n
 
 #, c-format
 msgid "%s: The file ''%s'' cannot be written.\n"
-msgstr "%s:檔案 %s 無法寫入.\n"
+msgstr "%s:檔案 ''%s'' 無法寫入.\n"
 
 #, c-format
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible\n"
-msgstr "%s:  檔案 %s 不存在或無法讀取.\n"
+msgstr "%s:  檔案 ''%s'' 不存在或無法讀取.\n"
 
 #, c-format
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
@@ -236,7 +236,7 @@ msgstr "%s: 無法取得到套件 %s.\n"
 
 #, c-format
 msgid "%s: The package ''%s'' is not present in the struct.\n"
-msgstr "%s: 套件 %s 未出現在資料結構 (struct) 中.\n"
+msgstr "%s: 套件 ''%s'' 未出現在資料結構 (struct) 中.\n"
 
 #, c-format
 msgid ""
@@ -429,7 +429,7 @@ msgstr "%s: 第 %d 的輸入參數值錯誤: 應該是 ''user'' 或 ''allusers''
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
 "expected.\n"
-msgstr "%s: 第 %d 個的輸入參數值錯誤: 應該是 \"user\" 或 \"allusers\" 或 \"all\".\n"
+msgstr "%s: 第 %d 個的輸入參數值錯誤: 應該是 ''user'' 或 ''allusers'' 或 ''all''.\n"
 
 #, c-format
 msgid ""
@@ -520,7 +520,7 @@ msgstr "%s: 第  %d 輸入參數數值錯誤: 版本/相依性不符.\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
-msgstr "%s: 第  %d 輸入參數數值錯誤: 應為 ''error\" 或 ''warning''.\n"
+msgstr "%s: 第  %d 輸入參數數值錯誤: 應為 ''error'' 或 ''warning''.\n"
 
 #, c-format
 msgid ""

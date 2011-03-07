@@ -25,7 +25,7 @@ public class ScilabLexerConstants {
     /**
      * Number of known tokens
      */
-    public static final int NUMBEROFTOKENS = 33;
+    public static final int NUMBEROFTOKENS = 34;
 
     /**
      * DEFAULT : tokens which are not recognized
@@ -188,9 +188,14 @@ public class ScilabLexerConstants {
     public static final int ELSEIF = 31;
 
     /**
+     * ERROR : a syntax error for example
+     */
+    public static final int ERROR = 32;
+
+    /**
      * EOF : End Of File
      */
-    public static final int EOF = 32;
+    public static final int EOF = 33;
 
     /**
      * TOKENS : A Map which contains the names of keywords (useful in scinotesConfiguration.xml)

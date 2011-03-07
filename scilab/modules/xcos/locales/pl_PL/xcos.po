@@ -319,7 +319,7 @@ msgstr "Powszechnie stosowany blok"
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
 msgstr ""
-"Kompilacja w toku, wyniki będą przechowywane w zmiennej \"scicos_cpr\""
+"Kompilacja w toku, wyniki będą przechowywane w zmiennej 'scicos_cpr'"
 
 msgid "Compile"
 msgstr "Skompiluj"

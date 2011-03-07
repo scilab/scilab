@@ -141,11 +141,11 @@ msgstr "%s：输入参数#%d的类型错误：应该为实数数组。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
 "expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为\"%s\"、\"%s\"或\"%s\"。\n"
+msgstr "%s：输入参数#%d的值错误：应该为''%s''、''%s''或''%s''。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为\"%s\"或实数。\n"
+msgstr "%s：输入参数#%d的值错误：应该为''%s''或实数。\n"
 
 #, c-format
 msgid ""

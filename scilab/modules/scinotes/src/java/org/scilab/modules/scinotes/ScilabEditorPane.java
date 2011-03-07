@@ -86,6 +86,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private HelpOnTypingManager helpOnTyping;
     private TrailingWhiteManager trailingWhite;
     private boolean readonly;
+    private boolean binary;
     private String infoBar = "";
     private String shortName = "";
     private String title = "";
@@ -458,6 +459,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param binary true to set binary mode
      */
     public void setBinary(boolean binary) {
+        this.binary = binary;
         setEditable(!binary);
         setDragEnabled(!binary);
         if (binary) {
@@ -822,12 +824,17 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             repaint();
         }
 
+        int pos = getCaretPosition();
+
         if (matchingEnable) {
-            int pos = getCaretPosition();
             int tok = lexer.getKeyword(pos, false);
             matchLR.searchMatchingBlock(tok, lexer.start + lexer.yychar());
             tok = lexer.getKeyword(pos, true);
             matchRL.searchMatchingBlock(tok, lexer.start + lexer.yychar() + lexer.yylength());
+        }
+
+        if (!readonly && !binary) {
+            editor.getInfoBar().setText(((ScilabDocument) getDocument()).getCurrentFunction(pos));
         }
     }
 

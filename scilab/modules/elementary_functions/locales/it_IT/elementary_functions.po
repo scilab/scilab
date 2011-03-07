@@ -351,26 +351,26 @@ msgid ""
 "%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso %d, "
-"\"%s\", %d o \"%s\".\n"
+"''%s'', %d o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" .\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' .\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
-"\"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or "
 "''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\", "
-"\"%s\", \"%s\", \"%s\" o \"%s\".\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'', "
+"''%s'', ''%s'', ''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"

@@ -41,8 +41,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"
 msgstr ""
-"%s L'argomento in ingresso #%d ha un valore sbagliato: deve essere \"%s\" o "
-"\"%s\".\n"
+"%s L'argomento in ingresso #%d ha un valore sbagliato: deve essere '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid ""

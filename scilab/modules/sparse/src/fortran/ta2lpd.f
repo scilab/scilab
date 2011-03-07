@@ -1,4 +1,5 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
 c Copyright (C) DIGITEO 2010 - Yann COLLETTE
 c 
 c This file must be used under the terms of the CeCILL.

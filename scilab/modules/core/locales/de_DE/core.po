@@ -16,14 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr "                 Consortium Scilab (DIGITEO)\n"
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Consortium Scilab (DIGITEO)\n"
 
-msgid "               Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
-msgid "               Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
+msgid "Copyright (c) 1989-2010 (INRIA)\n"
+msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 msgid "  loading initial environment"
 msgstr "  lade Startumgebung"
@@ -646,7 +646,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s: Falscher Wert für Eingangsargument #%d: ''0'' oder ''1'' erwartet.\n"
+msgstr "%s: Falscher Wert für Eingangsargument #%d: '0' oder '1' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"

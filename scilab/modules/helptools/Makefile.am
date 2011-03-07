@@ -67,7 +67,7 @@ libscihelptools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
-libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS
+libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml
 
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
@@ -90,12 +90,6 @@ libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
 data/css/style.css
 
-#### helptools : css files ####
-libscihelptools_la_cssdir = $(mydatadir)/css
-libscihelptools_la_css_DATA = css/html.css \
-css/htmlhelp.css \
-css/javahelp.css
-
 
 #### helptools : xsl files ####
 libscihelptools_la_xsl_convertdir = $(mydatadir)/xsl/convert
@@ -109,59 +103,8 @@ libscihelptools_la_xsl_fo_DATA = xsl/fo/docbook.xsl
 
 #### helptools : schema files ####
 libscihelptools_la_schemadir = $(mydatadir)/schema
-libscihelptools_la_schema_DATA = schema/scilab.rnc
-
-
-#### helptools : doc files ####
-libscihelptools_la_docdir = $(mydatadir)/doc
-libscihelptools_la_doc_DATA = \
-doc/addonprefs.png \
-doc/doc.pdf \
-doc/doc.xml
-
-
-#### helptools : doc [html] files ####
-libscihelptools_la_doc_htmldir = $(mydatadir)/doc/html
-libscihelptools_la_doc_html_DATA = \
-doc/html/ch01.html \
-doc/html/ch02.html \
-doc/html/ch03.html \
-doc/html/ch04.html \
-doc/html/ch05.html \
-doc/html/ch06.html \
-doc/html/ch07.html \
-doc/html/html.css \
-doc/html/index.html
-
-
-#### helptools : doc [images] files ####
-libscihelptools_la_doc_html_imagesdir = $(mydatadir)/doc/html/images
-libscihelptools_la_doc_html_images_DATA = doc/html/images/draft.png
-
-
-#### helptools : doc [images - callouts] files ####
-libscihelptools_la_doc_html_images_calloutsdir = $(mydatadir)/doc/html/images/callouts
-libscihelptools_la_doc_html_images_callouts_DATA = \
-doc/html/images/callouts/1.png \
-doc/html/images/callouts/10.png \
-doc/html/images/callouts/11.png \
-doc/html/images/callouts/12.png \
-doc/html/images/callouts/13.png \
-doc/html/images/callouts/14.png \
-doc/html/images/callouts/15.png \
-doc/html/images/callouts/2.png \
-doc/html/images/callouts/3.png \
-doc/html/images/callouts/4.png \
-doc/html/images/callouts/5.png \
-doc/html/images/callouts/6.png \
-doc/html/images/callouts/7.png \
-doc/html/images/callouts/8.png \
-doc/html/images/callouts/9.png
-
-
-#### helptools : doc [html - resources] files ####
-libscihelptools_la_doc_html_resourcesdir = $(mydatadir)/doc/html/resources
-libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
+libscihelptools_la_schema_DATA = schema/scilab.rnc \
+schema/extendedStyle.xsl
 
 include $(top_srcdir)/Makefile.incl.am
 

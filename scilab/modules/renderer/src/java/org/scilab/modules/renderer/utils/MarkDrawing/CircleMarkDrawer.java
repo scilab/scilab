@@ -20,10 +20,10 @@ import javax.media.opengl.glu.GLU;
  * Class specialized in drawing circle marks
  * @author Jean-Baptiste Silvy
  */
-public class CircleMarkDrawer extends MarkDrawingStrategy {
+public class CircleMarkDrawer extends JOGLMarkDrawingStrategy {
 
 	/** number of slice for the circle */
-	private static final int NB_SLICES = 64;
+	public static final int NB_SLICES = 64;
 	
 	/**
 	 * Default constructor

@@ -319,6 +319,16 @@ public class ScilabView extends WrappedPlainView {
                         paintTab(text, x, y, g, mark);
                     }
                     break;
+                case ScilabLexerConstants.ERROR :
+                    g.setColor(Color.RED);
+                    w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
+                    for (int i = 0; i < w; i +=4) {
+                        g.drawLine(x + i, y + 2, x + i + 1, y + 2);
+                    }
+                    for (int i = 2; i < w; i +=4) {
+                        g.drawLine(x + i, y + 1, x + i + 1, y + 1);
+                    }
+                    break;
                 default :
                     break;
                 }

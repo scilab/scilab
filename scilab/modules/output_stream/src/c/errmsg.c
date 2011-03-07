@@ -1007,7 +1007,15 @@ int C2F(errmsg)(int *n,int *errtyp)
             if (NameVarOnStack)
             {
                 displayAndStoreError(_("Undefined operation for the given operands.\n"));
-                displayAndStoreError(_("check or define function %s for overloading.\n"),NameVarOnStack);
+
+                /* bug 8279 error(144) */
+                /* but error code 144 also called by internal fortran routines */
+                /* see modules/core/src/fortran/mname.f(136) */
+                /* then we check variable name */
+                if (strcmp(NameVarOnStack, "error"))
+                {
+                    displayAndStoreError(_("check or define function %s for overloading.\n"), NameVarOnStack);
+                }
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }

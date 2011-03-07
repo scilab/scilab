@@ -505,7 +505,7 @@ msgid "&Tools"
 msgstr "&Strumenti"
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
-msgstr "\"scicos\" non è più disponibile, usare \"xcos\" invece.\n"
+msgstr "''scicos'' non è più disponibile, usare ''xcos'' invece.\n"
 
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
