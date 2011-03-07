@@ -112,8 +112,6 @@ static void evaluateTclFile()
   TclFile = NULL;
 }
 
-
-
 /*
 ** This function start an endless Tcl Loop
 ** in order the Scilab Global Tcl Interpreter
@@ -132,6 +130,9 @@ void startTclLoop()
 
   __CreateThread(&sleepThreadId, sleepAndSignal);
 
+  __LockSignal(&InterpReadyLock);
+  __Signal(&InterpReady);
+  __UnLockSignal(&InterpReadyLock);
   /*
   ** TCL Event Loop : Threaded
   */
@@ -216,7 +217,7 @@ void startTclLoop()
 	//printf("[TCL Daemon] Wait\n");
 	//fflush(NULL);
 #endif
-	__Wait(&wakeUp, &wakeUpLock);
+    __Wait(&wakeUp, &wakeUpLock);
 	__UnLockSignal(&wakeUpLock);
       }
   }
@@ -305,7 +306,7 @@ int sendTclCommandToSlave(char* command, char* slave)
 		printf("[TCL Main]Wait EXECUTION DONE\n");
 		fflush(NULL);
 #endif
-		__Wait(&workIsDone, &launchCommand);
+        __Wait(&workIsDone, &launchCommand);
 #ifdef __LOCAL_DEBUG__
 		printf("[TCL Send] DONE\n");
 		fflush(NULL);
