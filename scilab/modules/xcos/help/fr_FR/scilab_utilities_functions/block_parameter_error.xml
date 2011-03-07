@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
+ * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>\
+ *\
+ * This file must be used under the terms of the CeCILL.\
+ * This source file is licensed as described in the file COPYING, which\
+ * you should have received as part of this distribution.  The terms\
+ * are also available at\
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
+ *\
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="block_parameter_error" xml:lang="fr_FR">
+  <info>
+    <pubdate>$LastChangedDate: 15-Fév-2011 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>block_parameter_error</refname>
+    <refpurpose>
+      Affiche une boîte d'erreur de saisie de paramètre pour un bloc Xcos.
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>
+      block_parameter_error(inform, expected)
+      </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>inform:</term>
+        <listitem>
+          <para> une chaîne, le type d'erreur</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>expected:</term>
+        <listitem>
+          <para> une chaîne, la valeur ou la gamme de valeurs attendues</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+        Le but de cette fonction est de donner à l'utilisateur une information précise sur son erreur
+        lorsqu'il entre un paramètre de bloc. L'information utilisateur est affichée sur deux lignes
+        données respectivement par les paramètres :
+      </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">inform</emphasis>: elle est réservée à l'information de
+            l'utilisateur sur son erreur. La meilleure façon de le faire est de rappeler le
+            nom du paramètre et la valeur erronée fournie par l'utilisateur.
+          </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">expected</emphasis>: une information positive pour
+            guider l'utilisateur en vue de la correction de l'erreur. Par exemple, si
+            le paramètre est un entier, le message peut être "Doit être entier", pour
+            une gamme de valeurs on peut utiliser un message comme celui-ci:
+          </para>
+        <para/>
+        <programlisting role="example"><![CDATA[
+          msprintf(gettext("Must be in the interval %s."), "[3, 8]")
+          ]]></programlisting>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <para>
+        L'exemple ci-dessous est une cas d'utilisation simple de la fonction. L'utilisateur entre
+        une valeur dans la boîte de dialogue de paramètre. Si la valeur n'est pas valide, l'exemple
+        affiche cette boîte d'erreur :
+      </para>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../../examples/scilab_utilities_functions/fr_FR/block_parameter_error_fr_FR.png"/>
+      </imageobject>
+    </mediaobject>
+    <para/>
+    <programlisting role="example"><![CDATA[
+  loadXcosLibs // Inutile dans un contexte de programmation de bloc Xcos
+
+  ok = %f;
+
+  while ~ok do
+      // Entrée du paramètre
+      [Datatype] = x_mdialog( ..
+          "Entrée de paramètre", ..
+          "Type de données (3:int32, 4:int16, 5:int8, ...) ?", ..
+          "3" ..
+      );
+
+      if isempty(Datatype) then // Annuler ou OK ?
+          break;
+
+      else
+          Datatype = evstr(Datatype);
+
+      end
+      // Tester le paramètre 'Data Type et afficher une boîte d'erreur si nécessaire
+      if Datatype < 3 | Datatype > 8 then
+          block_parameter_error( ..
+              msprintf("Valeur erronée pour le paramètre ''Type de données'' : %d.", Datatype), ..
+              msprintf("Doit être dans l''intervalle %s.", "[3, 8]") ..
+          );
+          ok = %f;
+
+      else // Le paramètre est valide continuer le travail
+          ok = %t;
+          print(%io(2), "Le paramètre ''Type de données'' est valide");
+      end
+  end
+    ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Bernard DUJARDIN</member>
+    </simplelist>
+  </refsection>
+</refentry>

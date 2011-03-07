@@ -12,10 +12,15 @@
 
 package org.scilab.modules.xcos.modelica.view;
 
+import static org.scilab.modules.xcos.modelica.TerminalAccessor.FIXED;
+import static org.scilab.modules.xcos.modelica.TerminalAccessor.WEIGHT;
+import static org.scilab.modules.xcos.modelica.TerminalAccessor.getData;
+
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -97,9 +102,12 @@ public final class MainPanel extends JPanel {
 		initComponents();
 		installListeners();
 
+		// register the model to the controller
+		controller.setModel(tableModel);
+		
 		fireChange();
 	}
-
+	
 	/**
 	 * Init the component
 	 */
@@ -118,11 +126,11 @@ public final class MainPanel extends JPanel {
 		tree.setModel(createTreeModel());
 		treeScrollPane.setViewportView(tree);
 		splitPanel.setLeftComponent(treeScrollPane);
-
+		
 		table.setModel(tableModel);
 		table.setAutoCreateRowSorter(true);
 		tableScrollPane.setViewportView(table);
-
+		
 		splitPanel.setRightComponent(tableScrollPane);
 
 		add(splitPanel, java.awt.BorderLayout.CENTER);
@@ -460,16 +468,17 @@ public final class MainPanel extends JPanel {
 					final int rowIndex = e.getFirstRow();
 					final int columnIndex = e.getColumn();
 
-					if (TerminalAccessor.values()[columnIndex] == TerminalAccessor.WEIGHT) {
+					if (TerminalAccessor.values()[columnIndex] == WEIGHT) {
 						final TerminalTableModel model = (TerminalTableModel) e.getSource();
 						final Terminal terminal = model.getTerminals().get(rowIndex);
 						
-						if (terminal.getKind().equals("fixed_parameter") || terminal.getKind().equals("variable")) {
-							if (TerminalAccessor.WEIGHT.getData(terminal) == Double.valueOf(1.0)) {
-								TerminalAccessor.FIXED.setData(Boolean.TRUE, terminal);
-							} else {
-								TerminalAccessor.FIXED.setData(Boolean.FALSE, terminal);
-							}
+						if (terminal.getKind().equals("fixed_parameter") 
+								|| terminal.getKind().equals("variable")) {
+							final double data = (Double) getData(WEIGHT, terminal);
+							final boolean isFixed = data >= 1.0;
+							
+							tableModel.setValueAt(isFixed, rowIndex, 
+									Arrays.asList(TerminalAccessor.values()).indexOf(FIXED));
 						}
 						
 					}
@@ -498,7 +507,7 @@ public final class MainPanel extends JPanel {
 						final Double weight = TerminalAccessor.getData(
 								TerminalAccessor.WEIGHT, terminal);
 
-						if (weight.doubleValue() == 1.0) {
+						if (weight.doubleValue() >= 1.0) {
 							controller.setCompileNeeded(true);
 						}
 					}

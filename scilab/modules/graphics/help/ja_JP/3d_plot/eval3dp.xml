@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="eval3dp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>eval3dp</refname>
+    <refpurpose>3次元パラメータ表現の曲面の小平面を計算</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Xf,Yf,Zf]=eval3dp(fun,p1,p2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>Xf,Yf,Zf</term>
+        <listitem>
+          <para>大きさ (4,n-1*m-1)の行列. <literal>Xf(:,i)</literal> ,<literal>Yf(:,i)</literal> and <literal>Zf(:,i)</literal> はそれぞれ
+	i番目の4角形の小平面の4点のx軸,y軸,z軸です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>a Scilab関数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p1</term>
+        <listitem>
+          <para>大きさ <literal>n</literal>のベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p2</term>
+        <listitem>
+          <para>大きさ <literal>m</literal>のベクトル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>eval3dp</literal> は関数<literal>fun</literal>
+	により定義される3次元パラメータ表現の曲面の
+	4角形小平面表現を計算します.
+	<literal>fun(p1,p2)</literal> は,
+	曲面の対応する点の
+	x軸,y軸,z軸座標を
+	[x(i),y(i),z(i)]=fun(p1(i),p2(i)) により計算します.
+	これは効率を改善するために使用されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+p1=linspace(0,2*%pi,10);
+p2=linspace(0,2*%pi,10);
+deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
+                           "y=p1.*cos(p1).*cos(p2)";..
+                           "z=p1.*sin(p2)"])
+[Xf,Yf,Zf]=eval3dp(scp,p1,p2);
+plot3d(Xf,Yf,Zf)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="genfac3d">genfac3d</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -277,4 +277,6 @@ GRAPHICS_IMPEXP sciLegendPlace sciGetLegendLocation(sciPointObj * pObj); /* GET 
 
 GRAPHICS_IMPEXP void printSetGetErrorMessage(const char * propertyName);
 
+GRAPHICS_IMPEXP void sciGetNbSubticks(sciPointObj * pSubwin, double nbsubtics[3]);
+
 #endif /* __SCI_GET_PROPERTY__ */

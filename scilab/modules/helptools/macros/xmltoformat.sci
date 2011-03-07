@@ -262,11 +262,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         // ast_tree : "Modules" Tree
 
         if directory_language_m(1) == "fr_FR" then
-            scilab_manual = "Manuel Scilab"
+            scilab_manual = "Aide Scilab"
         elseif directory_language_m(1) == "pt_BR" then
-            scilab_manual = "Manual Scilab"
+            scilab_manual = "Ajuda Scilab"
         else
-            scilab_manual = "Scilab manual"
+            scilab_manual = "Scilab help"
         end
 
         modules_tree = struct();
@@ -917,7 +917,7 @@ function tree = x2f_dir_to_tree(directory,level)
     end
 
     if type(level) <> 1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A integer expected.\n"),"x2f_dir_to_tree",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer expected.\n"),"x2f_dir_to_tree",2));
     end
 
     // Check input argument dimension
@@ -928,7 +928,7 @@ function tree = x2f_dir_to_tree(directory,level)
     end
 
     if size(level,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A integer expected.\n"),"x2f_dir_to_tree",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"x2f_dir_to_tree",1));
     end
 
     // Check the directory existence
@@ -1063,7 +1063,10 @@ function xmlfiles = x2f_get_xml_files(directory)
 
     directory = pathconvert(directory);
 
-    xmlfiles = gsort(basename(listfiles(directory+"*.xml")),"lr","i");
+    // remove duplicated names in current directory (example: case ".xml~")
+    xmlfiles = unique(basename(findfiles(directory, "*.xml")));
+    
+    xmlfiles = gsort(xmlfiles, "lr", "i");
     xmlfiles(grep(xmlfiles,"master_help")) = [];
     xmlfiles(grep(xmlfiles,"master"))      = [];
 
@@ -1528,7 +1531,7 @@ function master_section = x2f_tree_to_section( tree , offset )
     end
 
     if type(offset) <> 1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A integer expected.\n"),"x2f_tree_to_section",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer expected.\n"),"x2f_tree_to_section",2));
     end
 
     // And now, action ...
@@ -1577,14 +1580,20 @@ function master_section = x2f_tree_to_section( tree , offset )
         // title built with the directory name
         section_title = tree("title_default");
     end
-
+    
+    if (isfield(tree, "xml_id")) then
+        xml_id = tree("xml_id");
+    else
+        xml_id = "section_"+getmd5(strsubst(tree("path"),SCI,""),"string");
+    end
+    
     section_title  = strsubst(section_title,"&"  ,"&amp;");
     section_title  = strsubst(section_title,"""" ,"&quot;");
     section_title  = strsubst(section_title,">"  ,"&gt;");
     section_title  = strsubst(section_title,"<"  ,"&lt;");
 
     master_section = [];
-    master_section = [ master_section ; "<"+section_type+" xml:id=''section_"+getmd5(strsubst(tree("path"),SCI,""),"string")+"''>" ];
+    master_section = [ master_section ; "<"+section_type+" xml:id=''" + xml_id + "''>" ];
     master_section = [ master_section ; "<title>"+section_title+"</title>" ];
 
     // Loop on dir_

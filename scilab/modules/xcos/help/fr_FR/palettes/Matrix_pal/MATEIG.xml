@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="MATEIG"
+          xml:lang="fr_FR">
+  <refnamediv>
+    <refname>MATEIG</refname>
+
+    <refpurpose>Valeurs propres d'une matrice</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/MATEIG.png"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_MATEIG">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="MATEIG">Valeurs propres d'une matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_MATEIG">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_MATEIG">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_MATEIG">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Example_MATEIG">Exemple</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_MATEIG">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_MATEIG">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_MATEIG">Fonction de calcul</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_MATEIG">Voir aussi</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_MATEIG">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_MATEIG">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Matrix_pal">Palette Opérations matricielles</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_MATEIG">
+    <title>Description</title>
+
+    <para>
+      Le bloc MATEIG calcule les valeurs et les vecteurs propres d'une matrice carrée d'entrée
+      U. Quand le paramètre <emphasis role="bold">decomposition type</emphasis> est initialisé à :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">1</emphasis>, Les sorties du bloc sont les valeurs propres sous
+          la forme d'un vecteur. Si l'entrée est une matrice MxM, la sortie est un vecteur Mx1.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">2</emphasis>, Les sorties du bloc sont deux matrices. Pour une matrice
+          d'entrée MxM, la première sortie est une matrice diagonale MxM composée des valeurs propres,
+          et la deuxième une matrice MxM dont les colonnes sont les vecteurs propres.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>L'équivalent du bloc MATEIG dans Scilab est <link linkend="spec">spec</link></para>
+
+    <para />
+  </refsection>
+
+  <refsection id="Dialogbox_MATEIG">
+    <title>Boîte de dialogue</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/gui/MATEIG_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
+        </para>
+
+        <para>
+          Il indique le type de la sortie. Il supporte seulement les types double (1) et complexe (2).
+          Si on entre une autre valeur dans ce paramètre, Xcos affiche le message "Datatype is not supported".
+        </para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">decomposition type (1=eig values 2=eig values+eig vectors</emphasis>
+        </para>
+
+        <para>Pour sélectionner la forme de la sortie.</para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_MATEIG">
+    <title>Exemple</title>
+
+    <programlisting role="example">
+A=[1 12 32;21 35 46;70 8 19]
+Quand "Decomposition type" est mis à 1 la sortie est y=[-35.649;14.279;76.369]
+Quand "Decomposition type" est mis à 2 les sorties sont:
+y1=[-35.649 0.000 0.000;0.000 14.279 0.000;0.000 0.000 76.369]
+y2=[0.557 0.080 0.349;0.330 -0.922 0.770;-0.762 0.379 0.533]
+ </programlisting>
+  </refsection>
+
+  <refsection id="Defaultproperties_MATEIG">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-1] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,1] / type 2</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">mat_vps</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_MATEIG">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/MatrixOp/MATEIG.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_MATEIG">
+    <title>Fonctions de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/mat_vps.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/mat_vpv.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matz_vps.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matz_vpv.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Seealso_MATEIG">
+    <title>Voir aussi</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="MATSING">MATSING - Décomposition en valeurs singulières (SVD) (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="spec">spec (Fonction Scilab)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_MATEIG">
+    <title>Auteurs</title>
+
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

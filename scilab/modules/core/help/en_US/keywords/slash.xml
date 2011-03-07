@@ -30,8 +30,8 @@
     Comment <literal>//</literal> comments a line i.e lines which begin by <literal>//</literal> are
     ignored by the interpreter.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="inv">inv</link>

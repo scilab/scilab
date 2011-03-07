@@ -1,6 +1,6 @@
 //CHECKSTYLE:OFF
 
-package org.scilab.forge.scidoc.scilab;
+package org.scilab.modules.helptools.scilab;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -43,7 +43,7 @@ import java.io.IOException;
 
     private AbstractScilabCodeHandler handler;
 
-    public ScilabLexer(String primFile, String macroFile) {
+    public ScilabLexer(String[] primFile, String[] macroFile) {
        if (commands == null) {
           commands = new HashSet();
           macros = new HashSet();
@@ -52,9 +52,19 @@ import java.io.IOException;
        }
     }
 
+    public ScilabLexer(String primFile, String macroFile) {
+       this(new String[]{primFile}, new String[]{macroFile});
+    }
+
     public ScilabLexer(Set primitives, Set macros) {
        commands = primitives;
        this.macros = macros;
+    }
+
+    private void loadNames(String[] files, Set set) {
+       for (int i = 0; i < files.length; i++) {
+          loadNames(files[i], set);
+       }
     }
 
     private void loadNames(String file, Set set) {

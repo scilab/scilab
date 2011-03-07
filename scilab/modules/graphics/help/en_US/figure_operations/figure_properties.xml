@@ -296,8 +296,8 @@ t=-%pi:0.3:%pi;
 plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lines">lines</link>

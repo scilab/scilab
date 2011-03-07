@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * 
+ -->
+
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="bitcmp" 
+          xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+
+  <refnamediv>
+    <refname>bitcmp</refname>
+    <refpurpose>bitwise complement</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      y = bitcmp(x,n)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x :</term>
+        <listitem>
+          <para>
+            a m-by-n matrix of doubles
+            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+            Must contain positive integer values.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n :</term>
+        <listitem>
+          <para>
+            a m-by-n matrix of doubles
+            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+            The input <literal>n</literal> must be in the range 1,2,...,bitmax
+            where bitmax is the maximum number of bits in x.
+            Must contain positive integer values.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y :</term>
+        <listitem>
+          <para>
+            a m-by-n matrix of doubles
+            or a m1-by-m2-by-...-by-mm hypermatrix of  doubles
+            or a m-by-n matrix of unsigned integers.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      Given an unsigned integer <literal>x</literal>, this function returns the unsigned integer
+      which is the integer corresponding to the complementary of the binary
+      form of <literal>x</literal>.
+    </para>
+
+    <para>
+      The integer <literal>n</literal> sets the maximum number of bits.
+    </para>
+
+    <para>
+      If the bits number of the <literal>x</literal> binary representation is less than the
+      bitmax number (8,16 or 32) then the bits '1' are added to the
+      complementary in order to have bitmax number (8, 16 or 32) for the
+      complementary.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+      <![CDATA[
+// 13 is (1101)_2
+// We insert zeros in the begining to get a 8-bit number:
+// (00001101)_2
+// The 8-bits complement is then (11110010)_2
+// which is 242
+bitcmp(13,8)
+expected = 242
+
+// The input argument can be an unsigned int
+bitcmp(uint8(99),8)
+expected = 156
+   ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
+      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
+      <member>Copyright (C) 2008 - INRIA - Pierre MARECHAL</member>
+    </simplelist>
+  </refsection>
+
+</refentry>

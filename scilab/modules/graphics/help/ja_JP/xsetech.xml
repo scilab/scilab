@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xsetech">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xsetech</refname>
+    <refpurpose>プロット時にグラフィックウインドのサブウインドウを設定</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>xsetech(wrect,[frect,logflag])
+xsetech(wrect=[...],frect=[..],logflag="..", arect=[...])
+xsetech()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>wrect</term>
+        <listitem>
+          <para>大きさ 4のベクトル, 使用するサブウインドウを定義します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>frect</term>
+        <listitem>
+          <para>大きさ 4のベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>logflag</term>
+        <listitem>
+          <para>大きさ 2の文字列 "xy", ただし x および y は "n" または "l"とします. "n" は通常のスケール,
+	"l"は対数スケールを意味します.
+	xはx軸,yはy軸を意味します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arect</term>
+        <listitem>
+          <para>大きさ4のベクトル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>xsetech</literal> は主にプロットに使用されるグラフィックウインドウ
+	のサブウインドウを設定する際に使用されます.
+	サブウインドウはパラメータ<literal>wrect=[x,y,w,h]</literal> (左上の点,幅,高さ)で指定されます.
+	<literal>wrect</literal>の値は,カレントのグラフィックウインドウの幅または高さの比で指定されます.
+	例えば,<literal>wrect=[0,0,1,1]</literal> はグラフィックウインドウ全体を使用することを
+	意味し,  <literal>wrect=[0.5,0,0.5,1]</literal> はグラフィック領域がグラフィックウインドウの右反面
+	となることを意味します.</para>
+    <para><literal>xsetech</literal> はカレントの2次元プロットのグラフィックスケールも
+	設定し,カレントのグラフィックスケールを指定するグラフィックルーチン
+	(例えば<literal>plot2d</literal>の<literal>strf="x0z"</literal>または
+	<literal>frameflag=0</literal>)と組み合わせて使用できます.</para>
+    <para><literal>frect=[xmin,ymin,xmax,ymax]</literal> はグラフィックスケールを
+	設定する際に使用され,
+	<literal>plot2d</literal>の<literal>rect</literal>引数によく似ています.
+    <literal>frect</literal> が指定されない場合,
+	グラフィックスケールのカレントの値は変更されません.
+	<literal>rect</literal>のデフォルト値は <literal>[0,0,1,1]</literal>
+    (ウインドウ作成時,<literal>xset('default')</literal>によりデフォルト値に
+	戻された時,または記録されたグラフィックイベントを<literal>clf()</literal>で
+	クリアした時)です.</para>
+    <para><literal>arect=[x_left, x_right,y_up,y_down]</literal> はサブウインドウの
+	中にグラフィックフレームを設定する際に使用されます.
+	グラフィックフレームは(<literal>wrect</literal>と同様に)カレントのグラフィックサブウインドウの
+	幅または高さに比例して指定されます.
+	デフォルト値は <literal>1/8*[1,1,1,1]</literal>です.
+    <literal>arect</literal> が指定されない場合, カレントの値は変更されません.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// xsetechパラメータのグラフィカルな説明を得るには以下を入力してください:
+exec('SCI/modules/graphics/demos/xsetechfig.sce');
+
+// ここではグラフィックウインドウを2分割するためにxsetechが使用されます
+// まず最初のサブウインドウを設定するためにxsetechを使用します 
+// and the graphics scale 
+xsetech([0,0,1.0,0.5],[-5,-3,5,3])
+// グラフィックスケールを使用するためにplot2d に "001"オプションを指定してコールします
+// set by xsetech 
+plot2d([1:10]',[1:10]',1,"001"," ")
+//次に2番目のサブウインドウを設定するためにxsetechを使用します
+xsetech([0,0.5,1.0,0.5])
+// グラフィックスケールはデフォルトで xsetechにより[0,0,1,1]に設定され,
+// plot2d のrect引数により変更します
+plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
+// 4つのプロットを一つのグラフィックウインドウにプロットします 
+clf()
+xset("font",2,0)
+xsetech([0,0,0.5,0.5]); plot3d()
+xsetech([0.5,0,0.5,0.5]); plot2d()
+xsetech([0.5,0.5,0.5,0.5]); grayplot()
+xsetech([0,0.5,0.5,0.5]); histplot()
+// サブウインドウのデフォルト値に戻します
+xsetech([0,0,1,1])
+// 変更したarectにプロット
+clf()
+xset("default")
+xsetech(arect=[0,0,0,0]) 
+x=1:0.1:10;plot2d(x',sin(x)')
+clf()
+xsetech(arect=[1/8,1/8,1/16,1/4])
+x=1:0.1:10;plot2d(x',sin(x)')
+clf()
+xset("default")
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xgetech">xgetech</link>
+      </member>
+      <member>
+        <link linkend="subplot">subplot</link>
+      </member>
+      <member>
+        <link linkend="isoview">isoview</link>
+      </member>
+      <member>
+        <link linkend="square">square</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

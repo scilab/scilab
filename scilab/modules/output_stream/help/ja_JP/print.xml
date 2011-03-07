@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="print">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>print</refname>
+    <refpurpose>変数をファイルに出力する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>print('file-name',x1,[x2,...xn])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>xi</literal> をファイル <literal>'file-name'</literal>にカレントの
+	形式,すなわち,Scilabが変数を表示する際に使用される形式,で出力します.
+	任意の変数型は "<literal>print</literal>" で出力できます.</para>
+    <para>
+    注意 : <literal>xi</literal> は名前のある変数である必要があり,
+	変数式を含む場合には表示される名前の部分は予測不能となります.</para>
+    <para><literal>print(%io(2),...)</literal> はScilabのウインドウに出力します. 
+	この構文はマクロの中で変数を表示する際に使用することができます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=rand(3,3);p=poly([1,2,3],'s');l=list(1,'asdf',[1 2 3]);
+print(%io(2),a,p,l)
+write(%io(2),a)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="write">write</link>
+      </member>
+      <member>
+        <link linkend="read">read</link>
+      </member>
+      <member>
+        <link linkend="format">format</link>
+      </member>
+      <member>
+        <link linkend="printf">printf</link>
+      </member>
+      <member>
+        <link linkend="disp">disp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

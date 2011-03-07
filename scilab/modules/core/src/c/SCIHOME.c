@@ -35,7 +35,7 @@ BOOL setSCIHOME(void)
 	int ierr = 0;
 	int buflen = PATH_MAX;
 	int iflag = 0;
-	char SCIHOME[PATH_MAX];
+	char SCIHOME[PATH_MAX]="";
 
 	C2F(getenvc)(&ierr,"SCIHOME",SCIHOME,&buflen,&iflag);
 

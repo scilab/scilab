@@ -56,8 +56,8 @@ n=sup [sigmax(g(jw)]
     <para>
     (sigmax largest singular value).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="h_norm">h_norm</link>

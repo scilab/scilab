@@ -50,8 +50,8 @@ xset("color",2)
 xfarc(0.5,0.5,1,1,0,360*64)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xarc">xarc</link>

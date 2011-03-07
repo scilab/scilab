@@ -39,6 +39,9 @@
 //**
 //** 25/07/07, Alan
 function rotate_compound(sel_x, sel_y, sel_w, sel_h, blk, theta)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   //** gh_curwin = gh_curwin;
   gh_curwin = scf(gh_curwin);

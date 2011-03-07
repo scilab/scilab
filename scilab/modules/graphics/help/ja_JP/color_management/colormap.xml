@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="colormap">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>colormap</refname>
+    <refpurpose>カラーマップを定義</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+    カラーマップ <literal>cmap</literal> はm x 3行列で定義されます.
+	m は色の数です.
+	色番号 i は, それぞれ赤, 緑, 青の彩度(範囲は0から1)を表す 
+	<literal>cmap(i,1)</literal>, <literal>cmap(i,2)</literal>, 
+	<literal>cmap(i,3)</literal> の組で指定されます.</para>
+    <para>
+	最初,カラーマップには32種類の色が定義されています.
+	特定の図のカラーマップを <literal>set(f,"color_map",cmap)</literal>
+	により変更することが可能です.
+	ただし,  <literal>f</literal>は図のハンドルです.</para>
+    <para>
+	カラーマップの各色は,多くのプロット関数で色を指定するために使用する
+	際に使用されるIDを有しています.
+	このIDを参照するには,関数<link linkend="getcolor">getcolor</link>
+	を使用してください.</para>
+    <para>
+    関数 <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> および
+	 <link linkend="graycolormap">graycolormap</link> は,
+	連続的に変化する色を有するカラーマップを提供します.</para>
+    <para>
+	デフォルトのカラーマップを<literal>cmap=get(sdf(),"color_map")</literal>
+	により取得できます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+n=64;
+r=linspace(0,1,n)';
+g=linspace(1,0,n)';
+b=ones(r);
+cmap=[r g b];
+f=gcf(); f.color_map=cmap;
+plot3d1()
+f.color_map=get(sdf(),"color_map");
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="autumncolormap">autumncolormap</link>
+      </member>
+      <member>
+        <link linkend="bonecolormap">bonecolormap</link>
+      </member>
+      <member>
+        <link linkend="coolcolormap">coolcolormap</link>
+      </member>
+      <member>
+        <link linkend="coppercolormap">coppercolormap</link>
+      </member>
+      <member>
+        <link linkend="graycolormap">graycolormap</link>
+      </member>
+      <member>
+        <link linkend="hotcolormap">hotcolormap</link>
+      </member>
+      <member>
+        <link linkend="hsvcolormap">hsvcolormap</link>
+      </member>
+      <member>
+        <link linkend="jetcolormap">jetcolormap</link>
+      </member>
+      <member>
+        <link linkend="oceancolormap">oceancolormap</link>
+      </member>
+      <member>
+        <link linkend="pinkcolormap">pinkcolormap</link>
+      </member>
+      <member>
+        <link linkend="rainbowcolormap">rainbowcolormap</link>
+      </member>
+      <member>
+        <link linkend="springcolormap">springcolormap</link>
+      </member>
+      <member>
+        <link linkend="summercolormap">summercolormap</link>
+      </member>
+      <member>
+        <link linkend="whitecolormap">whitecolormap</link>
+      </member>
+      <member>
+        <link linkend="wintercolormap">wintercolormap</link>
+      </member>
+      <member>
+        <link linkend="color">color</link>
+      </member>
+      <member>
+        <link linkend="getcolor">getcolor</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

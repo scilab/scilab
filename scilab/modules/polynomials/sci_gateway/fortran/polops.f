@@ -1231,7 +1231,7 @@ c     .     call extraction
                   goto 133
                endif
             elseif(nj.eq.n4) then
-c     arg4(arg1,[])=[] --> arg4
+c     .        arg4(arg1,[])=[] --> arg4
                volr=istk(id4+mn4)-1
                istk(ilrs)=2
                istk(ilrs+1)=m4
@@ -1244,22 +1244,25 @@ c     arg4(arg1,[])=[] --> arg4
                lstk(top+1)=l1+volr*(it4+1)
                goto 999
             else
-c     lw=lw1
                call indxgc(il1,m4,ili,mi,mxi,lw)
                if(err.gt.0) return
+
                if(mi.eq.0) then
+c     .           arg4(1:m4,arg2)=[] 
                   call indxg(il1,m4,ili,mi,mxi,lw,1)
                   if(err.gt.0) return
                   l3r=l4r
                   n3=n4
                   m3=m4
+C     .           given set is larger than 1:m4
+                  mi=min(m4,mi)
                   it3=it4
                   mn3=m3*n3
                   id3=id4
-c     .     call extraction
+c     .           call extraction
                   goto 133
                elseif(mi.eq.m4) then
-c     arg4([],arg2)=[] --> arg4
+c     .           arg4([],arg2)=[] --> arg4
                   volr=istk(id4+mn4)-1
                   istk(ilrs)=2
                   istk(ilrs+1)=m4

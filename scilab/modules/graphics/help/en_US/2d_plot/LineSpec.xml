@@ -319,8 +319,8 @@ t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="GlobalProperty">GlobalProperty</link>

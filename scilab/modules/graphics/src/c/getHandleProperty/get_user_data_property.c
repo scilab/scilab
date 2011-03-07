@@ -27,12 +27,12 @@
 int get_user_data_property( sciPointObj * pobj )
 {
   /* user_data */
-  int *size_ptr, data_size;
+    int *size_ptr;
   int **user_data_ptr,*data_ptr;
   sciGetPointerToUserData (pobj,&user_data_ptr, &size_ptr);
 
   data_ptr=*user_data_ptr;
-  data_size=0;
+
   if ( *user_data_ptr == NULL || *size_ptr == 0 )
   {
     return sciReturnEmptyMatrix() ;

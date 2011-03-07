@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="ndgrid" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ndgrid</refname>
+
+    <refpurpose>
+	多次元関数評価用グリッドの配列</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[X, Y] = ndgrid(x,y)
+[X, Y, Z] = ndgrid(x,y,z)
+[X, Y, Z, T] = ndgrid(x,y,z,t)
+[X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x, y, z, ...</term>
+
+        <listitem>
+          <para>ベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>X, Y, Z, ...</term>
+
+        <listitem>
+          <para>
+	入力引数が2個の場合は行列,
+	それ以外の場合はハイパー行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	この関数はユーティリティルーチンで,
+	2, 3, ..., n次元のグリッド上で関数の評価を行う
+	ための配列を作成する際に便利です.
+	例えば, 2次元の場合, グリッドは
+	長さ nx および nyの
+	2つのベクトル
+	<literal>x</literal> および <literal> y</literal>
+	で定義され,
+	<emphasis>i=1,..,nx</emphasis> および <emphasis>j=1,..,ny</emphasis>
+	として,座標<emphasis>(x(i),y(j))</emphasis>となります.
+	そのグリッド上で (例えば<emphasis>f</emphasis>のような)関数の評価を
+	行うことになります.
+	この場合,この関数は,以下のような大きさ<emphasis>nx x ny</emphasis>の
+	2つの行列<literal>X,Y</literal>を計算します :</para>
+
+    <programlisting role = ""><![CDATA[ 
+X(i,j) = x(i)   for all i in [1,nx]
+Y(i,j) = y(j)       and j in [1,ny]
+ ]]></programlisting>
+
+    <para>
+	評価は,<literal>Z=f(X,Y)</literal>で行うことができます.
+	(ベクトル引数で<literal>f</literal>を評価するようコードが
+	作成されている場合,
+	<literal>*</literal>,
+    <literal>/</literal> および <literal>^</literal>の部分に
+	要素毎の演算 <literal>.*</literal>, <literal>./</literal> および
+    <literal>.^</literal>を使用することにより,(一般に)動作します..</para>
+
+    <para>3次元の場合, 長さ nx, ny および nzの3個のベクトル<literal>x,y,z</literal>
+	を指定し,
+	<literal>X,Y,Z</literal>は以下のように大きさ
+	<emphasis>nx x ny x nz</emphasis>のハイパー行列となります :</para>
+
+    <programlisting role = ""><![CDATA[ 
+X(i,j,k) = x(i)  
+Y(i,j,k) = y(j)   for all (i,j,k) in [1,nx]x[1,ny]x[1,nz]
+Z(i,j,k) = z(k)
+ ]]></programlisting>
+
+    <para>一般的な場合, m 個の入力引数<literal>x1, x2, ..,
+    xm</literal>, それから m個の出力引数
+ <literal>X1, X2, .., Xm</literal> は以下のような
+	大きさ <emphasis>nx1 x nx2 x ... x
+    nxm</emphasis> のハイパー行列となります :</para>
+
+    <programlisting role = ""><![CDATA[ 
+Xj(i1,i2,...,ij,...,im) = xj(ij)   
+for all (i1,i2,...,im) in [1,nx1]x[1,nx2]x...x[1,nxm]  
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[  
+// 簡単な2次元グリッドを作
+nx = 40; ny = 40;
+x = linspace(-1,1,nx);
+y = linspace(-1,1,ny);
+[X,Y] = ndgrid(x,y);
+
+// グリッド上で関数を計算してプロット
+//deff("z=f(x,y)","z=128*x.^2 .*(1-x).^2 .*y.^2 .*(1-y).^2");
+deff("z=f(x,y)","z=x.^2 + y.^3")
+Z = f(X,Y);
+clf()
+plot3d(x,y,Z, flag=[2 6 4]); xselect()
+
+// create a simple 3d grid
+nx = 10; ny = 6; nz = 4;
+x = linspace(0,2,nx);
+y = linspace(0,1,ny);
+z = linspace(0,0.5,nz);
+[X,Y,Z] = ndgrid(x,y,z);
+
+// 3次元グリッドを表示する ...
+XF=[]; YF=[]; ZF=[];
+
+for k=1:nz
+   [xf,yf,zf] = nf3d(X(:,:,k),Y(:,:,k),Z(:,:,k));
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+end
+
+for j=1:ny
+   [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),...
+                     matrix(Y(:,j,:),[nx,nz]),...
+                     matrix(Z(:,j,:),[nx,nz]));
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+end
+
+clf()
+plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
+xtitle("A 3d grid !"); xselect()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="kron">kron</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>B. Pincon</para>
+  </refsection>
+</refentry>

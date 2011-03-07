@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="int2d" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>int2d</refname>
+
+    <refpurpose>求積法および立体求積法により2次元積分を定義</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>
+	N個の三角形の頂点の横座標軸の値を有する3 行 N 列の配列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Y</term>
+
+        <listitem>
+          <para>
+	N個の三角形の頂点の縦座標軸の値を有する3 行 N 列の配列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>被積分関数 <literal>f(u,v)</literal>を定義する
+		外部 (関数またはリストまたは文字列) 
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>params</term>
+
+        <listitem>
+          <para>実数ベクトル <literal>[tol, iclose, maxtri, mevals,
+          iflag]</literal>. デフォルト値は <literal>[1.d-10, 1, 50, 4000,
+          1]</literal>.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>tol</term>
+
+              <listitem>
+                <para>
+		誤差の境界の指定値.
+                <literal>iflag=0</literal>の場合, <literal>tol</literal> は
+		相対誤差の境界として解釈されます;
+        	<literal>iflag=</literal>1の場合,
+		絶対誤差の境界と解釈されます.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>iclose</term>
+
+              <listitem>
+                <para>
+		LQM0 または LQM1の選択を定義する積分パラメータ.
+		<literal>iclose=1</literal>の場合, LQM1 が使用されます.
+		<literal>iclose</literal>がその他の値の場合,
+		LQM0 が使用されます.
+		LQM0 は三角形の内部の点における値のみ関数の値を使用します.
+		LQM1 は通常 LQM0 より正確ですが, 三角形の境界点を含む
+		より多くの点で被積分関数を評価します.
+		通常,被積分関数が三角形の境界において特異とならない限り,
+		LQM1 を使用するのが良いでしょう.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>maxtri</term>
+
+              <listitem>
+                <para>
+		領域の最後の三角形分割における三角形の最大数</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>mevals</term>
+
+              <listitem>
+                <para>
+		許容される関数評価の回数の最大値.
+		この値は,
+		LQM1の場合には94*<literal>maxtri</literal>未満,
+		LQM0の場合には56*<literal>maxtri</literal>未満
+		とした場合にのみ計算負荷を制限する効果があります.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>iflag</term>
+
+              <listitem>
+                <para></para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>I</term>
+
+        <listitem>
+          <para>積分値</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>誤差の推定値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>int2d</literal> は,
+	<literal>n</literal>個の三角形からなる領域において
+	関数<literal>f</literal>の2次元積分を計算します.
+	全体の推定誤差が得られ,このサブルーチンへの入力として指定された
+	許容誤差 <literal>tol</literal>と比較されます.
+	許容誤差は<literal>iflag</literal>の入力値に基づき
+	相対または絶対誤差として扱われます.
+	'ローカルな求積モジュール'が
+	各入力三角形に適用され,積分の合計値が推定され,
+	誤差の合計値が計算されます.
+	ローカルな求積モジュールは,サブルーチン LQM0 または
+	サブルーチン LQM1のどちらかで,
+	入力変数<literal>iclose</literal>の値によりどちらを
+	使うかが定義されます.</para>
+
+    <para>
+	誤差推定値の合計が許容誤差を超える場合,
+	絶対誤差が最大となる三角形は最も長い辺の中点で
+	2つの三角形に分割されます.
+	この後,ローカルな求積モジュールが分割された各三角形に
+	適用され積分値と誤差の新たな推定値が得られます.
+	この処理は,(1)許容誤差の制約が満たされるか,
+	(2)生成される三角形の数が入力パラメータ<literal>maxtri</literal>
+	を超えるか,(3)被積分関数を評価した数が入力パラメータ
+	<literal>mevals</literal>を超えるか,もしくは(4)
+	丸め誤差が結果を汚染し始めたとこの関数が検知した場合,
+	まで繰り返されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+X=[0,0;1,1;1,0];
+Y=[0,0;0,1;1,1];
+deff('z=f(x,y)','z=cos(x+y)')
+[I,e]=int2d(X,Y,f)
+// 正方形の区間 [0 1]x[0 1] で被積分関数を計算します
+
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="intc">intc</link></member>
+
+      <member><link linkend="intl">intl</link></member>
+
+      <member><link linkend="int3d">int3d</link></member>
+
+      <member><link linkend="intg">intg</link></member>
+
+      <member><link linkend="mesh">mesh</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>Fortran routine twodq Authors: Kahaner,D.K.,N.B.S.,
+    Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. of UTAH</para>
+  </refsection>
+</refentry>

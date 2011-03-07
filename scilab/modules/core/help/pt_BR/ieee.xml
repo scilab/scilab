@@ -93,8 +93,8 @@ ieee(2);1/0,log(0)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="errcatch">errcatch</link></member>

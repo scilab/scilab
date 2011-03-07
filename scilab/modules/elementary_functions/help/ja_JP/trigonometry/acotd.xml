@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="acotd" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>acotd</refname>
+
+    <refpurpose>引数の要素毎の逆正接(単位:度)を計算する.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y = acotd(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数または複素数の配列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>実数または複素数の配列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>要素毎の逆正接を計算し,結果を(単位:度0を返す).
+	引数が実数の場合,結果は実数となる.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+x=[1 2 -2 sqrt(2) -sqrt(2) 2/sqrt(3) -2/sqrt(3) -1];
+acotd(x)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>参考</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cotd">cotd</link></member>
+
+      <member><link linkend="acot">acot</link></member>
+
+      <!--<member>
+        <link linkend="csgn">csgn</link>
+      </member>-->
+    </simplelist>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="vert">
+      <member>Kahan, W., "Branch cuts for complex elementary functions, or,
+      Much ado about nothing's sign bit", Proceedings of the joing IMA/SIAM
+      conference on The State of the Art in Numerical Analysis, University of
+      Birmingham, A. Iserles and M.J.D. Powell, eds, Clarendon Press, Oxford,
+      1987, 165-210.</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -62,8 +62,8 @@ addcolor(name2rgb('grey')/255);
  ]]>
  </programlisting>
  </refsection>
-    <refsection>
-    <title>See Also</title>
+    <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="colormap">colormap</link></member>
       <member><link linkend="name2rgb">name2rgb</link></member>

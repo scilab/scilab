@@ -349,4 +349,26 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
     public boolean isConnectable() {
     	return true;
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+    	final StringBuilder str = new StringBuilder();
+    	str.append(source);
+    	
+    	str.append(" -> ");
+    	if (getChildCount() > 0) {
+    		// append the label
+    		str.append(getChildAt(0).getValue());
+    	} else {
+    		str.append(getClass().getSimpleName());
+    	}
+    	str.append(" -> ");
+    	
+    	str.append(target);
+    	
+    	return str.toString();
+    }
 }

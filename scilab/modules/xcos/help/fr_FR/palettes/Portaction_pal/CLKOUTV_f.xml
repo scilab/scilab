@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *\
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms\
+ * are also available at\
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry 
+  version="5.0-subset Scilab" xml:id="CLKOUTV_f" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:svg="http://www.w3.org/2000/svg" 
+  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+  xmlns:db="http://docbook.org/ns/docbook" 
+>
+  <refnamediv>
+    <refname>CLKOUTV_f</refname>
+    <refpurpose>Port de sortie d'activation</refpurpose>
+  </refnamediv>
+  <refsection>
+  
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/CLKOUTV_f.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  
+  <refsection id="Contents_CLKOUTV_f">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CLKOUTV_f">Port de sortie d'activation port</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_CLKOUTV_f">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_CLKOUTV_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_CLKOUTV_f">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_CLKOUTV_f">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_CLKOUTV_f">Exemple</xref>
+            </para>
+          </listitem>           
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_CLKOUTV_f">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_CLKOUTV_f">Voir aussi</xref>
+            </para>
+          </listitem>          
+          <listitem>
+            <para>
+              <xref linkend="Authors_CLKOUTV_f">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  
+  <refsection id="Palette_CLKOUTV_f">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Portaction_pal">Palette Ports &amp; Sous-systèmes</link>
+        </para>
+      </listitem>    
+      <listitem>
+        <para>
+          <link linkend="Sinks_pal">Palette Sinks</link>
+        </para>
+      </listitem>    
+      <listitem>
+         <para>
+          <link linkend="Events_pal">Palette gestion d'événements</link>
+        </para>                
+      </listitem>
+    </itemizedlist>
+  </refsection>
+    
+  <refsection id="Description_CLKOUTV_f">
+    <title>Description</title>
+    <para>
+      Ce bloc représente une port de sortie d'activation. Il doit être seulement utilisé à l'intérieur d'un Super Bloc Xcos et être
+       connecté à un port de sortie d'activation dans le sous-système.
+    </para>
+    <para>
+     Ce bloc est une liaison d'événement d'un système dans un sous-système. Dans un superbloc, les ports de sortie d'activation
+      doivent être numérotés de 1 au nombre total de sortie d'activation du Super bloc. Chaque numéro de sortie d'activation doit
+      être unique et défini avec le paramètre <emphasis role="bold">Port number</emphasis>.
+    </para>        
+  </refsection>
+  
+  <refsection id="Dialogbox_CLKOUTV_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/portaction_pal/fr_FR/CLKOUTV_f_gui.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para />
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Port number</emphasis>
+        </para>
+        <para> An integer defining the port number.</para>
+        <para> Properties : Type 'vec' of size 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  
+  <refsection id="Defaultproperties_CLKOUTV_f">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">output</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  
+  <refsection id="Example_CLKOUTV_f">
+    <title>Exemple</title>
+    <para>
+      Le Super block ci-dessous est principalement un diviseur de fréquence par 4, associé à une génération d'événement à l'instant <emphasis><literal>t = 3 s</literal></emphasis>.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/CLKOUTV_f_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>.
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/portaction_pal/fr_FR/clkoutv_f_diagram_fr_FR.png" />
+      </imageobject>
+    </mediaobject>
+  </refsection>  
+  
+  <refsection id="Interfacingfunction_CLKOUTV_f">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/CLKOUTV_f.sci">SCI/modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci</link></para>        
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  
+  <refsection role="see also" id="Seealso_CLKOUTV_f">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="CLKINV_f">CLKINV_f</link>
+      </listitem>
+      <listitem>
+        <link linkend="SUPER_f">SUPER_f</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  
+  <refsection id="Authors_CLKOUTV_f">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

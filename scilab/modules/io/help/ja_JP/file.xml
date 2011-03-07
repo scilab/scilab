@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="file" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>file</refname>
+
+    <refpurpose>ファイル管理</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])
+file(action,unit)
+[units [,typ [,nams [,mod [,swap]]]]] = file([unit])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file-name</term>
+
+        <listitem>
+          <para>文字列, オープンするファイルのファイル名</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>status</term>
+
+        <listitem>
+          <para>文字列, オープンするファイルのステータス</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"new"</term>
+
+              <listitem>
+                <para>ファイルは存在せず新規ファイル (デフォルト)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"old"</term>
+
+              <listitem>
+                <para>ファイルは既存.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"unknown"</term>
+
+              <listitem>
+                <para>unknown status</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"scratch"</term>
+
+              <listitem>
+                <para>ファイルはセッション終了時に削除されます</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>access</term>
+
+        <listitem>
+          <para>文字列, ファイルへのアクセス形式</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"sequential"</term>
+
+              <listitem>
+                <para>連続アクセス (デフォルト)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"direct"</term>
+
+              <listitem>
+                <para>直接アクセス.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>文字列,</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"formatted"</term>
+
+              <listitem>
+                <para>フォーマットされたファイル (デフォルト)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"unformatted"</term>
+
+              <listitem>
+                <para>バイナリレコード.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>recl</term>
+
+        <listitem>
+          <para>整数,
+          <literal>access="direct"</literal>の時,
+	レコードの大きさ(単位:バイト)
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>unit</term>
+
+        <listitem>
+          <para>整数, オープンされたファイルの論理ユニット記述子</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>units</term>
+
+        <listitem>
+          <para>整数ベクトル, オープンされたファイルの論理ユニット記述子.
+	ユニット 5 および 6 (%io) は入出力デバイスの
+	システムにより保存されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>typs</term>
+
+        <listitem>
+          <para>文字列ベクトル, オープンするファイルの型
+	 (C または Fortran).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nams</term>
+
+        <listitem>
+          <para>文字列ベクトル, オープンするファイルのパス名.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mod</term>
+
+        <listitem>
+          <para>ファイルをオープンするモード. 
+	3桁 abc により構成.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Fortranファイル</term>
+
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>a</term>
+
+                    <listitem>
+                      <para>0 は整形済み, 1 は未整形(バイナリ)を意味します
+                      </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>b</term>
+
+                    <listitem>
+                      <para>0 は連続アクセス, 1 は直接アクセスを意味します</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>c</term>
+
+                    <listitem>
+                      <para>0 は "new", 1 は "old", 2 は "scratch"
+                      および 3 は "unknown"を意味します</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Cファイル</term>
+
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                  <varlistentry>
+                    <term>a</term>
+
+                    <listitem>
+                      <para>1は "r" (読み込み)を意味し, 2 は "w" (書き込み)
+                      そして 3 は "a" (追加)を意味します</para>
+                    </listitem>
+                  <varlistentry>
+                    <term>b</term>
+
+                    <listitem>
+                      <para>
+		ファイルが "+" (更新)モードでオープンされている場合に 1</para>
+                    </listitem>
+                  </varlistentry>
+                  </varlistentry>                  	
+                    <term>b</term>
+
+                    <listitem>
+                      <para>
+			ファイルが "b" (バイナリ)モードで
+			オープンされている場合に 1</para>
+                    </listitem>
+                  </varlistentry>
+
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>swap</term>
+
+        <listitem>
+          <para>
+	自動スワップの切替スイッチ.
+	自動スワップがオンの場合に swap=1.
+	Fortranファイルの場合,swapは常に0となります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>整数, オープンに失敗した場合は,
+	エラーメッセージ番号 (error 参照).
+	err が省略された場合,エラーメッセージが発行されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>action</term>
+
+        <listitem>
+          <para>以下の文字列のどれかとなります:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"close"</term>
+
+              <listitem>
+                <para><literal>units</literal>で指定された
+	論理ユニット記述子により指定されたファイルを閉じます</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"rewind"</term>
+
+              <listitem>
+                <para>ファイルの先頭にポインタを置きます</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"backspace"</term>
+
+              <listitem>
+                <para>ポインタを最後のレコードの先頭に置きます</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"last"</term>
+
+              <listitem>
+                <para>
+		ポインタを最後のレコードの後に置きます.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	論理ユニット<literal>unit</literal>を選択し,
+	ファイル<literal>file-name</literal>を管理します.</para>
+
+    <para><literal>[unit [,err]]=file('open', file-name [,status] [,access
+    [,recl]][,format])</literal> により
+	プロパティを指定してファイルをオープンし,
+	ユニット番号<literal>unit</literal>に関連付けることができます.
+	このユニット番号は,この後,このファイルに関する処理や
+	<literal>read</literal>, <literal>write</literal>,
+    <literal>readb</literal>,
+    <literal>writb</literal>,<literal>save</literal>, <literal>load</literal>
+	関数コールにおいてファイル記述子と同様に使用することができます.</para>
+
+    <para>この関数はUTFファイル名をオープンすることができません.
+	この場合,mopenを使用してください.</para>
+
+    <para><literal>file(action,unit)</literal> により,ファイルを閉じたり,
+	カレントのファイルポインタを移動することができます.</para>
+
+    <para><literal>file()</literal> は
+	オープンされたファイルの論理ユニット記述子を返します.この場合,
+	<literal>file('close',file() )</literal> は
+	ユーザにオープンされたファイル(CまたはFortran型)を全て閉じます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+u=file('open',TMPDIR+'/foo','unknown')
+for k=1:4
+  a=rand(1,4)
+  write(u,a)
+end
+file('rewind',u)
+x=read(u,2,4)
+file('close',u)
+//
+u1=file('open',TMPDIR+'/foo','unknown')
+u2=mopen(TMPDIR+'/foo1','wb')
+[units,typs,nams]=file()
+file('close',u1);
+mclose(u2);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="save">save</link></member>
+
+      <member><link linkend="load">load</link></member>
+
+      <member><link linkend="write">write</link></member>
+
+      <member><link linkend="read">read</link></member>
+
+      <member><link linkend="writb">writb</link></member>
+
+      <member><link linkend="readb">readb</link></member>
+
+      <member><link linkend="uigetfile">uigetfile</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+
+      <member><link linkend="mclose">mclose</link></member>
+      
+      <member><link linkend="file">file</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

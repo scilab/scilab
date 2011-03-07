@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="whos">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>whos</refname>
+    <refpurpose>長い形式で変数のリストを得る</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>whos()
+whos -type typ
+whos -name nam</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>typ</term>
+        <listitem>
+          <para>指定する変数型の名前 (typeof参照)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nam</term>
+        <listitem>
+          <para>指定する名前の先頭文字</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>whos()</literal> は,カレントの全ての変数の名前,型および使用メモリを表示します.</para>
+    <para><literal>whos -type typ</literal> は,
+	指定した型のカレントの全変数を表示します.</para>
+    <para><literal>whos -name nam</literal> は
+	名前が<literal>nam</literal>から始まる全変数を表示します.</para>
+    <para>注意 : 変数がグローバルの場合, 型の前に * が出力されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+lines(0) 
+whos()
+whos -type boolean
+whos -name %
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="who">who</link>
+      </member>
+      <member>
+        <link linkend="who_user">who_user</link>
+      </member>
+      <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

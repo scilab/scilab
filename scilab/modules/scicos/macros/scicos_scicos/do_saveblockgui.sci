@@ -20,6 +20,9 @@
 //
 
 function fname=do_saveblockgui(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   tit = ["Use .sci extension because GUI is a Scilab function"];
   fname = savefile('*.sci',emptystr(),tit)
 

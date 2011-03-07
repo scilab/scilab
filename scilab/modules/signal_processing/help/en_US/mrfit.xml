@@ -70,8 +70,8 @@ frespfit=repfreq(Gid,w);
 plot2d([w',w'],[mag(:),abs(frespfit(:))])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cepstrum">cepstrum</link>

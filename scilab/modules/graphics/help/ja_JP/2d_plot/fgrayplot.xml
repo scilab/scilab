@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fgrayplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fgrayplot</refname>
+    <refpurpose>関数により定義される曲面のカラー二次元プロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>fgrayplot(x,y,f,[strf,rect,nax])
+fgrayplot(x,y,f,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>実数行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>外部ルーチン,形式は <literal>y=f(x,y)</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;  </term>
+        <listitem>
+          <para>一連の命令 <literal>key1=value1, key2=value2</literal>,... を表し,
+	<literal>key1</literal>, <literal>key2,...</literal> には以下のどれかを指定できます: 
+	rect, nax, strf または axesflag および frameflag (<literal>plot2d</literal>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf,rect,nax</term>
+        <listitem>
+          <para><literal>plot2d</literal>参照.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>fgrayplot</literal> は,
+	<literal>x</literal> および <literal>y</literal>で定義された
+	グリッド上で<literal>z=f(x,y)</literal>により指定された曲面の
+	2次元プロットを作成します.
+	グリッド上の角矩形は各矩形のコーナの<literal>z</literal>
+	平均値に基づきグレーまたはカラーの色で塗りつぶされます.
+	</para>
+    <para>
+    コマンド <literal>fgrayplot()</literal> を入力すると,デモが表示されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+t=-1:0.1:1;
+deff("[z]=my_surface(x,y)","z=x**2+y**2")
+fgrayplot(t,t,my_surface,rect=[-2,-2,2,2])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="grayplot">grayplot</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+      <member>
+        <link linkend="Sfgrayplot">Sfgrayplot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cheb1mag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cheb1mag</refname>
+    <refpurpose>1形チェビシェフフィルタの応答</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[h2]=cheb1mag(n,omegac,epsilon,sample)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>整数 : フィルタ次数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>omegac</term>
+        <listitem>
+          <para>実数 :カットオフ周波数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>epsilon</term>
+        <listitem>
+          <para>実数  : 通過域のリップル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sample</term>
+        <listitem>
+          <para><literal>cheb1mag</literal>を評価する周波数のベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h2</term>
+        <listitem>
+          <para>サンプル点におけるチェビシェフI形フィルタ</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    1形チェビシェフフィルタの二乗振幅応答.</para>
+    <para><literal>omegac</literal>=通過域のエッジ.</para>
+    <para><literal>epsilon</literal>は
+	<literal>1/(1+epsilon^2)</literal>=通過域のリップル,となるような
+		値です.</para>
+    <para><literal>sample</literal>は二乗振幅応答を求める周波数のベクトルです.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//チェビシェフ; 通過域のリップル
+n=13;epsilon=0.2;omegac=3;sample=0:0.05:10;
+h=cheb1mag(n,omegac,epsilon,sample);
+plot2d(sample,h)
+xtitle('','frequencies','magnitude')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="buttmag">buttmag</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

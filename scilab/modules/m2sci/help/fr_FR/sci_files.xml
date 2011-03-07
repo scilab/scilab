@@ -220,8 +220,8 @@
   aux plus compliqués (e.g. sci_zeros.sci).
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="m2scideclare">m2scideclare</link>

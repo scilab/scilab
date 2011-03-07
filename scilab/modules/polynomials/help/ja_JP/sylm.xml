@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sylm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sylm</refname>
+    <refpurpose>シルベスタ行列</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[S]=sylm(a,b)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>a,b</term>
+        <listitem>
+          <para>多項式</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>sylm(a,b)</literal> は,多項式<literal>a</literal>および<literal>b</literal>
+	に関連するシルベスタ行列,すなわち,
+	以下のような行列<literal>S</literal>を出力します:</para>
+    <para><literal>coeff( a*x + b*y )' = S * [coeff(x)';coeff(y)']</literal>.</para>
+    <para>
+    <literal>S</literal>の次元は<literal>degree(a)+degree(b)</literal>に等しくなります.</para>
+    <para>
+    <literal>a</literal> および<literal>b</literal>が規約分解多項式の場合,</para>
+    <para><literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> となります.
+	また,以下の命令は,
+	</para>
+    <programlisting role = ""><![CDATA[ 
+u = sylm(a,b) \ eye(na+nb,1)
+x = poly(u(1:nb),'z','coeff')
+y = poly(u(nb+1:na+nb),'z','coeff')
+ ]]></programlisting>
+   <para>べズー分解,つまり,
+	<literal>a*x+b*y = 1</literal>となるような最小次数の
+	<literal>x</literal> および <literal>y</literal>を計算します.</para>
+  </refsection>
+</refentry>

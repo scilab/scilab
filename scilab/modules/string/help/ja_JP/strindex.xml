@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="strindex" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-06 16:57:13 +0200 (Mon, 06 Febrary
+    2008)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>strindex</refname>
+
+    <refpurpose>他の文字列の中で指定した文字列の位置を探す.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>ind=strindex(haystack,needle,[flag])
+[ind,which]=strindex(haystack,needle,[flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>haystack</term>
+
+        <listitem>
+          <para>文字列. 
+          <literal>needle</literal>が現れる場所を探す文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>needle</term>
+
+        <listitem>
+          <para>文字列または文字列ベクトル. 
+          <literal>haystack</literal>で探す文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ind</term>
+
+        <listitem>
+          <para>インデックスのベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>which</term>
+
+        <listitem>
+          <para>インデックスのベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>文字列("r" の場合は正規表現)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>strindex</literal> は,
+	<literal>haystack</literal>の中で<literal>needle(i)</literal>が
+	見つかった場所のインデックスを探します</para>
+
+    <para>各<literal>k</literal>に関して,
+	<literal>part(haystack,ind(k)+(0:length(needle(i))-1))</literal>
+	が<literal>needle(i)</literal>と同じ文字列となるよな
+	<literal>i</literal>が存在します.
+	<literal>which</literal>引数が必要な場合,
+	これにはこれらの<literal>i</literal>が含まれる必要があります.
+	3番目のパラメータ "r" を指定する場合,
+	needle は正規表現の文字列とする必要があります.
+	この場合, strindex は正規表現式の規則に基づき haystack に
+	一致されます.</para>
+
+    <para>正規表現式引数を指定しない<literal>strindex</literal>は
+	Knuth-Morris-Prattアルゴリズムに基づきます.</para>
+
+    <para>このアルゴリズムは Scilab 4.x で使用されるものよりも
+	より強力です. いくつかの特殊なケースでは,結果が異なることがあります.</para>
+
+    <para>例:</para>
+
+    <para>// scilab 5.x</para>
+
+    <para>--&gt;[k,w]=strindex('aab',['a','ab'])</para>
+
+    <para>w = 1. 1. 2. k = 1. 2. 2.</para>
+
+    <para>// scilab 4.x</para>
+
+    <para>--&gt;[k,w]=strindex('aab',['a','ab'])</para>
+
+    <para>w = 1. 1. k = 1. 2.</para>
+
+    <para>正規表現の規則はPerl言語に似ていますT. 使い始めるには,
+	<ulink
+    url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>を参照してください.
+    より詳細なチュートリアルについては <ulink
+    url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
+	を参照ください.
+	リファレンスについては, <ulink
+    url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
+	を参照してください</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+k=strindex('SCI/demos/scicos','/')
+k=strindex('SCI/demos/scicos','SCI/')
+k=strindex('SCI/demos/scicos','!')
+k=strindex('aaaaa','aa') 
+k=strindex('SCI/demos/scicos',['SCI','sci'])
+[k,w]=strindex('1+3*abc/2.33',['+','-','*','/'])
+k=strindex('2' ,'/2(]*)?$\1/' ,'r') 
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="strings">strings</link></member>
+
+      <member><link linkend="regexp">regexp</link></member>
+
+      <member><link linkend="strsubst">strsubst</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

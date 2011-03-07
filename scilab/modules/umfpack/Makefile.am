@@ -12,13 +12,13 @@ modulename=umfpack
 
 pkglib_LTLIBRARIES = libsciumfpack.la
 
-libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
-libsciumfpack_la_root_DATA = changelog.txt \
+libsciumfpack_la_root_DATA =  \
 license.txt \
-readme.txt \
+ \
 version.xml \
 TAUCS_license.txt \
 UMFPACK_license.txt

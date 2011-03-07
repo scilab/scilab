@@ -20,6 +20,9 @@
 //
 
 function sz=getportsiz(o,prt_number,typ)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   sz=[]
   typs=['in','out','evtin','evtout']
   k=find(typ==typs)

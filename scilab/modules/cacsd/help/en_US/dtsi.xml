@@ -64,8 +64,8 @@
     <para><literal>G = Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal></para>
     <para><literal>G</literal> can be given in state-space form or in transfer form.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

@@ -92,8 +92,8 @@ Level = exp(-(F_neigh - F_current)/max(T,%eps));
   </refsection>
 
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member>

@@ -66,8 +66,8 @@ s = emptystr(m, n)</synopsis>
 x=emptystr();for k=1:10, x=x+','+string(k);end
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="part">part</link>

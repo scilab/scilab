@@ -20,6 +20,9 @@
 //
 
 function [Tree,windows] = do_navigator(scs_m,windows)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 // build the tree representation
 y0 = 0    ;

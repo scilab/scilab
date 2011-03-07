@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bin2dec" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bin2dec</refname>
+
+    <refpurpose>2進表現を整数に変換します</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y=bin2dec(str)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>
+          文字 '1' および '0'のみを含む文字列または
+	文字列のベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>正の整数のスカラーまたはベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>2進文字列<literal>str</literal> を指定すると, この関数は,
+	その2進表現が<literal>str</literal>となるような
+	10進数 <literal>y</literal> を返します.
+	( <literal>y</literal> と
+    <literal>str</literal> の大きさは同じになります).</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// example 1 :
+// '1010110' : is the binary representation of 86 
+str='1010110';
+y=bin2dec(str)
+
+// example 2 :
+// '1011011' : is the binary representation of 91 
+// '1010010' : is the binary representation of 82
+str=['1011011'; '1010010']
+y=bin2dec(str)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="base2dec">base2dec</link></member>
+
+      <member><link linkend="oct2dec">oct2dec</link></member>
+
+      <member><link linkend="hex2dec">hex2dec</link></member>
+
+      <member><link linkend="dec2bin">dec2bin</link></member>
+
+      <member><link linkend="dec2oct">dec2oct</link></member>
+
+      <member><link linkend="dec2hex">dec2hex</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

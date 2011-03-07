@@ -44,8 +44,8 @@
     <para> Remove sigleton dimensions of a hypermatrix, that is any dimension for
      which the size is 1. If the input is a matrix, it is unaffected.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hypermat">hypermat</link>

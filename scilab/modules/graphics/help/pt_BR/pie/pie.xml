@@ -102,8 +102,8 @@ pie([3 4 6 2],[0 1 0 0],["parte 1","parte 2","parte 3","parte 4"]);
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="xfpolys">xfpolys</link></member>

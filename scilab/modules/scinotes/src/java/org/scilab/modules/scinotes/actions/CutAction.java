@@ -28,7 +28,6 @@ import org.scilab.modules.scinotes.ScilabEditorPane;
  * CutAction Class
  * @author Bruno JOFRET
  * @author Calixte DENIZET
- *
  */
 public final class CutAction extends DefaultAction {
 
@@ -50,15 +49,17 @@ public final class CutAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        String selection = getEditor().getTextPane().getSelectedText();
-        if (selection != null) {
-            CopyAsHTMLAction.HTMLSelection sel = new CopyAsHTMLAction.HTMLSelection((ScilabEditorPane) getEditor().getTextPane(), selection, false);
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
-            ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
-            doc.mergeEditsBegin();
-            getEditor().getTextPane().replaceSelection("");
-            doc.mergeEditsEnd();
-        }
+        ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+        doc.mergeEditsBegin();
+        if (!getEditor().getTextPane().copyColumnSelectionInClipBoard() || !getEditor().getTextPane().removeColumnSelection()) {
+	    String selection = getEditor().getTextPane().getSelectedText();
+	    if (selection != null) {
+		CopyAsHTMLAction.HTMLSelection sel = new CopyAsHTMLAction.HTMLSelection((ScilabEditorPane) getEditor().getTextPane(), selection, false);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
+		getEditor().getTextPane().replaceSelection("");
+	    }
+	}
+	doc.mergeEditsEnd();
     }
 
     /**

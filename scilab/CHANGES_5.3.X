@@ -1,7 +1,449 @@
+            Changes between version 5.3.1 and 5.3.2 of Scilab
+            =================================================
+
+
+Scinotes:
+=========
+
+* bug 9047 fixed - edit('foo',12) now opens the function foo 12 lines after the
+                   definition of foo.
+
+Xcos:
+=====
+
+* Update the documentation with examples of the blocks and their translations to
+French:
+- OUT_f - Regular Output Port
+- IN_f - Regular Input Port
+- Modulo_Count - Modulo counter (0 to N counter)
+- OUTIMPL_f - Output implicit port
+- CLKINV_f - Input activation port
+- CLKOUTV_f - Output activation port
+- INIMPL_f - Implicit Input port
+- Counter
+
+* bug 9122 fixed - Java check failed on diagram validation.
+
+Compilation:
+============
+
+* Option --without-scicos renamed to --without-xcos
+
+* Option --without-ocaml renamed to --without-modelica
+
+* Update the detection of Jgoodies / looks.
+
+* Bug 7049 fixed - jgraphx version was checked even if the --without-xcos
+                   flag is set.
+
+* Bug 9018 fixed - --without-xcos disabled the detection of jhdf5 but was still
+                   building xcos.
+
+
+Bug fixes:
+==========
+
+* bug 5687 fixed - The window title of a figure was not immediately updated when
+                   figure_name was changed.
+
+* Bug 8423 fixed - With certain options of the configure, the build process
+                   failed.
+
+* bug 9113 fixed - setlookandfeel could lead to an exception.
+
+* bug 9121 fixed - Doc generation did not fail when an invalid image was met.
+
+* bug 9126 fixed - Some new files of the module/toolbox skeleton introduced in
+                   Scilab 5.3.1 were not installed.
+
+* bug 9128 fixed - In help page of dir(), infos about bytes field were missing.
+
+
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
 
-Removed functions (previously declared as obsolete):
+
+Three main improvements particularly deserve to be enlightened with Scilab 5.3.1:
+* Improvements of the current features, mainly focusing on usability, better user
+  experiences  and stabilization.
+* Consolidation of the undertaken efforts with Scilab documentation (content,
+  integration with Scilab and Xcos, etc).
+* Integration of the Japanese documentation into the Scilab distribution.
+  Thanks to Rui Hirokawa.
+
+
+Console:
+========
+
+* Scilab provides an on-the-fly rendering when a LaTeX expression is being typed.
+
+* The console can now be scrolled with Page Up/Down keyboard keys.
+  See bug #6251.
+
+* Performance improvements on the display of long computation with a lot of
+  output (the more text was entered in the console, the slower was the display).
+  See bug #4840.
+
+* Evaluate Selection With Echo/No Echo Right click options added in
+  the console.
+  See bug #8749.
+
+
+Documentation:
+==============
+
+* Homepage added in the help browser to highlight the new features of Scilab
+  and list the online available resources.
+
+* Add the capability to increase or decrease font size.
+  Shortcuts under Windows and Linux: CTRL + + / CTRL + - or CTRL + mouse wheel
+  increases/decreases.
+  Shortcuts under Mac OS X: CMD + + / CMD + - or CMD + mouse wheel
+  increases/decreases.
+
+
+* Add an incremental search bar to search for text in the browser.
+  Shortcut under Windows and Linux: CTRL + F
+  Shortcut under Mac OS X: CMD + F
+
+* Enable the creation of links in between external modules with the following
+  syntax:
+<link type="scilab" linkend="mytoolbox/exec/macros/fooexec.sce">macros/fooexec.sce</link>
+
+* Enable the creation of links between an external module and Scilab main documentation
+  with the following syntax:
+<link type="scilab" linkend="scilab/help/bvode">bvode</link>
+
+* Enable the execution and the edition of any Scilab example.
+
+* Enable the execution of demos with the following syntax:
+<link type="scilab" linkend="scilab/demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link>
+
+* Enable the opening of a Xcos diagram from the help browser:
+<link type="scilab" linkend="scilab.xcos/xcos/demos/bounce.xcos">Open bounce.xcos</link>
+
+* Enable the opening of Scilab macros with Scinotes from the help browser:
+<link type="scilab" linkend="scilab.scinotes/elementary_functions/macros/log2.sci">Edit log2.sci</link>
+
+* "See also" links to other interesting functions now display the corresponding
+  function description.
+
+* In the documentation, Java, C, C++ and XML codes are now colorized if the role
+  in the program listing is set (role='java', role='c', role='cpp' or role='xml').
+
+* The categories "Bitwise", "Elementary matrices", "Matrix manipulation",
+  "Matrix operations", "Set operations", "Signal processing", "Symbolic",
+  "Search and sort" have been created for the elementary functions module.
+
+* Help pages for the bitxor, bitcmp, bitget and bitset functions have been
+  created.
+
+* In documentation's examples, when an undocumented function is used,
+  a warning is displayed and there is no link on that function name.
+
+* bug 3716 fixed - There was no "find text" option in the right area of
+  the help window.
+
+* bug 5362 fixed - There were problems with the same xml:id when different
+  cases were used.
+
+* bug 5511 fixed - printf_conversion help page was unclear.
+
+* bug 5796 fixed - No way to increase/decrease font size.
+
+* bug 6514 fixed - 'help %k' did not open the correct corresponding
+  help file.
+
+* bug 7069 fixed - Former documentation about the documentation build process
+  was removed.
+
+* bug 8463 fixed - scilab PDF (fr_FR and pt_BR) were not fully generated.
+
+* bug 8677 fixed - The factorial function was not documented.
+
+* bug 8690 fixed - Typo fixed in min French help page.
+
+* bug 8756 fixed - The file id was only expected in refentry which caused
+  xmltojar not to process XML files.
+
+* bug 8915 fixed - ASCII art removed in histplot help page.
+
+* bug 8937 fixed - The tag <screenshot> was not handled.
+
+* bug 9019 fixed - dsearch help page was unaccurate.
+
+
+Xcos:
+=====
+
+* Many improvements on Xcos English documentation (better description
+  of the blocks, arguments, examples, etc).
+  For now, functions such as EXTRACTBITS, DLATCH, DFLIPFLOP, INTMUL,
+  SRFLIPFLOP, CONVERT, BITSET, BITCLEAR, etc have been fully documented
+  and provided with examples of use.
+  Many thanks to Bernard Dujardin.
+
+* Capability added to display directly Xcos sample schemas from the help browser.
+
+* Beginning of the French translation of Xcos documentation.
+  Thanks to Bernard Dujardin.
+
+* Improvements of error reporting.
+
+* The demos have been updated to use the latest features.
+
+* Most of the old user interface for Xcos/Scicos control functions are now
+  deprecated and will be removed in Scilab 5.4.0.
+  See bug #7232.
+
+* bug 5346 fixed - Title was not used as default file name.
+
+* bug 5680 fixed - Labels were not visible by default.
+
+* bug 6705 fixed - When drag and drop was used, port alignment was not correct.
+
+* bug 7194 fixed - Block UUID could not be used on a block implementation.
+
+* bug 7363 fixed - Linking CBLOCKs implementation with an external library was
+                   impossible.
+
+* bug 7424 fixed - Integer parameters could not be modified when loading a diagram.
+
+* bug 7639 fixed - Generating code for Scilab function block was failing with
+                   a syntax error message.
+
+* bug 7953 fixed - No error message was displayed when the diagram was invalid.
+
+* bug 8042 fixed - After a region to superblock action, the ports were wrongly
+                   positioned.
+
+* bug 8064 fixed - Without the grid, a SplitBlock could not be moved.
+
+* bug 8223 fixed - Xcos did not produce a visible error when Saxon was used as
+                   XML DOM implementation.
+
+* bug 8235 fixed - Using masked superblock did not work when parameters were
+                   defined in the inner-context.
+
+* bug 8440 fixed - The SVG background was not exported to SVG.
+
+* bug 8480 fixed - The Debug block did not have a valid function type.
+
+* bug 8580 fixed - Mirror and flip icons were inverted.
+
+* bug 8639 fixed - Simulations did not stop at Xcos close.
+
+* bug 8642 fixed - The getDiagramVersion unit test failed.
+
+* bug 8644 fixed - Example added to define customed block.
+
+* bug 8658 fixed - Accentuated characters use on file name lead to a Modelica
+                   compiler error.
+
+* bug 8674 fixed - xcosShowBlockWarning was not protected against arbitrary
+                   arguments.
+
+* bug 8696 fixed - An exception was thrown while linking and deleting the
+                   source block.
+
+* bug 8711 fixed - The "Cont. Plant-Hybrid Observer" demo contained a translated
+                   origin point which led to strange links creation.
+
+* bug 8731 fixed - Copied superblocks lost some graphical settings.
+
+* bug 8737 fixed - Compilation failed when a diagram contained any hidden links
+                   (wrong indexes issues).
+
+* bug 8740 fixed - In the Modelica initialization GUI, discrete parameters were
+                   not added to the unknown sum.
+
+* bug 8741 fixed - In the Modelica initialization GUI, the "fixed" checkbox
+                   disabled some fields.
+
+* bug 8743 fixed - In the Modelica initialization GUI, the fixing states did
+                   not de-fix derivatives.
+
+* bug 8798 fixed - The context parameter of scicos_simulate was not taken into
+                   account.
+
+* bug 8818 fixed - Generic Modelica blocks did not transform Scilab exponential
+                   notation into Modelica one.
+
+* bug 8822 fixed - Remove an implicit link connected to a split block could lead
+                   to an unconnectable port.
+
+* bug 8867 fixed - Unconnected links could not be deleted.
+
+* bug 8870 fixed - TKSCALE block did not work without TCL.
+
+* bug 8884 fixed - Using region to superblock with ports on the same position
+                   was resulting to a non-reconnected link.
+
+* bug 8896 fixed - Under Windows, a multi-line context could not be edited twice.
+
+* bug 8945 fixed - Blocks did not update their shape on parameters update.
+
+* bug 8952 fixed - "lincos" did not produce a valid error message when the
+                   diagram had no inputs nor outputs.
+
+
+Scinotes:
+=========
+
+* Refactorization of the printing.
+
+* Add the capability to export code to PDF, PS, EPS and RTF.
+
+* Name of the current function and position (line, column) are now displayed
+  in the status bar of Scinotes.
+
+* Replace CTRL key by META key under Mac OS X.
+
+* A rectangular selection tool is now available. CTRL+selection
+  (under Windows and Linux) and CMD+selection (under Mac OS X) activates it.
+  This improves the selection action (of data for example).
+
+* "edit" function can now open a file at a given line number.
+  See bug #9047
+
+* Content assist:
+  * An identifier is now shown in the text editor when a wrong variable is typed.
+  * When typing a closing char (e.g. ')',']',...), user do not need to insert it
+    again (like in Eclipse).
+
+* bug 8095 fixed - With OpenJDK, the size of the dialog 'Set colors' was bad.
+
+* bug 8697 fixed - An exception was thrown when an empty document was reload.
+
+* bug 8709 fixed - Default font had no Japanese glyphs.
+
+* bug 8714 fixed - Problem was encountered with Incremental Search bar when
+  Code Navigator was docked.
+
+* bugs 8715, 8716 fixed - Problems with dnd'ed tabs.
+
+* bug 8764 fixed - File permissions were not checked.
+
+* bug 8885 fixed - Anchors were removed on a Replace All action.
+
+* bug 9000 fixed - '1+..' was not correctly colorized.
+
+
+New Functions
+=============
+
+* 'repmat' function added. This function replicates and tiles a matrix.
+  See SEP #49.
+
+
+Graphics:
+=========
+
+* Fix a critical bug in the graphic rendering which was crashing Scilab.
+  This bug was occuring on some buggy drivers (Intel HD graphics for example).
+  See bug #7526 for more information.
+
+* bug 2913 fixed - In the histplot function, the legend was displayed over the
+                   graphic.
+
+* bug 4818 fixed - It was not possible to export a figure with a lot of circle
+                   marks.
+
+* bug 7509 fixed - Update of the legend help page regarding some previous
+                   changes.
+
+* bug 7526 fixed - Scilab crashed under Windows and Intel HD graphics cards
+                   while executing a plot command.
+
+* bug 7836 fixed - The sub_tics property was not correctly tracking the number
+                   of displayed sub-ticks. Thanks to Paul Griffiths for the patch.
+
+* bug 7990 fixed - Box thickness was badly exported in vectorial formats
+                   (SVG/PDF/...). Thanks to Paul Griffiths for the patch.
+
+* bug 8163 fixed - datatipToggle could not be called without argument as
+                   stated in the help page.
+
+* bug 8518 fixed - When graphic export failed, error messages were not
+                   clear.
+
+* bug 8766 fixed - For small input matrices, the "Matplot1" function was not
+                   correctly taking into account its rectangle argument.
+
+* bug 8786 fixed - When entering wrong input arguments in 'getcolor' function,
+                   the error message had no sense.
+
+
+GUI:
+====
+
+* user_data for a uimenu was not displayed.
+
+* bug 8203 fixed - It was not possible to close the font chooser or the
+                   color chooser with the escape key.
+
+* bug 8717 fixed - Bad window's title just after creation.
+
+* bug 8793 fixed - 'waitbar' function crashed when the handle was not initialized.
+
+* bug 8826, 8827 fixed - userdata property for a menu crashed Scilab.
+
+* bug 8838 fixed - uimenu without input argument crashed Scilab.
+
+
+Statistics:
+==========
+
+* bug 8560 fixed - The grand function failed on 64 bits machines.
+
+
+Optimization:
+=============
+
+* Improvement of the karmarkar linear optimization solver:
+  * User can configure an output function.
+  * The number of iterations can be put as an output argument.
+  * x0 can be put as an optional argument.
+  * Management of inequality constraints.
+  * Management of bounds.
+  * Computation of the exitflag.
+  * Computation of the Lagrange multipliers.
+  * Documentation provided for the rtolf and gam parameters.
+  * Documentation provided for the stopping rule.
+  * More examples provided.
+
+* bug 7193 fixed - The karmarkar help page did not document the
+                   eps, gamma, and crit arguments.
+
+* bug 8719 fixed - The karmarkar function printed unwanted messages.
+
+* bug 8720 fixed - The karmarkar function stopped too early in the iterations.
+
+* bug 8726 fixed - The karmarkar function produced a division-by-zero error.
+
+* bug 8727 fixed - The karmarkar function required the initial guess x0.
+
+* bug 8775 fixed - The karmarkar function did not detect unbounded problems.
+
+
+File I/O:
+=========
+
+* mkdir is now able to create recursively directories.
+  See bug #8529.
+
+
+Obsolete Functions:
+===================
+
+* 'loadScicosLibs' is obsolete and will be removed on 5.4.0, please use
+  'loadXcosLibs' instead.
+
+* ilib_for_link, ilib_build will not accept files with ".o" or ".obj" extensions
+  for source files in Scilab 5.4.0.
+
+
+Removed Functions (previously declared as obsolete):
 ====================================================
 
 * 'maxi' removed. Please use 'max' instead.
@@ -17,50 +459,39 @@ Removed functions (previously declared as obsolete):
   Please use 'besseli', 'besselj', 'besselk' and 'bessely' instead.
 
 
-Documentation:
+Javasci:
+========
+
+* Bug 8807 fixed - Javadoc of javasci v2 was not installed under GNU/Linux and
+                   Mac OS X.
+
+
+Demonstration:
 ==============
 
-* In an example in the documentation, when an undocumented function is used, 
-trigger a warning and do not add a link on the function name.
+* A demonstration (Non isothermal plug flow reactor model) of ode usage has been
+  added. Thanks to Jakub Kopac.
 
-* bug 7069 fixed - Old documentation about the documentation build process
-                   removed.
 
-Scinotes:
-=========
+Module Skeleton:
+================
 
-* Name of the current function and position (line, column) are now displayedno
-in the status bar of Scinotes.
+* New example added (function with copy instead of reference).
 
-* A bad identifier is now shown in the text editor.
 
 Localization:
 =============
 
 * bug 8096 fixed - With Russian localization, the banner was not centered.
 
-Graphics:
-=========
 
-* bug 4818 fixed - It was not possible to export a figure with a lot of circle
-                   marks.
+Installer:
+==========
 
-* bug 7509 fixed - Update of the legend help page regarding some previous
-                   changes.
+* bug 8825 fixed - Mac OS X installer reported a wrong version of Scilab.
 
-* bug 7836 fixed - The sub_tics property was not correctly tracking the number
-                   of displayed sub-ticks. Thanks to Paul Griffiths.
 
-* bug 8518 fixed - When graphic export failed, some error messages were not
-                   clear.
-
-GUI:
-====
-
-* bug 8203 fixed - It was not possible to close the fontchooser or the 
-                   colorchooser with the escape key.
-
-Quality assurance:
+Quality Assurance:
 ==================
 
 * C/C++/Fortran test coverage available on the Scilab source code.
@@ -68,11 +499,41 @@ Quality assurance:
   Start the unitary tests or launch Scilab
   "make code-coverage" creates the report into "/coverage/results/"
 
+* Using the configure with the option "--enable-compilation-tests" launchs Java
+  unitary tests (based on TestNG).
+
+* bug 6684 fixed - Some Xcos unitary tests encountered problems at native
+                   libraries loading.
+
+* bug 6873 fixed - A jar file was not available when testng was called.
+
 
 Compilation:
 ============
 
-* -Wimplicit removed for gfortran in the enable debug mode
+* -Wimplicit removed for Gfortran in the enable debug mode
+
+* Intel Compiler XE 2011 update 1 C++/Fortran used to build Scilab under Windows.
+
+* Upgrade to autoconf 2.67
+
+* Update of JLaTeXMath to version 0.9.4
+
+* Bug 3196 fixed - Minimal version of pcre (7.2) was not checked by the
+                   configure
+
+* Bug 8053 fixed - For an unknown reason, libtool refused to set the Wl flag
+                   when the Gfortran compiler was set as
+                   ./configure F77=gfortran
+
+* Bug 8961 fixed - Ubuntu 11.04 explicitly forced the as-needed option to the
+                   linker. It has been disabled.
+
+
+Dynamic link:
+=============
+
+* Intel Fortran Composer XE 2011 (12) used by default if it is detected.
 
 
 Scilab:
@@ -82,11 +543,89 @@ Scilab:
   the one from the source tree.
 
 
-Bug fixes:
+
+Bug Fixes:
 ==========
 
-* bug 7691 fixed - Giving complex arguments to inverse degree trigonometric 
+* bug 476  fixed - find did not work when there were more output arguments
+                   than matrix dimensions.
+
+* bug 4930 fixed - When the console was resized from 0-height to x-height,
+                   lines() were not correctly updated.
+
+* bug 5551 fixed - With the function dir(), add a trailing filesep() for each
+                   directory.
+
+* bug 6884 fixed - Issues with the buttmag help page fixed.
+
+* bug 7152 fixed - It was not possible to export LaTeX in SVG.
+
+* bug 7377 fixed - Thrownan failed on empty matrix.
+
+* bug 7691 fixed - Giving complex arguments to inverse degree trigonometric
                    functions produced inconsistent results.
+
+* bug 8007 fixed - Hit UP key when the message 'Continue display...' was
+                   displayed could lead to a crash.
+
+* bug 8383 fixed - "void" and "undefined" items in list were not saved by
+                   import and export hdf5 functions.
+
+* bug 8435 fixed - squarewave(t) failed for t<0. Thanks to Samuel Gougeon for
+                   the fix.
+
+* bug 8478 fixed - A searched path was missing for docbook xsl under Gentoo.
+
+* bug 8492 fixed - When the documentation was generated, error messages were not
+                   displayed in the console but in the terminal.
+
+* bug 8563 fixed - Scilab under GNU/Linux 64 bit was unable to load files bigger
+                   than 2GB.
+
+* bug 8732 fixed - strchr and strrchr did not work with a non-ASCII character
+                   needle.
+
+* bug 8765 fixed - A(1:N,j)=[] returned wrong values if N>size(A,1).
+
+* bug 8783 fixed - loadmatfile could not load hyper matrices of integer types.
+
+* bug 8789 fixed - read function crashed under Windows XP 64 bit platform.
+
+* bug 8809 fixed - Bad top link in the chm files.
+
+* bug 8820 fixed - squeeze function returned 2D hyper matrix instead of regular
+                   2D array function also extended to all array types included
+                   cells ans structs.
+
+* bug 8828 fixed - "savematfile" could no more save a structure.
+
+* bug 8830 fixed - In call_scilab, TerminateScilab did not clear the last
+                   error.
+
+* bug 8836 fixed - fileparts crashed when a matrix of strings was given as
+                   input argument.
+
+* bug 8837 fixed - fscanfMat did not read a malformatted text with many blanks
+                   at the end of file.
+
+* bug 8845 fixed - An example in call_scilab module with Visual Studio has been
+                   rewritten to use api_scilab.
+
+* bug 8854 fixed - warning about bug 7575 disabled for new Nvidia drivers.
+
+* bug 8897 fixed - Typo fixed.
+
+* bug 8906 fixed - Bad links to javasci javadoc on the website.
+
+* bug 8912 fixed - fullpath did not return same result under Windows and Linux.
+
+* bug 8919 fixed - Typo fixed.
+
+* bug 8954 fixed - Print the console led to an exception.
+
+* bug 9034 fixed - atomsVersionCompare failed on version with '-0'.
+
+* bug 9096 fixed - Sometimes an exception was thrown at the Scilab's startup.
 
 
             Changes between version 5.3.0-beta-5 and 5.3.0 of Scilab
@@ -107,7 +646,7 @@ Xcos:
 
 * bug 8407 fixed - The blocks was always resized after a parameters edition.
 
-* bug 8441 fixed - "xcos_block" abstract block were not removed on the 
+* bug 8441 fixed - "xcos_block" abstract block were not removed on the
                    compilation.
 
 * bug 8483 fixed - Multiplying a scalar and vector using the MATMUL block did not
@@ -202,7 +741,10 @@ Bug Fixes:
 
 * bug 8598 fixed - Fix a typo in the french help page of "return".
 
+* bug 8601 fixed - An help page was misdiplayed when the title contains html tag.
+
 * bug 8611 fixed - Path of few images in documentation was bad.
+
 
 
             Changes between version 5.3.0-beta-4 and 5.3.0-beta-5 of Scilab
@@ -371,7 +913,7 @@ SciNotes:
 
 * Incremental search added with the shortcut: the F2 key.
 
-* Add a "Save file in..." menu which gives the possibility to save a file
+* Add a "Save file in..." menu which gives the capability to save a file
   in favorite directories.
 
 * bug 4399 fixed - It was not possible to distinguish lines from inner functions
@@ -460,6 +1002,9 @@ Bug Fixes:
                    help_from_sci.
 
 * bug 6942 fixed - Explicit dependency on the libX11 on scilab-cli was existing.
+
+* bug 7242 fixed - API Scilab returned bad address for named variables
+                   when name was provided by input arguments.
 
 * bug 7364 fixed - The "Checked" property misworked for uimenus and they could
                    not have a callback.
@@ -584,7 +1129,6 @@ Bug Fixes:
 
 * bug 8413 fixed - fscanfMat crashed when file included text lines at the
                    beginning.
-
 
          Changes between version 5.3.0-beta-3 and 5.3.0-beta-4 of Scilab
          ===============================================================
@@ -797,6 +1341,9 @@ Bug Fixes:
 
 * bug 7897 fixed - configure failed under FreeBSD (bashim)
 
+* bug 7907 fixed -  ilib_build, ilib_for_link, ... did not check 'files' input
+                    argument.
+
 * bug 7908 fixed - The number of values modified by scicos_getvalues could not
                    by more than 20. This value has been updated to 30
                    variables.
@@ -995,11 +1542,12 @@ Thanks to Samuel Gougeon.
 
 * bug 6910 fixed - The font size in LaTeX labels was too big.
 
-* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was problematic when
-                   fontUnits was 'normalized'.
+* bug 7137 fixed - In Text uicontrol, fontsize was rounded which was
+                   problematic when fontUnits was 'normalized'.
 
-* bug 7857 fixed - If an event_handler was previously assigned to a graphic window
-                   the datatips toogle tool icon had to be clicked twice to make it active.
+* bug 7857 fixed - If an event_handler was previously assigned to a graphic
+                   window the datatips toogle tool icon had to be clicked twice
+                   to make it active.
 
 
 Xcos:

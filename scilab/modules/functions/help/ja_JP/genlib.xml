@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="genlib">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>genlib</refname>
+    <refpurpose>指定したディレクトリの関数からライブラリを構築する </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>genlib(lib_name [[,dir_name, [ Force [,verb [,Names]]]])
+genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>lib_name:  </term>
+        <listitem>
+          <para>Scilab文字列.  (再)作成するライブラリの変数名.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dir_name:  </term>
+        <listitem>
+          <para>Scilab文字列. 
+	    <literal>.sci</literal>-ファイルを探すディレクトリの名前. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Force</term>
+        <listitem>
+          <para>論理値 (デフォルト値は <literal>%f</literal>). 
+	sci-ファイルの再コンパイルを強制的に行う場合,
+	<literal>%t</literal>に設定してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>verb</term>
+        <listitem>
+          <para>論理値 (デフォルト値は <literal>%f</literal>). 
+	情報を取得するには <literal>%t</literal> に設定してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Names</term>
+        <listitem>
+          <para>文字列のベクトルで, ライブラリに含まれる
+	関数の名前です.
+	デフォルトで全ての sci-ファイルが取得されます.
+	</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>dir_name</literal>にある各<literal>.sci</literal>ファイル
+	(または<literal>Names</literal>引数で指定されたファイルのみ)について,
+	<literal>genlib</literal>は<literal>exec</literal>を
+	実行し,対応する<literal>.bin</literal>ファイルに関数を保存します.
+	<literal>.sci</literal>ファイルにはScilab関数以外のものを含んでは
+	いけません.
+	ある<literal>.bin</literal>ファイルが対応する<literal>.sci</literal>ファイルよりも
+	新しい場合, <literal>genlib</literal>はこのファイルを変換/保存しません.</para>
+    <para>
+	このデフォルトの動作は<literal>force</literal>が指定され,
+	<literal>%t</literal> に設定された場合に変更できます.
+	この場合, 各<literal>.sci</literal>ファイル毎に常に再コンパイルが
+	行われます.</para>
+    <para>全ての<literal>.sci</literal> ファイルが処理された場合,
+	<literal>genlib</literal>は<literal>lib_name</literal>という
+	名前のライブラリ変数を作成し,
+	<literal>dir_name</literal>の中のファイル<literal>lib</literal>に
+	この変数を保存します.
+	Scilab変数
+      <literal>lib_name</literal>が保護されていない場合
+	(<link linkend="predef">predef</link>参照), 
+	この変数は更新されます.</para>
+    <para><literal>verbose</literal> に <literal>%t</literal>が
+	指定された場合, 構築処理中に情報が表示されます.</para>
+    <para>
+
+	<literal>dir_name</literal> 引数が指定されない場合に,
+	Scilab変数<literal>lib_name</literal>が存在し,
+	それがライブラリの場合,
+	dir_name は,
+	<literal>lib_name</literal>ライブラリパスに等しく
+	設定されます (更新モード).</para>
+  </refsection>
+  <refsection>
+    <title>制限</title>
+    <para>
+    Scilab は, ファイル<literal>foo.sci</literal>が,
+	少なくとも<literal>foo</literal>という名前の関数を
+	定義すると仮定します.
+	補助関数が含まれる場合,これらは
+	関数<literal>foo</literal>が参照された後でのみ
+	Scilabから既知となります.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getd">getd</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="lib">lib</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

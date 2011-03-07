@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="write" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>write</refname>
+
+    <refpurpose>フォーマットされたファイルに書き込む</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>write(file-desc,a,[format])
+write(file-desc,a,k,format)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file-desc</term>
+
+        <listitem>
+          <para>ファイル名を指定する文字列または論理ユニットを
+	指定する整数値 (file 参照).</para>
+
+          <para>この関数はUTFのファイル名をオープンすることができません.
+	この場合は mopen を使用してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>実数行列または文字列の列ベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>文字列, "Fortran" 形式を指定します. この文字列は
+	右括弧で始まり,左括弧で終わります.
+	形式には浮動小数点数, 整数または文字編集モードを混ぜることは
+	できません.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>整数ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	実数行列または文字列の列ベクトルを整形されたファイルに
+	行毎に書き込みます.
+	引数<literal>a</literal>の各行は,
+	<literal>file-desc</literal>ファイルの新しい行で始まります.
+	<literal>format</literal> に基づき
+	<literal>a</literal>引数の指定した行が
+	<literal>file-desc</literal>ファイルの複数行に書き込まれます.</para>
+
+    <para>Formatの例 : <literal>(1x,e10.3,5x,3(f3.0))</literal> ,
+    <literal>(10x,a20)</literal> ;</para>
+
+    <para>詳細はFortranブックを参照ください.</para>
+
+    <para>直接アクセスファイル :
+    <literal>x=write(file_desc,a,k,format)</literal>. ここで
+    <literal>k</literal> はレコードのベクトルです (行毎に1レコード, すなわち,
+    <literal>m=prod(size(k)</literal>)</para>
+
+    <para><literal>write(%io(2),....)</literal> は Scilabのウインドウを書き込みます.
+	この場合,<literal>format</literal>は
+	行列の各行について1行出力する必要があります.
+	この拘束条件が確認できない場合,予測できない結果となる可能性があります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+if getos() == 'Windows' then unix('del asave');
+else unix('rm -f asave'); end
+A=rand(5,3); write('asave',A); A=read('asave',5,3);
+write(%io(2),A,'('' | '',3(f10.3,'' | ''))')
+write(%io(2),string(1:10))
+write(%io(2),strcat(string(1:10),','))
+write(%io(2),1:10,'(10(i2,3x))')
+
+if getos() == 'Windows' then unix('del foo');
+else unix('rm -f foo'); end
+write('foo',A)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="read">read</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="fileinfo">fileinfo</link>
+      </member>
+      <member>
+        <link linkend="writb">writb</link>
+      </member>
+      <member>
+        <link linkend="print">print</link>
+      </member>
+      <member>
+        <link linkend="string">string</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="msprintf">msprintf</link>
+      </member>
+      <member>
+        <link linkend="fprintfMat">fprintfMat</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -28,8 +28,8 @@
 		La fonction demo_run exécute le script contenu dans le fichier donné en argument.
 		</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="exec">exec</link>

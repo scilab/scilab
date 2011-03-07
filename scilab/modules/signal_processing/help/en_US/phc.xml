@@ -96,8 +96,8 @@ s=s/2/%pi/.1;
 imag(s),
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="levin">levin</link>

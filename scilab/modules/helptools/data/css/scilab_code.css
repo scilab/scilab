@@ -1,96 +1,96 @@
-.comment {
+.scilabcomment {
  font-style: italic;
  color: #01a801
 }
 
-.default {
+.scilabdefault {
  font-style: normal;
  color: #000000
 }
 
-.special {
+.scilabspecial {
  font-style: normal;
  color: #ffaa00
 }
 
-.constants {
+.scilabconstants {
  font-style: normal;
  color: #da70d6
 }
 
-.operator {
+.scilaboperator {
  font-style: normal;
  color: #5c5c5c
 }
 
-.number {
+.scilabnumber {
  font-style: normal;
  color: #bc8f8f
 }
 
-.fkeyword {
+.scilabfkeyword {
  font-style: normal;
  color: #b01813
 }
 
-.skeyword {
+.scilabskeyword {
  font-style: normal;
  color: #a020f0
 }
 
-.ckeyword {
+.scilabckeyword {
  font-style: normal;
  color: #5f9ea0
 }
 
-.command {
+.scilabcommand {
  font-style: normal;
  color: #32b9b9
 }
 
-.macro {
+.scilabmacro {
  font-style: normal;
  color: #ae5cb0
 }
 
-a.command {
+a.scilabcommand {
  font-style: normal;
  text-decoration: underline;
  color: #32b9b9
 }
 
-a.macro {
+a.scilabmacro {
  font-style: normal;
  text-decoration: underline;
  color: #ae5cb0
 }
 
-.string {
+.scilabstring {
  font-style: normal;
  color: #bc8f8f
 }
 
-.id {
+.scilabid {
  font-style: normal;
  color: #000000
 }
 
-.inputoutputargs {
+.scilabinputoutputargs {
  font-weight: bold;
  color: #834310
 }
 
-.functionid {
+.scilabfunctionid {
  font-weight: bold;
  color: #000000
 }
 
-.field {
+.scilabfield {
  font-style: normal;
  color: #aaaaaa
 }
 
-.openclose {
+.scilabopenclose {
  font-style: normal;
  color: #4a55db
 }

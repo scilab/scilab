@@ -7,25 +7,25 @@
 // <-- JVM NOT MANDATORY -->
 ierr = execstr("a=zzzzzzz", "errcatch");
 if ierr <> 4 then bugmes();quit;end
-if lasterror() <> msprintf(_("Undefined variable: %s"), "zzzzzzz") then bugmes();quit;end
+if lasterror() <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
 ierr = execstr("a=zzzzzzz", "errcatch");
 if ierr <> 4 then bugmes();quit;end
 [str, n] = lasterror();
 if ierr <> n then bugmes();quit;end
-if str <> msprintf(_("Undefined variable: %s"), "zzzzzzz") then bugmes();quit;end
+if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
 ierr = execstr("a=zzzzzzz", "errcatch");
 if ierr <> 4 then bugmes();quit;end
 [str, n, l] = lasterror();
 if ierr <> n then bugmes();quit;end
 if l <> 1 then bugmes();quit;end
-if str <> msprintf(_("Undefined variable: %s"), "zzzzzzz") then bugmes();quit;end
+if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
 ierr = execstr("a=zzzzzzz", "errcatch");
 if ierr <> 4 then bugmes();quit;end
 [str, n, l, f] = lasterror();
 if ierr <> n then bugmes();quit;end
 if l <> 1 then bugmes();quit;end
 if f <> '' then bugmes();quit;end
-if str <> msprintf(_("Undefined variable: %s"), "zzzzzzz") then bugmes();quit;end
+if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
 ierr = execstr("a=zzzzzzz", "errcatch");
 [str2, n2, l2, f2] = lasterror(%f);
 if n2 <> n then bugmes();quit;end
@@ -42,3 +42,7 @@ if n4 <> 0 then bugmes();quit;end
 if l4 <> 0 then bugmes();quit;end
 if f4 <> '' then bugmes();quit;end
 if str4 <> [] then bugmes();quit;end
+ierr = execstr('a = lasterror(2);','errcatch');
+if ierr <> 999 then bugmes();quit;end
+ierr = execstr('a = lasterror([%t, %f]);','errcatch');
+if ierr <> 999 then bugmes();quit;end

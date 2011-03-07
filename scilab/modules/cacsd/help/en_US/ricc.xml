@@ -131,8 +131,8 @@ Ham=[F+G*Fit*H -G*Fit;-Fit*H Fit];
 norm(X2-X,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="riccati">riccati</link>

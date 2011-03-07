@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="axis_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>axis_properties</refname>
+    <refpurpose>axis エンティティプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Axisエンティティは,グラフィックエンティティ階層の葉です.
+	このエンティティは, axis のスケーリングおよび外観のパラメータを定義します.</para>
+    <variablelist>
+      <varlistentry>
+        <term>Axis プロパティ</term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>parent: </term>
+              <listitem>
+                <para>このプロパティには親のハンドルが含まれます.
+		axis エンティティの親は, <literal>"Axes"</literal>または
+		<literal>"Compound"</literal>となります.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>visible: </term>
+              <listitem>
+                <para>このフィールドにはエンティティの<literal>visible</literal>
+		プロパティの値が含まれます.
+		この値は, <literal>"on" </literal> または <literal>"off"</literal> です.
+		デフォルトでは, axis エンティティは可視 (visible)で,
+		このプロパティの値は<literal>"on"</literal>となります.
+		<literal>"off"</literal>の場合, その軸は画面に描画されません.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>tics_direction: </term>
+              <listitem>
+                <para>水平軸および垂直軸の下に描画される目盛の方向を指定します.
+		このプロパティには以下の値を指定可能です:</para>
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>"top"</literal>. この場合, 目盛は水平軸の上部に描画されます.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"bottom"</literal>. この場合, 目盛は水平軸の下部に描画されます.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"left"</literal>. この場合, 目盛は垂直軸の左に描画されます.
+               </para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"right"</literal>. この場合, 目盛は垂直軸の右に描画されます.
+                </para>
+                  </listitem>
+                </itemizedlist>
+                <para>デフォルト値は,水平軸に関して <literal>"top"</literal>,
+		垂直軸に関して<literal>"right"</literal>です.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>xtics_coord: </term>
+              <listitem>
+                <para>このフィールドは軸のx座標を表します.
+		これは左から右に値が増加する行ベクトルで,
+		水平軸の目盛の位置を指定します.
+		エンティティが垂直軸の場合,
+		このプロパティにはx軸の原点を定義するスケールが
+		含まれます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ytics_coord: </term>
+              <listitem>
+                <para>
+			このフィールドは軸のy座標を表します.
+		これは下から上に値が増加する行ベクトルで,
+		垂直軸の目盛の位置を指定します.
+		エンティティが水平軸の場合,
+		このプロパティにはy軸の原点を定義するスケールが
+		含まれます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>tics_color: </term>
+              <listitem>
+                <para>このプロパティの値は,
+		軸の線および目盛を描画する際に使用される色のインデックスです.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>tics_segment: </term>
+              <listitem>
+                <para>
+		このフィールドには軸の基本部分の表示を制御するフラグが
+		含まれます.
+		デフォルトは<literal>"on"</literal>で,それ以外の場合は
+		このプロパティの値は <literal>"off"</literal>となり,
+		表示されません.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>tics_style: </term>
+              <listitem>
+                <para>このプロパティは目盛の指定方法を規定します.
+		この値は文字列で以下の値を指定可能です:</para>
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>"v"</literal>. これはデフォルト値で,
+		この場合,目盛の位置は,水平軸については
+		行係数<literal>xtics_coord</literal>
+		(垂直軸については<literal>ytics_coord</literal>)
+		で指定されます.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"r"</literal>. この場合, 目盛の位置は
+                ベクトル<literal>[min,max,n] </literal>で指定されます.
+		ただし,nは間隔の数です.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"i"</literal>.この場合, 目盛の位置を
+		指定するベクトルは大きさ 4 の 
+		<literal>[k1,k2,a,n]</literal> となります.
+		この時, 値は <literal>k1*10^a</literal>と
+		<literal>k2*10^a</literal>の間で増加し,
+		n は間隔の数となります.</para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>sub_tics: </term>
+              <listitem>
+                <para>このフィールドは2つの主目盛の間に描画される目盛の数を
+		設定します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>tics_labels: </term>
+              <listitem>
+                <para>このフィールドは文字列行列で,
+		目盛の位置に軸に沿って描画される文字列を含みます.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>format_n: </term>
+              <listitem>
+                <para>このプロパティは目盛ラベル数値の浮動小数点表示形式を指定する
+		文字列です.ここでは,C言語の printf 関数のフォーマット構文
+		(例えば<literal>"%.3f"</literal>)を使用します.
+		<literal>""</literal>に等しい場合,
+		デフォルトの表示形式が使用されます.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>labels_font_color: </term>
+              <listitem>
+                <para>このプロパティは目盛ラベルの色を定義します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>labels_font_size: </term>
+              <listitem>
+                <para>スカラー値で,目盛ラベルの文字の大きさを指定します.
+		<literal>fractional_font</literal> プロパティが  <literal>"off"</literal>
+		の場合, この値の整数部のみが使用されます.
+		より詳細な情報については, <link linkend="graphics_fonts">graphics_fonts</link>
+		を参照ください.
+                </para>
+              </listitem>
+            </varlistentry>
+             <varlistentry>
+              <term>fractional_font: </term>
+              <listitem>
+	        <para>
+		このプロパティは目盛ラベルが分数のフォントの大きさにより表示されるかどうかを
+		指定します.
+		値には<literal>"on"</literal> または <literal>"off"</literal>のどちらを
+		指定します.<literal>"on"</literal>の場合,
+		<literal>font_size</literal>の浮動小数点数の値が表示に使用され,
+		フォントはアンチエイリアス処理されます.
+		<literal>"off"</literal> の場合,整数部のみが使用され,
+		フォントは平滑化されません.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>clip_state: </term>
+              <listitem>
+                <para>このフィールドには弧の<literal>clip_state</literal>プロパティ値
+		が含まれます.
+		clip_state の値は以下となります:</para>
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>"off"</literal> これは軸がクリッピングされないことを意味します.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"clipgrf"</literal> これは軸がAxesボックスの外側で
+			クリップされることを意味します.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"on"</literal> これはclip_boxプロパティで指定される
+			弧の外側で軸がクリップされることを意味します.</para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>clip_box: </term>
+              <listitem>
+                <para>このフィールドは<literal>clip_box</literal>プロパティを定義します.
+		clip_state が "off" の場合,デフォルトでこの値は空行列となります.
+		その他の場合, ベクトル <literal>[x,y,w,h]</literal> (左上の点 幅 高さ)
+		は表示する軸の位置を定義しますが,
+		<literal>clip_state</literal>プロパティの値は変更されます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>user_data: </term>
+              <listitem>
+                <para>このフィールドは任意のScilab変数をaxisデータ構造に保存し,
+		再取得するために使用することができます.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//新規に作成された軸のハンドルを取得
+a.data_bounds=[-1,-1;10,10];
+
+drawaxis(x=2:7,y=4,dir='u');
+a1=a.children(1)
+a1.xtics_coord=[1 4 5  8 10];
+a1.tics_color=2;
+a1.labels_font_size=3;
+a1.tics_direction="bottom";
+a1.tics_labels= [" February" "May"  "june" "August"  "October"];
+  
+drawaxis(x=1.2:1:10,y=5,dir='u',textcolor=13);
+a2=get("hdl")
+a2.sub_tics=0;
+a2.tics_segment="off";
+a2.ytics_coord=4;
+  
+drawaxis(x=-1,y=0:1:7,dir='r',fontsize=10,textcolor=5,ticscolor=6,sub_int=10)
+a3=get("hdl");
+a3.tics_labels= 'B'  +string(0:7);
+a3.tics_direction="left";
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="drawaxis">drawaxis</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

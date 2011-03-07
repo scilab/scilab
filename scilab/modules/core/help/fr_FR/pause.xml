@@ -27,8 +27,8 @@
     Il est possible de sortir du mode de pause en mettant fin à l'exécution en tapant <literal>"abort"</literal>.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="halt">halt</link>

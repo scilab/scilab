@@ -20,6 +20,9 @@
 //
 
 function ppath=getparpath(scs_m,bpath,ppath)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // getparpath - computes path to block parameter data structure in scicos structure
 //%Syntax
 //  ppath=getparpath(scs_m)  standard call

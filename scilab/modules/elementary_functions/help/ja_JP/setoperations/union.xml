@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="union" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>union</refname>
+
+    <refpurpose>ベクトルの和集合要素を展開</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>
+      [v [,ka, kb] ] = union(a,b)
+      [v [,ka, kb] ] = union(a,b,orient)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>数値または文字列のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>b</term>
+
+        <listitem>
+          <para>実数または文字列のベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>orient</term>
+
+        <listitem>
+          <para>フラグで次の値を指定可能 : 1 または "r", 2 または "c".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>行ベクトルまたは数値または文字列の行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ka</term>
+
+        <listitem>
+          <para>整数の行ベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>kb</term>
+
+        <listitem>
+          <para>整数の行ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>union(a,b)</literal> は,
+	<literal>[a(:);b(:)]</literal>のユニークなエントリ
+	を保持するソート済みの行ベクトルを返します.</para>
+
+    <para><literal>union(a,b,"r")</literal> または
+    <literal>union(a,b,1)</literal>は,
+	辞書式に昇順にソートされた
+	<literal>a</literal> および <literal>b</literal>
+	のユニークな行の和集合により作成された行列を返します.
+	この場合,行列<literal>a</literal>および<literal>b</literal>
+	の列の数は同じである必要があります.
+	</para>
+
+    <para><literal>union(a,b,"c")</literal> または
+    <literal>union(a,b,2)</literal>は,
+	辞書式に昇順にソートされた
+	<literal>a</literal> および <literal>b</literal>
+	のユニークな列の和集合により作成された行列を返します.
+	この場合,行列<literal>a</literal>および<literal>b</literal>
+	の行の数は同じである必要があります.</para>
+
+    <para><literal>[v,ka,kb]=union(a,b)</literal> は,
+	<literal>v</literal>がソートされたエントリ
+	<literal>a(ka)</literal> および <literal>b(kb)</literal>
+	組みあわせとなるような
+	添字ベクトル<literal>ka</literal> および <literal>kb</literal>も返します.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+A=round(5*rand(10,1));
+B=round(5*rand(7,1));
+
+union(A,B)
+[N,ka,kb]=union(A,B)
+
+union('a'+string(A),'b'+string(B))
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="unique">unique</link></member>
+
+      <member><link linkend="gsort">gsort</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

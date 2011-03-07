@@ -28,13 +28,13 @@ function out = importScicosDiagram(source)
   if typeof(source) == 'diagram' then //import scs_m structure
     out = source;    
   elseif typeof(source) == 'string' then //import cos or cosf file
-    [path,name,ext] = splitfilepath_cos(source);
+    [path,name,ext] = fileparts(source);
     ext2 = convstr(ext, "u");
-    if ext2 == "COS" then
+    if ext2 == ".COS" then
       load(source);
       out = scs_m;
       clear scs_m;
-    elseif ext2 == "COSF" then
+    elseif ext2 == ".COSF" then
       exec(source, -1); 
       out = scs_m;
       clear scs_m;

@@ -143,8 +143,8 @@ norm(A)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="h_norm">h_norm</link></member>

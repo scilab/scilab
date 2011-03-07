@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="matfile_open">
+  <info>
+    <pubdate>$LastChangedDate: 2008-04-10 14:32:05 +0200 (jeu, 10 avr 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>matfile_open</refname>
+    <refpurpose>Matlab V5 バイナリ MATファイルを開く.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>fd = matfile_open(filename[, mode])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>文字列: ファイルのパス. ANSI文字のみを含む必要があります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode</term>
+        <listitem>
+          <para>文字列: ファイルアクセス型 (デフォルトは<literal>"r"</literal>).</para>
+          <itemizedlist>
+            <listitem>
+              <para><emphasis>"r"</emphasis>: 読み込み用にファイルを開く.</para>
+            </listitem>
+            <listitem>
+              <para><emphasis>"w"</emphasis>: 書き込み用にファイルを開く.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>実数: ファイル記述子 (開くのに失敗した場合は -1).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    Matlab バイナリ MATファイルをデータ読み込み用または書き込み用に
+	開きます.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="matfile_close">matfile_close</link>
+      </member>
+      <member>
+        <link linkend="matfile_varreadnext">matfile_varreadnext</link>
+      </member>
+      <member>
+        <link linkend="matfile_varwrite">matfile_varwrite</link>
+      </member>
+      <member>
+        <link linkend="matfile_listvar">matfile_listvar</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>V.C</member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>この関数はMATIOライブラリ (<literal><ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink></literal>)を使用しています.</para>
+  </refsection>
+</refentry>

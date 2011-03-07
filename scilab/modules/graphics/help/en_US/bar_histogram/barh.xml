@@ -121,8 +121,8 @@ x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
 barh(x,y,0.2,'green');
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="bar">bar</link>

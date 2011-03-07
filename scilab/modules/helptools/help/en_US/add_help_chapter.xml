@@ -68,8 +68,8 @@
   in the help list, <literal>add_help_chapter</literal> skips the add. The function
   checks if the directory exist.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="help">help</link>

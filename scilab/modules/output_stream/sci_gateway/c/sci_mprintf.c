@@ -30,12 +30,6 @@ int sci_mprintf(char *fname,unsigned long fname_len)
 	CheckRhs(1,1000);
 	CheckLhs(0,1);
 	
-	if ( Rhs < 1 )
-	{
-		Scierror(999,_("%s: Wrong number of input arguments: at least %d expected.\n"),fname,1);
-		return 0;
-	}
-	
 	for (k=2;k<=Rhs;k++)
 	{
 		if ( (VarType(k) != sci_matrix) && (VarType(k) != sci_strings) )
@@ -90,7 +84,7 @@ int sci_mprintf(char *fname,unsigned long fname_len)
 	
 	if ( NumberCols != NumberPercent )
 	{
-		Scierror(999,_("%s: Wrong number of input arguments: data doesn't fit with format.\n"),fname);
+		Scierror(999,_("%s: Wrong number of input arguments: data do not fit with format.\n"),fname);
 		return 0;
 	}
 	

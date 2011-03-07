@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="Commonlyusedblocks_pal"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>Commonlyusedblocks_pal</refname>
+
+    <refpurpose>Palette Blocs couramment utilisés</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="ANDBLK" fileref="../../../../../../modules/xcos/images/palettes/ANDBLK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="BIGSOM_f" fileref="../../../../../../modules/xcos/images/palettes/BIGSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CMSCOPE" fileref="../../../../../../modules/xcos/images/palettes/CMSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CONST_m" fileref="../../../../../../modules/xcos/images/palettes/CONST_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CONVERT" fileref="../../../../../../modules/xcos/images/palettes/CONVERT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CSCOPXY" fileref="../../../../../../modules/xcos/images/palettes/CSCOPXY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DEMUX" fileref="../../../../../../modules/xcos/images/palettes/DEMUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DOLLAR_f" fileref="../../../../../../modules/xcos/images/palettes/DOLLAR_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="INTEGRAL_f" fileref="../../../../../../modules/xcos/images/palettes/INTEGRAL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="IN_f" fileref="../../../../../../modules/xcos/images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="LOGICAL_OP" fileref="../../../../../../modules/xcos/images/palettes/LOGICAL_OP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MUX" fileref="../../../../../../modules/xcos/images/palettes/MUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="NRMSOM_f" fileref="../../../../../../modules/xcos/images/palettes/NRMSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="OUT_f" fileref="../../../../../../modules/xcos/images/palettes/OUT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="PRODUCT" fileref="../../../../../../modules/xcos/images/palettes/PRODUCT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="RELATIONALOP" fileref="../../../../../../modules/xcos/images/palettes/RELATIONALOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SATURATION" fileref="../../../../../../modules/xcos/images/palettes/SATURATION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SWITCH2_m" fileref="../../../../../../modules/xcos/images/palettes/SWITCH2_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TEXT_f" fileref="../../../../../../modules/xcos/images/palettes/TEXT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Module_Commonlyusedblocks_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+         <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Commonlyusedblocks_pal">
+    <title>Description</title>
+
+    <para>Dans la palette Blocs couramment utilisés, vous trouverez les blocs
+    des autres palettes utilisés par la plupart des modèles.
+    </para>
+  </refsection>
+
+  <refsection id="Blocks_Commonlyusedblocks_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="ANDBLK">ANDBLK - ET d'activation</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="BIGSOM_f">BIGSOM_f - Somme</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CMSCOPE">CMSCOPE - Oscilloscope multi-voies</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CONST_m">CONST_m - Constante</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CONVERT">CONVERT - Conversion de type de données</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CSCOPXY">CSCOPXY - Graphe y=f(x) permanent</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DEMUX">DEMUX - Démultiplexeur</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DOLLAR_f">DOLLAR_f - Opérateur retard</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_f">INTEGRAL_f - Intégration</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="IN_f">IN_f - Port d'entrée</link>
+        </para>
+      </listitem>
+
+
+      <listitem>
+        <para>
+          <link linkend="LOGICAL_OP">LOGICAL_OP - Opération logique</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MUX">MUX - Multiplexeur</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="NRMSOM_f">NRMSOM_f - Fusion de données</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="OUT_f">OUT_f - Port de sortie</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PRODUCT">PRODUCT - Produit</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="RELATIONALOP">RELATIONALOP — Opération relationnelle</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SATURATION">SATURATION - Saturation</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SWITCH2_m">SWITCH2_m - Commutateur 2 voies</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TEXT_f">TEXT_f - Texte</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

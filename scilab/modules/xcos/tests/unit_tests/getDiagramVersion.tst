@@ -8,32 +8,28 @@
 // <-- Short Description -->
 // White-box test for the getDiagramVersion macro.
 
-loadScicosLibs();
+loadXcosLibs();
 
-// overload error
-prot = funcprot();
-funcprot(0);
-function error(num, msg)
-	global isErrorCall;
-	isErrorCall = %t;
-	abort;
-endfunction
-funcprot(prot);
+// empty call check
+try
+    version = getDiagramVersion();
+catch
+    [str,n,line,func] = lasterror();
+    if n <> 999 then pause, end;
+    if func <> "getDiagramVersion" then pause, end;
+end
 
-global isErrorCall;
-isErrorCall = %f;
-
-getDiagramVersion();
-if ~isErrorCall then pause, end
-isErrorCall = %f;
-
-getDiagramVersion([]);
-if ~isErrorCall then pause, end
-isErrorCall = %f;
+// invalid argument check
+try
+    version = getDiagramVersion([]);
+catch
+    [str,n,line,func] = lasterror();
+    if n <> 999 then pause, end;
+    if func <> "getDiagramVersion" then pause, end;
+end
 
 // check that if the version number is filled, then the same value is returned.
 scs_m = scicos_diagram();
 scs_m.version = "customVersionName";
 version = getDiagramVersion(scs_m);
 if version <> scs_m.version then pause, end;
-

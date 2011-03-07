@@ -74,8 +74,8 @@ samples=[46 55 54;53 54 50; 49 58 51;50 61 51;46 52 49]
 [f,p]=ftest(samples)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ftuneq">ftuneq</link>

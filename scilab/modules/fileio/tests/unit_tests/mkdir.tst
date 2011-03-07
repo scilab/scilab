@@ -67,12 +67,12 @@ mclose(fd_6);
 status_6    =  mkdir(test_6_dir);
 if status_6 <> -2 then pause,end
 
-// TEST 7 : Bad Case - Cannot create the directory
+// TEST 7 : mkdir creates in the same instruction one folder and one subfolder.
 
 cd;
 test_7_dir  =  TMPDIR+"/mkdir_test_7/mkdir_test_7";
 status_7    =  mkdir(test_7_dir);
-if status_7 <> 0 then pause,end
+if status_7 <> 1 then pause,end
 
 
 removedir(test_1_dir);

@@ -519,8 +519,8 @@ T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
   </refsection>
 
 
-<refsection>
-    <title>See Also</title>
+<refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member>

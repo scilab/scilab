@@ -28,8 +28,8 @@
     Evaluates <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> are character
     strings. (low-level routine)</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mulf">mulf</link>

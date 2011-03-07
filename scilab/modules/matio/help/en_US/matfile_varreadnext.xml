@@ -64,8 +64,8 @@
     <para>
     Reads next variable in a Matlab binary MAT-file opened by <link linkend="matfile_open">matfile_open</link>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="matfile_open">matfile_open</link>

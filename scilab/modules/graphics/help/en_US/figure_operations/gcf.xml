@@ -57,8 +57,8 @@ figure(f) // Make window f the current figure
 gcf() // Return the graphic handle of the current figure
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gdf">gdf</link>

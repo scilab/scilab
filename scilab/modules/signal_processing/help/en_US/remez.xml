@@ -103,7 +103,7 @@ hn(nc+1:2*nc-1)=an(2:nc)/2;
     <para>E.W. Cheney, Introduction to Approximation Theory, McGraw-Hill,
     1966</para>
 
-    <para>http://en.wikipedia.org/wiki/Remez_algorithm</para>
+    <para><ulink url="http://en.wikipedia.org/wiki/Remez_algorithm">http://en.wikipedia.org/wiki/Remez_algorithm</ulink></para>
   </refsection>
 
   <refsection>
@@ -148,8 +148,8 @@ an=remez(guess,mag,fgrid,weight);
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="remezb">remezb</link></member>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="diary" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>diary</refname>
+
+    <refpurpose>セッションのダイアリー</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>      diary(filename)
+      [id,filename] = diary(filename, ['new'|'append'])
+
+      [ids, filenames] = diary()
+      [ids, filenames] = diary([], 'list')
+      
+      diary([], 'close')
+      diary(0)
+      diary(filename, 'close')
+      diary(id, 'close')
+      
+      diary([], 'pause'|'off')
+      diary(filename, 'pause'|'off')
+      diary(id, 'pause'|'off')
+      
+      diary([], 'resume'|'on')
+      diary(filename, 'resume'|'on')
+      diary(id, 'resume'|'on')
+      
+      diary(filenames, 'exists')
+      diary(ids, 'exists')
+      
+      diary(filename, 'new'|'append', 'prefix=YYYY-MM-DD hh:mm:ss') 
+      diary(filename, 'new'|'append', 'prefix=U')
+      diary(filename, 'new'|'append', [ 'prefix=YYYY-MM-DD hh:mm:ss' ; 'prefix-only-commands' ] );
+      
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>文字列, 完全なファイル名パスを指定します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>id</term>
+
+        <listitem>
+          <para>ダイアリーを特定するためのスカラー値.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>diary(f)</literal>関数はキーボード入力および
+	その結果のテキスト出力のログを作成します.</para>
+  </refsection>
+
+  <refsection>
+    <title>ダイアリーセッションを開始</title>
+
+    <para><literal>[id, filename] = diary(filename,
+    ['new'|'append'])</literal></para>
+
+    <para>returns :</para>
+
+    <para>* id : 正の整数 (&gt;= 1)で,このダイアリセッションのIDです.</para>
+
+    <para>* filename : 文字列, 実際に書き込まれるファイルの絶対パス.</para>
+
+    <para>最初の入力引数は文字列で,ダイアリファイルへのパスを有します.
+	これは,相対パスまたは絶対パスのどちらかとすることができます..</para>
+
+    <para>2番目の入力引数は,新規にファイルを作成する('new')か,
+	diary() が新規コンテンツをファイルの終端に追加するか('append')
+	を制御します.2番目の入力引数が指定されない場合,
+	デフォルト値は 'new' です.</para>
+
+    <para>diary() が 'new' モードを指定してコールされた場合 : 'filename' が
+	既に存在して,空ではない場合,実効ファイル名'base(filemane)+_#+extension(filename)'
+	が作成,使用され,diary(filename)から2番目の出力引数として返されます.
+	ランク # にはまだ存在しない結果のファイル名の中で最小の整数が設定されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>ダイアリセッションの一覧</title>
+
+    <para><literal>[ids, filenames] = diary()</literal></para>
+
+    <para><literal>[ids, filenames] = diary([],'list')</literal></para>
+
+    <para>は,整数の列ベクトル : オープンされている
+	ダイアリセッションのID,と文字列の列ベクトル :
+	オープンされているダイアリセッションに関連付けられた
+	ファイルの絶対パス, を返します.</para>
+  </refsection>
+
+  <refsection>
+    <title>ダイアリセッションを閉じる</title>
+
+    <para><literal>diary([],'close')</literal></para>
+
+    <para><literal>diary(0)</literal></para>
+
+    <para><literal>diary(filename,'close')</literal></para>
+
+    <para><literal>diary(id,'close')</literal></para>
+
+    <para>
+	最初と2番目の構文は全てのオープンされている
+	ダイアリセッションを閉じます.</para>
+
+    <para>3番目の構文は'filename'で特定される
+	ダイアリセッションを閉じます.</para>
+
+    <para>4番目の構文は"id"により特定されるダイアリセッションを閉じます.
+	この"id" は正の整数または正の整数のベクトルです.</para>
+
+    <para>注意 : diary(0) は下位互換性のために残されていますy.</para>
+  </refsection>
+
+  <refsection>
+    <title>ダイアリセッションのポーズ/レジューム</title>
+
+    <para><literal>diary([] ,'pause'|'off')</literal></para>
+
+    <para><literal>diary(filename,'pause'|'off')</literal></para>
+
+    <para><literal>diary(id ,'pause'|'off')</literal></para>
+
+    <para>最初の構文は全てのオープンされているダイアリセッションを
+	サスペンドします.</para>
+
+    <para>2番目の構文は'filename'で特定されるダイアリセッションを
+	サスペンドします.'filename'は文字列または文字列配列とすることが
+	できます.</para>
+
+    <para>3番目の構文は"id"で特定されるダイアリセッションを
+	サスペンドします.この"id"はは正の整数または正の整数の
+	ベクトルです.</para>
+
+
+    <para></para>
+
+    <para><literal>diary([] ,'resume'|'on')</literal></para>
+
+    <para><literal>diary(filename,'resume'|'on')</literal></para>
+
+    <para><literal>diary(id ,'resume'|'on')</literal></para>
+
+    <para>最初の構文は全てのオープンされているダイアリセッションを
+	レジュームします.</para>
+
+    <para>2番目の構文は'filename'で特定されるダイアリセッションを
+	レジュームします.'filename'は文字列または文字列配列とすることが
+	できます.</para>
+
+    <para>3番目の構文は"id"で特定されるダイアリセッションを
+	レジュームします.この"id"はは正の整数または正の整数の
+	ベクトルです.</para>
+  </refsection>
+
+  <refsection>
+    <title>ダイアリセッションが存在するか ?</title>
+
+    <para><literal>diary(filename,'exists')</literal></para>
+
+    <para><literal>diary(id,'exists')</literal></para>
+
+    <para>ファイル'filename'を指定するダイアリセッションが
+	現在オープンされている場合には true, そうでない場合には 
+	falseを返します.</para>
+  </refsection>
+
+  <refsection>
+    <title>ダイアリとタイムスタンプ</title>
+
+    <para><literal>diary(filename,'new','prefix=YYYY-MM-DD hh:mm:ss')</literal></para>
+
+    <para><literal>diary(filename,'new','prefix=U')</literal></para>
+
+    <para><literal>diary(filename,'new',[ 'prefix=YYYY-MM-DD hh:mm:ss' ;
+    'prefix-only-commands' ] );</literal></para>
+
+    <para>'prefix=YYYY-MM-DD hh:mm:ss' は日付 &amp; 時間を追加します</para>
+
+    <para>'prefix=U' は UNIX時間エポックを追加します</para>
+
+    <para>'prefix-only-commands' はコマンドへのプレフィックスとして
+	タイムスタンプのみを追加します</para>
+  </refsection>
+
+  <refsection>
+    <title>ダイアリをフィルタ処理する</title>
+
+    <para><literal>diary(filename,”new”,”filter=command”) </literal>
+	入力コマンドのみを記録します.</para>
+
+    <para><literal>diary(filename,”new”,”filter=output”) </literal>
+	テキスト出力のみを記録します.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+d1 = diary(TMPDIR + '/diary1.txt')
+d2 = diary(TMPDIR + '/diary2.txt')
+
+// 何らかのScilab命令 …
+cd TMPDIR
+dir
+
+// オープンされたダイアリに関する情報を返す
+[ids, filenames]  = diary()
+
+// ダイアリd1を閉じる
+diary(d1,'close')
+[ids, filenames]  = diary()
+
+// ダイアリd2を閉じる
+diary(TMPDIR + '/diary2.txt')
+[ids, filenames]  = diary()
+// closes all diary
+diary([],'close')
+[ids, filenames]  = diary()
+ ]]></programlisting>
+  </refsection>
+</refentry>

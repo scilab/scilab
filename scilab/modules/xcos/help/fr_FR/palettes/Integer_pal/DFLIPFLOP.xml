@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="DFLIPFLOP"
+  xml:lang="fr_FR"  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <refnamediv>
+    <refname>DFLIPFLOP</refname>
+    <refpurpose>Bascule D</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/DFLIPFLOP.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Contents_DFLIPFLOP">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="DFLIPFLOP">Bascule D</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_DFLIPFLOP">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_DFLIPFLOP">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Data_Type_DFLIPFLOP">Types de données</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_DFLIPFLOP">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+<!--      TODO wait for the bug 8900 resolution http://bugzilla.scilab.org/show_bug.cgi?id=8900
+          <listitem>
+            <para>
+              <xref linkend="Example_DFLIPFLOP">Exemple</xref>
+            </para>
+          </listitem>
+-->
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_DFLIPFLOP">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_DFLIPFLOP">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_DFLIPFLOP">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_DFLIPFLOP">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Integer_pal">Palette Entier</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_DFLIPFLOP">
+    <title>Description</title>
+
+    <para>
+      Ce bloc sort son état d'entrée (<emphasis role="bold">D</emphasis>) quand l'entrée de validation (<emphasis role="bold">en</emphasis>) est à 1 sur le front montant de l'horloge
+      <emphasis role="bold">clk</emphasis>. La sortie <emphasis role="bold">!Q</emphasis> est la
+      négation logique de <emphasis role="bold">Q</emphasis>.
+      Cette bascule est aussi connue comme une bascule de retard puisque l'état de l'entrée n'est
+      modifié qu'au front montant suivant de l'horloge.
+    </para>
+
+    <para>Ce bloc est utilisé comme élément de base des registres à décalage.</para>
+    <para>
+      La table de vérité de ce bloc est la suivante :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left"><latex><![CDATA[\boldsymbol{clk}]]></latex></td>
+        <td align="left"><latex><![CDATA[\boldsymbol{en}]]></latex></td>
+        <td align="left"><latex><![CDATA[\boldsymbol{D}]]></latex></td>
+        <td align="left"><latex><![CDATA[\boldsymbol{Q_n}]]></latex></td>
+        <td align="left"><latex><![CDATA[\boldsymbol{!Q_n}]]></latex></td>
+      </tr>
+      <tr>
+        <td align="left"><latex><![CDATA[\uparrow]]></latex></td>
+        <td align="left"><latex><![CDATA[0]]></latex></td>
+        <td align="left"><latex><![CDATA[X]]></latex></td>
+        <td align="left"><latex><![CDATA[Q_{n-1}]]></latex></td>
+        <td align="left"><latex><![CDATA[!Q_{n-1}]]></latex></td>
+      </tr>
+      <tr>
+        <td align="left"><latex><![CDATA[\uparrow]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left"><latex><![CDATA[0]]></latex></td>
+        <td align="left"><latex><![CDATA[0]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
+      </tr>
+      <tr>
+        <td align="left"><latex><![CDATA[\uparrow]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left"><latex><![CDATA[0]]></latex></td>
+      </tr>
+      <tr>
+        <td align="left">Pas de front</td>
+        <td align="left"><latex><![CDATA[X]]></latex></td>
+        <td align="left"><latex><![CDATA[X]]></latex></td>
+        <td align="left"><latex><![CDATA[Q_{n-1}]]></latex></td>
+        <td align="left"><latex><![CDATA[!Q_{n-1}]]></latex></td>
+      </tr>
+    </informaltable>
+    <para>
+      où <emphasis><literal>X</literal></emphasis> signifie "indifférent" et
+      <emphasis><literal>Q<subscript>n-1</subscript></literal></emphasis>
+      est l'état de sortie antérieur de <emphasis><literal>Q<subscript>n</subscript></literal></emphasis>
+    </para>
+
+  </refsection>
+
+  <refsection id="Data_Type_DFLIPFLOP">
+    <title>Types de données</title>
+
+    <para>
+      Le bloc supporte les types suivants :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Entrées :
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <emphasis role="bold">D</emphasis> : scalaire. Seulement le type entier int8 de Scilab.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">en</emphasis> : scalaire. Le type réel double de Scilab.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">clk</emphasis> : scalaire. Le type réel double de Scilab..
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para>
+          Une entrée positive est considérée comme un 1 logique, une entrée négative ou nulle comme
+          un 0 logique.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Sorties : scalaires. Type int8 de Scilab.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+  </refsection>
+
+  <refsection id="Defaultproperties_DFLIPFLOP">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 5</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : size [1,1] / type 1</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 3 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 5</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : size [1,1] / type 5</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">csuper</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+<!--  TODO wait for the bug 8900 resolution http://bugzilla.scilab.org/show_bug.cgi?id=8900
+<refsection id="Example_DFLIPFLOP">
+    <title>Exemple</title>
+    <para>
+    </para>
+    <mediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../help/examples/integer_pal/fr_FR/dflipflop_diagram_fr_FR.png" align="center" />
+        </imageobject>
+    </mediaobject>
+  </refsection>  -->
+
+  <refsection id="Interfacingfunction_DFLIPFLOP">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/DFLIPFLOP.sci">SCI/modules/scicos_blocks/macros/IntegerOp/DFLIPFLOP.sci</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_DFLIPFLOP">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+          <link linkend="DLATCH">DLATCH</link>
+      </listitem>
+      <listitem>
+          <link linkend="SRFLIPFLOP">SRFLIPFLOP</link>
+      </listitem>
+      <listitem>
+          <link linkend="JKFLIPFLOP">JKFLIPFLOP</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_DFLIPFLOP">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

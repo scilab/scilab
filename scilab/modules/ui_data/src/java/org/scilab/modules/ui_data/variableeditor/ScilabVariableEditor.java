@@ -15,7 +15,6 @@ import java.awt.Component;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeListener;
 
@@ -44,7 +43,7 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
     private static VariableEditor instance;
 
     private static SimpleVariableEditor editorTab;
-    private static JTabbedPane tabPane;
+    private static ScilabTabbedPane tabPane;
 
     /**
      * Constructor
@@ -159,7 +158,7 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
      * {@inheritDoc}
      */
     public String getVariablename() {
-        String title = tabPane.getTitleAt(tabPane.getSelectedIndex());
+        String title = tabPane.getScilabTitleAt(tabPane.getSelectedIndex());
         return title.substring(SwingScilabVariableEditor.PREFIX.length());
     }
 

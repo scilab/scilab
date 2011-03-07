@@ -44,6 +44,9 @@ HDF5_SCILAB_IMPEXP int writeSparseComplexMatrix(int _iFile, char* _pstDatasetNam
 
 HDF5_SCILAB_IMPEXP int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
+HDF5_SCILAB_IMPEXP int writeVoid(int _iFile, char* _pstDatasetName);
+HDF5_SCILAB_IMPEXP int writeUndefined(int _iFile, char* _pstDatasetName);
+
 HDF5_SCILAB_IMPEXP void* openList(int _iFile, char* pstDatasetName, int _iNbItem);
 HDF5_SCILAB_IMPEXP int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName);
 HDF5_SCILAB_IMPEXP int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int _iVarType);

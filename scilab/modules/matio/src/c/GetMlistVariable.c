@@ -11,6 +11,8 @@
  *
  */
 
+#include <string.h>
+
 #include "GetMatlabVariable.h"
 #include "sci_types.h"
 #include "api_scilab.h"
@@ -64,7 +66,7 @@ matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version, int 
       	}
       _SciErr = getMatrixOfStringInList(pvApiCtx, var_addr, 1, &nbRow, &nbFields, pilen, fieldNames); MATIO_ERROR;
       FREE(pilen);
-      
+
       if (strcmp(fieldNames[0], "ce")==0)
         {
           freeArrayOfString(fieldNames, nbRow * nbFields);
@@ -73,20 +75,20 @@ matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version, int 
       else if (strcmp(fieldNames[0], "st")==0)
         {
           tmp_res = GetStructVariable(iVar, name, matfile_version, fieldNames, nbFields, parent, item_position);
-          freeArrayOfString(fieldNames, nbRow * nbFields);
-	  return tmp_res;
+          freeArrayOfString(fieldNames, nbFields);
+          return tmp_res;
         }
       else if (strcmp(fieldNames[0], "hm")==0)
         {
           /* TODO */
           Scierror(999, _("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMlistVariable", fieldNames[0]);
-          freeArrayOfString(fieldNames, nbRow * nbFields);
+          freeArrayOfString(fieldNames, nbFields);
           return NULL;
         }
       else
         {
           Scierror(999, _("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMlistVariable", fieldNames[0]);
-          freeArrayOfString(fieldNames, nbRow * nbFields);
+          freeArrayOfString(fieldNames, nbFields);
           return NULL;
         }
     }

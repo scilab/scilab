@@ -20,6 +20,9 @@
 //
 
 function [reg, rect, prt, is_flip] = get_region2(xc, yc, win)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //
 //Creates in reg the superblock formed with the objects selected 
 //

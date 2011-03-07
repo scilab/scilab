@@ -66,8 +66,8 @@ fre=[.03 .12 .07;.02 .13 .11;.01 .13 .14;.01 .09 .14]
 rho=correl(x,h,fre)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="covar">covar</link>

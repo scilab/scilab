@@ -16,7 +16,7 @@ modulename=xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscixcos_la_root_DATA =  license.txt version.xml
 
 
 #### xcos : init scripts ####
@@ -95,16 +95,18 @@ libscixcos_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
-libscixcos_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscixcos_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscixcos-disable.la
 
+if XCOS
 if GUI
 pkglib_LTLIBRARIES += libscixcos.la
 endif
+endif
 
-libscixcos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscixcos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscixcos_la_SOURCES = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(XCOS_CPP_SOURCES)
 
@@ -134,7 +136,6 @@ nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
 images/blocks/ASCOPE.svg \
 images/blocks/BACHE.svg \
-images/blocks/background.svg \
 images/blocks/BPLATFORM.svg \
 images/blocks/Capacitor.svg \
 images/blocks/CCS.svg \
@@ -147,7 +148,6 @@ images/blocks/CVS.svg \
 images/blocks/DEADBAND.svg \
 images/blocks/Diode.svg \
 images/blocks/DSCOPE.svg \
-images/blocks/empty.svg \
 images/blocks/Ground.svg \
 images/blocks/Gyrator.svg \
 images/blocks/HYSTHERESIS.svg \
@@ -236,7 +236,7 @@ images/palettes/CUMSUM.png \
 images/palettes/CurrentSensor.png \
 images/palettes/CURV_f.png \
 images/palettes/CVS.png \
-images/palettes/DEADBAND_modif.png \
+images/palettes/DEADBAND.png \
 images/palettes/DEBUG_SCICOS.png \
 images/palettes/DELAY_f.png \
 images/palettes/DELAYV_f.png \
@@ -401,9 +401,11 @@ images/palettes/WRITEAU_f.png \
 images/palettes/WRITEC_f.png \
 images/palettes/ZCROSS_f.png
 
+if XCOS
 if GUI
 if HDF5
 USEANT=1
+endif
 endif
 endif
 

@@ -306,8 +306,8 @@ z=feval(t,t,my_surface);
 plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="contour2d">contour2d</link>

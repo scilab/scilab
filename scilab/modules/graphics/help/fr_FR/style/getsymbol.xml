@@ -37,8 +37,8 @@
     <para><literal>getsymbol</literal> ouvre une boîte de dialogue avec pour titre <literal>title</literal>, où l'utilisateur peut choisir un marqueur ainsi que sa taille. <literal>getsymbol</literal> renvoie le numéro du marqueur <literal>n</literal> et le code de sa taille <literal>sz</literal>.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="getmark">getmark</link>

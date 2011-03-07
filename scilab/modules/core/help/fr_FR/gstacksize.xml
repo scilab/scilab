@@ -49,8 +49,8 @@ gstacksize('max')</synopsis>
     <para><literal>gstacksize('min')</literal> permet de diminuer la taille au minimum
     de la pile scilab des variables globales.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="who">who</link>

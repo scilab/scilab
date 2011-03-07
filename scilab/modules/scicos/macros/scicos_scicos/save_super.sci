@@ -21,6 +21,9 @@
 //
 
 function path=save_super(scs_m,fpath,gr_i,sz)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // given a super block definition scs_m save_super creates 
 // this super block's interfacing function
 // 19/07/07 : Alan added two rhs : gr_i and sz for

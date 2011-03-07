@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="interpln" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>interpln</refname>
+
+    <refpurpose>線形補間</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[y]=interpln(xyd,x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xyd</term>
+
+        <listitem>
+          <para>2行の行列 (点のxy座標)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>ベクトル (横座標)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>ベクトル (y軸の値)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>横座標が単調増加のxy平面における一連の点<literal>xyd</literal>,
+	一連の横座標<literal>x</literal>を指定すると,
+	この関数線形補間による対応するy軸の値<literal>y</literal>を
+	計算します.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+x=[1 10 20 30 40];
+y=[1 30 -10 20 40];
+plot2d(x',y',[-3],"011"," ",[-10,-40,50,50]);
+yi=interpln([x;y],-4:45);
+plot2d((-4:45)',yi',[3],"000");
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin">splin</link></member>
+
+      <member><link linkend="interp">interp</link></member>
+
+      <member><link linkend="smooth">smooth</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

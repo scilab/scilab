@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="variancef">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>variancef</refname>
+    <refpurpose>ベクトルまたは行列の値の標準偏差</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>s=variancef(x,fre)
+s=variancef(x,fre,'r') or s=variancef(x,fre,1)
+s=variancef(x,fre,'c') or s=variancef(x,fre,2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数または複素数のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数はベクトルまたは行列<literal>x</literal>の値の分散を計算します.
+	これらの分散の各々は,
+	<literal>x</literal>と同じ大きさの整数ベクトルまたは行列
+	<literal>fre</literal>の対応する値により示された頻度に基づき計算されます.</para>
+    <para>
+	あるベクトルまたは行列<literal>x</literal>について, 
+	<literal>s=variancef(x,fre)</literal> (または
+    <literal>s=variancef(x,fre,'*')</literal>)  は,スカラー<literal>s</literal>に
+	<literal>x</literal>の全エントリの分散を返します.
+	その各値には,<literal>fre</literal>の対応する値により示された多重度が
+	考慮されます.</para>
+    <para><literal>s=variancef(x,fre,'r')</literal>(または等価な,
+    <literal>s=variancef(x,fre,1)</literal>) は
+	1xsize(x,'c')の行ベクトル<literal>s</literal>の各エントリに
+	<literal>x</literal>の各列の分散を返します.
+	各値には<literal>fre</literal>の対応する値により示された多重度
+	が考慮されます.</para>
+    <para><literal>s=variancef(x,fre,'c')</literal>(または等価な,
+    <literal>s=variancef(x,fre,2)</literal>)  は,
+	size(x,'c') x1の列ベクトル<literal>s</literal>の各エントリに
+	<literal>x</literal>の各行の分散を返します.
+	各値には<literal>fre</literal>の対応する値により示された多重度
+	が考慮されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=[0.2113249 0.0002211 0.6653811;0.7560439 0.9546254 0.6283918]
+fre=[1 2 3;3 4 3]
+m=variancef(x,fre)
+m=variancef(x,fre,'r')
+m=variancef(x,fre,'c')
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+</refentry>

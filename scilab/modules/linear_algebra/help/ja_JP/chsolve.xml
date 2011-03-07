@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="chsolve">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>chsolve</refname>
+    <refpurpose>疎行列のコレスキーソルバ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>sol=chsolve(spcho,rhs)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>spcho</term>
+        <listitem>
+          <para>chfact から返されたコード形式のコレスキー分解を含むリスト</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rhs, sol</term>
+        <listitem>
+          <para>フル列ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>sol=chsolve(spcho,rhs)</literal> は,
+	<literal>A</literal>を疎行列の正定対称行列として
+	<literal>rhs=A*sol</literal>の解を計算します.
+	この関数は,Ng-Peyton プログラム (ORNL)に基づいています.
+	<literal>spcho</literal>の変数の詳細な説明については,
+	Fortran プログラムを参照ください.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=sprand(20,20,0.1);
+A=A*A'+eye();  
+spcho=chfact(A);
+sol=(1:20)';rhs=A*sol;
+spcho=chfact(A);
+chsolve(spcho,rhs)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="chfact">chfact</link>
+      </member>
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+      <member>
+        <link linkend="luget">luget</link>
+      </member>
+      <member>
+        <link linkend="spchol">spchol</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

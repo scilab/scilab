@@ -84,7 +84,7 @@ BOOL setlanguage(char *lang)
 				if (ret==NULL)
 				{
 					#ifndef _MSC_VER
-					fprintf(stderr, "Warning: Localization issue. Doesn't support the locale '%s' %s %s.\n",lang,ret,setlocale(LC_MESSAGES,NULL));
+					fprintf(stderr, "Warning: Localization issue. Does not support the locale '%s' %s %s.\n",lang,ret,setlocale(LC_MESSAGES,NULL));
 					#else
 					fprintf(stderr, "Warning: Localization issue. Cannot detect user locale.\n");
 					#endif
@@ -272,9 +272,9 @@ BOOL exportLocaleToSystem(char *locale){
 	if (locale==NULL)
 	{
 #ifdef _MSC_VER
-		fprintf(stderr,"Localization: Haven't been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
+		fprintf(stderr,"Localization: Have not been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
 #else
-		fprintf(stderr,"Localization: Haven't been able to find a suitable locale. Remains to default %s.\n", EXPORTENVLOCALE);
+		fprintf(stderr,"Localization: Have not been able to find a suitable locale. Remains to default %s.\n", EXPORTENVLOCALE);
 #endif
 		return FALSE;
 	}

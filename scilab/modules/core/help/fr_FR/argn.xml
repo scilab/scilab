@@ -21,8 +21,8 @@ rhs=argn(2)</synopsis>
     et de sortie <literal>lhs</literal>. Elle permet d'utiliser des arguments optionnels.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="function">function</link>

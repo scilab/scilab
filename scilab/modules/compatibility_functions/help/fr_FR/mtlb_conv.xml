@@ -63,8 +63,8 @@
     pour avoir un résultat plus proche de Matlab.</para>
     <para>Attention : <literal>mtlb_conv</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="clean">clean</link>

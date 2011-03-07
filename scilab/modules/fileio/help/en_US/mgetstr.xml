@@ -87,8 +87,8 @@ length(str4)                    // empty string
 mclose(fd);                     // close file descriptor
     </programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="mclose">mclose</link></member>
       <member><link linkend="meof">meof</link></member>

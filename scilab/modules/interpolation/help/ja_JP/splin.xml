@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="splin" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>splin</refname>
+
+    <refpurpose>3次スプライン補間</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>d = splin(x, y [,spline_type [, der]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>単調増加する (列または行) ベクトル (x は最低2つの要素を有する
+	必要があります)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para><literal>x</literal>と同じ大きさのベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>spline_type</term>
+
+        <listitem>
+          <para>(オプション) 計算するスプラインの種類を選択する文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>der</term>
+
+        <listitem>
+          <para>(オプション) 2つの要素を有するベクトルで, 
+	(spline_type="clamped"の場合に使用される)端点の微係数を有します</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>d</term>
+
+        <listitem>
+          <para><literal>x</literal>と同じ形式のベクトル
+          (<literal>di</literal> は,
+          <literal>xi</literal>)におけるスプラインの微係数です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は,
+	点<emphasis>(xi,yi)</emphasis>を補間する,すなわち,
+	<emphasis>i=1,..,n</emphasis>について<emphasis>s(xi)=yi</emphasis>
+	となる
+	3次スプラインまたはサブスプライン<emphasis>s</emphasis>
+	を計算します.
+	得られるスプライン <emphasis>s</emphasis>は,
+	<literal>(x,y,d)</literal>により完全に定義されます.
+	ただし,<literal>d</literal>は<literal>xi</literal>における
+	微係数のベクトルです:
+	<emphasis>s'(xi)=di</emphasis> (これは
+    	<emphasis>エルミート</emphasis>形式と呼ばれます). 
+	いつくかの点におけるスプラインの評価は<link linkend="interp">interp</link>
+	関数により行われます.
+	適当な<literal>spline_type</literal>パラメータを選択することにより,
+	いくつかの種類のスプラインを計算することができます:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"not_a_knot"</term>
+
+        <listitem>
+          <para>これはデフォルトで,
+	3次スプラインが以下の条件 (n個の点 x1,...,xnを考慮)により計算されます:</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center" fileref="../mml/splin_equation1.mml" />
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"clamped"</term>
+
+        <listitem>
+          <para>この場合,3次スプラインは端点における微係数
+	を用いて計算されます.この微係数は最後の引数<literal>der</literal>
+	で指定されます:</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center" fileref="../mml/splin_equation2.mml" />
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"natural"</term>
+
+        <listitem>
+          <para>3次スプラインは次の条件により計算されます:</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center" fileref="../mml/splin_equation3.mml" />
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"periodic"</term>
+
+        <listitem>
+          <para>周期的3次スプラインは次の条件により計算されます
+	(<literal>y</literal>は<emphasis>y1=yn</emphasis>を確認する必要があります):</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center" fileref="../mml/splin_equation4.mml" />
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"monotone"</term>
+
+        <listitem>
+          <para>この場合,サブスプライン (<emphasis>s</emphasis> は
+	1回のみ連続的に微分可能)は,<emphasis>s</emphasis>が
+	各区間で単調となるような<emphasis>di</emphasis>
+	に関するローカルなスキームにより計算されます:</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center" fileref="../mml/splin_equation5.mml" />
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"fast"</term>
+
+        <listitem>
+          <para>この場合, サブスプラインも<emphasis>di</emphasis>
+	に関する簡単でローカルなスキームにより計算されます:
+	d(i) は (x(i-1),y(i-1)), (x(i),y(i)),(x(i+1),y(i+1)) の多項式補間の
+	x(i) における微係数です.
+	ただし,端点を除きます
+	(d1 は最も左の3点から, dn は最も右の3点から計算されます).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"fast_periodic"</term>
+
+        <listitem>
+          <para>前のオプションと同じですが,基本となる関数の周期性に
+	基づき <emphasis>d1 = s'(x1) = dn = s'(xn)</emphasis>に関する
+	中心化式も使用します
+	(<literal>y</literal>は<emphasis>y1=yn</emphasis>も
+	満たす必要があります).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>精度の観点からは,端点の微係数が既知の場合,
+	基本的に<emphasis role="bold">clamped</emphasis>型を使用してください.
+	そうでない場合は,<emphasis role="bold">not_a_knot</emphasis>型を使用して
+	ください.
+	しかし,基本的な近似関数に周期性がある場合には,
+	<emphasis role="bold">periodic</emphasis>型を使用してください.
+	良い近似を行うことで,これらの種類のスプラインは,誤差の漸近特性
+	として<literal>O(h^4)</literal>を得ることができます.
+	基本関数の2階微分が0でない限り,
+	<emphasis role="bold">natural</emphasis>を使用しないでください.</para>
+
+    <para><emphasis role="bold">monotone</emphasis>, <emphasis
+    role="bold">fast</emphasis> (または <emphasis
+    role="bold">fast_periodic</emphasis>) 型は,振動を抑制する
+	といったいくつかのケースでは有用です
+	(これらの種類のサブスプラインは<literal>O(h^3)</literal>の
+	誤差漸近特性を有します).</para>
+
+    <para><emphasis>n=2</emphasis>の(そして<literal>spline_type</literal> が
+	<emphasis role="bold">clamped</emphasis>ではない) 場合,
+	線形補間が使用されます.
+	<emphasis>n=3</emphasis> で <literal>spline_type</literal> が
+    <emphasis role="bold">not_a_knot</emphasis>の場合, <emphasis
+    role="bold">fast</emphasis> サブスプライン型が実際に計算されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 例 1
+deff("y=runge(x)","y=1 ./(1 + x.^2)")
+a = -5; b = 5; n = 11; m = 400;
+x = linspace(a, b, n)';
+y = runge(x);
+d = splin(x, y);
+xx = linspace(a, b, m)';
+yyi = interp(xx, x, y, d);
+yye = runge(xx);
+clf()
+plot2d(xx, [yyi yye], style=[2 5], leg="interpolation spline@exact function")
+plot2d(x, y, -9)
+xtitle("interpolation of the Runge function")
+
+// 例 2 : ランダムなデータで異なるスプラインの動作を示す
+a = 0; b = 1;        // 補間の間隔
+n = 10;              // 補間点のnb
+m = 800;             // 評価を行う離散点
+x = linspace(a,b,n)'; // 補間点の横座標
+y = rand(x);          // 補間点の縦座標
+xx = linspace(a,b,m)';
+yk = interp(xx, x, y, splin(x,y,"not_a_knot"));
+yf = interp(xx, x, y, splin(x,y,"fast"));
+ym = interp(xx, x, y, splin(x,y,"monotone"));
+clf()
+plot2d(xx, [yf ym yk], style=[5 2 3], strf="121", ...
+       leg="fast@monotone@not a knot spline")
+plot2d(x,y,-9, strf="000")  // to show interpolation points
+xtitle("Various spline and sub-splines on random datas")
+show_window()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="interp">interp</link></member>
+
+      <member><link linkend="lsq_splin">lsq_splin</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>B. Pincon</member>
+
+      <member>F. N. Fritsch (pchim.f Slatec routine is used for monotone
+      interpolation)</member>
+    </simplelist>
+  </refsection>
+</refentry>

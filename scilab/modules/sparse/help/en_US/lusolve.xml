@@ -68,8 +68,8 @@ x=lusolve(sp,-ones(4,1));
 sp*x
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

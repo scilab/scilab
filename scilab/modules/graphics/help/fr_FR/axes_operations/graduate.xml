@@ -70,8 +70,8 @@
   clf();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xsetech">xsetech</link>

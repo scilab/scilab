@@ -84,8 +84,8 @@ X (-s) X(s) = Identity
     <para>
     (for the continuous time case).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

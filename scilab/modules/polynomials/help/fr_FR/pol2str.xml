@@ -36,8 +36,8 @@
     convertit le polynôme p en une chaîne de caractères (fonction utilitaire).
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="string">string</link>

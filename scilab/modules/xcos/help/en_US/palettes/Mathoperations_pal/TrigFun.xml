@@ -76,6 +76,11 @@
               <xref linkend="Computationalfunction_TrigFun">Computational function</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_TrigFun">Voir aussi</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -93,13 +98,76 @@
   <refsection id="Description_TrigFun">
     <title>Description</title>
     <para>
-The Trigonometric Function block performs numerous common
-trigonometric functions. You can select one of these functions from
-the Function list: sin, cos, tan, asin, acos, atan, atan2, sinh, cosh,
-and tanh. The block output is the result of the operation of the
-function on the input or inputs. 
-
-</para>
+      The Trigonometric Function block performs numerous common trigonometric functions. You can select a function
+      among those quoted in this table :
+    </para>
+    <para/>
+    <informaltable border="1" cellpadding="2">
+      <tr>
+        <td align="left">
+          <emphasis role="bold">Function</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Definition</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Output</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td align="left">sin</td>
+        <td align="left">Sine of the input (radians)</td>
+        <td align="left">y = sin(u)</td>
+      </tr>
+      <tr>
+        <td align="left">cos</td>
+        <td align="left">Cosine of the input (radians)</td>
+        <td align="left">y = cos(u)</td>
+      </tr>
+      <tr>
+        <td align="left">tan</td>
+        <td align="left">Tangent of the input (radians)</td>
+        <td align="left">y = tan(u)</td>
+      </tr>
+      <tr>
+        <td align="left">asin</td>
+        <td align="left">Inverse sine (radians) of the input</td>
+        <td align="left">y = asin(u)</td>
+      </tr>
+      <tr>
+        <td align="left">acos</td>
+        <td align="left">Inverse cosine (radians) of the input</td>
+        <td align="left">y = acos(u)</td>
+      </tr>
+      <tr>
+        <td align="left">atan</td>
+        <td align="left">Inverse tangent (radians) of the input</td>
+        <td align="left">y = atan(u)</td>
+      </tr>
+      <tr>
+        <td align="left">atan2</td>
+        <td align="left">Four quadrant inverse tangent (radians) of the input</td>
+        <td align="left">y = atan2(u)</td>
+      </tr>
+      <tr>
+        <td align="left">sinh</td>
+        <td align="left">Hyperbolic sine of the input</td>
+        <td align="left">y = sinh(u)</td>
+      </tr>
+      <tr>
+        <td align="left">cosh</td>
+        <td align="left">Hyperbolic cosine of the input</td>
+        <td align="left">y = cosh(u)</td>
+      </tr>
+      <tr>
+        <td align="left">tanh</td>
+        <td align="left">Hyperbolic tangent of the input</td>
+        <td align="left">y = tanh(u)</td>
+      </tr>
+    </informaltable>
+    <para>
+      The block output is the result of the applied function on the scalar input or on the vector's elements of input.
+    </para>
   </refsection>
   <refsection id="Dialogbox_TrigFun">
     <title>Dialog box</title>
@@ -189,7 +257,60 @@ function on the input or inputs.
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/sin_blk.c (Type 4)</para>
+        <para>SCI/modules/scicos_blocks/src/c/acos_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/acosh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/asin_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/asinh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/atan_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/atanh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/cos_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/cosh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/sin_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/sinh_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/tan_blk.c (Type 4)</para>
+      </listitem>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/tanh_blk.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_TrigFun">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="COSBLK_f">COSBLK_f - Cosine (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SINBLK_f">SINBLK_f - Sine (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TANBLK_f">TANBLK_f - Tangent (Bloc Xcos)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

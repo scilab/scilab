@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="iserror">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>iserror</refname>
+    <refpurpose>エラー発生の確認</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>iserror([n])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	(<literal>errcatch</literal>をコールした後に)
+	エラー番号 <literal>n</literal> のエラーが発生したかどうかを確認します.
+	<literal>iserror</literal> は,エラーが発生した場合に <literal>1</literal>,
+	それ以外の場合に <literal>0</literal>を返します.</para>
+    <para><literal>n&gt;0</literal> はエラー番号です ; 
+	<literal>n&lt;0</literal>を指定すると全てのエラーが確認されます.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="error">error</link>
+      </member>
+      <member>
+        <link linkend="errcatch">errcatch</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
