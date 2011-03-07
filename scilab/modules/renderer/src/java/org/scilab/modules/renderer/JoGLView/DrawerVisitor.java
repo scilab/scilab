@@ -298,13 +298,11 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
     @Override
     public void deleteObject(String id) {
-        if (isFigureChild(id)) {
-            dataManager.dispose(id);
-            markManager.dispose(id);
-            textManager.dispose(id);
-            axesDrawer.getRulerSpriteManagerSet().dispose(id);
-            canvas.redraw();
-        }
+        dataManager.dispose(id);
+        markManager.dispose(id);
+        textManager.dispose(id);
+        axesDrawer.getRulerSpriteManagerSet().dispose(id);
+        canvas.redraw();
     }
 
     /**
