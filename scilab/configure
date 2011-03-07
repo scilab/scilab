@@ -932,7 +932,6 @@ enable_debug_linker
 enable_code_coverage
 enable_stopOnWarning
 with_gcc
-with_g77
 with_gfortran
 with_intelcompilers
 with_tk
@@ -1674,7 +1673,6 @@ Optional Packages:
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-gnu-ld           assume the C compiler uses GNU ld default=no
   --with-gcc              Use gcc C compiler
-  --with-g77              Use g77, GNU Fortran 77 compiler
   --with-gfortran         Use gfortran, GNU Fortran 95 compiler
   --with-intelcompilers   Use Intel C (icc) and Fortran (ifort) proprietary
                           compilers (GNU/Linux only)
@@ -5670,13 +5668,6 @@ fi
 
 
 
-# Check whether --with-g77 was given.
-if test "${with_g77+set}" = set; then :
-  withval=$with_g77;
-fi
-
-
-
 # Check whether --with-gfortran was given.
 if test "${with_gfortran+set}" = set; then :
   withval=$with_gfortran;
@@ -6092,231 +6083,11 @@ fi
 ## check if options are correct (or not)
 #####################################################
 
-if test "$with_g77" = yes -a "$with_gfortran" = yes; then
-    as_fn_error $? "Conflicting options : you specified two fortran compilers" "$LINENO" 5
-fi
-
 if test "$with_intelcompilers" = yes -a "$with_gcc" = yes; then
     as_fn_error $? "Conflicting options : you specified two compiler series" "$LINENO" 5
 fi
 
 ######## fortran ########
-if test "$with_g77" = yes; then
-   ac_ext=f
-ac_compile='$F77 -c $FFLAGS conftest.$ac_ext >&5'
-ac_link='$F77 -o conftest$ac_exeext $FFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_f77_compiler_gnu
-if test -n "$ac_tool_prefix"; then
-  for ac_prog in g77
-  do
-    # Extract the first word of "$ac_tool_prefix$ac_prog", so it can be a program name with args.
-set dummy $ac_tool_prefix$ac_prog; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_F77+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$F77"; then
-  ac_cv_prog_F77="$F77" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_F77="$ac_tool_prefix$ac_prog"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-fi
-fi
-F77=$ac_cv_prog_F77
-if test -n "$F77"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $F77" >&5
-$as_echo "$F77" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-    test -n "$F77" && break
-  done
-fi
-if test -z "$F77"; then
-  ac_ct_F77=$F77
-  for ac_prog in g77
-do
-  # Extract the first word of "$ac_prog", so it can be a program name with args.
-set dummy $ac_prog; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_ac_ct_F77+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$ac_ct_F77"; then
-  ac_cv_prog_ac_ct_F77="$ac_ct_F77" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_ac_ct_F77="$ac_prog"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-fi
-fi
-ac_ct_F77=$ac_cv_prog_ac_ct_F77
-if test -n "$ac_ct_F77"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_ct_F77" >&5
-$as_echo "$ac_ct_F77" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-  test -n "$ac_ct_F77" && break
-done
-
-  if test "x$ac_ct_F77" = x; then
-    F77=""
-  else
-    case $cross_compiling:$ac_tool_warned in
-yes:)
-{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
-$as_echo "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
-ac_tool_warned=yes ;;
-esac
-    F77=$ac_ct_F77
-  fi
-fi
-
-
-# Provide some information about the compiler.
-$as_echo "$as_me:${as_lineno-$LINENO}: checking for Fortran 77 compiler version" >&5
-set X $ac_compile
-ac_compiler=$2
-for ac_option in --version -v -V -qversion; do
-  { { ac_try="$ac_compiler $ac_option >&5"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
-$as_echo "$ac_try_echo"; } >&5
-  (eval "$ac_compiler $ac_option >&5") 2>conftest.err
-  ac_status=$?
-  if test -s conftest.err; then
-    sed '10a\
-... rest of stderr output deleted ...
-         10q' conftest.err >conftest.er1
-    cat conftest.er1 >&5
-  fi
-  rm -f conftest.er1 conftest.err
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }
-done
-rm -f a.out
-
-# If we don't use `.F' as extension, the preprocessor is not run on the
-# input file.  (Note that this only needs to work for GNU compilers.)
-ac_save_ext=$ac_ext
-ac_ext=F
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether we are using the GNU Fortran 77 compiler" >&5
-$as_echo_n "checking whether we are using the GNU Fortran 77 compiler... " >&6; }
-if test "${ac_cv_f77_compiler_gnu+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  cat > conftest.$ac_ext <<_ACEOF
-      program main
-#ifndef __GNUC__
-       choke me
-#endif
-
-      end
-_ACEOF
-if ac_fn_f77_try_compile "$LINENO"; then :
-  ac_compiler_gnu=yes
-else
-  ac_compiler_gnu=no
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-ac_cv_f77_compiler_gnu=$ac_compiler_gnu
-
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_f77_compiler_gnu" >&5
-$as_echo "$ac_cv_f77_compiler_gnu" >&6; }
-ac_ext=$ac_save_ext
-ac_test_FFLAGS=${FFLAGS+set}
-ac_save_FFLAGS=$FFLAGS
-FFLAGS=
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $F77 accepts -g" >&5
-$as_echo_n "checking whether $F77 accepts -g... " >&6; }
-if test "${ac_cv_prog_f77_g+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  FFLAGS=-g
-cat > conftest.$ac_ext <<_ACEOF
-      program main
-
-      end
-_ACEOF
-if ac_fn_f77_try_compile "$LINENO"; then :
-  ac_cv_prog_f77_g=yes
-else
-  ac_cv_prog_f77_g=no
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_prog_f77_g" >&5
-$as_echo "$ac_cv_prog_f77_g" >&6; }
-if test "$ac_test_FFLAGS" = set; then
-  FFLAGS=$ac_save_FFLAGS
-elif test $ac_cv_prog_f77_g = yes; then
-  if test "x$ac_cv_f77_compiler_gnu" = xyes; then
-    FFLAGS="-g -O2"
-  else
-    FFLAGS="-g"
-  fi
-else
-  if test "x$ac_cv_f77_compiler_gnu" = xyes; then
-    FFLAGS="-O2"
-  else
-    FFLAGS=
-  fi
-fi
-
-if test $ac_compiler_gnu = yes; then
-  G77=yes
-else
-  G77=
-fi
-ac_ext=c
-ac_cpp='$CPP $CPPFLAGS'
-ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_c_compiler_gnu
-
-   if test -z "$F77"; then
-     as_fn_error $? "You asked me to use g77 but i haven't been able to find it" "$LINENO" 5
-    fi
-fi
 
 if test "$with_gfortran" = yes; then
    ac_ext=f
@@ -9067,7 +8838,7 @@ fi
 
 
 ######################
-######## With F77 / G77 / GFortran ...
+######## With gfortran ...
 ######################
 if test -n "$F77"; then
    case "$F77" in
@@ -9076,6 +8847,9 @@ if test -n "$F77"; then
         if test "$enable_code_coverage" = yes; then
             FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
         fi
+     ;;
+     g77*)
+        as_fn_error $? "g77 is no longer supported. Please consider switching to gfortran" "$LINENO" 5
      ;;
    esac
 
@@ -10494,7 +10268,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 10497 "configure"
+// #line 10271 "configure"
 
 
 public class conftest {
@@ -10560,7 +10334,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 10563 "configure"
+// #line 10337 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -10624,7 +10398,7 @@ $as_echo_n "checking java API version... " >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 10627 "configure"
+// #line 10401 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -10669,7 +10443,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 10672 "configure"
+// #line 10446 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -12040,7 +11814,7 @@ $as_echo_n "checking jgraphx... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12043 "configure"
+// #line 11817 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -12134,7 +11908,7 @@ $as_echo_n "checking minimal version (1.4.1.0) of jgraphx... " >&6; }
    if test "x=" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12137 "configure"
+// #line 11911 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12185,7 +11959,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12188 "configure"
+// #line 11962 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12262,7 +12036,7 @@ $as_echo_n "checking jhdf5... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12265 "configure"
+// #line 12039 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -12411,7 +12185,7 @@ $as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12414 "configure"
+// #line 12188 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12466,7 +12240,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12469 "configure"
+// #line 12243 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12550,7 +12324,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12553 "configure"
+// #line 12327 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -12644,7 +12418,7 @@ $as_echo_n "checking minimal version (0.5.2) of flexdock... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12647 "configure"
+// #line 12421 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12695,7 +12469,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12698 "configure"
+// #line 12472 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12768,7 +12542,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12771 "configure"
+// #line 12545 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -12875,7 +12649,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12878 "configure"
+// #line 12652 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -12983,7 +12757,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12986 "configure"
+// #line 12760 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -13090,7 +12864,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13093 "configure"
+// #line 12867 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -13302,7 +13076,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13305 "configure"
+// #line 13079 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -13463,7 +13237,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13466 "configure"
+// #line 13240 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13570,7 +13344,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13573 "configure"
+// #line 13347 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13678,7 +13452,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13681 "configure"
+// #line 13455 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13785,7 +13559,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13788 "configure"
+// #line 13562 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -13894,7 +13668,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13897 "configure"
+// #line 13671 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -14003,7 +13777,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14006 "configure"
+// #line 13780 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -14110,7 +13884,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14113 "configure"
+// #line 13887 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14217,7 +13991,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14220 "configure"
+// #line 13994 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14311,7 +14085,7 @@ $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14314 "configure"
+// #line 14088 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14362,7 +14136,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14365 "configure"
+// #line 14139 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14435,7 +14209,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14438 "configure"
+// #line 14212 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -14542,7 +14316,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14545 "configure"
+// #line 14319 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -14649,7 +14423,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14652 "configure"
+// #line 14426 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -14756,7 +14530,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14759 "configure"
+// #line 14533 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -14863,7 +14637,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14866 "configure"
+// #line 14640 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -14974,7 +14748,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14977 "configure"
+// #line 14751 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -15081,7 +14855,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15084 "configure"
+// #line 14858 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15175,7 +14949,7 @@ $as_echo_n "checking minimal version (0.9.4) of jlatexmath... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 15178 "configure"
+// #line 14952 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15226,7 +15000,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 15229 "configure"
+// #line 15003 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15305,7 +15079,7 @@ $as_echo_n "checking checkstyle... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15308 "configure"
+// #line 15082 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -15412,7 +15186,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15415 "configure"
+// #line 15189 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -15519,7 +15293,7 @@ $as_echo_n "checking antlr... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15522 "configure"
+// #line 15296 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -15626,7 +15400,7 @@ $as_echo_n "checking testng... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15629 "configure"
+// #line 15403 "configure"
 import org.testng.TestNG;
 
 public class conftest {
@@ -15733,7 +15507,7 @@ $as_echo_n "checking qdox... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15736 "configure"
+// #line 15510 "configure"
 import com.thoughtworks.qdox.tools.QDoxTester;
 
 public class conftest {
@@ -15840,7 +15614,7 @@ $as_echo_n "checking bsh... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15843 "configure"
+// #line 15617 "configure"
 import bsh.Console;
 
 public class conftest {
@@ -15947,7 +15721,7 @@ $as_echo_n "checking junit... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15950 "configure"
+// #line 15724 "configure"
 import junit.framework.Assert;
 
 public class conftest {
@@ -23969,7 +23743,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 23972 "configure"
+#line 23746 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -24279,7 +24053,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 24282 "configure"
+#line 24056 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -24860,7 +24634,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24863 "configure"
+// #line 24637 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -24967,7 +24741,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24970 "configure"
+// #line 24744 "configure"
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
@@ -31274,7 +31048,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31277 "configure"
+#line 31051 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31380,7 +31154,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31383 "configure"
+#line 31157 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -40693,7 +40467,6 @@ echo ""
 echo "Compiler Configuration:"
 echo "  Intel (--with-intelcompilers) .... =        $with_intelcompilers"
 echo "  GNU gcc (--with-gcc) ............. =        $with_gcc"
-echo "  GNU Fortran 77 (--with-g77) ...... =        $with_g77"
 echo "  GNU Fortran 95 (--with-gfortran) . =        $with_gfortran"
 echo ""
 echo "Options:"
