@@ -15,6 +15,10 @@
 extern "C"
 {
 #include <math.h>
+#ifdef _MSC_VER
+#include <float.h>
+#define isnan _isnan
+#endif
 }
 
 int DecompositionUtils::isValid(double x, double y, double z)
