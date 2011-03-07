@@ -37,7 +37,7 @@ libsciinterpolation_la_CFLAGS= 	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 
-libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciinterpolation_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 

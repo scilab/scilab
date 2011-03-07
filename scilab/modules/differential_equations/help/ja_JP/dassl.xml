@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="dassl" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dassl</refname>
+
+    <refpurpose>微分代数方程式</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x0</term>
+
+        <listitem>
+          <para>
+	<literal>y0</literal> (<literal>ydot0</literal> は
+	0 を初期推定値として<literal>dassl</literal>で推定されたもの)
+	または行列<literal>[y0 ydot0]</literal>のどちらかです.
+          <literal>g(t,y0,ydot0)</literal>は 0 に等しい必要があります. 
+	<literal>ydot0</literal>の推定値のみが既知の場合,
+	<literal>info(7)=1</literal> と設定してください.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>y0</term>
+
+              <listitem>
+                <para>初期条件の実数列ベクトル.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>ydot0</term>
+
+              <listitem>
+                <para><literal>t0</literal>における<literal>y</literal>の時間微分の
+		実数列ベクトル (推定値の場合もある).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>初期時間を表す実数.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>実数のスカラーおよびベクトル. 解を求める時間を指定します.
+	<literal>info(2)=1</literal>を設定することにより,
+	dasslの各ステップ点での解を得ることができることに注意してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>atol,rtol</term>
+
+        <listitem>
+          <para>実数スカラーまたは<literal>y</literal>と同じ大きさの列ベクトル.
+	<literal>atol,rtol</literal> はそれぞれ絶対および相対許容誤差を指定します.
+	ベクトルの場合,<literal>y</literal>の各要素毎に許容誤差が指定されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>res</term>
+
+        <listitem>
+          <para>外部 (関数またはリストまたは文字列). 
+          <literal>g(t,y,ydot)</literal>の値を計算. 以下のようにします :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Scilab関数.</para>
+
+              <para>呼び出し手順は
+              <literal>[r,ires]=res(t,y,ydot)</literal> とする必要があり,
+              <literal>res</literal> は残差
+              <literal>r=g(t,y,ydot)</literal> と誤差フラグ<literal>ires</literal>を
+		返す必要があります. 
+		<literal>res</literal>が<literal>r</literal>の計算に
+		成功した場合には<literal>ires = 0</literal>,
+		<literal>(t,x,xdot)</literal>のローカルな残差が定義されない
+		場合には <literal>=-1</literal>,
+		パラメータが許容範囲外の場合は <literal>=-2</literal> となります.</para>
+            </listitem>
+
+            <listitem>
+              <para>リスト.</para>
+
+              <para>外部ルーチンのこの形式は
+		関数にパラメータを指定する際に使用されます.
+		以下のような形式とします:</para>
+
+              <programlisting role = ""><![CDATA[ 
+list(res,x1,x2,...)
+ ]]></programlisting>
+
+              <para>ただし,ここで関数<literal>res</literal>の呼び出し手順は
+		以下のようになります</para>
+
+              <programlisting role = ""><![CDATA[ 
+r=res(t,y,ydot,x1,x2,...)
+ ]]></programlisting>
+
+              <para>
+		この場合も<literal>res</literal> は
+		<literal>(t,y,ydot,x1,x2,...)</literal>の関数として<literal>r=g(t,y,ydot)</literal>
+		を返します.
+		</para>
+            </listitem>
+
+            <listitem>
+              <para>文字列.</para>
+
+              <para>
+		ScilabにリンクされるCまたはFortranサブルーチンの名前を指します.</para>
+
+              <para>Cの場合,呼び出し手順は次のようになります:</para>
+
+              <programlisting role = ""><![CDATA[ 
+void res(double *t, double y[], double yd[], double r[],
+         int *ires, double rpar[], int ipar[])
+ ]]></programlisting>
+
+              <para>Fortranの場合,呼び出し手順は次のようになります:</para>
+
+              <programlisting role = ""><![CDATA[ 
+subroutine res(t,y,yd,r,ires,rpar,ipar)
+double precision t, y(*),yd(*),r(*),rpar(*)
+integer ires,ipar(*)  
+ ]]></programlisting>
+
+              <para>rpar と ipar 配列は存在しますが,
+	使用できません.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>jac</term>
+
+        <listitem>
+          <para>外部 (関数またはリストまたは文字列). 
+	指定したパラメータ<literal>cj</literal>の値を用いて
+          <literal>dg/dy+cj*dg/dydot</literal> の値を計算します.
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Scilab関数.</para>
+
+              <para>その呼び出し手順は
+		<literal>r=jac(t,y,ydot,cj)</literal> とする必要があり,
+		<literal>jac</literal>関数は
+		<literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal>を
+		返す必要があります.
+		ただし, <literal>cj</literal>は実数スカラーです</para>
+            </listitem>
+
+            <listitem>
+              <para>リスト.</para>
+
+              <para>以下のようにする必要があります</para>
+
+              <programlisting role = ""><![CDATA[ 
+list(jac,x1,x2,...)
+ ]]></programlisting>
+
+              <para>ただしこの場合の関数<literal>jac</literal>の呼び出し手順は
+		以下のようになります</para>
+
+              <programlisting role = ""><![CDATA[ 
+r=jac(t,y,ydot,cj,x1,x2,...)
+ ]]></programlisting>
+
+              <para>この場合も<literal>jac</literal> は
+		<literal>(t,y,ydot,cj,x1,x2,...)</literal>の関数として
+		<literal>dg/dy+cj*dg/dydot</literal>を返します.</para>
+            </listitem>
+
+            <listitem>
+              <para>文字列.</para>
+
+              <para>
+		ScilabにリンクされるFortranサブルーチンの名前を指す
+		必要があります</para>
+
+              <para>Cの場合,呼び出し手順は次のようになります:</para>
+
+              <programlisting role = ""><![CDATA[ 
+void jac(double *t, double y[], double yd[], double pd[],
+         double *cj, double rpar[], int ipar[])
+ ]]></programlisting>
+
+              <para>Fortranの場合, 呼び出し手順は次のようになります:</para>
+
+              <programlisting role = ""><![CDATA[ 
+subroutine jac(t,y,yd,pd,cj,rpar,ipar)
+double precision t, y(*),yd(*),pd(*),cj,rpar(*)
+integer ipar(*)
+ ]]></programlisting>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para><literal>7</literal> 個の要素を含むオプションのリスト.
+          デフォルト値は list([],0,[],[],[],0,0);</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>info(1)</term>
+
+              <listitem>
+                <para><literal>g</literal>を評価できる時間の最大値
+		を指定する実数スカラー.
+		または,時間に制限を課さない場合には,空の行列
+		<literal>[]</literal></para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(2)</term>
+
+              <listitem>
+                <para>
+		<literal>dassl</literal> が
+		その中間的な計算値を返す(<literal>flag=1</literal>),
+		もしくはユーザが指定した時間においてのみ値を返す
+		(<literal>flag=0</literal>)
+		かどうかを指定するフラグ.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(3)</term>
+
+              <listitem>
+                <para><literal>2</literal> 個の要素のベクトルで,
+	<literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
+                "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>により計算された
+	帯行列の定義<literal>[ml,mu]</literal>を指定します.
+	<literal>jac</literal> が完全な行列を返す場合,
+	<literal>info(3)=[]</literal> を指定します.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(4)</term>
+
+              <listitem>
+                <para>実数スカラーで,
+		ステップの大きさの最大値を指定します.
+		制限をしない場合には,<literal>info(4)=[]</literal>
+		を指定してください.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(5)</term>
+
+              <listitem>
+                <para>実数スカラーで,ステップの大きさの初期値を指定します.
+		指定しない場合には,<literal>info(5)=[]</literal>
+		を指定してください.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(6)</term>
+
+              <listitem>
+                <para>
+		解が非負であることが既知の場合に<literal>info(6)=1</literal>に設定,
+		そうでない場合は <literal>info(6)=0</literal> に設定します.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(7)</term>
+
+              <listitem>
+                <para>
+		<literal>ydot0</literal>が単なる推定値の場合は
+		<literal>info(7)=1</literal>,
+		<literal>g(t0,y0,ydot0)=0</literal>の場合は
+                <literal>info(7)=0</literal> を指定します.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hd</term>
+
+        <listitem>
+          <para>
+		実数ベクトルで,<literal>dassl</literal>のコンテキストを保存し,
+		積分を再開することを可能にします.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>実数行列. 各列はベクトル[t;x(t);xdot(t)]です.
+	ただし t は解を計算した時間です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>dassl 関数は代数微分方程式を積分し,
+	指定した時間における <literal>y</literal> の
+	値を返します.</para>
+
+    <programlisting role = ""><![CDATA[ 
+g(t,y,ydot)=0
+y(t0)=y0  and   ydot(t0)=ydot0
+  ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+function [r,ires]=chemres(t,y,yd)
+   r=[-0.04*y(1)+1d4*y(2)*y(3)-yd(1)
+       0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2)
+       y(1)+y(2)+y(3)-1];
+   ires=0
+endfunction
+
+function pd=chemjac(x,y,yd,cj)
+    pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+         0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+         1       , 1                      , 1       ]
+endfunction
+
+y0=[1;0;0];
+yd0=[-0.04;0.04;0];
+t=[1.d-5:0.02:.4,0.41:.1:4,40,400,4000,40000,4d5,4d6,4d7,4d8,4d9,4d10];
+
+y=dassl([y0,yd0],0,t,chemres);
+
+info=list([],0,[],[],[],0,0);
+info(2)=1;
+y=dassl([y0,yd0],0,4d10,chemres,info);
+y=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
+ 
+//パラメータとしてオプション引数を使用
+//-----------------------------------
+function [r,ires]=chemres(t,y,yd ,a,b,c)
+   r=[-a*y(1)+b*y(2)*y(3)-yd(1)
+       a*y(1)-b*y(2)*y(3)-c*y(2)*y(2)-yd(2)
+       y(1)+y(2)+y(3)-1];
+   ires=0
+endfunction
+
+function pd=chemjac(x,y,yd,cj, a,b,c)
+    pd=[-a-cj , b*y(3)             , b*y(2);
+         a    ,-b*y(3)-2*c*y(2)-cj ,-b*y(2);
+         1    , 1                  , 1       ]
+endfunction
+
+y=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
+
+// Cコードを使用
+//------------
+// - Cコードを作成
+rescode=['void chemres(double *t, double y[], double yd[], double r[], int *ires, double rpar[], int ipar[])'
+         ' {'
+         '   r[0] = -0.04*y[0]+1.0e4*y[1]*y[2]                -yd[0];'
+         '   r[1] =  0.04*y[0]-1.0e4*y[1]*y[2]-3.0e7*y[1]*y[1]-yd[1];'
+         '   r[2] =       y[0]+y[1]+y[2]-1;'
+         '   *ires = 0;'
+         ' }'];
+
+jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *cj, double rpar[], int ipar[])'
+         ' {'
+         '   /* first column*/'
+         '   pd[0] = -0.04-*cj;'
+         '   pd[1] =  0.04;'
+         '   pd[2] =  1.0;'
+         '    /* second column*/'
+         '   pd[3] =  1.0e4*y[2];'
+         '   pd[4] = -1.0e4*y[2]-2*3.0e7*y[1]-*cj;'
+         '   pd[5] =  1.0;'
+         '    /* third column*/'
+         '   pd[6] =  1.0e4*y[1];'
+         '   pd[7] = -1.0e4*y[1];'
+         '   pd[8] =  1.0;'
+         ' }'];
+mputl([rescode;jaccode],TMPDIR+'/mycode.c') //Cファイルを作成
+
+// - コンパイル
+ilib_for_link(['chemres','chemjac'],'mycode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
+
+// - Scilabにリンク
+exec(TMPDIR+'/loader.sce') //incremental linking
+
+// - dasslをコール
+y=dassl([y0,yd0],0,t,'chemres','chemjac');
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="dasrt">dasrt</link></member>
+
+      <member><link linkend="impl">impl</link></member>
+
+      <member><link linkend="fort">fort</link></member>
+
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="external">external</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

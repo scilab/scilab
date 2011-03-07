@@ -54,7 +54,6 @@ public final class SaveFile {
      * @return true if saved
      */
     public static boolean doSave(ScilabEditorPane textPane, int index, File fOut, EditorKit editorKit) {
-
         ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
         boolean enc = false;
         if (!styledDocument.getEncoding().equalsIgnoreCase(ConfigSciNotesManager.getDefaultEncoding())) {
@@ -63,6 +62,12 @@ public final class SaveFile {
                 return false;
             }
             enc = true;
+        }
+
+        try {
+            fOut.createNewFile();
+        } catch (IOException e) {
+            System.err.println(e);
         }
 
         if (!fOut.canWrite()) {

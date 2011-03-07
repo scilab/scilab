@@ -11,7 +11,7 @@
 modulename=scicos
 DISABLE_HELP_CLEAN=yes
 
-libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
+libsciscicos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
 
 
 include $(top_srcdir)/Makefile.incl.am
@@ -20,7 +20,7 @@ include $(top_srcdir)/Makefile.incl.am
 include $(srcdir)/Makefile.modelica.am
 
 
-if SCICOS
+if XCOS
 # Code not factorized with the one on the bottom since sundials must be
 # compiled first
 pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la

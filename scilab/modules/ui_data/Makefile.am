@@ -71,7 +71,7 @@ libsciui_data_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
-libsciui_data_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libsciui_data_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libsciui_data-disable.la
@@ -80,7 +80,7 @@ if GUI
 pkglib_LTLIBRARIES += libsciui_data.la 
 endif
 
-libsciui_data_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciui_data_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libsciui_data_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(UI_DATA_CPP_SOURCES)
 

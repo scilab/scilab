@@ -31,7 +31,7 @@ libscispecial_functions_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscispecial_functions.la
 
-libscispecial_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscispecial_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

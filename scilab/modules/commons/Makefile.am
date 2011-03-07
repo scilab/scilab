@@ -54,7 +54,7 @@ libscicommons_la_CPPFLAGS =
 libscicommons_disable_la_CFLAGS = 
 
 COMMONS_DISABLE_C_SOURCES = 
-libscicommons_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscicommons-disable.la
@@ -63,7 +63,7 @@ if GUI
 pkglib_LTLIBRARIES += libscicommons.la 
 endif
 
-libscicommons_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscicommons_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(COMMONS_CPP_SOURCES)
 

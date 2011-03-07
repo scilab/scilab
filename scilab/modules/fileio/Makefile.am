@@ -122,7 +122,7 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscifileio.la
 
-libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscifileio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
 

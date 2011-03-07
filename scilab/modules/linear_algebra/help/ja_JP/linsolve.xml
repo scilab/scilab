@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="linsolve">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>linsolve</refname>
+    <refpurpose>線形方程式ソルバ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>a <literal>na x ma</literal> 実数行列 (疎行列の場合もあり)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para><literal>na x 1</literal>ベクトル (<literal>A</literal>の行と同じ次元)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>実数ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kerA</term>
+        <listitem>
+          <para><literal>ma x k</literal> 実数行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>linsolve</literal>  は,
+	<literal> A*x+b=0</literal>の解を全て計算します.</para>
+    <para><literal>x0</literal> は特解 (存在する場合),
+	<literal> kerA </literal> は<literal>A</literal>のヌル空間です.
+	任意の<literal>w</literal>について<literal>x=x0+kerA*w</literal>は,
+	<literal> A*x+b=0</literal>を満たします.</para>
+    <para>
+    互換性のある <literal>x0</literal> がエントリに指定された場合, <literal>x0</literal>が返されます. 
+	そうでない場合,<literal>x0</literal>と互換性のあるもの(存在する場合)が返されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(5,3)*rand(3,8);
+b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //compatible b
+b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //uncompatible b
+A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
+
+// Benchmark with other linear sparse solver:
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
+
+b = 0*ones(size(A,1),1);
+
+tic();
+res = umfpack(A,'\',b);
+printf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
+
+tic();
+res = linsolve(A,b);
+printf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
+
+tic();
+res = A\b;
+printf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+      <member>
+        <link linkend="pinv">pinv</link>
+      </member>
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+      <member>
+        <link linkend="im_inv">im_inv</link>
+      </member>
+      <member>
+        <link linkend="umfpack">umfpack</link>
+      </member>
+      <member>
+        <link linkend="backslash">backslash</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

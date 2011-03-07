@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Serge STEER 
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="savematfile">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>savematfile</refname>
+    <refpurpose>Matlab MATファイル (バイナリまたは ASCII)を書き込みます</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>savematfile('filename')
+savematfile('filename', 'var1', 'var2', ...)
+savematfile('filename', '-struct', 's')
+savematfile('filename', '-struct', 's', 'f1', 'f2', ...)
+savematfile(..., '-v4')
+savematfile(..., '-v6')
+savematfile(..., '-v7')
+savematfile(..., '-v7.3')
+savematfile filename var1 var2 ...</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>ファイルへのパスを有する文字列 (必須)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>format</term>
+        <listitem>
+          <para>使用するデータ形式</para>
+          <variablelist>
+            <varlistentry>
+              <term>"-mat"</term>
+              <listitem>
+                <para>バイナリMATファイル (デフォルト)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-ascii"</term>
+              <listitem>
+                <para>8ビット ASCII形式</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-ascii" "-double"</term>
+              <listitem>
+                <para>16ビット ASCII形式</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-ascii" "-tabs"</term>
+              <listitem>
+                <para>タブ区切り形式</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-ascii" "-double" "-tabs"</term>
+              <listitem>
+                <para>16桁アスキー形式, タブ区切り形式</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-v4"</term>
+              <listitem>
+                <para>MATLABバージョン4がオープンできる形式</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-v6"</term>
+              <listitem>
+                <para>MATLABバージョン6以降がオープンできる形式</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-v7"</term>
+              <listitem>
+                <para>MATLABバージョン7以降がオープンできる形式 (デフォルト)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-v7.3"</term>
+              <listitem>
+                <para>MATLABバージョン7.3以降がオープンできる形式</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>var1, var2</term>
+        <listitem>
+          <para>読み込む変数の名前を有する文字列 (バイナリファイル専用)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"-struct" "s"</term>
+        <listitem>
+          <para>スカラー構造体 s の全てのフィールドを
+	ファイル filename の独立した変数として保存.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"-struct" "s" "f1" "f2"</term>
+        <listitem>
+          <para>
+	構造体の指定したフィールド(s.f1, s.f2, ...)のみ独立した変数として保存.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    Scilabから Matlab MATファイルに変数を保存しま. Scilabのデータ型は
+	等価なMatlabのデータ型に変換されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A = rand(10,10);
+B = sprand(100,100,0.1);
+savematfile('test_matfile.mat','A','B','-v6');
+clear;
+loadmatfile('test_matfile.mat');
+disp(A)
+disp(B)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="load">load</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="loadmatfile">loadmatfile</link>
+      </member>
+      <member>
+        <link linkend="mfile2sci">mfile2sci</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Serge Steer (INRIA)</member>
+      <member>V.C</member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>この関数は以下の "MAT-File Format"に基づき開発されました: 
+<literal><ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink></literal></para>
+  </refsection>
+</refentry>

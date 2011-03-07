@@ -30,7 +30,7 @@ libscispreadsheet_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
 
-libscispreadsheet_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscispreadsheet_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscispreadsheet_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
 

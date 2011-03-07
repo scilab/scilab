@@ -670,6 +670,29 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * Scroll the pane to have the line lineNumber on the top of the pane in whereami mode
+     * The line number is computed regarding the function named funname.
+     * @param lineNumber the number of the line
+     * @param funname the function name
+     * @param highlight true to highlight the line
+     */
+    public void scrollTextToLineNumberInWhereami(int lineNumber, String funname, boolean highlight) {
+        if (funname != null) {
+            Element root = getDocument().getDefaultRootElement();
+            int nlines = root.getElementCount();
+            ScilabDocument.ScilabLeafElement elem;
+            for (int i = 0; i < nlines; i++) {
+                elem = (ScilabDocument.ScilabLeafElement) root.getElement(i);
+                if (elem.getFunctionName().equals(funname)) {
+                    lineNumber += i;
+                    break;
+                }
+            }
+        }
+        scrollTextToLineNumber(lineNumber, highlight);
+    }
+
+    /**
      * @return the width of a white
      */
     public int getWhiteWidth() {

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="balanc">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>balanc</refname>
+    <refpurpose>行列またはペンシルの平衡化</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Ab,X]=balanc(A)
+[Eb,Ab,X,Y]=balanc(E,A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A:  </term>
+        <listitem>
+          <para>実数正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X:  </term>
+        <listitem>
+          <para>可逆な実数正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E:  </term>
+        <listitem>
+          <para>実数正方行列 (<literal>A</literal>と同じ次元)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y:  </term>
+        <listitem>
+          <para>可逆な実数正方行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	正方行列の条件数を改善するために平衡化します.</para>
+    <para><literal>[Ab,X] = balanc(A)</literal> は,
+	<literal>Ab = inv(X)*A*X</literal>が近似的に等しい
+	行ノルムおよび列ノルムを有する
+	相似変換<literal>X</literal>を見つけます.</para>
+    <para>
+	行列ペンシルの場合,平衡化は一般化固有値問題を改善することにより
+	行われます.</para>
+    <para><literal>[Eb,Ab,X,Y] = balanc(E,A)</literal> は,
+	<literal>Eb=inv(X)*E*Y,  Ab=inv(X)*A*Y</literal> となるような
+	左および右変換
+	<literal>X</literal> および <literal>Y</literal> を返します.</para>
+  </refsection>
+  <refsection>
+    <title>注意</title>
+    <para>
+	平衡化は関数<literal>bdiag</literal> および <literal>spec</literal>
+	で行われます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=[1/2^10,1/2^10;2^10,2^10];
+[Ab,X]=balanc(A);
+norm(A(1,:))/norm(A(2,:))
+norm(Ab(1,:))/norm(Ab(2,:))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bdiag">bdiag</link>
+      </member>
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+      <member>
+        <link linkend="schur">schur</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

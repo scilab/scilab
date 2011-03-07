@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="residu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>residu</refname>
+    <refpurpose>残差</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[V]=residu(P,Q1,Q2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>P, Q1, Q2</term>
+        <listitem>
+          <para>実数または複素数の係数を有する多項式または多項式の行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>V=residu(P,Q1,Q2)</literal> は,
+	<literal>V(i,j)</literal>が
+	<literal>Q1(i,j)</literal>のゼロで計算される
+	有理数<literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal>
+	の残差の合計となるような行列<literal>V</literal>を返します.</para>
+    <para><literal>Q1(i,j)</literal> および <literal>Q2(i,j)</literal> は,
+	共通の根を有さない必要があります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,'s');
+H=[s/(s+1)^2,1/(s+2)];N=numer(H);D=denom(H);
+w=residu(N.*horner(N,-s),D,horner(D,-s));  //N(s) N(-s) / D(s) D(-s)
+sqrt(sum(w))  //H2ノルムです
+h2norm(tf2ss(H))
+
+p=(s-1)*(s+1)*(s+2)*(s+10);a=(s-5)*(s-1)*(s*s)*((s+1/2)**2);
+b=(s-3)*(s+2/5)*(s+3);
+residu(p,a,b)+531863/4410    //正確
+z=poly(0,'z');a=z^3+0.7*z^2+0.5*z-0.3;b=z^3+0.3*z^2+0.2*z+0.1;
+atild=gtild(a,'d');btild=gtild(b,'d');
+residu(b*btild,z*a,atild)-2.9488038   //正確
+a=a+0*%i;b=b+0*%i;
+real(residu(b*btild,z*a,atild)-2.9488038) //複素数の場合
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pfss">pfss</link>
+      </member>
+      <member>
+        <link linkend="bdiag">bdiag</link>
+      </member>
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="gtild">gtild</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para> F.Delebecque INRIA</para>
+  </refsection>
+</refentry>

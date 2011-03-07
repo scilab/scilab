@@ -22,8 +22,8 @@ import org.scilab.modules.scinotes.ScilabEditorKit;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabLexerConstants;
 
-import org.scilab.forge.scidoc.scilab.AbstractScilabCodeHandler;
-import org.scilab.forge.scidoc.scilab.ScilabLexer;
+import org.scilab.modules.helptools.scilab.AbstractScilabCodeHandler;
+import org.scilab.modules.helptools.scilab.ScilabLexer;
 
 /**
  * Code converter Class

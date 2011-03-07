@@ -19,9 +19,6 @@
 // See the file ../license.txt
 //
 function ok=hilite_mult_objs(path,objs,mess)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 // this function hilight a block by two different way:
 //   -First method: the block is given by its position in the diagram. In this case
 //               - path: the super_path
@@ -77,9 +74,6 @@ end
 endfunction
 
 function tt=onelinemess(mess) 
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 tt='['; 
 for i=1:size(mess,'*')
   tt=tt+'""'+mess(i)+'"";';
@@ -88,9 +82,6 @@ tt=tt+']';
 endfunction
 
 function temp2=check_csuper(temp,scs_m)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 temp2=[temp(1)];
 if scs_m.objs(temp(1)).model.sim=='super' then
   temp2b=check_csuper(temp(2:$),scs_m.objs(temp(1)).model.rpar);

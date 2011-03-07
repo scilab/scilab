@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="save" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>save</refname>
+
+    <refpurpose>バイナリファイルに1個または複数の変数を保存する</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>save(filename [,x1,x2,...,xn])
+save(fd [,x1,x2,...,xn])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>ファイルのパスを含む文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>mopenをコールすることにより得られたファイル記述子</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xi</term>
+
+        <listitem>
+          <para>任意のScilab変数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>save</literal>コマンドはカレントのScilab変数を
+	バイナリファイルに保存する際に使用されます.
+	変数がグラフィックハンドルの場合,
+	<literal>save</literal>関数は対応する<link
+    linkend="graphics_entities">graphics_entities</link>の定義を全て保存します.</para>
+
+    <para>Scilab 5.0以降, <link linkend="uimenu">uimenu</link> または <link
+    linkend="uicontrol">uicontrol</link> ハンドルもこの関数により全て保存されます.</para>
+
+    <para>ファイルはパスまたは<literal>mopen</literal>により得られたファイル記述子の
+	どちらかで指定できます.</para>
+
+    <para><literal>save(filename)</literal> は<literal>filename</literal>で指定したファイルに
+	カレントの全ての変数を保存します.</para>
+
+    <para><literal>save(fd)</literal>は記述子<literal>fd</literal>で指定したファイルに
+	カレントの全ての変数を保存します.</para>
+
+    <para><literal>save(filename,x,y)</literal> または
+    <literal>save(fd,x,y)</literal> は
+    <literal>x</literal> および <literal>y</literal>という名前の変数のみを保存します.</para>
+
+    <para>保存された変数は <literal><link linkend="load">load</link></literal>
+    コマンドにより再度読み込むことができます.</para>
+
+    <para>書き込まれたファイルは他のオペレーティングシステムやアーキテクチャ(リトルおよびビッグインディアン)に
+	対する可搬性があります.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+a=eye(2,2);b=ones(a);
+save('val.dat',a,b);
+clear a
+clear b
+load('val.dat','a','b');
+
+// ファイルにシーケンシャルに保存
+fd=mopen('TMPDIR/foo','wb')
+for k=1:4, x=k^2;save(fd,x,k),end
+mclose(fd)
+fd=mopen('TMPDIR/foo','rb')
+for i=1:4, load(fd,'x','k');x,k,end
+mclose(fd)
+
+// 古い保存したファイルに変数を追加
+fd=mopen('TMPDIR/foo','r+')
+mseek(0,fd,'end') 
+lst=list(1,2,3)
+save(fd,lst)
+mclose(fd)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="load">load</link></member>
+
+      <member><link linkend="write">write</link></member>
+
+      <member><link linkend="save_format">save_format</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

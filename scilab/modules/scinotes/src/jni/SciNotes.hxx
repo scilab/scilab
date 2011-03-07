@@ -47,8 +47,6 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
-#include "GiwsException.hxx"
-
 #ifndef _MSC_VER /* Defined anyway with Visual */
 #if !defined(byte)
 typedef signed char byte;
@@ -66,7 +64,7 @@ JavaVM * jvm;
 protected:
 jmethodID voidscinotesID; // cache method id
 jmethodID voidscinotesjstringID; // cache method id
-jmethodID voidscinotesjstringjintID; // cache method id
+jmethodID voidscinotesjstringjintjstringID; // cache method id
 jmethodID voidscinotesjstringjstringID; // cache method id
 jmethodID voidcloseSciNotesFromScilabID; // cache method id
 
@@ -129,7 +127,7 @@ static void scinotes(JavaVM * jvm_);
 
 static void scinotes(JavaVM * jvm_, char * fileName);
 
-static void scinotes(JavaVM * jvm_, char * fileName, int lineNumber);
+static void scinotes(JavaVM * jvm_, char * fileName, int lineNumber, char * functionName);
 
 static void scinotes(JavaVM * jvm_, char * fileName, char * option);
 

@@ -1120,7 +1120,7 @@ pal = xcosPalAddBlock(pal, bigSomPath);
 
 xcosPalAdd(pal);]]></programlisting>
     <programlisting role="example"><![CDATA[
-loadScicosLibs;
+loadXcosLibs;
 //Create a simple custom block.
 function [x,y,typ]=MyBlock(job,arg1,arg2)
   x=[];y=[];typ=[];

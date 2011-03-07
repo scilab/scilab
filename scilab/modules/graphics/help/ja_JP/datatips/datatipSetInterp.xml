@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="jaS" xml:id="datatipSetInterp">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatipSetInterp</refname>
+    <refpurpose>tipの位置の補間モードを設定する. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>
+      datatipSetInterp(curve_handle,interp_mode)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>curve_handle</term>
+        <listitem>
+          <para>
+            曲線または曲面のハンドル. 
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>interp_mode</term>
+        <listitem>
+          <para>
+            論理値で, falseの場合,
+		tipsはメッシュ点にのみ配置できます.
+	trueの場合,メッシュ点の間で補間が行われます.
+	デフォルト値はfalseです.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	tipの位置の補間モードを設定します.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[
+    x=linspace(0,1,8)';
+    y=x.^3;
+    clf()
+    plot(x,y);
+    e=gce();p=e.children(1);//ポリラインのハンドルを取得
+    p.mark_mode="on";p.mark_style=2;p.mark_size=5;
+    datatipCreate(p,[0.8,0.512]);
+    datatipSetInterp(p,%t);
+    datatipCreate(p,[0.8,0.512]);
+    ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member><link linkend="datatips" >datatips</link></member>
+      <member><link linkend="datatipMove" >datatipMove</link></member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>

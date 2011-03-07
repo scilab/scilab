@@ -1,6 +1,7 @@
-//  Scicos
+// Xcos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,19 +37,26 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,ini_c,base,exprs]=scicos_getvalue('Set Modulo_Count  block parameters',..
-	['initial state (>=0)';'Modulo what number (>0)'],list('vec',1,'vec',1),exprs)
-    if ~ok then break,end
-    ini_c=int(ini_c);base=int(base);
-    if ini_c<0|base<=0 then
-      message('values  must be positive')
-    else
-      graphics.exprs=exprs
-      model.ipar=base;
-      model.dstate=ini_c;
-      x.graphics=graphics;x.model=model
-      break
-    end
+      [ok,ini_c,base,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "Modulo_Count");" "; gettext("Modulo counter (0 to N counter)");" "], ..
+          [gettext("Initial State (zero or positive number)"); gettext("Upper Limit (positive number)")], ..
+          list("vec",1,"vec",1), exprs);
+
+      ini_c = int(ini_c);
+      base = int(base);
+      if ~ok then break,end
+      if ini_c <0 then
+          block_parameter_error(msprintf(gettext("Wrong value for ''Initial State'' parameter: %d."), ini_c), ..
+              gettext("Null or positive integer expected."));
+      elseif base <= 0 then
+          block_parameter_error(msprintf(gettext("Wrong values for ''Upper Limit'' parameter: %d."), base),..
+              gettext("Strictly positive integer expected."));
+      else
+          graphics.exprs=exprs
+          model.ipar=base;
+          model.dstate=ini_c;
+          x.graphics=graphics;x.model=model
+          break
+      end
   end
 case 'define' then
   ini_c=0

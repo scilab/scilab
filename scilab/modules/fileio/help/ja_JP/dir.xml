@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="dir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dir</refname>
+    <refpurpose>ファイル一覧を取得する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>dir path
+S=dir([path])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>
+	ディレクトリpathnameを指定する文字列行列
+	(<literal>*</literal>を含むパターンで終わる場合もあります).
+	デフォルト値は<literal>.</literal>です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>S</term>
+        <listitem>
+          <para>
+	<literal>dir</literal>型の<literal>tlist</literal>で
+	以下のフィールドを有します :
+	    <literal>name</literal>, <literal>date</literal> および
+	 <literal>isdir</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>dir</literal> は path 引数により指定したパターンに
+	一致するファイルを取得するために使用することができます.
+	パターンは,ファイルに関する情報を取得するために,
+	 unix <literal>ls</literal> または
+ 	Windows <literal>dir</literal> コマンドに指定されます.
+	よって, ポータブルな Scilab スクリプトを書くためには,
+	両方のOSで有効なワイルドカードパターンを指定する必要があります.
+	pathname 変換が行われるため,
+	例えば, <literal>SCI/modules/core/macros/*.sci</literal> は
+	unix および windows の両方で有効なパターンとなることに注意してください.
+    </para>
+    <para>
+	戻り値の変数の<literal>name</literal> フィールドファイル名の
+	列ベクトルです.
+    </para>
+    <para>
+	戻り値の
+      <literal>date</literal> フィールドは, 1970年1月1日からの積算日でコード化された
+	直近の修正日を含む整数の列ベクトルです.
+    </para>
+    <para>
+	戻り値の変数のフィールド<literal>isdir</literal>は,
+	対応する名前がディレクトリの場合に true となる
+	論理値の列ベクトルです.
+    </para>
+    <para>
+	デフォルトで表示される戻り値の構造はファイルの整形済みの列です.
+	これは,関数<literal>%dir_p</literal>を再定義することにより変更することが可能です.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+dir
+dir SCI/modules/core/macros/*.bin
+x=dir('SCI/modules/core/macros/*.bin')
+dt=getdate(x.date);
+mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 6 7:9]))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="listfiles">listfiles</link>
+      </member>
+      <member>
+        <link linkend="findfiles">findfiles</link>
+      </member>
+      <member>
+        <link linkend="ls">ls</link>
+      </member>
+      <member>
+        <link linkend="fileinfo">fileinfo</link>
+      </member>
+      <member>
+        <link linkend="date">date</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -17,7 +17,7 @@ libsciwindows_tools_la_CFLAGS=  -I$(srcdir)/includes/ \
 # the system)
 pkglib_LTLIBRARIES = libsciwindows_tools.la
 
-libsciwindows_tools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciwindows_tools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciwindows_tools.la
 libsciwindows_tools_la_SOURCES = $(WINDOWS_TOOLS_C_SOURCES)

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mgetstr" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>mgetstr</refname>
+
+    <refpurpose>文字列を読み込む</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>str=mgetstr(n [,fd] )</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>正のスカラー: 読み込む文字数.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>スカラー. 
+          関数 <literal>mopen</literal>から返された<literal>fd</literal> パラメータ. 
+	-1 は直近にオープンされたファイルを意味します.
+          デフォルト値は -1です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>mgetstr 関数により
+	バイナリファイルの文字列を読み込むことができます.
+	読み込みが完了する前にEOFに達した場合,適切に読み込まれた値のみが
+	返されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example">// テキスト読み込みモードでファイル記述子をオープン
+fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS','rt')
+
+// fd_rから100文字を取得
+strs_1 = mgetstr(100, fd_r)
+
+// fd_rから次の200文字を取得
+strs_2 = mgetstr(200, fd_r)
+
+// ファイル記述子を閉じる
+mclose(fd_r);</programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="mclose">mclose</link></member>
+
+      <member><link linkend="meof">meof</link></member>
+
+      <member><link linkend="mfprintf">mfprintf</link></member>
+
+      <member><link linkend="fprintfMat">fprintfMat</link></member>
+
+      <member><link linkend="mfscanf">mfscanf</link></member>
+
+      <member><link linkend="fscanfMat">fscanfMat</link></member>
+
+      <member><link linkend="mget">mget</link></member>
+
+      <member><link linkend="mgetstr">mgetstr</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+
+      <member><link linkend="mprintf">mprintf</link></member>
+
+      <member><link linkend="mput">mput</link></member>
+
+      <member><link linkend="mputstr">mputstr</link></member>
+
+      <member><link linkend="mscanf">mscanf</link></member>
+
+      <member><link linkend="mseek">mseek</link></member>
+
+      <member><link linkend="mtell">mtell</link></member>
+
+      <member><link linkend="mdelete">mdelete</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

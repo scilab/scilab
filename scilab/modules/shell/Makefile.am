@@ -63,7 +63,7 @@ endif
 # the system)
 pkglib_LTLIBRARIES = libscishell.la
 
-libscishell_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TERMCAP_LIB)
+libscishell_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TERMCAP_LIB)
 
 # All the sources needed by libscishell.la
 libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(GATEWAY_C_SOURCES)

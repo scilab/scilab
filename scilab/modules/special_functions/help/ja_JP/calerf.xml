@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="calerf" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>calerf</refname>
+
+    <refpurpose>誤差関数を計算する.</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数ベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>整数インジケータ</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>(xと同じ大きさの)実数ベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>calerf(x,0)</literal> は誤差関数
+    <literal>erf(x)</literal>を計算します</para>
+
+    <para><literal>calerf(x,1)</literal> は相補誤差関数
+    f<literal>erfc(x)</literal>を計算します</para>
+
+    <para><literal>calerf(x,2)</literal> はスケーリング付き相補誤差関数
+    <literal>erfcx(x)</literal>を計算します</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+deff('y=f(t)','y=exp(-t^2)');
+calerf(1,0)
+2/sqrt(%pi)*intg(0,1,f)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>S参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="erf">erf</link></member>
+
+      <member><link linkend="erfc">erfc</link></member>
+
+      <member><link linkend="erfcx">erfcx</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>W. J. Cody (code from Netlib (specfun))</para>
+  </refsection>
+</refentry>

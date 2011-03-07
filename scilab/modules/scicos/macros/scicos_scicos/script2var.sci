@@ -1,6 +1,8 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2011 - INRIA - Serge Steer
+
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,48 +23,53 @@
 
 function [%ll,%ierr] = script2var(%txt, %ll)
 //** [%scicos_context, ierr] = script2var(context, %scicos_context)
-
+//** context is the scs_m.props.context (string array) associated with the current level
+//** %scicos_context  is a struct containing the values defined by the
+//    calling contexts
 //**
-//** 10 Jan 2006 
-  %ierr = 0 ; //** init 
-  %mm = getfield(1,%ll)
-  for %mi=%mm(3:$)
+//** 10 Jan 2006
+//local variable names are prefixed with a %  to limit conflicts with
+//variables  defined in %txt instructions
+  %ierr = 0 ; //** init
+
+  //next lines checks if variable defined in %ll struct can be evaluated
+  //why ???
+  %mm = fieldnames(%ll)';
+  for %mi=%mm
     if execstr(%mi+'=%ll(%mi)','errcatch')<>0 then
-      disp(lasterror())
+      mprintf("%s\n",lasterror())
       %ierr=1
       return
     end
   end
-  
   [%ll,%ierr] = getvardef(%txt,%ll)
-  if %ierr<>0 then 
-    return,
-  end
+  if %ierr<>0 then return, end
 endfunction
 
 //**--------------------------------------------------------------------------
 function [%ll,%ierr]=getvardef(%txt,%ll)
-  %nww='';%ierr=0;  // to make sure %ww does not enter the difference
+//extend and modify the %scicos_context variable (%ll) with the variable
+//defined in the current level scs_m.props.context (%txt) instructions
+
+//local variable names are prefixed with a %  to limit conflicts with
+//variables  defined in %txt instructions
+
+  %nww='';%ierr=0;  // to make sure %nww and %ierr does not enter the difference
+  if isempty(%txt) then return,end
   %nww=size(who('get'),'*')
-  if isempty(%txt) then
-    %ierr = 0;
-  else
-    %ierr=execstr(%txt,'errcatch')
-  end
-  if %ierr<>0 then 
-    return,
-  end
+
+  %ierr=execstr(%txt,'errcatch')
+  if %ierr<>0 then return,end
+
   %mm=who('get')
-  %nww2=size(%mm,'*')
-  %mm=%mm(1:%nww2-%nww)
+  %mm=%mm(1:size(%mm,'*')-%nww)
+  //%mm contains the list of the variables defined by execstr(%txt,'errcatch')
   for %mi=%mm(:)'
-    if type(evstr(%mi)) <> 13 then
-      if %mi=="scs_m" then
-	disp('the name scs_m is reseved; it cannot be used as block"+...
-	     " parameter')
-      else
-	%ll(%mi)=evstr(%mi)
-      end
+    if %mi=="scs_m" then
+      mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m")
+    else
+      %ll(%mi)=evstr(%mi)
     end
   end
 endfunction
+

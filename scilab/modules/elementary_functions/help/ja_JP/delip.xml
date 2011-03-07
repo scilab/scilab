@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="delip" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>delip</refname>
+
+    <refpurpose>
+	第一種の完全および不完全楕円積分</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[r]=delip(x,ck)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>非負の要素を有する実数ベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ck</term>
+
+        <listitem>
+          <para>-1 と 1の間の実数</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para><literal>x</literal>と同じ大きさの
+	実数または複素数(またはベクトル)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	引数<literal>ck</literal>の
+	第一種の楕円積分は以下のように定義されます:</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center">
+            <mml:math>
+            <mml:semantics> <mml:mrow> <mml:munderover> <mml:mo
+            mml:stretchy="false">∫</mml:mo> <mml:mn>0</mml:mn>
+            <mml:mi>x</mml:mi> </mml:munderover> <mml:mfrac> <mml:mi
+            mml:fontstyle="italic">dt</mml:mi> <mml:msqrt> <mml:mrow>
+            <mml:mrow> <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
+            <mml:mn>1</mml:mn> <mml:mo mml:stretchy="false">−</mml:mo>
+            <mml:msup> <mml:mi>t</mml:mi> <mml:mn>2</mml:mn> </mml:msup>
+            </mml:mrow> <mml:mo mml:stretchy="false">)</mml:mo> </mml:mrow>
+            <mml:mrow> <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
+            <mml:mrow> <mml:mn>1</mml:mn> <mml:mo
+            mml:stretchy="false">−</mml:mo> <mml:msubsup> <mml:mi>c</mml:mi>
+            <mml:mi>k</mml:mi> <mml:mn>2</mml:mn> </mml:msubsup> </mml:mrow>
+            <mml:msup> <mml:mi>t</mml:mi> <mml:mn>2</mml:mn> </mml:msup>
+            </mml:mrow> <mml:mo mml:stretchy="false">)</mml:mo> </mml:mrow>
+            </mml:mrow> </mml:msqrt> </mml:mfrac> </mml:mrow> <mml:annotation
+            mml:encoding="StarMath 5.0">int from{0} to{x} {{dt} over sqrt{
+            (1-t^2)(1-c_k^2 t^2)}}</mml:annotation></mml:semantics></mml:math>
+          </imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>ただし, <literal>x</literal> は実数および正で,
+    <literal>ck</literal> は <literal>[-1 1]</literal>の範囲となります.</para>
+
+    <para>x が1より小さい場合,結果は実数となります.</para>
+
+    <para><literal>x</literal>を指定して
+	コールされた場合,<literal>x</literal>の各エントリについて
+	 ベクトル<literal>r</literal>が評価されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+ck=0.5;
+delip([1,2],ck)
+deff('y=f(t)','y=1/sqrt((1-t^2)*(1-ck^2*t^2))')
+intg(0,1,f)    //OK since real solution!
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="amell">amell</link></member>
+
+      <member><link linkend="percentasn">%asn</link></member>
+
+      <member><link linkend="percentsn">%sn</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -111,7 +111,7 @@ USEANT=1
 pkglib_LTLIBRARIES += libscigraphic_export.la 
 endif
 
-libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscigraphic_export_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### graphic_export : gateway declaration ####
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway

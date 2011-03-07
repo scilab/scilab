@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="number_properties" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>number_properties</refname>
+
+    <refpurpose>浮動小数点数パラメータを定義する</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順Calling Sequence</title>
+
+    <synopsis>pr = number_properties(prop)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>prop</term>
+
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pr</term>
+
+        <listitem>
+          <para>実数または論理値のスカラー</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は
+	<literal>F(b,p,emin,emax)</literal>で定義された
+	浮動小数点数の集合
+	(通常は IEEE 754 で定義された64bit浮動小数点数の集合)
+	の数値的特徴を取得する際に使用することができます.
+	<literal>F</literal> の数値は以下のように作成されます:</para>
+
+    <programlisting role = ""><![CDATA[ 
+sign * m * b^e
+ ]]></programlisting>
+
+    <para><literal>e</literal>は指数, <literal>m</literal> は仮数です:</para>
+
+    <programlisting role = ""><![CDATA[ 
+m = d_1 b^(-1) + d_2 b^(-2) + .... + d_p b^(-p)
+ ]]></programlisting>
+
+    <para><literal>d_i</literal> の桁は<literal>[0, b-1]</literal>の範囲,
+	<literal>e</literal> は <literal>[emin, emax]</literal>の範囲となり,
+	<literal>d_1 ~= 0</literal>の場合,
+	数値は"正規化"されます.
+	以下の値を取得できます:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>prop = "radix"</term>
+
+        <listitem>
+          <para>この場合, <literal>pr</literal> は
+          集合 <literal>F</literal>の基数<literal>b</literal>となります</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "digits"</term>
+
+        <listitem>
+          <para>この場合, <literal>pr</literal> は
+	<literal>p</literal>の桁数になります</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "huge"</term>
+
+        <listitem>
+          <para>この場合,<literal>pr</literal> は
+          <literal>F</literal>の最大の正の浮動小数点数となります</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "tiny"</term>
+
+        <listitem>
+          <para>この場合,<literal>pr</literal> は
+	<literal>F</literal>の正規化された最小の正の浮動小数点数となります</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "denorm"</term>
+
+        <listitem>
+          <para>この場合,<literal>pr</literal> は論理値となります
+	 (正規化されていない数値が使用されている場合は %t)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "tiniest"</term>
+
+        <listitem>
+          <para>この場合,<literal>pr</literal>が
+	最小の正の非正規化数の場合に  denorm = %t,
+	そうでない場合に <literal>pr</literal> = tiny となります</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "eps"</term>
+
+        <listitem>
+          <para>この場合,
+	<literal>pr</literal> は,機械イプシロン
+	(通常は <literal>b^(1-p))/2</literal>)となります.
+	機械イプシロンは,
+	(<literal>|x|</literal> が <literal>[tiny, huge]</literal>の範囲にあるような)
+	<literal>x</literal>と<literal>F</literal>における
+	浮動小数点近似である<literal>fl(x)</literal>の間の
+	相対誤差の最大値です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "minexp"</term>
+
+        <listitem>
+          <para>この場合, <literal>pr</literal> は <literal>emin</literal>です</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "maxexp"</term>
+
+        <listitem>
+          <para>この場合, <literal>pr</literal> は <literal>emax</literal>です</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>この関数は機械パラメータを取得するために
+	LAPACKルーチン dlamch を使用します.
+	(名前 (radix, digit, huge, など...) は LIA 1 規格で推奨されたもので,
+	対応する Lapack の定義とは異なっています) ;
+	注意: 機械イプシロンに関して以下のような定義を見ることが
+	あるはずです: <literal>eps = b^(1-p)</literal>
+	しかし, この関数では伝統的な定義 (前記のprop = "eps"を参照)を
+	使用しており,
+	このため,通常の丸めが発生する場合に<literal>eps =
+    (b^(1-p))/2</literal>, そうでない場合に<literal>eps =
+    b^(1-p)</literal>となります.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+b = number_properties("radix")
+eps = number_properties("eps")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="nearfloat">nearfloat</link></member>
+
+      <member><link linkend="frexp">frexp</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>Bruno Pincon</para>
+  </refsection>
+</refentry>

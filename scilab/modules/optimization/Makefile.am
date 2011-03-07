@@ -128,7 +128,7 @@ libscioptimization_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscioptimization.la
 
-libscioptimization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscioptimization_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(MINPACK_SOURCES)
 

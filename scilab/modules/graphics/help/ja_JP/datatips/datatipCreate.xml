@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatipCreate">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatipCreate</refname>
+    <refpurpose>プログラムによりポリラインのデータ情報を作成する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>datatip_handle = datatipCreate(polyline_handle,index)
+    datatip_handle = datatipCreate(polyline_handle,pt)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>polyline_handle</term>
+        <listitem>
+          <para>
+            ポリラインのハンドル
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>index</term>
+        <listitem>
+          <para>
+            データ情報を描画するポリラインデータ点のインデックス.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pt</term>
+        <listitem>
+          <para>
+            2要素のベクトルで, データ情報を描画する点の座標.
+          </para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>datatip_handle</term>
+        <listitem>
+          <para>
+            新規に作成されたエンティティのハンドル
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数はプログラムにより曲線上にデータ情報を作成するために使用されます.
+	インデックスを指定してコールされた場合,インデックスで指定されたポリラインの点の
+	座標に情報が設定されます.
+	点を指定してコールされた場合,補間モードがオンの場合は,
+	この点を曲線上に直交投影した座標, そうでない場合は直近のメッシュ点
+	に情報が設定されます.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[
+    x=linspace(0,1,8)';
+    y=x.^3;
+    clf();
+    plot(x,y);
+    e=gce();p=e.children(1);//ポリラインのハンドルを取得
+    p.mark_mode="on";p.mark_style=2;p.mark_size=5;
+    t=datatipCreate(p,2);
+
+    datatipCreate(p,[0.8,0.5]);
+    datatipSetInterp(p,%t);
+    datatipCreate(p,[0.8,0.5]);
+    ]]></programlisting>
+   <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/datatips3.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+   </para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="datatipInitStruct" >datatipInitStruct</link>
+      </member>
+      <member>
+        <link linkend="datatips">datatips</link>
+      </member>
+      <member>
+        <link linkend="datatipMove">datatipMove</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>

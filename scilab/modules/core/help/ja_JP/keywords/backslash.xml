@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="backslash">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>backslash (\)</refname>
+    <refpurpose>左行列除算.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>x=A\b</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+			バックスラッシュは左行列除算を定義します. 
+			<literal>x=A\b</literal> は <literal>A*x=b</literal>の解です.</para>
+    <para>
+			<literal>A</literal> が正方で非特異の場合,
+	 <literal>x=A\b</literal> (唯一の解) は <literal>x=inv(A)*b</literal> 
+	と等価です(しかし,計算コストははるかに小さくなります).
+		</para>
+    <para>
+			<literal>A</literal> が正方でない場合, <literal>x</literal> は最小二乗解となります.
+			すなわち, <literal>norm(A*x-b)</literal> は最小値 (ユークリッドノルム)となります. <literal>A</literal> が列フルランクの場合,最小二乗解, <literal>x=A\b</literal>, は
+		唯一の解 (<literal>norm(A*x-b)</literal>を最小化する唯一の
+		<literal>x</literal>が存在)となります.
+	<literal>A</literal> が列フルランクでない場合, 最小二乗解は唯一ではなくなり,
+	<literal>x=A\b</literal>は一般に最小ノルム解ではなくなります
+	(最小ノルム解は <literal>x=pinv(A)*b</literal>です).
+		</para>
+    <para><literal>A.\B</literal>  は<literal>(i,j)</literal> エントリが
+	 <literal>A(i,j)\B(i,j)</literal>となる行列となります.
+	<literal>A.\B</literal> は
+			<literal>A*ones(B).\B</literal> (または <literal>A.\(B*ones(A))</literal>
+	と等価になります.
+		</para>
+    <para><literal>A\.B</literal>  は定義されていない演算子です.
+	この演算子は, * または /.のように新しい演算子を定義する際に使用できます(オーバーロード参照).
+		</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(3,2);b=[1;1;1]; x=A\b; y=pinv(A)*b;  x-y
+A=rand(2,3);b=[1;1]; x=A\b; y=pinv(A)*b; x-y, A*x-b, A*y-b
+A=rand(3,1)*rand(1,2); b=[1;1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
+A=rand(2,1)*rand(1,3); b=[1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b 
+
+// A benchmark of several linear solvers
+
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
+
+b = 0*ones(size(A,1),1);
+
+tic();
+res = umfpack(A,'\',b);
+printf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
+
+tic();
+res = linsolve(A,b);
+printf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
+
+tic();
+res = A\b;
+printf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="slash">slash</link>
+      </member>
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+      <member>
+        <link linkend="pinv">pinv</link>
+      </member>
+      <member>
+        <link linkend="percent">percent</link>
+      </member>
+      <member>
+        <link linkend="ieee">ieee</link>
+      </member>
+      <member>
+        <link linkend="linsolve">linsolve</link>
+      </member>
+      <member>
+        <link linkend="umfpack">umfpack</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

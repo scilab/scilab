@@ -234,16 +234,14 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
             } catch (BadLocationException ex) { }
 
             if (getPreferredSize().getHeight() < y + hl) {
-                Dimension newDim = new Dimension((int) defaultSize.getWidth(), y + hl);
+                Dimension newDim = new Dimension((int) getPreferredSize().getWidth(), y + hl);
                 setPreferredSize(newDim);
                 invalidate();
                 doLayout();
                 console.updateScrollPosition();
+                console.setInputCommandViewSizeForced(true);
             }
         } else {
-            setPreferredSize(defaultSize);
-            invalidate();
-            doLayout();
             ScilabLaTeXViewer.removeLaTeXViewer(this);
         }
     }

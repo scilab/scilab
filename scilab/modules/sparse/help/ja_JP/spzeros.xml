@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="spzeros" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>spzeros</refname>
+
+    <refpurpose>疎ゼロ行列</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>sp=spzeros(nrows,ncols)
+sp=spzeros(A)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>nrows</term>
+
+        <listitem>
+          <para>整数 (行数)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ncols</term>
+
+        <listitem>
+          <para>整数 (列数)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>疎行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sp</term>
+
+        <listitem>
+          <para>疎ゼロ行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>sp=spzeros(nrows,ncols)</literal>は,
+	<literal>nrows</literal> 行,
+    <literal>ncols</literal> 列の
+	疎ゼロ行列を返します.
+	 (<literal>sparse([],[],[nrow,ncols])</literal>と等価です)</para>
+
+    <para><literal>sp=spzeros(A)</literal> は,
+    <literal>A</literal>と同じ次元を有する疎ゼロ行列を返します.
+    <literal>[m,n]=size(A)</literal>の場合, <literal>spzeros(m,n)</literal> および
+    <literal>spzeros(A)</literal> は等価です. なお,
+    <literal>spzeros(3)</literal> は
+    <literal>spzeros(3,3)</literal>と等しくなりません.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+sum(spzeros(1000,1000))
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sparse">sparse</link></member>
+
+      <member><link linkend="full">full</link></member>
+
+      <member><link linkend="eye">eye</link></member>
+
+      <member><link linkend="speye">speye</link></member>
+
+      <member><link linkend="spones">spones</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

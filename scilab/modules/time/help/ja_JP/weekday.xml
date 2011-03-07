@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="weekday">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>weekday</refname>
+    <refpurpose>曜日を返す</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[N,S] = weekday(D)
+[N,S] = weekday(D, form)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>[N,S] = weekday(D) は,
+	日数 n または日付文字列Dで指定すると,
+	数値(N) および文字列(S)形式で曜日を返します.
+	入力引数 D は,日数の配列で複数の日を表すことができます.</para>
+    <para>[N,S] = weekday(D, form) は,
+	数値(N) および文字列(S)形式で曜日を返しますが,
+	S の内容は form 引数に依存します.
+	form が 'long'の場合, S には完全な曜日 (例: Thuesday)が含まれます.
+	form が 'short'の場合, S には短縮形 (例: Tue) が含まれます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+today = datenum();
+[N,S] = weekday(today)
+[N,S] = weekday(today,'short')
+[N,S] = weekday(today,'long')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="datenum">datenum</link>
+      </member>
+      <member>
+        <link linkend="datevec">datevec</link>
+      </member>
+      <member>
+        <link linkend="weekday">weekday</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>P.M</member>
+    </simplelist>
+  </refsection>
+</refentry>

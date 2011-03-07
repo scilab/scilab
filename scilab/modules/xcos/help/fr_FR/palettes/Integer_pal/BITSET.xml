@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="BITSET" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <refnamediv>
+    <refname>BITSET</refname>
+
+    <refpurpose>Positionne un bit à 1</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../../images/palettes/BITSET.png"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_BITSET">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="BITSET">Positionne un bit à 1</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_BITSET">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_BITSET">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Data_Type_BITSET">Types de données</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_BITSET">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_BITSET">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Example_BITSET">Exemple</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_BITSET">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_BITSET">Fonctions de calcul</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_BITSET">Voir aussi</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_BITSET">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_BITSET">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Integer_pal">Palette Entier</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_BITSET">
+    <title>Description</title>
+
+    <para>
+      Ce bloc met à <literal>1</literal> un bit spécifié de son entrée. L'utilisateur spécifie
+      l'indice du bit dans le champ <emphasis role="bold">Index of Bit</emphasis>, l'indice
+      <literal>0</literal> étant celui du bit le moins significatif. L'opération peut être
+      résumée par cette expression:
+    </para>
+    <para>
+      <latex><![CDATA[ Sortie=Entrée \vee Masque]]></latex>
+    </para>
+    <para>
+      i.e. un <literal>OU</literal> bit à bit entre <literal>Entrée</literal> et
+      <literal>Masque</literal>, un entier de même longueur que l'entrée avec une valeur
+      <literal>1</literal> pour le bit à modifier et une valeur <literal>0</literal>
+      pour les autres bits.
+    </para>
+  </refsection>
+
+  <refsection id="Data_Type_BITSET">
+    <title>Types de données</title>
+
+    <para>
+      Le bloc supporte les types de données suivants  :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Entrée : scalaire. Tout type entier de Scilab (paramètre <emphasis role="bold">Data Type</emphasis>).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Sortie : scalaire. Même type que l'entrée.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Dialogbox_BITSET">
+    <title>Boîte de dialogue</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../gui/integer_pal/fr_FR/BITSET_gui.png" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Data Type (3:int32, 4:int16, 5:int8, ...)</emphasis>
+        </para>
+
+        <para>
+          Indique le type entier des données en entrée (sortie) : entre 3 et 8.
+        </para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Index of Bit (0 is least significant)</emphasis>
+        </para>
+        <para>
+          Indique le bit à mettre à 1. L'indice doit être, quand le type est :
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              int32 or uint32 : positif et inférieur à 32.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              int16 or uint16 : positif et inférieur à  16.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              int8 or uint8 : positif et inférieur à  8.
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_BITSET">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 3</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 3</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">bit_set_32</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_BITSET">
+    <title>Exemple</title>
+
+    <para>
+      Ci-dessous un cas simple d'utilisation du bloc.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/BITSET_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>
+    </para>
+    <para />
+    <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/integer_pal/fr_FR/bitset_diagram_fr_FR.png" />
+        </imageobject>
+      </mediaobject>
+  </refsection>
+
+  <refsection id="Interfacingfunction_BITSET">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/BITSET.sci">SCI/modules/scicos_blocks/macros/IntegerOp/BITSET.sci</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_BITSET">
+    <title>Fonctions de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/bit_set_32.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/bit_set_16.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/bit_set_8.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_BITSET">
+    <title>Voir aussi</title>
+
+    <itemizedlist>
+      <listitem>
+          <link linkend="BITCLEAR">BITCLEAR</link>
+      </listitem>
+      <listitem>
+          <link linkend="EXTRACTBITS">EXTRACTBITS</link>
+      </listitem>
+      <listitem>
+          <link linkend="LOGICAL_OP">LOGICAL_OP</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_BITSET">
+    <title>Auteurs</title>
+
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

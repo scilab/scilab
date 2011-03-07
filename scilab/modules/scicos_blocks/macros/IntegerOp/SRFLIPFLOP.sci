@@ -1,7 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright 2011 - Bernard DUJARDIN
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,20 +38,17 @@ function [x,y,typ] = SRFLIPFLOP(job,arg1,arg2)
     model=xx.model;
     init_old= model.odstate(1)
     while %t do
-      [ok,init,exprs0]=scicos_getvalue(..
-        ["Set SRFLIPFLOP block parameters";..
-        " "; ..
-        "&nbsp;The Initial Value must be 0 or 1 of type int8"; ..
-        "&nbsp;- Negative values are considered as int8(0)"; ..
-        "&nbsp;- Positive values are considered as int8(1)"; ..
-        " "], ..
-        ['Initial Value'], ..
-        list('vec',1),exprs)
+      [ok,init,exprs0]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "SRFLIPFLOP" );" "; gettext("SR flip-flop"); " "; ..
+            gettext("The ''Initial Value'' must be 0 or 1 of type int8"); gettext("&nbsp;- Negative values are considered as int8(0)"); ..
+            gettext("&nbsp;- Positive values are considered as int8(1)"); " "], ..
+            gettext("Initial Value"), ..
+            list("vec",1), exprs)
+
       if ~ok then break,end
       if init<=0 then init=int8(0);
       elseif init >0 then init=int8(1);
       end
-      if ok then 
+      if ok then
     xx.graphics.exprs(1)=exprs0
     model.odstate(1)=init
     xx.model=model
@@ -60,10 +57,10 @@ function [x,y,typ] = SRFLIPFLOP(job,arg1,arg2)
       end
     end
     needcompile=0
-    if init_old<>init then 
+    if init_old<>init then
       // parameter  changed
       newpar(size(newpar)+1)=1// Notify modification
-      needcompile=2      
+      needcompile=2
     end
     x=arg1
     y=needcompile
@@ -475,3 +472,4 @@ function [x,y,typ] = SRFLIPFLOP(job,arg1,arg2)
         x=standard_define([2 3],model,[],gr_i)
   end
 endfunction
+

@@ -51,6 +51,7 @@ static bool export_u_function(int *_piVar, char* _pstName);
 static bool export_c_function(int *_piVar, char* _pstName);
 static bool export_lib(int *_piVar, char* _pstName);
 static bool export_lufact_pointer(int *_piVar, char* _pstName);
+static bool export_void(int _iH5File, int *_piVar, char* _pstName);
 
 void print_type(char* _pstType);
 int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList);
@@ -243,16 +244,47 @@ static bool export_data(int _iH5File, int* _piVar, char* _pstName)
             bReturn = export_lufact_pointer(_piVar, _pstName);
             break;
         }
+    case 0 : //void case to "null" items in list
+        {
+            bReturn = export_void(_iH5File, _piVar, _pstName);
+            break;
+        }
     }
     return bReturn;
 }
 
+static bool export_void(int _iH5File, int *_piVar, char* _pstName)
+{
+    int iRet = writeVoid(_iH5File, _pstName);
+    if(iRet)
+    {
+        return false;
+    }
+
+    char pstMsg[] = "void";
+    print_type(pstMsg);
+    return true;
+}
+
+static bool export_undefined(int _iH5File, int *_piVar, char* _pstName)
+{
+    int iRet = writeUndefined(_iH5File, _pstName);
+    if(iRet)
+    {
+        return false;
+    }
+
+    char pstMsg[] = "void";
+    print_type(pstMsg);
+    return true;
+}
+
 static bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType)
 {
-    int iRet = 0;
-    bool bReturn = false;
+    int iRet        = 0;
+    bool bReturn    = false;
     int iItemNumber = 0;
-    SciErr sciErr = getListItemNumber(pvApiCtx, _piVar, &iItemNumber);
+    SciErr sciErr   = getListItemNumber(pvApiCtx, _piVar, &iItemNumber);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -274,16 +306,18 @@ static bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType
     {
         int *piNewVar = NULL;
         getListItemAddress(pvApiCtx, _piVar, i + 1, &piNewVar);//1 indexed
+        char* pstPathName   = createPathName(pstGroupName, i);
+
         if(piNewVar == NULL)
+        {//undefined item
+            bReturn = export_undefined(_iH5File, piNewVar, pstPathName);
+        }
+        else
         {
-            Scierror(999,_("%s: Item not found.\n"), fname);
-            return 0;
+            bReturn = export_data(_iH5File, piNewVar, pstPathName);
         }
 
-        char* pstPathName		= createPathName(pstGroupName, i);
-        bReturn							= export_data(_iH5File, piNewVar, pstPathName);
         iRet = addItemInList(_iH5File, pvList, i, pstPathName);
-
         FREE(pstPathName);
         if(bReturn == false || iRet)
             return false;

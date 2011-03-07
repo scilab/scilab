@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="Matplot_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Matplot_properties</refname>
+    <refpurpose>Matplotエンティティプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Matplotエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは,曲面および画像の2次元プロットを表します
+	 (
+    <literal>Matplot</literal> および <literal>Matplot1</literal>参照).</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>このプロパティは親のハンドルを有します.
+	Matplotエンティティの親は <literal>"Axes"</literal>型となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>このプロパティにはハンドルの<literal>children</literal>
+	のベクトルが含まれます.
+	しかし,現在,<literal>Matplot</literal>には<literal>children</literal>
+	がありません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>このフィールドにはエンティティの<literal>visible</literal>
+		プロパティの値が含まれます.
+		この値は,<literal>"on" </literal> または <literal>"off"</literal> となります.
+	デフォルトでプロットは可視であり,このプロパティの値は
+        <literal>"on"</literal>となります. <literal>"off"</literal>の場合,プロットは
+	画面に描画されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>このフィールドは[<literal>m</literal>x<literal>n</literal>]のデータ行列
+	<literal>color</literal>をカレントのカラーマップに基づき定義します.
+	位置<literal>(x=j,y=(m-i+1))</literal>を中心とする長さ1の小さな正方形を
+	描画する際には<literal>color(i,j)</literal>が指す色が使用されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>このフィールドにはMatplotの<literal>clip_state</literal>
+	プロパティの値が含まれます. 値は以下となります :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> Matplot はクリップされません.
+            </para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal> 
+		Matplot は軸ボックスの外側でクリップされます.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal> 7
+		Matplot はclip_boxで指定された矩形の外側でクリップされます.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>
+		このフィールドは<literal>clip_box</literal>プロパティを定義します.
+		デフォルトで,この値はclip_stateが"off"の場合に空の行列となります.
+		その他の場合,ベクトル<literal>[x,y,w,h]</literal> 
+		(左上の点,幅,高さ)がMatplotが表示する範囲を定義しますが,
+		<literal>clip_state</literal>プロパティの値は変更されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>このフィールドは任意のScilab変数をMatplotデータ構造体に
+		保存し,復元する際に使用可能です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+Matplot((1:xget("lastpattern")))
+e=gce(); // カレントのエンティティを取得
+
+e.data=e.data($:-1:1) // 逆順
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="grayplot">grayplot</link>
+      </member>
+      <member>
+        <link linkend="Matplot">Matplot</link>
+      </member>
+      <member>
+        <link linkend="Matplot1">Matplot1</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="grayplot_properties">grayplot_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

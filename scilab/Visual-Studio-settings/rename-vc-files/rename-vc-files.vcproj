@@ -175,6 +175,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\modules\core\includes\version.h.vc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\modules\helptools\macros\xmlfiletohtml.sci.vc"
 				>
 			</File>

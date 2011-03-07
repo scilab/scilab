@@ -1,6 +1,6 @@
 //CHECKSTYLE:OFF
 
-package org.scilab.forge.scidoc.scilab;
+package org.scilab.modules.helptools.scilab;
 
 import java.util.Arrays;
 import java.util.Set;

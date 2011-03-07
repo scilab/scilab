@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2010 - DIGITEO - Michael Baudin
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,7 +11,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="karmarkar" xml:lang="en"
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="karmarkar" 
+          xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -88,8 +91,8 @@
         <term>x0</term>
         <listitem>
           <para>
-            a p-by-1 matrix of doubles, the initial guess (default x0=[]).
-            If x0==[], the karmarkar function automatically computes a feasible initial
+            a p-by-1 matrix of doubles, the initial guess (default <literal>x0=[]</literal>).
+            If <literal>x0==[]</literal>, the karmarkar function automatically computes a feasible initial
             guess.
           </para>
         </listitem>
@@ -100,7 +103,7 @@
         <listitem>
           <para>
             a 1-by-1 matrix of doubles,
-            a relative tolerance on <literal>f(x)=c'*x</literal> (default rtolf=1.d-5).
+            a relative tolerance on <literal>f(x)=c'*x</literal> (default <literal>rtolf=1.d-5</literal>).
           </para>
         </listitem>
       </varlistentry>
@@ -109,7 +112,7 @@
         <term>gam</term>
         <listitem>
           <para>
-            a 1-by-1 matrix of doubles, the scaling factor (default gam=0.5).
+            a 1-by-1 matrix of doubles, the scaling factor (default <literal>gam=0.5</literal>).
             The scaling factor must satisfy <literal>0&lt;gam&lt;1</literal>.
           </para>
         </listitem>
@@ -119,7 +122,7 @@
         <term>maxiter</term>
         <listitem>
           <para>
-            a 1-by-1 matrix of floating point integers, the maximum number of iterations (default maxiter=200).
+            a 1-by-1 matrix of floating point integers, the maximum number of iterations (default <literal>maxiter=200</literal>).
             The maximum number of iterations must be greater than 1.
           </para>
         </listitem>
@@ -212,10 +215,10 @@
           <para>
             a <literal>struct</literal> containing the dual solution.
             The structure yopt has four fields : ineqlin, eqlin, upper, lower.
-            The field yopt.ineqlin is the Lagrange multiplier for the inequality constraints.
-            The field yopt.eqlin is the Lagrange multiplier for the equality constraints.
-            The field yopt.upper is the Lagrange multiplier for the upper bounds.
-            The field yopt.lower is the Lagrange multiplier for the lower bounds.
+            The field <literal>yopt.ineqlin</literal> is the Lagrange multiplier for the inequality constraints.
+            The field <literal>yopt.eqlin</literal> is the Lagrange multiplier for the equality constraints.
+            The field <literal>yopt.upper</literal> is the Lagrange multiplier for the upper bounds.
+            The field <literal>yopt.lower</literal> is the Lagrange multiplier for the lower bounds.
           </para>
         </listitem>
       </varlistentry>
@@ -485,7 +488,7 @@ dualgap = abs(yopt'*beq - fopt)
 
     <para>
       During the second phase of the algorithm (i.e. once <literal>x0</literal> is
-      determined, the termination condition for the function value is based on the boolean:
+      determined), the termination condition for the function value is based on the boolean:
     </para>
 
     <programlisting role="example">
@@ -567,7 +570,7 @@ dualgap = abs(yopt'*beq - fopt)
       The previous script produces the following output.
     </para>
 
-    <programlisting role="example">
+    <screen>
       <![CDATA[ 
 -->[xopt,fopt,exitflag,iter,yopt]=karmarkar(Aeq,beq,c)
  yopt  =
@@ -586,14 +589,14 @@ dualgap = abs(yopt'*beq - fopt)
     0.9999949  
     0.0000102  
 ]]>
-    </programlisting>
+      </screen>
 
     <para>
       We can explore the Lagrange multipliers by detailing
       each field of the yopt structure.
     </para>
 
-    <programlisting role="example">
+    <screen>
       <![CDATA[ 
 -->yopt.ineqlin
  ans  =
@@ -613,7 +616,7 @@ dualgap = abs(yopt'*beq - fopt)
     0.  
     0.  
 ]]>
-    </programlisting>
+      </screen>
 
     <para>
       We can as well give the initial guess x0, as in the following script.
@@ -638,7 +641,7 @@ dualgap = abs(yopt'*beq - fopt)
       In general, reducing the tolerance increases the number of iterations.
     </para>
 
-    <programlisting role="example">
+    <screen>
       <![CDATA[ 
 -->[xopt,fopt,exitflag,iter]=karmarkar(Aeq,beq,c,[],1.e-5);
 -->disp([fopt iter])
@@ -650,7 +653,7 @@ dualgap = abs(yopt'*beq - fopt)
 -->disp([fopt iter])
   - 2.    78.  
 ]]>
-    </programlisting>
+      </screen>
 
   </refsection>
 
@@ -713,14 +716,14 @@ xopt=karmarkar([],[],c,[],[],[],[],[],A,b)
       The previous script produces the following output.
     </para>
 
-    <programlisting role="example">
+    <screen>
       <![CDATA[ 
 -->xopt=karmarkar([],[],c,[],[],[],[],[],A,b)
  xopt  =
     3.9999125  
     7.9999912  
 ]]>
-    </programlisting>
+      </screen>
 
   </refsection>
 
@@ -729,6 +732,9 @@ xopt=karmarkar([],[],c,[],[],[],[],[],A,b)
 
     <para>
       Consider the following linear optimization problem.
+      The problem is used in the Scilab port of the Lipsol 
+      toolbox by Rubio Scola (example0.sce).
+      The original Lipsol toolbox was created by Yin Zhang.
     </para>
 
     <para>
@@ -770,7 +776,7 @@ xstar = [-2;1;3];
       The previous script produces the following output.
     </para>
 
-    <programlisting role="example">
+    <screen>
       <![CDATA[ 
 -->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb,ub)
     yopt  =
@@ -789,7 +795,7 @@ xstar = [-2;1;3];
     1.0000035
     2.9999931
 ]]>
-    </programlisting>
+      </screen>
 
   </refsection>
 
@@ -799,7 +805,9 @@ xstar = [-2;1;3];
     <para>
       It may be useful to configure a callback, so that we can customize the
       printed messages or create a plot.
-      Consider the following linear optimization problem.
+      Consider the following linear optimization problem, which is
+      presented on Wikipedia 
+      in <ulink url="http://en.wikipedia.org/wiki/Karmarkar's_algorithm">Karmarkar's algorithm</ulink>.
     </para>
 
     <para>
@@ -823,9 +831,11 @@ xstar = [-2;1;3];
     <programlisting role="example">
       <![CDATA[ 
 function stop = myoutputfunction ( xopt , optimValues , state )
-    localmsg = gettext("Iteration #%3.0f, state=%s, procedure=%s, fopt=%10.3e, x=[%s], dualgap=%10.3e\n")
+    localmsg = gettext("Iter#%3.0f: %s (%s), "+..
+        "f=%10.3e, x=[%s], gap=%10.3e\n")
     xstr = strcat(msprintf("%10.3e\n",xopt)'," ")
-    mprintf(localmsg,optimValues.iteration,state,optimValues.procedure,optimValues.fval,xstr,optimValues.dualgap)
+    mprintf(localmsg,optimValues.iteration,state,optimValues.procedure,..
+        optimValues.fval,xstr,optimValues.dualgap)
     plot(xopt(1),xopt(2),"bo")
     stop = %f
 endfunction
@@ -859,35 +869,34 @@ endfunction
       The previous script produces the following output and creates a graphics.
     </para>
 
-    <programlisting role="example">
+    <screen>
       <![CDATA[ 
--->xopt=karmarkar([],[],c,[],[],[],[],myoutputfunction,A,b)
-Iteration #  0, state=init, procedure=x0, fopt=1.000e+000, x=[0.000e+000 0.000e+000], dualgap=Inf
-Iteration #  0, state=init, procedure=x0, fopt=1.000e+000, x=[0.000e+000 0.000e+000], dualgap=Inf
-Iteration #  1, state=init, procedure=x0, fopt=5.000e-001, x=[2.201e-001 -4.313e-002], dualgap=3.676e-001
-Iteration #  2, state=init, procedure=x0, fopt=2.500e-001, x=[3.283e-001 -6.512e-002], dualgap=2.140e-001
-Iteration #  3, state=init, procedure=x0, fopt=1.250e-001, x=[3.822e-001 -7.634e-002], dualgap=1.161e-001
-Iteration #  4, state=init, procedure=x0, fopt=6.250e-002, x=[4.090e-001 -8.202e-002], dualgap=6.033e-002
-Iteration #  5, state=init, procedure=x0, fopt=3.125e-002, x=[4.225e-001 -8.488e-002], dualgap=3.072e-002
-Iteration #  6, state=init, procedure=x0, fopt=1.563e-002, x=[4.292e-001 -8.632e-002], dualgap=1.549e-002
+-->xopt=karmarkar([],[],c,[],[],[],[],myoutputfunction,A,b);
+Iter#  0: init (x0), f=1.000e+000, x=[0.000e+000 0.000e+000], gap=Inf
+Iter#  0: init (x0), f=1.000e+000, x=[0.000e+000 0.000e+000], gap=Inf
+Iter#  1: init (x0), f=5.000e-001, x=[2.201e-001 -4.313e-002], gap=3.676e-001
+Iter#  2: init (x0), f=2.500e-001, x=[3.283e-001 -6.512e-002], gap=2.140e-001
+Iter#  3: init (x0), f=1.250e-001, x=[3.822e-001 -7.634e-002], gap=1.161e-001
+Iter#  4: init (x0), f=6.250e-002, x=[4.090e-001 -8.202e-002], gap=6.033e-002
+Iter#  5: init (x0), f=3.125e-002, x=[4.225e-001 -8.488e-002], gap=3.072e-002
 [...]
-Iteration # 50, state=init, procedure=x0, fopt=8.882e-016, x=[4.359e-001 -8.775e-002], dualgap=8.882e-016
-Iteration # 51, state=init, procedure=x0, fopt=4.441e-016, x=[4.359e-001 -8.775e-002], dualgap=4.441e-016
-Iteration # 52, state=init, procedure=x0, fopt=2.220e-016, x=[4.359e-001 -8.775e-002], dualgap=2.220e-016
-Iteration # 52, state=init, procedure=x*, fopt=-3.481e-001, x=[4.359e-001 -8.775e-002], dualgap=Inf
-Iteration # 52, state=iter, procedure=x*, fopt=-3.481e-001, x=[4.359e-001 -8.775e-002], dualgap=Inf
-Iteration # 53, state=iter, procedure=x*, fopt=-7.927e-001, x=[5.249e-001 2.678e-001], dualgap=5.098e-001
+Iter# 50: init (x0), f=8.882e-016, x=[4.359e-001 -8.775e-002], gap=8.882e-016
+Iter# 51: init (x0), f=4.441e-016, x=[4.359e-001 -8.775e-002], gap=4.441e-016
+Iter# 52: init (x0), f=2.220e-016, x=[4.359e-001 -8.775e-002], gap=2.220e-016
+Iter# 52: init (x*), f=-3.481e-001, x=[4.359e-001 -8.775e-002], gap=Inf
+Iter# 52: iter (x*), f=-3.481e-001, x=[4.359e-001 -8.775e-002], gap=Inf
+Iter# 53: iter (x*), f=-7.927e-001, x=[5.249e-001 2.678e-001], gap=5.098e-001
 [...]
-Iteration # 65, state=iter, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.494e-001], dualgap=1.258e-004
-Iteration # 66, state=iter, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.494e-001], dualgap=5.941e-005
-Iteration # 67, state=iter, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.495e-001], dualgap=2.882e-005
-Iteration # 68, state=iter, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.495e-001], dualgap=1.418e-005
-Iteration # 69, state=done, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.495e-001], dualgap=7.035e-006
+Iter# 65: iter (x*), f=-1.250e+000, x=[5.005e-001 7.494e-001], gap=1.258e-004
+Iter# 66: iter (x*), f=-1.250e+000, x=[5.005e-001 7.494e-001], gap=5.941e-005
+Iter# 67: iter (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=2.882e-005
+Iter# 68: iter (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=1.418e-005
+Iter# 69: done (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=7.035e-006
  xopt  =
     0.5005127  
     0.7494803  
 ]]>
-    </programlisting>
+      </screen>
 
   </refsection>
 
@@ -925,7 +934,7 @@ Iteration # 69, state=done, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.495e
       The previous script produces the following output.
     </para>
 
-    <programlisting role="example">
+    <screen>
       <![CDATA[ 
 -->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb)
     yopt  =
@@ -943,7 +952,7 @@ Iteration # 69, state=done, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.495e
     xopt  =
     []
 ]]>
-    </programlisting>
+      </screen>
 
   </refsection>
 
@@ -976,13 +985,14 @@ Iteration # 69, state=done, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.495e
     </programlisting>
 
     <para>
-      The previous script produces the following output.
-      Notice that the algorithm detects that the duality gap has increased much
-      more than expected, indicating a failure of the algorithm to find an
-      optimal point.
+      The previous script produces the following output. 
+      Notice that the function produces <literal>exitflag=-2</literal>, 
+      which indicates that the algorithm detects that the duality gap has increased much
+      more than expected. 
+      This is the sign for a failure of the algorithm to find an optimal point.
     </para>
 
-    <programlisting role="example">
+    <screen>
       <![CDATA[ 
 -->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb)
     yopt  =
@@ -1000,7 +1010,7 @@ Iteration # 69, state=done, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.495e
     15124883.
     15124885.
 ]]>
-    </programlisting>
+      </screen>
 
   </refsection>
 
@@ -1061,5 +1071,11 @@ Iteration # 69, state=done, procedure=x*, fopt=-1.250e+000, x=[5.005e-001 7.495e
 
   </refsection>
 
+  <refsection>
+    <title>Authors</title>
+
+    <para>Copyright (C) 2008 - INRIA</para>
+    <para>Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin</para>
+  </refsection>
 </refentry>
 

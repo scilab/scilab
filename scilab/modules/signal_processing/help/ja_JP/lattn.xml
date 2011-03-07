@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lattn">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lattn</refname>
+    <refpurpose>正規方程式の反復解 </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[la,lb]=lattn(n,p,cov)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>フィルタの最大次数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>
+	MA部の次元(一定).
+	<literal>p= -1</literal>の場合, アルゴリズムは従来の
+	Levinson反復を使用します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cov</term>
+        <listitem>
+          <para>
+	<literal>Rk</literal>(d次元過程の場合は<literal>d*d</literal>行列)を有する行列.
+	以下のように指定します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>la</term>
+        <listitem>
+          <para>リスト型の変数で, 連続的に計算されたAkを係数とする多項式(1次からn次)を
+	出力します</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    以下のシステム (正規方程式)を<literal>n</literal>(<literal>p</literal>は固定)について
+	再帰的に解きます,
+	つなわち, ARMA(n,p) 過程ベクトルのAR部(極)を同定します.</para>
+    <para>
+	ただし,{<literal>Rk;k=1,nlag</literal>}
+	は経験的共分散の系列です.</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>G. Le V.  </para>
+  </refsection>
+</refentry>

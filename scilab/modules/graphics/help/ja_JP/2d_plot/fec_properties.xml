@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fec_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fec_properties</refname>
+    <refpurpose>fec エンティティプロパティの説明
+  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Fecエンティティはグラフィックエンティティ階層の葉で,
+	2次元有限要素プロットを表します. (<literal>fec</literal>,
+    <literal>Sgrayplot</literal>参照).</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>このプロパティには親のハンドルが含まれます.
+	fecエンティティの親は<literal>"Axes"</literal> または
+        <literal>"Compound"</literal>型となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>このプロパティはハンドルの<literal>children</literal>
+		のベクトルを有します.
+		しかし, <literal>Fec</literal> ハンドルは現在,
+		<literal>children</literal>を有していません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>このフィールドはエンティティの<literal>visible</literal>
+		プロパティを有します.
+		この値は<literal>"on" </literal> または <literal>"off"</literal>
+		とする必要があります.
+		デフォルトで,プロットは可視となり,このプロパティの値は
+		<literal>"on"</literal>です.
+		<literal>"off"</literal> の場合プロットは画面に
+		描画されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>3列の行列<literal>[x,y,f]</literal>で,
+	<literal>x(i)</literal> および <literal>y(i)</literal> は
+	<literal>i</literal>番目のノードの座標となります.
+	<literal>f(i)</literal> はノード<literal>i</literal>
+	に関連する値です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>triangles: </term>
+        <listitem>
+          <para>5列の行列 <literal>[tn,n1,n2,n3,flag]</literal> です.
+        <literal>tn(j)</literal> は3角形の番号です. <literal>n1(j)</literal>,
+        <literal>n2(j)</literal> および <literal>n3(j)</literal> は
+	3角形を構成するノードのインデックスです.
+	(<literal>flag(j)</literal> は使用されていません).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z_bounds: </term>
+        <listitem>
+          <para>大きさ2のベクトル <literal>[zmin,zmax]</literal>で, 
+	(カレントのカラーマップの)最初および最後の色に対応するzの値を指定します.
+	より正確に記述すると,カラーマップが<literal>nc</literal>個の色を有し,
+	<literal>dz = (zmax-zmin)/nc</literal> の場合,
+	<literal>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</literal>
+	となる三角形の内部は色<literal>i</literal>で塗りつぶされます.
+	デフォルトで, <literal>z_bounds</literal> プロパティの値は,
+	<literal>[0,0]</literal>です. この場合, <literal>zmin</literal>および
+	 <literal>zmax</literal> は<literal>func</literal>の引数最小値および最大値に
+	自動的に設定されます.
+		</para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>outside_color: </term>
+        <listitem>
+          <para>
+	大きさ2のベクトル <literal>[cmin, cmax]</literal> で, 
+	ノードの値が範囲<literal>z_bounds = [zmin,zmax]</literal>の外側にある場合に
+	使用される色を定義します.
+	ノードの値が <literal>zmin</literal>よりも小さい場合,インデックス
+	<literal>cmin</literal>の色が使用されます.
+	ノードの値が <literal>zmax</literal>よりも大きい場合,インデックス
+	<literal>cmax</literal>の色が使用されます.
+	デフォルトで,<literal>outside_color</literal> プロパティの値は <literal>[0,0]</literal>です.
+	この場合,<literal>cmin</literal> および <literal>cmax</literal> は
+	カラーマップの境界値に自動的に設定されます.
+	 <literal>cmin</literal> または <literal>cmax</literal> が負の場合,
+	領域z_boundsの外側の値は表示されず,透過属性となります.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>color_range: </term>
+        <listitem>
+          <para>
+	大きさ2のベクトル<literal>[rmin, rmax]</literal>で,
+	指定したカラーマップの範囲のみが表示に使用されます.
+	<literal>rmin</literal> および<literal>rmax</literal> は
+	カラーマップのインデックスを意味します.
+	これらが共に 1より大きい場合,
+	fecエンティティを実際に表示する際に使用さえるカラーマップは,
+	<literal>colormap(rmin:rmax)</literal> となります.
+	ただし, <literal>colormap</literal> は親の図のカラーマップです.
+	デフォルトで,<literal>color_range</literal> プロパティの値は <literal>[0,0]</literal>です.
+			この場合, カラーマップ全体が使用されます.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>line_mode:</term>
+        <listitem>
+          <para><literal>"on"</literal>の場合,三角形を囲うワイヤフレームが描画されます.
+		  <literal>"off"</literal>の場合, 三角形の内側のみが描画されます.</para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>foreground:</term>
+        <listitem>
+          <para>このカラーインデックスはメッシュの色を指定します.
+	<literal>line_mode</literal> プロパティが <literal>"on"</literal>の場合,
+		  ワイヤフレームがこの色により描画されます.
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>このフィールドは fec の<literal>clip_state</literal> プロパティの値を
+	有します.　この値は以下となります :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> : fecはクリップされません.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal> : fec は Axes ボックスの外側でクリップされます.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal> : fec は clip_box プロパティで
+		指定された矩形の外側でクリップされます.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>
+	このフィールドは<literal>clip_box</literal>プロパティを定義します.
+	clip_state が "off"の場合,デフォルトでこの値は空行列です.
+	その他の場合,ベクトル <literal>[x,y,w,h]</literal> (左上の点 幅 高さ)
+	が fec の表示部分を定義しますが,
+        <literal>clip_state</literal> プロパティの値は変更されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>このフィールドは任意のScilab変数をfecデータの中に保存し,
+	再度取得するために使用できます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=-10:10; y=-10:10;m =rand(21,21);
+Sgrayplot(x,y,m);
+a=get("current_axes");
+f=a.children.children(1)
+f.data(:,3)=(1:size(f.data,1))';
+a.parent.color_map=hotcolormap(64);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="fec">fec</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

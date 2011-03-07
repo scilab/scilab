@@ -17,6 +17,7 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.scinotes.SciNotes;
@@ -47,8 +48,12 @@ public final class HorizontalWrapAction extends DefaultCheckAction  {
      * doAction
      */
     public void doAction() {
-        SciNotes.setHorizontalWrap(this.getState());
-        ConfigSciNotesManager.saveHorizontalWrap(this.getState());
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    SciNotes.setHorizontalWrap(HorizontalWrapAction.this.getState());
+                    ConfigSciNotesManager.saveHorizontalWrap(HorizontalWrapAction.this.getState());
+                }
+            });
     }
 
     /**
@@ -60,6 +65,7 @@ public final class HorizontalWrapAction extends DefaultCheckAction  {
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         final CheckBoxMenuItem horizontalWrap = createCheckBoxMenu(label, null, new HorizontalWrapAction(label, editor), key);
+        horizontalWrap.setChecked(ConfigSciNotesManager.getHorizontalWrap());
         ((JCheckBoxMenuItem) horizontalWrap.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     horizontalWrap.setChecked(ConfigSciNotesManager.getHorizontalWrap());

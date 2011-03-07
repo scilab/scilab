@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getio">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getio</refname>
+    <refpurpose>Scilabの入出力論理ユニットを取得 </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>ios=getio()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>ios</term>
+        <listitem>
+          <para>ベクトル [rio rte wio wte]</para>
+          <variablelist>
+            <varlistentry>
+              <term>rio</term>
+              <listitem>
+                <para>読み込み命令用のカレントの論理ユニット</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rte</term>
+              <listitem>
+                <para>
+		メインScilabウインドウの入力にアサインされた論理ユニット</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>wio</term>
+              <listitem>
+                <para>diaryファイルに関連する論理ユニット.
+		wio=0はdiaryファイルがオープンされていないことを意味します</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>wte</term>
+              <listitem>
+                <para>メインScilabウインドウの出力にアサインされた論理ユニット</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>getio</literal> はメインScilabウインドウの入出力にアサイン
+	された論理ユニットを返します</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -41,12 +41,12 @@ sci_gateway/cpp/sci_import_from_hdf5.cpp
 
 FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
 
-libscihdf5_forceload_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+libscihdf5_forceload_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
 libscihdf5_forceload_la_SOURCES = $(FORCE_LOAD_SOURCES)
 libscihdf5_forceload_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
 libscihdf5_forceload_la_CFLAGS=$(libscihdf5_la_CFLAGS)
 
-libscihdf5_forceload_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+libscihdf5_forceload_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
 libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
 libscihdf5_forceload_disable_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
 libscihdf5_forceload_disable_la_CFLAGS=$(libscihdf5_la_CFLAGS)
@@ -107,7 +107,7 @@ endif
 pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
 endif
 
-libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
+libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
 libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES)
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pdiv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pdiv</refname>
+    <refpurpose>多項式の除算</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[R,Q]=pdiv(P1,P2)
+[Q]=pdiv(P1,P2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>P1</term>
+        <listitem>
+          <para>多項式の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P2</term>
+        <listitem>
+          <para>多項式または多項式行列 </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>R,Q</term>
+        <listitem>
+          <para>多項式行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	多項式行列<literal>P1</literal>の多項式<literal>P2</literal>または
+	多項式行列<literal>P2</literal>による
+	要素毎のユークリッド除算.
+	<literal>Rij</literal>は余りの行列,
+	<literal>Qij</literal>は商の行列,そして,
+	<literal>P1ij = Qij*P2 + Qij</literal> または <literal>P1ij = Qij*P2ij + Qij</literal>
+	です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=poly(0,'x');
+p1=(1+x^2)*(1-x);p2=1-x;
+[r,q]=pdiv(p1,p2)
+p2*q-p1
+p2=1+x;
+[r,q]=pdiv(p1,p2)
+p2*q+r-p1
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ldiv">ldiv</link>
+      </member>
+      <member>
+        <link linkend="gcd">gcd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

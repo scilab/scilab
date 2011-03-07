@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cheb2mag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cheb2mag</refname>
+    <refpurpose>2形チェビシェフフィルタの応答</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[h2]=cheb2mag(n,omegar,A,sample)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>整数 ;フィルタの次数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>omegar</term>
+        <listitem>
+          <para>実数スカラー : カットオフ周波数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>阻止域における減衰</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sample</term>
+        <listitem>
+          <para>cheb2mag を評価する周波数のベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h2</term>
+        <listitem>
+          <para>サンプル点におけるチェビシェフ II 形フィルタの値のベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    2形チェビシェフフィルタの二乗振幅応答.</para>
+    <para><literal>omegar</literal> = 阻止域のエッジ, <literal>sample</literal> = 
+	二乗振幅<literal>h2</literal>を取得する周波数のベクトル.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//チェビシェフ; 阻止域のリップル
+n=10;omegar=6;A=1/0.2;sample=0.0001:0.05:10;
+h2=cheb2mag(n,omegar,A,sample);
+plot(sample,log(h2)/log(10),'frequencies','magnitude in dB')
+
+//周波数のエッジをプロット
+minval=(-max(-log(h2)))/log(10);
+plot2d([omegar;omegar],[minval;0],[2],"000");
+
+//阻止域のエッジにおける減衰(単位:dB)を計算
+attenuation=-log(A*A)/log(10);
+plot2d(sample',attenuation*ones(sample)',[5],"000")
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cheb1mag">cheb1mag</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

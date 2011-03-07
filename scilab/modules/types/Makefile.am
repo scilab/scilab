@@ -52,7 +52,7 @@ libscitypes_la_CPPFLAGS =
 libscitypes_disable_la_CFLAGS = 
 
 TYPES_DISABLE_C_SOURCES = 
-libscitypes_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscitypes_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscitypes_disable_la_SOURCES = $(TYPES_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscitypes-disable.la
@@ -61,7 +61,7 @@ if GUI
 pkglib_LTLIBRARIES += libscitypes.la 
 endif
 
-libscitypes_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscitypes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(TYPES_CPP_SOURCES)
 
@@ -88,6 +88,6 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitypes_la_sci_gateway_DATA = 
 
-if GUI
+if NEED_JAVA
 USEANT=1
 endif

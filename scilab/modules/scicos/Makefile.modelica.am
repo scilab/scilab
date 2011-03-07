@@ -13,7 +13,7 @@
 
 ######### Common Modelica elements #############
 
-if SCICOS
+if XCOS
 if OCAML
 TARGET = modelicac XML2Modelica modelicat
 BASE_PATH = $(srcdir)/src/
@@ -216,4 +216,4 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(TARGET)
 
 endif # OCAML
-endif # SCICOS
+endif # XCOS

@@ -47,7 +47,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
@@ -144,7 +143,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private final Window parentWindow;
     private UUID uuid;
 
-    private JTabbedPane tabPane;
+    private ScilabTabbedPane tabPane;
     private int numberOfUntitled;
     private EditorKit editorKit;
 
@@ -277,12 +276,12 @@ public class SciNotes extends SwingScilabTab implements Tab {
      *
      * This method *must not* be called on the EDT thread.
      */
-    public static void scinotes(final String filePath, final int lineNumber) {
+    public static void scinotes(final String filePath, final int lineNumber, final String functionName) {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
                     public void run() {
-                        launchSciNotes().openFile(filePath, lineNumber, null);
+                        launchSciNotes().openFile(filePath, lineNumber, functionName);
                     }
                 });
         } catch (InterruptedException e) {
@@ -342,7 +341,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public static void cloneAndCloseCurrentTab(SciNotes ed, boolean b) {
         ScilabDocument cdoc = (ScilabDocument) ed.getTextPane().getDocument();
-        String title = ed.getTabPane().getTitleAt(ed.getTabPane().getSelectedIndex());
+        String title = ed.getTabPane().getScilabTitleAt(ed.getTabPane().getSelectedIndex());
         ScilabEditorPane currentSep = ed.getTextPane();
         String winTitle = ed.getTitle();
 
@@ -451,7 +450,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
 
         readFileAndWait(f);
-        getTextPane().scrollTextToLineNumber(lineNumber, true);
+        if (option == null || option.length() == 0 || "readonly".equals(option.toLowerCase())) {
+            getTextPane().scrollTextToLineNumber(lineNumber, true);
+        } else {
+            getTextPane().scrollTextToLineNumberInWhereami(lineNumber, option, true);
+        }
         if ((option != null && "readonly".equals(option.toLowerCase()))) {
             getTextPane().setReadOnly(true);
             getInfoBar().setText(getTextPane().getInfoBarText());
@@ -564,7 +567,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         textPaneAt.close();
 
         if (textPaneAt.getName() == null) {
-            String closedTabName = tabPane.getTitleAt(indexTab);
+            String closedTabName = tabPane.getScilabTitleAt(indexTab);
             String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
             tabList.remove(Integer.valueOf(closedTabNameIndex));
             closedTabList.add(Integer.valueOf(closedTabNameIndex));
@@ -660,10 +663,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
         if (!force) {
             AnswerOption answer;
             if (scilabClose) {
-                answer = ScilabModalDialog.show(this, getTabPane().getTitleAt(indexTab) + SciNotesMessages.MODIFIED,
+                answer = ScilabModalDialog.show(this, getTabPane().getScilabTitleAt(indexTab) + SciNotesMessages.MODIFIED,
                                                 SciNotesMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO);
             } else {
-                answer = ScilabModalDialog.show(this, getTabPane().getTitleAt(indexTab) + SciNotesMessages.MODIFIED,
+                answer = ScilabModalDialog.show(this, getTabPane().getScilabTitleAt(indexTab) + SciNotesMessages.MODIFIED,
                                                 SciNotesMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
             }
 
@@ -706,7 +709,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         getTextPane().setLastModified(newSavedFile.lastModified());
 
         if (textPaneAt.getName() == null) {
-            String name = getTabPane().getTitleAt(getTabPane().getSelectedIndex());
+            String name = getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex());
             String index = name.substring(name.length() - 1, name.length());
             tabList.remove(Integer.valueOf(index));
             closedTabList.add(Integer.valueOf(index));
@@ -922,7 +925,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
 
         if (getTextPane().getName() == null) {
-            String name = getTabPane().getTitleAt(getTabPane().getSelectedIndex());
+            String name = getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex());
             String index = name.substring(name.length() - 1, name.length());
             tabList.remove(Integer.valueOf(index));
             closedTabList.add(Integer.valueOf(index));
@@ -1146,7 +1149,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             File f = new File(textPaneName);
             newTitle.append(f.getName());
         } catch (NullPointerException e) { // not a file name, no path prefix to remove, but maybe a '*'
-            textPaneName = getTabPane().getTitleAt(getTabPane().getSelectedIndex());
+            textPaneName = getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex());
             if (textPaneName.charAt(0) == '*') {
                 newTitle.append(textPaneName.substring(1, textPaneName.length()));
             } else {
@@ -1411,6 +1414,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     sep.copyProps(pane);
                     pane.setDocument(sep.getDocument());
                     pane.setCaretPosition(sep.getCaretPosition());
+                    pane.getXln().setWhereamiLineNumbering(ConfigSciNotesManager.getLineNumberingState());
                     ed.tabPane.setComponentAt(i, pane.getEditorComponent());
                     ed.activateHelpOnTyping(pane);
                     ed.initInputMap(pane);
@@ -1587,18 +1591,18 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
-     * Get SciNotes main JTabbedPane.
-     * @return SciNotes main JTabbedPane
+     * Get SciNotes main ScilabTabbedPane.
+     * @return SciNotes main ScilabTabbedPane
      */
-    public JTabbedPane getTabPane() {
+    public ScilabTabbedPane getTabPane() {
         return tabPane;
     }
 
     /**
-     * Set SciNotes main JTabbedPane.
-     * @param tabPane SciNotes main JTabbedPane
+     * Set SciNotes main ScilabTabbedPane.
+     * @param tabPane SciNotes main ScilabTabbedPane
      */
-    public void setTabPane(JTabbedPane tabPane) {
+    public void setTabPane(ScilabTabbedPane tabPane) {
         this.tabPane = tabPane;
     }
 

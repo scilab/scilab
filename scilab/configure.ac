@@ -90,7 +90,7 @@ AC_CANONICAL_HOST
 
 
 AC_ARG_ENABLE(debug,
-   AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran code)]))
+   AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran/Java code)]))
 
 AC_ARG_ENABLE(debug-C,
    AC_HELP_STRING([--enable-debug-C],[Do not optimize and print warning messages (C code)]))
@@ -189,7 +189,7 @@ PKG_PROG_PKG_CONFIG
 #####################################################
 
 if test "$with_g77" = yes -a "$with_gfortran" = yes; then
-    AC_MSG_ERROR([Conflicting options : you specified two fortran compiler])
+    AC_MSG_ERROR([Conflicting options : you specified two fortran compilers])
 fi
 
 if test "$with_intelcompilers" = yes -a "$with_gcc" = yes; then
@@ -306,6 +306,7 @@ esac
 AM_PROG_CC_C_O
 AC_PROG_F77_C_O
 
+
 # If this option is provided, enable the debug on C & C++
 if test "$enable_stop_on_warning" = yes; then
    enable_debug_C=yes
@@ -316,6 +317,7 @@ if test "$enable_debug" = yes; then
    enable_debug_fortran=yes
    enable_debug_C=yes
    enable_debug_CXX=yes
+   enable_debug_java=yes
 else
    enable_debug=no
 fi
@@ -333,7 +335,7 @@ else
 fi
 
 if test "$enable_debug_CXX" = yes; then
-   CPPFLAGS="`echo "$CPPFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
+   CXXFLAGS="`echo "$CXXFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
 else
    enable_debug_CXX=no
 fi
@@ -345,7 +347,7 @@ fi
 
 if test "$enable_largefile" = "yes"; then
    CFLAGS="$CFLAGS $LARGEFILE_CFLAGS"
-   CPPFLAGS="$CPPFLAGS $LARGEFILE_CFLAGS"
+   CXXFLAGS="$CXXFLAGS $LARGEFILE_CFLAGS"
    FFLAGS="$FFLAGS $LARGEFILE_CFLAGS"
 fi
 
@@ -373,13 +375,15 @@ fi
 ######################
 ######## With F77 / G77 / GFortran ...
 ######################
-
 if test -n "$F77"; then
-
-   # enable the code coverage
-   if test "$enable_code_coverage" = yes; then
-    FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
-   fi
+   case "$F77" in
+     gfortran*)
+        ## With GNU Compiler enable the code coverage
+        if test "$enable_code_coverage" = yes; then
+            FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
+        fi
+     ;;
+   esac
 
    if test "$enable_debug_fortran" = yes; then
     AC_LANG_PUSH([Fortran 77])
@@ -493,21 +497,21 @@ case "$CXX" in
 
    # enable the code coverage
    if test "$enable_code_coverage" = yes; then
-    CPPFLAGS="$CPPFLAGS -fprofile-arcs -ftest-coverage"
+    CXXFLAGS="$CXXFLAGS -fprofile-arcs -ftest-coverage"
    fi
 
    if test "$enable_debug_CXX" = yes; then
-      CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
+      CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
-                  CPPFLAGS="$CPPFLAGS -fdiagnostics-show-option -Werror=format-security"
+                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
           ;;
       esac
    else
-      CPPFLAGS="$CPPFLAGS -DNDEBUG"
+      CXXFLAGS="$CXXFLAGS -DNDEBUG"
    fi
-   CPPFLAGS="$CPPFLAGS -fno-stack-protector" # bug 3131
+   CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
    ;;
    clang-* | clang) 
            # clang expect an explict declaration
@@ -579,11 +583,7 @@ case "$CC" in
         CFLAGS="$CFLAGS -D_GNU_SOURCE"
     ;;
      *-*-solaris*)
-        if test "$enable_debug_C" = yes; then
-             CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
-        else
-             CFLAGS="-O2 -DNDEBUG -DSVR4 -DSYSV -Dsolaris"
-        fi
+        CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
     ;;
    *-*-freebsd*)
      CFLAGS="$CFLAGS -Dfreebsd"
@@ -614,16 +614,14 @@ case "$F77" in
     CXX="$CXX -arch $MAC_DETECTED_ARCH"
     LDFLAGS="-L$FINK_PREFIX/lib/ $LDFLAGS"
     CFLAGS=" $CFLAGS -I$FINK_PREFIX/include "
-    CPPFLAGS=" $CPPFLAGS -I$FINK_PREFIX/include "
+    CXXFLAGS=" $CXXFLAGS -I$FINK_PREFIX/include "
     ;;
 esac
 ;; # end of the gcc case on the $CC
    *)
 
         ## CC compiler (not GCC)
-        if test "$enable_debug_C" = yes; then
-             CFLAGS="$CFLAGS -g"
-        else
+        if test "$enable_debug_C" != yes; then
              CFLAGS="$CFLAGS -DNDEBUG"
         fi
 
@@ -681,7 +679,7 @@ AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
-CPPFLAGS="$CPPFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
+CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
@@ -733,6 +731,48 @@ fi
 AC_SUBST(HDF5_ENABLE)
 AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
 
+#################
+## XCOS
+#################
+
+AC_ARG_WITH(xcos,
+    AC_HELP_STRING([--without-xcos],[Disable Xcos]))
+
+AC_ARG_WITH(modelica,
+    AC_HELP_STRING([--without-modelica],[Disable the OCaml module (modelica)]))
+
+
+XCOS_ENABLE=no
+
+if test "$with_xcos" != no -a "$GUI_ENABLE" != no; then
+   AC_DEFINE([WITH_XCOS], [], [With XCOS])
+
+   save_LIBS="$LIBS"
+
+   AC_CHECK_LIB([rt], [clock_gettime],
+              [RT_LIB="-lrt";
+              AC_DEFINE([HAVE_CLOCK_GETTIME], [1],[Whether clock_gettime is available]) ],
+        [AC_MSG_WARN([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
+   )
+   LIBS="$save_LIBS"
+   AC_SUBST(RT_LIB)
+
+
+#################
+## ocaml which only called when using Xcos
+#################
+
+   if test "$with_modelica" != no; then
+      AC_CHECK_PROG_OCAML()
+   fi
+   XCOS_ENABLE=yes
+
+fi
+
+AC_SUBST(XCOS_ENABLE)
+
+AM_CONDITIONAL(OCAML, test "$with_modelica" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
+AM_CONDITIONAL(XCOS, test "$XCOS_ENABLE" != no)
 
 ###########################
 ## test for JAVA compiler
@@ -766,19 +806,33 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         AC_JAVA_ANT
 
         case "$host_os" in
-                     *Darwin* | *darwin*)
-                JAVA_HOME="";;
+             *Darwin* | *darwin*)
+                  JAVA_HOME=""
+             ;;
         esac
 
 
         if test "$with_gui" != no; then
 
-                # jgraphx
-                AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
-                JGRAPHX=$PACKAGE_JAR_FILE
-                AC_SUBST(JGRAPHX)
+                if test $XCOS_ENABLE = yes; then
+                   # jgraphx
+                   AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
+                   JGRAPHX=$PACKAGE_JAR_FILE
+                   AC_SUBST(JGRAPHX)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+
+                   # Java HDF5 is only needed for Xcos
+                   if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
+                      AC_JAVA_HDF5()
+                      if test "$MACOSX" = 1; then
+                         echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
+                      else
+                         AC_JNI_HDF5()
+                      fi
+                   fi #HDF5_ENABLE
+
+                fi
 
                 # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
@@ -788,12 +842,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[0.5.2],[Utilities.VERSION])
 
                 # Swing look&feel implementations
-                AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel],"yes")
+                AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
                 LOOKS=$PACKAGE_JAR_FILE
 
                 # Named differently under ArchLinux
                 if test -z "$LOOKS"; then
-                    AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
+                    AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel])
                     LOOKS=$PACKAGE_JAR_FILE
                 fi
                 AC_SUBST(LOOKS)
@@ -989,10 +1043,11 @@ the the JNI libraries."])],
 
 
     if test "$enable_debug_java" = yes; then
-       JAVA_DEBUG_OPTIONS="<option value='-verbose:jni'/>
-       <option value='-Xcheck:jni'/>"
-       AC_SUBST(JAVA_DEBUG_OPTIONS)
+        JAVAC_DEBUG="on"
+    else
+        JAVAC_DEBUG="off"
     fi
+    AC_SUBST(JAVAC_DEBUG)
 
     if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
         SWIG_PROG()
@@ -1017,6 +1072,7 @@ fi
 
 AC_SUBST(JAVA_ENABLE)
 
+# Xcos is not checked here because gui=no disables it
 AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
@@ -1218,73 +1274,6 @@ AC_CHECK_LIB(dl, dlopen)
 AC_SEARCH_LIBS([pthread_join],[pthread])
 
 #################
-## SCICOS
-#################
-
-AC_ARG_WITH(scicos,
-    AC_HELP_STRING([--without-scicos],[Disable Scicos]))
-
-AC_ARG_WITH(ocaml,
-    AC_HELP_STRING([--without-ocaml],[Disable the OCaml modules (modelica)]))
-
-
-SCICOS_ENABLE=no
-
-if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
-   AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
-
-   save_LIBS="$LIBS"
-
-   AC_CHECK_LIB([rt], [clock_gettime],
-              [RT_LIB="-lrt";
-              AC_DEFINE([HAVE_CLOCK_GETTIME], [1],[Whether clock_gettime is available]) ],
-        [AC_MSG_WARN([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
-   )
-   LIBS="$save_LIBS"
-   AC_SUBST(RT_LIB)
-
-
-#################
-## ocaml which only called when using Scicos
-#################
-
-   if test "$with_ocaml" != no; then
-      AC_CHECK_PROG_OCAML()
-   fi
-   SCICOS_ENABLE=yes
-
-# Java HDF5 is only needed for Xcos
-if test $HDF5_ENABLE = yes -a "$with_scicos" != no -a "$with_gui" != no;  then
-AC_JAVA_HDF5()
-   if test "$MACOSX" = 1; then
-         echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
-   else
-      AC_JNI_HDF5()
-   fi
-fi #HDF5_ENABLE
-
-#################
-## ocaml which only called when using Scicos
-#################
-
-        if test "$with_ocaml" != no; then
-           AC_CHECK_PROG_OCAML()
-        fi
-        SCICOS_ENABLE=yes
-fi
-
-
-
-
-
-
-AC_SUBST(SCICOS_ENABLE)
-
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
-AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
-
-
-#################
 ## FFTW
 #################
 
@@ -1368,7 +1357,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
+ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1478,7 +1467,7 @@ if test "$with_tk" != no; then
 
     saved_cflags="$CFLAGS"
     saved_ldflags="$LDFLAGS"
-    saved_cppflags="$CPPFLAGS"
+    saved_cppflags="$CXXFLAGS"
 
     AC_CHECK_LIB([dl], [main], [TCLTK_LIBS=" -ldl"])
     AC_CHECK_TCLTK
@@ -1707,7 +1696,7 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
    CFLAGS="$CFLAGS -Werror -O0"
-   CPPFLAGS="$CPPFLAGS -Werror -O0"
+   CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
 AC_CONFIG_FILES([
@@ -1798,10 +1787,11 @@ Makefile
 scilab.pc
 etc/modules.xml
 etc/classpath.xml
-etc/jvm_options.xml
 etc/Info.plist
+scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties
+modules/helptools/etc/SciDocConf.xml
 modules/core/includes/version.h
 ])
 
@@ -1814,7 +1804,7 @@ if test "$enable_yasp" = yes; then
   ])
 fi
 
-# This script is used by Scicos in order to regenerate the function/block list
+# This script is used by Xcos in order to regenerate the function/block list
 AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
 
 
@@ -1877,15 +1867,15 @@ echo "Host system type : $host"
 echo ""
 echo "                  Option                        Value"
 echo "-------------------------------------------------------------------------"
-echo "Shared libraries.......      --enable-shared=$libtool_build_shared_libs    $libtool_build_shared_libs"
-echo "Static libraries.......      --enable-static=$libtool_build_static_libs    $libtool_build_static_libs"
-echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld        $lt_cv_prog_gnu_ld"
-echo "Enable debug ..........      --enable-debug=$enable_debug    $enable_debug"
-echo "Enable debug C.........      --enable-debug-C=$enable_debug_C    $enable_debug_C"
-echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX    $enable_debug_CXX"
-echo "Enable debug Java......      --enable-debug-java=$enable_debug_java    $enable_debug_java"
-echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran    $enable_debug_fortran"
-echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning    $enable_stop_on_warning"
+echo "Shared libraries.......      --enable-shared=$libtool_build_shared_libs"
+echo "Static libraries.......      --enable-static=$libtool_build_static_libs"
+echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld"
+echo "Enable debug ..........      --enable-debug=$enable_debug"
+echo "Enable debug C.........      --enable-debug-C=$enable_debug_C"
+echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX"
+echo "Enable debug Java......      --enable-debug-java=$enable_debug_java"
+echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran"
+echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning"
 
 echo ""
 echo "Compiler Configuration:"
@@ -1898,7 +1888,6 @@ echo "Options:"
 echo "  Use PVM (--without-pvm) .......................... = $with_pvm"
 echo "  PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
 echo "  PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
-echo "  Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
 echo "  Do not use TCL/TK (--without-tk) ................. = $with_tk"
 echo "  TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
 echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
@@ -1912,21 +1901,22 @@ echo "  Use MATIO (--without-matio) ...................... = $with_matio"
 
 echo ""
 if test "$with_gui" = no; then
-   echo "Not using Scicos because of the option --without-gui"
+   echo "Not using Xcos because of the option --without-gui"
 else
-if test $SCICOS_ENABLE = yes; then
-   echo "Scicos enable"
+if test $XCOS_ENABLE = yes; then
+   echo "Xcos enable"
+   echo "Build modelica compiler (--without-modelica) ....... = $with_modelica"
    echo ""
-if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
-   echo "Ocaml Configuration (for Modelica compiler):"
-   echo "  OCAMLC ............. = $OCAMLC"
-   echo "  OCAMLOPT ........... = $OCAMLOPT"
-   echo "  OCAMLDEP ........... = $OCAMLDEP"
+   if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
+     echo "Ocaml Configuration (for Modelica compiler):"
+     echo "  OCAMLC ............. = $OCAMLC"
+     echo "  OCAMLOPT ........... = $OCAMLOPT"
+     echo "  OCAMLDEP ........... = $OCAMLDEP"
+   else
+     echo "Will not build Modelica compiler"
+   fi
 else
-    echo "Will not build Modelica compiler"
-fi
-else
-   echo "Not using Scicos"
+   echo "Not using Xcos"
 fi
 fi
 
@@ -2191,7 +2181,7 @@ echo "  LD ............. = $LD"
 echo "  LDFLAGS ........ = $LDFLAGS"
 echo "  LIBS ........... = $LIBS"
 echo "  CXX ............ = $CXX"
-echo "  CPPFLAGS ....... = $CPPFLAGS"
+echo "  CXXFLAGS ....... = $CXXFLAGS"
 echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"

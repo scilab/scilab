@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatipRedraw">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatipRedraw</refname>
+    <refpurpose>3次元回転の後,datatpテキストボックスの位置を調整する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>
+      datatipRedraw()
+      datatipRedraw(axes_handle)
+      datatipRedraw(curve_handles)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>axes_handle</term>
+        <listitem>
+          <para>
+            軸エンティティのハンドル.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>curve_handles</term>
+        <listitem>
+          <para>
+            datatipsをサポートするエンティティのハンドルの配列
+          </para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	グラフィックシステムの制限により,回転の間,datatipテキストボックスの位置を
+	調整することはできません.
+	この関数をコールすると,レンダリングを調整するために位置が再計算されます.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[
+    param3d()
+    p=gce();//ポリラインのハンドルを取得
+    datatipCreate(p,30);
+    datatipCreate(p,100);
+    datatipCreate(p,50);
+    ax=gca();ax.rotation_angles=[35 45];// first plot below
+    datatipRedraw() //second plot below
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/datatips_rot1.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/datatips_rot2.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="datatips" >datatips</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>

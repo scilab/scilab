@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="kron" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>kron</refname>
+
+    <refpurpose>クロネッカー積 (.*.)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>kron(A,B)
+A.*.B</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>kron(A,B)</literal> または <literal>A.*.B</literal> は
+	2つの行列<literal>A</literal> および
+    <literal>B</literal>のクロネッカーテンソル積を返します.
+	結果の行列は以下のようなブロック形式となります:
+	</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../../mml/kron_equation_1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para><literal>A</literal>が <literal>m x n</literal> 行列で
+    <literal>B</literal> が <literal>p x q</literal> 行列の場合,
+    <literal>A.*.B</literal> は <literal>(m*p) x (n*q)</literal>
+    行列となります.</para>
+
+    <para><literal>A</literal> および <literal>B</literal> は疎行列とすることも
+	できます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+A=[1,2;3,4];
+kron(A,A)
+A.*.A
+sparse(A).*.sparse(A)
+A(1,1)=%i;
+kron(A,A)
+ ]]></programlisting>
+  </refsection>
+</refentry>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="boolean">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>boolean</refname>
+    <refpurpose> Scilab オブジェクト, 論理値(boolean)変数および演算子 &amp; | ~  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+    論理値(boolean)変数の値は  <literal>%T</literal> (意味: "true") または
+	 <literal>%F</literal> (意味: "false") です.
+　　これらの変数は,論理値の行列を定義する際に通常の構文として使用可能です.
+	論理値行列は要素の展開/挿入/結合など通常の行列と同様に操作することができます.
+	他の一般的な処理(<literal>+, *, -, ^,</literal>など)は
+	論理値行列では定義されないことに注意してください.
+	以下の3種類の特別な演算子が論理値行列に関して定義されています:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>~b</term>
+        <listitem>
+          <para>は論理値<literal>b</literal>(行列)の要素毎の否定です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b1&amp;b2</term>
+        <listitem>
+          <para>は<literal>b1</literal> および <literal>b2</literal> (行列)の
+	要素毎の論理積(<literal>and</literal>) です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b1|b2</term>
+        <listitem>
+          <para>は<literal>b1</literal> および <literal>b2</literal> (行列)の
+	要素毎の論理和(<literal>or</literal>) です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>論理値変数は行列またはベクトルの添え字として使用できます.</term>
+        <listitem>
+          <para>例えば, <literal>a([%T,%F,%T],:)</literal>は,
+	<literal>a</literal>の <literal>1</literal> 行目と<literal>3</literal>行目
+	からなる部分行列を返します.
+	論理値の疎行列もサポートされています.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+[1,2]==[1,3]
+[1,2]==1
+a=1:5; a(a>2)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="matrices">matrices</link>
+      </member>
+      <member>
+        <link linkend="or">or</link>
+      </member>
+      <member>
+        <link linkend="and">and</link>
+      </member>
+      <member>
+        <link linkend="not">not</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

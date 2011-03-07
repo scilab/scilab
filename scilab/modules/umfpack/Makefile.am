@@ -12,7 +12,7 @@ modulename=umfpack
 
 pkglib_LTLIBRARIES = libsciumfpack.la
 
-libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)

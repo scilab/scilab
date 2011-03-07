@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tabul">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tabul</refname>
+    <refpurpose>行列またはベクトルの値の頻度</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[m]=tabul(X [,order])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>ベクトルまたは行列 (実数または複素数または文字列)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>order</term>
+        <listitem>
+          <para>(オプションの) 文字 "d" または "i" (デフォルト値: "d")を指定します</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>
+	列行列 (<literal>X</literal> は数値ベクトルまたは行列)
+	またはメンバー2つを有するリスト
+	 (<literal>X</literal> が文字列ベクトルまたは行列).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数は,数値または文字列のベクトルまたは行列<literal>X</literal>の
+	値の頻度を計算します :
+   </para>
+    <variablelist>
+      <varlistentry>
+        <term>X が数値のベクトルまたは行列の場合</term>
+        <listitem>
+          <para><literal>m</literal> は2列の行列で,
+	最初の列には<literal>X</literal>の異なる値,
+	他の列にはこれらの値の頻度が含まれます
+	(m(i,2)はm(i,1)の出現頻度です).
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X が文字列のベクトルまたは行列の場合</term>
+        <listitem>
+          <para><literal>m</literal> はリストで,
+	その最初のメンバーは	
+	<literal>X</literal>の異なる値から構成される
+	文字列(列)ベクトル,
+	2番目のメンバーは
+	その要素がこれらの値の頻度となる(列)ベクトルです
+	(m(i)(2)は文字列m(i)(1)の出現頻度です).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+	オプションのパラメータ<literal>order</literal> は,  "d" または "i" とする
+	必要があり (デフォルトは
+   order="d"), Xの異なる値がソートされる順序(降順(d)または昇順(i))を指定します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// 最初の例
+X = [2 8 0 3 7 6 8 7 9 1 6 7 7 2 5 2 2 2 9 7]
+m1 = tabul(X)
+m2 = tabul(X, "i")
+
+// 二番目の例
+X = ["ba" "baba" "a" "A" "AA" "a" "aa" "aa" "aa" "A" "ba"]
+m = tabul(X,"i")
+
+// 3番目の例
+n = 50000;
+X = grand(n,1,"bin",70,0.5);
+m = tabul(X,"i");
+clf()
+plot2d3(m(:,1), m(:,2)/n)
+xtitle("empirical probabilities of B(70,0.5)")
+
+// 最後の例 : scilabライセンスにおける単語の頻度を計算
+text = read(SCI+"/license.txt",-1,1,"(A)"); // scilabライセンスを読む
+bigstr = strcat(text," ");                  // 全ての行を一つの大きな文字列にする
+sep =  [" " "," "." ";" "*" ":" "-" """"];  // 単語セパレータ
+words = tokens(bigstr, sep);                // 大きな文字列を単語に分割
+m = tabul(words);                           // 各単語の出現頻度を計算
+[occ , p] = gsort(m(2));                     // 降順に頻度をソート
+results = [m(1)(p) string(occ)]             // 結果を表示
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="dsearch">dsearch</link>
+      </member>
+      <member>
+        <link linkend="histplot">histplot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member> Carlos Klimann (original author)</member>
+      <member> J.S. Giet and B. Pincon (new version)</member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 
+     fifth edition, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+</refentry>

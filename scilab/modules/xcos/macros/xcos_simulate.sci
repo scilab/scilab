@@ -75,29 +75,9 @@ end
   //-- end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
-  curdir = pwd() ;
-  chdir(TMPDIR)     ;
-  mkdir("Workspace");
-  chdir("Workspace");
-  %a = who("get")   ;
-  %a = %a(1:$-predef()+1);  //** exclude protected variables
+   xcos_workspace_init()
 
-  for %ij=1:size(%a,1)
-    var = %a(%ij)
-    if var<>'ans' & typeof(evstr(var))=='st' then
-      ierr = execstr('x='+var+'.values','errcatch')
-      if ierr==0 then
-        ierr = execstr('t='+var+'.time','errcatch')
-      end
-      if ierr==0 then
-        execstr('save('"'+var+''",x,t)')
-      end
-    end
-  end
-
-  chdir(curdir)
-  //**----- end of /prepare from and to workspace stuff
-
+ 
 //** extract tolerances from scs_m.props.tol
   tolerances = scs_m.props.tol ;
   //** extract solver type from tolerances

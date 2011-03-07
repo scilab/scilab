@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="delete">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>delete</refname>
+    <refpurpose> 
+	グラフィックエンティティとその子を削除.
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>delete(h)
+delete(h,"callback")
+delete()
+delete("all")</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>削除するエンティティのハンドル. <literal>h</literal> は
+	ハンドルのベクトルとすることができ,この場合,h(i)で特定される全てのオブジェクトが
+	削除されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"all"  </term>
+        <listitem>
+          <para>文字列キーワード (オプション).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	このルーチンは,引数に指定したハンドルで特定されるグラフィックエンティティを
+	削除する際に使用されます.
+	この場合, このグラフィックエンティティの全ての子は削除されます.
+	引数を指定しない<literal>delete</literal>はカレントのエンティティを削除します.
+	<literal>"all"</literal>引数をしてすると,
+	カレントの図の全てのエンティティを削除します.</para>
+    <para> 
+    <literal>"callback"</literal> 引数はまだ処理されません.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+subplot(211);
+t=1:10;plot2d(t,t.^2),
+subplot(223);
+plot3d();
+subplot(224);
+plot2d();
+xfrect(1,0,3,1);
+a=get("current_axes") 
+delete(); //新規に作成されたグラフィックオブジェクトを削除
+delete(a.children); //カレントの軸の全ての子を削除d
+delete(a); //軸を削除
+delete("all"); //図の全てのグラフィックオブジェクトを削除
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="copy">copy</link>
+      </member>
+      <member>
+        <link linkend="move">move</link>
+      </member>
+      <member>
+        <link linkend="is_handle_valid">is_handle_valid</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para> Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sm2ss">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sm2ss</refname>
+    <refpurpose> システム行列を状態空間に変換</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>[Sl]=sm2ss(Sm);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>Sm</term>
+        <listitem>
+          <para>多項式行列 (ペンシルシステム行列)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Sl</term>
+        <listitem>
+          <para>線形システム (<literal>syslin</literal> リスト)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    ユーティリティ関数: システム行列:</para>
+    <programlisting role = ""><![CDATA[ 
+Sm = [-sI + A   B;
+     [    C     D]
+ ]]></programlisting>
+    <para>
+    を状態空間表現の線形システム (<literal>syslin</literal>) リストに変換します.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ss2des">ss2des</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
