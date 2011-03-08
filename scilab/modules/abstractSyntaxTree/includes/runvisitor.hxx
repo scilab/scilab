@@ -687,6 +687,7 @@ namespace ast
                         delete execMeTest.result_get();
                     }
                 }
+
                 e.test_get().accept(execMeTest);
             }
         }

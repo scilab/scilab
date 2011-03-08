@@ -45,7 +45,7 @@ namespace types
         T*                      m_pImgData;
 
                                 ArrayOf() : GenericType(), m_bComplex(false), m_pRealData(NULL), m_pImgData(NULL) {}
-        virtual                 ~ArrayOf()
+        virtual                 ~ArrayOf() 
         {
             delete[] m_piDims;
         }

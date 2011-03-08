@@ -15,7 +15,7 @@
 #include "export_symbol.h"
 #include "symbol.hxx"
 
-#define __MAX_CLONE_NUMBER__	1000000
+#define __MAX_CLONE_NUMBER__	2
 
 using symbol::Symbol;
 using symbol::symbols_t;
@@ -23,31 +23,31 @@ using symbol::symbols_t;
 static int symbol_test()
 {
 
-  Symbol foo("foo");
-  Symbol foo2("foo");
-  Symbol foo3("Foo");
-  Symbol *foo4 = new Symbol("Foo");
-  Symbol bar("bar");
-  Symbol scicos("scicos");
+  Symbol foo(L"foo");
+  Symbol foo2(L"foo");
+  Symbol foo3(L"Foo");
+  Symbol *foo4 = new Symbol(L"Foo");
+  Symbol bar(L"bar");
+  Symbol scicos(L"scicos");
   symbols_t clone;
   int i = 0;
   symbols_t::iterator it;
 
   for (i = 0 ; i < __MAX_CLONE_NUMBER__ ; ++i)
     {
-      clone.push_front(new Symbol("clone"));
+      clone.push_front(new Symbol(L"clone"));
     }
   for (it = clone.begin() ; it != clone.end() ; ++it)
     {
-      assert((*it)->name_get() == "clone");
+      assert((*it)->name_get() == L"clone");
     }
 
-  assert(foo.name_get() == "foo");
-  assert(foo2.name_get() == "foo");
-  assert(foo3.name_get() == "Foo");
-  assert(foo4->name_get() == "Foo");
-  assert(bar.name_get() == "bar");
-  assert(scicos.name_get() == "scicos");
+  assert(foo.name_get() == L"foo");
+  assert(foo2.name_get() == L"foo");
+  assert(foo3.name_get() == L"Foo");
+  assert(foo4->name_get() == L"Foo");
+  assert(bar.name_get() == L"bar");
+  assert(scicos.name_get() == L"scicos");
 
   assert(foo == foo2);
   assert(foo != foo3);
@@ -57,22 +57,31 @@ static int symbol_test()
   assert(Symbol::map_size() == 5);
 
 
-  std::cout << "Symbol Overview :" << std::endl;
-  std::cout << "-----------------" <<  std::endl;
-  std::cout << "Size : " << Symbol::map_size() << std::endl;
-  std::cout << "-----------------" <<  std::endl;
-  std::cout << foo << std::endl;
-  std::cout << foo2 << std::endl;
-  std::cout << foo3 << std::endl;
-  std::cout << *foo4 << std::endl;
-  std::cout << bar << std::endl;
-  std::cout << scicos << std::endl;
-  std::cout << **(clone.begin()) << std::endl;
-  std::cout << "----------------" << std::endl;
+  std::wcout << L"Symbol Overview :" << std::endl;
+  std::wcout << L"-----------------" <<  std::endl;
+  std::wcout << L"Size : " << Symbol::map_size() << std::endl;
+  std::wcout << L"-----------------" <<  std::endl;
+  std::wcout << foo << std::endl;
+  std::wcout << foo2 << std::endl;
+  std::wcout << foo3 << std::endl;
+  std::wcout << *foo4 << std::endl;
+  std::wcout << bar << std::endl;
+  std::wcout << scicos << std::endl;
+  std::wcout << **(clone.begin()) << std::endl;
+  std::wcout << L"----------------" << std::endl;
 	return 0;
+}
+
+int test()
+{
+    Symbol foo(L"foo");
+    Symbol bar(L"foo");
+    std::wcout << &foo << std::endl;
+    std::wcout << &bar << std::endl;
 }
 
 int main(void) {
   symbol_test();
+//    test();
   return 0;
 }
