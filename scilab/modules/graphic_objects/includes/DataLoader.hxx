@@ -70,8 +70,9 @@ extern "C"
    * @param[in] the id of the given object.
    * @param[out] the buffer to fill.
    * @param[in] the buffer length.
+   * @return the number of indices actually written.
    */
-  void fillWireIndices(char* id, int* BUFF, int bufferLength);
+  int fillWireIndices(char* id, int* BUFF, int bufferLength);
 
   /**
    * Return the number of mark indices of the given object.

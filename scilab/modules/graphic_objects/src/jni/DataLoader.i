@@ -10,126 +10,47 @@
 
 %module DataLoader
 
+%include "arrays_java.i"
+
 %define NIO_BUFFER_TYPEMAP(CTYPE, LABEL, BUFFERTYPE)
-%typemap(jni) CTYPE* LABEL "jobject"
-%typemap(jtype) CTYPE* LABEL "BUFFERTYPE"
-%typemap(jstype) CTYPE* LABEL "BUFFERTYPE"
-%typemap(javain, 
-	pre="    assert $javainput.isDirect() : \"Buffer must be allocated direct.\";") CTYPE* LABEL "$javainput"
-%typemap(javaout) CTYPE* LABEL {
-    return $jnicall;
-}
-%typemap(in) CTYPE* LABEL {
-  $1 = (*jenv)->GetDirectBufferAddress(jenv, $input);
-  if ($1 == NULL) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unable to get address of direct buffer. Buffer must be allocated direct.");
+  %typemap(jni) CTYPE* LABEL "jobject"
+  %typemap(jtype) CTYPE* LABEL "BUFFERTYPE"
+  %typemap(jstype) CTYPE* LABEL "BUFFERTYPE"
+  %typemap(javain, 
+	  pre="    assert $javainput.isDirect() : \"Buffer must be allocated direct.\";") CTYPE* LABEL "$javainput"
+  %typemap(javaout) CTYPE* LABEL {
+      return $jnicall;
   }
-}
-%typemap(memberin) CTYPE* LABEL {
-  if ($input) {
-    $1 = $input;
-  } else {
-    $1 = 0;
+  %typemap(in) CTYPE* LABEL {
+    $1 = (*jenv)->GetDirectBufferAddress(jenv, $input);
+    if ($1 == NULL) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unable to get address of direct buffer. Buffer must be allocated direct.");
+    }
   }
-}
-%typemap(freearg) CTYPE* LABEL ""
+  %typemap(memberin) CTYPE* LABEL {
+    if ($input) {
+      $1 = $input;
+    } else {
+      $1 = 0;
+    }
+  }
 %enddef
 
+/*
 NIO_BUFFER_TYPEMAP(void, BUFF, java.nio.Buffer);
 NIO_BUFFER_TYPEMAP(char, BUFF, java.nio.ByteBuffer);
 NIO_BUFFER_TYPEMAP(char, CBUFF, java.nio.CharBuffer);
-/*NIO_BUFFER_TYPEMAP(unsigned char, BUFF, java.nio.ShortBuffer);*/
 NIO_BUFFER_TYPEMAP(short, BUFF, java.nio.ShortBuffer);
 NIO_BUFFER_TYPEMAP(unsigned short, BUFF, java.nio.IntBuffer);
-NIO_BUFFER_TYPEMAP(int, BUFF, java.nio.IntBuffer);
 NIO_BUFFER_TYPEMAP(unsigned int, BUFF, java.nio.LongBuffer);
 NIO_BUFFER_TYPEMAP(long, BUFF, java.nio.IntBuffer);
 NIO_BUFFER_TYPEMAP(unsigned long, BUFF, java.nio.LongBuffer);
 NIO_BUFFER_TYPEMAP(long long, BUFF, java.nio.LongBuffer);
-NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
 NIO_BUFFER_TYPEMAP(double, BUFF, java.nio.DoubleBuffer);
-#undef NIO_BUFFER_TYPEMAP
-
-
-%define UNSIGNED_NIO_BUFFER_TYPEMAP(CTYPE, BSIZE, BUFFERTYPE, PACKFCN, UNPACKFCN)
-%typemap(jni) CTYPE* INBUFF "jobject"
-%typemap(jtype) CTYPE* INBUFF "java.nio.ByteBuffer"
-%typemap(jstype) CTYPE* INBUFF "BUFFERTYPE"
-%typemap(javain, 
-	pre="    java.nio.ByteBuffer tmp$javainput = PACKFCN($javainput, true);") CTYPE* INBUFF "tmp$javainput"
-%typemap(javaout) CTYPE* INBUFF {
-    return $jnicall;
-}
-%typemap(in) CTYPE* INBUFF {
-  $1 = (*jenv)->GetDirectBufferAddress(jenv, $input);
-  if ($1 == NULL) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unable to get address of direct buffer. Buffer must be allocated direct.");
-  }
-}
-%typemap(memberin) CTYPE* INBUFF {
-  if ($input) {
-    $1 = $input;
-  } else {
-    $1 = 0;
-  }
-}
-%typemap(freearg) CTYPE* INBUFF ""
-
-%typemap(jni) CTYPE* OUTBUFF "jobject"
-%typemap(jtype) CTYPE* OUTBUFF "java.nio.ByteBuffer"
-%typemap(jstype) CTYPE* OUTBUFF "BUFFERTYPE"
-%typemap(javain, 
-	pre="    java.nio.ByteBuffer tmp$javainput = java.nio.ByteBuffer.allocateDirect($javainput.capacity()*BSIZE).order($javainput.order());",
-        post="       UNPACKFCN(tmp$javainput, $javainput);") CTYPE* OUTBUFF "tmp$javainput"
-%typemap(javaout) CTYPE* OUTBUFF {
-    return $jnicall;
-}
-%typemap(in) CTYPE* OUTBUFF {
-  $1 = (*jenv)->GetDirectBufferAddress(jenv, $input);
-  if ($1 == NULL) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unable to get address of direct buffer. Buffer must be allocated direct.");
-  }
-}
-%typemap(memberin) CTYPE* OUTBUFF {
-  if ($input) {
-    $1 = $input;
-  } else {
-    $1 = 0;
-  }
-}
-%typemap(freearg) CTYPE* OUTBUFF ""
-%enddef
-
-UNSIGNED_NIO_BUFFER_TYPEMAP(unsigned char, 1, java.nio.ShortBuffer, permafrost.hdf.libhdf.BufferUtils.packUChar, permafrost.hdf.libhdf.BufferUtils.unpackUChar);
-UNSIGNED_NIO_BUFFER_TYPEMAP(unsigned short, 2, java.nio.IntBuffer, permafrost.hdf.libhdf.BufferUtils.packUShort, permafrost.hdf.libhdf.BufferUtils.unpackUShort);
-UNSIGNED_NIO_BUFFER_TYPEMAP(unsigned int, 4, java.nio.LongBuffer, permafrost.hdf.libhdf.BufferUtils.packUInt, permafrost.hdf.libhdf.BufferUtils.unpackUInt);
-UNSIGNED_NIO_BUFFER_TYPEMAP(unsigned long, 4, java.nio.LongBuffer, permafrost.hdf.libhdf.BufferUtils.packUInt, permafrost.hdf.libhdf.BufferUtils.unpackUInt);
-
-/*
-%typemap(jni) unsigned char* BUFF "jobject"
-%typemap(jtype) unsigned char* BUFF "java.nio.ByteBuffer"
-%typemap(jstype) unsigned char* BUFF "java.nio.ShortBuffer"
-%typemap(javain, 
-	pre="    java.nio.ByteBuffer tmp$javainput = permafrost.hdf.libhdf.BufferUtils.packUChar($javainput, true);",
-        post="      permafrost.hdf.libhdf.BufferUtils.unpackUChar(tmp$javainput, $javainput);") unsigned char* BUFF "tmp$javainput"
-%typemap(javaout) unsigned char* BUFF {
-    return $jnicall;
-}
-%typemap(in) unsigned char* BUFF {
-  $1 = (*jenv)->GetDirectBufferAddress(jenv, $input);
-  if ($1 == NULL) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unable to get address of direct buffer. Buffer must be allocated direct.");
-  }
-}
-%typemap(memberin) unsigned char* BUFF {
-  if ($input) {
-    $1 = $input;
-  } else {
-    $1 = 0;
-  }
-}
-%typemap(freearg) unsigned char* BUFF ""
 */
+NIO_BUFFER_TYPEMAP(int, BUFF, java.nio.IntBuffer);
+NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
+#undef NIO_BUFFER_TYPEMAP
 
 %pragma(java) jniclasscode=%{
   static {
@@ -142,18 +63,19 @@ UNSIGNED_NIO_BUFFER_TYPEMAP(unsigned long, 4, java.nio.LongBuffer, permafrost.hd
   }
 %}
 
-%include "arrays_java.i"
-%inline %{
+%apply float *BUFF {float *buffer};
+%apply int   *BUFF {int   *buffer};
 
+%inline %{
     extern int getDataSize(char* id);
-    extern void fillVertices(char* id, float* BUFF, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[]);
-    extern void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize);
+    extern void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[]);
+    extern void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
     
     extern int getIndicesSize(char* id);    
     extern int fillIndices(char* id, int* BUFF, int bufferLength);
     
     extern int getWireIndicesSize(char* id);    
-    extern void fillWireIndices(char* id, int* BUFF, int bufferLength);
+    extern int fillWireIndices(char* id, int* BUFF, int bufferLength);
 
     extern int getMarkIndicesSize(char* id);
     extern int fillMarkIndices(char* id, int* BUFF, int bufferLength);

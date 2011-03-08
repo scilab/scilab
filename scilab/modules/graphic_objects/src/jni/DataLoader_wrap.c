@@ -757,16 +757,15 @@ jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
 #endif
 
 
-
     extern int getDataSize(char* id);
-    extern void fillVertices(char* id, float* BUFF, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[]);
-    extern void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize);
+    extern void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[]);
+    extern void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
     
     extern int getIndicesSize(char* id);    
     extern int fillIndices(char* id, int* BUFF, int bufferLength);
     
     extern int getWireIndicesSize(char* id);    
-    extern void fillWireIndices(char* id, int* BUFF, int bufferLength);
+    extern int fillWireIndices(char* id, int* BUFF, int bufferLength);
 
     extern int getMarkIndicesSize(char* id);
     extern int fillMarkIndices(char* id, int* BUFF, int bufferLength);
@@ -828,7 +827,6 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   SWIG_JavaArrayArgoutDouble(jenv, jarr6, arg6, jarg6); 
   SWIG_JavaArrayArgoutDouble(jenv, jarr7, arg7, jarg7); 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  
   free(arg6); 
   free(arg7); 
 }
@@ -857,7 +855,6 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   arg4 = (int)jarg4; 
   fillColors(arg1,arg2,arg3,arg4);
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  
 }
 
 
@@ -904,7 +901,6 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   result = (int)fillIndices(arg1,arg2,arg3);
   jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  
   return jresult;
 }
 
@@ -928,17 +924,19 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_g
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillWireIndices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillWireIndices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3) {
+  jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
   int *arg2 = (int *) 0 ;
   int arg3 ;
+  int result;
   
   (void)jenv;
   (void)jcls;
   arg1 = 0;
   if (jarg1) {
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-    if (!arg1) return ;
+    if (!arg1) return 0;
   }
   {
     arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
@@ -947,9 +945,10 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
     }
   }
   arg3 = (int)jarg3; 
-  fillWireIndices(arg1,arg2,arg3);
+  result = (int)fillWireIndices(arg1,arg2,arg3);
+  jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  
+  return jresult;
 }
 
 
@@ -996,7 +995,6 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   result = (int)fillMarkIndices(arg1,arg2,arg3);
   jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-  
   return jresult;
 }
 

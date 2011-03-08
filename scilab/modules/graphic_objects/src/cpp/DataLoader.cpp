@@ -91,9 +91,10 @@ int getWireIndicesSize(char* id)
     return 0;
 }
 
-void fillWireIndices(char* id, int* BUFF, int bufferLength)
+int fillWireIndices(char* id, int* BUFF, int bufferLength)
 {
   // TODO.
+    return 0;
 }
 
 int getMarkIndicesSize(char* id)
