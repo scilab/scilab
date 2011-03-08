@@ -84,8 +84,8 @@ int sci_check_properties(char * fname)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="CheckColumn">CheckColumn</link></member>

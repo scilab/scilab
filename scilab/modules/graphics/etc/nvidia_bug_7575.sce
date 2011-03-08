@@ -41,7 +41,7 @@ function detect_bug_7575()
     bOK = grep(convstr(videocard, "u"), "NVIDIA") <> [];
   endfunction
 
-  function bOK = is260Drivers()
+  function bOK = is260DriversBuggy()
     bOK = %f;
     [dyninfo, statinfo] = getdebuginfo();
     driversvideocard = dyninfo(grep(dyninfo, "Video card driver version:"));
@@ -51,7 +51,9 @@ function detect_bug_7575()
     XP_drivers = [6. 14. 12];
     if  ierr == 0 then
       if and([driverVer1, driverVer2, driverVer3] == XP_drivers) | and([driverVer1, driverVer2, driverVer3] == VistaSeven_drivers) then
-          if (driverVer4 >= 6089) then 
+          // 260.6306 and more work
+          // tested on rev. 6306 and 6658
+          if (driverVer4 >= 6089) & (driverVer4 < 6306) then 
             bOK = %t;
           end
       end
@@ -60,7 +62,7 @@ function detect_bug_7575()
   endfunction
 
   if getos() == "Windows" then
-    if isNvidia() & is260Drivers() then
+    if isNvidia() & is260DriversBuggy() then
       if ~haveScilabProfile() then
         WarningDriversNvidia();
       end

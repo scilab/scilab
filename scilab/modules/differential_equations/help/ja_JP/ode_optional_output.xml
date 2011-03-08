@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ode_optional_output">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ode_optional_output</refname>
+    <refpurpose> ode ソルバのオプション出力の説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	このページは,
+	<link linkend="ode">ode</link>関数のオプションの左辺引数
+	<literal>w</literal> および<literal>iw</literal>
+	に返される最も重要な値について記述するものです.
+	これらは, <literal>lsode</literal> 
+      <literal>lsoda</literal> および  <literal>lsodar</literal>
+	ODEソルバの場合のみ有効です.
+	より詳細については,
+	<literal>SCI/modules/differential_equations/src/fortran/lsod*.f 内の
+	ソルバのFortranコードのコメントを参照ください.
+	</literal>.
+      </para>
+    <variablelist>
+      <varlistentry>
+        <term>w(11)</term>
+        <listitem>
+          <para> 直近に(成功裏に)使用した時間刻み t </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w(12)</term>
+        <listitem>
+          <para> 次のステップで試行されるステップサイズ.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w(13)</term>
+        <listitem>
+          <para> 
+	ソルバが実際に達した独立変数のカレントの値,
+	すなわち,tのカレントの内部メッシュ点.
+	出力される tcur は最低でも引数 t となり,
+	(補間が行われた場合には,) t 以降となる場合もあります.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w(14)</term>
+        <listitem>
+          <para> 
+	許容誤差のスケールファクタで,1より大きく,
+	精度が過剰なリクエストが検出された場合に計算されます
+	(問題の開始時に検出された場合: istate = -3, その他の場合: istate = -2).
+	itol が変更されず rtol および atol が共に次のコールで
+	<literal>tolsf=w(14)</literal> 倍に増やされる場合,
+	ソルバは成功したとみなされます.
+	(ユーザは <literal>tolsf</literal> を無視し,
+	他の適当な手段で許容誤差パラメータを変更することも可能です.)
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w(15)</term>
+        <listitem>
+          <para> 
+	(もしあれば,)直近の手法切替を行った時間における t の値.
+	この値は <literal>lsode</literal> ソルバでは意味がありません.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(10)</term>
+        <listitem>
+          <para> 
+	これまでに問題に関して<literal>g</literal>を評価した数.
+	この値は <literal>lsodar</literal> ソルバでは意味がありません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(11)</term>
+        <listitem>
+          <para> これまでに問題に関して行われたステップ数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(12)</term>
+        <listitem>
+          <para> これまでに問題に関して行われた f の評価の回数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(13)</term>
+        <listitem>
+          <para> 
+	これまでに問題に関して行われたヤコビアン(および行列のLU分解)の評価の回数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(14)</term>
+        <listitem>
+          <para> 
+	(成功裏に)直近に使用された手法の次数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(15)</term>
+        <listitem>
+          <para> 
+	次のステップで試行される次数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(16)</term>
+        <listitem>
+          <para> 
+	重みつきローカル誤差ベクトル( e(i)/ewt(i) )における
+	最大の大きさの要素の添字,
+	エラーの場合に istate = -4 または -5 と共に返されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(17)</term>
+        <listitem>
+          <para> 
+	実際に必要な <literal>w</literal> の長さであり,
+	rworkの長さが問題の残りの処理で固定され,
+	切替が発生すると仮定されます.
+	この値は通常のリターン時に定義され,
+	異常な入力が行われた場合には不十分な記憶容量が返されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(18)</term>
+        <listitem>
+          <para> 実際に必要な <literal>iw</literal> の長さであり,
+	<literal>iw</literal>の長さが問題の残りの処理で固定され,
+	切替が発生すると仮定されます.
+	この値は通常のリターン時に定義され,
+	異常な入力が行われた場合には不十分な記憶容量が返されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(19)</term>
+        <listitem>
+          <para> 
+	直近の処理が成功したステップに関する手法のインジケータです.
+	1 は adams (非スティッフ), 2 は bdf (スティッフ) を意味します.
+	この値は <literal>lsode</literal> ソルバでは意味がありません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>iw(20)</term>
+        <listitem>
+          <para> 
+	カレントの手法のインジケータです.
+	1 は adams (非スティッフ), 2 は bdf (スティッフ) を意味します.
+	この値は次のステップで試行される手法です.
+	よって, この値は,手法の切替が行われた直後のみ <literal>iw(19)</literal> の
+	値と異なります.
+	この値は <literal>lsode</literal> ソルバでは意味がありません.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

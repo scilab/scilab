@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="hypermatrices">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hypermatrices</refname>
+    <refpurpose> Scilab オブジェクト, Scilabの N 次元行列</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+    ハイパー行列型により多次元配列の操作が可能です.</para>
+    <para>
+    ハイパー行列型は,2次元行列を以下のように拡張することにより,
+    a=[1 2;3 4];a(:,:,2)=rand(2,2)</para>
+    <para>
+    または直接 <literal>hypermat</literal> 関数により定義できます.</para>
+    <para>
+	エントリは,実数または複素数, 多項式, 有理数, 文字列, 論理値とすることができます.
+    </para>
+    <para>
+    ハイパー行列は,以下の <literal>mlists</literal>型となります:
+    <literal>mlist(['hm','dims','entries'],sz,v)</literal> ,ただし,
+	 <literal>sz</literal> は次元を含む行ベクトル,
+	<literal>v</literal> はエントリを含む列ベクトル (最初の次元が最初に保存されます)</para>
+    <para>注意: ハイパー行列の最も右の次元の数が1となる場合,
+	自動的に次元が縮小されます.
+	次元が2つのみのハイパー行列は,自動的に通常の行列(タイプ1)に変換されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a(1,1,1,1:2)=[1 2]
+a=[1 2;3 4];a(:,:,2)=rand(2,2)
+a(1,1,:)
+
+size(a)
+
+a(:,:,1) //dimensionnality reduction
+type(a(:,:,1))
+
+[a a]
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hypermat">hypermat</link>
+      </member>
+      <member>
+        <link linkend="zeros">zeros</link>
+      </member>
+      <member>
+        <link linkend="ones">ones</link>
+      </member>
+      <member>
+        <link linkend="grand">grand</link>
+      </member>
+      <member>
+        <link linkend="matrix">matrix</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

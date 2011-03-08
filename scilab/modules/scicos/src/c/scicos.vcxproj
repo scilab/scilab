@@ -294,6 +294,7 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c" />
     <ClCompile Include="copyvarfromlistentry.c" />
     <ClCompile Include="createblklist.c" />
     <ClCompile Include="DllmainScicos.c" />

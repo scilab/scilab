@@ -3321,7 +3321,7 @@ static int intersci_push(void)
   intersci_list *loc;
   intersci_state *new ;
   new = MALLOC( Nbvars * sizeof(intersci_state) );
-  if (new == 0 ) return 0;
+  if (new == NULL ) return 0;
   loc = MALLOC( sizeof(intersci_list) );
   if ( loc == NULL ) return 0;
   loc->next = L_intersci;

@@ -102,8 +102,8 @@ Q(sE-A)Z = |=================================|============|
     <para>
     The code is taken from T. Beelen</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="kroneck">kroneck</link>

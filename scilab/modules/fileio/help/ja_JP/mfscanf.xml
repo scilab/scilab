@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mfscanf" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv xml:id="mscanf">
+    <refname>mscanf</refname>
+
+    <refpurpose>標準入力から入力を読み込む (C言語の scanf
+    関数へのインターフェイス)</refpurpose>
+  </refnamediv>
+
+  <refnamediv>
+    <refname>mfscanf</refname>
+
+    <refpurpose>ストリームへのポインタから入力を読み込む (C言語の 
+    fscanf 関数へのインターフェイス)</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="msscanf">
+    <refname>msscanf</refname>
+
+    <refpurpose>文字列から入力を読み込む (C言語の
+    sscanf 関数へのインターフェイス)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[n,v_1,...v_n]=mfscanf([niter,]fd,format)
+L=mfscanf([niter,] fd,format)
+
+[n,v_1,...v_n]=mscanf([niter,] format)
+L=mscanf([niter,]format)
+
+[n,v_1,...v_m]=msscanf([niter,]str,format)
+L=msscanf([niter,] str,format)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>残りのオペランドを書き込む際に使用されるフォーマットを記述する
+	Scilab 文字列. format オペランドは,
+	<link linkend="scanf_conversion">scanf_conversion</link>に記述された
+	 C 言語の printf のフォーマット記述子にできるだけ近くなるよう作成されています.
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para><literal>mopen</literal>により返されたfd パラメータが
+		ファイル記述子(正の整数)として使用されます.
+		-1 は直近にオープンされたファイルを指します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>Scilab 文字列または文字列ベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>niter</term>
+
+        <listitem>
+          <para>整数, フォーマットの使用回数.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>整数, 読み込むデータの数または
+		データを読み込む前にEOLに達した場合は -1.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v_i</term>
+
+        <listitem>
+          <para>各関数は文字を読み込み,フォーマットに基づき解釈し,
+	結果をその出力引数に保存します.
+	 $n$ より多くの出力引数が指定された場合,
+	最後の<literal>v_n+1,...v_m</literal>は空の行列に設定されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>L</term>
+
+        <listitem>
+          <para>
+	全てのデータが同種である場合,
+	戻り値の一つのベクトルに保存されます.
+	そうでない場合,同じデータ型のシーケンスは
+	行列に保存され, 作成された全ての行列を含む
+	(<literal>cblock</literal>型を有する)<literal>mlist</literal>
+	が返されます.
+	</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>mfscanf</literal> 関数はストリーム <literal>fd</literal>
+	から文字を読み込みます.</para>
+
+    <para><literal>mscanf</literal> 関数は Scilabウインドウから
+	文字を読み込みます.</para>
+
+    <para><literal>msscanf</literal> 関数はScilab文字列
+	<literal>str</literal>から文字を読み込みます.</para>
+
+    <para>オプションのパラメータ<literal>niter</literal>は
+	フォーマットの反復使用回数を指定します.
+	1回の反復は出力行列に1つの行を出力します.
+	<literal>niter==-1</literal>の場合,
+	関数はファイル終端まで反復処理を行ないます.
+	<literal>niter</literal> のデフォルト値は 1です.</para>
+
+    <para>精度に関するコメント :</para>
+
+    <para>mfscanf is based on C function fscanf. If you use '%f', '%g', '%e'
+    as format your datas will be cast to float and returned in a scilab
+    variable. </para>
+
+    <para>This scilab variable is a double then you can have some precision
+    errors. In this case, it is better to use '%lg' format.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+//----------------------------------------------------------
+//--    Simple use                                        --
+//----------------------------------------------------------
+s='1 1.3'  //文字列
+[n,a,b]=msscanf(s,"%i %e")
+L=msscanf(s,"%i %e")
+
+//----------------------------------------------------------
+//--    フォーマットのサンプル                            --
+//----------------------------------------------------------
+
+msscanf(" 12\n",'%c%c%c%c') //スキャン文字列
+
+msscanf('0xabc','%x') //16進形式でスキャン
+
+msscanf('012345abczoo','%[0-9abc]%s')  //[] 表記
+
+// float および doubleを読み込み
+msscanf('4345.988','%g')-4345.988 // floatとしてスキャン
+msscanf('4345.988','%lg')-4345.988 // doubleとしてスキャン
+
+//----------------------------------------------------------
+//--    複数行のデータファイルをスキャン                  --
+//----------------------------------------------------------
+//データを有するファイルを作成
+u=mopen(TMPDIR+'/foo','w');
+t=(0:0.1:%pi)';mfprintf(u,"%6.3f %6.3f\n",t,sin(t))
+mclose(u);
+
+u=mopen(TMPDIR+'/foo','r'); // 読み込むファイルをオープン
+//read the file line by line
+[n,a,b]=mfscanf(u,'%e %e') //最初の行に複数の出力引数構文を適用
+l=mfscanf(u,'%e %e')       //2行目に単一の出力引数構文を適用
+//niterを使用して更に5つの行を読み込む
+l=mfscanf(5,u,'%e %e')  
+
+//ファイル終端まで読み込むために niter=-1 を使用
+l=mfscanf(-1,u,'%e %e')  
+
+mclose(u); //ファイルを閉じる
+
+//----------------------------------------------------------
+//--    scanning multi-line  strings vectors              --
+//----------------------------------------------------------
+//文字列ベクトルをスキャンするためにniterを使用
+[n,Names,Ages]=msscanf(-1,["Alain 19";"Pierre 15";"Tom 12"],'%s %d')
+D=msscanf(-1,["Alain 19";"Pierre 15";"Tom 12"],'%s %d')
+typeof(D)
+Names=D(:,1) //文字列
+Age=D(:,2)   //数値    
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="mclose">mclose</link></member>
+
+      <member><link linkend="meof">meof</link></member>
+
+      <member><link linkend="mfprintf">mfprintf</link></member>
+
+      <member><link linkend="fprintfMat">fprintfMat</link></member>
+
+      <member><link linkend="mfscanf">mfscanf</link></member>
+
+      <member><link linkend="fscanfMat">fscanfMat</link></member>
+
+      <member><link linkend="mget">mget</link></member>
+
+      <member><link linkend="mgetstr">mgetstr</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+
+      <member><link linkend="mprintf">mprintf</link></member>
+
+      <member><link linkend="mput">mput</link></member>
+
+      <member><link linkend="mputstr">mputstr</link></member>
+
+      <member><link linkend="mscanf">mscanf</link></member>
+
+      <member><link linkend="mseek">mseek</link></member>
+
+      <member><link linkend="mtell">mtell</link></member>
+
+      <member><link linkend="mdelete">mdelete</link></member>
+
+      <member><link
+      linkend="scanf_conversion">scanf_conversion</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

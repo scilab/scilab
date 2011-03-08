@@ -60,8 +60,7 @@ function DoTasksJustAfterInstall: Boolean;
                 bOK := checkMD5Files_MKL();
                 if (bOK = false) then
                     begin
-                        SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg1') + #13 +
-                        CustomMessage('DoTasksJustAfterInstallMsg2'),mbError, MB_OK, MB_OK );
+                        SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg2'),mbError, MB_OK, MB_OK );
                         Result := false;
                     end else begin
                         bOK := Install_MKL();
@@ -78,8 +77,7 @@ function DoTasksJustAfterInstall: Boolean;
                 bOK := checkMD5Files_MKL_FFTW();
                 if (bOK = false) then
                     begin
-                        SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg1') + #13 +
-                        CustomMessage('DoTasksJustAfterInstallMsg3'),mbError, MB_OK, MB_OK );
+                        SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg3'),mbError, MB_OK, MB_OK );
                         Result := false;
                     end else begin
 

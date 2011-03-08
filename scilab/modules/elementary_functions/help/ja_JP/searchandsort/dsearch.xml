@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dsearch" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dsearch</refname>
+
+    <refpurpose>二分探索法</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>実数ベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>val</term>
+
+        <listitem>
+          <para>
+		厳密に昇順(val(1) &lt; val(2) &lt; ... &lt; val(n))のn個の要素を有する
+		実数 (行または列) ベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ch</term>
+
+        <listitem>
+          <para>(オプションの) 文字 "c" または "d" (デフォルト値 "c")</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ind</term>
+
+        <listitem>
+          <para>Xと同じ次元の実数ベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>occ</term>
+
+        <listitem>
+          <para>
+	val と同じ形式の実数のベクトル
+	(しかし, ch="c"の場合には n-1 個の要素となります)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は,
+	ソートされたテーブルを探索したり,
+	いくつかのクラス(間隔または値のクラス)に散らばっている
+	ベクトルの要素の数を数える際に有用です.
+	</para>
+
+    <para>デフォルトで,または <literal>ch="c"</literal>の時,
+	これは区間の場合で, n-1 個の間隔で
+	各 X(i) の探索が行われます.
+	区間は次のように定義されます: </para>
+
+    <programlisting role = ""><![CDATA[ 
+I1 = [val(1), val(2)]
+Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; 
+ ]]></programlisting>
+
+    <para>そして:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ind(i)</term>
+
+        <listitem>
+          <para>はX(i)の区間番号です.
+	(X(i)が　[val(1),val(n)] の範囲にない場合は 0)
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>occ(k)</term>
+
+        <listitem>
+          <para>はIkの中にあるXの要素の数です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>[val(1),val(n)]の範囲にないXの要素の数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para><literal>ch="d"</literal> の場合, これは離散値の時で,
+	各 X(i) に関して val(k) と等しいかどうかの検索となります :</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ind(i)</term>
+
+        <listitem>
+          <para>は,値がX(i) (X(i)=val(k)の場合, ind(i) = k) に一致する要素の添字と等しくなります.
+	X(i) が val に含まれない場合は 0 となります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>occ(k)</term>
+
+        <listitem>
+          <para>val(k)に等しい X の要素の数</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>
+		集合{val(1),...,val(n)}の中にない X の要素の数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 例 #1 (elementary stat for U(0,1))
+m = 50000 ; n = 10;
+X = grand(m,1,"def");
+val = linspace(0,1,n+1)';
+[ind, occ] = dsearch(X, val);
+clf() ; plot2d2(val, [occ/m;0])  // no normalisation : y must be near 1/n
+
+
+// 例 #2 (elementary stat for B(N,p))
+N = 8 ; p = 0.5; m = 50000;
+X = grand(m,1,"bin",N,p); val = (0:N)';
+[ind, occ] = dsearch(X, val, "d");
+Pexp = occ/m; Pexa = binomial(p,N); 
+clf() ; hm = 1.1*max(max(Pexa),max(Pexp));
+plot2d3([val val+0.1], [Pexa' Pexp],[1 2],"111",  ...
+        "Pexact@Pexp", [-1 0 N+1 hm],[0 N+2 0 6])
+xtitle(  "binomial distribution B("+string(N)+","+string(p)+") :" ...
+        +" exact probability versus experimental ones")
+
+
+// 例 #3 (piecewise Hermite polynomial)
+x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
+y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
+d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
+X = linspace(0, 1, 200)';
+ind = dsearch(X, x);
+
+// Hermite base 関数を定義
+deff("y=Ll(t,k,x)","y=(t-x(k+1))./(x(k)-x(k+1))")   // Lagrange left on Ik
+deff("y=Lr(t,k,x)","y=(t-x(k))./(x(k+1)-x(k))")     // Lagrange right on Ik
+deff("y=Hl(t,k,x)","y=(1-2*(t-x(k))./(x(k)-x(k+1))).*Ll(t,k,x).^2")
+deff("y=Hr(t,k,x)","y=(1-2*(t-x(k+1))./(x(k+1)-x(k))).*Lr(t,k,x).^2")
+deff("y=Kl(t,k,x)","y=(t-x(k)).*Ll(t,k,x).^2")
+deff("y=Kr(t,k,x)","y=(t-x(k+1)).*Lr(t,k,x).^2")
+
+// 曲線をプロット
+Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
+clf(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000") 
+xtitle("an Hermite piecewise polynomial")
+// NOTE : you can verify by adding these ones : 
+// YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="find">find</link></member>
+
+      <member><link linkend="tabul">tabul</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>B.P.</para>
+  </refsection>
+</refentry>

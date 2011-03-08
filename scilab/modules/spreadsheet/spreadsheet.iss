@@ -20,9 +20,7 @@
 ;
 Source: bin\{#SPREADSHEET}.dll; DestDir: {app}\bin; Components: {#COMPN_SPREADSHEET}
 ;
-Source: modules\{#SPREADSHEET}\changelog.txt; DestDir: {app}\modules\{#SPREADSHEET}; Components: {#COMPN_SPREADSHEET}
 Source: modules\{#SPREADSHEET}\license.txt; DestDir: {app}\modules\{#SPREADSHEET}; Components: {#COMPN_SPREADSHEET}
-Source: modules\{#SPREADSHEET}\readme.txt; DestDir: {app}\modules\{#SPREADSHEET}; Components: {#COMPN_SPREADSHEET}
 Source: modules\{#SPREADSHEET}\VERSION.xml; DestDir: {app}\modules\{#SPREADSHEET}; Components: {#COMPN_SPREADSHEET}
 ;
 Source: modules\{#SPREADSHEET}\sci_gateway\{#SPREADSHEET}_gateway.xml; DestDir: {app}\modules\{#SPREADSHEET}\sci_gateway; Components: {#COMPN_SPREADSHEET}

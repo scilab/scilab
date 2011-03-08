@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="timer" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>timer</refname>
+
+    <refpurpose>CPU時間</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>timer()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	<literal>timer()</literal>への前のコールからの経過時間を
+	CPU時間で返します.</para>
+
+    <para>timer の時間精度は 100ナノ秒です.</para>
+
+    <para>注意: CPU 時間は,
+	計算に使用されるプロセッサ周期数です.
+	これは,実時間と完全に等価なわけではありません.</para>
+
+    <para>CPU時間は,
+	計算機を遅くするような
+	バックグラウンド処理にかかわりなく,
+	異なるプログラムまたは関数の間で要するCPU消費を
+	比較する際に使用できます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+timer();A=rand(100,100);timer()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getdate">getdate</link></member>
+
+      <member><link linkend="toc">toc</link></member>
+
+      <member><link linkend="tic">tic</link></member>
+
+      <member><link linkend="etime">etime</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

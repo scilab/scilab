@@ -51,8 +51,8 @@
     returns in <literal>r</literal> the vector [number of outputs, number of inputs]
     of the linear system <literal>Sl</literal>. <literal>nx</literal> is the number of states of <literal>Sl</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="size">size</link>

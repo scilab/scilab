@@ -36,8 +36,8 @@
     <para>Le produit de Kronecker se note <literal>x.*.y</literal></para>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="slash">slash</link></member>

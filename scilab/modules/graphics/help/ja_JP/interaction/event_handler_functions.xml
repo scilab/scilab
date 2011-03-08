@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="eventhandlerfunctions">
+  <info>
+    <pubdate>$LastChangedDate: 2007-03-08 08:05:42 +0200 (jeu, 08 mar 2007) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>event handler functions</refname>
+    <refpurpose>
+    イベントハンドラとして使用できる関数のプロトタイプ.
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>envent_handler_function(win,x,y,ibut)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>win</term>
+        <listitem>
+          <para>イベントが発生したwindowの番号.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>イベントが発生した時のマウスポインタのX座標(単位:ピクセル).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>イベントが発生した時のマウスポインタのY座標(単位:ピクセル).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut</term>
+        <listitem>
+          <para>イベント型に対応する番号.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	イベントハンドラモードが有効な場合, Scilab は指定したイベントハンドラ関数を
+	グラフィックウインドウにイベントが発生する度にコールします.
+	イベントハンドラ関数は前記のプロトタイプに適合している必要があります.
+	イベントが発生する度に, 関数がコールされ, その4つのパラメータが
+	ウインドウ番号,マウスの位置およびイベントの型に設定されます.
+  </para>
+    <para>
+    <literal>ibut</literal>パラメータはイベント型に依存した以下の値のどれかと
+	なります:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>ibut==0</term>
+        <listitem>
+          <para>マウスの左ボタンが押されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==1</term>
+        <listitem>
+          <para>マウスの真ん中のボタンが押されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==2</term>
+        <listitem>
+          <para>マウスの右ボタンが押されました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==3</term>
+        <listitem>
+          <para>マウスの左ボタンがクリックされました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==4</term>
+        <listitem>
+          <para>マウスの真ん中のボタンがクリックされました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==5</term>
+        <listitem>
+          <para>マウスの右ボタンがクリックされました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==10</term>
+        <listitem>
+          <para>マウスの左ボタンがダブルクリックされました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==11</term>
+        <listitem>
+          <para>マウスの真ん中のボタンがダブルクリックされました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==12</term>
+        <listitem>
+          <para>マウスの右ボタンがダブルクリックされました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==-5</term>
+        <listitem>
+          <para>マウスの左ボタンが離されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==-4</term>
+        <listitem>
+          <para>マウスの真ん中のボタンが離されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==-3</term>
+        <listitem>
+          <para>マウスの右ボタンが離されました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==-1</term>
+        <listitem>
+          <para>マウスポインタが移動されました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut &gt; =32</term>
+        <listitem>
+          <para>アスキーコード ascii(ibut) を有するキーが押されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut &lt; =-32</term>
+        <listitem>
+          <para>アスキーコード ascii(-ibut) を有するキーが離されました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut &gt; =1000+32</term>
+        <listitem>
+          <para>アスキーコード ascii(ibut-1000) を有するキーがCTRLキーと共に押されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibut==-1000</term>
+        <listitem>
+          <para>グラフィックウインドウが閉じられました</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+	例えば, ウインドウ番号0のイベントハンドラ関数の名前をfooHandlerとしましょう.
+	このウインドウの位置 [100,150] (単位:ピクセル)で左クリックをすると,
+	fooHandler( 0, 100, 150, 3 ) をコールするのと等価となります.
+  </para>
+    <para>
+	イベントハンドラの名前の指定方法に関する情報については
+  <link linkend="figure_properties">figure_properties</link> または
+	 <link linkend="seteventhandler">seteventhandler</link> を参照ください.
+  </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+function my_eventhandler(win,x,y,ibut)
+  if ibut==-1000 then return,end
+  [x,y]=xchange(x,y,'i2f')
+  xinfo(msprintf('Event code %d at mouse position is (%f,%f)',ibut,x,y))
+endfunction
+
+plot2d()
+fig = gcf() ;
+fig.event_handler = 'my_eventhandler' ;
+fig.event_handler_enable = "on" ;
+//now:
+//   -  move the mouse over the graphic window
+//   -  press and release keys shifted or not with Ctrl pressed or not
+//   -  press button, wait a little release
+//   -  press and release button
+//   -  double-click button
+
+fig.event_handler_enable = "off" ; //イベントハンドラを停止
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="figure_properties">figure_properties</link>
+      </member>
+      <member>
+        <link linkend="seteventhandler">seteventhandler</link>
+      </member>
+      <member>
+        <link linkend="xgetmouse">xgetmouse</link>
+      </member>
+      <member>
+        <link linkend="xclick">xclick</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para> Jean-Baptiste Silvy </para>
+  </refsection>
+</refentry>

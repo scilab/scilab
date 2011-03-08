@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="hermit">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hermit</refname>
+    <refpurpose>エルミート形式</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Ar,U]=hermit(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>多項式行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ar</term>
+        <listitem>
+          <para>三角多項式行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>ユニモジュラ多項式行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    エルミート形式: <literal>U</literal> は,
+	<literal>A*U</literal>がエルミート三角形式となるような
+	ユニモジュラ行列です:</para>
+    <para>
+    出力変数は <literal>Ar=A*U</literal>です.</para>
+    <para>
+    警告: 実験版</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,'s');
+p=[s, s*(s+1)^2, 2*s^2+s^3];
+[Ar,U]=hermit(p'*p);
+clean(p'*p*U), det(U)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hrmt">hrmt</link>
+      </member>
+      <member>
+        <link linkend="htrianr">htrianr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

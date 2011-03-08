@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mtlb_mode">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_mode</refname>
+    <refpurpose>Matlab 類似処理を切替</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>mmode=mtlb_mode()
+mtlb_mode(mmode)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>mmode</term>
+        <listitem>
+          <para>b論理値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	以下のように空の行列を使用した場合の
+    Scilab および Matlab の加算および除算の動作は
+	異なります:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>Scilab</term>
+        <listitem>
+          <para></para>
+          <programlisting role = ""><![CDATA[ 
+a+[] -->a
+a-[] -->a
+[]+a -->a
+[]-a -->-a
+ ]]></programlisting>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Matlab</term>
+        <listitem>
+          <programlisting role = ""><![CDATA[ 
+a+[] -->[]
+a-[] -->[]
+[]+a -->[]
+[]-a -->[]
+ ]]></programlisting>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para><literal> mtlb_mode(%t)</literal>  は加算および除算をMatlab互換モードに
+	切り替えます.
+	<literal> mtlb_mode(%f)</literal>  はScilabモードに戻します.
+</para>
+    <para><literal> mtlb_mode()</literal>はカレントの mmodeの値を返します.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="empty">empty</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

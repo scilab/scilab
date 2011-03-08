@@ -123,7 +123,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
       Les scripts peuvent maintenant contenir des définitions de fonctions en
       ligne (voir fonction). 
     </para>
-    <para><literal>exec</literal> prend en charge les fichiers encodés aux formats ANSI/ASCII et UTF-8 (NO-BOM).</para>
+    <para><literal>exec</literal> prend en charge les fichiers encodés aux formats ANSI/ASCII et UTF-8.</para>
     <para>La longueur des lignes des fichiers est limitée à 4096 caractères.</para>
   </refsection>
   <refsection>
@@ -154,8 +154,8 @@ exec(foo)
 whos -name "a "
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="exec">exec</link>

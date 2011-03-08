@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fft">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fft</refname>
+    <refpurpose>高速フーリエ変換</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="ifft">
+    <refname>ifft</refname>
+    <refpurpose>高速フーリエ逆変換</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>x=fft(a ,-1) or x=fft(a)
+x=fft(a,1) or x=ifft(a)
+x=fft(a,-1,dim,incr)
+x=fft(a,1,dim,incr)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数または複素数ベクトル. 実数または複素数行列  (2次元
+          fft)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>実数または複素数ベクトル, 行列または多次元配列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>incr</term>
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <variablelist>
+      <varlistentry>
+        <term>短縮構文 </term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>直接</term>
+              <listitem>
+                <para><literal>x=fft(a,-1)</literal> または <literal>x=fft(a)</literal> は離散変換を
+	出力します.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>単一変量</term>
+                    <listitem>
+                      <para>If <literal>a</literal> が単一変量のベクトルの場合,
+		次のように直接FFTが計算されます:</para>
+                      <para>x(k)=sum over m from 1 to n of
+                a(m)*exp(-2i*pi*(m-1)*(k-1)/n)</para>
+                      <para>kが1からnまで変わる場合 (n=ベクトル<literal>a</literal>の大きさ).</para>
+                      <para>(<literal>-1</literal> 引数は指数の符号を示しており, "逆"ではありません),</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>多変量</term>
+                    <listitem>
+                      <para><literal>a</literal>が行列または多次元配列の場合,
+		多変量直接FFTが実行されます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>逆</term>
+              <listitem>
+                <para><literal>a=fft(x,1)</literal> または <literal>a=ifft(x)</literal>は
+		<literal>1/n</literal>で正規化された逆変換を実行します.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>単一変量</term>
+                    <listitem>
+                      <para><literal>a</literal> がベクトルの場合,単一変量逆FFTが実行されます. </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>多変量</term>
+                    <listitem>
+                      <para><literal>a</literal>が行列または多次元配列の場合,
+		多変量逆FFTが実行されます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>多次元FFTの長い構文</term>
+        <listitem>
+          <para><literal>x=fft(a,-1,dim,incr)</literal> により多次元FFTを実行できます.</para>
+          <para>a が<literal>j1,j2,..,jp</literal>により陰に添え字付けされた
+	実数または複素数ベクトル<literal>a(j1,j2,..,jp)</literal>の場合, 
+	以下のようにp回<literal>fft</literal>をコールすることによりp変量FFT
+	が得られます.
+	ここで,<literal>a(j1,j2,..,jp)</literal>において,
+	<literal>j1</literal>は<literal>1:dim(1),</literal>次,
+	<literal>j2</literal>は<literal>1:dim(2),...</literal>次と定義しています.</para>
+          <programlisting role  = ""><![CDATA[ 
+incrk=1; x=a;
+for k=1:p 
+  x=fft(x ,-1,dim(k),incrk)
+  incrk=incrk*dim(k) 
+end
+ ]]></programlisting>
+          <para>ただし, <literal>dimk</literal> はカレントの被積分変数の次元,
+	<literal>incrk</literal> は連続する<literal>a</literal>の
+	<literal>jk</literal>要素の増分です.</para>
+          <para>特に, <literal>a</literal> がm行n列行列の場合,
+        <literal>x=fft(a,-1)</literal> は以下の2つの式と等価です:</para>
+          <para><literal>a1=fft(a,-1,m,1)</literal> および
+        <literal>x=fft(a1,-1,n,m)</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//Comparison with explicit formula
+//----------------------------------
+a=[1;2;3];n=size(a,'*');
+norm(1/n*exp(2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,1))
+norm(exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,-1)) 
+ 
+//Frequency components of a signal
+//----------------------------------
+// build a noides signal sampled at 1000hz  containing to pure frequencies 
+// at 50 and 70 Hz
+sample_rate=1000;
+t = 0:1/sample_rate:0.6;
+N=size(t,'*'); //number of samples
+s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
+  
+y=fft(s);
+//the fft response is symmetric we retain only the first N/2 points
+f=sample_rate*(0:(N/2))/N; //associated frequency vector
+n=size(f,'*')
+clf()
+plot2d(f,abs(y(1:n)))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="corr">corr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

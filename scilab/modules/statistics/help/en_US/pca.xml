@@ -96,8 +96,8 @@ a=rand(100,10,'n');
 show_pca(lambda,facpr)
  ]]></programlisting>
   </refsection>
- <refsection>
-    <title>See Also</title>
+ <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="show_pca">show_pca</link>

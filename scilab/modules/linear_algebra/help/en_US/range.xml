@@ -75,8 +75,8 @@ coeffs=X(1:dim,:)*y1     // components of y1 relative to the I basis
 norm(I*coeffs-y1)        //check
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fullrfk">fullrfk</link>

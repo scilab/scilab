@@ -73,15 +73,15 @@
     <literal>%sn</literal>.</para>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="delip">delip</link></member>
 
-      <member><link linkend="sn">%sn</link></member>
+      <member><link linkend="percentsn">%sn</link></member>
 
-      <member><link linkend="asn">%asn</link></member>
+      <member><link linkend="percentasn">%asn</link></member>
     </simplelist>
   </refsection>
 </refentry>

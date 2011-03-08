@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="printf_conversion" xml:lang="ja">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>printf_conversion</refname>
+    <refpurpose>printf, sprintf, fprintf 変換仕様</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para><literal>printf</literal> ,
+    <literal>sprintf</literal> , <literal>fprintf</literal>における各変換仕様.
+    <literal>format</literal> パラメータは以下のような構文を有します:</para>
+    <itemizedlist>
+      <listitem>
+        <para>A % (パーセント) 符号.</para>
+      </listitem>
+      <listitem>
+        <para>0個以上の <literal>options</literal>で, 
+	変換仕様の意味を修正します.
+	以下のリストに<literal>option</literal>文字とその意味を示します:</para>
+        <itemizedlist>
+          <listitem>
+            <para>- : 左揃え, フィールド内では, 変換の結果.</para>
+          </listitem>
+          <listitem>
+            <para>+ : (+または -)を指定する符号変換の結果を開始.</para>
+          </listitem>
+          <listitem>
+            <para>'空白' : 
+		符号変換後の最初の文字が符号ではない場合に結果の
+		前に空白文字を付加します.
+		(空白) および +オプションが共に指定された場合,
+		(空白) オプションは無視されます.</para>
+          </listitem>
+          <listitem>
+            <para># : 別の形式に値を変換.
+		<literal>c</literal>, <literal>d</literal>, <literal>i</literal>,
+            <literal>s</literal>, および <literal>u</literal> 変換の場合,
+		<literal>#</literal>オプションの効果はありません.
+            <literal>o</literal> 変換の場合, <literal>#</literal> は
+		結果の最初の桁を強制的に0 (ゼロ)にし,精度を増加させます.
+		<literal>x</literal> および <literal>X</literal>変換の場合,
+		ゼロでない結果の前に0xまたは0Xが付加されます.
+		<literal>e, E, f, g,</literal> および <literal>G</literal>変換の場合,
+		小数点以下の値がない場合でも結果には常に小数点が含まれます.
+		<literal>g</literal> および
+            <literal>G</literal> 変換の場合, 
+			末尾の0は結果から除かれません.</para>
+          </listitem>
+          <listitem>
+            <para>0 : 
+		<literal>d</literal>,
+            <literal>i</literal>, <literal>o</literal>, <literal>u</literal>,
+            <literal>x</literal>, <literal>X</literal>, <literal>e</literal>,
+            <literal>E</literal>, <literal>f</literal>, <literal>g</literal>,
+            および <literal>G</literal>変換において
+	(符号または基底の指示子の後に)
+	前に0をつけることによりフィールド幅内を埋めます:
+	空白によるパディングは行われません
+	<literal>0</literal> および <literal>\-</literal>(ダッシュ)が共に指定された場合,
+	<literal>0</literal>フラグは無視されます.
+	<literal>d</literal>, <literal>i</literal>,
+            <literal>o</literal> <literal>u</literal>, <literal>x</literal>,
+            および <literal>X</literal> 変換の場合, 精度が指定されると,
+            <literal>0</literal> フラグも無視されます.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+    <para>
+	オプションの10進数文字列は
+	最小フィールド幅を指定します.
+	変換された値の文字がこのフィールド幅よりも少ない場合,
+	フィールドはフィールド幅の指定長まで左側にパディングされます.
+	左寄せオプションが指定された場合,
+	フィールドは右側にパディングされます.</para>
+    <para>オプションの精度. 精度は <literal>.</literal> (ドット)の後に
+	10進数文字列が続きます.
+	精度が指定されない場合,
+	このパラメータは 0 (ゼロ)と扱われます.
+	精度指定子:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>d</literal>,
+        <literal>u</literal>, <literal>o</literal>, <literal>x</literal>, または
+        <literal>X</literal>変換に関する最小表示桁数</para>
+      </listitem>
+      <listitem>
+        <para><literal>e</literal>, <literal>E</literal>, および <literal>f</literal>
+	における小数点の後に表示する桁数</para>
+      </listitem>
+      <listitem>
+        <para><literal>g</literal> および<literal>G</literal>変換における
+	有効桁の最大値</para>
+      </listitem>
+      <listitem>
+        <para><literal>s</literal>変換において文字列から出力される
+	最大文字数</para>
+      </listitem>
+      <listitem>
+        <para>適用される変換の種類を示す文字:</para>
+        <itemizedlist>
+          <listitem>
+            <para>% : 変換しません.  %を表示.</para>
+          </listitem>
+          <listitem>
+            <para>d,i: 整数 <literal>value</literal> を受け取り,
+		符号付き10進数表記に変換します.
+		精度は表示される最小の桁数を指定します.
+		変換される値がより少ない桁数で表せる場合,
+		前にゼロを付加して拡張されます.
+		デフォルトの精度は1です.値0を精度0で変換した結果は,
+		ヌル文字列となります.
+		前に付加する文字をゼロとしてフィールド幅を指定すると,
+		フィールド幅までの値では前にゼロを付加するパディングが
+		行われます.</para>
+          </listitem>
+          <listitem>
+            <para>u : 整数 <literal>value</literal> を受け取り,
+		符号なし10進数表記に変換します.
+		精度は表示される最小の桁数を指定します.
+		変換される値がより少ない桁数で表せる場合,
+		前にゼロを付加して拡張されます.
+		デフォルトの精度は1です.値0を精度0で変換した結果は,
+		ヌル文字列となります.
+		前に付加する文字をゼロとしてフィールド幅を指定すると,
+		フィールド幅までの値では前にゼロを付加するパディングが
+		行われます.</para>
+          </listitem>
+          <listitem>
+            <para>o : 整数 <literal>value</literal> を受け取り,
+		符号なし8進数表記に変換します.
+		精度は表示される最小の桁数を指定します.
+		変換される値がより少ない桁数で表せる場合,
+		前にゼロを付加して拡張されます.
+		デフォルトの精度は1です.値0を精度0で変換した結果は,
+		ヌル文字列となります.
+		前に付加する文字をゼロとしてフィールド幅を指定すると,
+		フィールド幅までの値では前にゼロを付加するパディングが
+		行われます. フィールド幅に8進数を使用することはできません.</para>
+          </listitem>
+          <listitem>
+            <para>x, X : 整数 <literal>value</literal> を受け取り,
+		符号なし16進数表記に変換します.<literal>x</literal>変換では,
+		文字``abcdef''が使用されます;<literal>X</literal>変換では,
+		文字``ABCDEF''が使用されます.
+		精度はは表示される最小の桁数を指定します.
+		変換される値がより少ない桁数で表せる場合,
+		前にゼロを付加して拡張されます.
+		デフォルトの精度は1です.値0を精度0で変換した結果は,
+		ヌル文字列となります.
+		前に付加する文字をゼロとしてフィールド幅を指定すると,
+		フィールド幅までの値では前にゼロを付加するパディングが
+		行われます. </para>
+          </listitem>
+          <listitem>
+            <para>f : float または double の<literal>value</literal> を受け取り,
+		%[\-]<literal>ddd.ddd</literal>形式の10進数表記に変換します.
+		小数点以下の桁数は,精度指定子に等しくなります.</para>
+            <itemizedlist>
+              <listitem>
+                <para>精度が指定されない場合, 6桁が出力されます.</para>
+              </listitem>
+              <listitem>
+                <para>精度がゼロの場合, 小数点は表示されず,
+		システムは<literal>value</literal>に最も近い整数に丸めた数を
+		出力します.</para>
+              </listitem>
+              <listitem>
+                <para>小数点が出力される場合,最低でも1桁がその前に出力されます.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem>
+            <para>e, E : 実数を受け取り,指数形式%[\-]<literal>d.ddde</literal>+/\-<literal>dd</literal>
+		に変換します.
+		小数点の前に1桁があり,小数点の後の桁数は精度指定子に等しくなります.</para>
+            <itemizedlist>
+              <listitem>
+                <para>精度が指定されない場合, 6桁が出力されます.</para>
+              </listitem>
+              <listitem>
+                <para>精度がゼロの場合, 小数点は表示されません.
+                </para>
+              </listitem>
+              <listitem>
+                <para><literal>E</literal> 変換文字の場合,
+		指数の前の e の代わりに E を付けた数値を出力します.
+		指数には常に2桁以上が含まれます.
+		値が 0 の場合, 指数は 0 となります.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem>
+            <para>g, G : 実数を受け取り,有効桁数を指定する精度を付けた
+		<literal>e</literal>, <literal>E</literal>, または
+            <literal>f</literal>変換文字の形式に変換します.
+		末尾のゼロは結果から削除されます.
+		小数点は数字が続く場合にのみ表示されます.
+		使用される形式は変換される値に依存します.
+		
+
+		変換結果の指数が-4よりも小さい場合,または,
+		精度より大きいか等しい場合に,
+		<literal>e</literal> (使用されるフラグが<literal>G</literal>の場合は
+		<literal>E</literal>)形式が使用されます.
+		</para>
+          </listitem>
+          <listitem>
+            <para>c : 整数値を受け取り,文字に変換します.</para>
+          </listitem>
+          <listitem>
+            <para>s : 文字列 <literal>value</literal> を受け取り,
+		文字列から末尾または精度に示された文字数に達するまで,
+		文字に変換します.精度が指定されない場合,末尾までの全ての文字が
+		表示されます.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+    <para>フィールド幅または精度は,
+	桁文字の代わりに<literal>*</literal> (アスタリスク)で
+	示すことができます.
+	この場合,整数 <literal>value</literal>パラメータは
+	フィールド幅または精度を指定します.
+	出力に変換される<literal>value</literal> パラメータは
+	変換文字が達するまで取得されません.
+	このため,
+	フィールド幅または精度を指定するパラメータは変換される値よりも
+	前に現れる必要があります.</para>
+    <para>変換の結果がフィールド幅よりも広い場合,
+	このフィールドは変換結果を含められる幅まで拡張されます.</para>
+    <para>+記号の意味は<literal>+</literal>または(空白)整形オプションの
+	どちらが指定されたかに依存します.
+	</para>
+    <para>指数形式 %e の表示はプレットフォームに依存し,
+	指数の桁数は異なります.</para>
+    <informaltable border="1">
+      <tr>
+        <td>プラットフォーム</td>
+        <td>例: sprintf("%e",1.23e4)</td>
+      </tr>
+      <tr>
+        <td>Windows</td>
+        <td>1.23000e+004</td>
+      </tr>
+      <tr>
+        <td>Linux/Mac OS</td>
+        <td>1.23000e+04</td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+printf('a string: %s\n', 'Scilab');
+printf('an integer: %d\n', 10);
+printf('an integer: %4d\n', 10);
+printf('a left justified integer: %-4d\n', 10);
+printf('an integer converted to float: %#fd\n',10);
+printf('an integer with a sign: %+4d\n', 10);
+printf('an integer with a sign: %+4d\n', -10);
+printf('an integer padded with zeros: %04d\n', 10);
+printf('an unsigned integer: %u\n', 10);
+printf('an unsigned integer: %4u\n', -10);
+printf('an integer converted to hexadecimal: %x\n', 10);
+printf('a float: %d\n', %pi);
+printf('a float: %3.2d\n', %pi);
+printf('a float (exponential form): %3.2e\n', %pi);
+printf('a float (exponential form): %3.2g\n', %pi);
+printf('a character: %c\n', 'a');
+printf('a character: %c\n', 'aaa');
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="printf">printf</link>
+      </member>
+      <member>
+        <link linkend="fprintf">fprintf</link>
+      </member>
+      <member>
+        <link linkend="sprintf">sprintf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

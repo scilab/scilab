@@ -101,8 +101,8 @@ my_chinese_help_title = 'Example 1 [zh_TW]';
 my_chinese_pdf        = xmltopdf(my_chinese_help_dir,my_chinese_help_title,'zh_TW')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="help">help</link>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="replot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>replot</refname>
+    <refpurpose>カレントのグラフィックウインドウを新しい境界に
+	再描画</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>replot(rect,[handle])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>大きさ 4の行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>handle</term>
+        <listitem>
+          <para>オプションの引数. 一つまたは複数のAxesを選択するための
+	Axes型のグラフィックハンドル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>replot</literal> はカレントのグラフィックウインドウの内容を
+	<literal>rect=[xmin,ymin,xmax,ymax]</literal>で定義した新しい境界内に
+	再描画する際に使用されます.
+	古いグラフィック構文では,<literal>"Rec"</literal>ドライバでのみ
+	動作します.</para>
+    <para>この変換はhandle引数でAxesグラフィックハンドルにより指定された特定の軸に	
+	適用されます.
+	新しい境界はカレントの図のカレントの軸に適用されます.
+	変換はこれらの軸の<literal>data_bounds</literal>の値を変更します.
+	axesのプロパティ<literal>tight_limits</literal>も
+	これらの境界を厳密に選択するために "on" に設定する必要があります
+	 (
+    <link linkend="axes_properties">axes_properties</link>を参照ください).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+backupstyle='?'
+
+// 最初の例
+x=[0:0.1:2*%pi]';
+plot2d(x,sin(x)) 
+replot([-1,-1,10,2]) 
+
+// 二番目の例
+xdel(winsid());
+plot() // plot demo
+f=gcf();
+replot([-1,-1,10,2],f.children(1)) // axesハンドルの値を指定
+replot([-3,-2,8,4],f.children(2)) 
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xbasr">xbasr</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

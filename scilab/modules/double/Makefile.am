@@ -29,7 +29,7 @@ sci_gateway/fortran/matadd.f
 
 pkglib_LTLIBRARIES = libscidouble.la
 
-libscidouble_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscidouble_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes
@@ -49,7 +49,7 @@ modulename=double
 
 #### double : Conf files ####
 libscidouble_la_rootdir = $(mydatadir)
-libscidouble_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscidouble_la_root_DATA =  license.txt version.xml
 
 
 #### double : init scripts ####

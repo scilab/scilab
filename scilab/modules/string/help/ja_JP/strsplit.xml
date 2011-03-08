@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="strsplit" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>strsplit</refname>
+
+    <refpurpose>文字列を文字列のベクトルに分割する</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>
+      v = strsplit(str,ind)
+      [v, matched_separators] = strsplit(str)
+      [v, matched_separators] = strsplit(str, matrix_of_strings, limit)
+      [v, matched_separators] = strsplit(str, regexp_pattern, limit)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>分割する文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ind</term>
+
+        <listitem>
+          <para><literal>[1 length(str)-1] </literal>の範囲の
+		単調増加のインデックスのベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>得られた文字列の列ベクトル  (次元 &gt;<literal>
+          size(ind,'*')+1</literal>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>matched_separators</term>
+
+        <listitem>
+          <para>一致したセパレータの列ベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>matrix_of_strings</term>
+
+        <listitem>
+          <para>strの中で検索する文字列の行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>regexp_pattern</term>
+
+        <listitem>
+          <para>正規表現パターン</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>limit</term>
+
+        <listitem>
+          <para>要素数の最大値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>v = strsplit(str, ind)</literal> は,
+	<literal>ind</literal> でインデックスが指定された
+	点(indのインデックスが指す各文字の後)で,
+	文字列を文字列のベクトルに分割します.</para>
+
+    <para><literal>strsplit(str)</literal> は,
+    <literal>strsplit(str,1:length(str)-1).</literal>と同じ文字列を返します.</para>
+
+    <para><literal>strsplit(str, regexp_pattern, limit)</literal> は
+	文字列の列ベクトルを返します.
+	その各々は,大文字小文字を区別する正規表現により構築された境界で
+	分割されたstr の部分文字列です.</para>
+
+    <para>パターンがn回現れる場合,
+	返される配列はn+1個の要素を有します.</para>
+
+    <para>例えば, パターンが1回も存在しなかった場合,
+	1要素のみの配列が返されます.
+	もちろん,これはstrが空の場合も同じです.</para>
+
+    <para>limitが設定された場合,返される配列には
+	最大limit個の要素が含まれ,
+	その最後の要素には文字列の残り全体が含まれます.</para>
+
+    <para><literal>strsplit(str, matrix_of_strings, limit)</literal> , str は
+	要素に分割されます.これにより,
+	正規表現を知らないユーザが異なるセパレータで分割することが
+	できるようになります.</para>
+
+    <para><literal>strsplit()</literal> が第2の出力引数を指定してコールされた場合,
+	一致したセパレータの列ベクトルが返されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+S='strsplit splits a string into a vector of strings';
+strsplit(S,[15 25 30])
+ind=strindex(S,' ')
+    
+[r_1, r_2] = strsplit("abcd")
+    
+[r_1, r_2] = strsplit("root:x:0:0:root:/root:/bin/bash",":",5)
+    
+[r_1, r_2] = strsplit("abc,def:ijk,:lmo","/:|,/")
+   
+[r_1, r_2] = strsplit("abc,def:ijk,:lmo",[":";","])    
+    
+strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/") 
+
+[r_1, r_2] = strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/",2) 
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="strcat"> strcat</link></member>
+
+      <member><link linkend="tokens"> tokens</link></member>
+
+      <member><link linkend="regexp"> regexp</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>S. Steer, Allan CORNET</term>
+
+        <listitem>
+          <para>INRIA, DIGITEO</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

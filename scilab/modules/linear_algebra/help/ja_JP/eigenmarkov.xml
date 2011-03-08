@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="eigenmarkov">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>eigenmarkov</refname>
+    <refpurpose>正規化された左および右マルコフ固有ベクトル</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[M,Q]=eigenmarkov(P)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>P</term>
+        <listitem>
+          <para>実数 N x N マルコフ行列. 1に加える各行のエントリの合計.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>M</term>
+        <listitem>
+          <para>N個の列を有する実数行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q</term>
+        <listitem>
+          <para>N個の行を有する実数行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	マルコフ推移行列 P の固有値 1 に関連する
+	正規化された左および右固有ベクトルを返します.
+	この固有値の多重度が m　で, Pが N x N の場合,
+	M は m x N 行列で Q は N x m 行列となります.
+    M(k,:) はk番目のエルゴード集合(再帰的クラス)に関連する
+	確率分布ベクトルです.
+	M(k,x) は　x が k番目の再帰的クラスにない場合には
+	0となります.
+    Q(x,k) はx から始まる k 番目の再帰的クラスに最終的にある確率です.
+	大きな<literal>k</literal>に関して<literal>P^k</literal> が
+	収束する場合(1以外に単位円上に固有値がない),
+	極限は<literal>Q*M</literal>となります(固有投影).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//P は2つの再帰的なクラス (2および1個の状態量を有する) 2つの一時的な状態量
+P=genmarkov([2,1],2) 
+[M,Q]=eigenmarkov(P);
+P*Q-Q
+Q*M-P^20
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="genmarkov">genmarkov</link>
+      </member>
+      <member>
+        <link linkend="classmarkov">classmarkov</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

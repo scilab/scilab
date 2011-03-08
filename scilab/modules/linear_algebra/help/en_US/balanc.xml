@@ -80,8 +80,8 @@ norm(A(1,:))/norm(A(2,:))
 norm(Ab(1,:))/norm(Ab(2,:))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="bdiag">bdiag</link>

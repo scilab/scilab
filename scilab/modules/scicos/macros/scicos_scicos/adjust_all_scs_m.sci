@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function all_scs_m=adjust_all_scs_m(scs_m_temporary,k)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Copyright INRIA
 
   //## overload some functions used

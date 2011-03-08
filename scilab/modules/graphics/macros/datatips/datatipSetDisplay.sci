@@ -10,6 +10,10 @@
 
 function datatipSetDisplay(curve_handle,fun)
 //Changes the datatips visualisation function for a given curve
+  if argn(2)<1 then
+    error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),"datatipSetDisplay",1))
+  end
+
   ud=datatipGetStruct(curve_handle)
   if typeof(ud)<>'datatips' then;
     if ~datatipInitStruct(curve_handle) then return,end

@@ -132,12 +132,11 @@ de_DE.DownloadMKLDescription =Please wait while Setup is downloading extra files
 ;
 de_DE.DownloadMKLFFTWLabel =Downloading FFTW3 library optimized by Intel Math Kernel.
 ;
-de_DE.DoTasksJustAfterInstallMsg1 =Some files have a wrong MD5 checksum.
-de_DE.DoTasksJustAfterInstallMsg2 =Blas, lapack Reference libraries will be installed.
+de_DE.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
+de_DE.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and used.
 ;
-de_DE.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab.
-de_DE.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library.
-de_DE.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed.
+de_DE.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
+de_DE.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
 ;
 de_DE.DescriptionAtoms =ATOMS
 ;

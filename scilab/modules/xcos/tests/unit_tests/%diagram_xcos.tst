@@ -21,7 +21,7 @@ funcprot(prot);
 global callWithPath;
 callWithPath = "";
 
-loadScicosLibs();
+loadXcosLibs();
 
 // test with an empty diagram
 scs_m = scicos_diagram();

@@ -15,7 +15,7 @@ modulename=scinotes
 
 #### scinotes : Conf files ####
 libsciscinotes_la_rootdir = $(mydatadir)
-libsciscinotes_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciscinotes_la_root_DATA =  license.txt version.xml
 
 
 #### scinotes : init scripts & configuration files ####
@@ -76,7 +76,7 @@ libsciscinotes_disable_la_CFLAGS = -Iincludes/ \
     -I$(top_srcdir)/modules/output_stream/includes
 
 SCINOTES_DISABLE_C_SOURCES = src/noscinotes/noscinotes.c
-libsciscinotes_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libsciscinotes_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciscinotes_disable_la_SOURCES = $(SCINOTES_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libsciscinotes-disable.la
@@ -85,7 +85,7 @@ if GUI
     pkglib_LTLIBRARIES += libsciscinotes.la 
 endif
 
-libsciscinotes_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciscinotes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libsciscinotes_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(SCINOTES_CPP_SOURCES)
 

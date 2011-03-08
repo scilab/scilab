@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function XcosMenuAnalyzeDiagram()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   Cmenu = [] ; 
   if needcompile>0 then 
     messagebox("You must first compile the diagram.","modal")

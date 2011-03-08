@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * desc : Decompose polyline with creating a stair case between each data
  * 
  * This file must be used under the terms of the CeCILL.
@@ -41,6 +42,12 @@ void StairCaseDecomposition::getDrawnVertices(double xCoords[], double yCoords[]
   double * xPoints = pPOLYLINE_FEATURE(pPolyline)->pvx;
   double * yPoints = pPOLYLINE_FEATURE(pPolyline)->pvy;
   double * zPoints = pPOLYLINE_FEATURE(pPolyline)->pvz;
+
+  /* If 0 vertices, do not fill the arrays. */
+  if (getDrawnVerticesLength() == 0)
+  {
+    return;
+  }
 
   if ( zPoints == NULL )
   {
@@ -154,7 +161,16 @@ void StairCaseDecomposition::getDrawnVerticesColor(int colors[])
 /*---------------------------------------------------------------------------------*/
 int StairCaseDecomposition::getDrawnVerticesLength(void)
 {
-  int res = 2 * sciGetNbPoints(m_pDrawed->getDrawedObject()) - 1;
+  int res;
+  int nbPoints = sciGetNbPoints(m_pDrawed->getDrawedObject());
+
+  /* 0 stairs if 0 points */
+  if (nbPoints == 0)
+  {
+    return 0;
+  }
+
+  res = 2* nbPoints - 1;
 
   // one more stair case
   if (sciGetIsClosed(m_pDrawed->getDrawedObject()))

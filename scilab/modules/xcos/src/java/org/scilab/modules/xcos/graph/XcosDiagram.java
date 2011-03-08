@@ -26,8 +26,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.IllegalFormatException;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +81,7 @@ import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Type;
+import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.PortCheck;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -99,6 +100,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxICell;
@@ -393,28 +395,47 @@ public class XcosDiagram extends ScilabGraph {
 		
 		getModel().beginUpdate();
 		try {
-			splitBlock.addConnection(linkSource);
+			// Origin of the parent, (0,0) as default may be different in case
+			mxPoint orig = link.getParent().getGeometry();
+			if (orig == null) {
+				orig = new mxPoint();
+			}
 			
+			splitBlock.addConnection(linkSource);
+
 			addCell(splitBlock);
 			// force resize and align on the grid
 			resizeCell(splitBlock, new mxRectangle(splitPoint.getX(), splitPoint.getY(), 0, 0));
 
 			// Update old link
 
-			// get breaking segment
-			final int pos = link.findNearestSegment(splitPoint);
+			// get breaking segment and related point
+			mxPoint splitTr = new mxPoint(splitPoint.getX() - orig.getX(), splitPoint.getY() - orig.getY());
+			final int pos = link.findNearestSegment(splitTr);
 
 			// save points after breaking point
 			final List<mxPoint> saveStartPoints = link.getPoints(pos, true);
 			final List<mxPoint> saveEndPoints = link.getPoints(pos, false);
 
+			// remove the first end point if the position is near the split
+			// position
+			if (saveEndPoints.size() > 0) {
+				final mxPoint p = saveEndPoints.get(0);
+				final double dx = p.getX() - splitTr.getX();
+				final double dy = p.getY() - splitTr.getY();
+				
+				if (!getAsComponent().isSignificant(dx, dy)) {
+					saveEndPoints.remove(0);
+				}
+			}
+			
 			// disable events
 			getModel().beginUpdate();
 			getModel().remove(link);
 			getModel().endUpdate();
 
-			connect(linkSource, splitBlock.getIn(), saveStartPoints);
-			connect(splitBlock.getOut1(), linkTarget, saveEndPoints);
+			connect(linkSource, splitBlock.getIn(), saveStartPoints, orig);
+			connect(splitBlock.getOut1(), linkTarget, saveEndPoints, orig);
 
 			refresh();
 		} finally {
@@ -425,7 +446,10 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	/**
-	 * Connect two port together with the associated points
+	 * Connect two port together with the associated points.
+	 * 
+	 * This method perform the connection in two step in order to generate the
+	 * right UndoableChangeEdits.
 	 * 
 	 * @param src
 	 *            the source port
@@ -433,16 +457,30 @@ public class XcosDiagram extends ScilabGraph {
 	 *            the target port
 	 * @param points
 	 *            the points
+	 * @param the origin point (may be (0,0))
 	 */
-	public void connect(BasicPort src, BasicPort trg, List<mxPoint> points) {
-		BasicLink newLink1 = BasicLink.createLinkFromPorts(src, trg);
-		newLink1.setGeometry(new mxGeometry(0, 0, 80, 80));
-
-		// add points after breaking point in the new link
-		if (points != null) {
-			newLink1.getGeometry().setPoints(points);
-		}
+	public void connect(BasicPort src, BasicPort trg, List<mxPoint> points, mxPoint orig) {
+		/*
+		 * Add the link with a default geometry
+		 */
+		final Object newLink1 = createEdge(null, null, null, src, trg, null);
 		addCell(newLink1, null, null, src, trg);
+		{
+			final mxGeometry geometry = getModel().getGeometry(newLink1);
+			geometry.setPoints(points);
+			getModel().setGeometry(newLink1, geometry);
+		}
+
+		/*
+		 * Update the geometry
+		 */
+		// should be cloned to generate an event
+		final mxGeometry geometry = (mxGeometry) getModel().getGeometry(newLink1).clone();
+		final double dx = orig.getX();
+		final double dy = orig.getY();
+		
+		geometry.translate(dx, dy);
+		getModel().setGeometry(newLink1, geometry);
 	}
     
     /**
@@ -482,15 +520,14 @@ public class XcosDiagram extends ScilabGraph {
 
 	/* Labels use HTML if not equal to interface function name */
 	setHtmlLabels(true);
-	/**
+	/*
 	 * by default every label is movable, see
 	 * XcosDiagram##isLabelMovable(java.lang.Object) for restrictions
 	 */
 	setVertexLabelsMovable(true);
 	setEdgeLabelsMovable(true);
 	
-	//
-	//setCloneInvalidEdges(false);
+	// 
 	setCloneInvalidEdges(true);
 
 	// Override isCellEditable to filter what the user can edit
@@ -818,11 +855,19 @@ public class XcosDiagram extends ScilabGraph {
     		
     		diagram.getModel().beginUpdate();
     		
-    		for (int i = 0; i < cells.length; ++i) {
-				if (cells[i] instanceof BasicBlock) {
-					// Update parent on cell addition
-					((BasicBlock) cells[i]).setParentDiagram(diagram);
+    		final Filter filter = new Filter() {
+				@Override
+				public boolean filter(Object cell) {
+					if (cell instanceof BasicBlock) {
+						// Update parent on cell addition
+						((BasicBlock) cell).setParentDiagram(diagram);
+					}
+					return false;
 				}
+			};
+    		
+    		for (int i = 0; i < cells.length; ++i) {
+    			mxGraphModel.filterDescendants(diagram.getModel(), filter, cells[i]);
     		}
     		
     		diagram.getModel().endUpdate();
@@ -976,10 +1021,14 @@ public class XcosDiagram extends ScilabGraph {
 				final mxICell out1Link = splitBlock.getOut1().getEdgeAt(0);
 				final mxICell out2Link = splitBlock.getOut2().getEdgeAt(0);
 				
+				final boolean inRemoved = removedCells.contains(inLink);
+				final boolean out1Removed = removedCells.contains(out1Link);
+				final boolean out2Removed = removedCells.contains(out2Link);
+				
 				/*
 				 * Explicit case, if the in link is deleted; all the out links also should.
 				 */
-				if (inLink instanceof ExplicitLink && removedCells.contains(inLink)) {
+				if (inLink instanceof ExplicitLink && inRemoved) {
 					if (removedCells.add(out1Link)) {
 						loopCells.add(out1Link);
 					}
@@ -992,21 +1041,25 @@ public class XcosDiagram extends ScilabGraph {
 				/*
 				 * Global case reconnect if not removed
 				 */
-				BasicPort[] connection = null;
+				final BasicPort[] connection;
 				List<mxPoint> points = null;
-				if (!removedCells.contains(inLink) && !removedCells.contains(out1Link)) {
-					connection = new BasicPort[] {(BasicPort) inLink.getTerminal(true), (BasicPort) out1Link.getTerminal(false)};
+				if (!inRemoved && !out1Removed && out2Removed) {
+					connection = findTerminals(inLink, out1Link, removedCells);
 					points = getDirectPoints(splitBlock, inLink, out1Link);
-				} else if (!removedCells.contains(inLink) && !removedCells.contains(out2Link)) {
-					connection = new BasicPort[] {(BasicPort) inLink.getTerminal(true), (BasicPort) out2Link.getTerminal(false)};
+				} else if (!inRemoved && out1Removed && !out2Removed) {
+					connection = findTerminals(inLink, out2Link, removedCells);
 					points = getDirectPoints(splitBlock, inLink, out2Link);
-				} else if (!removedCells.contains(out1Link) && !removedCells.contains(out2Link)) {
+				} else if (inRemoved && !out1Removed && !out2Removed) {
 					// only implicit case, log otherwise
-					if (out1Link instanceof ImplicitLink || out2Link instanceof ImplicitLink) {
+					if (out1Link instanceof ExplicitLink || out2Link instanceof ExplicitLink) {
 						LOG.error("Reconnection failed for explicit links");
+						connection = null;
+					} else {
+						connection = findTerminals(out1Link, out2Link, removedCells);
+						points = getDirectPoints(splitBlock, out1Link, out2Link);
 					}
-					connection = new BasicPort[] {(BasicPort) out1Link.getTerminal(false), (BasicPort) out2Link.getTerminal(false)};
-					points = getDirectPoints(splitBlock, out1Link, out2Link);
+				} else {
+					connection = null;
 				}
 				
 				if (connection != null) {
@@ -1023,7 +1076,7 @@ public class XcosDiagram extends ScilabGraph {
 			for (int i = 0; i < connectedCells.size(); i++) {
 				final BasicPort[] connection = connectedCells.get(i);
 				final List<mxPoint> points = connectedPoints.get(i);
-				connect(connection[0], connection[1], points);
+				connect(connection[0], connection[1], points, new mxPoint());
 			}
 		} finally {
 			getModel().endUpdate();
@@ -1058,6 +1111,32 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	}
 	
+	/**
+	 * Find the terminals when relinking the 2 links
+	 * 
+	 * This method ensure that {source, target} are not child of removed blocks.
+	 * 
+	 * @param linkSource the normal source link
+	 * @param linkTerminal the normal target link
+	 * @param removedCells the set of removed objects
+	 * @return the {source, target} connection
+	 */
+	private BasicPort[] findTerminals(final mxICell linkSource, final mxICell linkTerminal, final HashSet<Object> removedCells) {
+		BasicPort src = (BasicPort) linkSource.getTerminal(true);
+		BasicPort tgt = (BasicPort) linkTerminal.getTerminal(false);
+		if (linkSource instanceof ImplicitLink) {
+			if (removedCells.contains(src.getParent())) {
+				src = (BasicPort) linkSource.getTerminal(false);
+			}
+			if (removedCells.contains(tgt.getParent())) {
+				tgt = (BasicPort) linkTerminal.getTerminal(true);
+			}
+		}
+		
+		return new BasicPort[] {src, tgt};
+	}
+
+
 	/**
 	 * Get the direct points from inLink.getSource() to outLink.getTarget().
 	 * 
@@ -1252,6 +1331,25 @@ public class XcosDiagram extends ScilabGraph {
     	return status;
     }
 
+	/**
+	 * {@inheritDoc}
+	 * Do not extends if the port position is north or south.
+	 */
+	@Override
+	public boolean isExtendParent(Object cell) {
+		final boolean extendsParents;
+		
+		if (cell instanceof BasicPort) {
+			final BasicPort p = (BasicPort) cell;
+			extendsParents = !(p.getOrientation() == Orientation.NORTH || p
+					.getOrientation() == Orientation.SOUTH)
+					&& super.isExtendParent(p);
+		} else {
+			extendsParents = super.isExtendParent(cell);
+		}
+		return extendsParents;
+	}
+	
     /**
      * @param fileName HDF5 filename
      */
@@ -1483,7 +1581,7 @@ public class XcosDiagram extends ScilabGraph {
 			close();
 		}
 		
-		return true;
+		return wantToClose;
 	}
 
 	/**
@@ -1535,6 +1633,11 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setMultipleSelection(false);
 	    if (getSavedFile() != null) {
 	    	fc.setSelectedFile(getSavedFile());
+	    } else {
+	    	final String title = getTitle();
+	    	if (title != null) {
+	    		fc.setSelectedFile(new File(title + XcosFileType.XCOS.getDottedExtension()));
+	    	}
 	    }
 
 	    final SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);

@@ -15,7 +15,7 @@ libscihashtable_la_include_HEADERS = ./hashtable_itr.h \
 
 pkglib_LTLIBRARIES = libscihashtable.la
 
-libscihashtable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscihashtable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscihashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 

@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 477 -->
 //
 // <-- Bugzilla URL -->
@@ -25,12 +31,12 @@
 //    -->[m,i,j,k]=max(a)
 //                     !--error    78
 // ...
-a   = hypermat([3,3,1],1:9);
-[m] = max(a);
+a   = hypermat([1,3,3],1:9);
+if max(a)<>9 then bugmes();quit;end
 result = execstr("[n,i]=max(a)","errcatch","n");
 if result <> 0 then bugmes();quit;end
 if result == 0 then
-   if execstr("[m,i,j,k]=max(a)","errcatch","n") <> 78 then bugmes();quit;end
-   if m<>n then bugmes();quit;end
-   if or(i<>[3,3,1]) then bugmes();quit;end
+   if n<>9 then bugmes();quit;end
+   if or(i<>[1,3,3]) then bugmes();quit;end        
 end
+if execstr("[m,i,j,k]=max(a)","errcatch","n") <> 78 then bugmes();quit;end

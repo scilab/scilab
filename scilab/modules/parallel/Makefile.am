@@ -37,7 +37,7 @@ libsciparallel_la_CPPFLAGS= $(OPENMP_CXXFLAGS) \
 
 pkglib_LTLIBRARIES = libsciparallel.la
 
-libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-info $(SCILAB_LIBRARY_VERSION)
+libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-number $(SCILAB_LIBRARY_VERSION)
 
 if OPENMP
 libsciparallel_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
@@ -55,7 +55,7 @@ modulename=parallel
 
 #### parallel : Conf files ####
 libsciparallel_la_rootdir = $(mydatadir)
-libsciparallel_la_root_DATA = license.txt readme.txt version.xml
+libsciparallel_la_root_DATA = license.txt version.xml
 
 
 #### parallel : init scripts ####

@@ -65,8 +65,8 @@ plot2d(sample,h)
 xtitle('','frequencies','magnitude')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="buttmag">buttmag</link>

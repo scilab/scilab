@@ -59,7 +59,7 @@ extern "C"
         std::string language;
         std::string styleSheet; /* the CSS */
         //     std::string pathToGenerated;
-        org_scilab_forge_scidoc::SciDocMain *doc = NULL;
+        org_scilab_modules_helptools::SciDocMain *doc = NULL;
         SciErr sciErr;
         int* piAddr = NULL;
         int iRet    = 0;
@@ -209,7 +209,7 @@ extern "C"
 
         try
         {
-            doc = new org_scilab_forge_scidoc::SciDocMain(getScilabJavaVM());
+            doc = new org_scilab_modules_helptools::SciDocMain(getScilabJavaVM());
 
 #ifdef _MSC_VER
             __slashToAntislash(&outputDirectory);
@@ -223,7 +223,7 @@ extern "C"
             {
                 doc->setWorkingLanguage((char *) language.c_str());
                 doc->setExportFormat((char *) exportFormat.c_str());
-
+		doc->setIsToolbox(Rhs == 4);
                 doc->process((char *) masterXML.c_str(), (char *) styleSheet.c_str());
             }
             else

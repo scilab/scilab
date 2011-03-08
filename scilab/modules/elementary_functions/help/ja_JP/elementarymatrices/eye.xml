@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="eye" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>eye</refname>
+
+    <refpurpose>単位行列</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>X=eye(m,n)
+X=eye(A)
+X=eye()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A,X</term>
+
+        <listitem>
+          <para>行列または <literal>syslin</literal> リスト</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m,n</term>
+
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>その引数に基づき, 
+    <literal>m</literal>x<literal>n</literal> の
+		主対角項に1を有する行列,または
+	 <literal>A</literal>と同じ次元の単位行列を返します.</para>
+
+    <para>注意: <literal>eye(10)</literal> は,
+	<literal>A=10</literal>の時の <literal>eye(A)</literal> と
+	解釈され,すなわち, <literal>1</literal>となります.
+	(10x10の単位行列とはなりません!)</para>
+
+    <para><literal>A</literal> が<literal>syslin</literal>リスト
+	で表された線形システムの場合,
+	<literal>eye(A)</literal>は適当な次元(出力の数x入力の数)の
+	<literal>eye</literal>行列を返します.
+	</para>
+
+    <para><literal>eye()</literal> は,
+	次元が未定義の単位行列を返します.
+	次元はこの単位行列が次元が固定した行列に加算される時に
+	定義されます.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+eye(2,3)
+A=rand(2,3);eye(A)
+s=poly(0,'s');A=[s,1;s,s+1];eye(A)
+A=[1/s,1;s,2];eye(A);
+A=ssrand(2,2,3);eye(A)
+[1 2;3 4]+2*eye()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ones">ones</link></member>
+
+      <member><link linkend="zeros">zeros</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

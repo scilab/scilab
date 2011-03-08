@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="evans">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>evans</refname>
+    <refpurpose>エバンス根軌跡</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>evans(H [,kmax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>リスト (線形システム <literal>syslin</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kmax</term>
+        <listitem>
+          <para>実数 (プロットに用いる最大ゲイン )</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	状態空間または伝達形式 H(s)の線形システム
+	(<literal>syslin</literal> リスト)のエバンス根軌跡を指定します.
+	これは,複素平面における
+	<literal>1+k*H(s)=1+k*N(s)/D(s)</literal>の根の軌跡です.
+	選択された点のゲイン<literal>k &lt;= kmax</literal>に関して,
+	<literal>D(s)+k*N(s)</literal>の根の虚部が実部に対してプロットされます.
+	</para>
+    <para>
+	根軌跡の指定した点におけるゲインを得るには,
+	以下の命令を実行します:
+    <literal>k=-1/real(horner(h,[1,%i]*locate(1)))</literal> を実行し,
+	根軌跡の好きな点をクリックします.
+	選択された点の座標が,
+	実数の2 x 1 ベクトル<literal>P=locate(1)</literal>の場合,
+	この<literal>k</literal>は
+	方程式 <literal> k*N(w) + D(w) =0</literal> を
+	<literal>w=P(1)+%i*P(2)=[1,%i]*P</literal>の条件の元で
+	解いたものです.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+evans(H,100)
+P=3.0548543 - 8.8491842*%i;    //P=selected point
+k=-1/real(horner(H,P));
+Ns=H('num');Ds=H('den');
+roots(Ds+k*Ns)     //contains P as particular root
+// Another one
+clf();s=poly(0,'s');n=1+s;
+d=real(poly([-1 -2 -%i %i],'s'));
+evans(n,d,100);
+//
+clf();n=real(poly([0.1-%i 0.1+%i,-10],'s'));
+evans(n,d,80);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="kpure">kpure</link>
+      </member>
+      <member>
+        <link linkend="krac2">krac2</link>
+      </member>
+      <member>
+        <link linkend="locate">locate</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

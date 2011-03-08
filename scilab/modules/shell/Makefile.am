@@ -63,7 +63,7 @@ endif
 # the system)
 pkglib_LTLIBRARIES = libscishell.la
 
-libscishell_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TERMCAP_LIB)
+libscishell_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TERMCAP_LIB)
 
 # All the sources needed by libscishell.la
 libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -82,7 +82,7 @@ modulename=shell
 
 #### shell : Conf files ####
 libscishell_la_rootdir = $(mydatadir)
-libscishell_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscishell_la_root_DATA =  license.txt version.xml
 
 #### shell : init scripts ####
 libscishell_la_etcdir = $(mydatadir)/etc

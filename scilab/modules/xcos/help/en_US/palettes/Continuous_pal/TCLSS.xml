@@ -21,7 +21,12 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TCLSS">
+<refentry xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab"
+  xml:id="TCLSS">
   <refnamediv>
     <refname>TCLSS</refname>
     <refpurpose>Continuous linear system with jump</refpurpose>
@@ -93,18 +98,17 @@
   <refsection id="Description_TCLSS">
     <title>Description</title>
     <para>
-This block realizes a continuous-time linear state-space system with
-the possibility of jumps in the state. The number of inputs to this
-block is two. The first input is the regular input of the linear
-system, the second carries the new value of the state which is copied
-into the state when an event arrives at the unique event input port of
-this block. That means the state of the system jumps to the value
-present on the second input (of size equal to that of the state). The
-system is defined by the  matrices and the initial state
-. The dimensions must be compatible. The sizes of inputs and outputs
-are adjusted automatically.
-
-</para>
+      This block realizes a continuous-time linear state-space system with
+      the possibility of jumps in the state. The number of inputs to this
+      block is two. The first input is the regular input of the linear
+      system, the second carries the new value of the state which is copied
+      into the state when an event arrives at the unique event input port of
+      this block. That means the state of the system jumps to the value
+      present on the second input (of size equal to that of the state). The
+      system is defined by the  matrices and the initial state
+      . The dimensions must be compatible. The sizes of inputs and outputs
+      are adjusted automatically.
+  </para>
   </refsection>
   <refsection id="Dialogbox_TCLSS">
     <title>Dialog box</title>
@@ -121,9 +125,9 @@ are adjusted automatically.
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix</emphasis>
+          <emphasis role="bold">A matrix</emphasis>
         </para>
-        <para> A square matrix.</para>
+        <para> <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> square matrix.</para>
         <para> Properties : Type 'mat' of size [-1,-1]. </para>
       </listitem>
       <listitem>

@@ -1,1 +1,0 @@
-readme.txt about simulated_annealing module

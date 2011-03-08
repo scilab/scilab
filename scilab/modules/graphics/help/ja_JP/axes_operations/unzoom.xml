@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="unzoom">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unzoom</refname>
+    <refpurpose>グラフィックのズームを解除する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>unzoom()
+unzoom(H)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>Figureまたは Axesのハンドルのベクトル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>unzoom()</literal> は,カレントのグラフィック図の
+	全ての軸からズーム効果を削除する際に使用されます: </para>
+    <para><literal>unzoom(H)</literal> は,ハンドル<literal>H</literal>
+	のベクトルにより指定された全てのFigureおよびAxesについて
+	ズーム効果を削除するために使用されます.
+	あるFigureに関するズーム効果を削除するのは,
+	その全ての子Axesからズーム効果を削除することと等価です.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+clf()
+x=0:0.01:6*%pi;
+plot2d(x,sin(x^2))
+zoom_rect([16,-1,18,1])
+unzoom()
+
+//サブプロットを順次実行
+clf()
+x=0:0.01:6*%pi;
+subplot(211)
+plot2d(x,cos(x))
+a1=gca();
+subplot(212)
+plot2d(x,cos(2*x))
+a2=gca();
+rect=[3 -2 7 10]; // カレントの軸(直近の軸)の座標で指定された矩形
+
+zoom_rect(rect) 
+unzoom(a1) // 最初のプロットのみズーム解除
+unzoom(a2) // 第二のプロットのみズーム解除y
+zoom_rect(rect) // 再度ズーム
+unzoom(gcf()) // 全ての軸のズームを解除, unzoom()と等価
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="zoom_rect">zoom_rect</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Serge Steer INRIA </para>
+    <para>Jean-Baptiste Silvy INRIA </para>
+  </refsection>
+</refentry>

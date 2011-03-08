@@ -69,6 +69,8 @@ SCICOS_IMPEXP int sci_sig2data(char *fname,unsigned long fname_len);
 SCICOS_IMPEXP int sci_model2blk(char *fname,unsigned long fname_len);
 SCICOS_IMPEXP int sci_callblk(char *fname,unsigned long fname_len);
 
+SCICOS_IMPEXP int sci_loadScicos(char *fname, unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SCICOS__ */
 /*--------------------------------------------------------------------------*/

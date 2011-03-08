@@ -1290,7 +1290,7 @@ int C2F(errmsg)(int *n,int *errtyp)
         break;
     case 229:
         {
-            displayAndStoreError(_("Operands of / and \\ operations must not contain NaN of Inf.\n"));
+            displayAndStoreError(_("Operands of / and \\ operations must not contain NaN or Inf.\n"));
         }
         break;
     case 230:

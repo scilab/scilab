@@ -46,8 +46,8 @@ exportUI(fig)</synopsis>
 	   lance l'interface graphique dediée à l'export de fenêtre graphique sous forme de fichier image.
     </para>
   </refsection>
- <refsection>
-    <title>Voir aussi</title>
+ <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xs2jpg">xs2jpg</link>

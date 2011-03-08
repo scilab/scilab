@@ -187,8 +187,8 @@ int sci_call_scifunc(char *fname)
     Scilab function inside a C interface.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="CheckLhs">CheckLhs</link></member>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getvariablesonstack">
+  <info>
+    <pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getvariablesonstack</refname>
+    <refpurpose>Scilabスタック上の変数名を取得</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>s=getvariablesonstack()
+s=getvariablesonstack('local')
+s=getvariablesonstack('global')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>文字列行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	Scilabスタック上の変数名を<literal>s</literal>に返します.</para>
+    <para>getvariablesonstack('local') はScilabスタック上のローカル変数を返します.</para>
+    <para>getvariablesonstack('global') はScilabスタック上のグローバル変数を返します.</para>
+    <para>変数はアルファベット順にソートされます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+getvariablesonstack()
+getvariablesonstack('local')
+getvariablesonstack('global')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="who">who</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

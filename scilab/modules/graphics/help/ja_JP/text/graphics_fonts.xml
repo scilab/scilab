@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C)  2009 - Digiteo - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="graphics_fonts">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graphics_fonts</refname>
+    <refpurpose>グラフィック図で使用されるフォントの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	Text, Axes, Label または Legend エンティティのようなグラフィックエンティティでは,
+	グラフィック図に1つ以上の文字を表示します.
+	異なるフォントや文字の大きさを指定することにより,表示される文字列の外観を
+	変更することができます.
+	</para>
+	
+	
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>フォントの変更</term>
+        <listitem>
+		  <para>
+	グラフィック図で使用されるフォントは,ロード済みのフォント(loaded fonts)
+	と呼ばれる一連のフォントから選択することができます.
+	言い換えると,ロード済みのフォントは現時点でグラフィック図で利用可能なフォントです.
+	これらのフォントの一覧は,引数を指定せずに<literal>xlfont</literal>関数を
+	実行することにより取得できます.
+	デフォルトで,Scilab には 11種類のロード済みのフォントセットがあります.
+	これらのフォントセットは,引数にフォント名を指定して<literal>xlfont</literal>関数を
+	用いることにより変更および拡張できます.
+	追加されるフォントは,ファイルからロードするかまたはシステムフォントを指定することが
+	できます.
+	システムで利用可能なフォントの一覧を得るには,
+	<literal>xlfont('AVAILABLE_FONTS')</literal>コマンドを使用してください.
+	フォントを操作する方法の詳細については,<link linkend="xlfont">xlfont</link>を参照ください.
+	      </para>
+		  
+		  <para>
+		以下に11種類のデフォルトのフォントの一覧を示します.
+		   </para>
+			<informaltable border="1">
+	<tr><td><emphasis role="bold">フォント番号</emphasis></td>
+	<td><emphasis role="bold">フォントファミリ</emphasis></td>
+	<td><emphasis role="bold">ボールド体</emphasis></td>
+	<td><emphasis role="bold">イタリック体</emphasis></td></tr>
+            <tr><td>0</td><td>Monospaced</td><td>No</td><td>No</td></tr>
+            <tr><td>1</td><td>ScilabSymbols</td><td>No</td><td>No</td></tr>
+			<tr><td>2</td><td>Serif</td><td>No</td><td>No</td></tr>
+            <tr><td>3</td><td>Serif</td><td>No</td><td>Yes</td></tr>
+            <tr><td>4</td><td>Serif</td><td>Yes</td><td>No</td></tr>
+            <tr><td>5</td><td>Serif</td><td>Yes</td><td>Yes</td></tr>
+			<tr><td>6</td><td>SansSerif</td><td>No</td><td>No</td></tr>
+			<tr><td>7</td><td>SansSerif</td><td>No</td><td>Yes</td></tr>
+			<tr><td>8</td><td>SansSerif</td><td>Yes</td><td>No</td></tr>
+			<tr><td>9</td><td>SansSerif</td><td>Yes</td><td>Yes</td></tr>
+			<tr><td>10</td><td>SansSerif</td><td>Yes</td><td>Yes</td></tr>
+            </informaltable>
+		  
+		  <para>
+	グラフィックエンティティで使用されるフォントはその
+	 <literal>font_style</literal>プロパティで変更できます.
+	これはローズみのフォントの一つを参照する正の整数です.
+	その値は,最初のフォントを指す 0 と, 最後のフォントを指す ロード済みのフォントの
+	数から1を引いた数,の間である必要があります.
+		  </para>
+		  <para>
+		    <literal>fractional_font</literal> はフォントのアンチエイリアス処理を
+			制御します.
+			その値は,<literal>'on'</literal>
+			または <literal>'off'</literal>とします.
+			その値が <literal>'on'</literal>の場合,
+			フォントは平滑化され,それ以外の場合は平滑化されません.
+		  </para>
+		  <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>文字の大きさを変更する</term>
+        <listitem>
+		  <para>
+		グラフィックエンティティのテキストの大きさは
+	<literal>font_size</literal> プロパティにより変更可能です.
+	この値は表示される文字の大きさを指定するスカラー値です.
+			</para>
+			<para>
+			Scilab文字の大きさはJavaの大きさとは異なります.
+			以下の2つのスケールの間の対応を示します.</para>
+			<informaltable border="1">
+            <tr><td><emphasis role="bold">Scilabの大きさ</emphasis></td><td><emphasis role="bold">Javaの大きさ</emphasis></td></tr>
+            <tr><td>0</td><td>8</td></tr>
+            <tr><td>1</td><td>10</td></tr>
+            <tr><td>2</td><td>12</td></tr>
+            <tr><td>3</td><td>14</td></tr>
+            <tr><td>4</td><td>18</td></tr>
+			<tr><td>5</td><td>24</td></tr>
+			<tr><td>6</td><td>30</td></tr>
+			<tr><td>7</td><td>36</td></tr>
+			<tr><td>8</td><td>42</td></tr>
+			<tr><td>9</td><td>48</td></tr>
+			<tr><td>10</td><td>54</td></tr>
+            </informaltable>
+                        <para>
+		文字の大きさを整数とする必要はありません.
+		この場合,結果はエンティティの<literal>fractional_font</literal>プロパティに依存します.
+		<literal>fractional_font</literal> プロパティが <literal>'on'</literal> の場合,
+		表示されるフォントの大きさは最も近い整数2つの整数の間で補間されます.
+		例えば,大きさが 2.5のフォントは Java サイズ 13 の文字で表示されます.
+		<literal>fractional_font</literal> プロパティが <literal>'off'</literal> の場合,
+		表示されるフォントの大きさはその整数部に丸められます.
+		例えば,大きさ2.5のフォントはJavaサイズ12の文字で表示されます.
+          </para>
+		  <para/>
+        </listitem>
+      </varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+    <title>参照o</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xlfont">xlfont</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

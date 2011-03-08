@@ -311,9 +311,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_isglobal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_islittleendian.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_lasterror.c">
       <Filter>Source Files</Filter>
     </ClCompile>

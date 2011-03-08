@@ -79,8 +79,8 @@ svd([A*X(:,1:dim),B])   //vectors A*X(:,1:dim) belong to range(B)
 [X,dim,Y]=im_inv(A,B);[Y*A*X,Y*B]
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rowcomp">rowcomp</link>

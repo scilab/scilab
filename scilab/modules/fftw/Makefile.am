@@ -12,7 +12,7 @@ modulename=fftw
 
 pkglib_LTLIBRARIES = libscifftw.la
 
-libscifftw_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
+libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
 
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
@@ -40,7 +40,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 
 
 #### fftw : Conf files ####
-libscifftw_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscifftw_la_root_DATA =  license.txt version.xml
 
 #### fftw : gateway declaration ####
 libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway

@@ -427,7 +427,7 @@ public final class Xcos {
 		final Xcos instance = getInstance();
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs();");
+		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -452,7 +452,7 @@ public final class Xcos {
 		final File filename = new File(fileName);
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs();");
+		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
 		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
@@ -685,5 +685,20 @@ public final class Xcos {
 			
 			throw new RuntimeException(firstMessage, e);
 		}
+	}
+	
+	/**
+	 * Look for the parent diagram of the cell in the diagram hierarchy.
+	 * @param cell the cell to search for
+	 * @return the associated diagram
+	 */
+	public static XcosDiagram findParent(Object cell) {
+		final Xcos instance = getInstance();
+		for (XcosDiagram diag : instance.getDiagrams()) {
+			if (diag.getModel().contains(cell)) {
+				return diag;
+			}
+		}
+		return null;
 	}
 }

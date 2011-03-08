@@ -58,8 +58,8 @@ timer();A=rand(100,100);timer()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="getdate">getdate</link></member>

@@ -60,6 +60,7 @@ public final class AutoIndentAction extends DefaultCheckAction  {
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         final CheckBoxMenuItem autoIndent = createCheckBoxMenu(label, null, new AutoIndentAction(label, editor), key);
+        autoIndent.setChecked(ConfigSciNotesManager.getAutoIndent());
         ((JCheckBoxMenuItem) autoIndent.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     autoIndent.setChecked(ConfigSciNotesManager.getAutoIndent());

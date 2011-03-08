@@ -92,8 +92,8 @@ errcatch()</synopsis>
     <para>  When called in the context of  a Scilab function or exec the <literal>errcatch</literal> is automatically
     reset  when the function returns.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="try">try</link>

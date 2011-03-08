@@ -335,7 +335,6 @@ cd.. &gt;nul
     <ClCompile Include="..\..\sci_gateway\c\sci_isdef.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_iserror.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_isglobal.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_islittleendian.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_lasterror.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_macr2lst.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_macr2tree.c" />

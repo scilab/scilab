@@ -60,8 +60,8 @@
 [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="graduate">graduate</link>

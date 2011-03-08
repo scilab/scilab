@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mkdir" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>mkdir</refname>
+
+    <refpurpose>新規ディレクトリ</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>mkdir('dirname')
+mkdir('parentdir','newdir')
+status=mkdir( ... )
+[status,msg]=mkdir( ... )</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>mkdir('dirname') は,dirname が相対パスを表す場合,
+	カレントのディレクトリにディレクトリ dirname を作成します.
+	その他の場合, dirname は絶対パスを表し,
+	mkdir は絶対ディレクトリ dirname の作成を試みます.</para>
+
+    <para>mkdir('parentdir','dirname') は既存のディレクトリ
+	parentdir にディレクトリ dirname を作成します.
+	ただし, parentdir は絶対またｈ相対パス名です.</para>
+
+    <para>[status,message] = mkdir(...,'dirname') は,
+	既存のディレクトリ parentdir に
+	ディレクトリ dirname を作成し,
+	メッセージ status を返します.
+	ここで, status は,成功の場合に1,ファイルがすでに存在する場合に2,
+	ファイル名の場合に-2,その他の場合に 0になります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 絶対パス名
+mkdir(TMPDIR+"/mkdir_example_1")
+status_2 = mkdir(TMPDIR+"/mkdir_example_2")
+[status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
+
+// 絶対パス名 (parentdir + dirname)
+[status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
+
+// 相対パス名
+cd TMPDIR;
+[status_5,msg_5] = mkdir("mkdir_example_5")
+[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cd">cd</link></member>
+
+      <member><link linkend="dir">dir</link></member>
+
+      <member><link linkend="rmdir">rmdir</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>A.C</member>
+    </simplelist>
+  </refsection>
+</refentry>

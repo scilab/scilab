@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) DIGITEO - Clément DAVID <clement.david@scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,59 +20,40 @@
 // See the file ../license.txt
 //
 
-//** 27 May 2008 : updated for Scilab 5 by Simone Mannori 
+function ok = scicos_block_link(funam, txt, flag, libs)
+// Link a new funame block with txt implementation.
+// 
+// Parameters:
+//  funam: the name of the function
+//  txt: the code
+//  flag: language type ('c' or 'f')
+//  libs: the libs to link with
 
-function ok = scicos_block_link(funam, txt, flag)
-
-//** typ. usage is "ok = scicos_block_link(funam,txt,'c'); "
-//** funam : (string) function name
-//** txt   : (string vector) text, e.g. "C" source code   
- 
-  if (flag<>"c")&(flag<>"f") then
-     ok = %f;
-     messagebox(gettext("Sorry: Only C or FORTRAN languages are supported",'modal'));
-     return; 
+  // pre-condition
+  if flag <> 'c' & flag <> 'f' then
+    ok = %f;
+    messagebox(gettext("Sorry: Only C or FORTRAN languages are supported",'modal'));
+    return;
   end
-  
   if stripblanks(funam)==emptystr() then 
     ok = %f;
     messagebox(gettext("Sorry file name not defined in "+flag+" block",'modal'));
-    return; 
+    return;
+  end
+  if ~exists("libs", 'l') then
+    libs = "";
   end
 
-  cur_wd = pwd(); //** get and save current working directory 
+  // put the txt to a temp file
+  cur_wd = pwd();
+  chdir(TMPDIR);
+  mputl(txt, funam + '.' + flag);
 
-  chdir(TMPDIR); //** change to TMPDIR 
+  // call the standard block link function
+  ok = buildnewblock(funam, funam + '.' + flag, "", "", libs, TMPDIR, "", "");
 
-  //**---------------------------------------------------------------------
-
-  mputl(txt, funam+'.'+flag); //** writes strings in an ascii file
-                              //** with the appropriate extension 
-
-  entry_names = [funam]; 
-  file_names = funam + "."+flag  ;
-  libs  = ""  ; //** CBLOCKs does not support external libraries 
-  //** flag is already defined  
-  makename = [] ;
-  loadername = "loader.sce" ;
-  libname = "" ;
-  ldflags = "" ;
-  cflags = strcat("-I"+scicos_include_paths(),' ')
-  fflags = ""; //** no Fortran 
-  cc = ""; //** default "C" compiler 
-  
-  disp("Compile and link Scicos C BLOCK code");
-
-  libn = ilib_for_link(entry_names, file_names, libs, flag, makename, loadername, libname, ldflags, cflags, fflags, cc); 
-
-  exec("loader.sce"); //** load the shared library
-
-  //**--------------------------------------------------------------------- 
-  
-  chdir(cur_wd); //** go back to the original working directory 
-  
-  ok = %t ; //** signal the correct execution 
-
-
+  // post
+  chdir(cur_wd);
+  ok = %t;
 endfunction
 

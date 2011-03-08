@@ -197,7 +197,8 @@ public final class SuperBlock extends BasicBlock {
 		 * In this case child was null and we need to reconstruct child diagram
 		 * from scs_m.
 		 */
-		if (getChild() == null) {
+		if (getChild() == null || getChild().getChildVertices(getChild().getDefaultParent()).length == 0) {
+			child = null;
 			createChildDiagram();
 		} else {
 			// reassociate (useful on clone and load operation)
@@ -512,6 +513,9 @@ public final class SuperBlock extends BasicBlock {
 		if (child == null) {
 			return;
 		}
+		if (getParentDiagram() == null) {
+			setParentDiagram(Xcos.findParent(this));
+		}
 
 		final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks.getAllBlocks(this);
 		final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks.getAllPorts(this);
@@ -622,7 +626,12 @@ public final class SuperBlock extends BasicBlock {
 		/*
 		 * Specific post serialization things
 		 */
-		this.child.setContainer(this);
+		if (this.child == null) {
+			this.child = new SuperBlockDiagram(this);
+			this.child.installListeners();
+		} else {
+			this.child.setContainer(this);
+		}
 		this.child.installSuperBlockListeners();
 	}
 }

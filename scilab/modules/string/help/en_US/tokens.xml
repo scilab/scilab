@@ -61,8 +61,8 @@ tokens('SCI/demos/scicos','/')
 tokens('y=a+b*2',['=','+','*'])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strindex">strindex</link>

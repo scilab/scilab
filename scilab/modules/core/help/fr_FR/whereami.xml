@@ -28,8 +28,8 @@ deff('y=t1(y)',['y=y^2';'whereami()'])
 test(1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="where">where</link>

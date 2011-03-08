@@ -70,8 +70,8 @@ t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 plot3d(xx,yy,zz)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="eval3dp">eval3dp</link>

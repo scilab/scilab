@@ -120,7 +120,6 @@
   <ItemGroup>
     <rename_vc_extension_files Include="..\..\modules\scicos_blocks\includes\blocks.h.vc" />
     <rename_vc_extension_files Include="..\..\etc\classpath.xml.vc" />
-    <rename_vc_extension_files Include="..\..\etc\jvm_options.xml.vc" />
     <rename_vc_extension_files Include="..\..\modules\core\includes\machine.h.vc" />
     <rename_vc_extension_files Include="..\..\etc\modules.xml.vc" />
     <rename_vc_extension_files Include="..\..\scilab-lib-doc.properties.vc" />

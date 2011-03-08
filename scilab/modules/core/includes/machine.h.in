@@ -407,6 +407,9 @@
 /* Define to 1 if your C compiler doesn't accept -c and -o together. */
 #undef NO_MINUS_C_MINUS_O
 
+/* Define to 0 if your system does not have the O_LARGEFILE flag */
+#undef O_LARGEFILE
+
 /* Name of package */
 #undef PACKAGE
 
@@ -488,14 +491,14 @@
 /* With PVM */
 #undef WITH_PVM
 
-/* With SCICOS */
-#undef WITH_SCICOS
-
 /* With TK */
 #undef WITH_TK
 
 /* With the UMFPACK library */
 #undef WITH_UMFPACK
+
+/* With XCOS */
+#undef WITH_XCOS
 
 /* If leading underscores */
 #undef WLU
@@ -530,7 +533,7 @@
 
 
 #ifdef DIR_SEPARATOR
-	   #undef DIR_SEPARATOR
+       #undef DIR_SEPARATOR
 #endif
 #define DIR_SEPARATOR "/"
 

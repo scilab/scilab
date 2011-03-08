@@ -64,8 +64,8 @@ a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
 setfield(3,1:8,a);a // set the field value to 1:8
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="insertion">insertion</link>

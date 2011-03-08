@@ -42,6 +42,21 @@ typeof(SUM_f)
 ]]></programlisting>
     </para>
   </refsection>
+  <refsection id="SeeAlso_loadXcos">
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos"><programlisting>xcos</programlisting> - Hybrid dynamic systems modeler and simulator.</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="loadScicos"><programlisting>loadScicos</programlisting> - Load the simulation native libraries.</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
   <refsection id="Authors_loadXcosLibs">
     <title>Authors</title>
     <para><emphasis role="bold">Clément David</emphasis> - DIGITEO</para>

@@ -39,7 +39,7 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_forge_scidoc {
+namespace org_scilab_modules_helptools {
 
 // Returns the current env
 
@@ -108,6 +108,7 @@ voidbuildDocumentationjstringID=NULL;
 jbooleansetOutputDirectoryjstringID=NULL; 
 voidsetWorkingLanguagejstringID=NULL; 
 voidsetExportFormatjstringID=NULL; 
+voidsetIsToolboxjbooleanID=NULL; 
 jstringprocessjstringjstringID=NULL; 
 
 
@@ -135,6 +136,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 jbooleansetOutputDirectoryjstringID=NULL; 
 voidsetWorkingLanguagejstringID=NULL; 
 voidsetExportFormatjstringID=NULL; 
+voidsetIsToolboxjbooleanID=NULL; 
 jstringprocessjstringjstringID=NULL; 
 
 
@@ -224,6 +226,24 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "setExportFormat");
 jstring format_ = curEnv->NewStringUTF( format );
 
                          curEnv->CallVoidMethod( this->instance, voidsetExportFormatjstringID ,format_);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void SciDocMain::setIsToolbox (bool isToolbox){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetIsToolboxjbooleanID==NULL) { /* Use the cache */
+ voidsetIsToolboxjbooleanID = curEnv->GetMethodID(this->instanceClass, "setIsToolbox", "(Z)V" ) ;
+if (voidsetIsToolboxjbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setIsToolbox");
+}
+}
+jboolean isToolbox_ = (static_cast<bool>(isToolbox) ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetIsToolboxjbooleanID ,isToolbox_);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

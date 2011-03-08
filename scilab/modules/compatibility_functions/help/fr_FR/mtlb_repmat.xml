@@ -72,8 +72,8 @@
     </itemizedlist>
     <para>Attention : <literal>mtlb_repmat</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="ones">ones</link>

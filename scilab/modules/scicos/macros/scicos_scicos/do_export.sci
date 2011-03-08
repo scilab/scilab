@@ -20,6 +20,9 @@
 //
 
 function [wa, ha] = do_export(scs_m, fname, titleflag, exp_format)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** default call inside Export_.sci
 //**
 //**   do_export(scs_m);

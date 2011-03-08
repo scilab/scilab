@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bitand" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bitand</refname>
+
+    <refpurpose>入力引数の2進表現に適用される論理積</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[z]=bitand(x,y)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>正の整数のスカラー/ベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>正の整数のスカラー/ベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>正の整数のスカラー/ベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	2つの正の整数<literal>x</literal> および <literal>y</literal>を
+	指定すると,この関数は2進形式が
+	<literal>x</literal> および <literal>y</literal>の2進形式の
+	論理積となるような10進数<literal>z</literal>を返します.
+	 (<literal>x</literal>,
+    <literal>y</literal>, <literal>z</literal> は同じ大きさです. 
+    <literal>x</literal> (および <literal>y</literal>) の次元が
+	1より大きい場合, <literal>z(i)</literal>は,
+	<literal>bitand(x(i),y(i))</literal>に等しくなります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// example 1 :
+// '1010110' : is the binary representation of 86 
+// '1011011' : is the binary representation of 91   
+// '1010010' : is the binary representation for the AND of binary representation 86 and 91 
+// so the decimal number corresponding to the AND  applied to binary forms 86 and 91 is : 82
+x=86; y=91
+z=bitand(x,y)
+
+// example 2 :
+x=[12,45],y=[25,49]
+z=bitand(x,y)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="bitor">bitor</link></member>
+
+      <member><link linkend="bin2dec">bin2dec</link></member>
+
+      <member><link linkend="dec2bin">dec2bin</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

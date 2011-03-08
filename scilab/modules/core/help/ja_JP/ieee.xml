@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="ieee" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ieee</refname>
+
+    <refpurpose>浮動小数点例外モードを設定</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>mod=ieee()
+ieee(mod)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>mod</term>
+
+        <listitem>
+          <para>
+		整数スカラーで,0,1または2を指定</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>ieee()</literal> はカレントの浮動小数点例外モード
+	を返します.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>0</term>
+
+        <listitem>
+          <para>浮動小数点例外はエラーを発生</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>1</term>
+
+        <listitem>
+          <para>浮動小数点例外は警告を発生</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>2</term>
+
+        <listitem>
+          <para>浮動小数点例外は無限大(Inf)またはNaNを発生</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para><literal>ieee(mod)</literal> はカレントの浮動小数点例外モード
+	を設定します.</para>
+
+    <para>初期モードの値は 0 です.</para>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>ライブラリのアルゴリズムの内部で発生した浮動小数点例外は,
+	まだ<literal>ieee</literal>モードでは設定できません.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+ieee(1);1/0
+ieee(2);1/0,log(0)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="errcatch">errcatch</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

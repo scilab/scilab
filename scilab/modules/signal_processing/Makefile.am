@@ -99,7 +99,7 @@ libscisignal_processing_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 
-libscisignal_processing_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscisignal_processing_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscisignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -115,7 +115,7 @@ modulename=signal_processing
 
 #### signal_processing : Conf files ####
 libscisignal_processing_la_rootdir = $(mydatadir)
-libscisignal_processing_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscisignal_processing_la_root_DATA =  license.txt version.xml
 
 
 ####�signal_processing : init scripts ####

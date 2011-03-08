@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sum" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sum</refname>
+
+    <refpurpose>soma (soma linha, soma coluna) de entradas de um vetor ou
+    matriz</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>y=sum(x)
+y=sum(x,'r') ou y=sum(x,1)
+
+y=sum(x,'c') ou y=sum(x,2)
+
+y=sum(x,'m')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vetor ou matriz (de reais, complexos, esparso(a) ou de
+          polinômios) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>escalar ou vetor </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Para um vetor ou matriz <literal>x</literal>,
+    <literal>y=sum(x)</literal> retorna no escalar <literal>y</literal> a soma
+    de todas as entradas de <literal>x</literal>.</para>
+
+    <para><literal>y=sum(x,'r')</literal> (ou, equivalentemente,
+    <literal>y=sum(x,1)</literal>) é a soma linha a linha:: <literal>y(j)=
+    sum(x(:,j))</literal>. <literal>y</literal> é um vetor linha.</para>
+
+    <para><literal>y=sum(x,'c')</literal> (ou, equivalentemente,
+    <literal>y=sum(x,2)</literal>) é a soma coluna a coluna. Retorna em cada
+    entrada do vetor coluna <literal>y</literal> a soma : <literal>y(i)=
+    sum(x(i,:))</literal>)).</para>
+
+    <para><literal>y=sum(x,'m')</literal> é a soma ao longo da primeira
+    dimensão "não-singleton" de <literal>x</literal> (para compatibilidade com
+    Matlab).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+A=[1,2;3,4];
+trace(A)-sum(diag(A))
+sum(A,'c')-A*ones(2,1)
+sum(A+%i)
+A=sparse(A);sum(A,'c')-A*ones(2,1)
+s=poly(0,'s');
+M=[s,%i+s;s^2,1];
+sum(M),sum(M,2)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cumsum">cumsum</link></member>
+
+      <member><link linkend="prod">prod</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -21,12 +21,12 @@ function warnobsolete(newFunctionName, scilabRemovedVersion)
     error(msprintf(gettext("%s: Private function: cannot access to this function directly.\n"),"warnobsolete"));
   end
   // Now build the correct warning message
-  warnMessage = msprintf(_("Function %s is obsolete."),stackCall(2))
+  warnMessage = msprintf(_("Feature %s is obsolete."),stackCall(2))
   if exists("newFunctionName", 'l') then
     warnMessage = [warnMessage, msprintf(_("Please use %s instead."),newFunctionName)]
   end
   if exists("scilabRemovedVersion", 'l') then
-    warnMessage = [warnMessage, msprintf(_("This function will be permanently removed in Scilab %s"), scilabRemovedVersion)]
+    warnMessage = [warnMessage, msprintf(_("This feature will be permanently removed in Scilab %s"), scilabRemovedVersion)]
   end
   
   // Now show the warning

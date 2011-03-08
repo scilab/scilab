@@ -59,6 +59,7 @@
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
@@ -66,6 +67,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0)
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0)
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -76,6 +78,7 @@ IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help();exit(0);
 exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
@@ -90,6 +93,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
@@ -97,6 +101,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0)
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0)
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -107,6 +112,7 @@ IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help();exit(0);
 exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
@@ -121,6 +127,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
@@ -128,6 +135,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0)
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0)
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -138,6 +146,7 @@ IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help();exit(0);
 exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
@@ -152,6 +161,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
@@ -159,6 +169,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit(0)
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit(0)
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -169,6 +180,7 @@ IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help();exit(0);
 exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />

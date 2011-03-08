@@ -20,6 +20,9 @@
 //
 
 function do_help()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //**
 //** 17 July 2007: this code handle the "help" for Scicos blocks and menu.   
 //** Sept 2009, S Steer INRIA : Adaptation to new menu mechanism 

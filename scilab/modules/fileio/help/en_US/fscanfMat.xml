@@ -92,6 +92,7 @@
     lines is fetched by detecting eof in the input file. This function can be
     used to read back numerical data saved with the
     <literal>fprintfMat</literal> (default separator used is a space).</para>
+    <para><literal>fscanfMat</literal> supports files encoded as ANSI/ASCII and UTF-8.</para>
   </refsection>
 
   <refsection>
@@ -121,8 +122,8 @@ D = fscanfMat(TMPDIR + '/MatrixNANINF.txt')
  </programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="scanf_conversion">scanf_conversion</link></member>

@@ -52,11 +52,11 @@
     compatible for defining a prototype elliptic filter.
     Here, <literal>K=%k(m)</literal> is the complete elliptic integral with parameter <literal>m</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="k">%k</link>
+        <link linkend="percentk">%k</link>
       </member>
     </simplelist>
   </refsection>

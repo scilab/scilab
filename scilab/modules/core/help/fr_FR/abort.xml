@@ -12,8 +12,8 @@
     <para><literal>abort</literal> interrompt l'évaluation courante et affiche l'invite de commande. Dans un niveau de <literal>pause</literal>, la commande <literal>abort</literal> renvoie à l'invite de commande de niveau 0.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="quit">quit</link>

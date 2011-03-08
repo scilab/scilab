@@ -20,6 +20,9 @@
 //
 
 function [ord,ok]=ctree(vec,in,depu)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //sctree(nb,vec,in,depu,outptr,cmat,ord,nord,ok,kk)
 jj=find(depu);dd=zeros(depu);dd(jj)=ones(jj)';depu=dd;
 nb=prod(size(vec));kk=zeros(vec);

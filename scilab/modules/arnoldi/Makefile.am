@@ -73,7 +73,7 @@ libsciarnoldi_la_FFLAGS= -I$(srcdir)/src/arpack/
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
 
-libsciarnoldi_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS)
+libsciarnoldi_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS)
 
 libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -89,7 +89,7 @@ modulename=arnoldi
 
 #### arnoldi : Conf files ####
 libsciarnoldi_la_rootdir = $(mydatadir)
-libsciarnoldi_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciarnoldi_la_root_DATA =  license.txt version.xml
 
 
 #### arnoldi : init scripts ####

@@ -54,6 +54,7 @@ public final class ActivateHelpOnTypingForOpenersAction extends DefaultCheckActi
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingForOpenersAction(label, editor), key);
+        cb.setChecked(HelpOnTypingManager.isOpenersActive());
         ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     cb.setChecked(HelpOnTypingManager.isOpenersActive());

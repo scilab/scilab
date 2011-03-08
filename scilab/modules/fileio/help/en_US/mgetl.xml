@@ -60,7 +60,7 @@
     function) issued.</para>
     <para><literal>mgetl</literal> allows to read files coming from Unix, Windows, or Mac
     operating systems.</para>
-    <para><literal>mgetl</literal> supports only UTF-8(NO-BOM) and ANSI file encoding.</para>
+    <para><literal>mgetl</literal> supports only UTF-8 and ANSI file encoding.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -74,8 +74,8 @@ mgetl(fd,10)
 mclose(fd)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mputl">mputl</link>

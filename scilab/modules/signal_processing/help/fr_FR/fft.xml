@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fft">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fft</refname>
+    <refpurpose>Transformée de Fourier discrète rapide.</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="ifft">
+    <refname>ifft</refname>
+    <refpurpose>Transformée de Fourier discrète rapide inverse.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>x=fft(a ,-1) ou x=fft(a)
+x=fft(a,1) or x=ifft(a)
+x=fft(a,-1,dim,incr)
+x=fft(a,1,dim,incr)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+     <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>Vecteur ou matrice réelle ou complexe.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>Vecteur  ou matrice réelle complexe ayant les
+          mêmes dimensions que <literal>a</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>un entier positif</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>incr</term>
+        <listitem>
+          <para>un entier positif</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <variablelist>
+      <varlistentry>
+        <term>Syntaxe courte</term>
+        <listitem>
+          
+          <para>Si <literal>a</literal> est un vecteur,
+          <literal>x=fft(a,-1)</literal> ou
+          <literal>x=fft(a)</literal> calcule la
+          transformée de Fourier discrète directe
+          monovariable de <literal>a</literal>:</para>
+
+          <para>      
+            <latex>
+              $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n} (m-1) (k-1)}$
+            </latex>
+          </para>
+          
+          
+          <para> Et <literal>x=fft(a,+1)</literal> ou
+          <literal>x=ifft(a)</literal> calcule la
+          transformée de Fourier  discrète inverse
+          monovariable de <literal>a</literal>:</para>
+          <para>      
+            <latex>
+              $x(k) = \sum_{m=1}^n {a(m)*e^{+\frac{2i*\pi}{n} (m-1) (k-1)}$
+            </latex>
+          </para>
+          <para>A noter: (l'argument <literal>-1</literal> ou  <literal>+1</literal>
+          argument de la fonction <literal>fft</literal>
+          représente le signe de l'exposant de
+          l'exponentielle.</para>
+        </listitem>
+        <listitem>
+          <para>Si <literal>a</literal> est une matrice, </para>
+          <para><literal>x=fft(a,-1)</literal> ou
+          <literal>x=fft(a)</literal> calcule la transformée de
+          Fourier  discrète directe multivariable de
+          <literal>a</literal></para>
+          <para>Et <literal>x=fft(a,-1)</literal> ou
+          <literal>x=fft(a)</literal> calcule la transformée de
+          Fourier  discrète inverse multivariable de
+          <literal>a</literal></para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>Syntaxe longue pour la FFT mutidimensionnelle</term>
+        <listitem>
+          <para><literal>X=fft(A,-1,dim,incr)</literal> permet
+          de réaliser une transformée de Fourier  discrète 
+          multidimensionnelle.</para>
+
+          <para>Si <literal>A</literal> est un vecteur réel ou
+          complexe implicitement indexé par
+          <literal>j1,j2,..,jp</literal>
+          i.e. <literal>a(j1,j2,..,jp)</literal> où
+          <literal>j1</literal> varie dans
+          <literal>1:dim(1),</literal> <literal>j2</literal> dans
+          <literal>1:dim(2),...</literal> on obtient une p-variable
+          transformée de Fourier en appelant p fois la fonction
+          <literal>fft</literal> comme suit:</para> 
+          <programlisting role =""><![CDATA[ 
+incrk=1; 
+x=a; 
+for k=1:p 
+x=fft(x,-1,dim(k),incrk);
+incrk=incrk*dim(k);
+end
+            ]]></programlisting> 
+            <para>où <literal>dimk</literal> est la
+            dimension de la variable courante, c'est à dire celle que
+            l'on intègre et <literal>incrk</literal> est l'incrément qui
+            sépare deux éléments successifs indexés par
+            <literal>jk</literal> et <literal>jk+1</literal> dans
+            <literal>a</literal>.</para> <para>En particulier,si
+            <literal>a</literal> est une matrice <literal>m</literal>
+            par <literal>n</literal> <literal>x=fft(a,-1)</literal> est
+            équivalent aux 2 instructions:</para>
+            <programlisting role =""><![CDATA[ 
+a1=fft(a,-1,m,1);
+x=fft(a1,-1,n,m);
+              ]]></programlisting> 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+   <title>Algorithme</title>
+<para>Si le module <literal>fftw</literal> a été chargé dans Scilab
+cette fonction utilise cette bibliothèque (http://www.fftw.org/). A
+défaut cette fonction est basée sur les routines fortran fft842.f
+(algorithme de Cooley-Tukey pour des vecteurs de taille n=2^m) et
+dfftbi.f (pour les vecteurs de taille quelconque) </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+
+
+    <programlisting role="example"><![CDATA[ 
+//Composantes fréquentielles d'un signal
+//----------------------------------
+// Construction d'un signal bruité échantilloné à 1000hz 
+//        contenant deux fréquences pures à  50 et 70 Hz.
+sample_rate=1000;
+t = 0:1/sample_rate:0.6;
+N=size(t,'*'); //nombre d'échantillons
+s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
+  
+y=fft(s);
+//y est symétrique, on ne garde que  N/2 points
+f=sample_rate*(0:(N/2))/N; //vecteur de fréquences associé
+n=size(f,'*')
+clf()
+plot(f,abs(y(1:n)))
+ ]]></programlisting>
+
+    <programlisting role="example"><![CDATA[ 
+//Définition directe de la transformée de Fourier discrete
+//--------------------------------------------------------
+function xf=DFT(x,flag);
+  n=size(x,'*');
+  //Calcul de la matrice de Fourier (n by n !)
+  if flag==1 then,//transformation inverse
+    am=exp(2*%pi*%i*(0:n-1)'*(0:n-1)/n);
+  else //transformation directe
+    am=exp(-2*%pi*%i*(0:n-1)'*(0:n-1)/n);
+  end
+  xf=am*matrix(x,n,1);//dft
+  xf=matrix(xf,size(x));//mise en formz
+  if flag==1 then,xf=xf/n;end
+endfunction
+
+//Comparaison avec l'algorithme de la transformée rapide:
+a=rand(1,1000);
+norm(DFT(a,1) - fft(a,1))
+norm(DFT(a,-1) - fft(a,-1)) 
+
+timer();DFT(a,-1);timer()
+timer();fft(a,-1);timer()
+   ]]></programlisting>    
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+<simplelist type="inline">
+  <member>
+    <link linkend="corr">corr</link>
+  </member>
+  <member>
+    <link linkend="fftw">fftw</link>
+  </member>
+</simplelist>
+  </refsection>
+</refentry>

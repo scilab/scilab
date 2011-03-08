@@ -864,7 +864,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param port to remove
      */
     public void removePort(BasicPort port) {
-	if (port.getEdgeCount() != 0) {
+	if (port.getEdgeCount() != 0 && getParentDiagram() != null) {
 	    getParentDiagram().removeCells(new Object[]{port.getEdgeAt(0)});
 	}
 	remove(port);
@@ -872,12 +872,15 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     
     /**
      * Add a port on the block.
+     * 
+     * This call should only be used when a port reordering operation must be performed.
+     * 
      * @param port The port to be added to the block
      */
     public void addPort(BasicPort port) {
     	insert(port);
-    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllTypedPorts(this, false, port.getClass()).size());
+    	BlockPositioning.updateBlockView(this);
     }
 
 	/**
@@ -918,6 +921,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param modifiedBlock the new settings
      */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
+    	if (modifiedBlock == null) {
+    		return;
+    	}
+    	
     	/*
 		 * Update the block settings
 		 */
@@ -934,11 +941,18 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		 * If the block is in a superblock then update it.
 		 */
 		if (getParentDiagram() instanceof SuperBlockDiagram) {
-			SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram())
+			SuperBlock block = ((SuperBlockDiagram) getParentDiagram())
 					.getContainer();
-			parentBlock.getParentDiagram().fireEvent(
-					new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
-							XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
+			
+			XcosDiagram graph = block.getParentDiagram();
+			if (graph == null) {
+				setParentDiagram(Xcos.findParent(block));
+				graph = block.getParentDiagram();
+				LogFactory.getLog(getClass()).error("Parent diagram was null");
+			}
+			
+			graph.fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
+							XcosConstants.EVENT_BLOCK_UPDATED, block));
 		}
     }
 
@@ -948,6 +962,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * @param modifiedBlock the modified instance
 	 */
 	private void updateFields(BasicBlock modifiedBlock) {
+		if (modifiedBlock == null) {
+			return;
+		}
+		
 		setDependsOnT(modifiedBlock.isDependsOnT());
 		setDependsOnU(modifiedBlock.isDependsOnU());
 		setExprs(modifiedBlock.getExprs());
@@ -969,6 +987,17 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * @param modifiedBlock the new block instance
 	 */
 	private void updateChildren(BasicBlock modifiedBlock) {
+		if (modifiedBlock == null) {
+			return;
+		}
+		
+		XcosDiagram graph = getParentDiagram();
+		if (graph == null) {
+			setParentDiagram(Xcos.findParent(this));
+			graph = getParentDiagram();
+			LogFactory.getLog(getClass()).error("Parent diagram was null");
+		}
+		
 		/*
 		 * Checked as port classes only
 		 */
@@ -1074,7 +1103,14 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param context parent diagram context
      */
     public void openBlockSettings(String[] context) {
-	
+	final XcosDiagram graph;
+	if (getParentDiagram() == null) {
+		setParentDiagram(Xcos.findParent(this));
+		graph = getParentDiagram();
+		LogFactory.getLog(getClass()).error("Parent diagram was null");
+	} else {
+		graph = getParentDiagram();
+	}
 	if (getParentDiagram() instanceof PaletteDiagram) {
 	    return;
 	}
@@ -1107,7 +1143,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			    BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
 			    updateBlockSettings(modifiedBlock);
 			    
-			    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
+			    graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
 				    currentBlock));
 			    delete(tempInput);
 				} else {

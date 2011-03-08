@@ -16,7 +16,7 @@ modulename=graphics
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscigraphics_la_root_DATA =  license.txt version.xml
 
 #### graphics : init scripts ####
 libscigraphics_la_etcdir = $(mydatadir)/etc
@@ -499,7 +499,7 @@ libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/include
 -Iincludes/ \
 -I$(top_srcdir)/libs/doublylinkedlist/includes/
 
-libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscigraphics_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes/
 
@@ -512,7 +512,7 @@ USEANT=1
 pkglib_LTLIBRARIES += libscigraphics.la
 endif
 
-libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
+libscigraphics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
 
 
 include $(top_srcdir)/Makefile.incl.am

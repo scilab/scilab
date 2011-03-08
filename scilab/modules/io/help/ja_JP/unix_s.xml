@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="unix_s">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unix_s</refname>
+    <refpurpose>シェル (sh)コマンドを実行, 出力なし</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>unix_s(cmd)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>cmd</term>
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    shシェルで実行する文字列 <literal>cmd</literal>を Unixに送信します. 
+	標準出力は /dev/null にリダイレクトされます.
+	Unix実行エラーはトラップされます; *注意* 
+	コマンドのリストを ";" で区切った場合,
+	最後のシェルコマンドエラーのみが
+	リポートされます.これは推奨されません.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+if getos() == 'Windows' then 
+  unix_s("del foo");
+else 
+  unix_s("rm -f foo"); 
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="edit">edit</link>
+      </member>
+      <member>
+        <link linkend="manedit">manedit</link>
+      </member>
+      <member>
+        <link linkend="unix_g">unix_g</link>
+      </member>
+      <member>
+        <link linkend="unix_w">unix_w</link>
+      </member>
+      <member>
+        <link linkend="unix_x">unix_x</link>
+      </member>
+      <member>
+        <link linkend="unix">unix</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

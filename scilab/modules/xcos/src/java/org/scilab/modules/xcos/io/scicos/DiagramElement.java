@@ -44,8 +44,8 @@ import org.scilab.modules.xcos.utils.FileUtils;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.model.mxICell;
-import com.mxgraph.model.mxIGraphModel;
 
 /**
  * Perform a diagram transformation between Scicos and Xcos.
@@ -55,7 +55,7 @@ import com.mxgraph.model.mxIGraphModel;
 public class DiagramElement extends AbstractElement<XcosDiagram> {
 	private static final List<String> BASE_FIELD_NAMES = asList(
 			"diagram", "props", "objs");
-	private static final List<String> VERSIONS = Arrays.asList("scicos4.2", "scicos4.3", "scicos4.4");
+	private static final List<String> VERSIONS = Arrays.asList("", "scicos4.2", "scicos4.3", "scicos4.4");
 	
 	private static final int OBJS_INDEX = 2;
 	private static final int VERSION_INDEX = 3;
@@ -509,43 +509,47 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     	/*
     	 * Fill the block and link lists
     	 */
-		final Object parent = from.getDefaultParent();
-		final mxIGraphModel model = from.getModel();
-		final int nbObjs = model.getChildCount(parent);
-		for (int i = 0; i < nbObjs; i++) {
-			final Object current = model.getChildAt(parent, i);
-			
-			if (current instanceof BasicBlock && !(current instanceof TextBlock)) {
-				final BasicBlock block = (BasicBlock) current;
-				blockList.add(block);
-				
-    			//
-    			// Look inside a Block to see if there is no "AutoLink"
-    			// Jgraphx will store this link as block's child  
-    			//
-    			for (int j = 0; j < block.getChildCount(); ++j) {
-    				if (block.getChildAt(j) instanceof BasicLink) {
-    					final BasicLink link = (BasicLink) block.getChildAt(j);
-    					
-    					// do not add the link if not connected
-    					if (link.getSource() != null && link.getTarget() != null) {
-    						linkList.add(link);
-    					}
-    				}
-    			}
-			} else if (current instanceof BasicLink) {
-				final BasicLink link = (BasicLink) current;
-				
-				// Only add connected links
-				final mxICell source = link.getSource();
-				final mxICell target = link.getTarget();
-				if (source != null && target != null &&
-						source.getParent() instanceof BasicBlock &&
-						target.getParent() instanceof BasicBlock) {
-					linkList.add(link);
+		final Filter filter = new Filter() {
+			@Override
+			public boolean filter(Object current) {
+				if (current instanceof BasicBlock
+						&& !(current instanceof TextBlock)) {
+					final BasicBlock block = (BasicBlock) current;
+					blockList.add(block);
+
+					//
+					// Look inside a Block to see if there is no "AutoLink"
+					// Jgraphx will store this link as block's child
+					//
+					for (int j = 0; j < block.getChildCount(); ++j) {
+						if (block.getChildAt(j) instanceof BasicLink) {
+							final BasicLink link = (BasicLink) block
+									.getChildAt(j);
+
+							// do not add the link if not connected
+							if (link.getSource() != null
+									&& link.getTarget() != null) {
+								linkList.add(link);
+							}
+						}
+					}
+				} else if (current instanceof BasicLink) {
+					final BasicLink link = (BasicLink) current;
+
+					// Only add connected links
+					final mxICell source = link.getSource();
+					final mxICell target = link.getTarget();
+					if (source != null && target != null
+							&& source.getParent() instanceof BasicBlock
+							&& target.getParent() instanceof BasicBlock) {
+						linkList.add(link);
+					}
 				}
+
+				return false;
 			}
-		}
+		};
+		mxGraphModel.filterDescendants(from.getModel(), filter);
 		
 		/*
 		 * Use a predictable block and links order when debug is enable
