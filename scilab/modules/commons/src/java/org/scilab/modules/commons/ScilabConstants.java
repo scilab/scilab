@@ -15,8 +15,6 @@ package org.scilab.modules.commons;
 
 import java.io.File;
 
-import org.scilab.modules.commons.ScilabCommons;
-
 /**
  * Define all the constants used on a Scilab
  */
@@ -34,20 +32,39 @@ public class ScilabConstants {
      * Since, the TMPDIR env variable is set by Call_Scilab (the second step),
      * the environnement in the Java world has not TMPDIR
      */
-    public static final File TMPDIR = new File(ScilabCommons.getTMPDIR());
+    public static final File TMPDIR;
     
     /**
      * The SCI directory (Scilab root directory)
      */
-    public static final File SCI = new File(System.getenv("SCI"));
+    public static final File SCI;
     
     /**
      * The SCI configuration directory (Scilab home directory)
      */
-    public static final File SCIHOME = new File(ScilabCommons.getSCIHOME());
+    public static final File SCIHOME;
     
     /** Escape double quote symbol */
     public static final char QUOTE = '\"';
+
+    /*
+     * Static constructor
+     */
+    static {
+    	String value;
+    	
+    	value = ScilabCommons.getTMPDIR();
+    	if (value == null || value.isEmpty()) {
+    		value = System.getProperty("java.io.tmpdir");
+    	}
+    	TMPDIR = new File(value);
+    	
+    	value = System.getenv("SCI");
+    	SCI = new File(value).getAbsoluteFile();
+    	
+    	value = ScilabCommons.getSCIHOME();
+    	SCIHOME = new File(value);
+    }
     
     /** This class is a static singleton, thus it must not be instantiated */
     protected ScilabConstants() { }
