@@ -70,6 +70,8 @@ Bug fixes:
 
 * bug 9128 fixed - In help page of dir(), infos about bytes field were missing.
 
+* bug 9147 fixed - Javasci v1 was broken since the introduction of the
+                   version 2.
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
