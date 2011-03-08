@@ -48,6 +48,7 @@ private :
      * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
      * @param[in] the conversion scale factor to apply to data.
      * @param[in] the conversion translation value to apply to data.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @param[in] the polyline coordinate array.
      * @param[in] the polyline's number of points
      * @param[in] the polyline x-shift array.
@@ -55,7 +56,7 @@ private :
      * @param[in] the polyline z-shift array.
      */
     static void fillSegmentsDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
-        double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Writes the coordinates of a polyline vertex to a buffer.
@@ -72,9 +73,10 @@ private :
      * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
      * @param[in] the conversion scale factor to apply to data.
      * @param[in] the conversion translation value to apply to data.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
     static void getAndWriteVertexToBuffer(float* buffer, int offset, double* coordinates, int* vertexIndices, int nPoints, int elementsSize,
-        double* xshift, double* yshift, double* zshift, int coordinateMask, double* scale, double* translation);
+        double* xshift, double* yshift, double* zshift, int coordinateMask, double* scale, double* translation, int logMask);
 
     /**
      * Fills a buffer with vertex data from a polyline using a staircase decomposition.
@@ -85,6 +87,7 @@ private :
      * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
      * @param[in] the conversion scale factor to apply to data.
      * @param[in] the conversion translation value to apply to data.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @param[in] the polyline coordinate array.
      * @param[in] the polyline's number of points
      * @param[in] the polyline x-shift array.
@@ -92,7 +95,7 @@ private :
      * @param[in] the polyline z-shift array.
      */
     static void fillStairDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
-        double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Fills a buffer with vertex data from a polyline decomposed into a series of vertical lines.
@@ -103,6 +106,7 @@ private :
      * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
      * @param[in] the conversion scale factor to apply to data.
      * @param[in] the conversion translation value to apply to data.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @param[in] the polyline coordinate array.
      * @param[in] the polyline's number of points.
      * @param[in] the polyline x-shift array.
@@ -110,7 +114,7 @@ private :
      * @param[in] the polyline z-shift array.
      */
     static void fillVerticalLinesDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
-        double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Writes one component of the coordinates of a bar's four vertices into a buffer.
@@ -122,8 +126,9 @@ private :
      * @param[in] a flag specifying whether the shift is applied or not.
      * @param[in] the conversion scale factor to apply.
      * @param[in] the conversion translation factor to apply.
+     * @param[in] a flag specifying whether logarithmic coordinates are used or not.
      */
-    static void writeBarVerticesToBuffer(float* buffer, int* offsets, int componentOffset, double* coordinates, double shift, int shiftUsed, double scale, double translation);
+    static void writeBarVerticesToBuffer(float* buffer, int* offsets, int componentOffset, double* coordinates, double shift, int shiftUsed, double scale, double translation, int logUsed);
 
     /**
      * Fills a buffer with vertex data from a polyline decomposed into a series of vertical bars and consecutive segments.
@@ -134,6 +139,7 @@ private :
      * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
      * @param[in] the conversion scale factor to apply to data.
      * @param[in] the conversion translation factor to apply to data.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @param[in] the polyline coordinate array.
      * @param[in] the polyline's number of points.
      * @param[in] the polyline x-shift array.
@@ -141,7 +147,7 @@ private :
      * @param[in] the polyline z-shift array.
      */
     static void fillVerticalBarsDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
-        double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Returns the number of segment indices of a polyline decomposed into consecutive segments.
@@ -173,6 +179,7 @@ private :
      * Returns the number of segment indices of a polyline decomposed into a series of vertical bars and consecutive segments.
      * @param[in] the polyline's number of points.
      * @param[in] the line mode flag.
+     * @return the number of segment indices.
      */
     static int getVerticalBarsDecompositionIndicesSize(int nPoints, int lineMode);
 
@@ -181,6 +188,7 @@ private :
      * @param[in] the id of the polyline.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @param[in] the polyline coordinate array.
      * @param[in] the polyline's number of points.
      * @param[in] the polyline x-shift array.
@@ -191,13 +199,14 @@ private :
      * @return the number of indices actually written.
      */
     static int fillSegmentsDecompositionIndices(char* id, int* buffer, int bufferLength,
-        double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
 
     /**
      * Fills a buffer with the indices of a polyline decomposed into a series of steps.
      * @param[in] the id of the polyline.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @param[in] the polyline coordinate array.
      * @param[in] the polyline's number of points.
      * @param[in] the polyline x-shift array.
@@ -208,13 +217,14 @@ private :
      * @return the number of indices actually written.
      */
     static int fillStairDecompositionIndices(char* id, int* buffer, int bufferLength,
-        double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
 
     /**
      * Fills a buffer with the indices of a polyline decomposed into a series of vertical lines and consecutive segments.
      * @param[in] the id of the polyline.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @param[in] the polyline coordinate array.
      * @param[in] the polyline's number of points.
      * @param[in] the polyline x-shift array.
@@ -224,13 +234,14 @@ private :
      * @return the number of indices actually written.
      */
     static int fillVerticalLinesDecompositionIndices(char* id, int* buffer, int bufferLength,
-        double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
 
     /**
      * Fills a buffer with the indices of a polyline decomposed into a series of vertical bars and consecutive segments.
      * @param[in] the id of the polyline.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @param[in] the polyline coordinate array.
      * @param[in] the polyline's number of points.
      * @param[in] the polyline x-shift array.
@@ -240,7 +251,23 @@ private :
      * @return the number of indices actually written.
      */
     static int fillVerticalBarsDecompositionIndices(char* id, int* buffer, int bufferLength,
-        double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
+
+    /**
+     * Returns the coordinates of a polyline point, modified by their corresponding shift values.
+     * @param[in] the coordinate array
+     * @param[in] the x-shift array.
+     * @param[in] the y-shift array.
+     * @param[in] the z-shift array.
+     * @param[in] the polyline's number of points.
+     * @param[in] the point index.
+     * @param[out] the returned x coordinate.
+     * @param[out] the returned y coordinate.
+     * @param[out] the returned z coordinate.
+     */
+    static void getShiftedPolylinePoint(double* coordinates, double* xshift, double* yshift, double* zshift, int nPoints, int index,
+        double* x, double* y, double* z);
+
 
 public :
 
@@ -259,8 +286,9 @@ public :
      * @param[in] the number of coordinates taken by one element in the buffer.
      * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
      * @param[in] the transformation to apply to data.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
-    static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation);
+    static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
 
     /**
      * Returns the number of indices for the given object.
@@ -279,13 +307,15 @@ public :
      * @param[in] the id of the given object.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    static int fillIndices(char* id, int* buffer, int bufferLength);
+    static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
 
+#if 0
     /**
      * Returns the coordinates of a polyline point, modified by their corresponding shift values.
-     * @param[in] the coordinate array.
+     * @param[in] the coordinate array
      * @param[in] the x-shift array.
      * @param[in] the y-shift array.
      * @param[in] the z-shift array.
@@ -297,6 +327,7 @@ public :
      */
     static void getShiftedPolylinePoint(double* coordinates, double* xshift, double* yshift, double* zshift, int nPoints, int index,
         double* x, double* y, double* z);
+#endif
 
 };
 

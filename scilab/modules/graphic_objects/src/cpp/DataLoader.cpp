@@ -45,11 +45,14 @@ int getDataSize(char* id)
 void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation)
 {
     char* type;
+    /* Log coordinates deactivated */
+    int logMask = 0;
+
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
     if (strcmp(type, __GO_POLYLINE__) == 0)
     {
-        PolylineDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation);
+        PolylineDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
     }
 }
 
@@ -76,11 +79,14 @@ int getIndicesSize(char* id)
 int fillIndices(char* id, int* buffer, int bufferLength)
 {
     char* type;
+    /* Log coordinates deactivated */
+    int logMask = 0;
+
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
     if (strcmp(type, __GO_POLYLINE__) == 0)
     {
-        return PolylineDecomposer::fillIndices(id, buffer, bufferLength);
+        return PolylineDecomposer::fillIndices(id, buffer, bufferLength, logMask);
     }
 
     return 0;

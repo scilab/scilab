@@ -33,3 +33,30 @@ int DecompositionUtils::isValid(double x, double y, double z)
     }
 }
 
+double DecompositionUtils::getLog10Value(double value)
+{
+    return log10(value);
+}
+
+int DecompositionUtils::isLogValid(double x, double y, double z, int logMask)
+{
+    int valid = 1;
+
+    if (logMask & 0x1)
+    {
+        valid &= (x > 0.0);
+    }
+
+    if (logMask & 0x2)
+    {
+        valid &= (y > 0.0);
+    }
+
+    if (logMask & 0x4)
+    {
+        valid &= (z > 0.0);
+    }
+
+    return valid;
+}
+
