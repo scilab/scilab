@@ -406,6 +406,7 @@ types::Cell* ConfigVariable::getAllThreads(void)
 void ConfigVariable::setThread(__threadKey _key, types::ThreadId* _thread)
 {
     ConfigVariable::deleteThread(_key);
+    _thread->IncreaseRef();
     m_threadList[_key] = _thread;
 }
 
@@ -415,7 +416,8 @@ void ConfigVariable::deleteThread(__threadKey _key)
     it = m_threadList.find(_key);
     if(it != m_threadList.end())
     {
-        if(it->second->isRef() == false)
+        it->second->DecreaseRef();
+        if(it->second->isDeletable())
         {
             delete it->second;
         }
