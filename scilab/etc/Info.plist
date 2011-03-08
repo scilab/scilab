@@ -10,7 +10,7 @@
 	<key>CFBundleExecutable</key>
 	<string>bin/scilab</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Scilab 5.3.1, © 1998-2011 DIGITEO</string>
+	<string>Scilab 5.3.2, © 1998-2011 DIGITEO</string>
 	<key>CFBundleIconFile</key>
 	<string>puffin</string>
 	<key>CFBundleIdentifier</key>
