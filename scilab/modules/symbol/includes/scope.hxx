@@ -18,6 +18,7 @@
 #include <map>
 #include <list>
 //#include "internal.hxx"
+#include "double.hxx"
 #include "callable.hxx"
 #include "export_symbol.h"
 

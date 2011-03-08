@@ -226,19 +226,19 @@ namespace symbol
 
     bool Context::AddFunction(types::Function *_info)
     {
-        EnvFunTable.put(*new symbol::Symbol(_info->getName()), *_info);
+        EnvFunTable.put(symbol::Symbol(_info->getName()), *_info);
         return true;
     }
 
     bool Context::AddMacro(types::Macro *_info)
     {
-        EnvFunTable.put(*new symbol::Symbol(_info->getName()), *_info);
+        EnvFunTable.put(symbol::Symbol(_info->getName()), *_info);
         return true;
     }
 
     bool Context::AddMacroFile(types::MacroFile *_info)
     {
-        EnvFunTable.put(*new symbol::Symbol(_info->getName()), *_info);
+        EnvFunTable.put(symbol::Symbol(_info->getName()), *_info);
         return true;
     }
 

@@ -247,7 +247,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             //update ans variable.
 			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
 			{
-				symbol::Context::getInstance()->put(*new symbol::Symbol(L"ans"), *execMe.result_get());
+				symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
 				if( (*j)->is_verbose() && 
                     bErrCatch == false)
 				{

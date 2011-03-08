@@ -146,7 +146,7 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 {
 	if (wcVarName)
 	{
-        types::InternalType *pIT = symbol::Context::getInstance()->get(*new symbol::Symbol(wcVarName));
+        types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wcVarName));
         if(pIT->isString() == false)
         {
             return NULL;

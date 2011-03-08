@@ -121,7 +121,7 @@ namespace types
                     pL->append(*itValue);
                     itValue++;
                 }
-                pContext->put(*new symbol::Symbol(L"varargin"), *pL);
+                pContext->put(symbol::Symbol(L"varargin"), *pL);
             }
         }
 		else if(in.size() > m_inputArgs->size())

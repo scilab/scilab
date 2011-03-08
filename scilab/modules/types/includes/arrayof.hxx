@@ -45,7 +45,10 @@ namespace types
         T*                      m_pImgData;
 
                                 ArrayOf() : GenericType(), m_bComplex(false), m_pRealData(NULL), m_pImgData(NULL) {}
-        virtual                 ~ArrayOf() {}
+        virtual                 ~ArrayOf()
+        {
+            delete[] m_piDims;
+        }
 
         /*internal constructor*/
         void create(int* _piDims, int _iDims, T** _pRealData, T** _pImgData)

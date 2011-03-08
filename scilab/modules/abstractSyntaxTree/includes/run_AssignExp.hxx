@@ -522,7 +522,7 @@ void visitprivate(const AssignExp  &e)
             {
                 pHead = pHead->clone();
                 const wstring *pstName = getStructNameFromExp(pField);
-                symbol::Context::getInstance()->put(*new symbol::Symbol(*pstName), *pHead);
+                symbol::Context::getInstance()->put(symbol::Symbol(*pstName), *pHead);
             }
             /*getting what to assign*/
             execMeR.expected_size_set(1);
@@ -586,7 +586,7 @@ void visitprivate(const AssignExp  &e)
 
                 std::wostringstream ostr;
                 ostr << *pstName << L" = " << std::endl << std::endl;
-                ostr << symbol::Context::getInstance()->get(* new symbol::Symbol(*pstName))->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                ostr << symbol::Context::getInstance()->get(symbol::Symbol(*pstName))->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
                 YaspWriteW(ostr.str().c_str());
             }
         }

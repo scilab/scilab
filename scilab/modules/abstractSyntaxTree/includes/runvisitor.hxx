@@ -679,6 +679,14 @@ namespace ast
                     continue;
                 }
 
+                //clear old result value before evaluate new one
+                if(execMeTest.result_get() != NULL)
+                {
+                    if(execMeTest.result_get()->isDeletable())
+                    {
+                        delete execMeTest.result_get();
+                    }
+                }
                 e.test_get().accept(execMeTest);
             }
         }
@@ -715,7 +723,13 @@ namespace ast
                     bool bNew = false;
                     if(pIT->isRef(1))
                     {
+                        //decrease reference to pIT
+                        //this variable does not push in context 
+                        //so increase and decrease ref are not "automaticly" manage
+                        //std::wcout << varName.name_get() << " : " << pIT->getRef() << std::endl;
+                        //pIT->DecreaseRef();
                         pIT = pIT->clone();
+                        pDouble = pIT->getAs<Double>();
                         bNew = true;
                     }
 
@@ -808,6 +822,7 @@ namespace ast
                 }
 
                 pVar->DecreaseRef();
+                delete pVar;
             }
             else
             {//Matrix i = [1,3,2,6] or other type
@@ -1028,7 +1043,7 @@ namespace ast
                         //don't output Simplevar and empty result
                         if(execMe.result_get() != NULL && (pVar == NULL || bImplicitCall))
                         {
-                            symbol::Context::getInstance()->put(* new symbol::Symbol(L"ans"), *execMe.result_get());
+                            symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
                             if((*itExp)->is_verbose())
                             {
                                 //TODO manage multiple returns

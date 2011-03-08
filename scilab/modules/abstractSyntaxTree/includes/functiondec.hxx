@@ -64,6 +64,7 @@ namespace ast
             delete _body;
             delete _args;
             delete _returns;
+            delete &_name;
         }
 
         virtual FunctionDec* clone()

@@ -48,7 +48,7 @@ Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount, types:
             return Function::Error;
         }
 
-        if(symbol::Context::getInstance()->isGlobalExists(*new symbol::Symbol(pS->get(0))))
+        if(symbol::Context::getInstance()->isGlobalExists(symbol::Symbol(pS->get(0))))
         {
             out.push_back(new Bool(1));
         }

@@ -53,7 +53,7 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 		}
 
 		;
-		pIT = symbol::Context::getInstance()->get_fun(*new symbol::Symbol(pS->get(0)));
+		pIT = symbol::Context::getInstance()->get_fun(symbol::Symbol(pS->get(0)));
 		if(pIT == NULL)
 		{
             out.push_back(types::Double::Empty());
