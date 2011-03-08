@@ -25,6 +25,15 @@ French:
 
 * bug 9122 fixed - Java check failed on diagram validation.
 
+Javasci:
+========
+
+* Javasci v2 FAQ updated.
+
+* bug 9147 fixed - Javasci v1 was broken since the introduction of the
+                   version 2.
+
+
 Compilation:
 ============
 
