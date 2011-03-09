@@ -218,15 +218,6 @@ void ParserSingleInstance::disableParseTrace(void)
     yydebug = 0;
 }
 
-void Parser::freeTree()
-{
-	if(_the_program != NULL)
-	{
-		delete _the_program;
-		_the_program = NULL;
-	}
-}
-
 const wstring* ParserSingleInstance::_file_name = NULL;
 const wstring* ParserSingleInstance::_prog_name = NULL;
 wstring* ParserSingleInstance::_error_message = new wstring();

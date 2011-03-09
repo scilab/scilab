@@ -189,14 +189,14 @@ CORE_CPP_SOURCES = \
     src/cpp/storeCommand.cpp \
     src/cpp/banner.cpp \
     src/cpp/overload.cpp \
-	src/cpp/with_module.cpp
+	src/cpp/with_module.cpp \
+	src/cpp/runner.cpp
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
 endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
-sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
 sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_errcatch.c \
@@ -268,7 +268,10 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_getversion.cpp \
 	sci_gateway/cpp/sci_warning.cpp \
 	sci_gateway/cpp/sci_getmd5.cpp \
-	sci_gateway/cpp/sci_error.cpp
+	sci_gateway/cpp/sci_error.cpp \
+	sci_gateway/cpp/sci_pause.cpp \
+	sci_gateway/cpp/sci_resume.cpp \
+	sci_gateway/cpp/sci_abort.cpp
 
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \

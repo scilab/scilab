@@ -519,7 +519,14 @@ namespace ast
                         throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                     }
 
-                    result_set(pList);
+                    if (pList->getSize() == 1)
+                    {
+                        result_set(pList->get(0));
+                    }
+                    else
+                    {
+                        result_set(pList);
+                    }
                 }
             }
             else

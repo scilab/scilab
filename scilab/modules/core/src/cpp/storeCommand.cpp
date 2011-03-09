@@ -76,7 +76,7 @@ int StoreCommandWithFlag (wchar_t *command,int flag)
         YaspWriteW(_W("while executing a callback"));
     }
 
-    parser.freeTree();
+    delete parser.getTree();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -106,7 +106,7 @@ int StorePrioritaryCommandWithFlag (wchar_t *command,int flag)
         YaspWriteW(_W("while executing a callback"));
     }
 
-    parser.freeTree();
+    delete parser.getTree();
 	return (0);
 }
 /*--------------------------------------------------------------------------*/

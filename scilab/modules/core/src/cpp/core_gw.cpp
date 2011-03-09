@@ -44,6 +44,9 @@ bool CoreModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"warning", &sci_warning, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getmd5", &sci_getmd5, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"error", &sci_error, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"pause", &sci_pause, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"resume", &sci_resume, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"abort", &sci_abort, MODULE_NAME));
     return true;
 }
 

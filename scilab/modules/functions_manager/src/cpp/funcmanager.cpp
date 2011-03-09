@@ -359,7 +359,7 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
         std::wostringstream ostr;
         ostr << _W("Unable to execute : ") << stPath << endl;
         YaspWriteW(ostr.str().c_str());
-        parser.freeTree();
+        delete parser.getTree();
         return false;
     }
 
@@ -385,6 +385,6 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
 
     //restore previous prompt mode
     ConfigVariable::setPromptMode(oldVal);
-    parser.freeTree();
+    delete parser.getTree();
     return true;
 }

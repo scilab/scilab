@@ -120,7 +120,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		if(parser.getExitStatus() !=  Parser::Succeded)
 		{
 			YaspWriteW(parser.getErrorMessage());
-			parser.freeTree();
+			delete parser.getTree();
             mclose(iID);
 			return Function::Error;
 		}
@@ -191,7 +191,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             (*j)->accept(execMe);
 
             bool bImplicitCall = false;
-            
+
             //to manage call without ()
             if(execMe.result_get() != NULL && execMe.result_get()->getAsCallable())
             {
@@ -259,7 +259,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 				}
 			}
 
-			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) && 
+			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) &&
    //             bErrCatch == false)
 			//{
 			//	YaspWriteW(L"\n");
@@ -348,7 +348,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         ConfigVariable::setLastErrorCall();
     }
 
-	parser.freeTree();
+	delete parser.getTree();
     mclose(iID);
 	file.close();
 	return Function::OK;

@@ -368,17 +368,37 @@ int ConfigVariable::getPromptMode(void)
 ** \{
 */
 
-std::map<__threadKey, types::ThreadId *> ConfigVariable::m_threadList;
+std::list<types::ThreadId *> ConfigVariable::m_threadList;
 
-types::ThreadId* ConfigVariable::getThread(__threadKey _key)
+types::ThreadId* ConfigVariable::getLastPausedThread()
 {
-    std::map<__threadKey, types::ThreadId *>::const_iterator it;
-    it = m_threadList.find(_key);
-    if(it == m_threadList.end())
+    std::list<types::ThreadId *>::reverse_iterator it;
+    for(it = m_threadList.rbegin() ; it != m_threadList.rend() ; it++)
     {
-        return NULL;
+        if((*it)->getStatus() == types::ThreadId::Paused)
+        {
+            return *it;
+        }
     }
-    return it->second;
+    return NULL;
+}
+
+types::ThreadId* ConfigVariable::getLastRunningThread()
+{
+    std::list<types::ThreadId *>::reverse_iterator it;
+    for(it = m_threadList.rbegin() ; it != m_threadList.rend() ; it++)
+    {
+        if((*it)->getStatus() == types::ThreadId::Running)
+        {
+            return *it;
+        }
+    }
+    return NULL;
+}
+
+types::ThreadId* ConfigVariable::getLastThread()
+{
+    return m_threadList.back();
 }
 
 types::Cell* ConfigVariable::getAllThreads(void)
@@ -392,38 +412,94 @@ types::Cell* ConfigVariable::getAllThreads(void)
 
     int i = 0;
     types::Cell *pcResult = new types::Cell(iSize, 1);
-    std::map<__threadKey, types::ThreadId *>::iterator it;
+    std::list<types::ThreadId *>::iterator it;
 
     for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it, ++i)
     {
-        pcResult->set(i, 0, it->second);
+        pcResult->set(i, *it);
     }
 
     return pcResult;
 }
 
 
-void ConfigVariable::setThread(__threadKey _key, types::ThreadId* _thread)
+void ConfigVariable::addThread(types::ThreadId* _thread)
 {
-    ConfigVariable::deleteThread(_key);
     _thread->IncreaseRef();
-    m_threadList[_key] = _thread;
+    m_threadList.push_back(_thread);
 }
+
+
+types::ThreadId* ConfigVariable::getThread(__threadKey _key)
+{
+    std::list<types::ThreadId *>::iterator it;
+
+    for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
+    {
+        if((*it)->getKey() == _key)
+        {
+            return *it;
+        }
+    }
+    return NULL;
+}
+
 
 void ConfigVariable::deleteThread(__threadKey _key)
 {
-    std::map<__threadKey, types::ThreadId *>::const_iterator it;
-    it = m_threadList.find(_key);
-    if(it != m_threadList.end())
+    //for(int i = 0 ; i < m_threadList.size() ; i++)
+    //{
+    //    types::ThreadId* pThread = m_threadList[i];
+    //    if(pThread->getKey() == _key)
+    //    {
+    //        pThread->DecreaseRef();
+    //        if(pThread->isDeletable())
+    //        {
+    //            delete pThread;
+    //            m_threadList.erase(.begin() + i - 1);
+    //        }
+    //    }
+    //}
+    std::list<types::ThreadId *>::iterator it;
+    for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
     {
-        it->second->DecreaseRef();
-        if(it->second->isDeletable())
+        if((*it)->getKey() == _key)
         {
-            delete it->second;
+            (*it)->DecreaseRef();
+            if((*it)->isDeletable())
+            {
+                delete (*it);
+                m_threadList.erase(it);
+                return;
+            }
         }
-        m_threadList[_key] = NULL;
-        m_threadList.erase(_key);
     }
+}
+
+/*
+** \}
+*/
+
+/*
+** Prompt Mode
+** \{
+*/
+
+int ConfigVariable::m_iPauseLevel = 0;
+
+void ConfigVariable::IncreasePauseLevel()
+{
+    m_iPauseLevel++;
+}
+
+void ConfigVariable::DecreasePauseLevel()
+{
+    m_iPauseLevel--;
+}
+
+int ConfigVariable::getPauseLevel()
+{
+    return m_iPauseLevel;
 }
 
 /*

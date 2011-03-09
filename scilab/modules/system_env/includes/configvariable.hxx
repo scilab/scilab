@@ -181,13 +181,26 @@ public :
     //Thread List
 
 private :
-    static std::map<__threadKey, types::ThreadId*>    m_threadList;
+    static std::list<types::ThreadId*> m_threadList;
 public :
 
     static types::ThreadId* getThread(__threadKey _key);
+    static types::ThreadId* getLastRunningThread();
+    static types::ThreadId* getLastPausedThread();
+    static types::ThreadId* getLastThread();
+
     static types::Cell* getAllThreads(void);
-    static void setThread(__threadKey _key, types::ThreadId* _thread);
+    static void addThread(types::ThreadId* _thread);
     static void deleteThread(__threadKey _key);
+
+    // Pause level
+private :
+    static int m_iPauseLevel;
+
+public :
+    static void IncreasePauseLevel();
+    static void DecreasePauseLevel();
+    static int getPauseLevel();
 
 
 };

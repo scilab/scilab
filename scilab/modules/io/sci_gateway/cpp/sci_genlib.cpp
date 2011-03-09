@@ -162,7 +162,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             {
                 os_swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
                 YaspWriteW(pstVerbose);
-                parser.freeTree();
+                delete parser.getTree();
                 continue;
             }
 
@@ -182,7 +182,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 				}
 			}
 
-			parser.freeTree();
+			delete parser.getTree();
 		}
 	}
 

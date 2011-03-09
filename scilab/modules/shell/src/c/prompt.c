@@ -53,7 +53,7 @@ void C2F(setprlev)( int *pause)
 		sprintf(Sci_Prompt,SCIPROMPT_INTERRUPT,*pause);
 		// bug 5513
 		// when we change prompt to a pause level, we change also temp. prompt
-		SetTemporaryPrompt(Sci_Prompt);
+		//SetTemporaryPrompt(Sci_Prompt);
 	}
 	else 
 	{

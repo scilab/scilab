@@ -91,9 +91,6 @@ public:
     void setParseTrace(bool parseTrace) { _parse_trace = parseTrace; }
     bool getParseTrace(void) { return _parse_trace; }
 
-    /** \brief free current tree */
-    void freeTree();
-
     /** Setters / Getters
         \{ */
 

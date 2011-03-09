@@ -25,7 +25,7 @@ namespace types
     class ThreadId : public InternalType
     {
     public :
-                                ThreadId(__threadId _id);
+                                ThreadId(__threadId _id, __threadKey _key);
         virtual                 ~ThreadId();
 
         ThreadId*               getAsThreadId(void);
@@ -36,10 +36,12 @@ namespace types
         virtual std::wstring    getTypeStr() {return L"ThreadId";}
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring    getShortTypeStr() {return L"tid";}
-        InternalType*               clone();
+        InternalType*           clone();
 
         __threadId              getId();
         void                    setId(__threadId _id);
+        __threadKey             getKey();
+        void                    setKey(__threadKey _key);
 
         /*
         ** Status
@@ -53,6 +55,10 @@ namespace types
 
         Status                  getStatus();
         void                    setStatus(Status _status);
+
+        void                    suspend();
+        void                    resume();
+        void                    abort();
     private :
         std::wstring            StatusToString(Status _status);
 
@@ -60,8 +66,10 @@ namespace types
         RealType                getType();
 
     private :
-        __threadId                                 m_threadId;
-        Status                                     m_threadStatus;
+        __threadId              m_threadId;
+        __threadKey             m_threadKey;
+        __threadLock            m_threadLock;
+        Status                  m_threadStatus;
 
     };
 }

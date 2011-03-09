@@ -37,7 +37,7 @@ Function::ReturnValue sci_getCurrentThreadId(types::typed_list &in, int _iRetCou
         return Function::Error;
     }
 
-    out.push_back(ConfigVariable::getThread(__GetCurrentThreadKey()));
+    out.push_back(ConfigVariable::getLastRunningThread());
 
     return Function::OK;
 }

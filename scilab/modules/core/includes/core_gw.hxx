@@ -47,5 +47,8 @@ CPP_GATEWAY_PROTOTYPE(sci_getversion);
 CPP_GATEWAY_PROTOTYPE(sci_warning);
 CPP_GATEWAY_PROTOTYPE(sci_getmd5);
 CPP_GATEWAY_PROTOTYPE(sci_error);
+CPP_GATEWAY_PROTOTYPE(sci_pause);
+CPP_GATEWAY_PROTOTYPE(sci_resume);
+CPP_GATEWAY_PROTOTYPE(sci_abort);
 
 #endif /* __CORE_GW_HXX__ */

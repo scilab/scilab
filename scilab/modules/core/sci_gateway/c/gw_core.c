@@ -28,7 +28,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_mode),"mode"},
 {NULL ,""}, //type
 {NULL, ""}, //error
-{C2F(sci_resume),"resume"},
+{NULL, ""}, //resune
 {C2F(sci_return),"return"},
 {C2F(sci_format),"format"},
 {NULL, ""}, // isdef

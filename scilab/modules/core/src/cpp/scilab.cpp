@@ -83,6 +83,8 @@ extern "C"
 #include "filemanager.hxx"
 #include "scilabexception.hxx"
 
+#include "runner.hxx"
+
 #include "banner.hxx"
 
 #include "string.hxx"
@@ -313,6 +315,8 @@ static int interactiveMain (void)
         // Show Parser Sate before prompt
         stateShow(controlStatus);
 
+        pause = ConfigVariable::getPauseLevel();
+
         //set prompt value
         C2F(setprlev)(&pause);
 
@@ -400,7 +404,6 @@ static Parser::ControlStatus processCommand(char* _pstCommand)
             YaspWriteW(parser->getErrorMessage());
         }
 
-        parser->freeTree();
         FREE(pwstCommand);
     }
     return parser->getControlStatus();
@@ -465,6 +468,8 @@ int main(int argc, char *argv[])
 int StartScilabEngine(int argc, char*argv[], int iFileIndex)
 {
     int iMainRet = 0;
+    Runner::init();
+    
     /* Scilab Startup */
     InitializeEnvironnement();
 

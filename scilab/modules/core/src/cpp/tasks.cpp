@@ -29,8 +29,6 @@ Timer _timer;
 
 //#define DEBUG
 
-__threadLock Runner::m_lock;
-
 /*
 ** Parse
 **
@@ -155,9 +153,8 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
         exec = new ast::ExecVisitor();
     }
 
-    Runner engine;
-    engine.execAndWait(tree, exec);
-    delete exec;
+    Runner::execAndWait(tree, exec);
+    //delete exec;
 
     if(timed)
     {

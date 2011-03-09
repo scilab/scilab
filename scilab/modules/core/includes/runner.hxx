@@ -18,57 +18,34 @@
 extern "C"
 {
 #include "Thread_Wrapper.h"
+#include "dynlib_core_gw.h"
 }
 
 #include "exp.hxx"
 #include "execvisitor.hxx"
 #include "threadId.hxx"
 
-class Runner
+class CORE_GW_IMPEXP Runner
 {
-public :
-    Runner() { }
-    ~Runner() { }
-
-public :
-    void execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
-    {
-        try
-        {
-            m_theProgram = _theProgram;
-            m_visitor = _visitor;
-            __threadKey key;
-
-            //init locker
-            __InitLock(&m_lock);
-            //lock locker
-            __Lock(&m_lock);
-            //launch thread but is can't really start since locker is locked
-            __CreateThreadWithParams(&m_threadId, &key, &Runner::launch, this);
-            //register thread
-            ConfigVariable::setThread(key, new ThreadId(m_threadId));
-            //free locker to release thread
-            __UnLock(&m_lock);
-            //wait and of thread execution
-            __WaitThreadDie(m_threadId);
-            //change thread status
-            ConfigVariable::getThread(key)->setStatus(ThreadId::Done);
-            //unregister thread
-            ConfigVariable::deleteThread(key);
-        }
-        catch(ScilabException se)
-        {
-            throw se;
-        }
-    }
-
-    void exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
+private :
+    Runner(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
     {
         m_theProgram = _theProgram;
         m_visitor = _visitor;
-        __threadKey key;
-        __CreateThreadWithParams(&m_threadId, &key, &Runner::launch, this);
     }
+    ~Runner()
+    {
+        delete m_theProgram;
+        delete m_visitor;
+    }
+
+public :
+
+    static void init();
+
+    static void execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor);
+
+    void exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor);
 
     ast::ExecVisitor *getVisitor()
     {
@@ -85,35 +62,37 @@ public :
         return m_threadId;
     }
 
-private :
-    static void *launch(void *args)
+    void setThreadId(__threadId _threadId)
     {
-        //try to lock locker ( waiting parent thread register me )
-        __Lock(&m_lock);
-        //just release locker
-        __UnLock(&m_lock);
-
-        //exec !
-        Runner *me = (Runner *)args;
-        try
-        {
-            me->getProgram()->accept(*(me->getVisitor()));
-            ConfigVariable::clearLastError();
-        }
-        catch(ScilabException se)
-        {
-            YaspWriteW(se.GetErrorMessage().c_str());
-        }
-        return NULL;
+        m_threadId = _threadId;
     }
 
-private :
-    __threadId m_threadId;
+    __threadKey getThreadKey(void)
+    {
+        return m_threadKey;
+    }
 
-public :
+    void setThreadKey(__threadKey _threadId)
+    {
+        m_threadKey = _threadId;
+    }
+
+    static void UnlockPrompt();
+
+    static void LockPrompt();
+
+private :
+    static void *launch(void *args);
+
+private :
+    __threadKey m_threadKey;
+    __threadId m_threadId;
     ast::Exp*           m_theProgram;
     ast::ExecVisitor*   m_visitor;
-    static __threadLock m_lock;
 
+private :
+    static __threadSignal m_awakeScilab;
+    static __threadSignalLock m_awakeScilabLock;
+    static __threadLock m_lock;
 };
 #endif /* !__RUNNER_HXX__ */

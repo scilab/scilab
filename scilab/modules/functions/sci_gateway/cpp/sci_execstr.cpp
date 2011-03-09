@@ -175,7 +175,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             iErr = ConfigVariable::getLastErrorNumber();
             if(bErrCatch == false)
             {
-            	parser.freeTree();
+            	delete parser.getTree();
 			    return Function::Error;
             }
             break;
@@ -191,8 +191,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         //to lock last error information
         ConfigVariable::setLastErrorCall();
     }
-    
-    parser.freeTree();
+
+    delete parser.getTree();
 	return Function::OK;
 }
 /*--------------------------------------------------------------------------*/
