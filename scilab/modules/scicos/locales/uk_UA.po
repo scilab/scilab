@@ -910,7 +910,7 @@ msgstr ""
 msgid "Click on a block to set or get its documentation"
 msgstr "Клацніть на блоці, щоб змінити або переглянути документацію з нього"
 
-msgid "Click on a port, click on a port of object to be moved"
+msgid "Click on a port of object to be moved"
 msgstr "Клацніть на тому порті об’єкта, який слід пересунути"
 
 msgid "Click on a super block"
