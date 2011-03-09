@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Bibliothèque graphique",SCI+"/modules/graphics/help/fr_FR",%T);
+add_help_chapter("Graphiques",SCI+"/modules/graphics/help/fr_FR",%T);
 
