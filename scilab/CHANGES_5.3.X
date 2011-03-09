@@ -12,19 +12,19 @@ Xcos:
 =====
 
 * Update the documentation with examples of the blocks and their translations to
-French:
-- OUT_f - Regular Output Port
-- IN_f - Regular Input Port
-- Modulo_Count - Modulo counter (0 to N counter)
-- OUTIMPL_f - Output implicit port
-- CLKINV_f - Input activation port
-- CLKOUTV_f - Output activation port
-- INIMPL_f - Implicit Input port
-- GENSIM_f - Sine wave generator
-- STEP_FUNCTION - Step Function
-- SAWTOOTH_f - Sawtooth generator
-- Counter
-- RAMP
+  French:
+  - OUT_f - Regular Output Port
+  - IN_f - Regular Input Port
+  - Modulo_Count - Modulo counter (0 to N counter)
+  - OUTIMPL_f - Output implicit port
+  - CLKINV_f - Input activation port
+  - CLKOUTV_f - Output activation port
+  - INIMPL_f - Implicit Input port
+  - GENSIM_f - Sine wave generator
+  - STEP_FUNCTION - Step Function
+  - SAWTOOTH_f - Sawtooth generator
+  - Counter
+  - RAMP
 
 * bug 9077 fixed - Automotive Suspension demo was modified on loading.
 
