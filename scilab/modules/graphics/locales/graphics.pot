@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 17:45+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:37+0100\n"
+"Revision-Date: 2011-03-09 11:40+0100\n"
 
 # File: sci_gateway/c/sci_drawaxis.c, line: 186
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -97,7 +97,7 @@ msgid ""
 "%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 #
-# File: src/c/SetProperty.c, line: 3374
+# File: src/c/SetProperty.c, line: 3474
 #, c-format
 msgid "%s: Can't enable a void event handler.\n"
 msgstr ""
@@ -207,7 +207,7 @@ msgstr ""
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr ""
 #
-# File: macros/legend.sci, line: 50
+# File: macros/legend.sci, line: 80
 #, c-format
 msgid "%s: No ''%s'' handle found.\n"
 msgstr ""
@@ -247,8 +247,8 @@ msgstr ""
 # File: src/c/SetProperty.c, line: 2582
 # File: src/c/SetProperty.c, line: 2585
 # File: src/c/SetProperty.c, line: 2589
-# File: src/c/SetProperty.c, line: 2838
-# File: src/c/SetProperty.c, line: 3308
+# File: src/c/SetProperty.c, line: 2938
+# File: src/c/SetProperty.c, line: 3408
 # File: src/c/InitObjects.c, line: 501
 # File: src/c/InitObjects.c, line: 986
 # File: src/c/Contour.c, line: 312
@@ -272,7 +272,7 @@ msgstr ""
 # File: src/c/getHandleProperty/get_children_property.c, line: 48
 # File: src/c/getHandleProperty/set_color_mode_property.c, line: 78
 # File: src/c/getHandleProperty/get_axes_reverse_property.c, line: 51
-# File: src/c/getHandleProperty/get_auto_ticks_property.c, line: 51
+# File: src/c/getHandleProperty/get_auto_ticks_property.c, line: 52
 # File: src/c/getHandleProperty/set_xtics_coord_property.c, line: 106
 # File: src/c/getHandleProperty/get_links_property.c, line: 39
 # File: src/c/getHandleProperty/set_z_ticks_property.c, line: 80
@@ -282,8 +282,8 @@ msgstr ""
 # File: src/c/getHandleProperty/get_tics_label_property.c, line: 47
 # File: src/c/getHandleProperty/set_x_shift_property.c, line: 69
 # File: src/c/getHandleProperty/get_color_map_property.c, line: 45
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 61
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 69
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 62
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 70
 # File: src/c/Format.c, line: 1093
 # File: src/c/Format.c, line: 1098
 # File: src/c/Format.c, line: 1103
@@ -303,17 +303,17 @@ msgstr ""
 # File: src/c/get_ticks_utils.c, line: 223
 # File: src/c/get_ticks_utils.c, line: 262
 # File: src/c/Gray.c, line: 260
-# File: src/c/BuildObjects.c, line: 809
+# File: src/c/BuildObjects.c, line: 810
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 #
-# File: src/c/SetProperty.c, line: 183
+# File: src/c/SetProperty.c, line: 184
 #, c-format
 msgid "%s: Number of columns must be %d.\n"
 msgstr ""
 #
-# File: src/c/SetProperty.c, line: 189
+# File: src/c/SetProperty.c, line: 190
 #, c-format
 msgid "%s: Object must be a %s.\n"
 msgstr ""
@@ -413,6 +413,11 @@ msgstr ""
 # File: macros/dragrect.sci, line: 13
 # File: macros/coppercolormap.sci, line: 15
 # File: macros/getSurfPropertyName.sci, line: 12
+# File: macros/datatips/datatipGetStruct.sci, line: 13
+# File: macros/datatips/datatipSetStruct.sci, line: 12
+# File: macros/datatips/orthProj.sci, line: 17
+# File: macros/datatips/datatipRemoveAll.sci, line: 13
+# File: macros/datatips/datatipSetOrientation.sci, line: 13
 # File: macros/coolcolormap.sci, line: 15
 # File: macros/hsvcolormap.sci, line: 13
 # File: macros/springcolormap.sci, line: 15
@@ -479,11 +484,18 @@ msgstr ""
 # File: macros/paramfplot2d.sci, line: 28
 # File: macros/plot3d2.sci, line: 24
 # File: macros/fcontour2d.sci, line: 24
+# File: macros/datatips/datatipSetDisplay.sci, line: 14
+# File: macros/datatips/datatipMove.sci, line: 14
+# File: macros/datatips/datatipSetInterp.sci, line: 15
+# File: macros/datatips/datatipRemove.sci, line: 12
+# File: macros/datatips/datatipInitStruct.sci, line: 19
+# File: macros/datatips/datatipCreate.sci, line: 17
 # File: macros/graduate.sci, line: 39
 # File: macros/ylabel.sci, line: 14
 # File: macros/legends.sci, line: 22
 # File: macros/xinfo.sci, line: 14
 # File: macros/xlabel.sci, line: 14
+# File: macros/histplot.sci, line: 63
 # File: macros/fplot3d1.sci, line: 32
 # File: macros/ged_insert.sci, line: 15
 # File: macros/errbar.sci, line: 33
@@ -568,6 +580,11 @@ msgstr ""
 msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
 msgstr ""
 #
+# File: macros/legend.sci, line: 55
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr ""
+#
 # File: src/c/GetCommandArg.c, line: 46
 # File: src/c/GetCommandArg.c, line: 79
 #, c-format
@@ -621,21 +638,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: macros/datatips/datatipToggle.sci, line: 15
-# File: macros/datatips/datatipMove.sci, line: 16
-# File: macros/datatips/datatipMove.sci, line: 24
-# File: macros/datatips/datatipSetInterp.sci, line: 16
-# File: macros/datatips/datatipRemove.sci, line: 15
-# File: macros/datatips/datatipRemove.sci, line: 34
-# File: macros/datatips/datatipSetOrientation.sci, line: 14
-# File: macros/datatips/datatipCreate.sci, line: 18
-# File: macros/datatips/datatipCreate.sci, line: 37
-# File: macros/datatips/datatipManagerMode.sci, line: 288
-# File: macros/datatips/datatipManagerMode.sci, line: 341
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_StringBox.c, line: 87
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
@@ -659,8 +661,8 @@ msgstr ""
 # File: macros/surf.sci, line: 110
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-%"
-"d expected.\n"
+"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
+"%d expected.\n"
 msgstr ""
 #
 # File: macros/getcolor.sci, line: 35
@@ -864,6 +866,21 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
+# File: macros/datatips/datatipToggle.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 26
+# File: macros/datatips/datatipSetInterp.sci, line: 20
+# File: macros/datatips/datatipRemove.sci, line: 18
+# File: macros/datatips/datatipRemove.sci, line: 37
+# File: macros/datatips/datatipSetOrientation.sci, line: 17
+# File: macros/datatips/datatipEventhandler.sci, line: 213
+# File: macros/datatips/datatipEventhandler.sci, line: 287
+# File: macros/datatips/datatipCreate.sci, line: 22
+# File: macros/datatips/datatipCreate.sci, line: 41
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_StringBox.c, line: 79
 # File: sci_gateway/c/sci_StringBox.c, line: 107
 #, c-format
@@ -941,6 +958,11 @@ msgid ""
 "%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"
 msgstr ""
 #
+# File: macros/histplot.sci, line: 89
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_contour2di.c, line: 48
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
@@ -954,6 +976,12 @@ msgstr ""
 # File: sci_gateway/c/sci_xlfont.c, line: 224
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
+msgstr ""
+#
+# File: macros/histplot.sci, line: 67
+# File: macros/histplot.sci, line: 69
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
 msgstr ""
 #
 # File: macros/legends.sci, line: 30
@@ -1078,7 +1106,7 @@ msgid ""
 "%s: Wrong type for input arguments: Handle or vector of double expected.\n"
 msgstr ""
 #
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 144
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 145
 #, c-format
 msgid "%s: Wrong value for argument: '%s' or '%s' expected.\n"
 msgstr ""
@@ -1140,6 +1168,11 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
 msgstr ""
 #
+# File: macros/histplot.sci, line: 87
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+#
 # File: macros/color.sci, line: 33
 #, c-format
 msgid ""
@@ -1150,6 +1183,7 @@ msgstr ""
 # File: macros/colordef.sci, line: 33
 # File: macros/colordef.sci, line: 47
 # File: macros/colordef.sci, line: 72
+# File: macros/legend.sci, line: 51
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
@@ -1201,6 +1235,13 @@ msgstr ""
 # File: macros/color.sci, line: 20
 #, c-format
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+#
+# File: macros/histplot.sci, line: 95
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
 msgstr ""
 #
 # File: macros/%h_save.sci, line: 38
@@ -1297,7 +1338,7 @@ msgstr ""
 # File: src/c/getHandleProperty/get_box_property.c, line: 59
 # File: src/c/getHandleProperty/get_position_property.c, line: 65
 # File: src/c/getHandleProperty/get_isoview_property.c, line: 32
-# File: src/c/getHandleProperty/get_sub_tics_property.c, line: 57
+# File: src/c/getHandleProperty/get_sub_tics_property.c, line: 58
 # File: src/c/getHandleProperty/get_current_entity_property.c, line: 36
 # File: src/c/getHandleProperty/get_tics_color_property.c, line: 41
 # File: src/c/getHandleProperty/get_auto_rotation_property.c, line: 32
@@ -1378,7 +1419,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_interp_color_vector_property.c, line: 35
 # File: src/c/getHandleProperty/get_outside_colors_property.c, line: 32
 # File: src/c/getHandleProperty/get_labels_font_style_property.c, line: 32
-# File: src/c/getHandleProperty/get_auto_ticks_property.c, line: 38
+# File: src/c/getHandleProperty/get_auto_ticks_property.c, line: 39
 # File: src/c/getHandleProperty/get_x_location_property.c, line: 33
 # File: src/c/getHandleProperty/set_y_location_property.c, line: 42
 # File: src/c/getHandleProperty/get_rotation_angles_property.c, line: 34
@@ -1461,7 +1502,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_callback_type_property.c, line: 59
 # File: src/c/getHandleProperty/set_surface_mode_property.c, line: 37
 # File: src/c/getHandleProperty/set_zoom_box_property.c, line: 42
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 128
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 129
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr ""
@@ -1536,10 +1577,10 @@ msgstr ""
 msgid "Common X axis"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3303
-# File: src/c/GetProperty.c, line: 3324
-# File: src/c/GetProperty.c, line: 3345
-# File: src/c/GetProperty.c, line: 3370
+# File: src/c/GetProperty.c, line: 3304
+# File: src/c/GetProperty.c, line: 3325
+# File: src/c/GetProperty.c, line: 3346
+# File: src/c/GetProperty.c, line: 3371
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 #
@@ -1555,7 +1596,7 @@ msgstr ""
 msgid "Data on the full circle ..."
 msgstr ""
 #
-# File: macros/datatips/datatipInitStruct.sci, line: 47
+# File: macros/datatips/datatipInitStruct.sci, line: 50
 msgid ""
 "Data tips cannot be attached to this curve,\n"
 "the user_data field is already used"
@@ -1575,38 +1616,38 @@ msgstr ""
 msgid "Default figure cannot be create.\n"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 155
-# File: macros/datatips/datatipManagerMode.sci, line: 177
+# File: macros/datatips/datatipEventhandler.sci, line: 85
+# File: macros/datatips/datatipEventhandler.sci, line: 107
 msgid "Delete all datatips"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 156
-# File: macros/datatips/datatipManagerMode.sci, line: 179
+# File: macros/datatips/datatipEventhandler.sci, line: 86
+# File: macros/datatips/datatipEventhandler.sci, line: 109
 msgid "Delete all datatips for the selected curve"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 158
-# File: macros/datatips/datatipManagerMode.sci, line: 196
+# File: macros/datatips/datatipEventhandler.sci, line: 88
+# File: macros/datatips/datatipEventhandler.sci, line: 126
 msgid "Delete last datatip"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 157
-# File: macros/datatips/datatipManagerMode.sci, line: 181
+# File: macros/datatips/datatipEventhandler.sci, line: 87
+# File: macros/datatips/datatipEventhandler.sci, line: 111
 msgid "Delete nearest datatip"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 165
-# File: macros/datatips/datatipManagerMode.sci, line: 207
+# File: macros/datatips/datatipEventhandler.sci, line: 95
+# File: macros/datatips/datatipEventhandler.sci, line: 137
 msgid "Disable interpolation"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 159
-# File: macros/datatips/datatipManagerMode.sci, line: 201
+# File: macros/datatips/datatipEventhandler.sci, line: 89
+# File: macros/datatips/datatipEventhandler.sci, line: 131
 msgid "Edit the curve tip display function"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 167
-# File: macros/datatips/datatipManagerMode.sci, line: 205
+# File: macros/datatips/datatipEventhandler.sci, line: 97
+# File: macros/datatips/datatipEventhandler.sci, line: 135
 msgid "Enable interpolation"
 msgstr ""
 #
@@ -1635,13 +1676,17 @@ msgstr ""
 msgid "Error: ComputeFormat must be used with SCI_AXES objects\n"
 msgstr ""
 #
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 157
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 171
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 192
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 158
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 172
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 193
 #, c-format
 msgid ""
 "Error: data_bounds on %s axis must be strictly positive to switch to "
 "logarithmic mode.\n"
+msgstr ""
+#
+# File: macros/histplot.sci, line: 58
+msgid "Exact gaussian density"
 msgstr ""
 #
 # File: src/c/SetProperty.c, line: 1931
@@ -1649,12 +1694,16 @@ msgstr ""
 msgid "Figure name may not contains any %% character, except a single %%d.\n"
 msgstr ""
 #
+# File: macros/histplot.sci, line: 57
+msgid "Gaussian random sample histogram"
+msgstr ""
+#
 # File: src/c/InitObjects.c, line: 466
 #, c-format
 msgid "Graphic window number %d"
 msgstr ""
 #
-# File: etc/graphics.start, line: 23
+# File: etc/graphics.start, line: 29
 msgid "Graphics"
 msgstr ""
 #
@@ -1700,7 +1749,7 @@ msgstr ""
 msgid "Hot"
 msgstr ""
 #
-# File: src/c/BuildObjects.c, line: 1757
+# File: src/c/BuildObjects.c, line: 1767
 msgid "Impossible case when building axis\n"
 msgstr ""
 #
@@ -1746,8 +1795,8 @@ msgstr ""
 msgid "Misc"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 170
-# File: macros/datatips/datatipManagerMode.sci, line: 209
+# File: macros/datatips/datatipEventhandler.sci, line: 100
+# File: macros/datatips/datatipEventhandler.sci, line: 139
 msgid "Multiple datatips mode"
 msgstr ""
 #
@@ -1767,7 +1816,7 @@ msgstr ""
 msgid "No Callback is associated with this Entity.\n"
 msgstr ""
 #
-# File: src/c/BuildObjects.c, line: 796
+# File: src/c/BuildObjects.c, line: 797
 msgid "No more place to allocates text string, try a shorter string.\n"
 msgstr ""
 #
@@ -1814,7 +1863,7 @@ msgid ""
 "Old graphic mode is no longer available. Please refer to the set help page.\n"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3597
+# File: src/c/GetProperty.c, line: 3619
 msgid "Only axes handles have a viewing area."
 msgstr ""
 #
@@ -1843,7 +1892,7 @@ msgstr ""
 msgid "Press enter to go on..."
 msgstr ""
 #
-# File: src/c/BuildObjects.c, line: 854
+# File: src/c/BuildObjects.c, line: 855
 msgid "Problem with sciInitFontContext\n"
 msgstr ""
 #
@@ -1851,8 +1900,8 @@ msgstr ""
 msgid "Rainbow"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 162
-# File: macros/datatips/datatipManagerMode.sci, line: 213
+# File: macros/datatips/datatipEventhandler.sci, line: 92
+# File: macros/datatips/datatipEventhandler.sci, line: 143
 msgid "Redraw all datatips"
 msgstr ""
 #
@@ -1868,7 +1917,7 @@ msgstr ""
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 226
+# File: macros/datatips/datatipEventhandler.sci, line: 156
 msgid "Select tip orientation"
 msgstr ""
 #
@@ -1916,37 +1965,37 @@ msgstr ""
 msgid "The parent handle is not or no more valid.\n"
 msgstr ""
 #
-# File: src/c/BuildObjects.c, line: 533
+# File: src/c/BuildObjects.c, line: 534
 msgid "The parent has to be a FIGURE\n"
 msgstr ""
 #
-# File: src/c/BuildObjects.c, line: 723
-# File: src/c/BuildObjects.c, line: 868
-# File: src/c/BuildObjects.c, line: 886
-# File: src/c/BuildObjects.c, line: 1180
-# File: src/c/BuildObjects.c, line: 1262
-# File: src/c/BuildObjects.c, line: 1554
-# File: src/c/BuildObjects.c, line: 1662
-# File: src/c/BuildObjects.c, line: 1820
-# File: src/c/BuildObjects.c, line: 1948
-# File: src/c/BuildObjects.c, line: 2162
-# File: src/c/BuildObjects.c, line: 2366
+# File: src/c/BuildObjects.c, line: 724
+# File: src/c/BuildObjects.c, line: 869
+# File: src/c/BuildObjects.c, line: 887
+# File: src/c/BuildObjects.c, line: 1181
+# File: src/c/BuildObjects.c, line: 1263
+# File: src/c/BuildObjects.c, line: 1555
+# File: src/c/BuildObjects.c, line: 1672
+# File: src/c/BuildObjects.c, line: 1830
+# File: src/c/BuildObjects.c, line: 1958
+# File: src/c/BuildObjects.c, line: 2172
+# File: src/c/BuildObjects.c, line: 2376
 msgid "The parent has to be a SUBWIN\n"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 305
+# File: macros/datatips/datatipEventhandler.sci, line: 269
 msgid "The selected file cannot be executed"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 311
+# File: macros/datatips/datatipEventhandler.sci, line: 275
 msgid "The selected file defines more than one function"
 msgstr ""
 #
-# File: macros/datatips/datatipSetDisplay.sci, line: 50
+# File: macros/datatips/datatipSetDisplay.sci, line: 54
 msgid "The selected function must have 1 output parameter (str)"
 msgstr ""
 #
-# File: macros/datatips/datatipSetDisplay.sci, line: 46
+# File: macros/datatips/datatipSetDisplay.sci, line: 50
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
 #
@@ -1963,7 +2012,7 @@ msgstr ""
 msgid "This object cannot be deleted.\n"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3908
+# File: src/c/GetProperty.c, line: 3939
 #, c-format
 msgid "This object has no %s property.\n"
 msgstr ""
@@ -1977,15 +2026,15 @@ msgstr ""
 msgid "Ticks location and label vectors must have the same size.\n"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3632
+# File: src/c/GetProperty.c, line: 3654
 msgid "Unable to compute data bounds for this kind of object."
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3649
+# File: src/c/GetProperty.c, line: 3671
 msgid "Unable to compute x_location for this kind of object."
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 3663
+# File: src/c/GetProperty.c, line: 3685
 msgid "Unable to compute y_location for this kind of object."
 msgstr ""
 #
@@ -2008,8 +2057,8 @@ msgstr ""
 msgid "Unhandled data field\n"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 172
-# File: macros/datatips/datatipManagerMode.sci, line: 211
+# File: macros/datatips/datatipEventhandler.sci, line: 102
+# File: macros/datatips/datatipEventhandler.sci, line: 141
 msgid "Unique datatip mode"
 msgstr ""
 #
@@ -2048,8 +2097,8 @@ msgstr ""
 # File: src/c/getHandleProperty/set_tics_style_property.c, line: 71
 #, c-format
 msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the %"
-"s string vector before switching to the new %s mode.\n"
+"Warning: %s has been set by user ; you must first increase the size of the "
+"%s string vector before switching to the new %s mode.\n"
 msgstr ""
 #
 # File: src/c/Format.c, line: 1300
@@ -2088,7 +2137,7 @@ msgstr ""
 msgid "White"
 msgstr ""
 #
-# File: src/c/BuildObjects.c, line: 1199
+# File: src/c/BuildObjects.c, line: 1200
 msgid "Width and height must be positive.\n"
 msgstr ""
 #
@@ -2150,7 +2199,7 @@ msgstr ""
 msgid "Wrong size for '%s' property: At most %d elements expected.\n"
 msgstr ""
 #
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 134
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 135
 #, c-format
 msgid "Wrong size for '%s' property: Must be %s or %s.\n"
 msgstr ""
@@ -2306,7 +2355,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_x_location_property.c, line: 36
 # File: src/c/getHandleProperty/set_grid_position_property.c, line: 39
 # File: src/c/getHandleProperty/set_alignment_property.c, line: 34
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 122
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 123
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
 msgstr ""
@@ -2426,8 +2475,8 @@ msgstr ""
 msgid "Wrong value for '%s' property: Smaller values expected.\n"
 msgstr ""
 #
-# File: src/c/GetProperty.c, line: 1021
-# File: src/c/GetProperty.c, line: 1046
+# File: src/c/GetProperty.c, line: 1022
+# File: src/c/GetProperty.c, line: 1047
 # File: src/c/SetProperty.c, line: 1283
 # File: src/c/SetProperty.c, line: 1329
 msgid "You are not using a legend object.\n"
@@ -2438,7 +2487,7 @@ msgstr ""
 msgid "You must first specify an %s for this object.\n"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 225
+# File: macros/datatips/datatipEventhandler.sci, line: 155
 msgid "automatic"
 msgstr ""
 #
@@ -2446,11 +2495,15 @@ msgstr ""
 msgid "even huge radii, with properly formatted labels..."
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 225
+# File: macros/histplot.sci, line: 55
+msgid "histplot() : (normalized) histogram plot"
+msgstr ""
+#
+# File: macros/datatips/datatipEventhandler.sci, line: 155
 msgid "lower left"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 225
+# File: macros/datatips/datatipEventhandler.sci, line: 155
 msgid "lower right"
 msgstr ""
 #
@@ -2462,15 +2515,15 @@ msgstr ""
 msgid "polarplot(): Only quadrant(s) reached by data are displayed"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 160
-# File: macros/datatips/datatipManagerMode.sci, line: 203
+# File: macros/datatips/datatipEventhandler.sci, line: 90
+# File: macros/datatips/datatipEventhandler.sci, line: 133
 msgid "select the curve tip display function"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 225
+# File: macros/datatips/datatipEventhandler.sci, line: 155
 msgid "upper left"
 msgstr ""
 #
-# File: macros/datatips/datatipManagerMode.sci, line: 225
+# File: macros/datatips/datatipEventhandler.sci, line: 155
 msgid "upper right"
 msgstr ""

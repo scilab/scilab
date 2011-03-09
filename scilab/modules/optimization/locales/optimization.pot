@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:37+0100\n"
+"Revision-Date: 2011-03-09 11:40+0100\n"
 
 # File: src/c/sp.c, line: 468
 msgid ""
@@ -91,6 +91,11 @@ msgstr ""
 # File: macros/optimbase/optimbase_checkcostfun.sci, line: 57
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,6)."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 134
+#, c-format
+msgid "%s: Either one of Aeq, A, lb or ub must be non-empty."
 msgstr ""
 #
 # File: macros/optimbase/optimbase_function.sci, line: 93
@@ -231,8 +236,8 @@ msgstr ""
 # File: macros/optimsimplex/optimsimplex_check.sci, line: 23
 #, c-format
 msgid ""
-"%s: Number of rows of x is %d, which is different from number of vertices = %"
-"d."
+"%s: Number of rows of x is %d, which is different from number of vertices = "
+"%d."
 msgstr ""
 #
 # File: macros/neldermead/optimset.sci, line: 48
@@ -421,8 +426,8 @@ msgstr ""
 # File: macros/neldermead/neldermead_configure.sci, line: 108
 #, c-format
 msgid ""
-"%s: The restarteps option is expected to be a scalar, but current shape is %"
-"d x %d"
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
 msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 112
@@ -467,25 +472,20 @@ msgstr ""
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 476
 #, c-format
 msgid ""
-"%s: The x0 vector is expected to be a row matrix, but current shape is %d x %"
-"d"
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
+"%d"
 msgstr ""
 #
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 282
 #, c-format
 msgid ""
-"%s: The x0 vector is expected to be a row matrix, but current shape is %d x %"
-"d."
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
+"%d."
 msgstr ""
 #
 # File: sci_gateway/c/sci_qld.c, line: 148
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
-msgstr ""
-#
-# File: macros/karmarkar.sci, line: 56
-#, c-format
-msgid "%s: Unbounded problem!"
 msgstr ""
 #
 # File: macros/neldermead/fminsearch.sci, line: 68
@@ -671,13 +671,23 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 #
 # File: macros/derivative.sci, line: 39
+# File: macros/karmarkar.sci, line: 54
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 #
-# File: macros/karmarkar.sci, line: 28
-# File: macros/karmarkar.sci, line: 32
-# File: macros/karmarkar.sci, line: 36
+# File: macros/karmarkar.sci, line: 138
+# File: macros/karmarkar.sci, line: 142
+# File: macros/karmarkar.sci, line: 146
+# File: macros/karmarkar.sci, line: 150
+# File: macros/karmarkar.sci, line: 154
+# File: macros/karmarkar.sci, line: 157
+# File: macros/karmarkar.sci, line: 160
+# File: macros/karmarkar.sci, line: 165
+# File: macros/karmarkar.sci, line: 170
+# File: macros/karmarkar.sci, line: 174
+# File: macros/karmarkar.sci, line: 179
+# File: macros/karmarkar.sci, line: 184
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
 msgstr ""
@@ -699,6 +709,12 @@ msgid ""
 "expected, but current type is %s.\n"
 msgstr ""
 #
+# File: macros/karmarkar.sci, line: 98
+# File: macros/karmarkar.sci, line: 102
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+#
 # File: macros/derivative.sci, line: 180
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
@@ -709,6 +725,21 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 #
+# File: macros/karmarkar.sci, line: 76
+# File: macros/karmarkar.sci, line: 79
+# File: macros/karmarkar.sci, line: 82
+# File: macros/karmarkar.sci, line: 85
+# File: macros/karmarkar.sci, line: 88
+# File: macros/karmarkar.sci, line: 91
+# File: macros/karmarkar.sci, line: 94
+# File: macros/karmarkar.sci, line: 107
+# File: macros/karmarkar.sci, line: 110
+# File: macros/karmarkar.sci, line: 113
+# File: macros/karmarkar.sci, line: 116
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+#
 # File: macros/bvodeS.sci, line: 42
 # File: macros/bvodeS.sci, line: 51
 # File: macros/bvodeS.sci, line: 59
@@ -716,9 +747,62 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
 #
-# File: macros/karmarkar.sci, line: 39
+# File: macros/karmarkar.sci, line: 211
 #, c-format
-msgid "%s: x0 is not feasible."
+msgid ""
+"%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
+"greater than the lower bound lb."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 194
+#, c-format
+msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 200
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be a floating point "
+"integer."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 197
+#, c-format
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 191
+#, c-format
+msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 513
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
+"constraints."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 379
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
+"constraints."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 221
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 205
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 is not positive."
+msgstr ""
+#
+# File: macros/karmarkar.sci, line: 216
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 60

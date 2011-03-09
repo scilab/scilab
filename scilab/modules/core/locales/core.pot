@@ -8,26 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2008-02-27 18:16+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:37+0100\n"
+"Revision-Date: 2011-03-09 11:40+0100\n"
 
-# File: src/c/banier.c, line: 36
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr ""
-#
-# File: src/c/banier.c, line: 39
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr ""
-#
-# File: src/c/banier.c, line: 38
-msgid "Copyright (c) 1989-2010 (INRIA)\n"
-msgstr ""
-#
 # File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 69
 msgid "  loading initial environment"
 msgstr ""
@@ -92,7 +80,7 @@ msgstr ""
 msgid "%s called under %s"
 msgstr ""
 #
-# File: src/c/getmodules.c, line: 222
+# File: src/c/getmodules.c, line: 229
 #, c-format
 msgid "%s module not found.\n"
 msgstr ""
@@ -122,7 +110,7 @@ msgstr ""
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 40
+# File: macros/edit.sci, line: 46
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
 msgstr ""
@@ -333,7 +321,7 @@ msgstr ""
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 19
+# File: macros/edit.sci, line: 17
 #, c-format
 msgid "%s: Requires scilab editor.\n"
 msgstr ""
@@ -456,7 +444,7 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 25
+# File: macros/edit.sci, line: 23
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -812,6 +800,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
 #
+# File: macros/edit.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_stacksize.c, line: 166
 # File: sci_gateway/c/sci_stacksize.c, line: 171
 # File: sci_gateway/c/sci_gstacksize.c, line: 173
@@ -820,6 +813,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 #
+# File: macros/edit.sci, line: 27
 # File: sci_gateway/c/sci_warning.c, line: 100
 # File: sci_gateway/c/sci_readgateway.c, line: 124
 # File: sci_gateway/c/sci_funptr.c, line: 49
@@ -935,15 +929,15 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_errclear.c, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_newfun.c, line: 117
 # File: sci_gateway/c/sci_exit.c, line: 79
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_errclear.c, line: 56
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 #
 # File: macros/typeof.sci, line: 12
@@ -1165,6 +1159,18 @@ msgstr ""
 msgid "Commands:\n"
 msgstr ""
 #
+# File: src/c/banier.c, line: 36
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr ""
+#
+# File: src/c/banier.c, line: 38
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr ""
+#
+# File: src/c/banier.c, line: 37
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
+#
 # File: src/c/callinterf.c, line: 182
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr ""
@@ -1194,7 +1200,7 @@ msgstr ""
 msgid "Error: Could not parse file %s\n"
 msgstr ""
 #
-# File: src/c/getmodules.c, line: 171
+# File: src/c/getmodules.c, line: 172
 #, c-format
 msgid "Error: Could not parse file %s.\n"
 msgstr ""
@@ -1228,7 +1234,7 @@ msgid ""
 "<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
 msgstr ""
 #
-# File: src/c/getmodules.c, line: 238
+# File: src/c/getmodules.c, line: 245
 #, c-format
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
@@ -1457,15 +1463,14 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 #
+# File: src/c/getmodules.c, line: 132
+#, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_getmodules.c, line: 29
 #, c-format
 msgid "Warning: Problems with %s.\n"
-msgstr ""
-#
-# File: src/c/banier.c, line: 44
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 321

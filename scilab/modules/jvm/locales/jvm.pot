@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:38+0100\n"
+"Revision-Date: 2011-03-09 11:40+0100\n"
 
 # File: src/c/JVM.c, line: 119
 #, c-format
@@ -208,6 +208,13 @@ msgstr ""
 # File: src/c/JVM.c, line: 207
 #, c-format
 msgid "Options:\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 125
+#, c-format
+msgid ""
+"Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+"system (and vice versa).\n"
 msgstr ""
 #
 # File: src/nojvm/nojvm.c, line: 46

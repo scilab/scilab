@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:37+0100\n"
+"Revision-Date: 2011-03-09 11:40+0100\n"
 
 # File: src/c/ScilabEval.c, line: 104
 msgid " Flushing starts for queued commands.\n"
@@ -42,10 +42,10 @@ msgstr ""
 msgid "%s: Could not read Tcl Variable.\n"
 msgstr ""
 #
-# File: src/c/setvar.c, line: 56
-# File: src/c/setvar.c, line: 80
-# File: src/c/setvar.c, line: 106
-# File: src/c/setvar.c, line: 135
+# File: src/c/setvar.c, line: 55
+# File: src/c/setvar.c, line: 79
+# File: src/c/setvar.c, line: 105
+# File: src/c/setvar.c, line: 134
 #, c-format
 msgid "%s: Error TCL interpreter not initialized.\n"
 msgstr ""
@@ -260,15 +260,15 @@ msgstr ""
 # File: src/c/InitTclTk.c, line: 180
 #, c-format
 msgid ""
-"Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %"
-"s\n"
+"Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "
+"%s\n"
 msgstr ""
 #
 # File: src/c/InitTclTk.c, line: 163
 #, c-format
 msgid ""
-"Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %"
-"s\n"
+"Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
+"%s\n"
 msgstr ""
 #
 # File: src/c/InitTclTk.c, line: 150
@@ -317,7 +317,7 @@ msgstr ""
 msgid "Unknown Release"
 msgstr ""
 #
-# File: src/c/setvar.c, line: 50
+# File: src/c/setvar.c, line: 49
 msgid "Variable too long.\n"
 msgstr ""
 #
