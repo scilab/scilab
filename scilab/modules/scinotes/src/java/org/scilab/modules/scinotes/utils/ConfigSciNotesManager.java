@@ -98,6 +98,7 @@ public final class ConfigSciNotesManager {
     private static final String HELPONTYPING = "HelpOnTyping";
     private static final String LINENUMBERING = "LineNumbering";
     private static final String EDITOR = "SciNotes";
+    private static final String SUPPRESSCOMMENTS = "SuppressComments";
 
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -1071,6 +1072,52 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * Save SciNotes autoIndent or not
+     * @param activated if autoIndent should be used or not
+     */
+    public static void saveSuppressComments(boolean activated) {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(SUPPRESSCOMMENTS);
+        Element suppressComments = (Element) allSizeElements.item(0);
+        if (suppressComments == null) {
+            Element sup = document.createElement(SUPPRESSCOMMENTS);
+            sup.setAttribute(VALUE, new Boolean(activated).toString());
+            scinotesProfile.appendChild((Node) sup);
+        } else {
+            suppressComments.setAttribute(VALUE, new Boolean(activated).toString());
+        }
+        /* Save changes */
+        writeDocument();
+    }
+
+    /**
+     * @return a boolean if autoIndent should be used or not
+     */
+    public static boolean getSuppressComments() {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(SUPPRESSCOMMENTS);
+        Element suppressComments = (Element) allSizeElements.item(0);
+
+        if (suppressComments == null) {
+            return true;
+        } else {
+            return new Boolean(suppressComments.getAttribute(VALUE));
+        }
+    }
+
+    /**
      * Save SciNotes horizontal wrapping or not
      * @param activated if autoIndent should be used or not
      */
@@ -1087,9 +1134,7 @@ public final class ConfigSciNotesManager {
         Element horizontalWrap = (Element) allSizeElements.item(0);
         if (horizontalWrap == null) {
             Element hw = document.createElement(HORIZONTALWRAP);
-
             hw.setAttribute(VALUE, new Boolean(activated).toString());
-
             scinotesProfile.appendChild((Node) hw);
         } else {
             horizontalWrap.setAttribute(VALUE, new Boolean(activated).toString());

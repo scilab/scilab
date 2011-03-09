@@ -5,10 +5,16 @@
 Scinotes:
 =========
 
+* Add the possibility to remove the comments when executing the code in the
+  console.
+
 * The selection is now highlighted in yellow in all the document.
 
 * bug 9047 fixed - edit('foo',12) now opens the function foo 12 lines after the
                    definition of foo.
+
+* bug 9132 fixed - When s = "abc // def" is evaluated WITH ECHO, only s="abc was
+                   executed.
 
 * bug 9171 fixed - Problem to enter Japanese chars under Windows with IME.
 

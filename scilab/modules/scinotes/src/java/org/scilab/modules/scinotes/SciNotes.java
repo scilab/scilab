@@ -1400,6 +1400,23 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
+     * Auto-indent mode management
+     * @param b true to activate auto-indent mode
+     */
+    public static void setSuppressComments(boolean b) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                sep.suppressCommentsInExecutingCode(b);
+                if (sep.getOtherPaneInSplit() != null) {
+                    sep.getOtherPaneInSplit().suppressCommentsInExecutingCode(b);
+                }
+            }
+        }
+    }
+
+    /**
      * Horizontal Wrap mode management
      * @param b true to activate horizontal wrapping mode
      */

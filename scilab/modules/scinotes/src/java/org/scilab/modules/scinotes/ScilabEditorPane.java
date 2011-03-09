@@ -772,12 +772,15 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public String getCodeToExecute() {
         String selection;
+        int start, end;
+        start = getSelectionStart();
+        end = getSelectionEnd();
+
         if (((SciNotesCaret) getCaret()).isEmptySelection()) {
-            int start = getSelectionStart();
-            int end = getSelectionEnd();
             try {
                 if (start == end) {
                     selection = getDocument().getText(0, start);
+                    start = 0;
                 } else {
                     selection = getSelectedText();
                 }
@@ -789,7 +792,21 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
 
         if (suppressCom) {
-            selection = selection.replaceAll("[ \t]*//[^\n]*", "");
+            StringBuffer buf = new StringBuffer(selection.length());
+            int sstart = start;
+            int tok = lexer.getKeyword(start, false);
+            int len = selection.length();
+            while (start < end) {
+                int pos = lexer.start + lexer.yychar() + lexer.yylength();
+                String str = selection.substring(start - sstart, Math.min(pos - sstart, len));
+                if (tok != ScilabLexerConstants.COMMENT || str.equals("\n")) {
+                    buf.append(str);
+                }
+                start = pos;
+                tok = lexer.getKeyword(start, false);
+            }
+
+            return buf.toString();
         }
 
         return selection;
