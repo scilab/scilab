@@ -311,24 +311,6 @@ public :
      * @return the number of indices actually written.
      */
     static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
-
-#if 0
-    /**
-     * Returns the coordinates of a polyline point, modified by their corresponding shift values.
-     * @param[in] the coordinate array
-     * @param[in] the x-shift array.
-     * @param[in] the y-shift array.
-     * @param[in] the z-shift array.
-     * @param[in] the polyline's number of points.
-     * @param[in] the point index.
-     * @param[out] the returned x coordinate.
-     * @param[out] the returned y coordinate.
-     * @param[out] the returned z coordinate.
-     */
-    static void getShiftedPolylinePoint(double* coordinates, double* xshift, double* yshift, double* zshift, int nPoints, int index,
-        double* x, double* y, double* z);
-#endif
-
 };
 
 #endif
