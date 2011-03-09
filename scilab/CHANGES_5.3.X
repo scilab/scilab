@@ -23,6 +23,8 @@ French:
 - Counter
 - RAMP
 
+* bug 9077 fixed - Automotive Suspension demo was modified on loading.
+
 * bug 9122 fixed - Java check failed on diagram validation.
 
 Javasci:
