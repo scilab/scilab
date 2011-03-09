@@ -20,10 +20,10 @@ class DataLoaderJNI {
   }
 
   public final static native int getDataSize(String jarg1);
-  public final static native void fillVertices(String jarg1, java.nio.FloatBuffer jarg2, int jarg3, int jarg4, int jarg5, double[] jarg6, double[] jarg7);
+  public final static native void fillVertices(String jarg1, java.nio.FloatBuffer jarg2, int jarg3, int jarg4, int jarg5, double[] jarg6, double[] jarg7, int jarg8);
   public final static native void fillColors(String jarg1, java.nio.FloatBuffer jarg2, int jarg3, int jarg4);
   public final static native int getIndicesSize(String jarg1);
-  public final static native int fillIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3);
+  public final static native int fillIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3, int jarg4);
   public final static native int getWireIndicesSize(String jarg1);
   public final static native int fillWireIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3);
   public final static native int getMarkIndicesSize(String jarg1);

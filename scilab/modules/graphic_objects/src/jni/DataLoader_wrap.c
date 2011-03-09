@@ -758,11 +758,11 @@ jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
 
 
     extern int getDataSize(char* id);
-    extern void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[]);
+    extern void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[], int logMask);
     extern void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
     
     extern int getIndicesSize(char* id);    
-    extern int fillIndices(char* id, int* BUFF, int bufferLength);
+    extern int fillIndices(char* id, int* BUFF, int bufferLength, int logMask);
     
     extern int getWireIndicesSize(char* id);    
     extern int fillWireIndices(char* id, int* BUFF, int bufferLength);
@@ -794,7 +794,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_g
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillVertices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4, jint jarg5, jdoubleArray jarg6, jdoubleArray jarg7) {
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillVertices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4, jint jarg5, jdoubleArray jarg6, jdoubleArray jarg7, jint jarg8) {
   char *arg1 = (char *) 0 ;
   float *arg2 = (float *) 0 ;
   int arg3 ;
@@ -802,6 +802,7 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   int arg5 ;
   double *arg6 ;
   double *arg7 ;
+  int arg8 ;
   jdouble *jarr6 ;
   jdouble *jarr7 ;
   
@@ -823,7 +824,8 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
   arg5 = (int)jarg5; 
   if (!SWIG_JavaArrayInDouble(jenv, &jarr6, &arg6, jarg6)) return ; 
   if (!SWIG_JavaArrayInDouble(jenv, &jarr7, &arg7, jarg7)) return ; 
-  fillVertices(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+  arg8 = (int)jarg8; 
+  fillVertices(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
   SWIG_JavaArrayArgoutDouble(jenv, jarr6, arg6, jarg6); 
   SWIG_JavaArrayArgoutDouble(jenv, jarr7, arg7, jarg7); 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
@@ -877,11 +879,12 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_g
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillIndices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillIndices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
   int *arg2 = (int *) 0 ;
   int arg3 ;
+  int arg4 ;
   int result;
   
   (void)jenv;
@@ -898,7 +901,8 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
     }
   }
   arg3 = (int)jarg3; 
-  result = (int)fillIndices(arg1,arg2,arg3);
+  arg4 = (int)jarg4; 
+  result = (int)fillIndices(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;

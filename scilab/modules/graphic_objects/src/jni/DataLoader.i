@@ -68,11 +68,11 @@ NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
 
 %inline %{
     extern int getDataSize(char* id);
-    extern void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[]);
+    extern void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[], int logMask);
     extern void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
     
     extern int getIndicesSize(char* id);    
-    extern int fillIndices(char* id, int* BUFF, int bufferLength);
+    extern int fillIndices(char* id, int* BUFF, int bufferLength, int logMask);
     
     extern int getWireIndicesSize(char* id);    
     extern int fillWireIndices(char* id, int* BUFF, int bufferLength);

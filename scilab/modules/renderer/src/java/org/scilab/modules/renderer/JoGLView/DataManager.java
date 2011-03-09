@@ -46,6 +46,13 @@ public class DataManager {
     private static final double[] DEFAULT_SCALE     = new double[] {1, 1, 1};
     private static final double[] DEFAULT_TRANSLATE = new double[] {0, 0, 0};
 
+    /*
+     * Bit mask specifying whether logarithmic coordinates are used.
+     * Temporarily defined as a constant for now and set to 0 (linear x, y and z coordinates).
+     * To do: pass it as an argument of fillVertexBuffer and fillIndexBuffer, when updating data.
+     */
+    private static final int DEFAULT_LOG_MASK = 0;
+
 
     private final Map<String, ElementsBuffer> vertexBufferMap = new HashMap<String, ElementsBuffer>();
     private final Map<String, IndicesBuffer> indexBufferMap = new HashMap<String, IndicesBuffer>();
@@ -127,7 +134,7 @@ public class DataManager {
     private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) {
             int length = DataLoader.getDataSize(id);
             FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
-            DataLoader.fillVertices(id, data, length, 4, 0x1 | 0x2 | 0x4 | 0x8, DEFAULT_SCALE, DEFAULT_TRANSLATE);
+            DataLoader.fillVertices(id, data, length, 4, 0x1 | 0x2 | 0x4 | 0x8, DEFAULT_SCALE, DEFAULT_TRANSLATE, DEFAULT_LOG_MASK);
             vertexBuffer.setData(data, 4);
     }
 
@@ -135,7 +142,7 @@ public class DataManager {
         int length = DataLoader.getIndicesSize(id);
         IntBuffer data = BufferUtil.newIntBuffer(length);
 
-        int actualLength = DataLoader.fillIndices(id, data, length);
+        int actualLength = DataLoader.fillIndices(id, data, length, DEFAULT_LOG_MASK);
 
         /* Set the buffer size to the actual number of indices */
         data.limit(actualLength);

@@ -42,11 +42,9 @@ int getDataSize(char* id)
 
 }
 
-void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation)
+void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     char* type;
-    /* Log coordinates deactivated */
-    int logMask = 0;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
@@ -76,11 +74,9 @@ int getIndicesSize(char* id)
 }
 
 
-int fillIndices(char* id, int* buffer, int bufferLength)
+int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
     char* type;
-    /* Log coordinates deactivated */
-    int logMask = 0;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 

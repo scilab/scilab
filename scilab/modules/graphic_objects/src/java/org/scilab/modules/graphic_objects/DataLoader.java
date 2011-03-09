@@ -13,10 +13,10 @@ public class DataLoader {
     return DataLoaderJNI.getDataSize(id);
   }
 
-  public static void fillVertices(String id, java.nio.FloatBuffer buffer, int bufferLength, int elementsSize, int coordinateMask, double[] scale, double[] translation) {
+  public static void fillVertices(String id, java.nio.FloatBuffer buffer, int bufferLength, int elementsSize, int coordinateMask, double[] scale, double[] translation, int logMask) {
     assert buffer.isDirect() : "Buffer must be allocated direct.";
     {
-      DataLoaderJNI.fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation);
+      DataLoaderJNI.fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
     }
   }
 
@@ -31,10 +31,10 @@ public class DataLoader {
     return DataLoaderJNI.getIndicesSize(id);
   }
 
-  public static int fillIndices(String id, java.nio.IntBuffer BUFF, int bufferLength) {
+  public static int fillIndices(String id, java.nio.IntBuffer BUFF, int bufferLength, int logMask) {
     assert BUFF.isDirect() : "Buffer must be allocated direct.";
     {
-      return DataLoaderJNI.fillIndices(id, BUFF, bufferLength);
+      return DataLoaderJNI.fillIndices(id, BUFF, bufferLength, logMask);
     }
   }
 
