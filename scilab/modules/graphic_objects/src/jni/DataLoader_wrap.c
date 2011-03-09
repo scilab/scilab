@@ -765,7 +765,7 @@ jdoubleArray SWIG_JavaArrayOutDouble (JNIEnv *jenv, double *result, jsize sz) {
     extern int fillIndices(char* id, int* BUFF, int bufferLength, int logMask);
     
     extern int getWireIndicesSize(char* id);    
-    extern int fillWireIndices(char* id, int* BUFF, int bufferLength);
+    extern int fillWireIndices(char* id, int* BUFF, int bufferLength, int logMask);
 
     extern int getMarkIndicesSize(char* id);
     extern int fillMarkIndices(char* id, int* BUFF, int bufferLength);
@@ -928,11 +928,12 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_g
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillWireIndices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_fillWireIndices(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2, jint jarg3, jint jarg4) {
   jint jresult = 0 ;
   char *arg1 = (char *) 0 ;
   int *arg2 = (int *) 0 ;
   int arg3 ;
+  int arg4 ;
   int result;
   
   (void)jenv;
@@ -949,7 +950,8 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
     }
   }
   arg3 = (int)jarg3; 
-  result = (int)fillWireIndices(arg1,arg2,arg3);
+  arg4 = (int)jarg4; 
+  result = (int)fillWireIndices(arg1,arg2,arg3,arg4);
   jresult = (jint)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;

@@ -25,7 +25,7 @@ class DataLoaderJNI {
   public final static native int getIndicesSize(String jarg1);
   public final static native int fillIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3, int jarg4);
   public final static native int getWireIndicesSize(String jarg1);
-  public final static native int fillWireIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3);
+  public final static native int fillWireIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3, int jarg4);
   public final static native int getMarkIndicesSize(String jarg1);
   public final static native int fillMarkIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3);
 }

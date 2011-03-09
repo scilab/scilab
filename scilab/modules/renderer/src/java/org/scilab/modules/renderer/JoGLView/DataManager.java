@@ -49,13 +49,13 @@ public class DataManager {
     /*
      * Bit mask specifying whether logarithmic coordinates are used.
      * Temporarily defined as a constant for now and set to 0 (linear x, y and z coordinates).
-     * To do: pass it as an argument of fillVertexBuffer and fillIndexBuffer, when updating data.
+     * To do: pass it as an argument of fillVertexBuffer and fillWireIndexBuffer, when updating data.
      */
     private static final int DEFAULT_LOG_MASK = 0;
 
 
     private final Map<String, ElementsBuffer> vertexBufferMap = new HashMap<String, ElementsBuffer>();
-    private final Map<String, IndicesBuffer> indexBufferMap = new HashMap<String, IndicesBuffer>();
+    private final Map<String, IndicesBuffer> wireIndexBufferMap = new HashMap<String, IndicesBuffer>();
     private final Canvas canvas;
 
 
@@ -80,17 +80,17 @@ public class DataManager {
     }
 
     /**
-     * Return the index buffer of the given object.
+     * Return the wire index buffer of the given object.
      * @param id the given object Id.
-     * @return the index buffer of the given object.
+     * @return the wire index buffer of the given object.
      */
-    public IndicesBuffer getIndexBuffer(String id) {
-        if (indexBufferMap.containsKey(id)) {
-            return indexBufferMap.get(id);
+    public IndicesBuffer getWireIndexBuffer(String id) {
+        if (wireIndexBufferMap.containsKey(id)) {
+            return wireIndexBufferMap.get(id);
         } else {
             IndicesBuffer indexBuffer = canvas.getBuffersManager().createIndicesBuffer();
-            fillIndexBuffer(indexBuffer, id);
-            indexBufferMap.put(id, indexBuffer);
+            fillWireIndexBuffer(indexBuffer, id);
+            wireIndexBufferMap.put(id, indexBuffer);
             return indexBuffer;
         }
     }
@@ -107,9 +107,9 @@ public class DataManager {
                 fillVertexBuffer(vertexBuffer, id);
             }
 
-            IndicesBuffer indexBuffer = indexBufferMap.get(id);
+            IndicesBuffer indexBuffer = wireIndexBufferMap.get(id);
             if (indexBuffer != null) {
-                fillIndexBuffer(indexBuffer, id);
+                fillWireIndexBuffer(indexBuffer, id);
             }
         }
     }
@@ -124,9 +124,9 @@ public class DataManager {
             vertexBufferMap.remove(id);
         }
 
-        if (indexBufferMap.containsKey(id)) {
-            canvas.getBuffersManager().dispose(indexBufferMap.get(id));
-            indexBufferMap.remove(id);
+        if (wireIndexBufferMap.containsKey(id)) {
+            canvas.getBuffersManager().dispose(wireIndexBufferMap.get(id));
+            wireIndexBufferMap.remove(id);
         }
     }
 
@@ -138,11 +138,11 @@ public class DataManager {
             vertexBuffer.setData(data, 4);
     }
 
-    private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) {
-        int length = DataLoader.getIndicesSize(id);
+    private void fillWireIndexBuffer(IndicesBuffer indexBuffer, String id) {
+        int length = DataLoader.getWireIndicesSize(id);
         IntBuffer data = BufferUtil.newIntBuffer(length);
 
-        int actualLength = DataLoader.fillIndices(id, data, length, DEFAULT_LOG_MASK);
+        int actualLength = DataLoader.fillWireIndices(id, data, length, DEFAULT_LOG_MASK);
 
         /* Set the buffer size to the actual number of indices */
         data.limit(actualLength);

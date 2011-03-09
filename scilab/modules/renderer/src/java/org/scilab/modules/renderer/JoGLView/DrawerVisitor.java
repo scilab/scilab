@@ -207,7 +207,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
                 @Override
                 public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getIndexBuffer(polyline.getIdentifier());
+                    IndicesBuffer indices = dataManager.getWireIndexBuffer(polyline.getIdentifier());
                     System.out.println("indices size : " + indices.getSize());
                     return indices;
                 }

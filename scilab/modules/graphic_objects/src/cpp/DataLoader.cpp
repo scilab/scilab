@@ -62,40 +62,41 @@ void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 
 int getIndicesSize(char* id)
 {
-    char* type;
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
-
-    if (strcmp(type, __GO_POLYLINE__) == 0)
-    {
-        return PolylineDecomposer::getIndicesSize(id);
-    }
-
+    // TODO.
     return 0;
 }
 
 
 int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
+    // TODO.
+    return 0;
+}
+
+int getWireIndicesSize(char* id)
+{
+    char* type;
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+
+    if (strcmp(type, __GO_POLYLINE__) == 0)
+    {
+        return PolylineDecomposer::getWireIndicesSize(id);
+    }
+
+    return 0;
+}
+
+int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
+{
     char* type;
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
     if (strcmp(type, __GO_POLYLINE__) == 0)
     {
-        return PolylineDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+        return PolylineDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
     }
 
-    return 0;
-}
-
-int getWireIndicesSize(char* id)
-{
-    return 0;
-}
-
-int fillWireIndices(char* id, int* BUFF, int bufferLength)
-{
-  // TODO.
     return 0;
 }
 

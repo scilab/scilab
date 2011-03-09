@@ -75,7 +75,7 @@ NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
     extern int fillIndices(char* id, int* BUFF, int bufferLength, int logMask);
     
     extern int getWireIndicesSize(char* id);    
-    extern int fillWireIndices(char* id, int* BUFF, int bufferLength);
+    extern int fillWireIndices(char* id, int* BUFF, int bufferLength, int logMask);
 
     extern int getMarkIndicesSize(char* id);
     extern int fillMarkIndices(char* id, int* BUFF, int bufferLength);

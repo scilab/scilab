@@ -72,9 +72,10 @@ extern "C"
    * @param[in] the id of the given object.
    * @param[out] the buffer to fill.
    * @param[in] the buffer length.
+   * @param[in] the bit mask specifying whether logarithmic coordinates are used.
    * @return the number of indices actually written.
    */
-  int fillWireIndices(char* id, int* BUFF, int bufferLength);
+  int fillWireIndices(char* id, int* BUFF, int bufferLength, int logMask);
 
   /**
    * Return the number of mark indices of the given object.

@@ -42,10 +42,10 @@ public class DataLoader {
     return DataLoaderJNI.getWireIndicesSize(id);
   }
 
-  public static int fillWireIndices(String id, java.nio.IntBuffer BUFF, int bufferLength) {
+  public static int fillWireIndices(String id, java.nio.IntBuffer BUFF, int bufferLength, int logMask) {
     assert BUFF.isDirect() : "Buffer must be allocated direct.";
     {
-      return DataLoaderJNI.fillWireIndices(id, BUFF, bufferLength);
+      return DataLoaderJNI.fillWireIndices(id, BUFF, bufferLength, logMask);
     }
   }
 

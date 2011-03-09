@@ -532,7 +532,7 @@ void PolylineDecomposer::fillVerticalBarsDecompositionVertices(char* id, float* 
 
 }
 
-int PolylineDecomposer::getIndicesSize(char* id)
+int PolylineDecomposer::getWireIndicesSize(char* id)
 {
     int nPoints = 0;
     int *piNPoints = &nPoints;
@@ -670,7 +670,7 @@ int PolylineDecomposer::getVerticalBarsDecompositionIndicesSize(int nPoints, int
     }
 }
 
-int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int PolylineDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
     double* coordinates;
     double* xshift;
