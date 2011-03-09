@@ -78,6 +78,8 @@ Bug fixes:
 
 * bug 9128 fixed - In help page of dir(), infos about bytes field were missing.
 
+* bug 9141 fixed - An extra empty line was present in the console.
+
 * bug 9147 fixed - Javasci v1 was broken since the introduction of the
                    version 2.
 
