@@ -56,6 +56,50 @@
           </para>
         </answer>
       </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>The native library javasci2 does not exist or cannot be found even if java.library.path being set</para>
+        </question>
+
+        <answer>
+          <para>If the error is something like: <emphasis role="italic">java.lang.UnsatisfiedLinkError: /path/to/scilab/lib/scilab/libscilab.so.0.0.0: libsciparameters.so.5: cannot open shared object file: No such file or directory</emphasis>, try to set LD_LIBRARY_PATH to the path where Scilab native libraries are.
+
+          </para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>I try to plot a graphic but the graphic never appears.</para>
+        </question>
+
+        <answer>
+          <para>Make sure that you called the constructor (<emphasis role="italic">Scilab sci = new Scilab(true);</emphasis>) with the boolean value <emphasis role="italic">true</emphasis>. It starts Scilab in advanced mode.
+          </para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>I would like to attach a graphic from Javasci to an existing Swing application. I don't know how to do that?</para>
+        </question>
+
+        <answer>
+          <para>Well. For now, it is not possible out of the box. The feature should be available in a future version of Scilab. As always, contributions are welcome!
+          </para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>I found the current way to manage Scilab graphic windows from javasci pretty hard. What should I do?</para>
+        </question>
+
+        <answer>
+          <para>This is embarassing. We are aware that the current solution is far from perfect. We hope we will be able to tackle this limitation in a future release.
+          </para>
+        </answer>
+      </qandaentry>
     </qandaset>
 
   </refsection>

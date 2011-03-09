@@ -1,20 +1,20 @@
 # Localization of the module sparse
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:37+0100\n"
+"Revision-Date: 2011-03-09 14:19+0100\n"
 
 # File: src/c/spOutput.c, line: 332
 #, c-format
@@ -150,7 +150,9 @@ msgstr ""
 # File: macros/pcg.sci, line: 62
 # File: macros/pcg.sci, line: 65
 # File: macros/qmr.sci, line: 261
+# File: macros/sp2adj.sci, line: 19
 # File: macros/gmres.sci, line: 151
+# File: macros/adj2sp.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -158,6 +160,18 @@ msgstr ""
 # File: macros/qmr.sci, line: 61
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+#
+# File: macros/sp2adj.sci, line: 23
+# File: macros/adj2sp.sci, line: 23
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/adj2sp.sci, line: 57
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
 msgstr ""
 #
 # File: macros/qmr.sci, line: 105
@@ -206,6 +220,10 @@ msgstr ""
 # File: macros/pcg.sci, line: 155
 # File: macros/pcg.sci, line: 184
 # File: macros/qmr.sci, line: 73
+# File: macros/sp2adj.sci, line: 29
+# File: macros/adj2sp.sci, line: 43
+# File: macros/adj2sp.sci, line: 47
+# File: macros/adj2sp.sci, line: 51
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
@@ -242,6 +260,35 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
+msgstr ""
+#
+# File: macros/adj2sp.sci, line: 63
+# File: macros/adj2sp.sci, line: 67
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+#
+# File: macros/adj2sp.sci, line: 79
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+#
+# File: macros/adj2sp.sci, line: 83
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+#
+# File: macros/adj2sp.sci, line: 71
+# File: macros/adj2sp.sci, line: 75
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
 msgstr ""
 #
 # File: macros/sprand.sci, line: 29
