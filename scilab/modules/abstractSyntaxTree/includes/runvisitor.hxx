@@ -82,6 +82,7 @@ namespace ast
                 {
                     //					std::cout << "before single delete : " << _result << std::endl;
                     delete _result;
+                    _result = NULL;
                     //					std::cout << "after single delete" << std::endl;
                 }
             }
@@ -92,6 +93,7 @@ namespace ast
                     if(_resultVect[i] != NULL && _resultVect[i]->isDeletable() == true)
                     {
                         delete _resultVect[i];
+                        _resultVect[i] = NULL;
                     }
                 }
             }
@@ -823,7 +825,7 @@ namespace ast
                 }
 
                 pVar->DecreaseRef();
-                delete pVar;
+                //delete pVar;
             }
             else
             {//Matrix i = [1,3,2,6] or other type
