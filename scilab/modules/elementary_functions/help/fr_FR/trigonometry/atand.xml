@@ -20,7 +20,7 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
 
-    <synopsis>phi=atan(xd)
+    <synopsis>phi=atand(x)
 phi=atand(y,x)</synopsis>
   </refsynopsisdiv>
 
