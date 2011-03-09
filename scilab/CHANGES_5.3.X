@@ -30,6 +30,8 @@ Xcos:
 
 * bug 9077 fixed - Automotive Suspension demo was modified on loading.
 
+* bug 9024 fixed - Opening a non existing file lead to palette closing issues.
+
 * bug 9122 fixed - Java check failed on diagram validation.
 
 Javasci:

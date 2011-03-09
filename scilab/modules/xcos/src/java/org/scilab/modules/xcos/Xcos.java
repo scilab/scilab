@@ -297,13 +297,15 @@ public final class Xcos {
 
 			if (filename != null) {
 				// wait the end of the load before displaying the tab.
-				diag.openDiagramFromFile(filename);
+				diag = diag.openDiagramFromFile(filename);
 			} else {
 				// empty tab, display it
 				tab.setVisible(true);
 			}
-
-			diagrams.add(diag);
+			
+			if (diag != null) {
+				diagrams.add(diag);
+			}
 		} else {
 
 			/*
