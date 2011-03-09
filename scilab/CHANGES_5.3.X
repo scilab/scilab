@@ -5,6 +5,8 @@
 Scinotes:
 =========
 
+* The selection is now highlighted in yellow in all the document.
+
 * bug 9047 fixed - edit('foo',12) now opens the function foo 12 lines after the
                    definition of foo.
 

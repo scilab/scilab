@@ -294,4 +294,9 @@ public class SciNotesMessages {
     public static final String TABHRULE = Messages.gettext("Horizontal rule");
     public static final String TABVRULE = Messages.gettext("Vertical rule");
     public static final String TABDOUBLECHEVRONS = Messages.gettext("Double chevrons");
+
+    /**
+     * Incremental search
+     */
+    public static final String EXACT = Messages.gettext("Exact");
 }

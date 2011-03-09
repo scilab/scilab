@@ -40,6 +40,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.Highlighter;
@@ -69,6 +70,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private static final String TIRET = " - ";
     private static final Cursor HANDCURSOR = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private static final Cursor TEXTCURSOR = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
+    private static final DefaultHighlighter.DefaultHighlightPainter HIGHLIGHTER = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
 
     private static ScilabEditorPane focused;
 
@@ -117,7 +119,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean hasBeenSaved;
     private boolean saveHighlightEnable;
 
-    private List<KeywordListener> kwListeners = new ArrayList();
+    private List<KeywordListener> kwListeners = new ArrayList<KeywordListener>();
+    private List<Object> highlightedWords = new ArrayList<Object>();
+    private List<Integer> highlightedWordsBegin = new ArrayList<Integer>();
 
     /**
      * Constructor
@@ -900,6 +904,16 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             removeHighlightForLine();
         }
 
+        if (hasFocus()) {
+            String str = getSelectedText();
+            if (str != null && str.length() != 0) {
+                highlightWords(str, true);
+                removeHighlightOnPosition(getSelectionStart());
+            } else {
+                removeHighlightedWords();
+            }
+        }
+
         if (highlightEnable) {
             repaint();
         }
@@ -1082,6 +1096,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (hasBeenSaved) {
             removeHighlightForLine();
         }
+
+        removeHighlightedWords();
+
         if (highlightEnable) {
             repaint();
         }
@@ -1110,6 +1127,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (hasBeenSaved) {
             removeHighlightForLine();
         }
+
+        removeHighlightedWords();
+
         if (highlightEnable) {
             repaint();
         }
@@ -1230,6 +1250,51 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaretColor(getCaretColor());
         setCaret(caret);
+    }
+
+    public void select(int start, int end) {
+        removeHighlightOnPosition(start);
+        super.select(start, end);
+    }
+
+    public void removeHighlightOnPosition(int start) {
+        int pos = highlightedWordsBegin.indexOf(start);
+        if (pos != -1) {
+            getHighlighter().removeHighlight(highlightedWords.remove(pos));
+            highlightedWordsBegin.remove(pos);
+        }
+    }
+
+    public void highlightWords(String word, boolean exact) {
+        if (word != null && word.length() != 0) {
+            removeHighlightedWords();
+            String text = getText();
+            if (!exact) {
+                text = text.toLowerCase();
+                word = word.toLowerCase();
+            }
+
+            int pos = text.indexOf(word, 0);
+            int end = text.length();
+            int len = word.length();
+            Highlighter highlighter = getHighlighter();
+            while (pos != -1) {
+                try {
+                    highlightedWords.add(highlighter.addHighlight(pos, pos + len, HIGHLIGHTER));
+                    highlightedWordsBegin.add(pos);
+                } catch (BadLocationException e) { }
+                pos = text.indexOf(word, pos + len);
+            }
+        }
+    }
+
+    public void removeHighlightedWords() {
+        Highlighter highlighter = getHighlighter();
+        for (Object obj : highlightedWords) {
+            highlighter.removeHighlight(obj);
+        }
+        highlightedWords.clear();
+        highlightedWordsBegin.clear();
     }
 
     /**
