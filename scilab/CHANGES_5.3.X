@@ -28,9 +28,12 @@ Xcos:
 
 * bug 6416 fixed - GENSQR_f block documentation was not complete.
 
+* bug 9024 fixed - Opening a non existing file lead to palette closing issues.
+
 * bug 9077 fixed - Automotive Suspension demo was modified on loading.
 
-* bug 9024 fixed - Opening a non existing file lead to palette closing issues.
+* bug 9111 fixed - Zoom In/Zoom Out keyboard shortcuts did not work on Apple 
+                   machines.
 
 * bug 9122 fixed - Java check failed on diagram validation.
 
