@@ -116,11 +116,8 @@ AC_ARG_ENABLE(stopOnWarning,
 AC_ARG_WITH(gcc,
     AC_HELP_STRING([--with-gcc],[Use gcc C compiler ]))
 
-AC_ARG_WITH(g77,
-    AC_HELP_STRING([--with-g77],[Use g77, GNU Fortran 77 compiler ]))
-
 AC_ARG_WITH(gfortran,
-    AC_HELP_STRING([--with-gfortran],[Use gfortran, GNU Fortran 95 compiler ]))
+    AC_HELP_STRING([--with-gfortran],[Use gfortran, GNU Fortran 95 compiler]))
 
 AC_ARG_WITH(intelcompilers,
     AC_HELP_STRING([--with-intelcompilers],[Use Intel C (icc) and Fortran (ifort) proprietary compilers (GNU/Linux only) ]))
@@ -188,21 +185,11 @@ PKG_PROG_PKG_CONFIG
 ## check if options are correct (or not)
 #####################################################
 
-if test "$with_g77" = yes -a "$with_gfortran" = yes; then
-    AC_MSG_ERROR([Conflicting options : you specified two fortran compilers])
-fi
-
 if test "$with_intelcompilers" = yes -a "$with_gcc" = yes; then
     AC_MSG_ERROR([Conflicting options : you specified two compiler series])
 fi
 
 ######## fortran ########
-if test "$with_g77" = yes; then
-   AC_PROG_F77(g77)
-   if test -z "$F77"; then
-     AC_MSG_ERROR([You asked me to use g77 but i haven't been able to find it])
-    fi
-fi
 
 if test "$with_gfortran" = yes; then
    AC_PROG_F77(gfortran)
@@ -373,7 +360,7 @@ fi
 
 
 ######################
-######## With F77 / G77 / GFortran ...
+######## With gfortran ...
 ######################
 if test -n "$F77"; then
    case "$F77" in
@@ -382,6 +369,9 @@ if test -n "$F77"; then
         if test "$enable_code_coverage" = yes; then
             FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
         fi
+     ;;
+     g77*)
+        AC_MSG_ERROR([g77 is no longer supported. Please consider switching to gfortran])
      ;;
    esac
 
@@ -1881,7 +1871,6 @@ echo ""
 echo "Compiler Configuration:"
 echo "  Intel (--with-intelcompilers) .... =        $with_intelcompilers"
 echo "  GNU gcc (--with-gcc) ............. =        $with_gcc"
-echo "  GNU Fortran 77 (--with-g77) ...... =        $with_g77"
 echo "  GNU Fortran 95 (--with-gfortran) . =        $with_gfortran"
 echo ""
 echo "Options:"

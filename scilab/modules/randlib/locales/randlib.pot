@@ -1,22 +1,22 @@
 # Localization of the module randlib
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:38+0100\n"
+"Revision-Date: 2011-03-09 14:19+0100\n"
 
-# File: src/c/clcg4.c, line: 161
+# File: src/c/clcg4.c, line: 167
 msgid ""
 "\n"
 " bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n"
@@ -25,7 +25,7 @@ msgid ""
 "                                             s4 in [1, 2147483322]"
 msgstr ""
 #
-# File: src/c/clcg4.c, line: 179
+# File: src/c/clcg4.c, line: 185
 #, c-format
 msgid ""
 "\n"
@@ -34,39 +34,39 @@ msgid ""
 "    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
 msgstr ""
 #
-# File: src/c/fsultra.c, line: 165
+# File: src/c/fsultra.c, line: 171
 msgid ""
 "\n"
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 #
-# File: src/c/urand.c, line: 47
+# File: src/c/urand.c, line: 61
 msgid ""
 "\n"
 "Bad seed for urand, must be an int in [0,  2147483647]\n"
 msgstr ""
 #
-# File: src/c/clcg2.c, line: 82
+# File: src/c/clcg2.c, line: 88
 msgid ""
 "\n"
 "Bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n"
 "                                        and  s2 in [1, 2147483398]\n"
 msgstr ""
 #
-# File: src/c/fsultra.c, line: 178
+# File: src/c/fsultra.c, line: 184
 #, c-format
 msgid ""
 "\n"
 "The first component of the fsultra state, must be an int in [0, %d]\n"
 msgstr ""
 #
-# File: src/c/fsultra.c, line: 186
+# File: src/c/fsultra.c, line: 192
 msgid ""
 "\n"
 "The second component of the fsultra state, must be 0 or 1\n"
 msgstr ""
 #
-# File: src/c/fsultra.c, line: 194
+# File: src/c/fsultra.c, line: 200
 msgid ""
 "\n"
 "The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
@@ -296,8 +296,8 @@ msgstr ""
 # File: sci_gateway/c/sci_grand.c, line: 450
 #, c-format
 msgid ""
-"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or '%"
-"s' expected.\n"
+"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
+"'%s' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 404
@@ -330,11 +330,11 @@ msgstr ""
 msgid "Av < 0.0\n"
 msgstr ""
 #
-# File: src/c/mt.c, line: 138
+# File: src/c/mt.c, line: 145
 msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
 msgstr ""
 #
-# File: src/c/kiss.c, line: 67
+# File: src/c/kiss.c, line: 71
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""
 #
@@ -526,7 +526,7 @@ msgstr ""
 msgid "The %s option affects only the clcg4 generator\n"
 msgstr ""
 #
-# File: src/c/mt.c, line: 165
+# File: src/c/mt.c, line: 172
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr ""
 #

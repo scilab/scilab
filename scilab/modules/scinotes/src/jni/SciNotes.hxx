@@ -47,6 +47,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
+#include "GiwsException.hxx"
+
 #ifndef _MSC_VER /* Defined anyway with Visual */
 #if !defined(byte)
 typedef signed char byte;

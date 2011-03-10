@@ -393,6 +393,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console", "modules\console\src\c\console.vcxproj", "{445D3B85-C9B1-498B-9C88-0A3C2390B1CC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console-Ant", "modules\console\src\java\console-JAVA.vcxproj", "{251D7C8F-9B69-4CE9-959E-57F343DDC883}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9783492-017E-4811-9CC7-6B71856F847C} = {E9783492-017E-4811-9CC7-6B71856F847C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "doublylinkedlist", "libs\doublylinkedlist\doublylinkedlist.vcxproj", "{ED02137F-0A4F-4EF0-AC58-97ACE37FA89D}"
 EndProject

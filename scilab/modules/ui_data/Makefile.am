@@ -35,7 +35,9 @@ UI_DATA_C_SOURCES =
 
 UI_DATA_CPP_SOURCES = 
 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS = \
+src/jni/BrowseVar.giws.xml \
+src/jni/EditVar.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws

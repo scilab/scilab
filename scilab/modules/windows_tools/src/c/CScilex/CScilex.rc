@@ -106,7 +106,7 @@ BEGIN
         BLOCK "040c04b0"
         BEGIN
             VALUE "CompanyName", "Consortium Scilab (DIGITEO)"
-            VALUE "FileDescription", "Scilab 5.4 (NO GUI)"
+            VALUE "FileDescription", "Scilab 5.3.1 (NO GUI)"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "WScilex"
             VALUE "LegalCopyright", "Copyright (C) 2011"

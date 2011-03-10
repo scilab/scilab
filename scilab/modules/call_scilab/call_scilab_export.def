@@ -15,4 +15,5 @@ EXPORTS
 	SendScilabJobs
 	Call_ScilabOpen
 	getVariableType
+	setCallScilabEngineState
 ; --------------------------------------- 

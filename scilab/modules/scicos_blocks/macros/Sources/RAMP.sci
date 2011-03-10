@@ -1,6 +1,7 @@
-//  Scicos
+// Xcos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,16 +36,18 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,slope,stt,iout,exprs]=scicos_getvalue('Set ramp parameters',..
-	['Slope';'Start time';'Initial output'],list('vec',1,'vec',1,'vec',1),exprs)
+    [ok,slope,stt,iout,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "RAMP"); " "; gettext("Ramp function");" "], ..
+        [gettext("Slope"); gettext("Start Time"); gettext("Initial Value")], ..
+      list('vec',1,'vec',1,'vec',1), exprs)
     if ~ok then break,end
     if stt<0  then
-      message('Time must be > 0')
+        block_parameter_error(msprintf(gettext("Wrong value for ''Start Time'' parameter: %e."), stt), ..
+        gettext("Null or positive integer expected."));
     else
-      model.rpar=[slope;stt;iout];
-      graphics.exprs=exprs
-      x.graphics=graphics;x.model=model
-      break
+        model.rpar=[slope;stt;iout];
+        graphics.exprs=exprs
+        x.graphics=graphics;x.model=model
+        break
     end
   end
 case 'define' then

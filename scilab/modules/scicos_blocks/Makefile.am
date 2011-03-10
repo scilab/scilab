@@ -349,6 +349,9 @@ NON_BLOCK_CPP_SOURCES = \
 src/jni/GiwsException.cpp \
 src/jni/AfficheBlock.cpp
 
+GIWS_WRAPPERS = \
+src/jni/Blocks.giws.xml
+
 SCICOS_BLOCKS_FORTRAN_SOURCES = \
 src/fortran/affich.f \
 src/fortran/csslti.f \
@@ -459,6 +462,10 @@ INCLUDE_FLAGS = $(libsciscicos_blocks_la_CFLAGS)
 
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
 BUILT_SOURCES = includes/blocks.h
+
+if GIWS
+BUILT_SOURCES+=giws
+endif
 
 $(top_builddir)/modules/scicos_blocks/build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
 	@echo "-- Generates build/Cblocknames --"
