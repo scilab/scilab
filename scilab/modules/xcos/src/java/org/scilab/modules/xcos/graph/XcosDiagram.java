@@ -1630,7 +1630,15 @@ public class XcosDiagram extends ScilabGraph {
 	    final SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 	    fc.setTitle(XcosMessages.SAVE_AS);
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
+	    
+	    final SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
+	    final SciFileFilter allFilter = new SciFileFilter("*.*", null, 1);
+	    fc.addChoosableFileFilter(xcosFilter);
+	    fc.addChoosableFileFilter(allFilter);
+	    fc.setFileFilter(xcosFilter);
+	    
 	    fc.setMultipleSelection(false);
+	    fc.setAcceptAllFileFilterUsed(false);
 	    if (getSavedFile() != null) {
 	    	fc.setSelectedFile(getSavedFile());
 	    } else {
@@ -1640,20 +1648,13 @@ public class XcosDiagram extends ScilabGraph {
 	    	}
 	    }
 
-	    final SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
-	    final SciFileFilter allFilter = new SciFileFilter("*.*", null, 1);
-	    fc.addChoosableFileFilter(xcosFilter);
-	    fc.addChoosableFileFilter(allFilter);
-	    fc.setFileFilter(xcosFilter);
-
-	    fc.setAcceptAllFileFilterUsed(false);
-	    fc.displayAndWait();
-
-	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
-		info(XcosMessages.EMPTY_INFO);
-		return isSuccess;
+	    int status = fc.showSaveDialog(this.getAsComponent());
+	    if (status != JFileChooser.APPROVE_OPTION) {
+	    	info(XcosMessages.EMPTY_INFO);
+	    	return isSuccess;
 	    }
-	    writeFile = new File(fc.getSelection()[0]);
+	    
+	    writeFile = fc.getSelectedFile();
 	}
 	
 	/* Extension checks */
