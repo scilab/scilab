@@ -32,11 +32,13 @@ Xcos:
 
 * bug 6416 fixed - GENSQR_f block documentation was not complete.
 
+* bug 8692 fixed - Null block parameters was not checked before encoding.
+
 * bug 9024 fixed - Opening a non existing file lead to palette closing issues.
 
 * bug 9077 fixed - Automotive Suspension demo was modified on loading.
 
-* bug 9111 fixed - Zoom In/Zoom Out keyboard shortcuts did not work on Apple 
+* bug 9111 fixed - Zoom In/Zoom Out keyboard shortcuts did not work on Apple
                    machines.
 
 * bug 9116 fixed - Saving a diagram with the default name produce an exception.

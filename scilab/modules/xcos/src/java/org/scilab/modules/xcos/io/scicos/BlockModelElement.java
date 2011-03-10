@@ -491,6 +491,7 @@ class BlockModelElement extends BlockPartsElement {
 	public ScilabType encode(BasicBlock from, ScilabType element) {
 		data = (ScilabMList) element;
 		int field = 0;
+		ScilabType property;
 		
 		if (data == null) {
 			data = allocateElement();
@@ -547,17 +548,35 @@ class BlockModelElement extends BlockPartsElement {
 		 * Parameters
 		 */
 		field++; // rpar
-		data.set(field, from.getRealParameters());
+		property = from.getRealParameters();
+		if (property == null) {
+			property = new ScilabDouble();
+		}
+		data.set(field, property);
+		
 		field++; // ipar
-		data.set(field, from.getIntegerParameters());
+		property = from.getIntegerParameters();
+		if (property == null) {
+			property = new ScilabDouble();
+		}
+		data.set(field, property);
+		
 		field++; // opar
-		data.set(field, from.getObjectsParameters());
+		property = from.getObjectsParameters();
+		if (property == null) {
+			property = new ScilabDouble();
+		}
+		data.set(field, property);
 		
 		field++; // blocktype
 		data.set(field, new ScilabString(from.getBlockType()));
 		
 		field++; // firing
-		data.set(field, from.getAllCommandPortsInitialStates());
+		property = from.getAllCommandPortsInitialStates();
+		if (property == null) {
+			property = new ScilabDouble();
+		}
+		data.set(field, property);
 		
 		field++; // dep_ut
 		boolean[][] dependsOnUandT = {{from.isDependsOnU() , from.isDependsOnT()}};
@@ -567,15 +586,25 @@ class BlockModelElement extends BlockPartsElement {
 		data.set(field, new ScilabString(from.getId()));
 		
 		field++; // nzcross
-		data.set(field, from.getNbZerosCrossing());
+		property = from.getNbZerosCrossing();
+		if (property == null) {
+			property = new ScilabDouble();
+		}
+		data.set(field, property);
 		
 		field++; // nmode
-		data.set(field, from.getNmode());
+		property = from.getNmode();
+		if (property == null) {
+			property = new ScilabDouble();
+		}
+		data.set(field, property);
 		
 		field++; // equations
-		if (from.getEquations() != null) {
-			data.set(field, from.getEquations());
+		property = from.getEquations();
+		if (property == null) {
+			property = new ScilabDouble();
 		}
+		data.set(field, property);
 		
 		data = (ScilabMList) afterEncode(from, data);
 		
