@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010-2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -99,19 +99,18 @@ public class SciCompletionWindow extends AbstractSciCompletionWindow {
 
                                 Dimension newDim = new Dimension(newWidth, newHeight);
 
-                                getTextComponent().setPreferredSize(newDim);
+                                SciInputCommandView sicv = (SciInputCommandView) getTextComponent();
+                                sicv.setPreferredWidth(newWidth);
+                                sicv.setPreferredHeight(newHeight);
 
-                        getTextComponent().invalidate();
-                        getTextComponent().doLayout();
-
-                        sciConsole.setInputCommandViewSizeForced(true);
+                                getTextComponent().validate();
                         }
 
                         model.updateData(list);
 
                         /* Display completion window */
                         window.setLocation(location);
-                        window.setVisible(true);
+                        setVisible(true);
 
                         scrollPane.getViewport().setViewPosition(new Point(0, 0));
 
@@ -127,4 +126,18 @@ public class SciCompletionWindow extends AbstractSciCompletionWindow {
 
                 }
         }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setVisible(boolean visible) {
+        if (!visible) {
+            SciInputCommandView sicv = (SciInputCommandView) getTextComponent();
+            sicv.setPreferredWidth(-1);
+            sicv.setPreferredHeight(-1);
+            sicv.validate();
+        }
+        super.setVisible(visible);
+    }
+
 }
