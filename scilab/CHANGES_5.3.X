@@ -93,6 +93,9 @@ Bug fixes:
 * bug 9070 fixed - The demonstration "Simulation/Wheel Simulation/Simulation with
                    ode" displayed a warning about an obsolete use of ilib_for_link.
 
+* bug 9082 fixed - It was not possible to preview LaTeX when it was a second
+                   LaTeX string.
+
 * Bug 9083 fixed - Bad output with prettyprint and syslin.
 
 * bug 9113 fixed - setlookandfeel could lead to an exception.

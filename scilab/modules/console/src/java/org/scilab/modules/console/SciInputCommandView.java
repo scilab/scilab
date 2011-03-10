@@ -222,11 +222,16 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      */
     public void caretUpdate(CaretEvent e) {
         String str = getText().substring(0, e.getDot());
+        int lastPos = str.lastIndexOf("\"$");
+        if (lastPos != -1) {
+            str = str.substring(lastPos);
+        }
+
         Matcher matcher = latexPattern.matcher(str);
         if (matcher.find() && matcher.end() == str.length()) {
             String latex = matcher.group().replace("\'\'", "\'").replace("\"\"", "\"");
             latex = latex.substring(2, latex.length());
-            int hl = ScilabLaTeXViewer.displayExpression(this, Integer.MAX_VALUE, latex, 0, e.getDot()) + 2;
+            int hl = ScilabLaTeXViewer.displayExpression(this, Integer.MAX_VALUE, latex, lastPos, e.getDot()) + 2;
             int y = 0;
             try {
                 Rectangle rect = modelToView(getCaretPosition());
