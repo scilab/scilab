@@ -1,6 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2011 Bernard DUJARDIN <bernard.dujardin@scilab.contrib.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,58 +41,62 @@ case 'set' then
   fname=exprs(2)
   frmt=exprs(3)
   while %t do
-    [ok,in,fname1,frmt1,N,swap,exprs]=scicos_getvalue(..
-	'Set WRITEC block parameters',..
-	['Input size';
-	'Output file name';
-	'Output Format';
-	'Buffer size';
-	'Swap mode 0/1'],..
-	 list('vec',1,'str',1,'str',1,'vec',1,'vec',1),exprs)
+    [ok,in,fname1,frmt1,N,swap,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "WRITEC_f");" "; ..
+        gettext("Write to C binary file")], [gettext("Input Size"); gettext("Output File Name"); ..
+        gettext("Output Format"); gettext("Buffer Size"); gettext("Swap Mode (0:No, 1:Yes)")], ..
+        list('vec',1,'str',1,'str',1,'vec',1,'vec',1),exprs)
+
     if ~ok then break,end //user cancel modification
 
     in=int(in)
     nin=in
 
-    fname1=stripblanks(fname1)
+    fname1 = pathconvert(stripblanks(fname1), %f, %t)
     frmt1=stripblanks(frmt1)
-    fmts=['s','l','d','f','c','us','ul','uc','ull','uls','ubl','ubs',..
-	    'dl','fl','ll','sl','db','fb','lb','sb']
-    mess=[]
-    if and(frmt1<>fmts) then
-      mess=[mess;'Incorrect format, valid formats are:'
-	  strcat(fmts,', ')];
+    fmts=['s','l','d','f','c','us','ul','uc','ull','uls','ubl','ubs', 'dl','fl','ll','sl','db','fb','lb','sb']
+
+    if and(frmt1 <> fmts) then
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %s."), gettext("Input Format"), frmt1), ..
+        gettext("Valid formats are: " + strcat(fmts,', ')));
+      ok=%f
+    elseif alreadyran & fname1 <> fname then
+      block_parameter_error(msprintf(gettext("You cannot modify ''%s'' when running"), gettext("Input Format")), ..
+        gettext("End current simulation first."));
+      ok=%f
+    elseif alreadyran & N <> ipar(5) then
+      block_parameter_error(msprintf(gettext("You cannot modify ''Buffer Size'' when running."), gettext("Buffer Size")), ..
+        gettext("End current simulation first"));
+      ok=%f
+    elseif fname1 == "" then
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter"), gettext("Output File Name")), gettext("You must provide a filename."));
+    //Check if directory exist
+    elseif fileparts(fname1) ~= "" then
+        [pa, fn, ex] = fileparts(fname1)
+        if ~isdir(pa) then
+          block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter."), gettext("Output File Name")), ..
+            msprintf(gettext("Directory ''%s'' does not exist"), pa ));
+        end
+      ok=%f
+    elseif N < 1 then
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Buffer Size"), N), ..
+        gettext("Strictly positive integer expected."));
+      ok=%f
+    elseif in <= 0 then
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Input Size"), in), ..
+        gettext("Strictly positive integer expected."));
+      ok=%f
+    elseif swap <> 0 & swap <> 1 then
+      block_parameter_error(msprintf(gettext("Wrong value for  ''%s'' parameter: %d."), gettext("Swap Mode"), swap), ..
+        msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
       ok=%f
     end
-    if alreadyran&fname1<>fname then
-      mess=[mess;'You cannot modify Output file name when running';'End current simulation first']
-      ok=%f
-    end
-    if alreadyran&N<>ipar(5) then
-      mess=[mess;'You cannot modify buffer length when running';'End current simulation first']
-      ok=%f
-    end
-    if N<1 then
-      mess=[mess;'Buffer size must be at least 1';' ']
-      ok=%f
-    end
-    if in<=0 then
-      mess=[mess;'Block must have at least one input';' ']
-      ok=%f
-    end
-    if swap<>0&swap<>1 then
-      mess=[mess;'Swap mode must be 0 or 1'];ok=%f
-    end
-    if ~ok then
-      message(['Some specified values are inconsistent:';
-	  ' ';mess])
-    end
-    frmt1=part(frmt1,1:3)  
+
+    frmt1=part(frmt1,1:3)
 
     if ok then
       ipar=[length(fname1);str2code(frmt1);N;swap;str2code(fname1)]
       if prod(size(dstate))<>(nin+1)*N+2 then
-	dstate=[-1;lunit;zeros((nin+1)*N,1)]
+          dstate=[-1;lunit;zeros((nin+1)*N,1)]
       end
       model.in=nin
       model.dstate=dstate;model.ipar=ipar
@@ -101,7 +106,6 @@ case 'set' then
       x.graphics=graphics;x.model=model
       break
     end
-    
   end
 case 'define' then
   in=1;nin=sum(in)
