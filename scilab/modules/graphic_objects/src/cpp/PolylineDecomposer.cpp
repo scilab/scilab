@@ -741,27 +741,27 @@ int PolylineDecomposer::getWireIndicesSize(char* id)
     /* Segments */
     if (polylineStyle == 1)
     {
-        return getSegmentsDecompositionIndicesSize(nPoints, lineMode, closed);
+        return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
     }
     /* Staircase */
     else if (polylineStyle == 2)
     {
-        return getStairDecompositionIndicesSize(nPoints, lineMode, closed);
+        return getStairDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
     }
     /* Vertical segments plus segments */
     else if (polylineStyle == 3)
     {
-        return getVerticalLinesDecompositionIndicesSize(nPoints, lineMode);
+        return getVerticalLinesDecompositionSegmentIndicesSize(nPoints, lineMode);
     }
     /* Arrowed segments */
     else if (polylineStyle == 4)
     {
-        return getSegmentsDecompositionIndicesSize(nPoints, lineMode, closed);
+        return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
     }
     /* Vertical bars plus segments */
     else if (polylineStyle == 6)
     {
-        return getVerticalBarsDecompositionIndicesSize(nPoints, lineMode);
+        return getVerticalBarsDecompositionSegmentIndicesSize(nPoints, lineMode);
     }
     else
     {
@@ -770,7 +770,7 @@ int PolylineDecomposer::getWireIndicesSize(char* id)
 
 }
 
-int PolylineDecomposer::getSegmentsDecompositionIndicesSize(int nPoints, int lineMode, int closed)
+int PolylineDecomposer::getSegmentsDecompositionSegmentIndicesSize(int nPoints, int lineMode, int closed)
 {
     if (nPoints < 2)
     {
@@ -794,7 +794,7 @@ int PolylineDecomposer::getSegmentsDecompositionIndicesSize(int nPoints, int lin
     }
 }
 
-int PolylineDecomposer::getStairDecompositionIndicesSize(int nPoints, int lineMode, int closed)
+int PolylineDecomposer::getStairDecompositionSegmentIndicesSize(int nPoints, int lineMode, int closed)
 {
     if (nPoints < 2)
     {
@@ -818,7 +818,7 @@ int PolylineDecomposer::getStairDecompositionIndicesSize(int nPoints, int lineMo
     }
 }
 
-int PolylineDecomposer::getVerticalLinesDecompositionIndicesSize(int nPoints, int lineMode)
+int PolylineDecomposer::getVerticalLinesDecompositionSegmentIndicesSize(int nPoints, int lineMode)
 {
     if (nPoints == 0)
     {
@@ -835,7 +835,7 @@ int PolylineDecomposer::getVerticalLinesDecompositionIndicesSize(int nPoints, in
     }
 }
 
-int PolylineDecomposer::getVerticalBarsDecompositionIndicesSize(int nPoints, int lineMode)
+int PolylineDecomposer::getVerticalBarsDecompositionSegmentIndicesSize(int nPoints, int lineMode)
 {
     if (nPoints == 0)
     {
@@ -881,29 +881,29 @@ int PolylineDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength,
 
     if (polylineStyle == 1)
     {
-        return fillSegmentsDecompositionIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
+        return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
     }
     else if (polylineStyle == 2)
     {
-        return fillStairDecompositionIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
+        return fillStairDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
     }
     else if (polylineStyle == 3)
     {
-        return fillVerticalLinesDecompositionIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
+        return fillVerticalLinesDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
     }
     else if (polylineStyle == 4)
     {
-        return fillSegmentsDecompositionIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
+        return fillSegmentsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode, closed);
     }
     else if (polylineStyle == 6)
     {
-        return fillVerticalBarsDecompositionIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
+        return fillVerticalBarsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
     }
 
     return 0;
 }
 
-int PolylineDecomposer::fillSegmentsDecompositionIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillSegmentsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
     int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed)
 {
     double coordsi[3];
@@ -982,7 +982,7 @@ int PolylineDecomposer::fillSegmentsDecompositionIndices(char* id, int* buffer, 
     return numberValidIndices;
 }
 
-int PolylineDecomposer::fillStairDecompositionIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillStairDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
     int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed)
 {
     double coordsi[3];
@@ -1089,7 +1089,7 @@ int PolylineDecomposer::fillStairDecompositionIndices(char* id, int* buffer, int
     return numberValidIndices;
 }
 
-int PolylineDecomposer::fillVerticalLinesDecompositionIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillVerticalLinesDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
     int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode)
 {
     double coordsi[3];
@@ -1166,7 +1166,7 @@ int PolylineDecomposer::fillVerticalLinesDecompositionIndices(char* id, int* buf
 }
 
 
-int PolylineDecomposer::fillVerticalBarsDecompositionIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillVerticalBarsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
     int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode)
 {
     double coordsi[3];

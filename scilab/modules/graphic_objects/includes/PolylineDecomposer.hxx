@@ -175,7 +175,7 @@ private :
      * @param[in] a flag indicating whether the polyline is closed or not.
      * @return the number of segment indices.
      */
-    static int getSegmentsDecompositionIndicesSize(int nPoints, int lineMode, int closed);
+    static int getSegmentsDecompositionSegmentIndicesSize(int nPoints, int lineMode, int closed);
 
     /**
      * Returns the number of segment indices of a polyline decomposed into a series of steps.
@@ -184,7 +184,7 @@ private :
      * @param[in] a flag indicating whether the polyline is closed or not.
      * @return the number of segment indices.
      */
-    static int getStairDecompositionIndicesSize(int nPoints, int lineMode, int closed);
+    static int getStairDecompositionSegmentIndicesSize(int nPoints, int lineMode, int closed);
 
     /**
      * Returns the number of segment indices of a polyline decomposed into a series of vertical lines and consecutive segments.
@@ -192,7 +192,7 @@ private :
      * @param[in] the line mode flag.
      * @return the number of segment indices.
      */
-    static int getVerticalLinesDecompositionIndicesSize(int nPoints, int lineMode);
+    static int getVerticalLinesDecompositionSegmentIndicesSize(int nPoints, int lineMode);
 
     /**
      * Returns the number of segment indices of a polyline decomposed into a series of vertical bars and consecutive segments.
@@ -200,10 +200,10 @@ private :
      * @param[in] the line mode flag.
      * @return the number of segment indices.
      */
-    static int getVerticalBarsDecompositionIndicesSize(int nPoints, int lineMode);
+    static int getVerticalBarsDecompositionSegmentIndicesSize(int nPoints, int lineMode);
 
     /**
-     * Fills a buffer with the indices of a polyline decomposed into consecutive segments.
+     * Fills a buffer with the segment indices of a polyline decomposed into consecutive segments.
      * @param[in] the id of the polyline.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
@@ -217,11 +217,11 @@ private :
      * @param[in] a flag indicating whether the polyline is closed or not.
      * @return the number of indices actually written.
      */
-    static int fillSegmentsDecompositionIndices(char* id, int* buffer, int bufferLength,
+    static int fillSegmentsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
 
     /**
-     * Fills a buffer with the indices of a polyline decomposed into a series of steps.
+     * Fills a buffer with the segment indices of a polyline decomposed into a series of steps.
      * @param[in] the id of the polyline.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
@@ -235,11 +235,11 @@ private :
      * @param[in] a flag indicating whether the polyline is closed or not.
      * @return the number of indices actually written.
      */
-    static int fillStairDecompositionIndices(char* id, int* buffer, int bufferLength,
+    static int fillStairDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
 
     /**
-     * Fills a buffer with the indices of a polyline decomposed into a series of vertical lines and consecutive segments.
+     * Fills a buffer with the segment indices of a polyline decomposed into a series of vertical lines and consecutive segments.
      * @param[in] the id of the polyline.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
@@ -252,11 +252,11 @@ private :
      * @param[in] the line mode flag.
      * @return the number of indices actually written.
      */
-    static int fillVerticalLinesDecompositionIndices(char* id, int* buffer, int bufferLength,
+    static int fillVerticalLinesDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
 
     /**
-     * Fills a buffer with the indices of a polyline decomposed into a series of vertical bars and consecutive segments.
+     * Fills a buffer with the segment indices of a polyline decomposed into a series of vertical bars and consecutive segments.
      * @param[in] the id of the polyline.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
@@ -269,7 +269,7 @@ private :
      * @param[in] the line mode flag.
      * @return the number of indices actually written.
      */
-    static int fillVerticalBarsDecompositionIndices(char* id, int* buffer, int bufferLength,
+    static int fillVerticalBarsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
 
     /**
