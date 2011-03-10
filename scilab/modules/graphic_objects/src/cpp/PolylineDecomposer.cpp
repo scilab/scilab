@@ -532,6 +532,188 @@ void PolylineDecomposer::fillVerticalBarsDecompositionVertices(char* id, float* 
 
 }
 
+/*
+ * To do: see fillIndices
+ * -take into account polyline_style.
+ */
+int PolylineDecomposer::getIndicesSize(char* id)
+{
+    int nPoints = 0;
+    int *piNPoints = &nPoints;
+    int polylineStyle = 0;
+    int* piPolylineStyle = &polylineStyle;
+
+    int nIndices = 0;
+
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piNPoints);
+    getGraphicObjectProperty(id, __GO_POLYLINE_STYLE__, jni_int, (void**) &piPolylineStyle);
+
+    /* No facets if 0 points */
+    if (nPoints == 0)
+    {
+        return 0;
+    }
+
+    /* Segments */
+    if (polylineStyle == 1)
+    {
+        switch (nPoints)
+        {
+            case 3:
+                nIndices = 3;
+                break;
+            case 4:
+                nIndices = 6;
+                break;
+            default:
+                nIndices = 0;
+                break;
+        }
+
+    }
+
+    return nIndices;
+}
+
+/*
+ * This is a preliminary implementation of the index array filling function,
+ * and is only currently able to output indices corresponding to 3-sided or convex 4-sided
+ * polygons.
+ *
+ * To do: implementation for more than 4 points (see fillTriangleIndices).
+ * -take into account the polyline style property (note: vertical bars -style 6- are filled
+ *  whatever fill_mode's value), by implementing the relevant functions.
+ */
+int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+{
+    double* coordinates;
+    double* xshift;
+    double* yshift;
+    double* zshift;
+
+    int nPoints = 0;
+    int* piNPoints = &nPoints;
+    int polylineStyle = 0;
+    int* piPolylineStyle = &polylineStyle;
+    int fillMode = 0;
+    int* piFillMode = &fillMode;
+
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, (void**) &coordinates);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piNPoints);
+    getGraphicObjectProperty(id, __GO_POLYLINE_STYLE__, jni_int, (void**) &piPolylineStyle);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, jni_double_vector, (void**) &xshift);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, (void**) &yshift);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double_vector, (void**) &zshift);
+
+    getGraphicObjectProperty(id, __GO_FILL_MODE__, jni_bool, (void**) &piFillMode);
+
+    /* To be corrected: vertical bars are filled nonetheless */
+    if (fillMode == 0)
+    {
+        return 0;
+    }
+
+    /* 0 triangles if 0 points */
+    if (nPoints == 0)
+    {
+        return 0;
+    }
+
+    if (polylineStyle == 1)
+    {
+        return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, fillMode);
+    }
+
+    return 0;
+}
+
+/*
+ * Implemented as a proof of concept.
+ * It is currently able to output indices corresponding to 3 or 4-point polygons.
+ * To do: implementation for more than 4 points (correponding to the general fill_mode=on case).
+ * -use an actual triangle decomposition algorithm (for non-convex polygons).
+ * -take into account the interpolation color vector for nPoints=3 or 4.
+ */
+int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLength,
+    int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode)
+{
+    double coords0[3];
+    double coords1[3];
+    double coords2[3];
+    double coords3[3];
+
+    int sharedEdgeValid = 0;
+    int isValid = 0;
+    int tmpValid = 0;
+    int nIndices = 0;
+
+    /* Only 3 and 4-point polylines can currently be decomposed into triangles. */
+    if (nPoints != 3 && nPoints != 4)
+    {
+        return 0;
+    }
+
+    if (fillMode == 0)
+    {
+        return 0;
+    }
+
+    getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 0, &coords0[0], &coords0[1], &coords0[2]);
+    getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 1, &coords1[0], &coords1[1], &coords1[2]);
+    getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 2, &coords2[0], &coords2[1], &coords2[2]);
+
+    tmpValid = DecompositionUtils::isValid(coords0[0], coords0[1], coords0[2]);
+    tmpValid &= DecompositionUtils::isValid(coords2[0], coords2[1], coords2[2]);
+    sharedEdgeValid = tmpValid;
+
+    tmpValid &= DecompositionUtils::isValid(coords1[0], coords1[1], coords1[2]);
+
+    isValid = tmpValid;
+
+    if (logMask)
+    {
+        tmpValid = DecompositionUtils::isLogValid(coords0[0], coords0[1], coords0[2], logMask);
+        tmpValid &= DecompositionUtils::isLogValid(coords2[0], coords2[1], coords2[2], logMask);
+
+        sharedEdgeValid &= tmpValid;
+
+        tmpValid &= DecompositionUtils::isLogValid(coords1[0], coords1[1], coords1[2], logMask);
+        isValid &= tmpValid;
+    }
+
+    if (isValid)
+    {
+        buffer[0] = 0;
+        buffer[1] = 1;
+        buffer[2] = 2;
+
+        nIndices += 3;
+    }
+
+    if (nPoints == 4)
+    {
+        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 3, &coords3[0], &coords3[1], &coords3[2]);
+
+        isValid = sharedEdgeValid & DecompositionUtils::isValid(coords3[0], coords3[1], coords3[2]);
+
+        if (logMask)
+        {
+            isValid &= DecompositionUtils::isLogValid(coords3[0], coords3[1], coords3[2], logMask);
+        }
+
+        if (isValid)
+        {
+            buffer[nIndices+0] = 0;
+            buffer[nIndices+1] = 2;
+            buffer[nIndices+2] = 3;
+
+            nIndices += 3;
+        }
+    }
+
+    return nIndices;
+}
+
 int PolylineDecomposer::getWireIndicesSize(char* id)
 {
     int nPoints = 0;

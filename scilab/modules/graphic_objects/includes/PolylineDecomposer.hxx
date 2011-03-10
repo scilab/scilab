@@ -150,6 +150,25 @@ private :
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
+     * Fills a buffer with triangles indices corresponding to 1 or 2 triangles.
+     * Implemented as a proof of concept, since it is only currently able to
+     * process 3- or 4-point polygons.
+     * @param[in] the id of the polyline.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
+     * @param[in] the polyline coordinate array.
+     * @param[in] the polyline's number of points.
+     * @param[in] the polyline x-shift array.
+     * @param[in] the polyline y-shift array.
+     * @param[in] the polyline z-shift array.
+     * @param[in] the fill mode flag.
+     * @return the number of indices actually written.
+     */
+    static int fillTriangleIndices(char* id, int* buffer, int bufferLength,
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode);
+
+    /**
      * Returns the number of segment indices of a polyline decomposed into consecutive segments.
      * @param[in] the polyline's number of points.
      * @param[in] the line mode flag.
@@ -289,6 +308,23 @@ public :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
     static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
+
+    /**
+     * Returns the number of indices for the given object.
+     * @param[in] the given object id.
+     * @return the object's number of indices.
+     */
+    static int getIndicesSize(char* id);
+
+    /**
+     * Fills the given buffer with indices data of the given object.
+     * @param[in] the given object id.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
+     * @return the number of indices actually written.
+     */
+    static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
 
     /**
      * Returns the number of wireframe indices for the given object.
