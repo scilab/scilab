@@ -24,6 +24,13 @@ class DecompositionUtils
 public :
 
     /**
+     * Tests whether a scalar value is valid.
+     * @param[in] the scalar value to test.
+     * @return 1 if the value is valid, 0 if it is not.
+     */
+    static int isValid(double x);
+
+    /**
      * Tests whether a point is valid.
      * @param[in] the point's x-coordinate.
      * @param[in] the point's y-coordinate.

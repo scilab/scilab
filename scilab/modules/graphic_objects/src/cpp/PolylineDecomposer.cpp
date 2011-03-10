@@ -629,7 +629,7 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
     }
     else if (polylineStyle == 6)
     {
-        return fillVerticalBarsDecompositionTrianglesIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
+        return fillVerticalBarsDecompositionTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
     }
 
     return 0;
@@ -726,17 +726,27 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
  * Only bars are filled at the present moment, the curve is not.
  * See fillTriangleIndices for more information.
  */
-int PolylineDecomposer::fillVerticalBarsDecompositionTrianglesIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillVerticalBarsDecompositionTriangleIndices(char* id, int* buffer, int bufferLength,
     int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
+    double barWidth = 0.0;
+    double* pdBarWidth = &barWidth;
     double coordsi[3];
-    int triangleIndices[6];
 
+    int triangleIndices[6];
     int i;
     int offset = 0;
     int numberValidIndices = 0;
 
     if (nPoints == 0)
+    {
+        return 0;
+    }
+
+    getGraphicObjectProperty(id, __GO_BAR_WIDTH__, jni_double, (void**) &pdBarWidth);
+
+    /* 0 indices if the bar width is invalid, as it is the same for all bars. */
+    if (!DecompositionUtils::isValid(barWidth))
     {
         return 0;
     }
@@ -1230,8 +1240,11 @@ int PolylineDecomposer::fillVerticalLinesDecompositionSegmentIndices(char* id, i
 int PolylineDecomposer::fillVerticalBarsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
     int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode)
 {
+    double barWidth = 0.0;
+    double* pdBarWidth = &barWidth;
     double coordsi[3];
 
+    int barWidthValid;
     int i;
     int offset = 0;
     int numberValidIndices = 0;
@@ -1241,29 +1254,38 @@ int PolylineDecomposer::fillVerticalBarsDecompositionSegmentIndices(char* id, in
         return 0;
     }
 
-    /* Bars */
-    for (i = 0; i < nPoints; i++)
-    {
-        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, i, &coordsi[0], &coordsi[1], &coordsi[2]);
+    getGraphicObjectProperty(id, __GO_BAR_WIDTH__, jni_double, (void**) &pdBarWidth);
 
-        if (DecompositionUtils::isValid(coordsi[0], coordsi[1], coordsi[2]))
+    barWidthValid = DecompositionUtils::isValid(barWidth);
+
+    /* 0 bar segment indices if the bar width is invalid, as it is the same for all bars. */
+    if (barWidthValid)
+    {
+        /* Bars */
+        for (i = 0; i < nPoints; i++)
         {
-            if (logMask && !DecompositionUtils::isLogValid(coordsi[0], coordsi[1], coordsi[2], logMask))
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, i, &coordsi[0], &coordsi[1], &coordsi[2]);
+
+            if (DecompositionUtils::isValid(coordsi[0], coordsi[1], coordsi[2]))
             {
-                continue;
+                if (logMask && !DecompositionUtils::isLogValid(coordsi[0], coordsi[1], coordsi[2], logMask))
+                {
+                    continue;
+                }
+
+                buffer[8*offset] = 4*i;
+                buffer[8*offset+1] = 4*i+1;
+                buffer[8*offset+2] = 4*i+1;
+                buffer[8*offset+3] = 4*i+2;
+                buffer[8*offset+4] = 4*i+2;
+                buffer[8*offset+5] = 4*i+3;
+                buffer[8*offset+6] = 4*i+3;
+                buffer[8*offset+7] = 4*i;
+
+                numberValidIndices += 8;
+                offset++;
             }
 
-            buffer[8*offset] = 4*i;
-            buffer[8*offset+1] = 4*i+1;
-            buffer[8*offset+2] = 4*i+1;
-            buffer[8*offset+3] = 4*i+2;
-            buffer[8*offset+4] = 4*i+2;
-            buffer[8*offset+5] = 4*i+3;
-            buffer[8*offset+6] = 4*i+3;
-            buffer[8*offset+7] = 4*i;
-
-            numberValidIndices += 8;
-            offset++;
         }
 
     }

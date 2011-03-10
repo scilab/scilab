@@ -188,7 +188,7 @@ private :
      * @param[in] the polyline z-shift array.
      * @return the number of indices actually written.
      */
-    static int fillVerticalBarsDecompositionTrianglesIndices(char* id, int* buffer, int bufferLength,
+    static int fillVerticalBarsDecompositionTriangleIndices(char* id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**

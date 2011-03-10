@@ -21,6 +21,18 @@ extern "C"
 #endif
 }
 
+int DecompositionUtils::isValid(double x)
+{
+    if (isnan(x))
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
 int DecompositionUtils::isValid(double x, double y, double z)
 {
     if (isnan(x) || isnan(y) || isnan(z))
