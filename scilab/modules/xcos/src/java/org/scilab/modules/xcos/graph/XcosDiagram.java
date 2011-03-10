@@ -35,6 +35,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -59,7 +60,6 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
@@ -1632,14 +1632,18 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setTitle(XcosMessages.SAVE_AS);
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 	    
-	    final SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
-	    final SciFileFilter allFilter = new SciFileFilter("*.*", null, 1);
-	    fc.addChoosableFileFilter(xcosFilter);
-	    fc.addChoosableFileFilter(allFilter);
-	    fc.setFileFilter(xcosFilter);
+	    // Xcos files or anything are supported
+	    {
+			final XcosFileType defaultFileType = XcosFileType.getDefault();
+			final FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter(
+					defaultFileType.getDescription(),
+					defaultFileType.getExtension());
+			fc.addChoosableFileFilter(xcosFilter);
+			fc.setAcceptAllFileFilterUsed(true);
+			fc.setFileFilter(xcosFilter);
+	    }
 	    
 	    fc.setMultipleSelection(false);
-	    fc.setAcceptAllFileFilterUsed(false);
 	    if (getSavedFile() != null) {
 	    	fc.setSelectedFile(getSavedFile());
 	    } else {
