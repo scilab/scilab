@@ -184,6 +184,34 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     public void visit(final Polyline polyline) {
         if (polyline.getVisible()) {
 
+            Geometry triangles = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.TRIANGLES;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(polyline.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    return null;
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getIndexBuffer(polyline.getIdentifier());
+                    return indices;
+                }
+            };
+
             Geometry geometry = new Geometry() {
                 @Override
                 public DrawingMode getDrawingMode() {
@@ -213,10 +241,17 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                 }
             };
 
+
+            Appearance trianglesAppearance = new Appearance();
+            trianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, polyline.getBackground()));
+
+            drawingTools.draw(triangles, trianglesAppearance);
+
             Appearance appearance = new Appearance();
             appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
             appearance.setLineWidth(polyline.getLineThickness().floatValue());
             appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
+
 
             drawingTools.draw(geometry, appearance);
 
