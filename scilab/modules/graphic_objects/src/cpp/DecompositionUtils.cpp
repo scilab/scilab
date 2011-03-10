@@ -60,3 +60,20 @@ int DecompositionUtils::isLogValid(double x, double y, double z, int logMask)
     return valid;
 }
 
+/*
+ * Decomposes a rectangle into two adjacent triangles.
+ * The rectangle's vertices are supposed to be specified in
+ * counter-clockwise order, with 0 corresponding to the former's lower-left vertex.
+ * The two output triangles' vertex indices are also specified in
+ * counter-clockwise order.
+ */
+void DecompositionUtils::getDecomposedRectangleTriangleIndices(int* indices)
+{
+    indices[0] = 0;
+    indices[1] = 1;
+    indices[2] = 2;
+    indices[3] = 0;
+    indices[4] = 2;
+    indices[5] = 3;
+}
+

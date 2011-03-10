@@ -150,6 +150,13 @@ private :
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
+     * Returns the number of triangle indices of a polyline decomposed into a series of vertical bars and consecutive segments.
+     * @param[in] the polyline's number of points.
+     * @return the number of triangle indices.
+     */
+    static int getVerticalBarsDecompositionTriangleIndicesSize(int nPoints);
+
+    /**
      * Fills a buffer with triangles indices corresponding to 1 or 2 triangles.
      * Implemented as a proof of concept, since it is only currently able to
      * process 3- or 4-point polygons.
@@ -167,6 +174,22 @@ private :
      */
     static int fillTriangleIndices(char* id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode);
+
+    /**
+     * Fills a buffer with the triangle indices of a polyline decomposed into a series of vertical bars and consecutive segments.
+     * @param[in] the id of the polyline.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
+     * @param[in] the polyline coordinate array.
+     * @param[in] the polyline's number of points.
+     * @param[in] the polyline x-shift array.
+     * @param[in] the polyline y-shift array.
+     * @param[in] the polyline z-shift array.
+     * @return the number of indices actually written.
+     */
+    static int fillVerticalBarsDecompositionTrianglesIndices(char* id, int* buffer, int bufferLength,
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Returns the number of segment indices of a polyline decomposed into consecutive segments.

@@ -571,8 +571,18 @@ int PolylineDecomposer::getIndicesSize(char* id)
         }
 
     }
+    /* Vertical bars plus segments */
+    else if (polylineStyle == 6)
+    {
+        nIndices = PolylineDecomposer::getVerticalBarsDecompositionTriangleIndicesSize(nPoints);
+    }
 
     return nIndices;
+}
+
+int PolylineDecomposer::getVerticalBarsDecompositionTriangleIndicesSize(int nPoints)
+{
+    return 2*3*nPoints;
 }
 
 /*
@@ -607,12 +617,6 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
 
     getGraphicObjectProperty(id, __GO_FILL_MODE__, jni_bool, (void**) &piFillMode);
 
-    /* To be corrected: vertical bars are filled nonetheless */
-    if (fillMode == 0)
-    {
-        return 0;
-    }
-
     /* 0 triangles if 0 points */
     if (nPoints == 0)
     {
@@ -622,6 +626,10 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
     if (polylineStyle == 1)
     {
         return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, fillMode);
+    }
+    else if (polylineStyle == 6)
+    {
+        return fillVerticalBarsDecompositionTrianglesIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
     }
 
     return 0;
@@ -712,6 +720,59 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
     }
 
     return nIndices;
+}
+
+/*
+ * Only bars are filled at the present moment, the curve is not.
+ * See fillTriangleIndices for more information.
+ */
+int PolylineDecomposer::fillVerticalBarsDecompositionTrianglesIndices(char* id, int* buffer, int bufferLength,
+    int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
+{
+    double coordsi[3];
+    int triangleIndices[6];
+
+    int i;
+    int offset = 0;
+    int numberValidIndices = 0;
+
+    if (nPoints == 0)
+    {
+        return 0;
+    }
+
+    /*
+     * Gets the indices corresponding to a rectangle decomposed into 2 triangles.
+     * All the bars are decomposed the same way.
+     */
+    DecompositionUtils::getDecomposedRectangleTriangleIndices(triangleIndices);
+
+    /* Bars */
+    for (i = 0; i < nPoints; i++)
+    {
+        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, i, &coordsi[0], &coordsi[1], &coordsi[2]);
+
+        if (DecompositionUtils::isValid(coordsi[0], coordsi[1], coordsi[2]))
+        {
+            if (logMask && !DecompositionUtils::isLogValid(coordsi[0], coordsi[1], coordsi[2], logMask))
+            {
+                continue;
+            }
+
+            buffer[6*offset] = 4*i + triangleIndices[0];
+            buffer[6*offset+1] = 4*i + triangleIndices[1];
+            buffer[6*offset+2] = 4*i + triangleIndices[2];
+            buffer[6*offset+3] = 4*i + triangleIndices[3];
+            buffer[6*offset+4] = 4*i + triangleIndices[4];
+            buffer[6*offset+5] = 4*i + triangleIndices[5];
+
+            numberValidIndices += 6;
+            offset++;
+        }
+
+    }
+
+    return numberValidIndices;
 }
 
 int PolylineDecomposer::getWireIndicesSize(char* id)

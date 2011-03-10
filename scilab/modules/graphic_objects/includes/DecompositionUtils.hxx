@@ -51,6 +51,14 @@ public :
      * @return 1 if the point is valid, 0 if it is not.
      */
     static int isLogValid(double x, double y, double z, int logMask);
+
+   /**
+    * Utility function which outputs the triangle indices of a rectangle decomposed
+    * into 2 adjacent triangles. Decomposition is always performed the same way as it does not
+    * depend on input vertex values. This function should therefore be used only for rectangles.
+    * @param[out] the triangle indices (v0, v1, v2), (v3, v4, v5).
+    */
+    static void getDecomposedRectangleTriangleIndices(int* indices);
 };
 
 #endif
